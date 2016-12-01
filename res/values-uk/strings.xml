@@ -214,7 +214,6 @@
   <string name="CustomDefaultPreference_using_default">Використання за замовчуванням: %s</string>
   <string name="CustomDefaultPreference_none">Жодного</string>
   <!--DateUtils-->
-  <string name="DateUtils_now">Зараз</string>
   <string name="DateUtils_minutes_ago">%d хв</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Від\'єднати \'%s\'?</string>

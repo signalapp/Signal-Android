@@ -61,8 +61,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">着信</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">%1$sの安全番号が変わりました。%2$sがSignalをインストールし直しただけかも知れませんが，そうでなければ誰かが会話を傍受しようとしています。</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">この連絡先の安全番号を確認した方がいいかも知れません。</string>
   <string name="ConfirmIdentityDialog_accept">承認</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">%sにメッセージを送る</string>
@@ -188,7 +186,6 @@
   <string name="CustomDefaultPreference_using_default">デフォルト利用: %s</string>
   <string name="CustomDefaultPreference_none">なし</string>
   <!--DateUtils-->
-  <string name="DateUtils_now">いま</string>
   <string name="DateUtils_minutes_ago">%d分</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">「%s」を切り離しますか？</string>
@@ -295,7 +292,6 @@
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">QRコードを読み取るにはコードリーダーが必要です</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">送信失敗</string>
-  <string name="MessageDetailsRecipient_new_safety_numbers">新しい安全番号</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">MMS保存中にエラーがありました。</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">MMSのプロバイダー接続中にエラーが発生しました…</string>
@@ -322,7 +318,6 @@
   <string name="MessageRecord_s_is_on_signal_say_hey">%sがSignalにいるので声を掛ける</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">メッセージの消去時間を%1$sに設定しました</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$sがメッセージの消去時間を%2$sに設定しました</string>
-  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">%sとの安全番号が変わりました</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">パスワードが正しくありません！</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">古いパスワードが正しくありません。</string>
@@ -441,7 +436,6 @@
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">無効な鍵交換メッセージを受信しました</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">受信した鍵交換メッセージのプロトコルバージョンが無効です</string>
-  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">未知の安全番号付きのメッセージを受け取りました。タップして確認してください。</string>
   <string name="SmsMessageRecord_secure_session_reset">安全な接触を設定し直しました</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%sが安全な接触を設定し直しました。</string>
   <string name="SmsMessageRecord_duplicate_message">重複メッセージ</string>
@@ -455,16 +449,9 @@
   <string name="ThreadRecord_media_message">メディアでのメッセージ</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%sがSignalにいるので声を掛ける</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">メッセージの消去時間が%sに設定されました</string>
-  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">%sとの安全番号が変わりました</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">相手先は古いバージョンのSignalを使っています。最新版に更新するようお願いしてください。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">相手が使っているSignalのバージョンが新しいため，QRコードの形式が異なります。Signalを更新してから改めて比較してください。</string>
-  <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">%1$sのコードを読み取るつもりが，%2$sのコードを読み取っています。</string>
-  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">読み取ったQRコードは安全番号のコードとは違うようです。QRコードを読み取り直してください。</string>
-  <string name="VerifyIdentityActivity_share_safety_numbers_via">安全番号を共有しています……</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_numbers">安全番号は</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">シェアするためのアプリがないようです。</string>
-  <string name="VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard">クリップボードに安全番号がありません。</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">既存のリクエストがありますが、鍵交換を開始しますか？</string>
   <string name="KeyExchangeInitiator_send">送信</string>
@@ -671,7 +658,6 @@
   <string name="recipient_preferences__block">ブロック</string>
   <string name="recipient_preferences__color">色</string>
   <string name="recipient_preferences__color_for_this_contact">この連絡先の色</string>
-  <string name="recipient_preferences__verify_safety_numbers">安全番号の確認</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal通話</string>
   <string name="redphone_call_controls__end_call">通話を終了</string>
@@ -723,10 +709,8 @@
   <string name="recipients_panel__to"><small>名前または番号を入力して下さい</small></string>
   <string name="recipients_panel__add_members">メンバーを追加</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"><![CDATA[%sとの端末間の暗号化が完全かどうかを確認するには，上記の番号と相手方に表示されている番号を比べてください。あるいは，相手方の端末上のQRコードを読み取るか，こちらのQRコードを相手に読み取ってもらってください。<a href=\"https://whispersystems.org/redirect/safety-numbers\">安全番号の確認についての詳細</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">読み取る</string>
   <!--verify_identity-->
-  <string name="verify_identity__share_safety_numbers">安全番号を共有する</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">問題があります</string>
   <string name="message_details_header__sent">送信</string>
@@ -742,7 +726,6 @@
   <string name="AndroidManifest__select_contacts">連絡先を選択</string>
   <string name="AndroidManifest__signal_detected">Signalが検出されました</string>
   <string name="AndroidManifest__change_passphrase">パスワード変更</string>
-  <string name="AndroidManifest__verify_safety_numbers">安全番号の確認</string>
   <string name="AndroidManifest__log_submit">デバッグログを提出</string>
   <string name="AndroidManifest__media_preview">メディアのプレビュー</string>
   <string name="AndroidManifest__media_overview">すべての画像</string>

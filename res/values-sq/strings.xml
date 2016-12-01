@@ -64,10 +64,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Thirrje hyrëse</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Shifrat sigurues
-për %1$s kanë ndryshuar. Kjo do të thotë që dikush mundohet të ndërhyjë në komunikimin tuaj, ose që %2$s thjesht ka ri-instaluar Signalin.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Mund të doni të verifikoni 
-shifrat e sigurta për këtë numër.</string>
   <string name="ConfirmIdentityDialog_accept">Prano</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mesazh %s</string>
@@ -204,7 +200,6 @@ shifrat e sigurta për këtë numër.</string>
   <string name="CustomDefaultPreference_using_default">Po përdorët parazgjedhja: %s</string>
   <string name="CustomDefaultPreference_none">Asnjë</string>
   <!--DateUtils-->
-  <string name="DateUtils_now">Tani</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Shkëput \'%s\'?</string>
@@ -325,7 +320,6 @@ importimi i sërishëm do të rezultojë ne mesazhe duplikate.</string>
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal-it i duhet Barcode Scanner për kodet QR.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Dështoj dërgimi</string>
-  <string name="MessageDetailsRecipient_new_safety_numbers">Numra të reja sigurimi</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Gabim në ruajtjën e MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Gabim gjatë lidhjes me ofruesin e MMS...</string>
@@ -352,7 +346,6 @@ importimi i sërishëm do të rezultojë ne mesazhe duplikate.</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s është në Signal, thuaj tung!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Ju rregulluar kohën për zhduken mesazhit në %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s vendosi kohën e zhdukjes së mesazhit në %2$s.</string>
-  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Numrat e sigurimit me %s kanë ndryshuar</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Fjalëkalimet nuk përputhen!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Fjalëkalim i vjetër i gabuar!</string>
@@ -479,7 +472,6 @@ Kontrolloni/sigurohuni nëse ky është numri juaj! Do ta verifikojmë me një S
 për shkëmbim çelsash!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 U pranua mesazh për shkembim çelsash për një verzion të protokolli jo valid.</string>
-  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">U pranua mesazh me numra te reja sigurimi. Shtyp/prek për ti procesuar dhe shfaqur.</string>
   <string name="SmsMessageRecord_secure_session_reset">Keni resetuar sesionin e sigurtë.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s resetoi sesionin e sigurtë.</string>
   <string name="SmsMessageRecord_duplicate_message">Porosi e dyfishuar.</string>
@@ -493,16 +485,9 @@ U pranua mesazh për shkembim çelsash për një verzion të protokolli jo valid
   <string name="ThreadRecord_media_message">Mesazh medial</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s është në Signal, thuaj tung!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Koha për zhdukje të mesazheve rregulluar në %s</string>
-  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Numrat e sigurimit me %s kanë ndryshuar</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontakti juaj ka një verzion të vjetër të Signal-it, kërkoni që të shkarkojë verzionin e ri para se ti verifikoni numrat për siguri.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontakti juaj ka një version më të ri të Siganl-it me një format QR Kodi që nuk përputhet. Ju lutem shkarkoni versionin e ri për të krahasuar.</string>
-  <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Ju po provoni ti verifikoni numrat për siguri me %1$s, por keni skanuar numrat e %2$s.</string>
-  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Kodi QR i skanuar nuk është në formatin e duhhur si kod verifikimi i numrave për siguri. Ju lutemi skanoni përsëri.</string>
-  <string name="VerifyIdentityActivity_share_safety_numbers_via">Ndani numrat e sigurisë përmes...</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_numbers">Numrat tonë të sigurtë të Signal:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Duket që nuk keni epa me të cilat të ndani.</string>
-  <string name="VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard">Nuk u gjetën numrat e sigurt në memorie për të krahasuar</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Inico përkurndër kërkesës ekzistuese?</string>
   <string name="KeyExchangeInitiator_send">Dërgo</string>
@@ -715,7 +700,6 @@ U pranua mesazh për shkembim çelsash për një verzion të protokolli jo valid
   <string name="recipient_preferences__block">Blloko</string>
   <string name="recipient_preferences__color">Ngjyra</string>
   <string name="recipient_preferences__color_for_this_contact">Ngjyra për këtë kontakt</string>
-  <string name="recipient_preferences__verify_safety_numbers">Verifiko numrat e sigurtë.</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Thirrje përmes Signal</string>
   <string name="redphone_call_controls__end_call">përfundo thirrjen</string>
@@ -789,10 +773,8 @@ Signal u ndal derisa pritej SMSi për verifikim.</string>
   <string name="recipients_panel__to"><small>Shkruaj një emër ose numër</small></string>
   <string name="recipients_panel__add_members">Shto pjesëmarrës</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"><![CDATA[Nëse dëshironi të verifikoni sigurinë e enkriptimit tuaj fund-më-fund me %s, krahasoni numrat e mësipërm me numrat në pajisjen e tyre. Ose, ju mund të skanoni kodin në telefonin e tyre, ose u kërkoni atyre të skanojnë kodin tuaj. <a href=\"https://whispersystems.org/redirect/safety-numbers\"> Mësoni më shumë për verifikimin e numrave të sigurisë </a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Shtypni për të skanuar</string>
   <!--verify_identity-->
-  <string name="verify_identity__share_safety_numbers">Ndani numrat e sigurisë</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Disa gjëra kërkojnë vëmendjen tuaj.</string>
   <string name="message_details_header__sent">Dërguar</string>
@@ -808,7 +790,6 @@ Signal u ndal derisa pritej SMSi për verifikim.</string>
   <string name="AndroidManifest__select_contacts">Përzgjedh kontaktet</string>
   <string name="AndroidManifest__signal_detected">Signal u detektua</string>
   <string name="AndroidManifest__change_passphrase">Ndrysho fjalëkalimin</string>
-  <string name="AndroidManifest__verify_safety_numbers">Verifiko numrat e sigurtë</string>
   <string name="AndroidManifest__log_submit">Dërgo logun e gabimeve</string>
   <string name="AndroidManifest__media_preview">Parapamje e medias</string>
   <string name="AndroidManifest__media_overview">Gjitha imazhet</string>

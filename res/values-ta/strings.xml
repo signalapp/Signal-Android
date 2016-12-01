@@ -164,7 +164,6 @@
   <string name="CustomDefaultPreference_using_default">பயன்படுத்தப்படும் இயல்புநிலை: %s</string>
   <string name="CustomDefaultPreference_none">எதுவும் இல்லை</string>
   <!--DateUtils-->
-  <string name="DateUtils_now">இப்போது</string>
   <string name="DateUtils_minutes_ago">%d நிமிடம்</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">\'%s\' துண்டி?</string>

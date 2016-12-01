@@ -64,8 +64,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Входящо обаждане</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Числата за сигурност на %1$s са променени. Това означава, че или някой се опитва да прехване куминикацията Ви, или че %2$s е преинсталирал Signal.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Може да желаете да проверите числата за сигурност на този контакт.</string>
   <string name="ConfirmIdentityDialog_accept">Приемам</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Съобщение %s</string>
@@ -202,7 +200,6 @@
   <string name="CustomDefaultPreference_using_default">Използване на подразбиращ се: %s</string>
   <string name="CustomDefaultPreference_none">Няма</string>
   <!--DateUtils-->
-  <string name="DateUtils_now">Сега</string>
   <string name="DateUtils_minutes_ago">%d мин</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Премахни връзката \'%s\'?</string>
@@ -317,7 +314,6 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal се нуждае от баркод скенер за QR кодове.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Неуспешно изпращане</string>
-  <string name="MessageDetailsRecipient_new_safety_numbers">Нови числа за сигурност</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Грешка при съхраняване на MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Грешка при свързването с MMS доставчика...</string>
@@ -344,7 +340,6 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="MessageRecord_s_is_on_signal_say_hey">%s е в Signal, кажи им здрасти!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Заложихте време за изчезване на съобщения на %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s заложи време за изчезване на съобщения на %2$s.</string>
-  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Числата за сигурност с %s са променени</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Паролите не съвпадат!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Грешна стара парола!</string>
@@ -473,7 +468,6 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Съобщението за обмяна на ключа е с грешна версия на протокола.
 </string>
-  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">Получихте съобщение с нови числа за сигурност. Натиснете, за да ги видите и обработите.</string>
   <string name="SmsMessageRecord_secure_session_reset">Вие рестартирахте сигурната сесия.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s рестартира сигурната сесия.</string>
   <string name="SmsMessageRecord_duplicate_message">Дублирай съобщението.</string>
@@ -487,16 +481,9 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="ThreadRecord_media_message">Медийно съобщение</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s е в Signal, кажи му здрасти!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Времето за изчезване на съобщенията е %s</string>
-  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Числата за сигурност с %s са променени</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Вашият контакт използва стара версия на Signal, помолете ги да го обновят преди да проверят числата за сигурност.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Вашият контакт използва по-нова версия на Signal с несъвместим QR формат. Моля, обновете версията си, за да можете да сравните.</string>
-  <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Опитвате се проверите числата за сигурност на %1$s, но вместо това сканирахте %2$s.</string>
-  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Сканираният QR код не представлява правилно форматира код на числа за сигурност. Моля, сканирайте отново.</string>
-  <string name="VerifyIdentityActivity_share_safety_numbers_via">Споделяне на числа за сигурност през...</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_numbers">Нашите Signal числа за сигурност:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Изглежда нямате приложения, с които да можете да споделите.</string>
-  <string name="VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard">Не са открити копирани числа за сигурност</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Покани въпреки съществуващата покана?</string>
   <string name="KeyExchangeInitiator_send">Изпрати</string>
@@ -588,6 +575,7 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="conversation_activity__emoji_toggle_description">Смени emoji клавиатурата</string>
   <string name="conversation_activity__attachment_thumbnail">Изображение на прикачен файл</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">Затвори/отвори чекмеджето с прикачени файлове</string>
+  <string name="conversation_activity__enable_signal_for_sms">Активиране на SIgnal за SMS-и</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">ПЛЪЗНЕТЕ, ЗА ДА ОТКАЖЕТЕ</string>
   <!--conversation_item-->
@@ -709,7 +697,6 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="recipient_preferences__block">Блокирай</string>
   <string name="recipient_preferences__color">Цвят</string>
   <string name="recipient_preferences__color_for_this_contact">Цвят за този контакт</string>
-  <string name="recipient_preferences__verify_safety_numbers">Провери числата за сигурност</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal-ско обаждане</string>
   <string name="redphone_call_controls__end_call">прекрати обаждането</string>
@@ -782,10 +769,8 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="recipients_panel__to"><small>Въведи име или номер</small></string>
   <string name="recipients_panel__add_members">Добави членове</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"><![CDATA[Ако желаете да проверите сигурността на вашта комуникация с %s, сръвнете числата изписани по-горе с числата на тяхното устройство. Алтернативно можете да сканирате техният код или те да сканират Вашия. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Научете повече за проверката за сигурност с числа</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Натисните за сканиране</string>
   <!--verify_identity-->
-  <string name="verify_identity__share_safety_numbers">Споделяне на числа за сигурност</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Няколко проблема изискват вашето внимание.</string>
   <string name="message_details_header__sent">Изпратен</string>
@@ -801,7 +786,6 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="AndroidManifest__select_contacts">Избери контакти</string>
   <string name="AndroidManifest__signal_detected">Открит е Signal</string>
   <string name="AndroidManifest__change_passphrase">Смени паролата</string>
-  <string name="AndroidManifest__verify_safety_numbers">Провери числата за сигурност</string>
   <string name="AndroidManifest__log_submit">Изпрати доклад</string>
   <string name="AndroidManifest__media_preview">Преглед на медията</string>
   <string name="AndroidManifest__media_overview">Всички изображения</string>

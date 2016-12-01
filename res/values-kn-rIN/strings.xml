@@ -174,7 +174,6 @@
   <string name="CustomDefaultPreference_using_default">ಪೂರ್ವನಿಯೋಜಿತ ಬಳಕೆ: %s</string>
   <string name="CustomDefaultPreference_none">ಯಾವುದೂ ಇಲ್ಲ</string>
   <!--DateUtils-->
-  <string name="DateUtils_now">ಈಗ</string>
   <string name="DateUtils_minutes_ago">%d ನಿಮಿಷ</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">\'%s\'ನು ಅಗಲಿಸು?</string>

@@ -68,10 +68,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Долазни позив</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Безбедносни бројеви са %1$s су се променили. Ово може да значи да неко покушава да пресретне Вашу комуникацију, или да је %2$s покренуо реинсталацију Сигнал апликације.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Можда желите да оверите
-безбедносне бројеве за овај контакт.
-</string>
   <string name="ConfirmIdentityDialog_accept">Прихвати</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Порука за %s</string>
@@ -219,7 +215,6 @@
   <string name="CustomDefaultPreference_using_default">Користим подразумевано: %s</string>
   <string name="CustomDefaultPreference_none">Ништа</string>
   <!--DateUtils-->
-  <string name="DateUtils_now">Сад</string>
   <string name="DateUtils_minutes_ago">%d минута</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Да уклоним „%s“?</string>
@@ -337,7 +332,6 @@
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Сигналу је потребан Скенер бар-кôда за читање бар-кôдова.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Неуспех слања</string>
-  <string name="MessageDetailsRecipient_new_safety_numbers">Нови безбедносни бројеви</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Грешка уписа ММС-а!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Грешка повезивања са ММС послужиоцем...</string>
@@ -364,7 +358,6 @@
   <string name="MessageRecord_s_is_on_signal_say_hey">%s је на Сигналу, кажите здраво!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Подесили сте време нестајања поруке на %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s има подешено време на %2$s.</string>
-  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Ваши безбедносни бројеви са %s су промењени</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Лозинке се не поклапају!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Нетачна стара лозинка!</string>
@@ -493,7 +486,6 @@
 порука размене кључа!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Примљена је порука размене кључа за неисправно издање протокола.</string>
-  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">Примљена је порука са новим безбедносним бројевима. Наставите даље и прикажите поруку.</string>
   <string name="SmsMessageRecord_secure_session_reset">Ресетовали сте безбедну сесију.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s ресетова безбедну сесију.</string>
   <string name="SmsMessageRecord_duplicate_message">Порука дупликат.</string>
@@ -507,16 +499,9 @@
   <string name="ThreadRecord_media_message">Мултимедијална порука</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s је на Сигналу, пошаљите поздрав!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Време ишчезнућа поруке постављено на %s</string>
-  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Ваши безбедносни бројеви са %s су промењени</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Ваш контакт има старију верзију Сигнал апликације, молимо Вас да их замолите да инсталирају најновију верзију пре потврде безбедносних бројева.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Ваш контакт има новију верзију Сигнал апликације са некомпатибилним QR код форматом. Молимо Вас инсталирајте најновију верзију како би могли да их упоредимо.</string>
-  <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Покушавате да потврдите безбедносне бројеве са %1$s, али скенирали сте %2$s.</string>
-  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Скенирани QR код није правилно форматиран бебедносни верификациони код. Молимо Вас скенирајте поново.</string>
-  <string name="VerifyIdentityActivity_share_safety_numbers_via">Поделите безбедносне бројеве са...</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_numbers">Наши Сигнал безбедносни бројеви:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Изгледа да немате ниједну апликацију преко које бисте могли да делите.</string>
-  <string name="VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard">У клипборду нема безбедносних бројева за упоређивање.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Започети унаточ постојећем захтеву?</string>
   <string name="KeyExchangeInitiator_send">Пошаљи</string>
@@ -736,7 +721,6 @@
   <string name="recipient_preferences__block">Блокирај</string>
   <string name="recipient_preferences__color">Боја</string>
   <string name="recipient_preferences__color_for_this_contact">Боја за контакт</string>
-  <string name="recipient_preferences__verify_safety_numbers">Оверите безбедносне бројеве</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Позив на Сигналу</string>
   <string name="redphone_call_controls__end_call">окончај позив</string>
@@ -807,10 +791,8 @@
   <string name="recipients_panel__to"><small>Унесите име или број</small></string>
   <string name="recipients_panel__add_members">Додај чланове</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"><![CDATA[Ако желите да проверите безбедност Ваше енкрипције са %s, упоредите бројеве изнад са бројевима на другом уређају. Алтернативно, можете скенирати код на другом телефону, или питати контакт да скенира Вас код. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Прочитајте више о верификацији беѕбедносних бројева</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Тапните за скенирање</string>
   <!--verify_identity-->
-  <string name="verify_identity__share_safety_numbers">Поделите безбедносне бројеве</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Неки од проблема захтевају вашу пажњу.</string>
   <string name="message_details_header__sent">Послата</string>
@@ -826,7 +808,6 @@
   <string name="AndroidManifest__select_contacts">Изаберите контакте</string>
   <string name="AndroidManifest__signal_detected">Сигнал откривен</string>
   <string name="AndroidManifest__change_passphrase">Измена лозинке</string>
-  <string name="AndroidManifest__verify_safety_numbers">Потврдите безбедносне бројеве</string>
   <string name="AndroidManifest__log_submit">Пошаљи дневник исправљања грешака</string>
   <string name="AndroidManifest__media_preview">Преглед медијума</string>
   <string name="AndroidManifest__media_overview">Све слике</string>

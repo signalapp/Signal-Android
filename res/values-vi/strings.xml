@@ -175,7 +175,6 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <string name="CustomDefaultPreference_using_default">Dùng mặc định: %s</string>
   <string name="CustomDefaultPreference_none">Không</string>
   <!--DateUtils-->
-  <string name="DateUtils_now">Bây giờ</string>
   <string name="DateUtils_minutes_ago">%d phút</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Gỡ liên kết \'%s\'?</string>

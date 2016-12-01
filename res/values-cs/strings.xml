@@ -67,8 +67,8 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Příchozí hovor</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Ověřovací kódy pro %1$s se změnily. To může znamenat, že se někdo pokouší zachytit vaši konverzaci, nebo jen že si %2$s přeinstaloval Signal a má teď nový identifikační klíč.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Možná budete chtít zkontrolovat ověřovací kódy pro tento kontakt.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Vaše bezpečnostní kódy pro %1$s se změnily. To může znamenat, že se někdo pokouší zachytit vaši konverzaci, nebo jen že si %2$s přeinstaloval Signal a má teď nový identifikační klíč.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Možná budete chtít zkontrolovat vaše bezpečnostní kódy pro tento kontakt.</string>
   <string name="ConfirmIdentityDialog_accept">Přijmout</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Zpráva %s</string>
@@ -216,7 +216,7 @@
   <string name="CustomDefaultPreference_using_default">Používá se výchozí: %s</string>
   <string name="CustomDefaultPreference_none">Nic</string>
   <!--DateUtils-->
-  <string name="DateUtils_now">Teď</string>
+  <string name="DateUtils_just_now">Teď</string>
   <string name="DateUtils_minutes_ago">%d minuta</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Rozpojit \'%s\'?</string>
@@ -330,7 +330,7 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal vyžaduje Barcode Scanner pro QR kódy.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Nepodařilo se odeslat</string>
-  <string name="MessageDetailsRecipient_new_safety_numbers">Nové ověřovací kódy</string>
+  <string name="MessageDetailsRecipient_new_safety_number">Nové bezpečnostní kódy</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Chyba při ukládání MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Chyba při připojování k poskytovateli MMS</string>
@@ -357,7 +357,7 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="MessageRecord_s_is_on_signal_say_hey">%s je na Signalu, řekni ahoj!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Nastavili jste čas zmizení zprávy na %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s nastavil čas zmizení zprávy na %2$s.</string>
-  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Vaše ověřovací kódy s %s se změnily</string>
+  <string name="MessageRecord_your_safety_number_with_s_has_changed">Váš bezpečnostní kód s %s se změnil</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Hesla nejsou stejná</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Chybné staré heslo!</string>
@@ -479,7 +479,7 @@ telefonní číslo</string>
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Obdržen neplatný požadavek na výměnu klíčů.</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
-  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">Přijata zpráva s novými ověřovacími kódy. Klikněte pro její zpracování a zobrazení.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Přijata zpráva s novým bezpečnostním kódem. Klikněte pro její zpracování a zobrazení.</string>
   <string name="SmsMessageRecord_secure_session_reset">Resetujete zabezpečenou konverzaci</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s resetuje zabezpečenou konverzaci</string>
   <string name="SmsMessageRecord_duplicate_message">Duplicitní zpráva</string>
@@ -493,16 +493,15 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="ThreadRecord_media_message">Multimediální zpráva</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s zapnul Signal, řekni ahoj!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas zmizení zprávy nastaven na %s</string>
-  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Vaše ověřovací kódy s %s se změnily</string>
+  <string name="ThreadRecord_your_safety_number_with_s_has_changed">Váš bezpečnostní kód s %s se změnil</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Váš kontakt používá starou verzi aplikace Signal. Před kontrolou ověřovacích kódu jej prosím požádejte, aby si aplikaci aktualizoval.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Váš kontakt používá starou verzi Signal. Před kontrolou bezpečnostního kódu jej prosím požádejte aby si Signal aktualizoval.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Váš kontakt používá novější verzi Signal s nekompatibilním formátem QR kódu. Prosím aktualizujte svou verzi abyste mohli QR kódy porovnat.</string>
-  <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Pokoušíte se zkontrolovat ověřovací kód s %1$s, ale naskenovali jste místo toho %2$s.</string>
-  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Naskenovaný QR kód nemá správný formát ověřovacího kódu. Prosím zkuste skenovat ještě jednou.</string>
-  <string name="VerifyIdentityActivity_share_safety_numbers_via">Sdílet kontrolní kódy prostřednictvím..</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_numbers">Vaše Signal kontrolní kódy:</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Naskenovaný QR kód nemá správný formát bezpečnostního kódu. Prosím naskenujte QR kód znovu.</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Sdílet bezpečnostní ḱod prostřednictvím ...</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">Vaš Signal bezpečnostní kód:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Zdá se, že nemáte žádnou aplikaci pro sdílení.</string>
-  <string name="VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard">Ve schránce nebyly nalezeny žádné kontrolní kódy pro porovnání.</string>
+  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Ve schránce nebyl nalezen žádný bezpečnostní kód pro porovnání.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Zahájit i přes probíhající požadavek?</string>
   <string name="KeyExchangeInitiator_send">Odeslat</string>
@@ -722,7 +721,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="recipient_preferences__block">Blokovat</string>
   <string name="recipient_preferences__color">Barva</string>
   <string name="recipient_preferences__color_for_this_contact">Barva tohoto kontaktu</string>
-  <string name="recipient_preferences__verify_safety_numbers">Kontrola ověřovacích kódů.</string>
+  <string name="recipient_preferences__verify_safety_number">Kontrola bezpečnostního kódu.</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal volání</string>
   <string name="redphone_call_controls__end_call">ukončit hovor</string>
@@ -794,10 +793,10 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="recipients_panel__to"><small>Zadejte jméno nebo číslo</small></string>
   <string name="recipients_panel__add_members">Přidat členy</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"><![CDATA[Pokud chcete zkontrolovat bezpečnost šifrované komunikace s %s, porovnejte čísla nahoře na vašem zařízení s čísly na zařízení vašeho kontatku. Můžete také oskenovat kód na jeho telefonu, nebo jej požádat, aby oskenoval kód na vašem zařízení. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Zjistěte více o kontrolních kódech.</a>.]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Pokud chcete zkontrolovat bezpečnost šifrované komunikace s %s, porovnejte číslo nahoře na vašem zařízení s číslem na zařízení vašeho kontatku. Můžete také oskenovat kód na jeho telefonu, nebo jej požádat, aby oskenoval kód na vašem zařízení. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Zjistěte více o bezpečnostních kódech.</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Klepnutím skenovat</string>
   <!--verify_identity-->
-  <string name="verify_identity__share_safety_numbers">Sdílet kontrolní kódy</string>
+  <string name="verify_identity__share_safety_number">Sdílet bezpečnostní kód</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Některé problémy vyžadují vaši pozornost</string>
   <string name="message_details_header__sent">Odesláno</string>
@@ -813,7 +812,7 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="AndroidManifest__select_contacts">Výběr kontaktů</string>
   <string name="AndroidManifest__signal_detected">Signal detekován</string>
   <string name="AndroidManifest__change_passphrase">Změnit heslo</string>
-  <string name="AndroidManifest__verify_safety_numbers">Kontrola ověřovacích kódů.</string>
+  <string name="AndroidManifest__verify_safety_number">Kontrola bezpečnostního kódu.</string>
   <string name="AndroidManifest__log_submit">Odeslat ladicí log</string>
   <string name="AndroidManifest__media_preview">Náhled multimedií</string>
   <string name="AndroidManifest__media_overview">Všechny obrázky</string>
@@ -941,8 +940,8 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="preferences__support_wifi_calling">\'Wifi volání\' kompatibilní mód</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Povolit pokud vaše zařízení používá doručování SMS/MMS přes Wifi (povoleno pouze když je na zařízení povoleno \'Wifi volání\')</string>
   <string name="preferences_app_protection__blocked_contacts">Blokované kontakty</string>
-  <string name="preferences_app_protection__safety_numbers_approval">Schválení ověřovacích kódů</string>
-  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Vyžadovat schválení nových ověřovacích kódů pokud se změní.</string>
+  <string name="preferences_app_protection__safety_numbers_approval">Schválení bezpečnostních kódů</string>
+  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Vyžadovat schválení nových bezpečnostních kódů pokud se změní.</string>
   <string name="preferences_notifications__display_in_notifications">Zobrazit v upozornění</string>
   <string name="preferences_chats__when_using_mobile_data">Při použití mobilních datových přenosů</string>
   <string name="preferences_chats__when_using_wifi">Při použití Wifi</string>
@@ -1068,6 +1067,7 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <!--media_preview-->
   <string name="media_preview__save_title">Uložit</string>
   <string name="media_preview__forward_title">Přeposlat</string>
+  <string name="media_preview__overview_title">Všechny obrázky</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Uložit vše</string>
   <!--media_preview_activity-->

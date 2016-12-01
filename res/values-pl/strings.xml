@@ -212,7 +212,6 @@
   <string name="CustomDefaultPreference_using_default">Używa domyślnych: %s</string>
   <string name="CustomDefaultPreference_none">Brak</string>
   <!--DateUtils-->
-  <string name="DateUtils_now">Teraz</string>
   <string name="DateUtils_minutes_ago">%d minuta</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Wyrejestrować \'%s\'?</string>
@@ -250,6 +249,8 @@
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal nie był w stanie zarejestrować się z Google Play Services. Wiadomości i połączenia Signal zostały wyłączone. Proszę spróbuj ponownie zarejestrować się poprzez pójście do Ustawienia &gt; Zaawansowane.</string>
   <!--GiphyActivity-->
   <!--GiphyFragmentPageAdapter-->
+  <string name="GiphyFragmentPagerAdapter_gifs">Gify</string>
+  <string name="GiphyFragmentPagerAdapter_stickers">Naklejki</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nowa grupa</string>
   <string name="GroupCreateActivity_actionbar_update_title">Aktualizuj grupę</string>
@@ -298,11 +299,17 @@ Stracisz wszystkie informacje obecnie zawarte w aplikacji Signal z wyjątkiem ty
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Dotknij i trzymaj palec, aby nagrać wiadomość głosową. Aby wysłać zdejmij palec z ekranu.</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Podziel się</string>
+  <string name="InviteActivity_choose_contacts">Wybierz kontakty</string>
   <string name="InviteActivity_cancel">Anuluj</string>
   <string name="InviteActivity_sending">Wysyłanie...</string>
   <string name="InviteActivity_heart_content_description">Serce</string>
   <string name="InviteActivity_invitations_sent">Zaproszenie zostało wysłane!</string>
   <string name="InviteActivity_invite_to_signal">Zaproś do używania Signal</string>
+  <plurals name="InviteActivity_send_sms_to_friends">
+    <item quantity="one">WYŚLIJ SMS DO 1 ZNAJOMEGO</item>
+    <item quantity="few">WYŚLIJ SMS DO %d ZNAJOMYCH</item>
+    <item quantity="other">WYŚLIJ SMS DO %d ZNAJOMYCH</item>
+  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Wysłać 1 zaproszenie SMS?</item>
     <item quantity="few">Wysłać %d zaproszeń SMS?</item>
@@ -317,7 +324,6 @@ Stracisz wszystkie informacje obecnie zawarte w aplikacji Signal z wyjątkiem ty
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Aplikacja Signal potrzebuje skanera kodów QR.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Nie udało się wysłać</string>
-  <string name="MessageDetailsRecipient_new_safety_numbers">Nowe numery bezpieczeństwa</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Błąd przechowywania MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Błąd połączenia z dostawcą usługi MMS...</string>
@@ -342,6 +348,7 @@ Stracisz wszystkie informacje obecnie zawarte w aplikacji Signal z wyjątkiem ty
   <string name="MessageRecord_called_s">Zadzwoniono do %s</string>
   <string name="MessageRecord_missed_call_from">Nieodebrane połączenie od %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s używa Signal, przywitaj się!</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Ustawiłeś zniknięcie wiadomości po: %1$s.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Hasło niezgodne!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Nieprawidłowe stare hasło!</string>
@@ -462,7 +469,6 @@ Upewnij się, że to jest Twój numer! Zamierzamy zweryfikować go SMSem.
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Otrzymano uszkodzony klucz!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
-  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">Otrzymałeś wiadomość z nowym numerem bezpieczeństwa. Dotknij, aby przetworzyć i wyświetlić.</string>
   <string name="SmsMessageRecord_secure_session_reset">Zresetowałeś bezpieczną sesję.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s zresetował bezpieczną sesję.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplikuj wiadomość.</string>
@@ -477,9 +483,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s używa Signal, przywitaj się!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Czas znikania wiadomości ustawiony na %s</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Twój kontakt używa starej wersji Signal, poproś tą osobę o zaktualizowanie zanim zweryfikuje numer bezpieczeństwa.</string>
-  <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Próbujesz zweryfikować numer bezpieczeństwa za pomocą %1$s, ale zamiast tego skanowałeś %2$s.</string>
-  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Zeskanowany kod QR nie jest poprawnie sformatowanym kodem weryfikującym numer bezpieczeństwa. Proszę ponownie spróbować zeskanować.</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Wygląda na to, że nie masz żadnych aplikacji z którymi możesz się podzielić.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Rozpocząć pomimo istniejącego żądania?</string>
@@ -605,6 +608,31 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="experience_upgrade_activity__continue">kontynuuj</string>
   <!--expiration-->
   <string name="expiration_off">Wyłączone</string>
+  <string name="expiration_seconds_abbreviated">%ds</string>
+  <plurals name="expiration_minutes">
+    <item quantity="one">1 minuta</item>
+    <item quantity="few">%d minut</item>
+    <item quantity="other">%d minut</item>
+  </plurals>
+  <string name="expiration_minutes_abbreviated">%dm</string>
+  <plurals name="expiration_hours">
+    <item quantity="one">1 godzina</item>
+    <item quantity="few">%d godzin</item>
+    <item quantity="other">%d godzin</item>
+  </plurals>
+  <string name="expiration_hours_abbreviated">%dg</string>
+  <plurals name="expiration_days">
+    <item quantity="one">1 dzień</item>
+    <item quantity="few">%d dni</item>
+    <item quantity="other">%d dni</item>
+  </plurals>
+  <string name="expiration_days_abbreviated">%dd</string>
+  <plurals name="expiration_weeks">
+    <item quantity="one">1 tygodzień</item>
+    <item quantity="few">%d tygodni</item>
+    <item quantity="other">%d tygodni</item>
+  </plurals>
+  <string name="expiration_weeks_abbreviated">%dt</string>
   <!--giphy_activity-->
   <!--giphy_fragment-->
   <!--log_submit_activity-->
@@ -724,11 +752,13 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to">Wprowadź nazwę lub numer kontaktu</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__tap_to_scan">Dotknij aby zeskanować</string>
   <!--verify_identity-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Niektóre kwestie wymagają Twojej uwagi.</string>
   <string name="message_details_header__sent">Wysłano</string>
   <string name="message_details_header__received">Otrzymano</string>
+  <string name="message_details_header__disappears">Wygasa</string>
   <string name="message_details_header__via">Przez</string>
   <string name="message_details_header__to">Do:</string>
   <string name="message_details_header__from">Od:</string>
@@ -866,6 +896,7 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="preferences__support_wifi_calling">Tryb zgodności \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Włącz jeśli Twoje urządzenie używa dostarczania SMS/MMS przez WiFi (włącz tylko wtedy gdy \'Połączenia WiFi\' jest włączone na Twoim urządzeniu)</string>
   <string name="preferences_app_protection__blocked_contacts">Zablokowane kontakty</string>
+  <string name="preferences_app_protection__safety_numbers_approval">Potwierdzenie bezpiecznych numerów</string>
   <string name="preferences_notifications__display_in_notifications">Pokaż w powiadomieniach</string>
   <string name="preferences_chats__when_using_mobile_data">Podczas używania Danych Mobilnych</string>
   <string name="preferences_chats__when_using_wifi">Podczas używania Wi-Fi</string>
@@ -902,6 +933,7 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Wygasające wiadomości</string>
   <!--conversation_expiring_on-->
+  <string name="menu_conversation_expiring_on__messages_expiring">Wiadomości wygasają</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Zaproś</string>
   <!--conversation_insecure_no_push-->
@@ -954,6 +986,8 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="text_secure_normal__invite_friends">Zaproś znajomych</string>
   <string name="text_secure_normal__help">Pomoc</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Skopiuj do schowka </string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">Porównaj ze schowkiem</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Twoja wersja Signal jest nieaktualna.</string>
   <plurals name="reminder_header_outdated_build_details">
@@ -987,6 +1021,7 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Nieobsługiwany typ media</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Zapisz</string>
+  <string name="media_preview__forward_title">Przekaż dalej</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Zapisz wszystko</string>
   <!--media_preview_activity-->

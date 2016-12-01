@@ -197,7 +197,6 @@
   <string name="CustomDefaultPreference_using_default">Usant predeterminat: %s</string>
   <string name="CustomDefaultPreference_none">No n\'hi ha</string>
   <!--DateUtils-->
-  <string name="DateUtils_now">Ara</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Desenllaçar \'%s\'?</string>

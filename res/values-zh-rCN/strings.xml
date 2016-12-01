@@ -61,8 +61,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">来电呼叫</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">%1$s 的安全码发生了改变。这可能是因为有人正在尝试截获你们的通讯，或者 %2$s 只是重新安装了暗号。</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">您可能希望验证这个联系人的安全码。</string>
   <string name="ConfirmIdentityDialog_accept">接受</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">信息 %s</string>
@@ -188,7 +186,6 @@
   <string name="CustomDefaultPreference_using_default">使用默认：%s</string>
   <string name="CustomDefaultPreference_none">没有</string>
   <!--DateUtils-->
-  <string name="DateUtils_now">现在</string>
   <string name="DateUtils_minutes_ago">%d 分钟</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">断开 \'%s\' ？</string>
@@ -301,7 +298,6 @@
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">暗号需要 条码扫描器 来扫描二维码。</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">发送失败</string>
-  <string name="MessageDetailsRecipient_new_safety_numbers">新的安全码</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">存储彩信错误！</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">连接彩信服务器错误…</string>
@@ -328,7 +324,6 @@
   <string name="MessageRecord_s_is_on_signal_say_hey">%s 正在暗号中，打个招呼吧！</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">您将信息销毁时间设置为 %1$s</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s 将消息销毁时间设置为 %2$s</string>
-  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">你与 %s 的安全码已经修改</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">口令不符！</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">旧密码不正确！</string>
@@ -455,7 +450,6 @@
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">收到损坏的密钥
 交换消息！</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">接收到的密钥交换信息来自不正确的协议版本。</string>
-  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">接受到了使用新的安全码的信息。点击以处理和显示。</string>
   <string name="SmsMessageRecord_secure_session_reset">您重置了安全会话。</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s 重置了安全会话</string>
   <string name="SmsMessageRecord_duplicate_message">重复的信息。</string>
@@ -469,17 +463,10 @@
   <string name="ThreadRecord_media_message">多媒体信息</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s 正在暗号中，打个招呼吧！</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">信息销毁时间设置为 %s</string>
-  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">你与 %s 的安全码已经修改</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">您的联系人正在使用旧版本的暗号，请告诉他们更新到最新版本再验证安全码。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">您的联系人使用的是新版本的暗号，程序无法识别这个联系人的二维码。
 请升级您的暗号。</string>
-  <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">您正在尝试验证与 %1$s 验证安全码，但是您却扫描了 %2$s 的验证码。</string>
-  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">扫描的 QR 码格式不正确。请重新扫一次。</string>
-  <string name="VerifyIdentityActivity_share_safety_numbers_via">通过……分享安全码</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_numbers">我方暗号安全码：</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">看起来您没有任何可以共享的应用。</string>
-  <string name="VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard">没有在剪切板中发现安全码，因此无法进行比较</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">发起一个已经存在的请求？</string>
   <string name="KeyExchangeInitiator_send">发送</string>
@@ -686,7 +673,6 @@
   <string name="recipient_preferences__block">屏蔽</string>
   <string name="recipient_preferences__color">颜色</string>
   <string name="recipient_preferences__color_for_this_contact">此联系人的颜色</string>
-  <string name="recipient_preferences__verify_safety_numbers">验证安全码</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">暗号呼叫</string>
   <string name="redphone_call_controls__end_call">结束呼叫</string>
@@ -760,10 +746,8 @@
   <string name="recipients_panel__to"><small>输入一个名字或号码</small></string>
   <string name="recipients_panel__add_members">添加成员</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"><![CDATA[ 如果您想验证和 %s  的端到端加密时安全的，请和他们比较上方的数字是否一致。或者，您可以扫描他们手机上的二维码，或让他们扫描您手机上面的二维码。<a href=\"https://whispersystems.org/redirect/safety-numbers\"> 了解更多有关验证安全码的信息 </a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">点击扫描</string>
   <!--verify_identity-->
-  <string name="verify_identity__share_safety_numbers">分享安全码</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">一些问题需要您的注意</string>
   <string name="message_details_header__sent">发送</string>
@@ -779,7 +763,6 @@
   <string name="AndroidManifest__select_contacts">选择联系人</string>
   <string name="AndroidManifest__signal_detected">已经检测到暗号</string>
   <string name="AndroidManifest__change_passphrase"> 修改密码</string>
-  <string name="AndroidManifest__verify_safety_numbers">验证安全码</string>
   <string name="AndroidManifest__log_submit">发送调试日志</string>
   <string name="AndroidManifest__media_preview">媒体预览</string>
   <string name="AndroidManifest__media_overview">所有图片</string>

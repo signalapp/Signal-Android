@@ -70,9 +70,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Входящий звонок</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Код безопасности пользователя %1$s изменился. Это может означать, что кто-то пытается перехватить вашу переписку или что %2$s просто переустановил(а) Signal.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Возможно, вам стоит подтвердить
-код безопасности этого контакта.</string>
   <string name="ConfirmIdentityDialog_accept">Принять</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Сообщение %s</string>
@@ -231,7 +228,6 @@
   <string name="CustomDefaultPreference_using_default">По умолчанию: %s</string>
   <string name="CustomDefaultPreference_none">Нет</string>
   <!--DateUtils-->
-  <string name="DateUtils_now">Только что</string>
   <string name="DateUtils_minutes_ago">%d мин</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Отвязать «%s»?</string>
@@ -268,6 +264,7 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Неустранимая ошибка соединения!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не смог зарегистрироваться в службах Google Play. Сообщения и звонки через Signal отключены. Пожалуйста, попробуйте зарегистрироваться снова через меню Наcтройки &gt; Расширенные.</string>
   <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Ошибка при получении полноразмерного GIF...</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIF-анимации</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Стикеры</string>
@@ -344,7 +341,6 @@
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Для распознавания QR-кодов требуется приложение Barcode Scanner.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Не удалось отправить</string>
-  <string name="MessageDetailsRecipient_new_safety_numbers">Новый код безопасности</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Ошибка при сохранении MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Ошибка подключения к провайдеру MMS...</string>
@@ -369,7 +365,8 @@
   <string name="MessageRecord_called_s">Вы звонили %s</string>
   <string name="MessageRecord_missed_call_from">Пропущен звонок от %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s теперь в Signal — скажите «Привет»!</string>
-  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Код безопасности для общения с %s изменился</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Вы установили время исчезновения сообщений в %1$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s установил(а) время исчезновения сообщений в %2$s.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Парольные фразы не совпадают!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Неверная старая парольная фраза!</string>
@@ -494,7 +491,6 @@
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Получено сообщение обмена ключами для неверной версии протокола.
 </string>
-  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">Получено сообщение с новым кодом безопасности. Нажмите, чтобы обработать и показать его.</string>
   <string name="SmsMessageRecord_secure_session_reset">Вы сбросили защищенный сеанс.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s сбросил(а) защищенный сеанс.</string>
   <string name="SmsMessageRecord_duplicate_message">Дубликат сообщения.</string>
@@ -508,11 +504,7 @@
   <string name="ThreadRecord_media_message">Медиа-сообщение</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s теперь в Signal — скажите «Привет»!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Время исчезновения сообщений – %s</string>
-  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Код безопасности для общения с %s изменился</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Ваш контакт использует старую версию Signal. Пожалуйста, попросите его/её обновиться, прежде чем подтверждать код безопасности.</string>
-  <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Вы пытаетесь подтвердить код безопасности %1$s, но просканировали вместо него %2$s.</string>
-  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Просканированный QR-код имеет не является кодом безопасности. Пожалуйста, попробуйте ещё раз.</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Похоже, что у вас нет приложений, через которые можно поделиться.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Игнорировать предыдущий запрос?</string>
@@ -737,7 +729,6 @@
   <string name="recipient_preferences__block">Заблокировать</string>
   <string name="recipient_preferences__color">Цвет</string>
   <string name="recipient_preferences__color_for_this_contact">Цвет для этого контакта</string>
-  <string name="recipient_preferences__verify_safety_numbers">Подтвердить код безопасности</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Звонок через Signal</string>
   <string name="redphone_call_controls__end_call">завершить звонок</string>
@@ -826,7 +817,6 @@ SMS-подтверждения...
   <string name="AndroidManifest__select_contacts">Выбрать контакты</string>
   <string name="AndroidManifest__signal_detected">Обнаружен Signal</string>
   <string name="AndroidManifest__change_passphrase">Изменить парольную фразу</string>
-  <string name="AndroidManifest__verify_safety_numbers">Подтвердить код безопасности</string>
   <string name="AndroidManifest__log_submit">Отправить журнал отладки</string>
   <string name="AndroidManifest__media_preview">Предпросмотр</string>
   <string name="AndroidManifest__media_overview">Все изображения</string>

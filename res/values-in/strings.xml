@@ -184,7 +184,6 @@
   <string name="CustomDefaultPreference_using_default">Gunakan bawaan: %s</string>
   <string name="CustomDefaultPreference_none">Kosong</string>
   <!--DateUtils-->
-  <string name="DateUtils_now">Sekarang</string>
   <string name="DateUtils_minutes_ago">%d mnt</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Buang kaitan \'%s\'?</string>

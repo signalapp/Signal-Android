@@ -58,8 +58,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Bakubira essimu</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Enyukuta ezilina obukumi ku %1$s zikyusiddwa. Kino kiyinza okuba nga kitegeza nti waliwo akyankalanya empuliziganyayo. oba nga %2$s Signal yadidwamu okutekebwaako</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Wandyetaaze okukakasa Enyukuta eziri seefu ku contact eno</string>
   <string name="ConfirmIdentityDialog_accept">Kiriza</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Obubaka %s</string>
@@ -189,7 +187,6 @@ a</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_none">tewali</string>
   <!--DateUtils-->
-  <string name="DateUtils_now">Kati</string>
   <string name="DateUtils_minutes_ago">%d dakiika</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Gyayoo \'%s\'?</string>
@@ -284,7 +281,6 @@ a</string>
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal needs Barcode Scanner for QR codes.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Eremereddwa okuwerezwa</string>
-  <string name="MessageDetailsRecipient_new_safety_numbers">Enamba empya ez\'okwekumisa</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Error storing MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Error connecting to MMS provider...</string>
@@ -311,7 +307,6 @@ a</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s ali ku Signal. mugambe hi!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Wateseteese obudde bwobubaka okuvaamu ku %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s tekateeka obudde bwobubaka ku %2$s.</string>
-  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Enamba zo ez\'obukuumi %s sikyuuse</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passiwaddi nga yabigaambo ne namba tefanana</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Passiwaddi y\'ebigaambo ne namba sintufu</string>
@@ -431,7 +426,6 @@ Dammu okebere e namba yo.  Tugenda kugikakasa no bubaka ku simu</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">Received key exchange message for invalid protocol version.
 </string>
-  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">Received message with new safety numbers. Tap to process and display.</string>
   <string name="SmsMessageRecord_secure_session_reset">Resetinga akadde akekusifu</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%sresettinga akade akekusifu</string>
   <string name="SmsMessageRecord_duplicate_message">Ddamu message</string>
@@ -445,17 +439,10 @@ Dammu okebere e namba yo.  Tugenda kugikakasa no bubaka ku simu</string>
   <string name="ThreadRecord_media_message">obubaka bwemikutu</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%sAli ku Signal. mugambe hi!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Message yakusanguka mu dakiika %s</string>
-  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Enamba zo %s sikyuuse</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Contact wo okozesa version ya Signal enkadde. Musabe a jiize bupya nga tanaba  okukakasa enamba</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Contact wo akozesa Signal version empya esinga kuyiyo. Eyiyo kize bugya.</string>
-  <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Ogezako kukakasa safety namba ezilina %1$s, so si %2$s</string>
-  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">The scanned QR code is not a correctly formatted safety number verification code. Please try scanning again.</string>
-  <string name="VerifyIdentityActivity_share_safety_numbers_via">Gabanya  enamba yobwekusifu ngoyita...</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_numbers"> namba zaffe eza sigino ezobwekusifu</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Kilabika toyina app za ku gabana na.
 </string>
-  <string name="VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard">Tewali safety nambaz za kugerageranyizibwa zasingbwa mu terekero</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Tandika yadde tewali kusaba?</string>
   <string name="KeyExchangeInitiator_send">Sindika</string>
@@ -672,7 +659,6 @@ Dammu okebere e namba yo.  Tugenda kugikakasa no bubaka ku simu</string>
   <string name="recipient_preferences__block">Zziyiiza</string>
   <string name="recipient_preferences__color">Langi</string>
   <string name="recipient_preferences__color_for_this_contact">Langi ye Kontakiti</string>
-  <string name="recipient_preferences__verify_safety_numbers">Kakasa enamba zokwetaasa</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Ssimu okuva ku Signal</string>
   <string name="redphone_call_controls__end_call">Jakko Essimu</string>
@@ -749,10 +735,8 @@ Signal evudeko bwebadde erinda obubaka okukakasa.</string>
   <string name="recipients_panel__to"><small>Jjuza mu elinnya oba e namba</small></string>
   <string name="recipients_panel__add_members">Gattako ba memba</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"><![CDATA[bwoba oyagala kukakasa obukuumi bwa message gyeva ne gyeraga ne %s, gerageranya enamba ezo wagulu ne namba ku massimu. Oba, osobola oku sikaninga code kweyo essimu, oba era kigambe e sikaninge code yo. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Yiga ebisingako kukikwatagana nokukakasa amanamba</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Nyiga osikaniinge</string>
   <!--verify_identity-->
-  <string name="verify_identity__share_safety_numbers">Gabana enamba z\'okwekumisa</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Ensonga ezimu zetaaga gwe</string>
   <string name="message_details_header__sent">Esindikiddwa</string>
@@ -768,7 +752,6 @@ Signal evudeko bwebadde erinda obubaka okukakasa.</string>
   <string name="AndroidManifest__select_contacts">Londawo contact</string>
   <string name="AndroidManifest__signal_detected">waliwo amayengo agakwatagana</string>
   <string name="AndroidManifest__change_passphrase">Kyusa pasiwadi yebigambo n\'enamba</string>
-  <string name="AndroidManifest__verify_safety_numbers">Kakasa enamba zokwetaasa</string>
   <string name="AndroidManifest__log_submit">Waayo olukalala lwa bili kibaddewo</string>
   <string name="AndroidManifest__media_preview">Lozaako ku bifaananyi, vidiyo n\'enyimba</string>
   <string name="AndroidManifest__media_overview">Ebifaananyi byona</string>

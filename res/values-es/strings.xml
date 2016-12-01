@@ -64,10 +64,8 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Llamada entrante</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Los
-números de seguridad para %1$s han cambiado. Esto podría significar o bien que alguien está tratando de interceptar su comunicación, o simplemente que %2$s reinstaló Signal.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Puede que quiera verificar
-los números de seguridad para este contacto.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Su número de seguridad con %1$s ha cambiado. Esto podría significar que o bien alguien está tratando de interceptar su comunicación, o que %2$s simplemente ha reinstalado Signal.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Puede que desee verificar su número de seguridad con este contacto.</string>
   <string name="ConfirmIdentityDialog_accept">Aceptar</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mensaje %s</string>
@@ -208,7 +206,7 @@ Recibido:%4$s</string>
   <string name="CustomDefaultPreference_using_default">Usando predeterminado: %s</string>
   <string name="CustomDefaultPreference_none">Ninguno</string>
   <!--DateUtils-->
-  <string name="DateUtils_now">Ahora</string>
+  <string name="DateUtils_just_now">Ahora mismo</string>
   <string name="DateUtils_minutes_ago">%d mins</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">¿Desvincular \'%s\'?</string>
@@ -324,7 +322,7 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal necesita Barcode Scanner para códigos QR.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Fallo al enviar</string>
-  <string name="MessageDetailsRecipient_new_safety_numbers">Nuevos números de seguridad</string>
+  <string name="MessageDetailsRecipient_new_safety_number">Nuevo número de seguridad</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">¡Error guardando MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Error conectando al proveedor MMS...</string>
@@ -351,7 +349,7 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">¡%s esta en Signal, salúdele!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Ha establecido la hora desaparición del mensaje a las %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s estableció la hora de desaparición del mensaje a las %2$s.</string>
-  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Sus números de seguridad con %s han cambiado</string>
+  <string name="MessageRecord_your_safety_number_with_s_has_changed">Su número de seguridad con %s ha cambiado.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">¡Las claves de acceso no coinciden!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">¡Clave de acceso antigua incorrecta!</string>
@@ -487,7 +485,7 @@ de intercambio de claves!
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Se recibió un mensaje de intercambio de claves para una versión no válida del protocolo.
 </string>
-  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">Se recibió un mensaje con nuevos números de seguridad. Pulse para procesarlo y mostrarlo.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Ha recibido un mensaje con un nuevo número de seguridad. Pulse para procesarlo y mostrarlo.</string>
   <string name="SmsMessageRecord_secure_session_reset">Reiniciaste la sesión segura.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s reinició la sesión segura.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplicar mensaje.</string>
@@ -501,16 +499,15 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ThreadRecord_media_message">Mensaje multimedia</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">¡%s está en Signal, salúdele!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">El plazo del mensaje desvanecente se estableció a %s</string>
-  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Sus números de seguridad con %s han cambiado</string>
+  <string name="ThreadRecord_your_safety_number_with_s_has_changed">Su número de seguridad con %s ha cambiado.</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Su contacto está ejecutando una versión antigua de Signal, por favor, pídale que actualice antes de verificar los números de seguridad.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Su contacto está ejecutando una versión antigua de Signal, por favor pídale que actualice antes de verificar su número de seguridad.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Su contacto está ejecutando una versión de Signal con un formato de código QR incompatible. Por favor, actualice para comparar.</string>
-  <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Está intentando verificar los números de seguridad con %1$s, pero escaneó la verificación de %2$s en su lugar.</string>
-  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">El código QR escaneado no es un código de verificación de número de seguridad con un formato correcto. Por favor, pruebe a escanear de nuevo.</string>
-  <string name="VerifyIdentityActivity_share_safety_numbers_via">Compartir números de seguridad vía...</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_numbers">Nuestros números de seguridad de Signal:</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">El código QR escaneado no es un código de verificación de número de seguridad con un formato correcto. Por favor, pruebe a escanearlo de nuevo.</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Compartir número de seguridad vía...</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">Nuestro número de seguridad de Signal:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Parece que no tiene ninguna aplicación con qué compartir.</string>
-  <string name="VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard">No se encontraron números de seguridad a comparar en el portapapeles</string>
+  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">No se encontró número de seguridad para comparar en el portapapeles</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">¿Iniciar a pesar de la solicitud existente?</string>
   <string name="KeyExchangeInitiator_send">Enviar</string>
@@ -724,7 +721,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="recipient_preferences__block">Bloquear</string>
   <string name="recipient_preferences__color">Color</string>
   <string name="recipient_preferences__color_for_this_contact">Color para este contacto</string>
-  <string name="recipient_preferences__verify_safety_numbers">Verificar números de seguridad</string>
+  <string name="recipient_preferences__verify_safety_number">Verificar número de seguridad</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Llamada de Signal</string>
   <string name="redphone_call_controls__end_call">finalizar llamada</string>
@@ -808,10 +805,10 @@ por SMS.
   <string name="recipients_panel__to"><small>Introduzca un nombre o número</small></string>
   <string name="recipients_panel__add_members">Añadir miembros</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"><![CDATA[Si desea verificar la seguridad de su cifrado extremo-a-extremo con %s, compare los números anteriores con los números en su dispositivo. Como alternativa, puede escanear el código en el teléfono de su interlocutor, o pedirle a este que escanee el código de usted. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Conozca más sobre verificación de números de seguridad</a>.]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Si desea verificar la seguridad de su cifrado extremo-a-extremo con %s, compare el número de arriba con el número en su dispositivo. Como alternativa, puede escanear el código en el teléfono de su interlocutor, o pedirle a este que escanee el código de usted. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Conozca más acerca de la verificación de números de seguridad</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Pulse para escanear</string>
   <!--verify_identity-->
-  <string name="verify_identity__share_safety_numbers">Compartir números de seguridad</string>
+  <string name="verify_identity__share_safety_number">Compartir número de seguridad</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Algunos asuntos necesitan su atención</string>
   <string name="message_details_header__sent">Enviado</string>
@@ -827,7 +824,7 @@ por SMS.
   <string name="AndroidManifest__select_contacts">Seleccionar contactos</string>
   <string name="AndroidManifest__signal_detected">Signal detectado</string>
   <string name="AndroidManifest__change_passphrase">Cambiar clave de acceso</string>
-  <string name="AndroidManifest__verify_safety_numbers">Verificar números de seguridad</string>
+  <string name="AndroidManifest__verify_safety_number">Verificar número de seguridad</string>
   <string name="AndroidManifest__log_submit">Remitir registro (log) de depuración</string>
   <string name="AndroidManifest__media_preview">Previsualizar multimedia</string>
   <string name="AndroidManifest__media_overview">Todas las imágenes</string>
@@ -1080,6 +1077,7 @@ por SMS.
   <!--media_preview-->
   <string name="media_preview__save_title">Guardar</string>
   <string name="media_preview__forward_title">Avanzar</string>
+  <string name="media_preview__overview_title">Todas las imágenes</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Guardar todo</string>
   <!--media_preview_activity-->

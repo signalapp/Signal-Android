@@ -115,7 +115,6 @@
   <string name="CustomDefaultPreference_using_default">Користејќи стандардно: %s</string>
   <string name="CustomDefaultPreference_none">Ниедна</string>
   <!--DateUtils-->
-  <string name="DateUtils_now">Сега</string>
   <string name="DateUtils_minutes_ago">%d минути</string>
   <!--DeviceListActivity-->
   <!--DeviceListItem-->
