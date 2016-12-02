@@ -42,7 +42,7 @@
                            android:src="@drawable/ic_play_circle_fill_white_48dp"
                            android:scaleType="centerInside"
                            tools:visibility="gone"
-                           android:contentDescription="Play"/>
+                           android:contentDescription="@string/audio_view__play_accessibility_description"/>
 
                 <ImageView android:id="@+id/pause"
                            android:layout_width="wrap_content"
@@ -54,7 +54,7 @@
                            android:background="@drawable/circle_touch_highlight_background"
                            android:src="@drawable/ic_pause_circle_fill_white_48dp"
                            android:scaleType="centerInside"
-                           android:contentDescription="Pause"/>
+                           android:contentDescription="@string/audio_view__pause_accessibility_description"/>
 
                 <ImageView android:id="@+id/download"
                            android:layout_width="wrap_content"
@@ -64,7 +64,7 @@
                            android:visibility="gone"
                            android:background="@drawable/circle_touch_highlight_background"
                            android:src="@drawable/ic_download_circle_fill_white_48dp"
-                           android:contentDescription="Download"/>
+                           android:contentDescription="@string/audio_view__download_accessibility_description"/>
 
             </org.thoughtcrime.securesms.components.AnimatingToggle>
 
