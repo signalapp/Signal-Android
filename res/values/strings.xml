@@ -676,7 +676,8 @@
     <string name="conversation_activity__compose_description">Message composition</string>
     <string name="conversation_activity__emoji_toggle_description">Toggle emoji keyboard</string>
     <string name="conversation_activity__attachment_thumbnail">Attachment Thumbnail</string>
-    <string name="conversation_activity__quick_attachment_drawer_toggle_description">Toggle attachment drawer</string>
+    <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Toggle quick camera attachment drawer</string>
+    <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Record and send audio attachment</string>
     <string name="conversation_activity__enable_signal_for_sms">Enable Signal for SMS</string>
 
     <!-- conversation_input_panel -->
