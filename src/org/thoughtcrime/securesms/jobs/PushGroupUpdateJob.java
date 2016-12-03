@@ -57,17 +57,21 @@ public class PushGroupUpdateJob extends ContextJob implements InjectableType {
     SignalServiceMessageSender messageSender = messageSenderFactory.create();
     GroupDatabase              groupDatabase = DatabaseFactory.getGroupDatabase(context);
     GroupRecord                record        = groupDatabase.getGroup(groupId);
+    SignalServiceAttachment    avatar        = null;
 
     if (record == null) {
       Log.w(TAG, "No information for group record info request: " + new String(groupId));
       return;
     }
 
-    SignalServiceAttachment avatar = SignalServiceAttachmentStream.newStreamBuilder()
-                                                                  .withContentType("image/jpeg")
-                                                                  .withStream(new ByteArrayInputStream(record.getAvatar()))
-                                                                  .withLength(record.getAvatar().length)
-                                                                  .build();
+    if (record.getAvatar() != null) {
+      avatar = SignalServiceAttachmentStream.newStreamBuilder()
+                                            .withContentType("image/jpeg")
+                                            .withStream(new ByteArrayInputStream(record.getAvatar()))
+                                            .withLength(record.getAvatar().length)
+                                            .build();
+    }
+
 
     SignalServiceGroup groupContext = SignalServiceGroup.newBuilder(Type.UPDATE)
                                                         .withAvatar(avatar)
