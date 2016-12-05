@@ -63,7 +63,7 @@ public abstract class PushSendJob extends SendJob {
           ContentType.isVideoType(attachment.getContentType()))
       {
         try {
-          if (attachment.getDataUri() == null) throw new IOException("Assertion failed, outgoing attachment has no data!");
+          if (attachment.getDataUri() == null || attachment.getSize() == 0) throw new IOException("Assertion failed, outgoing attachment has no data!");
           InputStream is = PartAuthority.getAttachmentStream(context, masterSecret, attachment.getDataUri());
           attachments.add(SignalServiceAttachment.newStreamBuilder()
                                                  .withStream(is)
