@@ -9,4 +9,8 @@
           android:title="@string/media_preview__save_title"
           android:icon="@drawable/ic_save_white_24dp"
           app:showAsAction="always"/>
+    <item android:id="@+id/media_preview__overview"
+          android:title="@string/media_preview__overview_title"
+          android:icon="@drawable/ic_photo_library_white_24dp"
+          app:showAsAction="ifRoom"/>
 </menu>

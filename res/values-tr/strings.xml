@@ -61,8 +61,8 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Gelen arama</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">%1$s için güvenlik anahtarı değişti. Birileri sizin iletişiminizi kesmeye çalışıyor olabilir, veya %2$s Signal\'i tekrardan yükledi ve şimdi yeni bir güvenlik anahtarı var.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Bu kişiyi doğrulamak isteyebilirisin.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s ile güvenlik numaranız değişti. Bu, birisinin sizin iletişiminizi engellemeye çalıştığı veya %2$s yalnızca Signal\'i yeniden yüklediği anlamına gelebilir.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Bu kişiyle güvenlik numaranızı doğrulamak isteyebilirsiniz.</string>
   <string name="ConfirmIdentityDialog_accept">Kabul et</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">%s Mesaj</string>
@@ -188,7 +188,7 @@
   <string name="CustomDefaultPreference_using_default">Kullanılan varsayılan: %s</string>
   <string name="CustomDefaultPreference_none">Hiçbiri</string>
   <!--DateUtils-->
-  <string name="DateUtils_now">Şimdi</string>
+  <string name="DateUtils_just_now">Az önce</string>
   <string name="DateUtils_minutes_ago">%d dk.</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">\'%s\' bağlantısını kaldır?</string>
@@ -296,7 +296,7 @@
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal QR kodları için Barkod Tarayıcısına ihtiyaç duyar.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Başarısız gönderme</string>
-  <string name="MessageDetailsRecipient_new_safety_numbers">Yeni güvenlik numaraları</string>
+  <string name="MessageDetailsRecipient_new_safety_number">Yeni güvenlik numarası</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">MMS depolama hatası!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">MMS sağlayıcısına bağlanma hatası...</string>
@@ -323,7 +323,7 @@
   <string name="MessageRecord_s_is_on_signal_say_hey">%s Signal\'e katıldı, ona merhaba de!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Mesaj yok olma zamanını %1$s olarak belirlediniz. </string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s mesaj yok olma zamanını %2$s olarak belirledi.</string>
-  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">%s ile güvenlik numaralarınız değişti</string>
+  <string name="MessageRecord_your_safety_number_with_s_has_changed">%s ile güvenlik numaranız değişti.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Parolalar uyuşmuyor!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Yanlış eski parola!</string>
@@ -451,7 +451,7 @@ Numaranızı ikinci kez kontrol ediniz! Numaranızı bir SMS ile doğrulamak üz
 mesajı alındı!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
-  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">Yeni güvenlik numaraları ile ileti alındı. İşlemek ve görüntülemek için dokunun.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Yeni güvenlik numarası ile mesaj alındı. İşlemek ve görüntülemek için dokunun.</string>
   <string name="SmsMessageRecord_secure_session_reset">Güvenli oturumu sıfırla.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s güvenli oturumu sıfırla.</string>
   <string name="SmsMessageRecord_duplicate_message">Yinelenen ileti.</string>
@@ -465,16 +465,15 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="ThreadRecord_media_message">Medya mesajı</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s Signal\'de, ona merhaba de!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Mesaj yok olma zamanı %s olarak belirlendi</string>
-  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">%s ile güvenlik numaralarınız değişti</string>
+  <string name="ThreadRecord_your_safety_number_with_s_has_changed">%s ile güvenlik numaranız değişti.</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kişi Signal\'in eski bir sürümünü çalıştırıyor, güvenlik numaralarını doğrulamadan önce lütfen güncellemesini isteyin.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kişi Signal\'in eski bir sürümünü çalıştırıyor, güvenlik numaranızı doğrulamadan önce lütfen güncellemesini isteyin.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kişi QR kod biçimi ile uyumlu olmayan Signal\'in daha yeni bir sürümü kullanıyor. Karşılaştırmak için uygulamayı güncelleyin.</string>
-  <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Güvenlik numaralarını %1$s ile doğrulamak için çalışıyorsunuz, ama onun yerine %2$s  tarandı.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Taranan QR kodu doğru biçimlendirilmiş bir güvenlik numarası doğrulama kodu değil. Lütfen tekrar taramayı deneyin.</string>
-  <string name="VerifyIdentityActivity_share_safety_numbers_via">Güvenlik numaralarını paylaş...</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_numbers">Signal güvenlik numaralarımız:</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Güvenlik numarasını paylaş...</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">Signal güvenlik numaramız:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Paylaşmak için herhangi bir uygulamanız yok gibi görünüyor. </string>
-  <string name="VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard">Karşılaştırmak için panoda hiçbir güvenlik numarası bulunamadı</string>
+  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Karşılaştırmak için panoda hiçbir güvenlik numarası bulunamadı</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Varolan isteğe rağmen başlat?</string>
   <string name="KeyExchangeInitiator_send">Gönder</string>
@@ -682,7 +681,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="recipient_preferences__block">Engelle</string>
   <string name="recipient_preferences__color">Renk</string>
   <string name="recipient_preferences__color_for_this_contact">Bu kişi için renk</string>
-  <string name="recipient_preferences__verify_safety_numbers">Güvenlik numaraları doğrulama</string>
+  <string name="recipient_preferences__verify_safety_number">Güvenlik numarasını doğrulayın</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal Araması</string>
   <string name="redphone_call_controls__end_call">Aramayı sonlandır</string>
@@ -751,10 +750,10 @@ başarısız.</string>
   <string name="recipients_panel__to"><small>Bir isim veya numara girin</small></string>
   <string name="recipients_panel__add_members">Üye ekle</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"><![CDATA[%s ile uçtan uca şifreleme güvenliğini doğrulamak isterseniz, yukarıdaki sayıları kişinin aygıtındaki numaralar ile karşılaştırın. Alternatif olarak, kişinin telefonundaki kodu kendiniz tarayabilirsiniz, ya da kendisinin taramasını isteyebilirsiniz. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Güvenlik numaralarını doğrulama hakkında daha fazla bilgi edinin.</a>.]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s ile uçtan uca şifreleme güvenliğini doğrulamak isterseniz, yukarıdaki sayıları kişinin aygıtındaki numaralar ile karşılaştırın. Alternatif olarak, kişinin telefonundaki kodu kendiniz tarayabilir, ya da kendisinin taramasını isteyebilirsiniz. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Güvenlik numaralarını doğrulama hakkında daha fazla bilgi edinin.</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Taramak için dokunun</string>
   <!--verify_identity-->
-  <string name="verify_identity__share_safety_numbers">Güvenlik numaralarını paylaş</string>
+  <string name="verify_identity__share_safety_number">Güvenlik numarasını paylaş</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Bazı sorunlar ilginizi gerektiriyor.</string>
   <string name="message_details_header__sent">Gönderildi</string>
@@ -770,7 +769,7 @@ başarısız.</string>
   <string name="AndroidManifest__select_contacts">Kişileri seç</string>
   <string name="AndroidManifest__signal_detected">Signal algılandı</string>
   <string name="AndroidManifest__change_passphrase">Parolayı değiştir</string>
-  <string name="AndroidManifest__verify_safety_numbers">Güvenlik numaraları doğrulama</string>
+  <string name="AndroidManifest__verify_safety_number">Güvenlik numarasını doğrulayın</string>
   <string name="AndroidManifest__log_submit">Hata ayıklama günlüğünü gönder</string>
   <string name="AndroidManifest__media_preview">Medya önizleme</string>
   <string name="AndroidManifest__media_overview">Tüm resimler</string>
@@ -1021,6 +1020,7 @@ başarısız.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Kaydet</string>
   <string name="media_preview__forward_title">İleri</string>
+  <string name="media_preview__overview_title">Tüm resimler</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Tümünü kaydet</string>
   <!--media_preview_activity-->

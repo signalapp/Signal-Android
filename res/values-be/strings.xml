@@ -94,7 +94,6 @@
   <string name="CustomDefaultPreference_using_default">Выкарыстоўваць стандартны: %s</string>
   <string name="CustomDefaultPreference_none">Не</string>
   <!--DateUtils-->
-  <string name="DateUtils_now">Зараз</string>
   <!--DeviceListActivity-->
   <!--DeviceListItem-->
   <!--ShareActivity-->

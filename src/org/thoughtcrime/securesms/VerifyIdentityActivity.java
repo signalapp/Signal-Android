@@ -111,7 +111,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
   protected void onCreate(Bundle state, @NonNull MasterSecret masterSecret) {
     try {
       getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-      getSupportActionBar().setTitle(R.string.AndroidManifest__verify_safety_numbers);
+      getSupportActionBar().setTitle(R.string.AndroidManifest__verify_safety_number);
 
       Recipient recipient = RecipientFactory.getRecipientForId(this, getIntent().getLongExtra(RECIPIENT_ID, -1), true);
       recipient.addListener(this);
@@ -210,17 +210,17 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
 
   private void handleShare() {
     String shareString =
-        getString(R.string.VerifyIdentityActivity_our_signal_safety_numbers) + "\n" +
+        getString(R.string.VerifyIdentityActivity_our_signal_safety_number) + "\n" +
         displayFragment.getFormattedSafetyNumbers() + "\n";
 
     Intent intent = new Intent();
     intent.setAction(Intent.ACTION_SEND);
-    intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.VerifyIdentityActivity_our_signal_safety_numbers));
+    intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.VerifyIdentityActivity_our_signal_safety_number));
     intent.putExtra(Intent.EXTRA_TEXT, shareString);
     intent.setType("text/plain");
 
     try {
-      startActivity(Intent.createChooser(intent, getString(R.string.VerifyIdentityActivity_share_safety_numbers_via)));
+      startActivity(Intent.createChooser(intent, getString(R.string.VerifyIdentityActivity_share_safety_number_via)));
     } catch (ActivityNotFoundException e) {
       Toast.makeText(VerifyIdentityActivity.this, R.string.VerifyIdentityActivity_no_app_to_share_to, Toast.LENGTH_LONG).show();
     }
@@ -408,14 +408,14 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       String clipboardData = Util.readTextFromClipboard(getActivity());
 
       if (clipboardData == null) {
-        Toast.makeText(getActivity(), R.string.VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard, Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), R.string.VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard, Toast.LENGTH_LONG).show();
         return;
       }
 
       String numericClipboardData = clipboardData.replaceAll("\\D", "");
 
       if (TextUtils.isEmpty(numericClipboardData) || numericClipboardData.length() != 60) {
-        Toast.makeText(getActivity(), R.string.VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard, Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), R.string.VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard, Toast.LENGTH_LONG).show();
         return;
       }
 
@@ -439,7 +439,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       Bitmap qrCodeBitmap = QrCode.create(qrCodeString);
 
       qrCode.setImageBitmap(qrCodeBitmap);
-      description.setText(Html.fromHtml(String.format(getActivity().getString(R.string.verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above), recipient.toShortString())));
+      description.setText(Html.fromHtml(String.format(getActivity().getString(R.string.verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s), recipient.toShortString())));
       description.setMovementMethod(LinkMovementMethod.getInstance());
     }
 

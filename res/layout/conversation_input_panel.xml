@@ -65,7 +65,7 @@
                         android:layout_gravity="bottom"
                         android:src="?quick_camera_icon"
                         android:background="@drawable/touch_highlight_background"
-                        android:contentDescription="@string/conversation_activity__quick_attachment_drawer_toggle_description"
+                        android:contentDescription="@string/conversation_activity__quick_attachment_drawer_toggle_camera_description"
                         android:padding="10dp"/>
 
                 <org.thoughtcrime.securesms.components.MicrophoneRecorderView
@@ -82,7 +82,7 @@
                             android:layout_gravity="bottom"
                             android:src="?quick_mic_icon"
                             android:background="@null"
-                            android:contentDescription="@string/conversation_activity__quick_attachment_drawer_toggle_description"
+                            android:contentDescription="@string/conversation_activity__quick_attachment_drawer_record_and_send_audio_description"
                             android:padding="10dp"/>
 
                     <ImageView android:id="@+id/quick_audio_fab"

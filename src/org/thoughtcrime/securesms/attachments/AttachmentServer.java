@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.audio;
+package org.thoughtcrime.securesms.attachments;
 
 
 import android.content.Context;
@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.spongycastle.util.encoders.Hex;
-import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.Util;
@@ -33,9 +32,9 @@ import java.util.StringTokenizer;
 /**
  * @author      Stefan "frostymarvelous" Froelich <stefan d0t froelich At whisppa DoT com>
  */
-public class AudioAttachmentServer implements Runnable {
+public class AttachmentServer implements Runnable {
 
-  private static final String TAG = AudioAttachmentServer.class.getSimpleName();
+  private static final String TAG = AttachmentServer.class.getSimpleName();
 
   private final Context      context;
   private final MasterSecret masterSecret;
@@ -46,7 +45,7 @@ public class AudioAttachmentServer implements Runnable {
 
   private volatile boolean isRunning;
 
-  public AudioAttachmentServer(Context context, MasterSecret masterSecret, Attachment attachment)
+  public AttachmentServer(Context context, MasterSecret masterSecret, Attachment attachment)
       throws IOException
   {
     try {

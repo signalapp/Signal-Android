@@ -135,14 +135,19 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
     final long recipientId = getIntent().getLongExtra(RECIPIENT_EXTRA, -1);
     if (recipientId > -1) {
       recipient = RecipientFactory.getRecipientForId(this, recipientId, true);
+    } else if (threadId > -1){
+      recipient = DatabaseFactory.getThreadDatabase(this).getRecipientsForThreadId(threadId).getPrimaryRecipient();
+    } else {
+      recipient = null;
+    }
+
+    if (recipient != null) {
       recipient.addListener(new RecipientModifiedListener() {
         @Override
         public void onModified(Recipient recipient) {
           initializeActionBar();
         }
       });
-    } else {
-      recipient = null;
     }
   }
 
@@ -215,7 +220,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
   @Override
   public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
     Log.w(TAG, "onLoadFinished()");
-    gridView.setAdapter(new ImageMediaAdapter(this, masterSecret, cursor));
+    gridView.setAdapter(new ImageMediaAdapter(this, masterSecret, cursor, threadId));
     noImages.setVisibility(gridView.getAdapter().getItemCount() > 0 ? View.GONE : View.VISIBLE);
     invalidateOptionsMenu();
   }

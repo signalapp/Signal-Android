@@ -65,8 +65,6 @@ Om du vil benytte Signal for meldinger og anrop igjen i fremtiden må du registr
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Innkommende anrop</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Sikkerhetsnummeret for %1$s har blitt endret. Det kan enten bety at noen forsøker å trenge inn i kommunikasjonen, eller simpelthen at %2$s har installert Signal på nytt.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Du bør verifisere sikkerhetsnummeret for denne personen for å være sikker.</string>
   <string name="ConfirmIdentityDialog_accept">Godta</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Melding %s</string>
@@ -203,7 +201,6 @@ Om du vil benytte Signal for meldinger og anrop igjen i fremtiden må du registr
   <string name="CustomDefaultPreference_using_default">Benytter standard: %s</string>
   <string name="CustomDefaultPreference_none">Ingen</string>
   <!--DateUtils-->
-  <string name="DateUtils_now">Nå</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Frakoble \'%s\'?</string>
@@ -310,7 +307,6 @@ Innlasting av en kryptert backup vil erstatte dine eksisterende nøkler, prefera
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal trenger Barcode Scanner for QR koder.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Sending feilet</string>
-  <string name="MessageDetailsRecipient_new_safety_numbers">Nye sikkerhetsnummere</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Feil ved lagring av MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Feil ved tilkobling til MMS tjeneste...</string>
@@ -335,7 +331,6 @@ Innlasting av en kryptert backup vil erstatte dine eksisterende nøkler, prefera
   <string name="MessageRecord_called_s">Ringte %s</string>
   <string name="MessageRecord_missed_call_from">Ubesvart anrop fra %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s er på Signal, si hei!</string>
-  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Dine sikkerthetsnummere med %s har endret seg</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passordene er ikke like!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Gammelt passord er feil!</string>
@@ -460,7 +455,6 @@ Dobbelsjekk at dette er nummeret ditt! Vi er i ferd med å verifisere det med en
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Mottok korrupt nøkkelutvekslingsmelding!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
-  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">Melding med nye sikkerhetsnummer er mottatt. Klikk for å prosessere og vise.</string>
   <string name="SmsMessageRecord_secure_session_reset">Du nullstilte den sikre sesjonen.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s nullstilte den sikre sesjonen.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplisert melding.</string>
@@ -474,11 +468,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="ThreadRecord_media_message">Media melding</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s er på Signal, si hei!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tiden før meldingene utløper er satt til %s</string>
-  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Dine sikkerthetsnummere med %s har endret seg</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Din kontakt kjører en gammel versjon av Signal. Vennligst be kontakten oppdatere før sikkerhetsnumrene bekreftes.</string>
-  <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Du forsøker å bekrefte sikkerhetsnummer med %1$s, men skannet %2$s isteden.</string>
-  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Den skannede QR-koden er ikke en korrekt formatert bekreftelseskode for sikkerhetsnummer. Forsøk å skanne igjen.</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Det ser ut som du ikke har noen apper å dele til.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initiere til tross for eksisterende forespørsel?</string>
@@ -690,7 +680,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="recipient_preferences__block">Blokker</string>
   <string name="recipient_preferences__color">Farge</string>
   <string name="recipient_preferences__color_for_this_contact">Farge for denne kontakten</string>
-  <string name="recipient_preferences__verify_safety_numbers">Bekreft sikkerhetsnummer</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal anrop</string>
   <string name="redphone_call_controls__end_call">Avslutt samtale</string>
@@ -771,7 +760,6 @@ feilet.</string>
   <string name="AndroidManifest__select_contacts">Velg kontakter</string>
   <string name="AndroidManifest__signal_detected">Signal oppdaget</string>
   <string name="AndroidManifest__change_passphrase">Passordbytte</string>
-  <string name="AndroidManifest__verify_safety_numbers">Bekreft sikkerhetsnummer</string>
   <string name="AndroidManifest__log_submit">Send debug logg</string>
   <string name="AndroidManifest__media_preview">Forhåndsvisning av media</string>
   <string name="AndroidManifest__media_overview">Alle bilder</string>

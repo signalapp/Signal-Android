@@ -64,10 +64,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Sarrerako dei</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">%1$s-en segurtasun zenbakiak aldatu egin dira. Honek norbait zure komunikazioa eragozten saiatzen ari dela edo %2$s-k Signal aplikazioa berrinstalatu duela adierazi dezake.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Agian, kontaktu honen seguurtasun zenbakiak
-egiaztatzea nahiko duzu.
-    </string>
   <string name="ConfirmIdentityDialog_accept">Onartu</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mezu %s</string>
@@ -205,7 +201,6 @@ egiaztatzea nahiko duzu.
   <string name="CustomDefaultPreference_using_default">Lehenetsia: %s</string>
   <string name="CustomDefaultPreference_none">Bat ere ez</string>
   <!--DateUtils-->
-  <string name="DateUtils_now">Orain</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">\'%s\'-rekin lotura ezabatu?</string>
@@ -306,7 +301,7 @@ Babeskopia hau lehenago inportatu baduzu, mezu bikoiztuak sor daitezke.
   <string name="InviteActivity_invite_to_signal">Gonbidatu Signal erabiltzera</string>
   <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">BIDALI SMS MEZUA LAGUN BATI</item>
-    <item quantity="other">BIDALI SMS MEZUA %d LAGUNERI</item>
+    <item quantity="other">BIDALI SMS MEZUA %d LAGUNI</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Bidali SMS bidezko gonbidapena?</item>
@@ -321,7 +316,6 @@ Babeskopia hau lehenago inportatu baduzu, mezu bikoiztuak sor daitezke.
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signalek Barcode Scanner aplikazioa behar du QR kodeak irakurtzeko.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Bidalketak huts egin du</string>
-  <string name="MessageDetailsRecipient_new_safety_numbers">Segurtasun zenbaki berriak</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Errorea MMS gordetzen!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Errorea MMS hornitzailearekin konentatzerakoan...</string>
@@ -348,7 +342,6 @@ Babeskopia hau lehenago inportatu baduzu, mezu bikoiztuak sor daitezke.
   <string name="MessageRecord_s_is_on_signal_say_hey">%s-(e)k Signal dauka, agur egin!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Desagertzen diren mezuen debora %1$s-tan ezarrita</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">Desagertzen diren mezuen debora %2$s-tan ezarri du %1$s-k</string>
-  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Zure %s-ekin segurtasun zenbakiak aldatu dira.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Pasahitzak ez datoz bat!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Pasahitz zahar ez zuzena!</string>
@@ -480,7 +473,6 @@ Android 4.0 edo berriagoa badute, ez da beharrezkoa Google Kontu bat izatea, bai
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
 </string>
-  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">Segurtasun mezu berriekin jaso da mezua. Ukitu prozesatzeko eta erakusteko.</string>
   <string name="SmsMessageRecord_secure_session_reset">Saio segurua berrezarri duzu.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s berrezarri saio segurua.</string>
   <string name="SmsMessageRecord_duplicate_message">Mezu bikoiztua.</string>
@@ -494,16 +486,9 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ThreadRecord_media_message">Multimedia mezua</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s-(e)k Signal dauka, agur egin!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Desagertzen diren mezuen debora %s-tan ezarrita</string>
-  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Zure %s-ekin segurtasun zenbakiak aldatu dira</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Zure kontaktua Signal aplikazioaren bertsio zahar bat erabiltzan ari da, mesedez eskatuiozu eguneratzeko segurtasun zenbakiak egiaztatu aurretik.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Zure kontaktua Signal aplikazioaren bertsio berriago bat erabiltzen ari da eta horrek QR kode formatua eguneratu du. Eguneratu konparazioa egiteko.</string>
-  <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">%1$s-ekin segurtasun zenbakiak egiaztatzen saiatzen ari zara baina %2$s eskaneatu duzu ordea.</string>
-  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Eskaneatutako QR kodearen formatua ez da segurtasun zenbaki egiaztapen kode batena. Mesedez saiatu berriro eskaneatzen.</string>
-  <string name="VerifyIdentityActivity_share_safety_numbers_via">Segurtasun zenbakiak partekatu...</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_numbers">Gure Signal segurtasun zenbakiak</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Dirudienez ez duzu partekatzeko aplikazio bakar bat ere.</string>
-  <string name="VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard">Ez da segurtasun zenbakirik aurkitu arbelean</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Hasi nahiz eta beste eskaera bat indarrean egon?</string>
   <string name="KeyExchangeInitiator_send">Bidali</string>
@@ -719,7 +704,6 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="recipient_preferences__block">Blokeatu</string>
   <string name="recipient_preferences__color">Kolorea</string>
   <string name="recipient_preferences__color_for_this_contact">Kontaktu honentzako kolorea</string>
-  <string name="recipient_preferences__verify_safety_numbers">Egiaztatu segurtasun zenbakiak</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal deia</string>
   <string name="redphone_call_controls__end_call">amaitu deia</string>
@@ -792,10 +776,8 @@ huts egin du.
   <string name="recipients_panel__to"><small>Izen edo zenbaki bat sartu</small></string>
   <string name="recipients_panel__add_members">Partaideak gehitu</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"><![CDATA[%s-rekin duzun puntutik-punturako zifratzearen segurtasuna egiaztatu nahi baduzu, konparatu goiko zenbakiak bere gailuan agertzen direnekin. Beste era batera ere egin dezakezu, eskaneatu bere gailuko kodea edo eskatu berari zure gailukoa eskaneatzeko.  <a href=\"https://whispersystems.org/redirect/safety-numbers\">Irakurri gehiago segurtasun zenbakiak egiaztatzeari buruz</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Ukitu eskaneatzeko</string>
   <!--verify_identity-->
-  <string name="verify_identity__share_safety_numbers">Segurtasun zenbakiak partekatu</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Arazo batzuk daude.</string>
   <string name="message_details_header__sent">Bidalita</string>
@@ -811,7 +793,6 @@ huts egin du.
   <string name="AndroidManifest__select_contacts">Kontaktuak hautatu</string>
   <string name="AndroidManifest__signal_detected">Signal detektatu da</string>
   <string name="AndroidManifest__change_passphrase">Pasahitza aldatu</string>
-  <string name="AndroidManifest__verify_safety_numbers">Egiaztatu segurtasun zenbakiak</string>
   <string name="AndroidManifest__log_submit">Bidali arazketa-erregistroa</string>
   <string name="AndroidManifest__media_preview">Multimediaren aurrebista</string>
   <string name="AndroidManifest__media_overview">Irudi guztiak</string>

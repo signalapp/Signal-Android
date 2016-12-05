@@ -76,11 +76,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">مكالمة واردة</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">أرقام
- الأمن ل %1$s قد تغيرت. هذا يمكن أن يعني أن أحدهم يريد 
-اعتراض مراسلتكم، أو أن %2$s قد أعاد تثبيت التطبيق.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">قد تريد التحقق
-أرقام الأمن لهذا الإتصال</string>
   <string name="ConfirmIdentityDialog_accept">موافقة</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">رسالة %s</string>
@@ -261,7 +256,6 @@
   <string name="CustomDefaultPreference_using_default">الاستخدام الافتراضي: %s</string>
   <string name="CustomDefaultPreference_none">لا شيء </string>
   <!--DateUtils-->
-  <string name="DateUtils_now">الآن</string>
   <string name="DateUtils_minutes_ago">%d دقيقة</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">إلغاء ربط  \'%s\'؟</string>
@@ -369,7 +363,6 @@
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">سيجنال يحتاج إلى ماسح Barcode لرموز الاستجابة السريعة.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">الإرسال فشل.</string>
-  <string name="MessageDetailsRecipient_new_safety_numbers">أرقام أمن جديدة</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">خطأ بتخزين رسالة الوسائط المتعددة!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">خطأ في الاتصال مع مزود خدمة رسالة الوسائط المتعددة...</string>
@@ -394,7 +387,6 @@
   <string name="MessageRecord_called_s">%s قام بالاتصال</string>
   <string name="MessageRecord_missed_call_from">مكالمة فائتة من %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s إنضم إلى سيجنال.. ألقي التحية!</string>
-  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">أرقام الأمن %s قد تغيرت</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">العبارات السرية غير متطابقة!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">العبارة السرية القديمة غير صحيحة!</string>
@@ -516,7 +508,6 @@
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">تم استلام رسالة تبادل مفاتيح تالفة.</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 تم استلام رسالة تبادل مفاتيح مع إصدارة بروتوكول غير صحيحة.</string>
-  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">الرسائل الواردة من أرقام الأمن الجديدة. اضغط للمعالجة و العرض.</string>
   <string name="SmsMessageRecord_secure_session_reset">لقد قمت بإعادة ضبط تأمين المحادثة.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s أعاد ضبط تأمين المحادثة.</string>
   <string name="SmsMessageRecord_duplicate_message">رسالة مكررة.</string>
@@ -530,11 +521,7 @@
   <string name="ThreadRecord_media_message">رسالة وسائط متعددة</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s إنضم إلى سيجنال.. ألقي التحية!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">ضبط توقيت إخفاء الرسائل إلى %s</string>
-  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">أرقام الأمن %s قد تغيرت</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">صديقك يستعمل نسخة، رجاءا إطلب منهم تحديث التطبيق قبل تأكيد أرقام الأمن</string>
-  <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">انك تحاول أن تحقق من أرقام الأمن ب %1$s, لكن تم فحص %2$s .</string>
-  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">كود QR الممسوح ليس رقم تفيل صحيح. رجاءا امسحه مجددا.</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">يبدو عدم وجود أي تطبيقات لديك للمشاركة من خلالها.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">ابدأ على الرغم من الطلب الحالي؟</string>
@@ -762,7 +749,6 @@
   <string name="recipient_preferences__block">حظر</string>
   <string name="recipient_preferences__color">اللون</string>
   <string name="recipient_preferences__color_for_this_contact">اللون المخصص لجهة الاتصال</string>
-  <string name="recipient_preferences__verify_safety_numbers">تحقق من الآرقام الآمن</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">مكالمة سيجنال</string>
   <string name="redphone_call_controls__end_call">إنهاء المكالمة</string>
@@ -839,7 +825,6 @@
   <string name="AndroidManifest__select_contacts">اخر جهات الاتصال</string>
   <string name="AndroidManifest__signal_detected">تم العثور على سيجنال</string>
   <string name="AndroidManifest__change_passphrase">غير العبارة السرية</string>
-  <string name="AndroidManifest__verify_safety_numbers">تحقق من الآرقام الآمنة</string>
   <string name="AndroidManifest__log_submit">أرسل سجل التشغيل.</string>
   <string name="AndroidManifest__media_preview">معاينة الوسائط</string>
   <string name="AndroidManifest__media_overview">جميع الصور</string>

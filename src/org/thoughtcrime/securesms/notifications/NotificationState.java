@@ -102,6 +102,35 @@ public class NotificationState {
     return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
   }
 
+  public PendingIntent getAndroidAutoReplyIntent(Context context, Recipients recipients) {
+    if (threads.size() != 1) throw new AssertionError("We only support replies to single thread notifications!");
+
+    Intent intent = new Intent(AndroidAutoReplyReceiver.REPLY_ACTION);
+    intent.putExtra(AndroidAutoReplyReceiver.RECIPIENT_IDS_EXTRA, recipients.getIds());
+    intent.putExtra(AndroidAutoReplyReceiver.THREAD_ID_EXTRA, (long)threads.toArray()[0]);
+    intent.setPackage(context.getPackageName());
+
+    return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+  }
+
+  public PendingIntent getAndroidAutoHeardIntent(Context context, Recipients recipients) {
+    long[] threadArray = new long[threads.size()];
+    int    index       = 0;
+    for (long thread : threads) {
+      Log.w("NotificationState", "getAndroidAutoHeardIntent Added thread: " + thread);
+      threadArray[index++] = thread;
+    }
+
+    Intent intent = new Intent(AndroidAutoHeardReceiver.HEARD_ACTION);
+    intent.putExtra(AndroidAutoHeardReceiver.THREAD_IDS_EXTRA, threadArray);
+    intent.setPackage(context.getPackageName());
+
+    Log.w("NotificationState", "getAndroidAutoHeardIntent - Pending array off intent length: " +
+            intent.getLongArrayExtra(AndroidAutoHeardReceiver.THREAD_IDS_EXTRA).length);
+
+    return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+  }
+
   public PendingIntent getQuickReplyIntent(Context context, Recipients recipients) {
     if (threads.size() != 1) throw new AssertionError("We only support replies to single thread notifications!");
 

@@ -984,7 +984,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     composeBubble.getBackground().setColorFilter(defaultColor, PorterDuff.Mode.MULTIPLY);
     colors.recycle();
 
-    attachmentTypeSelector = new AttachmentTypeSelector(this, new AttachmentTypeListener());
+    attachmentTypeSelector = new AttachmentTypeSelector(this, getSupportLoaderManager(), new AttachmentTypeListener());
     attachmentManager      = new AttachmentManager(this, this);
     audioRecorder          = new AudioRecorder(this, masterSecret);
 
@@ -1350,17 +1350,18 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void sendMessage() {
     try {
-      Recipients recipients     = getRecipients();
+      Recipients recipients = getRecipients();
+
+      if (recipients == null) {
+        throw new RecipientFormattingException("Badly formatted");
+      }
+
       boolean    forceSms       = sendButton.isManualSelection() && sendButton.getSelectedTransport().isSms();
       int        subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().or(-1);
       long       expiresIn      = recipients.getExpireMessages() * 1000;
 
       Log.w(TAG, "isManual Selection: " + sendButton.isManualSelection());
       Log.w(TAG, "forceSms: " + forceSms);
-
-      if (recipients == null) {
-        throw new RecipientFormattingException("Badly formatted");
-      }
 
       if ((!recipients.isSingleRecipient() || recipients.isEmailRecipient()) && !isMmsEnabled) {
         handleManualMmsRequired();
@@ -1590,6 +1591,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     @Override
     public void onClick(int type) {
       addAttachment(type);
+    }
+
+    @Override
+    public void onQuickAttachment(Uri uri) {
+      Intent intent = new Intent();
+      intent.setData(uri);
+
+      onActivityResult(PICK_IMAGE, RESULT_OK, intent);
     }
   }
 

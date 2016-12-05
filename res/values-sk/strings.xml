@@ -135,7 +135,6 @@
   <string name="CustomDefaultPreference_using_default">Používa sa predvolené: %s</string>
   <string name="CustomDefaultPreference_none">Žiadna</string>
   <!--DateUtils-->
-  <string name="DateUtils_now">Teraz</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
   <!--DeviceListItem-->

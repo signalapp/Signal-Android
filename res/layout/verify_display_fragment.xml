@@ -152,7 +152,7 @@
                   android:layout_marginTop="25dp"
                   android:textSize="17sp"
                   android:lineSpacingExtra="3sp"
-                  android:text="@string/verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"/>
+                  android:text="@string/verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"/>
 
 
     </LinearLayout>
