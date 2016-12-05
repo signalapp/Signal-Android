@@ -16,7 +16,6 @@
  */
 package org.thoughtcrime.securesms.service;
 
-import android.annotation.TargetApi;
 import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -56,7 +55,9 @@ import java.util.concurrent.TimeUnit;
 
 public class KeyCachingService extends Service {
 
-  public static final int SERVICE_RUNNING_ID = 4141;
+  private static final String TAG = KeyCachingService.class.getSimpleName();
+
+  private static final int SERVICE_RUNNING_ID = 4141;
 
   public  static final String KEY_PERMISSION           = "org.thoughtcrime.securesms.ACCESS_SECRETS";
   public  static final String NEW_KEY_EVENT            = "org.thoughtcrime.securesms.service.action.NEW_KEY_EVENT";
@@ -88,7 +89,7 @@ public class KeyCachingService extends Service {
 
         return masterSecret;
       } catch (InvalidPassphraseException e) {
-        Log.w("KeyCachingService", e);
+        Log.w(TAG, e);
       }
     }
 
@@ -122,7 +123,7 @@ public class KeyCachingService extends Service {
   @Override
   public int onStartCommand(Intent intent, int flags, int startId) {
     if (intent == null) return START_NOT_STICKY;
-    Log.w("KeyCachingService", "onStartCommand, " + intent.getAction());
+    Log.w(TAG, "onStartCommand, " + intent.getAction());
 
     if (intent.getAction() != null) {
       switch (intent.getAction()) {
@@ -140,7 +141,7 @@ public class KeyCachingService extends Service {
 
   @Override
   public void onCreate() {
-    Log.w("KeyCachingService", "onCreate()");
+    Log.w(TAG, "onCreate()");
     super.onCreate();
     this.pending = PendingIntent.getService(this, 0, new Intent(PASSPHRASE_EXPIRED_EVENT, null,
                                                                 this, KeyCachingService.class), 0);
@@ -150,7 +151,7 @@ public class KeyCachingService extends Service {
         MasterSecret masterSecret = MasterSecretUtil.getMasterSecret(this, MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
         setMasterSecret(masterSecret);
       } catch (InvalidPassphraseException e) {
-        Log.w("KeyCachingService", e);
+        Log.w(TAG, e);
       }
     }
   }
@@ -158,7 +159,7 @@ public class KeyCachingService extends Service {
   @Override
   public void onDestroy() {
     super.onDestroy();
-    Log.w("KeyCachingService", "KCS Is Being Destroyed!");
+    Log.w(TAG, "KCS Is Being Destroyed!");
     handleClearKey();
   }
 
@@ -174,7 +175,7 @@ public class KeyCachingService extends Service {
   }
 
   private void handleActivityStarted() {
-    Log.w("KeyCachingService", "Incrementing activity count...");
+    Log.w(TAG, "Incrementing activity count...");
 
     AlarmManager alarmManager = (AlarmManager)this.getSystemService(ALARM_SERVICE);
     alarmManager.cancel(pending);
@@ -182,14 +183,14 @@ public class KeyCachingService extends Service {
   }
 
   private void handleActivityStopped() {
-    Log.w("KeyCachingService", "Decrementing activity count...");
+    Log.w(TAG, "Decrementing activity count...");
 
     activitiesRunning--;
     startTimeoutIfAppropriate();
   }
 
   private void handleClearKey() {
-    Log.w("KeyCachingService", "handleClearKey()");
+    Log.w(TAG, "handleClearKey()");
     KeyCachingService.masterSecret = null;
     stopForeground(true);
 
@@ -224,7 +225,7 @@ public class KeyCachingService extends Service {
       long timeoutMinutes = TextSecurePreferences.getPassphraseTimeoutInterval(this);
       long timeoutMillis  = TimeUnit.MINUTES.toMillis(timeoutMinutes);
 
-      Log.w("KeyCachingService", "Starting timeout: " + timeoutMillis);
+      Log.w(TAG, "Starting timeout: " + timeoutMillis);
 
       AlarmManager alarmManager = (AlarmManager)this.getSystemService(ALARM_SERVICE);
       alarmManager.cancel(pending);
@@ -232,15 +233,14 @@ public class KeyCachingService extends Service {
     }
   }
 
-  @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
   private void foregroundServiceModern() {
-    Log.w("KeyCachingService", "foregrounding KCS");
+    Log.w(TAG, "foregrounding KCS");
     NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
 
     builder.setContentTitle(getString(R.string.KeyCachingService_passphrase_cached));
     builder.setContentText(getString(R.string.KeyCachingService_signal_passphrase_cached));
     builder.setSmallIcon(R.drawable.icon_cached);
-    builder.setWhen(0);
+    builder.setShowWhen(false);
     builder.setPriority(Notification.PRIORITY_MIN);
 
     builder.addAction(R.drawable.ic_menu_lock_dark, getString(R.string.KeyCachingService_lock), buildLockIntent());
@@ -264,37 +264,23 @@ public class KeyCachingService extends Service {
     startForeground(SERVICE_RUNNING_ID, builder.build());
   }
 
-  private void foregroundServiceLegacy() {
-    Notification notification  = new Notification(R.drawable.icon_cached,
-                                                  getString(R.string.KeyCachingService_signal_passphrase_cached),
-                                                  System.currentTimeMillis());
-    notification.setLatestEventInfo(getApplicationContext(),
-                                    getString(R.string.KeyCachingService_passphrase_cached),
-                                    getString(R.string.KeyCachingService_signal_passphrase_cached),
-                                    buildLaunchIntent());
-    notification.tickerText = null;
-
-    stopForeground(true);
-    startForeground(SERVICE_RUNNING_ID, notification);
-  }
-
   private void foregroundService() {
     if (TextSecurePreferences.isPasswordDisabled(this)) {
       stopForeground(true);
       return;
     }
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN
+        || Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+    {
       foregroundServiceModern();
-    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-      foregroundServiceICS();
     } else {
-      foregroundServiceLegacy();
+      foregroundServiceICS();
     }
   }
 
   private void broadcastNewSecret() {
-    Log.w("service", "Broadcasting new secret...");
+    Log.w(TAG, "Broadcasting new secret...");
 
     Intent intent = new Intent(NEW_KEY_EVENT);
     intent.setPackage(getApplicationContext().getPackageName());
@@ -305,15 +291,13 @@ public class KeyCachingService extends Service {
   private PendingIntent buildLockIntent() {
     Intent intent = new Intent(this, KeyCachingService.class);
     intent.setAction(PASSPHRASE_EXPIRED_EVENT);
-    PendingIntent pendingIntent = PendingIntent.getService(getApplicationContext(), 0, intent, 0);
-    return pendingIntent;
+    return PendingIntent.getService(getApplicationContext(), 0, intent, 0);
   }
 
   private PendingIntent buildLaunchIntent() {
-    Intent intent              = new Intent(this, ConversationListActivity.class);
+    Intent intent = new Intent(this, ConversationListActivity.class);
     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-    PendingIntent launchIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
-    return launchIntent;
+    return PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
   }
 
   @Override
