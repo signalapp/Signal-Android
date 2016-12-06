@@ -88,7 +88,7 @@ public class SmsListener extends BroadcastReceiver {
     SmsMessage message = getSmsMessageFromIntent(intent);
     String messageBody = getSmsMessageBodyFromIntent(intent);
 
-    if (message == null && messageBody == null)
+    if (message == null || messageBody == null)
       return false;
 
     if (isExemption(message, messageBody))
