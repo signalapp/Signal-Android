@@ -52,6 +52,7 @@
 
     <attr name="emoji_category_recent" format="reference"/>
     <attr name="emoji_category_people" format="reference"/>
+    <attr name="emoji_category_bbm" format="reference"/>
     <attr name="emoji_category_objects" format="reference"/>
     <attr name="emoji_category_nature" format="reference"/>
     <attr name="emoji_category_places" format="reference"/>

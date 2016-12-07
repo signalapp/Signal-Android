@@ -41,9 +41,9 @@ public class EmojiProvider {
   private final SparseArray<DrawInfo> offsets = new SparseArray<>();
 
   @SuppressWarnings("MalformedRegex")
-  //                                                            0x203c,0x2049 0x20a0-0x32ff          0x1f00-0x1fff              0xfe4e5-0xfe4ee
-  //                                                           |== !!, ?! ==||==== misc ====||======== emoticons ========||========= flags ==========|
-  private static final Pattern EMOJI_RANGE = Pattern.compile("[\\u203c\\u2049\\u20a0-\\u32ff\\ud83c\\udc00-\\ud83d\\udeff\\udbb9\\udce5-\\udbb9\\udcee]");
+  //                                                            0x203c,0x2049 0x20a0-0x32ff          0x1f00-0x1fff              0xfe4e5-0xfe4ee        0xe000-0xfe0ff
+  //                                                           |== !!, ?! ==||==== misc ====||======== emoticons ========||========== flags ==========||==== bbm ===|
+  private static final Pattern EMOJI_RANGE = Pattern.compile("[\\u203c\\u2049\\u20a0-\\u32ff\\ud83c\\udc00-\\ud83d\\udeff\\udbb9\\udce5-\\udbb9\\udcee\\ue000-\\ue0ff]");
 
   public static final int    EMOJI_RAW_HEIGHT = 64;
   public static final int    EMOJI_RAW_WIDTH  = 64;
