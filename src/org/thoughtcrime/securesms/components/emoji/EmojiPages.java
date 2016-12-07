@@ -33,7 +33,7 @@ public class EmojiPages {
       "\ud83d\udc96", "\ud83d\udc97", "\ud83d\udc98", "\ud83d\udc9d", "\ud83d\udc9e", "\ud83d\udc9f",
       "\ud83d\udc4d", "\ud83d\udc4e", "\ud83d\udc4c", "\u270a",       "\u270c",       "\u270b",
       "\ud83d\udc4a", "\u261d",       "\ud83d\udc46", "\ud83d\udc47", "\ud83d\udc48", "\ud83d\udc49",
-      "\ud83d\udc4b", "\ud83d\udc4f", "\ud83d\udc50",
+      "\ud83d\udc4b", "\ud83d\udc4f", "\ud83d\udc50", "\ud83d\udd75", "\ud83d\udd95",
     }, "emoji-people.png"),
     new StaticEmojiPageModel(R.attr.emoji_category_objects, new String[] {
       "\ud83d\udd30", "\ud83d\udc84", "\ud83d\udc5e", "\ud83d\udc5f", "\ud83d\udc51", "\ud83d\udc52",
