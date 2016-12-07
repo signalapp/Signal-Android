@@ -8,6 +8,18 @@ Currently available on the Play store.
 
 <a href="https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" height=36px /></a>
 
+Help
+====
+## Support
+For troubleshooting and questions, please visit our support center!
+
+http://support.whispersystems.org/
+
+## Documentation
+Looking for documentation? Check out the wiki!
+
+https://github.com/WhisperSystems/Signal-Android/wiki
+
 ## Contributing Bug reports
 We use GitHub for bug tracking. Please search the existing issues for your bug and create a new one if the issue is not yet tracked!
 
@@ -44,18 +56,6 @@ Have something you want to say about Open Whisper Systems projects or want to be
 [![Donate](https://cloud.githubusercontent.com/assets/3121306/11278543/d46e03d0-8eeb-11e5-9691-0da1bf643192.png)](https://www.coinbase.com/checkouts/51dac699e660a4d773216b5ad94d6a0b)
 
 You can add funds to BitHub to directly help further development efforts.
-
-Help
-====
-## Support
-For troubleshooting and questions, please visit our support center!
-
-http://support.whispersystems.org/
-
-## Documentation
-Looking for documentation? Check out the wiki!
-
-https://github.com/WhisperSystems/Signal-Android/wiki
 
 # Legal things
 ## Cryptography Notice
