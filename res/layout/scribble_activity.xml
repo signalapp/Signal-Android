@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:id="@+id/activity_main"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="org.thoughtcrime.securesms.scribbles.ScribbleActivity">
+
+    <org.thoughtcrime.securesms.scribbles.ScribbleToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"/>
+
+    <FrameLayout android:layout_weight="1"
+                  android:layout_width="match_parent"
+                  android:layout_height="0dp"
+                  android:layout_gravity="center"
+                 android:background="@color/grey_300"
+                  android:gravity="center">
+
+        <org.thoughtcrime.securesms.scribbles.widget.ScribbleView
+                android:id="@+id/scribble_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"/>
+
+        <org.thoughtcrime.securesms.scribbles.widget.VerticalSlideColorPicker
+                android:id="@+id/scribble_color_picker"
+                android:layout_width="13dp"
+                android:layout_height="300dp"
+                android:layout_gravity="top|right"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="20dp"
+                app:pickerBorderWidth="1dp"
+                app:pickerBorderColor="@color/grey_600"
+                app:pickerColors="@array/scribble_colors"/>
+
+    </FrameLayout>
+
+</LinearLayout>

@@ -13,6 +13,7 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -39,6 +40,7 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
   private static final String TAG = AudioView.class.getSimpleName();
 
   private final @NonNull AnimatingToggle controlToggle;
+  private final @NonNull ViewGroup       container;
   private final @NonNull ImageView       playButton;
   private final @NonNull ImageView       pauseButton;
   private final @NonNull ImageView       downloadButton;
@@ -62,6 +64,7 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
     super(context, attrs, defStyleAttr);
     inflate(context, R.layout.audio_view, this);
 
+    this.container        = (ViewGroup) findViewById(R.id.audio_widget_container);
     this.controlToggle    = (AnimatingToggle) findViewById(R.id.control_toggle);
     this.playButton       = (ImageView) findViewById(R.id.play);
     this.pauseButton      = (ImageView) findViewById(R.id.pause);
@@ -85,6 +88,7 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
       TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.AudioView, 0, 0);
       setTint(typedArray.getColor(R.styleable.AudioView_foregroundTintColor, Color.WHITE),
               typedArray.getColor(R.styleable.AudioView_backgroundTintColor, Color.WHITE));
+      container.setBackgroundColor(typedArray.getColor(R.styleable.AudioView_widgetBackground, Color.TRANSPARENT));
       typedArray.recycle();
     }
   }

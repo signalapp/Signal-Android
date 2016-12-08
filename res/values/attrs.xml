@@ -154,6 +154,7 @@
     </declare-styleable>
 
     <declare-styleable name="AudioView">
+        <attr name="widgetBackground" format="color"/>
         <attr name="foregroundTintColor" format="color" />
         <attr name="backgroundTintColor" format="color" />
     </declare-styleable>
@@ -181,6 +182,12 @@
 
     <declare-styleable name="SquareFrameLayout">
         <attr name="square_height" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="VerticalSlideColorPicker">
+        <attr name="pickerBorderColor" format="color" />
+        <attr name="pickerBorderWidth" format="dimension" />
+        <attr name="pickerColors" format="reference" />
     </declare-styleable>
 
 </resources>

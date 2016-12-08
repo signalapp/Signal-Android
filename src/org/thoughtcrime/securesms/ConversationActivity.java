@@ -119,6 +119,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.recipients.Recipients.RecipientsModifiedListener;
+import org.thoughtcrime.securesms.scribbles.ScribbleActivity;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
@@ -374,6 +375,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       break;
     case PICK_GIF:
       setMedia(data.getData(), MediaType.GIF);
+      break;
+    case ScribbleActivity.SCRIBBLE_REQUEST_CODE:
+      setMedia(data.getData(), MediaType.IMAGE);
       break;
     }
   }

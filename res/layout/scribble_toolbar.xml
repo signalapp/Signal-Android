@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout android:layout_marginLeft="16dp"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentLeft="true"
+                  android:gravity="left|center_vertical"
+                  android:layout_gravity="left">
+
+        <ImageView android:id="@+id/save"
+                   android:src="@drawable/ic_check_white_36dp"
+                   android:tint="@color/grey_800"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+    <LinearLayout android:id="@+id/tools_view"
+                  android:layout_marginRight="16dp"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentRight="true"
+                  android:gravity="right"
+                  android:animateLayoutChanges="true"
+                  android:layout_gravity="right">
+
+        <ImageView android:id="@+id/delete"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginLeft="6dp"
+                   android:padding="7dp"
+                   android:tint="@color/grey_800"
+                   android:src="@drawable/ic_delete_white_24dp"
+                   android:visibility="gone"
+                   tools:visibility="visible"/>
+
+        <ImageView android:id="@+id/undo"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginLeft="6dp"
+                   android:padding="7dp"
+                   android:visibility="gone"
+                   android:tint="@color/grey_800"
+                   android:src="@drawable/ic_replay_white_24dp"/>
+
+        <ImageView android:id="@+id/separator"
+                   android:layout_width="wrap_content"
+                   android:layout_height="24dp"
+                   android:layout_marginTop="7dp"
+                   android:layout_marginLeft="6dp"
+                   android:tint="@color/grey_800"
+                   android:src="@drawable/vertical_separator"
+                   android:visibility="gone"
+                   tools:visibility="visible"/>
+
+        <ImageView android:id="@+id/sticker_button"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginLeft="6dp"
+                   android:tint="@color/grey_800"
+                   android:padding="7dp"
+                   android:src="@drawable/ic_tag_faces_white_24dp"/>
+
+        <ImageView android:id="@+id/text_button"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginLeft="6dp"
+                   android:tint="@color/grey_800"
+                   android:padding="7dp"
+                   android:src="@drawable/ic_text_fields_white_24dp"/>
+
+        <ImageView android:id="@+id/brush_button"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginLeft="6dp"
+                   android:tint="@color/grey_800"
+                   android:padding="7dp"
+                   android:src="@drawable/ic_brush_white_24dp"/>
+
+    </LinearLayout>
+</merge>

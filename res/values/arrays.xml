@@ -253,4 +253,12 @@
         <item>604800</item>
     </integer-array>
 
+    <array name="scribble_colors">
+        <item>#000000</item>
+        <item>#ff0000</item>
+        <item>#ffff00</item>
+        <item>#00ffff</item>
+        <item>#ff00ff</item>
+    </array>
+
 </resources>
