@@ -40,13 +40,14 @@ import com.google.android.gms.location.places.ui.PlacePicker;
 import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AudioView;
-import org.thoughtcrime.securesms.components.RemovableMediaView;
+import org.thoughtcrime.securesms.components.RemovableEditableMediaView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.components.location.SignalMapView;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
 import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
+import org.thoughtcrime.securesms.scribbles.ScribbleActivity;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -67,13 +68,13 @@ public class AttachmentManager {
 
   private final static String TAG = AttachmentManager.class.getSimpleName();
 
-  private final @NonNull Context            context;
-  private final @NonNull View               attachmentView;
-  private final @NonNull RemovableMediaView removableMediaView;
-  private final @NonNull ThumbnailView      thumbnail;
-  private final @NonNull AudioView          audioView;
-  private final @NonNull SignalMapView      mapView;
-  private final @NonNull AttachmentListener attachmentListener;
+  private final @NonNull Context                    context;
+  private final @NonNull View                       attachmentView;
+  private final @NonNull RemovableEditableMediaView removableMediaView;
+  private final @NonNull ThumbnailView              thumbnail;
+  private final @NonNull AudioView                  audioView;
+  private final @NonNull SignalMapView              mapView;
+  private final @NonNull AttachmentListener         attachmentListener;
 
   private @NonNull  List<Uri>       garbage = new LinkedList<>();
   private @NonNull  Optional<Slide> slide   = Optional.absent();
@@ -89,6 +90,7 @@ public class AttachmentManager {
     this.attachmentListener = listener;
 
     removableMediaView.setRemoveClickListener(new RemoveButtonListener());
+    removableMediaView.setEditClickListener(new EditButtonListener());
     thumbnail.setOnClickListener(new ThumbnailClickListener());
   }
 
@@ -154,7 +156,7 @@ public class AttachmentManager {
     ListenableFuture<Bitmap> future = mapView.display(place);
 
     attachmentView.setVisibility(View.VISIBLE);
-    removableMediaView.display(mapView);
+    removableMediaView.display(mapView, false);
 
     future.addListener(new AssertedSuccessListener<Bitmap>() {
       @Override
@@ -215,10 +217,10 @@ public class AttachmentManager {
 
           if (slide.hasAudio()) {
             audioView.setAudio(masterSecret, (AudioSlide)slide, false);
-            removableMediaView.display(audioView);
+            removableMediaView.display(audioView, false);
           } else {
             thumbnail.setImageResource(masterSecret, slide, false);
-            removableMediaView.display(thumbnail);
+            removableMediaView.display(thumbnail, mediaType == MediaType.IMAGE);
           }
 
           attachmentListener.onAttachmentChanged();
@@ -347,6 +349,15 @@ public class AttachmentManager {
     public void onClick(View v) {
       cleanup();
       clear();
+    }
+  }
+
+  private class EditButtonListener implements View.OnClickListener {
+    @Override
+    public void onClick(View v) {
+      Intent intent = new Intent(context, ScribbleActivity.class);
+      intent.setData(getSlideUri());
+      ((Activity)context).startActivityForResult(intent, ScribbleActivity.SCRIBBLE_REQUEST_CODE);
     }
   }
 

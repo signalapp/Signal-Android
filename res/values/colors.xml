@@ -52,4 +52,7 @@
     <color name="import_export_item_background_shadow_dark">#ff222222</color>
     <color name="import_export_touch_highlight_light">#400099cc</color>
     <color name="import_export_touch_highlight_dark">#40ffffff</color>
+
+    <color name="sticker_selected_color">#8cf437</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>

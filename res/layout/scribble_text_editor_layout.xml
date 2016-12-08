@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    android:id="@+id/text_editor_root"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent"
+    android:clickable="true"
+    android:fitsSystemWindows="true">
+
+    <EditText
+        android:id="@+id/edit_text_view"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:alpha="0"
+        android:background="@color/transparent"
+        android:gravity="top"
+        android:inputType="textMultiLine|textNoSuggestions|textVisiblePassword"
+        android:textSize="1sp"
+        tools:ignore="SmallSp"/>
+
+</RelativeLayout>
+
