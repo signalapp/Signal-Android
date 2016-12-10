@@ -76,6 +76,7 @@ dependencies {
     compile 'org.whispersystems:signal-service-android:2.4.1'
     compile 'com.h6ah4i.android.compat:mulsellistprefcompat:1.0.0'
     compile 'com.google.zxing:core:3.2.1'
+    compile 'com.rarepebble:colorpicker:1.5.2'
 
     compile ('cn.carbswang.android:NumberPickerView:1.0.9') {
         exclude group: 'com.android.support', module: 'appcompat-v7'
@@ -167,7 +168,7 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion 9
+        minSdkVersion 11
         targetSdkVersion 22
 
         vectorDrawables.useSupportLibrary = true

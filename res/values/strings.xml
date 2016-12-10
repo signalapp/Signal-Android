@@ -5,6 +5,7 @@
     <string name="no">No</string>
     <string name="delete">Delete</string>
     <string name="please_wait">Please wait...</string>
+    <string name="no_color">No Color</string>
 
     <!-- AbstractNotificationBuilder -->
     <string name="AbstractNotificationBuilder_new_message">New message</string>
@@ -1085,6 +1086,8 @@
     <string name="preferences__theme">Theme</string>
     <string name="preferences__default">Default</string>
     <string name="preferences__language">Language</string>
+    <string name="preferences__background_color">Background Color</string>
+    <string name="preferences__background_color_summary">Define chat background color</string>
     <string name="preferences__signal_messages_and_calls">Signal messages and calls</string>
     <string name="preferences__free_private_messages_and_calls">Free private messages and calls to Signal users</string>
     <string name="preferences__submit_debug_log">Submit debug log</string>
