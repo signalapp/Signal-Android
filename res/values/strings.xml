@@ -715,7 +715,7 @@
     <string name="device_link_fragment__link_device">Link device</string>
 
     <!-- device_list_fragment -->
-    <string name="device_list_fragment__no_devices_linked">No devices linked...</string>
+    <string name="device_list_fragment__no_devices_linked">No devices linked...\n \nYou can download our Chrome extension to add a device!</string>
     <string name="device_list_fragment__link_new_device">Link new device</string>
 
     <!-- experience_upgrade_activity -->
