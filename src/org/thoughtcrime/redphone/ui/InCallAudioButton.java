@@ -2,11 +2,9 @@ package org.thoughtcrime.redphone.ui;
 
 import android.content.Context;
 import android.graphics.drawable.LayerDrawable;
-import android.support.v7.internal.view.menu.MenuBuilder;
 import android.support.v7.widget.PopupMenu;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.CompoundButton;
 
 import org.thoughtcrime.redphone.util.AudioUtils;
