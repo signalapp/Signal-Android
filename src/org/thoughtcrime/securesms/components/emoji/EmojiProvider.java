@@ -9,7 +9,6 @@ import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.support.annotation.NonNull;
@@ -17,42 +16,33 @@ import android.support.annotation.Nullable;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
-import android.util.SparseArray;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.BitmapDecodingException;
-import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.components.emoji.parsing.EmojiDrawInfo;
+import org.thoughtcrime.securesms.components.emoji.parsing.EmojiPageBitmap;
+import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
+import org.thoughtcrime.securesms.components.emoji.parsing.EmojiTree;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
-import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.Util;
 
-import java.io.IOException;
-import java.lang.ref.SoftReference;
-import java.util.concurrent.Callable;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.List;
 
-public class EmojiProvider {
+class EmojiProvider {
+
   private static final    String        TAG      = EmojiProvider.class.getSimpleName();
   private static volatile EmojiProvider instance = null;
   private static final    Paint         paint    = new Paint(Paint.FILTER_BITMAP_FLAG | Paint.ANTI_ALIAS_FLAG);
 
-  private final SparseArray<DrawInfo> offsets = new SparseArray<>();
+  private final EmojiTree emojiTree = new EmojiTree();
 
-  @SuppressWarnings("MalformedRegex")
-  //                                                            0x203c,0x2049 0x20a0-0x32ff          0x1f00-0x1fff              0xfe4e5-0xfe4ee
-  //                                                           |== !!, ?! ==||==== misc ====||======== emoticons ========||========= flags ==========|
-  private static final Pattern EMOJI_RANGE = Pattern.compile("[\\u203c\\u2049\\u20a0-\\u32ff\\ud83c\\udc00-\\ud83d\\udeff\\udbb9\\udce5-\\udbb9\\udcee]");
+  private static final int EMOJI_RAW_HEIGHT = 64;
+  private static final int EMOJI_RAW_WIDTH  = 64;
+  private static final int EMOJI_VERT_PAD   = 0;
+  private static final int EMOJI_PER_ROW    = 32;
 
-  public static final int    EMOJI_RAW_HEIGHT = 64;
-  public static final int    EMOJI_RAW_WIDTH  = 64;
-  public static final int    EMOJI_VERT_PAD   = 0;
-  public static final int    EMOJI_PER_ROW    = 32;
-
-  private final Context context;
-  private final float   decodeScale;
-  private final float   verticalPad;
+  private final float decodeScale;
+  private final float verticalPad;
 
   public static EmojiProvider getInstance(Context context) {
     if (instance == null) {
@@ -66,29 +56,31 @@ public class EmojiProvider {
   }
 
   private EmojiProvider(Context context) {
-    this.context     = context.getApplicationContext();
     this.decodeScale = Math.min(1f, context.getResources().getDimension(R.dimen.emoji_drawer_size) / EMOJI_RAW_HEIGHT);
     this.verticalPad = EMOJI_VERT_PAD * this.decodeScale;
+
     for (EmojiPageModel page : EmojiPages.PAGES) {
       if (page.hasSpriteMap()) {
-        final EmojiPageBitmap pageBitmap = new EmojiPageBitmap(page);
-        for (int i=0; i < page.getEmoji().length; i++) {
-          offsets.put(Character.codePointAt(page.getEmoji()[i], 0), new DrawInfo(pageBitmap, i));
+        EmojiPageBitmap pageBitmap = new EmojiPageBitmap(context, page, decodeScale);
+
+        for (int i=0;i<page.getEmoji().length;i++) {
+          emojiTree.add(page.getEmoji()[i], new EmojiDrawInfo(pageBitmap, i));
         }
       }
     }
   }
 
-  public @Nullable Spannable emojify(@Nullable CharSequence text, @NonNull TextView tv) {
+  @Nullable Spannable emojify(@Nullable CharSequence text, @NonNull TextView tv) {
     if (text == null) return null;
-    Matcher                matches = EMOJI_RANGE.matcher(text);
-    SpannableStringBuilder builder = new SpannableStringBuilder(text);
 
-    while (matches.find()) {
-      int codePoint = matches.group().codePointAt(0);
-      Drawable drawable = getEmojiDrawable(codePoint);
+    List<EmojiParser.Candidate> matches = new EmojiParser(emojiTree).findCandidates(text);
+    SpannableStringBuilder      builder = new SpannableStringBuilder(text);
+
+    for (EmojiParser.Candidate candidate : matches) {
+      Drawable drawable = getEmojiDrawable(candidate.getDrawInfo());
+
       if (drawable != null) {
-        builder.setSpan(new EmojiSpan(drawable, tv), matches.start(), matches.end(),
+        builder.setSpan(new EmojiSpan(drawable, tv), candidate.getStartIndex(), candidate.getEndIndex(),
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
       }
     }
@@ -96,17 +88,18 @@ public class EmojiProvider {
     return builder;
   }
 
-  public Drawable getEmojiDrawable(int emojiCode) {
-    return getEmojiDrawable(offsets.get(emojiCode));
+  @Nullable Drawable getEmojiDrawable(CharSequence emoji) {
+    EmojiDrawInfo drawInfo = emojiTree.getEmoji(emoji, 0, emoji.length());
+    return getEmojiDrawable(drawInfo);
   }
 
-  private Drawable getEmojiDrawable(DrawInfo drawInfo) {
+  private @Nullable Drawable getEmojiDrawable(@Nullable EmojiDrawInfo drawInfo) {
     if (drawInfo == null)  {
       return null;
     }
 
     final EmojiDrawable drawable = new EmojiDrawable(drawInfo, decodeScale);
-    drawInfo.page.get().addListener(new FutureTaskListener<Bitmap>() {
+    drawInfo.getPage().get().addListener(new FutureTaskListener<Bitmap>() {
       @Override public void onSuccess(final Bitmap result) {
         Util.runOnMain(new Runnable() {
           @Override public void run() {
@@ -122,34 +115,36 @@ public class EmojiProvider {
     return drawable;
   }
 
-  public class EmojiDrawable extends Drawable {
-    private final DrawInfo info;
-    private       Bitmap   bmp;
-    private       float    intrinsicWidth;
-    private       float    intrinsicHeight;
+  class EmojiDrawable extends Drawable {
+    private final EmojiDrawInfo info;
+    private       Bitmap        bmp;
+    private       float         intrinsicWidth;
+    private       float         intrinsicHeight;
 
-    @Override public int getIntrinsicWidth() {
+    @Override
+    public int getIntrinsicWidth() {
       return (int)intrinsicWidth;
     }
 
-    @Override public int getIntrinsicHeight() {
+    @Override
+    public int getIntrinsicHeight() {
       return (int)intrinsicHeight;
     }
 
-    public EmojiDrawable(DrawInfo info, float decodeScale) {
+    EmojiDrawable(EmojiDrawInfo info, float decodeScale) {
       this.info            = info;
       this.intrinsicWidth  = EMOJI_RAW_WIDTH  * decodeScale;
       this.intrinsicHeight = EMOJI_RAW_HEIGHT * decodeScale;
     }
 
     @Override
-    public void draw(Canvas canvas) {
+    public void draw(@NonNull Canvas canvas) {
       if (bmp == null) {
         return;
       }
 
-      final int row = info.index / EMOJI_PER_ROW;
-      final int row_index = info.index % EMOJI_PER_ROW;
+      final int row = info.getIndex() / EMOJI_PER_ROW;
+      final int row_index = info.getIndex() % EMOJI_PER_ROW;
 
       canvas.drawBitmap(bmp,
                         new Rect((int)(row_index * intrinsicWidth),
@@ -181,85 +176,4 @@ public class EmojiProvider {
     public void setColorFilter(ColorFilter cf) { }
   }
 
-  private static class DrawInfo {
-    EmojiPageBitmap page;
-    int             index;
-
-    public DrawInfo(final EmojiPageBitmap page, final int index) {
-      this.page = page;
-      this.index = index;
-    }
-
-    @Override
-    public String toString() {
-      return "DrawInfo{" +
-          "page=" + page +
-          ", index=" + index +
-          '}';
-    }
-  }
-
-  private class EmojiPageBitmap {
-    private EmojiPageModel               model;
-    private SoftReference<Bitmap>        bitmapReference;
-    private ListenableFutureTask<Bitmap> task;
-
-    public EmojiPageBitmap(EmojiPageModel model) {
-      this.model = model;
-    }
-
-    private ListenableFutureTask<Bitmap> get() {
-      Util.assertMainThread();
-
-      if (bitmapReference != null && bitmapReference.get() != null) {
-        return new ListenableFutureTask<>(bitmapReference.get());
-      } else if (task != null) {
-        return task;
-      } else {
-        Callable<Bitmap> callable = new Callable<Bitmap>() {
-          @Override public Bitmap call() throws Exception {
-            try {
-              Log.w(TAG, "loading page " + model.getSprite());
-              return loadPage();
-            } catch (IOException ioe) {
-              Log.w(TAG, ioe);
-            }
-            return null;
-          }
-        };
-        task = new ListenableFutureTask<>(callable);
-        new AsyncTask<Void, Void, Void>() {
-          @Override protected Void doInBackground(Void... params) {
-            task.run();
-            return null;
-          }
-
-          @Override protected void onPostExecute(Void aVoid) {
-            task = null;
-          }
-        }.execute();
-      }
-      return task;
-    }
-
-    private Bitmap loadPage() throws IOException {
-      if (bitmapReference != null && bitmapReference.get() != null) return bitmapReference.get();
-
-      try {
-        final Bitmap bitmap = BitmapUtil.createScaledBitmap(context,
-                                                            "file:///android_asset/" + model.getSprite(),
-                                                            decodeScale);
-        bitmapReference = new SoftReference<>(bitmap);
-        Log.w(TAG, "onPageLoaded(" + model.getSprite() + ")");
-        return bitmap;
-      } catch (BitmapDecodingException e) {
-        Log.w(TAG, e);
-        throw new IOException(e);
-      }
-    }
-
-    @Override public String toString() {
-      return model.getSprite();
-    }
-  }
 }

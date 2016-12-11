@@ -137,10 +137,13 @@
 
         <item name="emoji_category_recent">@drawable/emoji_category_recent_light</item>
         <item name="emoji_category_people">@drawable/emoji_category_people_light</item>
-        <item name="emoji_category_objects">@drawable/emoji_category_objects_light</item>
         <item name="emoji_category_nature">@drawable/emoji_category_nature_light</item>
+        <item name="emoji_category_foods">@drawable/emoji_category_foods_light</item>
+        <item name="emoji_category_activity">@drawable/emoji_category_activity_light</item>
         <item name="emoji_category_places">@drawable/emoji_category_places_light</item>
+        <item name="emoji_category_objects">@drawable/emoji_category_objects_light</item>
         <item name="emoji_category_symbol">@drawable/emoji_category_symbol_light</item>
+        <item name="emoji_category_flags">@drawable/emoji_category_flags_light</item>
         <item name="emoji_category_emoticons">@drawable/emoji_category_emoticons_light</item>
 
 
@@ -280,10 +283,13 @@
 
         <item name="emoji_category_recent">@drawable/emoji_category_recent_dark</item>
         <item name="emoji_category_people">@drawable/emoji_category_people_dark</item>
-        <item name="emoji_category_objects">@drawable/emoji_category_objects_dark</item>
         <item name="emoji_category_nature">@drawable/emoji_category_nature_dark</item>
+        <item name="emoji_category_foods">@drawable/emoji_category_foods_dark</item>
+        <item name="emoji_category_activity">@drawable/emoji_category_activity_dark</item>
         <item name="emoji_category_places">@drawable/emoji_category_places_dark</item>
+        <item name="emoji_category_objects">@drawable/emoji_category_objects_dark</item>
         <item name="emoji_category_symbol">@drawable/emoji_category_symbol_dark</item>
+        <item name="emoji_category_flags">@drawable/emoji_category_flags_dark</item>
         <item name="emoji_category_emoticons">@drawable/emoji_category_emoticons_dark</item>
 
         <item name="quick_camera_icon">@drawable/quick_camera_dark</item>

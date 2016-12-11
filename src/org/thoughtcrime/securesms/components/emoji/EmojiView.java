@@ -32,7 +32,7 @@ public class EmojiView extends View implements Drawable.Callback {
   public void setEmoji(String emoji) {
     this.emoji    = emoji;
     this.drawable = EmojiProvider.getInstance(getContext())
-                                 .getEmojiDrawable(Character.codePointAt(emoji, 0));
+                                 .getEmojiDrawable(emoji);
     postInvalidate();
   }
 
