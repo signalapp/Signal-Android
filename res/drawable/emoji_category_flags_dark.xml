@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+          android:enterFadeDuration="200"
+          android:exitFadeDuration="300">
+    <item android:state_selected="true">
+        <bitmap android:src="@drawable/ic_flag_white_24dp"
+                android:tint="@color/grey_400"/>
+    </item>
+    <item>
+        <bitmap android:src="@drawable/ic_flag_white_24dp"
+                android:tint="@color/grey_700"/>
+    </item>
+
+</selector>

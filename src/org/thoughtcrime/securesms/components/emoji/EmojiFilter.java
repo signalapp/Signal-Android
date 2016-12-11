@@ -13,15 +13,18 @@ public class EmojiFilter implements InputFilter {
     this.view = view;
   }
 
-  @Override public CharSequence filter(CharSequence source, int start, int end,
-                                       Spanned dest, int dstart, int dend)
+  @Override
+  public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend)
   {
     char[] v = new char[end - start];
     TextUtils.getChars(source, start, end, v, 0);
+
     Spannable emojified = EmojiProvider.getInstance(view.getContext()).emojify(new String(v), view);
+
     if (source instanceof Spanned && emojified != null) {
       TextUtils.copySpansFrom((Spanned) source, start, end, null, emojified, 0);
     }
+
     return emojified;
   }
 }
