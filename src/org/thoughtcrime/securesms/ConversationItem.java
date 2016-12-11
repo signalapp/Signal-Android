@@ -545,7 +545,7 @@ public class ConversationItem extends LinearLayout
         intent.putExtra(MediaPreviewActivity.THREAD_ID_EXTRA, messageRecord.getThreadId());
 
         context.startActivity(intent);
-      } else {
+      } else if (slide.getUri() != null) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(R.string.ConversationItem_view_secure_media_question);
         builder.setIconAttribute(R.attr.dialog_alert_icon);

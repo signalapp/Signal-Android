@@ -36,6 +36,7 @@ public class ThumbnailView extends FrameLayout {
   private static final String TAG = ThumbnailView.class.getSimpleName();
 
   private ImageView       image;
+  private ImageView       playOverlay;
   private int             backgroundColorHint;
   private int             radius;
   private OnClickListener parentClickListener;
@@ -58,8 +59,9 @@ public class ThumbnailView extends FrameLayout {
 
     inflate(context, R.layout.thumbnail_view, this);
 
-    this.radius = getResources().getDimensionPixelSize(R.dimen.message_bubble_corner_radius);
-    this.image  = (ImageView) findViewById(R.id.thumbnail_image);
+    this.radius      = getResources().getDimensionPixelSize(R.dimen.message_bubble_corner_radius);
+    this.image       = (ImageView) findViewById(R.id.thumbnail_image);
+    this.playOverlay = (ImageView) findViewById(R.id.play_overlay);
     super.setOnClickListener(new ThumbnailClickDispatcher());
 
     if (attrs != null) {
@@ -103,6 +105,12 @@ public class ThumbnailView extends FrameLayout {
       getTransferControls().setDownloadClickListener(new DownloadClickDispatcher());
     } else if (transferControls.isPresent()) {
       getTransferControls().setVisibility(View.GONE);
+    }
+
+    if (slide.getThumbnailUri() != null && slide.hasPlayOverlay() && slide.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_DONE) {
+      this.playOverlay.setVisibility(View.VISIBLE);
+    } else {
+      this.playOverlay.setVisibility(View.GONE);
     }
 
     if (Util.equals(slide, this.slide)) {
