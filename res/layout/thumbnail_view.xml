@@ -10,6 +10,18 @@
                android:scaleType="fitCenter"
                android:contentDescription="@string/conversation_item__mms_image_description" />
 
+    <ImageView android:id="@+id/play_overlay"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center"
+               android:gravity="center"
+               android:clickable="false"
+               android:longClickable="false"
+               android:src="@drawable/ic_play_circle_outline_white_48dp"
+               android:tint="#77ffffff"
+               android:tintMode="src_in"
+               android:visibility="gone"/>
+
     <ViewStub android:id="@+id/transfer_controls_stub"
               android:layout_width="70dp"
               android:layout_height="70dp"
