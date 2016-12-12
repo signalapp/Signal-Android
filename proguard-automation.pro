@@ -9,3 +9,5 @@
 -dontwarn org.hamcrest.**
 -dontwarn org.mockito.**
 -dontwarn com.squareup.**
+
+-dontobfuscate
