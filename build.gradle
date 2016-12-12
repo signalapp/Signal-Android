@@ -228,7 +228,8 @@ android {
                           'proguard-shortcutbadger.pro',
                           'proguard-retrofit.pro',
                           'proguard.cfg'
-            testProguardFiles 'proguard-automation.pro'
+            testProguardFiles 'proguard-automation.pro',
+                          'proguard.cfg'
         }
         release {
             minifyEnabled true
