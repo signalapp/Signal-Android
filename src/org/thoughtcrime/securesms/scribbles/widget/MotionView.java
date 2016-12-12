@@ -32,23 +32,33 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.GestureDetectorCompat;
+import android.support.v4.view.ViewCompat;
+import android.text.Editable;
+import android.text.InputType;
+import android.text.Selection;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.GestureDetector;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.scribbles.multitouch.MoveGestureDetector;
 import org.thoughtcrime.securesms.scribbles.multitouch.RotateGestureDetector;
 import org.thoughtcrime.securesms.scribbles.widget.entity.MotionEntity;
+import org.thoughtcrime.securesms.scribbles.widget.entity.TextEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MotionView  extends FrameLayout {
+public class MotionView  extends FrameLayout implements TextWatcher {
 
   private static final String TAG = MotionView.class.getSimpleName();
 
@@ -71,6 +81,8 @@ public class MotionView  extends FrameLayout {
   // callback
   @Nullable
   private MotionViewCallback motionViewCallback;
+
+  private EditText editText;
 
   // gesture detection
   private ScaleGestureDetector scaleGestureDetector;
@@ -109,6 +121,17 @@ public class MotionView  extends FrameLayout {
     selectedLayerPaint.setAlpha((int) (255 * Constants.SELECTED_LAYER_ALPHA));
     selectedLayerPaint.setAntiAlias(true);
 
+    this.editText = new EditText(context, attrs);
+    ViewCompat.setAlpha(this.editText, 0);
+    this.editText.setLayoutParams(new LayoutParams(1, 1, Gravity.TOP | Gravity.LEFT));
+    this.editText.setClickable(false);
+    this.editText.setBackgroundColor(Color.TRANSPARENT);
+    this.editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 1);
+    this.editText.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+    this.addView(editText);
+    this.editText.clearFocus();
+    this.editText.addTextChangedListener(this);
+
     // init listeners
     this.scaleGestureDetector = new ScaleGestureDetector(context, new ScaleListener());
     this.rotateGestureDetector = new RotateGestureDetector(context, new RotateListener());
@@ -118,6 +141,17 @@ public class MotionView  extends FrameLayout {
     setOnTouchListener(onTouchListener);
 
     updateUI();
+  }
+
+  public void startEditing(TextEntity entity) {
+    editText.setFocusableInTouchMode(true);
+    editText.setFocusable(true);
+    editText.requestFocus();
+    editText.setText(entity.getLayer().getText());
+    Selection.setSelection(editText.getText(), editText.length());
+
+    InputMethodManager ims = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+    ims.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
   }
 
   public MotionEntity getSelectedEntity() {
@@ -242,6 +276,15 @@ public class MotionView  extends FrameLayout {
   private void selectEntity(@Nullable MotionEntity entity, boolean updateCallback) {
     if (selectedEntity != null) {
       selectedEntity.setIsSelected(false);
+
+      if (selectedEntity instanceof TextEntity) {
+        editText.clearComposingText();
+        editText.clearFocus();
+
+        InputMethodManager imm = (InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+      }
+
     }
     if (entity != null) {
       entity.setIsSelected(true);
@@ -402,6 +445,28 @@ public class MotionView  extends FrameLayout {
     public boolean onMove(MoveGestureDetector detector) {
       handleTranslate(detector.getFocusDelta());
       return true;
+    }
+  }
+
+  @Override
+  public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+  @Override
+  public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+  @Override
+  public void afterTextChanged(Editable s) {
+    String       text   = s.toString();
+    MotionEntity entity = getSelectedEntity();
+
+    if (entity != null && entity instanceof TextEntity) {
+      TextEntity textEntity = (TextEntity)entity;
+
+      if (!textEntity.getLayer().getText().equals(text)) {
+        textEntity.getLayer().setText(text);
+        textEntity.updateEntity();
+        MotionView.this.invalidate();
+      }
     }
   }
 

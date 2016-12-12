@@ -148,11 +148,12 @@ public class ScribbleToolbar extends Toolbar implements View.OnClickListener {
 
   private void setBrushSelected(boolean enabled) {
     if (enabled) {
-      this.brushView.setBackground(background);
-      this.brushView.setColorFilter(new PorterDuffColorFilter(foregroundSelectedTint, PorterDuff.Mode.MULTIPLY));
 
       this.textView.setBackground(null);
       this.textView.setColorFilter(new PorterDuffColorFilter(foregroundUnselectedTint, PorterDuff.Mode.MULTIPLY));
+
+      this.brushView.setBackground(background);
+      this.brushView.setColorFilter(new PorterDuffColorFilter(foregroundSelectedTint, PorterDuff.Mode.MULTIPLY));
 
       this.stickerView.setBackground(null);
       this.stickerView.setColorFilter(new PorterDuffColorFilter(foregroundUnselectedTint, PorterDuff.Mode.MULTIPLY));

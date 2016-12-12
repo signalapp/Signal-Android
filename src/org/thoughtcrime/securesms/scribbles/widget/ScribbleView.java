@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.scribbles.widget.entity.MotionEntity;
+import org.thoughtcrime.securesms.scribbles.widget.entity.TextEntity;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 
@@ -167,6 +168,10 @@ public class ScribbleView extends FrameLayout {
 
   public void undoDrawing() {
     this.canvasView.undo();
+  }
+
+  public void startEditing(TextEntity entity) {
+    this.motionView.startEditing(entity);
   }
 
   @Override

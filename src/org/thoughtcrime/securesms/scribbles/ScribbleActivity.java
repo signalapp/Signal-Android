@@ -37,7 +37,7 @@ import java.util.concurrent.ExecutionException;
 import ws.com.google.android.mms.ContentType;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-public class ScribbleActivity extends PassphraseRequiredActionBarActivity implements TextEditorDialogFragment.OnTextLayerCallback, ScribbleToolbar.ScribbleToolbarListener, VerticalSlideColorPicker.OnColorChangeListener {
+public class ScribbleActivity extends PassphraseRequiredActionBarActivity implements ScribbleToolbar.ScribbleToolbarListener, VerticalSlideColorPicker.OnColorChangeListener {
 
   private static final String TAG = ScribbleActivity.class.getName();
 
@@ -101,8 +101,7 @@ public class ScribbleActivity extends PassphraseRequiredActionBarActivity implem
   private void startTextEntityEditing() {
     TextEntity textEntity = currentTextEntity();
     if (textEntity != null) {
-      TextEditorDialogFragment fragment = TextEditorDialogFragment.getInstance(textEntity.getLayer().getText());
-      fragment.show(getFragmentManager(), TextEditorDialogFragment.class.getName());
+      scribbleView.startEditing(textEntity);
     }
   }
 
@@ -171,19 +170,6 @@ public class ScribbleActivity extends PassphraseRequiredActionBarActivity implem
             }
           }.execute();
         }
-      }
-    }
-  }
-
-  @Override
-  public void textChanged(@NonNull String text) {
-    TextEntity textEntity = currentTextEntity();
-    if (textEntity != null) {
-      TextLayer textLayer = textEntity.getLayer();
-      if (!text.equals(textLayer.getText())) {
-        textLayer.setText(text);
-        textEntity.updateEntity();
-        scribbleView.invalidate();
       }
     }
   }
