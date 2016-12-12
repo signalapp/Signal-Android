@@ -55,8 +55,8 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 {
   private static final String TAG = RecipientPreferenceActivity.class.getSimpleName();
 
-  public static final String RECIPIENTS_EXTRA              = "recipient_ids";
-  public static final String CAN_HAVE_SAFETY_NUMBERS_EXTRA = "can_have_safety_numbers";
+  public static final String RECIPIENTS_EXTRA             = "recipient_ids";
+  public static final String CAN_HAVE_SAFETY_NUMBER_EXTRA = "can_have_safety_number";
 
   private static final String PREFERENCE_MUTED    = "pref_key_recipient_mute";
   private static final String PREFERENCE_TONE     = "pref_key_recipient_ringtone";
@@ -204,7 +204,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
       this.masterSecret         = getArguments().getParcelable("master_secret");
       this.canHaveSafetyNumbers = getActivity().getIntent()
-                                  .getBooleanExtra(RecipientPreferenceActivity.CAN_HAVE_SAFETY_NUMBERS_EXTRA, false);
+                                  .getBooleanExtra(RecipientPreferenceActivity.CAN_HAVE_SAFETY_NUMBER_EXTRA, false);
 
       this.findPreference(PREFERENCE_TONE)
           .setOnPreferenceChangeListener(new RingtoneChangeListener());

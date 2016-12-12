@@ -1018,7 +1018,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       public void onClick(View v) {
         Intent intent = new Intent(ConversationActivity.this, RecipientPreferenceActivity.class);
         intent.putExtra(RecipientPreferenceActivity.RECIPIENTS_EXTRA, recipients.getIds());
-        intent.putExtra(RecipientPreferenceActivity.CAN_HAVE_SAFETY_NUMBERS_EXTRA,
+        intent.putExtra(RecipientPreferenceActivity.CAN_HAVE_SAFETY_NUMBER_EXTRA,
                         isSecureText && !isSelfConversation());
 
         startActivitySceneTransition(intent, titleView.findViewById(R.id.title), "recipient_name");
