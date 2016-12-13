@@ -193,7 +193,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     private Recipients        recipients;
     private BroadcastReceiver staleReceiver;
     private MasterSecret      masterSecret;
-    private boolean           canHaveSafetyNumbers;
+    private boolean           canHaveSafetyNumber;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -202,9 +202,9 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       addPreferencesFromResource(R.xml.recipient_preferences);
       initializeRecipients();
 
-      this.masterSecret         = getArguments().getParcelable("master_secret");
-      this.canHaveSafetyNumbers = getActivity().getIntent()
-                                  .getBooleanExtra(RecipientPreferenceActivity.CAN_HAVE_SAFETY_NUMBER_EXTRA, false);
+      this.masterSecret        = getArguments().getParcelable("master_secret");
+      this.canHaveSafetyNumber = getActivity().getIntent()
+                                 .getBooleanExtra(RecipientPreferenceActivity.CAN_HAVE_SAFETY_NUMBER_EXTRA, false);
 
       this.findPreference(PREFERENCE_TONE)
           .setOnPreferenceChangeListener(new RingtoneChangeListener());
@@ -303,7 +303,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
             if (result.isPresent()) {
               if (identityPreference != null) identityPreference.setOnPreferenceClickListener(new IdentityClickedListener(result.get()));
               if (identityPreference != null) identityPreference.setEnabled(true);
-            } else if (canHaveSafetyNumbers) {
+            } else if (canHaveSafetyNumber) {
               if (identityPreference != null) identityPreference.setSummary(R.string.RecipientPreferenceActivity_you_will_have_to_exchange_a_message_first);
             } else {
               if (identityPreference != null) getPreferenceScreen().removePreference(identityPreference);
