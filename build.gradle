@@ -80,6 +80,9 @@ dependencies {
     compile 'org.whispersystems:signal-service-android:2.4.4'
     compile 'com.h6ah4i.android.compat:mulsellistprefcompat:1.0.0'
     compile 'com.google.zxing:core:3.2.1'
+    compile ('com.davemorrissey.labs:subsampling-scale-image-view:3.6.0') {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
 
     compile ('cn.carbswang.android:NumberPickerView:1.0.9') {
         exclude group: 'com.android.support', module: 'appcompat-v7'
