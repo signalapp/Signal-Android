@@ -291,12 +291,14 @@ public class RegistrationService extends Service {
 
     if (verifying) {
       TextSecurePreferences.setPushRegistered(this, false);
+      TextSecurePreferences.setRegistered(this, false);
     }
   }
 
   private void markAsVerified(String number, String password, String signalingKey) {
     TextSecurePreferences.setVerifying(this, false);
     TextSecurePreferences.setPushRegistered(this, true);
+    TextSecurePreferences.setRegistered(this, true);
     TextSecurePreferences.setLocalNumber(this, number);
     TextSecurePreferences.setPushServerPassword(this, password);
     TextSecurePreferences.setSignalingKey(this, signalingKey);

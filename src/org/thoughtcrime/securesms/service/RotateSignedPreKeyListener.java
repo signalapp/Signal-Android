@@ -21,7 +21,7 @@ public class RotateSignedPreKeyListener extends PersistentAlarmManagerListener {
 
   @Override
   protected long onAlarm(Context context, long scheduledTime) {
-    if (scheduledTime != 0 && TextSecurePreferences.isPushRegistered(context)) {
+    if (scheduledTime != 0 && TextSecurePreferences.isRegistered(context)) {
       ApplicationContext.getInstance(context)
                         .getJobManager()
                         .add(new RotateSignedPreKeyJob(context));

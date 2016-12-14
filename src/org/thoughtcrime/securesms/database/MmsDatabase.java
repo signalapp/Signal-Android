@@ -279,7 +279,7 @@ public class MmsDatabase extends MessagingDatabase {
 
     group.add(retrieved.getAddresses().getFrom());
 
-    if (TextSecurePreferences.isPushRegistered(context)) {
+    if (TextSecurePreferences.isRegistered(context)) {
       localNumber = TextSecurePreferences.getLocalNumber(context);
     } else {
       localNumber = ServiceUtil.getTelephonyManager(context).getLine1Number();

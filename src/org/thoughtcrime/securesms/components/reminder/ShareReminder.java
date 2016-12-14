@@ -33,7 +33,7 @@ public class ShareReminder extends Reminder {
   }
 
   public static boolean isEligible(final @NonNull Context context) {
-    if (!TextSecurePreferences.isPushRegistered(context) ||
+    if (!TextSecurePreferences.isRegistered(context) ||
         TextSecurePreferences.hasPromptedShare(context))
     {
       return false;
