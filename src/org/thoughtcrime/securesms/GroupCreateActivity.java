@@ -139,7 +139,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   }
 
   private boolean isSignalGroup() {
-    return TextSecurePreferences.isPushRegistered(this) && !getAdapter().hasNonPushMembers();
+    return TextSecurePreferences.isRegistered(this) && !getAdapter().hasNonPushMembers();
   }
 
   private void disableSignalGroupViews(int reasonResId) {
@@ -158,7 +158,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
 
   @SuppressWarnings("ConstantConditions")
   private void updateViewState() {
-    if (!TextSecurePreferences.isPushRegistered(this)) {
+    if (!TextSecurePreferences.isRegistered(this)) {
       disableSignalGroupViews(R.string.GroupCreateActivity_youre_not_registered_for_signal);
       getSupportActionBar().setTitle(R.string.GroupCreateActivity_actionbar_mms_title);
     } else if (getAdapter().hasNonPushMembers()) {

@@ -35,6 +35,6 @@ public class PushRegistrationReminder extends Reminder {
   }
 
   public static boolean isEligible(Context context) {
-    return !TextSecurePreferences.isPushRegistered(context);
+    return !TextSecurePreferences.isRegistered(context);
   }
 }

@@ -148,7 +148,8 @@ public class CanonicalAddressDatabase {
       long   canonicalAddressId;
       String formattedAddress;
 
-      if ((formattedAddress = formattedAddressCache.get(address)) == null) {
+      if ((formattedAddress = formattedAddressCache.get(address)) == null &&
+					 TextSecurePreferences.isRegistered(context)) {
         String localNumber = TextSecurePreferences.getLocalNumber(context);
 
         if (!isNumberAddress(address)                        ||

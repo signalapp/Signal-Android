@@ -3,7 +3,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
                         android:defaultValue="false"
-                        android:key="pref_toggle_push_messaging"
+                        android:key="pref_toggle_messaging"
                         android:title="@string/preferences__signal_messages_and_calls"
                         android:summary="@string/preferences__free_private_messages_and_calls"/>
 

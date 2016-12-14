@@ -48,7 +48,7 @@ public class RefreshPreKeysJob extends MasterSecretJob implements InjectableType
 
   @Override
   public void onRun(MasterSecret masterSecret) throws IOException {
-    if (!TextSecurePreferences.isPushRegistered(context)) return;
+    if (!TextSecurePreferences.isRegistered(context)) return;
 
     int availableKeys = accountManager.getPreKeysCount();
 
