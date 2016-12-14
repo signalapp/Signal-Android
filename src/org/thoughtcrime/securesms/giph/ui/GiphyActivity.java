@@ -35,11 +35,14 @@ public class GiphyActivity extends PassphraseRequiredActionBarActivity
 
   private static final String TAG = GiphyActivity.class.getSimpleName();
 
+  public static final String EXTRA_IS_MMS = "extra_is_mms";
+
   private final DynamicTheme    dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private GiphyGifFragment     gifFragment;
   private GiphyStickerFragment stickerFragment;
+  private boolean              forMms;
 
   private GiphyAdapter.GiphyViewHolder finishingImage;
 
@@ -74,6 +77,7 @@ public class GiphyActivity extends PassphraseRequiredActionBarActivity
 
     this.gifFragment     = new GiphyGifFragment();
     this.stickerFragment = new GiphyStickerFragment();
+    this.forMms          = getIntent().getBooleanExtra(EXTRA_IS_MMS, false);
 
     gifFragment.setClickListener(this);
     stickerFragment.setClickListener(this);
@@ -105,7 +109,7 @@ public class GiphyActivity extends PassphraseRequiredActionBarActivity
       @Override
       protected Uri doInBackground(Void... params) {
         try {
-          return Uri.fromFile(viewHolder.getFile());
+          return Uri.fromFile(viewHolder.getFile(forMms));
         } catch (InterruptedException | ExecutionException e) {
           Log.w(TAG, e);
           return null;

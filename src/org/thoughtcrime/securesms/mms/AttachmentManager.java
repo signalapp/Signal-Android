@@ -264,8 +264,9 @@ public class AttachmentManager {
     }
   }
 
-  public static void selectGif(Activity activity, int requestCode) {
+  public static void selectGif(Activity activity, int requestCode, boolean isForMms) {
     Intent intent = new Intent(activity, GiphyActivity.class);
+    intent.putExtra(GiphyActivity.EXTRA_IS_MMS, isForMms);
     activity.startActivityForResult(intent, requestCode);
   }
 

@@ -1143,7 +1143,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case AttachmentTypeSelectorAdapter.TAKE_PHOTO:
       attachmentManager.capturePhoto(this, TAKE_PHOTO); break;
     case AttachmentTypeSelector.ADD_GIF:
-      AttachmentManager.selectGif(this, PICK_GIF); break;
+      AttachmentManager.selectGif(this, PICK_GIF, !isSecureText); break;
     }
   }
 

@@ -12,6 +12,10 @@ public class GiphyImage {
     return images.downsized.url;
   }
 
+  public String getGifMmsUrl() {
+    return images.fixed_height_downsampled.url;
+  }
+
   public float getGifAspectRatio() {
     return (float)images.downsized.width / (float)images.downsized.height;
   }
