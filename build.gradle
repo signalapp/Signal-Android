@@ -224,6 +224,7 @@ android {
                           'proguard-glide.pro',
                           'proguard-shortcutbadger.pro',
                           'proguard-retrofit.pro',
+                          'proguard-photoview.pro',
                           'proguard.cfg'
             testProguardFiles 'proguard-automation.pro'
         }
