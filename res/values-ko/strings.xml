@@ -525,7 +525,6 @@
   <string name="conversation_activity__compose_description">메시지 작성</string>
   <string name="conversation_activity__emoji_toggle_description">이모티콘 키보드 전환</string>
   <string name="conversation_activity__attachment_thumbnail">첨부파일 미리보기 이미지</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">첨부 창 전환</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">취소하려면 슬라이드</string>
   <!--conversation_item-->

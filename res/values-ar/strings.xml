@@ -613,7 +613,6 @@
   <string name="conversation_activity__compose_description">تكوين الرسالة</string>
   <string name="conversation_activity__emoji_toggle_description">تبديل لوحة مفاتيح الرموز التعبيرية</string>
   <string name="conversation_activity__attachment_thumbnail">المصغّرة للمرفق</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">فتح درج المرفقات</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">سحب للإلغاء</string>
   <!--conversation_item-->

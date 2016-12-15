@@ -574,7 +574,6 @@
   <string name="conversation_activity__compose_description">Σύνθεση μηνύματος</string>
   <string name="conversation_activity__emoji_toggle_description">Εναλλαγή πληκτρολογίου emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Μικρογραφία συνημμένου</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Εναλλαγή συρταριού συννημένων</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">ΣΥΡΕ ΓΙΑ ΑΚΥΡΩΣΗ</string>
   <!--conversation_item-->

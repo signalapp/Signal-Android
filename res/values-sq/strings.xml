@@ -578,7 +578,6 @@ U pranua mesazh për shkembim çelsash për një verzion të protokolli jo valid
   <string name="conversation_activity__compose_description">Shkrimi i porosisë</string>
   <string name="conversation_activity__emoji_toggle_description">Shfaq tastaturën emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Foto e shtojcës</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Ndrysho shtojcën</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">RRQITË PËR TË ANULUAR</string>
   <!--conversation_item-->

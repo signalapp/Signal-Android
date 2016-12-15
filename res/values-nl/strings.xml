@@ -482,7 +482,6 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Berichten zullen verdwijnen na %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Je veiligheidsnummer met %s is veranderd.</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Dit contact gebruikt een oude versie van Signal. Vraag hen om Signal bij te werken vooraleer je het veiligheidsnummer verifieert.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Je contact gebruikt een nieuwere versie van Signal met een incompatibel QR-codeformaat. Werk Signal bij om te vergelijken.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">De gescande QR-code is geen goed veiligheidsnummer. Probeer de code opnieuw te scannen.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Veiligheidsnummer delen via...</string>
@@ -579,7 +578,8 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="conversation_activity__compose_description">Berichtsamenstelling</string>
   <string name="conversation_activity__emoji_toggle_description">Emojitoetsenbord wisselen</string>
   <string name="conversation_activity__attachment_thumbnail">Bijlageminiatuur</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Bijlageoverzicht tonen/verbergen</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Camera overzicht tonen/verbergen</string>
+  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Geluidsopname opnemen en verzenden</string>
   <string name="conversation_activity__enable_signal_for_sms">Gebruik Signal voor SMS</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">SCHUIF OM TE ANNULEREN</string>

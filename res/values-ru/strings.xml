@@ -228,6 +228,7 @@
   <string name="CustomDefaultPreference_using_default">По умолчанию: %s</string>
   <string name="CustomDefaultPreference_none">Нет</string>
   <!--DateUtils-->
+  <string name="DateUtils_just_now">Только что</string>
   <string name="DateUtils_minutes_ago">%d мин</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Отвязать «%s»?</string>
@@ -341,6 +342,7 @@
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Для распознавания QR-кодов требуется приложение Barcode Scanner.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Не удалось отправить</string>
+  <string name="MessageDetailsRecipient_new_safety_number">Новый код безопасности</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Ошибка при сохранении MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Ошибка подключения к провайдеру MMS...</string>
@@ -491,6 +493,7 @@
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Получено сообщение обмена ключами для неверной версии протокола.
 </string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Получено сообщение с новым кодом безопасности. Нажмите, чтобы обработать и отобразить сообщение. </string>
   <string name="SmsMessageRecord_secure_session_reset">Вы сбросили защищенный сеанс.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s сбросил(а) защищенный сеанс.</string>
   <string name="SmsMessageRecord_duplicate_message">Дубликат сообщения.</string>
@@ -505,7 +508,12 @@
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s теперь в Signal — скажите «Привет»!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Время исчезновения сообщений – %s</string>
   <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Этот контакт использует более новую версию Signal с несовместимым форматом QR-кода. Пожалуйста, обновите приложение для возможности сверки.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Отсканированный QR-код содержит неправильно отформатированный код безопасности. Пожалуйста, попробуйте отсканировать QR-код ещё раз.</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Поделиться кодом безопасности с помощью...</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">Наш код безопасности Signal...</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Похоже, что у вас нет приложений, через которые можно поделиться.</string>
+  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Коды безопасности в буфере обмена не найдены</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Игнорировать предыдущий запрос?</string>
   <string name="KeyExchangeInitiator_send">Отправить</string>
@@ -596,7 +604,6 @@
   <string name="conversation_activity__compose_description">Написание сообщения</string>
   <string name="conversation_activity__emoji_toggle_description">Клавиатура смайликов</string>
   <string name="conversation_activity__attachment_thumbnail">Миниатюра вложения</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Показать панель вложений</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">ПРОВЕДИТЕ ДЛЯ ОТМЕНЫ</string>
   <!--conversation_item-->
@@ -668,6 +675,7 @@
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Найти GIF-анимации и стикеры</string>
   <!--giphy_fragment-->
+  <string name="giphy_fragment__nothing_found">Ничего не найдено</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Не удается прочитать журнал отладки вашего устройства. Тем не менее, вы можете получить его при помощи ADB.</string>
   <string name="log_submit_activity__thanks">Спасибо за помощь!</string>
@@ -729,6 +737,7 @@
   <string name="recipient_preferences__block">Заблокировать</string>
   <string name="recipient_preferences__color">Цвет</string>
   <string name="recipient_preferences__color_for_this_contact">Цвет для этого контакта</string>
+  <string name="recipient_preferences__verify_safety_number">Сверить код безопасности</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Звонок через Signal</string>
   <string name="redphone_call_controls__end_call">завершить звонок</string>
@@ -802,6 +811,7 @@ SMS-подтверждения...
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__tap_to_scan">Сканировать</string>
   <!--verify_identity-->
+  <string name="verify_identity__share_safety_number">Поделиться кодом безопасности</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Есть проблемы, требующие вашего внимания.</string>
   <string name="message_details_header__sent">Отправлено</string>
@@ -817,6 +827,7 @@ SMS-подтверждения...
   <string name="AndroidManifest__select_contacts">Выбрать контакты</string>
   <string name="AndroidManifest__signal_detected">Обнаружен Signal</string>
   <string name="AndroidManifest__change_passphrase">Изменить парольную фразу</string>
+  <string name="AndroidManifest__verify_safety_number">Сверить код безопасности</string>
   <string name="AndroidManifest__log_submit">Отправить журнал отладки</string>
   <string name="AndroidManifest__media_preview">Предпросмотр</string>
   <string name="AndroidManifest__media_overview">Все изображения</string>
@@ -1036,6 +1047,8 @@ SMS-подтверждения...
   <string name="text_secure_normal__invite_friends">Пригласить друзей в Signal</string>
   <string name="text_secure_normal__help">Помощь</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Копировать в буфер обмена</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">Сравнить с буфером обмена</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Ваша версия Signal устарела</string>
   <plurals name="reminder_header_outdated_build_details">
@@ -1070,6 +1083,8 @@ SMS-подтверждения...
   <string name="MediaPreviewActivity_unssuported_media_type">Тип медиа-файла не поддерживается</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Сохранить</string>
+  <string name="media_preview__forward_title">Переслать</string>
+  <string name="media_preview__overview_title">Все изображения</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Сохранить всё</string>
   <!--media_preview_activity-->

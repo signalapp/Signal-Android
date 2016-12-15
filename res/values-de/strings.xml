@@ -291,7 +291,7 @@ Das Wiederherstellen einer verschlüsselten Datensicherung ersetzt deine bestehe
   <string name="InviteActivity_share">Teilen</string>
   <string name="InviteActivity_choose_contacts">Kontakte auswählen</string>
   <string name="InviteActivity_cancel">Abbrechen</string>
-  <string name="InviteActivity_sending">Sendevorgang …</string>
+  <string name="InviteActivity_sending">Wird gesendet …</string>
   <string name="InviteActivity_heart_content_description">Herz</string>
   <string name="InviteActivity_invitations_sent">Einladungen versendet!</string>
   <string name="InviteActivity_invite_to_signal">Zu Signal einladen</string>
@@ -331,15 +331,15 @@ Das Wiederherstellen einer verschlüsselten Datensicherung ersetzt deine bestehe
   <string name="NotificationMmsMessageRecord_multimedia_message">MMS</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Die empfangene Nachricht wurde mit einer veralteten Version von Signal verschlüsselt, die nicht mehr unterstützt wird. Bitte den Absender, Signal zu aktualisieren und die Nachricht erneut zu senden.</string>
-  <string name="MessageRecord_left_group">Du hast die Gruppe verlassen.</string>
-  <string name="MessageRecord_updated_group">Gruppe wurde aktualisiert.</string>
+  <string name="MessageRecord_left_group">Du hast die Gruppe verlassen</string>
+  <string name="MessageRecord_updated_group">Gruppe wurde aktualisiert</string>
   <string name="MessageRecord_s_called_you">Eingegangener Anruf von %s</string>
   <string name="MessageRecord_called_s">Ausgegangener Anruf an %s</string>
   <string name="MessageRecord_missed_call_from">Entgangener Anruf von %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s ist bei Signal. Zeit, Hallo zu sagen! </string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du hast die Zeit für verschwindende Nachrichten auf %1$s festgelegt.</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s hat die Zeit für verschwindende Nachrichten auf %2$s festgelegt.</string>
-  <string name="MessageRecord_your_safety_number_with_s_has_changed">Deine Sicherheitsnummer mit %s hat sich geändert.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du hast die Zeit für verschwindende Nachrichten auf %1$s festgelegt</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s hat die Zeit für verschwindende Nachrichten auf %2$s festgelegt</string>
+  <string name="MessageRecord_your_safety_number_with_s_has_changed">Deine Sicherheitsnummer mit %s hat sich geändert</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passwörter stimmen nicht überein!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Das eingegebene alte Passwort ist falsch!</string>
@@ -465,7 +465,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <string name="SmsMessageRecord_duplicate_message">Doppelte Nachricht.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Gruppe wurde verlassen …</string>
-  <string name="ThreadRecord_secure_session_reset">Verschlüsselung neu gestartet.</string>
+  <string name="ThreadRecord_secure_session_reset">Verschlüsselung neu gestartet</string>
   <string name="ThreadRecord_draft">Entwurf:</string>
   <string name="ThreadRecord_called">Ausgegangener Anruf</string>
   <string name="ThreadRecord_called_you">Eingegangener Anruf</string>
@@ -473,7 +473,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <string name="ThreadRecord_media_message">Nachricht mit Medieninhalten</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s ist bei Signal. Zeit, Hallo zu sagen!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Zeit für verschwindende Nachrichten auf %s festgelegt</string>
-  <string name="ThreadRecord_your_safety_number_with_s_has_changed">Deine Sicherheitsnummer mit %s hat sich geändert.</string>
+  <string name="ThreadRecord_your_safety_number_with_s_has_changed">Deine Sicherheitsnummer mit %s hat sich geändert</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Dein Kontakt verwendet eine alte Version von Signal. Bitte ihn Signal zu aktualisieren, bevor ihr eure Sicherheitsnummer überprüft.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Dein Kontakt verwendet eine neuere Version von Signal mit einem inkompatiblen QR-Code-Format. Zum Vergleichen bitte aktualisieren.</string>
@@ -497,7 +497,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <string name="MmsDatabase_connecting_to_mms_server">Verbindung zum MMS-Server wird aufgebaut …</string>
   <string name="MmsDatabase_downloading_mms">MMS wird heruntergeladen …</string>
   <string name="MmsDatabase_mms_download_failed">Herunterladen der MMS gescheitert!</string>
-  <string name="MmsDatabase_downloading">Ladevorgang …</string>
+  <string name="MmsDatabase_downloading">Wird heruntergeladen …</string>
   <string name="MmsDatabase_mms_pending_download">Antippen und MMS-Einstellungen konfigurieren, um das Herunterladen fortzusetzen.</string>
   <string name="MmsDatabase_error_decrypting_message">Fehler beim Entschlüsseln der Nachricht.</string>
   <!--MmsMessageRecord-->
@@ -537,11 +537,20 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <string name="SingleRecipientNotificationBuilder_new_message">Neue Nachricht</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Bild</string>
+  <string name="attachment_type_selector__image_description">Bild</string>
   <string name="attachment_type_selector__audio">Audio</string>
+  <string name="attachment_type_selector__audio_description">Audio</string>
   <string name="attachment_type_selector__video">Video</string>
+  <string name="attachment_type_selector__video_description">Video</string>
   <string name="attachment_type_selector__contact">Kontakt</string>
+  <string name="attachment_type_selector__contact_description">Kontakt</string>
   <string name="attachment_type_selector__camera">Kamera</string>
+  <string name="attachment_type_selector__camera_description">Kamera</string>
   <string name="attachment_type_selector__location">Standort</string>
+  <string name="attachment_type_selector__location_description">Standort</string>
+  <string name="attachment_type_selector__gif">GIF</string>
+  <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__drawer_description">Direktaufnahme</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Altes Passwort</string>
   <string name="change_passphrase_activity__new_passphrase">Neues Passwort</string>
@@ -572,7 +581,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <string name="conversation_activity__compose_description">Nachricht verfassen</string>
   <string name="conversation_activity__emoji_toggle_description">Emoji-Tastatur aktivieren</string>
   <string name="conversation_activity__attachment_thumbnail">Anhangsvorschaubild</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Direktaufnahme</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Direktaufnahme</string>
+  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Audioanhang aufnehmen und senden</string>
   <string name="conversation_activity__enable_signal_for_sms">Signal für SMS aktivieren</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">ZUM ABBRECHEN WEGWISCHEN</string>
@@ -754,7 +764,7 @@ Das Warten auf eine Bestätigungs-SMS hat zu lange gedauert.</string>
   <string name="recipients_panel__to"><small>Name/Rufnummer eingeben</small></string>
   <string name="recipients_panel__add_members">Mitglieder hinzufügen</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Falls du die Sicherheit deiner Ende-zu-Ende-Verschlüsselung mit %s überprüfen möchtest, so vergleiche bitte die oben dargestellten Nummer mit der Nummer auf dem Gerät deines Kontakts. Alternativ kannst du den Code deines Kontakts einscannen oder ihn deinen eigenen Code einscannen lassen. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Mehr über das Überprüfen von Sicherheitsnummern erfahren</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Falls du die Sicherheit deiner Ende-zu-Ende-Verschlüsselung mit %s überprüfen möchtest, so vergleiche bitte die oben dargestellte Nummer mit der Nummer auf dem Gerät deines Kontakts. Alternativ kannst du den Code deines Kontakts einscannen oder ihn deinen eigenen Code einscannen lassen. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Mehr über das Überprüfen von Sicherheitsnummern erfahren</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Zum Scannen antippen</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Sicherheitsnummer teilen</string>

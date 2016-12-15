@@ -548,7 +548,6 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="conversation_activity__compose_description">Penulisan pesan</string>
   <string name="conversation_activity__emoji_toggle_description">Beralih papan ketik emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Gambar Mini Lampiran</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Jungkit laci lampiran</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">GESER UNTUK MEMBATALKAN</string>
   <!--conversation_item-->

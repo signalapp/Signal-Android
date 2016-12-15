@@ -570,7 +570,6 @@
   <string name="conversation_activity__compose_description">Написання повідомлення</string>
   <string name="conversation_activity__emoji_toggle_description">Відкрити палітру емоцій</string>
   <string name="conversation_activity__attachment_thumbnail">Мініатюра вкладення</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Увімк/вимк скриньку вкладень</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">ПРОВЕДІТЬ ЩОБ ВІДМІНИТИ</string>
   <!--conversation_item-->

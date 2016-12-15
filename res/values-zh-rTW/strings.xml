@@ -61,6 +61,8 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">來電</string>
   <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s 的安全碼產生變動。這有可能是有不明人士試圖攔截您的通訊／對話內容，或是因為 %2$s 重新安裝 Signal。</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">您可能希望驗證這名聯絡人的安全碼。</string>
   <string name="ConfirmIdentityDialog_accept">接受</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">%s 則訊息</string>
@@ -186,6 +188,7 @@
   <string name="CustomDefaultPreference_using_default">使用預設：%s</string>
   <string name="CustomDefaultPreference_none">無</string>
   <!--DateUtils-->
+  <string name="DateUtils_just_now">剛剛</string>
   <string name="DateUtils_minutes_ago">%d 分鐘</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">取消連結 \'%s\'？</string>
@@ -300,6 +303,7 @@
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal 需要條碼掃描器來掃描 QR 碼。</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">傳送失敗</string>
+  <string name="MessageDetailsRecipient_new_safety_number">新的安全碼</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">儲存多媒體訊息時有誤！</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">連線至多媒體訊息伺服器時有誤！</string>
@@ -326,6 +330,7 @@
   <string name="MessageRecord_s_is_on_signal_say_hey">%s 正在 Signal 線上，打個招呼吧！</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">您將訊息銷毀時間設置爲 %1$s。</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s 將訊息銷毀時間設置爲 %2$s。</string>
+  <string name="MessageRecord_your_safety_number_with_s_has_changed">您與 %s 的安全碼已改變。</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">輸入的自訂密碼不相符！</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">輸入的是舊的自訂密碼！</string>
@@ -456,6 +461,7 @@
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
         收到的金鑰交換訊息是未知的協定／版本。
     </string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">收到使用新安全碼的訊息。按此顯示細節並執行。</string>
   <string name="SmsMessageRecord_secure_session_reset">您已重設安全對話。</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s 重設安全對話。</string>
   <string name="SmsMessageRecord_duplicate_message">複製訊息。</string>
@@ -469,9 +475,11 @@
   <string name="ThreadRecord_media_message">媒體訊息</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s 正在 Signal 線上，打個招呼吧！</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">訊息銷毀時間設置爲 %s</string>
+  <string name="ThreadRecord_your_safety_number_with_s_has_changed">您與 %s 的安全碼已改變。</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">您的聯絡人使用的是新版本的 Signal，程式無法識別這個聯絡人的二維碼。
 請升級您的 Signal。</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">掃描的 QR 碼格式不正確。請重新掃一次。</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">通過...分享安全碼</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">我方 Signal 安全碼：</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">看起來您沒有任何可以分享的應用。</string>
@@ -566,7 +574,8 @@
   <string name="conversation_activity__compose_description">編輯簡訊</string>
   <string name="conversation_activity__emoji_toggle_description">切換表情符號鍵盤</string>
   <string name="conversation_activity__attachment_thumbnail">附件縮圖</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">切換附件抽屜</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">切換快速相機附件抽屜</string>
+  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">錄制並分享音頻文件</string>
   <string name="conversation_activity__enable_signal_for_sms">啟動 Signal 簡訊功能</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">滑動以取消</string>

@@ -560,7 +560,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="conversation_activity__compose_description">Meldingssammensetning</string>
   <string name="conversation_activity__emoji_toggle_description">Emoji tastatur av/på</string>
   <string name="conversation_activity__attachment_thumbnail">Vedleggsikon</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Vedleggsskuff av/på</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">SKYV FOR Å AVBRYTE</string>
   <!--conversation_item-->

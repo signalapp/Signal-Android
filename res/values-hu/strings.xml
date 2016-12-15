@@ -64,6 +64,10 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Bejövő hívás</string>
   <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">A biztonsági számod megváltozott vele: %1$s. Ez jelentheti azt, hogy valaki megpróbálja lehallgatni a kommunikációdat, vagy azt, hogy %2$s egyszerűen újratelepítette a Signal-t.
+    </string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Érdemes lenne ellenőrizned a biztonsági számodat ezzel a névjeggyel.
+    </string>
   <string name="ConfirmIdentityDialog_accept">Elfogad</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Üzenet %s</string>
@@ -200,6 +204,7 @@
   <string name="CustomDefaultPreference_using_default">Alapértelmezett használata: %s</string>
   <string name="CustomDefaultPreference_none">Egyik sem</string>
   <!--DateUtils-->
+  <string name="DateUtils_just_now">Éppen most</string>
   <string name="DateUtils_minutes_ago">%d perc</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Társítás megszüntetése ezzel: \'%s\'?</string>
@@ -317,6 +322,7 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">A Signal-nak szüksége van a Barcode Scanner-re a QR kódokhoz.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Nem sikerült elküldeni</string>
+  <string name="MessageDetailsRecipient_new_safety_number">Új biztonsági szám</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">MMS tárolása sikertelen!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">A kapcsolódás az MMS szolgáltatóhoz meghiúsult...</string>
@@ -343,6 +349,7 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s fent van a Signal-on, köszönj be!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Beállítottad az eltűnő üzenet idejét erre: %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s beállította az eltűnő üzenet idejét erre: %2$s.</string>
+  <string name="MessageRecord_your_safety_number_with_s_has_changed">Megváltozott a biztonsági számod vele: %s.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">A jelmondatok nem egyeznek!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Hibás régi jelmondat!</string>
@@ -478,6 +485,7 @@ Ellenőrizd újra, hogy ez a te számod! Hamarosan egy SMS-ben fogjuk ellenőriz
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
  </string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Üzenet érkezett új biztonsági számmal. Érints a feldolgozáshoz és megjelenítéshez.</string>
   <string name="SmsMessageRecord_secure_session_reset">Alaphelyzetbe állítottad a biztonságos munkamenetet.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s alaphelyzetbe állította a biztonságos munkamenetet.</string>
   <string name="SmsMessageRecord_duplicate_message">Üzenet duplikálása.</string>
@@ -491,9 +499,14 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ThreadRecord_media_message">Média üzenet</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s fent van a Signal-on, köszönj be!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Eltűnő üzenet ideje beállítva erre: %s</string>
+  <string name="ThreadRecord_your_safety_number_with_s_has_changed">Megváltozott a biztonsági számod vele: %s.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">A kapcsolatod a Signal egy újabb verzióját futtatja egy inkompatibilis QR kód formátummal. Kérlek frissíts az összehasonlításhoz.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">A szkennelt QR kód nem egy helyesen formázott biztonság szám megerősítő kód. Kérlek próbáld újra szkennelni.</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Biztonsági szám megosztása ezzel...</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">Signal biztonsági számunk:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Úgy néz ki, hogy nincs egy alkalmazásod se a megosztáshoz.</string>
+  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">A vágólapon találttal való összehasonlításhoz nincs biztonsági szám</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Kezdeményezed a létező kérés ellenére?</string>
   <string name="KeyExchangeInitiator_send">Küldés</string>
@@ -584,7 +597,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="conversation_activity__compose_description">Üzenet összetétel</string>
   <string name="conversation_activity__emoji_toggle_description">Emoji billentyűzet kapcsoló</string>
   <string name="conversation_activity__attachment_thumbnail">Melléklet előnézet</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Közvetlen mellékletfelvétel</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Gyors kamera mellékletfelvétel kapcsoló</string>
+  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Hang melléklet felvétele és küldése</string>
   <string name="conversation_activity__enable_signal_for_sms">Singal engedélyezése SMS-nek</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">CSÚSZTASD EL A MEGSZAKÍTÁSHOZ</string>
@@ -707,6 +721,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="recipient_preferences__block">Letiltás</string>
   <string name="recipient_preferences__color">Szín</string>
   <string name="recipient_preferences__color_for_this_contact">Szín ehhez a névjegyhez</string>
+  <string name="recipient_preferences__verify_safety_number">Biztonsági szám ellenőrzése</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal hívás</string>
   <string name="redphone_call_controls__end_call">hívás vége</string>
@@ -797,8 +812,10 @@ sikertelen.
   <string name="recipients_panel__to"><small>Adj meg egy nevet vagy számot</small></string>
   <string name="recipients_panel__add_members">Tagok hozzáadása</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ha szeretnéd ellenőrizni a végpontok közti titkosítás biztonságát vele: %s, hasonlítsd össze a fenti számot az ő készülékén található számmal. Felváltva ezt, beszkennelheted a kódot a telefonján, vagy megkérheted, hogy szkennelje be a te kódod. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Tudj meg többet a biztonsági szám ellenőrzéséről</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Érints a szkenneléshez</string>
   <!--verify_identity-->
+  <string name="verify_identity__share_safety_number">Biztonsági szám megosztása</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Néhány probléma a figyelmedet igényli.</string>
   <string name="message_details_header__sent">Elküldve</string>
@@ -814,6 +831,7 @@ sikertelen.
   <string name="AndroidManifest__select_contacts">Névjegyek kiválasztása</string>
   <string name="AndroidManifest__signal_detected">Signal észlelve</string>
   <string name="AndroidManifest__change_passphrase">Jelmondat megváltoztatása</string>
+  <string name="AndroidManifest__verify_safety_number">Biztonsági szám ellenőrzése</string>
   <string name="AndroidManifest__log_submit">Hibakeresési napló küldése</string>
   <string name="AndroidManifest__media_preview">Média előnézet</string>
   <string name="AndroidManifest__media_overview">Összes kép</string>
@@ -1066,6 +1084,7 @@ sikertelen.
   <!--media_preview-->
   <string name="media_preview__save_title">Mentés</string>
   <string name="media_preview__forward_title">Továbbítás</string>
+  <string name="media_preview__overview_title">Összes kép</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Összes mentése</string>
   <!--media_preview_activity-->

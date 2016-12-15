@@ -215,6 +215,7 @@
   <string name="CustomDefaultPreference_using_default">Користим подразумевано: %s</string>
   <string name="CustomDefaultPreference_none">Ништа</string>
   <!--DateUtils-->
+  <string name="DateUtils_just_now">Управо сад</string>
   <string name="DateUtils_minutes_ago">%d минута</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Да уклоним „%s“?</string>
@@ -332,6 +333,7 @@
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Сигналу је потребан Скенер бар-кôда за читање бар-кôдова.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Неуспех слања</string>
+  <string name="MessageDetailsRecipient_new_safety_number">Нови безбедносни број</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Грешка уписа ММС-а!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Грешка повезивања са ММС послужиоцем...</string>
@@ -358,6 +360,7 @@
   <string name="MessageRecord_s_is_on_signal_say_hey">%s је на Сигналу, кажите здраво!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Подесили сте време нестајања поруке на %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s има подешено време на %2$s.</string>
+  <string name="MessageRecord_your_safety_number_with_s_has_changed">Ваш безбедносни број са %s је промењен.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Лозинке се не поклапају!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Нетачна стара лозинка!</string>
@@ -499,9 +502,13 @@
   <string name="ThreadRecord_media_message">Мултимедијална порука</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s је на Сигналу, пошаљите поздрав!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Време ишчезнућа поруке постављено на %s</string>
+  <string name="ThreadRecord_your_safety_number_with_s_has_changed">Ваш безбедносни број са %s је промењен.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Ваш контакт има новију верзију Сигнал апликације са некомпатибилним QR код форматом. Молимо Вас инсталирајте најновију верзију како би могли да их упоредимо.</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Подели безбедносни број преко...</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">Наши Сигнал безбедносни број:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Изгледа да немате ниједну апликацију преко које бисте могли да делите.</string>
+  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">У клипборду нема безбедносног броја за упоређивање.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Започети унаточ постојећем захтеву?</string>
   <string name="KeyExchangeInitiator_send">Пошаљи</string>
@@ -557,11 +564,20 @@
   <string name="SingleRecipientNotificationBuilder_new_message">Нова порука</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Слика</string>
+  <string name="attachment_type_selector__image_description">Слика</string>
   <string name="attachment_type_selector__audio">Звук</string>
+  <string name="attachment_type_selector__audio_description">Звук</string>
   <string name="attachment_type_selector__video">Видео</string>
+  <string name="attachment_type_selector__video_description">Видео</string>
   <string name="attachment_type_selector__contact">Контакт</string>
+  <string name="attachment_type_selector__contact_description">Контакт</string>
   <string name="attachment_type_selector__camera">Камера</string>
+  <string name="attachment_type_selector__camera_description">Камера</string>
   <string name="attachment_type_selector__location">Локација</string>
+  <string name="attachment_type_selector__location_description">Локација</string>
+  <string name="attachment_type_selector__gif">ГИФ</string>
+  <string name="attachment_type_selector__gif_description">Гиф</string>
+  <string name="attachment_type_selector__drawer_description">Фиока прилога</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Стара лозинка</string>
   <string name="change_passphrase_activity__new_passphrase">Нова лозинка</string>
@@ -592,7 +608,8 @@
   <string name="conversation_activity__compose_description">Састављање поруке</string>
   <string name="conversation_activity__emoji_toggle_description">Емоџи тастатура</string>
   <string name="conversation_activity__attachment_thumbnail">Сличица прилога</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Фиока прилога</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Фиока брзог прилога камере</string>
+  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Сними и пошаљи звук</string>
   <string name="conversation_activity__enable_signal_for_sms">Укључите Сигнал за СМС</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">ПРЕВУЦИТЕ ДА ОТКАЖЕТЕ</string>
@@ -721,6 +738,7 @@
   <string name="recipient_preferences__block">Блокирај</string>
   <string name="recipient_preferences__color">Боја</string>
   <string name="recipient_preferences__color_for_this_contact">Боја за контакт</string>
+  <string name="recipient_preferences__verify_safety_number">Потврдите безбедносни број</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Позив на Сигналу</string>
   <string name="redphone_call_controls__end_call">окончај позив</string>
@@ -793,6 +811,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__tap_to_scan">Тапните за скенирање</string>
   <!--verify_identity-->
+  <string name="verify_identity__share_safety_number">Подели безбедносни број</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Неки од проблема захтевају вашу пажњу.</string>
   <string name="message_details_header__sent">Послата</string>
@@ -808,6 +827,7 @@
   <string name="AndroidManifest__select_contacts">Изаберите контакте</string>
   <string name="AndroidManifest__signal_detected">Сигнал откривен</string>
   <string name="AndroidManifest__change_passphrase">Измена лозинке</string>
+  <string name="AndroidManifest__verify_safety_number">Потврди безбедносни број</string>
   <string name="AndroidManifest__log_submit">Пошаљи дневник исправљања грешака</string>
   <string name="AndroidManifest__media_preview">Преглед медијума</string>
   <string name="AndroidManifest__media_overview">Све слике</string>
@@ -1062,6 +1082,7 @@
   <!--media_preview-->
   <string name="media_preview__save_title">Сачувај</string>
   <string name="media_preview__forward_title">Напред</string>
+  <string name="media_preview__overview_title">Све слике</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Сачувај све</string>
   <!--media_preview_activity-->

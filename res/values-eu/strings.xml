@@ -579,7 +579,6 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="conversation_activity__compose_description">Mezuaren konposizioa</string>
   <string name="conversation_activity__emoji_toggle_description">Emoji teklatua aktibatu/desaktibatu</string>
   <string name="conversation_activity__attachment_thumbnail">Eranskinerako koadro txikia</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Erakutsi edo ezkutatu eraskinak</string>
   <string name="conversation_activity__enable_signal_for_sms">Aktibatu Signal SMSetarako</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">LERRATU UZTEKO</string>

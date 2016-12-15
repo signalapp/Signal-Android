@@ -543,7 +543,6 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="conversation_activity__compose_description">Beskedsammensætning</string>
   <string name="conversation_activity__emoji_toggle_description">Slå Emoji-tastatur til/fra</string>
   <string name="conversation_activity__attachment_thumbnail">Vedhæftet fil-miniature</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Slå vedhæftet fil-skuffe til/fra</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">SWIPE FOR AT AFBRYDE</string>
   <!--conversation_item-->

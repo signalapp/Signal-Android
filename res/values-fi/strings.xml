@@ -553,11 +553,20 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="SingleRecipientNotificationBuilder_new_message">Uusi viesti</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Kuva</string>
+  <string name="attachment_type_selector__image_description">Kuva</string>
   <string name="attachment_type_selector__audio">Äänitallenne</string>
+  <string name="attachment_type_selector__audio_description">Äänitallenne</string>
   <string name="attachment_type_selector__video">Video</string>
+  <string name="attachment_type_selector__video_description">Video</string>
   <string name="attachment_type_selector__contact">Yhteystieto</string>
+  <string name="attachment_type_selector__contact_description">Yhteystieto</string>
   <string name="attachment_type_selector__camera">Kamera</string>
+  <string name="attachment_type_selector__camera_description">Kamera</string>
   <string name="attachment_type_selector__location">Sijainti</string>
+  <string name="attachment_type_selector__location_description">Sijainti</string>
+  <string name="attachment_type_selector__gif">GIF</string>
+  <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__drawer_description">Avaa tai sulje liitetiedostovalikko</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Vanha salalause</string>
   <string name="change_passphrase_activity__new_passphrase">Uusi salalause</string>
@@ -579,16 +588,17 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="conversation_title_view__conversation_muted">Keskustelu mykistetty</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Lähetä Signal-viesti</string>
-  <string name="conversation_activity__type_message_sms_insecure">Lähetä salaamaton tekstiviesti</string>
+  <string name="conversation_activity__type_message_sms_insecure">Lähetä salaamaton SMS </string>
   <string name="conversation_activity__type_message_mms_insecure">Lähetä salaamaton MMS-viesti</string>
   <string name="conversation_activity__from_sim_name">SIM-kortilta %1$s</string>
   <string name="conversation_activity__send">Lähetä</string>
   <string name="conversation_activity__remove">Poista</string>
   <string name="conversation_activity__window_description">Keskustelu %1$s kanssa</string>
   <string name="conversation_activity__compose_description">Viestin kirjoitus</string>
-  <string name="conversation_activity__emoji_toggle_description">Näytä tai piilota emoji-näppäimistö</string>
+  <string name="conversation_activity__emoji_toggle_description">Avaa tai sulje emoji-näppäimistö</string>
   <string name="conversation_activity__attachment_thumbnail">Liitteen esikatselu</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Pikakamera</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Avaa tai sulje pikakamera</string>
+  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Nauhoita ja lähetä ääniviesti</string>
   <string name="conversation_activity__enable_signal_for_sms">Käytä Signalia tekstiviesteille</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Pyyhkäise peruuttaaksesi</string>

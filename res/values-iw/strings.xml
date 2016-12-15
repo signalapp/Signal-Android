@@ -64,6 +64,8 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">שיחה נכנסת</string>
   <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">מספר הבטיחות שלך עם %1$s השתנה. ייתכן שזה אומר שמישהו מנסה ליירט את התקשורת שלכם או ש%2$s פשוט התקין את סיגנל מחדש.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">אולי תרצה לוודא את מספרי הבטיחות שלך עם איש הקשר הזה.</string>
   <string name="ConfirmIdentityDialog_accept">קבל</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">שליחת מסר אל %s</string>
@@ -200,6 +202,7 @@
   <string name="CustomDefaultPreference_using_default">משמש הערך ההתחלתי: %s</string>
   <string name="CustomDefaultPreference_none">אין</string>
   <!--DateUtils-->
+  <string name="DateUtils_just_now">זה עתה</string>
   <string name="DateUtils_minutes_ago">%d דק׳</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">לבטל את הקישור אל \"%s\"?</string>
@@ -316,6 +319,7 @@
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">סיגנל זקוק לסורק הברקודים כדי להשתמש בקודי QR.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">השליחה לא עבדה</string>
+  <string name="MessageDetailsRecipient_new_safety_number">מספר בטיחות חדש</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">שגיאה באחסון ה־MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">שגיאה בהתחברות לספק ה־MMS...</string>
@@ -342,6 +346,7 @@
   <string name="MessageRecord_s_is_on_signal_say_hey">עכשיו %s בסיגנל, וזה הזמן לשאול „מה שלומך”!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">הגדרת את זמן העלמת המסר ל־%1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s הגדיר את זמן העלמת המסר ל־%2$s.</string>
+  <string name="MessageRecord_your_safety_number_with_s_has_changed">מספר הבטיחות שלך עם  %s השתנה.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">המשפט הסודי אינו מתאים!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">המשפט הסודי הישן אינו נכון!</string>
@@ -470,6 +475,7 @@
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 התקבל מסר החלפת מפתח לגרסה בלתי־תקינה
 של הפרוטוקול.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">התקבל מסר עם מספר בטיחות חדש. נא ללחוץ כדי לעבד ולהציג.</string>
   <string name="SmsMessageRecord_secure_session_reset">אתחלת את ההתחברות המאובטחת.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">ההתחברות המאובטחת אותחלה על־ידי %s.</string>
   <string name="SmsMessageRecord_duplicate_message">מסר כפול.</string>
@@ -483,8 +489,12 @@
   <string name="ThreadRecord_media_message">מסר מדיה</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">עכשיו %s בסיגנל, וזה הזמן לשאול „מה שלומך”!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">זמן העלמת המסר הוגדר ל־%s</string>
+  <string name="ThreadRecord_your_safety_number_with_s_has_changed">מספר הבטיחות שלך עם  %s השתנה.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">איש הקשר שלך מריץ גרסה חדשה יותר של סיגנל עם תסדיר בלתי־תואם של קוד QR. נא לעדכן בשביל להשוות.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">קוד ה־QR שנסרק הוא מספר וידוא בתסדיר נכון. נא לנסות לסרוק שוב.</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">לשתך מספר בטיחות דרך...</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">מספר הבטיחות שלנו של סיגנל:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">נראה שאין לך לאילו אפליקציות לשתף.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">להתחיל למרות בקשה קיימת?</string>
@@ -576,7 +586,6 @@
   <string name="conversation_activity__compose_description">חיבור מסר</string>
   <string name="conversation_activity__emoji_toggle_description">הפעלת מקלדת פרצופים</string>
   <string name="conversation_activity__attachment_thumbnail">תמונה ממוזערת של צרופה</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">הפעלת מגירת צרופות</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">להחליק לביטול</string>
   <!--conversation_item-->

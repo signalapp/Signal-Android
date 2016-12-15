@@ -67,6 +67,8 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Dolazni poziv</string>
   <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Vaš sigurnosni broj za %1$s je izmjenjen. Ovo može značiti da netko pokušava presresti vašu komunikaciju ili da je %2$s jednostavno ponovno instalirao Signal.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Možda biste trebali provjeriti sigurnosni broj za ovaj kontakt.</string>
   <string name="ConfirmIdentityDialog_accept">Prihvati</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Poruka %s</string>
@@ -214,6 +216,7 @@
   <string name="CustomDefaultPreference_using_default">Koristeći zadano: %s</string>
   <string name="CustomDefaultPreference_none">Niti jedna</string>
   <!--DateUtils-->
+  <string name="DateUtils_just_now">Upravo sada</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Odspoji \'%s\'?</string>
@@ -331,6 +334,7 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal treba Barcode Scanner za QR kodove.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Neuspješno slanje</string>
+  <string name="MessageDetailsRecipient_new_safety_number">Novi sigurnosni broj</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Greška prilikom pohrane MMSa!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Greška prilikom povezivanja na MMS pružatelja usluge...</string>
@@ -357,6 +361,7 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s koristi Signal, reci bok!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Postavili ste nestajanje poruka na %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s je postavio/la vrijeme nestajanja poruke na %2$s.</string>
+  <string name="MessageRecord_your_safety_number_with_s_has_changed">Vaš sigurnosni broj s %s je izmjenjen.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Lozinka ne odgovara!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Netočna stara lozinka!</string>
@@ -485,6 +490,7 @@ Provjerite da li je ovo vaš broj telefona! Uskoro ćemo poslati SMS poruku na n
 razmjene ključeva!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Primljena je poruka s novim sigurnosnim brojem. Pritisnite za obradu i prikaz.</string>
   <string name="SmsMessageRecord_secure_session_reset">Resetiranje sigurne sesije.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s resetiranje sigurne sesije.</string>
   <string name="SmsMessageRecord_duplicate_message">Dupla poruka.</string>
@@ -498,9 +504,14 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="ThreadRecord_media_message">Multimedijalna poruka</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s koristi Signal, reci bok!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Vrijeme nestajanja poruke postavljeno na %s</string>
+  <string name="ThreadRecord_your_safety_number_with_s_has_changed">Vaš sigurnosni broj s %s je izmjenjen.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Vaš kontakt koristi noviju Signal inačicu s nekompatibilnim QR kod oblikom. Ažurirajte vašu inačicu kako biste usporedili.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Skenirani QR kod nije ispravno oblikovan sigurnosni broj za provjeru. Pokušajte ponovno skenirati broj.</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Podijelite sigurnosni broj putem...</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">Naš Signal sigurnosni broj:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Izgleda da nemate aplikacije s kojima je moguće dijeljenje.</string>
+  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Sigurnosni broj za usporedbu nije pronađen u međuspremniku</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Pokreni usprkos postojećem zahtjevu?</string>
   <string name="KeyExchangeInitiator_send">Pošalji</string>
@@ -591,7 +602,8 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="conversation_activity__compose_description">Sastavljanje poruke</string>
   <string name="conversation_activity__emoji_toggle_description">Uključi/isključi emoji tipkovnicu</string>
   <string name="conversation_activity__attachment_thumbnail">Priložena sličica</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Uključi/isključi ladicu dodataka</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Uključi/isključi ladicu brze kamere</string>
+  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Snimi i pošalji audio privitak</string>
   <string name="conversation_activity__enable_signal_for_sms">Omogući Signal za SMS</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">POVUCITE ZA PREKID</string>
@@ -721,6 +733,7 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="recipient_preferences__block">Blokiraj</string>
   <string name="recipient_preferences__color">Boja</string>
   <string name="recipient_preferences__color_for_this_contact">Boja za ovaj kontakt</string>
+  <string name="recipient_preferences__verify_safety_number">Potvrdi sigurnosni broj</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal poziv</string>
   <string name="redphone_call_controls__end_call">završi poziv</string>
@@ -792,8 +805,10 @@ neuspješno.</string>
   <string name="recipients_panel__to"><small>Unesite ime ili broj</small></string>
   <string name="recipients_panel__add_members">Dodaj članove</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ukoliko želite provjeriti sigurnost vašeg kriptiranja s %s, usporedite broj iznad s brojem na njihovom uređaju. Također možete skenirati kod s njihovog uređaja, ili ih zatražiti da skeniraju vaš kod. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Saznajte više o provjeri sigurnosnih brojeva</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Pritisnite za skeniranje</string>
   <!--verify_identity-->
+  <string name="verify_identity__share_safety_number">Podijeli sigurnosni broj</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Neki problemi zahtjevaju vašu pozornost.</string>
   <string name="message_details_header__sent">Poslano</string>
@@ -809,6 +824,7 @@ neuspješno.</string>
   <string name="AndroidManifest__select_contacts">Odaberite kontakte</string>
   <string name="AndroidManifest__signal_detected">Signal otkriven</string>
   <string name="AndroidManifest__change_passphrase">Izmjeni lozinku</string>
+  <string name="AndroidManifest__verify_safety_number">Potvrdi sigurnosni broj</string>
   <string name="AndroidManifest__log_submit">Pošalji debug zapis</string>
   <string name="AndroidManifest__media_preview">Prikaz medija</string>
   <string name="AndroidManifest__media_overview">Sve slike</string>
@@ -1063,6 +1079,7 @@ neuspješno.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Spremi</string>
   <string name="media_preview__forward_title">Naprijed</string>
+  <string name="media_preview__overview_title">Sve slike</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Spremi sve</string>
   <!--media_preview_activity-->

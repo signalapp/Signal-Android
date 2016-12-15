@@ -67,6 +67,8 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Apel de intrare</string>
   <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Numărul de siguranță pentru %1$s s-a schimbat.  Asta poate însemna că cineva încearcă să intercepteze comunicația sau că %2$s a reinstalat Signal.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Probabil că dorești să verifici numărul de siguranță pentru acest contact.</string>
   <string name="ConfirmIdentityDialog_accept">Acceptă</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mesaj %s</string>
@@ -214,6 +216,7 @@
   <string name="CustomDefaultPreference_using_default">Implicit: %s</string>
   <string name="CustomDefaultPreference_none">Niciuna</string>
   <!--DateUtils-->
+  <string name="DateUtils_just_now">Tocmai acum</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Deconectez \'%s\'?</string>
@@ -238,11 +241,11 @@
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure și RedPhone sunt acum o singură aplicație: Signal. Apasă pentru a explora.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exportă</string>
-  <string name="ExportFragment_export_plaintext_to_storage">Export în format text pe spațiul de stocare?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Atenție, această acțiune va exporta conținutul mesajelor tale Signal în format text pe spațiul de stocare.</string>
+  <string name="ExportFragment_export_plaintext_to_storage">Export în format necriptat pe spațiul de stocare?</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Atenție, această acțiune va exporta conținutul mesajelor tale Signal în format necriptat pe spațiul de stocare.</string>
   <string name="ExportFragment_cancel">Anulare</string>
   <string name="ExportFragment_exporting">Se exportă</string>
-  <string name="ExportFragment_exporting_plaintext_to_storage">Se exportă în format text pe spațiul de stocare...</string>
+  <string name="ExportFragment_exporting_plaintext_to_storage">Se exportă în format necriptat pe spațiul de stocare...</string>
   <string name="ExportFragment_error_unable_to_write_to_storage">Eroare, nu se poate scrie pe spațiul de stocare.</string>
   <string name="ExportFragment_error_while_writing_to_storage">Eroare în timpul scrierii pe spațiul de stocare.</string>
   <string name="ExportFragment_export_successful">Exportarea a fost făcută cu succes.</string>
@@ -277,22 +280,22 @@
   <string name="ImportExportActivity_import">Importă</string>
   <string name="ImportExportActivity_export">Exportă</string>
   <!--ImportFragment-->
-  <string name="ImportFragment_import_system_sms_database">Importă baza de date cu SMS-uri?</string>
+  <string name="ImportFragment_import_system_sms_database">Import baza de date cu SMS-uri?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Această acțiune va importa 
 mesajele din baza de date SMS implicită de sistem în Signal. Dacă ai importat anterior
  baza de date cu SMS-uri, importarea repetată va rezulta în mesaje duplicate.</string>
   <string name="ImportFragment_import">Importă</string>
   <string name="ImportFragment_cancel">Anulare</string>
-  <string name="ImportFragment_restore_encrypted_backup">Restaurează backup criptat?</string>
+  <string name="ImportFragment_restore_encrypted_backup">Restaurez backup criptat?</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
 Restaurarea unui backup criptat va înlocui în totalitate cheile, preferințele și mesajele tale existente.
 Vei pierde orice informație care se află în instalarea curentă de Signal și care nu se află în backup.</string>
   <string name="ImportFragment_restore">Restaurează</string>
-  <string name="ImportFragment_import_plaintext_backup">Importă backup necriptat?</string>
-  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Această acțiune va importa mesajele din backup-ul necriptat. Dacă ați mai importat acest backup atunci importarea curentă va crea mesaje duplicate. </string>
+  <string name="ImportFragment_import_plaintext_backup">Import backup necriptat?</string>
+  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Această acțiune va importa mesajele din backup-ul necriptat. Dacă ai mai importat acest backup atunci importarea curentă va crea mesaje duplicate. </string>
   <string name="ImportFragment_importing">Se importă</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">Se importă un backup necriptat...</string>
-  <string name="ImportFragment_no_plaintext_backup_found">Nu a fost găsit nici un backup text!</string>
+  <string name="ImportFragment_no_plaintext_backup_found">Nu a fost găsit nici un backup necriptat!</string>
   <string name="ImportFragment_error_importing_backup">Eroare la importul backup-ului!</string>
   <string name="ImportFragment_import_complete">Import complet!</string>
   <string name="ImportFragment_restoring">Se restaurează</string>
@@ -328,6 +331,7 @@ Vei pierde orice informație care se află în instalarea curentă de Signal și
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal are nevoie de Barcode Scanner pentru coduri QR.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Expediere eşuată</string>
+  <string name="MessageDetailsRecipient_new_safety_number">Număr nou de siguranță</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Eroare la stocarea MMS-ului!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Eroare de conectare la furnizorul MMS...</string>
@@ -354,6 +358,7 @@ Vei pierde orice informație care se află în instalarea curentă de Signal și
   <string name="MessageRecord_s_is_on_signal_say_hey">%s este pe Signal, salută-l!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Tu ai setat timpul pentru dispariția mesajelor la %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a setat timpul pentru dispariția mesajelor la %2$s.</string>
+  <string name="MessageRecord_your_safety_number_with_s_has_changed">Numărul tău de siguranță pentru %s s-a schimbat.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Parolele nu se potrivesc!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Parola veche este incorectă!</string>
@@ -482,6 +487,7 @@ Verifică din nou dacă acesta este numărul tău! Suntem pe cale să-l verific�
 schimbul de chei este corupt </string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune de protocol invalidă.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">A fost primit un mesaj cu noul număr de siguranță. Apasă pentru a fi procesat și afișat.</string>
   <string name="SmsMessageRecord_secure_session_reset">Ai resetat sesiunea securizată.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s a resetat sesiunea securizată.</string>
   <string name="SmsMessageRecord_duplicate_message">Mesaj duplicat.</string>
@@ -495,9 +501,14 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ThreadRecord_media_message">Mesaj media</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s este pe Signal, spune-i hey!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Timpul setat pentru mesajele care dispar este %s</string>
+  <string name="ThreadRecord_your_safety_number_with_s_has_changed">Numărul tău de siguranță pentru %s s-a schimbat.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Contactul tău folosește o versiune mai nouă de Signal cu un format de cod QR incompatibil. Te rog actualizează-ți aplicația pentru a putea compara.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Codul QR scanat nu este un număr de siguranță formatat corect. Te rog scanează din nou.</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Partajează numărul de siguranță via...</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">Numărul nostru de siguranță:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Se pare că nu ai aplicații cu care să poți partaja.</string>
+  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Nu s-a găsit nici un număr de siguranță în clipboard pentru a fi comparat.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Iniţializeaz deşi există o cerere?</string>
   <string name="KeyExchangeInitiator_send">Trimite</string>
@@ -588,7 +599,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="conversation_activity__compose_description">Compunere mesaj</string>
   <string name="conversation_activity__emoji_toggle_description">Comutare tastatură emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Miniatură atașament</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Comutare panou atașamente</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Comutare panou cu atașamente de la camera rapidă </string>
+  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Înregistrează și trimite un atașament audio</string>
   <string name="conversation_activity__enable_signal_for_sms">Activează Signal pentru SMS</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">TRAGE PENTRU A ANULA</string>
@@ -658,10 +670,10 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nu s-a găsit nimic</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__log_fetch_failed">Fișierul log nu a putut fi citit de pe dispozitivul tău. Poţi folosi în schimb ADB pentru a obţine log-ul de depanare.</string>
+  <string name="log_submit_activity__log_fetch_failed">Fișierul jurnal nu a putut fi citit de pe dispozitivul tău. Poţi folosi în schimb ADB pentru a obţine jurnalul de depanare.</string>
   <string name="log_submit_activity__thanks">Vă mulțumim pentru ajutor!</string>
   <string name="log_submit_activity__submitting">Se trimite</string>
-  <string name="log_submit_activity__posting_logs">Se trimit log-urile către gist...</string>
+  <string name="log_submit_activity__posting_logs">Se trimite jurnalul către gist...</string>
   <string name="log_submit_activity__no_browser_installed">Nici un browser instalat</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vrei să imporţi mesajale tale text existente în baza de date criptată Signal?</string>
@@ -678,8 +690,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="import_fragment__import_the_database_from_the_default_system">Importă baza de date din aplicația implicită de mesagerie din sistem</string>
   <string name="import_fragment__restore_encrypted_backup">Restaurează backup criptat?</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">Restaurează un backup criptat exportat anterior cu Signal </string>
-  <string name="import_fragment__import_plaintext_backup">Importă backup text</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">Importă un fișier de backup text. Compatibil cu \'SMS Backup &amp;  Restore.\'</string>
+  <string name="import_fragment__import_plaintext_backup">Importă backup necriptat</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">Importă un fișier de backup necriptat. Compatibil cu \'SMS Backup &amp;  Restore.\'</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Vezi conversația completă.</string>
   <!--media_overview_activity-->
@@ -717,6 +729,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="recipient_preferences__block">Blochează</string>
   <string name="recipient_preferences__color">Culoare</string>
   <string name="recipient_preferences__color_for_this_contact">Culoarea pentru acest contact</string>
+  <string name="recipient_preferences__verify_safety_number">Verifică numărul de siguranță</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Apel Signal</string>
   <string name="redphone_call_controls__end_call">închide apelul</string>
@@ -798,8 +811,10 @@ SMS a eșuat.</string>
   <string name="recipients_panel__to"><small>Introdu un nume sau un număr</small></string>
   <string name="recipients_panel__add_members">Adaugă membri</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Dacă dorești să verifici securitatea criptării integrale cu %s, compară numărul de deasupra cu numărul de pe dispozitivul lor. Alternativ, poți scana codul de pe telefonul lor sau îi poți ruga să scaneze codul tău. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Află mai multe despre verificarea numerelor de siguranță</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Apasă pentru a scana</string>
   <!--verify_identity-->
+  <string name="verify_identity__share_safety_number">Partajează numărul de siguranță</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Anumite probleme au nevoie de atenția ta.</string>
   <string name="message_details_header__sent">Trimis</string>
@@ -815,7 +830,8 @@ SMS a eșuat.</string>
   <string name="AndroidManifest__select_contacts">Selectează contacte</string>
   <string name="AndroidManifest__signal_detected">Signal detectat</string>
   <string name="AndroidManifest__change_passphrase">Schimbă parola</string>
-  <string name="AndroidManifest__log_submit">Trimite log-ul de depanare</string>
+  <string name="AndroidManifest__verify_safety_number">Verifică numărul de siguranță</string>
+  <string name="AndroidManifest__log_submit">Trimite jurnalul de depanare</string>
   <string name="AndroidManifest__media_preview">Previzualizare media</string>
   <string name="AndroidManifest__media_overview">Toate imaginile</string>
   <string name="AndroidManifest__media_overview_named">Toate imaginile cu %1$s</string>
@@ -939,7 +955,7 @@ SMS a eșuat.</string>
   <string name="preferences__signal_messages_and_calls">Mesaje și apeluri Signal</string>
   <string name="preferences__free_private_messages_and_calls">Mesaje și apeluri, private şi gratuite cu utilizatorii Signal
     </string>
-  <string name="preferences__submit_debug_log">Trimite log-ul de depanare</string>
+  <string name="preferences__submit_debug_log">Trimite jurnalul de depanare</string>
   <string name="preferences__support_wifi_calling">Mod compatibilitate \"Apelare WiFi\"</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Activează dacă dispozitivul tău trimite SMS/MMS prin WiFi (activează atunci când \"Apelare WiFi\" este activat pe dispozitivul tău)</string>
   <string name="preferences_app_protection__blocked_contacts">Contacte blocate</string>
@@ -1070,6 +1086,7 @@ SMS a eșuat.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Salvează</string>
   <string name="media_preview__forward_title">Expediază</string>
+  <string name="media_preview__overview_title">Toate imaginile</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Salvează tot</string>
   <!--media_preview_activity-->
