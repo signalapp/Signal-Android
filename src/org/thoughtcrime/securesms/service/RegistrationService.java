@@ -194,8 +194,9 @@ public class RegistrationService extends Service {
     }
 
     try {
-      String password     = Util.getSecret(18);
-      String signalingKey = Util.getSecret(52);
+      String  password     = Util.getSecret(18);
+      String  signalingKey = Util.getSecret(52);
+      boolean hasServices  = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) == ConnectionResult.SUCCESS;
 
       initializeChallengeListener();
 
@@ -205,7 +206,7 @@ public class RegistrationService extends Service {
 
       setState(new RegistrationState(RegistrationState.STATE_VERIFYING, number));
       String challenge = waitForChallenge();
-      accountManager.verifyAccountWithCode(challenge, signalingKey, registrationId, true);
+      accountManager.verifyAccountWithCode(challenge, signalingKey, registrationId, hasServices, !hasServices);
 
       handleCommonRegistration(accountManager, number, password, signalingKey);
       markAsVerified(number, password, signalingKey);
