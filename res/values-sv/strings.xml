@@ -599,6 +599,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="conversation_item_received__download">Ladda ner</string>
   <string name="conversation_item_received__contact_photo_description">Kontaktfoto</string>
   <string name="conversation_item_received__downloading">Laddar ner</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Flervalsläge</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s vald</string>

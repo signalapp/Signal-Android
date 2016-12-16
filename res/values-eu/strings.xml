@@ -596,6 +596,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="conversation_item_received__download">Behera kargatu</string>
   <string name="conversation_item_received__contact_photo_description">Kontaktuaren argazkia</string>
   <string name="conversation_item_received__downloading">Behera kargatzen</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Batch hautatzeko modua</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s hautatua</string>

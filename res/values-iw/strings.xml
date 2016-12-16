@@ -602,6 +602,7 @@
   <string name="conversation_item_received__download">הורדה</string>
   <string name="conversation_item_received__contact_photo_description">צילום איש קשר</string>
   <string name="conversation_item_received__downloading">מוריד</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">מצב בחירה מרובה</string>
   <string name="conversation_fragment_cab__batch_selection_amount">נבחרו %s</string>

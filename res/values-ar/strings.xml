@@ -629,6 +629,7 @@
   <string name="conversation_item_received__download">تنزيل</string>
   <string name="conversation_item_received__contact_photo_description">صورة جهة الاتصال</string>
   <string name="conversation_item_received__downloading">التنزيل جارٍ...</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">وضع اختيار الدفعات</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s اختيار</string>

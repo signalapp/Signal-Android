@@ -552,6 +552,7 @@ Dammu okebere e namba yo.  Tugenda kugikakasa no bubaka ku simu</string>
   <string name="conversation_item_received__download">Wanula</string>
   <string name="conversation_item_received__contact_photo_description">Ekifananyi kya kontakiti</string>
   <string name="conversation_item_received__downloading">Kiwanulwa</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_amount">%s kilondedwako</string>
   <!--country_selection_fragment-->

@@ -482,6 +482,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Berichten zullen verdwijnen na %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Je veiligheidsnummer met %s is veranderd.</string>
   <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Dit contact gebruikt een oude versie van Signal. Vraag hen om Signal bij te werken vooraleer je het veiligheidsnummer verifieert.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Je contact gebruikt een nieuwere versie van Signal met een incompatibel QR-codeformaat. Werk Signal bij om te vergelijken.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">De gescande QR-code is geen goed veiligheidsnummer. Probeer de code opnieuw te scannen.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Veiligheidsnummer delen via...</string>
@@ -543,11 +544,20 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="SingleRecipientNotificationBuilder_new_message">Nieuw bericht</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Afbeelding</string>
+  <string name="attachment_type_selector__image_description">Afbeelding</string>
   <string name="attachment_type_selector__audio">Audio</string>
+  <string name="attachment_type_selector__audio_description">Audio</string>
   <string name="attachment_type_selector__video">Video</string>
+  <string name="attachment_type_selector__video_description">Video</string>
   <string name="attachment_type_selector__contact">Contactpersoon</string>
+  <string name="attachment_type_selector__contact_description">Contactpersoon</string>
   <string name="attachment_type_selector__camera">Camera</string>
+  <string name="attachment_type_selector__camera_description">Camera</string>
   <string name="attachment_type_selector__location">Locatie</string>
+  <string name="attachment_type_selector__location_description">Locatie</string>
+  <string name="attachment_type_selector__gif">GIF</string>
+  <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__drawer_description">Bijlageoverzicht tonen/verbergen</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Oud wachtwoord</string>
   <string name="change_passphrase_activity__new_passphrase">Nieuw wachtwoord</string>
@@ -597,6 +607,10 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="conversation_item_received__download">Download</string>
   <string name="conversation_item_received__contact_photo_description">Contactfoto</string>
   <string name="conversation_item_received__downloading">Downloaden</string>
+  <!--audio_view-->
+  <string name="audio_view__play_accessibility_description">Afspelen</string>
+  <string name="audio_view__pause_accessibility_description">Pauzeren</string>
+  <string name="audio_view__download_accessibility_description">Downloaden</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode"> Meerdere tegelijk selecteren</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s geselecteerd</string>

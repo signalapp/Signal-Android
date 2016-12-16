@@ -616,6 +616,10 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="conversation_item_received__download">Lataa</string>
   <string name="conversation_item_received__contact_photo_description">Yhteystiedon kuva</string>
   <string name="conversation_item_received__downloading">Ladataan</string>
+  <!--audio_view-->
+  <string name="audio_view__play_accessibility_description">Toista</string>
+  <string name="audio_view__pause_accessibility_description">Pysäytä</string>
+  <string name="audio_view__download_accessibility_description">Lataa</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Valitse useampi</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s valittu</string>

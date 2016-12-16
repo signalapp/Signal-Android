@@ -501,6 +501,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Eltűnő üzenet ideje beállítva erre: %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Megváltozott a biztonsági számod vele: %s.</string>
   <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">A kapcsolatod a Signal egy régebbi verzióját futtatja. Kérd meg, hogy frissítsen a biztonsági szám ellenőrzése előtt.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">A kapcsolatod a Signal egy újabb verzióját futtatja egy inkompatibilis QR kód formátummal. Kérlek frissíts az összehasonlításhoz.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">A szkennelt QR kód nem egy helyesen formázott biztonság szám megerősítő kód. Kérlek próbáld újra szkennelni.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Biztonsági szám megosztása ezzel...</string>
@@ -562,11 +563,20 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="SingleRecipientNotificationBuilder_new_message">Új üzenet</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Kép</string>
+  <string name="attachment_type_selector__image_description">Kép</string>
   <string name="attachment_type_selector__audio">Hang</string>
+  <string name="attachment_type_selector__audio_description">Hang</string>
   <string name="attachment_type_selector__video">Videó</string>
+  <string name="attachment_type_selector__video_description">Videó</string>
   <string name="attachment_type_selector__contact">Névjegy</string>
+  <string name="attachment_type_selector__contact_description">Névjegy</string>
   <string name="attachment_type_selector__camera">Kamera</string>
+  <string name="attachment_type_selector__camera_description">Kamera</string>
   <string name="attachment_type_selector__location">Hely</string>
+  <string name="attachment_type_selector__location_description">Hely</string>
+  <string name="attachment_type_selector__gif">GIF</string>
+  <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__drawer_description">Mellékletfelvétel kapcsoló</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Régi jelmondat</string>
   <string name="change_passphrase_activity__new_passphrase">Új jelmondat</string>
@@ -616,6 +626,10 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="conversation_item_received__download">Letölt</string>
   <string name="conversation_item_received__contact_photo_description">Névjegy fotó</string>
   <string name="conversation_item_received__downloading">Letöltés</string>
+  <!--audio_view-->
+  <string name="audio_view__play_accessibility_description">Lejátszás</string>
+  <string name="audio_view__pause_accessibility_description">Szünet</string>
+  <string name="audio_view__download_accessibility_description">Letöltés</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Tétel kiválasztás mód</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s kiválasztva</string>

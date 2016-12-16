@@ -143,7 +143,7 @@
     <item quantity="other">%1$d medyanın tümünü depolama alanına kaydetmek, telefonunuzda ki diğer uygulamaların erişimine izin verecektir.\n\nDevam edilsin mi?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
-    <item quantity="other">Ekler depolama alanına kaydedilirken hata oluştu!</item>
+    <item quantity="other">Ekler depolama alanına kaydedilirken hata oluştu! </item>
   </plurals>
   <string name="ConversationFragment_file_saved_successfully">Dosya başarıyla kaydedildi.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Depolama alanına yazılamıyor!</string>
@@ -151,7 +151,7 @@
     <item quantity="other">%1$d ekleri kaydediliyor</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="other">%1$d ekleri depolama alanına kaydediliyor...</item>
+    <item quantity="other">%1$d ekleri depolama alanına kaydediliyor... </item>
   </plurals>
   <string name="ConversationFragment_collecting_attahments">Ekler toplanıyor...</string>
   <string name="ConversationFragment_pending">Bekleyen...</string>
@@ -467,7 +467,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Mesaj yok olma zamanı %s olarak belirlendi</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">%s ile güvenlik numaranız değişti.</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kişi Signal\'in eski bir sürümünü kullanıyor. Güvenlik numaranızı onaylamadan önce güncelleme yapmalarını isteyin.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kişi Signal\'in eski bir sürümünü kullanıyor. Güvenlik numaranızı onaylamadan önce güncelleme yapmalarını isteyin. </string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kişi QR kod biçimi ile uyumlu olmayan Signal\'in daha yeni bir sürümü kullanıyor. Karşılaştırmak için uygulamayı güncelleyin.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Taranan QR kodu doğru biçimlendirilmiş bir güvenlik numarası doğrulama kodu değil. Lütfen tekrar taramayı deneyin.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Güvenlik numarasını paylaş...</string>
@@ -592,6 +592,10 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="conversation_item_received__download">İndir</string>
   <string name="conversation_item_received__contact_photo_description">Kişi fotoğrafı</string>
   <string name="conversation_item_received__downloading">İndiriliyor</string>
+  <!--audio_view-->
+  <string name="audio_view__play_accessibility_description">Oynat</string>
+  <string name="audio_view__pause_accessibility_description">Durdur</string>
+  <string name="audio_view__download_accessibility_description">İndir</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Toplu seçim modu</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s seçildi</string>

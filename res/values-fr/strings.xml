@@ -587,6 +587,7 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="conversation_item_received__download">Télécharger</string>
   <string name="conversation_item_received__contact_photo_description">Photo de contact</string>
   <string name="conversation_item_received__downloading">Téléchargement</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Mode de sélection par lot</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s sélectionné</string>

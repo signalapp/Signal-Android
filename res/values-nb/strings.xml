@@ -602,6 +602,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="conversation_item_received__download">Last ned</string>
   <string name="conversation_item_received__contact_photo_description">Kontaktfoto</string>
   <string name="conversation_item_received__downloading">Laster ned</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Buntvalg-modus</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s valgt</string>

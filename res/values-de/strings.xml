@@ -550,7 +550,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <string name="attachment_type_selector__location_description">Standort</string>
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
-  <string name="attachment_type_selector__drawer_description">Direktaufnahme</string>
+  <string name="attachment_type_selector__drawer_description">Anhänge hinzufügen</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Altes Passwort</string>
   <string name="change_passphrase_activity__new_passphrase">Neues Passwort</string>
@@ -600,6 +600,10 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <string name="conversation_item_received__download">Herunterladen</string>
   <string name="conversation_item_received__contact_photo_description">Kontaktbild</string>
   <string name="conversation_item_received__downloading">Herunterladen</string>
+  <!--audio_view-->
+  <string name="audio_view__play_accessibility_description">Wiedergeben</string>
+  <string name="audio_view__pause_accessibility_description">Pause</string>
+  <string name="audio_view__download_accessibility_description">Herunterladen</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Mehrfachauswahl</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s ausgewählt</string>

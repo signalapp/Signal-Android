@@ -532,6 +532,7 @@
   <string name="conversation_item_received__download">Descargar</string>
   <string name="conversation_item_received__contact_photo_description">Foto do contacto</string>
   <string name="conversation_item_received__downloading">Descargando</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Cargando países...</string>

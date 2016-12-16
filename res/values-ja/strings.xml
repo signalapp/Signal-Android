@@ -570,6 +570,7 @@
   <string name="conversation_item_received__download">ダウンロード</string>
   <string name="conversation_item_received__contact_photo_description">連絡先の写真</string>
   <string name="conversation_item_received__downloading">ダウンロード中</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">一括選択モード</string>
   <string name="conversation_fragment_cab__batch_selection_amount">選択数は%s</string>

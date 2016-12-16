@@ -554,6 +554,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="conversation_item_received__download">Tải xuống</string>
   <string name="conversation_item_received__contact_photo_description">Hình liên lạc</string>
   <string name="conversation_item_received__downloading">Đang tải xuống</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Dạng chọn hàng loạt</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s được chọn</string>

@@ -621,6 +621,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="conversation_item_received__download">Preuzmi</string>
   <string name="conversation_item_received__contact_photo_description">Slika kontakta</string>
   <string name="conversation_item_received__downloading">Preuzimanje</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Način za višestruki odabir</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s odabrano</string>

@@ -503,6 +503,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Timpul setat pentru mesajele care dispar este %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Numărul tău de siguranță pentru %s s-a schimbat.</string>
   <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Contactul tău folosește o versiune mai veche de Signal. Roagă-l să-și actualizeze versiunea înainte de a verifica numărul tău de siguranță.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Contactul tău folosește o versiune mai nouă de Signal cu un format de cod QR incompatibil. Te rog actualizează-ți aplicația pentru a putea compara.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Codul QR scanat nu este un număr de siguranță formatat corect. Te rog scanează din nou.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Partajează numărul de siguranță via...</string>
@@ -564,11 +565,20 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="SingleRecipientNotificationBuilder_new_message">Mesaj nou</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Imagine</string>
+  <string name="attachment_type_selector__image_description">Imagine</string>
   <string name="attachment_type_selector__audio">Audio</string>
+  <string name="attachment_type_selector__audio_description">Audio</string>
   <string name="attachment_type_selector__video">Video</string>
+  <string name="attachment_type_selector__video_description">Video</string>
   <string name="attachment_type_selector__contact">Contact</string>
+  <string name="attachment_type_selector__contact_description">Contact</string>
   <string name="attachment_type_selector__camera">Cameră</string>
+  <string name="attachment_type_selector__camera_description">Cameră</string>
   <string name="attachment_type_selector__location">Locație</string>
+  <string name="attachment_type_selector__location_description">Locație</string>
+  <string name="attachment_type_selector__gif">GIF</string>
+  <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__drawer_description">Comutare panou atașamente</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Parola veche</string>
   <string name="change_passphrase_activity__new_passphrase">Parola nouă</string>
@@ -618,6 +628,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="conversation_item_received__download">Descarcă</string>
   <string name="conversation_item_received__contact_photo_description">Poză contact</string>
   <string name="conversation_item_received__downloading">Se descarcă</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Mod selecţie multiplă</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s selectate</string>

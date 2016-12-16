@@ -590,6 +590,7 @@
   <string name="conversation_item_received__download">Λήψη</string>
   <string name="conversation_item_received__contact_photo_description">Φωτογραφία επαφής</string>
   <string name="conversation_item_received__downloading">Γίνεται λήψη</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Λειτουργία μαζικής επιλογής</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s επιλέχτηκαν</string>

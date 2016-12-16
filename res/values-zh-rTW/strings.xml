@@ -593,6 +593,7 @@
   <string name="conversation_item_received__download">下載</string>
   <string name="conversation_item_received__contact_photo_description">聯絡人的相片</string>
   <string name="conversation_item_received__downloading">下載中...</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">批次選擇模式</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s 已選</string>

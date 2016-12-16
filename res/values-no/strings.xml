@@ -576,6 +576,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="conversation_item_received__download">Last ned</string>
   <string name="conversation_item_received__contact_photo_description">Kontaktbilde</string>
   <string name="conversation_item_received__downloading">Laster ned</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Batch valg modus</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s valgte</string>

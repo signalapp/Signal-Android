@@ -560,6 +560,7 @@ Comprova que aquest és el teu número! Anem a verificar-ho amb un SMS.</string>
   <string name="conversation_item_received__download">Descàrrega</string>
   <string name="conversation_item_received__contact_photo_description">Foto del contacte</string>
   <string name="conversation_item_received__downloading">Descarregant</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Mode de selecció per lots</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s seleccionats</string>

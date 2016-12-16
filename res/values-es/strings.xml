@@ -626,6 +626,10 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="conversation_item_received__download">Descarga</string>
   <string name="conversation_item_received__contact_photo_description">Foto de contacto</string>
   <string name="conversation_item_received__downloading">Descargando</string>
+  <!--audio_view-->
+  <string name="audio_view__play_accessibility_description">Reproducir</string>
+  <string name="audio_view__pause_accessibility_description">Pausar</string>
+  <string name="audio_view__download_accessibility_description">Descargar</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Modo de selección por lotes</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s seleccionado</string>

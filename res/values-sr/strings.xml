@@ -627,6 +627,7 @@
   <string name="conversation_item_received__download">Преузми</string>
   <string name="conversation_item_received__contact_photo_description">Фотографија контакта</string>
   <string name="conversation_item_received__downloading">Преузимам</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Режим серијског избора</string>
   <string name="conversation_fragment_cab__batch_selection_amount">Изабрано: %s</string>

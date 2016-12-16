@@ -541,6 +541,7 @@
   <string name="conversation_item_received__download">다운로드</string>
   <string name="conversation_item_received__contact_photo_description">연락처 사진</string>
   <string name="conversation_item_received__downloading">다운로드 중</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">여러 대화 선택</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s개 선택됨</string>

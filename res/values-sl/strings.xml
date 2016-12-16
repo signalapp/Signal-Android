@@ -634,6 +634,10 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="conversation_item_received__download">Prenos</string>
   <string name="conversation_item_received__contact_photo_description">Fotografija stika</string>
   <string name="conversation_item_received__downloading">Prenašam</string>
+  <!--audio_view-->
+  <string name="audio_view__play_accessibility_description">Igraj</string>
+  <string name="audio_view__pause_accessibility_description">Pavza</string>
+  <string name="audio_view__download_accessibility_description">Prenesi</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Skupinski način izbire</string>
   <string name="conversation_fragment_cab__batch_selection_amount">Izbranih: %s</string>

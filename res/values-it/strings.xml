@@ -601,6 +601,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="conversation_item_received__download">Scarica</string>
   <string name="conversation_item_received__contact_photo_description">Foto del contatto</string>
   <string name="conversation_item_received__downloading">Caricamento in corso</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Modalità di selezione di gruppo</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s selezionati</string>

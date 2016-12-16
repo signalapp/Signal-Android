@@ -612,6 +612,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="conversation_item_received__download">Pobierz</string>
   <string name="conversation_item_received__contact_photo_description">Zdjęcie kontaktu</string>
   <string name="conversation_item_received__downloading">Pobieranie</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Tryb wyboru grupy</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s wybranych</string>
