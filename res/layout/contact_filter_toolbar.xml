@@ -5,15 +5,6 @@
                   android:layout_height="match_parent"
                   android:orientation="horizontal">
 
-        <ImageView android:id="@+id/action_icon"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_gravity="center_vertical"
-                   android:gravity="center_vertical"
-                   android:clickable="true"
-                   android:background="@drawable/circle_touch_highlight_background"
-                   android:src="@drawable/ic_search_white_24dp" />
-
         <LinearLayout android:id="@+id/toggle_container"
                       android:layout_width="match_parent"
                       android:layout_height="match_parent"
@@ -23,8 +14,6 @@
                       android:layout_height="wrap_content"
                       android:layout_width="0px"
                       android:layout_weight="1"
-                      android:layout_marginLeft="5dp"
-                      android:layout_marginStart="5dp"
                       android:hint="@string/contact_selection_activity__enter_name_or_number"
                       android:inputType="textPersonName"
                       style="@style/TextSecure.TitleTextStyle"

@@ -22,7 +22,6 @@ public class ContactFilterToolbar extends Toolbar {
 
   private EditText        searchText;
   private AnimatingToggle toggle;
-  private ImageView       action;
   private ImageView       keyboardToggle;
   private ImageView       dialpadToggle;
   private ImageView       clearToggle;
@@ -40,8 +39,6 @@ public class ContactFilterToolbar extends Toolbar {
     super(context, attrs, defStyleAttr);
     inflate(context, R.layout.contact_filter_toolbar, this);
 
-
-    this.action          = ViewUtil.findById(this, R.id.action_icon);
     this.searchText      = ViewUtil.findById(this, R.id.search_view);
     this.toggle          = ViewUtil.findById(this, R.id.button_toggle);
     this.keyboardToggle  = ViewUtil.findById(this, R.id.search_keyboard);
@@ -97,23 +94,10 @@ public class ContactFilterToolbar extends Toolbar {
       }
     });
 
-    expandTapArea(this, action);
+    setLogo(null);
+    setContentInsetStartWithNavigation(0);
+
     expandTapArea(toggleContainer, dialpadToggle);
-  }
-
-  @Override
-  public void setNavigationIcon(int resId) {
-    action.setImageResource(resId);
-  }
-
-  @Override
-  public void setNavigationOnClickListener(OnClickListener listener) {
-    super.setNavigationOnClickListener(listener);
-    action.setOnClickListener(listener);
-  }
-
-  public void setShowCustomNavigationButton(boolean show) {
-    action.setVisibility(show ? VISIBLE : GONE);
   }
 
   public void clear() {
@@ -154,11 +138,11 @@ public class ContactFilterToolbar extends Toolbar {
   }
 
   private static class SearchUtil {
-    public static boolean isTextInput(EditText editText) {
+    static boolean isTextInput(EditText editText) {
       return (editText.getInputType() & InputType.TYPE_MASK_CLASS) == InputType.TYPE_CLASS_TEXT;
     }
 
-    public static boolean isPhoneInput(EditText editText) {
+    static boolean isPhoneInput(EditText editText) {
       return (editText.getInputType() & InputType.TYPE_MASK_CLASS) == InputType.TYPE_CLASS_PHONE;
     }
 
