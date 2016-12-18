@@ -32,12 +32,14 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.Target;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.scribbles.widget.entity.MotionEntity;
 import org.thoughtcrime.securesms.scribbles.widget.entity.TextEntity;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 
@@ -82,12 +84,14 @@ public class ScribbleView extends FrameLayout {
     Glide.with(getContext())
          .load(new DecryptableUri(masterSecret, uri))
          .diskCacheStrategy(DiskCacheStrategy.NONE)
+         .fitCenter()
          .into(imageView);
   }
 
   public @NonNull ListenableFuture<Bitmap> getRenderedImage() {
-    final SettableFuture<Bitmap> future  = new SettableFuture<>();
-    final Context                context = getContext();
+    final SettableFuture<Bitmap> future      = new SettableFuture<>();
+    final Context                context     = getContext();
+    final boolean                isLowMemory = Util.isLowMemory(context);
 
     if (imageUri == null || masterSecret == null) {
       future.set(null);
@@ -98,12 +102,20 @@ public class ScribbleView extends FrameLayout {
       @Override
       protected @Nullable Bitmap doInBackground(Void... params) {
         try {
+          int width  = Target.SIZE_ORIGINAL;
+          int height = Target.SIZE_ORIGINAL;
+
+          if (isLowMemory) {
+            width  = 768;
+            height = 768;
+          }
+
           return Glide.with(context)
                       .load(new DecryptableUri(masterSecret, imageUri))
                       .asBitmap()
                       .diskCacheStrategy(DiskCacheStrategy.NONE)
                       .skipMemoryCache(true)
-                      .into(-1, -1)
+                      .into(width, height)
                       .get();
         } catch (InterruptedException | ExecutionException e) {
           Log.w(TAG, e);
