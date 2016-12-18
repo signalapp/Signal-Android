@@ -58,6 +58,8 @@ Setting up a development environment
 9. Default config options should be good enough.
 9. Project initialisation and build should proceed.
 
+**NOTE:** Make sure to disable [Instant Run](https://developer.android.com/studio/run/index.html#disable-ir), so that you do not run into issue [#5954](https://github.com/WhisperSystems/Signal-Android/issues/5954) when registering a new phone number.
+
 Contributing code
 -----------------
 
