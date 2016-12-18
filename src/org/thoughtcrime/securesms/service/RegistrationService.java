@@ -10,6 +10,8 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import org.thoughtcrime.redphone.signaling.RedPhoneAccountAttributes;
@@ -297,7 +299,11 @@ public class RegistrationService extends Service {
 
   private void markAsVerified(String number, String password, String signalingKey) {
     TextSecurePreferences.setVerifying(this, false);
-    TextSecurePreferences.setPushRegistered(this, true);
+
+    if (GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) == ConnectionResult.SUCCESS) {
+      TextSecurePreferences.setPushRegistered(this, true);
+    }
+
     TextSecurePreferences.setRegistered(this, true);
     TextSecurePreferences.setLocalNumber(this, number);
     TextSecurePreferences.setPushServerPassword(this, password);
