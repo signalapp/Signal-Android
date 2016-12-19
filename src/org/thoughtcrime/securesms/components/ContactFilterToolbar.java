@@ -95,7 +95,6 @@ public class ContactFilterToolbar extends Toolbar {
     });
 
     setLogo(null);
-    setContentInsetStartWithNavigation(0);
 
     expandTapArea(toggleContainer, dialpadToggle);
   }

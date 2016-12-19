@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.video;
 
 
+import android.annotation.TargetApi;
 import android.media.MediaDataSource;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 
 import org.thoughtcrime.securesms.crypto.DecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.util.Util;
 import java.io.File;
 import java.io.IOException;
 
-@RequiresApi(api = Build.VERSION_CODES.M)
+@TargetApi(Build.VERSION_CODES.M)
 public class EncryptedMediaDataSource extends MediaDataSource {
 
   private final File         mediaFile;
