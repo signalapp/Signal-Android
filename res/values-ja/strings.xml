@@ -457,6 +457,7 @@
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">メッセージの消去時間が%sに設定されました</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">%sとの安全番号が変わりました</string>
   <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">相手は古いSignalを使っています。Signalを更新してから安全番号の確認を行うようお願いしてください。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">相手が使っているSignalのバージョンが新しいため，QRコードの形式が異なります。Signalを更新してから改めて比較してください。</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">読み取ったQRコードは正当な安全番号ではありません。もう一度読み取って下さい。</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">安全番号の共有を以下の方法で行う</string>
@@ -518,11 +519,20 @@
   <string name="SingleRecipientNotificationBuilder_new_message">新規メッセージ</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">画像</string>
+  <string name="attachment_type_selector__image_description">画像</string>
   <string name="attachment_type_selector__audio">音声</string>
+  <string name="attachment_type_selector__audio_description">音声</string>
   <string name="attachment_type_selector__video">動画</string>
+  <string name="attachment_type_selector__video_description">動画</string>
   <string name="attachment_type_selector__contact">連絡先</string>
+  <string name="attachment_type_selector__contact_description">連絡先</string>
   <string name="attachment_type_selector__camera">カメラ</string>
+  <string name="attachment_type_selector__camera_description">カメラ</string>
   <string name="attachment_type_selector__location">場所</string>
+  <string name="attachment_type_selector__location_description">場所</string>
+  <string name="attachment_type_selector__gif">GIF</string>
+  <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__drawer_description">添付引出しを切り替える</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">既存のパスワード</string>
   <string name="change_passphrase_activity__new_passphrase">新しいパスワード</string>
@@ -553,6 +563,8 @@
   <string name="conversation_activity__compose_description">メッセージ新規作成</string>
   <string name="conversation_activity__emoji_toggle_description">絵文字キーボードの切替</string>
   <string name="conversation_activity__attachment_thumbnail">添付のサムネイル</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">カメラ添付の引出しを素速く切り替える</string>
+  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">音声を録音して送信する</string>
   <string name="conversation_activity__enable_signal_for_sms">SignalでSMSができるようにする</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">スライドしてキャンセル</string>
@@ -571,6 +583,9 @@
   <string name="conversation_item_received__contact_photo_description">連絡先の写真</string>
   <string name="conversation_item_received__downloading">ダウンロード中</string>
   <!--audio_view-->
+  <string name="audio_view__play_accessibility_description">再生</string>
+  <string name="audio_view__pause_accessibility_description">一時停止</string>
+  <string name="audio_view__download_accessibility_description">ダウンロード</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">一括選択モード</string>
   <string name="conversation_fragment_cab__batch_selection_amount">選択数は%s</string>

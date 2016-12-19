@@ -477,6 +477,7 @@
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">訊息銷毀時間設置爲 %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">您與 %s 的安全碼已改變。</string>
   <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">您的聯絡人使用的是舊版本的 Signal。在驗證您的安全碼前請尋求對方先進行更新。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">您的聯絡人使用的是新版本的 Signal，程式無法識別這個聯絡人的二維碼。
 請升級您的 Signal。</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">掃描的 QR 碼格式不正確。請重新掃一次。</string>
@@ -539,11 +540,20 @@
   <string name="SingleRecipientNotificationBuilder_new_message">新訊息</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">圖片</string>
+  <string name="attachment_type_selector__image_description">圖片</string>
   <string name="attachment_type_selector__audio">音訊</string>
+  <string name="attachment_type_selector__audio_description">音訊</string>
   <string name="attachment_type_selector__video">影片</string>
+  <string name="attachment_type_selector__video_description">影片</string>
   <string name="attachment_type_selector__contact">聯絡人</string>
+  <string name="attachment_type_selector__contact_description">聯絡人</string>
   <string name="attachment_type_selector__camera">相機</string>
+  <string name="attachment_type_selector__camera_description">相機</string>
   <string name="attachment_type_selector__location">位置</string>
+  <string name="attachment_type_selector__location_description">位置</string>
+  <string name="attachment_type_selector__gif">動態圖檔</string>
+  <string name="attachment_type_selector__gif_description">動態圖檔</string>
+  <string name="attachment_type_selector__drawer_description">切換附件抽屜</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">舊的自訂密碼</string>
   <string name="change_passphrase_activity__new_passphrase">新的自訂密碼</string>
@@ -594,6 +604,9 @@
   <string name="conversation_item_received__contact_photo_description">聯絡人的相片</string>
   <string name="conversation_item_received__downloading">下載中...</string>
   <!--audio_view-->
+  <string name="audio_view__play_accessibility_description">播放</string>
+  <string name="audio_view__pause_accessibility_description">暫停</string>
+  <string name="audio_view__download_accessibility_description">下載</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">批次選擇模式</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s 已選</string>

@@ -324,7 +324,7 @@ Vei pierde orice informație care se află în instalarea curentă de Signal și
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Hai să folosim Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Se pare că nu ai aplicații cu care să poți partaja.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Prietenii nu-și lasă prietenii să comunice necriptat.</string>
+  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Prietenii nu-și lasă prietenii să converseze necriptat.</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Nu a fost găsită nici o cheie scanată!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Instalez scanerul de coduri de bare?</string>
@@ -389,7 +389,7 @@ Vei pierde orice informație care se află în instalarea curentă de Signal și
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Mesajele trimise și primite în această conversație vor dispărea după %s după ce au fost vizualizate.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Introdu parola</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Icoană Signal</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Pictogramă Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Trimite parola</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Parolă incorectă!</string>
   <!--PlayServicesProblemFragment-->
@@ -629,6 +629,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="conversation_item_received__contact_photo_description">Poză contact</string>
   <string name="conversation_item_received__downloading">Se descarcă</string>
   <!--audio_view-->
+  <string name="audio_view__play_accessibility_description">Redare</string>
+  <string name="audio_view__pause_accessibility_description">Pauză</string>
+  <string name="audio_view__download_accessibility_description">Descarcă</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Mod selecţie multiplă</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s selectate</string>
@@ -1113,6 +1116,6 @@ SMS a eșuat.</string>
   <string name="trimmer__deleting_old_messages">Se șterg mesajele vechi...</string>
   <string name="trimmer__old_messages_successfully_deleted">Mesajele vechi au fost șterse cu succes</string>
   <!--transport_selection_list_item-->
-  <string name="transport_selection_list_item__transport_icon">Icoană transport</string>
+  <string name="transport_selection_list_item__transport_icon">Pictogramă transport</string>
   <!--EOF-->
 </resources>

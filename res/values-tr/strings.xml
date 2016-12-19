@@ -772,7 +772,7 @@ başarısız.</string>
   <string name="message_details_header__issues_need_your_attention">Bazı sorunlar ilginizi gerektiriyor.</string>
   <string name="message_details_header__sent">Gönderildi</string>
   <string name="message_details_header__received">Alındı</string>
-  <string name="message_details_header__disappears">Yok olan</string>
+  <string name="message_details_header__disappears">Yok olma</string>
   <string name="message_details_header__via">Vasıtasıyla</string>
   <string name="message_details_header__to">Alıcı:</string>
   <string name="message_details_header__from">Gönderen:</string>

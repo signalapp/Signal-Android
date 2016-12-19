@@ -626,6 +626,9 @@
   <string name="conversation_item_received__contact_photo_description">Foto do contato</string>
   <string name="conversation_item_received__downloading">A transferir</string>
   <!--audio_view-->
+  <string name="audio_view__play_accessibility_description">Tocar</string>
+  <string name="audio_view__pause_accessibility_description">Pausar</string>
+  <string name="audio_view__download_accessibility_description">Baixar</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Modo de seleção em grupo</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s selecionadas</string>

@@ -498,9 +498,11 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Czas znikania wiadomości ustawiony na %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Twój numer bezpieczeństwa z %s zmienił się.</string>
   <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Twój kontakt używa starej wersji Signal. Poproś go o aktualizację przed weryfikacją twojego bezpiecznego numeru.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Twój kontakt używa nowszej wersji Signal z niekompatybilnym formatem kodu QR. Zaktualizuj, by porównać.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Zeskanowany kod QR nie jest poprawnie sformatowanym kodem weryfikującym numer bezpieczeństwa. Proszę spróbować ponownie zeskanować .</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Udostępnij number bezpieczeństwa przez...</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">Nasz numer bezpieczeństwa Signal:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Wygląda na to, że nie masz żadnych aplikacji z którymi możesz się podzielić.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Brak numerów bezpieczeństwa do porównania w schowku.</string>
   <!--KeyExchangeInitiator-->
@@ -558,11 +560,20 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nowa wiadomość</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Obraz</string>
+  <string name="attachment_type_selector__image_description">Obraz</string>
   <string name="attachment_type_selector__audio">Audio</string>
+  <string name="attachment_type_selector__audio_description">Dźwięk</string>
   <string name="attachment_type_selector__video">Wideo</string>
+  <string name="attachment_type_selector__video_description">Wideo</string>
   <string name="attachment_type_selector__contact">Kontakt</string>
+  <string name="attachment_type_selector__contact_description">Kontakt</string>
   <string name="attachment_type_selector__camera">Kamera</string>
+  <string name="attachment_type_selector__camera_description">Kamera</string>
   <string name="attachment_type_selector__location">Lokalizacja</string>
+  <string name="attachment_type_selector__location_description">Lokalizacja</string>
+  <string name="attachment_type_selector__gif">GIF</string>
+  <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__drawer_description">Ukryj ekran załączników</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Stare hasło</string>
   <string name="change_passphrase_activity__new_passphrase">Nowe hasło</string>
@@ -613,6 +624,9 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="conversation_item_received__contact_photo_description">Zdjęcie kontaktu</string>
   <string name="conversation_item_received__downloading">Pobieranie</string>
   <!--audio_view-->
+  <string name="audio_view__play_accessibility_description">Odtwórz</string>
+  <string name="audio_view__pause_accessibility_description">Zatrzymaj</string>
+  <string name="audio_view__download_accessibility_description">Pobierz</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Tryb wyboru grupy</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s wybranych</string>
@@ -784,6 +798,7 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="recipients_panel__to">Wprowadź nazwę lub numer kontaktu</string>
   <string name="recipients_panel__add_members">Dodaj uczestników</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Jeśli chcesz zweryfikować bezpieczeństwo szyfrowania end-to-end z %s, porównaj numer powyżej z numerem na jego urządzeniu. Możesz również zeskanować kod na jego telefonie lub poprosić o zeskanowanie twojego kodu. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Dowiedz się więcej o weryfikacji numeru bezpieczeństwa</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Dotknij aby zeskanować</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Podziel się numerem bezpieczeństwa</string>
@@ -1057,6 +1072,7 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Zapisz</string>
   <string name="media_preview__forward_title">Przekaż dalej</string>
+  <string name="media_preview__overview_title">Wszystkie obrazy</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Zapisz wszystko</string>
   <!--media_preview_activity-->

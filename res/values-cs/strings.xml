@@ -621,6 +621,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="conversation_item_received__contact_photo_description">Fotografie kotaktu</string>
   <string name="conversation_item_received__downloading">Stahuji</string>
   <!--audio_view-->
+  <string name="audio_view__play_accessibility_description">Přehrát</string>
+  <string name="audio_view__pause_accessibility_description">Zastavit</string>
+  <string name="audio_view__download_accessibility_description">Stáhnout</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Hromadný výběr</string>
   <string name="conversation_fragment_cab__batch_selection_amount">Vybráno %s</string>
