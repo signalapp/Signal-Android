@@ -52,6 +52,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
 import org.thoughtcrime.securesms.ConversationListAdapter.ItemClickListener;
+import org.thoughtcrime.securesms.components.reminder.BatteryOptimisationReminder;
 import org.thoughtcrime.securesms.components.reminder.DefaultSmsReminder;
 import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder;
 import org.thoughtcrime.securesms.components.reminder.OutdatedBuildReminder;
@@ -185,6 +186,8 @@ public class ConversationListFragment extends Fragment
           return Optional.of((new PushRegistrationReminder(context, masterSecret)));
         } else if (ShareReminder.isEligible(context)) {
           return Optional.of(new ShareReminder(context));
+        } else if (BatteryOptimisationReminder.isEligible(context)) {
+          return Optional.of(new BatteryOptimisationReminder(context));
         } else {
           return Optional.absent();
         }
