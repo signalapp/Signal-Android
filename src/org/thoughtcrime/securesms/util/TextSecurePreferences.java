@@ -71,6 +71,7 @@ public class TextSecurePreferences {
   private static final String PROMPTED_PUSH_REGISTRATION_PREF  = "pref_prompted_push_registration";
   private static final String PROMPTED_DEFAULT_SMS_PREF        = "pref_prompted_default_sms";
   private static final String PROMPTED_SHARE_PREF              = "pref_prompted_share";
+  private static final String PROMPTED_BATTERY_PREF            = "pref_prompted_battery_optimisation";
   private static final String SIGNALING_KEY_PREF               = "pref_signaling_key";
   private static final String DIRECTORY_FRESH_TIME_PREF        = "pref_directory_refresh_time";
   private static final String SIGNED_PREKEY_ROTATION_TIME_PREF = "pref_signed_pre_key_rotation_time";
@@ -438,6 +439,14 @@ public class TextSecurePreferences {
   public static void setPushRegistered(Context context, boolean registered) {
     Log.w("TextSecurePreferences", "Setting push registered: " + registered);
     setBooleanPreference(context, REGISTERED_GCM_PREF, registered);
+  }
+
+  public static boolean hasPromptedBatteryOptimisation(Context context) {
+    return getBooleanPreference(context, PROMPTED_BATTERY_PREF, false);
+  }
+
+  public static void setPromptedBatteryOptimisation(Context context, boolean prompted) {
+    setBooleanPreference(context, PROMPTED_BATTERY_PREF, prompted);
   }
 
   public static boolean isPassphraseTimeoutEnabled(Context context) {
