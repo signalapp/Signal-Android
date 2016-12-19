@@ -2,13 +2,8 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android"
           android:enterFadeDuration="200"
           android:exitFadeDuration="300">
-    <item android:state_selected="true">
-        <bitmap android:src="@drawable/ic_flag_white_24dp"
-                android:tint="@color/grey_800"/>
-    </item>
-    <item>
-        <bitmap android:src="@drawable/ic_flag_white_24dp"
-                android:tint="@color/grey_400"/>
-    </item>
+
+    <item android:state_selected="true" android:drawable="@drawable/ic_emoji_flag_activated_light" />
+    <item android:drawable="@drawable/ic_emoji_flag_normal_light" />
 
 </selector>
