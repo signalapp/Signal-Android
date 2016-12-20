@@ -7,7 +7,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.BlockedReader;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule.TextSecureMessageSenderFactory;
+import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule.SignalMessageSenderFactory;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.whispersystems.jobqueue.JobParameters;
@@ -30,7 +30,7 @@ public class MultiDeviceBlockedUpdateJob extends MasterSecretJob implements Inje
 
   private static final String TAG = MultiDeviceBlockedUpdateJob.class.getSimpleName();
 
-  @Inject transient TextSecureMessageSenderFactory messageSenderFactory;
+  @Inject transient SignalMessageSenderFactory messageSenderFactory;
 
   public MultiDeviceBlockedUpdateJob(Context context) {
     super(context, JobParameters.newBuilder()

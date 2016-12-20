@@ -31,7 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
+import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.service.RegistrationService;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -518,7 +518,7 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
         @Override
         protected Integer doInBackground(Void... params) {
           try {
-            SignalServiceAccountManager accountManager = TextSecureCommunicationFactory.createManager(context, e164number, password);
+            SignalServiceAccountManager accountManager = AccountManagerFactory.createManager(context, e164number, password);
             int                         registrationId = TextSecurePreferences.getLocalRegistrationId(context);
 
             accountManager.verifyAccountWithCode(code, signalingKey, registrationId, true);
@@ -611,7 +611,7 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
         @Override
         protected Integer doInBackground(Void... params) {
           try {
-            SignalServiceAccountManager accountManager = TextSecureCommunicationFactory.createManager(context, e164number, password);
+            SignalServiceAccountManager accountManager = AccountManagerFactory.createManager(context, e164number, password);
             accountManager.requestVoiceVerificationCode();
 
             return SUCCESS;

@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule.TextSecureMessageSenderFactory;
+import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule.SignalMessageSenderFactory;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -32,7 +32,7 @@ public class PushGroupUpdateJob extends ContextJob implements InjectableType {
 
   private static final long serialVersionUID = 0L;
 
-  @Inject transient TextSecureMessageSenderFactory messageSenderFactory;
+  @Inject transient SignalMessageSenderFactory messageSenderFactory;
 
   private final String source;
   private final byte[] groupId;

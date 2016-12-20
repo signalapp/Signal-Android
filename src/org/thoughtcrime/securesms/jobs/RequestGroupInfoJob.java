@@ -4,9 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule;
-import org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule.TextSecureMessageSenderFactory;
-import org.whispersystems.jobqueue.Job;
+import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule.SignalMessageSenderFactory;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -27,7 +25,7 @@ public class RequestGroupInfoJob extends ContextJob implements InjectableType {
 
   private static final long serialVersionUID = 0L;
 
-  @Inject transient TextSecureMessageSenderFactory messageSenderFactory;
+  @Inject transient SignalMessageSenderFactory messageSenderFactory;
 
   private final String source;
   private final byte[] groupId;

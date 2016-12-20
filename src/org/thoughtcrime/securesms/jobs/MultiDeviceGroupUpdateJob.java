@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule;
+import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
@@ -36,7 +36,7 @@ public class MultiDeviceGroupUpdateJob extends MasterSecretJob implements Inject
   private static final String TAG = MultiDeviceGroupUpdateJob.class.getSimpleName();
 
   @Inject
-  transient TextSecureCommunicationModule.TextSecureMessageSenderFactory messageSenderFactory;
+  transient SignalCommunicationModule.SignalMessageSenderFactory messageSenderFactory;
 
   public MultiDeviceGroupUpdateJob(Context context) {
     super(context, JobParameters.newBuilder()

@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.database.NotInDirectoryException;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
+import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.IncomingJoinedMessage;
 import org.thoughtcrime.securesms.util.DirectoryHelper.UserCapabilities.Capability;
@@ -70,7 +70,7 @@ public class DirectoryHelper {
       throws IOException
   {
     List<String> newUsers = refreshDirectory(context,
-                                             TextSecureCommunicationFactory.createManager(context),
+                                             AccountManagerFactory.createManager(context),
                                              TextSecurePreferences.getLocalNumber(context));
 
     if (!newUsers.isEmpty() && TextSecurePreferences.isMultiDevice(context)) {
@@ -112,7 +112,7 @@ public class DirectoryHelper {
   {
     try {
       TextSecureDirectory           directory      = TextSecureDirectory.getInstance(context);
-      SignalServiceAccountManager   accountManager = TextSecureCommunicationFactory.createManager(context);
+      SignalServiceAccountManager   accountManager = AccountManagerFactory.createManager(context);
       String                        number         = Util.canonicalizeNumber(context, recipients.getPrimaryRecipient().getNumber());
       Optional<ContactTokenDetails> details        = accountManager.getContact(number);
 

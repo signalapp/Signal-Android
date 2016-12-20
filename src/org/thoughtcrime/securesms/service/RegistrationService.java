@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
-import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
+import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
@@ -161,7 +161,7 @@ public class RegistrationService extends Service {
     String signalingKey = intent.getStringExtra("signaling_key");
 
     try {
-      SignalServiceAccountManager accountManager = TextSecureCommunicationFactory.createManager(this, number, password);
+      SignalServiceAccountManager accountManager = AccountManagerFactory.createManager(this, number, password);
 
       handleCommonRegistration(accountManager, number, password, signalingKey);
 
@@ -198,7 +198,7 @@ public class RegistrationService extends Service {
       initializeChallengeListener();
 
       setState(new RegistrationState(RegistrationState.STATE_CONNECTING, number));
-      SignalServiceAccountManager accountManager = TextSecureCommunicationFactory.createManager(this, number, password);
+      SignalServiceAccountManager accountManager = AccountManagerFactory.createManager(this, number, password);
       accountManager.requestSmsVerificationCode();
 
       setState(new RegistrationState(RegistrationState.STATE_VERIFYING, number));

@@ -26,7 +26,7 @@ import org.thoughtcrime.securesms.crypto.PRNGFixes;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.RedPhoneCommunicationModule;
-import org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule;
+import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.persistence.EncryptingJobSerializer;
@@ -126,7 +126,7 @@ public class ApplicationContext extends Application implements DependencyInjecto
   }
 
   private void initializeDependencyInjection() {
-    this.objectGraph = ObjectGraph.create(new TextSecureCommunicationModule(this),
+    this.objectGraph = ObjectGraph.create(new SignalCommunicationModule(this),
                                           new RedPhoneCommunicationModule(this),
                                           new AxolotlStorageModule(this));
   }

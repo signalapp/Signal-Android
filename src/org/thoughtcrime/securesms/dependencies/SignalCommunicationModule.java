@@ -6,6 +6,7 @@ import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.DeviceListFragment;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
+import org.thoughtcrime.securesms.jobs.AvatarDownloadJob;
 import org.thoughtcrime.securesms.jobs.CleanPreKeysJob;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.DeliveryReceiptJob;
@@ -22,15 +23,19 @@ import org.thoughtcrime.securesms.jobs.PushTextSendJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
 import org.thoughtcrime.securesms.jobs.RequestGroupInfoJob;
+import org.thoughtcrime.securesms.push.Censorship;
+import org.thoughtcrime.securesms.push.SignalServiceTrustStore;
+import org.thoughtcrime.securesms.push.CensorshipFrontingTrustStore;
 import org.thoughtcrime.securesms.push.SecurityEventListener;
-import org.thoughtcrime.securesms.push.TextSecurePushTrustStore;
 import org.thoughtcrime.securesms.service.MessageRetrievalService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.push.TrustStore;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
+import org.whispersystems.signalservice.internal.push.SignalServiceUrl;
 
 import dagger.Module;
 import dagger.Provides;
@@ -53,29 +58,40 @@ import dagger.Provides;
                                      RefreshAttributesJob.class,
                                      GcmRefreshJob.class,
                                      RequestGroupInfoJob.class,
-                                     PushGroupUpdateJob.class})
-public class TextSecureCommunicationModule {
+                                     PushGroupUpdateJob.class,
+                                     AvatarDownloadJob.class})
+public class SignalCommunicationModule {
 
-  private final Context context;
+  private final Context          context;
+  private final SignalServiceUrl url;
+  private final TrustStore       trustStore;
 
-  public TextSecureCommunicationModule(Context context) {
-    this.context = context;
+  public SignalCommunicationModule(Context context) {
+    this.context    = context;
+
+    if (Censorship.isCensored(context)) {
+      this.url        = new SignalServiceUrl(BuildConfig.UNCENSORED_FRONTING_HOST, BuildConfig.CENSORED_REFLECTOR);
+      this.trustStore = new CensorshipFrontingTrustStore(context);
+    } else {
+      this.url        = new SignalServiceUrl(BuildConfig.TEXTSECURE_URL, null);
+      this.trustStore = new SignalServiceTrustStore(context);
+    }
   }
 
-  @Provides SignalServiceAccountManager provideTextSecureAccountManager() {
-    return new SignalServiceAccountManager(BuildConfig.TEXTSECURE_URL,
-                                           new TextSecurePushTrustStore(context),
+  @Provides SignalServiceAccountManager provideSignalAccountManager() {
+    return new SignalServiceAccountManager(this.url, this.trustStore,
                                            TextSecurePreferences.getLocalNumber(context),
                                            TextSecurePreferences.getPushServerPassword(context),
                                            BuildConfig.USER_AGENT);
   }
 
-  @Provides TextSecureMessageSenderFactory provideTextSecureMessageSenderFactory() {
-    return new TextSecureMessageSenderFactory() {
+  @Provides
+  SignalMessageSenderFactory provideSignalMessageSenderFactory() {
+    return new SignalMessageSenderFactory() {
       @Override
       public SignalServiceMessageSender create() {
-        return new SignalServiceMessageSender(BuildConfig.TEXTSECURE_URL,
-                                              new TextSecurePushTrustStore(context),
+        return new SignalServiceMessageSender(SignalCommunicationModule.this.url,
+                                              SignalCommunicationModule.this.trustStore,
                                               TextSecurePreferences.getLocalNumber(context),
                                               TextSecurePreferences.getPushServerPassword(context),
                                               new SignalProtocolStoreImpl(context),
@@ -85,14 +101,13 @@ public class TextSecureCommunicationModule {
     };
   }
 
-  @Provides SignalServiceMessageReceiver provideTextSecureMessageReceiver() {
-    return new SignalServiceMessageReceiver(BuildConfig.TEXTSECURE_URL,
-                                         new TextSecurePushTrustStore(context),
-                                         new DynamicCredentialsProvider(context),
-                                         BuildConfig.USER_AGENT);
+  @Provides SignalServiceMessageReceiver provideSignalMessageReceiver() {
+    return new SignalServiceMessageReceiver(this.url, this.trustStore,
+                                            new DynamicCredentialsProvider(context),
+                                            BuildConfig.USER_AGENT);
   }
 
-  public static interface TextSecureMessageSenderFactory {
+  public static interface SignalMessageSenderFactory {
     public SignalServiceMessageSender create();
   }
 

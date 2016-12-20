@@ -28,7 +28,7 @@ import java.io.IOException;
 
 import javax.inject.Inject;
 
-import static org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule.TextSecureMessageSenderFactory;
+import static org.thoughtcrime.securesms.dependencies.SignalCommunicationModule.SignalMessageSenderFactory;
 
 public class PushTextSendJob extends PushSendJob implements InjectableType {
 
@@ -36,7 +36,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
 
   private static final String TAG = PushTextSendJob.class.getSimpleName();
 
-  @Inject transient TextSecureMessageSenderFactory messageSenderFactory;
+  @Inject transient SignalMessageSenderFactory messageSenderFactory;
 
   private final long messageId;
 
