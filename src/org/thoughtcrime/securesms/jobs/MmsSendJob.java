@@ -64,8 +64,8 @@ public class MmsSendJob extends SendJob {
 
   @Override
   public void onAdded() {
-    MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
-    database.markAsSending(messageId);
+//    MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
+//    database.markAsSending(messageId);
   }
 
   @Override
@@ -82,7 +82,7 @@ public class MmsSendJob extends SendJob {
       final SendConf      sendConf = new CompatMmsConnection(context).send(pduBytes, message.getSubscriptionId());
       final MmsSendResult result   = getSendResult(sendConf, pdu);
 
-      database.markAsSent(messageId);
+      database.markAsSent(messageId, false);
       markAttachmentsUploaded(messageId, message.getAttachments());
     } catch (UndeliverableMessageException | IOException e) {
       Log.w(TAG, e);

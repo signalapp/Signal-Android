@@ -207,7 +207,7 @@ public class GroupMessageProcessor {
         long                      threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
         long                      messageId       = mmsDatabase.insertMessageOutbox(masterSecret, outgoingMessage, threadId, false);
 
-        mmsDatabase.markAsSent(messageId);
+        mmsDatabase.markAsSent(messageId, true);
 
         return threadId;
       } else {

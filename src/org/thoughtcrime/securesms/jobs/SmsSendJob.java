@@ -40,10 +40,7 @@ public class SmsSendJob extends SendJob {
   }
 
   @Override
-  public void onAdded() {
-    SmsDatabase database = DatabaseFactory.getEncryptingSmsDatabase(context);
-    database.markAsSending(messageId);
-  }
+  public void onAdded() {}
 
   @Override
   public void onSend(MasterSecret masterSecret) throws NoSuchMessageException {
