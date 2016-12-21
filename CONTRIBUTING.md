@@ -83,6 +83,6 @@ Any one can help by
 - submitting pull requests
 - testing other people's pull requests
 - spreading the joy of Signal to your friends and family
-- donating money to our [BitHub](https://www.coinbase.com/checkouts/51dac699e660a4d773216b5ad94d6a0b) or through the [Freedom of the Press Foundation's donation page](https://freedom.press/crowdfunding/)
+- donating money to our [BitHub](https://www.coinbase.com/checkouts/51dac699e660a4d773216b5ad94d6a0b) or through the [Freedom of the Press Foundation's donation page](https://freedom.press/crowdfunding/signal/)
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/WhisperSystems/Signal-Android?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
