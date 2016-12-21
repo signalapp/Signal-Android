@@ -7,6 +7,7 @@ import android.util.Log;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.AttachmentStreamUriLoader.AttachmentModel;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
@@ -24,7 +25,7 @@ import java.io.InputStream;
 
 import javax.inject.Inject;
 
-public class AvatarDownloadJob extends MasterSecretJob {
+public class AvatarDownloadJob extends MasterSecretJob implements InjectableType {
 
   private static final long serialVersionUID = 1L;
 
