@@ -177,7 +177,7 @@ android {
 
         buildConfigField "long", "BUILD_TIMESTAMP", getLastCommitTimestamp() + "L"
         buildConfigField "String", "TEXTSECURE_URL", "\"https://textsecure-service.whispersystems.org\""
-        buildConfigField "String[]", "CENSORED_COUNTRIES", "{\"+20\", \"+971\"}"
+        buildConfigField "String[]", "CENSORED_COUNTRIES", "{\"+20\", \"+971\", \"+53\", \"+968\"}"
         buildConfigField "String", "UNCENSORED_FRONTING_HOST", "\"https://www.google.com\""
         buildConfigField "String", "CENSORED_REFLECTOR", "\"signal-reflector-meek.appspot.com\""
         buildConfigField "String", "GIPHY_PROXY_HOST", "\"giphy-proxy-production.whispersystems.org\""
