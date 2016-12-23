@@ -93,4 +93,8 @@ public abstract class PushSendJob extends SendJob {
       MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
     }
   }
+
+  protected boolean isSignalMessage() {
+    return true;
+  }
 }
