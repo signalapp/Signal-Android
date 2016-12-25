@@ -36,8 +36,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 
 public class NotificationBarManager {
 
-  private static final int RED_PHONE_NOTIFICATION   = 313388;
-  private static final int MISSED_CALL_NOTIFICATION = 313389;
+  public static final int RED_PHONE_NOTIFICATION   = 313388;
 
   public static final int TYPE_INCOMING_RINGING = 1;
   public static final int TYPE_OUTGOING_RINGING = 2;
