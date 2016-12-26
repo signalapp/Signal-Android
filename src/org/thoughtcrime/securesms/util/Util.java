@@ -215,19 +215,21 @@ public class Util {
   }
 
   public static long copy(InputStream in, OutputStream out) throws IOException {
-    byte[] buffer = new byte[4096];
-    int read;
-    long total = 0;
+    try {
+      byte[] buffer = new byte[4096];
+      int read;
+      long total = 0;
 
-    while ((read = in.read(buffer)) != -1) {
-      out.write(buffer, 0, read);
-      total += read;
+      while ((read = in.read(buffer)) != -1) {
+        out.write(buffer, 0, read);
+        total += read;
+      }
+
+      return total;
+    } finally {
+      in.close();
+      out.close();
     }
-
-    in.close();
-    out.close();
-
-    return total;
   }
 
   public static @Nullable String getDeviceE164Number(Context context) {

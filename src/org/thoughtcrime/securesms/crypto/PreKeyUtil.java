@@ -105,24 +105,36 @@ public class PreKeyUtil {
   }
 
   private static void setNextPreKeyId(Context context, int id) {
+    FileOutputStream fout = null;
     try {
-      File             nextFile = new File(getPreKeysDirectory(context), PreKeyIndex.FILE_NAME);
-      FileOutputStream fout     = new FileOutputStream(nextFile);
+      File nextFile = new File(getPreKeysDirectory(context), PreKeyIndex.FILE_NAME);
+      fout = new FileOutputStream(nextFile);
       fout.write(JsonUtils.toJson(new PreKeyIndex(id)).getBytes());
-      fout.close();
     } catch (IOException e) {
       Log.w("PreKeyUtil", e);
+    } finally {
+      try {
+        if (fout != null) fout.close();
+      } catch (IOException e) {
+        Log.w("PreKeyUtil", e);
+      }
     }
   }
 
   private static void setNextSignedPreKeyId(Context context, int id) {
+    FileOutputStream fout = null;
     try {
-      File             nextFile = new File(getSignedPreKeysDirectory(context), SignedPreKeyIndex.FILE_NAME);
-      FileOutputStream fout     = new FileOutputStream(nextFile);
+      File nextFile = new File(getSignedPreKeysDirectory(context), SignedPreKeyIndex.FILE_NAME);
+      fout = new FileOutputStream(nextFile);
       fout.write(JsonUtils.toJson(new SignedPreKeyIndex(id)).getBytes());
-      fout.close();
     } catch (IOException e) {
       Log.w("PreKeyUtil", e);
+    } finally {
+      try {
+        if (fout != null) fout.close();
+      } catch (IOException e) {
+        Log.w("PreKeyUtil", e);
+      }
     }
   }
 
