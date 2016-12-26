@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2011 Whisper Systems
+ * Copyright (C) 2016 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -42,9 +42,9 @@ import java.util.List;
 /**
  * Get the response text from the Wearable Device and sends an message as a reply
  */
-public class WearReplyReceiver extends MasterSecretBroadcastReceiver {
+public class RemoteReplyReceiver extends MasterSecretBroadcastReceiver {
 
-  public static final String TAG                 = WearReplyReceiver.class.getSimpleName();
+  public static final String TAG                 = RemoteReplyReceiver.class.getSimpleName();
   public static final String REPLY_ACTION        = "org.thoughtcrime.securesms.notifications.WEAR_REPLY";
   public static final String RECIPIENT_IDS_EXTRA = "recipient_ids";
 
@@ -59,7 +59,7 @@ public class WearReplyReceiver extends MasterSecretBroadcastReceiver {
     if (remoteInput == null) return;
 
     final long[]       recipientIds = intent.getLongArrayExtra(RECIPIENT_IDS_EXTRA);
-    final CharSequence responseText = remoteInput.getCharSequence(MessageNotifier.EXTRA_VOICE_REPLY);
+    final CharSequence responseText = remoteInput.getCharSequence(MessageNotifier.EXTRA_REMOTE_REPLY);
     final Recipients   recipients   = RecipientFactory.getRecipientsForIds(context, recipientIds, false);
 
     if (masterSecret != null && responseText != null) {

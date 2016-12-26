@@ -13,11 +13,9 @@ import org.thoughtcrime.securesms.ConversationPopupActivity;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.VibrateState;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 public class NotificationState {
 
@@ -117,13 +115,13 @@ public class NotificationState {
     return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
   }
 
-  public PendingIntent getWearableReplyIntent(Context context, Recipients recipients) {
+  public PendingIntent getRemoteReplyIntent(Context context, Recipients recipients) {
     if (threads.size() != 1) throw new AssertionError("We only support replies to single thread notifications!");
 
-    Intent intent = new Intent(WearReplyReceiver.REPLY_ACTION);
-    intent.setClass(context, WearReplyReceiver.class);
+    Intent intent = new Intent(RemoteReplyReceiver.REPLY_ACTION);
+    intent.setClass(context, RemoteReplyReceiver.class);
     intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
-    intent.putExtra(WearReplyReceiver.RECIPIENT_IDS_EXTRA, recipients.getIds());
+    intent.putExtra(RemoteReplyReceiver.RECIPIENT_IDS_EXTRA, recipients.getIds());
     intent.setPackage(context.getPackageName());
 
     return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);

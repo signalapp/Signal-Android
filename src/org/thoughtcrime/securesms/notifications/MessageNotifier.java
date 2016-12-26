@@ -86,7 +86,7 @@ public class MessageNotifier {
 
   private static final String TAG = MessageNotifier.class.getSimpleName();
 
-  public static final  String EXTRA_VOICE_REPLY         = "extra_voice_reply";
+  public static final  String EXTRA_REMOTE_REPLY = "extra_remote_reply";
 
   private static final  int   SUMMARY_NOTIFICATION_ID   = 1338;
   private static final String NOTIFICATION_GROUP        = "messages";
@@ -309,7 +309,8 @@ public class MessageNotifier {
     builder.addActions(masterSecret,
                        notificationState.getMarkAsReadIntent(context, notificationId),
                        notificationState.getQuickReplyIntent(context, notifications.get(0).getRecipients()),
-                       notificationState.getWearableReplyIntent(context, notifications.get(0).getRecipients()));
+                       notificationState.getRemoteReplyIntent(context, notifications.get(0).getRecipients()));
+
     builder.addAndroidAutoAction(notificationState.getAndroidAutoReplyIntent(context, notifications.get(0).getRecipients()),
                                  notificationState.getAndroidAutoHeardIntent(context, notificationId), notifications.get(0).getTimestamp());
 

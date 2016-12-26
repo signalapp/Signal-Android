@@ -460,7 +460,7 @@
         </intent-filter>
     </receiver>
 
-    <receiver android:name=".notifications.WearReplyReceiver"
+    <receiver android:name=".notifications.RemoteReplyReceiver"
               android:enabled="true"
               android:exported="false">
         <intent-filter>
