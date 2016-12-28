@@ -304,7 +304,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
               if (identityPreference != null) identityPreference.setOnPreferenceClickListener(new IdentityClickedListener(result.get()));
               if (identityPreference != null) identityPreference.setEnabled(true);
             } else if (canHaveSafetyNumber) {
-              if (identityPreference != null) identityPreference.setSummary(R.string.RecipientPreferenceActivity_you_will_have_to_exchange_a_message_first);
+              if (identityPreference != null) identityPreference.setSummary(R.string.RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received);
             } else {
               if (identityPreference != null) getPreferenceScreen().removePreference(identityPreference);
             }
