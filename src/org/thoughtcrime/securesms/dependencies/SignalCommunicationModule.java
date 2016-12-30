@@ -23,17 +23,14 @@ import org.thoughtcrime.securesms.jobs.PushTextSendJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
 import org.thoughtcrime.securesms.jobs.RequestGroupInfoJob;
-import org.thoughtcrime.securesms.push.Censorship;
-import org.thoughtcrime.securesms.push.SignalServiceTrustStore;
-import org.thoughtcrime.securesms.push.CensorshipFrontingTrustStore;
 import org.thoughtcrime.securesms.push.SecurityEventListener;
+import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.service.MessageRetrievalService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
-import org.whispersystems.signalservice.api.push.TrustStore;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.internal.push.SignalServiceUrl;
 
@@ -62,24 +59,16 @@ import dagger.Provides;
                                      AvatarDownloadJob.class})
 public class SignalCommunicationModule {
 
-  private final Context          context;
-  private final SignalServiceUrl url;
-  private final TrustStore       trustStore;
+  private final Context            context;
+  private final SignalServiceUrl[] urls;
 
-  public SignalCommunicationModule(Context context) {
-    this.context    = context;
-
-    if (Censorship.isCensored(context)) {
-      this.url        = new SignalServiceUrl(BuildConfig.UNCENSORED_FRONTING_HOST, BuildConfig.CENSORED_REFLECTOR);
-      this.trustStore = new CensorshipFrontingTrustStore(context);
-    } else {
-      this.url        = new SignalServiceUrl(BuildConfig.TEXTSECURE_URL, null);
-      this.trustStore = new SignalServiceTrustStore(context);
-    }
+  public SignalCommunicationModule(Context context, SignalServiceNetworkAccess networkAccess) {
+    this.context = context;
+    this.urls    = networkAccess.getConfiguration(context);
   }
 
   @Provides SignalServiceAccountManager provideSignalAccountManager() {
-    return new SignalServiceAccountManager(this.url, this.trustStore,
+    return new SignalServiceAccountManager(urls,
                                            TextSecurePreferences.getLocalNumber(context),
                                            TextSecurePreferences.getPushServerPassword(context),
                                            BuildConfig.USER_AGENT);
@@ -90,8 +79,7 @@ public class SignalCommunicationModule {
     return new SignalMessageSenderFactory() {
       @Override
       public SignalServiceMessageSender create() {
-        return new SignalServiceMessageSender(SignalCommunicationModule.this.url,
-                                              SignalCommunicationModule.this.trustStore,
+        return new SignalServiceMessageSender(urls,
                                               TextSecurePreferences.getLocalNumber(context),
                                               TextSecurePreferences.getPushServerPassword(context),
                                               new SignalProtocolStoreImpl(context),
@@ -102,7 +90,7 @@ public class SignalCommunicationModule {
   }
 
   @Provides SignalServiceMessageReceiver provideSignalMessageReceiver() {
-    return new SignalServiceMessageReceiver(this.url, this.trustStore,
+    return new SignalServiceMessageReceiver(urls,
                                             new DynamicCredentialsProvider(context),
                                             BuildConfig.USER_AGENT);
   }

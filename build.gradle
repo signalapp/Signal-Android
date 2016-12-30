@@ -76,7 +76,7 @@ dependencies {
     compile 'org.whispersystems:jobmanager:1.0.2'
     compile 'org.whispersystems:libpastelog:1.0.7'
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
-    compile 'org.whispersystems:signal-service-android:2.4.3'
+    compile 'org.whispersystems:signal-service-android:2.4.4'
     compile 'com.h6ah4i.android.compat:mulsellistprefcompat:1.0.0'
     compile 'com.google.zxing:core:3.2.1'
 
@@ -134,7 +134,7 @@ dependencyVerification {
         'org.whispersystems:jobmanager:506f679fc2fcf7bb6d10f00f41d6f6ea0abf75c70dc95b913398661ad538a181',
         'org.whispersystems:libpastelog:bb331d9a98240fc139101128ba836c1edec3c40e000597cdbb29ebf4cbf34d88',
         'com.amulyakhare:com.amulyakhare.textdrawable:54c92b5fba38cfd316a07e5a30528068f45ce8515a6890f1297df4c401af5dcb',
-        'org.whispersystems:signal-service-android:59e4cec73b9160b7d7c073841318098d46f25c618561d457baf4e10775a6e7b1',
+        'org.whispersystems:signal-service-android:27f3f686d9d9f855360307b4b641e666246e7b617020e271df66cb4bdcc26f2a',
         'com.h6ah4i.android.compat:mulsellistprefcompat:47167c5cb796de1a854788e9ff318358e36c8fb88123baaa6e38fb78511dfabe',
         'com.google.zxing:core:b4d82452e7a6bf6ec2698904b332431717ed8f9a850224f295aec89de80f2259',
         'cn.carbswang.android:NumberPickerView:18b3c316d62c7c277978a8d4ed57a5b8f4e943762264960f579a8a549c756729',
@@ -144,7 +144,7 @@ dependencyVerification {
         'javax.inject:javax.inject:91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff',
         'com.madgag.spongycastle:core:8d6240b974b0aca4d3da9c7dd44d42339d8a374358aca5fc98e50a995764511f',
         'org.whispersystems:signal-protocol-android:1b4b9d557c8eaf861797ff683990d482d4aa8e9f23d9b17ff0cc67a02f38cb19',
-        'org.whispersystems:signal-service-java:9e983922084ca2c8089de0a58d7f2032e50026c2456c2bf9dfb0a56ac46a5864',
+        'org.whispersystems:signal-service-java:df0e83633ff4078cd276838c8942b953f670c61a5f2615ae2a89c75c19fc1bec',
         'com.google.android.gms:play-services-basement:e1d29b21e02fd2a63e5a31807415cbb17a59568e27e3254181c01ffae10659bf',
         'org.whispersystems:curve25519-android:bf6c34223d45d2f2813a8efcab9923caf99115115c760c9acea680bcb42d23c0',
         'org.whispersystems:signal-protocol-java:a835cd0609cf116a74651bd0aa748db9392bba48c2d2af787757b8a1b50d131c',
@@ -176,10 +176,7 @@ android {
         vectorDrawables.useSupportLibrary = true
 
         buildConfigField "long", "BUILD_TIMESTAMP", getLastCommitTimestamp() + "L"
-        buildConfigField "String", "TEXTSECURE_URL", "\"https://textsecure-service.whispersystems.org\""
-        buildConfigField "String[]", "CENSORED_COUNTRIES", "{\"+20\", \"+971\", \"+53\", \"+968\"}"
-        buildConfigField "String", "UNCENSORED_FRONTING_HOST", "\"https://www.google.com\""
-        buildConfigField "String", "CENSORED_REFLECTOR", "\"signal-reflector-meek.appspot.com\""
+        buildConfigField "String", "SIGNAL_URL", "\"https://textsecure-service.whispersystems.org\""
         buildConfigField "String", "GIPHY_PROXY_HOST", "\"giphy-proxy-production.whispersystems.org\""
         buildConfigField "int", "GIPHY_PROXY_PORT", "80"
         buildConfigField "String", "USER_AGENT", "\"OWA\""

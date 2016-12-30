@@ -14,7 +14,7 @@ import android.util.Log;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
-import org.thoughtcrime.securesms.push.Censorship;
+import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.MessageRetrievalService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -33,12 +33,14 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
   private static final int STATE_PROMPT_PUSH_REGISTRATION = 4;
   private static final int STATE_EXPERIENCE_UPGRADE       = 5;
 
-  private BroadcastReceiver clearKeyReceiver;
-  private boolean           isVisible;
+  private SignalServiceNetworkAccess networkAccess;
+  private BroadcastReceiver          clearKeyReceiver;
+  private boolean                    isVisible;
 
   @Override
   protected final void onCreate(Bundle savedInstanceState) {
     Log.w(TAG, "onCreate(" + savedInstanceState + ")");
+    this.networkAccess = new SignalServiceNetworkAccess(this);
     onPreCreate();
     final MasterSecret masterSecret = KeyCachingService.getMasterSecret(this);
     routeApplicationState(masterSecret);
@@ -58,8 +60,9 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
     super.onResume();
     KeyCachingService.registerPassphraseActivityStarted(this);
 
-    if (!Censorship.isCensored(this)) MessageRetrievalService.registerActivityStarted(this);
-    else                              ApplicationContext.getInstance(this).getJobManager().add(new PushNotificationReceiveJob(this));
+    if (!networkAccess.isCensored(this)) MessageRetrievalService.registerActivityStarted(this);
+    else                                 ApplicationContext.getInstance(this).getJobManager().add(new PushNotificationReceiveJob(this));
+
     isVisible = true;
   }
 
@@ -69,7 +72,8 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
     super.onPause();
     KeyCachingService.registerPassphraseActivityStopped(this);
 
-    if (!Censorship.isCensored(this)) MessageRetrievalService.registerActivityStopped(this);
+    if (!networkAccess.isCensored(this)) MessageRetrievalService.registerActivityStopped(this);
+
     isVisible = false;
   }
 

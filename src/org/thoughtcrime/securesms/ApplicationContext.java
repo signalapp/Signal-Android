@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.jobs.persistence.EncryptingJobSerializer;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirementProvider;
 import org.thoughtcrime.securesms.jobs.requirements.MediaNetworkRequirementProvider;
 import org.thoughtcrime.securesms.jobs.requirements.ServiceRequirementProvider;
+import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobManager;
@@ -126,7 +127,7 @@ public class ApplicationContext extends Application implements DependencyInjecto
   }
 
   private void initializeDependencyInjection() {
-    this.objectGraph = ObjectGraph.create(new SignalCommunicationModule(this),
+    this.objectGraph = ObjectGraph.create(new SignalCommunicationModule(this, new SignalServiceNetworkAccess(this)),
                                           new RedPhoneCommunicationModule(this),
                                           new AxolotlStorageModule(this));
   }
