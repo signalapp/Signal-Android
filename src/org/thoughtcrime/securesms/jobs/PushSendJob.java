@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.AttachmentEmptyException;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
@@ -54,7 +55,8 @@ public abstract class PushSendJob extends SendJob {
     return new SignalServiceAddress(e164number, Optional.fromNullable(relay));
   }
 
-  protected List<SignalServiceAttachment> getAttachmentsFor(MasterSecret masterSecret, List<Attachment> parts) {
+  protected List<SignalServiceAttachment> getAttachmentsFor(MasterSecret masterSecret, List<Attachment> parts)
+          throws AttachmentEmptyException {
     List<SignalServiceAttachment> attachments = new LinkedList<>();
 
     for (final Attachment attachment : parts) {
@@ -64,6 +66,11 @@ public abstract class PushSendJob extends SendJob {
       {
         try {
           if (attachment.getDataUri() == null) throw new IOException("Assertion failed, outgoing attachment has no data!");
+          if (attachment.getSize() == 0) {
+            Log.e(TAG, "Empty attachment, cannot send");
+            throw new AttachmentEmptyException("Attachment " + attachment.getDataUri() + " is empty");
+          }
+
           InputStream is = PartAuthority.getAttachmentStream(context, masterSecret, attachment.getDataUri());
           attachments.add(SignalServiceAttachment.newStreamBuilder()
                                                  .withStream(is)

@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
+import org.thoughtcrime.securesms.util.AttachmentEmptyException;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
@@ -95,7 +96,8 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
                           .getExpiringMessageManager()
                           .scheduleDeletion(messageId, true, message.getExpiresIn());
       }
-    } catch (InvalidNumberException | RecipientFormattingException | UndeliverableMessageException e) {
+    } catch (InvalidNumberException | RecipientFormattingException |
+            UndeliverableMessageException | AttachmentEmptyException e) {
       Log.w(TAG, e);
       database.markAsSentFailed(messageId);
       notifyMediaMessageDeliveryFailed(context, messageId);
@@ -140,7 +142,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
   private void deliver(MasterSecret masterSecret, OutgoingMediaMessage message, long filterRecipientId)
       throws IOException, RecipientFormattingException, InvalidNumberException,
-      EncapsulatedExceptions, UndeliverableMessageException
+      EncapsulatedExceptions, UndeliverableMessageException, AttachmentEmptyException
   {
     SignalServiceMessageSender    messageSender     = messageSenderFactory.create();
     byte[]                        groupId           = GroupUtil.getDecodedId(message.getRecipients().getPrimaryRecipient().getNumber());
