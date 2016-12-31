@@ -1,0 +1,16 @@
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <solid
+        android:color="@android:color/white"
+        />
+
+    <corners
+        android:bottomLeftRadius="@dimen/list_item_height"
+        android:topLeftRadius="@dimen/list_item_height"
+        android:topRightRadius="@dimen/list_item_height"
+        android:bottomRightRadius="0dp"
+        />
+
+</shape>

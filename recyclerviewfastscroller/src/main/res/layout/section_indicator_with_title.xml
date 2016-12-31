@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/section_title_popup"
+    android:layout_width="wrap_content"
+    android:minWidth="@dimen/list_item_height"
+    android:layout_height="@dimen/list_item_height"
+    android:layout_gravity="center"
+    android:background="@drawable/section_indicator_background_default_rounded"
+    >
+
+    <TextView
+        android:id="@+id/section_indicator_text"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textSize="48dp"
+        android:paddingLeft="@dimen/margin_small"
+        android:paddingRight="@dimen/margin_small"
+        android:layout_gravity="center"
+        android:gravity="center"
+        />
+
+</FrameLayout>

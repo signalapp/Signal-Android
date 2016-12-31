@@ -1,24 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="fill_parent"
-             android:layout_height="match_parent">
+             android:layout_height="match_parent"
+             android:orientation="horizontal"
+             android:shrinkColumns="0"
+             android:stretchColumns="0">
 
-    <android.support.v7.widget.RecyclerView
-            android:id="@android:id/list"
-            android:layout_width="match_parent"
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+
+        <FrameLayout
+            android:id="@+id/conv_frame_1"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@android:id/list"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:cacheColorHint="?conversation_background"
+                android:scrollbarSize="1px"
+                android:scrollbarStyle="insideOverlay"
+                android:scrollbarThumbVertical="@drawable/transparent_scrollbar"
+                android:scrollbarTrackVertical="@drawable/transparent_scrollbar"
+                android:scrollbars="vertical"/>
+
+            <!--suppress AndroidLintUnusedAttribute-->
+            <View
+                android:id="@+id/compose_divider"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_gravity="bottom"
+                android:alpha="0"
+                android:background="@drawable/compose_divider_background"
+                android:visibility="invisible"/>
+
+        </FrameLayout>
+
+        <xyz.danoz.recyclerviewfastscroller.vertical.VerticalRecyclerViewFastScroller
+            android:id="@+id/fastscroller2"
+            android:layout_width="20dp"
             android:layout_height="match_parent"
-            android:scrollbars="vertical"
-            android:cacheColorHint="?conversation_background" />
-
-
-    <!--suppress AndroidLintUnusedAttribute-->
-    <View android:id="@+id/compose_divider"
-          android:layout_width="match_parent"
-          android:layout_height="2dp"
-          android:layout_gravity="bottom"
-          android:background="@drawable/compose_divider_background"
-          android:alpha="0"
-          android:visibility="invisible" />
-
-</FrameLayout>
+            android:layout_gravity="bottom"
+            android:layout_weight="1.0"
+            android:visibility="visible"
+            />
+    </TableRow>
+</TableLayout>

@@ -1,0 +1,39 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion '23.0.3'
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 21
+        versionCode 3
+        versionName "0.1.3"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile "com.android.support:support-v4:23.2.1"
+    compile "com.android.support:recyclerview-v7:23.2.1"
+}
+
+def uploadScriptPropertyName = "recyclerviewfastscroller.uploadScript"
+
+if (project.hasProperty(uploadScriptPropertyName)
+        && new File((String) project.property(uploadScriptPropertyName)).exists()) {
+
+    apply from: project.property(uploadScriptPropertyName)
+
+    afterEvaluate {
+        androidJavadocs.classpath += project.android.libraryVariants.toList().first().javaCompile.classpath
+    }
+}

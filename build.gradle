@@ -38,6 +38,11 @@ repositories {
 }
 
 dependencies {
+	// can't use the original one, since it does not work properly!
+    compile (project(':recyclerviewfastscroller')){
+        exclude module: 'support-v4'
+        exclude module: 'recyclerview-v7'
+    }
     compile 'me.leolin:ShortcutBadger:1.1.0-WS1'
     compile 'se.emilsjolander:stickylistheaders:2.7.0'
     compile 'com.google.android.gms:play-services-gcm:8.1.0'
