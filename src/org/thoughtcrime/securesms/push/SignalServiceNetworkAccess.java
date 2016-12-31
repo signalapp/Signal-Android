@@ -37,12 +37,12 @@ public class SignalServiceNetworkAccess {
                                                                googleTrustStore),
                                           baseAndroid, baseGoogle});
 
-      put("+53", new SignalServiceUrl[] {new SignalServiceUrl("https://www.google.com.om",
+      put("+53", new SignalServiceUrl[] {new SignalServiceUrl("https://www.google.com.cu",
                                                               APPSPOT_REFLECTOR_HOST,
                                                               googleTrustStore),
                                          baseAndroid, baseGoogle});
 
-      put("+968", new SignalServiceUrl[] {new SignalServiceUrl("https://www.google.com.cu",
+      put("+968", new SignalServiceUrl[] {new SignalServiceUrl("https://www.google.com.om",
                                                                APPSPOT_REFLECTOR_HOST,
                                                                googleTrustStore),
                                           baseAndroid, baseGoogle});
