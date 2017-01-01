@@ -19,7 +19,7 @@
     </style>
 
     <style name="AppCompatAlertDialogStyleLight" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="colorAccent">@color/signal_primary</item>
+        <item name="colorAccent">@color/signal_primary_dark</item>
     </style>
 
     <style name="AppCompatAlertDialogStyleDark" parent="Theme.AppCompat.Dialog.Alert">
@@ -27,7 +27,7 @@
     </style>
 
     <style name="AppCompatDialogStyleLight" parent="Theme.AppCompat.Light.Dialog">
-        <item name="colorAccent">@color/signal_primary</item>
+        <item name="colorAccent">@color/signal_primary_dark</item>
         <item name="android:windowBackground">@drawable/dialog_background</item>
     </style>
 
