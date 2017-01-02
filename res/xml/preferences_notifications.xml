@@ -14,11 +14,12 @@
                         android:ringtoneType="notification"
                         android:defaultValue="content://settings/system/notification_sound" />
 
-    <CheckBoxPreference android:dependency="pref_key_enable_notifications"
-                        android:key="pref_key_vibrate"
-                        android:defaultValue="true"
-                        android:title="@string/preferences__vibrate"
-                        android:summary="@string/preferences__also_vibrate_when_notified" />
+    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+        android:dependency="pref_key_enable_notifications"
+        android:key="pref_key_vibrate"
+        android:defaultValue="true"
+        android:title="@string/preferences__vibrate"
+        android:summary="@string/preferences__also_vibrate_when_notified" />
 
     <ListPreference
         android:key="pref_led_color"
@@ -36,11 +37,12 @@
         android:entries="@array/pref_led_blink_pattern_entries"
         android:entryValues="@array/pref_led_blink_pattern_values" />
 
-    <CheckBoxPreference android:key="pref_key_inthread_notifications"
-                        android:title="@string/preferences__in_conversation_notifications"
-                        android:summary="@string/preferences__play_inthread_notifications"
-                        android:dependency="pref_key_enable_notifications"
-                        android:defaultValue="true" />
+    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+        android:key="pref_key_inthread_notifications"
+        android:title="@string/preferences__in_conversation_notifications"
+        android:summary="@string/preferences__play_inthread_notifications"
+        android:dependency="pref_key_enable_notifications"
+        android:defaultValue="true" />
 
     <ListPreference
             android:key="pref_repeat_alerts"
