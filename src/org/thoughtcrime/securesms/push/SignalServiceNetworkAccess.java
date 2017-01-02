@@ -30,7 +30,7 @@ public class SignalServiceNetworkAccess {
       put("+20", new SignalServiceUrl[] {new SignalServiceUrl("https://www.google.com.eg",
                                                               APPSPOT_REFLECTOR_HOST,
                                                               googleTrustStore),
-                                         baseAndroid});
+                                          baseAndroid});
 
       put("+971", new SignalServiceUrl[] {new SignalServiceUrl("https://www.google.ae",
                                                                APPSPOT_REFLECTOR_HOST,
@@ -40,12 +40,13 @@ public class SignalServiceNetworkAccess {
       put("+53", new SignalServiceUrl[] {new SignalServiceUrl("https://www.google.com.om",
                                                               APPSPOT_REFLECTOR_HOST,
                                                               googleTrustStore),
-                                         baseAndroid, baseGoogle});
+                                          baseAndroid, baseGoogle});
 
       put("+968", new SignalServiceUrl[] {new SignalServiceUrl("https://www.google.com.cu",
                                                                APPSPOT_REFLECTOR_HOST,
                                                                googleTrustStore),
                                           baseAndroid, baseGoogle});
+      put("+98", new SignalServiceUrl[] {baseAndroid, baseGoogle});
     }};
 
     this.uncensoredConfiguration = new SignalServiceUrl[] {
