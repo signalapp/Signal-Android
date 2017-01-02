@@ -21,11 +21,17 @@
         android:title="@string/preferences__vibrate"
         android:summary="@string/preferences__also_vibrate_when_notified" />
 
+    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+        android:dependency="pref_key_enable_notifications"
+        android:key="pref_key_led"
+        android:defaultValue="true"
+        android:title="@string/preferences__led" />
+
     <ListPreference
         android:key="pref_led_color"
         android:defaultValue="blue"
         android:title="@string/preferences__led_color"
-        android:dependency="pref_key_enable_notifications"
+        android:dependency="pref_key_led"
         android:entries="@array/pref_led_color_entries"
         android:entryValues="@array/pref_led_color_values" />
 
@@ -33,7 +39,7 @@
         android:key="pref_led_blink"
         android:defaultValue="500,2000"
         android:title="@string/preferences__pref_led_blink_title"
-        android:dependency="pref_key_enable_notifications"
+        android:dependency="pref_key_led"
         android:entries="@array/pref_led_blink_pattern_entries"
         android:entryValues="@array/pref_led_blink_pattern_values" />
 

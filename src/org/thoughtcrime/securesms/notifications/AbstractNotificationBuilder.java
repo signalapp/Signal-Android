@@ -55,11 +55,11 @@ public abstract class AbstractNotificationBuilder extends NotificationCompat.Bui
   }
 
   private void setLed() {
-    String ledColor              = TextSecurePreferences.getNotificationLedColor(context);
-    String ledBlinkPattern       = TextSecurePreferences.getNotificationLedPattern(context);
-    String ledBlinkPatternCustom = TextSecurePreferences.getNotificationLedPatternCustom(context);
+    if (TextSecurePreferences.isNotificationLedEnabled(context)) {
+      String ledColor = TextSecurePreferences.getNotificationLedColor(context);
+      String ledBlinkPattern = TextSecurePreferences.getNotificationLedPattern(context);
+      String ledBlinkPatternCustom = TextSecurePreferences.getNotificationLedPatternCustom(context);
 
-    if (!ledColor.equals("none")) {
       String[] blinkPatternArray = parseBlinkPattern(ledBlinkPattern, ledBlinkPatternCustom);
 
       setLights(Color.parseColor(ledColor),

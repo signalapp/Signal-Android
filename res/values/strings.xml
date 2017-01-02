@@ -1061,6 +1061,7 @@
     <string name="preferences__also_vibrate_when_notified">Also vibrate when notified</string>
     <string name="preferences__minutes">minutes</string>
     <string name="preferences__hours">hours</string>
+    <string name="preferences__led">Blink LED</string>
     <string name="preferences__green">Green</string>
     <string name="preferences__red">Red</string>
     <string name="preferences__blue">Blue</string>
