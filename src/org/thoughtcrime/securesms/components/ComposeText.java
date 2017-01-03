@@ -133,6 +133,7 @@ public class ComposeText extends EmojiEditText {
 
     if (Build.VERSION.SDK_INT <= 13) return inputConnection;
     if (mediaListener == null)       return inputConnection;
+    if (inputConnection == null)     return null;
 
     EditorInfoCompat.setContentMimeTypes(editorInfo, new String[] {"image/jpeg", "image/png", "image/gif"});
     return InputConnectionCompat.createWrapper(inputConnection, editorInfo, new CommitContentListener(mediaListener));

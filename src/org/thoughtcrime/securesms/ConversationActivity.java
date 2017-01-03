@@ -510,6 +510,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleSelectMessageExpiration() {
+    if (isPushGroupConversation() && !isActiveGroup()) {
+      return;
+    }
+
     ExpirationDialog.show(this, recipients.getExpireMessages(), new ExpirationDialog.OnClickListener() {
       @Override
       public void onClick(final int expirationTime) {
