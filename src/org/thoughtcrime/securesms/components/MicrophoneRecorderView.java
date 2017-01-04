@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -113,9 +114,12 @@ public class MicrophoneRecorderView extends FrameLayout implements View.OnTouchL
 
       recordButtonFab.setVisibility(View.VISIBLE);
 
+      float translation = ViewCompat.getLayoutDirection(recordButtonFab) ==
+          ViewCompat.LAYOUT_DIRECTION_LTR ? -.25f : .25f;
+
       AnimationSet animation = new AnimationSet(true);
-      animation.addAnimation(new TranslateAnimation(Animation.RELATIVE_TO_SELF, -.25f,
-                                                    Animation.RELATIVE_TO_SELF, -.25f,
+      animation.addAnimation(new TranslateAnimation(Animation.RELATIVE_TO_SELF, translation,
+                                                    Animation.RELATIVE_TO_SELF, translation,
                                                     Animation.RELATIVE_TO_SELF, -.25f,
                                                     Animation.RELATIVE_TO_SELF, -.25f));
 
@@ -134,8 +138,8 @@ public class MicrophoneRecorderView extends FrameLayout implements View.OnTouchL
     public void moveTo(float x) {
       this.lastPositionX = x;
 
-      float offset          = -Math.max(0, this.startPositionX - x);
-      int   widthAdjustment = -(recordButtonFab.getWidth() / 4);
+      float offset          = getOffset(x);
+      int   widthAdjustment = getWidthAdjustment();
 
       Animation translateAnimation = new TranslateAnimation(Animation.ABSOLUTE, widthAdjustment + offset,
                                                             Animation.ABSOLUTE, widthAdjustment + offset,
@@ -152,8 +156,8 @@ public class MicrophoneRecorderView extends FrameLayout implements View.OnTouchL
     public void hide(float x) {
       this.lastPositionX = x;
 
-      float offset          = -Math.max(0, this.startPositionX - x);
-      int   widthAdjustment = -(recordButtonFab.getWidth() / 4);
+      float offset          = getOffset(x);
+      int   widthAdjustment = getWidthAdjustment();
 
       AnimationSet animation = new AnimationSet(false);
       Animation scaleAnimation = new ScaleAnimation(1, 0.5f, 1, 0.5f,
@@ -177,6 +181,16 @@ public class MicrophoneRecorderView extends FrameLayout implements View.OnTouchL
       recordButtonFab.setVisibility(View.GONE);
       recordButtonFab.clearAnimation();
       recordButtonFab.startAnimation(animation);
+    }
+
+    private float getOffset(float x) {
+      return ViewCompat.getLayoutDirection(recordButtonFab) == ViewCompat.LAYOUT_DIRECTION_LTR ?
+          -Math.max(0, this.startPositionX - x) : Math.max(0, x - this.startPositionX);
+    }
+
+    private int getWidthAdjustment() {
+      int width = recordButtonFab.getWidth() / 4;
+      return ViewCompat.getLayoutDirection(recordButtonFab) == ViewCompat.LAYOUT_DIRECTION_LTR ? -width : width;
     }
 
   }
