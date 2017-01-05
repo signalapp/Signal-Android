@@ -455,4 +455,8 @@ public class Util {
     return (int)value;
   }
 
+  public static boolean isStringEquals(String first, String second) {
+    if (first == null) return second == null;
+    return first.equals(second);
+  }
 }
