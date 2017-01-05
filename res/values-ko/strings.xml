@@ -525,7 +525,6 @@
   <string name="conversation_activity__compose_description">메시지 작성</string>
   <string name="conversation_activity__emoji_toggle_description">이모티콘 키보드 전환</string>
   <string name="conversation_activity__attachment_thumbnail">첨부파일 미리보기 이미지</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">첨부 창 전환</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">취소하려면 슬라이드</string>
   <!--conversation_item-->
@@ -542,6 +541,7 @@
   <string name="conversation_item_received__download">다운로드</string>
   <string name="conversation_item_received__contact_photo_description">연락처 사진</string>
   <string name="conversation_item_received__downloading">다운로드 중</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">여러 대화 선택</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s개 선택됨</string>

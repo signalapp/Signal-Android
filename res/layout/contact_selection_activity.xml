@@ -3,7 +3,8 @@
               android:layout_height="fill_parent"
               android:layout_width="fill_parent"
               android:orientation="vertical"
-              xmlns:android="http://schemas.android.com/apk/res/android">
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <org.thoughtcrime.securesms.components.ContactFilterToolbar
             android:id="@+id/toolbar"
@@ -11,7 +12,7 @@
             android:layout_width="match_parent"
             android:minHeight="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            android:theme="?attr/actionBarStyle" />
+            android:theme="?attr/actionBarStyle"/>
 
         <fragment android:id="@+id/contact_selection_list_fragment"
                   android:layout_width="match_parent"

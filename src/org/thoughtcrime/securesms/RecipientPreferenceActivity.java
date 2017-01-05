@@ -130,6 +130,8 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
   private void initializeToolbar() {
     this.toolbar = (Toolbar) findViewById(R.id.toolbar);
+    this.toolbar.setLogo(null);
+
     setSupportActionBar(toolbar);
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);

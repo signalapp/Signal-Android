@@ -34,7 +34,7 @@ import javax.inject.Inject;
 
 import ws.com.google.android.mms.MmsException;
 
-import static org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule.TextSecureMessageSenderFactory;
+import static org.thoughtcrime.securesms.dependencies.SignalCommunicationModule.SignalMessageSenderFactory;
 
 public class PushMediaSendJob extends PushSendJob implements InjectableType {
 
@@ -42,7 +42,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
 
   private static final String TAG = PushMediaSendJob.class.getSimpleName();
 
-  @Inject transient TextSecureMessageSenderFactory messageSenderFactory;
+  @Inject transient SignalMessageSenderFactory messageSenderFactory;
 
   private final long messageId;
 

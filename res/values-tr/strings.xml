@@ -143,15 +143,15 @@
     <item quantity="other">%1$d medyanın tümünü depolama alanına kaydetmek, telefonunuzda ki diğer uygulamaların erişimine izin verecektir.\n\nDevam edilsin mi?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
-    <item quantity="other">Depolama alanına ek kaydedilirken hata oluştu!</item>
+    <item quantity="other">Ekler depolama alanına kaydedilirken hata oluştu! </item>
   </plurals>
   <string name="ConversationFragment_file_saved_successfully">Dosya başarıyla kaydedildi.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Depolama alanına yazılamıyor!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
-    <item quantity="other">%1$d kaydediliyor</item>
+    <item quantity="other">%1$d ekleri kaydediliyor</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="other">%1$d depolama alanına kaydediliyor...</item>
+    <item quantity="other">%1$d ekleri depolama alanına kaydediliyor... </item>
   </plurals>
   <string name="ConversationFragment_collecting_attahments">Ekler toplanıyor...</string>
   <string name="ConversationFragment_pending">Bekleyen...</string>
@@ -227,7 +227,7 @@
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Tam çözünürlükte GIF alınırken hata oluştu... </string>
   <!--GiphyFragmentPageAdapter-->
-  <string name="GiphyFragmentPagerAdapter_gifs">Gifler</string>
+  <string name="GiphyFragmentPagerAdapter_gifs">GIFler</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Çıkartmalar</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Yeni grup</string>
@@ -467,7 +467,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Mesaj yok olma zamanı %s olarak belirlendi</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">%s ile güvenlik numaranız değişti.</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kişi Signal\'in eski bir sürümünü çalıştırıyor, güvenlik numaranızı doğrulamadan önce lütfen güncellemesini isteyin.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kişi Signal\'in eski bir sürümünü kullanıyor. Güvenlik numaranızı onaylamadan önce güncelleme yapmalarını isteyin. </string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kişi QR kod biçimi ile uyumlu olmayan Signal\'in daha yeni bir sürümü kullanıyor. Karşılaştırmak için uygulamayı güncelleyin.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Taranan QR kodu doğru biçimlendirilmiş bir güvenlik numarası doğrulama kodu değil. Lütfen tekrar taramayı deneyin.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Güvenlik numarasını paylaş...</string>
@@ -529,11 +529,20 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Yeni mesaj</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Resim</string>
+  <string name="attachment_type_selector__image_description">Resim</string>
   <string name="attachment_type_selector__audio">Ses</string>
+  <string name="attachment_type_selector__audio_description">Ses</string>
   <string name="attachment_type_selector__video">Video</string>
+  <string name="attachment_type_selector__video_description">Video</string>
   <string name="attachment_type_selector__contact">Kişi</string>
+  <string name="attachment_type_selector__contact_description">Kişi</string>
   <string name="attachment_type_selector__camera">Kamera</string>
+  <string name="attachment_type_selector__camera_description">Kamera</string>
   <string name="attachment_type_selector__location">Konum</string>
+  <string name="attachment_type_selector__location_description">Konum</string>
+  <string name="attachment_type_selector__gif">GIF</string>
+  <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__drawer_description">Ek çekmecesini göster/gizle</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Eski parola</string>
   <string name="change_passphrase_activity__new_passphrase">Yeni parola</string>
@@ -563,8 +572,9 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="conversation_activity__window_description">%1$s ile sohbet</string>
   <string name="conversation_activity__compose_description">Mesaj yaz</string>
   <string name="conversation_activity__emoji_toggle_description">Emoji klavyesini göster/gizle</string>
-  <string name="conversation_activity__attachment_thumbnail">Küçük resim ekle</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Geçiş eki çekmecesi</string>
+  <string name="conversation_activity__attachment_thumbnail">Ek küçük resmi</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Hızlı kamera eki çekmecesini göster/gizle</string>
+  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Ses eki kaydet ve gönder</string>
   <string name="conversation_activity__enable_signal_for_sms">SMS için Signal\'i etkinleştir</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">İPTAL ETMEK İÇİN KAYDIR</string>
@@ -582,6 +592,10 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="conversation_item_received__download">İndir</string>
   <string name="conversation_item_received__contact_photo_description">Kişi fotoğrafı</string>
   <string name="conversation_item_received__downloading">İndiriliyor</string>
+  <!--audio_view-->
+  <string name="audio_view__play_accessibility_description">Oynat</string>
+  <string name="audio_view__pause_accessibility_description">Durdur</string>
+  <string name="audio_view__download_accessibility_description">İndir</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Toplu seçim modu</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s seçildi</string>
@@ -620,7 +634,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dh</string>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Gifler ve çıkartmalar ara</string>
+  <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFleri ve çıkartmaları ara</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Hiçbir şey bulunamadı</string>
   <!--log_submit_activity-->
@@ -758,7 +772,7 @@ başarısız.</string>
   <string name="message_details_header__issues_need_your_attention">Bazı sorunlar ilginizi gerektiriyor.</string>
   <string name="message_details_header__sent">Gönderildi</string>
   <string name="message_details_header__received">Alındı</string>
-  <string name="message_details_header__disappears">Yok olan</string>
+  <string name="message_details_header__disappears">Yok olma</string>
   <string name="message_details_header__via">Vasıtasıyla</string>
   <string name="message_details_header__to">Alıcı:</string>
   <string name="message_details_header__from">Gönderen:</string>

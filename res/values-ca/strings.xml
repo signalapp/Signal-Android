@@ -544,7 +544,6 @@ Comprova que aquest és el teu número! Anem a verificar-ho amb un SMS.</string>
   <string name="conversation_activity__compose_description">Cos del missatge</string>
   <string name="conversation_activity__emoji_toggle_description">Canvia al teclat d\'emojis</string>
   <string name="conversation_activity__attachment_thumbnail">Miniatura de l\'adjunt</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Desplega la pestanya d\'adjunts</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">LLISCA PER CANCEL·LAR</string>
   <!--conversation_item-->
@@ -561,6 +560,7 @@ Comprova que aquest és el teu número! Anem a verificar-ho amb un SMS.</string>
   <string name="conversation_item_received__download">Descàrrega</string>
   <string name="conversation_item_received__contact_photo_description">Foto del contacte</string>
   <string name="conversation_item_received__downloading">Descarregant</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Mode de selecció per lots</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s seleccionats</string>

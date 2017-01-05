@@ -68,7 +68,8 @@ public class EmojiDrawer extends LinearLayout implements InputView {
 
     RepeatableImageKey backspace = (RepeatableImageKey)v.findViewById(R.id.backspace);
     backspace.setOnKeyEventListener(new KeyEventListener() {
-      @Override public void onKeyEvent() {
+      @Override
+      public void onKeyEvent() {
         if (listener != null) listener.onKeyEvent(DELETE_KEY_EVENT);
       }
     });
@@ -101,7 +102,8 @@ public class EmojiDrawer extends LinearLayout implements InputView {
     pager.setAdapter(new EmojiPagerAdapter(getContext(),
                                            models,
                                            new EmojiSelectionListener() {
-                                             @Override public void onEmojiSelected(String emoji) {
+                                             @Override
+                                             public void onEmojiSelected(String emoji) {
                                                Log.w("EmojiDrawer", "onEmojiSelected()");
                                                recentModel.onCodePointSelected(emoji);
                                                if (listener != null) listener.onEmojiSelected(emoji);
@@ -143,7 +145,8 @@ public class EmojiDrawer extends LinearLayout implements InputView {
       return pages.size();
     }
 
-    @Override public Object instantiateItem(ViewGroup container, int position) {
+    @Override
+    public Object instantiateItem(ViewGroup container, int position) {
       EmojiPageView page = new EmojiPageView(context);
       page.setModel(pages.get(position));
       page.setEmojiSelectedListener(listener);
@@ -151,22 +154,26 @@ public class EmojiDrawer extends LinearLayout implements InputView {
       return page;
     }
 
-    @Override public void destroyItem(ViewGroup container, int position, Object object) {
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
       container.removeView((View)object);
     }
 
-    @Override public void setPrimaryItem(ViewGroup container, int position, Object object) {
+    @Override
+    public void setPrimaryItem(ViewGroup container, int position, Object object) {
       EmojiPageView current = (EmojiPageView) object;
       current.onSelected();
       super.setPrimaryItem(container, position, object);
     }
 
-    @Override public boolean isViewFromObject(View view, Object object) {
+    @Override
+    public boolean isViewFromObject(View view, Object object) {
       return view == object;
     }
 
-    @Override public View getCustomTabView(ViewGroup viewGroup, int i) {
-      ImageView image = new ImageView(context);
+    @Override
+    public View getCustomTabView(ViewGroup viewGroup, int i) {
+      ImageView  image = new ImageView(context);
       image.setScaleType(ScaleType.CENTER_INSIDE);
       image.setImageResource(ResUtil.getDrawableRes(context, pages.get(i).getIconAttr()));
       return image;

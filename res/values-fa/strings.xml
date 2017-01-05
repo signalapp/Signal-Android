@@ -551,6 +551,7 @@
   <string name="conversation_item_received__download">دریافت</string>
   <string name="conversation_item_received__contact_photo_description">تصویر مخاطب</string>
   <string name="conversation_item_received__downloading">در حال دانلود</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">حالت انتخاب دسته ای</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s منتخب</string>

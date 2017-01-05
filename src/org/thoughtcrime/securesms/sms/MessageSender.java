@@ -36,7 +36,7 @@ import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
 import org.thoughtcrime.securesms.jobs.PushTextSendJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
-import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
+import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
@@ -296,7 +296,7 @@ public class MessageSender {
       return directory.isSecureTextSupported(destination);
     } catch (NotInDirectoryException e) {
       try {
-        SignalServiceAccountManager   accountManager = TextSecureCommunicationFactory.createManager(context);
+        SignalServiceAccountManager   accountManager = AccountManagerFactory.createManager(context);
         Optional<ContactTokenDetails> registeredUser = accountManager.getContact(destination);
 
         if (!registeredUser.isPresent()) {

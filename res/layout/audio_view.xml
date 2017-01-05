@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
        xmlns:tools="http://schemas.android.com/tools"
-       xmlns:app="http://schemas.android.com/apk/res-auto">
+       xmlns:app="http://schemas.android.com/apk/res-auto"
+       tools:context="org.thoughtcrime.securesms.components.AudioView">
 
     <LinearLayout android:id="@+id/audio_widget_container"
                   android:orientation="vertical"
@@ -41,7 +42,7 @@
                            android:src="@drawable/ic_play_circle_fill_white_48dp"
                            android:scaleType="centerInside"
                            tools:visibility="gone"
-                           android:contentDescription="Play"/>
+                           android:contentDescription="@string/audio_view__play_accessibility_description"/>
 
                 <ImageView android:id="@+id/pause"
                            android:layout_width="wrap_content"
@@ -53,7 +54,7 @@
                            android:background="@drawable/circle_touch_highlight_background"
                            android:src="@drawable/ic_pause_circle_fill_white_48dp"
                            android:scaleType="centerInside"
-                           android:contentDescription="Pause"/>
+                           android:contentDescription="@string/audio_view__pause_accessibility_description"/>
 
                 <ImageView android:id="@+id/download"
                            android:layout_width="wrap_content"
@@ -63,7 +64,7 @@
                            android:visibility="gone"
                            android:background="@drawable/circle_touch_highlight_background"
                            android:src="@drawable/ic_download_circle_fill_white_48dp"
-                           android:contentDescription="Download"/>
+                           android:contentDescription="@string/audio_view__download_accessibility_description"/>
 
             </org.thoughtcrime.securesms.components.AnimatingToggle>
 

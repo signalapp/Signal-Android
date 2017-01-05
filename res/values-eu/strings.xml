@@ -579,7 +579,6 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="conversation_activity__compose_description">Mezuaren konposizioa</string>
   <string name="conversation_activity__emoji_toggle_description">Emoji teklatua aktibatu/desaktibatu</string>
   <string name="conversation_activity__attachment_thumbnail">Eranskinerako koadro txikia</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Erakutsi edo ezkutatu eraskinak</string>
   <string name="conversation_activity__enable_signal_for_sms">Aktibatu Signal SMSetarako</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">LERRATU UZTEKO</string>
@@ -597,6 +596,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="conversation_item_received__download">Behera kargatu</string>
   <string name="conversation_item_received__contact_photo_description">Kontaktuaren argazkia</string>
   <string name="conversation_item_received__downloading">Behera kargatzen</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Batch hautatzeko modua</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s hautatua</string>

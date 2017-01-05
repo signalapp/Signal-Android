@@ -12,8 +12,8 @@ RUN dpkg --add-architecture i386 && \
 
 ENV ANDROID_SDK_FILENAME android-sdk_r24.4.1-linux.tgz
 ENV ANDROID_SDK_URL https://dl.google.com/android/${ANDROID_SDK_FILENAME}
-ENV ANDROID_API_LEVELS android-22
-ENV ANDROID_BUILD_TOOLS_VERSION 23.0.2
+ENV ANDROID_API_LEVELS android-24
+ENV ANDROID_BUILD_TOOLS_VERSION 23.0.3
 ENV ANDROID_HOME /usr/local/android-sdk-linux
 ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 RUN cd /usr/local/ && \

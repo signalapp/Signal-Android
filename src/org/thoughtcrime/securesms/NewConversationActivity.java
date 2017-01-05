@@ -44,7 +44,6 @@ public class NewConversationActivity extends ContactSelectionActivity {
   public void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
     super.onCreate(bundle, masterSecret);
 
-    getToolbar().setShowCustomNavigationButton(false);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
   }
 

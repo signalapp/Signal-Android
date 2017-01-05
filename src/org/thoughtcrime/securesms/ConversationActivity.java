@@ -118,6 +118,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.recipients.Recipients.RecipientsModifiedListener;
+import org.thoughtcrime.securesms.scribbles.ScribbleActivity;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
@@ -373,6 +374,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       break;
     case PICK_GIF:
       setMedia(data.getData(), MediaType.GIF);
+      break;
+    case ScribbleActivity.SCRIBBLE_REQUEST_CODE:
+      setMedia(data.getData(), MediaType.IMAGE);
       break;
     }
   }
@@ -1138,7 +1142,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case AttachmentTypeSelectorAdapter.TAKE_PHOTO:
       attachmentManager.capturePhoto(this, TAKE_PHOTO); break;
     case AttachmentTypeSelector.ADD_GIF:
-      AttachmentManager.selectGif(this, PICK_GIF); break;
+      AttachmentManager.selectGif(this, PICK_GIF, !isSecureText); break;
     }
   }
 
@@ -1170,10 +1174,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     for (Slide slide : attachmentManager.buildSlideDeck().getSlides()) {
-      if      (slide.hasAudio())    drafts.add(new Draft(Draft.AUDIO, slide.getUri().toString()));
-      else if (slide.hasVideo())    drafts.add(new Draft(Draft.VIDEO, slide.getUri().toString()));
-      else if (slide.hasLocation()) drafts.add(new Draft(Draft.LOCATION, ((LocationSlide)slide).getPlace().serialize()));
-      else if (slide.hasImage())    drafts.add(new Draft(Draft.IMAGE, slide.getUri().toString()));
+      if      (slide.hasAudio() && slide.getUri() != null)    drafts.add(new Draft(Draft.AUDIO, slide.getUri().toString()));
+      else if (slide.hasVideo() && slide.getUri() != null)    drafts.add(new Draft(Draft.VIDEO, slide.getUri().toString()));
+      else if (slide.hasLocation())                           drafts.add(new Draft(Draft.LOCATION, ((LocationSlide)slide).getPlace().serialize()));
+      else if (slide.hasImage() && slide.getUri() != null)    drafts.add(new Draft(Draft.IMAGE, slide.getUri().toString()));
     }
 
     return drafts;

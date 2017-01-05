@@ -440,6 +440,7 @@
   <string name="conversation_item_received__download">ಡೌನ್ಲೋಡ್</string>
   <string name="conversation_item_received__contact_photo_description">ಸಂಪರ್ಕದ ಛಾಯಾಚಿತ್ರ</string>
   <string name="conversation_item_received__downloading">ಡೌನ್ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">ಗುಂಪು ಆಯ್ಕೆಯ ಕ್ರಮ</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s ಆಯ್ಕೆಮಾಡಲಾಗಿದೆ</string>

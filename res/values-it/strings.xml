@@ -64,6 +64,8 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Chiamata in arrivo</string>
   <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Il numero sicuro con %1$s è cambiato. Questo può voler dire che qualcuno sta cercando d\'intercettare la tua comunicazione, oppure che %2$s ha semplicemente reinstallato Signal.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Dovresti verificare il numero sicuro con questo contatto.</string>
   <string name="ConfirmIdentityDialog_accept">Accetta</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Messaggio %s</string>
@@ -200,6 +202,7 @@
   <string name="CustomDefaultPreference_using_default">Utilizzo di predefinito: %s</string>
   <string name="CustomDefaultPreference_none">Nessuna</string>
   <!--DateUtils-->
+  <string name="DateUtils_just_now">Ora</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Scollegare \'%s\'?</string>
@@ -312,6 +315,7 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal ha bisogno di uno scanner per i codici QR.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Invio fallito</string>
+  <string name="MessageDetailsRecipient_new_safety_number">Nuovo numero sicuro.</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Errore nel salvare l\'MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Errore durante la connessione al provider MMS...</string>
@@ -338,6 +342,7 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s è su Signal, di\' ciao!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Hai settato i messaggi a scomparsa a %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ha settato i messaggi a scomparsa a %2$s.</string>
+  <string name="MessageRecord_your_safety_number_with_s_has_changed">Il tuo numero sicuro con %s è cambiato.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Le password non corrispondono!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Vecchia password errata!</string>
@@ -466,6 +471,7 @@ scambia un altro messaggio!
 </string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valida.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Ricevuto messaggio con un nuovo numero sicuro. Premere per procedere e visualizzare.</string>
   <string name="SmsMessageRecord_secure_session_reset">Hai resettato la sessione sicura.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s ha resettato la sessione sicura.</string>
   <string name="SmsMessageRecord_duplicate_message">Messaggio duplicato.</string>
@@ -479,9 +485,14 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="ThreadRecord_media_message">Messaggio multimediale</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s è su Signal, di\' ciao!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">La scomparsa dei messaggi è settata a %s</string>
+  <string name="ThreadRecord_your_safety_number_with_s_has_changed">Il tuo numero sicuro con %s è cambiato.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Il tuo contatto sta eseguendo una versione più aggiornata di Signal con un formato di codice QR non compatibile. Per effettuare il confronto aggiorna la tua versione.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Il codice QR letto non è un codice di verifica formalmente valido per un numero sicuro. Si prega di rieseguire la scansione.</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Condividi numero sicuro tramite...</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">I nostri numeri sicuri Signal:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Sembra che tu non abbia alcune applicazioni per condividere.</string>
+  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Negli appunti non c\'è un numero sicuro da confrontare.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Iniziare nonostante la richiesta esistente?</string>
   <string name="KeyExchangeInitiator_send">Inviata</string>
@@ -572,7 +583,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="conversation_activity__compose_description">Composizione messaggio</string>
   <string name="conversation_activity__emoji_toggle_description">Dis/attiva la tastiera emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Anteprima allegato</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Mostra/nascondi pannello degli allegati</string>
+  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Registra ed invia allegato audio</string>
   <string name="conversation_activity__enable_signal_for_sms">Abilita Signal per gli SMS</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">SPOSTA IL DITO PER ANNULLARE</string>
@@ -590,6 +601,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="conversation_item_received__download">Scarica</string>
   <string name="conversation_item_received__contact_photo_description">Foto del contatto</string>
   <string name="conversation_item_received__downloading">Caricamento in corso</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Modalità di selezione di gruppo</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s selezionati</string>
@@ -695,6 +707,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="recipient_preferences__block">Blocca</string>
   <string name="recipient_preferences__color">Colore</string>
   <string name="recipient_preferences__color_for_this_contact">Colore per questo contatto</string>
+  <string name="recipient_preferences__verify_safety_number">Verifica numero sicuro.</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Chiamata Signal</string>
   <string name="redphone_call_controls__end_call">termina chiamata</string>
@@ -771,8 +784,10 @@ non riuscita.
   <string name="recipients_panel__to"><small>Inserisci un nome o un numero</small></string>
   <string name="recipients_panel__add_members">Aggiungi membri</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Se desideri verificare la sicurezza della tua codifica end-to-end con %s, confronta il numero precedente con quello del suo dispositivo. In alternativa puoi fare uno scan del codice sul suo telefono o chiedergli di fare una scansione del tuo. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Impara di più sulla verifica dei numeri sicuri</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tocca per la scansione</string>
   <!--verify_identity-->
+  <string name="verify_identity__share_safety_number">Condivi numero sicuro.</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Alcuni problemi necessitano della tua attenzione.</string>
   <string name="message_details_header__sent">Inviato</string>
@@ -788,6 +803,7 @@ non riuscita.
   <string name="AndroidManifest__select_contacts">Seleziona contatti</string>
   <string name="AndroidManifest__signal_detected">Signal rilevato</string>
   <string name="AndroidManifest__change_passphrase">Cambia password</string>
+  <string name="AndroidManifest__verify_safety_number">Verifica numero sicuro.</string>
   <string name="AndroidManifest__log_submit">Invia log di debug</string>
   <string name="AndroidManifest__media_preview">Anteprima contenuto multimediale</string>
   <string name="AndroidManifest__media_overview">Tutte le immagini</string>
@@ -1040,6 +1056,7 @@ non riuscita.
   <!--media_preview-->
   <string name="media_preview__save_title">Salva</string>
   <string name="media_preview__forward_title">Inoltra</string>
+  <string name="media_preview__overview_title">Tutte le immagini</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Salva tutti</string>
   <!--media_preview_activity-->

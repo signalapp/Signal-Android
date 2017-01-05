@@ -30,7 +30,7 @@ import org.thoughtcrime.securesms.RegistrationActivity;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
+import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -188,7 +188,7 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
       protected Integer doInBackground(Void... params) {
         try {
           Context                     context                = getActivity();
-          SignalServiceAccountManager accountManager         = TextSecureCommunicationFactory.createManager(context);
+          SignalServiceAccountManager accountManager         = AccountManagerFactory.createManager(context);
           RedPhoneAccountManager      redPhoneAccountManager = new RedPhoneAccountManager(BuildConfig.REDPHONE_MASTER_URL,
                                                                                           new RedPhoneTrustStore(context),
                                                                                           TextSecurePreferences.getLocalNumber(context),

@@ -368,6 +368,7 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <string name="conversation_item_received__download">Stiahnuť</string>
   <string name="conversation_item_received__contact_photo_description">Fotografia kontaktu</string>
   <string name="conversation_item_received__downloading">Sťahujem</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Mód hromadného výberu</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s vybraných</string>

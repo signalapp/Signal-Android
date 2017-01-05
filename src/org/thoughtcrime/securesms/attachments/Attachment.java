@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.attachments;
 
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -22,10 +21,6 @@ public abstract class Attachment {
 
   @Nullable
   private final String relay;
-
-  // XXX - This shouldn't be here.
-  @Nullable
-  private Bitmap thumbnail;
 
   public Attachment(@NonNull String contentType, int transferState, long size,
                     @Nullable String location, @Nullable String key, @Nullable String relay)
@@ -75,14 +70,5 @@ public abstract class Attachment {
   @Nullable
   public String getRelay() {
     return relay;
-  }
-
-  public void setThumbnail(@Nullable Bitmap thumbnail) {
-    this.thumbnail = thumbnail;
-  }
-
-  @Nullable
-  public Bitmap getThumbnail() {
-    return thumbnail;
   }
 }

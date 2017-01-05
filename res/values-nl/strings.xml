@@ -544,11 +544,20 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="SingleRecipientNotificationBuilder_new_message">Nieuw bericht</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Afbeelding</string>
+  <string name="attachment_type_selector__image_description">Afbeelding</string>
   <string name="attachment_type_selector__audio">Audio</string>
+  <string name="attachment_type_selector__audio_description">Audio</string>
   <string name="attachment_type_selector__video">Video</string>
+  <string name="attachment_type_selector__video_description">Video</string>
   <string name="attachment_type_selector__contact">Contactpersoon</string>
+  <string name="attachment_type_selector__contact_description">Contactpersoon</string>
   <string name="attachment_type_selector__camera">Camera</string>
+  <string name="attachment_type_selector__camera_description">Camera</string>
   <string name="attachment_type_selector__location">Locatie</string>
+  <string name="attachment_type_selector__location_description">Locatie</string>
+  <string name="attachment_type_selector__gif">GIF</string>
+  <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__drawer_description">Bijlageoverzicht tonen/verbergen</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Oud wachtwoord</string>
   <string name="change_passphrase_activity__new_passphrase">Nieuw wachtwoord</string>
@@ -579,7 +588,8 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="conversation_activity__compose_description">Berichtsamenstelling</string>
   <string name="conversation_activity__emoji_toggle_description">Emojitoetsenbord wisselen</string>
   <string name="conversation_activity__attachment_thumbnail">Bijlageminiatuur</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Bijlageoverzicht tonen/verbergen</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Camera overzicht tonen/verbergen</string>
+  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Geluidsopname opnemen en verzenden</string>
   <string name="conversation_activity__enable_signal_for_sms">Gebruik Signal voor SMS</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">SCHUIF OM TE ANNULEREN</string>
@@ -597,6 +607,10 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="conversation_item_received__download">Download</string>
   <string name="conversation_item_received__contact_photo_description">Contactfoto</string>
   <string name="conversation_item_received__downloading">Downloaden</string>
+  <!--audio_view-->
+  <string name="audio_view__play_accessibility_description">Afspelen</string>
+  <string name="audio_view__pause_accessibility_description">Pauzeren</string>
+  <string name="audio_view__download_accessibility_description">Downloaden</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode"> Meerdere tegelijk selecteren</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s geselecteerd</string>

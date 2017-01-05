@@ -613,7 +613,6 @@
   <string name="conversation_activity__compose_description">تكوين الرسالة</string>
   <string name="conversation_activity__emoji_toggle_description">تبديل لوحة مفاتيح الرموز التعبيرية</string>
   <string name="conversation_activity__attachment_thumbnail">المصغّرة للمرفق</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">فتح درج المرفقات</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">سحب للإلغاء</string>
   <!--conversation_item-->
@@ -630,6 +629,7 @@
   <string name="conversation_item_received__download">تنزيل</string>
   <string name="conversation_item_received__contact_photo_description">صورة جهة الاتصال</string>
   <string name="conversation_item_received__downloading">التنزيل جارٍ...</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">وضع اختيار الدفعات</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s اختيار</string>

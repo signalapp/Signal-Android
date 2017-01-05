@@ -21,21 +21,17 @@ import android.content.res.Resources.Theme;
 import android.net.Uri;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.util.ResUtil;
 
-import java.io.IOException;
-
 import ws.com.google.android.mms.ContentType;
-import ws.com.google.android.mms.pdu.PduPart;
 
 public class VideoSlide extends Slide {
 
   public VideoSlide(Context context, Uri uri, long dataSize) {
-    super(context, constructAttachmentFromUri(context, uri, ContentType.VIDEO_UNSPECIFIED, dataSize));
+    super(context, constructAttachmentFromUri(context, uri, ContentType.VIDEO_UNSPECIFIED, dataSize, false));
   }
 
   public VideoSlide(Context context, Attachment attachment) {
@@ -43,13 +39,12 @@ public class VideoSlide extends Slide {
   }
 
   @Override
-  @Nullable
-  public Uri getThumbnailUri() {
-    return null;
+  public boolean hasPlaceholder() {
+    return true;
   }
 
   @Override
-  public boolean hasPlaceholder() {
+  public boolean hasPlayOverlay() {
     return true;
   }
 
@@ -68,7 +63,8 @@ public class VideoSlide extends Slide {
     return true;
   }
 
-  @NonNull @Override public String getContentDescription() {
+  @NonNull @Override
+  public String getContentDescription() {
     return context.getString(R.string.Slide_video);
   }
 }

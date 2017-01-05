@@ -64,6 +64,7 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Inngående samtale</string>
   <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Du ønsker kanskje å bekrefte din sikkerhets nummer med denne kontakten.</string>
   <string name="ConfirmIdentityDialog_accept">Godta</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Melding %s</string>
@@ -343,6 +344,7 @@ fører dette til dupliserte meldinger.</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s er på Signal. Si hei!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du angir forsvinner meldingen tid til %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s satt forsvinner meldingen tid til %2$s.</string>
+  <string name="MessageRecord_your_safety_number_with_s_has_changed">Din sikkerhets nummer med %s har endret seg.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passordfrasene samsvarer ikke.</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Du skrev inn feil gammel passordfrase.</string>
@@ -470,6 +472,7 @@ Dobbeltsjekk at dette er ditt nummer. Vi er i ferd med å bekrefte det ved å se
 nøkkelutvekslingsmelding.</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Mottatt melding med ny sikkerhetsnummer. Trykk for å behandle og vise.</string>
   <string name="SmsMessageRecord_secure_session_reset">Du tilbakestilte sikker økt.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s tilbakestilte sikker økt.</string>
   <string name="SmsMessageRecord_duplicate_message">Dupliser melding.</string>
@@ -483,8 +486,11 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ThreadRecord_media_message">Mediemelding</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s er på Signal. Si hei!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Utløpstid for melding endret til %s</string>
+  <string name="ThreadRecord_your_safety_number_with_s_has_changed">Din sikkerhets nummer med %s har endret seg.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Din kontakt kjører en nyere versjon av Signal med en inkompatibel QR-kode format. Vennligst oppdater for å sammenligne.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Det skannede QR-kode er ikke en riktig formatert sikkerhets nummer bekreftelseskode. Vennligst prøv å skanne på nytt.</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Del sikkerhets nummer via...</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Vår Signal sikkerhet nummer:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Det ser ut som at du ikke har noen programmer å dele denne informasjonen med.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Ingen sikkerhet nummer å sammenligne ble funnet i utklippstavlen </string>
@@ -578,7 +584,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="conversation_activity__compose_description">Meldingsskriving</string>
   <string name="conversation_activity__emoji_toggle_description">Slå på/av emoji-tastatur</string>
   <string name="conversation_activity__attachment_thumbnail">Miniatyrbilde av vedlegg</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Slå på/av vedleggsskuff</string>
+  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Ta opp og sende lyd vedlegg</string>
   <string name="conversation_activity__enable_signal_for_sms">Aktiver Signal for SMS</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">SKYV FOR Å AVBRYTE</string>
@@ -596,6 +602,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="conversation_item_received__download">Last ned</string>
   <string name="conversation_item_received__contact_photo_description">Kontaktfoto</string>
   <string name="conversation_item_received__downloading">Laster ned</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Buntvalg-modus</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s valgt</string>
@@ -781,6 +788,7 @@ Signal fikk tidsavbrudd under venting på bekreftelsesmelding.</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__tap_to_scan">Trykk for å skanne</string>
   <!--verify_identity-->
+  <string name="verify_identity__share_safety_number">Del sikkerhets nummer</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Problemer venter på manuell løsning.</string>
   <string name="message_details_header__sent">Sendt</string>

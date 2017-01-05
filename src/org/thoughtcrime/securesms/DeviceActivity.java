@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
+import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.qr.ScanListener;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
@@ -146,7 +146,7 @@ public class DeviceActivity extends PassphraseRequiredActionBarActivity
       protected Integer doInBackground(Void... params) {
         try {
           Context                     context          = DeviceActivity.this;
-          SignalServiceAccountManager accountManager   = TextSecureCommunicationFactory.createManager(context);
+          SignalServiceAccountManager accountManager   = AccountManagerFactory.createManager(context);
           String                      verificationCode = accountManager.getNewDeviceVerificationCode();
           String                      ephemeralId      = uri.getQueryParameter("uuid");
           String                      publicKeyEncoded = uri.getQueryParameter("pub_key");

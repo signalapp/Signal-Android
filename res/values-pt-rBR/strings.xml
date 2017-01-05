@@ -112,7 +112,7 @@
   <string name="ConversationActivity_saved_draft">Rascunho salvo</string>
   <string name="ConversationActivity_invalid_recipient">Destinatário inválido!</string>
   <string name="ConversationActivity_calls_not_supported">Sem suporte para chamadas</string>
-  <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Este dispositivo parece não possui suporte para chamadas.</string>
+  <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Este dispositivo parece não possuir suporte para chamadas.</string>
   <string name="ConversationActivity_leave_group">Sair do grupo?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Tem certeza que deseja sair deste grupo?</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS inseguro</string>
@@ -305,7 +305,7 @@
   <string name="InviteActivity_invitations_sent">Convites enviados!</string>
   <string name="InviteActivity_invite_to_signal">Convidar para o Signal</string>
   <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">ENVIAR SMS PARA 1 AMIGO</item>
+    <item quantity="one">ENVIAR SMS PARA 1 AMIGA/O</item>
     <item quantity="other">ENVIAR SMS PARA %d AMIGOS</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
@@ -500,7 +500,7 @@
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Expiração da mensagem temporária definida para %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Seu número de segurança com %s mudou.</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Seu contato está usando uma versão antiga do Signal. Peça por favor que ele atualize antes de verificar seu número de segurança.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Seu contato está usando uma versão antiga do Signal. Peça a ele para atualizá-la antes de verificar o seu número de segurança.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Seu contato está usando uma versão mais nova do Signal com um formato de código QR incompatível. Atualize para poder comparar.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">O código QR escaneado não é um código de verificação de número de segurança formatado corretamente. Por favor, tente escanear de novo.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Compartilhar número de segurança por...</string>
@@ -562,11 +562,20 @@
   <string name="SingleRecipientNotificationBuilder_new_message">Nova mensagem</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Imagem</string>
+  <string name="attachment_type_selector__image_description">Imagem</string>
   <string name="attachment_type_selector__audio">Áudio</string>
+  <string name="attachment_type_selector__audio_description">Áudio</string>
   <string name="attachment_type_selector__video">Vídeo</string>
+  <string name="attachment_type_selector__video_description">Vídeo</string>
   <string name="attachment_type_selector__contact">Contato</string>
+  <string name="attachment_type_selector__contact_description">Contato</string>
   <string name="attachment_type_selector__camera">Câmera</string>
+  <string name="attachment_type_selector__camera_description">Câmera</string>
   <string name="attachment_type_selector__location">Local</string>
+  <string name="attachment_type_selector__location_description">Local</string>
+  <string name="attachment_type_selector__gif">GIF</string>
+  <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__drawer_description">Alternar gaveta de anexos</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Frase-chave antiga</string>
   <string name="change_passphrase_activity__new_passphrase">Nova frase-chave</string>
@@ -597,7 +606,8 @@
   <string name="conversation_activity__compose_description">Composição de mensagem</string>
   <string name="conversation_activity__emoji_toggle_description">Alternar teclado emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Miniatura do anexo</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Trocar guardador de anexos</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Alternar gaveta rápida de anexos de câmera</string>
+  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Gravar e enviar áudio em anexo</string>
   <string name="conversation_activity__enable_signal_for_sms">Habilitar Signal para SMS</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">DESLIZE PARA CANCELAR</string>
@@ -615,6 +625,10 @@
   <string name="conversation_item_received__download">Transferir</string>
   <string name="conversation_item_received__contact_photo_description">Foto do contato</string>
   <string name="conversation_item_received__downloading">A transferir</string>
+  <!--audio_view-->
+  <string name="audio_view__play_accessibility_description">Tocar</string>
+  <string name="audio_view__pause_accessibility_description">Pausar</string>
+  <string name="audio_view__download_accessibility_description">Baixar</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Modo de seleção em grupo</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s selecionadas</string>
@@ -737,7 +751,7 @@
     </string>
   <string name="registration_activity__phone_number">NÚMERO TELEFÔNICO</string>
   <string name="registration_activity__register">Cadastrar</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">O registro irá transmitir algumas informações de contato para o servidor. Elas não serão gravadas.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">O registro irá transmitir algumas informações de contato para o servidor. Elas não serão armazenadas.</string>
   <string name="registration_activity__powered_by_twilio">Fornecido por twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Alguns problemas possíveis
@@ -758,8 +772,7 @@ O Signal não funcionará com números do Google Voice.
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Verificação por voz</string>
   <string name="registration_progress_activity__signal_can_also_call_you_to_verify_your_number">
-O Signal também pode ligar para você para verificar o seu número. Aperte \'Me ligue\' e insira a seguir o código de seis dígitos que você ouvir.
-</string>
+O Signal também pode ligar para você para verificar o seu número. Clique em \'Me ligue\' e insira a seguir o código de seis dígitos que você ouvir.</string>
   <string name="registration_progress_activity__verify">Verificar</string>
   <string name="registration_progress_activity__call_me">Me ligar</string>
   <string name="registration_progress_activity__edit_number">Editar número</string>

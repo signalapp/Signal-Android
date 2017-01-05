@@ -52,10 +52,13 @@
 
     <attr name="emoji_category_recent" format="reference"/>
     <attr name="emoji_category_people" format="reference"/>
-    <attr name="emoji_category_objects" format="reference"/>
     <attr name="emoji_category_nature" format="reference"/>
+    <attr name="emoji_category_foods"  format="reference"/>
+    <attr name="emoji_category_activity" format="reference"/>
     <attr name="emoji_category_places" format="reference"/>
+    <attr name="emoji_category_objects" format="reference"/>
     <attr name="emoji_category_symbol" format="reference"/>
+    <attr name="emoji_category_flags" format="reference"/>
     <attr name="emoji_category_emoticons" format="reference"/>
     <attr name="quick_camera_icon" format="reference"/>
     <attr name="quick_mic_icon" format="reference"/>
@@ -154,6 +157,7 @@
     </declare-styleable>
 
     <declare-styleable name="AudioView">
+        <attr name="widgetBackground" format="color"/>
         <attr name="foregroundTintColor" format="color" />
         <attr name="backgroundTintColor" format="color" />
     </declare-styleable>
@@ -181,6 +185,12 @@
 
     <declare-styleable name="SquareFrameLayout">
         <attr name="square_height" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="VerticalSlideColorPicker">
+        <attr name="pickerBorderColor" format="color" />
+        <attr name="pickerBorderWidth" format="dimension" />
+        <attr name="pickerColors" format="reference" />
     </declare-styleable>
 
 </resources>

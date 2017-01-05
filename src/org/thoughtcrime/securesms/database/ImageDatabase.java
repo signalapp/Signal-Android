@@ -19,6 +19,7 @@ public class ImageDatabase extends Database {
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.TRANSFER_STATE + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.SIZE + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DATA + ", "
+        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.THUMBNAIL + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.MESSAGE_BOX + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.DATE_SENT + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.DATE_RECEIVED + ", "
@@ -47,19 +48,22 @@ public class ImageDatabase extends Database {
     private final AttachmentId attachmentId;
     private final long         mmsId;
     private final boolean      hasData;
+    private final boolean      hasThumbnail;
     private final String       contentType;
     private final String       address;
     private final long         date;
     private final int          transferState;
     private final long         size;
 
-    private ImageRecord(AttachmentId attachmentId, long mmsId, boolean hasData,
+    private ImageRecord(AttachmentId attachmentId, long mmsId,
+                        boolean hasData, boolean hasThumbnail,
                         String contentType, String address, long date,
                         int transferState, long size)
     {
       this.attachmentId  = attachmentId;
       this.mmsId         = mmsId;
       this.hasData       = hasData;
+      this.hasThumbnail  = hasThumbnail;
       this.contentType   = contentType;
       this.address       = address;
       this.date          = date;
@@ -82,6 +86,7 @@ public class ImageDatabase extends Database {
       return new ImageRecord(attachmentId,
                              cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.MMS_ID)),
                              !cursor.isNull(cursor.getColumnIndexOrThrow(AttachmentDatabase.DATA)),
+                             !cursor.isNull(cursor.getColumnIndexOrThrow(AttachmentDatabase.THUMBNAIL)),
                              cursor.getString(cursor.getColumnIndexOrThrow(AttachmentDatabase.CONTENT_TYPE)),
                              cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS)),
                              date,
@@ -90,7 +95,7 @@ public class ImageDatabase extends Database {
     }
 
     public Attachment getAttachment() {
-      return new DatabaseAttachment(attachmentId, mmsId, hasData, contentType, transferState, size, null, null, null);
+      return new DatabaseAttachment(attachmentId, mmsId, hasData, hasThumbnail, contentType, transferState, size, null, null, null);
     }
 
     public String getContentType() {

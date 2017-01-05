@@ -17,13 +17,15 @@ import java.io.IOException;
 
 import javax.inject.Inject;
 
-import static org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule.TextSecureMessageSenderFactory;
+import static org.thoughtcrime.securesms.dependencies.SignalCommunicationModule.SignalMessageSenderFactory;
 
 public class DeliveryReceiptJob extends ContextJob implements InjectableType {
 
+  private static final long serialVersionUID = 1L;
+
   private static final String TAG = DeliveryReceiptJob.class.getSimpleName();
 
-  @Inject transient TextSecureMessageSenderFactory messageSenderFactory;
+  @Inject transient SignalMessageSenderFactory messageSenderFactory;
 
   private final String destination;
   private final long   timestamp;

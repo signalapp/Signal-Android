@@ -391,6 +391,7 @@
   <string name="conversation_item_received__download">Превземање</string>
   <string name="conversation_item_received__contact_photo_description">Слика на контакт</string>
   <string name="conversation_item_received__downloading">Превземање</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Повеќекратно селектирање</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s избрано</string>

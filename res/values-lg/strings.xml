@@ -536,7 +536,6 @@ Dammu okebere e namba yo.  Tugenda kugikakasa no bubaka ku simu</string>
   <string name="conversation_activity__compose_description">Tandika obubaka</string>
   <string name="conversation_activity__emoji_toggle_description">kyusa yusa keybodi ya emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Ekikwasidwaako Thumbnail</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">kyusa kyusa ekikwatidwako</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Kasindike okusazamu</string>
   <!--conversation_item-->
@@ -553,6 +552,7 @@ Dammu okebere e namba yo.  Tugenda kugikakasa no bubaka ku simu</string>
   <string name="conversation_item_received__download">Wanula</string>
   <string name="conversation_item_received__contact_photo_description">Ekifananyi kya kontakiti</string>
   <string name="conversation_item_received__downloading">Kiwanulwa</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_amount">%s kilondedwako</string>
   <!--country_selection_fragment-->

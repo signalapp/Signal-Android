@@ -47,6 +47,11 @@ public class CreateSignedPreKeyJob extends MasterSecretJob implements Injectable
       return;
     }
 
+    if (!TextSecurePreferences.isPushRegistered(context)) {
+      Log.w(TAG, "Not yet registered...");
+      return;
+    }
+
     IdentityKeyPair    identityKeyPair    = IdentityKeyUtil.getIdentityKeyPair(context);
     SignedPreKeyRecord signedPreKeyRecord = PreKeyUtil.generateSignedPreKey(context, identityKeyPair);
 

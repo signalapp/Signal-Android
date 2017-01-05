@@ -501,7 +501,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">El plazo del mensaje desvanecente se estableció a %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Su número de seguridad con %s ha cambiado.</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Su contacto está ejecutando una versión antigua de Signal, por favor pídale que actualice antes de verificar su número de seguridad.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Su contacto está ejecutando una versión antigua de Signal. Por favor, pídale que actualice antes de que verifique el número de seguridad de usted.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Su contacto está ejecutando una versión de Signal con un formato de código QR incompatible. Por favor, actualice para comparar.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">El código QR escaneado no es un código de verificación de número de seguridad con un formato correcto. Por favor, pruebe a escanearlo de nuevo.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Compartir número de seguridad vía...</string>
@@ -563,11 +563,20 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="SingleRecipientNotificationBuilder_new_message">Nuevo mensaje</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Imagen</string>
+  <string name="attachment_type_selector__image_description">Imagen</string>
   <string name="attachment_type_selector__audio">Audio</string>
+  <string name="attachment_type_selector__audio_description">Audio</string>
   <string name="attachment_type_selector__video">Vídeo</string>
+  <string name="attachment_type_selector__video_description">Vídeo</string>
   <string name="attachment_type_selector__contact">Contacto</string>
+  <string name="attachment_type_selector__contact_description">Contacto</string>
   <string name="attachment_type_selector__camera">Cámara</string>
+  <string name="attachment_type_selector__camera_description">Cámara</string>
   <string name="attachment_type_selector__location">Ubicación</string>
+  <string name="attachment_type_selector__location_description">Ubicación</string>
+  <string name="attachment_type_selector__gif">GIF</string>
+  <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__drawer_description">Accionar el panel de adjuntos</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Clave de acceso antigua</string>
   <string name="change_passphrase_activity__new_passphrase">Nueva clave de acceso</string>
@@ -598,7 +607,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="conversation_activity__compose_description">Composición de mensaje</string>
   <string name="conversation_activity__emoji_toggle_description">Cambiar a teclado emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Miniatura del adjunto</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Accionar bandeja desplegable de adjunto</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Accionar panel rápido de adjuntos de cámara</string>
+  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Grabar y enviar adjunto de audio</string>
   <string name="conversation_activity__enable_signal_for_sms">Habilitar Signal para SMS</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">DESLICE PARA CANCELAR</string>
@@ -616,6 +626,10 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="conversation_item_received__download">Descarga</string>
   <string name="conversation_item_received__contact_photo_description">Foto de contacto</string>
   <string name="conversation_item_received__downloading">Descargando</string>
+  <!--audio_view-->
+  <string name="audio_view__play_accessibility_description">Reproducir</string>
+  <string name="audio_view__pause_accessibility_description">Pausar</string>
+  <string name="audio_view__download_accessibility_description">Descargar</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Modo de selección por lotes</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s seleccionado</string>

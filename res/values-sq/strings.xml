@@ -578,7 +578,6 @@ U pranua mesazh për shkembim çelsash për një verzion të protokolli jo valid
   <string name="conversation_activity__compose_description">Shkrimi i porosisë</string>
   <string name="conversation_activity__emoji_toggle_description">Shfaq tastaturën emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Foto e shtojcës</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Ndrysho shtojcën</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">RRQITË PËR TË ANULUAR</string>
   <!--conversation_item-->
@@ -595,6 +594,7 @@ U pranua mesazh për shkembim çelsash për një verzion të protokolli jo valid
   <string name="conversation_item_received__download">Shkarko</string>
   <string name="conversation_item_received__contact_photo_description">Foto e kontaktit</string>
   <string name="conversation_item_received__downloading">Duke u shkarkuar</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Mënyrë përzgjedhje grupi</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s të përzgjedhur</string>
