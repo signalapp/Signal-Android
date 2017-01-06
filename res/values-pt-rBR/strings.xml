@@ -153,7 +153,10 @@
     <item quantity="one">Erro ao gravar anexo no armazenamento!</item>
     <item quantity="other">Erro ao gravar anexos no armazenamento!</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">Arquivo gravado com sucesso.</string>
+  <plurals name="ConversationFragment_files_saved_successfully">
+    <item quantity="one">Arquivo gravado com sucesso.</item>
+    <item quantity="other">Arquivos gravados com sucesso.</item>
+  </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Não foi possível escrever no cartão SD!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Gravando anexo</item>
@@ -927,8 +930,8 @@ falhou.</string>
   <string name="preferences__advanced">Avançado</string>
   <string name="preferences__privacy">Privacidade</string>
   <string name="preferences__mms_user_agent">Agente de usuário MMS</string>
-  <string name="preferences__advanced_mms_access_point_names">Configurações manuais de MMS</string>
-  <string name="preferences__enable_manual_mms">Usar configurações manuais de MMS</string>
+  <string name="preferences__advanced_mms_access_point_names">Configurações de MMS manuais</string>
+  <string name="preferences__enable_manual_mms">Usar configurações de MMS manuais</string>
   <string name="preferences__override_system_mms_settings">Usar a informação abaixo ao invés das configurações MMS do sistema.</string>
   <string name="preferences__mmsc_url">URL do MMSC</string>
   <string name="preferences__mms_proxy_host">Proxy MMS</string>

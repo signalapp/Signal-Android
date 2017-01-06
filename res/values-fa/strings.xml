@@ -143,7 +143,6 @@
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="other">خطا در هنگام ذخیره سازی فایل ضمیمه</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">فایل با موفقیت ذخیره شد.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">قادر نیست به ارسال به ذخیره سازی!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="other">در حال ذخیره‌ی %1$d پیوست</item>

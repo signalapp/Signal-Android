@@ -37,7 +37,7 @@
   <string name="ApplicationPreferencesActivity_off">off</string>
   <string name="ApplicationPreferencesActivity_Off">Off</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Phrase secrète %1$s, Sécurité de l\'écran %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Phrase de passe %1$s, Sécurité de l\'écran %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Thème %1$s, Langage %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -64,6 +64,8 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Appel entrant</string>
   <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Vos numéros de sécurité avec %1$s ont changé. Cela pourrait signifier que quelqu\'un essaie d\'intercepter votre communication, ou que %2$s a simplement réinstallé Signal.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Vous pouvez vérifier vos numéros de sécurité avec ce contact.</string>
   <string name="ConfirmIdentityDialog_accept">Accepter</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Message %s</string>
@@ -73,7 +75,7 @@
   <string name="ConversationItem_expires_s">Expire : %s</string>
   <string name="ConversationItem_error_not_delivered">Non délivré</string>
   <string name="ConversationItem_view_secure_media_question">Visualiser le média sécurisé ?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Ce média est enregistré dans une base de données chiffrée. Pour l\'ouvrir avec une autre application, il doit être temporairement déchiffré et enregistré sur cet appareil ! Êtes-vous certain de vouloir continuer ?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Ce média est enregistré dans une base de données chiffrée. Malheureusement, pour l\'ouvrir avec une autre application, il doit être temporairement déchiffré et enregistré sur cet appareil . Êtes-vous certain de vouloir continuer ?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Erreur, un message d’échange de clés périmé a été reçu.</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Un message d’échange de clés a été reçu. Appuyer pour le traiter.</string>
   <string name="ConversationItem_group_action_left">%1$s a quitté le groupe.</string>
@@ -129,7 +131,7 @@
   <string name="ConversationActivity_quick_camera_unavailable">Appareil photo non disponible</string>
   <string name="ConversationActivity_unable_to_record_audio">Impossible d\'enregistrer l\'audio !</string>
   <string name="ConversationActivity_error_sending_voice_message">Erreur lors de l\'envoi du message vocal...</string>
-  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Il n\'y a pas d\'appli disponible pour ouvrir ce lien sur votre appareil.</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Il n\'y a pas d\'application disponible pour ouvrir ce lien sur votre appareil.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Détails du message</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nEnvoyé/Reçu: %2$s</string>
@@ -151,7 +153,6 @@
     <item quantity="one">Erreur lors de l\'enregistrement de la pièce jointe sur l\'espace de stockage !</item>
     <item quantity="other">Erreur lors de l\'enregistrement des pièces jointes dans l\'espace de stockage !</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">Enregistrement du fichier réussi.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Impossible d’écrire dans l\'espace de stockage !</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Enregistrement de la pièce jointe</item>
@@ -311,6 +312,7 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal a besoin de Barcode Scanner pour les QR codes.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Échec de l’envoi</string>
+  <string name="MessageDetailsRecipient_new_safety_number">Nouveau numéro de sécurité</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Erreur d’enregistrement du MMS !</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Erreur de connexion au fournisseur MMS…</string>
@@ -337,6 +339,7 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s est sur Signal, dites-lui bonjour !</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Vous avez choisi %1$s comme heure de disparition du message.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a choisi %2$s comme heure de disparition du message.</string>
+  <string name="MessageRecord_your_safety_number_with_s_has_changed">Votre numéro de sécurité avec %s a changé</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Les phrases de passe ne correspondent pas !</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Ancienne phrase de passe incorrecte !</string>
@@ -464,6 +467,7 @@ cet appareil n\'est pas supporté pour la messagerie sur le canal de données. L
 Message d\'échange!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Réception d\'un message d\'échange de clés pour une version invalide du protocole.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Un message avec de nouveaux numéros de sécurité a été reçu. Cliquez pour l\'accepter et l\'afficher.</string>
   <string name="SmsMessageRecord_secure_session_reset">Vous avez réinitialisé la session sécurisée.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s a réinitialisé la session sécurisée.</string>
   <string name="SmsMessageRecord_duplicate_message">Message doublon.</string>
@@ -477,9 +481,15 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="ThreadRecord_media_message">Message média</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s est sur Signal, dites-lui bonjour !</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Le temps de disparition des messages a été réglé à %s</string>
+  <string name="ThreadRecord_your_safety_number_with_s_has_changed">Votre numéro de sécurité avec %s a changé</string>
   <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Votre contact exécute une ancienne version de Signal. Veuillez lui demander de mettre à jour Signal avant de vérifier le numéro de sécurité.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Votre contact utilise une version plus récente de Signal, avec un format de QR code incompatible. Mettez votre application à jour pour comparer.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Le code QR scanné n\'est pas valide. Essayez de le scanner de nouveau.</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Partager les numéros de sécurité via...</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">Vos numéros de sécurité Signal :</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Il semble n\'y avoir aucune application pour partager ce contenu.</string>
+  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Aucun numéro de sécurité à comparer n\'a été trouvé dans le presse-papiers</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initier malgré la demande existante ?</string>
   <string name="KeyExchangeInitiator_send">Envoyer</string>
@@ -535,11 +545,20 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="SingleRecipientNotificationBuilder_new_message">Nouveau message</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Image</string>
+  <string name="attachment_type_selector__image_description">Image</string>
   <string name="attachment_type_selector__audio">Audio</string>
+  <string name="attachment_type_selector__audio_description">Audio</string>
   <string name="attachment_type_selector__video">Vidéo</string>
+  <string name="attachment_type_selector__video_description">Vidéo</string>
   <string name="attachment_type_selector__contact">Contact</string>
+  <string name="attachment_type_selector__contact_description">Contact</string>
   <string name="attachment_type_selector__camera">Appareil photo</string>
+  <string name="attachment_type_selector__camera_description">Appareil photo</string>
   <string name="attachment_type_selector__location">Lieu</string>
+  <string name="attachment_type_selector__location_description">Lieu</string>
+  <string name="attachment_type_selector__gif">GIFs</string>
+  <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__drawer_description">Afficher l\'accès rapide aux pièces jointes</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Ancienne phrase de passe</string>
   <string name="change_passphrase_activity__new_passphrase">Nouvelle phrase de passe</string>
@@ -570,6 +589,8 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="conversation_activity__compose_description">Composition du message</string>
   <string name="conversation_activity__emoji_toggle_description">Activer le clavier emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Vignette de pièce jointe</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Afficher l\'accès rapide à l\'appareil photo</string>
+  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Enregistrer et envoyer un fichier audio</string>
   <string name="conversation_activity__enable_signal_for_sms">Activer les SMS dans Signal</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">GLISSEZ POUR ANNULER</string>
@@ -588,6 +609,9 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="conversation_item_received__contact_photo_description">Photo de contact</string>
   <string name="conversation_item_received__downloading">Téléchargement</string>
   <!--audio_view-->
+  <string name="audio_view__play_accessibility_description">Lire</string>
+  <string name="audio_view__pause_accessibility_description">Pause</string>
+  <string name="audio_view__download_accessibility_description">Téléchargement</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Mode de sélection par lot</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s sélectionné</string>
@@ -694,6 +718,7 @@ Les paramètres MMS de votre opérateur peuvent généralement être obtenus en 
   <string name="recipient_preferences__block">Bloquer</string>
   <string name="recipient_preferences__color">Couleur</string>
   <string name="recipient_preferences__color_for_this_contact">Couleur pour ce contact</string>
+  <string name="recipient_preferences__verify_safety_number">Vérification des numéros de sécurité</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Appel Signal</string>
   <string name="redphone_call_controls__end_call">Terminer l\'appel</string>
@@ -764,8 +789,10 @@ par SMS.</string>
   <string name="recipients_panel__to"><small>Entrez un nom ou un numéro</small></string>
   <string name="recipients_panel__add_members">Ajouter des membres</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Si vous voulez verifier la securité du chiffrement de bout en bout avec %s, comparez les numéros ci-dessus avec les numéros sur son appareil. Vous pouvez également scanner le code sur son téléphone, ou lui demander de scanner votre code. <a href=\"https://whispersystems.org/redirect/safety-numbers\">En savoir plus sur les numéros de sécurité</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Appuyer pour scanner</string>
   <!--verify_identity-->
+  <string name="verify_identity__share_safety_number">Partager les numéros de sécurité</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Des problèmes requièrent votre attention.</string>
   <string name="message_details_header__sent">Envoyé</string>
@@ -781,6 +808,7 @@ par SMS.</string>
   <string name="AndroidManifest__select_contacts">Sélectionner des contacts</string>
   <string name="AndroidManifest__signal_detected">Signal détecté</string>
   <string name="AndroidManifest__change_passphrase">Modifier la phrase de passe</string>
+  <string name="AndroidManifest__verify_safety_number">Vérification des numéros de sécurité</string>
   <string name="AndroidManifest__log_submit">Envoyer un rapport de débogage</string>
   <string name="AndroidManifest__media_preview">Aperçu du média</string>
   <string name="AndroidManifest__media_overview">Toutes les images</string>
@@ -1033,6 +1061,7 @@ par SMS.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Enregistrer</string>
   <string name="media_preview__forward_title">Suivant</string>
+  <string name="media_preview__overview_title">Toutes les images</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Tout sauvegarder</string>
   <!--media_preview_activity-->

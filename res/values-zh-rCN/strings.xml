@@ -145,7 +145,6 @@
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="other">保存附件到存储时遇到错误！</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">保存文件成功。</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">存储无法写入！</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="other">正在保存 %1$d 附件</item>
@@ -471,6 +470,7 @@
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">信息销毁时间设置为 %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">您与 %s 的安全码已经改变</string>
   <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">您的联系人使用的是旧版本的暗号，在请求对方验证安全码前，请先让对方升级暗号客户端。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">您的联系人使用的是新版本的暗号，程序无法识别这个联系人的二维码。
 请升级您的暗号。</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">扫描的 QR 码格式不正确。请重新扫一次。</string>
@@ -533,11 +533,20 @@
   <string name="SingleRecipientNotificationBuilder_new_message">新信息</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">图片</string>
+  <string name="attachment_type_selector__image_description">图片</string>
   <string name="attachment_type_selector__audio">音频</string>
+  <string name="attachment_type_selector__audio_description">音频</string>
   <string name="attachment_type_selector__video">视频</string>
+  <string name="attachment_type_selector__video_description">视频</string>
   <string name="attachment_type_selector__contact">联系人</string>
+  <string name="attachment_type_selector__contact_description">联系人</string>
   <string name="attachment_type_selector__camera">相机</string>
+  <string name="attachment_type_selector__camera_description">相机</string>
   <string name="attachment_type_selector__location">位置</string>
+  <string name="attachment_type_selector__location_description">位置</string>
+  <string name="attachment_type_selector__gif">GIF</string>
+  <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__drawer_description">切换附件抽屉</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">旧密钥</string>
   <string name="change_passphrase_activity__new_passphrase">新密钥</string>
@@ -588,6 +597,9 @@
   <string name="conversation_item_received__contact_photo_description">联系人照片</string>
   <string name="conversation_item_received__downloading">下载中</string>
   <!--audio_view-->
+  <string name="audio_view__play_accessibility_description">播放</string>
+  <string name="audio_view__pause_accessibility_description">暂停</string>
+  <string name="audio_view__download_accessibility_description">下载</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">批量选择模式</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s 已选择</string>

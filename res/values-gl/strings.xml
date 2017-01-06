@@ -140,7 +140,6 @@
     <item quantity="one">Erro ao gardar o anexo no almacenamento!</item>
     <item quantity="other">Erro ao gardar os anexos no almacenamento!</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">Ficheiro gardado satisfactoriamente.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Non é posible escribir no almacenamento!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Gardando anexo</item>

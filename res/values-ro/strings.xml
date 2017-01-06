@@ -161,7 +161,11 @@
     <item quantity="few">A apărut o eroare în timpul salvării atașamentelor pe spațiul de stocare!</item>
     <item quantity="other">A apărut o eroare în timpul salvării atașamentelor pe spațiul de stocare!</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">Fișierul a fost salvat cu succes.</string>
+  <plurals name="ConversationFragment_files_saved_successfully">
+    <item quantity="one">Fișierul a fost salvat cu succes.</item>
+    <item quantity="few">Fișierele au fost salvate cu succes.</item>
+    <item quantity="other">Fișierele au fost salvate cu succes.</item>
+  </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nu se poate scrie pe spațiul de stocare!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Se salvează atașamentul</item>
@@ -234,9 +238,9 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Partajează cu</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Bunvenit la Signal.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Bine ai venit pe Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure și RedPhone sunt acum un singur mesager privat pentru orice situație: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Bunvenit la Signal!</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Bine ai venit pe Signal!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure se numește acum Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure și RedPhone sunt acum o singură aplicație: Signal. Apasă pentru a explora.</string>
   <!--ExportFragment-->
@@ -434,9 +438,9 @@ Vei pierde orice informație care se află în instalarea curentă de Signal și
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_signal">Conectează-te la Signal</string>
   <string name="RegistrationActivity_select_your_country">Alege ţara ta</string>
-  <string name="RegistrationActivity_you_must_specify_your_country_code">Trebuie să specifici
+  <string name="RegistrationActivity_you_must_specify_your_country_code">Trebuie să introduci
 codul țarii tale</string>
-  <string name="RegistrationActivity_you_must_specify_your_phone_number">Trebuie să specifici
+  <string name="RegistrationActivity_you_must_specify_your_phone_number">Trebuie să introduci
 numărul tău de telefon</string>
   <string name="RegistrationActivity_invalid_number">Număr invalid</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numărul de telefon
@@ -451,7 +455,7 @@ Verifică din nou dacă acesta este numărul tău! Suntem pe cale să-l verific�
   <string name="RegistrationActivity_continue">Continuă</string>
   <string name="RegistrationActivity_edit">Editează</string>
   <!--RegistrationProblemsActivity-->
-  <string name="RegistrationProblemsActivity_possible_problems">Probleme posibile</string>
+  <string name="RegistrationProblemsActivity_possible_problems">Probleme posibile.</string>
   <!--RegistrationProgressActivity-->
   <string name="RegistrationProgressActivity_verifying_number">Se verifică numărul</string>
   <string name="RegistrationProgressActivity_edit_s">Editează %s</string>
@@ -476,8 +480,8 @@ Verifică din nou dacă acesta este numărul tău! Suntem pe cale să-l verific�
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Înregistrarea este completă</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Înregistrarea la Signal s-a finalizat cu succes.</string>
-  <string name="RegistrationService_registration_error">Eroare de înregistrare</string>
-  <string name="RegistrationService_signal_registration_has_encountered_a_problem">Înregistrarea la Signal a întampinat o problemă.</string>
+  <string name="RegistrationService_registration_error">Eroare la înregistrare</string>
+  <string name="RegistrationService_signal_registration_has_encountered_a_problem">Înregistrarea la Signal a întâmpinat o problemă.</string>
   <!--Slide-->
   <string name="Slide_image">Imagine</string>
   <string name="Slide_audio">Audio</string>
@@ -785,7 +789,7 @@ Signal poate de asemenea să te sune pentru a verifica numărul tău.
 Apasă \"Sună-mă\" și introdu mai jos
  codul din șase cifre pe care îl vei auzi.</string>
   <string name="registration_progress_activity__verify">Verifică</string>
-  <string name="registration_progress_activity__call_me">Apelează-mă</string>
+  <string name="registration_progress_activity__call_me">Sună-mă</string>
   <string name="registration_progress_activity__edit_number">Editează număr</string>
   <string name="registration_progress_activity__connectivity_error">Eroare de conectivitate</string>
   <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal nu s-a putut conecta la server.
@@ -887,7 +891,7 @@ SMS a eșuat.</string>
   <string name="preferences__input_settings">Setări de introducere</string>
   <string name="preferences__enable_enter_key_title">Activează tasta Enter</string>
   <string name="preferences__replace_smiley_with_enter_key">Inlocuiți tasta smiley cu tasta Enter</string>
-  <string name="preferences__pref_enter_sends_title">Tasta Enter trimite</string>
+  <string name="preferences__pref_enter_sends_title">Trimite cu Enter</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Apăsarea tastei Enter va trimite mesajele text</string>
   <string name="preferences__display_settings">Afișează setările</string>
   <string name="preferences__choose_identity">Selectează identitatea</string>
@@ -1106,7 +1110,7 @@ SMS a eșuat.</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Previzualizare imagine</string>
   <!--new_conversation_activity-->
-  <string name="new_conversation_activity__refresh">Reîmprospătează</string>
+  <string name="new_conversation_activity__refresh">Reîmprospătare</string>
   <!--redphone_audio_popup_menu-->
   <string name="redphone_audio_popup_menu__handset">Mobil</string>
   <string name="redphone_audio_popup_menu__headset">Căști</string>

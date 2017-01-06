@@ -157,7 +157,10 @@ Recibido:%4$s</string>
     <item quantity="one">¡Error al guardar adjunto en el almacenamiento!</item>
     <item quantity="other">¡Error al guardar adjuntos en el almacenamiento!</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">Archivo guardado con éxito.</string>
+  <plurals name="ConversationFragment_files_saved_successfully">
+    <item quantity="one">Fichero guardado con éxito</item>
+    <item quantity="other">Ficheros guardados con éxito</item>
+  </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">¡No se pudo escribir en el almacenamiento!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Guardando adjunto</item>

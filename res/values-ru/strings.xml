@@ -167,7 +167,6 @@
     <item quantity="many">Ошибка при сохранении вложений в память!</item>
     <item quantity="other">Ошибка при сохранении вложений в память!</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">Файл успешно сохранен.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Невозможно произвести запись в память!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Сохранение вложения</item>

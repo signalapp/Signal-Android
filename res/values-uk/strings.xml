@@ -161,7 +161,6 @@
     <item quantity="few">Під час збереження вкладень до сховища сталася помилка!</item>
     <item quantity="other">Під час збереження вкладень до сховища сталася помилка!</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">Файл успішно збережено.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Неможливо записати до сховища!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Збереження вкладення</item>
@@ -241,13 +240,13 @@
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure і RedPhone тепер єдина програма: Signal. Торкніться, щоб дізнатися більше.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Експортувати</string>
-  <string name="ExportFragment_export_plaintext_to_storage">Експортувати відкритим текстом на карту SD?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Увага, цим ви експортуєте свої повідомлення на SD-карту у незашифрованому вигляді.</string>
+  <string name="ExportFragment_export_plaintext_to_storage">Експортувати незашифрованим текстом до сховища?</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Увага, цим ви експортуєте свої повідомлення до сховища у незашифрованому вигляді.</string>
   <string name="ExportFragment_cancel">Скасувати</string>
   <string name="ExportFragment_exporting">Експортування</string>
-  <string name="ExportFragment_exporting_plaintext_to_storage">Експорт у незашифрованому вигляді на карту SD...</string>
-  <string name="ExportFragment_error_unable_to_write_to_storage">Помилка, не вдалося записати на накопичувач.</string>
-  <string name="ExportFragment_error_while_writing_to_storage">Помилка при записі на накопичувач.</string>
+  <string name="ExportFragment_exporting_plaintext_to_storage">Експорт у незашифрованому вигляді до сховища...</string>
+  <string name="ExportFragment_error_unable_to_write_to_storage">Помилка, неможливо записати до сховища!</string>
+  <string name="ExportFragment_error_while_writing_to_storage">Помилка при записі до сховища.</string>
   <string name="ExportFragment_export_successful">Експортування успішне.</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Постійний збій зв\'язку Signal!</string>
@@ -386,7 +385,7 @@
   <string name="DeviceProvisioningActivity_content_progress_key_error">Хибний QR-код.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Вибачте, у вас забагато прив\'язаних пристроїв, спробуйте видалити декілька...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Вибачте, це хибний QR код для прив\'язки пристрою.</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Прив\'язати пристрій Signal?</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Приєднати пристрій Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Здається, ви намагаєтеся приєднати пристрій Signal, використовуючи сканер від 3-ї особи. Для вашого захисту, відскануйте код знову, використовуючи Signal.</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Зникнення повідомлень</string>
@@ -440,7 +439,8 @@
   <string name="RegistrationActivity_connect_with_signal">Підключення до Signal</string>
   <string name="RegistrationActivity_select_your_country">Оберіть вашу країну</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Ви повинні вказати
-код вашої країни</string>
+код вашої країни
+ </string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">Ви повинні вказати
 номер вашого телефону
  </string>
@@ -470,7 +470,7 @@
   <string name="RegistrationProgressActivity_connecting_for_verification">Підключення для підтвердження...</string>
   <string name="RegistrationProgressActivity_network_error">Помилка мережі!</string>
   <string name="RegistrationProgressActivity_unable_to_connect">Неможливо підключитися. Перевірте підключення до мережі та спробуйте знову.</string>
-  <string name="RegistrationProgressActivity_verification_failed">Перевірку не пройдено!</string>
+  <string name="RegistrationProgressActivity_verification_failed">Перевірка не вдалася!</string>
   <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">Введений код підтвердження хибний. Будь ласка, спробуйте знову.</string>
   <string name="RegistrationProgressActivity_too_many_attempts">Забагато спроб</string>
   <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Занадто багато спроб введення хибних кодів підтвердження. Зачекайте хвилину і спробуйте знову.</string>
@@ -504,7 +504,7 @@
   <string name="ThreadRecord_left_the_group">Покидає групу...</string>
   <string name="ThreadRecord_secure_session_reset">Скидання безпечного сеансу.</string>
   <string name="ThreadRecord_draft">Чернетка:</string>
-  <string name="ThreadRecord_called">Ви телефонувал</string>
+  <string name="ThreadRecord_called">Ви телефонували</string>
   <string name="ThreadRecord_called_you">Вам телефонували</string>
   <string name="ThreadRecord_missed_call">Пропущений виклик</string>
   <string name="ThreadRecord_media_message">Медіа повідомлення</string>
@@ -567,7 +567,7 @@
   <string name="MessageNotifier_media_message">Медіа повідомлення</string>
   <string name="MessageNotifier_reply">Відповісти</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Швидка відповідь неможлива коли Signal заблоковано!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Швидка відповідь неможлива, коли Signal заблоковано!</string>
   <string name="QuickResponseService_problem_sending_message">Проблема під час надсилання повідомлення!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
@@ -622,7 +622,7 @@
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Записати та надіслати аудіо-прикріплення</string>
   <string name="conversation_activity__enable_signal_for_sms">Увімкнути Signal для SMS</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">ПРОВЕДІТЬ, ЩОБ ВІДМІНИТИ</string>
+  <string name="conversation_input_panel__slide_to_cancel">ПРОВЕДІТЬ, ЩОБ СКАСУВАТИ</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Завантаження медіа-повідомлення</string>
   <string name="conversation_item__mms_image_description">Медіа повідомлення</string>
@@ -761,14 +761,14 @@
   <string name="redphone_call_controls__signal_call">Виклик Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__verify_your_number_to_connect_with_signal">
-Перевірте ваш номер телефону, щоб підключити Signal.
+Перевірте ваш номер телефону, щоб з\'єднатися із Signal.
  </string>
   <string name="registration_activity__your_country">ВАША КРАЇНА</string>
   <string name="registration_activity__your_country_code_and_phone_number">КОД ВАШОЇ КРАЇНИ ТА НОМЕР ТЕЛЕФОНУ
     </string>
   <string name="registration_activity__phone_number">НОМЕР ТЕЛЕФОНУ</string>
   <string name="registration_activity__register">Реєстрація</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Під час реєстрації на вервер передається деяка контактна інформація. Вона не зберігається.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Реєстрація передає деяку контактну інформація на сервер. Вона не зберігається.</string>
   <string name="registration_activity__powered_by_twilio">За підтримки twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Можливі проблеми
@@ -904,7 +904,7 @@ Signal не дочекався перевірочного SMS.
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Натиснення кнопки Enter відправить повідомлення</string>
   <string name="preferences__display_settings">Налаштування відображення</string>
   <string name="preferences__choose_identity">Обрати особистість</string>
-  <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Виберіть себе зі списку контактів.</string>
+  <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Оберіть себе зі списку контактів.</string>
   <string name="preferences__change_passphrase">Змінити фразу-ключ</string>
   <string name="preferences__change_your_passphrase">Змінити вашу фразу-ключ</string>
   <string name="preferences__enable_passphrase">Увімкнути фразу-пароль</string>
@@ -922,8 +922,8 @@ Signal не дочекався перевірочного SMS.
   <string name="preferences__led_color_unknown">Невідомо</string>
   <string name="preferences__pref_led_blink_title">Шаблон мерехтіння LED</string>
   <string name="preferences__pref_led_blink_custom_pattern_title">Задати власний шаблон мерехтіння LED</string>
-  <string name="preferences__pref_led_blink_custom_pattern_on_for">Включено для:</string>
-  <string name="preferences__pref_led_blink_custom_pattern_off_for">Виключено для:</string>
+  <string name="preferences__pref_led_blink_custom_pattern_on_for">Увімкнено для:</string>
+  <string name="preferences__pref_led_blink_custom_pattern_off_for">Вимкнено для:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Власний шаблон мерехтіння LED задано!</string>
   <string name="preferences__sound">Звук</string>
   <string name="preferences__change_notification_sound">Змінити звук сповіщення</string>
@@ -1128,6 +1128,6 @@ Signal не дочекався перевірочного SMS.
   <string name="trimmer__deleting_old_messages">Видалення старих повідомлень...</string>
   <string name="trimmer__old_messages_successfully_deleted">Старі повідомлення було успішно видалено</string>
   <!--transport_selection_list_item-->
-  <string name="transport_selection_list_item__transport_icon">Логотип транспорту</string>
+  <string name="transport_selection_list_item__transport_icon">Логотип типу зв\'язку</string>
   <!--EOF-->
 </resources>
