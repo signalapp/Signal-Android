@@ -34,7 +34,9 @@ import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirementProvi
 import org.thoughtcrime.securesms.jobs.requirements.MediaNetworkRequirementProvider;
 import org.thoughtcrime.securesms.jobs.requirements.ServiceRequirementProvider;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
+import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
+import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.jobqueue.dependencies.DependencyInjector;
@@ -75,6 +77,7 @@ public class ApplicationContext extends Application implements DependencyInjecto
     initializeExpiringMessageManager();
     initializeGcmCheck();
     initializeSignedPreKeyCheck();
+    initializePeriodicTasks();
   }
 
   @Override
@@ -148,6 +151,11 @@ public class ApplicationContext extends Application implements DependencyInjecto
 
   private void initializeExpiringMessageManager() {
     this.expiringMessageManager = new ExpiringMessageManager(this);
+  }
+
+  private void initializePeriodicTasks() {
+    RotateSignedPreKeyListener.schedule(this);
+    DirectoryRefreshListener.schedule(this);
   }
 
 }

@@ -53,13 +53,11 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
 
   @Override
   public void onAdded() {
-//    MmsDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(context);
-//    mmsDatabase.markAsSending(messageId);
-//    mmsDatabase.markAsPush(messageId);
+
   }
 
   @Override
-  public void onSend(MasterSecret masterSecret)
+  public void onPushSend(MasterSecret masterSecret)
       throws RetryLaterException, MmsException, NoSuchMessageException,
              UndeliverableMessageException
   {
@@ -69,8 +67,6 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
 
     try {
       deliver(masterSecret, message);
-//      database.markAsPush(messageId);
-//      database.markAsSecure(messageId);
       database.markAsSent(messageId, true);
       markAttachmentsUploaded(messageId, message.getAttachments());
 
@@ -91,7 +87,6 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
 
       database.addMismatchedIdentity(messageId, recipientId, uie.getIdentityKey());
       database.markAsSentFailed(messageId);
-//      database.markAsPush(messageId);
     }
   }
 

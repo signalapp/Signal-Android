@@ -79,7 +79,9 @@ public class TextSecurePreKeyStore implements PreKeyStore, SignedPreKeyStore {
 
       for (File signedPreKeyFile : directory.listFiles()) {
         try {
-          results.add(new SignedPreKeyRecord(loadSerializedRecord(signedPreKeyFile)));
+          if (!"index.dat".equals(signedPreKeyFile.getName())) {
+            results.add(new SignedPreKeyRecord(loadSerializedRecord(signedPreKeyFile)));
+          }
         } catch (IOException | InvalidMessageException e) {
           Log.w(TAG, e);
         }

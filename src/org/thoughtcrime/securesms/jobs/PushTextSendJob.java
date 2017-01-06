@@ -49,7 +49,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
   public void onAdded() {}
 
   @Override
-  public void onSend(MasterSecret masterSecret) throws NoSuchMessageException, RetryLaterException {
+  public void onPushSend(MasterSecret masterSecret) throws NoSuchMessageException, RetryLaterException {
     ExpiringMessageManager expirationManager = ApplicationContext.getInstance(context).getExpiringMessageManager();
     EncryptingSmsDatabase  database          = DatabaseFactory.getEncryptingSmsDatabase(context);
     SmsMessageRecord       record            = database.getMessage(masterSecret, messageId);
