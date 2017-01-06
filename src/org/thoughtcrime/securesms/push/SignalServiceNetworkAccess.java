@@ -46,7 +46,6 @@ public class SignalServiceNetworkAccess {
                                                                APPSPOT_REFLECTOR_HOST,
                                                                googleTrustStore),
                                           baseAndroid, baseGoogle});
-      put("+98", new SignalServiceUrl[] {baseAndroid, baseGoogle});
     }};
 
     this.uncensoredConfiguration = new SignalServiceUrl[] {
