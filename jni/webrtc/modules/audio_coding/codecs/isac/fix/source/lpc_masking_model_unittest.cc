@@ -8,9 +8,9 @@
  *  be found in the AUTHORS file in the root of the source tree.
  */
 
-#include "gtest/gtest.h"
+#include "testing/gtest/include/gtest/gtest.h"
 #include "webrtc/modules/audio_coding/codecs/isac/fix/source/lpc_masking_model.h"
-#include "webrtc/system_wrappers/interface/cpu_features_wrapper.h"
+#include "webrtc/system_wrappers/include/cpu_features_wrapper.h"
 #include "webrtc/typedefs.h"
 
 class LpcMaskingModelTest : public testing::Test {
@@ -58,11 +58,4 @@ class LpcMaskingModelTest : public testing::Test {
 
 TEST_F(LpcMaskingModelTest, CalculateResidualEnergyTest) {
   CalculateResidualEnergyTester(WebRtcIsacfix_CalculateResidualEnergyC);
-#ifdef WEBRTC_DETECT_ARM_NEON
-  if ((WebRtc_GetCPUFeaturesARM() & kCPUFeatureNEON) != 0) {
-    CalculateResidualEnergyTester(WebRtcIsacfix_CalculateResidualEnergyNeon);
-  }
-#elif defined(WEBRTC_ARCH_ARM_NEON)
-  CalculateResidualEnergyTester(WebRtcIsacfix_CalculateResidualEnergyNeon);
-#endif
 }

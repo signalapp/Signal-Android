@@ -18,7 +18,7 @@
 
 #include "lpc_gain_swb_tables.h"
 #include "settings.h"
-#include "typedefs.h"
+#include "webrtc/typedefs.h"
 
 const double WebRtcIsac_kQSizeLpcGain = 0.100000;
 

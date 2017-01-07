@@ -17,25 +17,19 @@
 #include <string.h>
 
 /* include API */
-#include "g711_interface.h"
+#include "webrtc/modules/audio_coding/codecs/g711/g711_interface.h"
 
 /* Runtime statistics */
 #include <time.h>
 #define CLOCKS_PER_SEC_G711 1000
 
 /* function for reading audio data from PCM file */
-int readframe(int16_t* data, FILE* inp, int length) {
-
-  short k, rlen, status = 0;
-
-  rlen = (short) fread(data, sizeof(int16_t), length, inp);
-  if (rlen < length) {
-    for (k = rlen; k < length; k++)
-      data[k] = 0;
-    status = 1;
-  }
-
-  return status;
+bool readframe(int16_t* data, FILE* inp, size_t length) {
+  size_t rlen = fread(data, sizeof(int16_t), length, inp);
+  if (rlen >= length)
+    return false;
+  memset(data + rlen, 0, (length - rlen) * sizeof(int16_t));
+  return true;
 }
 
 int main(int argc, char* argv[]) {
@@ -43,21 +37,20 @@ int main(int argc, char* argv[]) {
   FILE* inp;
   FILE* outp;
   FILE* bitp = NULL;
-  int framecnt, endfile;
+  int framecnt;
+  bool endfile;
 
-  int16_t framelength = 80;
-
-  int err;
+  size_t framelength = 80;
 
   /* Runtime statistics */
   double starttime;
   double runtime;
   double length_file;
 
-  int16_t stream_len = 0;
+  size_t stream_len = 0;
   int16_t shortdata[480];
   int16_t decoded[480];
-  int16_t streamdata[500];
+  uint8_t streamdata[1000];
   int16_t speechType[1];
   char law[2];
   char versionNumber[40];
@@ -85,7 +78,12 @@ int main(int argc, char* argv[]) {
   printf("-----------------------------------\n");
   printf("G.711 version: %s\n\n", versionNumber);
   /* Get frame length */
-  framelength = atoi(argv[1]);
+  int framelength_int = atoi(argv[1]);
+  if (framelength_int < 0) {
+      printf("  G.722: Invalid framelength %d.\n", framelength_int);
+      exit(1);
+  }
+  framelength = static_cast<size_t>(framelength_int);
 
   /* Get compression law */
   strcpy(law, argv[2]);
@@ -118,8 +116,8 @@ int main(int argc, char* argv[]) {
 
   /* Initialize encoder and decoder */
   framecnt = 0;
-  endfile = 0;
-  while (endfile == 0) {
+  endfile = false;
+  while (!endfile) {
     framecnt++;
     /* Read speech block */
     endfile = readframe(shortdata, inp, framelength);
@@ -127,41 +125,33 @@ int main(int argc, char* argv[]) {
     /* G.711 encoding */
     if (!strcmp(law, "A")) {
       /* A-law encoding */
-      stream_len = WebRtcG711_EncodeA(NULL, shortdata, framelength, streamdata);
+      stream_len = WebRtcG711_EncodeA(shortdata, framelength, streamdata);
       if (argc == 6) {
         /* Write bits to file */
         if (fwrite(streamdata, sizeof(unsigned char), stream_len, bitp) !=
-            static_cast<size_t>(stream_len)) {
+            stream_len) {
           return -1;
         }
       }
-      err = WebRtcG711_DecodeA(NULL, streamdata, stream_len, decoded,
-                               speechType);
+      WebRtcG711_DecodeA(streamdata, stream_len, decoded, speechType);
     } else if (!strcmp(law, "u")) {
       /* u-law encoding */
-      stream_len = WebRtcG711_EncodeU(NULL, shortdata, framelength, streamdata);
+      stream_len = WebRtcG711_EncodeU(shortdata, framelength, streamdata);
       if (argc == 6) {
         /* Write bits to file */
         if (fwrite(streamdata, sizeof(unsigned char), stream_len, bitp) !=
-            static_cast<size_t>(stream_len)) {
+            stream_len) {
           return -1;
         }
       }
-      err = WebRtcG711_DecodeU(NULL, streamdata, stream_len, decoded,
-                               speechType);
+      WebRtcG711_DecodeU(streamdata, stream_len, decoded, speechType);
     } else {
       printf("Wrong law mode\n");
       exit(1);
     }
-    if (stream_len < 0 || err < 0) {
-      /* exit if returned with error */
-      printf("Error in encoder/decoder\n");
-    } else {
-      /* Write coded speech to file */
-      if (fwrite(decoded, sizeof(short), framelength, outp) !=
-          static_cast<size_t>(framelength)) {
-        return -1;
-      }
+    /* Write coded speech to file */
+    if (fwrite(decoded, sizeof(short), framelength, outp) != framelength) {
+      return -1;
     }
   }
 

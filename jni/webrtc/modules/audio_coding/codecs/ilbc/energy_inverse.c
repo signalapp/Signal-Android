@@ -23,12 +23,12 @@
 void WebRtcIlbcfix_EnergyInverse(
     int16_t *energy,    /* (i/o) Energy and inverse
                                                            energy (in Q29) */
-    int noOfEnergies)  /* (i)   The length of the energy
+    size_t noOfEnergies)  /* (i)   The length of the energy
                                    vector */
 {
   int32_t Nom=(int32_t)0x1FFFFFFF;
   int16_t *energyPtr;
-  int i;
+  size_t i;
 
   /* Set the minimum energy value to 16384 to avoid overflow */
   energyPtr=energy;

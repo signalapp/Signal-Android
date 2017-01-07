@@ -21,9 +21,14 @@ void AudioPlayer::playerCallback(SLAndroidSimpleBufferQueueItf bufferQueue, void
 }
 
 void AudioPlayer::playerCallback(SLAndroidSimpleBufferQueueItf bufferQueue) {
-  int samples = webRtcJitterBuffer.getAudio(outputBuffer, FRAME_SIZE);
+  if (webRtcJitterBuffer.getAudio(&audioFrame) == 0) {
+    int length = audioFrame.samples_per_channel_ * audioFrame.num_channels_ * sizeof(short);
+    (*bufferQueue)->Enqueue(bufferQueue, audioFrame.data_, length);
+  }
+
+//  int samples = webRtcJitterBuffer.getAudio(outputBuffer, FRAME_SIZE);
 //  __android_log_print(ANDROID_LOG_WARN, TAG, "Jitter gave me: %d samples", samples);
-  (*bufferQueue)->Enqueue(bufferQueue, outputBuffer, samples * sizeof(short));
+//  (*bufferQueue)->Enqueue(bufferQueue, outputBuffer, samples * sizeof(short));
 }
 
 int AudioPlayer::start(SLEngineItf *engineEnginePtr) {
@@ -95,9 +100,10 @@ int AudioPlayer::start(SLEngineItf *engineEnginePtr) {
     return -1;
   }
 
-  memset(outputBuffer, 0, FRAME_SIZE * sizeof(short));
+  memset(audioFrame.data_, 0, sizeof(audioFrame.data_));
+//  memset(outputBuffer, 0, FRAME_SIZE * sizeof(short));
 
-  if ((*bqPlayerBufferQueue)->Enqueue(bqPlayerBufferQueue, outputBuffer, FRAME_SIZE * sizeof(short)) != SL_RESULT_SUCCESS) {
+  if ((*bqPlayerBufferQueue)->Enqueue(bqPlayerBufferQueue, audioFrame.data_, FRAME_SIZE * sizeof(short)) != SL_RESULT_SUCCESS) {
     __android_log_print(ANDROID_LOG_WARN, TAG, "Player enqueue failed!");
     return -1;
   }

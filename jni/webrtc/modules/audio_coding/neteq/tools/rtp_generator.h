@@ -12,7 +12,7 @@
 #define WEBRTC_MODULES_AUDIO_CODING_NETEQ_TOOLS_RTP_GENERATOR_H_
 
 #include "webrtc/base/constructormagic.h"
-#include "webrtc/modules/interface/module_common_types.h"
+#include "webrtc/modules/include/module_common_types.h"
 #include "webrtc/typedefs.h"
 
 namespace webrtc {
@@ -34,22 +34,48 @@ class RtpGenerator {
         drift_factor_(0.0) {
   }
 
+  virtual ~RtpGenerator() {}
+
   // Writes the next RTP header to |rtp_header|, which will be of type
   // |payload_type|. Returns the send time for this packet (in ms). The value of
   // |payload_length_samples| determines the send time for the next packet.
-  uint32_t GetRtpHeader(uint8_t payload_type, size_t payload_length_samples,
-                        WebRtcRTPHeader* rtp_header);
+  virtual uint32_t GetRtpHeader(uint8_t payload_type,
+                                size_t payload_length_samples,
+                                WebRtcRTPHeader* rtp_header);
 
   void set_drift_factor(double factor);
 
- private:
+ protected:
   uint16_t seq_number_;
   uint32_t timestamp_;
   uint32_t next_send_time_ms_;
   const uint32_t ssrc_;
   const int samples_per_ms_;
   double drift_factor_;
-  DISALLOW_COPY_AND_ASSIGN(RtpGenerator);
+
+ private:
+  RTC_DISALLOW_COPY_AND_ASSIGN(RtpGenerator);
+};
+
+class TimestampJumpRtpGenerator : public RtpGenerator {
+ public:
+  TimestampJumpRtpGenerator(int samples_per_ms,
+                            uint16_t start_seq_number,
+                            uint32_t start_timestamp,
+                            uint32_t jump_from_timestamp,
+                            uint32_t jump_to_timestamp)
+      : RtpGenerator(samples_per_ms, start_seq_number, start_timestamp),
+        jump_from_timestamp_(jump_from_timestamp),
+        jump_to_timestamp_(jump_to_timestamp) {}
+
+  uint32_t GetRtpHeader(uint8_t payload_type,
+                        size_t payload_length_samples,
+                        WebRtcRTPHeader* rtp_header) override;
+
+ private:
+  uint32_t jump_from_timestamp_;
+  uint32_t jump_to_timestamp_;
+  RTC_DISALLOW_COPY_AND_ASSIGN(TimestampJumpRtpGenerator);
 };
 
 }  // namespace test

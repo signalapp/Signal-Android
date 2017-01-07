@@ -9,7 +9,7 @@
  */
 // An OS-independent sleep function.
 
-#include "webrtc/system_wrappers/interface/sleep.h"
+#include "webrtc/system_wrappers/include/sleep.h"
 
 #ifdef _WIN32
 // For Sleep()

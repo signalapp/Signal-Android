@@ -13,7 +13,7 @@
 
 #include "webrtc/modules/audio_coding/neteq/payload_splitter.h"
 
-#include "gmock/gmock.h"
+#include "testing/gmock/include/gmock/gmock.h"
 
 namespace webrtc {
 
@@ -28,11 +28,11 @@ class MockPayloadSplitter : public PayloadSplitter {
   MOCK_METHOD2(SplitAudio,
       int(PacketList* packet_list, const DecoderDatabase& decoder_database));
   MOCK_METHOD4(SplitBySamples,
-      void(const Packet* packet, int bytes_per_ms, int timestamps_per_ms,
-           PacketList* new_packets));
+      void(const Packet* packet, size_t bytes_per_ms,
+           uint32_t timestamps_per_ms, PacketList* new_packets));
   MOCK_METHOD4(SplitByFrames,
-      int(const Packet* packet, int bytes_per_frame, int timestamps_per_frame,
-          PacketList* new_packets));
+      int(const Packet* packet, size_t bytes_per_frame,
+          uint32_t timestamps_per_frame, PacketList* new_packets));
 };
 
 }  // namespace webrtc

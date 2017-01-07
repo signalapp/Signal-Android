@@ -214,10 +214,10 @@ int WebRtcIsac_DecHistOneStepMulti(int *data,        /* output: data vector */
   if (streamdata->stream_index == 0)   /* first time decoder is called for this stream */
   {
     /* read first word from bytestream */
-    streamval = *stream_ptr << 24;
-    streamval |= *++stream_ptr << 16;
-    streamval |= *++stream_ptr << 8;
-    streamval |= *++stream_ptr;
+    streamval = (uint32_t)(*stream_ptr) << 24;
+    streamval |= (uint32_t)(*++stream_ptr) << 16;
+    streamval |= (uint32_t)(*++stream_ptr) << 8;
+    streamval |= (uint32_t)(*++stream_ptr);
   } else {
     streamval = streamdata->streamval;
   }

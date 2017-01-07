@@ -27,9 +27,9 @@ void WebRtcIlbcfix_CompCorr(
     int32_t *corr, /* (o) cross correlation */
     int32_t *ener, /* (o) energy */
     int16_t *buffer, /* (i) signal buffer */
-    int16_t lag,  /* (i) pitch lag */
-    int16_t bLen, /* (i) length of buffer */
-    int16_t sRange, /* (i) correlation search length */
+    size_t lag,  /* (i) pitch lag */
+    size_t bLen, /* (i) length of buffer */
+    size_t sRange, /* (i) correlation search length */
     int16_t scale /* (i) number of rightshifts to use */
                             ){
   int16_t *w16ptr;

@@ -78,8 +78,7 @@ void WebRtcIsacfix_InitPreFilterbank(PreFiltBankstr *prefiltdata)
     prefiltdata->INLABUF1_fix[k] = 0;
     prefiltdata->INLABUF2_fix[k] = 0;
   }
-  for (k = 0; k < WEBRTC_SPL_MUL_16_16(2,(QORDER-1)); k++) {
-
+  for (k = 0; k < 2 * (QORDER - 1); k++) {
     prefiltdata->INSTAT1_fix[k] = 0;
     prefiltdata->INSTAT2_fix[k] = 0;
   }
@@ -95,8 +94,7 @@ void WebRtcIsacfix_InitPostFilterbank(PostFiltBankstr *postfiltdata)
 {
   int k;
 
-  for (k = 0; k < WEBRTC_SPL_MUL_16_16(2, POSTQORDER); k++) {
-
+  for (k = 0; k < 2 * POSTQORDER; k++) {
     postfiltdata->STATE_0_LOWER_fix[k] = 0;
     postfiltdata->STATE_0_UPPER_fix[k] = 0;
   }
@@ -133,7 +131,7 @@ void WebRtcIsacfix_InitPitchAnalysis(PitchAnalysisStruct *State)
   for (k = 0; k < PITCH_CORR_LEN2+PITCH_CORR_STEP2+PITCH_MAX_LAG/2-PITCH_FRAME_LEN/2+2; k++) {
     State->dec_buffer16[k] = 0;
   }
-  for (k = 0; k < WEBRTC_SPL_MUL_16_16(2, ALLPASSSECTIONS)+1; k++) {
+  for (k = 0; k < 2 * ALLPASSSECTIONS + 1; k++) {
     State->decimator_state32[k] = 0;
   }
 

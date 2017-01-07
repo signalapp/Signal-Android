@@ -30,8 +30,8 @@ void WebRtcIlbcfix_CbConstruct(
     int16_t *index,   /* (i) Codebook indices */
     int16_t *gain_index,  /* (i) Gain quantization indices */
     int16_t *mem,   /* (i) Buffer for codevector construction */
-    int16_t lMem,   /* (i) Length of buffer */
-    int16_t veclen   /* (i) Length of vector */
+    size_t lMem,   /* (i) Length of buffer */
+    size_t veclen   /* (i) Length of vector */
                                );
 
 

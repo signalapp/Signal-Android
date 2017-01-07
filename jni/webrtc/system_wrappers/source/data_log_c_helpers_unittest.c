@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "webrtc/system_wrappers/interface/data_log_c.h"
+#include "webrtc/system_wrappers/include/data_log_c.h"
 
 enum { kTestArrayLen = 4 };
 static const char kTableName[] = "c_wrapper_table";

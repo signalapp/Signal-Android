@@ -20,32 +20,26 @@ LOCAL_SRC_FILES := \
     cpu_features_android.c \
     sort.cc \
     aligned_malloc.cc \
-    atomic32_posix.cc \
-    condition_variable.cc \
+    atomic32_non_darwin_unix.cc \
     cpu_features.cc \
     cpu_info.cc \
-    critical_section.cc \
     event.cc \
-    event_tracer.cc \
+    event_timer_posix.cc \
     file_impl.cc \
     rw_lock.cc \
-    thread.cc \
     trace_impl.cc \
-    condition_variable_posix.cc \
-    critical_section_posix.cc \
-    event_posix.cc \
     rtp_to_ntp.cc \
     sleep.cc \
-    thread_posix.cc \
-    tick_util.cc \
     timestamp_extrapolator.cc \
     trace_posix.cc \
-    rw_lock_generic.cc \
     rw_lock_posix.cc \
-    logging.cc
+    metrics_default.cc \
+    logging.cc \
+    clock.cc
 
 LOCAL_CFLAGS := \
-    $(MY_WEBRTC_COMMON_DEFS)
+    $(MY_WEBRTC_COMMON_DEFS) \
+    -DWEBRTC_POSIX
 
 LOCAL_C_INCLUDES := \
     $(LOCAL_PATH)/../.. \

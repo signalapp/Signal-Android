@@ -126,11 +126,11 @@ int16_t WebRtcIsacfix_FftRadix16Fastest(int16_t RexQx[], int16_t ImxQx[], int16_
     }
 
     ccc1Q14 = kCosTabFfftQ14[kk];
-    ccc2Q14 = kCosTabFfftQ14[WEBRTC_SPL_MUL_16_16(2, kk)];
-    ccc3Q14 = kCosTabFfftQ14[WEBRTC_SPL_MUL_16_16(3, kk)];
-    sss1Q14 = kCosTabFfftQ14[kk+60];
-    sss2Q14 = kCosTabFfftQ14[WEBRTC_SPL_MUL_16_16(2, kk)+60];
-    sss3Q14 = kCosTabFfftQ14[WEBRTC_SPL_MUL_16_16(3, kk)+60];
+    ccc2Q14 = kCosTabFfftQ14[2 * kk];
+    ccc3Q14 = kCosTabFfftQ14[3 * kk];
+    sss1Q14 = kCosTabFfftQ14[kk + 60];
+    sss2Q14 = kCosTabFfftQ14[2 * kk + 60];
+    sss3Q14 = kCosTabFfftQ14[3 * kk + 60];
     if (iSign==1) {
       sss1Q14 = -sss1Q14;
       sss2Q14 = -sss2Q14;
@@ -176,8 +176,8 @@ int16_t WebRtcIsacfix_FftRadix16Fastest(int16_t RexQx[], int16_t ImxQx[], int16_
       bjQx = ImxQx[k1] + ImxQx[k2];
       RexQx[kk] = akQx + ajQx;
       ImxQx[kk] = bkQx + bjQx;
-      tmp116 = WEBRTC_SPL_RSHIFT_W16(ajQx, 1);
-      tmp216 = WEBRTC_SPL_RSHIFT_W16(bjQx, 1);
+      tmp116 = ajQx >> 1;
+      tmp216 = bjQx >> 1;
       akQx = akQx - tmp116;
       bkQx = bkQx - tmp216;
       tmp116 = RexQx[k1] - RexQx[k2];
@@ -211,7 +211,7 @@ int16_t WebRtcIsacfix_FftRadix16Fastest(int16_t RexQx[], int16_t ImxQx[], int16_
     kk += 20;
     ff = ff+4;
     for (hh=0; hh<2; hh++) {
-      ee = ff + (int16_t)WEBRTC_SPL_MUL_16_16(hh, ff);
+      ee = ff + hh * ff;
       dd = ee + 60;
       ccc2Q14 = kCosTabFfftQ14[ee];
       sss2Q14 = kCosTabFfftQ14[dd];
@@ -308,7 +308,7 @@ int16_t WebRtcIsacfix_FftRadix16Fastest(int16_t RexQx[], int16_t ImxQx[], int16_
 
   for (gg=0; gg<3; gg++) {
     kk += 4;
-    dd = 12 + (int16_t)WEBRTC_SPL_MUL_16_16(12, gg);
+    dd = 12 + 12 * gg;
     ff = 0;
     for (hh=0; hh<4; hh++) {
       ff = ff+dd;

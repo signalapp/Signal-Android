@@ -8,7 +8,7 @@
  *  be found in the AUTHORS file in the root of the source tree.
  */
 
-#include "webrtc/modules/audio_coding/codecs/opus/interface/opus_interface.h"
+#include "webrtc/modules/audio_coding/codecs/opus/opus_interface.h"
 #include "webrtc/modules/audio_coding/codecs/tools/audio_codec_speed_test.h"
 
 using ::std::string;
@@ -21,12 +21,12 @@ static const int kOpusSamplingKhz = 48;
 class OpusSpeedTest : public AudioCodecSpeedTest {
  protected:
   OpusSpeedTest();
-  virtual void SetUp() OVERRIDE;
-  virtual void TearDown() OVERRIDE;
-  virtual float EncodeABlock(int16_t* in_data, uint8_t* bit_stream,
-                             int max_bytes, int* encoded_bytes);
-  virtual float DecodeABlock(const uint8_t* bit_stream, int encoded_bytes,
-                             int16_t* out_data);
+  void SetUp() override;
+  void TearDown() override;
+  float EncodeABlock(int16_t* in_data, uint8_t* bit_stream,
+                     size_t max_bytes, size_t* encoded_bytes) override;
+  float DecodeABlock(const uint8_t* bit_stream, size_t encoded_bytes,
+                     int16_t* out_data) override;
   WebRtcOpusEncInst* opus_encoder_;
   WebRtcOpusDecInst* opus_decoder_;
 };
@@ -41,8 +41,10 @@ OpusSpeedTest::OpusSpeedTest()
 
 void OpusSpeedTest::SetUp() {
   AudioCodecSpeedTest::SetUp();
+  // If channels_ == 1, use Opus VOIP mode, otherwise, audio mode.
+  int app = channels_ == 1 ? 0 : 1;
   /* Create encoder memory. */
-  EXPECT_EQ(0, WebRtcOpus_EncoderCreate(&opus_encoder_, channels_));
+  EXPECT_EQ(0, WebRtcOpus_EncoderCreate(&opus_encoder_, channels_, app));
   EXPECT_EQ(0, WebRtcOpus_DecoderCreate(&opus_decoder_, channels_));
   /* Set bitrate. */
   EXPECT_EQ(0, WebRtcOpus_SetBitRate(opus_encoder_, bit_rate_));
@@ -56,26 +58,26 @@ void OpusSpeedTest::TearDown() {
 }
 
 float OpusSpeedTest::EncodeABlock(int16_t* in_data, uint8_t* bit_stream,
-                                  int max_bytes, int* encoded_bytes) {
+                                  size_t max_bytes, size_t* encoded_bytes) {
   clock_t clocks = clock();
   int value = WebRtcOpus_Encode(opus_encoder_, in_data,
                                 input_length_sample_, max_bytes,
                                 bit_stream);
   clocks = clock() - clocks;
   EXPECT_GT(value, 0);
-  *encoded_bytes = value;
+  *encoded_bytes = static_cast<size_t>(value);
   return 1000.0 * clocks / CLOCKS_PER_SEC;
 }
 
 float OpusSpeedTest::DecodeABlock(const uint8_t* bit_stream,
-                                  int encoded_bytes, int16_t* out_data) {
+                                  size_t encoded_bytes, int16_t* out_data) {
   int value;
   int16_t audio_type;
   clock_t clocks = clock();
-  value = WebRtcOpus_DecodeNew(opus_decoder_, bit_stream, encoded_bytes,
-                               out_data, &audio_type);
+  value = WebRtcOpus_Decode(opus_decoder_, bit_stream, encoded_bytes, out_data,
+                            &audio_type);
   clocks = clock() - clocks;
-  EXPECT_EQ(output_length_sample_, value);
+  EXPECT_EQ(output_length_sample_, static_cast<size_t>(value));
   return 1000.0 * clocks / CLOCKS_PER_SEC;
 }
 

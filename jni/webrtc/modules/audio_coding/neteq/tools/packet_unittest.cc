@@ -12,7 +12,7 @@
 
 #include "webrtc/modules/audio_coding/neteq/tools/packet.h"
 
-#include "gtest/gtest.h"
+#include "testing/gtest/include/gtest/gtest.h"
 
 namespace webrtc {
 namespace test {
@@ -26,14 +26,14 @@ void MakeRtpHeader(int payload_type,
                    uint32_t ssrc,
                    uint8_t* rtp_data) {
   rtp_data[0] = 0x80;
-  rtp_data[1] = payload_type & 0xFF;
+  rtp_data[1] = static_cast<uint8_t>(payload_type);
   rtp_data[2] = (seq_number >> 8) & 0xFF;
   rtp_data[3] = (seq_number) & 0xFF;
-  rtp_data[4] = (timestamp >> 24) & 0xFF;
+  rtp_data[4] = timestamp >> 24;
   rtp_data[5] = (timestamp >> 16) & 0xFF;
   rtp_data[6] = (timestamp >> 8) & 0xFF;
   rtp_data[7] = timestamp & 0xFF;
-  rtp_data[8] = (ssrc >> 24) & 0xFF;
+  rtp_data[8] = ssrc >> 24;
   rtp_data[9] = (ssrc >> 16) & 0xFF;
   rtp_data[10] = (ssrc >> 8) & 0xFF;
   rtp_data[11] = ssrc & 0xFF;

@@ -19,10 +19,9 @@
 #ifndef WEBRTC_MODULES_AUDIO_CODING_CODECS_ISAC_MAIN_SOURCE_ENCODE_LPC_SWB_H_
 #define WEBRTC_MODULES_AUDIO_CODING_CODECS_ISAC_MAIN_SOURCE_ENCODE_LPC_SWB_H_
 
-#include "typedefs.h"
 #include "settings.h"
 #include "structs.h"
-
+#include "webrtc/typedefs.h"
 
 /******************************************************************************
  * WebRtcIsac_RemoveLarMean()

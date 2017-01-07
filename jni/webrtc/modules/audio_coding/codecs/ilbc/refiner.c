@@ -30,17 +30,17 @@
  *---------------------------------------------------------------*/
 
 void WebRtcIlbcfix_Refiner(
-    int16_t *updStartPos, /* (o) updated start point (Q-2) */
+    size_t *updStartPos, /* (o) updated start point (Q-2) */
     int16_t *idata,   /* (i) original data buffer */
-    int16_t idatal,   /* (i) dimension of idata */
-    int16_t centerStartPos, /* (i) beginning center segment */
-    int16_t estSegPos,  /* (i) estimated beginning other segment (Q-2) */
+    size_t idatal,   /* (i) dimension of idata */
+    size_t centerStartPos, /* (i) beginning center segment */
+    size_t estSegPos,  /* (i) estimated beginning other segment (Q-2) */
     int16_t *surround,  /* (i/o) The contribution from this sequence
                                            summed with earlier contributions */
     int16_t gain    /* (i) Gain to use for this sequence */
                            ){
-  int16_t estSegPosRounded,searchSegStartPos,searchSegEndPos,corrdim;
-  int16_t tloc,tloc2,i,st,en,fraction;
+  size_t estSegPosRounded, searchSegStartPos, searchSegEndPos, corrdim;
+  size_t tloc, tloc2, i;
 
   int32_t maxtemp, scalefact;
   int16_t *filtStatePtr, *polyPtr;
@@ -53,98 +53,88 @@ void WebRtcIlbcfix_Refiner(
 
   /* defining array bounds */
 
-  estSegPosRounded=WEBRTC_SPL_RSHIFT_W16((estSegPos - 2),2);
+  estSegPosRounded = (estSegPos - 2) >> 2;
 
-  searchSegStartPos=estSegPosRounded-ENH_SLOP;
+  searchSegStartPos =
+      (estSegPosRounded < ENH_SLOP) ? 0 : (estSegPosRounded - ENH_SLOP);
 
-  if (searchSegStartPos<0) {
-    searchSegStartPos=0;
+  searchSegEndPos = estSegPosRounded + ENH_SLOP;
+  if ((searchSegEndPos + ENH_BLOCKL) >= idatal) {
+    searchSegEndPos = idatal - ENH_BLOCKL - 1;
   }
-  searchSegEndPos=estSegPosRounded+ENH_SLOP;
 
-  if(searchSegEndPos+ENH_BLOCKL >= idatal) {
-    searchSegEndPos=idatal-ENH_BLOCKL-1;
-  }
-  corrdim=searchSegEndPos-searchSegStartPos+1;
+  corrdim = searchSegEndPos + 1 - searchSegStartPos;
 
   /* compute upsampled correlation and find
      location of max */
 
-  WebRtcIlbcfix_MyCorr(corrVecTemp,idata+searchSegStartPos,
-                       (int16_t)(corrdim+ENH_BLOCKL-1),idata+centerStartPos,ENH_BLOCKL);
+  WebRtcIlbcfix_MyCorr(corrVecTemp, idata + searchSegStartPos,
+                       corrdim + ENH_BLOCKL - 1, idata + centerStartPos,
+                       ENH_BLOCKL);
 
   /* Calculate the rescaling factor for the correlation in order to
      put the correlation in a int16_t vector instead */
-  maxtemp=WebRtcSpl_MaxAbsValueW32(corrVecTemp, (int16_t)corrdim);
+  maxtemp = WebRtcSpl_MaxAbsValueW32(corrVecTemp, corrdim);
 
-  scalefact=WebRtcSpl_GetSizeInBits(maxtemp)-15;
+  scalefact = WebRtcSpl_GetSizeInBits(maxtemp) - 15;
 
-  if (scalefact>0) {
-    for (i=0;i<corrdim;i++) {
-      corrVec[i]=(int16_t)WEBRTC_SPL_RSHIFT_W32(corrVecTemp[i], scalefact);
+  if (scalefact > 0) {
+    for (i = 0; i < corrdim; i++) {
+      corrVec[i] = (int16_t)(corrVecTemp[i] >> scalefact);
     }
   } else {
-    for (i=0;i<corrdim;i++) {
-      corrVec[i]=(int16_t)corrVecTemp[i];
+    for (i = 0; i < corrdim; i++) {
+      corrVec[i] = (int16_t)corrVecTemp[i];
     }
   }
   /* In order to guarantee that all values are initialized */
-  for (i=corrdim;i<ENH_CORRDIM;i++) {
-    corrVec[i]=0;
+  for (i = corrdim; i < ENH_CORRDIM; i++) {
+    corrVec[i] = 0;
   }
 
   /* Upsample the correlation */
-  WebRtcIlbcfix_EnhUpsample(corrVecUps,corrVec);
+  WebRtcIlbcfix_EnhUpsample(corrVecUps, corrVec);
 
   /* Find maximum */
-  tloc=WebRtcSpl_MaxIndexW32(corrVecUps, (int16_t) (ENH_UPS0*corrdim));
+  tloc = WebRtcSpl_MaxIndexW32(corrVecUps, ENH_UPS0 * corrdim);
 
   /* make vector can be upsampled without ever running outside
      bounds */
-  *updStartPos = (int16_t)WEBRTC_SPL_MUL_16_16(searchSegStartPos,4) + tloc + 4;
+  *updStartPos = searchSegStartPos * 4 + tloc + 4;
 
-  tloc2 = WEBRTC_SPL_RSHIFT_W16((tloc+3), 2);
-
-  st=searchSegStartPos+tloc2-ENH_FL0;
+  tloc2 = (tloc + 3) >> 2;
 
   /* initialize the vector to be filtered, stuff with zeros
      when data is outside idata buffer */
-  if(st<0){
-    WebRtcSpl_MemSetW16(vect, 0, (int16_t)(-st));
-    WEBRTC_SPL_MEMCPY_W16(&vect[-st], idata, (ENH_VECTL+st));
-  }
-  else{
-    en=st+ENH_VECTL;
-
-    if(en>idatal){
-      WEBRTC_SPL_MEMCPY_W16(vect, &idata[st],
-                            (ENH_VECTL-(en-idatal)));
-      WebRtcSpl_MemSetW16(&vect[ENH_VECTL-(en-idatal)], 0,
-                          (int16_t)(en-idatal));
-    }
-    else {
+  if (ENH_FL0 > (searchSegStartPos + tloc2)) {
+    const size_t st = ENH_FL0 - searchSegStartPos - tloc2;
+    WebRtcSpl_MemSetW16(vect, 0, st);
+    WEBRTC_SPL_MEMCPY_W16(&vect[st], idata, ENH_VECTL - st);
+  } else {
+    const size_t st = searchSegStartPos + tloc2 - ENH_FL0;
+    if ((st + ENH_VECTL) > idatal) {
+      const size_t en = st + ENH_VECTL - idatal;
+      WEBRTC_SPL_MEMCPY_W16(vect, &idata[st], ENH_VECTL - en);
+      WebRtcSpl_MemSetW16(&vect[ENH_VECTL - en], 0, en);
+    } else {
       WEBRTC_SPL_MEMCPY_W16(vect, &idata[st], ENH_VECTL);
     }
   }
-  /* Calculate which of the 4 fractions to use */
-  fraction=(int16_t)WEBRTC_SPL_MUL_16_16(tloc2,ENH_UPS0)-tloc;
 
   /* compute the segment (this is actually a convolution) */
-
   filtStatePtr = filt + 6;
-  polyPtr = (int16_t*)WebRtcIlbcfix_kEnhPolyPhaser[fraction];
-  for (i=0;i<7;i++) {
+  polyPtr = (int16_t*)WebRtcIlbcfix_kEnhPolyPhaser[tloc2 * ENH_UPS0 - tloc];
+  for (i = 0; i < 7; i++) {
     *filtStatePtr-- = *polyPtr++;
   }
 
-  WebRtcSpl_FilterMAFastQ12(
-      &vect[6], vect, filt,
-      ENH_FLO_MULT2_PLUS1, ENH_BLOCKL);
+  WebRtcSpl_FilterMAFastQ12(&vect[6], vect, filt, ENH_FLO_MULT2_PLUS1,
+                            ENH_BLOCKL);
 
-  /* Add the contribution from this vector (scaled with gain) to the total surround vector */
-  WebRtcSpl_AddAffineVectorToVector(
-      surround, vect, gain,
-      (int32_t)32768, 16, ENH_BLOCKL);
+  /* Add the contribution from this vector (scaled with gain) to the total
+     surround vector */
+  WebRtcSpl_AddAffineVectorToVector(surround, vect, gain, 32768, 16,
+                                    ENH_BLOCKL);
 
   return;
 }

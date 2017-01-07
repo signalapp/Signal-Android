@@ -16,7 +16,6 @@
 #include "webrtc/modules/audio_coding/codecs/isac/fix/source/settings.h"
 #include "webrtc/typedefs.h"
 
-#if !(defined WEBRTC_DETECT_ARM_NEON || defined WEBRTC_ARCH_ARM_NEON)
 /* Cosine table 1 in Q14. */
 const int16_t WebRtcIsacfix_kCosTab1[FRAMESAMPLES/2] = {
   16384,  16383,  16378,  16371,  16362,  16349,  16333,  16315,  16294,  16270,
@@ -90,7 +89,6 @@ const int16_t WebRtcIsacfix_kSinTab2[FRAMESAMPLES/4] = {
   4137,  -3929,  3720,  -3511,  3301,  -3091,  2880,  -2669,  2457,  -2245,
   2032,  -1819,  1606,  -1392,  1179,   -965,   750,   -536,   322,   -107
 };
-#endif
 
 #if defined(MIPS32_LE)
 /* Cosine table 2 in Q14. Used only on MIPS platforms. */

@@ -1,0 +1,69 @@
+/*
+ *  Copyright 2012 The WebRTC Project Authors. All rights reserved.
+ *
+ *  Use of this source code is governed by a BSD-style license
+ *  that can be found in the LICENSE file in the root of the source
+ *  tree. An additional intellectual property rights grant can be found
+ *  in the file PATENTS.  All contributing project authors may
+ *  be found in the AUTHORS file in the root of the source tree.
+ */
+
+// This file is a supermacro
+// (see http://wanderinghorse.net/computing/papers/supermacros_cpp.html) to
+// expand a definition of a late-binding symbol table class.
+//
+// Arguments:
+// LATE_BINDING_SYMBOL_TABLE_CLASS_NAME: Name of the class to generate.
+// LATE_BINDING_SYMBOL_TABLE_SYMBOLS_LIST: List of symbols to load from the DLL,
+//     as an X-Macro list (see http://www.drdobbs.com/blogs/cpp/228700289).
+// LATE_BINDING_SYMBOL_TABLE_DLL_NAME: String literal for the DLL file name to
+//     load.
+//
+// From a .cc file, include the header file containing your call to the .h.def
+// supermacro, and then call this supermacro (optionally from inside the
+// namespace for the class to generate, if any). Example:
+//
+// #include "myclassname.h"
+//
+// namespace foo {
+//
+// #define LATE_BINDING_SYMBOL_TABLE_CLASS_NAME MY_CLASS_NAME
+// #define LATE_BINDING_SYMBOL_TABLE_SYMBOLS_LIST MY_SYMBOLS_LIST
+// #define LATE_BINDING_SYMBOL_TABLE_DLL_NAME "libdll.so.n"
+// #include "webrtc/base/latebindingsymboltable.cc.def"
+//
+// }
+
+#ifndef LATE_BINDING_SYMBOL_TABLE_CLASS_NAME
+#error You must define LATE_BINDING_SYMBOL_TABLE_CLASS_NAME
+#endif
+
+#ifndef LATE_BINDING_SYMBOL_TABLE_SYMBOLS_LIST
+#error You must define LATE_BINDING_SYMBOL_TABLE_SYMBOLS_LIST
+#endif
+
+#ifndef LATE_BINDING_SYMBOL_TABLE_DLL_NAME
+#error You must define LATE_BINDING_SYMBOL_TABLE_DLL_NAME
+#endif
+
+#define X(sym) #sym,
+const char* const LATE_BINDING_SYMBOL_TABLE_CLASS_NAME::kSymbolNames[] = {
+  LATE_BINDING_SYMBOL_TABLE_SYMBOLS_LIST
+};
+#undef X
+
+const ::rtc::LateBindingSymbolTable::TableInfo
+    LATE_BINDING_SYMBOL_TABLE_CLASS_NAME::kTableInfo = {
+  LATE_BINDING_SYMBOL_TABLE_DLL_NAME,
+  SYMBOL_TABLE_SIZE,
+  LATE_BINDING_SYMBOL_TABLE_CLASS_NAME::kSymbolNames
+};
+
+LATE_BINDING_SYMBOL_TABLE_CLASS_NAME::LATE_BINDING_SYMBOL_TABLE_CLASS_NAME()
+    : ::rtc::LateBindingSymbolTable(&kTableInfo, table_) {}
+
+LATE_BINDING_SYMBOL_TABLE_CLASS_NAME::~LATE_BINDING_SYMBOL_TABLE_CLASS_NAME() {}
+
+#undef LATE_BINDING_SYMBOL_TABLE_CLASS_NAME
+#undef LATE_BINDING_SYMBOL_TABLE_SYMBOLS_LIST
+#undef LATE_BINDING_SYMBOL_TABLE_DLL_NAME

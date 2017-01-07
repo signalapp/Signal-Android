@@ -39,7 +39,7 @@ class TimeStretch {
               const BackgroundNoise& background_noise)
       : sample_rate_hz_(sample_rate_hz),
         fs_mult_(sample_rate_hz / 8000),
-        num_channels_(static_cast<int>(num_channels)),
+        num_channels_(num_channels),
         master_channel_(0),  // First channel is master.
         background_noise_(background_noise),
         max_input_value_(0) {
@@ -48,7 +48,7 @@ class TimeStretch {
            sample_rate_hz_ == 32000 ||
            sample_rate_hz_ == 48000);
     assert(num_channels_ > 0);
-    assert(static_cast<int>(master_channel_) < num_channels_);
+    assert(master_channel_ < num_channels_);
     memset(auto_correlation_, 0, sizeof(auto_correlation_));
   }
 
@@ -58,8 +58,9 @@ class TimeStretch {
   // PreemptiveExpand.
   ReturnCodes Process(const int16_t* input,
                       size_t input_len,
+                      bool fast_mode,
                       AudioMultiVector* output,
-                      int16_t* length_change_samples);
+                      size_t* length_change_samples);
 
  protected:
   // Sets the parameters |best_correlation| and |peak_index| to suitable
@@ -67,26 +68,30 @@ class TimeStretch {
   // implemented by the sub-classes.
   virtual void SetParametersForPassiveSpeech(size_t input_length,
                                              int16_t* best_correlation,
-                                             int* peak_index) const = 0;
+                                             size_t* peak_index) const = 0;
 
   // Checks the criteria for performing the time-stretching operation and,
   // if possible, performs the time-stretching. This method must be implemented
   // by the sub-classes.
   virtual ReturnCodes CheckCriteriaAndStretch(
-      const int16_t* input, size_t input_length, size_t peak_index,
-      int16_t best_correlation, bool active_speech,
+      const int16_t* input,
+      size_t input_length,
+      size_t peak_index,
+      int16_t best_correlation,
+      bool active_speech,
+      bool fast_mode,
       AudioMultiVector* output) const = 0;
 
-  static const int kCorrelationLen = 50;
-  static const int kLogCorrelationLen = 6;  // >= log2(kCorrelationLen).
-  static const int kMinLag = 10;
-  static const int kMaxLag = 60;
-  static const int kDownsampledLen = kCorrelationLen + kMaxLag;
+  static const size_t kCorrelationLen = 50;
+  static const size_t kLogCorrelationLen = 6;  // >= log2(kCorrelationLen).
+  static const size_t kMinLag = 10;
+  static const size_t kMaxLag = 60;
+  static const size_t kDownsampledLen = kCorrelationLen + kMaxLag;
   static const int kCorrelationThreshold = 14746;  // 0.9 in Q14.
 
   const int sample_rate_hz_;
   const int fs_mult_;  // Sample rate multiplier = sample_rate_hz_ / 8000.
-  const int num_channels_;
+  const size_t num_channels_;
   const size_t master_channel_;
   const BackgroundNoise& background_noise_;
   int16_t max_input_value_;
@@ -102,9 +107,9 @@ class TimeStretch {
 
   // Performs a simple voice-activity detection based on the input parameters.
   bool SpeechDetection(int32_t vec1_energy, int32_t vec2_energy,
-                       int peak_index, int scaling) const;
+                       size_t peak_index, int scaling) const;
 
-  DISALLOW_COPY_AND_ASSIGN(TimeStretch);
+  RTC_DISALLOW_COPY_AND_ASSIGN(TimeStretch);
 };
 
 }  // namespace webrtc

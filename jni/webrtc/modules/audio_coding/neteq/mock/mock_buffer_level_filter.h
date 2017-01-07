@@ -13,7 +13,7 @@
 
 #include "webrtc/modules/audio_coding/neteq/buffer_level_filter.h"
 
-#include "gmock/gmock.h"
+#include "testing/gmock/include/gmock/gmock.h"
 
 namespace webrtc {
 
@@ -25,8 +25,8 @@ class MockBufferLevelFilter : public BufferLevelFilter {
   MOCK_METHOD0(Reset,
       void());
   MOCK_METHOD3(Update,
-      void(int buffer_size_packets, int time_stretched_samples,
-           int packet_len_samples));
+      void(size_t buffer_size_packets, int time_stretched_samples,
+           size_t packet_len_samples));
   MOCK_METHOD1(SetTargetBufferLevel,
       void(int target_buffer_level));
   MOCK_CONST_METHOD0(filtered_current_level,

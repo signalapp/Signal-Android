@@ -13,9 +13,11 @@
 #ifndef WEBRTC_MODULES_AUDIO_PROCESSING_AECM_AECM_CORE_H_
 #define WEBRTC_MODULES_AUDIO_PROCESSING_AECM_AECM_CORE_H_
 
+extern "C" {
+#include "webrtc/common_audio/ring_buffer.h"
 #include "webrtc/common_audio/signal_processing/include/signal_processing_library.h"
+}
 #include "webrtc/modules/audio_processing/aecm/aecm_defines.h"
-#include "webrtc/modules/audio_processing/utility/ring_buffer.h"
 #include "webrtc/typedefs.h"
 
 #ifdef _MSC_VER  // visual c++
@@ -29,7 +31,7 @@
 typedef struct {
     int16_t real;
     int16_t imag;
-} complex16_t;
+} ComplexInt16;
 
 typedef struct {
     int farBufWritePos;
@@ -131,30 +133,21 @@ typedef struct {
     FILE *nearFile;
     FILE *outFile;
 #endif
-} AecmCore_t;
+} AecmCore;
 
 ////////////////////////////////////////////////////////////////////////////////
-// WebRtcAecm_CreateCore(...)
+// WebRtcAecm_CreateCore()
 //
 // Allocates the memory needed by the AECM. The memory needs to be
 // initialized separately using the WebRtcAecm_InitCore() function.
-//
-// Input:
-//      - aecm          : Instance that should be created
-//
-// Output:
-//      - aecm          : Created instance
-//
-// Return value         :  0 - Ok
-//                        -1 - Error
-//
-int WebRtcAecm_CreateCore(AecmCore_t **aecm);
+// Returns a pointer to the instance and a nullptr at failure.
+AecmCore* WebRtcAecm_CreateCore();
 
 ////////////////////////////////////////////////////////////////////////////////
 // WebRtcAecm_InitCore(...)
 //
 // This function initializes the AECM instant created with
-// WebRtcAecm_CreateCore(...)
+// WebRtcAecm_CreateCore()
 // Input:
 //      - aecm          : Pointer to the AECM instance
 //      - samplingFreq  : Sampling Frequency
@@ -165,7 +158,7 @@ int WebRtcAecm_CreateCore(AecmCore_t **aecm);
 // Return value         :  0 - Ok
 //                        -1 - Error
 //
-int WebRtcAecm_InitCore(AecmCore_t * const aecm, int samplingFreq);
+int WebRtcAecm_InitCore(AecmCore* const aecm, int samplingFreq);
 
 ////////////////////////////////////////////////////////////////////////////////
 // WebRtcAecm_FreeCore(...)
@@ -174,13 +167,9 @@ int WebRtcAecm_InitCore(AecmCore_t * const aecm, int samplingFreq);
 // Input:
 //      - aecm          : Pointer to the AECM instance
 //
-// Return value         :  0 - Ok
-//                        -1 - Error
-//           11001-11016: Error
-//
-int WebRtcAecm_FreeCore(AecmCore_t *aecm);
+void WebRtcAecm_FreeCore(AecmCore* aecm);
 
-int WebRtcAecm_Control(AecmCore_t *aecm, int delay, int nlpFlag);
+int WebRtcAecm_Control(AecmCore* aecm, int delay, int nlpFlag);
 
 ////////////////////////////////////////////////////////////////////////////////
 // WebRtcAecm_InitEchoPathCore(...)
@@ -194,8 +183,7 @@ int WebRtcAecm_Control(AecmCore_t *aecm, int delay, int nlpFlag);
 // Output:
 //      - aecm          : Initialized instance
 //
-void WebRtcAecm_InitEchoPathCore(AecmCore_t* aecm,
-                                 const int16_t* echo_path);
+void WebRtcAecm_InitEchoPathCore(AecmCore* aecm, const int16_t* echo_path);
 
 ////////////////////////////////////////////////////////////////////////////////
 // WebRtcAecm_ProcessFrame(...)
@@ -215,10 +203,11 @@ void WebRtcAecm_InitEchoPathCore(AecmCore_t* aecm,
 //      - out           : Out buffer, one frame of nearend signal          :
 //
 //
-int WebRtcAecm_ProcessFrame(AecmCore_t * aecm, const int16_t * farend,
-                            const int16_t * nearendNoisy,
-                            const int16_t * nearendClean,
-                            int16_t * out);
+int WebRtcAecm_ProcessFrame(AecmCore* aecm,
+                            const int16_t* farend,
+                            const int16_t* nearendNoisy,
+                            const int16_t* nearendClean,
+                            int16_t* out);
 
 ////////////////////////////////////////////////////////////////////////////////
 // WebRtcAecm_ProcessBlock(...)
@@ -238,10 +227,11 @@ int WebRtcAecm_ProcessFrame(AecmCore_t * aecm, const int16_t * farend,
 //      - out           : Out buffer, one block of nearend signal          :
 //
 //
-int WebRtcAecm_ProcessBlock(AecmCore_t * aecm, const int16_t * farend,
-                            const int16_t * nearendNoisy,
-                            const int16_t * noisyClean,
-                            int16_t * out);
+int WebRtcAecm_ProcessBlock(AecmCore* aecm,
+                            const int16_t* farend,
+                            const int16_t* nearendNoisy,
+                            const int16_t* noisyClean,
+                            int16_t* out);
 
 ////////////////////////////////////////////////////////////////////////////////
 // WebRtcAecm_BufferFarFrame()
@@ -253,8 +243,8 @@ int WebRtcAecm_ProcessBlock(AecmCore_t * aecm, const int16_t * farend,
 //      - farend        : In buffer containing one frame of farend signal
 //      - farLen        : Length of frame
 //
-void WebRtcAecm_BufferFarFrame(AecmCore_t * const aecm,
-                               const int16_t * const farend,
+void WebRtcAecm_BufferFarFrame(AecmCore* const aecm,
+                               const int16_t* const farend,
                                const int farLen);
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -268,10 +258,10 @@ void WebRtcAecm_BufferFarFrame(AecmCore_t * const aecm,
 //      - farLen        : Length of frame
 //      - knownDelay    : known delay
 //
-void WebRtcAecm_FetchFarFrame(AecmCore_t * const aecm,
-                              int16_t * const farend,
-                              const int farLen, const int knownDelay);
-
+void WebRtcAecm_FetchFarFrame(AecmCore* const aecm,
+                              int16_t* const farend,
+                              const int farLen,
+                              const int knownDelay);
 
 // All the functions below are intended to be private
 
@@ -286,7 +276,7 @@ void WebRtcAecm_FetchFarFrame(AecmCore_t * const aecm,
 //      - far_spectrum  : Pointer to the far end spectrum
 //      - far_q         : Q-domain of far end spectrum
 //
-void WebRtcAecm_UpdateFarHistory(AecmCore_t* self,
+void WebRtcAecm_UpdateFarHistory(AecmCore* self,
                                  uint16_t* far_spectrum,
                                  int far_q);
 
@@ -310,9 +300,7 @@ void WebRtcAecm_UpdateFarHistory(AecmCore_t* self,
 //      - far_spectrum      : Pointer to the aligned far end spectrum
 //                            NULL - Error
 //
-const uint16_t* WebRtcAecm_AlignedFarend(AecmCore_t* self,
-                                         int* far_q,
-                                         int delay);
+const uint16_t* WebRtcAecm_AlignedFarend(AecmCore* self, int* far_q, int delay);
 
 ///////////////////////////////////////////////////////////////////////////////
 // WebRtcAecm_CalcSuppressionGain()
@@ -327,7 +315,7 @@ const uint16_t* WebRtcAecm_AlignedFarend(AecmCore_t* self,
 //      - supGain           : Suppression gain with which to scale the noise
 //                            level (Q14).
 //
-int16_t WebRtcAecm_CalcSuppressionGain(AecmCore_t * const aecm);
+int16_t WebRtcAecm_CalcSuppressionGain(AecmCore* const aecm);
 
 ///////////////////////////////////////////////////////////////////////////////
 // WebRtcAecm_CalcEnergies()
@@ -346,11 +334,11 @@ int16_t WebRtcAecm_CalcSuppressionGain(AecmCore_t * const aecm);
 // Output:
 //     - echoEst            : Estimated echo in Q(xfa_q+RESOLUTION_CHANNEL16).
 //
-void WebRtcAecm_CalcEnergies(AecmCore_t * aecm,
+void WebRtcAecm_CalcEnergies(AecmCore* aecm,
                              const uint16_t* far_spectrum,
                              const int16_t far_q,
                              const uint32_t nearEner,
-                             int32_t * echoEst);
+                             int32_t* echoEst);
 
 ///////////////////////////////////////////////////////////////////////////////
 // WebRtcAecm_CalcStepSize()
@@ -363,7 +351,7 @@ void WebRtcAecm_CalcEnergies(AecmCore_t * aecm,
 // Return value:
 //      - mu                : Stepsize in log2(), i.e. number of shifts.
 //
-int16_t WebRtcAecm_CalcStepSize(AecmCore_t * const aecm);
+int16_t WebRtcAecm_CalcStepSize(AecmCore* const aecm);
 
 ///////////////////////////////////////////////////////////////////////////////
 // WebRtcAecm_UpdateChannel(...)
@@ -381,12 +369,12 @@ int16_t WebRtcAecm_CalcStepSize(AecmCore_t * const aecm);
 // Input/Output:
 //      - echoEst           : Estimated echo in Q(far_q+RESOLUTION_CHANNEL16).
 //
-void WebRtcAecm_UpdateChannel(AecmCore_t * aecm,
+void WebRtcAecm_UpdateChannel(AecmCore* aecm,
                               const uint16_t* far_spectrum,
                               const int16_t far_q,
-                              const uint16_t * const dfa,
+                              const uint16_t* const dfa,
                               const int16_t mu,
-                              int32_t * echoEst);
+                              int32_t* echoEst);
 
 extern const int16_t WebRtcAecm_kCosTable[];
 extern const int16_t WebRtcAecm_kSinTable[];
@@ -395,55 +383,53 @@ extern const int16_t WebRtcAecm_kSinTable[];
 // Some function pointers, for internal functions shared by ARM NEON and
 // generic C code.
 //
-typedef void (*CalcLinearEnergies)(
-    AecmCore_t* aecm,
-    const uint16_t* far_spectrum,
-    int32_t* echoEst,
-    uint32_t* far_energy,
-    uint32_t* echo_energy_adapt,
-    uint32_t* echo_energy_stored);
+typedef void (*CalcLinearEnergies)(AecmCore* aecm,
+                                   const uint16_t* far_spectrum,
+                                   int32_t* echoEst,
+                                   uint32_t* far_energy,
+                                   uint32_t* echo_energy_adapt,
+                                   uint32_t* echo_energy_stored);
 extern CalcLinearEnergies WebRtcAecm_CalcLinearEnergies;
 
-typedef void (*StoreAdaptiveChannel)(
-    AecmCore_t* aecm,
-    const uint16_t* far_spectrum,
-    int32_t* echo_est);
+typedef void (*StoreAdaptiveChannel)(AecmCore* aecm,
+                                     const uint16_t* far_spectrum,
+                                     int32_t* echo_est);
 extern StoreAdaptiveChannel WebRtcAecm_StoreAdaptiveChannel;
 
-typedef void (*ResetAdaptiveChannel)(AecmCore_t* aecm);
+typedef void (*ResetAdaptiveChannel)(AecmCore* aecm);
 extern ResetAdaptiveChannel WebRtcAecm_ResetAdaptiveChannel;
 
 // For the above function pointers, functions for generic platforms are declared
 // and defined as static in file aecm_core.c, while those for ARM Neon platforms
-// are declared below and defined in file aecm_core_neon.s.
-#if (defined WEBRTC_DETECT_ARM_NEON) || defined (WEBRTC_ARCH_ARM_NEON)
-void WebRtcAecm_CalcLinearEnergiesNeon(AecmCore_t* aecm,
+// are declared below and defined in file aecm_core_neon.c.
+#if defined(WEBRTC_HAS_NEON)
+void WebRtcAecm_CalcLinearEnergiesNeon(AecmCore* aecm,
                                        const uint16_t* far_spectrum,
                                        int32_t* echo_est,
                                        uint32_t* far_energy,
                                        uint32_t* echo_energy_adapt,
                                        uint32_t* echo_energy_stored);
 
-void WebRtcAecm_StoreAdaptiveChannelNeon(AecmCore_t* aecm,
+void WebRtcAecm_StoreAdaptiveChannelNeon(AecmCore* aecm,
                                          const uint16_t* far_spectrum,
                                          int32_t* echo_est);
 
-void WebRtcAecm_ResetAdaptiveChannelNeon(AecmCore_t* aecm);
+void WebRtcAecm_ResetAdaptiveChannelNeon(AecmCore* aecm);
 #endif
 
 #if defined(MIPS32_LE)
-void WebRtcAecm_CalcLinearEnergies_mips(AecmCore_t* aecm,
+void WebRtcAecm_CalcLinearEnergies_mips(AecmCore* aecm,
                                         const uint16_t* far_spectrum,
                                         int32_t* echo_est,
                                         uint32_t* far_energy,
                                         uint32_t* echo_energy_adapt,
                                         uint32_t* echo_energy_stored);
 #if defined(MIPS_DSP_R1_LE)
-void WebRtcAecm_StoreAdaptiveChannel_mips(AecmCore_t* aecm,
+void WebRtcAecm_StoreAdaptiveChannel_mips(AecmCore* aecm,
                                           const uint16_t* far_spectrum,
                                           int32_t* echo_est);
 
-void WebRtcAecm_ResetAdaptiveChannel_mips(AecmCore_t* aecm);
+void WebRtcAecm_ResetAdaptiveChannel_mips(AecmCore* aecm);
 #endif
 #endif
 

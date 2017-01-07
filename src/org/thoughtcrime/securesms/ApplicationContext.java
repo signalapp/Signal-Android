@@ -21,7 +21,9 @@ import android.content.Context;
 import android.os.StrictMode;
 import android.os.StrictMode.ThreadPolicy;
 import android.os.StrictMode.VmPolicy;
+import android.util.Log;
 
+import org.thoughtcrime.securesms.attachments.AttachmentTest;
 import org.thoughtcrime.securesms.crypto.PRNGFixes;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
 import org.thoughtcrime.securesms.dependencies.InjectableType;

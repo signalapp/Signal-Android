@@ -56,8 +56,10 @@ void WebRtcIlbcfix_Poly2Lsp(
   (*f1ptr) = 1024; /* 1.0 in Q10 */
   (*f2ptr) = 1024; /* 1.0 in Q10 */
   for (i = 0; i < 5; i++) {
-    (*(f1ptr+1)) = (int16_t)(WEBRTC_SPL_RSHIFT_W32(((int32_t)(*a_i_ptr)+(*a_10mi_ptr)), 2) - (*f1ptr));
-    (*(f2ptr+1)) = (int16_t)(WEBRTC_SPL_RSHIFT_W32(((int32_t)(*a_i_ptr)-(*a_10mi_ptr)), 2) + (*f2ptr));
+    *(f1ptr + 1) =
+        (int16_t)((((int32_t)(*a_i_ptr) + *a_10mi_ptr) >> 2) - *f1ptr);
+    *(f2ptr + 1) =
+        (int16_t)((((int32_t)(*a_i_ptr) - *a_10mi_ptr) >> 2) + *f2ptr);
     a_i_ptr++;
     a_10mi_ptr--;
     f1ptr++;
@@ -87,14 +89,14 @@ void WebRtcIlbcfix_Poly2Lsp(
     xlow = WebRtcIlbcfix_kCosGrid[j];
     ylow = WebRtcIlbcfix_Chebyshev(xlow, f[fi_select]);
 
-    if (WEBRTC_SPL_MUL_16_16(ylow, yhigh) <= 0) {
+    if (ylow * yhigh <= 0) {
       /* Run 4 times to reduce the interval */
       for (i = 0; i < 4; i++) {
         /* xmid =(xlow + xhigh)/2 */
-        xmid = WEBRTC_SPL_RSHIFT_W16(xlow, 1) + WEBRTC_SPL_RSHIFT_W16(xhigh, 1);
+        xmid = (xlow >> 1) + (xhigh >> 1);
         ymid = WebRtcIlbcfix_Chebyshev(xmid, f[fi_select]);
 
-        if (WEBRTC_SPL_MUL_16_16(ylow, ymid) <= 0) {
+        if (ylow * ymid <= 0) {
           yhigh = ymid;
           xhigh = xmid;
         } else {
@@ -117,10 +119,10 @@ void WebRtcIlbcfix_Poly2Lsp(
         sign = y;
         y = WEBRTC_SPL_ABS_W16(y);
         shifts = (int16_t)WebRtcSpl_NormW32(y)-16;
-        y = WEBRTC_SPL_LSHIFT_W16(y, shifts);
+        y <<= shifts;
         y = (int16_t)WebRtcSpl_DivW32W16(536838144, y); /* 1/(yhigh-ylow) */
 
-        tmpW32 = WEBRTC_SPL_MUL_16_16_RSFT(x, y, (19-shifts));
+        tmpW32 = (x * y) >> (19 - shifts);
 
         /* y=(xhigh-xlow)/(yhigh-ylow) */
         y = (int16_t)(tmpW32&0xFFFF);
@@ -129,7 +131,7 @@ void WebRtcIlbcfix_Poly2Lsp(
           y = -y;
         }
         /* tmpW32 = ylow*(xhigh-xlow)/(yhigh-ylow) */
-        tmpW32 = WEBRTC_SPL_MUL_16_16_RSFT(ylow, y, 10);
+        tmpW32 = (ylow * y) >> 10;
         xint = xlow-(int16_t)(tmpW32&0xFFFF);
       }
 

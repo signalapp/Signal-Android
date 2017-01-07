@@ -8,10 +8,9 @@
  *  be found in the AUTHORS file in the root of the source tree.
  */
 
-#include <assert.h>
-
 #include <algorithm>  // Access to min.
 
+#include "webrtc/base/checks.h"
 #include "webrtc/modules/audio_coding/neteq/sync_buffer.h"
 
 namespace webrtc {
@@ -71,16 +70,17 @@ void SyncBuffer::ReplaceAtIndex(const AudioMultiVector& insert_this,
   ReplaceAtIndex(insert_this, insert_this.Size(), position);
 }
 
-size_t SyncBuffer::GetNextAudioInterleaved(size_t requested_len,
-                                           int16_t* output) {
-  if (!output) {
-    assert(false);
-    return 0;
-  }
-  size_t samples_to_read = std::min(FutureLength(), requested_len);
-  ReadInterleavedFromIndex(next_index_, samples_to_read, output);
-  next_index_ += samples_to_read;
-  return samples_to_read;
+void SyncBuffer::GetNextAudioInterleaved(size_t requested_len,
+                                         AudioFrame* output) {
+  RTC_DCHECK(output);
+  const size_t samples_to_read = std::min(FutureLength(), requested_len);
+  output->Reset();
+  const size_t tot_samples_read =
+      ReadInterleavedFromIndex(next_index_, samples_to_read, output->data_);
+  const size_t samples_read_per_channel = tot_samples_read / Channels();
+  next_index_ += samples_read_per_channel;
+  output->num_channels_ = Channels();
+  output->samples_per_channel_ = samples_read_per_channel;
 }
 
 void SyncBuffer::IncreaseEndTimestamp(uint32_t increment) {

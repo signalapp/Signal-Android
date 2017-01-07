@@ -45,14 +45,14 @@
 void WebRtcIlbcfix_EncodeImpl(
     uint16_t *bytes,     /* (o) encoded data bits iLBC */
     const int16_t *block, /* (i) speech vector to encode */
-    iLBC_Enc_Inst_t *iLBCenc_inst /* (i/o) the general encoder
+    IlbcEncoder *iLBCenc_inst /* (i/o) the general encoder
                                      state */
                           ){
-  int n, meml_gotten, Nfor, Nback;
-  int16_t diff, start_pos;
-  int index;
-  int subcount, subframe;
-  int16_t start_count, end_count;
+  size_t n, meml_gotten, Nfor;
+  size_t diff, start_pos;
+  size_t index;
+  size_t subcount, subframe;
+  size_t start_count, end_count;
   int16_t *residual;
   int32_t en1, en2;
   int16_t scale, max;
@@ -86,7 +86,7 @@ void WebRtcIlbcfix_EncodeImpl(
 #ifdef SPLIT_10MS
 
   WebRtcSpl_MemSetW16 (  (int16_t *) iLBCbits_inst, 0,
-                         (int16_t) (sizeof(iLBC_bits) / sizeof(int16_t))  );
+                         sizeof(iLBC_bits) / sizeof(int16_t)  );
 
   start_pos = iLBCenc_inst->start_pos;
   diff = iLBCenc_inst->diff;
@@ -154,7 +154,7 @@ void WebRtcIlbcfix_EncodeImpl(
 
     index = (iLBCbits_inst->startIdx-1)*SUBL;
     max=WebRtcSpl_MaxAbsValueW16(&residual[index], 2*SUBL);
-    scale=WebRtcSpl_GetSizeInBits(WEBRTC_SPL_MUL_16_16(max,max));
+    scale = WebRtcSpl_GetSizeInBits((uint32_t)(max * max));
 
     /* Scale to maximum 25 bits so that the MAC won't cause overflow */
     scale = scale - 25;
@@ -193,7 +193,7 @@ void WebRtcIlbcfix_EncodeImpl(
 
       /* setup memory */
 
-      WebRtcSpl_MemSetW16(mem, 0, (int16_t)(CB_MEML-iLBCenc_inst->state_short_len));
+      WebRtcSpl_MemSetW16(mem, 0, CB_MEML - iLBCenc_inst->state_short_len);
       WEBRTC_SPL_MEMCPY_W16(mem+CB_MEML-iLBCenc_inst->state_short_len,
                             decresidual+start_pos, iLBCenc_inst->state_short_len);
 
@@ -224,7 +224,7 @@ void WebRtcIlbcfix_EncodeImpl(
 
       meml_gotten = iLBCenc_inst->state_short_len;
       WebRtcSpl_MemCpyReversedOrder(&mem[CB_MEML-1], &decresidual[start_pos], meml_gotten);
-      WebRtcSpl_MemSetW16(mem, 0, (int16_t)(CB_MEML-iLBCenc_inst->state_short_len));
+      WebRtcSpl_MemSetW16(mem, 0, CB_MEML - iLBCenc_inst->state_short_len);
 
       /* encode subframes */
       WebRtcIlbcfix_CbSearch(iLBCenc_inst, iLBCbits_inst->cb_index, iLBCbits_inst->gain_index,
@@ -317,17 +317,17 @@ void WebRtcIlbcfix_EncodeImpl(
       if (iLBCenc_inst->section == 1)
       {
         start_count = 0;
-        end_count = WEBRTC_SPL_MIN (Nfor, 2);
+        end_count = WEBRTC_SPL_MIN (Nfor, (size_t)2);
       }
       if (iLBCenc_inst->section == 2)
       {
-        start_count = WEBRTC_SPL_MIN (Nfor, 2);
+        start_count = WEBRTC_SPL_MIN (Nfor, (size_t)2);
         end_count = Nfor;
       }
     }
 #else
     start_count = 0;
-    end_count = (int16_t)Nfor;
+    end_count = Nfor;
 #endif
 
     /* loop over subframes to encode */
@@ -341,7 +341,7 @@ void WebRtcIlbcfix_EncodeImpl(
                              &residual[(iLBCbits_inst->startIdx+1+subframe)*SUBL],
                              mem, MEM_LF_TBL, SUBL,
                              &weightdenum[(iLBCbits_inst->startIdx+1+subframe)*(LPC_FILTERORDER+1)],
-                             (int16_t)subcount);
+                             subcount);
 
       /* construct decoded vector */
 
@@ -379,15 +379,14 @@ void WebRtcIlbcfix_EncodeImpl(
 
   /* backward prediction of subframes */
 
-  Nback = iLBCbits_inst->startIdx-1;
-
-  if( Nback > 0 ){
+  if (iLBCbits_inst->startIdx > 1) {
 
     /* create reverse order vectors
        (The decresidual does not need to be copied since it is
        contained in the same vector as the residual)
     */
 
+    size_t Nback = iLBCbits_inst->startIdx - 1;
     WebRtcSpl_MemCpyReversedOrder(&reverseResidual[Nback*SUBL-1], residual, Nback*SUBL);
 
     /* setup memory */
@@ -398,7 +397,7 @@ void WebRtcIlbcfix_EncodeImpl(
     }
 
     WebRtcSpl_MemCpyReversedOrder(&mem[CB_MEML-1], &decresidual[Nback*SUBL], meml_gotten);
-    WebRtcSpl_MemSetW16(mem, 0, (int16_t)(CB_MEML-meml_gotten));
+    WebRtcSpl_MemSetW16(mem, 0, CB_MEML - meml_gotten);
 
 #ifdef SPLIT_10MS
     if (iLBCenc_inst->Nback_flag > 0)
@@ -425,17 +424,17 @@ void WebRtcIlbcfix_EncodeImpl(
       if (iLBCenc_inst->section == 1)
       {
         start_count = 0;
-        end_count = WEBRTC_SPL_MAX (2 - Nfor, 0);
+        end_count = (Nfor >= 2) ? 0 : (2 - NFor);
       }
       if (iLBCenc_inst->section == 2)
       {
-        start_count = WEBRTC_SPL_MAX (2 - Nfor, 0);
+        start_count = (Nfor >= 2) ? 0 : (2 - NFor);
         end_count = Nback;
       }
     }
 #else
     start_count = 0;
-    end_count = (int16_t)Nback;
+    end_count = Nback;
 #endif
 
     /* loop over subframes to encode */
@@ -448,7 +447,7 @@ void WebRtcIlbcfix_EncodeImpl(
                              iLBCbits_inst->gain_index+subcount*CB_NSTAGES, &reverseResidual[subframe*SUBL],
                              mem, MEM_LF_TBL, SUBL,
                              &weightdenum[(iLBCbits_inst->startIdx-2-subframe)*(LPC_FILTERORDER+1)],
-                             (int16_t)subcount);
+                             subcount);
 
       /* construct decoded vector */
 

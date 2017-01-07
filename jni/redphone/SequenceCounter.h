@@ -2,9 +2,10 @@
 #define __SEQUENCE_COUNTER_H__
 
 #include <stdint.h>
-
+/*
 #define 	INT16_MAX   0x7fff
 #define 	INT16_MIN   (-INT16_MAX - 1)
+*/
 
 const int64_t ShortRange = ((int64_t)1) << 16;
 

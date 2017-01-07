@@ -55,21 +55,19 @@ class DtmfBuffer {
   };
 
   // Set up the buffer for use at sample rate |fs_hz|.
-  explicit DtmfBuffer(int fs_hz) {
-    SetSampleRate(fs_hz);
-  }
+  explicit DtmfBuffer(int fs_hz);
 
-  virtual ~DtmfBuffer() {}
+  virtual ~DtmfBuffer();
 
   // Flushes the buffer.
-  virtual void Flush() { buffer_.clear(); }
+  virtual void Flush();
 
   // Static method to parse 4 bytes from |payload| as a DTMF event (RFC 4733)
   // and write the parsed information into the struct |event|. Input variable
   // |rtp_timestamp| is simply copied into the struct.
   static int ParseEvent(uint32_t rtp_timestamp,
                         const uint8_t* payload,
-                        int payload_length_bytes,
+                        size_t payload_length_bytes,
                         DtmfEvent* event);
 
   // Inserts |event| into the buffer. The method looks for a matching event and
@@ -82,9 +80,9 @@ class DtmfBuffer {
   virtual bool GetEvent(uint32_t current_timestamp, DtmfEvent* event);
 
   // Number of events in the buffer.
-  virtual size_t Length() const { return buffer_.size(); }
+  virtual size_t Length() const;
 
-  virtual bool Empty() const { return buffer_.empty(); }
+  virtual bool Empty() const;
 
   // Set a new sample rate.
   virtual int SetSampleRate(int fs_hz);
@@ -109,7 +107,7 @@ class DtmfBuffer {
 
   DtmfList buffer_;
 
-  DISALLOW_COPY_AND_ASSIGN(DtmfBuffer);
+  RTC_DISALLOW_COPY_AND_ASSIGN(DtmfBuffer);
 };
 
 }  // namespace webrtc

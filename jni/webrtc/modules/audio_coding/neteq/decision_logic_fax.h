@@ -23,19 +23,21 @@ class DecisionLogicFax : public DecisionLogic {
  public:
   // Constructor.
   DecisionLogicFax(int fs_hz,
-                   int output_size_samples,
+                   size_t output_size_samples,
                    NetEqPlayoutMode playout_mode,
                    DecoderDatabase* decoder_database,
                    const PacketBuffer& packet_buffer,
                    DelayManager* delay_manager,
-                   BufferLevelFilter* buffer_level_filter)
-      : DecisionLogic(fs_hz, output_size_samples, playout_mode,
-                      decoder_database, packet_buffer, delay_manager,
-                      buffer_level_filter) {
-  }
-
-  // Destructor.
-  virtual ~DecisionLogicFax() {}
+                   BufferLevelFilter* buffer_level_filter,
+                   const TickTimer* tick_timer)
+      : DecisionLogic(fs_hz,
+                      output_size_samples,
+                      playout_mode,
+                      decoder_database,
+                      packet_buffer,
+                      delay_manager,
+                      buffer_level_filter,
+                      tick_timer) {}
 
  protected:
   // Returns the operation that should be done next. |sync_buffer| and |expand|
@@ -47,16 +49,17 @@ class DecisionLogicFax : public DecisionLogic {
   // should be set to true. The output variable |reset_decoder| will be set to
   // true if a reset is required; otherwise it is left unchanged (i.e., it can
   // remain true if it was true before the call).
-  virtual Operations GetDecisionSpecialized(const SyncBuffer& sync_buffer,
-                                            const Expand& expand,
-                                            int decoder_frame_length,
-                                            const RTPHeader* packet_header,
-                                            Modes prev_mode,
-                                            bool play_dtmf,
-                                            bool* reset_decoder) OVERRIDE;
+  Operations GetDecisionSpecialized(const SyncBuffer& sync_buffer,
+                                    const Expand& expand,
+                                    size_t decoder_frame_length,
+                                    const RTPHeader* packet_header,
+                                    Modes prev_mode,
+                                    bool play_dtmf,
+                                    bool* reset_decoder,
+                                    size_t generated_noise_samples) override;
 
  private:
-  DISALLOW_COPY_AND_ASSIGN(DecisionLogicFax);
+  RTC_DISALLOW_COPY_AND_ASSIGN(DecisionLogicFax);
 };
 
 }  // namespace webrtc

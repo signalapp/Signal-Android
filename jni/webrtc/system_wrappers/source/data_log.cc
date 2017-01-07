@@ -8,18 +8,17 @@
  *  be found in the AUTHORS file in the root of the source tree.
  */
 
-#include "webrtc/system_wrappers/interface/data_log.h"
+#include "webrtc/system_wrappers/include/data_log.h"
 
 #include <assert.h>
 
 #include <algorithm>
 #include <list>
 
-#include "webrtc/system_wrappers/interface/critical_section_wrapper.h"
-#include "webrtc/system_wrappers/interface/event_wrapper.h"
-#include "webrtc/system_wrappers/interface/file_wrapper.h"
-#include "webrtc/system_wrappers/interface/rw_lock_wrapper.h"
-#include "webrtc/system_wrappers/interface/thread_wrapper.h"
+#include "webrtc/system_wrappers/include/critical_section_wrapper.h"
+#include "webrtc/system_wrappers/include/event_wrapper.h"
+#include "webrtc/system_wrappers/include/file_wrapper.h"
+#include "webrtc/system_wrappers/include/rw_lock_wrapper.h"
 
 namespace webrtc {
 
@@ -206,16 +205,10 @@ int LogTable::InsertCell(const std::string& column_name,
 int LogTable::CreateLogFile(const std::string& file_name) {
   if (file_name.length() == 0)
     return -1;
-  if (file_->Open())
+  if (file_->is_open())
     return -1;
-  file_->OpenFile(file_name.c_str(),
-                  false,  // Open with read/write permissions
-                  false,  // Don't wraparound and write at the beginning when
-                          // the file is full
-                  true);  // Open as a text file
-  if (file_ == NULL)
-    return -1;
-  return 0;
+  // Open with read/write permissions
+  return file_->OpenFile(file_name.c_str(), false) ? 0 : -1;
 }
 
 void LogTable::Flush() {
@@ -319,17 +312,16 @@ int DataLog::NextRow(const std::string& table_name) {
 }
 
 DataLogImpl::DataLogImpl()
-  : counter_(1),
-    tables_(),
-    flush_event_(EventWrapper::Create()),
-    file_writer_thread_(NULL),
-    tables_lock_(RWLockWrapper::CreateRWLock()) {
-}
+    : counter_(1),
+      tables_(),
+      flush_event_(EventWrapper::Create()),
+      file_writer_thread_(
+          new rtc::PlatformThread(DataLogImpl::Run, instance_, "DataLog")),
+      tables_lock_(RWLockWrapper::CreateRWLock()) {}
 
 DataLogImpl::~DataLogImpl() {
   StopThread();
   Flush();  // Write any remaining rows
-  delete file_writer_thread_;
   delete flush_event_;
   for (TableMap::iterator it = tables_.begin(); it != tables_.end();) {
     delete static_cast<LogTable*>(it->second);
@@ -351,17 +343,8 @@ int DataLogImpl::CreateLog() {
 }
 
 int DataLogImpl::Init() {
-  file_writer_thread_ = ThreadWrapper::CreateThread(
-                          DataLogImpl::Run,
-                          instance_,
-                          kHighestPriority,
-                          "DataLog");
-  if (file_writer_thread_ == NULL)
-    return -1;
-  unsigned int thread_id = 0;
-  bool success = file_writer_thread_->Start(thread_id);
-  if (!success)
-    return -1;
+  file_writer_thread_->Start();
+  file_writer_thread_->SetPriority(rtc::kHighestPriority);
   return 0;
 }
 
@@ -414,13 +397,8 @@ int DataLogImpl::NextRow(const std::string& table_name) {
   if (tables_.count(table_name) == 0)
     return -1;
   tables_[table_name]->NextRow();
-  if (file_writer_thread_ == NULL) {
-    // Write every row to file as they get complete.
-    tables_[table_name]->Flush();
-  } else {
-    // Signal a complete row
-    flush_event_->Set();
-  }
+  // Signal a complete row
+  flush_event_->Set();
   return 0;
 }
 
@@ -443,13 +421,8 @@ void DataLogImpl::Process() {
 }
 
 void DataLogImpl::StopThread() {
-  if (file_writer_thread_ != NULL) {
-    file_writer_thread_->SetNotAlive();
-    flush_event_->Set();
-    // Call Stop() repeatedly, waiting for the Flush() call in Process() to
-    // finish.
-    while (!file_writer_thread_->Stop()) continue;
-  }
+  flush_event_->Set();
+  file_writer_thread_->Stop();
 }
 
 }  // namespace webrtc

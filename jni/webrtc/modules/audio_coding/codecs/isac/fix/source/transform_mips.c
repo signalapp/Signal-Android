@@ -200,6 +200,9 @@ void WebRtcIsacfix_Time2SpecMIPS(int16_t* inre1Q9,
       [tmpreQ16] "r" (tmpreQ16), [tmpimQ16] "r" (tmpimQ16),
       [cosptr] "r" (cosptr), [sinptr] "r" (sinptr)
     : "hi", "lo", "memory"
+#if defined(MIPS_DSP_R2_LE)
+    , "$ac1hi", "$ac1lo", "$ac2hi", "$ac2lo", "$ac3hi", "$ac3lo"
+#endif  // #if defined(MIPS_DSP_R2_LE)
   );
 
   // "Fastest" vectors
@@ -603,7 +606,7 @@ void WebRtcIsacfix_Spec2TimeMIPS(int16_t *inreQ7,
   int32_t* outre2;
   int16_t* cosptr = (int16_t*)WebRtcIsacfix_kCosTab2;
   int16_t* sinptr = (int16_t*)WebRtcIsacfix_kSinTab2;
-  int32_t r0, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, max, max1;
+  int32_t r0, r1, r2, r3, r4, r5, r6, r7, r8, r9, max, max1;
 #if defined(MIPS_DSP_R1_LE)
   int32_t offset = FRAMESAMPLES - 4;
 #else  // #if defined(MIPS_DSP_R1_LE)
@@ -655,14 +658,14 @@ void WebRtcIsacfix_Spec2TimeMIPS(int16_t *inreQ7,
     "subu           %[r9],        %[r9],        %[r8]         \n\t"
     "subu           %[r7],        %[r6],        %[r9]         \n\t"
     "addu           %[r6],        %[r6],        %[r9]         \n\t"
-    "sll            %[r10],       %[offset],    1             \n\t"
-    "addu           %[r10],       %[outre1],    %[r10]        \n\t"
     "sw             %[r7],        0(%[outre1])                \n\t"
     "absq_s.w       %[r7],        %[r7]                       \n\t"
-    "sw             %[r6],        4(%[r10])                   \n\t"
-    "absq_s.w       %[r6],        %[r6]                       \n\t"
     "slt            %[r8],        %[max],       %[r7]         \n\t"
     "movn           %[max],       %[r7],        %[r8]         \n\t"
+    "sll            %[r7],        %[offset],    1             \n\t"
+    "addu           %[r7],        %[outre1],    %[r7]         \n\t"
+    "sw             %[r6],        4(%[r7])                    \n\t"
+    "absq_s.w       %[r6],        %[r6]                       \n\t"
     "slt            %[r8],        %[max],       %[r6]         \n\t"
     "movn           %[max],       %[r6],        %[r8]         \n\t"
     "muleq_s.w.phl  %[r6],        %[r0],        %[r2]         \n\t"
@@ -679,10 +682,12 @@ void WebRtcIsacfix_Spec2TimeMIPS(int16_t *inreQ7,
     "addu           %[r6],        %[r6],        %[r9]         \n\t"
     "sw             %[r7],        4(%[outre1])                \n\t"
     "absq_s.w       %[r7],        %[r7]                       \n\t"
-    "sw             %[r6],        0(%[r10])                   \n\t"
-    "absq_s.w       %[r6],        %[r6]                       \n\t"
     "slt            %[r8],        %[max],       %[r7]         \n\t"
     "movn           %[max],       %[r7],        %[r8]         \n\t"
+    "sll            %[r7],        %[offset],    1             \n\t"
+    "addu           %[r7],        %[outre1],    %[r7]         \n\t"
+    "sw             %[r6],        0(%[r7])                    \n\t"
+    "absq_s.w       %[r6],        %[r6]                       \n\t"
     "slt            %[r8],        %[max],       %[r6]         \n\t"
     "movn           %[max],       %[r6],        %[r8]         \n\t"
     "muleq_s.w.phr  %[r6],        %[r1],        %[r2]         \n\t"
@@ -699,14 +704,14 @@ void WebRtcIsacfix_Spec2TimeMIPS(int16_t *inreQ7,
     "subu           %[r7],        %[r6],        %[r9]         \n\t"
     "addu           %[r6],        %[r9],        %[r6]         \n\t"
     "negu           %[r6],        %[r6]                       \n\t"
-    "sll            %[r10],       %[offset],    1             \n\t"
-    "addu           %[r10],       %[outre2],    %[r10]        \n\t"
     "sw             %[r7],        0(%[outre2])                \n\t"
     "absq_s.w       %[r7],        %[r7]                       \n\t"
-    "sw             %[r6],        4(%[r10])                   \n\t"
-    "absq_s.w       %[r6],        %[r6]                       \n\t"
     "slt            %[r8],        %[max],       %[r7]         \n\t"
     "movn           %[max],       %[r7],        %[r8]         \n\t"
+    "sll            %[r7],        %[offset],    1             \n\t"
+    "addu           %[r7],        %[outre2],    %[r7]         \n\t"
+    "sw             %[r6],        4(%[r7])                    \n\t"
+    "absq_s.w       %[r6],        %[r6]                       \n\t"
     "slt            %[r8],        %[max],       %[r6]         \n\t"
     "movn           %[max],       %[r6],        %[r8]         \n\t"
     "muleq_s.w.phl  %[r6],       %[r1],         %[r2]         \n\t"
@@ -725,10 +730,12 @@ void WebRtcIsacfix_Spec2TimeMIPS(int16_t *inreQ7,
     "negu           %[r6],       %[r6]                        \n\t"
     "sw             %[r7],       4(%[outre2])                 \n\t"
     "absq_s.w       %[r7],       %[r7]                        \n\t"
-    "sw             %[r6],       0(%[r10])                    \n\t"
-    "absq_s.w       %[r6],       %[r6]                        \n\t"
     "slt            %[r8],       %[max],        %[r7]         \n\t"
     "movn           %[max],      %[r7],         %[r8]         \n\t"
+    "sll            %[r7],       %[offset],     1             \n\t"
+    "addu           %[r7],       %[outre2],     %[r7]         \n\t"
+    "sw             %[r6],       0(%[r7])                     \n\t"
+    "absq_s.w       %[r6],       %[r6]                        \n\t"
     "slt            %[r8],       %[max],        %[r6]         \n\t"
     "movn           %[max],      %[r6],         %[r8]         \n\t"
     "bgtz           %[k],        1b                           \n\t"
@@ -821,8 +828,8 @@ void WebRtcIsacfix_Spec2TimeMIPS(int16_t *inreQ7,
       [offset] "+r" (offset), [k] "+r" (k), [r0] "=&r" (r0),
       [r1] "=&r" (r1), [r2] "=&r" (r2), [r3] "=&r" (r3),
       [r4] "=&r" (r4), [r5] "=&r" (r5), [r6] "=&r" (r6),
-      [r7] "=&r" (r7), [r10] "=&r" (r10),
-      [r8] "=&r" (r8), [r9] "=&r" (r9), [max] "=&r" (max)
+      [r7] "=&r" (r7), [r8] "=&r" (r8), [r9] "=&r" (r9),
+      [max] "=&r" (max)
     : [inreQ7] "r" (inreQ7), [inimQ7] "r" (inimQ7),
       [cosptr] "r" (cosptr), [sinptr] "r" (sinptr),
       [outre1Q16] "r" (outre1Q16), [outre2Q16] "r" (outre2Q16)

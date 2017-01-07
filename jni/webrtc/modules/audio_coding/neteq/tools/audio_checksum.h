@@ -17,7 +17,6 @@
 #include "webrtc/base/md5digest.h"
 #include "webrtc/base/stringencode.h"
 #include "webrtc/modules/audio_coding/neteq/tools/audio_sink.h"
-#include "webrtc/system_wrappers/interface/compile_assert.h"
 #include "webrtc/typedefs.h"
 
 namespace webrtc {
@@ -27,7 +26,7 @@ class AudioChecksum : public AudioSink {
  public:
   AudioChecksum() : finished_(false) {}
 
-  virtual bool WriteArray(const int16_t* audio, size_t num_samples) OVERRIDE {
+  bool WriteArray(const int16_t* audio, size_t num_samples) override {
     if (finished_)
       return false;
 
@@ -52,7 +51,7 @@ class AudioChecksum : public AudioSink {
   char checksum_result_[rtc::Md5Digest::kSize];
   bool finished_;
 
-  DISALLOW_COPY_AND_ASSIGN(AudioChecksum);
+  RTC_DISALLOW_COPY_AND_ASSIGN(AudioChecksum);
 };
 
 }  // namespace test

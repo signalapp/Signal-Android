@@ -11,14 +11,17 @@
 #ifndef WEBRTC_MODULES_AUDIO_CODING_NETEQ_MOCK_MOCK_DECODER_DATABASE_H_
 #define WEBRTC_MODULES_AUDIO_CODING_NETEQ_MOCK_MOCK_DECODER_DATABASE_H_
 
+#include <string>
+
 #include "webrtc/modules/audio_coding/neteq/decoder_database.h"
 
-#include "gmock/gmock.h"
+#include "testing/gmock/include/gmock/gmock.h"
 
 namespace webrtc {
 
 class MockDecoderDatabase : public DecoderDatabase {
  public:
+  MockDecoderDatabase() : DecoderDatabase(nullptr) {}
   virtual ~MockDecoderDatabase() { Die(); }
   MOCK_METHOD0(Die, void());
   MOCK_CONST_METHOD0(Empty,
@@ -27,11 +30,14 @@ class MockDecoderDatabase : public DecoderDatabase {
       int());
   MOCK_METHOD0(Reset,
       void());
-  MOCK_METHOD2(RegisterPayload,
-      int(uint8_t rtp_payload_type, NetEqDecoder codec_type));
+  MOCK_METHOD3(RegisterPayload,
+      int(uint8_t rtp_payload_type, NetEqDecoder codec_type,
+          const std::string& name));
   MOCK_METHOD4(InsertExternal,
-      int(uint8_t rtp_payload_type, NetEqDecoder codec_type, int fs_hz,
-          AudioDecoder* decoder));
+               int(uint8_t rtp_payload_type,
+                   NetEqDecoder codec_type,
+                   const std::string& codec_name,
+                   AudioDecoder* decoder));
   MOCK_METHOD1(Remove,
       int(uint8_t rtp_payload_type));
   MOCK_CONST_METHOD1(GetDecoderInfo,
@@ -55,7 +61,7 @@ class MockDecoderDatabase : public DecoderDatabase {
   MOCK_METHOD1(SetActiveCngDecoder,
       int(uint8_t rtp_payload_type));
   MOCK_METHOD0(GetActiveCngDecoder,
-      AudioDecoder*());
+      ComfortNoiseDecoder*());
   MOCK_CONST_METHOD1(CheckPayloadTypes,
       int(const PacketList& packet_list));
 };

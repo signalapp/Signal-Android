@@ -71,10 +71,10 @@ void WebRtcIlbcfix_Lsf2Poly(
   for (i=5; i>0; i--)
   {
     tmpW32 = (*f1ptr) + (*f2ptr);
-    (*a1ptr) = (int16_t)WEBRTC_SPL_RSHIFT_W32((tmpW32+4096),13);
+    *a1ptr = (int16_t)((tmpW32 + 4096) >> 13);
 
     tmpW32 = (*f1ptr) - (*f2ptr);
-    (*a2ptr) = (int16_t)WEBRTC_SPL_RSHIFT_W32((tmpW32+4096),13);
+    *a2ptr = (int16_t)((tmpW32 + 4096) >> 13);
 
     a1ptr++;
     a2ptr--;

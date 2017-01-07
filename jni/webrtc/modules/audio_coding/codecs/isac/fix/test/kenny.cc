@@ -14,7 +14,7 @@
 #include <time.h>
 #include <ctype.h>
 
-#include "webrtc/modules/audio_coding/codecs/isac/fix/interface/isacfix.h"
+#include "webrtc/modules/audio_coding/codecs/isac/fix/include/isacfix.h"
 #include "webrtc/test/testsupport/perf_test.h"
 
 // TODO(kma): Clean up the code and change benchmarking the whole codec to
@@ -50,7 +50,7 @@ typedef struct {
 } BottleNeckModel;
 
 void get_arrival_time(int current_framesamples,   /* samples */
-                      int packet_size,            /* bytes */
+                      size_t packet_size,         /* bytes */
                       int bottleneck,             /* excluding headers; bits/s */
                       BottleNeckModel *BN_data)
 {
@@ -62,7 +62,8 @@ void get_arrival_time(int current_framesamples,   /* samples */
   /* everything in samples */
   BN_data->sample_count = BN_data->sample_count + current_framesamples;
 
-  BN_data->arrival_time += ((packet_size + HeaderSize) * 8 * FS) / (bottleneck + HeaderRate);
+  BN_data->arrival_time += static_cast<uint32_t>(
+      ((packet_size + HeaderSize) * 8 * FS) / (bottleneck + HeaderRate));
   BN_data->send_time += current_framesamples;
 
   if (BN_data->arrival_time < BN_data->sample_count)
@@ -98,22 +99,25 @@ int main(int argc, char* argv[])
   FILE *inp, *outp, *f_bn, *outbits;
   int endfile;
 
-  int i, errtype, h = 0, k, packetLossPercent = 0;
+  size_t i;
+  int errtype, h = 0, k, packetLossPercent = 0;
   int16_t CodingMode;
   int16_t bottleneck;
-  int16_t framesize = 30;           /* ms */
+  int framesize = 30;           /* ms */
   int cur_framesmpls, err = 0, lostPackets = 0;
 
   /* Runtime statistics */
   double starttime, runtime, length_file;
 
-  int16_t stream_len = 0;
-  int16_t framecnt, declen = 0;
+  int stream_len_int = 0;
+  size_t stream_len = 0;
+  int16_t framecnt;
+  int declen = 0;
   int16_t shortdata[FRAMESAMPLES_10ms];
   int16_t decoded[MAX_FRAMESAMPLES];
   uint16_t streamdata[500];
   int16_t speechType[1];
-  int16_t prevFrameSize = 1;
+  size_t prevFrameSize = 1;
   int16_t rateBPS = 0;
   int16_t fixedFL = 0;
   int16_t payloadSize = 0;
@@ -231,7 +235,7 @@ int main(int argc, char* argv[])
   CodingMode = 0;
   testNum = 0;
   testCE = 0;
-  for (i = 1; i < argc-2;i++) {
+  for (i = 1; i + 2 < static_cast<size_t>(argc); i++) {
     /* Instantaneous mode */
     if (!strcmp ("-I", argv[i])) {
       printf("\nInstantaneous BottleNeck\n");
@@ -535,12 +539,7 @@ int main(int argc, char* argv[])
         printf("\n\n Error in encoderinit: %d.\n\n", errtype);
       }
 
-      err = WebRtcIsacfix_DecoderInit(ISAC_main_inst);
-      /* Error check */
-      if (err < 0) {
-        errtype=WebRtcIsacfix_GetErrorCode(ISAC_main_inst);
-        printf("\n\n Error in decoderinit: %d.\n\n", errtype);
-      }
+      WebRtcIsacfix_DecoderInit(ISAC_main_inst);
     }
 
 
@@ -563,20 +562,23 @@ int main(int argc, char* argv[])
           short bwe;
 
           /* Encode */
-          stream_len = WebRtcIsacfix_Encode(ISAC_main_inst,
-                                            shortdata,
-                                            (int16_t*)streamdata);
+          stream_len_int = WebRtcIsacfix_Encode(ISAC_main_inst,
+                                                shortdata,
+                                                (uint8_t*)streamdata);
 
           /* If packet is ready, and CE testing, call the different API
              functions from the internal API. */
-          if (stream_len>0) {
+          if (stream_len_int>0) {
             if (testCE == 1) {
-              err = WebRtcIsacfix_ReadBwIndex((int16_t*)streamdata, &bwe);
-              stream_len = WebRtcIsacfix_GetNewBitStream(
+              err = WebRtcIsacfix_ReadBwIndex(
+                  reinterpret_cast<const uint8_t*>(streamdata),
+                  static_cast<size_t>(stream_len_int),
+                  &bwe);
+              stream_len_int = WebRtcIsacfix_GetNewBitStream(
                   ISAC_main_inst,
                   bwe,
                   scale,
-                  (int16_t*)streamdata);
+                  reinterpret_cast<uint8_t*>(streamdata));
             } else if (testCE == 2) {
               /* transcode function not supported */
             } else if (testCE == 3) {
@@ -601,11 +603,11 @@ int main(int argc, char* argv[])
           }
         } else {
 #ifdef WEBRTC_ISAC_FIX_NB_CALLS_ENABLED
-          stream_len = WebRtcIsacfix_EncodeNb(ISAC_main_inst,
-                                              shortdata,
-                                              streamdata);
+          stream_len_int = WebRtcIsacfix_EncodeNb(ISAC_main_inst,
+                                                  shortdata,
+                                                  streamdata);
 #else
-          stream_len = -1;
+          stream_len_int = -1;
 #endif
         }
       }
@@ -614,13 +616,14 @@ int main(int argc, char* argv[])
         break;
       }
 
-      if (stream_len < 0 || err < 0) {
+      if (stream_len_int < 0 || err < 0) {
         /* exit if returned with error */
         errtype=WebRtcIsacfix_GetErrorCode(ISAC_main_inst);
         printf("\nError in encoder: %d.\n", errtype);
       } else {
-        if (fwrite(streamdata, sizeof(char),
-                   stream_len, outbits) != (size_t)stream_len) {
+        stream_len = static_cast<size_t>(stream_len_int);
+        if (fwrite(streamdata, sizeof(char), stream_len, outbits) !=
+            stream_len) {
           return -1;
         }
       }
@@ -697,12 +700,13 @@ int main(int argc, char* argv[])
       }
 
       if (testNum != 9) {
-        err = WebRtcIsacfix_UpdateBwEstimate(ISAC_main_inst,
-                                             streamdata,
-                                             stream_len,
-                                             BN_data.rtp_number,
-                                             BN_data.send_time,
-                                             BN_data.arrival_time);
+        err = WebRtcIsacfix_UpdateBwEstimate(
+            ISAC_main_inst,
+            reinterpret_cast<const uint8_t*>(streamdata),
+            stream_len,
+            BN_data.rtp_number,
+            BN_data.send_time,
+            BN_data.arrival_time);
 
         if (err < 0) {
           /* exit if returned with error */
@@ -725,12 +729,12 @@ int main(int argc, char* argv[])
       /* iSAC decoding */
       if( lostFrame && framecnt >  0) {
         if (nbTest !=2) {
-          declen = WebRtcIsacfix_DecodePlc(ISAC_main_inst,
-                                           decoded, prevFrameSize );
+          declen = static_cast<int>(
+              WebRtcIsacfix_DecodePlc(ISAC_main_inst, decoded, prevFrameSize));
         } else {
 #ifdef WEBRTC_ISAC_FIX_NB_CALLS_ENABLED
-          declen = WebRtcIsacfix_DecodePlcNb(ISAC_main_inst, decoded,
-                                             prevFrameSize );
+          declen = static_cast<int>(WebRtcIsacfix_DecodePlcNb(
+              ISAC_main_inst, decoded, prevFrameSize));
 #else
           declen = -1;
 #endif
@@ -738,17 +742,22 @@ int main(int argc, char* argv[])
         lostPackets++;
       } else {
         if (nbTest !=2 ) {
-          short FL;
+          size_t FL;
           /* Call getFramelen, only used here for function test */
-          err = WebRtcIsacfix_ReadFrameLen((int16_t*)streamdata, &FL);
-          declen = WebRtcIsacfix_Decode( ISAC_main_inst, streamdata, stream_len,
-                                         decoded, speechType );
+          err = WebRtcIsacfix_ReadFrameLen(
+              reinterpret_cast<const uint8_t*>(streamdata), stream_len, &FL);
+          declen = WebRtcIsacfix_Decode(
+              ISAC_main_inst,
+              reinterpret_cast<const uint8_t*>(streamdata),
+              stream_len,
+              decoded,
+              speechType);
           /* Error check */
-          if (err<0 || declen<0 || FL!=declen) {
+          if (err < 0 || declen < 0 || FL != static_cast<size_t>(declen)) {
             errtype=WebRtcIsacfix_GetErrorCode(ISAC_main_inst);
             printf("\nError in decode_B/or getFrameLen: %d.\n", errtype);
           }
-          prevFrameSize = declen/480;
+          prevFrameSize = static_cast<size_t>(declen/480);
 
         } else {
 #ifdef WEBRTC_ISAC_FIX_NB_CALLS_ENABLED
@@ -757,7 +766,7 @@ int main(int argc, char* argv[])
 #else
           declen = -1;
 #endif
-          prevFrameSize = declen/240;
+          prevFrameSize = static_cast<size_t>(declen / 240);
         }
       }
 
@@ -780,7 +789,7 @@ int main(int argc, char* argv[])
     framecnt++;
 
     totalsmpls += declen;
-    totalbits += 8 * stream_len;
+    totalbits += static_cast<int>(8 * stream_len);
 
     /* Error test number 10, garbage data */
     if (testNum == 10) {

@@ -14,15 +14,17 @@
 #include <string.h>  // size_t
 
 #include <list>
+#include <memory>
 
 #include "webrtc/base/constructormagic.h"
+#include "webrtc/modules/audio_coding/neteq/tick_timer.h"
 
 namespace webrtc {
 
 class DelayPeakDetector {
  public:
-  DelayPeakDetector();
-  virtual ~DelayPeakDetector() {}
+  DelayPeakDetector(const TickTimer* tick_timer);
+  virtual ~DelayPeakDetector();
   virtual void Reset();
 
   // Notifies the DelayPeakDetector of how much audio data is carried in each
@@ -31,25 +33,20 @@ class DelayPeakDetector {
 
   // Returns true if peak-mode is active. That is, delay peaks were observed
   // recently.
-  virtual bool peak_found() { return peak_found_; }
+  virtual bool peak_found();
 
   // Calculates and returns the maximum delay peak height. Returns -1 if no
   // delay peaks have been observed recently. The unit is number of packets.
   virtual int MaxPeakHeight() const;
 
-  // Calculates and returns the maximum delay peak distance in ms.
-  // Returns -1 if no delay peaks have been observed recently.
-  virtual int MaxPeakPeriod() const;
+  // Calculates and returns the maximum delay peak distance in ms (strictly
+  // larger than 0), or 0 if no delay peaks have been observed recently.
+  virtual uint64_t MaxPeakPeriod() const;
 
   // Updates the DelayPeakDetector with a new inter-arrival time (in packets)
   // and the current target buffer level (needed to decide if a peak is observed
   // or not). Returns true if peak-mode is active, false if not.
   virtual bool Update(int inter_arrival_time, int target_level);
-
-  // Increments the |peak_period_counter_ms_| with |inc_ms|. Only increments
-  // the counter if it is non-negative. A negative denotes that no peak has
-  // been observed.
-  virtual void IncrementCounter(int inc_ms);
 
  private:
   static const size_t kMaxNumPeaks = 8;
@@ -58,7 +55,7 @@ class DelayPeakDetector {
   static const int kMaxPeakPeriodMs = 10000;
 
   typedef struct {
-    int period_ms;
+    uint64_t period_ms;
     int peak_height_packets;
   } Peak;
 
@@ -67,9 +64,10 @@ class DelayPeakDetector {
   std::list<Peak> peak_history_;
   bool peak_found_;
   int peak_detection_threshold_;
-  int peak_period_counter_ms_;
+  const TickTimer* tick_timer_;
+  std::unique_ptr<TickTimer::Stopwatch> peak_period_stopwatch_;
 
-  DISALLOW_COPY_AND_ASSIGN(DelayPeakDetector);
+  RTC_DISALLOW_COPY_AND_ASSIGN(DelayPeakDetector);
 };
 
 }  // namespace webrtc

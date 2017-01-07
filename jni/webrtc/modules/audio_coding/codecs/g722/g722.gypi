@@ -8,24 +8,21 @@
 {
   'targets': [
     {
-      'target_name': 'G722',
+      'target_name': 'g722',
       'type': 'static_library',
-      'include_dirs': [
-        'include',
-        '<(webrtc_root)',
+      'dependencies': [
+        'audio_encoder_interface',
       ],
-      'direct_dependent_settings': {
-        'include_dirs': [
-          'include',
-          '<(webrtc_root)',
-        ],
-      },
       'sources': [
-        'include/g722_interface.h',
+        'audio_decoder_g722.cc',
+        'audio_decoder_g722.h',
+        'audio_encoder_g722.cc',
+        'audio_encoder_g722.h',
         'g722_interface.c',
-        'g722_encode.c',
+        'g722_interface.h',
         'g722_decode.c',
         'g722_enc_dec.h',
+        'g722_encode.c',
       ],
     },
   ], # targets
@@ -33,10 +30,10 @@
     ['include_tests==1', {
       'targets': [
         {
-          'target_name': 'G722Test',
+          'target_name': 'g722_test',
           'type': 'executable',
           'dependencies': [
-            'G722',
+            'g722',
           ],
           'sources': [
             'test/testG722.cc',

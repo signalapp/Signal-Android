@@ -43,7 +43,7 @@ class AudioMultiVector {
   // are deleted. After the operation is done, |copy_to| will be an exact
   // replica of this object. The source and the destination must have the same
   // number of channels.
-  virtual void CopyFrom(AudioMultiVector* copy_to) const;
+  virtual void CopyTo(AudioMultiVector* copy_to) const;
 
   // Appends the contents of array |append_this| to the end of this
   // object. The array is assumed to be channel-interleaved. |length| must be
@@ -106,7 +106,7 @@ class AudioMultiVector {
                          size_t fade_length);
 
   // Returns the number of channels.
-  virtual size_t Channels() const { return num_channels_; }
+  virtual size_t Channels() const;
 
   // Returns the number of elements per channel in this AudioMultiVector.
   virtual size_t Size() const;
@@ -116,6 +116,11 @@ class AudioMultiVector {
   virtual void AssertSize(size_t required_size);
 
   virtual bool Empty() const;
+
+  // Copies the data between two channels in the AudioMultiVector. The method
+  // does not add any new channel. Thus, |from_channel| and |to_channel| must
+  // both be valid channel numbers.
+  virtual void CopyChannel(size_t from_channel, size_t to_channel);
 
   // Accesses and modifies a channel (i.e., an AudioVector object) of this
   // AudioMultiVector.
@@ -127,7 +132,7 @@ class AudioMultiVector {
   size_t num_channels_;
 
  private:
-  DISALLOW_COPY_AND_ASSIGN(AudioMultiVector);
+  RTC_DISALLOW_COPY_AND_ASSIGN(AudioMultiVector);
 };
 
 }  // namespace webrtc

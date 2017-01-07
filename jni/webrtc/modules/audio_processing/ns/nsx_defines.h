@@ -13,6 +13,7 @@
 
 #define ANAL_BLOCKL_MAX         256 /* Max analysis block length */
 #define HALF_ANAL_BLOCKL        129 /* Half max analysis block length + 1 */
+#define NUM_HIGH_BANDS_MAX      2   /* Max number of high bands */
 #define SIMULT                  3
 #define END_STARTUP_LONG        200
 #define END_STARTUP_SHORT       50

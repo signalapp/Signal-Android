@@ -22,15 +22,16 @@ int WebRtcSpl_ScaleAndAddVectorsWithRound_mips(const int16_t* in_vector1,
                                                int16_t in_vector2_scale,
                                                int right_shifts,
                                                int16_t* out_vector,
-                                               int length) {
+                                               size_t length) {
   int16_t r0 = 0, r1 = 0;
   int16_t *in1 = (int16_t*)in_vector1;
   int16_t *in2 = (int16_t*)in_vector2;
   int16_t *out = out_vector;
-  int i = 0, value32 = 0;
+  size_t i = 0;
+  int value32 = 0;
 
   if (in_vector1 == NULL || in_vector2 == NULL || out_vector == NULL ||
-      length <= 0 || right_shifts < 0) {
+      length == 0 || right_shifts < 0) {
     return -1;
   }
   for (i = 0; i < length; i++) {

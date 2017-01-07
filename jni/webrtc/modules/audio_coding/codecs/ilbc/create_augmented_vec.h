@@ -27,7 +27,7 @@
  *----------------------------------------------------------------*/
 
 void WebRtcIlbcfix_CreateAugmentedVec(
-    int16_t index,  /* (i) Index for the augmented vector to be created */
+    size_t index,  /* (i) Index for the augmented vector to be created */
     int16_t *buffer,  /* (i) Pointer to the end of the codebook memory that
                                            is used for creation of the augmented codebook */
     int16_t *cbVec  /* (o) The construced codebook vector */

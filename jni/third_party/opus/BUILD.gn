@@ -1,0 +1,294 @@
+# Copyright 2014 The Chromium Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//build/config/arm.gni")
+import("//testing/test.gni")
+
+# If fixed point implementation shall be used (otherwise float).
+use_opus_fixed_point = current_cpu == "arm" || current_cpu == "arm64"
+
+# If ARM optimizations shall be used to accelerate performance.
+use_opus_arm_optimization = current_cpu == "arm"
+
+# If OPUS Run Time CPU Detections (RTCD) shall be used.
+# Based on the conditions in celt/arm/armcpu.c:
+# defined(_MSC_VER) || defined(__linux__).
+use_opus_rtcd = current_cpu == "arm" && (is_win || is_android || is_linux)
+
+config("opus_config") {
+  include_dirs = [ "src/include" ]
+
+  if (use_opus_fixed_point) {
+    defines = [ "OPUS_FIXED_POINT" ]
+  }
+}
+
+config("opus_test_config") {
+  include_dirs = [
+    "src/celt",
+    "src/silk",
+  ]
+
+  if (is_win) {
+    defines = [ "inline=__inline" ]
+  }
+  if (is_android) {
+    libs = [ "log" ]
+  }
+  if (is_clang) {
+    cflags = [ "-Wno-absolute-value" ]
+  }
+}
+
+if (use_opus_rtcd) {
+  action("convert_rtcd_assembler") {
+    script = "convert_rtcd_assembler.py"
+    outputs = [
+      "$target_gen_dir/celt_pitch_xcorr_arm_gnu.S",
+    ]
+    args = [
+      rebase_path("//third_party/opus/src/celt/arm/arm2gnu.pl", root_build_dir),
+      rebase_path("//third_party/opus/src/celt/arm/celt_pitch_xcorr_arm.s",
+                  root_build_dir),
+      rebase_path("$target_gen_dir/celt_pitch_xcorr_arm_gnu.S", root_build_dir),
+    ]
+  }
+}
+
+static_library("opus") {
+  gypi_values = exec_script("//build/gypi_to_gn.py",
+                            [ rebase_path("opus_srcs.gypi") ],
+                            "scope",
+                            [ "opus_srcs.gypi" ])
+  sources = gypi_values.opus_common_sources
+
+  defines = [
+    "OPUS_BUILD",
+    "OPUS_EXPORT=",
+  ]
+
+  include_dirs = [
+    "src/celt",
+    "src/silk",
+  ]
+
+  configs -= [ "//build/config/compiler:chromium_code" ]
+  configs += [ "//build/config/compiler:no_chromium_code" ]
+  public_configs = [ ":opus_config" ]
+  cflags = []
+
+  if (is_win) {
+    defines += [
+      "USE_ALLOCA",
+      "inline=__inline",
+    ]
+
+    cflags += [
+      "/wd4305",  # Disable truncation warning in celt/pitch.c .
+      "/wd4334",  # Disable 32-bit shift warning in src/opus_encoder.c .
+    ]
+  } else {
+    defines += [
+      "HAVE_LRINT",
+      "HAVE_LRINTF",
+      "VAR_ARRAYS",
+    ]
+  }
+
+  if (is_posix && !is_android) {
+    # Suppress a warning given by opus_decoder.c that tells us
+    # optimizations are turned off.
+    cflags += [ "-Wno-#pragma-messages" ]
+  }
+
+  if (!is_debug && is_posix &&
+      (current_cpu == "arm" || current_cpu == "arm64")) {
+    configs -= [ "//build/config/compiler:default_optimization" ]
+
+    # TODO(crbug.com/621335) Rework this so that we don't have the confusion
+    # between "optimize_speed" and "optimize_max".
+    configs += [ "//build/config/compiler:optimize_speed" ]
+  }
+
+  if (use_opus_fixed_point) {
+    sources += gypi_values.opus_fixed_sources
+
+    defines += [ "FIXED_POINT" ]
+
+    include_dirs += [ "src/silk/fixed" ]
+  } else {
+    sources += gypi_values.opus_float_sources
+
+    include_dirs += [ "src/silk/float" ]
+  }
+
+  if (use_opus_arm_optimization) {
+    sources += [
+      "src/celt/arm/fixed_arm64.h",
+      "src/celt/arm/fixed_armv4.h",
+      "src/celt/arm/fixed_armv5e.h",
+      "src/celt/arm/kiss_fft_armv4.h",
+      "src/celt/arm/kiss_fft_armv5e.h",
+      "src/celt/arm/pitch_arm.h",
+      "src/silk/arm/SigProc_FIX_armv4.h",
+      "src/silk/arm/SigProc_FIX_armv5e.h",
+      "src/silk/arm/macros_arm64.h",
+      "src/silk/arm/macros_armv4.h",
+      "src/silk/arm/macros_armv5e.h",
+    ]
+
+    defines += [
+      "OPUS_ARM_ASM",
+      "OPUS_ARM_INLINE_ASM",
+      "OPUS_ARM_INLINE_EDSP",
+    ]
+
+    if (use_opus_rtcd) {
+      sources += [
+        "$target_gen_dir/celt_pitch_xcorr_arm_gnu.S",
+        "src/celt/arm/arm_celt_map.c",
+        "src/celt/arm/armcpu.c",
+        "src/celt/arm/armcpu.h",
+        "src/celt/arm/celt_neon_intr.c",
+        "src/celt/arm/fft_arm.h",
+        "src/celt/arm/mdct_arm.h",
+        "src/celt/arm/pitch_arm.h",
+        "src/silk/arm/NSQ_neon.c",
+        "src/silk/arm/NSQ_neon.h",
+        "src/silk/arm/arm_silk_map.c",
+      ]
+
+      include_dirs += [ "src" ]
+
+      defines += [
+        "OPUS_ARM_MAY_HAVE_EDSP",
+        "OPUS_ARM_MAY_HAVE_MEDIA",
+        "OPUS_ARM_MAY_HAVE_NEON",
+        "OPUS_ARM_MAY_HAVE_NEON_INTR",
+        "OPUS_HAVE_RTCD",
+      ]
+
+      deps = [
+        ":convert_rtcd_assembler",
+      ]
+
+      configs -= [ "//build/config/compiler:compiler_arm_fpu" ]
+      cflags += [ "-mfpu=neon" ]
+    }
+  }
+}
+
+executable("opus_compare") {
+  sources = [
+    "src/src/opus_compare.c",
+  ]
+
+  configs -= [ "//build/config/compiler:chromium_code" ]
+  configs += [
+    "//build/config/compiler:no_chromium_code",
+    ":opus_test_config",
+  ]
+
+  deps = [
+    ":opus",
+    "//build/config/sanitizers:deps",
+    "//build/win:default_exe_manifest",
+  ]
+}
+
+executable("opus_demo") {
+  sources = [
+    "src/src/opus_demo.c",
+  ]
+
+  configs -= [ "//build/config/compiler:chromium_code" ]
+  configs += [
+    "//build/config/compiler:no_chromium_code",
+    ":opus_test_config",
+  ]
+
+  deps = [
+    ":opus",
+    "//build/config/sanitizers:deps",
+    "//build/win:default_exe_manifest",
+  ]
+}
+
+test("test_opus_api") {
+  sources = [
+    "src/tests/test_opus_api.c",
+  ]
+
+  configs -= [ "//build/config/compiler:chromium_code" ]
+  configs += [
+    "//build/config/compiler:no_chromium_code",
+    ":opus_test_config",
+  ]
+
+  deps = [
+    ":opus",
+  ]
+}
+
+test("test_opus_encode") {
+  sources = [
+    "src/tests/test_opus_encode.c",
+  ]
+
+  configs -= [ "//build/config/compiler:chromium_code" ]
+  configs += [
+    "//build/config/compiler:no_chromium_code",
+    ":opus_test_config",
+  ]
+
+  deps = [
+    ":opus",
+  ]
+}
+
+# GN orders flags on a target before flags from configs. The default config
+# adds -Wall, and this flag have to be after -Wall -- so they need to
+# come from a config and can't be on the target directly.
+config("test_opus_decode_config") {
+  # test_opus_decode passes a null pointer to opus_decode() for an argument
+  # marked as requiring a non-null value by the nonnull function attribute,
+  # and expects opus_decode() to fail. Disable the -Wnonnull option to avoid
+  # a compilation error if -Werror is specified.
+  if (is_posix) {
+    cflags = [ "-Wno-nonnull" ]
+  }
+}
+
+test("test_opus_decode") {
+  sources = [
+    "src/tests/test_opus_decode.c",
+  ]
+
+  configs -= [ "//build/config/compiler:chromium_code" ]
+  configs += [
+    "//build/config/compiler:no_chromium_code",
+    ":opus_test_config",
+    ":test_opus_decode_config",
+  ]
+
+  deps = [
+    ":opus",
+  ]
+}
+
+test("test_opus_padding") {
+  sources = [
+    "src/tests/test_opus_padding.c",
+  ]
+
+  configs -= [ "//build/config/compiler:chromium_code" ]
+  configs += [
+    "//build/config/compiler:no_chromium_code",
+    ":opus_test_config",
+  ]
+
+  deps = [
+    ":opus",
+  ]
+}

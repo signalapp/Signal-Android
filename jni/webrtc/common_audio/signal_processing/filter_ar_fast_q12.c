@@ -16,10 +16,10 @@
 void WebRtcSpl_FilterARFastQ12(const int16_t* data_in,
                                int16_t* data_out,
                                const int16_t* __restrict coefficients,
-                               int coefficients_length,
-                               int data_length) {
-  int i = 0;
-  int j = 0;
+                               size_t coefficients_length,
+                               size_t data_length) {
+  size_t i = 0;
+  size_t j = 0;
 
   assert(data_length > 0);
   assert(coefficients_length > 1);

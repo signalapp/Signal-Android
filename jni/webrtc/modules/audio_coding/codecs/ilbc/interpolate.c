@@ -39,9 +39,7 @@ void WebRtcIlbcfix_Interpolate(
 
   invcoef = 16384 - coef; /* 16384 = 1.0 (Q14)*/
   for (i = 0; i < length; i++) {
-    out[i] = (int16_t) WEBRTC_SPL_RSHIFT_W32(
-        (WEBRTC_SPL_MUL_16_16(coef, in1[i]) + WEBRTC_SPL_MUL_16_16(invcoef, in2[i]))+8192,
-        14);
+    out[i] = (int16_t)((coef * in1[i] + invcoef * in2[i] + 8192) >> 14);
   }
 
   return;

@@ -14,8 +14,8 @@
 void WebRtcSpl_FilterARFastQ12(const int16_t* data_in,
                                int16_t* data_out,
                                const int16_t* __restrict coefficients,
-                               int coefficients_length,
-                               int data_length) {
+                               size_t coefficients_length,
+                               size_t data_length) {
   int r0, r1, r2, r3;
   int coef0, offset;
   int i, j, k;

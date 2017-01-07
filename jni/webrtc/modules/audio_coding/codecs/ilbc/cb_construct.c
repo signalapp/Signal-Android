@@ -29,10 +29,10 @@ void WebRtcIlbcfix_CbConstruct(
     int16_t *index,   /* (i) Codebook indices */
     int16_t *gain_index,  /* (i) Gain quantization indices */
     int16_t *mem,   /* (i) Buffer for codevector construction */
-    int16_t lMem,   /* (i) Length of buffer */
-    int16_t veclen   /* (i) Length of vector */
+    size_t lMem,   /* (i) Length of buffer */
+    size_t veclen   /* (i) Length of vector */
                                ){
-  int j;
+  size_t j;
   int16_t gain[CB_NSTAGES];
   /* Stack based */
   int16_t cbvec0[SUBL];
@@ -50,17 +50,17 @@ void WebRtcIlbcfix_CbConstruct(
   /* codebook vector construction and construction of total vector */
 
   /* Stack based */
-  WebRtcIlbcfix_GetCbVec(cbvec0, mem, index[0], lMem, veclen);
-  WebRtcIlbcfix_GetCbVec(cbvec1, mem, index[1], lMem, veclen);
-  WebRtcIlbcfix_GetCbVec(cbvec2, mem, index[2], lMem, veclen);
+  WebRtcIlbcfix_GetCbVec(cbvec0, mem, (size_t)index[0], lMem, veclen);
+  WebRtcIlbcfix_GetCbVec(cbvec1, mem, (size_t)index[1], lMem, veclen);
+  WebRtcIlbcfix_GetCbVec(cbvec2, mem, (size_t)index[2], lMem, veclen);
 
   gainPtr = &gain[0];
   for (j=0;j<veclen;j++) {
-    a32  = WEBRTC_SPL_MUL_16_16(*gainPtr++, cbvec0[j]);
-    a32 += WEBRTC_SPL_MUL_16_16(*gainPtr++, cbvec1[j]);
-    a32 += WEBRTC_SPL_MUL_16_16(*gainPtr, cbvec2[j]);
+    a32 = (*gainPtr++) * cbvec0[j];
+    a32 += (*gainPtr++) * cbvec1[j];
+    a32 += (*gainPtr) * cbvec2[j];
     gainPtr -= 2;
-    decvector[j] = (int16_t) WEBRTC_SPL_RSHIFT_W32(a32 + 8192, 14);
+    decvector[j] = (int16_t)((a32 + 8192) >> 14);
   }
 
   return;

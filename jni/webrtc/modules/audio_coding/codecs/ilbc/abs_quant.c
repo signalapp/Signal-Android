@@ -27,7 +27,7 @@
  *---------------------------------------------------------------*/
 
 void WebRtcIlbcfix_AbsQuant(
-    iLBC_Enc_Inst_t *iLBCenc_inst,
+    IlbcEncoder *iLBCenc_inst,
     /* (i) Encoder instance */
     iLBC_bits *iLBC_encbits, /* (i/o) Encoded bits (outputs idxForMax
                                    and idxVec, uses state_first as
@@ -36,7 +36,7 @@ void WebRtcIlbcfix_AbsQuant(
     int16_t *weightDenum   /* (i) denominator of synthesis filter */
                             ) {
   int16_t *syntOut;
-  int16_t quantLen[2];
+  size_t quantLen[2];
 
   /* Stack based */
   int16_t syntOutBuf[LPC_FILTERORDER+STATE_SHORT_LEN_30MS];

@@ -28,14 +28,14 @@ void WebRtcIlbcfix_AugmentedCbCorr(
     int32_t *crossDot,  /* (o) The cross correlation between
                                  the target and the Augmented
                                  vector */
-    int16_t low,    /* (i) Lag to start from (typically
+    size_t low,    /* (i) Lag to start from (typically
                              20) */
-    int16_t high,   /* (i) Lag to end at (typically 39) */
-    int16_t scale)   /* (i) Scale factor to use for
+    size_t high,   /* (i) Lag to end at (typically 39) */
+    int scale)   /* (i) Scale factor to use for
                               the crossDot */
 {
-  int lagcount;
-  int16_t ilow;
+  size_t lagcount;
+  size_t ilow;
   int16_t *targetPtr;
   int32_t *crossDotPtr;
   int16_t *iSPtr=interpSamples;
@@ -46,7 +46,7 @@ void WebRtcIlbcfix_AugmentedCbCorr(
   crossDotPtr=crossDot;
   for (lagcount=low; lagcount<=high; lagcount++) {
 
-    ilow = (int16_t) (lagcount-4);
+    ilow = lagcount - 4;
 
     /* Compute dot product for the first (lagcount-4) samples */
     (*crossDotPtr) = WebRtcSpl_DotProductWithScale(target, buffer-lagcount, ilow, scale);

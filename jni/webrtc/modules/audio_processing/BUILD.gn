@@ -1,0 +1,339 @@
+# Copyright (c) 2014 The WebRTC project authors. All Rights Reserved.
+#
+# Use of this source code is governed by a BSD-style license
+# that can be found in the LICENSE file in the root of the source
+# tree. An additional intellectual property rights grant can be found
+# in the file PATENTS.  All contributing project authors may
+# be found in the AUTHORS file in the root of the source tree.
+
+import("//build/config/arm.gni")
+import("//third_party/protobuf/proto_library.gni")
+import("../../build/webrtc.gni")
+
+declare_args() {
+  # Outputs some low-level debug files.
+  aec_debug_dump = false
+
+  # Disables the usual mode where we trust the reported system delay
+  # values the AEC receives. The corresponding define is set appropriately
+  # in the code, but it can be force-enabled here for testing.
+  aec_untrusted_delay_for_testing = false
+}
+
+source_set("audio_processing") {
+  sources = [
+    "aec/aec_core.cc",
+    "aec/aec_core.h",
+    "aec/aec_core_optimized_methods.h",
+    "aec/aec_rdft.cc",
+    "aec/aec_rdft.h",
+    "aec/aec_resampler.cc",
+    "aec/aec_resampler.h",
+    "aec/echo_cancellation.cc",
+    "aec/echo_cancellation.h",
+    "aecm/aecm_core.cc",
+    "aecm/aecm_core.h",
+    "aecm/echo_control_mobile.cc",
+    "aecm/echo_control_mobile.h",
+    "agc/agc.cc",
+    "agc/agc.h",
+    "agc/agc_manager_direct.cc",
+    "agc/agc_manager_direct.h",
+    "agc/gain_map_internal.h",
+    "agc/legacy/analog_agc.c",
+    "agc/legacy/analog_agc.h",
+    "agc/legacy/digital_agc.c",
+    "agc/legacy/digital_agc.h",
+    "agc/legacy/gain_control.h",
+    "agc/loudness_histogram.cc",
+    "agc/loudness_histogram.h",
+    "agc/utility.cc",
+    "agc/utility.h",
+    "audio_buffer.cc",
+    "audio_buffer.h",
+    "audio_processing_impl.cc",
+    "audio_processing_impl.h",
+    "beamformer/array_util.cc",
+    "beamformer/array_util.h",
+    "beamformer/beamformer.h",
+    "beamformer/complex_matrix.h",
+    "beamformer/covariance_matrix_generator.cc",
+    "beamformer/covariance_matrix_generator.h",
+    "beamformer/matrix.h",
+    "beamformer/nonlinear_beamformer.cc",
+    "beamformer/nonlinear_beamformer.h",
+    "common.h",
+    "echo_cancellation_impl.cc",
+    "echo_cancellation_impl.h",
+    "echo_control_mobile_impl.cc",
+    "echo_control_mobile_impl.h",
+    "gain_control_for_experimental_agc.cc",
+    "gain_control_for_experimental_agc.h",
+    "gain_control_impl.cc",
+    "gain_control_impl.h",
+    "high_pass_filter_impl.cc",
+    "high_pass_filter_impl.h",
+    "include/audio_processing.h",
+    "intelligibility/intelligibility_enhancer.cc",
+    "intelligibility/intelligibility_enhancer.h",
+    "intelligibility/intelligibility_utils.cc",
+    "intelligibility/intelligibility_utils.h",
+    "level_estimator_impl.cc",
+    "level_estimator_impl.h",
+    "logging/apm_data_dumper.cc",
+    "logging/apm_data_dumper.h",
+    "noise_suppression_impl.cc",
+    "noise_suppression_impl.h",
+    "render_queue_item_verifier.h",
+    "rms_level.cc",
+    "rms_level.h",
+    "splitting_filter.cc",
+    "splitting_filter.h",
+    "three_band_filter_bank.cc",
+    "three_band_filter_bank.h",
+    "transient/common.h",
+    "transient/daubechies_8_wavelet_coeffs.h",
+    "transient/dyadic_decimator.h",
+    "transient/moving_moments.cc",
+    "transient/moving_moments.h",
+    "transient/transient_detector.cc",
+    "transient/transient_detector.h",
+    "transient/transient_suppressor.cc",
+    "transient/transient_suppressor.h",
+    "transient/wpd_node.cc",
+    "transient/wpd_node.h",
+    "transient/wpd_tree.cc",
+    "transient/wpd_tree.h",
+    "typing_detection.cc",
+    "typing_detection.h",
+    "utility/block_mean_calculator.cc",
+    "utility/block_mean_calculator.h",
+    "utility/delay_estimator.cc",
+    "utility/delay_estimator.h",
+    "utility/delay_estimator_internal.h",
+    "utility/delay_estimator_wrapper.cc",
+    "utility/delay_estimator_wrapper.h",
+    "vad/common.h",
+    "vad/gmm.cc",
+    "vad/gmm.h",
+    "vad/noise_gmm_tables.h",
+    "vad/pitch_based_vad.cc",
+    "vad/pitch_based_vad.h",
+    "vad/pitch_internal.cc",
+    "vad/pitch_internal.h",
+    "vad/pole_zero_filter.cc",
+    "vad/pole_zero_filter.h",
+    "vad/standalone_vad.cc",
+    "vad/standalone_vad.h",
+    "vad/vad_audio_proc.cc",
+    "vad/vad_audio_proc.h",
+    "vad/vad_audio_proc_internal.h",
+    "vad/vad_circular_buffer.cc",
+    "vad/vad_circular_buffer.h",
+    "vad/voice_activity_detector.cc",
+    "vad/voice_activity_detector.h",
+    "vad/voice_gmm_tables.h",
+    "voice_detection_impl.cc",
+    "voice_detection_impl.h",
+  ]
+
+  configs += [ "../..:common_config" ]
+  public_configs = [ "../..:common_inherited_config" ]
+
+  defines = []
+  deps = [
+    "../..:webrtc_common",
+    "../audio_coding:isac",
+  ]
+
+  if (aec_debug_dump) {
+    defines += [ "WEBRTC_AEC_DEBUG_DUMP=1" ]
+  } else {
+    defines += [ "WEBRTC_AEC_DEBUG_DUMP=0" ]
+  }
+
+  if (aec_untrusted_delay_for_testing) {
+    defines += [ "WEBRTC_UNTRUSTED_DELAY" ]
+  }
+
+  if (rtc_enable_protobuf) {
+    defines += [ "WEBRTC_AUDIOPROC_DEBUG_DUMP" ]
+    deps += [ ":audioproc_debug_proto" ]
+  }
+
+  if (rtc_prefer_fixed_point) {
+    defines += [ "WEBRTC_NS_FIXED" ]
+    sources += [
+      "ns/noise_suppression_x.c",
+      "ns/noise_suppression_x.h",
+      "ns/nsx_core.c",
+      "ns/nsx_core.h",
+      "ns/nsx_defines.h",
+    ]
+    if (current_cpu == "mipsel") {
+      sources += [ "ns/nsx_core_mips.c" ]
+    } else {
+      sources += [ "ns/nsx_core_c.c" ]
+    }
+  } else {
+    defines += [ "WEBRTC_NS_FLOAT" ]
+    sources += [
+      "ns/defines.h",
+      "ns/noise_suppression.c",
+      "ns/noise_suppression.h",
+      "ns/ns_core.c",
+      "ns/ns_core.h",
+      "ns/windows_private.h",
+    ]
+  }
+
+  if (current_cpu == "x86" || current_cpu == "x64") {
+    deps += [ ":audio_processing_sse2" ]
+  }
+
+  if (rtc_build_with_neon) {
+    deps += [ ":audio_processing_neon" ]
+  }
+
+  if (current_cpu == "mipsel") {
+    sources += [ "aecm/aecm_core_mips.cc" ]
+    if (mips_float_abi == "hard") {
+      sources += [
+        "aec/aec_core_mips.cc",
+        "aec/aec_rdft_mips.cc",
+      ]
+    }
+  } else {
+    sources += [ "aecm/aecm_core_c.cc" ]
+  }
+
+  # TODO(jschuh): Bug 1348: fix this warning.
+  configs += [ "//build/config/compiler:no_size_t_to_int_warning" ]
+
+  if (is_clang) {
+    # Suppress warnings from the Chromium Clang plugins (bugs.webrtc.org/163).
+    configs -= [ "//build/config/clang:find_bad_constructs" ]
+  }
+
+  deps += [
+    "../../base:rtc_base_approved",
+    "../../common_audio",
+    "../../system_wrappers",
+  ]
+}
+
+if (rtc_enable_protobuf) {
+  proto_library("audioproc_debug_proto") {
+    sources = [
+      "debug.proto",
+    ]
+
+    proto_out_dir = "webrtc/modules/audio_processing"
+  }
+}
+
+if (current_cpu == "x86" || current_cpu == "x64") {
+  source_set("audio_processing_sse2") {
+    sources = [
+      "aec/aec_core_sse2.cc",
+      "aec/aec_rdft_sse2.cc",
+    ]
+
+    if (is_posix) {
+      cflags = [ "-msse2" ]
+    }
+
+    configs += [ "../..:common_config" ]
+    public_configs = [ "../..:common_inherited_config" ]
+
+    if (aec_debug_dump) {
+      defines = [ "WEBRTC_AEC_DEBUG_DUMP=1" ]
+    } else {
+      defines = [ "WEBRTC_AEC_DEBUG_DUMP=0" ]
+    }
+  }
+}
+
+if (rtc_build_with_neon) {
+  source_set("audio_processing_neon") {
+    sources = [
+      "aec/aec_core_neon.cc",
+      "aec/aec_rdft_neon.cc",
+      "aecm/aecm_core_neon.cc",
+      "ns/nsx_core_neon.c",
+    ]
+
+    if (current_cpu != "arm64") {
+      # Enable compilation for the NEON instruction set. This is needed
+      # since //build/config/arm.gni only enables NEON for iOS, not Android.
+      # This provides the same functionality as webrtc/build/arm_neon.gypi.
+      configs -= [ "//build/config/compiler:compiler_arm_fpu" ]
+      cflags = [ "-mfpu=neon" ]
+    }
+
+    # Disable LTO on NEON targets due to compiler bug.
+    # TODO(fdegans): Enable this. See crbug.com/408997.
+    if (rtc_use_lto) {
+      cflags -= [
+        "-flto",
+        "-ffat-lto-objects",
+      ]
+    }
+
+    configs += [ "../..:common_config" ]
+    public_configs = [ "../..:common_inherited_config" ]
+
+    deps = [
+      "../../common_audio",
+    ]
+
+    if (aec_debug_dump) {
+      defines = [ "WEBRTC_AEC_DEBUG_DUMP=1" ]
+    } else {
+      defines = [ "WEBRTC_AEC_DEBUG_DUMP=0" ]
+    }
+  }
+}
+
+if (rtc_include_tests) {
+  source_set("audioproc_test_utils") {
+    testonly = true
+    sources = [
+      "test/test_utils.cc",
+      "test/test_utils.h",
+    ]
+
+    configs += [ "../..:common_config" ]
+    public_configs = [ "../..:common_inherited_config" ]
+
+    if (is_clang) {
+      # Suppress warnings from the Chromium Clang plugins (bugs.webrtc.org/163).
+      configs -= [ "//build/config/clang:find_bad_constructs" ]
+    }
+
+    deps = [
+      "../../base:rtc_base_approved",
+      "../../common_audio",
+    ]
+  }
+
+  if (rtc_enable_protobuf) {
+    proto_library("audioproc_unittest_proto") {
+      sources = [
+        "test/unittest.proto",
+      ]
+      proto_out_dir = "webrtc/modules/audio_processing"
+    }
+
+    source_set("audioproc_protobuf_utils") {
+      sources = [
+        "test/protobuf_utils.cc",
+        "test/protobuf_utils.h",
+      ]
+
+      deps = [
+        ":audioproc_unittest_proto",
+      ]
+    }
+  }
+}

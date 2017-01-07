@@ -9,14 +9,16 @@
 #include <pthread.h>
 #include <unistd.h>
 
-#include <modules/audio_coding/neteq/interface/neteq.h>
-#include <modules/interface/module_common_types.h>
+#include <modules/audio_coding/neteq/include/neteq.h>
+#include <modules/include/module_common_types.h>
 
 class WebRtcJitterBuffer {
 
 private:
   webrtc::NetEq *neteq;
   WebRtcCodec webRtcCodec;
+  volatile int running;
+
 
 public:
   WebRtcJitterBuffer(AudioCodec &codec);
@@ -24,7 +26,7 @@ public:
   int init();
 
   void addAudio(RtpPacket *packet, uint32_t tick);
-  int getAudio(short *rawData, int maxRawData);
+  int getAudio(webrtc::AudioFrame *audioFrame);
   void stop();
   void collectStats();
   static void* collectStats(void *context);

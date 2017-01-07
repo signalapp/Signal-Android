@@ -13,7 +13,7 @@
 
 #include "webrtc/modules/audio_coding/neteq/dtmf_tone_generator.h"
 
-#include "gmock/gmock.h"
+#include "testing/gmock/include/gmock/gmock.h"
 
 namespace webrtc {
 
@@ -26,7 +26,7 @@ class MockDtmfToneGenerator : public DtmfToneGenerator {
   MOCK_METHOD0(Reset,
       void());
   MOCK_METHOD2(Generate,
-      int(int num_samples, AudioMultiVector* output));
+      int(size_t num_samples, AudioMultiVector* output));
   MOCK_CONST_METHOD0(initialized,
       bool());
 };

@@ -11,13 +11,10 @@
 #ifndef WEBRTC_MODULES_AUDIO_PROCESSING_NS_MAIN_SOURCE_DEFINES_H_
 #define WEBRTC_MODULES_AUDIO_PROCESSING_NS_MAIN_SOURCE_DEFINES_H_
 
-//#define PROCESS_FLOW_0    // Use the traditional method.
-//#define PROCESS_FLOW_1    // Use traditional with DD estimate of prior SNR.
-#define PROCESS_FLOW_2    // Use the new method of speech/noise classification.
-
 #define BLOCKL_MAX          160 // max processing block length: 160
 #define ANAL_BLOCKL_MAX     256 // max analysis block length: 256
 #define HALF_ANAL_BLOCKL    129 // half max analysis block length + 1
+#define NUM_HIGH_BANDS_MAX  2   // max number of high bands: 2
 
 #define QUANTILE            (float)0.25
 
@@ -27,7 +24,6 @@
 #define FACTOR              (float)40.0
 #define WIDTH               (float)0.01
 
-#define SMOOTH              (float)0.75 // filter smoothing
 // Length of fft work arrays.
 #define IP_LENGTH (ANAL_BLOCKL_MAX >> 1) // must be at least ceil(2 + sqrt(ANAL_BLOCKL_MAX/2))
 #define W_LENGTH (ANAL_BLOCKL_MAX >> 1)

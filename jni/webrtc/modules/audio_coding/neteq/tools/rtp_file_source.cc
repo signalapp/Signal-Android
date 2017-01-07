@@ -18,26 +18,35 @@
 #include <netinet/in.h>
 #endif
 
+#include <memory>
+
+#include "webrtc/base/checks.h"
 #include "webrtc/modules/audio_coding/neteq/tools/packet.h"
-#include "webrtc/modules/rtp_rtcp/interface/rtp_header_parser.h"
+#include "webrtc/modules/rtp_rtcp/include/rtp_header_parser.h"
+#include "webrtc/test/rtp_file_reader.h"
 
 namespace webrtc {
 namespace test {
 
 RtpFileSource* RtpFileSource::Create(const std::string& file_name) {
-  RtpFileSource* source = new RtpFileSource;
-  assert(source);
-  if (!source->OpenFile(file_name) || !source->SkipFileHeader()) {
-    assert(false);
-    delete source;
-    return NULL;
-  }
+  RtpFileSource* source = new RtpFileSource();
+  RTC_CHECK(source->OpenFile(file_name));
   return source;
 }
 
+bool RtpFileSource::ValidRtpDump(const std::string& file_name) {
+  std::unique_ptr<RtpFileReader> temp_file(
+      RtpFileReader::Create(RtpFileReader::kRtpDump, file_name));
+  return !!temp_file;
+}
+
+bool RtpFileSource::ValidPcap(const std::string& file_name) {
+  std::unique_ptr<RtpFileReader> temp_file(
+      RtpFileReader::Create(RtpFileReader::kPcap, file_name));
+  return !!temp_file;
+}
+
 RtpFileSource::~RtpFileSource() {
-  if (in_file_)
-    fclose(in_file_);
 }
 
 bool RtpFileSource::RegisterRtpHeaderExtension(RTPExtensionType type,
@@ -46,103 +55,47 @@ bool RtpFileSource::RegisterRtpHeaderExtension(RTPExtensionType type,
   return parser_->RegisterRtpHeaderExtension(type, id);
 }
 
-Packet* RtpFileSource::NextPacket() {
-  while (!EndOfFile()) {
-    uint16_t length;
-    if (fread(&length, sizeof(length), 1, in_file_) == 0) {
-      assert(false);
+std::unique_ptr<Packet> RtpFileSource::NextPacket() {
+  while (true) {
+    RtpPacket temp_packet;
+    if (!rtp_reader_->NextPacket(&temp_packet)) {
       return NULL;
     }
-    length = ntohs(length);
-
-    uint16_t plen;
-    if (fread(&plen, sizeof(plen), 1, in_file_) == 0) {
-      assert(false);
-      return NULL;
-    }
-    plen = ntohs(plen);
-
-    uint32_t offset;
-    if (fread(&offset, sizeof(offset), 1, in_file_) == 0) {
-      assert(false);
-      return NULL;
-    }
-    offset = ntohl(offset);
-
-    // Use length here because a plen of 0 specifies RTCP.
-    assert(length >= kPacketHeaderSize);
-    size_t packet_size_bytes = length - kPacketHeaderSize;
-    if (packet_size_bytes == 0) {
+    if (temp_packet.original_length == 0) {
       // May be an RTCP packet.
       // Read the next one.
       continue;
     }
-    scoped_ptr<uint8_t> packet_memory(new uint8_t[packet_size_bytes]);
-    if (fread(packet_memory.get(), 1, packet_size_bytes, in_file_) !=
-        packet_size_bytes) {
-      assert(false);
-      return NULL;
-    }
-    scoped_ptr<Packet> packet(new Packet(packet_memory.release(),
-                                         packet_size_bytes,
-                                         plen,
-                                         offset,
-                                         *parser_.get()));
+    std::unique_ptr<uint8_t[]> packet_memory(new uint8_t[temp_packet.length]);
+    memcpy(packet_memory.get(), temp_packet.data, temp_packet.length);
+    std::unique_ptr<Packet> packet(new Packet(
+        packet_memory.release(), temp_packet.length,
+        temp_packet.original_length, temp_packet.time_ms, *parser_.get()));
     if (!packet->valid_header()) {
       assert(false);
       return NULL;
     }
-    if (filter_.test(packet->header().payloadType)) {
+    if (filter_.test(packet->header().payloadType) ||
+        (use_ssrc_filter_ && packet->header().ssrc != ssrc_)) {
       // This payload type should be filtered out. Continue to the next packet.
       continue;
     }
-    return packet.release();
+    return packet;
   }
-  return NULL;
-}
-
-bool RtpFileSource::EndOfFile() const {
-  assert(in_file_);
-  return ftell(in_file_) >= file_end_;
 }
 
 RtpFileSource::RtpFileSource()
     : PacketSource(),
-      in_file_(NULL),
-      file_end_(-1),
       parser_(RtpHeaderParser::Create()) {}
 
 bool RtpFileSource::OpenFile(const std::string& file_name) {
-  in_file_ = fopen(file_name.c_str(), "rb");
-  assert(in_file_);
-  if (in_file_ == NULL) {
-    return false;
-  }
-
-  // Find out how long the file is.
-  fseek(in_file_, 0, SEEK_END);
-  file_end_ = ftell(in_file_);
-  rewind(in_file_);
-  return true;
-}
-
-bool RtpFileSource::SkipFileHeader() {
-  char firstline[kFirstLineLength];
-  assert(in_file_);
-  if (fgets(firstline, kFirstLineLength, in_file_) == NULL) {
-    assert(false);
-    return false;
-  }
-  // Check that the first line is ok.
-  if ((strncmp(firstline, "#!rtpplay1.0", 12) != 0) &&
-      (strncmp(firstline, "#!RTPencode1.0", 14) != 0)) {
-    assert(false);
-    return false;
-  }
-  // Skip the file header.
-  if (fseek(in_file_, kRtpFileHeaderSize, SEEK_CUR) != 0) {
-    assert(false);
-    return false;
+  rtp_reader_.reset(RtpFileReader::Create(RtpFileReader::kRtpDump, file_name));
+  if (rtp_reader_)
+    return true;
+  rtp_reader_.reset(RtpFileReader::Create(RtpFileReader::kPcap, file_name));
+  if (!rtp_reader_) {
+    FATAL() << "Couldn't open input file as either a rtpdump or .pcap. Note "
+               "that .pcapng is not supported.";
   }
   return true;
 }

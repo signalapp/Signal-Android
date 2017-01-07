@@ -12,7 +12,7 @@
 
 #include "webrtc/modules/audio_coding/neteq/random_vector.h"
 
-#include "gtest/gtest.h"
+#include "testing/gtest/include/gtest/gtest.h"
 
 namespace webrtc {
 

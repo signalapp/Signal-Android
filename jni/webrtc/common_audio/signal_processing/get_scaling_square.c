@@ -17,15 +17,17 @@
 
 #include "webrtc/common_audio/signal_processing/include/signal_processing_library.h"
 
-int WebRtcSpl_GetScalingSquare(int16_t *in_vector, int in_vector_length, int times)
+int16_t WebRtcSpl_GetScalingSquare(int16_t* in_vector,
+                                   size_t in_vector_length,
+                                   size_t times)
 {
-    int nbits = WebRtcSpl_GetSizeInBits(times);
-    int i;
+    int16_t nbits = WebRtcSpl_GetSizeInBits((uint32_t)times);
+    size_t i;
     int16_t smax = -1;
     int16_t sabs;
     int16_t *sptr = in_vector;
-    int t;
-    int looptimes = in_vector_length;
+    int16_t t;
+    size_t looptimes = in_vector_length;
 
     for (i = looptimes; i > 0; i--)
     {

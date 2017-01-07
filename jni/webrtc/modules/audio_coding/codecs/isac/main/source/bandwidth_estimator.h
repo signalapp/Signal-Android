@@ -90,12 +90,12 @@ extern "C" {
   /* Index         - integer (range 0...23) indicating bottle neck & jitter as estimated by other side */
   /* returns 0 if everything went fine, -1 otherwise                                                   */
   int16_t WebRtcIsac_UpdateBandwidthEstimator(
-      BwEstimatorstr*    bwest_str,
+      BwEstimatorstr* bwest_str,
       const uint16_t rtp_number,
-      const int32_t  frame_length,
+      const int32_t frame_length,
       const uint32_t send_ts,
       const uint32_t arr_ts,
-      const int32_t  pksize);
+      const size_t pksize);
 
   /* Update receiving estimates. Used when we only receive BWE index, no iSAC data packet. */
   int16_t WebRtcIsac_UpdateUplinkBwImpl(
@@ -104,10 +104,10 @@ extern "C" {
       enum IsacSamplingRate encoderSamplingFreq);
 
   /* Returns the bandwidth/jitter estimation code (integer 0...23) to put in the sending iSAC payload */
-  uint16_t WebRtcIsac_GetDownlinkBwJitIndexImpl(
-      BwEstimatorstr*           bwest_str,
-      int16_t*              bottleneckIndex,
-      int16_t*              jitterInfo,
+  void WebRtcIsac_GetDownlinkBwJitIndexImpl(
+      BwEstimatorstr* bwest_str,
+      int16_t* bottleneckIndex,
+      int16_t* jitterInfo,
       enum IsacSamplingRate decoderSamplingFreq);
 
   /* Returns the bandwidth estimation (in bps) */
@@ -119,14 +119,21 @@ extern "C" {
       const BwEstimatorstr *bwest_str);
 
   /* Returns the bandwidth that iSAC should send with in bps */
-  void WebRtcIsac_GetUplinkBandwidth(
-      const BwEstimatorstr* bwest_str,
-      int32_t*          bitRate);
+  int32_t WebRtcIsac_GetUplinkBandwidth(const BwEstimatorstr* bwest_str);
 
   /* Returns the max delay value from the other side in ms */
   int32_t WebRtcIsac_GetUplinkMaxDelay(
       const BwEstimatorstr *bwest_str);
 
+  /* Fills in an IsacExternalBandwidthInfo struct. */
+  void WebRtcIsacBw_GetBandwidthInfo(
+      BwEstimatorstr* bwest_str,
+      enum IsacSamplingRate decoder_sample_rate_hz,
+      IsacBandwidthInfo* bwinfo);
+
+  /* Uses the values from an IsacExternalBandwidthInfo struct. */
+  void WebRtcIsacBw_SetBandwidthInfo(BwEstimatorstr* bwest_str,
+                                     const IsacBandwidthInfo* bwinfo);
 
   /*
    * update amount of data in bottle neck buffer and burst handling

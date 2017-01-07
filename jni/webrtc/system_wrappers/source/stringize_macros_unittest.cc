@@ -8,7 +8,7 @@
  *  be found in the AUTHORS file in the root of the source tree.
  */
 
-#include "webrtc/system_wrappers/interface/stringize_macros.h"
+#include "webrtc/system_wrappers/include/stringize_macros.h"
 
 #include "testing/gtest/include/gtest/gtest.h"
 

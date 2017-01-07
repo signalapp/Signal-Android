@@ -39,7 +39,7 @@ void WebRtcIlbcfix_SimpleInterpolateLsf(
     int16_t *lsfdeqold, /* (i) the dequantized lsf coefficients of the
                                    previous signal frame Q13 */
     int16_t length,  /* (i) should equate FILTERORDER */
-    iLBC_Enc_Inst_t *iLBCenc_inst
+    IlbcEncoder *iLBCenc_inst
     /* (i/o) the encoder state structure */
                                         );
 

@@ -29,6 +29,6 @@ void WebRtcIlbcfix_HpInput(
     int16_t *y,      /* (i/o) Filter state yhi[n-1] ylow[n-1]
                                                                    yhi[n-2] ylow[n-2] */
     int16_t *x,      /* (i/o) Filter state x[n-1] x[n-2] */
-    int16_t len);     /* (i)   Number of samples to filter */
+    size_t len);     /* (i)   Number of samples to filter */
 
 #endif

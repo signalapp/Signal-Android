@@ -17,16 +17,16 @@
  */
 
 #include "encode_lpc_swb.h"
-#include "typedefs.h"
-#include "settings.h"
 
-#include "lpc_shape_swb12_tables.h"
-#include "lpc_shape_swb16_tables.h"
-#include "lpc_gain_swb_tables.h"
-
+#include <math.h>
 #include <stdio.h>
 #include <string.h>
-#include <math.h>
+
+#include "lpc_gain_swb_tables.h"
+#include "lpc_shape_swb12_tables.h"
+#include "lpc_shape_swb16_tables.h"
+#include "settings.h"
+#include "webrtc/typedefs.h"
 
 /******************************************************************************
  * WebRtcIsac_RemoveLarMean()
@@ -440,7 +440,7 @@ WebRtcIsac_CorrelateInterVec(
   int16_t rowCntr;
   int16_t colCntr;
   int16_t interVecDim;
-  double myVec[UB16_LPC_VEC_PER_FRAME];
+  double myVec[UB16_LPC_VEC_PER_FRAME] = {0.0};
   const double* interVecDecorrMat;
 
   switch(bandwidth)

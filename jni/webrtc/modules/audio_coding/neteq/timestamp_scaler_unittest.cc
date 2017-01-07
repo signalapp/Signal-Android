@@ -10,8 +10,8 @@
 
 #include "webrtc/modules/audio_coding/neteq/timestamp_scaler.h"
 
-#include "gmock/gmock.h"
-#include "gtest/gtest.h"
+#include "testing/gmock/include/gmock/gmock.h"
+#include "testing/gtest/include/gtest/gtest.h"
 #include "webrtc/modules/audio_coding/neteq/mock/mock_decoder_database.h"
 #include "webrtc/modules/audio_coding/neteq/packet.h"
 
@@ -23,8 +23,8 @@ namespace webrtc {
 
 TEST(TimestampScaler, TestNoScaling) {
   MockDecoderDatabase db;
-  DecoderDatabase::DecoderInfo info;
-  info.codec_type = kDecoderPCMu;  // Does not use scaled timestamps.
+  // Use PCMu, because it doesn't use scaled timestamps.
+  const DecoderDatabase::DecoderInfo info(NetEqDecoder::kDecoderPCMu, "");
   static const uint8_t kRtpPayloadType = 0;
   EXPECT_CALL(db, GetDecoderInfo(kRtpPayloadType))
       .WillRepeatedly(Return(&info));
@@ -43,8 +43,8 @@ TEST(TimestampScaler, TestNoScaling) {
 
 TEST(TimestampScaler, TestNoScalingLargeStep) {
   MockDecoderDatabase db;
-  DecoderDatabase::DecoderInfo info;
-  info.codec_type = kDecoderPCMu;  // Does not use scaled timestamps.
+  // Use PCMu, because it doesn't use scaled timestamps.
+  const DecoderDatabase::DecoderInfo info(NetEqDecoder::kDecoderPCMu, "");
   static const uint8_t kRtpPayloadType = 0;
   EXPECT_CALL(db, GetDecoderInfo(kRtpPayloadType))
       .WillRepeatedly(Return(&info));
@@ -68,8 +68,8 @@ TEST(TimestampScaler, TestNoScalingLargeStep) {
 
 TEST(TimestampScaler, TestG722) {
   MockDecoderDatabase db;
-  DecoderDatabase::DecoderInfo info;
-  info.codec_type = kDecoderG722;  // Uses a factor 2 scaling.
+  // Use G722, which has a factor 2 scaling.
+  const DecoderDatabase::DecoderInfo info(NetEqDecoder::kDecoderG722, "");
   static const uint8_t kRtpPayloadType = 17;
   EXPECT_CALL(db, GetDecoderInfo(kRtpPayloadType))
       .WillRepeatedly(Return(&info));
@@ -92,8 +92,8 @@ TEST(TimestampScaler, TestG722) {
 
 TEST(TimestampScaler, TestG722LargeStep) {
   MockDecoderDatabase db;
-  DecoderDatabase::DecoderInfo info;
-  info.codec_type = kDecoderG722;  // Uses a factor 2 scaling.
+  // Use G722, which has a factor 2 scaling.
+  const DecoderDatabase::DecoderInfo info(NetEqDecoder::kDecoderG722, "");
   static const uint8_t kRtpPayloadType = 17;
   EXPECT_CALL(db, GetDecoderInfo(kRtpPayloadType))
       .WillRepeatedly(Return(&info));
@@ -120,9 +120,9 @@ TEST(TimestampScaler, TestG722LargeStep) {
 
 TEST(TimestampScaler, TestG722WithCng) {
   MockDecoderDatabase db;
-  DecoderDatabase::DecoderInfo info_g722, info_cng;
-  info_g722.codec_type = kDecoderG722;  // Uses a factor 2 scaling.
-  info_cng.codec_type = kDecoderCNGwb;
+  // Use G722, which has a factor 2 scaling.
+  const DecoderDatabase::DecoderInfo info_g722(NetEqDecoder::kDecoderG722, "");
+  const DecoderDatabase::DecoderInfo info_cng(NetEqDecoder::kDecoderCNGwb, "");
   static const uint8_t kRtpPayloadTypeG722 = 17;
   static const uint8_t kRtpPayloadTypeCng = 13;
   EXPECT_CALL(db, GetDecoderInfo(kRtpPayloadTypeG722))
@@ -161,8 +161,8 @@ TEST(TimestampScaler, TestG722WithCng) {
 // as many tests here.
 TEST(TimestampScaler, TestG722Packet) {
   MockDecoderDatabase db;
-  DecoderDatabase::DecoderInfo info;
-  info.codec_type = kDecoderG722;  // Does uses a factor 2 scaling.
+  // Use G722, which has a factor 2 scaling.
+  const DecoderDatabase::DecoderInfo info(NetEqDecoder::kDecoderG722, "");
   static const uint8_t kRtpPayloadType = 17;
   EXPECT_CALL(db, GetDecoderInfo(kRtpPayloadType))
       .WillRepeatedly(Return(&info));
@@ -189,8 +189,8 @@ TEST(TimestampScaler, TestG722Packet) {
 // we are not doing as many tests here.
 TEST(TimestampScaler, TestG722PacketList) {
   MockDecoderDatabase db;
-  DecoderDatabase::DecoderInfo info;
-  info.codec_type = kDecoderG722;  // Uses a factor 2 scaling.
+  // Use G722, which has a factor 2 scaling.
+  const DecoderDatabase::DecoderInfo info(NetEqDecoder::kDecoderG722, "");
   static const uint8_t kRtpPayloadType = 17;
   EXPECT_CALL(db, GetDecoderInfo(kRtpPayloadType))
       .WillRepeatedly(Return(&info));
@@ -218,8 +218,8 @@ TEST(TimestampScaler, TestG722PacketList) {
 
 TEST(TimestampScaler, TestG722Reset) {
   MockDecoderDatabase db;
-  DecoderDatabase::DecoderInfo info;
-  info.codec_type = kDecoderG722;  // Uses a factor 2 scaling.
+  // Use G722, which has a factor 2 scaling.
+  const DecoderDatabase::DecoderInfo info(NetEqDecoder::kDecoderG722, "");
   static const uint8_t kRtpPayloadType = 17;
   EXPECT_CALL(db, GetDecoderInfo(kRtpPayloadType))
       .WillRepeatedly(Return(&info));
@@ -258,8 +258,7 @@ TEST(TimestampScaler, TestG722Reset) {
 // timestamp scaler.
 TEST(TimestampScaler, TestOpusLargeStep) {
   MockDecoderDatabase db;
-  DecoderDatabase::DecoderInfo info;
-  info.codec_type = kDecoderOpus;
+  const DecoderDatabase::DecoderInfo info(NetEqDecoder::kDecoderOpus, "");
   static const uint8_t kRtpPayloadType = 17;
   EXPECT_CALL(db, GetDecoderInfo(kRtpPayloadType))
       .WillRepeatedly(Return(&info));
@@ -278,34 +277,6 @@ TEST(TimestampScaler, TestOpusLargeStep) {
     // Scale back.
     EXPECT_EQ(external_timestamp, scaler.ToExternal(internal_timestamp));
     internal_timestamp += kStep;
-  }
-
-  EXPECT_CALL(db, Die());  // Called when database object is deleted.
-}
-
-TEST(TimestampScaler, TestIsacFbLargeStep) {
-  MockDecoderDatabase db;
-  DecoderDatabase::DecoderInfo info;
-  info.codec_type = kDecoderISACfb;
-  static const uint8_t kRtpPayloadType = 17;
-  EXPECT_CALL(db, GetDecoderInfo(kRtpPayloadType))
-      .WillRepeatedly(Return(&info));
-
-  TimestampScaler scaler(db);
-  // Test both sides of the timestamp wrap-around.
-  static const uint32_t kStep = 960;
-  uint32_t external_timestamp = 0;
-  // |external_timestamp| will be a large positive value.
-  external_timestamp = external_timestamp - 5 * kStep;
-  uint32_t internal_timestamp = external_timestamp;
-  for (; external_timestamp != 5 * kStep; external_timestamp += kStep) {
-    // Scale to internal timestamp.
-    EXPECT_EQ(internal_timestamp,
-              scaler.ToInternal(external_timestamp, kRtpPayloadType));
-    // Scale back.
-    EXPECT_EQ(external_timestamp, scaler.ToExternal(internal_timestamp));
-    // Internal timestamp should be incremented with two-thirds the step.
-    internal_timestamp += 2 * kStep / 3;
   }
 
   EXPECT_CALL(db, Die());  // Called when database object is deleted.

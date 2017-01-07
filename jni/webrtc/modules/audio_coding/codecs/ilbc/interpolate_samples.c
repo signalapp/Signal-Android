@@ -22,7 +22,7 @@
 void WebRtcIlbcfix_InterpolateSamples(
     int16_t *interpSamples, /* (o) The interpolated samples */
     int16_t *CBmem,   /* (i) The CB memory */
-    int16_t lMem    /* (i) Length of the CB memory */
+    size_t lMem    /* (i) Length of the CB memory */
                                       ) {
   int16_t *ppi, *ppo, i, j, temp1, temp2;
   int16_t *tmpPtr;
@@ -37,8 +37,8 @@ void WebRtcIlbcfix_InterpolateSamples(
     ppi = CBmem+lMem-j-24;
     for (i=0; i<4; i++) {
 
-      *tmpPtr++ = (int16_t)WEBRTC_SPL_MUL_16_16_RSFT(WebRtcIlbcfix_kAlpha[temp2],*ppo, 15) +
-          (int16_t)WEBRTC_SPL_MUL_16_16_RSFT(WebRtcIlbcfix_kAlpha[temp1], *ppi, 15);
+      *tmpPtr++ = (int16_t)((WebRtcIlbcfix_kAlpha[temp2] * *ppo) >> 15) +
+          (int16_t)((WebRtcIlbcfix_kAlpha[temp1] * *ppi) >> 15);
 
       ppo++;
       ppi++;

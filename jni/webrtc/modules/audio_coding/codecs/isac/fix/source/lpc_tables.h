@@ -18,8 +18,7 @@
 #ifndef WEBRTC_MODULES_AUDIO_CODING_CODECS_ISAC_FIX_SOURCE_LPC_TABLES_H_
 #define WEBRTC_MODULES_AUDIO_CODING_CODECS_ISAC_FIX_SOURCE_LPC_TABLES_H_
 
-#include "typedefs.h"
-
+#include "webrtc/typedefs.h"
 
 /* indices of KLT coefficients used */
 extern const uint16_t WebRtcIsacfix_kSelIndGain[12];

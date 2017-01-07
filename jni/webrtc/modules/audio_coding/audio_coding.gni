@@ -1,0 +1,30 @@
+# Copyright (c) 2016 The WebRTC project authors. All Rights Reserved.
+#
+# Use of this source code is governed by a BSD-style license
+# that can be found in the LICENSE file in the root of the source
+# tree. An additional intellectual property rights grant can be found
+# in the file PATENTS.  All contributing project authors may
+# be found in the AUTHORS file in the root of the source tree.
+
+import("../../build/webrtc.gni")
+
+audio_codec_defines = []
+if (rtc_include_ilbc) {
+  audio_codec_defines += [ "WEBRTC_CODEC_ILBC" ]
+}
+if (rtc_include_opus) {
+  audio_codec_defines += [ "WEBRTC_CODEC_OPUS" ]
+}
+if (!build_with_mozilla) {
+  if (current_cpu == "arm") {
+    audio_codec_defines += [ "WEBRTC_CODEC_ISACFX" ]
+  } else {
+    audio_codec_defines += [ "WEBRTC_CODEC_ISAC" ]
+  }
+  audio_codec_defines += [ "WEBRTC_CODEC_G722" ]
+}
+if (!build_with_mozilla && !build_with_chromium) {
+  audio_codec_defines += [ "WEBRTC_CODEC_RED" ]
+}
+
+audio_coding_defines = audio_codec_defines

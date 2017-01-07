@@ -14,9 +14,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <memory>
 #include <string>
 
-#include "gtest/gtest.h"
+#include "testing/gtest/include/gtest/gtest.h"
 #include "webrtc/test/testsupport/fileutils.h"
 
 namespace webrtc {
@@ -39,7 +40,7 @@ void RunAnalysisTest(const std::string& audio_filename,
                      const std::string& data_filename,
                      size_t channels) {
   AudioClassifier classifier;
-  scoped_ptr<int16_t[]> in(new int16_t[channels * kFrameSize]);
+  std::unique_ptr<int16_t[]> in(new int16_t[channels * kFrameSize]);
   bool is_music_ref;
 
   FILE* audio_file = fopen(audio_filename.c_str(), "rb");
@@ -61,9 +62,15 @@ void RunAnalysisTest(const std::string& audio_filename,
 }
 
 TEST(AudioClassifierTest, DoAnalysisMono) {
+#if defined(WEBRTC_ARCH_ARM) || defined(WEBRTC_ARCH_ARM64)
+  RunAnalysisTest(test::ResourcePath("short_mixed_mono_48", "pcm"),
+                  test::ResourcePath("short_mixed_mono_48_arm", "dat"),
+                  1);
+#else
   RunAnalysisTest(test::ResourcePath("short_mixed_mono_48", "pcm"),
                   test::ResourcePath("short_mixed_mono_48", "dat"),
                   1);
+#endif // WEBRTC_ARCH_ARM
 }
 
 TEST(AudioClassifierTest, DoAnalysisStereo) {

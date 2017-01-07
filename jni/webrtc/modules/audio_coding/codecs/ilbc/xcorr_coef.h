@@ -26,12 +26,12 @@
  * crossCorr*crossCorr/(energy) criteria
  *---------------------------------------------------------------*/
 
-int WebRtcIlbcfix_XcorrCoef(
+size_t WebRtcIlbcfix_XcorrCoef(
     int16_t *target,  /* (i) first array */
     int16_t *regressor, /* (i) second array */
-    int16_t subl,  /* (i) dimension arrays */
-    int16_t searchLen, /* (i) the search lenght */
-    int16_t offset,  /* (i) samples offset between arrays */
+    size_t subl,  /* (i) dimension arrays */
+    size_t searchLen, /* (i) the search lenght */
+    size_t offset,  /* (i) samples offset between arrays */
     int16_t step   /* (i) +1 or -1 */
                             );
 

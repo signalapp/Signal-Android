@@ -38,8 +38,8 @@ TEST_F(VadTest, vad_filterbank) {
   // Construct a speech signal that will trigger the VAD in all modes. It is
   // known that (i * i) will wrap around, but that doesn't matter in this case.
   int16_t speech[kMaxFrameLength];
-  for (int16_t i = 0; i < kMaxFrameLength; ++i) {
-    speech[i] = (i * i);
+  for (size_t i = 0; i < kMaxFrameLength; ++i) {
+    speech[i] = static_cast<int16_t>(i * i);
   }
 
   int frame_length_index = 0;
@@ -73,7 +73,7 @@ TEST_F(VadTest, vad_filterbank) {
 
   // Verify that all ones in gives kOffsetVector out. Any other constant input
   // will have a small impact in the sub bands.
-  for (int16_t i = 0; i < kMaxFrameLength; ++i) {
+  for (size_t i = 0; i < kMaxFrameLength; ++i) {
     speech[i] = 1;
   }
   for (size_t j = 0; j < kFrameLengthsSize; ++j) {

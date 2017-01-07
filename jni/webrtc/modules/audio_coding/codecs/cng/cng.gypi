@@ -9,26 +9,17 @@
 {
   'targets': [
     {
-      'target_name': 'CNG',
+      'target_name': 'cng',
       'type': 'static_library',
       'dependencies': [
         '<(webrtc_root)/common_audio/common_audio.gyp:common_audio',
+        'audio_encoder_interface',
       ],
-      'include_dirs': [
-        'include',
-        '<(webrtc_root)',
-      ],
-      'direct_dependent_settings': {
-        'include_dirs': [
-          'include',
-          '<(webrtc_root)',
-        ],
-      },
       'sources': [
-        'include/webrtc_cng.h',
-        'webrtc_cng.c',
-        'cng_helpfuns.c',
-        'cng_helpfuns.h',
+        'audio_encoder_cng.cc',
+        'audio_encoder_cng.h',
+        'webrtc_cng.cc',
+        'webrtc_cng.h',
       ],
     },
   ], # targets

@@ -13,14 +13,24 @@
 #include "webrtc/modules/audio_coding/neteq/accelerate.h"
 #include "webrtc/modules/audio_coding/neteq/preemptive_expand.h"
 
-#include "gtest/gtest.h"
+#include <map>
+#include <memory>
+
+#include "testing/gtest/include/gtest/gtest.h"
+#include "webrtc/base/checks.h"
+#include "webrtc/common_audio/signal_processing/include/signal_processing_library.h"
 #include "webrtc/modules/audio_coding/neteq/background_noise.h"
+#include "webrtc/modules/audio_coding/neteq/tools/input_audio_file.h"
+#include "webrtc/test/testsupport/fileutils.h"
 
 namespace webrtc {
 
+namespace {
+const size_t kNumChannels = 1;
+}
+
 TEST(TimeStretch, CreateAndDestroy) {
   const int kSampleRate = 8000;
-  const size_t kNumChannels = 1;
   const int kOverlapSamples = 5 * kSampleRate / 8000;
   BackgroundNoise bgn(kNumChannels);
   Accelerate accelerate(kSampleRate, kNumChannels, bgn);
@@ -30,7 +40,6 @@ TEST(TimeStretch, CreateAndDestroy) {
 
 TEST(TimeStretch, CreateUsingFactory) {
   const int kSampleRate = 8000;
-  const size_t kNumChannels = 1;
   const int kOverlapSamples = 5 * kSampleRate / 8000;
   BackgroundNoise bgn(kNumChannels);
 
@@ -47,6 +56,72 @@ TEST(TimeStretch, CreateUsingFactory) {
   delete preemptive_expand;
 }
 
-// TODO(hlundin): Write more tests.
+class TimeStretchTest : public ::testing::Test {
+ protected:
+  TimeStretchTest()
+      : input_file_(new test::InputAudioFile(
+            test::ResourcePath("audio_coding/testfile32kHz", "pcm"))),
+        sample_rate_hz_(32000),
+        block_size_(30 * sample_rate_hz_ / 1000),  // 30 ms
+        audio_(new int16_t[block_size_]),
+        background_noise_(kNumChannels) {
+    WebRtcSpl_Init();
+  }
+
+  const int16_t* Next30Ms() {
+    RTC_CHECK(input_file_->Read(block_size_, audio_.get()));
+    return audio_.get();
+  }
+
+  // Returns the total length change (in samples) that the accelerate operation
+  // resulted in during the run.
+  size_t TestAccelerate(size_t loops, bool fast_mode) {
+    Accelerate accelerate(sample_rate_hz_, kNumChannels, background_noise_);
+    size_t total_length_change = 0;
+    for (size_t i = 0; i < loops; ++i) {
+      AudioMultiVector output(kNumChannels);
+      size_t length_change;
+      UpdateReturnStats(accelerate.Process(Next30Ms(), block_size_, fast_mode,
+                                           &output, &length_change));
+      total_length_change += length_change;
+    }
+    return total_length_change;
+  }
+
+  void UpdateReturnStats(TimeStretch::ReturnCodes ret) {
+    switch (ret) {
+      case TimeStretch::kSuccess:
+      case TimeStretch::kSuccessLowEnergy:
+      case TimeStretch::kNoStretch:
+        ++return_stats_[ret];
+        break;
+      case TimeStretch::kError:
+        FAIL() << "Process returned an error";
+    }
+  }
+
+  std::unique_ptr<test::InputAudioFile> input_file_;
+  const int sample_rate_hz_;
+  const size_t block_size_;
+  std::unique_ptr<int16_t[]> audio_;
+  std::map<TimeStretch::ReturnCodes, int> return_stats_;
+  BackgroundNoise background_noise_;
+};
+
+TEST_F(TimeStretchTest, Accelerate) {
+  // TestAccelerate returns the total length change in samples.
+  EXPECT_EQ(15268U, TestAccelerate(100, false));
+  EXPECT_EQ(9, return_stats_[TimeStretch::kSuccess]);
+  EXPECT_EQ(58, return_stats_[TimeStretch::kSuccessLowEnergy]);
+  EXPECT_EQ(33, return_stats_[TimeStretch::kNoStretch]);
+}
+
+TEST_F(TimeStretchTest, AccelerateFastMode) {
+  // TestAccelerate returns the total length change in samples.
+  EXPECT_EQ(21400U, TestAccelerate(100, true));
+  EXPECT_EQ(31, return_stats_[TimeStretch::kSuccess]);
+  EXPECT_EQ(58, return_stats_[TimeStretch::kSuccessLowEnergy]);
+  EXPECT_EQ(11, return_stats_[TimeStretch::kNoStretch]);
+}
 
 }  // namespace webrtc

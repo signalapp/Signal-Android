@@ -16,8 +16,10 @@
 
 #include <algorithm>  // find_if()
 
+#include "webrtc/base/logging.h"
+#include "webrtc/modules/audio_coding/codecs/audio_decoder.h"
 #include "webrtc/modules/audio_coding/neteq/decoder_database.h"
-#include "webrtc/modules/audio_coding/neteq/interface/audio_decoder.h"
+#include "webrtc/modules/audio_coding/neteq/tick_timer.h"
 
 namespace webrtc {
 
@@ -36,8 +38,9 @@ class NewTimestampIsLarger {
   const Packet* new_packet_;
 };
 
-PacketBuffer::PacketBuffer(size_t max_number_of_packets)
-    : max_number_of_packets_(max_number_of_packets) {}
+PacketBuffer::PacketBuffer(size_t max_number_of_packets,
+                           const TickTimer* tick_timer)
+    : max_number_of_packets_(max_number_of_packets), tick_timer_(tick_timer) {}
 
 // Destructor. All packets in the buffer will be destroyed.
 PacketBuffer::~PacketBuffer() {
@@ -49,19 +52,27 @@ void PacketBuffer::Flush() {
   DeleteAllPackets(&buffer_);
 }
 
+bool PacketBuffer::Empty() const {
+  return buffer_.empty();
+}
+
 int PacketBuffer::InsertPacket(Packet* packet) {
   if (!packet || !packet->payload) {
     if (packet) {
       delete packet;
     }
+    LOG(LS_WARNING) << "InsertPacket invalid packet";
     return kInvalidPacket;
   }
 
   int return_val = kOK;
 
+  packet->waiting_time = tick_timer_->GetNewStopwatch();
+
   if (buffer_.size() >= max_number_of_packets_) {
     // Buffer is full. Flush it.
     Flush();
+    LOG(LS_WARNING) << "Packet buffer flushed";
     return_val = kFlushed;
   }
 
@@ -71,7 +82,28 @@ int PacketBuffer::InsertPacket(Packet* packet) {
   PacketList::reverse_iterator rit = std::find_if(
       buffer_.rbegin(), buffer_.rend(),
       NewTimestampIsLarger(packet));
-  buffer_.insert(rit.base(), packet);  // Insert the packet at that position.
+
+  // The new packet is to be inserted to the right of |rit|. If it has the same
+  // timestamp as |rit|, which has a higher priority, do not insert the new
+  // packet to list.
+  if (rit != buffer_.rend() &&
+      packet->header.timestamp == (*rit)->header.timestamp) {
+    delete [] packet->payload;
+    delete packet;
+    return return_val;
+  }
+
+  // The new packet is to be inserted to the left of |it|. If it has the same
+  // timestamp as |it|, which has a lower priority, replace |it| with the new
+  // packet.
+  PacketList::iterator it = rit.base();
+  if (it != buffer_.end() &&
+      packet->header.timestamp == (*it)->header.timestamp) {
+    delete [] (*it)->payload;
+    delete *it;
+    it = buffer_.erase(it);
+  }
+  buffer_.insert(it, packet);  // Insert the packet at that position.
 
   return return_val;
 }
@@ -153,7 +185,7 @@ const RTPHeader* PacketBuffer::NextRtpHeader() const {
   return const_cast<const RTPHeader*>(&(buffer_.front()->header));
 }
 
-Packet* PacketBuffer::GetNextPacket(int* discard_count) {
+Packet* PacketBuffer::GetNextPacket(size_t* discard_count) {
   if (Empty()) {
     // Buffer is empty.
     return NULL;
@@ -163,20 +195,24 @@ Packet* PacketBuffer::GetNextPacket(int* discard_count) {
   // Assert that the packet sanity checks in InsertPacket method works.
   assert(packet && packet->payload);
   buffer_.pop_front();
+
   // Discard other packets with the same timestamp. These are duplicates or
   // redundant payloads that should not be used.
-  if (discard_count) {
-    *discard_count = 0;
-  }
+  size_t discards = 0;
+
   while (!Empty() &&
       buffer_.front()->header.timestamp == packet->header.timestamp) {
     if (DiscardNextPacket() != kOK) {
       assert(false);  // Must be ok by design.
     }
-    if (discard_count) {
-      ++(*discard_count);
-    }
+    ++discards;
   }
+  // The way of inserting packet should not cause any packet discarding here.
+  // TODO(minyue): remove |discard_count|.
+  assert(discards == 0);
+  if (discard_count)
+    *discard_count = discards;
+
   return packet;
 }
 
@@ -191,12 +227,12 @@ int PacketBuffer::DiscardNextPacket() {
   return kOK;
 }
 
-int PacketBuffer::DiscardOldPackets(uint32_t timestamp_limit) {
-  while (!Empty() &&
-      timestamp_limit != buffer_.front()->header.timestamp &&
-      static_cast<uint32_t>(timestamp_limit
-                            - buffer_.front()->header.timestamp) <
-                            0xFFFFFFFF / 2) {
+int PacketBuffer::DiscardOldPackets(uint32_t timestamp_limit,
+                                    uint32_t horizon_samples) {
+  while (!Empty() && timestamp_limit != buffer_.front()->header.timestamp &&
+         IsObsoleteTimestamp(buffer_.front()->header.timestamp,
+                             timestamp_limit,
+                             horizon_samples)) {
     if (DiscardNextPacket() != kOK) {
       assert(false);  // Must be ok by design.
     }
@@ -204,25 +240,29 @@ int PacketBuffer::DiscardOldPackets(uint32_t timestamp_limit) {
   return 0;
 }
 
-int PacketBuffer::NumSamplesInBuffer(DecoderDatabase* decoder_database,
-                                     int last_decoded_length) const {
+int PacketBuffer::DiscardAllOldPackets(uint32_t timestamp_limit) {
+  return DiscardOldPackets(timestamp_limit, 0);
+}
+
+size_t PacketBuffer::NumPacketsInBuffer() const {
+  return buffer_.size();
+}
+
+size_t PacketBuffer::NumSamplesInBuffer(DecoderDatabase* decoder_database,
+                                        size_t last_decoded_length) const {
   PacketList::const_iterator it;
-  int num_samples = 0;
-  int last_duration = last_decoded_length;
+  size_t num_samples = 0;
+  size_t last_duration = last_decoded_length;
   for (it = buffer_.begin(); it != buffer_.end(); ++it) {
     Packet* packet = (*it);
     AudioDecoder* decoder =
         decoder_database->GetDecoder(packet->header.payloadType);
-    if (decoder) {
-      int duration;
-      if (packet->sync_packet) {
-        duration = last_duration;
-      } else if (packet->primary) {
-        duration =
-            decoder->PacketDuration(packet->payload, packet->payload_length);
-      } else {
+    if (decoder && !packet->sync_packet) {
+      if (!packet->primary) {
         continue;
       }
+      int duration =
+          decoder->PacketDuration(packet->payload, packet->payload_length);
       if (duration >= 0) {
         last_duration = duration;  // Save the most up-to-date (valid) duration.
       }
@@ -230,13 +270,6 @@ int PacketBuffer::NumSamplesInBuffer(DecoderDatabase* decoder_database,
     num_samples += last_duration;
   }
   return num_samples;
-}
-
-void PacketBuffer::IncrementWaitingTimes(int inc) {
-  PacketList::iterator it;
-  for (it = buffer_.begin(); it != buffer_.end(); ++it) {
-    (*it)->waiting_time += inc;
-  }
 }
 
 bool PacketBuffer::DeleteFirstPacket(PacketList* packet_list) {

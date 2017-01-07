@@ -18,7 +18,7 @@
 
 #include <iostream>
 
-#include "gtest/gtest.h"
+#include "testing/gtest/include/gtest/gtest.h"
 
 // Modify the tests so that they pass with the modifications done to DtmfBuffer
 // for backwards bit-exactness. Once bit-exactness is no longer required, this
@@ -76,12 +76,6 @@ TEST(DtmfBuffer, ParseEvent) {
   EXPECT_EQ(event_no, event.event_no);
   EXPECT_EQ(timestamp, event.timestamp);
   EXPECT_EQ(volume, event.volume);
-
-  EXPECT_EQ(DtmfBuffer::kInvalidPointer,
-            DtmfBuffer::ParseEvent(timestamp, NULL, 4, &event));
-
-  EXPECT_EQ(DtmfBuffer::kInvalidPointer,
-            DtmfBuffer::ParseEvent(timestamp, payload_ptr, 4, NULL));
 
   EXPECT_EQ(DtmfBuffer::kPayloadTooShort,
             DtmfBuffer::ParseEvent(timestamp, payload_ptr, 3, &event));

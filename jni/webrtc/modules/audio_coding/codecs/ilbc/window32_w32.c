@@ -26,9 +26,9 @@ void WebRtcIlbcfix_Window32W32(
     int32_t *z,    /* Output */
     int32_t *x,    /* Input (same domain as Output)*/
     const int32_t  *y,  /* Q31 Window */
-    int16_t N     /* length to process */
+    size_t N     /* length to process */
                                ) {
-  int16_t i;
+  size_t i;
   int16_t x_low, x_hi, y_low, y_hi;
   int16_t left_shifts;
   int32_t temp;
@@ -42,21 +42,18 @@ void WebRtcIlbcfix_Window32W32(
    */
   for (i = 0; i < N; i++) {
     /* Extract higher bytes */
-    x_hi = (int16_t) WEBRTC_SPL_RSHIFT_W32(x[i], 16);
-    y_hi = (int16_t) WEBRTC_SPL_RSHIFT_W32(y[i], 16);
+    x_hi = (int16_t)(x[i] >> 16);
+    y_hi = (int16_t)(y[i] >> 16);
 
     /* Extract lower bytes, defined as (w32 - hi<<16)>>1 */
-    temp = WEBRTC_SPL_LSHIFT_W32((int32_t)x_hi, 16);
-    x_low = (int16_t) WEBRTC_SPL_RSHIFT_W32((x[i] - temp), 1);
+    x_low = (int16_t)((x[i] - (x_hi << 16)) >> 1);
 
-    temp = WEBRTC_SPL_LSHIFT_W32((int32_t)y_hi, 16);
-    y_low = (int16_t) WEBRTC_SPL_RSHIFT_W32((y[i] - temp), 1);
+    y_low = (int16_t)((y[i] - (y_hi << 16)) >> 1);
 
     /* Calculate z by a 32 bit multiplication using both low and high from x and y */
-    temp = WEBRTC_SPL_LSHIFT_W32(WEBRTC_SPL_MUL_16_16(x_hi, y_hi), 1);
-    temp = (temp + (WEBRTC_SPL_MUL_16_16_RSFT(x_hi, y_low, 14)));
+    temp = ((x_hi * y_hi) << 1) + ((x_hi * y_low) >> 14);
 
-    z[i] = (temp + (WEBRTC_SPL_MUL_16_16_RSFT(x_low, y_hi, 14)));
+    z[i] = temp + ((x_low * y_hi) >> 14);
   }
 
   WebRtcSpl_VectorBitShiftW32(z, N, z, left_shifts);

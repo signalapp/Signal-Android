@@ -8,7 +8,7 @@
  *  be found in the AUTHORS file in the root of the source tree.
  */
 
-#include "webrtc/system_wrappers/interface/timestamp_extrapolator.h"
+#include "webrtc/system_wrappers/include/timestamp_extrapolator.h"
 
 #include <algorithm>
 
@@ -30,7 +30,7 @@ TimestampExtrapolator::TimestampExtrapolator(int64_t start_ms)
       _alarmThreshold(60e3),
       _accDrift(6600),  // in timestamp ticks, i.e. 15 ms
       _accMaxError(7000),
-      _P11(1e10) {
+      _pP11(1e10) {
     Reset(start_ms);
 }
 
@@ -47,9 +47,9 @@ void TimestampExtrapolator::Reset(int64_t start_ms)
     _firstTimestamp = 0;
     _w[0] = 90.0;
     _w[1] = 0;
-    _P[0][0] = 1;
-    _P[1][1] = _P11;
-    _P[0][1] = _P[1][0] = 0;
+    _pP[0][0] = 1;
+    _pP[1][1] = _pP11;
+    _pP[0][1] = _pP[1][0] = 0;
     _firstAfterReset = true;
     _prevUnwrappedTimestamp = -1;
     _prevWrapTimestamp = -1;
@@ -112,14 +112,14 @@ TimestampExtrapolator::Update(int64_t tMs, uint32_t ts90khz)
         // A sudden change of average network delay has been detected.
         // Force the filter to adjust its offset parameter by changing
         // the offset uncertainty. Don't do this during startup.
-        _P[1][1] = _P11;
+        _pP[1][1] = _pP11;
     }
     //T = [t(k) 1]';
     //that = T'*w;
     //K = P*T/(lambda + T'*P*T);
     double K[2];
-    K[0] = _P[0][0] * tMs + _P[0][1];
-    K[1] = _P[1][0] * tMs + _P[1][1];
+    K[0] = _pP[0][0] * tMs + _pP[0][1];
+    K[1] = _pP[1][0] * tMs + _pP[1][1];
     double TPT = _lambda + tMs * K[0] + K[1];
     K[0] /= TPT;
     K[1] /= TPT;
@@ -127,12 +127,16 @@ TimestampExtrapolator::Update(int64_t tMs, uint32_t ts90khz)
     _w[0] = _w[0] + K[0] * residual;
     _w[1] = _w[1] + K[1] * residual;
     //P = 1/lambda*(P - K*T'*P);
-    double p00 = 1 / _lambda * (_P[0][0] - (K[0] * tMs * _P[0][0] + K[0] * _P[1][0]));
-    double p01 = 1 / _lambda * (_P[0][1] - (K[0] * tMs * _P[0][1] + K[0] * _P[1][1]));
-    _P[1][0] = 1 / _lambda * (_P[1][0] - (K[1] * tMs * _P[0][0] + K[1] * _P[1][0]));
-    _P[1][1] = 1 / _lambda * (_P[1][1] - (K[1] * tMs * _P[0][1] + K[1] * _P[1][1]));
-    _P[0][0] = p00;
-    _P[0][1] = p01;
+    double p00 = 1 / _lambda *
+        (_pP[0][0] - (K[0] * tMs * _pP[0][0] + K[0] * _pP[1][0]));
+    double p01 = 1 / _lambda *
+        (_pP[0][1] - (K[0] * tMs * _pP[0][1] + K[0] * _pP[1][1]));
+    _pP[1][0] = 1 / _lambda *
+        (_pP[1][0] - (K[1] * tMs * _pP[0][0] + K[1] * _pP[1][0]));
+    _pP[1][1] = 1 / _lambda *
+        (_pP[1][1] - (K[1] * tMs * _pP[0][1] + K[1] * _pP[1][1]));
+    _pP[0][0] = p00;
+    _pP[0][1] = p01;
     _prevUnwrappedTimestamp = unwrapped_ts90khz;
     if (_packetCount < _startUpFilterDelayInPackets)
     {

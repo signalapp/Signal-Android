@@ -20,7 +20,7 @@
 #define WEBRTC_MODULES_AUDIO_CODING_CODECS_ISAC_MAIN_SOURCE_LPC_SHAPE_SWB12_TABLES_H_
 
 #include "settings.h"
-#include "typedefs.h"
+#include "webrtc/typedefs.h"
 
 extern const double WebRtcIsac_kMeanLarUb12[UB_LPC_ORDER];
 

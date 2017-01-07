@@ -15,6 +15,54 @@
 #ifndef WEBRTC_SPL_SPL_INL_H_
 #define WEBRTC_SPL_SPL_INL_H_
 
+#include "webrtc/system_wrappers/include/compile_assert_c.h"
+
+extern const int8_t kWebRtcSpl_CountLeadingZeros32_Table[64];
+
+// Don't call this directly except in tests!
+static __inline int WebRtcSpl_CountLeadingZeros32_NotBuiltin(uint32_t n) {
+  // Normalize n by rounding up to the nearest number that is a sequence of 0
+  // bits followed by a sequence of 1 bits. This number has the same number of
+  // leading zeros as the original n. There are exactly 33 such values.
+  n |= n >> 1;
+  n |= n >> 2;
+  n |= n >> 4;
+  n |= n >> 8;
+  n |= n >> 16;
+
+  // Multiply the modified n with a constant selected (by exhaustive search)
+  // such that each of the 33 possible values of n give a product whose 6 most
+  // significant bits are unique. Then look up the answer in the table.
+  return kWebRtcSpl_CountLeadingZeros32_Table[(n * 0x8c0b2891) >> 26];
+}
+
+// Don't call this directly except in tests!
+static __inline int WebRtcSpl_CountLeadingZeros64_NotBuiltin(uint64_t n) {
+  const int leading_zeros = n >> 32 == 0 ? 32 : 0;
+  return leading_zeros + WebRtcSpl_CountLeadingZeros32_NotBuiltin(
+                             (uint32_t)(n >> (32 - leading_zeros)));
+}
+
+// Returns the number of leading zero bits in the argument.
+static __inline int WebRtcSpl_CountLeadingZeros32(uint32_t n) {
+#ifdef __GNUC__
+  COMPILE_ASSERT(sizeof(unsigned int) == sizeof(uint32_t));
+  return n == 0 ? 32 : __builtin_clz(n);
+#else
+  return WebRtcSpl_CountLeadingZeros32_NotBuiltin(n);
+#endif
+}
+
+// Returns the number of leading zero bits in the argument.
+static __inline int WebRtcSpl_CountLeadingZeros64(uint64_t n) {
+#ifdef __GNUC__
+  COMPILE_ASSERT(sizeof(unsigned long long) == sizeof(uint64_t));
+  return n == 0 ? 64 : __builtin_clzll(n);
+#else
+  return WebRtcSpl_CountLeadingZeros64_NotBuiltin(n);
+#endif
+}
+
 #ifdef WEBRTC_ARCH_ARM_V7
 #include "webrtc/common_audio/signal_processing/include/spl_inl_armv7.h"
 #else
@@ -35,42 +83,32 @@ static __inline int16_t WebRtcSpl_SatW32ToW16(int32_t value32) {
   return out16;
 }
 
-static __inline int32_t WebRtcSpl_AddSatW32(int32_t l_var1, int32_t l_var2) {
-  int32_t l_sum;
+static __inline int32_t WebRtcSpl_AddSatW32(int32_t a, int32_t b) {
+  // Do the addition in unsigned numbers, since signed overflow is undefined
+  // behavior.
+  const int32_t sum = (int32_t)((uint32_t)a + (uint32_t)b);
 
-  // Perform long addition
-  l_sum = l_var1 + l_var2;
-
-  if (l_var1 < 0) {  // Check for underflow.
-    if ((l_var2 < 0) && (l_sum >= 0)) {
-        l_sum = (int32_t)0x80000000;
-    }
-  } else {  // Check for overflow.
-    if ((l_var2 > 0) && (l_sum < 0)) {
-        l_sum = (int32_t)0x7FFFFFFF;
-    }
+  // a + b can't overflow if a and b have different signs. If they have the
+  // same sign, a + b also has the same sign iff it didn't overflow.
+  if ((a < 0) == (b < 0) && (a < 0) != (sum < 0)) {
+    // The direction of the overflow is obvious from the sign of a + b.
+    return sum < 0 ? INT32_MAX : INT32_MIN;
   }
-
-  return l_sum;
+  return sum;
 }
 
-static __inline int32_t WebRtcSpl_SubSatW32(int32_t l_var1, int32_t l_var2) {
-  int32_t l_diff;
+static __inline int32_t WebRtcSpl_SubSatW32(int32_t a, int32_t b) {
+  // Do the subtraction in unsigned numbers, since signed overflow is undefined
+  // behavior.
+  const int32_t diff = (int32_t)((uint32_t)a - (uint32_t)b);
 
-  // Perform subtraction.
-  l_diff = l_var1 - l_var2;
-
-  if (l_var1 < 0) {  // Check for underflow.
-    if ((l_var2 > 0) && (l_diff > 0)) {
-      l_diff = (int32_t)0x80000000;
-    }
-  } else {  // Check for overflow.
-    if ((l_var2 < 0) && (l_diff < 0)) {
-      l_diff = (int32_t)0x7FFFFFFF;
-    }
+  // a - b can't overflow if a and b have the same sign. If they have different
+  // signs, a - b has the same sign as a iff it didn't overflow.
+  if ((a < 0) != (b < 0) && (a < 0) != (diff < 0)) {
+    // The direction of the overflow is obvious from the sign of a - b.
+    return diff < 0 ? INT32_MAX : INT32_MIN;
   }
-
-  return l_diff;
+  return diff;
 }
 
 static __inline int16_t WebRtcSpl_AddSatW16(int16_t a, int16_t b) {
@@ -84,83 +122,26 @@ static __inline int16_t WebRtcSpl_SubSatW16(int16_t var1, int16_t var2) {
 
 #if !defined(MIPS32_LE)
 static __inline int16_t WebRtcSpl_GetSizeInBits(uint32_t n) {
-  int bits;
-
-  if (0xFFFF0000 & n) {
-    bits = 16;
-  } else {
-    bits = 0;
-  }
-  if (0x0000FF00 & (n >> bits)) bits += 8;
-  if (0x000000F0 & (n >> bits)) bits += 4;
-  if (0x0000000C & (n >> bits)) bits += 2;
-  if (0x00000002 & (n >> bits)) bits += 1;
-  if (0x00000001 & (n >> bits)) bits += 1;
-
-  return bits;
+  return 32 - WebRtcSpl_CountLeadingZeros32(n);
 }
 
-static __inline int WebRtcSpl_NormW32(int32_t a) {
-  int zeros;
-
-  if (a == 0) {
-    return 0;
-  }
-  else if (a < 0) {
-    a = ~a;
-  }
-
-  if (!(0xFFFF8000 & a)) {
-    zeros = 16;
-  } else {
-    zeros = 0;
-  }
-  if (!(0xFF800000 & (a << zeros))) zeros += 8;
-  if (!(0xF8000000 & (a << zeros))) zeros += 4;
-  if (!(0xE0000000 & (a << zeros))) zeros += 2;
-  if (!(0xC0000000 & (a << zeros))) zeros += 1;
-
-  return zeros;
+// Return the number of steps a can be left-shifted without overflow,
+// or 0 if a == 0.
+static __inline int16_t WebRtcSpl_NormW32(int32_t a) {
+  return a == 0 ? 0 : WebRtcSpl_CountLeadingZeros32(a < 0 ? ~a : a) - 1;
 }
 
-static __inline int WebRtcSpl_NormU32(uint32_t a) {
-  int zeros;
-
-  if (a == 0) return 0;
-
-  if (!(0xFFFF0000 & a)) {
-    zeros = 16;
-  } else {
-    zeros = 0;
-  }
-  if (!(0xFF000000 & (a << zeros))) zeros += 8;
-  if (!(0xF0000000 & (a << zeros))) zeros += 4;
-  if (!(0xC0000000 & (a << zeros))) zeros += 2;
-  if (!(0x80000000 & (a << zeros))) zeros += 1;
-
-  return zeros;
+// Return the number of steps a can be left-shifted without overflow,
+// or 0 if a == 0.
+static __inline int16_t WebRtcSpl_NormU32(uint32_t a) {
+  return a == 0 ? 0 : WebRtcSpl_CountLeadingZeros32(a);
 }
 
-static __inline int WebRtcSpl_NormW16(int16_t a) {
-  int zeros;
-
-  if (a == 0) {
-    return 0;
-  }
-  else if (a < 0) {
-    a = ~a;
-  }
-
-  if (!(0xFF80 & a)) {
-    zeros = 8;
-  } else {
-    zeros = 0;
-  }
-  if (!(0xF800 & (a << zeros))) zeros += 4;
-  if (!(0xE000 & (a << zeros))) zeros += 2;
-  if (!(0xC000 & (a << zeros))) zeros += 1;
-
-  return zeros;
+// Return the number of steps a can be left-shifted without overflow,
+// or 0 if a == 0.
+static __inline int16_t WebRtcSpl_NormW16(int16_t a) {
+  const int32_t a32 = a;
+  return a == 0 ? 0 : WebRtcSpl_CountLeadingZeros32(a < 0 ? ~a32 : a32) - 17;
 }
 
 static __inline int32_t WebRtc_MulAccumW16(int16_t a, int16_t b, int32_t c) {

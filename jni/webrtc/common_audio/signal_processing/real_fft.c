@@ -18,7 +18,7 @@ struct RealFFT {
   int order;
 };
 
-struct RealFFT* WebRtcSpl_CreateRealFFTC(int order) {
+struct RealFFT* WebRtcSpl_CreateRealFFT(int order) {
   struct RealFFT* self = NULL;
 
   if (order > kMaxFFTOrder || order < 0) {
@@ -34,19 +34,19 @@ struct RealFFT* WebRtcSpl_CreateRealFFTC(int order) {
   return self;
 }
 
-void WebRtcSpl_FreeRealFFTC(struct RealFFT* self) {
+void WebRtcSpl_FreeRealFFT(struct RealFFT* self) {
   if (self != NULL) {
     free(self);
   }
 }
 
-// The C version FFT functions (i.e. WebRtcSpl_RealForwardFFTC and
-// WebRtcSpl_RealInverseFFTC) are real-valued FFT wrappers for complex-valued
+// The C version FFT functions (i.e. WebRtcSpl_RealForwardFFT and
+// WebRtcSpl_RealInverseFFT) are real-valued FFT wrappers for complex-valued
 // FFT implementation in SPL.
 
-int WebRtcSpl_RealForwardFFTC(struct RealFFT* self,
-                              const int16_t* real_data_in,
-                              int16_t* complex_data_out) {
+int WebRtcSpl_RealForwardFFT(struct RealFFT* self,
+                             const int16_t* real_data_in,
+                             int16_t* complex_data_out) {
   int i = 0;
   int j = 0;
   int result = 0;
@@ -71,9 +71,9 @@ int WebRtcSpl_RealForwardFFTC(struct RealFFT* self,
   return result;
 }
 
-int WebRtcSpl_RealInverseFFTC(struct RealFFT* self,
-                              const int16_t* complex_data_in,
-                              int16_t* real_data_out) {
+int WebRtcSpl_RealInverseFFT(struct RealFFT* self,
+                             const int16_t* complex_data_in,
+                             int16_t* real_data_out) {
   int i = 0;
   int j = 0;
   int result = 0;
@@ -100,27 +100,3 @@ int WebRtcSpl_RealInverseFFTC(struct RealFFT* self,
 
   return result;
 }
-
-#if defined(WEBRTC_DETECT_ARM_NEON) || defined(WEBRTC_ARCH_ARM_NEON)
-// TODO(kma): Replace the following function bodies into optimized functions
-// for ARM Neon.
-struct RealFFT* WebRtcSpl_CreateRealFFTNeon(int order) {
-  return WebRtcSpl_CreateRealFFTC(order);
-}
-
-void WebRtcSpl_FreeRealFFTNeon(struct RealFFT* self) {
-  WebRtcSpl_FreeRealFFTC(self);
-}
-
-int WebRtcSpl_RealForwardFFTNeon(struct RealFFT* self,
-                                 const int16_t* real_data_in,
-                                 int16_t* complex_data_out) {
-  return WebRtcSpl_RealForwardFFTC(self, real_data_in, complex_data_out);
-}
-
-int WebRtcSpl_RealInverseFFTNeon(struct RealFFT* self,
-                                 const int16_t* complex_data_in,
-                                 int16_t* real_data_out) {
-  return WebRtcSpl_RealInverseFFTC(self, complex_data_in, real_data_out);
-}
-#endif  // WEBRTC_DETECT_ARM_NEON || WEBRTC_ARCH_ARM_NEON

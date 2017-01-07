@@ -35,7 +35,8 @@
  * function to decode the bitstream
  * returns the total number of bytes in the stream
  */
-int WebRtcIsac_DecodeLb(float* signal_out, ISACLBDecStruct* ISACdecLB_obj,
+int WebRtcIsac_DecodeLb(const TransformTables* transform_tables,
+                        float* signal_out, ISACLBDecStruct* ISACdecLB_obj,
                         int16_t* current_framesamples,
                         int16_t isRCUPayload) {
   int k;
@@ -122,7 +123,7 @@ int WebRtcIsac_DecodeLb(float* signal_out, ISACLBDecStruct* ISACdecLB_obj,
     }
 
     /* Inverse transform. */
-    WebRtcIsac_Spec2time(real_f, imag_f, LPw, HPw,
+    WebRtcIsac_Spec2time(transform_tables, real_f, imag_f, LPw, HPw,
                          &ISACdecLB_obj->fftstr_obj);
 
     /* Convert PitchGains back to float for pitchfilter_post */
@@ -181,7 +182,8 @@ int WebRtcIsac_DecodeLb(float* signal_out, ISACLBDecStruct* ISACdecLB_obj,
  * Contrary to lower-band, the upper-band (8-16 kHz) is not split in
  * frequency, but split to 12 sub-frames, i.e. twice as lower-band.
  */
-int WebRtcIsac_DecodeUb16(float* signal_out, ISACUBDecStruct* ISACdecUB_obj,
+int WebRtcIsac_DecodeUb16(const TransformTables* transform_tables,
+                          float* signal_out, ISACUBDecStruct* ISACdecUB_obj,
                           int16_t isRCUPayload) {
   int len, err;
 
@@ -218,7 +220,8 @@ int WebRtcIsac_DecodeUb16(float* signal_out, ISACUBDecStruct* ISACdecUB_obj,
     }
   }
   /* Inverse transform. */
-  WebRtcIsac_Spec2time(real_f, imag_f, halfFrameFirst, halfFrameSecond,
+  WebRtcIsac_Spec2time(transform_tables,
+                       real_f, imag_f, halfFrameFirst, halfFrameSecond,
                        &ISACdecUB_obj->fftstr_obj);
 
   /* Perceptual post-filtering (using normalized lattice filter). */
@@ -245,8 +248,9 @@ int WebRtcIsac_DecodeUb16(float* signal_out, ISACUBDecStruct* ISACdecUB_obj,
  * reconstructed and 12-16 kHz replaced with zeros. Then two bands
  * are combined, to reconstruct the upperband 8-16 kHz.
  */
-int WebRtcIsac_DecodeUb12(float* signal_out, ISACUBDecStruct* ISACdecUB_obj,
-                      int16_t isRCUPayload) {
+int WebRtcIsac_DecodeUb12(const TransformTables* transform_tables,
+                          float* signal_out, ISACUBDecStruct* ISACdecUB_obj,
+                          int16_t isRCUPayload) {
   int len, err;
 
   float LP_dec_float[FRAMESAMPLES_HALF];
@@ -284,7 +288,8 @@ int WebRtcIsac_DecodeUb12(float* signal_out, ISACUBDecStruct* ISACdecUB_obj,
     }
   }
   /* Inverse transform. */
-  WebRtcIsac_Spec2time(real_f, imag_f, LPw, HPw, &ISACdecUB_obj->fftstr_obj);
+  WebRtcIsac_Spec2time(transform_tables,
+                       real_f, imag_f, LPw, HPw, &ISACdecUB_obj->fftstr_obj);
   /* perceptual post-filtering (using normalized lattice filter) */
   WebRtcIsac_NormLatticeFilterAr(UB_LPC_ORDER,
                                  ISACdecUB_obj->maskfiltstr_obj.PostStateLoF,

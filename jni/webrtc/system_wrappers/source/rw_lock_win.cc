@@ -10,7 +10,7 @@
 
 #include "webrtc/system_wrappers/source/rw_lock_win.h"
 
-#include "webrtc/system_wrappers/interface/trace.h"
+#include "webrtc/system_wrappers/include/trace.h"
 
 namespace webrtc {
 

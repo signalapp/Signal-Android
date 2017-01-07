@@ -177,7 +177,8 @@ void WebRtcIsac_ResetBitstream(Bitstr* bit_stream) {
   bit_stream->streamval = 0;
 }
 
-int WebRtcIsac_EncodeLb(float* in, ISACLBEncStruct* ISACencLB_obj,
+int WebRtcIsac_EncodeLb(const TransformTables* transform_tables,
+                        float* in, ISACLBEncStruct* ISACencLB_obj,
                         int16_t codingMode,
                         int16_t bottleneckIndex) {
   int stream_length = 0;
@@ -382,7 +383,8 @@ int WebRtcIsac_EncodeLb(float* in, ISACLBEncStruct* ISACencLB_obj,
   WebRtcIsac_PitchfilterPre(LPw, LPw_pf, &ISACencLB_obj->pitchfiltstr_obj,
                             PitchLags, PitchGains);
   /* Transform */
-  WebRtcIsac_Time2Spec(LPw_pf, HPw, fre, fim, &ISACencLB_obj->fftstr_obj);
+  WebRtcIsac_Time2Spec(transform_tables,
+                       LPw_pf, HPw, fre, fim, &ISACencLB_obj->fftstr_obj);
 
   /* Save data for multiple packets memory. */
   my_index = ISACencLB_obj->SaveEnc_obj.startIdx * FRAMESAMPLES_HALF;
@@ -641,7 +643,8 @@ static int LimitPayloadUb(ISACUBEncStruct* ISACencUB_obj,
   return 0;
 }
 
-int WebRtcIsac_EncodeUb16(float* in, ISACUBEncStruct* ISACencUB_obj,
+int WebRtcIsac_EncodeUb16(const TransformTables* transform_tables,
+                          float* in, ISACUBEncStruct* ISACencUB_obj,
                           int32_t jitterInfo) {
   int err;
   int k;
@@ -782,7 +785,8 @@ int WebRtcIsac_EncodeUb16(float* in, ISACUBEncStruct* ISACencUB_obj,
       &percepFilterParams[(UB_LPC_ORDER + 1) + SUBFRAMES * (UB_LPC_ORDER + 1)],
       &LP_lookahead[FRAMESAMPLES_HALF]);
 
-  WebRtcIsac_Time2Spec(&LP_lookahead[0], &LP_lookahead[FRAMESAMPLES_HALF],
+  WebRtcIsac_Time2Spec(transform_tables,
+                       &LP_lookahead[0], &LP_lookahead[FRAMESAMPLES_HALF],
                        fre, fim, &ISACencUB_obj->fftstr_obj);
 
   /* Store FFT coefficients for multiple encoding. */
@@ -826,7 +830,8 @@ int WebRtcIsac_EncodeUb16(float* in, ISACUBEncStruct* ISACencUB_obj,
 }
 
 
-int WebRtcIsac_EncodeUb12(float* in, ISACUBEncStruct* ISACencUB_obj,
+int WebRtcIsac_EncodeUb12(const TransformTables* transform_tables,
+                          float* in, ISACUBEncStruct* ISACencUB_obj,
                           int32_t jitterInfo) {
   int err;
   int k;
@@ -957,7 +962,8 @@ int WebRtcIsac_EncodeUb12(float* in, ISACUBEncStruct* ISACencUB_obj,
   memset(HPw, 0, sizeof(HPw));
 
   /* Transform */
-  WebRtcIsac_Time2Spec(LPw, HPw, fre, fim, &ISACencUB_obj->fftstr_obj);
+  WebRtcIsac_Time2Spec(transform_tables,
+                       LPw, HPw, fre, fim, &ISACencUB_obj->fftstr_obj);
 
   /* Store FFT coefficients for multiple encoding. */
   memcpy(ISACencUB_obj->SaveEnc_obj.realFFT, fre,
@@ -1004,7 +1010,7 @@ int WebRtcIsac_EncodeUb12(float* in, ISACUBEncStruct* ISACencUB_obj,
    The data needed is taken from the structure, where it was stored
    when calling the encoder. */
 
-int WebRtcIsac_EncodeStoredDataLb(const ISAC_SaveEncData_t* ISACSavedEnc_obj,
+int WebRtcIsac_EncodeStoredDataLb(const IsacSaveEncoderData* ISACSavedEnc_obj,
                                   Bitstr* ISACBitStr_obj, int BWnumber,
                                   float scale) {
   int ii;

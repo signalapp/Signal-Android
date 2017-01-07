@@ -27,7 +27,7 @@ int AudioCodec::init() {
     return -1;
   }
 
-  if (WebRtcAecm_Create(&aecm) != 0) {
+  if ((aecm = WebRtcAecm_Create()) == NULL) {
     __android_log_print(ANDROID_LOG_WARN, TAG, "AECM failed to create!");
     return -1;
   }
@@ -102,17 +102,17 @@ int AudioCodec::encode(short *rawData, char* encodedData, int maxEncodedDataLen)
   return speex_bits_write(&enc_bits, encodedData, maxEncodedDataLen);
 }
 
-int AudioCodec::decode(char* encodedData, int encodedDataLen, short *rawData) {
-  int rawDataOffset = 0;
+int AudioCodec::decode(char* encodedData, int encodedDataLen, short *decoded) {
+  int decodedOffset = 0;
 
   speex_bits_read_from(&dec_bits, encodedData, encodedDataLen);
 
-  while (speex_decode_int(dec, &dec_bits, rawData + rawDataOffset) == 0) { // TODO bounds?
-    WebRtcAecm_BufferFarend(aecm, rawData + rawDataOffset, dec_frame_size);
-    rawDataOffset += dec_frame_size;
+  while (speex_decode_int(dec, &dec_bits, decoded + decodedOffset) == 0) {
+    WebRtcAecm_BufferFarend(aecm, decoded + decodedOffset, dec_frame_size);
+    decodedOffset += dec_frame_size;
   }
 
-  return rawDataOffset;
+  return decodedOffset;
 }
 
 int AudioCodec::conceal(int frames, short *rawData) {
@@ -122,4 +122,18 @@ int AudioCodec::conceal(int frames, short *rawData) {
   }
 
   return frames * dec_frame_size;
+}
+
+void AudioCodec::reset() {}
+
+int AudioCodec::getErrorCode() {
+  return -1;
+}
+
+int AudioCodec::getSampleRateInHz() {
+  return 8000;
+}
+
+size_t AudioCodec::getChannels() {
+  return 1;
 }

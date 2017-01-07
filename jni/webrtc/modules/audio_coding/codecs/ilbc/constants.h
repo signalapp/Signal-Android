@@ -20,7 +20,7 @@
 #define WEBRTC_MODULES_AUDIO_CODING_CODECS_ILBC_MAIN_SOURCE_CONSTANTS_H_
 
 #include "defines.h"
-#include "typedefs.h"
+#include "webrtc/typedefs.h"
 
 /* high pass filters */
 
@@ -61,8 +61,8 @@ extern const int16_t WebRtcIlbcfix_kFrgQuantMod[];
 
 /* Ranges for search and filters at different subframes */
 
-extern const int16_t WebRtcIlbcfix_kSearchRange[5][CB_NSTAGES];
-extern const int16_t WebRtcIlbcfix_kFilterRange[];
+extern const size_t WebRtcIlbcfix_kSearchRange[5][CB_NSTAGES];
+extern const size_t WebRtcIlbcfix_kFilterRange[];
 
 /* gain quantization tables */
 
@@ -81,7 +81,7 @@ extern const int16_t WebRtcIlbcfix_kAlpha[];
 
 extern const int16_t WebRtcIlbcfix_kEnhPolyPhaser[ENH_UPS0][ENH_FLO_MULT2_PLUS1];
 extern const int16_t WebRtcIlbcfix_kEnhWt[];
-extern const int16_t WebRtcIlbcfix_kEnhPlocs[];
+extern const size_t WebRtcIlbcfix_kEnhPlocs[];
 
 /* PLC tables */
 

@@ -23,13 +23,13 @@
 
 void WebRtcIlbcfix_CbSearchCore(
     int32_t *cDot,    /* (i) Cross Correlation */
-    int16_t range,    /* (i) Search range */
+    size_t range,    /* (i) Search range */
     int16_t stage,    /* (i) Stage of this search */
     int16_t *inverseEnergy,  /* (i) Inversed energy */
     int16_t *inverseEnergyShift, /* (i) Shifts of inversed energy
                                           with the offset 2*16-29 */
     int32_t *Crit,    /* (o) The criteria */
-    int16_t *bestIndex,   /* (o) Index that corresponds to
+    size_t *bestIndex,   /* (o) Index that corresponds to
                                    maximum criteria (in this
                                    vector) */
     int32_t *bestCrit,   /* (o) Value of critera for the

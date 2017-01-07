@@ -17,8 +17,8 @@
 
 namespace webrtc {
 
-// Forward declaration.
 class DecoderDatabase;
+class TickTimer;
 
 // This is the actual buffer holding the packets before decoding.
 class PacketBuffer {
@@ -34,7 +34,7 @@ class PacketBuffer {
 
   // Constructor creates a buffer which can hold a maximum of
   // |max_number_of_packets| packets.
-  PacketBuffer(size_t max_number_of_packets);
+  PacketBuffer(size_t max_number_of_packets, const TickTimer* tick_timer);
 
   // Deletes all packets in the buffer before destroying the buffer.
   virtual ~PacketBuffer();
@@ -43,7 +43,7 @@ class PacketBuffer {
   virtual void Flush();
 
   // Returns true for an empty buffer.
-  virtual bool Empty() const { return buffer_.empty(); }
+  virtual bool Empty() const;
 
   // Inserts |packet| into the buffer. The buffer will take over ownership of
   // the packet object.
@@ -88,31 +88,33 @@ class PacketBuffer {
   // Subsequent packets with the same timestamp as the one extracted will be
   // discarded and properly deleted. The number of discarded packets will be
   // written to the output variable |discard_count|.
-  virtual Packet* GetNextPacket(int* discard_count);
+  virtual Packet* GetNextPacket(size_t* discard_count);
 
   // Discards the first packet in the buffer. The packet is deleted.
   // Returns PacketBuffer::kBufferEmpty if the buffer is empty,
   // PacketBuffer::kOK otherwise.
   virtual int DiscardNextPacket();
 
-  // Discards all packets that are (strictly) older than |timestamp_limit|.
+  // Discards all packets that are (strictly) older than timestamp_limit,
+  // but newer than timestamp_limit - horizon_samples. Setting horizon_samples
+  // to zero implies that the horizon is set to half the timestamp range. That
+  // is, if a packet is more than 2^31 timestamps into the future compared with
+  // timestamp_limit (including wrap-around), it is considered old.
   // Returns number of packets discarded.
-  virtual int DiscardOldPackets(uint32_t timestamp_limit);
+  virtual int DiscardOldPackets(uint32_t timestamp_limit,
+                                uint32_t horizon_samples);
+
+  // Discards all packets that are (strictly) older than timestamp_limit.
+  virtual int DiscardAllOldPackets(uint32_t timestamp_limit);
 
   // Returns the number of packets in the buffer, including duplicates and
   // redundant packets.
-  virtual int NumPacketsInBuffer() const {
-    return static_cast<int>(buffer_.size());
-  }
+  virtual size_t NumPacketsInBuffer() const;
 
   // Returns the number of samples in the buffer, including samples carried in
   // duplicate and redundant packets.
-  virtual int NumSamplesInBuffer(DecoderDatabase* decoder_database,
-                                 int last_decoded_length) const;
-
-  // Increase the waiting time counter for every packet in the buffer by |inc|.
-  // The default value for |inc| is 1.
-  virtual void IncrementWaitingTimes(int inc = 1);
+  virtual size_t NumSamplesInBuffer(DecoderDatabase* decoder_database,
+                                    size_t last_decoded_length) const;
 
   virtual void BufferStat(int* num_packets, int* max_num_packets) const;
 
@@ -125,10 +127,25 @@ class PacketBuffer {
   // in |packet_list|.
   static void DeleteAllPackets(PacketList* packet_list);
 
+  // Static method returning true if |timestamp| is older than |timestamp_limit|
+  // but less than |horizon_samples| behind |timestamp_limit|. For instance,
+  // with timestamp_limit = 100 and horizon_samples = 10, a timestamp in the
+  // range (90, 100) is considered obsolete, and will yield true.
+  // Setting |horizon_samples| to 0 is the same as setting it to 2^31, i.e.,
+  // half the 32-bit timestamp range.
+  static bool IsObsoleteTimestamp(uint32_t timestamp,
+                                  uint32_t timestamp_limit,
+                                  uint32_t horizon_samples) {
+    return IsNewerTimestamp(timestamp_limit, timestamp) &&
+           (horizon_samples == 0 ||
+            IsNewerTimestamp(timestamp, timestamp_limit - horizon_samples));
+  }
+
  private:
   size_t max_number_of_packets_;
   PacketList buffer_;
-  DISALLOW_COPY_AND_ASSIGN(PacketBuffer);
+  const TickTimer* tick_timer_;
+  RTC_DISALLOW_COPY_AND_ASSIGN(PacketBuffer);
 };
 
 }  // namespace webrtc

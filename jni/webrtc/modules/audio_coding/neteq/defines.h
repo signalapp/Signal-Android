@@ -18,6 +18,7 @@ enum Operations {
   kMerge,
   kExpand,
   kAccelerate,
+  kFastAccelerate,
   kPreemptiveExpand,
   kRfc3389Cng,
   kRfc3389CngNoPacket,

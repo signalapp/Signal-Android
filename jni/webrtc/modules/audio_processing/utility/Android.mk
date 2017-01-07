@@ -17,10 +17,8 @@ LOCAL_MODULE_CLASS := STATIC_LIBRARIES
 LOCAL_MODULE := libwebrtc_apm_utility
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := \
-    fft4g.c \
-    ring_buffer.c \
-    delay_estimator.c \
-    delay_estimator_wrapper.c
+    delay_estimator.cc \
+    delay_estimator_wrapper.cc
 
 # Flags passed to both C and C++ files.
 LOCAL_CFLAGS := \

@@ -15,7 +15,7 @@
 
 #include <string>
 
-#include "gtest/gtest.h"
+#include "testing/gtest/include/gtest/gtest.h"
 #include "webrtc/typedefs.h"
 
 namespace webrtc {
@@ -101,7 +101,7 @@ TEST_P(AudioMultiVectorTest, PushBackInterleavedAndCopy) {
   AudioMultiVector vec(num_channels_);
   vec.PushBackInterleaved(array_interleaved_, interleaved_length_);
   AudioMultiVector vec_copy(num_channels_);
-  vec.CopyFrom(&vec_copy);  // Copy from |vec| to |vec_copy|.
+  vec.CopyTo(&vec_copy);  // Copy from |vec| to |vec_copy|.
   ASSERT_EQ(num_channels_, vec.Channels());
   ASSERT_EQ(array_length(), vec.Size());
   ASSERT_EQ(num_channels_, vec_copy.Channels());
@@ -118,7 +118,7 @@ TEST_P(AudioMultiVectorTest, PushBackInterleavedAndCopy) {
   EXPECT_TRUE(vec.Empty());
 
   // Now copy the empty vector and verify that the copy becomes empty too.
-  vec.CopyFrom(&vec_copy);
+  vec.CopyTo(&vec_copy);
   EXPECT_TRUE(vec_copy.Empty());
 }
 
@@ -127,7 +127,7 @@ TEST_P(AudioMultiVectorTest, CopyToNull) {
   AudioMultiVector vec(num_channels_);
   AudioMultiVector* vec_copy = NULL;
   vec.PushBackInterleaved(array_interleaved_, interleaved_length_);
-  vec.CopyFrom(vec_copy);
+  vec.CopyTo(vec_copy);
 }
 
 // Test the PushBack method with another AudioMultiVector as input argument.
@@ -206,16 +206,6 @@ TEST_P(AudioMultiVectorTest, ReadInterleaved) {
             memcmp(array_interleaved_, output, read_samples * sizeof(int16_t)));
 
   delete [] output;
-}
-
-// Try to read to a NULL pointer. Expected to return 0.
-TEST_P(AudioMultiVectorTest, ReadInterleavedToNull) {
-  AudioMultiVector vec(num_channels_);
-  vec.PushBackInterleaved(array_interleaved_, interleaved_length_);
-  int16_t* output = NULL;
-  // Read 5 samples.
-  size_t read_samples = 5;
-  EXPECT_EQ(0u, vec.ReadInterleaved(read_samples, output));
 }
 
 // Test the PopFront method.
@@ -297,6 +287,31 @@ TEST_P(AudioMultiVectorTest, OverwriteAt) {
       }
       ++ptr;
     }
+  }
+}
+
+// Test the CopyChannel method, when the test is instantiated with at least two
+// channels.
+TEST_P(AudioMultiVectorTest, CopyChannel) {
+  if (num_channels_ < 2)
+    return;
+
+  AudioMultiVector vec(num_channels_);
+  vec.PushBackInterleaved(array_interleaved_, interleaved_length_);
+  // Create a reference copy.
+  AudioMultiVector ref(num_channels_);
+  ref.PushBack(vec);
+  // Copy from first to last channel.
+  vec.CopyChannel(0, num_channels_ - 1);
+  // Verify that the first and last channels are identical; the others should
+  // be left untouched.
+  for (size_t i = 0; i < array_length(); ++i) {
+    // Verify that all but the last channel are untouched.
+    for (size_t channel = 0; channel < num_channels_ - 1; ++channel) {
+      EXPECT_EQ(ref[channel][i], vec[channel][i]);
+    }
+    // Verify that the last and the first channels are identical.
+    EXPECT_EQ(vec[0][i], vec[num_channels_ - 1][i]);
   }
 }
 

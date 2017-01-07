@@ -23,16 +23,16 @@ void BufferLevelFilter::Reset() {
   level_factor_ = 253;
 }
 
-void BufferLevelFilter::Update(int buffer_size_packets,
+void BufferLevelFilter::Update(size_t buffer_size_packets,
                                int time_stretched_samples,
-                               int packet_len_samples) {
+                               size_t packet_len_samples) {
   // Filter:
   // |filtered_current_level_| = |level_factor_| * |filtered_current_level_| +
   //                            (1 - |level_factor_|) * |buffer_size_packets|
   // |level_factor_| and |filtered_current_level_| are in Q8.
   // |buffer_size_packets| is in Q0.
   filtered_current_level_ = ((level_factor_ * filtered_current_level_) >> 8) +
-      ((256 - level_factor_) * buffer_size_packets);
+      ((256 - level_factor_) * static_cast<int>(buffer_size_packets));
 
   // Account for time-scale operations (accelerate and pre-emptive expand).
   if (time_stretched_samples && packet_len_samples > 0) {
@@ -42,7 +42,7 @@ void BufferLevelFilter::Update(int buffer_size_packets,
     // Make sure that the filtered value remains non-negative.
     filtered_current_level_ = std::max(0,
         filtered_current_level_ -
-        (time_stretched_samples << 8) / packet_len_samples);
+        (time_stretched_samples << 8) / static_cast<int>(packet_len_samples));
   }
 }
 
@@ -57,4 +57,9 @@ void BufferLevelFilter::SetTargetBufferLevel(int target_buffer_level) {
     level_factor_ = 254;
   }
 }
+
+int BufferLevelFilter::filtered_current_level() const {
+  return filtered_current_level_;
+}
+
 }  // namespace webrtc

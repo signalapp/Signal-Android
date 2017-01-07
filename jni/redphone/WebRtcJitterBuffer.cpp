@@ -1,28 +1,29 @@
 #include "WebRtcJitterBuffer.h"
 //#include <time.h>
 
+#include <modules/audio_coding/codecs/builtin_audio_decoder_factory.h>
+
 #define TAG "WebRtcJitterBuffer"
 
-static volatile int running = 0;
-
 WebRtcJitterBuffer::WebRtcJitterBuffer(AudioCodec &codec) :
-  neteq(NULL), webRtcCodec(codec)
+  neteq(NULL), webRtcCodec(codec), running(1)
 {
-  running = 1;
+
 }
 
 int WebRtcJitterBuffer::init() {
   webrtc::NetEq::Config config;
   config.sample_rate_hz = 8000;
 
-  neteq = webrtc::NetEq::Create(config);
+  neteq = webrtc::NetEq::Create(config, webrtc::CreateBuiltinAudioDecoderFactory());
 
   if (neteq == NULL) {
     __android_log_print(ANDROID_LOG_WARN, TAG, "Failed to construct NetEq!");
     return -1;
   }
 
-  if (neteq->RegisterExternalDecoder(&webRtcCodec, webrtc::kDecoderPCMu, 0) != 0) {
+
+  if (neteq->RegisterExternalDecoder(&webRtcCodec, webrtc::NetEqDecoder::kDecoderArbitrary, "speex", 0) != 0) {
     __android_log_print(ANDROID_LOG_WARN, TAG, "Failed to register external codec!");
     return -1;
   }
@@ -49,20 +50,24 @@ void WebRtcJitterBuffer::addAudio(RtpPacket *packet, uint32_t tick) {
   uint8_t *payload = (uint8_t*)malloc(packet->getPayloadLen());
   memcpy(payload, packet->getPayload(), packet->getPayloadLen());
 
-  if (neteq->InsertPacket(header, payload, packet->getPayloadLen(), tick) != 0) {
+  if (neteq->InsertPacket(header, rtc::ArrayView<const uint8_t>(payload, packet->getPayloadLen()), tick) != 0) {
     __android_log_print(ANDROID_LOG_WARN, TAG, "neteq->InsertPacket() failed!");
   }
 }
 
-int WebRtcJitterBuffer::getAudio(short *rawData, int maxRawData) {
-  int samplesPerChannel = 0;
+int WebRtcJitterBuffer::getAudio(webrtc::AudioFrame *audioFrame) {
+/*  int samplesPerChannel = 0;
   int numChannels       = 0;
+*/
+  bool muted = 0;
 
-  if (neteq->GetAudio(maxRawData, rawData, &samplesPerChannel, &numChannels, NULL) != 0) {
+  if (neteq->GetAudio(audioFrame, &muted) != 0) {
     __android_log_print(ANDROID_LOG_WARN, TAG, "neteq->GetAudio() failed!");
+    return -1;
   }
 
-  return samplesPerChannel;
+  return 0;
+//  return samplesPerChannel;
 }
 
 void WebRtcJitterBuffer::stop() {

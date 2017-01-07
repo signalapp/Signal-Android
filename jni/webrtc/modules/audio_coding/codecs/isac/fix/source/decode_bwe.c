@@ -26,13 +26,13 @@
 
 int WebRtcIsacfix_EstimateBandwidth(BwEstimatorstr *bwest_str,
                                     Bitstr_dec  *streamdata,
-                                    int32_t  packet_size,
+                                    size_t packet_size,
                                     uint16_t rtp_seq_number,
                                     uint32_t send_ts,
                                     uint32_t arr_ts)
 {
   int16_t index;
-  int16_t frame_samples;
+  size_t frame_samples;
   int err;
 
   /* decode framelength */
@@ -53,10 +53,10 @@ int WebRtcIsacfix_EstimateBandwidth(BwEstimatorstr *bwest_str,
   err = WebRtcIsacfix_UpdateUplinkBwImpl(
       bwest_str,
       rtp_seq_number,
-      frame_samples * 1000 / FS,
+      (int16_t)(frame_samples * 1000 / FS),
       send_ts,
       arr_ts,
-      (int16_t) packet_size,  /* in bytes */
+      packet_size,  /* in bytes */
       index);
 
   /* error check */

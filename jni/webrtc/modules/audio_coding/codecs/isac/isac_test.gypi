@@ -10,14 +10,14 @@
   'targets': [
     # simple kenny
     {
-      'target_name': 'iSACtest',
+      'target_name': 'isac_test',
       'type': 'executable',
       'dependencies': [
-        'iSAC',
+        'isac',
       ],
       'include_dirs': [
         './main/test',
-        './main/interface',
+        './main/include',
         './main/util',
         '<(webrtc_root)',
       ],
@@ -25,17 +25,30 @@
         './main/test/simpleKenny.c',
         './main/util/utility.c',
       ],
+      'conditions': [
+        ['OS=="win" and clang==1', {
+          'msvs_settings': {
+            'VCCLCompilerTool': {
+              'AdditionalOptions': [
+                # Disable warnings failing when compiling with Clang on Windows.
+                # https://bugs.chromium.org/p/webrtc/issues/detail?id=5366
+                '-Wno-format',
+              ],
+            },
+          },
+        }],
+      ],  # conditions.
     },
     # ReleaseTest-API
     {
-      'target_name': 'iSACAPITest',
+      'target_name': 'isac_api_test',
       'type': 'executable',
       'dependencies': [
-        'iSAC',
+        'isac',
       ],
       'include_dirs': [
         './main/test',
-        './main/interface',
+        './main/include',
         './main/util',
         '<(webrtc_root)',
       ],
@@ -46,14 +59,14 @@
     },
     # SwitchingSampRate
     {
-      'target_name': 'iSACSwitchSampRateTest',
+      'target_name': 'isac_switch_samprate_test',
       'type': 'executable',
       'dependencies': [
-        'iSAC',
+        'isac',
       ],
       'include_dirs': [
         './main/test',
-        './main/interface',
+        './main/include',
         '../../../../common_audio/signal_processing/include',
         './main/util',
         '<(webrtc_root)',
@@ -61,8 +74,7 @@
       'sources': [
         './main/test/SwitchingSampRate/SwitchingSampRate.cc',
         './main/util/utility.c',
-      ],    
+      ],
     },
-
   ],
 }

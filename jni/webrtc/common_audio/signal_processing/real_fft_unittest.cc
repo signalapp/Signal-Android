@@ -10,7 +10,6 @@
 
 #include "webrtc/common_audio/signal_processing/include/real_fft.h"
 #include "webrtc/common_audio/signal_processing/include/signal_processing_library.h"
-#include "webrtc/test/testsupport/gtest_disable.h"
 #include "webrtc/typedefs.h"
 
 #include "testing/gtest/include/gtest/gtest.h"

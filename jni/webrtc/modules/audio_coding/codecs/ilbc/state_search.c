@@ -25,7 +25,7 @@
  *---------------------------------------------------------------*/
 
 void WebRtcIlbcfix_StateSearch(
-    iLBC_Enc_Inst_t *iLBCenc_inst,
+    IlbcEncoder *iLBCenc_inst,
     /* (i) Encoder instance */
     iLBC_bits *iLBC_encbits,/* (i/o) Encoded bits (output idxForMax
                                and idxVec, input state_first) */
@@ -33,7 +33,7 @@ void WebRtcIlbcfix_StateSearch(
     int16_t *syntDenum,  /* (i) lpc synthesis filter */
     int16_t *weightDenum  /* (i) weighting filter denuminator */
                                ) {
-  int16_t k, index;
+  size_t k, index;
   int16_t maxVal;
   int16_t scale, shift;
   int32_t maxValsq;
@@ -64,14 +64,14 @@ void WebRtcIlbcfix_StateSearch(
 
   /* Run the Zero-Pole filter (Ciurcular convolution) */
   WebRtcSpl_MemSetW16(residualLongVec, 0, LPC_FILTERORDER);
-  WebRtcSpl_FilterMAFastQ12(
-      residualLong, sampleMa,
-      numerator, LPC_FILTERORDER+1, (int16_t)(iLBCenc_inst->state_short_len + LPC_FILTERORDER));
+  WebRtcSpl_FilterMAFastQ12(residualLong, sampleMa, numerator,
+                            LPC_FILTERORDER + 1,
+                            iLBCenc_inst->state_short_len + LPC_FILTERORDER);
   WebRtcSpl_MemSetW16(&sampleMa[iLBCenc_inst->state_short_len + LPC_FILTERORDER], 0, iLBCenc_inst->state_short_len - LPC_FILTERORDER);
 
   WebRtcSpl_FilterARFastQ12(
       sampleMa, sampleAr,
-      syntDenum, LPC_FILTERORDER+1, (int16_t)(2*iLBCenc_inst->state_short_len));
+      syntDenum, LPC_FILTERORDER+1, 2 * iLBCenc_inst->state_short_len);
 
   for(k=0;k<iLBCenc_inst->state_short_len;k++){
     sampleAr[k] += sampleAr[k+iLBCenc_inst->state_short_len];

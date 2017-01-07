@@ -10,46 +10,43 @@
 
 // Unit tests for DecisionLogic class and derived classes.
 
-#include "gtest/gtest.h"
+#include "testing/gtest/include/gtest/gtest.h"
+#include "webrtc/modules/audio_coding/codecs/mock/mock_audio_decoder_factory.h"
 #include "webrtc/modules/audio_coding/neteq/buffer_level_filter.h"
 #include "webrtc/modules/audio_coding/neteq/decoder_database.h"
 #include "webrtc/modules/audio_coding/neteq/decision_logic.h"
 #include "webrtc/modules/audio_coding/neteq/delay_manager.h"
 #include "webrtc/modules/audio_coding/neteq/delay_peak_detector.h"
 #include "webrtc/modules/audio_coding/neteq/packet_buffer.h"
+#include "webrtc/modules/audio_coding/neteq/tick_timer.h"
 
 namespace webrtc {
 
 TEST(DecisionLogic, CreateAndDestroy) {
   int fs_hz = 8000;
   int output_size_samples = fs_hz / 100;  // Samples per 10 ms.
-  DecoderDatabase decoder_database;
-  PacketBuffer packet_buffer(10);
-  DelayPeakDetector delay_peak_detector;
-  DelayManager delay_manager(240, &delay_peak_detector);
+  DecoderDatabase decoder_database(
+      new rtc::RefCountedObject<MockAudioDecoderFactory>);
+  TickTimer tick_timer;
+  PacketBuffer packet_buffer(10, &tick_timer);
+  DelayPeakDetector delay_peak_detector(&tick_timer);
+  DelayManager delay_manager(240, &delay_peak_detector, &tick_timer);
   BufferLevelFilter buffer_level_filter;
-  DecisionLogic* logic = DecisionLogic::Create(fs_hz, output_size_samples,
-                                               kPlayoutOn, &decoder_database,
-                                               packet_buffer, &delay_manager,
-                                               &buffer_level_filter);
+  DecisionLogic* logic = DecisionLogic::Create(
+      fs_hz, output_size_samples, kPlayoutOn, &decoder_database, packet_buffer,
+      &delay_manager, &buffer_level_filter, &tick_timer);
   delete logic;
-  logic = DecisionLogic::Create(fs_hz, output_size_samples,
-                                kPlayoutStreaming,
-                                &decoder_database,
-                                packet_buffer, &delay_manager,
-                                &buffer_level_filter);
+  logic = DecisionLogic::Create(
+      fs_hz, output_size_samples, kPlayoutStreaming, &decoder_database,
+      packet_buffer, &delay_manager, &buffer_level_filter, &tick_timer);
   delete logic;
-  logic = DecisionLogic::Create(fs_hz, output_size_samples,
-                                kPlayoutFax,
-                                &decoder_database,
-                                packet_buffer, &delay_manager,
-                                &buffer_level_filter);
+  logic = DecisionLogic::Create(
+      fs_hz, output_size_samples, kPlayoutFax, &decoder_database, packet_buffer,
+      &delay_manager, &buffer_level_filter, &tick_timer);
   delete logic;
-  logic = DecisionLogic::Create(fs_hz, output_size_samples,
-                                kPlayoutOff,
-                                &decoder_database,
-                                packet_buffer, &delay_manager,
-                                &buffer_level_filter);
+  logic = DecisionLogic::Create(
+      fs_hz, output_size_samples, kPlayoutOff, &decoder_database, packet_buffer,
+      &delay_manager, &buffer_level_filter, &tick_timer);
   delete logic;
 }
 

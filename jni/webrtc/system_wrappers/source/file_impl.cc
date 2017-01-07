@@ -8,9 +8,7 @@
  *  be found in the AUTHORS file in the root of the source tree.
  */
 
-#include "webrtc/system_wrappers/source/file_impl.h"
-
-#include <assert.h>
+#include "webrtc/system_wrappers/include/file_wrapper.h"
 
 #ifdef _WIN32
 #include <Windows.h>
@@ -19,260 +17,136 @@
 #include <string.h>
 #endif
 
-#include "webrtc/system_wrappers/interface/rw_lock_wrapper.h"
+#include "webrtc/base/checks.h"
 
 namespace webrtc {
+namespace {
+FILE* FileOpen(const char* file_name_utf8, bool read_only) {
+#if defined(_WIN32)
+  int len = MultiByteToWideChar(CP_UTF8, 0, file_name_utf8, -1, nullptr, 0);
+  std::wstring wstr(len, 0);
+  MultiByteToWideChar(CP_UTF8, 0, file_name_utf8, -1, &wstr[0], len);
+  FILE* file = _wfopen(wstr.c_str(), read_only ? L"rb" : L"wb");
+#else
+  FILE* file = fopen(file_name_utf8, read_only ? "rb" : "wb");
+#endif
+  return file;
+}
+}  // namespace
 
+// static
 FileWrapper* FileWrapper::Create() {
-  return new FileWrapperImpl();
+  return new FileWrapper();
 }
 
-FileWrapperImpl::FileWrapperImpl()
-    : rw_lock_(RWLockWrapper::CreateRWLock()),
-      id_(NULL),
-      managed_file_handle_(true),
-      open_(false),
-      looping_(false),
-      read_only_(false),
-      max_size_in_bytes_(0),
-      size_in_bytes_(0) {
-  memset(file_name_utf8_, 0, kMaxFileNameSize);
+// static
+FileWrapper FileWrapper::Open(const char* file_name_utf8, bool read_only) {
+  return FileWrapper(FileOpen(file_name_utf8, read_only), 0);
 }
 
-FileWrapperImpl::~FileWrapperImpl() {
-  if (id_ != NULL && managed_file_handle_) {
-    fclose(id_);
-  }
+FileWrapper::FileWrapper() {}
+
+FileWrapper::FileWrapper(FILE* file, size_t max_size)
+    : file_(file), max_size_in_bytes_(max_size) {}
+
+FileWrapper::~FileWrapper() {
+  CloseFileImpl();
 }
 
-int FileWrapperImpl::CloseFile() {
-  WriteLockScoped write(*rw_lock_);
-  return CloseFileImpl();
+FileWrapper::FileWrapper(FileWrapper&& other) {
+  operator=(std::move(other));
 }
 
-int FileWrapperImpl::Rewind() {
-  WriteLockScoped write(*rw_lock_);
-  if (looping_ || !read_only_) {
-    if (id_ != NULL) {
-      size_in_bytes_ = 0;
-      return fseek(id_, 0, SEEK_SET);
-    }
+FileWrapper& FileWrapper::operator=(FileWrapper&& other) {
+  file_ = other.file_;
+  max_size_in_bytes_ = other.max_size_in_bytes_;
+  position_ = other.position_;
+  other.file_ = nullptr;
+  return *this;
+}
+
+void FileWrapper::CloseFile() {
+  rtc::CritScope lock(&lock_);
+  CloseFileImpl();
+}
+
+int FileWrapper::Rewind() {
+  rtc::CritScope lock(&lock_);
+  if (file_ != nullptr) {
+    position_ = 0;
+    return fseek(file_, 0, SEEK_SET);
   }
   return -1;
 }
 
-int FileWrapperImpl::SetMaxFileSize(size_t bytes) {
-  WriteLockScoped write(*rw_lock_);
+void FileWrapper::SetMaxFileSize(size_t bytes) {
+  rtc::CritScope lock(&lock_);
   max_size_in_bytes_ = bytes;
-  return 0;
 }
 
-int FileWrapperImpl::Flush() {
-  WriteLockScoped write(*rw_lock_);
+int FileWrapper::Flush() {
+  rtc::CritScope lock(&lock_);
   return FlushImpl();
 }
 
-int FileWrapperImpl::FileName(char* file_name_utf8, size_t size) const {
-  ReadLockScoped read(*rw_lock_);
-  size_t length = strlen(file_name_utf8_);
-  if (length > kMaxFileNameSize) {
-    assert(false);
-    return -1;
-  }
-  if (length < 1) {
-    return -1;
-  }
-
-  // Make sure to NULL terminate
-  if (size < length) {
-    length = size - 1;
-  }
-  memcpy(file_name_utf8, file_name_utf8_, length);
-  file_name_utf8[length] = 0;
-  return 0;
-}
-
-bool FileWrapperImpl::Open() const {
-  ReadLockScoped read(*rw_lock_);
-  return open_;
-}
-
-int FileWrapperImpl::OpenFile(const char* file_name_utf8, bool read_only,
-                              bool loop, bool text) {
-  WriteLockScoped write(*rw_lock_);
-  if (id_ != NULL && !managed_file_handle_)
-    return -1;
+bool FileWrapper::OpenFile(const char* file_name_utf8, bool read_only) {
   size_t length = strlen(file_name_utf8);
-  if (length > kMaxFileNameSize - 1) {
-    return -1;
-  }
+  if (length > kMaxFileNameSize - 1)
+    return false;
 
-  read_only_ = read_only;
+  rtc::CritScope lock(&lock_);
+  if (file_ != nullptr)
+    return false;
 
-  FILE* tmp_id = NULL;
-#if defined _WIN32
-  wchar_t wide_file_name[kMaxFileNameSize];
-  wide_file_name[0] = 0;
-
-  MultiByteToWideChar(CP_UTF8,
-                      0,  // UTF8 flag
-                      file_name_utf8,
-                      -1,  // Null terminated string
-                      wide_file_name,
-                      kMaxFileNameSize);
-  if (text) {
-    if (read_only) {
-      tmp_id = _wfopen(wide_file_name, L"rt");
-    } else {
-      tmp_id = _wfopen(wide_file_name, L"wt");
-    }
-  } else {
-    if (read_only) {
-      tmp_id = _wfopen(wide_file_name, L"rb");
-    } else {
-      tmp_id = _wfopen(wide_file_name, L"wb");
-    }
-  }
-#else
-  if (text) {
-    if (read_only) {
-      tmp_id = fopen(file_name_utf8, "rt");
-    } else {
-      tmp_id = fopen(file_name_utf8, "wt");
-    }
-  } else {
-    if (read_only) {
-      tmp_id = fopen(file_name_utf8, "rb");
-    } else {
-      tmp_id = fopen(file_name_utf8, "wb");
-    }
-  }
-#endif
-
-  if (tmp_id != NULL) {
-    // +1 comes from copying the NULL termination character.
-    memcpy(file_name_utf8_, file_name_utf8, length + 1);
-    if (id_ != NULL) {
-      fclose(id_);
-    }
-    id_ = tmp_id;
-    managed_file_handle_ = true;
-    looping_ = loop;
-    open_ = true;
-    return 0;
-  }
-  return -1;
+  file_ = FileOpen(file_name_utf8, read_only);
+  return file_ != nullptr;
 }
 
-int FileWrapperImpl::OpenFromFileHandle(FILE* handle,
-                                        bool manage_file,
-                                        bool read_only,
-                                        bool loop) {
-  WriteLockScoped write(*rw_lock_);
+bool FileWrapper::OpenFromFileHandle(FILE* handle) {
   if (!handle)
-    return -1;
-
-  if (id_ != NULL) {
-    if (managed_file_handle_)
-      fclose(id_);
-    else
-      return -1;
-  }
-
-  id_ = handle;
-  managed_file_handle_ = manage_file;
-  read_only_ = read_only;
-  looping_ = loop;
-  open_ = true;
-  return 0;
+    return false;
+  rtc::CritScope lock(&lock_);
+  CloseFileImpl();
+  file_ = handle;
+  return true;
 }
 
-int FileWrapperImpl::Read(void* buf, int length) {
-  WriteLockScoped write(*rw_lock_);
-  if (length < 0)
+int FileWrapper::Read(void* buf, size_t length) {
+  rtc::CritScope lock(&lock_);
+  if (file_ == nullptr)
     return -1;
 
-  if (id_ == NULL)
-    return -1;
-
-  int bytes_read = static_cast<int>(fread(buf, 1, length, id_));
-  if (bytes_read != length && !looping_) {
-    CloseFileImpl();
-  }
-  return bytes_read;
+  size_t bytes_read = fread(buf, 1, length, file_);
+  return static_cast<int>(bytes_read);
 }
 
-int FileWrapperImpl::WriteText(const char* format, ...) {
-  WriteLockScoped write(*rw_lock_);
-  if (format == NULL)
-    return -1;
-
-  if (read_only_)
-    return -1;
-
-  if (id_ == NULL)
-    return -1;
-
-  va_list args;
-  va_start(args, format);
-  int num_chars = vfprintf(id_, format, args);
-  va_end(args);
-
-  if (num_chars >= 0) {
-    return num_chars;
-  } else {
-    CloseFileImpl();
-    return -1;
-  }
-}
-
-bool FileWrapperImpl::Write(const void* buf, int length) {
-  WriteLockScoped write(*rw_lock_);
-  if (buf == NULL)
+bool FileWrapper::Write(const void* buf, size_t length) {
+  if (buf == nullptr)
     return false;
 
-  if (length < 0)
-    return false;
+  rtc::CritScope lock(&lock_);
 
-  if (read_only_)
-    return false;
-
-  if (id_ == NULL)
+  if (file_ == nullptr)
     return false;
 
   // Check if it's time to stop writing.
-  if (max_size_in_bytes_ > 0 &&
-      (size_in_bytes_ + length) > max_size_in_bytes_) {
-    FlushImpl();
+  if (max_size_in_bytes_ > 0 && (position_ + length) > max_size_in_bytes_)
     return false;
-  }
 
-  size_t num_bytes = fwrite(buf, 1, length, id_);
-  if (num_bytes > 0) {
-    size_in_bytes_ += num_bytes;
-    return true;
-  }
+  size_t num_bytes = fwrite(buf, 1, length, file_);
+  position_ += num_bytes;
 
-  CloseFileImpl();
-  return false;
+  return num_bytes == length;
 }
 
-int FileWrapperImpl::CloseFileImpl() {
-  if (id_ != NULL) {
-    if (managed_file_handle_)
-      fclose(id_);
-    id_ = NULL;
-  }
-  memset(file_name_utf8_, 0, kMaxFileNameSize);
-  open_ = false;
-  return 0;
+void FileWrapper::CloseFileImpl() {
+  if (file_ != nullptr)
+    fclose(file_);
+  file_ = nullptr;
 }
 
-int FileWrapperImpl::FlushImpl() {
-  if (id_ != NULL) {
-    return fflush(id_);
-  }
-  return -1;
+int FileWrapper::FlushImpl() {
+  return (file_ != nullptr) ? fflush(file_) : -1;
 }
 
 }  // namespace webrtc

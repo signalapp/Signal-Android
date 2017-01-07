@@ -8,9 +8,9 @@
  *  be found in the AUTHORS file in the root of the source tree.
  */
 
-#include "webrtc/system_wrappers/interface/rtp_to_ntp.h"
+#include "webrtc/system_wrappers/include/rtp_to_ntp.h"
 
-#include "webrtc/system_wrappers/interface/clock.h"
+#include "webrtc/system_wrappers/include/clock.h"
 
 #include <assert.h>
 
@@ -71,8 +71,9 @@ bool UpdateRtcpList(uint32_t ntp_secs,
 
   for (RtcpList::iterator it = rtcp_list->begin();
        it != rtcp_list->end(); ++it) {
-    if (measurement.ntp_secs == (*it).ntp_secs &&
-        measurement.ntp_frac == (*it).ntp_frac) {
+    if ((measurement.ntp_secs == (*it).ntp_secs &&
+         measurement.ntp_frac == (*it).ntp_frac) ||
+        (measurement.rtp_timestamp == (*it).rtp_timestamp)) {
       // This RTCP has already been added to the list.
       return true;
     }
@@ -95,7 +96,9 @@ bool UpdateRtcpList(uint32_t ntp_secs,
 bool RtpToNtpMs(int64_t rtp_timestamp,
                 const RtcpList& rtcp,
                 int64_t* rtp_timestamp_in_ms) {
-  assert(rtcp.size() == 2);
+  if (rtcp.size() != 2)
+    return false;
+
   int64_t rtcp_ntp_ms_new = Clock::NtpToMs(rtcp.front().ntp_secs,
                                            rtcp.front().ntp_frac);
   int64_t rtcp_ntp_ms_old = Clock::NtpToMs(rtcp.back().ntp_secs,

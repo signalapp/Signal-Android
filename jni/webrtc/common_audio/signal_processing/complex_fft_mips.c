@@ -139,7 +139,10 @@ int WebRtcSpl_ComplexFFT(int16_t frfi[], int stages, int mode) {
       [m] "=&r" (m), [istep] "=&r" (istep), [l] "=&r" (l), [k] "=&r" (k),
       [ptr_j] "=&r" (ptr_j), [tmp] "=&r" (tmp)
     : [n] "r" (n), [frfi] "r" (frfi), [kSinTable1024] "r" (kSinTable1024)
-    : "hi", "lo", "$ac1hi", "$ac1lo", "memory"
+    : "hi", "lo", "memory"
+#if defined(MIPS_DSP_R2_LE)
+    , "$ac1hi", "$ac1lo"
+#endif  // #if defined(MIPS_DSP_R2_LE)
   );
 
   return 0;
@@ -314,7 +317,10 @@ int WebRtcSpl_ComplexIFFT(int16_t frfi[], int stages, int mode) {
       [k] "=&r" (k), [round2] "=&r" (round2), [ptr_j] "=&r" (ptr_j),
       [shift] "=&r" (shift), [scale] "=&r" (scale), [tempMax] "=&r" (tempMax)
     : [n] "r" (n), [frfi] "r" (frfi), [kSinTable1024] "r" (kSinTable1024)
-    : "hi", "lo", "$ac1hi", "$ac1lo", "memory"
+    : "hi", "lo", "memory"
+#if defined(MIPS_DSP_R2_LE)
+    , "$ac1hi", "$ac1lo"
+#endif  // #if defined(MIPS_DSP_R2_LE)
   );
 
   return scale;

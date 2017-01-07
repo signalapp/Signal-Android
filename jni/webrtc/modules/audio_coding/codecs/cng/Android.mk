@@ -18,8 +18,8 @@ LOCAL_MODULE := libwebrtc_cng
 LOCAL_MODULE_TAGS := optional
 LOCAL_GENERATED_SOURCES :=
 LOCAL_SRC_FILES := \
-    webrtc_cng.c \
-    cng_helpfuns.c
+    webrtc_cng.cc \
+    audio_encoder_cng.cc
 
 # Flags passed to both C and C++ files.
 LOCAL_CFLAGS := \

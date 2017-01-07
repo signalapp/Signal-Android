@@ -12,6 +12,7 @@
 
 #include <math.h>
 #include <memory.h>
+#include <string.h>
 #ifdef WEBRTC_ANDROID
 #include <stdlib.h>
 #endif

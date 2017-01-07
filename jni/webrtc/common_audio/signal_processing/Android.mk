@@ -44,7 +44,6 @@ LOCAL_SRC_FILES := \
     resample_fractional.c \
     spl_init.c \
     spl_sqrt.c \
-    spl_version.c \
     splitting_filter.c \
     sqrt_of_one_minus_x_squared.c \
     vector_scaling_operations.c

@@ -14,7 +14,8 @@ LOCAL_SRC_FILES := \
     vad_core.c \
     vad_filterbank.c \
     vad_gmm.c \
-    vad_sp.c
+    vad_sp.c \
+    vad.cc
 
 # Flags passed to both C and C++ files.
 LOCAL_CFLAGS := \

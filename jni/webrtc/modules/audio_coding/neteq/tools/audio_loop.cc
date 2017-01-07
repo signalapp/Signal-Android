@@ -40,16 +40,18 @@ bool AudioLoop::Init(const std::string file_name,
 
   loop_length_samples_ = samples_read;
   block_length_samples_ = block_length_samples;
+  next_index_ = 0;
   return true;
 }
 
-const int16_t* AudioLoop::GetNextBlock() {
+rtc::ArrayView<const int16_t> AudioLoop::GetNextBlock() {
   // Check that the AudioLoop is initialized.
-  if (block_length_samples_ == 0) return NULL;
+  if (block_length_samples_ == 0)
+    return rtc::ArrayView<const int16_t>();
 
   const int16_t* output_ptr = &audio_array_[next_index_];
   next_index_ = (next_index_ + block_length_samples_) % loop_length_samples_;
-  return output_ptr;
+  return rtc::ArrayView<const int16_t>(output_ptr, block_length_samples_);
 }
 
 

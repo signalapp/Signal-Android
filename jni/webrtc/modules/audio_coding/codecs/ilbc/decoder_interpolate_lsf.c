@@ -31,10 +31,11 @@ void WebRtcIlbcfix_DecoderInterpolateLsp(
                                    coefficients */
     int16_t *lsfdeq,   /* (i) dequantized lsf coefficients */
     int16_t length,   /* (i) length of lsf coefficient vector */
-    iLBC_Dec_Inst_t *iLBCdec_inst
+    IlbcDecoder *iLBCdec_inst
     /* (i) the decoder state structure */
                                           ){
-  int  i, pos, lp_length;
+  size_t i;
+  int pos, lp_length;
   int16_t  lp[LPC_FILTERORDER + 1], *lsfdeq2;
 
   lsfdeq2 = lsfdeq + length;

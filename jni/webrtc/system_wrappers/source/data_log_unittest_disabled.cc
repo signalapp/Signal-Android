@@ -8,7 +8,7 @@
  *  be found in the AUTHORS file in the root of the source tree.
  */
 
-#include "webrtc/system_wrappers/interface/data_log.h"
+#include "webrtc/system_wrappers/include/data_log.h"
 
 #include <stdio.h>
 

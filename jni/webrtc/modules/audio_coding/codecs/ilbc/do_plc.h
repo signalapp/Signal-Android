@@ -33,8 +33,8 @@ void WebRtcIlbcfix_DoThePlc(
                                                            0 - no PL, 1 = PL */
     int16_t *decresidual,  /* (i) decoded residual */
     int16_t *lpc,    /* (i) decoded LPC (only used for no PL) */
-    int16_t inlag,    /* (i) pitch lag */
-    iLBC_Dec_Inst_t *iLBCdec_inst
+    size_t inlag,    /* (i) pitch lag */
+    IlbcDecoder *iLBCdec_inst
     /* (i/o) decoder instance */
                             );
 

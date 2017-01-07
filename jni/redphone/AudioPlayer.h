@@ -5,6 +5,8 @@
 #include <SLES/OpenSLES_Android.h>
 #include <SLES/OpenSLES_AndroidConfiguration.h>
 
+#include <modules/include/module_common_types.h>
+
 #include "WebRtcJitterBuffer.h"
 #include "AudioCodec.h"
 #include "JitterBuffer.h"
@@ -29,7 +31,8 @@ private:
  SLObjectItf outputMixObject;
 
  SLAndroidSimpleBufferQueueItf bqPlayerBufferQueue;
- short outputBuffer[FRAME_SIZE];
+ webrtc::AudioFrame audioFrame;
+// short outputBuffer[FRAME_SIZE];
 
 public:
   AudioPlayer(WebRtcJitterBuffer &jitterBuffer, AudioCodec &audioCodec);

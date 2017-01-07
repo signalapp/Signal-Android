@@ -27,25 +27,25 @@ extern "C" {
 
 int WebRtcIsacfix_EstimateBandwidth(BwEstimatorstr* bwest_str,
                                     Bitstr_dec* streamdata,
-                                    int32_t packet_size,
+                                    size_t packet_size,
                                     uint16_t rtp_seq_number,
                                     uint32_t send_ts,
                                     uint32_t arr_ts);
 
-int16_t WebRtcIsacfix_DecodeImpl(int16_t* signal_out16,
-                                       ISACFIX_DecInst_t* ISACdec_obj,
-                                       int16_t* current_framesamples);
+int WebRtcIsacfix_DecodeImpl(int16_t* signal_out16,
+                             IsacFixDecoderInstance* ISACdec_obj,
+                             size_t* current_framesamples);
 
-int16_t WebRtcIsacfix_DecodePlcImpl(int16_t* decoded,
-                                          ISACFIX_DecInst_t* ISACdec_obj,
-                                          int16_t* current_framesample );
+void WebRtcIsacfix_DecodePlcImpl(int16_t* decoded,
+                                 IsacFixDecoderInstance* ISACdec_obj,
+                                 size_t* current_framesample );
 
 int WebRtcIsacfix_EncodeImpl(int16_t* in,
-                             ISACFIX_EncInst_t* ISACenc_obj,
+                             IsacFixEncoderInstance* ISACenc_obj,
                              BwEstimatorstr* bw_estimatordata,
                              int16_t CodingMode);
 
-int WebRtcIsacfix_EncodeStoredData(ISACFIX_EncInst_t* ISACenc_obj,
+int WebRtcIsacfix_EncodeStoredData(IsacFixEncoderInstance* ISACenc_obj,
                                    int BWnumber,
                                    float scale);
 
@@ -90,7 +90,7 @@ void WebRtcIsacfix_Spec2TimeC(int16_t* inreQ7,
                               int32_t* outre1Q16,
                               int32_t* outre2Q16);
 
-#if (defined WEBRTC_DETECT_ARM_NEON) || (defined WEBRTC_ARCH_ARM_NEON)
+#if defined(WEBRTC_HAS_NEON)
 void WebRtcIsacfix_Time2SpecNeon(int16_t* inre1Q9,
                                  int16_t* inre2Q9,
                                  int16_t* outre,
@@ -141,7 +141,7 @@ void WebRtcIsacfix_FilterAndCombine2(int16_t* tempin_ch1,
 
 /* normalized lattice filters */
 
-void WebRtcIsacfix_NormLatticeFilterMa(int16_t orderCoef,
+void WebRtcIsacfix_NormLatticeFilterMa(size_t orderCoef,
                                        int32_t* stateGQ15,
                                        int16_t* lat_inQ0,
                                        int16_t* filt_coefQ15,
@@ -149,7 +149,7 @@ void WebRtcIsacfix_NormLatticeFilterMa(int16_t orderCoef,
                                        int16_t lo_hi,
                                        int16_t* lat_outQ9);
 
-void WebRtcIsacfix_NormLatticeFilterAr(int16_t orderCoef,
+void WebRtcIsacfix_NormLatticeFilterAr(size_t orderCoef,
                                        int16_t* stateGQ0,
                                        int32_t* lat_inQ25,
                                        int16_t* filt_coefQ15,
@@ -174,7 +174,7 @@ void WebRtcIsacfix_FilterMaLoopC(int16_t input0,
                                  int32_t* ptr1,
                                  int32_t* ptr2);
 
-#if (defined WEBRTC_DETECT_ARM_NEON) || (defined WEBRTC_ARCH_ARM_NEON)
+#if defined(WEBRTC_HAS_NEON)
 int WebRtcIsacfix_AutocorrNeon(int32_t* __restrict r,
                                const int16_t* __restrict x,
                                int16_t N,
