@@ -21,6 +21,7 @@ import android.content.Context;
 import android.os.StrictMode;
 import android.os.StrictMode.ThreadPolicy;
 import android.os.StrictMode.VmPolicy;
+import android.support.multidex.MultiDexApplication;
 
 import org.thoughtcrime.securesms.crypto.PRNGFixes;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
@@ -54,7 +55,7 @@ import dagger.ObjectGraph;
  *
  * @author Moxie Marlinspike
  */
-public class ApplicationContext extends Application implements DependencyInjector {
+public class ApplicationContext extends MultiDexApplication implements DependencyInjector {
 
   private ExpiringMessageManager expiringMessageManager;
   private JobManager             jobManager;
