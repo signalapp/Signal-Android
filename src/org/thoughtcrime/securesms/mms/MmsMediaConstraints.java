@@ -9,6 +9,7 @@ import org.w3c.dom.Text;
 public class MmsMediaConstraints extends MediaConstraints {
   private static final int MAX_IMAGE_DIMEN_LOWMEM = 768;
   private static final int MAX_IMAGE_DIMEN        = 1024;
+  public  static final int SIZE_CONSTANT          = 1024;
   //public  static final int MAX_MESSAGE_SIZE       = 280 * 1024;
 
   @Override
@@ -23,25 +24,25 @@ public class MmsMediaConstraints extends MediaConstraints {
 
   @Override
   public int getImageMaxSize(Context context) {
-    return TextSecurePreferences.getMMSMaxSize(context) * 1024;
+    return TextSecurePreferences.getMMSMaxSize(context) * SIZE_CONSTANT;
     //return MAX_MESSAGE_SIZE;
   }
 
   @Override
   public int getGifMaxSize(Context context) {
-    return TextSecurePreferences.getMMSMaxSize(context) * 1024;
+    return TextSecurePreferences.getMMSMaxSize(context) * SIZE_CONSTANT;
     //return MAX_MESSAGE_SIZE;
   }
 
   @Override
   public int getVideoMaxSize(Context context) {
-    return TextSecurePreferences.getMMSMaxSize(context) * 1024;
+    return TextSecurePreferences.getMMSMaxSize(context) * SIZE_CONSTANT;
     //return MAX_MESSAGE_SIZE;
   }
 
   @Override
   public int getAudioMaxSize(Context context) {
-    return TextSecurePreferences.getMMSMaxSize(context) * 1024;
+    return TextSecurePreferences.getMMSMaxSize(context) * SIZE_CONSTANT;
     //return MAX_MESSAGE_SIZE;
   }
 }
