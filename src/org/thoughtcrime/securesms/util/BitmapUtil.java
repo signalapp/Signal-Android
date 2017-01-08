@@ -68,14 +68,14 @@ public class BitmapUtil {
         Log.w(TAG, "iteration with quality " + quality + " size " + (bytes.length / 1024) + "kb");
         if (quality == MIN_COMPRESSION_QUALITY) break;
 
-        int nextQuality = (int)Math.floor(quality * Math.sqrt((double)constraints.getImageMaxSize() / bytes.length));
+        int nextQuality = (int)Math.floor(quality * Math.sqrt((double)constraints.getImageMaxSize(context) / bytes.length));
         if (quality - nextQuality < MIN_COMPRESSION_QUALITY_DECREASE) {
           nextQuality = quality - MIN_COMPRESSION_QUALITY_DECREASE;
         }
         quality = Math.max(nextQuality, MIN_COMPRESSION_QUALITY);
       }
-      while (bytes.length > constraints.getImageMaxSize() && attempts++ < MAX_COMPRESSION_ATTEMPTS);
-      if (bytes.length > constraints.getImageMaxSize()) {
+      while (bytes.length > constraints.getImageMaxSize(context) && attempts++ < MAX_COMPRESSION_ATTEMPTS);
+      if (bytes.length > constraints.getImageMaxSize(context)) {
         throw new BitmapDecodingException("Unable to scale image below: " + bytes.length);
       }
       Log.w(TAG, "createScaledBytes(" + model.toString() + ") -> quality " + Math.min(quality, MAX_COMPRESSION_QUALITY) + ", " + attempts + " attempt(s)");
