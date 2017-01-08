@@ -109,6 +109,7 @@ public class ConversationFragment extends Fragment
     list.setHasFixedSize(false);
     list.setLayoutManager(layoutManager);
     list.addOnScrollListener(scrollListener);
+    list.setItemAnimator(null);
 
     loadMoreView = inflater.inflate(R.layout.load_more_header, container, false);
     loadMoreView.setOnClickListener(new OnClickListener() {
@@ -171,7 +172,6 @@ public class ConversationFragment extends Fragment
     if (this.recipients != null && this.threadId != -1) {
       list.setAdapter(new ConversationAdapter(getActivity(), masterSecret, locale, selectionClickListener, null, this.recipients));
       getLoaderManager().restartLoader(0, Bundle.EMPTY, this);
-      list.getItemAnimator().setMoveDuration(120);
     }
   }
 
@@ -236,13 +236,7 @@ public class ConversationFragment extends Fragment
   }
 
   public void scrollToBottom() {
-    list.getItemAnimator().isRunning(new ItemAnimatorFinishedListener() {
-      @Override
-      public void onAnimationsFinished() {
-        list.stopScroll();
-        list.smoothScrollToPosition(0);
-      }
-    });
+    list.smoothScrollToPosition(0);
   }
 
   private void handleCopyMessage(final Set<MessageRecord> messageRecords) {
