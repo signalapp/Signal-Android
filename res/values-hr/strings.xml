@@ -161,7 +161,11 @@
     <item quantity="few">Greška prilikom spremanja privitaka na disk!</item>
     <item quantity="other">Greška prilikom spremanja privitaka na disk!</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">Datoteka uspješno spremljena.</string>
+  <plurals name="ConversationFragment_files_saved_successfully">
+    <item quantity="one">Datoteka uspješno spremljena.</item>
+    <item quantity="few">Datoteke uspješno spremljene.</item>
+    <item quantity="other">Datoteke uspješno spremljene.</item>
+  </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nije moguće pisati na disk!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Spremanje privitaka</item>
@@ -506,6 +510,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Vrijeme nestajanja poruke postavljeno na %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Vaš sigurnosni broj s %s je izmjenjen.</string>
   <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Vaš kontakt koristi stariju Signal inačicu. Zamolite ih da ažuriraju Signal prije provjere sigurnosnog broja.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Vaš kontakt koristi noviju Signal inačicu s nekompatibilnim QR kod oblikom. Ažurirajte vašu inačicu kako biste usporedili.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Skenirani QR kod nije ispravno oblikovan sigurnosni broj za provjeru. Pokušajte ponovno skenirati broj.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Podijelite sigurnosni broj putem...</string>
@@ -567,11 +572,20 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nova poruka</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Slika</string>
+  <string name="attachment_type_selector__image_description">Slika</string>
   <string name="attachment_type_selector__audio">Zvuk</string>
+  <string name="attachment_type_selector__audio_description">Zvuk</string>
   <string name="attachment_type_selector__video">Video</string>
+  <string name="attachment_type_selector__video_description">Video</string>
   <string name="attachment_type_selector__contact">Kontakt</string>
+  <string name="attachment_type_selector__contact_description">Kontakt</string>
   <string name="attachment_type_selector__camera">Kamera</string>
+  <string name="attachment_type_selector__camera_description">Kamera</string>
   <string name="attachment_type_selector__location">Položaj</string>
+  <string name="attachment_type_selector__location_description">Položaj</string>
+  <string name="attachment_type_selector__gif">GIF</string>
+  <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__drawer_description">Uključi/isključi ladicu dodataka</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Stara lozinka</string>
   <string name="change_passphrase_activity__new_passphrase">Nova lozinka</string>
@@ -622,6 +636,9 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="conversation_item_received__contact_photo_description">Slika kontakta</string>
   <string name="conversation_item_received__downloading">Preuzimanje</string>
   <!--audio_view-->
+  <string name="audio_view__play_accessibility_description">Reprodukcija</string>
+  <string name="audio_view__pause_accessibility_description">Zaustavi</string>
+  <string name="audio_view__download_accessibility_description">Preuzmi</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Način za višestruki odabir</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s odabrano</string>

@@ -65,7 +65,7 @@ public class EncryptingSmsDatabase extends SmsDatabase {
                                   OutgoingTextMessage message, boolean forceSms,
                                   long timestamp)
   {
-    long type = Types.BASE_OUTBOX_TYPE;
+    long type = Types.BASE_SENDING_TYPE;
 
     if (masterSecret.getMasterSecret().isPresent()) {
       message = message.withBody(getEncryptedBody(masterSecret.getMasterSecret().get(), message.getMessageBody()));

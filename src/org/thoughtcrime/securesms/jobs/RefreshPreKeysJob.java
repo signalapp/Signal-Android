@@ -60,12 +60,13 @@ public class RefreshPreKeysJob extends MasterSecretJob implements InjectableType
     List<PreKeyRecord> preKeyRecords       = PreKeyUtil.generatePreKeys(context);
     PreKeyRecord       lastResortKeyRecord = PreKeyUtil.generateLastResortKey(context);
     IdentityKeyPair    identityKey         = IdentityKeyUtil.getIdentityKeyPair(context);
-    SignedPreKeyRecord signedPreKeyRecord  = PreKeyUtil.generateSignedPreKey(context, identityKey);
+    SignedPreKeyRecord signedPreKeyRecord  = PreKeyUtil.generateSignedPreKey(context, identityKey, false);
 
     Log.w(TAG, "Registering new prekeys...");
 
     accountManager.setPreKeys(identityKey.getPublicKey(), lastResortKeyRecord, signedPreKeyRecord, preKeyRecords);
 
+    PreKeyUtil.setActiveSignedPreKeyId(context, signedPreKeyRecord.getId());
     TextSecurePreferences.setSignedPreKeyRegistered(context, true);
 
     ApplicationContext.getInstance(context)

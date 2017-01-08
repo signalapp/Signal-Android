@@ -239,7 +239,7 @@ public class RegistrationService extends Service {
     IdentityKeyPair    identityKey  = IdentityKeyUtil.getIdentityKeyPair(this);
     List<PreKeyRecord> records      = PreKeyUtil.generatePreKeys(this);
     PreKeyRecord       lastResort   = PreKeyUtil.generateLastResortKey(this);
-    SignedPreKeyRecord signedPreKey = PreKeyUtil.generateSignedPreKey(this, identityKey);
+    SignedPreKeyRecord signedPreKey = PreKeyUtil.generateSignedPreKey(this, identityKey, true);
     accountManager.setPreKeys(identityKey.getPublicKey(),lastResort, signedPreKey, records);
 
     setState(new RegistrationState(RegistrationState.STATE_GCM_REGISTERING, number));
@@ -261,6 +261,7 @@ public class RegistrationService extends Service {
     redPhoneAccountManager.createAccount(verificationToken, new RedPhoneAccountAttributes(signalingKey, gcmRegistrationId));
 
     DirectoryRefreshListener.schedule(this);
+    RotateSignedPreKeyListener.schedule(this);
   }
 
   private synchronized String waitForChallenge() throws AccountVerificationTimeoutException {

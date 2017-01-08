@@ -134,7 +134,6 @@
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="other">ಸಂಗ್ರಹಕ್ಕೆ ಲಗತ್ತನ್ನು ಉಳಿಸುವಾಗ ತೊಡಕಾಗಿದೆ!</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">ಕಡತವನ್ನು ಉಳಿಸಲಾಗಿದೆ.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">ಸಂಗ್ರಹಕ್ಕೆ ಬರೆಯಲು ಸಾಧ್ಯವಿಲ್ಲ!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="other">%1$d ಲಗತ್ತನ್ನು ಉಳಿಸಲಾಗುತ್ತಿದೆ</item>

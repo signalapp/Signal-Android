@@ -145,7 +145,6 @@
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="other">添付ファイルを外部メモリに保存する際にエラー発生！</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">ファイルの保存完了</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">外部メモリに書き込めませんでした</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="other">%1$d個の添付ファイルを保存</item>

@@ -34,8 +34,10 @@ import com.google.i18n.phonenumbers.Phonenumber;
 import com.google.i18n.phonenumbers.ShortNumberInfo;
 
 import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.ShortCodeUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
 import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
 
@@ -62,8 +64,9 @@ public class CanonicalAddressDatabase {
   private        DatabaseHelper           databaseHelper;
   private final  Context                  context;
 
-  private final Map<String, Long> addressCache = new ConcurrentHashMap<>();
-  private final Map<Long, String> idCache      = new ConcurrentHashMap<>();
+  private final Map<String, Long>        addressCache          = new ConcurrentHashMap<>();
+  private final Map<Long, String>        idCache               = new ConcurrentHashMap<>();
+  private final LRUCache<String, String> formattedAddressCache = new LRUCache<>(100);
 
   public synchronized static CanonicalAddressDatabase getInstance(Context context) {
     if (instance == null)
@@ -147,24 +150,30 @@ public class CanonicalAddressDatabase {
 
   public long getCanonicalAddressId(@NonNull String address) {
     try {
-      long canonicalAddressId;
+      long   canonicalAddressId;
+      String formattedAddress;
 
-      if (isNumberAddress(address) && TextSecurePreferences.isPushRegistered(context)) {
+      if ((formattedAddress = formattedAddressCache.get(address)) == null) {
         String localNumber = TextSecurePreferences.getLocalNumber(context);
 
-        if (!ShortCodeUtil.isShortCode(localNumber, address)) {
-          address = PhoneNumberFormatter.formatNumber(address, localNumber);
+        if (!isNumberAddress(address)                        ||
+            !TextSecurePreferences.isPushRegistered(context) ||
+            ShortCodeUtil.isShortCode(localNumber, address))
+        {
+          formattedAddress = address;
+        } else {
+          formattedAddress = PhoneNumberFormatter.formatNumber(address, localNumber);
         }
+
+        formattedAddressCache.put(address, formattedAddress);
       }
 
-      if ((canonicalAddressId = getCanonicalAddressFromCache(address)) != -1) {
-        return canonicalAddressId;
+      if ((canonicalAddressId = getCanonicalAddressFromCache(formattedAddress)) == -1) {
+        canonicalAddressId = getCanonicalAddressIdFromDatabase(formattedAddress);
       }
 
-      canonicalAddressId = getCanonicalAddressIdFromDatabase(address);
-
-      idCache.put(canonicalAddressId, address);
-      addressCache.put(address, canonicalAddressId);
+      idCache.put(canonicalAddressId, formattedAddress);
+      addressCache.put(formattedAddress, canonicalAddressId);
 
       return canonicalAddressId;
     } catch (InvalidNumberException e) {

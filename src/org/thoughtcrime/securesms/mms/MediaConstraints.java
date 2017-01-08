@@ -49,7 +49,7 @@ public abstract class MediaConstraints {
     }
   }
 
-  public boolean isWithinBounds(Context context, MasterSecret masterSecret, Uri uri) throws IOException {
+  private boolean isWithinBounds(Context context, MasterSecret masterSecret, Uri uri) throws IOException {
     try {
       InputStream is = PartAuthority.getAttachmentStream(context, masterSecret, uri);
       Pair<Integer, Integer> dimensions = BitmapUtil.getDimensions(is);

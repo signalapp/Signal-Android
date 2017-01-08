@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -32,14 +33,17 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class InputPanel extends LinearLayout
-    implements MicrophoneRecorderView.Listener, KeyboardAwareLinearLayout.OnKeyboardShownListener, EmojiDrawer.EmojiEventListener {
+    implements MicrophoneRecorderView.Listener,
+               KeyboardAwareLinearLayout.OnKeyboardShownListener,
+               EmojiDrawer.EmojiEventListener
+{
 
   private static final String TAG = InputPanel.class.getSimpleName();
 
   private static final int FADE_TIME = 150;
 
   private EmojiToggle   emojiToggle;
-  private EmojiEditText composeText;
+  private ComposeText   composeText;
   private View          quickCameraToggle;
   private View          quickAudioToggle;
   private View          buttonToggle;
@@ -104,6 +108,10 @@ public class InputPanel extends LinearLayout
         listener.onEmojiToggle();
       }
     });
+  }
+
+  public void setMediaListener(@NonNull MediaListener listener) {
+    composeText.setMediaListener(listener);
   }
 
   @Override
@@ -299,5 +307,9 @@ public class InputPanel extends LinearLayout
         handler.postDelayed(this, TimeUnit.SECONDS.toMillis(1));
       }
     }
+  }
+
+  public interface MediaListener {
+    public void onMediaSelected(@NonNull Uri uri, String contentType);
   }
 }

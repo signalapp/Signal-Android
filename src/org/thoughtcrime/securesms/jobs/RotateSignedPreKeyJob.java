@@ -1,8 +1,10 @@
 package org.thoughtcrime.securesms.jobs;
 
+
 import android.content.Context;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
@@ -16,55 +18,52 @@ import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
-import java.io.IOException;
-
 import javax.inject.Inject;
 
-public class CreateSignedPreKeyJob extends MasterSecretJob implements InjectableType {
+public class RotateSignedPreKeyJob extends MasterSecretJob implements InjectableType {
 
-  private static final long serialVersionUID = 1L;
-
-  private static final String TAG = CreateSignedPreKeyJob.class.getSimpleName();
+  private static final String TAG = RotateSignedPreKeyJob.class.getName();
 
   @Inject transient SignalServiceAccountManager accountManager;
 
-  public CreateSignedPreKeyJob(Context context) {
+  public RotateSignedPreKeyJob(Context context) {
     super(context, JobParameters.newBuilder()
-                                .withPersistence()
                                 .withRequirement(new NetworkRequirement(context))
                                 .withRequirement(new MasterSecretRequirement(context))
-                                .withGroupId(CreateSignedPreKeyJob.class.getSimpleName())
+                                .withRetryCount(5)
                                 .create());
   }
 
   @Override
-  public void onAdded() {}
+  public void onAdded() {
 
-  @Override
-  public void onRun(MasterSecret masterSecret) throws IOException {
-    if (TextSecurePreferences.isSignedPreKeyRegistered(context)) {
-      Log.w(TAG, "Signed prekey already registered...");
-      return;
-    }
-
-    if (!TextSecurePreferences.isPushRegistered(context)) {
-      Log.w(TAG, "Not yet registered...");
-      return;
-    }
-
-    IdentityKeyPair    identityKeyPair    = IdentityKeyUtil.getIdentityKeyPair(context);
-    SignedPreKeyRecord signedPreKeyRecord = PreKeyUtil.generateSignedPreKey(context, identityKeyPair, true);
-
-    accountManager.setSignedPreKey(signedPreKeyRecord);
-    TextSecurePreferences.setSignedPreKeyRegistered(context, true);
   }
 
   @Override
-  public void onCanceled() {}
+  public void onRun(MasterSecret masterSecret) throws Exception {
+    Log.w(TAG, "Rotating signed prekey...");
+
+    IdentityKeyPair    identityKey        = IdentityKeyUtil.getIdentityKeyPair(context);
+    SignedPreKeyRecord signedPreKeyRecord = PreKeyUtil.generateSignedPreKey(context, identityKey, false);
+
+    accountManager.setSignedPreKey(signedPreKeyRecord);
+
+    PreKeyUtil.setActiveSignedPreKeyId(context, signedPreKeyRecord.getId());
+    TextSecurePreferences.setSignedPreKeyRegistered(context, true);
+    TextSecurePreferences.setSignedPreKeyFailureCount(context, 0);
+
+    ApplicationContext.getInstance(context)
+                      .getJobManager()
+                      .add(new CleanPreKeysJob(context));
+  }
 
   @Override
   public boolean onShouldRetryThrowable(Exception exception) {
-    if (exception instanceof PushNetworkException) return true;
-    return false;
+    return exception instanceof PushNetworkException;
+  }
+
+  @Override
+  public void onCanceled() {
+    TextSecurePreferences.setSignedPreKeyFailureCount(context, TextSecurePreferences.getSignedPreKeyFailureCount(context) + 1);
   }
 }

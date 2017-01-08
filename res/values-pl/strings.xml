@@ -161,7 +161,6 @@
     <item quantity="few">Wystąpił błąd podczas zapisywania załączników na dysku!</item>
     <item quantity="other">Wystąpił błąd podczas zapisywania załączników na dysku!</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">Plik pomyślnie został zapisany.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nie udało zapisać się pliku!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Zapisywanie załącznika</item>

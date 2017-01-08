@@ -167,7 +167,10 @@
         <item quantity="one">Error while saving attachment to storage!</item>
         <item quantity="other">Error while saving attachments to storage!</item>
     </plurals>
-    <string name="ConversationFragment_file_saved_successfully">File saved successfully.</string>
+    <plurals name="ConversationFragment_files_saved_successfully">
+        <item quantity="one">File saved successfully.</item>
+        <item quantity="other">Files saved successfully.</item>
+    </plurals>
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Unable to write to storage!</string>
     <plurals name="ConversationFragment_saving_n_attachments">
         <item quantity="one">Saving attachment</item>

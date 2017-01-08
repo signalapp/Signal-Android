@@ -35,6 +35,7 @@ import org.whispersystems.libsignal.state.PreKeyStore;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.libsignal.state.SignedPreKeyStore;
 import org.whispersystems.libsignal.util.Medium;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -46,7 +47,9 @@ import java.util.List;
 
 public class PreKeyUtil {
 
-  public static final int BATCH_SIZE = 100;
+  private static final String TAG = PreKeyUtil.class.getName();
+
+  private static final int BATCH_SIZE = 100;
 
   public static List<PreKeyRecord> generatePreKeys(Context context) {
     PreKeyStore        preKeyStore    = new TextSecurePreKeyStore(context);
@@ -66,7 +69,7 @@ public class PreKeyUtil {
     return records;
   }
 
-  public static SignedPreKeyRecord generateSignedPreKey(Context context, IdentityKeyPair identityKeyPair)
+  public static SignedPreKeyRecord generateSignedPreKey(Context context, IdentityKeyPair identityKeyPair, boolean active)
   {
     try {
       SignedPreKeyStore  signedPreKeyStore = new TextSecurePreKeyStore(context);
@@ -77,6 +80,10 @@ public class PreKeyUtil {
 
       signedPreKeyStore.storeSignedPreKey(signedPreKeyId, record);
       setNextSignedPreKeyId(context, (signedPreKeyId + 1) % Medium.MAX_VALUE);
+
+      if (active) {
+        setActiveSignedPreKeyId(context, signedPreKeyId);
+      }
 
       return record;
     } catch (InvalidKeyException e) {
@@ -104,7 +111,7 @@ public class PreKeyUtil {
     return record;
   }
 
-  private static void setNextPreKeyId(Context context, int id) {
+  private static synchronized void setNextPreKeyId(Context context, int id) {
     try {
       File             nextFile = new File(getPreKeysDirectory(context), PreKeyIndex.FILE_NAME);
       FileOutputStream fout     = new FileOutputStream(nextFile);
@@ -115,18 +122,36 @@ public class PreKeyUtil {
     }
   }
 
-  private static void setNextSignedPreKeyId(Context context, int id) {
+  private static synchronized void setNextSignedPreKeyId(Context context, int id) {
     try {
-      File             nextFile = new File(getSignedPreKeysDirectory(context), SignedPreKeyIndex.FILE_NAME);
-      FileOutputStream fout     = new FileOutputStream(nextFile);
-      fout.write(JsonUtils.toJson(new SignedPreKeyIndex(id)).getBytes());
-      fout.close();
+      SignedPreKeyIndex index = getSignedPreKeyIndex(context).or(new SignedPreKeyIndex());
+      index.nextSignedPreKeyId = id;
+
+      setSignedPreKeyIndex(context, index);
     } catch (IOException e) {
-      Log.w("PreKeyUtil", e);
+      Log.w(TAG, e);
     }
   }
 
-  private static int getNextPreKeyId(Context context) {
+  public static synchronized void setActiveSignedPreKeyId(Context context, int id) {
+    try {
+      SignedPreKeyIndex index = getSignedPreKeyIndex(context).or(new SignedPreKeyIndex());
+      index.activeSignedPreKeyId = id;
+
+      setSignedPreKeyIndex(context, index);
+    } catch (IOException e) {
+      Log.w(TAG, e);
+    }
+  }
+
+  public static synchronized int getActiveSignedPreKeyId(Context context) {
+    Optional<SignedPreKeyIndex> index = getSignedPreKeyIndex(context);
+
+    if (index.isPresent()) return index.get().activeSignedPreKeyId;
+    else                   return -1;
+  }
+
+  private static synchronized int getNextPreKeyId(Context context) {
     try {
       File nextFile = new File(getPreKeysDirectory(context), PreKeyIndex.FILE_NAME);
 
@@ -144,7 +169,7 @@ public class PreKeyUtil {
     }
   }
 
-  private static int getNextSignedPreKeyId(Context context) {
+  private static synchronized int getNextSignedPreKeyId(Context context) {
     try {
       File nextFile = new File(getSignedPreKeysDirectory(context), SignedPreKeyIndex.FILE_NAME);
 
@@ -160,6 +185,32 @@ public class PreKeyUtil {
       Log.w("PreKeyUtil", e);
       return Util.getSecureRandom().nextInt(Medium.MAX_VALUE);
     }
+  }
+
+  private static synchronized Optional<SignedPreKeyIndex> getSignedPreKeyIndex(Context context) {
+    File indexFile = new File(getSignedPreKeysDirectory(context), SignedPreKeyIndex.FILE_NAME);
+
+    if (!indexFile.exists()) {
+      return Optional.absent();
+    }
+
+    try {
+      InputStreamReader reader = new InputStreamReader(new FileInputStream(indexFile));
+      SignedPreKeyIndex index  = JsonUtils.fromJson(reader, SignedPreKeyIndex.class);
+      reader.close();
+
+      return Optional.of(index);
+    } catch (IOException e) {
+      Log.w(TAG, e);
+      return Optional.absent();
+    }
+  }
+
+  private static synchronized void setSignedPreKeyIndex(Context context, SignedPreKeyIndex index) throws IOException {
+    File             indexFile = new File(getSignedPreKeysDirectory(context), SignedPreKeyIndex.FILE_NAME);
+    FileOutputStream fout     = new FileOutputStream(indexFile);
+    fout.write(JsonUtils.toJson(index).getBytes());
+    fout.close();
   }
 
   private static File getPreKeysDirectory(Context context) {
@@ -198,11 +249,11 @@ public class PreKeyUtil {
     @JsonProperty
     private int nextSignedPreKeyId;
 
+    @JsonProperty
+    private int activeSignedPreKeyId = -1;
+
     public SignedPreKeyIndex() {}
 
-    public SignedPreKeyIndex(int nextSignedPreKeyId) {
-      this.nextSignedPreKeyId = nextSignedPreKeyId;
-    }
   }
 
 

@@ -157,7 +157,10 @@ Vastaanotettu: %4$s</string>
     <item quantity="one">Virhe tallennettaessa liitetiedostoa laitteesi tallennustilaan!</item>
     <item quantity="other">Virhe tallennettaessa liitetiedostoja laitteesi tallennustilaan!</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">Tiedoston tallennus onnistui.</string>
+  <plurals name="ConversationFragment_files_saved_successfully">
+    <item quantity="one">Tiedoston tallennus onnistui.</item>
+    <item quantity="other">Tiedostojen tallennus onnistui.</item>
+  </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Tallennustilaan kirjoitus epäonnistui!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Tallennetaan liitetiedostoa</item>

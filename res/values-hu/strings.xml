@@ -155,7 +155,6 @@
     <item quantity="one">Hiba történt a melléklet tárolóra mentése közben!</item>
     <item quantity="other">Hiba történt a mellékletek tárolóra mentése közben!</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">A fájl sikeresen mentve.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nem lehet írni a tárolóra!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Melléklet mentése</item>

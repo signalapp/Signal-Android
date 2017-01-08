@@ -1,18 +1,16 @@
 package org.thoughtcrime.securesms.notifications;
 
-import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.UiThread;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MessagingDatabase;
 import org.thoughtcrime.securesms.database.MessagingDatabase.ExpirationInfo;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
@@ -24,9 +22,10 @@ import java.util.List;
 
 public class MarkReadReceiver extends MasterSecretBroadcastReceiver {
 
-  private static final String TAG              = MarkReadReceiver.class.getSimpleName();
-  public static final  String CLEAR_ACTION     = "org.thoughtcrime.securesms.notifications.CLEAR";
-  public static final  String THREAD_IDS_EXTRA = "thread_ids";
+  private static final String TAG                   = MarkReadReceiver.class.getSimpleName();
+  public static final  String CLEAR_ACTION          = "org.thoughtcrime.securesms.notifications.CLEAR";
+  public static final  String THREAD_IDS_EXTRA      = "thread_ids";
+  public static final  String NOTIFICATION_ID_EXTRA = "notification_id";
 
   @Override
   protected void onReceive(final Context context, Intent intent, @Nullable final MasterSecret masterSecret)
@@ -37,10 +36,7 @@ public class MarkReadReceiver extends MasterSecretBroadcastReceiver {
     final long[] threadIds = intent.getLongArrayExtra(THREAD_IDS_EXTRA);
 
     if (threadIds != null) {
-      Log.w("TAG", "threadIds length: " + threadIds.length);
-
-      ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
-                                   .cancel(MessageNotifier.NOTIFICATION_ID);
+      NotificationManagerCompat.from(context).cancel(intent.getIntExtra(NOTIFICATION_ID_EXTRA, -1));
 
       new AsyncTask<Void, Void, Void>() {
         @Override

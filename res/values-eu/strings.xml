@@ -152,7 +152,6 @@
     <item quantity="one">Errorea eranskina biltegian gordetzerakoan!</item>
     <item quantity="other">Errorea eranskinak biltegian gordetzerakoan!</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">Fitxategia ondo gorde da.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Ezgai biltegian idazteko!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Eranskina gordetzen</item>

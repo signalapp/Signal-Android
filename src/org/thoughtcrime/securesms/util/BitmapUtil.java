@@ -32,6 +32,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import javax.microedition.khronos.egl.EGL10;
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.egl.EGLContext;
+import javax.microedition.khronos.egl.EGLDisplay;
+
 public class BitmapUtil {
 
   private static final String TAG = BitmapUtil.class.getSimpleName();
@@ -47,10 +52,13 @@ public class BitmapUtil {
     int    quality  = MAX_COMPRESSION_QUALITY;
     int    attempts = 0;
     byte[] bytes;
-    Bitmap scaledBitmap = createScaledBitmap(context,
-                                             model,
-                                             constraints.getImageMaxWidth(context),
-                                             constraints.getImageMaxHeight(context));
+
+    Bitmap scaledBitmap =  Downsampler.AT_MOST.decode(getInputStreamForModel(context, model),
+                                                      Glide.get(context).getBitmapPool(),
+                                                      constraints.getImageMaxWidth(context),
+                                                      constraints.getImageMaxHeight(context),
+                                                      DecodeFormat.PREFER_RGB_565);
+
     try {
       do {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -306,5 +314,35 @@ public class BitmapUtil {
       while (!created.get()) Util.wait(result, 0);
       return result[0];
     }
+  }
+
+  public static int getMaxTextureSize() {
+    final int IMAGE_MAX_BITMAP_DIMENSION = 2048;
+
+    EGL10 egl = (EGL10) EGLContext.getEGL();
+    EGLDisplay display = egl.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
+
+    int[] version = new int[2];
+    egl.eglInitialize(display, version);
+
+    int[] totalConfigurations = new int[1];
+    egl.eglGetConfigs(display, null, 0, totalConfigurations);
+
+    EGLConfig[] configurationsList = new EGLConfig[totalConfigurations[0]];
+    egl.eglGetConfigs(display, configurationsList, totalConfigurations[0], totalConfigurations);
+
+    int[] textureSize = new int[1];
+    int maximumTextureSize = 0;
+
+    for (int i = 0; i < totalConfigurations[0]; i++) {
+      egl.eglGetConfigAttrib(display, configurationsList[i], EGL10.EGL_MAX_PBUFFER_WIDTH, textureSize);
+
+      if (maximumTextureSize < textureSize[0])
+        maximumTextureSize = textureSize[0];
+    }
+
+    egl.eglTerminate(display);
+
+    return Math.max(maximumTextureSize, IMAGE_MAX_BITMAP_DIMENSION);
   }
 }

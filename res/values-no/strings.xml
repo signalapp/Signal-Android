@@ -152,7 +152,6 @@ Om du vil benytte Signal for meldinger og anrop igjen i fremtiden må du registr
     <item quantity="one">Feil ved lagring av vedlegg!</item>
     <item quantity="other">Feil under lagring av vedlegg!</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">Fil lagret ok.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kunne ikke skrive til lagringsenheten!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Lagrer vedlegg</item>

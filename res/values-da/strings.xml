@@ -145,7 +145,6 @@
     <item quantity="one">At gemme denne fil på disk vil tillade alle andre apps at tilgå den.\n\nFortsæt?</item>
     <item quantity="other">At gemme alle %1$d filer på disk vil tillade alle andre apps at tilgå dem.\n\nFortsæt?</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">Fil lagring gennemført.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kunne ikke skrive til lageret!</string>
   <string name="ConversationFragment_collecting_attahments">Samler vedhæftninger...</string>
   <string name="ConversationFragment_pending">Afventer...</string>

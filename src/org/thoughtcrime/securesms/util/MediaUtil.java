@@ -9,6 +9,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
 
+import com.bumptech.glide.Glide;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -23,6 +25,7 @@ import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.concurrent.ExecutionException;
 
 import ws.com.google.android.mms.ContentType;
 
@@ -52,8 +55,18 @@ public class MediaUtil {
   private static Bitmap generateImageThumbnail(Context context, MasterSecret masterSecret, Uri uri)
       throws BitmapDecodingException
   {
-    int maxSize = context.getResources().getDimensionPixelSize(R.dimen.media_bubble_height);
-    return BitmapUtil.createScaledBitmap(context, new DecryptableUri(masterSecret, uri), maxSize, maxSize);
+    try {
+      int maxSize = context.getResources().getDimensionPixelSize(R.dimen.media_bubble_height);
+      return Glide.with(context)
+                  .load(new DecryptableUri(masterSecret, uri))
+                  .asBitmap()
+                  .centerCrop()
+                  .into(maxSize, maxSize)
+                  .get();
+    } catch (InterruptedException | ExecutionException e) {
+      Log.w(TAG, e);
+      throw new BitmapDecodingException(e);
+    }
   }
 
   public static Slide getSlideForAttachment(Context context, Attachment attachment) {

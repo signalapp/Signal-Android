@@ -128,7 +128,6 @@
     <item quantity="other">தேர்ந்தெடுக்கப்பட்ட %1$d செய்தியைகளை நிரந்தரமாக நீக்கீவிடும்.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">சேமிப்பில் சேர்க்கவேண்டுமா?</string>
-  <string name="ConversationFragment_file_saved_successfully">கோப்பு சேமிக்கபட்டது</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">சேமிப்பில் சேர்க இயலவில்லை!</string>
   <string name="ConversationFragment_collecting_attahments">இணைப்பு சேமிக்கபடுகிறது</string>
   <string name="ConversationFragment_pending">நிலுவையில் உள்ளது...</string>

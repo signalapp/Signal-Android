@@ -153,7 +153,10 @@
     <item quantity="one">Fehler beim Speichern des Anhangs im Gerätespeicher!</item>
     <item quantity="other">Fehler beim Speichern der Anhänge im Gerätespeicher!</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">Datei erfolgreich gespeichert.</string>
+  <plurals name="ConversationFragment_files_saved_successfully">
+    <item quantity="one">Datei erfolgreich gespeichert.</item>
+    <item quantity="other">Dateien erfolgreich gespeichert.</item>
+  </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kein Schreibzugriff auf Gerätespeicher!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Anhang speichern</item>

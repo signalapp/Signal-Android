@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.TextSecureExpiredException;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -12,6 +14,7 @@ import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
@@ -48,6 +51,19 @@ public abstract class PushSendJob extends SendJob {
     return builder.create();
   }
 
+  @Override
+  protected final void onSend(MasterSecret masterSecret) throws Exception {
+    if (TextSecurePreferences.getSignedPreKeyFailureCount(context) > 5) {
+      ApplicationContext.getInstance(context)
+                        .getJobManager()
+                        .add(new RotateSignedPreKeyJob(context));
+
+      throw new TextSecureExpiredException("Too many signed prekey rotation failures");
+    }
+
+    onPushSend(masterSecret);
+  }
+
   protected SignalServiceAddress getPushAddress(String number) throws InvalidNumberException {
     String e164number = Util.canonicalizeNumber(context, number);
     String relay      = TextSecureDirectory.getInstance(context).getRelay(e164number);
@@ -63,7 +79,7 @@ public abstract class PushSendJob extends SendJob {
           ContentType.isVideoType(attachment.getContentType()))
       {
         try {
-          if (attachment.getDataUri() == null) throw new IOException("Assertion failed, outgoing attachment has no data!");
+          if (attachment.getDataUri() == null || attachment.getSize() == 0) throw new IOException("Assertion failed, outgoing attachment has no data!");
           InputStream is = PartAuthority.getAttachmentStream(context, masterSecret, attachment.getDataUri());
           attachments.add(SignalServiceAttachment.newStreamBuilder()
                                                  .withStream(is)
@@ -93,4 +109,6 @@ public abstract class PushSendJob extends SendJob {
       MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
     }
   }
+
+  protected abstract void onPushSend(MasterSecret masterSecret) throws Exception;
 }

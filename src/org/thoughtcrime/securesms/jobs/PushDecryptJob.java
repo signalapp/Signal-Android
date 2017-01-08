@@ -395,8 +395,7 @@ public class PushDecryptJob extends ContextJob {
     long threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
     long messageId = database.insertMessageOutbox(masterSecret, expirationUpdateMessage, threadId, false);
 
-    database.markAsSent(messageId);
-    database.markAsPush(messageId);
+    database.markAsSent(messageId, true);
 
     DatabaseFactory.getRecipientPreferenceDatabase(context).setExpireMessages(recipients, message.getMessage().getExpiresInSeconds());
 
@@ -429,8 +428,7 @@ public class PushDecryptJob extends ContextJob {
     long threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
     long messageId = database.insertMessageOutbox(masterSecret, mediaMessage, threadId, false);
 
-    database.markAsSent(messageId);
-    database.markAsPush(messageId);
+    database.markAsSent(messageId, true);
 
     for (DatabaseAttachment attachment : DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(messageId)) {
       ApplicationContext.getInstance(context)
@@ -506,9 +504,7 @@ public class PushDecryptJob extends ContextJob {
     long threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
     long messageId = database.insertMessageOutbox(masterSecret, threadId, outgoingTextMessage, false, message.getTimestamp());
 
-    database.markAsSent(messageId);
-    database.markAsPush(messageId);
-    database.markAsSecure(messageId);
+    database.markAsSent(messageId, true);
 
     if (smsMessageId.isPresent()) {
       database.deleteMessage(smsMessageId.get());

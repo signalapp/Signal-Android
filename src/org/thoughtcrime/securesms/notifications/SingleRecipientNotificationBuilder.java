@@ -136,10 +136,19 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
                                       context.getString(R.string.MessageNotifier_reply),
                                       quickReplyIntent);
 
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        replyAction = new Action.Builder(R.drawable.ic_reply_white_36dp,
+                                         context.getString(R.string.MessageNotifier_reply),
+                                         wearableReplyIntent)
+            .addRemoteInput(new RemoteInput.Builder(MessageNotifier.EXTRA_REMOTE_REPLY)
+                                .setLabel(context.getString(R.string.MessageNotifier_reply)).build())
+            .build();
+      }
+
       Action wearableReplyAction = new Action.Builder(R.drawable.ic_reply,
                                                       context.getString(R.string.MessageNotifier_reply),
                                                       wearableReplyIntent)
-          .addRemoteInput(new RemoteInput.Builder(MessageNotifier.EXTRA_VOICE_REPLY)
+          .addRemoteInput(new RemoteInput.Builder(MessageNotifier.EXTRA_REMOTE_REPLY)
                               .setLabel(context.getString(R.string.MessageNotifier_reply)).build())
           .build();
 
