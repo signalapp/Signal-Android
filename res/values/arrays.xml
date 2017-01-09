@@ -272,7 +272,7 @@
         <item>10000KB (10MB)</item>
     </string-array>
 
-    <integer-array name="pref_mms_size_values">
+    <string-array name="pref_mms_size_values">
         <item>96</item>
         <item>192</item>
         <item>280</item>
@@ -280,5 +280,5 @@
         <item>992</item>
         <item>1984</item>
         <item>9992</item>
-    </integer-array>
+    </string-array>
 </resources>
