@@ -263,22 +263,20 @@
 
 
     <string-array name="pref_mms_size_entries">
-        <item>100KB</item>
-        <item>200KB</item>
         <item>300KB</item>
         <item>500KB</item>
         <item>1000KB (1MB)</item>
         <item>2000KB (2MB)</item>
+        <item>50000KB (5MB)</item>
         <item>10000KB (10MB)</item>
     </string-array>
 
     <string-array name="pref_mms_size_values">
-        <item>96</item>
-        <item>192</item>
         <item>280</item>
-        <item>496</item>
-        <item>992</item>
-        <item>1984</item>
-        <item>9992</item>
+        <item>480</item>
+        <item>1008</item>
+        <item>2032</item>
+        <item>5104</item>
+        <item>10224</item>
     </string-array>
 </resources>
