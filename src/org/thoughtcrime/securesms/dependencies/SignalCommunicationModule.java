@@ -86,6 +86,7 @@ public class SignalCommunicationModule {
                                               TextSecurePreferences.getPushServerPassword(context),
                                               new SignalProtocolStoreImpl(context),
                                               BuildConfig.USER_AGENT,
+                                              Optional.fromNullable(MessageRetrievalService.getPipe()),
                                               Optional.<SignalServiceMessageSender.EventListener>of(new SecurityEventListener(context)));
       }
     };
