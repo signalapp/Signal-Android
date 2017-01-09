@@ -29,19 +29,11 @@
                         android:title="@string/preferences__support_wifi_calling"
                         android:summary="@string/preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi"/>
 
-    <!--<ListPreference
-        android:key="pref_led_color"
-        android:defaultValue="blue"
-        android:title="@string/preferences__led_color"
-        android:dependency="pref_key_enable_notifications"
-        android:entries="@array/pref_led_color_entries"
-        android:entryValues="@array/pref_led_color_values" />-->
     <ListPreference
         android:key="pref_mms_size"
-        android:defaultValue="300"
+        android:defaultValue="280"
         android:title="@string/preferences__mms_size"
         android:summary="@string/preferences__mms_size_summary"
-        android:dependency="pref_set_default"
         android:entries="@array/pref_mms_size_entries"
         android:entryValues="@array/pref_mms_size_values" />
 

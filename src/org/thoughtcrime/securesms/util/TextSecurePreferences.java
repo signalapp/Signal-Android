@@ -544,7 +544,7 @@ public class TextSecurePreferences {
   }
 
   public static int getMMSMaxSize(Context context) {
-    return getIntegerPreference(context, MMS_MAX_SIZE, 280);
+    return Integer.parseInt(getStringPreference(context, MMS_MAX_SIZE, "280"));
   }
 
   public static void setBooleanPreference(Context context, String key, boolean value) {
