@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <shortcut
+        android:icon="@drawable/ic_group_grey600_24dp"
+        android:enabled="true"
+        android:shortcutId="static-shortcut-GroupCreate"
+        android:shortcutShortLabel="@string/GroupCreateActivity_actionbar_title"
+        android:shortcutLongLabel="@string/GroupCreateActivity_actionbar_title"
+        tools:targetApi="n_mr1">
+
+        <intent
+            android:targetPackage="org.thoughtcrime.securesms"
+            android:action="android.intent.action.VIEW"
+            android:targetClass="org.thoughtcrime.securesms.GroupCreateActivity" />
+
+        <categories android:name="android.shortcut.conversation" />
+
+    </shortcut>
+
+    <shortcut
+        android:icon="@drawable/ic_forum_grey_32dp"
+        android:enabled="true"
+        android:shortcutId="static-shortcut-ChatCreate"
+        android:shortcutShortLabel="@string/conversation_list_fragment__fab_content_description"
+        android:shortcutLongLabel="@string/conversation_list_fragment__fab_content_description"
+        tools:targetApi="n_mr1">
+
+        <intent
+            android:targetPackage="org.thoughtcrime.securesms"
+            android:action="android.intent.action.VIEW"
+            android:targetClass="org.thoughtcrime.securesms.NewConversationActivity" />
+
+        <categories android:name="android.shortcut.conversation" />
+
+    </shortcut>
+
+</shortcuts>
