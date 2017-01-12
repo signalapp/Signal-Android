@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewCompat;
+import android.text.format.DateUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -292,7 +293,7 @@ public class InputPanel extends LinearLayout
 
     public void display() {
       this.startTime.set(System.currentTimeMillis());
-      this.recordTimeView.setText("00:00");
+      this.recordTimeView.setText(DateUtils.formatElapsedTime(0));
       ViewUtil.fadeIn(this.recordTimeView, FADE_TIME);
       handler.postDelayed(this, TimeUnit.SECONDS.toMillis(1));
     }
@@ -309,10 +310,7 @@ public class InputPanel extends LinearLayout
       long localStartTime = startTime.get();
       if (localStartTime > 0) {
         long elapsedTime = System.currentTimeMillis() - localStartTime;
-        recordTimeView.setText(String.format("%02d:%02d",
-                                             TimeUnit.MILLISECONDS.toMinutes(elapsedTime),
-                                             TimeUnit.MILLISECONDS.toSeconds(elapsedTime) -
-                                             TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(elapsedTime))));
+        recordTimeView.setText(DateUtils.formatElapsedTime(elapsedTime / 1000L));
         handler.postDelayed(this, TimeUnit.SECONDS.toMillis(1));
       }
     }
