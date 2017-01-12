@@ -311,7 +311,7 @@ public class InputPanel extends LinearLayout
       long localStartTime = startTime.get();
       if (localStartTime > 0) {
         long elapsedTime = System.currentTimeMillis() - localStartTime;
-        recordTimeView.setText(DateUtils.formatElapsedTime(TimeUnit.MILLISECONDS.toSeconds(elapsedTime));
+        recordTimeView.setText(DateUtils.formatElapsedTime(TimeUnit.MILLISECONDS.toSeconds(elapsedTime)));
         handler.postDelayed(this, TimeUnit.SECONDS.toMillis(1));
       }
     }
