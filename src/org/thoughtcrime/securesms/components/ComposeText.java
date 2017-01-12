@@ -2,8 +2,15 @@ package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
+import android.support.v13.view.inputmethod.EditorInfoCompat;
+import android.support.v13.view.inputmethod.InputConnectionCompat;
+import android.support.v13.view.inputmethod.InputContentInfoCompat;
+import android.support.v4.os.BuildCompat;
 import android.text.InputType;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -12,6 +19,7 @@ import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
 import android.text.style.RelativeSizeSpan;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 
@@ -24,6 +32,8 @@ public class ComposeText extends EmojiEditText {
 
   private SpannableString hint;
   private SpannableString subHint;
+
+  @Nullable private InputPanel.MediaListener mediaListener;
 
   public ComposeText(Context context) {
     super(context);
@@ -114,11 +124,57 @@ public class ComposeText extends EmojiEditText {
   }
 
   @Override
-  public InputConnection onCreateInputConnection(EditorInfo outAttrs) {
-    InputConnection conn = super.onCreateInputConnection(outAttrs);
+  public InputConnection onCreateInputConnection(EditorInfo editorInfo) {
+    InputConnection inputConnection = super.onCreateInputConnection(editorInfo);
+
     if(TextSecurePreferences.isEnterSendsEnabled(getContext())) {
-      outAttrs.imeOptions &= ~EditorInfo.IME_FLAG_NO_ENTER_ACTION;
+      editorInfo.imeOptions &= ~EditorInfo.IME_FLAG_NO_ENTER_ACTION;
     }
-    return conn;
+
+    if (Build.VERSION.SDK_INT <= 13) return inputConnection;
+    if (mediaListener == null)       return inputConnection;
+    if (inputConnection == null)     return null;
+
+    EditorInfoCompat.setContentMimeTypes(editorInfo, new String[] {"image/jpeg", "image/png", "image/gif"});
+    return InputConnectionCompat.createWrapper(inputConnection, editorInfo, new CommitContentListener(mediaListener));
   }
+
+  public void setMediaListener(@Nullable InputPanel.MediaListener mediaListener) {
+    this.mediaListener = mediaListener;
+  }
+
+
+  @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB_MR2)
+  private static class CommitContentListener implements InputConnectionCompat.OnCommitContentListener {
+
+    private static final String TAG = CommitContentListener.class.getName();
+
+    private final InputPanel.MediaListener mediaListener;
+
+    private CommitContentListener(@NonNull InputPanel.MediaListener mediaListener) {
+      this.mediaListener = mediaListener;
+    }
+
+    @Override
+    public boolean onCommitContent(InputContentInfoCompat inputContentInfo, int flags, Bundle opts) {
+      if (BuildCompat.isAtLeastNMR1() && (flags & InputConnectionCompat.INPUT_CONTENT_GRANT_READ_URI_PERMISSION) != 0) {
+        try {
+          inputContentInfo.requestPermission();
+        } catch (Exception e) {
+          Log.w(TAG, e);
+          return false;
+        }
+      }
+
+      if (inputContentInfo.getDescription().getMimeTypeCount() > 0) {
+        mediaListener.onMediaSelected(inputContentInfo.getContentUri(),
+                                      inputContentInfo.getDescription().getMimeType(0));
+
+        return true;
+      }
+
+      return false;
+    }
+  }
+
 }

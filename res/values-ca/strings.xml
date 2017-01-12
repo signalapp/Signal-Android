@@ -149,7 +149,6 @@
     <item quantity="one">Error al desar l\'arxiu adjunt a l\'emmagatzematge!</item>
     <item quantity="other">Error al desar els arxius adjunts a l\'emmagatzematge!</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">Arxiu desat correctament.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">No s\'ha pogut escriure a emmagatzematge!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Desant arxiu adjunt</item>

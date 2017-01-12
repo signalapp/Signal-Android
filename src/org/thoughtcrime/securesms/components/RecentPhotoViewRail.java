@@ -22,6 +22,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.Key;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.signature.MediaStoreSignature;
 
 import org.thoughtcrime.securesms.R;
@@ -77,6 +78,8 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
 
   private static class RecentPhotoAdapter extends CursorRecyclerViewAdapter<RecentPhotoAdapter.RecentPhotoViewHolder> {
 
+    private static final String TAG = RecentPhotoAdapter.class.getName();
+
     @NonNull  private final Uri baseUri;
     @Nullable private OnItemClickedListener clickedListener;
 
@@ -112,7 +115,7 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
            .fromMediaStore()
            .load(uri)
            .signature(signature)
-           .centerCrop()
+           .diskCacheStrategy(DiskCacheStrategy.NONE)
            .into(viewHolder.imageView);
 
       viewHolder.imageView.setOnClickListener(new OnClickListener() {

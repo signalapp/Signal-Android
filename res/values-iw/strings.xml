@@ -153,7 +153,6 @@
     <item quantity="one">שגיאה בעת שמירת הצרופה לאחסון!</item>
     <item quantity="other">שגיאה בעת שמירת הצרופות לאחסון!</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">הקובץ נשמר בהצלחה.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">לא ניתן לכתוב לאחסון!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">שמירת צרופה</item>

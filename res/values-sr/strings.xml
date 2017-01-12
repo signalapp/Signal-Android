@@ -69,6 +69,7 @@
   <string name="CallScreen_Incoming_call">Долазни позив</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Ваш безбедносни број са %1$s је промењен. Ово може да значи или да неко покушава да пресретне вашу комуникацију или да је корисник %2$s једноставно поново инсталирао Сигнал.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Можда желите да потврдите ваш безбедносни број за овај контакт.</string>
   <string name="ConfirmIdentityDialog_accept">Прихвати</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Порука за %s</string>
@@ -161,7 +162,11 @@
     <item quantity="few">Грешка уписа прилога у складиште!</item>
     <item quantity="other">Грешка уписа прилога у складиште!</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">Фајл успешно сачуван.</string>
+  <plurals name="ConversationFragment_files_saved_successfully">
+    <item quantity="one">Фајл успешно сачуван.</item>
+    <item quantity="few">Фајлови успешно сачувани.</item>
+    <item quantity="other">Фајлови успешно сачувани.</item>
+  </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Не могу да упишем у складиште!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Уписивање прилога</item>
@@ -490,6 +495,7 @@
 порука размене кључа!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Примљена је порука размене кључа за неисправно издање протокола.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Примљена је порука са новим безбедносним бројем. Тапните за обраду и приказ.</string>
   <string name="SmsMessageRecord_secure_session_reset">Ресетовали сте безбедну сесију.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s ресетова безбедну сесију.</string>
   <string name="SmsMessageRecord_duplicate_message">Порука дупликат.</string>
@@ -507,6 +513,7 @@
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Ваш контакт има старије издање Сигнала. Замолите их да ажурирају пре потврде ваших безбедносних бројева.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Ваш контакт има новије издање Сигнала са некомпатибилним форматом  бар-кôда. Ажурирајте Сигнал да бисте могли да упоређујете.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Очитани бар-кôд није исправно форматиран кôд безбедносног броја. Покушајте поново.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Подели безбедносни број преко...</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Наш Сигнал безбедносни број:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Изгледа да немате ниједну апликацију преко које бисте могли да делите.</string>
@@ -630,6 +637,7 @@
   <string name="conversation_item_received__contact_photo_description">Фотографија контакта</string>
   <string name="conversation_item_received__downloading">Преузимам</string>
   <!--audio_view-->
+  <string name="audio_view__play_accessibility_description">Пусти</string>
   <string name="audio_view__pause_accessibility_description">Паузирај</string>
   <string name="audio_view__download_accessibility_description">Преузми</string>
   <!--conversation_fragment_cab-->
@@ -814,6 +822,7 @@
   <string name="recipients_panel__to"><small>Унесите име или број</small></string>
   <string name="recipients_panel__add_members">Додај чланове</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ако желите да потврдите безбедност вашег с-краја-на-крај шифровања са %s, упоредите број изнад са бројем на њиховом уређају. Alternatively, можете да очитате кôд на њиховом телефону, или их замолити да очитају ваш кôд. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Сазнајте више о потврђивању безбедносног броја</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Тапните за скенирање</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Подели безбедносни број</string>

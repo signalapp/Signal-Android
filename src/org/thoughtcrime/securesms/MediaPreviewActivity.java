@@ -61,14 +61,15 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
   private MasterSecret masterSecret;
 
-  private ZoomingImageView  image;
-  private VideoPlayer       video;
-  private Uri               mediaUri;
-  private String            mediaType;
-  private Recipient         recipient;
-  private long              threadId;
-  private long              date;
-  private long              size;
+  private ZoomingImageView image;
+  private VideoPlayer      video;
+
+  private Uri       mediaUri;
+  private String    mediaType;
+  private Recipient recipient;
+  private long      threadId;
+  private long      date;
+  private long      size;
 
   @Override
   protected void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
@@ -137,8 +138,8 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   }
 
   private void initializeViews() {
-    image = (ZoomingImageView)findViewById(R.id.image);
-    video = (VideoPlayer)findViewById(R.id.video_player);
+    image = (ZoomingImageView) findViewById(R.id.image);
+    video = (VideoPlayer) findViewById(R.id.video_player);
   }
 
   private void initializeResources() {
@@ -171,7 +172,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
       if (mediaType != null && mediaType.startsWith("image/")) {
         image.setVisibility(View.VISIBLE);
         video.setVisibility(View.GONE);
-        image.setImageUri(masterSecret, mediaUri);
+        image.setImageUri(masterSecret, mediaUri, mediaType);
       } else if (mediaType != null && mediaType.startsWith("video/")) {
         image.setVisibility(View.GONE);
         video.setVisibility(View.VISIBLE);
@@ -185,7 +186,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   }
 
   private void cleanupMedia() {
-    image.setImageDrawable(null);
+    image.cleanup();
     video.cleanup();
   }
 

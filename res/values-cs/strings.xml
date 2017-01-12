@@ -4,7 +4,7 @@
   <string name="yes">Ano</string>
   <string name="no">Ne</string>
   <string name="delete">Smazat</string>
-  <string name="please_wait">Prosím čekejte...</string>
+  <string name="please_wait">Prosím čekejte…</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nová zpráva</string>
   <!--ApplicationPreferencesActivity-->
@@ -40,7 +40,7 @@
   <string name="ApplicationPreferencesActivity_Off">Vyp.</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Heslo %1$s, Zabezpečení obrazovky %2$s</string>
-  <string name="ApplicationPreferencesActivity_appearance_summary">Téma %1$s, Jazyk %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Motiv %1$s, jazyk %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">1 minuta</item>
@@ -82,7 +82,7 @@
   <string name="ConversationItem_error_received_stale_key_exchange_message">Chyba při předávání klíčů.</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Byl vám doručen klíč, klikněte pro jeho zpracování.</string>
   <string name="ConversationItem_group_action_left">%1$s opustil(a) skupinu.</string>
-  <string name="ConversationItem_click_for_details">Klikněte pro detail</string>
+  <string name="ConversationItem_click_for_details">Klikněte pro podrobnosti</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Klikněte pro nešifrovaný záložní způsob</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Použít záložní způsob přes nešifrovanou SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Použít záložní způsob přes nešifrovanou MMS?</string>
@@ -161,7 +161,11 @@
     <item quantity="few">Chyba při ukládání příloh!</item>
     <item quantity="other">Chyba při ukládání příloh!</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">Soubor byl úspěšně uložen</string>
+  <plurals name="ConversationFragment_files_saved_successfully">
+    <item quantity="one">Soubor byl úspěšně uložen.</item>
+    <item quantity="few">Soubory byly úspěšně uloženy.</item>
+    <item quantity="other">Soubory byly úspěšně uloženy.</item>
+  </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nelze uložit data do paměti.</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Ukládám přílohu</item>
@@ -228,7 +232,7 @@
   <string name="DeviceListActivity_network_failed">Síť selhala</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Nepojmenované zřízení</string>
-  <string name="DeviceListItem_linked_s">Provázáno %s</string>
+  <string name="DeviceListItem_linked_s">Propojeno %s</string>
   <string name="DeviceListItem_last_active_s">Naposled aktivní %s</string>
   <string name="DeviceListItem_today">Dnes</string>
   <!--ShareActivity-->
@@ -272,7 +276,7 @@
   <string name="GroupCreateActivity_creating_group">Vytvářím %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Aktualizuji %1$s...</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nemohu přidat %1$s protože není uživatelem Signal.</string>
-  <string name="GroupCreateActivity_loading_group_details">Načítám detaily skupiny...</string>
+  <string name="GroupCreateActivity_loading_group_details">Načítám podrobnosti skupiny…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Již jste ve skupině.</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Já</string>
@@ -377,7 +381,7 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nenalezeno žádné zařízení.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Chyba sítě.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Neplatný QR kód.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Omlouváme se, ale máte provázáno příliš mnoho zařízení, pokuste se některé odpojit...</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Promiňte, ale máte už příliš mnoho propojených zařízení, zkuste některá odstranit…</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Omlouváme se, ale toto není platný QR kód pro provázání zařízení</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Provázat zařízení Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Zdá se se snažíte provázat zařízení Signal použitím jiné skennovací aplikace. Pro vaši ochranu, prosím oskenujete kód ještě jednou z aplikace Signal.</string>
@@ -635,7 +639,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Provázat zařízení</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">Žádná zařízení nejsou provázána...</string>
+  <string name="device_list_fragment__no_devices_linked">Žádná zařízení nejsou propojena…</string>
   <string name="device_list_fragment__link_new_device">Provázat nové zařízení</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">pokračovat</string>
@@ -832,7 +836,7 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="AndroidManifest__media_overview">Všechny obrázky</string>
   <string name="AndroidManifest__media_overview_named">Všechny obrázky s %1$s</string>
   <string name="AndroidManifest__message_details">Podrobnosti zprávy</string>
-  <string name="AndroidManifest__linked_devices">Provázaná zařízení</string>
+  <string name="AndroidManifest__linked_devices">Propojená zařízení</string>
   <string name="AndroidManifest__invite_friends">Pozvat přátele</string>
   <string name="AndroidManifest_archived_conversations">Archivované konverzace</string>
   <!--arrays.xml-->
@@ -941,11 +945,11 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="preferences__conversation_length_limit">Limit délky konverzací</string>
   <string name="preferences__trim_all_conversations_now">Zkrátit všechny konverzace teď</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Prohledat všechny konverzace a uplatnit limit délky.</string>
-  <string name="preferences__linked_devices">Provázaná zařízení</string>
+  <string name="preferences__linked_devices">Propojená zařízení</string>
   <string name="preferences__light_theme">Světlý</string>
   <string name="preferences__dark_theme">Tmavý</string>
   <string name="preferences__appearance">Chování</string>
-  <string name="preferences__theme">Vzhled</string>
+  <string name="preferences__theme">Motiv</string>
   <string name="preferences__default">Výchozí</string>
   <string name="preferences__language">Jazyk</string>
   <string name="preferences__signal_messages_and_calls">Signal zprávy a volání</string>

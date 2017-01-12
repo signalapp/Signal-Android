@@ -72,6 +72,7 @@ public class TextSecurePreferences {
   private static final String PROMPTED_SHARE_PREF              = "pref_prompted_share";
   private static final String SIGNALING_KEY_PREF               = "pref_signaling_key";
   private static final String DIRECTORY_FRESH_TIME_PREF        = "pref_directory_refresh_time";
+  private static final String SIGNED_PREKEY_ROTATION_TIME_PREF = "pref_signed_pre_key_rotation_time";
   private static final String IN_THREAD_NOTIFICATION_PREF      = "pref_key_inthread_notifications";
   private static final String BLOCKING_IDENTITY_CHANGES_PREF   = "pref_blocking_identity_changes";
 
@@ -84,6 +85,7 @@ public class TextSecurePreferences {
   private static final String WEBSOCKET_REGISTERED_PREF        = "pref_websocket_registered";
   private static final String RATING_LATER_PREF                = "pref_rating_later";
   private static final String RATING_ENABLED_PREF              = "pref_rating_enabled";
+  private static final String SIGNED_PREKEY_FAILURE_COUNT_PREF = "pref_signed_prekey_failure_count";
 
   public  static final String REPEAT_ALERTS_PREF               = "pref_repeat_alerts";
   public  static final String NOTIFICATION_PRIVACY_PREF        = "pref_notification_privacy";
@@ -120,6 +122,14 @@ public class TextSecurePreferences {
 
   public static void setBlockingIdentityUpdates(Context context, boolean value) {
     setBooleanPreference(context, BLOCKING_IDENTITY_CHANGES_PREF, value);
+  }
+
+  public static void setSignedPreKeyFailureCount(Context context, int value) {
+    setIntegerPrefrence(context, SIGNED_PREKEY_FAILURE_COUNT_PREF, value);
+  }
+
+  public static int getSignedPreKeyFailureCount(Context context) {
+    return getIntegerPreference(context, SIGNED_PREKEY_FAILURE_COUNT_PREF, 0);
   }
 
   public static NotificationPrivacyPreference getNotificationPrivacy(Context context) {
@@ -212,6 +222,14 @@ public class TextSecurePreferences {
 
   public static boolean isInThreadNotifications(Context context) {
     return getBooleanPreference(context, IN_THREAD_NOTIFICATION_PREF, true);
+  }
+
+  public static long getSignedPreKeyRotationTime(Context context) {
+    return getLongPreference(context, SIGNED_PREKEY_ROTATION_TIME_PREF, 0L);
+  }
+
+  public static void setSignedPreKeyRotationTime(Context context, long value) {
+    setLongPreference(context, SIGNED_PREKEY_ROTATION_TIME_PREF, value);
   }
 
   public static long getDirectoryRefreshTime(Context context) {

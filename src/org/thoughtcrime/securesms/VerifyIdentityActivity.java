@@ -215,7 +215,6 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
 
     Intent intent = new Intent();
     intent.setAction(Intent.ACTION_SEND);
-    intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.VerifyIdentityActivity_our_signal_safety_number));
     intent.putExtra(Intent.EXTRA_TEXT, shareString);
     intent.setType("text/plain");
 

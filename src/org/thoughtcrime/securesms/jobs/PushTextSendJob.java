@@ -46,14 +46,10 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
   }
 
   @Override
-  public void onAdded() {
-    SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
-    smsDatabase.markAsSending(messageId);
-    smsDatabase.markAsPush(messageId);
-  }
+  public void onAdded() {}
 
   @Override
-  public void onSend(MasterSecret masterSecret) throws NoSuchMessageException, RetryLaterException {
+  public void onPushSend(MasterSecret masterSecret) throws NoSuchMessageException, RetryLaterException {
     ExpiringMessageManager expirationManager = ApplicationContext.getInstance(context).getExpiringMessageManager();
     EncryptingSmsDatabase  database          = DatabaseFactory.getEncryptingSmsDatabase(context);
     SmsMessageRecord       record            = database.getMessage(masterSecret, messageId);
@@ -62,9 +58,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
       Log.w(TAG, "Sending message: " + messageId);
 
       deliver(record);
-      database.markAsPush(messageId);
-      database.markAsSecure(messageId);
-      database.markAsSent(messageId);
+      database.markAsSent(messageId, true);
 
       if (record.getExpiresIn() > 0) {
         database.markExpireStarted(messageId);

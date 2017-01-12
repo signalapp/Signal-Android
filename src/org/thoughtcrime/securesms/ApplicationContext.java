@@ -21,6 +21,7 @@ import android.content.Context;
 import android.os.StrictMode;
 import android.os.StrictMode.ThreadPolicy;
 import android.os.StrictMode.VmPolicy;
+import android.support.multidex.MultiDexApplication;
 
 import org.thoughtcrime.securesms.crypto.PRNGFixes;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
@@ -34,7 +35,9 @@ import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirementProvi
 import org.thoughtcrime.securesms.jobs.requirements.MediaNetworkRequirementProvider;
 import org.thoughtcrime.securesms.jobs.requirements.ServiceRequirementProvider;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
+import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
+import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.jobqueue.dependencies.DependencyInjector;
@@ -52,7 +55,7 @@ import dagger.ObjectGraph;
  *
  * @author Moxie Marlinspike
  */
-public class ApplicationContext extends Application implements DependencyInjector {
+public class ApplicationContext extends MultiDexApplication implements DependencyInjector {
 
   private ExpiringMessageManager expiringMessageManager;
   private JobManager             jobManager;
@@ -75,6 +78,7 @@ public class ApplicationContext extends Application implements DependencyInjecto
     initializeExpiringMessageManager();
     initializeGcmCheck();
     initializeSignedPreKeyCheck();
+    initializePeriodicTasks();
   }
 
   @Override
@@ -148,6 +152,11 @@ public class ApplicationContext extends Application implements DependencyInjecto
 
   private void initializeExpiringMessageManager() {
     this.expiringMessageManager = new ExpiringMessageManager(this);
+  }
+
+  private void initializePeriodicTasks() {
+    RotateSignedPreKeyListener.schedule(this);
+    DirectoryRefreshListener.schedule(this);
   }
 
 }

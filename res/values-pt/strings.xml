@@ -155,7 +155,6 @@ que %2$s reinstalou o Signal.</string>
     <item quantity="one">Erro ao guardar anexo para o armazenamento local!</item>
     <item quantity="other">Erro ao guardar anexos para o armazenamento local!</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">Ficheiro guardado com sucesso.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Não é possível escrever para o armazenamento local!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">A guardar anexo</item>

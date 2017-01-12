@@ -169,7 +169,12 @@
     <item quantity="few">Napaka pri shranjevanju priponk v shrambo!</item>
     <item quantity="other">Napaka pri shranjevanju priponk v shrambo!</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">Datoteka je bila uspešno shranjena.</string>
+  <plurals name="ConversationFragment_files_saved_successfully">
+    <item quantity="one">Datoteka je bila uspešno shranjena.</item>
+    <item quantity="two">Datoteki sta bili uspešno shranjeni.</item>
+    <item quantity="few">Datoteke so bile uspešno shranjene.</item>
+    <item quantity="other">Datoteke so bile uspešno shranjene.</item>
+  </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Ne morem shranjevati v sistemsko shrambo!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Shranjujem priponko</item>

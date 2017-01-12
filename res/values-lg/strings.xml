@@ -140,7 +140,6 @@ a</string>
     <item quantity="one">Ensobi mu kutereka ebigatiddwako mu terekero</item>
     <item quantity="other">Ensobi mu kutereka ebigatiddwako mu terekero</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">fayilo eterekedwa bulungi.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">tesisobose kuwandiikira  terekero</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">ekigatibwaako kiterekebwa</item>

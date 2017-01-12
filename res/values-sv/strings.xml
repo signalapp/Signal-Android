@@ -153,7 +153,6 @@
     <item quantity="one">Det blev ett fel när bifogad fil skulle sparas till lagring!</item>
     <item quantity="other">Det blev ett fel när de bifogade filerna skulle sparas till lagring!</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">Sparande av fil lyckades.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kan inte skriva till lagring!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Sparar bifogad fil</item>
@@ -342,7 +341,7 @@ som inte finns i säkerhetskopian.</string>
   <string name="MessageRecord_missed_call_from">Missat samtal från %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s finns på Signal, skriv hej!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du satte tiden för försvinnande meddelanden till %1$s.</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s sätt tiden för försvinnande meddelanden till %2$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s satte tiden för försvinnande meddelanden till %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Ditt säkerhetsnummer med %s har ändrats.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Lösenorden matchar inte!</string>
@@ -484,6 +483,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tiden för självförstörande meddelanden satt till %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Ditt säkerhetsnummer med %s har ändrats.</string>
   <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Din kontakt använder en äldre version av Signal. Be dem uppdatera sin mjukvara innan de verifierar din säkerhetskod.  </string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Din kontakt kör en nyare version av Signal med ett inkompatibelt format på QR koden. Vänligen uppdatera för att jämföra.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Den inlästa QR-koden är inte en korrekt formaterad verifikationskod för säkerhetsnummer. Försök att göra om inläsningen.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Dela säkerhetsnummer via...</string>
@@ -545,11 +545,20 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nytt meddelande</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Bild</string>
+  <string name="attachment_type_selector__image_description">Bild</string>
   <string name="attachment_type_selector__audio">Ljud</string>
+  <string name="attachment_type_selector__audio_description">Ljud</string>
   <string name="attachment_type_selector__video">Video</string>
+  <string name="attachment_type_selector__video_description">Video</string>
   <string name="attachment_type_selector__contact">Kontakt</string>
+  <string name="attachment_type_selector__contact_description">Kontakt</string>
   <string name="attachment_type_selector__camera">Kamera</string>
+  <string name="attachment_type_selector__camera_description">Kamera</string>
   <string name="attachment_type_selector__location">Plats</string>
+  <string name="attachment_type_selector__location_description">Plats</string>
+  <string name="attachment_type_selector__gif">GIF</string>
+  <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__drawer_description">Dölj/visa bilagor</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Gammal lösenfras</string>
   <string name="change_passphrase_activity__new_passphrase">Ny lösenfras</string>
@@ -600,6 +609,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="conversation_item_received__contact_photo_description">Kontaktfoto</string>
   <string name="conversation_item_received__downloading">Laddar ner</string>
   <!--audio_view-->
+  <string name="audio_view__play_accessibility_description">Spela</string>
+  <string name="audio_view__pause_accessibility_description">Pausa</string>
+  <string name="audio_view__download_accessibility_description">Ladda ner</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Flervalsläge</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s vald</string>

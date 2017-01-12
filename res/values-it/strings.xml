@@ -153,7 +153,6 @@
     <item quantity="one">Errore nel salvare l\'allegato in memoria!</item>
     <item quantity="other">Errore nel salvare gli allegati in memoria!</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">File salvato correttamente.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Impossibile scrivere sulla memoria!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Salvataggio allegato</item>
@@ -487,6 +486,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">La scomparsa dei messaggi è settata a %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Il tuo numero sicuro con %s è cambiato.</string>
   <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Il tuo contatto sta usando una vecchia versione di Signal. Chiedigli cortesemente di aggiornarla prima di verificare il tuo numero sicuro.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Il tuo contatto sta eseguendo una versione più aggiornata di Signal con un formato di codice QR non compatibile. Per effettuare il confronto aggiorna la tua versione.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Il codice QR letto non è un codice di verifica formalmente valido per un numero sicuro. Si prega di rieseguire la scansione.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Condividi numero sicuro tramite...</string>
@@ -548,11 +548,19 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="SingleRecipientNotificationBuilder_new_message">Nuovo messaggio</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Immagine</string>
+  <string name="attachment_type_selector__image_description">Immagine</string>
   <string name="attachment_type_selector__audio">Audio</string>
+  <string name="attachment_type_selector__audio_description">Audio</string>
   <string name="attachment_type_selector__video">Video</string>
+  <string name="attachment_type_selector__video_description">Video</string>
   <string name="attachment_type_selector__contact">Contatto</string>
+  <string name="attachment_type_selector__contact_description">Contatto</string>
   <string name="attachment_type_selector__camera">Fotocamera</string>
+  <string name="attachment_type_selector__camera_description">Fotocamera</string>
   <string name="attachment_type_selector__location">Posizione</string>
+  <string name="attachment_type_selector__location_description">Posizione</string>
+  <string name="attachment_type_selector__gif">GIF</string>
+  <string name="attachment_type_selector__gif_description">Gif</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Vecchia password</string>
   <string name="change_passphrase_activity__new_passphrase">Nuova password</string>
@@ -602,6 +610,9 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="conversation_item_received__contact_photo_description">Foto del contatto</string>
   <string name="conversation_item_received__downloading">Caricamento in corso</string>
   <!--audio_view-->
+  <string name="audio_view__play_accessibility_description">Play</string>
+  <string name="audio_view__pause_accessibility_description">Pausa</string>
+  <string name="audio_view__download_accessibility_description">Scarica</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Modalità di selezione di gruppo</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s selezionati</string>
