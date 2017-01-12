@@ -3,11 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <shortcut
-        android:icon="@drawable/ic_group_grey600_24dp"
+        android:icon="@drawable/ic_shortcut_new"
         android:enabled="true"
         android:shortcutId="static-shortcut-GroupCreate"
-        android:shortcutShortLabel="@string/GroupCreateActivity_actionbar_title"
-        android:shortcutLongLabel="@string/GroupCreateActivity_actionbar_title"
+        android:shortcutShortLabel="@string/shortcut_new_group"
+        android:shortcutLongLabel="@string/shortcut_new_group"
         tools:targetApi="n_mr1">
 
         <intent
@@ -20,11 +20,11 @@
     </shortcut>
 
     <shortcut
-        android:icon="@drawable/ic_forum_grey_32dp"
+        android:icon="@drawable/ic_shortcut_new"
         android:enabled="true"
         android:shortcutId="static-shortcut-ChatCreate"
-        android:shortcutShortLabel="@string/conversation_list_fragment__fab_content_description"
-        android:shortcutLongLabel="@string/conversation_list_fragment__fab_content_description"
+        android:shortcutShortLabel="@string/shortcut_new_conversation"
+        android:shortcutLongLabel="@string/shortcut_new_conversation"
         tools:targetApi="n_mr1">
 
         <intent
