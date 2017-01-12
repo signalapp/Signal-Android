@@ -6,7 +6,7 @@
     <string name="delete">Delete</string>
     <string name="please_wait">Please wait...</string>
 
-    <string name="google_place_api">AIzaSyBH_XvDTcYWqxAMVgXDFKAHva252CRHyeQ</string>
+    <string name="google_place_api">AIzaSyCT19tIob4EL5iQuKZjxqGu4LkylYlIGio</string>
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_currently_s">Currently: %s</string>
