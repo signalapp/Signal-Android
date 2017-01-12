@@ -7,6 +7,8 @@ import android.os.Build;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewCompat;
+import android.text.format.DateUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -146,7 +148,10 @@ public class InputPanel extends LinearLayout
   public void onRecordMoved(float x, float absoluteX) {
     slideToCancel.moveTo(x);
 
-    if (absoluteX / recordingContainer.getWidth() <= 0.5) {
+    int direction = ViewCompat.getLayoutDirection(this);
+    float position = absoluteX / recordingContainer.getWidth();
+    if (direction == ViewCompat.LAYOUT_DIRECTION_LTR && position <= 0.5 ||
+          direction == ViewCompat.LAYOUT_DIRECTION_RTL && position >= 0.6) {
       this.microphoneRecorderView.cancelAction();
     }
   }
@@ -225,7 +230,7 @@ public class InputPanel extends LinearLayout
 
     public ListenableFuture<Void> hide(float x) {
       final SettableFuture<Void> future = new SettableFuture<>();
-      float offset = -Math.max(0, this.startPositionX - x);
+      float offset = getOffset(x);
 
       AnimationSet animation = new AnimationSet(true);
       animation.addAnimation(new TranslateAnimation(Animation.ABSOLUTE, offset,
@@ -255,7 +260,7 @@ public class InputPanel extends LinearLayout
     }
 
     public void moveTo(float x) {
-      float     offset    = -Math.max(0, this.startPositionX - x);
+      float     offset    = getOffset(x);
       Animation animation = new TranslateAnimation(Animation.ABSOLUTE, offset,
                                                    Animation.ABSOLUTE, offset,
                                                    Animation.RELATIVE_TO_SELF, 0,
@@ -266,6 +271,11 @@ public class InputPanel extends LinearLayout
       animation.setFillBefore(true);
 
       slideToCancelView.startAnimation(animation);
+    }
+
+    private float getOffset(float x) {
+      return ViewCompat.getLayoutDirection(slideToCancelView) == ViewCompat.LAYOUT_DIRECTION_LTR ?
+          -Math.max(0, this.startPositionX - x) : Math.max(0, x - this.startPositionX);
     }
 
   }
@@ -283,7 +293,7 @@ public class InputPanel extends LinearLayout
 
     public void display() {
       this.startTime.set(System.currentTimeMillis());
-      this.recordTimeView.setText("00:00");
+      this.recordTimeView.setText(DateUtils.formatElapsedTime(0));
       ViewUtil.fadeIn(this.recordTimeView, FADE_TIME);
       handler.postDelayed(this, TimeUnit.SECONDS.toMillis(1));
     }
@@ -300,10 +310,7 @@ public class InputPanel extends LinearLayout
       long localStartTime = startTime.get();
       if (localStartTime > 0) {
         long elapsedTime = System.currentTimeMillis() - localStartTime;
-        recordTimeView.setText(String.format("%02d:%02d",
-                                             TimeUnit.MILLISECONDS.toMinutes(elapsedTime),
-                                             TimeUnit.MILLISECONDS.toSeconds(elapsedTime) -
-                                             TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(elapsedTime))));
+        recordTimeView.setText(DateUtils.formatElapsedTime(elapsedTime / 1000L));
         handler.postDelayed(this, TimeUnit.SECONDS.toMillis(1));
       }
     }
