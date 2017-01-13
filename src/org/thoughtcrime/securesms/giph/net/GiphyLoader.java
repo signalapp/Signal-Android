@@ -8,9 +8,6 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
 
 import org.thoughtcrime.securesms.giph.model.GiphyImage;
 import org.thoughtcrime.securesms.giph.model.GiphyResponse;
@@ -21,6 +18,10 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public abstract class GiphyLoader extends AsyncLoader<List<GiphyImage>> {
 
   private static final String TAG = GiphyLoader.class.getName();
@@ -29,12 +30,12 @@ public abstract class GiphyLoader extends AsyncLoader<List<GiphyImage>> {
 
   @Nullable private String searchString;
 
-  private final OkHttpClient client = new OkHttpClient();
+  private final OkHttpClient client;
 
   protected GiphyLoader(@NonNull Context context, @Nullable String searchString) {
     super(context);
     this.searchString = searchString;
-    this.client.setProxySelector(new GiphyProxySelector());
+    this.client       = new OkHttpClient.Builder().proxySelector(new GiphyProxySelector()).build();
   }
 
   @Override

@@ -33,7 +33,6 @@ import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
-import org.whispersystems.signalservice.internal.push.SignalServiceUrl;
 
 import dagger.Module;
 import dagger.Provides;
@@ -61,16 +60,16 @@ import dagger.Provides;
                                      RotateSignedPreKeyJob.class})
 public class SignalCommunicationModule {
 
-  private final Context            context;
-  private final SignalServiceUrl[] urls;
+  private final Context                    context;
+  private final SignalServiceNetworkAccess networkAccess;
 
   public SignalCommunicationModule(Context context, SignalServiceNetworkAccess networkAccess) {
-    this.context = context;
-    this.urls    = networkAccess.getConfiguration(context);
+    this.context       = context;
+    this.networkAccess = networkAccess;
   }
 
   @Provides SignalServiceAccountManager provideSignalAccountManager() {
-    return new SignalServiceAccountManager(urls,
+    return new SignalServiceAccountManager(networkAccess.getConfiguration(context),
                                            TextSecurePreferences.getLocalNumber(context),
                                            TextSecurePreferences.getPushServerPassword(context),
                                            BuildConfig.USER_AGENT);
@@ -81,18 +80,19 @@ public class SignalCommunicationModule {
     return new SignalMessageSenderFactory() {
       @Override
       public SignalServiceMessageSender create() {
-        return new SignalServiceMessageSender(urls,
+        return new SignalServiceMessageSender(networkAccess.getConfiguration(context),
                                               TextSecurePreferences.getLocalNumber(context),
                                               TextSecurePreferences.getPushServerPassword(context),
                                               new SignalProtocolStoreImpl(context),
                                               BuildConfig.USER_AGENT,
+                                              Optional.fromNullable(MessageRetrievalService.getPipe()),
                                               Optional.<SignalServiceMessageSender.EventListener>of(new SecurityEventListener(context)));
       }
     };
   }
 
   @Provides SignalServiceMessageReceiver provideSignalMessageReceiver() {
-    return new SignalServiceMessageReceiver(urls,
+    return new SignalServiceMessageReceiver(networkAccess.getConfiguration(context),
                                             new DynamicCredentialsProvider(context),
                                             BuildConfig.USER_AGENT);
   }

@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -44,6 +45,8 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
   private int          activeActivities = 0;
   private List<Intent> pushPending      = new LinkedList<>();
 
+  public static SignalServiceMessagePipe pipe = null;
+
   @Override
   public void onCreate() {
     super.onCreate();
@@ -73,7 +76,7 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
       waitForConnectionNecessary();
 
       Log.w(TAG, "Making websocket connection....");
-      SignalServiceMessagePipe pipe = receiver.createMessagePipe();
+      pipe = receiver.createMessagePipe();
 
       try {
         while (isConnectionNecessary()) {
@@ -180,5 +183,9 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
     Intent intent = new Intent(activity, MessageRetrievalService.class);
     intent.setAction(MessageRetrievalService.ACTION_ACTIVITY_FINISHED);
     activity.startService(intent);
+  }
+
+  public static @Nullable SignalServiceMessagePipe getPipe() {
+    return pipe;
   }
 }
