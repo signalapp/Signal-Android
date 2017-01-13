@@ -135,7 +135,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Прилог прекорачује ограничење величине за тип поруке коју шаљете.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Камера није доступна</string>
   <string name="ConversationActivity_unable_to_record_audio">Не могу да снимим звук!</string>
-  <string name="ConversationActivity_error_sending_voice_message">Грешка слања гласовне поруке...</string>
+  <string name="ConversationActivity_error_sending_voice_message">Грешка слања гласовне поруке</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Нема апликације за руковање овом везом на вашем уређају.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Детаљи поруке</string>
@@ -186,7 +186,7 @@
   <string name="ConversationFragment_deleting">Брисање</string>
   <string name="ConversationFragment_deleting_messages">Бришем поруке...</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">Тражи...</string>
+  <string name="ConversationListActivity_search">Тражи</string>
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Нема инсталираног прегледача на вашем уређају.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
@@ -213,7 +213,7 @@
     <item quantity="other">%d преписки премештено у пријем</item>
   </plurals>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Порука размене кључева...</string>
+  <string name="ConversationListItem_key_exchange_message">Порука размене кључева</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Архивиране преписке (%d)</string>
   <!--CustomDefaultPreference-->
@@ -226,7 +226,7 @@
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Да уклоним „%s“?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Овај уређај више неће моћи да шаље или прима поруке ако га уклоните.</string>
-  <string name="DeviceListActivity_network_connection_failed">Повезивање на мрежу није успело...</string>
+  <string name="DeviceListActivity_network_connection_failed">Повезивање на мрежу није успело</string>
   <string name="DeviceListActivity_try_again">Покушај поново</string>
   <string name="DeviceListActivity_unlinking_device">Уклањам уређај...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Уклањам уређај</string>
@@ -258,7 +258,7 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Трајни неуспех комуникације Сигнала!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Сигнал није успео да се пријави на Гуглов Плеј сервис. Комуникација преко канала података је онемогућена, покушајте поново да се пријавите преко Поставке &gt; Напредно.</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Грешка при преузимању ГИФ-а у пуној резолуцији...</string>
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Грешка при добављању ГИФ сличице пуне резолуције</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">ГИФ сличице</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Налепнице</string>
@@ -342,8 +342,8 @@
   <string name="MessageDetailsRecipient_new_safety_number">Нови безбедносни број</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Грешка уписа ММС-а!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Грешка повезивања са ММС послужиоцем...</string>
-  <string name="MmsDownloader_error_reading_mms_settings">Грешка читања поставки ММС послужиоца...</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Грешка повезивања са ММС послужиоцем</string>
+  <string name="MmsDownloader_error_reading_mms_settings">Грешка читања поставки ММС послужиоца</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Позив преко Сигнала у току</string>
   <string name="NotificationBarManager_missed_call_from_s">Пропуштен позив од %s</string>
@@ -387,7 +387,7 @@
   <string name="DeviceProvisioningActivity_content_progress_no_device">Није нађен уређај.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Грешка мреже.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Неисправан бар-кôд.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Већ имате превише повезаних уређаја, уклоните неке од њих...</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Већ имате превише повезаних уређаја, уклоните неке од њих</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Нажалост, ово није исправан бар-кôд везе уређаја.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Повезати Сигнал уређај?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Изгледа да покушавате повезати Сигнал уређај користећи спољашњи читач бар-кôда. Због сопствене заштите, очитајте кôд поново помоћу Сигнала.</string>
@@ -418,6 +418,7 @@
   <string name="RecipientPreferenceActivity_unblock">Одблокирај</string>
   <string name="RecipientPreferenceActivity_enabled">Укључено</string>
   <string name="RecipientPreferenceActivity_disabled">Искључено</string>
+  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Доступно ако порука није послата или примљена.</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">Јављам се</string>
   <string name="RedPhone_ending_call">Окончавам позив</string>
@@ -464,7 +465,7 @@
   <string name="RegistrationProgressActivity_verifying_number">Проверавам број</string>
   <string name="RegistrationProgressActivity_edit_s">Уреди %s</string>
   <string name="RegistrationProgressActivity_registration_complete">Пријава је завршена!</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Најпре морате да унесете кôд који сте добили...</string>
+  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Најпре морате да унесете кôд који сте добили</string>
   <string name="RegistrationProgressActivity_connecting">Повезујем се</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Повезујем се за проверу...</string>
   <string name="RegistrationProgressActivity_network_error">Грешка мреже!</string>
@@ -500,7 +501,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%s ресетова безбедну сесију.</string>
   <string name="SmsMessageRecord_duplicate_message">Порука дупликат.</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">Напусти групу...</string>
+  <string name="ThreadRecord_left_the_group">Напусти групу</string>
   <string name="ThreadRecord_secure_session_reset">Безбедна сесија је ресетована.</string>
   <string name="ThreadRecord_draft">Нацрт:</string>
   <string name="ThreadRecord_called">Позвали сте</string>
@@ -522,9 +523,9 @@
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Започети унаточ постојећем захтеву?</string>
   <string name="KeyExchangeInitiator_send">Пошаљи</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Лоше шифрована порука...</string>
+  <string name="MessageDisplayHelper_bad_encrypted_message">Лоше шифрована порука</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Дешифрујем, сачекајте...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Порука шифрована за непостојећу сесију...</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Порука шифрована за непостојећу сесију</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">Грешка дешифровања поруке.</string>
   <!--ThreadDatabase-->
@@ -538,8 +539,8 @@
   <string name="MmsDatabase_error_decrypting_message">Грешка дешифровања поруке.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Дешифрујем ММС, сачекајте...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Лоше шифрована ММС порука...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">ММС порука шифрована за непостојећу сесију...</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Лоше шифрована ММС порука</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">ММС порука шифрована за непостојећу сесију</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Утишај обавештења</string>
   <!--ApplicationMigrationService-->
@@ -555,7 +556,7 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d нових порука у %2$d преписки</string>
   <string name="MessageNotifier_most_recent_from_s">Најскорија од: %1$s</string>
-  <string name="MessageNotifier_locked_message">Закључана порука...</string>
+  <string name="MessageNotifier_locked_message">Закључана порука</string>
   <string name="MessageNotifier_media_message_with_text">Мултимедијална порука: %s</string>
   <string name="MessageNotifier_no_subject">(Без предмета)</string>
   <string name="MessageNotifier_message_delivery_failed">Испорука поруке није успела.</string>
@@ -601,7 +602,7 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Изаберите за</string>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">Нема блокираних контаката...</string>
+  <string name="blocked_contacts_fragment__no_blocked_contacts">Нема блокираних контаката</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Нема недавних позива.</string>
   <!--conversation_title_view-->
@@ -651,7 +652,7 @@
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Повежи уређај</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">Нема повезаних уређаја...</string>
+  <string name="device_list_fragment__no_devices_linked">Нема повезаних уређаја</string>
   <string name="device_list_fragment__link_new_device">Повежи нови уређај</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">настави</string>

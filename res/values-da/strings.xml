@@ -127,7 +127,6 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Vedhæftet fil overskrider størrelsesbegrænsningen for den type meddelelse, du sender.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera utilgængeligt</string>
   <string name="ConversationActivity_unable_to_record_audio">Fejl ved lydoptagelse!</string>
-  <string name="ConversationActivity_error_sending_voice_message">Fejl ved afsendelse af stemmebesked...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Beskeddetaljer</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Overførsel: %1$s\nSendt/Modtaget: %2$s</string>
@@ -154,7 +153,7 @@
   <string name="ConversationFragment_deleting">Sletter</string>
   <string name="ConversationFragment_deleting_messages">Sletter beskeder...</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">Søg...</string>
+  <string name="ConversationListActivity_search">Søg</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Slet valgte samtale?</item>
@@ -176,7 +175,6 @@
     <item quantity="other">%d samtaler flyttet til inbox</item>
   </plurals>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Udvekslingsnøgle...</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Arkiverede samtaler (%d)</string>
   <!--CustomDefaultPreference-->
@@ -188,7 +186,6 @@
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Frakobl \"%s\"?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Frakobler du denne enhed, vil den ikke være i stand til at sende og modtage beskeder.</string>
-  <string name="DeviceListActivity_network_connection_failed">Netværksforbindelse fejlede...</string>
   <string name="DeviceListActivity_try_again">Prøv igen</string>
   <string name="DeviceListActivity_unlinking_device">Frakobler enhed...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Frakobler enhed</string>
@@ -289,8 +286,6 @@ vil det resultere i dupletter.</string>
   <string name="MessageDetailsRecipient_failed_to_send">Kunne ikke sende</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Fejl ved lagring af MMS!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Fejl! Ingen forbindelse til MMS-tjenesten...</string>
-  <string name="MmsDownloader_error_reading_mms_settings">Kunne ikke læse udbyderens MMS-indstillinger...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signalopkald i gang.</string>
   <string name="NotificationBarManager_missed_call_from_s">Mistet opkald fra %s</string>
@@ -331,7 +326,6 @@ vil det resultere i dupletter.</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Ingen enhed fundet.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Netværksfejl.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ugyldig QR-kode.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Beklager, du har allerede for mange tilkoblede enheder; prøv at fjern nogle...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Beklager. Dette er ikke en gyldig QR-kode til at forbinde enheder.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Forbind en Signal enhed?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Det ser ud som om du forsøger at forbinde en Signal-enhed vha. en tredjeparts-skanner. Af hensyn til sikkerhed, bør du skanne koden igen fra selve Signal-appen.</string>
@@ -407,7 +401,6 @@ Dobbelttjek, at dette er dit nummer! Vi er ved at verificere det med en SMS.
   <string name="RegistrationProgressActivity_verifying_number">Verificerer nummer</string>
   <string name="RegistrationProgressActivity_edit_s">Redigér %s</string>
   <string name="RegistrationProgressActivity_registration_complete">Registrering fuldført!</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Du skal først indtaste den kode du modtog...</string>
   <string name="RegistrationProgressActivity_connecting">Forbinder</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Forbinder for verificering...</string>
   <string name="RegistrationProgressActivity_network_error">Netværksfejl!</string>
@@ -442,7 +435,6 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
 </string>
   <string name="SmsMessageRecord_duplicate_message">Duplikeret besked.</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">Forlod gruppen...</string>
   <string name="ThreadRecord_secure_session_reset">Sikker forbindelse gendannet.</string>
   <string name="ThreadRecord_draft">Kladder:</string>
   <string name="ThreadRecord_called">Du ringede</string>
@@ -456,9 +448,7 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initialisér til trods for eksisterende forespørgsel?</string>
   <string name="KeyExchangeInitiator_send">Send</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Ugyldig krypteret besked...</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Dekrypterer, vent venligst...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Besked krypteret for en ikke-eksisterende session...</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">Fejl ved dekryptering af besked.</string>
   <!--ThreadDatabase-->
@@ -472,8 +462,6 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="MmsDatabase_error_decrypting_message">Fejl ved dekryptering af besked.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Dekrypterer MMS, vent venligst...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Ugyldigt krypteret MMS...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS krypteret fra en ikke-eksisterende session...</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Dæmp notifikationer</string>
   <!--ApplicationMigrationService-->
@@ -489,7 +477,6 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nye beskeder i %2$d samtaler</string>
   <string name="MessageNotifier_most_recent_from_s">Seneste fra: %1$s</string>
-  <string name="MessageNotifier_locked_message">Låst besked...</string>
   <string name="MessageNotifier_media_message_with_text">Multimediebesked: %s</string>
   <string name="MessageNotifier_no_subject">(Intet emne)</string>
   <string name="MessageNotifier_message_delivery_failed">Levering af besked mislykkedes.</string>
@@ -526,7 +513,6 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Vælg</string>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">Ingen blokerede kontakter</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Ingen nye opkald.</string>
   <!--conversation_title_view-->
@@ -570,7 +556,6 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Tilkobel enhed</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">Ingen enheder tilkoblet</string>
   <string name="device_list_fragment__link_new_device">Tilkobel ny enhed</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">fortsæt</string>

@@ -134,7 +134,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Atașamentul depășește limita de mărime pentru tipul de mesaj pe care vrei să-l trimiți.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Cameră indisponibilă</string>
   <string name="ConversationActivity_unable_to_record_audio">Nu se poate înregistra audio!</string>
-  <string name="ConversationActivity_error_sending_voice_message">Eroare la trimiterea mesajului vocal...</string>
+  <string name="ConversationActivity_error_sending_voice_message">Eroare la trimiterea mesajului vocal</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nu există nici o aplicație disponibilă pe dispozitivul tău care să poată deschide acest link.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalii mesaj</string>
@@ -185,7 +185,7 @@
   <string name="ConversationFragment_deleting">Se șterge</string>
   <string name="ConversationFragment_deleting_messages">Se șterg mesajele...</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">Caută...</string>
+  <string name="ConversationListActivity_search">Caută</string>
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nu există nici un browser instalat pe dispozitivul tău.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
@@ -212,7 +212,7 @@
     <item quantity="other">%d conversații au fost mutate în inbox</item>
   </plurals>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Mesaj pentru schimb de chei...</string>
+  <string name="ConversationListItem_key_exchange_message">Mesaj pentru schimb de chei</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Conversații arhivate (%d)</string>
   <!--CustomDefaultPreference-->
@@ -225,7 +225,7 @@
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Deconectez \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Prin deconectarea acestui dispozitiv, nu v-a mai putea trimite și primi mesaje.</string>
-  <string name="DeviceListActivity_network_connection_failed">Conexiunea la reţea a eşuat...</string>
+  <string name="DeviceListActivity_network_connection_failed">Conexiunea la reţea a eşuat</string>
   <string name="DeviceListActivity_try_again">Încearcă din nou</string>
   <string name="DeviceListActivity_unlinking_device">Se deconectează dispozitivul...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Se deconectează dispozitivul</string>
@@ -257,7 +257,7 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Eroare permanentă de comunicare cu Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal nu s-a putut înregistra la Google Play Services. Mesajele și apelurile Signal au fost dezactivate, te rog încearcă să te înregistrezi din nou din meniul Setări &gt; Avansat.</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">A apărut o eroare la obținerea GIF-ului la rezoluție maximă...</string>
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">A apărut o eroare la obținerea GIF-ului la rezoluție maximă</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIF-uri</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Autocolante</string>
@@ -338,8 +338,8 @@ Vei pierde orice informație care se află în instalarea curentă de Signal și
   <string name="MessageDetailsRecipient_new_safety_number">Număr nou de siguranță</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Eroare la stocarea MMS-ului!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Eroare de conectare la furnizorul MMS...</string>
-  <string name="MmsDownloader_error_reading_mms_settings">Eroare la citirea setărilor MMS ale operatorului wireless...</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Eroare de conectare la furnizorul MMS</string>
+  <string name="MmsDownloader_error_reading_mms_settings">Eroare la citirea setărilor MMS ale operatorului wireless</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Apel Signal în curs</string>
   <string name="NotificationBarManager_missed_call_from_s">Apel ratat de la %s</string>
@@ -383,7 +383,7 @@ Vei pierde orice informație care se află în instalarea curentă de Signal și
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nu a fost gasit nici un dispozitiv.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Eroare reţea.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Cod QR invalid.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Ne pare rău, ai prea multe dispozitive conectate deja, încearcă să elimini câteva...</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Ne pare rău, ai prea multe dispozitive conectate deja, încearcă să elimini câteva</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Ne pare rău. acest cod QR pentru conectarea dispozitivului nu este valid.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Conectez un dispozitiv Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Se pare că încerci să conectezi un dispozitiv Signal folosind un scaner terț. Pentru protecția ta, te rog scanează codul încă o dată din interiorul aplicației Signal.</string>
@@ -414,6 +414,7 @@ Vei pierde orice informație care se află în instalarea curentă de Signal și
   <string name="RecipientPreferenceActivity_unblock">Deblochează</string>
   <string name="RecipientPreferenceActivity_enabled">Activat</string>
   <string name="RecipientPreferenceActivity_disabled">Dezactivat</string>
+  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Disponibil atunci când un mesaj a fost trimis sau primit.</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">Răspunde</string>
   <string name="RedPhone_ending_call">Se închide apelul</string>
@@ -460,7 +461,7 @@ Verifică din nou dacă acesta este numărul tău! Suntem pe cale să-l verific�
   <string name="RegistrationProgressActivity_verifying_number">Se verifică numărul</string>
   <string name="RegistrationProgressActivity_edit_s">Editează %s</string>
   <string name="RegistrationProgressActivity_registration_complete">Înregistrarea este completă!</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Trebuie să introduci codul primit anterior...</string>
+  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Trebuie să introduci codul primit anterior</string>
   <string name="RegistrationProgressActivity_connecting">Se contectează</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Conectare pentru verificare...</string>
   <string name="RegistrationProgressActivity_network_error">Eroare de reţea!</string>
@@ -496,7 +497,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="SmsMessageRecord_secure_session_reset_s">%s a resetat sesiunea securizată.</string>
   <string name="SmsMessageRecord_duplicate_message">Mesaj duplicat.</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">A ieșit din grup...</string>
+  <string name="ThreadRecord_left_the_group">A ieșit din grup</string>
   <string name="ThreadRecord_secure_session_reset">Sesiune securizată resetată.</string>
   <string name="ThreadRecord_draft">Ciornă:</string>
   <string name="ThreadRecord_called">Ai apelat</string>
@@ -518,9 +519,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Iniţializeaz deşi există o cerere?</string>
   <string name="KeyExchangeInitiator_send">Trimite</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Mesaj criptat incorect...</string>
+  <string name="MessageDisplayHelper_bad_encrypted_message">Mesaj criptat incorect</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Se decriptează, te rog așteaptă...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mesaj criptat pentru o sesiune inexistentă...</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mesaj criptat pentru o sesiune inexistentă</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">Eroare la decriptarea mesajului.</string>
   <!--ThreadDatabase-->
@@ -534,8 +535,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MmsDatabase_error_decrypting_message">Eroare la decriptarea mesajului.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Se decriptează MMS, te rog așteaptă...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Mesaj MMS criptat incorect...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Mesaj MMS criptat pentru o sesiune inexistentă...</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Mesaj MMS criptat incorect</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Mesaj MMS criptat pentru o sesiune inexistentă</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Notificări silenţioase</string>
   <!--ApplicationMigrationService-->
@@ -551,7 +552,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d mesaje noi în %2$d conversaţii</string>
   <string name="MessageNotifier_most_recent_from_s">Cel mai recent de la: %1$s</string>
-  <string name="MessageNotifier_locked_message">Mesaj blocat...</string>
+  <string name="MessageNotifier_locked_message">Mesaj blocat</string>
   <string name="MessageNotifier_media_message_with_text">Mesaj media: %s</string>
   <string name="MessageNotifier_no_subject">(Fără subiect)</string>
   <string name="MessageNotifier_message_delivery_failed">Trimiterea mesajului a esuat.</string>
@@ -597,7 +598,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Selectează pentru</string>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">Nu există contacte blocate...</string>
+  <string name="blocked_contacts_fragment__no_blocked_contacts">Nu există contacte blocate</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Nu exista apeluri recente.</string>
   <!--conversation_title_view-->
@@ -647,7 +648,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Conectează dispozitiv</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">Nu există nici un dispozitiv conectat...</string>
+  <string name="device_list_fragment__no_devices_linked">Nu există nici un dispozitiv conectat</string>
   <string name="device_list_fragment__link_new_device">Conectează dispozitiv nou</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">continuă</string>

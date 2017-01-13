@@ -130,7 +130,6 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Vedlegg overskrid maksimal storleiksgrense for gjeldande meldingstype.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera utilgjengeleg</string>
   <string name="ConversationActivity_unable_to_record_audio">Klarte ikkje å ta opp lydar.</string>
-  <string name="ConversationActivity_error_sending_voice_message">Feil under sending av talemelding …</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Du har inga program på denne eininga som kan handtera denne lenkja.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Meldingsdetaljar</string>
@@ -174,7 +173,7 @@
   <string name="ConversationFragment_deleting">Sletter</string>
   <string name="ConversationFragment_deleting_messages">Slettar meldingar …</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">Søk …</string>
+  <string name="ConversationListActivity_search">Søk</string>
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Denne eininga har ingen nettlesar installert.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
@@ -197,7 +196,6 @@
     <item quantity="other">Flytta %d samtalar til innboks</item>
   </plurals>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Nøkkelutvekslingsmelding …</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Arkiverte samtalar (%d)</string>
   <!--CustomDefaultPreference-->
@@ -210,7 +208,6 @@
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Vil du kopla frå «%s»?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Viss du koplar denne eininga frå tenesta, kan ho ikkje lenger senda eller motta meldingar.</string>
-  <string name="DeviceListActivity_network_connection_failed">Feil ved nettverkstilkopling …</string>
   <string name="DeviceListActivity_try_again">Prøv igjen</string>
   <string name="DeviceListActivity_unlinking_device">Koplar frå eining …</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Koplar frå eining</string>
@@ -242,7 +239,6 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Varig Signal-kommunikasjonsfeil.</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal klarte ikkje å registrera seg som Google Play-teneste. Signal-meldingar og samtalar er difor slått av. Prøv å registrera programmet på nytt under Innstillingar &gt; Avansert.</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Feil ved henting av GIF i full oppløysing …</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIF-ar</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Klistremerke</string>
@@ -324,8 +320,6 @@ fører dette til dupliserte meldingar.</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nytt tryggleiksnummer</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Feil under lagring av MMS.</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Feil under tilkopling til MMS-leverandør …</string>
-  <string name="MmsDownloader_error_reading_mms_settings">Feil under lesing av MMS-oppsett frå mobiloperatør …</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-samtale i gang</string>
   <string name="NotificationBarManager_missed_call_from_s">Tapt anrop frå %s</string>
@@ -368,7 +362,6 @@ fører dette til dupliserte meldingar.</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Fann inga eining.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Nettverksfeil.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ugyldig QR-kode.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Du har for mange einingar tilkopla allereie. Prøv å fjerna nokre …</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Dette er ikkje ein gyldig QR-kode for einingstilkopling.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Vil du kopla til ei Signal-eining?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Det ser ut som at du prøver å kopla ei eining til Signal ved hjelp av ein tredjepartsskannar. For din eigen tryggleik må du skanna koden på nytt via Signal.</string>
@@ -444,7 +437,6 @@ Dobbeltsjekk at dette er nummeret ditt. Vi er i ferd med å stadfesta det ved å
   <string name="RegistrationProgressActivity_verifying_number">Stadfestar nummer</string>
   <string name="RegistrationProgressActivity_edit_s">Endra %s</string>
   <string name="RegistrationProgressActivity_registration_complete">Registrering utført.</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Du må skriva inn koden du mottok først …</string>
   <string name="RegistrationProgressActivity_connecting">Koplar til</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Koplar til for stadfesting …</string>
   <string name="RegistrationProgressActivity_network_error">Nettverksfeil.</string>
@@ -480,7 +472,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s tilbakestilte sikker økt.</string>
   <string name="SmsMessageRecord_duplicate_message">Dupliser melding.</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">Forlét gruppa </string>
   <string name="ThreadRecord_secure_session_reset">Sikker økt tilbakestilt.</string>
   <string name="ThreadRecord_draft">Utkast:</string>
   <string name="ThreadRecord_called">Du ringte</string>
@@ -502,9 +493,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Vil du halda fram sjølv om ein førespurnad allereie er i gang?</string>
   <string name="KeyExchangeInitiator_send">Send</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Dårleg kryptert melding …</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Dekrypterer. Vent litt …</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Melding kryptert for økt som ikkje finst …</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">Feil under dekryptering av melding.</string>
   <!--ThreadDatabase-->
@@ -518,8 +507,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="MmsDatabase_error_decrypting_message">Feil under dekryptering av melding.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Dekrypterer MMS. Vent litt …</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Dårleg kryptert MMS-melding …</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-melding kryptert for økt som ikkje finst …</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Ikkje vis varsel</string>
   <!--ApplicationMigrationService-->
@@ -535,7 +522,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nye meldingar i %2$d samtalar</string>
   <string name="MessageNotifier_most_recent_from_s">Nyaste frå: %1$s</string>
-  <string name="MessageNotifier_locked_message">Låst melding …</string>
   <string name="MessageNotifier_media_message_with_text">Mediemelding: %s</string>
   <string name="MessageNotifier_no_subject">(Utan emne)</string>
   <string name="MessageNotifier_message_delivery_failed">Feil ved meldingslevering.</string>
@@ -581,7 +567,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Vel for</string>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">Ingen blokkerte kontaktar …</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Ingen nylege samtalar.</string>
   <!--conversation_title_view-->
@@ -631,7 +616,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Kopla til eining</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">Ingen tilkopla einingar …</string>
   <string name="device_list_fragment__link_new_device">Kopla til ny eining</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">hald fram</string>

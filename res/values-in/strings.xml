@@ -126,7 +126,6 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Lampiran melebihi batas ukuran untuk tipe pesan yang Anda kirimkan.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera tidak tersedia</string>
   <string name="ConversationActivity_unable_to_record_audio">Tidak bisa merekam audio!</string>
-  <string name="ConversationActivity_error_sending_voice_message">Gagal mengirim pesan suara...</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Tidak ada aplikasi tersedia untuk menangani tautan ini pada perangkat Anda</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Rincian pesan</string>
@@ -160,7 +159,7 @@
   <string name="ConversationFragment_deleting">Menghapus</string>
   <string name="ConversationFragment_deleting_messages">Menghapus pesan...</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">Cari...</string>
+  <string name="ConversationListActivity_search">Cari</string>
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Tidak ada browser terpasang pada alat anda.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
@@ -179,7 +178,6 @@
     <item quantity="other">Memindahkan %d percakapan ke kotak masuk</item>
   </plurals>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Pesan pertukaran kunci...</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Arsip percakapan (%d)</string>
   <!--CustomDefaultPreference-->
@@ -192,7 +190,6 @@
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Buang kaitan \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Dengan membuang kaitan perangkat ini, perangkat tidak akan bisa lagi mengirim atau menerima pesan.</string>
-  <string name="DeviceListActivity_network_connection_failed">Koneksi jaringan gagal...</string>
   <string name="DeviceListActivity_try_again">Coba lagi</string>
   <string name="DeviceListActivity_unlinking_device">Membuang kaitan perangkat...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Membuang kaitan perangkat</string>
@@ -224,7 +221,6 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Kegagalan permanen komunikasi Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal tidak dapat melakukan registrasi dengan Layanan Google Play. Fitur Signal seperti pesan dan panggilan di nonaktifkan, mohon registrasi ulang melalui Pengaturan</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Kesalahan terjadi saat mengambil GIF beresolusi penuh...</string>
   <!--GiphyFragmentPageAdapter-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Grup baru</string>
@@ -304,8 +300,6 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <string name="MessageDetailsRecipient_new_safety_number">Angka keamanan baru</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Kesalahan dalam menyimpan MMS!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Kesalahan dalam menghubungi penyedia layanan MMS...</string>
-  <string name="MmsDownloader_error_reading_mms_settings">Kesalahan dalam membaca pengaturan MMS penyedia...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Kemajuan panggilan masuk Signal</string>
   <string name="NotificationBarManager_missed_call_from_s">Panggilan tak terjawab dari %s</string>
@@ -347,7 +341,6 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <string name="DeviceProvisioningActivity_content_progress_no_device">Perangkat tidak ditemukan.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Galat jaringan.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Kode QR tidak valid.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Maaf, sudah terlalu banyak perangkat yang Anda kaitkan, coba untuk membuang beberapa...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Maaf, ini bukan tautan perangkat QR code yang benar.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Kaitkan perangkat Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Sepertinya Anda mencoba untuk menghubungkan perangkat Signal menggunakan pemindai pihak ke-3. Untuk perlindungan Anda, mohon memindai kode lagi dari Signal.</string>
@@ -428,7 +421,6 @@ isikan (%s) tidak tepat.
   <string name="RegistrationProgressActivity_verifying_number">Memverifikasi Nomor</string>
   <string name="RegistrationProgressActivity_edit_s">Edit %s</string>
   <string name="RegistrationProgressActivity_registration_complete">Pendaftaran selesai!</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Anda harus memasukkan kode yang anda terima terlebih dulu...</string>
   <string name="RegistrationProgressActivity_connecting">Menghubungkan</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Menghubungkan untuk verifikasi</string>
   <string name="RegistrationProgressActivity_network_error">Galat jaringan!</string>
@@ -462,7 +454,6 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
 </string>
   <string name="SmsMessageRecord_duplicate_message">Pesan Duplikat</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">Tinggalkan grup...</string>
   <string name="ThreadRecord_secure_session_reset">Sesi aman disetel ulang.</string>
   <string name="ThreadRecord_draft">Draf:</string>
   <string name="ThreadRecord_called">Anda memanggil</string>
@@ -477,9 +468,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Memulai meskipun permintaan sudah ada?</string>
   <string name="KeyExchangeInitiator_send">Kirim</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Enkripsi pada pesan tidak dapat dikenali</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Melakukan dekripsi, mohon tunggu...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Pesan di enkripsi untuk sesi yang tidak ada</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">Galat mendekripsi pesan.</string>
   <!--ThreadDatabase-->
@@ -493,8 +482,6 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MmsDatabase_error_decrypting_message">Galat mendekripsi pesan.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Proses deskripsi MMS, mohon tunggu...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Enkripsi pada pesan MMS tidak dapat dikenali</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS di enkripsi untuk sesi yang tidak ada</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Bisukan pemberitahuan</string>
   <!--ApplicationMigrationService-->
@@ -510,7 +497,6 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d pesan baru dalam %2$d percakapan</string>
   <string name="MessageNotifier_most_recent_from_s">Paling baru dari: %1$s</string>
-  <string name="MessageNotifier_locked_message">Pesan terkunci...</string>
   <string name="MessageNotifier_media_message_with_text">Pesan media: %s</string>
   <string name="MessageNotifier_no_subject">(Tidak ada subyek)</string>
   <string name="MessageNotifier_message_delivery_failed">Pengiriman pesan gagal.</string>
@@ -547,7 +533,6 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Pilih untuk</string>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">Tidak ada kontak yang diblokir...</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Tidak ada panggilan baru</string>
   <!--conversation_title_view-->
@@ -591,7 +576,6 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Tautan perangkat</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">Tidak ada perangkat yang dikaitkan...</string>
   <string name="device_list_fragment__link_new_device">Kaitkan perangkat baru</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">lanjutkan</string>

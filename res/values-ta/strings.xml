@@ -114,7 +114,6 @@
   <string name="ConversationActivity_unblock">தடுப்புநீக்க</string>
   <string name="ConversationActivity_quick_camera_unavailable">புகைப்படக் கருவி கிடைப்பிலில்லை</string>
   <string name="ConversationActivity_unable_to_record_audio">ஒலி பதிவுச் செய்ய  இயலவில்லை!</string>
-  <string name="ConversationActivity_error_sending_voice_message">குரல் செய்தியை அனுப்புவதில் பிழை ...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">செய்தி விவரங்கள்</string>
   <string name="ConversationFragment_transport_s_sent_received_s">போக்குவரத்து: %1$s\nஅனுப்பியது/பெற்றது: %2$s</string>
@@ -155,7 +154,6 @@
     <item quantity="other">%d உரையாடலைகள் அகப்பெட்டிக்கு நகர்த்தப்பட்டது.</item>
   </plurals>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">சாவி பரிமாற்றச் செய்தி...</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d"> உரையாடல்கள் பெட்டகப்படுத்தப்பட்டது (%d)</string>
   <!--CustomDefaultPreference-->
@@ -166,7 +164,6 @@
   <string name="DateUtils_minutes_ago">%d நிமிடம்</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">\'%s\' துண்டி?</string>
-  <string name="DeviceListActivity_network_connection_failed">பிணைய இணைப்பு தோல்வி ...</string>
   <string name="DeviceListActivity_try_again">மீண்டும் முயற்சிக்கவும்</string>
   <string name="DeviceListActivity_unlinking_device">கருவி துண்டிக்கப்படுகிறது ...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">கருவி துண்டிக்கப்படுகிறது</string>
@@ -243,8 +240,6 @@
   <string name="MessageDetailsRecipient_failed_to_send">அனுப்ப முடியவில்லை</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">MMS  சேமிப்பதில் பிழை!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">MMS சேவையுடன் இணைவதில் பிழை...</string>
-  <string name="MmsDownloader_error_reading_mms_settings">MMS சேவையின் அமைப்புகளை படிப்பதில் பிழை...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">சமிக்ஞை அழைப்புப் போய்க்கொண்டிருக்கிறது</string>
   <string name="NotificationBarManager_missed_call_from_s">%s யடமிருந்து தவறிய அழைப்பு</string>
@@ -329,7 +324,6 @@
   <string name="RegistrationProgressActivity_verifying_number">எண் சரிபார்க்கபடுகிறது</string>
   <string name="RegistrationProgressActivity_edit_s">தொகு %s</string>
   <string name="RegistrationProgressActivity_registration_complete">பதிவுசெய்தல் முடிந்தது!</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">நீங்கள் முதலில் பெற்ற குறியீட்டை உள்ளிட வேண்டும்...</string>
   <string name="RegistrationProgressActivity_connecting">இணைக்கப்படுகிறது</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">சரிபார்ப்பதற்காக இணைக்கப்படுகிறது...</string>
   <string name="RegistrationProgressActivity_network_error">இணையத்தில் பிழை!</string>
@@ -360,7 +354,6 @@
 செல்லுபடியாகாத நெறிமுறைக்கு சாவிபரிமாற்ற செய்தி பெறப்பட்டது.</string>
   <string name="SmsMessageRecord_duplicate_message">நகல் செய்தி.</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">குழுவை விட்டு விலகினார்...</string>
   <string name="ThreadRecord_draft">வரைவு:</string>
   <string name="ThreadRecord_called">நீங்கள் அழைத்தீர்கள்</string>
   <string name="ThreadRecord_called_you">உங்களை அழைத்தார்</string>
@@ -371,9 +364,7 @@
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">பழைய கோரிக்கை இருப்பினும் தொடங்கலாமா?</string>
   <string name="KeyExchangeInitiator_send">அனுப்பு</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">முறைதவறி மறையாக்கப்பட செய்தி...</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">மறைவிலக்கபடுகிறது, தயவுசெய்து காத்திருக்கவும்...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">இல்லாத அமர்வுக்கு செய்தி மறையாக்கப்பட்டுள்ளது...</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">செய்தியை மறைவிலக்கப்படுவதில் பிழை.</string>
   <!--ThreadDatabase-->
@@ -387,8 +378,6 @@
   <string name="MmsDatabase_error_decrypting_message">செய்தி மறைvilakkuவதில் பிழை</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">MMS மறைவிலக்கபடுகிறது, தயவுசெய்து காத்திருக்கவும்...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">முறைதவறி மறையாக்கப்பட MMS செய்தி...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">இல்லாத அமர்வுக்கு MMS செய்தி மறையாக்கப்பட்டுள்ளது...</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">அறிவிப்பை ஊமையா</string>
   <!--ApplicationMigrationService-->
@@ -398,7 +387,6 @@
   <string name="KeyCachingService_signal_passphrase_cached">திறக்க தொடு.</string>
   <string name="KeyCachingService_lock">கடவுச்சொல்லை வைத்து பூட்டவும் </string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_locked_message">பூட்டிய செய்தி ...</string>
   <string name="MessageNotifier_media_message_with_text">மீடியா செய்தி: %s</string>
   <string name="MessageNotifier_no_subject">(தலைப்பு இல்லை)</string>
   <string name="MessageNotifier_message_delivery_failed">செய்தி விநியோகிப்பது தோல்வியடைந்தது.</string>

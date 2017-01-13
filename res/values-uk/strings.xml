@@ -134,7 +134,6 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Вкладення перевищує обмеження за розміром для типу повідомлення, яке ви надсилаєте.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Камера недоступна</string>
   <string name="ConversationActivity_unable_to_record_audio">Не вдалося записати аудіо!</string>
-  <string name="ConversationActivity_error_sending_voice_message">Помилка під час відправки голосовго повідомлення...</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Немає програми на вашому пристрої, що може відкрити це посилання.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Деталі повідомлення</string>
@@ -180,7 +179,7 @@
   <string name="ConversationFragment_deleting">Видалення</string>
   <string name="ConversationFragment_deleting_messages">Видалення повідомлень...</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">Пошук...</string>
+  <string name="ConversationListActivity_search">Пошук</string>
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">На вашому пристрої не встановлено браузер.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
@@ -207,7 +206,6 @@
     <item quantity="other">%d розмов переміщено до вхідних</item>
   </plurals>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Повідомлення обміну ключами...</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Архівовані розмови (%d)</string>
   <!--CustomDefaultPreference-->
@@ -220,7 +218,6 @@
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Від\'єднати \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Після від\'єднання цього пристрою він більше не зможе відправляти та одержувати повідомлення.</string>
-  <string name="DeviceListActivity_network_connection_failed">Помилка мережевого з\'єднання...</string>
   <string name="DeviceListActivity_try_again">Спробуйте ще</string>
   <string name="DeviceListActivity_unlinking_device">Від\'єднання пристрою...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Від\'єднання пристрою</string>
@@ -252,7 +249,6 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Постійний збій зв\'язку Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не зміг зареєструватись у сервісах Google Play. Виклики та повідомлення Signal наразі вимкнено, спробуйте перереєструватися у Налаштуваннях &gt; Додатково.</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Помилка при одержанні GIF у повному розмірі...</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Наліпки</string>
@@ -338,8 +334,6 @@
   <string name="MessageDetailsRecipient_new_safety_number">Новий номер безпеки</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Помилка при збереженні MMS!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Помилка підключення до MMS провайдера...</string>
-  <string name="MmsDownloader_error_reading_mms_settings">Помилка читання налаштувань MMS провайдера...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Відбувається виклик Signal</string>
   <string name="NotificationBarManager_missed_call_from_s">Пропущено виклик від %s</string>
@@ -383,7 +377,6 @@
   <string name="DeviceProvisioningActivity_content_progress_no_device">Пристрій не знайдено.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Помилка мережі.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Хибний QR-код.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Вибачте, у вас забагато прив\'язаних пристроїв, спробуйте видалити декілька...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Вибачте, це хибний QR код для прив\'язки пристрою.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Приєднати пристрій Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Здається, ви намагаєтеся приєднати пристрій Signal, використовуючи сканер від 3-ї особи. Для вашого захисту, відскануйте код знову, використовуючи Signal.</string>
@@ -465,7 +458,6 @@
   <string name="RegistrationProgressActivity_verifying_number">Перевірка номера</string>
   <string name="RegistrationProgressActivity_edit_s">Редагувати %s</string>
   <string name="RegistrationProgressActivity_registration_complete">Реєстрацію завершено!</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Спершу вам необхідно ввести отриманий код...</string>
   <string name="RegistrationProgressActivity_connecting">Підключення</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Підключення для підтвердження...</string>
   <string name="RegistrationProgressActivity_network_error">Помилка мережі!</string>
@@ -501,7 +493,6 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%s скидає безпечний сеанс.</string>
   <string name="SmsMessageRecord_duplicate_message">Дублікат повідомлення.</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">Покидає групу...</string>
   <string name="ThreadRecord_secure_session_reset">Скидання безпечного сеансу.</string>
   <string name="ThreadRecord_draft">Чернетка:</string>
   <string name="ThreadRecord_called">Ви телефонували</string>
@@ -523,9 +514,7 @@
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Почати, незважаючи на існуючий запит?</string>
   <string name="KeyExchangeInitiator_send">Надіслати</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Хибне зашифроване повідомлення...</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Розшифровуємо, зачекайте, будь ласка...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Повідомлення зашифровано для неіснуючої сесії...</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">Помилка дешифрування повідомлення.</string>
   <!--ThreadDatabase-->
@@ -539,8 +528,6 @@
   <string name="MmsDatabase_error_decrypting_message">Помилка дешифрування повідомлення.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Розшифровуємо MMS, зачекайте, будь ласка...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Хибне зашифроване MMS повідомлення...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS повідомлення зашифровано для неіснуючої сесії...</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Вимкнути звук сповіщень</string>
   <!--ApplicationMigrationService-->
@@ -556,7 +543,6 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d нових повідомлень у %2$d розмовах</string>
   <string name="MessageNotifier_most_recent_from_s">Останнє від: %1$s</string>
-  <string name="MessageNotifier_locked_message">Повідомлення заблоковано...</string>
   <string name="MessageNotifier_media_message_with_text">Медіа повідомлення: %s</string>
   <string name="MessageNotifier_no_subject">(Без теми)</string>
   <string name="MessageNotifier_message_delivery_failed">Збій доставки повідомлення.</string>
@@ -602,7 +588,6 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Обрати для</string>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">Немає заблокованих контактів...</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Немає недавніх викликів.</string>
   <!--conversation_title_view-->
@@ -652,7 +637,6 @@
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Прив\'язати пристрій</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">Немає прив\'язаних пристроїв...</string>
   <string name="device_list_fragment__link_new_device">Прив\'язати новий пристрій</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">продовжити</string>

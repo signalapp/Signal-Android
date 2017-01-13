@@ -130,7 +130,6 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Размерът на прикачения файл надминава допустимия лимит за типа съобщение, който изпращате.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Камерата е недостъпна</string>
   <string name="ConversationActivity_unable_to_record_audio">Не може да бъде записано аудио!</string>
-  <string name="ConversationActivity_error_sending_voice_message">Грешка при изпращане на гласово съобщение...</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Нямате инсталирано приложение, което да може да използва тази препратка.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Информация за съобщението</string>
@@ -174,7 +173,7 @@
   <string name="ConversationFragment_deleting">Изтриване</string>
   <string name="ConversationFragment_deleting_messages">Изтриване на съобщения...</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">Търсене...</string>
+  <string name="ConversationListActivity_search">Търси</string>
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Нямате инсталиран браузър.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
@@ -197,7 +196,7 @@
     <item quantity="other">Преместени %d разговора във входящата кутия</item>
   </plurals>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Съобщение за обмяна на ключовете...</string>
+  <string name="ConversationListItem_key_exchange_message">Съобщение за Изменя на ключожете</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Архивирани разговори (%d)</string>
   <!--CustomDefaultPreference-->
@@ -210,7 +209,6 @@
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Премахни връзката \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Ако прекратиш връзката с това устройство, няма да можеш да изпращаш и получаваш съобщения от него.</string>
-  <string name="DeviceListActivity_network_connection_failed">Неуспешна връзка с интернет...</string>
   <string name="DeviceListActivity_try_again">Опитай отново</string>
   <string name="DeviceListActivity_unlinking_device">Прекратяване на връзката с устройството...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Прекратяване на връзката с устройството</string>
@@ -242,7 +240,6 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Перманентна Сигнал комуникационна грешка!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Сигнал не успя да се регистрира с Google Play Services. Сигнал съообщения и разговори са деактивирани, моля пререгистрирайте през менюто Настройки &gt; Допълнителние.</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Грешка при изтеглянето на GIF-а в пълни размери...</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIF-ове</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Стикери</string>
@@ -323,8 +320,6 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="MessageDetailsRecipient_new_safety_number">Нови числа за сигурност</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Грешка при съхраняване на MMS!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Грешка при свързването с MMS доставчика...</string>
-  <string name="MmsDownloader_error_reading_mms_settings">Грешка при четене на MMS настройките...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Протича Сигнал разговор</string>
   <string name="NotificationBarManager_missed_call_from_s">Пропуснато обаждане от %s</string>
@@ -368,7 +363,6 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="DeviceProvisioningActivity_content_progress_no_device">Не е открито устройство.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Проблем с мобилната мрежа.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Невалиден QR код.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">За съжалние имате твърде много регистрирани устройства, опитайте да премахнете някои от тях...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">За съжаление това не е валидна QR връзка.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Свържи с Сигнал устройство?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Изглежда се опитвате да свържете Сигнал устройство с външна скенер програма. За Ваша сигурност, моля сканирайте кодът повторно използвайки Сигнал.</string>
@@ -444,7 +438,6 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="RegistrationProgressActivity_verifying_number">Потвърждаване на номера</string>
   <string name="RegistrationProgressActivity_edit_s">Промяна на %s</string>
   <string name="RegistrationProgressActivity_registration_complete">Регистрацията завършена!</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Първо трябва да въведеш получения код...</string>
   <string name="RegistrationProgressActivity_connecting">Свързване</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Свързване за потвърждение...</string>
   <string name="RegistrationProgressActivity_network_error">Проблем с мобилната мрежа!</string>
@@ -481,7 +474,6 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="SmsMessageRecord_secure_session_reset_s">%s рестартира сигурната сесия.</string>
   <string name="SmsMessageRecord_duplicate_message">Дублирай съобщението.</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">Напусна групата...</string>
   <string name="ThreadRecord_secure_session_reset">Започване на нова сигурна сесия.</string>
   <string name="ThreadRecord_draft">Чернова:</string>
   <string name="ThreadRecord_called">Вие се обадихте</string>
@@ -503,9 +495,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Покани въпреки съществуващата покана?</string>
   <string name="KeyExchangeInitiator_send">Изпрати</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Лошо шифровано съобщение...</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Разшифроване, моля изчакайте...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Съобщението е шифровано за не съществуваща сесия...</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">Грешка при декриптиране на съобщение.</string>
   <!--ThreadDatabase-->
@@ -519,8 +509,6 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="MmsDatabase_error_decrypting_message">Грешка при декриптиране на съобщение.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">MMS-а се разшифрова, моля изчакайте...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Лошо шифровано MMS съобщение...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS съобщението е шифровано за не съществуваща сесия...</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Тих режим за известия</string>
   <!--ApplicationMigrationService-->
@@ -536,7 +524,6 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d нови съобщения в %2$d чата</string>
   <string name="MessageNotifier_most_recent_from_s">Най-скорошно от: %1$s</string>
-  <string name="MessageNotifier_locked_message">Заключено съобщение...</string>
   <string name="MessageNotifier_media_message_with_text">Медийно съобщение: %s</string>
   <string name="MessageNotifier_no_subject">(Няма зададена тема)</string>
   <string name="MessageNotifier_message_delivery_failed">Изпращането на съобщението неуспешно.</string>
@@ -582,7 +569,6 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Избери за</string>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">Няма блокирани контакти...</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Няма скорошни обаждания.</string>
   <!--conversation_title_view-->
@@ -632,7 +618,6 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Свържи устройство</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">Няма свързани устройства...</string>
   <string name="device_list_fragment__link_new_device">Свържи ново устройство</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">продължи</string>

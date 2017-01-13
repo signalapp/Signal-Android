@@ -126,7 +126,6 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">添付ファイルのサイズが上限を超えています</string>
   <string name="ConversationActivity_quick_camera_unavailable">カメラが使えません</string>
   <string name="ConversationActivity_unable_to_record_audio">録音できません！</string>
-  <string name="ConversationActivity_error_sending_voice_message">音声メッセージの送信中にエラー発生...</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">このリンクを扱えるアプリがインストールされていません</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">メッセージの詳細</string>
@@ -179,7 +178,7 @@
     <item quantity="other">%d個の会話を受信ボックスに移動</item>
   </plurals>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">鍵交換のメッセージ…</string>
+  <string name="ConversationListItem_key_exchange_message">鍵交換のメッセージ</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">アーカイブ済みの会話 (%d)</string>
   <!--CustomDefaultPreference-->
@@ -192,7 +191,6 @@
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">「%s」を切り離しますか？</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">このデバイスを切り離すとメッセージの送受信ができなくなります。</string>
-  <string name="DeviceListActivity_network_connection_failed">ネットワーク接続に失敗...</string>
   <string name="DeviceListActivity_try_again">再試行</string>
   <string name="DeviceListActivity_unlinking_device">デバイスを切り離す...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">デバイスを切り離す</string>
@@ -224,7 +222,6 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">永続的障害の発生！</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Google Playに登録できないためSignalは利用できません。「詳細設定」で再登録してください。</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">高解像度GIFファイルの取得中にエラー発生</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">ステッカー</string>
@@ -297,8 +294,6 @@
   <string name="MessageDetailsRecipient_new_safety_number">新しい安全番号</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">MMS保存中にエラーがありました。</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">MMSのプロバイダー接続中にエラーが発生しました…</string>
-  <string name="MmsDownloader_error_reading_mms_settings">携帯電話回線のMMS設定が見つかりませんでした。</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">通話準備中</string>
   <string name="NotificationBarManager_missed_call_from_s">%sからの通話に失敗</string>
@@ -340,7 +335,6 @@
   <string name="DeviceProvisioningActivity_content_progress_no_device">デバイスがありません</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">ネットワークエラー</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">QRコードが正しくありません</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">結び付けているデバイスが多すぎます。どれかを切り離してください。</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">このQRコードは正しいリンクではありません</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">デバイスを結び付けますか？</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">アプリ外のスキャナーを使ってデバイスを結び付けようとしていますが、安全のためSignal内からコードをスキャンしてください。</string>
@@ -411,7 +405,6 @@
   <string name="RegistrationProgressActivity_verifying_number">番号を確認中...</string>
   <string name="RegistrationProgressActivity_edit_s">%sを編集</string>
   <string name="RegistrationProgressActivity_registration_complete">登録完了！</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">まず、もらったコードを入力して下さい</string>
   <string name="RegistrationProgressActivity_connecting">接続中</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">確認するために接続中...</string>
   <string name="RegistrationProgressActivity_network_error">ネットワークエラー！</string>
@@ -445,7 +438,6 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%sが安全な接触を設定し直しました。</string>
   <string name="SmsMessageRecord_duplicate_message">重複メッセージ</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">グループを抜けました...</string>
   <string name="ThreadRecord_secure_session_reset">安全なセッションがリセットされました</string>
   <string name="ThreadRecord_draft">下書き:</string>
   <string name="ThreadRecord_called">発信しました</string>
@@ -467,9 +459,7 @@
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">既存のリクエストがありますが、鍵交換を開始しますか？</string>
   <string name="KeyExchangeInitiator_send">送信</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">メッセージが正しく暗号化されていません…</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">復号しています。お待ち下さい…</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">メッセージは存在しないセッションのために暗号化されています…</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">メッセージ復号化でエラー</string>
   <!--ThreadDatabase-->
@@ -483,8 +473,6 @@
   <string name="MmsDatabase_error_decrypting_message">メッセージ復号化でエラー</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">MMSを復号しています。お待ち下さい…</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">MMSメッセージが正しく暗号化されていません…</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMSメッセージは存在しないセッションのために暗号化されています…</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">消音通知</string>
   <!--ApplicationMigrationService-->
@@ -500,7 +488,6 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d個の会話に%1$d個の新着メッセージ</string>
   <string name="MessageNotifier_most_recent_from_s">最新の受信: %1$s</string>
-  <string name="MessageNotifier_locked_message">メッセージをロック...</string>
   <string name="MessageNotifier_media_message_with_text">メディアメッセージ: %s</string>
   <string name="MessageNotifier_no_subject">（無題）</string>
   <string name="MessageNotifier_message_delivery_failed">メッセージの配信に失敗しました。</string>
@@ -546,7 +533,6 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">選択</string>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">ブロックしている連絡先はありません...</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">最近の通話はありません。</string>
   <!--conversation_title_view-->
@@ -596,7 +582,6 @@
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">デバイスを結び付ける</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">結び付いているデバイスはありません...</string>
   <string name="device_list_fragment__link_new_device">結び付けるデバイスを追加</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">続ける</string>

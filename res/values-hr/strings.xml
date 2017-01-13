@@ -134,7 +134,6 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Privitak prelazi ograničenje veličine za tip poruke koju šaljete.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera nije dostupna</string>
   <string name="ConversationActivity_unable_to_record_audio">Nije moguće snimati svuk!</string>
-  <string name="ConversationActivity_error_sending_voice_message">Greška prilikom slanja glasovne poruke...</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Na vašem uređaju ne postoji aplikacija koja bi rukovala ovom poveznicom.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalji poruke</string>
@@ -185,7 +184,7 @@
   <string name="ConversationFragment_deleting">Brisanje</string>
   <string name="ConversationFragment_deleting_messages">Brisanje poruka...</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">Traži...</string>
+  <string name="ConversationListActivity_search">Traži</string>
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Preglednik nije instaliran na vašem uređaju.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
@@ -212,7 +211,6 @@
     <item quantity="other">%d razgovora premješteno u primljene poruke</item>
   </plurals>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Poruka za razmjenu ključa...</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Arhivirani razgovori (%d)</string>
   <!--CustomDefaultPreference-->
@@ -225,7 +223,6 @@
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Odspoji \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Odspajanjem ovog uređaja više nećete moći slati ili primati poruke.</string>
-  <string name="DeviceListActivity_network_connection_failed">Povezivanje na mrežu nije uspjelo...</string>
   <string name="DeviceListActivity_try_again">Pokušajte ponovno</string>
   <string name="DeviceListActivity_unlinking_device">Odspajanje uređaja...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Odspajanje uređaja</string>
@@ -257,7 +254,6 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trajna greška u Signal komunikaciji!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal se nije uspješno registrirao na Google Play Services. Signal poruke i pozivi su onemogućeni, pokušajte se ponovno registrirati kroz Postavke &gt; Napredno.</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Greška prilikom dohvaćanja GIF slike pune rezolucije...</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIFovi</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Naljepnice</string>
@@ -341,8 +337,6 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="MessageDetailsRecipient_new_safety_number">Novi sigurnosni broj</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Greška prilikom pohrane MMSa!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Greška prilikom povezivanja na MMS pružatelja usluge...</string>
-  <string name="MmsDownloader_error_reading_mms_settings">Greška prilikom čitanja MMS postavki vašeg pružatelja usluge...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal poziv u tijeku</string>
   <string name="NotificationBarManager_missed_call_from_s">Propušteni poziv od %s</string>
@@ -386,7 +380,6 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Uređaj nije pronađen.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Mrežna greška.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Neispravan QR kod.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Imate previše povezanih uređaja, pokušajte ukloniti neke...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Žao nam je, ovo nije važeći QR kôd za povezivanje uređaja.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Poveži Signal uređaj?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Izgleda da pokušavate povezati Signal uređaj pomoću strane aplikacije. Za Vašu vlastitu sigurnost molimo skenirajte kôd ponovno unutar Signal aplikacije.</string>
@@ -463,7 +456,6 @@ Provjerite da li je ovo vaš broj telefona! Uskoro ćemo poslati SMS poruku na n
   <string name="RegistrationProgressActivity_verifying_number">Potvrdi broj</string>
   <string name="RegistrationProgressActivity_edit_s">Uredi %s</string>
   <string name="RegistrationProgressActivity_registration_complete">Registracija završena!</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Morate unijeti broj koji ste prvi primili...</string>
   <string name="RegistrationProgressActivity_connecting">Povezivanje</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Povezivanje zbog potvrde...</string>
   <string name="RegistrationProgressActivity_network_error">Greška u mreži!</string>
@@ -499,7 +491,6 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s resetiranje sigurne sesije.</string>
   <string name="SmsMessageRecord_duplicate_message">Dupla poruka.</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">Napustio grupu...</string>
   <string name="ThreadRecord_secure_session_reset">Resetiranje sigurne sesije.</string>
   <string name="ThreadRecord_draft">Skica:</string>
   <string name="ThreadRecord_called">Zvali ste</string>
@@ -521,9 +512,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Pokreni usprkos postojećem zahtjevu?</string>
   <string name="KeyExchangeInitiator_send">Pošalji</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Loše kriptirana poruka...</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Dekriptiranje, sačekajte...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Poruka kriptirana za nepostojeću sesiju...</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">Greška prilikom dekriptiranja poruke.</string>
   <!--ThreadDatabase-->
@@ -537,8 +526,6 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="MmsDatabase_error_decrypting_message">Greška prilikom dekriptiranja poruke.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Dekriptiranje MMSa, sačekajte...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Loše kriptirana MMS poruka...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS poruka kriptirana za nepostojeću sesiju...</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Utišaj obavijesti</string>
   <!--ApplicationMigrationService-->
@@ -554,7 +541,6 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d novih poruka u %2$d razgovora</string>
   <string name="MessageNotifier_most_recent_from_s">Najnovije od: %1$s</string>
-  <string name="MessageNotifier_locked_message">Zaključana poruka...</string>
   <string name="MessageNotifier_media_message_with_text">Media poruka: %s</string>
   <string name="MessageNotifier_no_subject">(Bez naslova)</string>
   <string name="MessageNotifier_message_delivery_failed">Neuspješna isporuka poruke.</string>
@@ -600,7 +586,6 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Odaberi za</string>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">Nema blokiranih kontakata...</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Nema nedavnih poziva.</string>
   <!--conversation_title_view-->
@@ -650,7 +635,6 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Poveži uređaj</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">Nema povezanih uređaja...</string>
   <string name="device_list_fragment__link_new_device">Poveži novi uređaj</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">nastavi</string>

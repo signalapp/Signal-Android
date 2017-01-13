@@ -84,10 +84,10 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting_messages">Выдаленне паведамлення...</string>
   <!--ConversationListActivity-->
+  <string name="ConversationListActivity_search">Пошук</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_deleting">Выдаленне</string>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Паведамленне абмену ключамі...</string>
   <!--ConversationListItemAction-->
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Выкарыстоўваць кастомны: %s</string>
@@ -150,8 +150,6 @@
   <string name="MessageDetailsRecipient_failed_to_send">Не атрымалася даслаць</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Памылка захавання MMS!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Памылка злучэння з MMS правайдэрам...</string>
-  <string name="MmsDownloader_error_reading_mms_settings">Памылка счытвання параметраў бесправаднога MMS правайдэра...</string>
   <!--- NotificationBarManager-->
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Мультымедыя паведамленне</string>
@@ -197,7 +195,6 @@
   <string name="RegistrationProgressActivity_verifying_number">Праверка нумару</string>
   <string name="RegistrationProgressActivity_edit_s">Рэдагаваць %s</string>
   <string name="RegistrationProgressActivity_registration_complete">Рэгістрацыя выканана!</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Вы мусіце ўвесці код, які атрымалі...</string>
   <string name="RegistrationProgressActivity_connecting">Падлучэнне</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Падлучэнне для праверкі...</string>
   <string name="RegistrationProgressActivity_network_error">Памылка сеткі!</string>
@@ -223,16 +220,13 @@
 Атрыманы ключ абмену паведамленнямі для няправільнай версіі пратакола.</string>
   <string name="SmsMessageRecord_duplicate_message">Дублікат паведамлення.</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">Пакінуць групу...</string>
   <string name="ThreadRecord_draft">Чарнавік:</string>
   <!--VerifyIdentityActivity-->
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Ініцыяваць нягледзячы на існуючы запыт?</string>
   <string name="KeyExchangeInitiator_send">Даслаць</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Няправільна зашыфраванае паведамленне...</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Расшыфроўка, пачакайце калі ласка...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Паведамленне зашыфравана для ўжо неіснуючай сэсіі...</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">Памылка расшыфроўкі паведамлення.</string>
   <!--ThreadDatabase-->
@@ -246,8 +240,6 @@
   <string name="MmsDatabase_error_decrypting_message">Памылка расшыфроўкі паведамлення.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">РасшыфроўкаMMS, пачакайце калі ласка...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Няправільна зашыфраванае MMS паведамленне...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS паведамленне зашыфравана для ўжо неіснуючай сэсіі...</string>
   <!--MuteDialog-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Імпарт у працэсе</string>

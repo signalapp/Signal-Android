@@ -64,7 +64,7 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Εισερχόμενη κλήση</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Ο κωδικός ασφαλείας με τον/την %1$s έχει αλλάξει. Αυτό σημαίνει ότι είτε κάποιος προσπαθεί να υποκλέψει την συνομιλία σας είτε ο/η %2$s απλά επανενεργοποίησε το Signal.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Ο κωδικός ασφαλείας με τον/την %1$s έχει αλλάξει. Αυτό σημαίνει ότι είτε κάποιος προσπαθεί να υποκλέψει τη συνομιλία σας, είτε ο/η %2$s απλά επανεγκατέστησε το Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Μήπως θα ήθελες να επιβεβαιώσεις τον κωδικό ασφαλείας σου για αυτή την επαφή;</string>
   <string name="ConfirmIdentityDialog_accept">Αποδοχή</string>
   <!--ContactsDatabase-->
@@ -130,7 +130,6 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Το συννημένο υπερβαίνει τα όρια μεγέους για το είδος μηνύματος που στέλνεις.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Κάμερα μη διαθέσιμη</string>
   <string name="ConversationActivity_unable_to_record_audio">Η ηχογράφηση απέτυχε!</string>
-  <string name="ConversationActivity_error_sending_voice_message">Σφάλμα κατά την αποστολή μηνύματος φωνής...</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Δεν υπάρχει διαθέσιμη εφαρμογή στην συσκευή σου που να μπορεί να διαχειριστεί αυτό τον σύνδεσμο.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Στοιχεία μηνύματος</string>
@@ -157,6 +156,10 @@
     <item quantity="one">Σφάλμα κατά την αποθήκευση του συνημμένου στην μνήμη!</item>
     <item quantity="other">Σφάλμα κατά την αποθήκευση των συνημμένων στην μνήμη!</item>
   </plurals>
+  <plurals name="ConversationFragment_files_saved_successfully">
+    <item quantity="one">Το αρχείο αποθηκεύτηκε με επιτυχία.</item>
+    <item quantity="other">Τα αρχεία αποθηκεύτηκαν με επιτυχία</item>
+  </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Αδύνατη η εγγραφή στην μνήμη!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Το συνημμένο αποθηκεύεται</item>
@@ -174,7 +177,7 @@
   <string name="ConversationFragment_deleting">Διαγραφ</string>
   <string name="ConversationFragment_deleting_messages">Διαγραφή μηνυμάτων...</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">Αναζήτηση...</string>
+  <string name="ConversationListActivity_search">Αναζήτηση</string>
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Δεν υπάρχει εγκατεστημένος browser στην συσκευή σου.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
@@ -197,7 +200,6 @@
     <item quantity="other">%d συνομιλίες μεταφέρθηκαν στα εισερχόμενα</item>
   </plurals>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Μήνυμα ανταλλαγής κλειδιών...</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Αρχειοθετήθηκαν οι συζητήσεις (%d)</string>
   <!--CustomDefaultPreference-->
@@ -210,7 +212,6 @@
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Αποσύνδεση του \'%s\';</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Αποσυνδέοντας αυτή την συσκευή, αυτή δεν θα μπορεί να λάβει ή να στείλει μηνύματα πια.</string>
-  <string name="DeviceListActivity_network_connection_failed">Αποτυχία σύνδεσης δικτύου...</string>
   <string name="DeviceListActivity_try_again">Ξαναπροσπάθησε</string>
   <string name="DeviceListActivity_unlinking_device">Η συσκευή αποσυνδέεται...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Η συσκευή αποσυνδέεται</string>
@@ -242,7 +243,6 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Μόνιμη αποτυχία επικοινωνίας του Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Το Signal δεν μπόρεσε να εγγραφτεί στις Υπηρεσίες Google Play. Τα μηνύματα και οι κλήσεις του Signal έχουν απενεργοποιηθεί. Παρακαλώ προσπάθησε να επανεγγραφτείς στις Ρυθμίσεις &gt; Προχωρημένες Ρυθμίσεις.</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Σφάλμα κατά τη λήψη της πλήρης ανάλυσης της κινούμενης εικόνας...</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Αυτοκόλλητα</string>
@@ -325,8 +325,6 @@
   <string name="MessageDetailsRecipient_new_safety_number">Νέος κωδικός ασφαλείας</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Σφάλμα κατά την αποθήκευση MMS! </string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Σφάλμα κατά στη σύνδεση με τον πάροχο MMS...</string>
-  <string name="MmsDownloader_error_reading_mms_settings">Σφάλμα κατά την διάβαση των ρυθμίσεων MMS του παρόχου...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Κλήση Signal εν εξελίξει</string>
   <string name="NotificationBarManager_missed_call_from_s">Αναπάντητη κλήση από τον/την %s</string>
@@ -348,7 +346,7 @@
   <string name="MessageRecord_missed_call_from">Αναπάντητη κλήση από τον/την %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">Ο/Η %s είναι στο Signal, πες ένα γεια!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Ο χρόνος που όρισες για την εξαφάνιση του μηνύματος είναι %1$s.</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s όρισε το χρόνο εξαφάνισης του μηνύματος τα %2$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">Ο/Η %1$s όρισε το χρόνο εξαφάνισης του μηνύματος τα %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Ο κωδικός ασφαλείας με τον/την %s έχει αλλάξει.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Τα συνθηματικά δε ταιριάζουν!</string>
@@ -369,7 +367,6 @@
   <string name="DeviceProvisioningActivity_content_progress_no_device">Δεν βρέθηκε συσκευή.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Σφάλμα δικτύου</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Άκυρος QR κωδικός.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Συγγνώμη, έχεις πάρα πολλές συσκευές ήδη συνδεδεμένες, προσπάθησε να αφαιρέσεις κάποιες...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Συγγνώμη, αυτός δεν είναι ένας έγκυρος κωδικός QR για σύνδεση συσκευών.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Σύνδεση μιας συσκευής Signal;</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Φαίνεται πως προσπαθείς να συνδέσεις μια συσκευή Signal χρησιμοποιώντας ένα τρίτο πρόγραμμα σάρωσης. Για την προστασία σου, παρακαλώ ξανασκάνναρε τον κωδικό μέσα από το Signal.</string>
@@ -444,7 +441,6 @@
   <string name="RegistrationProgressActivity_verifying_number">Γίνεται επιβεβαίωση αριθμού</string>
   <string name="RegistrationProgressActivity_edit_s">Επεξεργασία %s</string>
   <string name="RegistrationProgressActivity_registration_complete">Η εγγραφή ολοκληρώθηκε!</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Πρέπει πρώτα να εισάγεις τον κωδικό που έλαβες...</string>
   <string name="RegistrationProgressActivity_connecting">Γίνεται σύνδεση</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Γίνεται σύνδεση για επιβεβαίωση...</string>
   <string name="RegistrationProgressActivity_network_error">Σφάλμα δικτύου!</string>
@@ -476,12 +472,11 @@
     </string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Ελήφθη μήνυμα ανταλλαγής κλειδιών για άκυρη έκδοση του πρωτόκολλου.</string>
-  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Ελήφθη μήνυμα με καινούργιου κωδικό ασφαλείας. Αγγίξτε για προβολή.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Ελήφθη μήνυμα με καινούργιο κωδικό ασφαλείας. Αγγίξτε για προβολή.</string>
   <string name="SmsMessageRecord_secure_session_reset">Επανεκκίνησες την ασφαλή συνεδρία.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">Ο/Η %s επανεκκίνησε την ασφαλή συνεδρία.</string>
   <string name="SmsMessageRecord_duplicate_message">Διπλότυπο μήνυμα.</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">Έχεις φύγει από την ομάδα...</string>
   <string name="ThreadRecord_secure_session_reset">Επαναφορά ασφαλούς συνεδρίας.</string>
   <string name="ThreadRecord_draft">Πρόχειρο:</string>
   <string name="ThreadRecord_called">Τον/την κάλεσες</string>
@@ -492,20 +487,18 @@
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Ο χρόνος εξαφάνισης μηνυμάτων ρυθμίστηκε σε %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Ο κωδικός ασφαλείας με τον/την %s έχει αλλάξει.</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Η επαφή σας χρησιμοποιεί παλιά εκδοχή του Signal. Παρακαλούμε ζήτα του να ανανεώσει την εφαρμογή πριν επιβεβαιώσετε το κωδικό ασφαλείας.</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Η επαφή σου χρησιμοποιεί μια νεότερη εκδοχή του Signal και ο κώδικας QR δεν έχει συμβατή μορφοποίηση. Παρακαλώ ενημερώστε την εφαρμογή.</string>
-  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Η μορφοποίηση του κώδικα QR που σαρώσατε δεν είναι σωστή  για την επιβεβαίωση του κωδικού ασφαλείας. Παρακαλώ σαρώστε ξανά.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Η επαφή σου χρησιμοποιεί παλιά έκδοση του Signal. Παρακαλούμε ζήτα του να ανανεώσει την εφαρμογή πριν επιβεβαιώσεις το κωδικό ασφαλείας.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Η επαφή σου χρησιμοποιεί μια νεότερη έκδοση του Signal και ο κώδικας QR δεν έχει συμβατή μορφοποίηση. Παρακαλώ ενημέρωσε την εφαρμογή.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Η μορφοποίηση του κώδικα QR που σάρωσες δεν είναι σωστή  για την επιβεβαίωση του κωδικού ασφαλείας. Παρακαλώ δοκίμασε ξανά.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Μοιράσου τον κωδικό ασφαλείας μέσω...</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Ο κωδικός ασφαλείας μας:</string>
-  <string name="VerifyIdentityActivity_no_app_to_share_to">Φαινεται πως δεν έχεις κάποια εφαρμογή στην οποία μπορείς να μοιραστείς.</string>
+  <string name="VerifyIdentityActivity_no_app_to_share_to">Φαινεται πως δεν έχεις κάποια εφαρμογή με την οποία μπορείς να μοιραστείς.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Δεν βρέθηκε κωδικός ασφαλείας στο πρόχειρο για να γίνει σύγκριση</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Εκκίνηση παρά το υπάρχον αίτημα;</string>
   <string name="KeyExchangeInitiator_send">Αποστολή</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Κακώς κρυπτογραφημένο μήνυμα...</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Αποκρυπτογράφηση, παρακαλώ περίμενε...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Το μήνυμα κρυπτογραφήθηκε για ανύπαρκτη συνεδρία...</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">Σφάλμα αποκρυπτογράφησης του μηνύματος.</string>
   <!--ThreadDatabase-->
@@ -519,8 +512,6 @@
   <string name="MmsDatabase_error_decrypting_message">Σφάλμα αποκρυπτογράφησης του μηνύματος.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Γίνεται αποκρυπτογράφηση MMS, παρακαλώ περίμενε...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Κακώς κρυπτογραφημένο μήνυμα MMS...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Το μήνυμα MMS κρυπτογραφήθηκε για ανύπαρκτη συνεδρία...</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Σίγαση ειδοποιήσεων</string>
   <!--ApplicationMigrationService-->
@@ -536,7 +527,6 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d νέα μηνύματα σε %2$d συζητήσεις</string>
   <string name="MessageNotifier_most_recent_from_s">Τελευταίο μήνυμα από: %1$s</string>
-  <string name="MessageNotifier_locked_message">Κλειδωμένο μήνυμα...</string>
   <string name="MessageNotifier_media_message_with_text">Μήνυμα Πολυμέσων: %s</string>
   <string name="MessageNotifier_no_subject">(Χωρίς θέμα)</string>
   <string name="MessageNotifier_message_delivery_failed">Η παράδοση μηνύματος απέτυχε.</string>
@@ -567,6 +557,7 @@
   <string name="attachment_type_selector__location_description">Τοποθεσία</string>
   <string name="attachment_type_selector__gif">Κινούμενη εικόνα</string>
   <string name="attachment_type_selector__gif_description">Κινούμενη εικόνα</string>
+  <string name="attachment_type_selector__drawer_description">Εναλλαγή συρταριού επισυνημμένων</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Παλιό συνθηματικό</string>
   <string name="change_passphrase_activity__new_passphrase">Νέο συνθηματικό</string>
@@ -581,7 +572,6 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Επιλογή για</string>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">Καμμία μπλοκαρισμένη επαφή...</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Δεν υπάρχουν πρόσφατες κλήσεις.</string>
   <!--conversation_title_view-->
@@ -597,7 +587,8 @@
   <string name="conversation_activity__compose_description">Σύνθεση μηνύματος</string>
   <string name="conversation_activity__emoji_toggle_description">Εναλλαγή πληκτρολογίου emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Μικρογραφία συνημμένου</string>
-  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Ηχογράφησε και στείλε το συνημμένο αρχείο ήχου</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Εναλλαγή συρταριού επισυνημμένων κάμερας</string>
+  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Ηχογράφησε και στείλε το αρχείο ήχου συνημμένο</string>
   <string name="conversation_activity__enable_signal_for_sms">Ενεργοποίησε το Signal για SMS</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">ΣΥΡΕ ΓΙΑ ΑΚΥΡΩΣΗ</string>
@@ -630,7 +621,6 @@
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Σύνδεση συσκευής</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">Δεν έχουν συνδεθεί συσκευές...</string>
   <string name="device_list_fragment__link_new_device">Σύνδεση νέας συσκευής</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">συνέχεια</string>
@@ -664,7 +654,7 @@
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Αναζήτηση GIFs και αυτοκολλήτων</string>
   <!--giphy_fragment-->
-  <string name="giphy_fragment__nothing_found">Δεν βρέθηκε</string>
+  <string name="giphy_fragment__nothing_found">Δεν βρέθηκε τίποτα</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Αποτυχία ανάγνωσης αρχείου συμβάντων για τη συσκευή σου. Μπορείς να χρησιμοποιήσεις το ADB για να πάρεις ένα αρχείο συμβάντων αποσφαλμάτωσης.</string>
   <string name="log_submit_activity__thanks">Ευχαριστούμε για τη βοήθειά σου!</string>
@@ -804,8 +794,7 @@
   <string name="recipients_panel__to"><small>Εισαγωγή ονόματος ή αριθμού</small></string>
   <string name="recipients_panel__add_members">Προσθήκη μελών</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Αν θέλεις να επιβεβαιώσεις την ασφάλεια της κρυπτογράφισης από άκρο σε άκρο %s, σύγκρινε τον παρακάτω αριθμό με τον αριθμό στην συσκευή. Αλλιώς, μπορείς Alternatively, you can scan the code on their phone, or ask them to scan your code. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Learn more about verifying safety numbers</a>]]>
-Μάθε περισσότερα για την επιβεβαίωση του κωδικού ασφαλείας</string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Αν θέλεις να επιβεβαιώσεις την ασφάλεια της κρυπτογράφισης από άκρο σε άκρο %s, σύγκρινε τον παρακάτω αριθμό με τον αριθμό στην συσκευή. Εναλλακτικά, μπορείς να σκανάρεις τον κωδικό στην οθόνη του κινητού τους, ή να τους ζητήσεις να σκανάρουν τον δικό σου κωδικό. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Μάθε περισσότερα για την επιβεβαίωση του κωδικού ασφαλείας</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Πάτα για σκανάρισμα</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Μοιράσου τον κωδικό ασφαλείας</string>
@@ -1042,8 +1031,8 @@
   <string name="text_secure_normal__invite_friends">Πρόσκληση φίλων</string>
   <string name="text_secure_normal__help">Βοήθεια</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Αντιγραφή</string>
-  <string name="verify_display_fragment_context_menu__compare_with_clipboard">Σύγκρινε με το πρόχειρο</string>
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Αντιγραφή στο πρόχειρο</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">Σύγκριση με το πρόχειρο</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Η έκδοση του Signal σου είναι παρωχημένη</string>
   <plurals name="reminder_header_outdated_build_details">
