@@ -130,6 +130,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Το συννημένο υπερβαίνει τα όρια μεγέους για το είδος μηνύματος που στέλνεις.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Κάμερα μη διαθέσιμη</string>
   <string name="ConversationActivity_unable_to_record_audio">Η ηχογράφηση απέτυχε!</string>
+  <string name="ConversationActivity_error_sending_voice_message">Πρόβλημα με την αποστολή φωνητικού μηνύματος</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Δεν υπάρχει διαθέσιμη εφαρμογή στην συσκευή σου που να μπορεί να διαχειριστεί αυτό τον σύνδεσμο.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Στοιχεία μηνύματος</string>
@@ -200,6 +201,7 @@
     <item quantity="other">%d συνομιλίες μεταφέρθηκαν στα εισερχόμενα</item>
   </plurals>
   <!--ConversationListItem-->
+  <string name="ConversationListItem_key_exchange_message">Μήνυμα ανταλλαγής κλειδιού</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Αρχειοθετήθηκαν οι συζητήσεις (%d)</string>
   <!--CustomDefaultPreference-->
@@ -212,6 +214,7 @@
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Αποσύνδεση του \'%s\';</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Αποσυνδέοντας αυτή την συσκευή, αυτή δεν θα μπορεί να λάβει ή να στείλει μηνύματα πια.</string>
+  <string name="DeviceListActivity_network_connection_failed">Αποτυχία σύνδεσης στο δίκτυο</string>
   <string name="DeviceListActivity_try_again">Ξαναπροσπάθησε</string>
   <string name="DeviceListActivity_unlinking_device">Η συσκευή αποσυνδέεται...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Η συσκευή αποσυνδέεται</string>
@@ -243,6 +246,7 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Μόνιμη αποτυχία επικοινωνίας του Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Το Signal δεν μπόρεσε να εγγραφτεί στις Υπηρεσίες Google Play. Τα μηνύματα και οι κλήσεις του Signal έχουν απενεργοποιηθεί. Παρακαλώ προσπάθησε να επανεγγραφτείς στις Ρυθμίσεις &gt; Προχωρημένες Ρυθμίσεις.</string>
   <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Πρόβλημα κατά την ανάκτηση της πλήρους ανάλυσης εικόνας GIF</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Αυτοκόλλητα</string>
@@ -325,6 +329,8 @@
   <string name="MessageDetailsRecipient_new_safety_number">Νέος κωδικός ασφαλείας</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Σφάλμα κατά την αποθήκευση MMS! </string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Πρόβλημα σύνδεσης στον πάροχο για τα MMS</string>
+  <string name="MmsDownloader_error_reading_mms_settings">Πρόβλημα στην ανάκτηση ρυθμίσεων από τον πάροχο για τα MMS </string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Κλήση Signal εν εξελίξει</string>
   <string name="NotificationBarManager_missed_call_from_s">Αναπάντητη κλήση από τον/την %s</string>
@@ -367,6 +373,7 @@
   <string name="DeviceProvisioningActivity_content_progress_no_device">Δεν βρέθηκε συσκευή.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Σφάλμα δικτύου</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Άκυρος QR κωδικός.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Δυστυχώς έχεις υπερβολικό αριθμό συσκευών συνδεδεμένες, προσπάθησε να διαγράψεις μερικές</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Συγγνώμη, αυτός δεν είναι ένας έγκυρος κωδικός QR για σύνδεση συσκευών.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Σύνδεση μιας συσκευής Signal;</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Φαίνεται πως προσπαθείς να συνδέσεις μια συσκευή Signal χρησιμοποιώντας ένα τρίτο πρόγραμμα σάρωσης. Για την προστασία σου, παρακαλώ ξανασκάνναρε τον κωδικό μέσα από το Signal.</string>
@@ -397,6 +404,7 @@
   <string name="RecipientPreferenceActivity_unblock">Ξεμπλοκάρισμα</string>
   <string name="RecipientPreferenceActivity_enabled">Ενεργοποιημένο</string>
   <string name="RecipientPreferenceActivity_disabled">Απενεργοποιημένο</string>
+  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Διαθέσιμο, εφόσον ένα μήνυμα έχει αποσταλεί ή παραληφθεί</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">Απάντηση</string>
   <string name="RedPhone_ending_call">Τερματισμός κλήσης</string>
@@ -441,6 +449,7 @@
   <string name="RegistrationProgressActivity_verifying_number">Γίνεται επιβεβαίωση αριθμού</string>
   <string name="RegistrationProgressActivity_edit_s">Επεξεργασία %s</string>
   <string name="RegistrationProgressActivity_registration_complete">Η εγγραφή ολοκληρώθηκε!</string>
+  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Πρέπει πρώτα να εισάγεις τον κωδικό που έχεις λαβει</string>
   <string name="RegistrationProgressActivity_connecting">Γίνεται σύνδεση</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Γίνεται σύνδεση για επιβεβαίωση...</string>
   <string name="RegistrationProgressActivity_network_error">Σφάλμα δικτύου!</string>
@@ -477,6 +486,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">Ο/Η %s επανεκκίνησε την ασφαλή συνεδρία.</string>
   <string name="SmsMessageRecord_duplicate_message">Διπλότυπο μήνυμα.</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_left_the_group">Έφυγε από το group</string>
   <string name="ThreadRecord_secure_session_reset">Επαναφορά ασφαλούς συνεδρίας.</string>
   <string name="ThreadRecord_draft">Πρόχειρο:</string>
   <string name="ThreadRecord_called">Τον/την κάλεσες</string>
@@ -498,7 +508,9 @@
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Εκκίνηση παρά το υπάρχον αίτημα;</string>
   <string name="KeyExchangeInitiator_send">Αποστολή</string>
   <!--MessageDisplayHelper-->
+  <string name="MessageDisplayHelper_bad_encrypted_message">Μήνυμα με πρόβλημα στην κρυπτογράφησή του</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Αποκρυπτογράφηση, παρακαλώ περίμενε...</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Το μήνυμα κρυπτογραφήθηκε για μη υπάρχον session</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">Σφάλμα αποκρυπτογράφησης του μηνύματος.</string>
   <!--ThreadDatabase-->
@@ -512,6 +524,8 @@
   <string name="MmsDatabase_error_decrypting_message">Σφάλμα αποκρυπτογράφησης του μηνύματος.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Γίνεται αποκρυπτογράφηση MMS, παρακαλώ περίμενε...</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">MMS μήνυμα με πρόβλημα στην κρυπτογράφησή του</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Το MMS μήνυμα κρυπτογραφήθηκε για μη υπάρχον session</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Σίγαση ειδοποιήσεων</string>
   <!--ApplicationMigrationService-->
@@ -527,6 +541,7 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d νέα μηνύματα σε %2$d συζητήσεις</string>
   <string name="MessageNotifier_most_recent_from_s">Τελευταίο μήνυμα από: %1$s</string>
+  <string name="MessageNotifier_locked_message">Κλειδωμένο μήνυμα</string>
   <string name="MessageNotifier_media_message_with_text">Μήνυμα Πολυμέσων: %s</string>
   <string name="MessageNotifier_no_subject">(Χωρίς θέμα)</string>
   <string name="MessageNotifier_message_delivery_failed">Η παράδοση μηνύματος απέτυχε.</string>
@@ -572,6 +587,7 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Επιλογή για</string>
   <!--blocked_contacts_fragment-->
+  <string name="blocked_contacts_fragment__no_blocked_contacts">Κανένας μπλοκαρισμένος χρήστης</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Δεν υπάρχουν πρόσφατες κλήσεις.</string>
   <!--conversation_title_view-->
@@ -621,6 +637,7 @@
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Σύνδεση συσκευής</string>
   <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_linked">Καμία συνδεδεμένη συσκευή</string>
   <string name="device_list_fragment__link_new_device">Σύνδεση νέας συσκευής</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">συνέχεια</string>

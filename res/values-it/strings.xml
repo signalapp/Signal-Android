@@ -130,6 +130,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">L\'allegato che stai cercando di inviare supera le dimensioni consentite</string>
   <string name="ConversationActivity_quick_camera_unavailable">Fotocamera non disponibile</string>
   <string name="ConversationActivity_unable_to_record_audio">Impossibile registrare il messaggio!</string>
+  <string name="ConversationActivity_error_sending_voice_message">Errore nell\'invio del messaggio vocale</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Sul tuo dispositivo non sono presenti app per gestire questo link.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Dettagli messaggio</string>
@@ -205,6 +206,7 @@
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Scollegare \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Scollegando questo dispositivo non gli sarà più possibile inviare o ricevere messaggi.</string>
+  <string name="DeviceListActivity_network_connection_failed">Connessione di rete fallita</string>
   <string name="DeviceListActivity_try_again">Riprova</string>
   <string name="DeviceListActivity_unlinking_device">Scollegamento dispositivo...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Scollegamento dispositivo</string>
@@ -314,6 +316,7 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nuovo numero sicuro.</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Errore nel salvare l\'MMS!</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Errore durante la connessione al provider MMS...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chiamata con Signal in corso</string>
   <string name="NotificationBarManager_missed_call_from_s">Chiamata persa da %s</string>
@@ -356,6 +359,7 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nessun dispositivo trovato.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Errore di rete.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Codice QR non valido.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Siamo spiacenti, hai troppi dispositivi connessi, prova scollegare qualcuno</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Ci spiace, questo non è un codice QR valido per collegare il dispositivo.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Collegare un dispositivo Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Sembrerebbe che tu stia provando a connettere un dispositivo Signal usando uno scanner di terze parti. Per la tua protezione ti preghiamo di  scansionare nuovamente il codice usando Signal.</string>
@@ -386,6 +390,7 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="RecipientPreferenceActivity_unblock">Sblocca</string>
   <string name="RecipientPreferenceActivity_enabled">Attivato</string>
   <string name="RecipientPreferenceActivity_disabled">Disattivato</string>
+  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Disponibile una volta che un messaggio è stato inviato o ricevuto.</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">In risposta</string>
   <string name="RedPhone_ending_call">In chiusura chiamata</string>
@@ -490,6 +495,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="KeyExchangeInitiator_send">Inviata</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_decrypting_please_wait">Decifratura in corso...</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Messaggio cifrato per una sessione non esistente...</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">Errore nel decifrare il messaggio.</string>
   <!--ThreadDatabase-->
@@ -503,6 +509,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="MmsDatabase_error_decrypting_message">Errore nel decifrare il messaggio.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Decifratura MMS in corso, attendere...</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Messaggio MMS cifrato per una sessione non esistente</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Silenzia notifiche</string>
   <!--ApplicationMigrationService-->
@@ -518,6 +525,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nuovi messaggi in %2$d conversazioni</string>
   <string name="MessageNotifier_most_recent_from_s">Il più recente da: %1$s</string>
+  <string name="MessageNotifier_locked_message">Messaggio bloccato</string>
   <string name="MessageNotifier_media_message_with_text">Messaggio multimediale: %s</string>
   <string name="MessageNotifier_no_subject">(Nessun oggetto)</string>
   <string name="MessageNotifier_message_delivery_failed">L\'invio del messaggio non è riuscito</string>
@@ -562,6 +570,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Seleziona per</string>
   <!--blocked_contacts_fragment-->
+  <string name="blocked_contacts_fragment__no_blocked_contacts">Nessun contatto bloccato</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Nessuna chiamata recente.</string>
   <!--conversation_title_view-->
@@ -610,6 +619,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Collega dispositivo</string>
   <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_linked">Nessun dispositivo collegato</string>
   <string name="device_list_fragment__link_new_device">Collega nuovo dispositivo</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">continua</string>
@@ -1027,7 +1037,7 @@ non riuscita.
   </plurals>
   <string name="reminder_header_outdated_build_details_today">La tua versione di Signal scade oggi. Premi per aggiornare alla versione più recente.</string>
   <string name="reminder_header_expired_build">La tua versione di Signal è scaduta!</string>
-  <string name="reminder_header_expired_build_details">I messaggi non vengo più inviati con successo. Premi per aggiornare alla versione più recente.</string>
+  <string name="reminder_header_expired_build_details">I messaggi non vengono più inviati con successo. Premi per aggiornare alla versione più recente.</string>
   <string name="reminder_header_expired_build_button">AGGIORNA</string>
   <string name="reminder_header_sms_default_title">Usa come app per tutti gli SMS</string>
   <string name="reminder_header_sms_default_text">Tocca per usare Signal come applicazione di default per gli SMS.</string>
