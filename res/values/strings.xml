@@ -133,7 +133,7 @@
     <string name="ConversationActivity_transport_signal">Signal</string>
     <string name="ConversationActivity_lets_switch_to_signal">Let\'s switch to Signal %1$s</string>
     <string name="ConversationActivity_lets_use_this_to_chat">Let\'s use this to chat: %1$s</string>
-    <string name="ConversationActivity_error_leaving_group">Error leaving group...</string>
+    <string name="ConversationActivity_error_leaving_group">Error leaving group</string>
     <string name="ConversationActivity_mms_not_supported_title">MMS not supported</string>
     <string name="ConversationActivity_mms_not_supported_message">This message cannot be sent since your carrier doesn\'t support MMS.</string>
     <string name="ConversationActivity_specify_recipient">Please choose a contact</string>
