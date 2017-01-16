@@ -19,7 +19,7 @@
                         android:title="@string/preferences__vibrate"
                         android:summary="@string/preferences__also_vibrate_when_notified" />
 
-    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+    <CheckBoxPreference
         android:dependency="pref_key_enable_notifications"
         android:key="pref_key_led"
         android:defaultValue="true"
