@@ -10,7 +10,6 @@
     <RingtonePreference android:dependency="pref_key_enable_notifications"
                         android:key="pref_key_ringtone"
                         android:title="@string/preferences__sound"
-                        android:summary="@string/preferences__change_notification_sound"
                         android:ringtoneType="notification"
                         android:defaultValue="content://settings/system/notification_sound" />
 
