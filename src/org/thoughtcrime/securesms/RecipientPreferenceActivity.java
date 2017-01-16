@@ -283,7 +283,14 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       }
 
       if (recipients.getVibrate() == VibrateState.DEFAULT) {
-        vibratePreference.setSummary(R.string.preferences__default);
+        String summary = getString(R.string.preferences__signal_default);
+        boolean global_vibrate = TextSecurePreferences.isNotificationVibrateEnabled(getActivity());
+        if (global_vibrate) {
+          summary += " (" + getString(R.string.RecipientPreferenceActivity_enabled) + ")";
+        } else {
+          summary += " (" + getString(R.string.RecipientPreferenceActivity_disabled) + ")";
+        }
+        vibratePreference.setSummary(summary);
         vibratePreference.setValueIndex(0);
       } else if (recipients.getVibrate() == VibrateState.ENABLED) {
         vibratePreference.setSummary(R.string.RecipientPreferenceActivity_enabled);
