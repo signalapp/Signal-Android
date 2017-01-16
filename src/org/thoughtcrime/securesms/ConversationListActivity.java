@@ -215,7 +215,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
   private void handleHelp() {
     try {
-      startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://support.whispersystems.org")));
+      startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://support.whispersystems.org")));
     } catch (ActivityNotFoundException e) {
       Toast.makeText(this, R.string.ConversationListActivity_there_is_no_browser_installed_on_your_device, Toast.LENGTH_LONG).show();
     }

@@ -73,7 +73,7 @@ Accepted pull requests will be rewarded with Bitcoins! After your pull request h
 ## How can I contribute?
 Any one can help by
 - advising new people about the guidelines of this project
- - redirecting support questions to support@whispersystems.org and the [support site](http://support.whispersystems.org)
+ - redirecting support questions to support@whispersystems.org and the [support site](https://support.whispersystems.org)
  - redirecting non-bug related discussions to the [community forum](https://whispersystems.discoursehosting.net)
 - improving documentation at the [wiki](https://github.com/WhisperSystems/Signal-Android/wiki)
 - [translating](https://www.transifex.com/projects/p/signal-android/)

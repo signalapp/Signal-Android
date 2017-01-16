@@ -50,7 +50,7 @@ Help
 ## Support
 For troubleshooting and questions, please visit our support center!
 
-http://support.whispersystems.org/
+https://support.whispersystems.org/
 
 ## Documentation
 Looking for documentation? Check out the wiki!
