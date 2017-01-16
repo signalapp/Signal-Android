@@ -269,6 +269,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         }
       } else {
         ringtonePreference.setSummary(R.string.preferences__default);
+        ringtonePreference.setCurrentRingtone(Settings.System.DEFAULT_NOTIFICATION_URI);
       }
 
       if (recipients.getVibrate() == VibrateState.DEFAULT) {
