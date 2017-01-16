@@ -4,7 +4,7 @@ You can also preview your report before submitting it. You may remove sections t
 Before we begin, please note that this tracker is only for issues, not questions or comments.
 
 If you are looking for support, please see our support center instead:
-http://support.whispersystems.org/
+https://support.whispersystems.org/
 or email support@whispersystems.org
 
 Let's begin with a checklist: replace the empty checkboxes [ ] below with checked ones [x] accordingly -->
