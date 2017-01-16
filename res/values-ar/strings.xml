@@ -76,6 +76,8 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">مكالمة واردة</string>
   <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">لقد تغير رقم الأمان الخاص بك وبـ %1$s. هذا إما يعني أن أحداً يحاول اعتراض اتصالكما ، أو أن %2$s ببساطة أعاد تنصيب تطبيق سيقنـال مرة آخرى.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">لربما ترغب بالتحقق من رقم الأمان مع هذا المتصل.</string>
   <string name="ConfirmIdentityDialog_accept">موافقة</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">رسالة %s</string>
@@ -144,7 +146,6 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">حجم المرفق تجاوز الحد المسموح بهذا النوع من الرسائل.</string>
   <string name="ConversationActivity_quick_camera_unavailable">الكاميرا غير موجودة</string>
   <string name="ConversationActivity_unable_to_record_audio">تعذر تسجيل الصوت!</string>
-  <string name="ConversationActivity_error_sending_voice_message">خطأ في إرسال الرسالة الصوتية...</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">لا يوجد تطبيق على الجهاز لمعالجة الرابط.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">تفاصيل الرسالة</string>
@@ -183,7 +184,6 @@
     <item quantity="many">وقع خطأ أثناء حفظ المرفقات في مساحة التخزين!</item>
     <item quantity="other">وقع خطأ أثناء حفظ المرفقات في مساحة التخزين!</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">تم حفظ الملف بنجاح.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">تعذر الإضافة إلى الذاكرة!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="zero">جارٍ حفظ %1$d مرفق</item>
@@ -209,7 +209,7 @@
   <string name="ConversationFragment_deleting">جارٍ الحذف</string>
   <string name="ConversationFragment_deleting_messages">حذف الرسائل جارٍ...</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">بحث...</string>
+  <string name="ConversationListActivity_search">بحث</string>
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">لا يوجد متصفح بالجهاز.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
@@ -256,11 +256,11 @@
   <string name="CustomDefaultPreference_using_default">الاستخدام الافتراضي: %s</string>
   <string name="CustomDefaultPreference_none">لا شيء </string>
   <!--DateUtils-->
+  <string name="DateUtils_just_now">هذه اللحظة</string>
   <string name="DateUtils_minutes_ago">%d دقيقة</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">إلغاء ربط  \'%s\'؟</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">لن يكون إرسال واستقبال الرسائل ممكنا بمجرد إلغاء ربط الجهاز.</string>
-  <string name="DeviceListActivity_network_connection_failed">فشل في اتصال الشبكة...</string>
   <string name="DeviceListActivity_try_again">حاول مجددا</string>
   <string name="DeviceListActivity_unlinking_device">جارٍ إلغاء ربط الجهاز...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">جارٍ إلغاء ربط الجهاز</string>
@@ -294,6 +294,8 @@
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">سيجنال لم يتمكن من التسجيل مع خدمات جوجل بلاي، وتم تعطيل رسائل ومكالمات سيجنال. رجاء محاولة إعادة التسجيل عبر قائمة الإعدادات بالتطبيق ثم اختيار متقدم.</string>
   <!--GiphyActivity-->
   <!--GiphyFragmentPageAdapter-->
+  <string name="GiphyFragmentPagerAdapter_gifs">صور GIF</string>
+  <string name="GiphyFragmentPagerAdapter_stickers">لصاقات</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">مجموعة جديدة</string>
   <string name="GroupCreateActivity_actionbar_update_title">تحديث المجموعة</string>
@@ -363,10 +365,9 @@
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">سيجنال يحتاج إلى ماسح Barcode لرموز الاستجابة السريعة.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">الإرسال فشل.</string>
+  <string name="MessageDetailsRecipient_new_safety_number">رقم أمان جديد</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">خطأ بتخزين رسالة الوسائط المتعددة!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">خطأ في الاتصال مع مزود خدمة رسالة الوسائط المتعددة...</string>
-  <string name="MmsDownloader_error_reading_mms_settings">خطأ في قراءة إعدادات مزود خدمة رسائل الوسائط المتعددة...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">مكالمة سيجنال</string>
   <string name="NotificationBarManager_missed_call_from_s">مكالمة فائتة من %s</string>
@@ -387,6 +388,9 @@
   <string name="MessageRecord_called_s">%s قام بالاتصال</string>
   <string name="MessageRecord_missed_call_from">مكالمة فائتة من %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s إنضم إلى سيجنال.. ألقي التحية!</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">لقد قمت بتحديد توقيت اختفاء الرسالة ليكون %1$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">حدد %1$s توقيت اختفاء الرسالة ليكون %2$s.</string>
+  <string name="MessageRecord_your_safety_number_with_s_has_changed">تم تغيير رقم الأمان الخاص بك وبـ%s.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">العبارات السرية غير متطابقة!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">العبارة السرية القديمة غير صحيحة!</string>
@@ -406,7 +410,6 @@
   <string name="DeviceProvisioningActivity_content_progress_no_device">لم يتم العثور على جهاز.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">خطأ في الشبكة.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">الرمز غير سليم.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">عذرا، لديك أجهزة عديدة مقترنة حاليا. حاول إلغاء إقران بعضهم...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">عذرا، الرابط غير صحيح.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">ربط سيجنال بجهاز؟</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">يبدو أنك تحاول ربط سيجنال باستخدام ماسح ضوئي خارجي. رجاء مسح الكود مرة أخرى باستخدام الخاصية المدمجة في سيجنال من أجل حمايتك.</string>
@@ -478,7 +481,6 @@
   <string name="RegistrationProgressActivity_verifying_number">جارٍ التحقق من الرقم</string>
   <string name="RegistrationProgressActivity_edit_s">تحرير %s</string>
   <string name="RegistrationProgressActivity_registration_complete">اكتمل التسجيل!</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">يجب عليك إدخال الرمز الذي تلقيته أولاً...</string>
   <string name="RegistrationProgressActivity_connecting">الاتصال جارٍ</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">جارٍ الإتصال للتحقق...</string>
   <string name="RegistrationProgressActivity_network_error">خطأ في الشبكة!</string>
@@ -508,11 +510,11 @@
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">تم استلام رسالة تبادل مفاتيح تالفة.</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 تم استلام رسالة تبادل مفاتيح مع إصدارة بروتوكول غير صحيحة.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">تم استلام رسالة برقم أمان جديد. انقر للمعالجة والعرض.</string>
   <string name="SmsMessageRecord_secure_session_reset">لقد قمت بإعادة ضبط تأمين المحادثة.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s أعاد ضبط تأمين المحادثة.</string>
   <string name="SmsMessageRecord_duplicate_message">رسالة مكررة.</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">ترك المجموعة...</string>
   <string name="ThreadRecord_secure_session_reset">إعادة ضبط جلسة آمنة.</string>
   <string name="ThreadRecord_draft">مسودة:</string>
   <string name="ThreadRecord_called">مكالمات صاردة</string>
@@ -521,15 +523,21 @@
   <string name="ThreadRecord_media_message">رسالة وسائط متعددة</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s إنضم إلى سيجنال.. ألقي التحية!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">ضبط توقيت إخفاء الرسائل إلى %s</string>
+  <string name="ThreadRecord_your_safety_number_with_s_has_changed">تم تغيير رقم الأمان الخاص بك وبـ%s.</string>
   <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">متصلك يستعمل نسخة قديمة من تطبيق سيقنال. من فضلك اطلب منه تحديث التطبيق ليتسنى لك التحقق من رقم الأمان.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">إن متصلك هذا يستعمل نسخة تطبيق سيقنـال أحدث ورمز QR فيها لا يتوافق مع نسختك.
+من فضلك، قم بالتحديث لتتمكن من المقارنة.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">إن رمز التحقق من رقم الأمان المستقرأ من رمز QR غير مصاغ بشكل صحيح. يُرجى إعادة الاستقراء مجدداً.</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">شارك رقم الأمان بواسطة...</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">رقم الأمان الخاص بنا في سيقنال:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">يبدو عدم وجود أي تطبيقات لديك للمشاركة من خلالها.</string>
+  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">لم يُعثر على رقم أمان في الحافظة من أجل المقارنة</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">ابدأ على الرغم من الطلب الحالي؟</string>
   <string name="KeyExchangeInitiator_send">أرسل</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">خطأ بالرسالة المشفرة...</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">انتظر، جارٍ فك التشفير..</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">الرسالة مشفرة دون وجود قناة اتصال...</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">خطأ بفك تشفير الرسالة.</string>
   <!--ThreadDatabase-->
@@ -543,8 +551,6 @@
   <string name="MmsDatabase_error_decrypting_message">خطأ بفك شفرة الرسالة.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">انتظر، يتم فك تشفير رسالة الوسائط المتعددة...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">خطأ بالرسالة المشفرة...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">الرسالة مشفرة دون وجود قناة اتصال...</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">كتم الإشعارات</string>
   <!--ApplicationMigrationService-->
@@ -560,7 +566,6 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d رسائل جديدة في %2$d محادثات</string>
   <string name="MessageNotifier_most_recent_from_s">الأحدث من: %1$s</string>
-  <string name="MessageNotifier_locked_message">رسالة مقفوله...</string>
   <string name="MessageNotifier_media_message_with_text">رسالة وسائط متعددة: %s</string>
   <string name="MessageNotifier_no_subject">(بلا عنوان)</string>
   <string name="MessageNotifier_message_delivery_failed">فشل توصيل الرسالة.</string>
@@ -578,11 +583,20 @@
   <string name="SingleRecipientNotificationBuilder_new_message">رسالة جديدة</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">صورة</string>
+  <string name="attachment_type_selector__image_description">صورة</string>
   <string name="attachment_type_selector__audio">صوت</string>
+  <string name="attachment_type_selector__audio_description">صوت</string>
   <string name="attachment_type_selector__video">فيديو</string>
+  <string name="attachment_type_selector__video_description">فيديو</string>
   <string name="attachment_type_selector__contact">جهة اتصال</string>
+  <string name="attachment_type_selector__contact_description">متصل</string>
   <string name="attachment_type_selector__camera">كاميرا</string>
+  <string name="attachment_type_selector__camera_description">كاميرا</string>
   <string name="attachment_type_selector__location">الموقع</string>
+  <string name="attachment_type_selector__location_description">موقع جغرافي</string>
+  <string name="attachment_type_selector__gif">صورة GIF</string>
+  <string name="attachment_type_selector__gif_description">صورة Gif</string>
+  <string name="attachment_type_selector__drawer_description">تفعيل أو تثبيط درج المرفقات</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">العبارة السرية القديمة</string>
   <string name="change_passphrase_activity__new_passphrase">العبارة السرية الجديدة</string>
@@ -597,7 +611,6 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">اختيار من أجل</string>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">لا توجد جهات اتصال محظورة...</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">لا توجد مكالمات حديثة.</string>
   <!--conversation_title_view-->
@@ -613,6 +626,9 @@
   <string name="conversation_activity__compose_description">تكوين الرسالة</string>
   <string name="conversation_activity__emoji_toggle_description">تبديل لوحة مفاتيح الرموز التعبيرية</string>
   <string name="conversation_activity__attachment_thumbnail">المصغّرة للمرفق</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">تفعيل أو تثبيط سريع لدرج مرفقات الكاميرا </string>
+  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">تسجيل وإرسال مرفق صوتي</string>
+  <string name="conversation_activity__enable_signal_for_sms">تمكين سيقنـال للرسائل النصية</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">سحب للإلغاء</string>
   <!--conversation_item-->
@@ -630,6 +646,9 @@
   <string name="conversation_item_received__contact_photo_description">صورة جهة الاتصال</string>
   <string name="conversation_item_received__downloading">التنزيل جارٍ...</string>
   <!--audio_view-->
+  <string name="audio_view__play_accessibility_description">تشغيل</string>
+  <string name="audio_view__pause_accessibility_description">توقف</string>
+  <string name="audio_view__download_accessibility_description">تنزيل</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">وضع اختيار الدفعات</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s اختيار</string>
@@ -641,7 +660,6 @@
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">ربط الجهاز</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">لا توجد أجهزة مقترنة...</string>
   <string name="device_list_fragment__link_new_device">ربط جهاز جديد</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">استمر</string>
@@ -685,7 +703,9 @@
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
   <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs_and_stickers">ابحث في صور GIF واللصاقات</string>
   <!--giphy_fragment-->
+  <string name="giphy_fragment__nothing_found">لا يوجد شيء</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">تعذر التقاط السجلات من هاتفك. يمكنك استخدام ADB للحصول على سجل التشغيل  بدلا من ذلك.</string>
   <string name="log_submit_activity__thanks">شكرا للمساعدة!</string>
@@ -749,6 +769,7 @@
   <string name="recipient_preferences__block">حظر</string>
   <string name="recipient_preferences__color">اللون</string>
   <string name="recipient_preferences__color_for_this_contact">اللون المخصص لجهة الاتصال</string>
+  <string name="recipient_preferences__verify_safety_number">تحقق من رقم الأمان</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">مكالمة سيجنال</string>
   <string name="redphone_call_controls__end_call">إنهاء المكالمة</string>
@@ -808,8 +829,10 @@
   <string name="recipients_panel__to"><small>أدخل اسم أو رقم</small></string>
   <string name="recipients_panel__add_members">إضافة أعضاء</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[إن كنت ترغب في فحص أمان التشفير الحاصل بينك وبين %s من طرفيه ، قارن الرقم في الأعلى بالرقم الموجود على جهازهم. أو يمكنك كحل آخر إجراء مسح تصويري للرمز الموجود على جهازهم أو أن تطلب منهم إجراء مسح تصويري للرمز الذي على جهازك.<a href=\"https://whispersystems.org/redirect/safety-numbers\">تعلم المزيد عن التحقق من أرقام الأمان</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">المس للمسح</string>
   <!--verify_identity-->
+  <string name="verify_identity__share_safety_number">شارك رقم الأمان</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">بعض المشاكل تتطلب انتباهك.</string>
   <string name="message_details_header__sent">أرسلت</string>
@@ -825,6 +848,7 @@
   <string name="AndroidManifest__select_contacts">اخر جهات الاتصال</string>
   <string name="AndroidManifest__signal_detected">تم العثور على سيجنال</string>
   <string name="AndroidManifest__change_passphrase">غير العبارة السرية</string>
+  <string name="AndroidManifest__verify_safety_number">تحقق من رقم الأمان</string>
   <string name="AndroidManifest__log_submit">أرسل سجل التشغيل.</string>
   <string name="AndroidManifest__media_preview">معاينة الوسائط</string>
   <string name="AndroidManifest__media_overview">جميع الصور</string>
@@ -1046,6 +1070,8 @@
   <string name="text_secure_normal__invite_friends">دعوة الأصدقاء</string>
   <string name="text_secure_normal__help">مساعدة</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">نسخ إلى الحافظة</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">قارن مع الحافظة</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">لقد انتهت صلاحية هذه الإصدارة من سيجنال.</string>
   <plurals name="reminder_header_outdated_build_details">
@@ -1082,6 +1108,8 @@
   <string name="MediaPreviewActivity_unssuported_media_type">غير مدعوم.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">أحفظ</string>
+  <string name="media_preview__forward_title">إعادة إرسال</string>
+  <string name="media_preview__overview_title">كل الصور</string>
   <!--media_overview-->
   <string name="media_overview__save_all">حفظ الكل</string>
   <!--media_preview_activity-->

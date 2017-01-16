@@ -7,11 +7,12 @@ import com.bumptech.glide.load.model.GenericLoaderFactory;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.load.model.ModelLoader;
 import com.bumptech.glide.load.model.ModelLoaderFactory;
-import com.squareup.okhttp.OkHttpClient;
 
 import org.thoughtcrime.securesms.giph.net.GiphyProxySelector;
 
 import java.io.InputStream;
+
+import okhttp3.OkHttpClient;
 
 /**
  * A simple model loader for fetching media over http/https using OkHttp.
@@ -29,8 +30,9 @@ public class OkHttpUrlLoader implements ModelLoader<GlideUrl, InputStream> {
       if (internalClient == null) {
         synchronized (Factory.class) {
           if (internalClient == null) {
-            internalClient = new OkHttpClient();
-            internalClient.setProxySelector(new GiphyProxySelector());
+            internalClient = new OkHttpClient.Builder()
+                                             .proxySelector(new GiphyProxySelector())
+                                             .build();
           }
         }
       }

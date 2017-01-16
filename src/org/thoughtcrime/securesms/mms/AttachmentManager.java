@@ -332,6 +332,7 @@ public class AttachmentManager {
     if (MediaPreviewActivity.isContentTypeSupported(slide.getContentType()) && slide.getUri() != null) {
       Intent intent = new Intent(context, MediaPreviewActivity.class);
       intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+      intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, slide.asAttachment().getSize());
       intent.setDataAndType(slide.getUri(), slide.getContentType());
 
       context.startActivity(intent);

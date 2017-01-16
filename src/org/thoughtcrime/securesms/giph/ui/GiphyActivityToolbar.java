@@ -112,6 +112,9 @@ public class GiphyActivityToolbar extends Toolbar {
       }
     });
 
+    setLogo(null);
+    setNavigationIcon(null);
+    setContentInsetStartWithNavigation(0);
     expandTapArea(this, action);
     expandTapArea(toggleContainer, gridToggle);
   }

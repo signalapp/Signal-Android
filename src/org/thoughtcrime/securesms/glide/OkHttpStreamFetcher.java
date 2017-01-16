@@ -4,23 +4,27 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.data.DataFetcher;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.util.ContentLengthInputStream;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
-import com.squareup.okhttp.ResponseBody;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+
 /**
  * Fetches an {@link InputStream} using the okhttp library.
  */
 public class OkHttpStreamFetcher implements DataFetcher<InputStream> {
+
+  private static final String TAG = OkHttpStreamFetcher.class.getName();
+
   private final OkHttpClient client;
-  private final GlideUrl url;
-  private InputStream stream;
-  private ResponseBody responseBody;
+  private final GlideUrl     url;
+  private       InputStream  stream;
+  private       ResponseBody responseBody;
 
   public OkHttpStreamFetcher(OkHttpClient client, GlideUrl url) {
     this.client = client;
@@ -37,10 +41,11 @@ public class OkHttpStreamFetcher implements DataFetcher<InputStream> {
       requestBuilder.addHeader(key, headerEntry.getValue());
     }
 
-    Request request = requestBuilder.build();
-
+    Request  request  = requestBuilder.build();
     Response response = client.newCall(request).execute();
+
     responseBody = response.body();
+
     if (!response.isSuccessful()) {
       throw new IOException("Request failed with code: " + response.code());
     }
@@ -60,11 +65,7 @@ public class OkHttpStreamFetcher implements DataFetcher<InputStream> {
       }
     }
     if (responseBody != null) {
-      try {
-        responseBody.close();
-      } catch (IOException e) {
-        // Ignored.
-      }
+      responseBody.close();
     }
   }
 

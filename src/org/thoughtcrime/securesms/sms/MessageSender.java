@@ -171,8 +171,7 @@ public class MessageSender {
   private static void sendTextSelf(Context context, long messageId, long expiresIn) {
     EncryptingSmsDatabase database = DatabaseFactory.getEncryptingSmsDatabase(context);
 
-    database.markAsSent(messageId);
-    database.markAsPush(messageId);
+    database.markAsSent(messageId, true);
 
     Pair<Long, Long> messageAndThreadId = database.copyMessageInbox(messageId);
     database.markAsPush(messageAndThreadId.first);
@@ -192,11 +191,8 @@ public class MessageSender {
     ExpiringMessageManager expiringMessageManager = ApplicationContext.getInstance(context).getExpiringMessageManager();
     MmsDatabase            database               = DatabaseFactory.getMmsDatabase(context);
 
-    database.markAsSent(messageId);
-    database.markAsPush(messageId);
-
-    long newMessageId = database.copyMessageInbox(masterSecret, messageId);
-    database.markAsPush(newMessageId);
+    database.markAsSent(messageId, true);
+    database.copyMessageInbox(masterSecret, messageId);
 
     if (expiresIn > 0) {
       database.markExpireStarted(messageId);

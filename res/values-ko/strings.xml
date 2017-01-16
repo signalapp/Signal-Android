@@ -123,7 +123,6 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">첨부파일 크기 제한 초과됨</string>
   <string name="ConversationActivity_quick_camera_unavailable">카메라 사용할 수 없음</string>
   <string name="ConversationActivity_unable_to_record_audio">오디오 녹음할 수 없음</string>
-  <string name="ConversationActivity_error_sending_voice_message">음성메시지 보내는 동안 오류 발생</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">작업을 처리할 수 있는 앱 없음</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">메시지 세부정보</string>
@@ -142,7 +141,6 @@
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="other">첨부파일 저장 오류 발생</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">첨부파일 저장됨</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">저장소에 저장할 수 없음</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="other">첨부파일 %1$d개 저장</item>
@@ -158,7 +156,7 @@
   <string name="ConversationFragment_deleting">메시지 삭제</string>
   <string name="ConversationFragment_deleting_messages">메시지를 삭제 중…</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">메시지 검색</string>
+  <string name="ConversationListActivity_search">검색</string>
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">브라우저 앱 없음</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
@@ -177,7 +175,6 @@
     <item quantity="other">대화 %d개 보관 취소</item>
   </plurals>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">키 교환 메시지…</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">보관된 대화 (%d개)</string>
   <!--CustomDefaultPreference-->
@@ -189,7 +186,6 @@
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">%s을(를) 연결 해제하시겠습니까?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">연결 해제를 통해 메시지를 보내거나 받지 못할 수 있습니다.</string>
-  <string name="DeviceListActivity_network_connection_failed">네트워크에 연결되지 않습니다.</string>
   <string name="DeviceListActivity_try_again">다시 시도</string>
   <string name="DeviceListActivity_unlinking_device">기기 연결 해제 중…</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">기기 연결 해제</string>
@@ -290,8 +286,6 @@
   <string name="MessageDetailsRecipient_failed_to_send">전송 실패</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">MMS 메시지를 저장 오류 발생</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">MMS 제공업체에 연결 오류 발생</string>
-  <string name="MmsDownloader_error_reading_mms_settings">이동통신사 MMS 설정 읽기 오류 발생</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal 통화 중</string>
   <string name="NotificationBarManager_missed_call_from_s">%s님의 부재중 Signal 통화</string>
@@ -329,7 +323,6 @@
   <string name="DeviceProvisioningActivity_content_progress_no_device">기기 없음</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">네트워크 오류 발생</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">QR코드가 잘못됨</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">기기 연결 가능 갯수 초과하여 기존 기기 중 하나 연결 해제 필요</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">기기 연결 QR코드 잘못됨</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Signal 기기를 연결하시겠습니까?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Signal 기기를 서드파티 스캐너로 연결해 보는 것 같습니다. 안전한 사용을 위해 Signal에서 다시 스캔해 주세요.</string>
@@ -394,7 +387,6 @@
   <string name="RegistrationProgressActivity_verifying_number">전화번호 확인</string>
   <string name="RegistrationProgressActivity_edit_s">%s번을 수정</string>
   <string name="RegistrationProgressActivity_registration_complete">가입 완료</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">전송받은 인증번호를 입력해야 함</string>
   <string name="RegistrationProgressActivity_connecting">연결</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">확인하기 위해 연결 중…</string>
   <string name="RegistrationProgressActivity_network_error">네트워크 오류 발생</string>
@@ -425,7 +417,6 @@
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">받은 키 교환 메시지에 프로토콜 버전이 잘못되었습니다.</string>
   <string name="SmsMessageRecord_duplicate_message">중복된 메시지</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">그룹에서 나갔습니다.</string>
   <string name="ThreadRecord_secure_session_reset">암호화된 세션이 초기화되었습니다.</string>
   <string name="ThreadRecord_draft">임시보관:</string>
   <string name="ThreadRecord_called">발신통화</string>
@@ -439,9 +430,7 @@
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">이미 요청을 보냈어도 다시 보내시겠습니까?</string>
   <string name="KeyExchangeInitiator_send">보내기</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">암호화된 메시지가 잘못되었습니다.</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">복호화하는 중입니다. 잠시 기다려 주세요…</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">메시지가 암호화된 세션이 없습니다.</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">메시지를 복호화 중에 오류가 발생했습니다.</string>
   <!--ThreadDatabase-->
@@ -455,8 +444,6 @@
   <string name="MmsDatabase_error_decrypting_message">메시지를 복호화 중에 오류가 발생했습니다.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">MMS 메시지를 복호화하는 중입니다. 잠시 기다려 주세요…</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">암호화된 MMS 메시지가 잘못되었습니다.</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS 메시지가 암호화된 세션이 없습니다.</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">대화 알림 끄기</string>
   <!--ApplicationMigrationService-->
@@ -472,7 +459,6 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">대화 %2$d개에 새 메시지 %1$d개</string>
   <string name="MessageNotifier_most_recent_from_s">%1$s님에게서 최근 메시지</string>
-  <string name="MessageNotifier_locked_message">잠겨 있는 메시지</string>
   <string name="MessageNotifier_media_message_with_text">미디어 메시지: %s</string>
   <string name="MessageNotifier_no_subject">(제목 없음)</string>
   <string name="MessageNotifier_message_delivery_failed">메시지 전송 실패</string>
@@ -509,7 +495,6 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">선택:</string>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">차단된 사용자 없음</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">최근 통화 없음</string>
   <!--conversation_title_view-->
@@ -553,7 +538,6 @@
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">기기 연결</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">연결된 기기 없음</string>
   <string name="device_list_fragment__link_new_device">새 기기 연결</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">계속</string>

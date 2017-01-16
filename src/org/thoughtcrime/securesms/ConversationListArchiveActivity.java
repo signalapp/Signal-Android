@@ -26,6 +26,7 @@ public class ConversationListArchiveActivity extends PassphraseRequiredActionBar
   @Override
   protected void onCreate(Bundle icicle, @NonNull MasterSecret masterSecret) {
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    getSupportActionBar().setTitle(R.string.AndroidManifest_archived_conversations);
 
     Bundle bundle = new Bundle();
     bundle.putBoolean(ConversationListFragment.ARCHIVE, true);

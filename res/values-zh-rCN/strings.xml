@@ -126,7 +126,6 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">当前信息的附件类型已经已经超过大小限制。</string>
   <string name="ConversationActivity_quick_camera_unavailable">摄像头不可用</string>
   <string name="ConversationActivity_unable_to_record_audio">无法录音！</string>
-  <string name="ConversationActivity_error_sending_voice_message">发送语音信息时遇到错误…</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">您的设备上没有应用程序能处理这个链接。</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">信息详情</string>
@@ -145,7 +144,6 @@
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="other">保存附件到存储时遇到错误！</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">保存文件成功。</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">存储无法写入！</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="other">正在保存 %1$d 附件</item>
@@ -161,7 +159,7 @@
   <string name="ConversationFragment_deleting">删除中</string>
   <string name="ConversationFragment_deleting_messages">正在删除信息…</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">搜索中...</string>
+  <string name="ConversationListActivity_search">搜索</string>
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">您的设备上未安装浏览器</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
@@ -180,7 +178,7 @@
     <item quantity="other">已经移动 %d 个会话到收件箱</item>
   </plurals>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">密钥交换消息...</string>
+  <string name="ConversationListItem_key_exchange_message">密钥交换信息</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">存档的会话 (%d)</string>
   <!--CustomDefaultPreference-->
@@ -193,7 +191,6 @@
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">断开 \'%s\' ？</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">如果断开此设备的连接，它将不能再接受或发送信息。</string>
-  <string name="DeviceListActivity_network_connection_failed">网络连接失败...</string>
   <string name="DeviceListActivity_try_again">再试一次</string>
   <string name="DeviceListActivity_unlinking_device">正在断开设备…</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">正在断开设备</string>
@@ -225,7 +222,6 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">暗号持续连接失效！</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">暗号无法在 Google Play 服务中注册。暗号消息和呼叫已经被金庸。请尝试在设置 &gt; 高级中重新注册。</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">下载完整的 GIF 时发生错误…</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">贴纸</string>
@@ -304,8 +300,6 @@
   <string name="MessageDetailsRecipient_new_safety_number">新的安全码</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">存储彩信错误！</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">连接彩信服务器错误…</string>
-  <string name="MmsDownloader_error_reading_mms_settings">在读取彩信服务器设置时遇到错误…</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">正在处理暗号呼叫</string>
   <string name="NotificationBarManager_missed_call_from_s">来自 %s 的未接来电</string>
@@ -348,7 +342,6 @@
   <string name="DeviceProvisioningActivity_content_progress_no_device">没有找到设备。</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">网络错误。</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">无效的二维码。</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">抱歉，您已经连接了太多的设备，请先移除一些…</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">抱歉，这不是有效的设备连接二维码。</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">连接一个暗号设备？</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">看起来您正在使用第三方的扫描器来连接暗号设备。处于您的安全考虑，请尝试使用暗号的扫描器扫描二维码。</string>
@@ -425,7 +418,6 @@
   <string name="RegistrationProgressActivity_verifying_number">正在验证号码</string>
   <string name="RegistrationProgressActivity_edit_s">编辑 %s</string>
   <string name="RegistrationProgressActivity_registration_complete">注册完成！</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">您必须输入接收到的代码才能继续...</string>
   <string name="RegistrationProgressActivity_connecting">连接中</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">正在连接验证…</string>
   <string name="RegistrationProgressActivity_network_error">网络错误！</string>
@@ -460,7 +452,6 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%s 重置了安全会话</string>
   <string name="SmsMessageRecord_duplicate_message">重复的信息。</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">离开此群组...</string>
   <string name="ThreadRecord_secure_session_reset">安全会话已重设。</string>
   <string name="ThreadRecord_draft">草稿：</string>
   <string name="ThreadRecord_called">您呼叫的</string>
@@ -471,6 +462,7 @@
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">信息销毁时间设置为 %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">您与 %s 的安全码已经改变</string>
   <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">您的联系人使用的是旧版本的暗号，在请求对方验证安全码前，请先让对方升级暗号客户端。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">您的联系人使用的是新版本的暗号，程序无法识别这个联系人的二维码。
 请升级您的暗号。</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">扫描的 QR 码格式不正确。请重新扫一次。</string>
@@ -482,9 +474,7 @@
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">发起一个已经存在的请求？</string>
   <string name="KeyExchangeInitiator_send">发送</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">已损坏的加密信息…</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">正在解密，请稍后...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">已为不存在的会话加密消息...</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">解密信息时遇到错误。</string>
   <!--ThreadDatabase-->
@@ -498,8 +488,6 @@
   <string name="MmsDatabase_error_decrypting_message">解密消息时遇到错误</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">正在解密彩信，请稍后...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">已损坏的加密彩信…</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">已为不存在的会话加密彩信消息...</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">静音通知</string>
   <!--ApplicationMigrationService-->
@@ -515,7 +503,6 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d 新信息是在 %2$d 中的会话</string>
   <string name="MessageNotifier_most_recent_from_s">最新的邮件来自：%1$s</string>
-  <string name="MessageNotifier_locked_message">锁定的信息…</string>
   <string name="MessageNotifier_media_message_with_text">媒体信息：%s</string>
   <string name="MessageNotifier_no_subject">（无主题）</string>
   <string name="MessageNotifier_message_delivery_failed">信息发送失败。</string>
@@ -533,11 +520,20 @@
   <string name="SingleRecipientNotificationBuilder_new_message">新信息</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">图片</string>
+  <string name="attachment_type_selector__image_description">图片</string>
   <string name="attachment_type_selector__audio">音频</string>
+  <string name="attachment_type_selector__audio_description">音频</string>
   <string name="attachment_type_selector__video">视频</string>
+  <string name="attachment_type_selector__video_description">视频</string>
   <string name="attachment_type_selector__contact">联系人</string>
+  <string name="attachment_type_selector__contact_description">联系人</string>
   <string name="attachment_type_selector__camera">相机</string>
+  <string name="attachment_type_selector__camera_description">相机</string>
   <string name="attachment_type_selector__location">位置</string>
+  <string name="attachment_type_selector__location_description">位置</string>
+  <string name="attachment_type_selector__gif">GIF</string>
+  <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__drawer_description">切换附件抽屉</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">旧密钥</string>
   <string name="change_passphrase_activity__new_passphrase">新密钥</string>
@@ -552,7 +548,6 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">选择</string>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">没有已屏蔽的联系人...</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">没有最近呼叫。</string>
   <!--conversation_title_view-->
@@ -588,6 +583,9 @@
   <string name="conversation_item_received__contact_photo_description">联系人照片</string>
   <string name="conversation_item_received__downloading">下载中</string>
   <!--audio_view-->
+  <string name="audio_view__play_accessibility_description">播放</string>
+  <string name="audio_view__pause_accessibility_description">暂停</string>
+  <string name="audio_view__download_accessibility_description">下载</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">批量选择模式</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s 已选择</string>
@@ -599,7 +597,6 @@
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">连接设备</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">没有连接的设备...</string>
   <string name="device_list_fragment__link_new_device">连接新的设备</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">继续</string>

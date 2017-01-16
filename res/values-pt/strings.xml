@@ -132,7 +132,6 @@ que %2$s reinstalou o Signal.</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">O anexo tem um tamanho superior ao limite do tipo de mensagem que está a enviar.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Máquina fotográfica indisponível</string>
   <string name="ConversationActivity_unable_to_record_audio">Não é possível gravar áudio!</string>
-  <string name="ConversationActivity_error_sending_voice_message">Erro no envio de mensagem de voz...</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Não existe uma aplicação capaz de lidar com este tipo de ligação no seu dispositivo.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalhes da mensagem</string>
@@ -155,7 +154,10 @@ que %2$s reinstalou o Signal.</string>
     <item quantity="one">Erro ao guardar anexo para o armazenamento local!</item>
     <item quantity="other">Erro ao guardar anexos para o armazenamento local!</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">Ficheiro guardado com sucesso.</string>
+  <plurals name="ConversationFragment_files_saved_successfully">
+    <item quantity="one">Ficheiro gravado com sucesso.</item>
+    <item quantity="other">Ficheiros gravados com sucesso.</item>
+  </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Não é possível escrever para o armazenamento local!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">A guardar anexo</item>
@@ -173,7 +175,7 @@ que %2$s reinstalou o Signal.</string>
   <string name="ConversationFragment_deleting">A apagar</string>
   <string name="ConversationFragment_deleting_messages">A apagar mensagens...</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">Procurar...</string>
+  <string name="ConversationListActivity_search">Procurar</string>
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Não existe um navegador instalado no seu dispositivo.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
@@ -196,7 +198,7 @@ que %2$s reinstalou o Signal.</string>
     <item quantity="other">%d conversas movidas para a caixa de entrada</item>
   </plurals>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Mensagem de intercâmbio de chaves...</string>
+  <string name="ConversationListItem_key_exchange_message">Mensagem de intercâmbio de chaves</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Conversas arquivadas (%d)</string>
   <!--CustomDefaultPreference-->
@@ -209,7 +211,6 @@ que %2$s reinstalou o Signal.</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Desinterligar \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Ao desinterligar este dispositivo, vai deixar de enviar ou receber mensagens.</string>
-  <string name="DeviceListActivity_network_connection_failed">A ligação à rede falhou!</string>
   <string name="DeviceListActivity_try_again">Tente novamente</string>
   <string name="DeviceListActivity_unlinking_device">A desinterligar dispositivo...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">A desinterligar dispositivo</string>
@@ -241,7 +242,6 @@ que %2$s reinstalou o Signal.</string>
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Falha de comunicação Signal permanente!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal não se conseguiu registar com os Serviços Google Play. As mensagens e chamadas Signal estão desabilitadas. Por favor tente registar-se novamente em Definições &gt; Avançadas.</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Erro a obter o GIF em resolução integral...</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Autocolantes</string>
@@ -325,8 +325,6 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="MessageDetailsRecipient_new_safety_number">Novo número de segurança</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Erro a armazenar MMS!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Erro na ligação com o servidor MMS...</string>
-  <string name="MmsDownloader_error_reading_mms_settings">Erro ao ler configurações MMS do provedor sem fios...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chamada Signal em progresso</string>
   <string name="NotificationBarManager_missed_call_from_s">Chamada perdida de %s</string>
@@ -369,7 +367,6 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nenhum dispositivo encontrado.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Erro de rede.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Código QR inválido.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Lamentamos mas tem demasiados dispositivos interligados, tente remover alguns...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Lamento mas este não é um código QR de ligação de dispositivo válido.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Interligar a um dispositivo Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Aparentemente está a tentar interligar-se a um dispositivo Signal através de um scanner externo. Para sua protecção, releia o código através do Signal.</string>
@@ -447,7 +444,6 @@ Verifique que este é o seu número! Estamos prestes a confirmá-lo com uma SMS.
   <string name="RegistrationProgressActivity_verifying_number">A verificar número</string>
   <string name="RegistrationProgressActivity_edit_s">Editar %s</string>
   <string name="RegistrationProgressActivity_registration_complete">Registo completo!</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Deve inserir o código recebido anteriormente...</string>
   <string name="RegistrationProgressActivity_connecting">A conectar</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">A conectar para verificação...</string>
   <string name="RegistrationProgressActivity_network_error">Erro de Rede!</string>
@@ -485,7 +481,6 @@ Mensagem de troca de chave inválida para esta versão do protocolo.
   <string name="SmsMessageRecord_secure_session_reset_s">%s reiniciou a sessão segura.</string>
   <string name="SmsMessageRecord_duplicate_message">Mensagem duplicada.</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">Deixou o grupo...</string>
   <string name="ThreadRecord_secure_session_reset">Sessão segura reiniciada.</string>
   <string name="ThreadRecord_draft">Rascunho:</string>
   <string name="ThreadRecord_called">Você ligou</string>
@@ -507,9 +502,7 @@ Mensagem de troca de chave inválida para esta versão do protocolo.
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Iniciar apesar de pedido existente?</string>
   <string name="KeyExchangeInitiator_send">Enviar</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Mensagem cifrada corrompida...</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">A decifrar, por favor aguarde...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mensagem cifrada para sessão inexistente...</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">Erro a decifrar a mensagem.</string>
   <!--ThreadDatabase-->
@@ -523,8 +516,6 @@ Mensagem de troca de chave inválida para esta versão do protocolo.
   <string name="MmsDatabase_error_decrypting_message">Erro a decifrar a mensagem.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">A decifrar MMS, por favor, aguarde...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Mensagem MMS cifrada corrompida...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Mensagem MMS cifrada para sessão inexistente...</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Silenciar notificações</string>
   <!--ApplicationMigrationService-->
@@ -540,7 +531,6 @@ Mensagem de troca de chave inválida para esta versão do protocolo.
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d novas mensagens em %2$d conversas</string>
   <string name="MessageNotifier_most_recent_from_s">Mais recente de: %1$s</string>
-  <string name="MessageNotifier_locked_message">Mensagem bloqueada...</string>
   <string name="MessageNotifier_media_message_with_text">Mensagem media: %s</string>
   <string name="MessageNotifier_no_subject">(Sem Assunto)</string>
   <string name="MessageNotifier_message_delivery_failed">A remessa de mensagem falhou.</string>
@@ -586,7 +576,6 @@ Mensagem de troca de chave inválida para esta versão do protocolo.
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Seleccionar para</string>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">Sem contactos bloqueados...</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Sem chamadas recentes.</string>
   <!--conversation_title_view-->
@@ -622,6 +611,9 @@ Mensagem de troca de chave inválida para esta versão do protocolo.
   <string name="conversation_item_received__contact_photo_description">Foto de Contacto</string>
   <string name="conversation_item_received__downloading">A transferir</string>
   <!--audio_view-->
+  <string name="audio_view__play_accessibility_description">Reproduzir</string>
+  <string name="audio_view__pause_accessibility_description">Pausar</string>
+  <string name="audio_view__download_accessibility_description">Descarregar</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Modo de selecção em grupo</string>
   <string name="conversation_fragment_cab__batch_selection_amount">Seleccionado %s</string>
@@ -633,7 +625,6 @@ Mensagem de troca de chave inválida para esta versão do protocolo.
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Interligar dispositivo</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">Nenhum dispositivo interligado...</string>
   <string name="device_list_fragment__link_new_device">Interligar dispositivo novo</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">continuar</string>

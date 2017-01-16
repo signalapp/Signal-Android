@@ -91,7 +91,6 @@
   <string name="ConversationActivity_unblock">Одблокирај</string>
   <string name="ConversationActivity_quick_camera_unavailable">Камерата е недостапна</string>
   <string name="ConversationActivity_unable_to_record_audio">Не може да се снима аудио!</string>
-  <string name="ConversationActivity_error_sending_voice_message">Грешка при праќањето на говорна порака...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Детали за пораката</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Трансфер: %1$s\nИспратено/Примено: %2$s</string>
@@ -104,11 +103,10 @@
   <string name="ConversationFragment_deleting">Бришење</string>
   <string name="ConversationFragment_deleting_messages">Бришење на пораките...</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">Барај...</string>
+  <string name="ConversationListActivity_search">Барај</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_deleting">Бришење</string>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Порака за размена на клучеви...</string>
   <!--ConversationListItemAction-->
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Користејќи прилагодено: %s</string>
@@ -175,8 +173,6 @@
   <string name="MessageDetailsRecipient_failed_to_send">Неуспешно праќање</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Грешка при снимањето на MMS!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Грешка при поврзувањето со MMS провајдерот...</string>
-  <string name="MmsDownloader_error_reading_mms_settings">Грешка при читање на подесувањата на wireless провајдерот за MMS...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_missed_call_from_s">Пропуштен повик од %s</string>
   <string name="NotificationBarManager_missed_signal_call">Пропуштен Signal повик</string>
@@ -275,7 +271,6 @@
   <string name="RegistrationProgressActivity_verifying_number">Верификација на бројот</string>
   <string name="RegistrationProgressActivity_edit_s">Измени %s</string>
   <string name="RegistrationProgressActivity_registration_complete">Регистрацијата е завршена!</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Мора да го внесете кодот што го добивте претходно...</string>
   <string name="RegistrationProgressActivity_connecting">Конектира</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Конектирање за верификација...</string>
   <string name="RegistrationProgressActivity_network_error">Проблем со мрежата!</string>
@@ -303,7 +298,6 @@
 Примена е порака за размена на клучеви за погрешна верзија на протоколот.</string>
   <string name="SmsMessageRecord_duplicate_message">Дупла порака.</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">Ја напушти групата...</string>
   <string name="ThreadRecord_draft">Скица:</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s има инсталирано Signal, кажи му здраво! </string>
   <!--VerifyIdentityActivity-->
@@ -311,9 +305,7 @@
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Иницирај и покрај постоечкото барање?</string>
   <string name="KeyExchangeInitiator_send">Испратено</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Погрешно шифрирана порака...</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Дешифрирање, ве молиме почекајте...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Пораката е шифрирана за непостоечка сесија...</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">Грешка при дешифрирање на пораката.</string>
   <!--ThreadDatabase-->
@@ -327,8 +319,6 @@
   <string name="MmsDatabase_error_decrypting_message">Грешка при дешифрирање на пораката.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Дешифрирање на MMS пораката, ве молиме почекајте...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Погрешно шифрирана MMS порака...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS пораката е шифрирана за непостоечка сесија...</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Безвучни известувања</string>
   <!--ApplicationMigrationService-->
@@ -362,7 +352,6 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Изберете за</string>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">Нема блокирани контакти...</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Нема скорешни повици.</string>
   <!--conversation_title_view-->

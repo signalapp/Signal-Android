@@ -73,7 +73,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
     initializeContactUpdatesReceiver();
 
-    DirectoryRefreshListener.schedule(this);
     RatingManager.showRatingDialogIfNecessary(this);
   }
 

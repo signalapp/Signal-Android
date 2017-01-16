@@ -70,12 +70,10 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
   @Override
   public void onAdded() {
-    DatabaseFactory.getMmsDatabase(context)
-                   .markAsSending(messageId);
   }
 
   @Override
-  public void onSend(MasterSecret masterSecret)
+  public void onPushSend(MasterSecret masterSecret)
       throws MmsException, IOException, NoSuchMessageException
   {
     MmsDatabase          database = DatabaseFactory.getMmsDatabase(context);
@@ -84,9 +82,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     try {
       deliver(masterSecret, message, filterRecipientId);
 
-      database.markAsPush(messageId);
-      database.markAsSecure(messageId);
-      database.markAsSent(messageId);
+      database.markAsSent(messageId, true);
       markAttachmentsUploaded(messageId, message.getAttachments());
 
       if (message.getExpiresIn() > 0 && !message.isExpirationUpdate()) {
@@ -114,11 +110,9 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       }
 
       database.addFailures(messageId, failures);
-      database.markAsPush(messageId);
 
       if (e.getNetworkExceptions().isEmpty() && e.getUntrustedIdentityExceptions().isEmpty()) {
-        database.markAsSecure(messageId);
-        database.markAsSent(messageId);
+        database.markAsSent(messageId, true);
         markAttachmentsUploaded(messageId, message.getAttachments());
       } else {
         database.markAsSentFailed(messageId);

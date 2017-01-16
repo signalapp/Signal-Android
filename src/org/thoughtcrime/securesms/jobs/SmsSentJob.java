@@ -78,7 +78,7 @@ public class SmsSentJob extends MasterSecretJob {
 
       switch (result) {
         case Activity.RESULT_OK:
-          database.markAsSent(messageId);
+          database.markAsSent(messageId, false);
           break;
         case SmsManager.RESULT_ERROR_NO_SERVICE:
         case SmsManager.RESULT_ERROR_RADIO_OFF:

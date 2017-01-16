@@ -134,7 +134,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Rozmiar tego załącznika przekracza limit wiadomości.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera jest niedostępna</string>
   <string name="ConversationActivity_unable_to_record_audio">Nie udało się nagrać dźwięku!</string>
-  <string name="ConversationActivity_error_sending_voice_message">Błąd wysyłania wiadomości głosowej...</string>
+  <string name="ConversationActivity_error_sending_voice_message">Błąd wysyłania wiadomości głosowej</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Brak aplikacji do obsługi tego linku na Twoim urządzeniu.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Szczegóły wiadomości</string>
@@ -161,7 +161,11 @@
     <item quantity="few">Wystąpił błąd podczas zapisywania załączników na dysku!</item>
     <item quantity="other">Wystąpił błąd podczas zapisywania załączników na dysku!</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">Plik pomyślnie został zapisany.</string>
+  <plurals name="ConversationFragment_files_saved_successfully">
+    <item quantity="one">Plik został zapisany pomyślnie.</item>
+    <item quantity="few">Pliki zostały zapisane pomyślnie.</item>
+    <item quantity="other">Pliki zostały zapisane pomyślnie.</item>
+  </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nie udało zapisać się pliku!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Zapisywanie załącznika</item>
@@ -181,7 +185,7 @@
   <string name="ConversationFragment_deleting">Usuwanie</string>
   <string name="ConversationFragment_deleting_messages">Usuwanie wiadomości...</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">Szukaj...</string>
+  <string name="ConversationListActivity_search">Szukaj</string>
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Twoje urządzenie nie ma zainstalowanej przeglądarki.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
@@ -208,7 +212,7 @@
     <item quantity="other">Przeniesiono %d konwersacji do skrzynki odbiorczej</item>
   </plurals>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Wiadomość wymiany kluczy...</string>
+  <string name="ConversationListItem_key_exchange_message">Wiadomość wymiany kluczy</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Archiwum konwersacji (%d)</string>
   <!--CustomDefaultPreference-->
@@ -221,7 +225,7 @@
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Wyrejestrować \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Wyrejestrowanie tego urządzenia spowoduje, że nie będziesz miał możliwości wysyłania i odbierania wiadomości.</string>
-  <string name="DeviceListActivity_network_connection_failed">Brak połączenia internetowego...</string>
+  <string name="DeviceListActivity_network_connection_failed">Błąd połączenia sieciowego</string>
   <string name="DeviceListActivity_try_again">Spróbuj ponownie</string>
   <string name="DeviceListActivity_unlinking_device">Wyrejestrowywanie urządzenia...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Wyrejestrowywanie urządzenia</string>
@@ -253,7 +257,7 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanentny błąd komunikacji Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal nie był w stanie zarejestrować się z Google Play Services. Wiadomości i połączenia Signal zostały wyłączone. Proszę spróbuj ponownie zarejestrować się poprzez pójście do Ustawienia &gt; Zaawansowane.</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Błąd podczas pobierania gifa w pełnej rozdzielczości.</string>
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Błąd podczas pobierania pliku GIF w pełnej rozdzielczości</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">Gify</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Naklejki</string>
@@ -333,8 +337,8 @@ Stracisz wszystkie informacje obecnie zawarte w aplikacji Signal z wyjątkiem ty
   <string name="MessageDetailsRecipient_new_safety_number">Nowy numer bezpieczeństwa</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Błąd przechowywania MMS!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Błąd połączenia z dostawcą usługi MMS...</string>
-  <string name="MmsDownloader_error_reading_mms_settings">Błąd odczytu ustawień usługi MMS Twojego operatora...</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Błąd połączenia z dostawcą usług MMS</string>
+  <string name="MmsDownloader_error_reading_mms_settings">Błąd odczytu ustawień MMS operatora</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Połączenie Signal w toku</string>
   <string name="NotificationBarManager_missed_call_from_s">Nieodebrane połączenie od %s</string>
@@ -377,7 +381,7 @@ Stracisz wszystkie informacje obecnie zawarte w aplikacji Signal z wyjątkiem ty
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nie znaleziono żadnych urządzeń.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Błąd sieci.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Niepoprawny kod QR.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Niestety masz już zbyt dużo zarejestrowanych urządzeń, spróbuj usunąć któreś z nich...</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Masz zbyt dużo powiązanych urządzeń, spróbuj usunąć któreś z nich</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Przepraszamy, ale to nie jest prawidłowy link QR.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Dodać nowe urządzenie Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Wygląda na to, że próbujesz dodać urządzenie Signal używając nieznanego skanera 3ciej partii. Dla Twojego bezpieczeństwa, prosimy abyś zeskanował kod używając Signal.</string>
@@ -408,6 +412,7 @@ Stracisz wszystkie informacje obecnie zawarte w aplikacji Signal z wyjątkiem ty
   <string name="RecipientPreferenceActivity_unblock">Odblokuj</string>
   <string name="RecipientPreferenceActivity_enabled">Włączone</string>
   <string name="RecipientPreferenceActivity_disabled">Wyłączone</string>
+  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Dostępne po wysłaniu lub odebraniu wiadomości</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">Odbieranie</string>
   <string name="RedPhone_ending_call">Zakończenie połączenia</string>
@@ -452,7 +457,7 @@ Upewnij się, że to jest Twój numer! Zamierzamy zweryfikować go SMSem.
   <string name="RegistrationProgressActivity_verifying_number">Weryfikowanie numeru</string>
   <string name="RegistrationProgressActivity_edit_s">Edytuj %s</string>
   <string name="RegistrationProgressActivity_registration_complete">Rejestracja zakończona!</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Najpierw musisz podać otrzymany kod...</string>
+  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Wprowadź najpierw otrzymany kod</string>
   <string name="RegistrationProgressActivity_connecting">Łączenie</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Łączenie w celu weryfikacji...</string>
   <string name="RegistrationProgressActivity_network_error">Błąd sieci!</string>
@@ -487,7 +492,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s zresetował bezpieczną sesję.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplikuj wiadomość.</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">Opuścił grupę...</string>
+  <string name="ThreadRecord_left_the_group">Opuścił grupę</string>
   <string name="ThreadRecord_secure_session_reset">Reset bezpiecznej sesji.</string>
   <string name="ThreadRecord_draft">Szkic:</string>
   <string name="ThreadRecord_called">Ty zadzwoniłeś</string>
@@ -509,9 +514,9 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Rozpocząć pomimo istniejącego żądania?</string>
   <string name="KeyExchangeInitiator_send">Wyślij</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Źle zaszyfrowana wiadomość...</string>
+  <string name="MessageDisplayHelper_bad_encrypted_message">Źle zaszyfrowana wiadomość</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Trwa odszyfrowywanie, proszę czekać...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Wiadomość zaszyfrowana dla nieistniejącej sesji...</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Wiadomość zaszyfrowana dla nieistniejącej sesji</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">Błąd odszyfrowania wiadomości.</string>
   <!--ThreadDatabase-->
@@ -525,8 +530,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="MmsDatabase_error_decrypting_message">Błąd odszyfrowania wiadomości.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Trwa odszyfrowywanie MMSa, proszę czekać...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Źle zaszyfrowana wiadomość MMS...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Wiadomość MMS zaszyfrowana dla nieistniejącej sesji...</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Źle zaszyfrowana wiadomość MMS</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Wiadomość MMS zaszyfrowana dla nieistniejącej sesji</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Wycisz powiadomienia</string>
   <!--ApplicationMigrationService-->
@@ -542,7 +547,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nowych wiadomości w %2$d rozmowach</string>
   <string name="MessageNotifier_most_recent_from_s">Najnowsza z: %1$s</string>
-  <string name="MessageNotifier_locked_message">Wiadomość zablokowana...</string>
+  <string name="MessageNotifier_locked_message">Wiadomość zablokowana</string>
   <string name="MessageNotifier_media_message_with_text">Wiadomość multimedialna: %s</string>
   <string name="MessageNotifier_no_subject">(Brak tematu)</string>
   <string name="MessageNotifier_message_delivery_failed">Nie udało się dostarczyć wiadomości.</string>
@@ -588,7 +593,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Wybierz dla</string>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">Brak zablokowanych kontaktów...</string>
+  <string name="blocked_contacts_fragment__no_blocked_contacts">Brak zablokowanych kontaktów</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Brak ostatnich połączeń.</string>
   <!--conversation_title_view-->
@@ -638,7 +643,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Dodaj urządzenie</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">Brak zarejestrowanych urządzeń...</string>
+  <string name="device_list_fragment__no_devices_linked">Brak powiązanych urządzeń</string>
   <string name="device_list_fragment__link_new_device">Dodaj nowe urządzenie</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">kontynuuj</string>

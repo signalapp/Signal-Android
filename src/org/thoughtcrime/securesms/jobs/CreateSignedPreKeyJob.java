@@ -53,7 +53,7 @@ public class CreateSignedPreKeyJob extends MasterSecretJob implements Injectable
     }
 
     IdentityKeyPair    identityKeyPair    = IdentityKeyUtil.getIdentityKeyPair(context);
-    SignedPreKeyRecord signedPreKeyRecord = PreKeyUtil.generateSignedPreKey(context, identityKeyPair);
+    SignedPreKeyRecord signedPreKeyRecord = PreKeyUtil.generateSignedPreKey(context, identityKeyPair, true);
 
     accountManager.setSignedPreKey(signedPreKeyRecord);
     TextSecurePreferences.setSignedPreKeyRegistered(context, true);

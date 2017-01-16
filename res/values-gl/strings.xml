@@ -120,7 +120,6 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">O anexo excede o límite para o tipo de mensaxe que estás a enviar.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Cámara non dispoñible</string>
   <string name="ConversationActivity_unable_to_record_audio">Non é posible gravar audio!</string>
-  <string name="ConversationActivity_error_sending_voice_message">Erro ao enviar a mensaxe de voz...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalles da mensaxe</string>
   <plurals name="ConversationFragment_delete_selected_messages">
@@ -140,7 +139,6 @@
     <item quantity="one">Erro ao gardar o anexo no almacenamento!</item>
     <item quantity="other">Erro ao gardar os anexos no almacenamento!</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">Ficheiro gardado satisfactoriamente.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Non é posible escribir no almacenamento!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Gardando anexo</item>
@@ -158,7 +156,7 @@
   <string name="ConversationFragment_deleting">Borrando</string>
   <string name="ConversationFragment_deleting_messages">Borrando mensaxes...</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">Procurar...</string>
+  <string name="ConversationListActivity_search">Procurar</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Borrar a conversa seleccionada?</item>
@@ -180,7 +178,6 @@
     <item quantity="other">%d conversas movidas á caixa de entrada</item>
   </plurals>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Mensaxe de intercambio de chaves...</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Conversas arquivadas (%d)</string>
   <!--CustomDefaultPreference-->
@@ -190,7 +187,6 @@
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Desvincular \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Ao desvincular este dispositivo, non volverá estar dispoñible para enviar nin recibir mensaxes.</string>
-  <string name="DeviceListActivity_network_connection_failed">Erro na conexión de rede...</string>
   <string name="DeviceListActivity_try_again">Volver tentar</string>
   <string name="DeviceListActivity_unlinking_device">Desvinculando dispositivo...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Desvinculando dispositivo</string>
@@ -285,7 +281,6 @@
   <string name="MessageDetailsRecipient_failed_to_send">Erro ao enviar</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Erro ao almacenar MMS!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Erro ao conectar co provedor de MMS...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chamada Signal en progreso</string>
   <string name="NotificationBarManager_missed_call_from_s">Chamada perdida de %s</string>
@@ -322,7 +317,6 @@
   <string name="DeviceProvisioningActivity_content_progress_no_device">Ningún dispositivo atopado.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Erro de rede.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Código QR non válido.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Desculpa, xa tes bastantes dispositivos vinculados, proba a eliminar algún...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Desculpa, este non é un código QR válido para vincular o dispositivo.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Vincular un dispositivo a Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Semella que estás tentando vincular un dispositivo a Signal usando un escáner de terceiros. Para a túa protección, escanea o código de novo desde Signal.</string>
@@ -391,7 +385,6 @@
   <string name="RegistrationProgressActivity_verifying_number">Comprobando número</string>
   <string name="RegistrationProgressActivity_edit_s">Editar %s</string>
   <string name="RegistrationProgressActivity_registration_complete">Rexistro completo!</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Primeiro debes inserir o código que recibiches...</string>
   <string name="RegistrationProgressActivity_connecting">Conectando</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Conectando para a comprobación...</string>
   <string name="RegistrationProgressActivity_network_error">Erro de rede!</string>
@@ -423,7 +416,6 @@
     </string>
   <string name="SmsMessageRecord_duplicate_message">Mensaxe duplicada.</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">Abandonou o grupo...</string>
   <string name="ThreadRecord_secure_session_reset">Restablecer sesión segura.</string>
   <string name="ThreadRecord_draft">Borrador:</string>
   <string name="ThreadRecord_called">Chamaches a</string>
@@ -436,7 +428,6 @@
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_send">Enviar</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mensaxe cifrada para unha sesión inexistente...</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">Erro ao descifrar a mensaxe.</string>
   <!--ThreadDatabase-->
@@ -450,7 +441,6 @@
   <string name="MmsDatabase_error_decrypting_message">Erro ao descifrar a mensaxe.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Descifrando MMS, agarda por favor...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Mensaxe MMS cifrada para unha sesión inexistente...</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Silenciar notificacións</string>
   <!--ApplicationMigrationService-->
@@ -465,7 +455,6 @@
   <string name="KeyCachingService_lock">Bloquear esta frase de acceso</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d novas mensaxes en %2$d conversas</string>
-  <string name="MessageNotifier_locked_message">Mensaxe bloqueada...</string>
   <string name="MessageNotifier_media_message_with_text">Mensaxe multimedia: %s</string>
   <string name="MessageNotifier_no_subject">(sen asunto)</string>
   <string name="MessageNotifier_message_delivery_failed">Erro na entrega da mensaxe.</string>
@@ -501,7 +490,6 @@
   <string name="SingleContactSelectionActivity_contact_photo">Foto do contacto</string>
   <!--ContactSelectionListFragment-->
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">Ningún contacto bloqueado...</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Sen chamadas recentes.</string>
   <!--conversation_title_view-->
@@ -542,7 +530,6 @@
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Vincular dispositivo</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">Ningún dispositivo vinculado...</string>
   <string name="device_list_fragment__link_new_device">Vincular novo dispositivo</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">continuar</string>

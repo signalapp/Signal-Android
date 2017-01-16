@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.PreKeyUtil;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.whispersystems.jobqueue.JobParameters;
@@ -11,7 +12,6 @@ import org.whispersystems.libsignal.InvalidKeyIdException;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.libsignal.state.SignedPreKeyStore;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
-import org.whispersystems.signalservice.api.push.SignedPreKeyEntity;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
@@ -30,7 +30,7 @@ public class CleanPreKeysJob extends MasterSecretJob implements InjectableType {
 
   private static final String TAG = CleanPreKeysJob.class.getSimpleName();
 
-  private static final int ARCHIVE_AGE_DAYS = 15;
+  private static final long ARCHIVE_AGE = TimeUnit.DAYS.toMillis(7);
 
   @Inject transient SignalServiceAccountManager accountManager;
   @Inject transient SignedPreKeyStoreFactory signedPreKeyStoreFactory;
@@ -51,17 +51,20 @@ public class CleanPreKeysJob extends MasterSecretJob implements InjectableType {
   @Override
   public void onRun(MasterSecret masterSecret) throws IOException {
     try {
-      SignedPreKeyStore  signedPreKeyStore   = signedPreKeyStoreFactory.create();
-      SignedPreKeyEntity currentSignedPreKey = accountManager.getSignedPreKey();
+      Log.w(TAG, "Cleaning prekeys...");
 
-      if (currentSignedPreKey == null) return;
+      int                activeSignedPreKeyId = PreKeyUtil.getActiveSignedPreKeyId(context);
+      SignedPreKeyStore  signedPreKeyStore    = signedPreKeyStoreFactory.create();
 
-      SignedPreKeyRecord             currentRecord = signedPreKeyStore.loadSignedPreKey(currentSignedPreKey.getKeyId());
+      if (activeSignedPreKeyId < 0) return;
+
+      SignedPreKeyRecord             currentRecord = signedPreKeyStore.loadSignedPreKey(activeSignedPreKeyId);
       List<SignedPreKeyRecord>       allRecords    = signedPreKeyStore.loadSignedPreKeys();
       LinkedList<SignedPreKeyRecord> oldRecords    = removeRecordFrom(currentRecord, allRecords);
 
       Collections.sort(oldRecords, new SignedPreKeySorter());
 
+      Log.w(TAG, "Active signed prekey: " + activeSignedPreKeyId);
       Log.w(TAG, "Old signed prekey record count: " + oldRecords.size());
 
       boolean foundAgedRecord = false;
@@ -69,7 +72,7 @@ public class CleanPreKeysJob extends MasterSecretJob implements InjectableType {
       for (SignedPreKeyRecord oldRecord : oldRecords) {
         long archiveDuration = System.currentTimeMillis() - oldRecord.getTimestamp();
 
-        if (archiveDuration >= TimeUnit.DAYS.toMillis(ARCHIVE_AGE_DAYS)) {
+        if (archiveDuration >= ARCHIVE_AGE) {
           if (!foundAgedRecord) {
             foundAgedRecord = true;
           } else {

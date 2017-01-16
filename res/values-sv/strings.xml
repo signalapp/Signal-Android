@@ -130,7 +130,6 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Den bifogade filen är för stor för den typ av meddelande du försöker skicka.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera otillgänglig</string>
   <string name="ConversationActivity_unable_to_record_audio">Kunde inte spela in ljud!</string>
-  <string name="ConversationActivity_error_sending_voice_message">Fel när röstmeddelande skulle skickas...</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Det finns ingen app på din enhet som kan hantera den här länken.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Meddelandedetaljer</string>
@@ -153,7 +152,6 @@
     <item quantity="one">Det blev ett fel när bifogad fil skulle sparas till lagring!</item>
     <item quantity="other">Det blev ett fel när de bifogade filerna skulle sparas till lagring!</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">Sparande av fil lyckades.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kan inte skriva till lagring!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Sparar bifogad fil</item>
@@ -171,7 +169,7 @@
   <string name="ConversationFragment_deleting">Raderar</string>
   <string name="ConversationFragment_deleting_messages">Raderar meddelanden...</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">Sök...</string>
+  <string name="ConversationListActivity_search">Sök</string>
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Det finns ingen webbläsare installerad på din enhet.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
@@ -194,7 +192,7 @@
     <item quantity="other">Flyttade %d konversationer till inkorgen</item>
   </plurals>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Meddelande för nyckelutbyte ...</string>
+  <string name="ConversationListItem_key_exchange_message">Nyckelutbytesmeddelande</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Arkiverade konversationer (%d)</string>
   <!--CustomDefaultPreference-->
@@ -207,7 +205,6 @@
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Koppla bort \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Genom att koppla bort denna enhet kommer den inte längre kunna skicka eller få meddelanden.</string>
-  <string name="DeviceListActivity_network_connection_failed">Nätverksuppkoppling misslyckades...</string>
   <string name="DeviceListActivity_try_again">Försök igen</string>
   <string name="DeviceListActivity_unlinking_device">Kopplar bort enhet...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Kopplar bort enhet</string>
@@ -239,7 +236,6 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent kommunikationsfel med Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal kunde inte registrera med Google Play-tjänster. Meddelanden och samtal med Signal har avaktiverats, vänligen försök återregistrera i inställningar &gt; Avancerat.</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Fel vid hämtning av GIF i full upplösning...</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIF:ar</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Stickers</string>
@@ -319,8 +315,6 @@ som inte finns i säkerhetskopian.</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nytt säkerhetsnummer</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Fel vid lagring av MMS!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Fel vid anslutning till MMS-leverantör...</string>
-  <string name="MmsDownloader_error_reading_mms_settings">Fel vid läsning av operatörens MMS-inställningar...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signalsamtal pågår</string>
   <string name="NotificationBarManager_missed_call_from_s">Missat samtal från %s</string>
@@ -342,7 +336,7 @@ som inte finns i säkerhetskopian.</string>
   <string name="MessageRecord_missed_call_from">Missat samtal från %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s finns på Signal, skriv hej!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du satte tiden för försvinnande meddelanden till %1$s.</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s sätt tiden för försvinnande meddelanden till %2$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s satte tiden för försvinnande meddelanden till %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Ditt säkerhetsnummer med %s har ändrats.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Lösenorden matchar inte!</string>
@@ -363,7 +357,6 @@ som inte finns i säkerhetskopian.</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Ingen enhet hittades.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Nätverksfel.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ogiltig QR-kod.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Tyvärr har du redan för många länkade enheter, försök ta bort några...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Tyvärr, det här är ingen giltig QR-kod för enhetslänkning.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Länka en Signal-enhet?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Det verkar som att du försöker länka en Signal-enhet med hjälp av en tredjepartsskanner. För din säkerhet, vänligen skanna koden igen från Signal.</string>
@@ -437,7 +430,6 @@ Dubbelkolla att det här är ditt nummer! Vi ska nu verifiera det med ett SMS.</
   <string name="RegistrationProgressActivity_verifying_number">Verifierar nummer</string>
   <string name="RegistrationProgressActivity_edit_s">Ändra %s</string>
   <string name="RegistrationProgressActivity_registration_complete">Registrering klar!</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Du måste ange koden du tog emot först...</string>
   <string name="RegistrationProgressActivity_connecting">Ansluter</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Ansluter för verifiering...</string>
   <string name="RegistrationProgressActivity_network_error">Nätverksfel!</string>
@@ -473,7 +465,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s startar om den säkra sessionen.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplicerat meddelande.</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">Lämnat gruppen...</string>
   <string name="ThreadRecord_secure_session_reset">Säker session nollställd.</string>
   <string name="ThreadRecord_draft">Utkast:</string>
   <string name="ThreadRecord_called">Du ringde</string>
@@ -484,6 +475,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tiden för självförstörande meddelanden satt till %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Ditt säkerhetsnummer med %s har ändrats.</string>
   <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Din kontakt använder en äldre version av Signal. Be dem uppdatera sin mjukvara innan de verifierar din säkerhetskod.  </string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Din kontakt kör en nyare version av Signal med ett inkompatibelt format på QR koden. Vänligen uppdatera för att jämföra.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Den inlästa QR-koden är inte en korrekt formaterad verifikationskod för säkerhetsnummer. Försök att göra om inläsningen.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Dela säkerhetsnummer via...</string>
@@ -494,9 +486,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Påbörja ny nyckelutbytesförfrågan trots redan existerande?</string>
   <string name="KeyExchangeInitiator_send">Skicka</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Dåligt krypterat meddelande...</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Dekrypterar, var vänlig vänta...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Meddelande krypterat för icke-existerande session...</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">Fel vid dekryptering av meddelande.</string>
   <!--ThreadDatabase-->
@@ -510,8 +500,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MmsDatabase_error_decrypting_message">Fel vid dekryptering av meddelande.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Dekrypterar MMS, var vänlig vänta...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Dåligt krypterat MMS meddelande...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-meddelande krypterat för icke-existerande session...</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Tysta ner aviseringar</string>
   <!--ApplicationMigrationService-->
@@ -527,7 +515,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nya meddelanden i %2$d konversationer</string>
   <string name="MessageNotifier_most_recent_from_s">Senaste från %1$s</string>
-  <string name="MessageNotifier_locked_message">Låst meddelande...</string>
   <string name="MessageNotifier_media_message_with_text">Mediameddelande: %s</string>
   <string name="MessageNotifier_no_subject">(Inget ämne)</string>
   <string name="MessageNotifier_message_delivery_failed">Meddelandeleverans misslyckades.</string>
@@ -545,11 +532,20 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nytt meddelande</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Bild</string>
+  <string name="attachment_type_selector__image_description">Bild</string>
   <string name="attachment_type_selector__audio">Ljud</string>
+  <string name="attachment_type_selector__audio_description">Ljud</string>
   <string name="attachment_type_selector__video">Video</string>
+  <string name="attachment_type_selector__video_description">Video</string>
   <string name="attachment_type_selector__contact">Kontakt</string>
+  <string name="attachment_type_selector__contact_description">Kontakt</string>
   <string name="attachment_type_selector__camera">Kamera</string>
+  <string name="attachment_type_selector__camera_description">Kamera</string>
   <string name="attachment_type_selector__location">Plats</string>
+  <string name="attachment_type_selector__location_description">Plats</string>
+  <string name="attachment_type_selector__gif">GIF</string>
+  <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__drawer_description">Dölj/visa bilagor</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Gammal lösenfras</string>
   <string name="change_passphrase_activity__new_passphrase">Ny lösenfras</string>
@@ -564,7 +560,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Välj för</string>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">Inga blockerade kontakter...</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Inga nyliga samtal.</string>
   <!--conversation_title_view-->
@@ -600,6 +595,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="conversation_item_received__contact_photo_description">Kontaktfoto</string>
   <string name="conversation_item_received__downloading">Laddar ner</string>
   <!--audio_view-->
+  <string name="audio_view__play_accessibility_description">Spela</string>
+  <string name="audio_view__pause_accessibility_description">Pausa</string>
+  <string name="audio_view__download_accessibility_description">Ladda ner</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Flervalsläge</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s vald</string>
@@ -611,7 +609,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Länka enhet</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">Inga länkade enheter...</string>
   <string name="device_list_fragment__link_new_device">Länka ny enhet</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">fortsätt</string>
