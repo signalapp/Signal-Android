@@ -15,6 +15,7 @@ import android.os.Handler;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.preference.RingtonePreference;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -45,6 +46,7 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.IdentityUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -268,7 +270,15 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
           ringtonePreference.setCurrentRingtone(recipients.getRingtone());
         }
       } else {
-        ringtonePreference.setSummary(R.string.preferences__default);
+        String signal_tone_uri_string = TextSecurePreferences.getNotificationRingtone(getActivity());
+        Ringtone signal_tone = RingtoneManager.getRingtone(getActivity(), Uri.parse(signal_tone_uri_string));
+
+        String summary = getString(R.string.preferences__signal_default);
+        if (signal_tone != null) {
+          summary += " (" + signal_tone.getTitle(getActivity()) + ")";
+        }
+        ringtonePreference.setSummary(summary);
+
         ringtonePreference.setCurrentRingtone(Settings.System.DEFAULT_NOTIFICATION_URI);
       }
 
