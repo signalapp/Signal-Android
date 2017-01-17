@@ -277,7 +277,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         String signal_tone_uri_string = TextSecurePreferences.getNotificationRingtone(getActivity());
         Ringtone signal_tone = RingtoneManager.getRingtone(getActivity(), Uri.parse(signal_tone_uri_string));
 
-        String summary = getString(R.string.preferences__signal_default);
+        String summary = getString(R.string.preferences__default);
         if (signal_tone != null) {
           summary += " (" + signal_tone.getTitle(getActivity()) + ")";
         }
@@ -287,7 +287,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       }
 
       if (recipients.getVibrate() == VibrateState.DEFAULT) {
-        String summary = getString(R.string.preferences__signal_default);
+        String summary = getString(R.string.preferences__default);
         boolean global_vibrate = TextSecurePreferences.isNotificationVibrateEnabled(getActivity());
         if (global_vibrate) {
           summary += " (" + getString(R.string.RecipientPreferenceActivity_enabled) + ")";
