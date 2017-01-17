@@ -100,6 +100,7 @@
     <item>@string/preferences__cyan</item>
     <item>@string/preferences__magenta</item>
     <item>@string/preferences__white</item>
+    <item>@string/preferences__none</item>
   </string-array>
 
 
@@ -111,6 +112,7 @@
     <item>cyan</item>
     <item>magenta</item>
     <item>white</item>
+    <item>none</item>
   </string-array>
 
   <string-array name="pref_led_blink_pattern_entries">
