@@ -279,7 +279,14 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
         String summary = getString(R.string.preferences__default);
         if (signal_tone != null) {
-          summary += " (" + signal_tone.getTitle(getActivity()) + ")";
+          String tone_name = signal_tone.getTitle(getActivity());
+          if (tone_name.endsWith(")")) {
+            //Strip $RINGTONE_NAME from "Default ringtone ($RINGTONE_NAME)"
+            String[] split = tone_name.split("\\(");
+            tone_name = split[split.length - 1];
+            tone_name = tone_name.substring(0, tone_name.length() - 1);
+          }
+          summary += " (" + tone_name + ")";
         }
         ringtonePreference.setSummary(summary);
 
