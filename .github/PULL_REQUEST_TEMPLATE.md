@@ -2,7 +2,7 @@
 ### First time contributor checklist
 <!-- replace the empty checkboxes [ ] below with checked ones [x] accordingly -->
 - [ ] I have read [how to contribute](https://github.com/WhisperSystems/Signal-Android/blob/master/CONTRIBUTING.md) to this project
-- [ ] I have signed the [Contributor Licence Agreement](https://whispersystems.org/cla/)
+- [ ] I have signed the [Contributor License Agreement](https://whispersystems.org/cla/)
 
 ### Contributor checklist
 <!-- replace the empty checkboxes [ ] below with checked ones [x] accordingly -->
