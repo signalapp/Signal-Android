@@ -268,28 +268,29 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
       if (recipients.getRingtone() != null) {
         Ringtone tone = RingtoneManager.getRingtone(getActivity(), recipients.getRingtone());
-
         if (tone != null) {
           ringtonePreference.setSummary(tone.getTitle(getActivity()));
           ringtonePreference.setCurrentRingtone(recipients.getRingtone());
         }
       } else {
-        String signal_tone_uri_string = TextSecurePreferences.getNotificationRingtone(getActivity());
-        Ringtone signal_tone = RingtoneManager.getRingtone(getActivity(), Uri.parse(signal_tone_uri_string));
-
         String summary = getString(R.string.preferences__default);
-        if (signal_tone != null) {
-          String tone_name = signal_tone.getTitle(getActivity());
-          if (tone_name.endsWith(")")) {
-            //Strip $RINGTONE_NAME from "Default ringtone ($RINGTONE_NAME)"
-            String[] split = tone_name.split("\\(");
-            tone_name = split[split.length - 1];
-            tone_name = tone_name.substring(0, tone_name.length() - 1);
+        String signal_tone_uri_string = TextSecurePreferences.getNotificationRingtone(getActivity());
+        if (TextUtils.isEmpty(signal_tone_uri_string)) {
+          summary += " (" + getString(R.string.preferences__silent) + ")";
+        } else {
+          Ringtone signal_tone = RingtoneManager.getRingtone(getActivity(), Uri.parse(signal_tone_uri_string));
+          if (signal_tone != null) {
+            String tone_name = signal_tone.getTitle(getActivity());
+            if (tone_name.endsWith(")")) {
+              //Strip $RINGTONE_NAME from "Default ringtone ($RINGTONE_NAME)"
+              String[] split = tone_name.split("\\(");
+              tone_name = split[split.length - 1];
+              tone_name = tone_name.substring(0, tone_name.length() - 1);
+            }
+            summary += " (" + tone_name + ")";
           }
-          summary += " (" + tone_name + ")";
         }
         ringtonePreference.setSummary(summary);
-
         ringtonePreference.setCurrentRingtone(Settings.System.DEFAULT_NOTIFICATION_URI);
       }
 
