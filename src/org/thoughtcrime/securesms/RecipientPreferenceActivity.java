@@ -15,7 +15,6 @@ import android.os.Handler;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
-import android.preference.RingtonePreference;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -274,21 +273,9 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         }
       } else {
         String summary = getString(R.string.preferences__default);
-        String signalToneUriString = TextSecurePreferences.getNotificationRingtone(getActivity());
-        if (TextUtils.isEmpty(signalToneUriString)) {
-          summary += " (" + getString(R.string.preferences__silent) + ")";
-        } else {
-          Ringtone signalTone = RingtoneManager.getRingtone(getActivity(), Uri.parse(signalToneUriString));
-          if (signalTone != null) {
-            String toneName = signalTone.getTitle(getActivity());
-            if (toneName.endsWith(")")) {
-              //Strip $RINGTONE_NAME from "Default ringtone ($RINGTONE_NAME)"
-              String[] split = toneName.split("\\(");
-              toneName = split[split.length - 1];
-              toneName = toneName.substring(0, toneName.length() - 1);
-            }
-            summary += " (" + toneName + ")";
-          }
+        String friendlyName = TextSecurePreferences.getNotificationRingtoneFriendlyName(getActivity());
+        if (friendlyName != null) {
+          summary += " (" + friendlyName + ")";
         }
         ringtonePreference.setSummary(summary);
         ringtonePreference.setCurrentRingtone(Settings.System.DEFAULT_NOTIFICATION_URI);
