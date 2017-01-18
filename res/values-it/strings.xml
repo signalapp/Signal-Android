@@ -153,6 +153,10 @@
     <item quantity="one">Errore nel salvare l\'allegato in memoria!</item>
     <item quantity="other">Errore nel salvare gli allegati in memoria!</item>
   </plurals>
+  <plurals name="ConversationFragment_files_saved_successfully">
+    <item quantity="one">File salvato correttamente.</item>
+    <item quantity="other">Files salvati correttamente.</item>
+  </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Impossibile scrivere sulla memoria!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Salvataggio allegato</item>
@@ -239,6 +243,7 @@
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal è stato impossibilitato a registrarsi con i sevizi di Google Play.
 I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-registrare in Impostazioni &gt; Avanzate.</string>
   <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Errore nel prelevare la GIF in risoluzione massima</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Adesivi</string>
@@ -317,6 +322,7 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Errore nel salvare l\'MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Errore durante la connessione al provider MMS...</string>
+  <string name="MmsDownloader_error_reading_mms_settings">Errore nel leggere le impostazioni MMS per il tuo provider</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chiamata con Signal in corso</string>
   <string name="NotificationBarManager_missed_call_from_s">Chiamata persa da %s</string>
@@ -437,6 +443,7 @@ Assicurati che questo sia il tuo numero! Stiamo per verificarlo con un SMS.</str
   <string name="RegistrationProgressActivity_verifying_number">Verifica del numero</string>
   <string name="RegistrationProgressActivity_edit_s">Modifica %s</string>
   <string name="RegistrationProgressActivity_registration_complete">Registrazione completata!</string>
+  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Inserisci prima il codice ricevuto</string>
   <string name="RegistrationProgressActivity_connecting">Connessione</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Connessione per la verifica...</string>
   <string name="RegistrationProgressActivity_network_error">Errore di rete!</string>
@@ -473,6 +480,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="SmsMessageRecord_secure_session_reset_s">%s ha resettato la sessione sicura.</string>
   <string name="SmsMessageRecord_duplicate_message">Messaggio duplicato.</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_left_the_group">Abbandona il gruppo</string>
   <string name="ThreadRecord_secure_session_reset">Sessione sicura azzerata.</string>
   <string name="ThreadRecord_draft">Bozza:</string>
   <string name="ThreadRecord_called">Hai chiamato</string>
@@ -494,6 +502,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Iniziare nonostante la richiesta esistente?</string>
   <string name="KeyExchangeInitiator_send">Inviata</string>
   <!--MessageDisplayHelper-->
+  <string name="MessageDisplayHelper_bad_encrypted_message">Cifratura messaggio non valida</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Decifratura in corso...</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Messaggio cifrato per una sessione non esistente...</string>
   <!--EncryptingSmsDatabase-->
@@ -509,6 +518,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="MmsDatabase_error_decrypting_message">Errore nel decifrare il messaggio.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Decifratura MMS in corso, attendere...</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Cifratura MMS non valida</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Messaggio MMS cifrato per una sessione non esistente</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Silenzia notifiche</string>
@@ -556,6 +566,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="attachment_type_selector__location_description">Posizione</string>
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__drawer_description">Mostra/nascondi pannello degli allegati</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Vecchia password</string>
   <string name="change_passphrase_activity__new_passphrase">Nuova password</string>
@@ -586,6 +597,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="conversation_activity__compose_description">Composizione messaggio</string>
   <string name="conversation_activity__emoji_toggle_description">Dis/attiva la tastiera emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Anteprima allegato</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Mostra/nascondi pannello fotocamera</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Registra ed invia allegato audio</string>
   <string name="conversation_activity__enable_signal_for_sms">Abilita Signal per gli SMS</string>
   <!--conversation_input_panel-->

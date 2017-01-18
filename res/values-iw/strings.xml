@@ -130,6 +130,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">הצרופה עברה את הגודל המותר לסוג המסר הנשלח.</string>
   <string name="ConversationActivity_quick_camera_unavailable">מצלמה אינה זמינה</string>
   <string name="ConversationActivity_unable_to_record_audio">לא ניתן להקליט קול!</string>
+  <string name="ConversationActivity_error_sending_voice_message">שגיאה בשליחת הודעה קולית</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">אין אפליקציה זמינה לטיפול בקישור כזה במכשיר שלך.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">פרטי מסר</string>
@@ -151,6 +152,10 @@
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">שגיאה בעת שמירת הצרופה לאחסון!</item>
     <item quantity="other">שגיאה בעת שמירת הצרופות לאחסון!</item>
+  </plurals>
+  <plurals name="ConversationFragment_files_saved_successfully">
+    <item quantity="one">הקובץ נשמר בהצלחה.</item>
+    <item quantity="other">הקבצים נשמרו בהצלחה.</item>
   </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">לא ניתן לכתוב לאחסון!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
@@ -537,11 +542,19 @@
   <string name="SingleRecipientNotificationBuilder_new_message">מסר חדש</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">תמונה</string>
+  <string name="attachment_type_selector__image_description">תמונה</string>
   <string name="attachment_type_selector__audio">קול</string>
+  <string name="attachment_type_selector__audio_description">שמע</string>
   <string name="attachment_type_selector__video">סרט</string>
+  <string name="attachment_type_selector__video_description">סרטון</string>
   <string name="attachment_type_selector__contact">איש קשר</string>
+  <string name="attachment_type_selector__contact_description">איש קשר</string>
   <string name="attachment_type_selector__camera">מצלמה</string>
+  <string name="attachment_type_selector__camera_description">מצלמה</string>
   <string name="attachment_type_selector__location">מיקום</string>
+  <string name="attachment_type_selector__location_description">מיקום</string>
+  <string name="attachment_type_selector__gif">קובץ GIF</string>
+  <string name="attachment_type_selector__gif_description">קובץ Gif</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">משפט סודי ישן</string>
   <string name="change_passphrase_activity__new_passphrase">משפט סודי חדש</string>
@@ -571,6 +584,7 @@
   <string name="conversation_activity__compose_description">חיבור מסר</string>
   <string name="conversation_activity__emoji_toggle_description">הפעלת מקלדת פרצופים</string>
   <string name="conversation_activity__attachment_thumbnail">תמונה ממוזערת של צרופה</string>
+  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">להקליט ולשלח כקובץ שמע מצורף </string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">להחליק לביטול</string>
   <!--conversation_item-->
@@ -588,6 +602,8 @@
   <string name="conversation_item_received__contact_photo_description">צילום איש קשר</string>
   <string name="conversation_item_received__downloading">מוריד</string>
   <!--audio_view-->
+  <string name="audio_view__play_accessibility_description">לנגן</string>
+  <string name="audio_view__download_accessibility_description">להוריד</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">מצב בחירה מרובה</string>
   <string name="conversation_fragment_cab__batch_selection_amount">נבחרו %s</string>
@@ -762,6 +778,7 @@
   <string name="recipients_panel__to"><small>נא להזין שם או מספר</small></string>
   <string name="recipients_panel__add_members">הוספת חברים</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[אם ברצונך לוודא את האבטחה של ההצפנה מקצה לקצה עם %s, יש להשוות את המספרים בחלק העליון עם המספרים במכשיר שלו.  או לחלופין, באפשרותך לסרוק את הקוד במכשיר שלו או לבקש ממנו לסרוק את הקוד שלך. <a href=\"https://whispersystems.org/redirect/safety-numbers\">מידע נוסף על מספרי בטיחות</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">יש ללחוץ לסריקה</string>
   <!--verify_identity-->
   <!--message_details_header-->
@@ -996,6 +1013,7 @@
   <string name="text_secure_normal__invite_friends">להזמין חברים</string>
   <string name="text_secure_normal__help">עזרה</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">לעתיק על לוח העריכה</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">גרסת הסיגנל שלך אינה עדכנית</string>
   <plurals name="reminder_header_outdated_build_details">
@@ -1029,6 +1047,7 @@
   <!--media_preview-->
   <string name="media_preview__save_title">שמירה</string>
   <string name="media_preview__forward_title">העברה</string>
+  <string name="media_preview__overview_title">כל התמונות</string>
   <!--media_overview-->
   <string name="media_overview__save_all">לשמור הכול</string>
   <!--media_preview_activity-->

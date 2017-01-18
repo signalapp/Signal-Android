@@ -301,7 +301,7 @@ Vei pierde orice informație care se află în instalarea curentă de Signal și
   <string name="ImportFragment_import_plaintext_backup_elipse">Se importă un backup necriptat...</string>
   <string name="ImportFragment_no_plaintext_backup_found">Nu a fost găsit nici un backup necriptat!</string>
   <string name="ImportFragment_error_importing_backup">Eroare la importul backup-ului!</string>
-  <string name="ImportFragment_import_complete">Import complet!</string>
+  <string name="ImportFragment_import_complete">Importare completă!</string>
   <string name="ImportFragment_restoring">Se restaurează</string>
   <string name="ImportFragment_restoring_encrypted_backup">Se restaurează backup-ul criptat...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Nu a fost găsit nici un backup criptat!</string>
@@ -542,7 +542,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Import în curs</string>
   <string name="ApplicationMigrationService_importing_text_messages">Se importă mesajele text</string>
-  <string name="ApplicationMigrationService_import_complete">Import complet</string>
+  <string name="ApplicationMigrationService_import_complete">Importare completă</string>
   <string name="ApplicationMigrationService_system_database_import_is_complete">Importul bazei de date de sistem este complet.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Atinge pentru a-l deschide.</string>
