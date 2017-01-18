@@ -101,6 +101,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     super.onResume();
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
+    //noinspection ConstantConditions
     getSupportActionBar().setTitle(R.string.ShareActivity_share_with);
   }
 
