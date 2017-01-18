@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.database.ContentObserver;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
@@ -74,6 +75,11 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     initializeContactUpdatesReceiver();
 
     RatingManager.showRatingDialogIfNecessary(this);
+
+
+    if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+      new DynamicShortcutHelper(ConversationListActivity.this).buildShortcuts();
+    }
   }
 
   @Override
