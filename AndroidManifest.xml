@@ -194,6 +194,10 @@
         <meta-data android:name="com.sec.minimode.icon.landscape.normal"
             android:resource="@drawable/icon" />
 
+        <meta-data
+            android:name="android.app.shortcuts"
+            android:resource="@xml/shortcuts"/>
+
     </activity-alias>
 
     <activity android:name=".ConversationListArchiveActivity"
