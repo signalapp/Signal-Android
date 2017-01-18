@@ -54,6 +54,7 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture.Listener;
+import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
@@ -69,47 +70,60 @@ public class AttachmentManager {
   private final static String TAG = AttachmentManager.class.getSimpleName();
 
   private final @NonNull Context                    context;
-  private final @NonNull View                       attachmentView;
-  private final @NonNull RemovableEditableMediaView removableMediaView;
-  private final @NonNull ThumbnailView              thumbnail;
-  private final @NonNull AudioView                  audioView;
-  private final @NonNull SignalMapView              mapView;
+  private final @NonNull Stub<View>                 attachmentViewStub;
   private final @NonNull AttachmentListener         attachmentListener;
+
+  private RemovableEditableMediaView removableMediaView;
+  private ThumbnailView              thumbnail;
+  private AudioView                  audioView;
+  private SignalMapView              mapView;
 
   private @NonNull  List<Uri>       garbage = new LinkedList<>();
   private @NonNull  Optional<Slide> slide   = Optional.absent();
   private @Nullable Uri             captureUri;
 
   public AttachmentManager(@NonNull Activity activity, @NonNull AttachmentListener listener) {
-    this.attachmentView     = ViewUtil.findById(activity, R.id.attachment_editor);
-    this.thumbnail          = ViewUtil.findById(activity, R.id.attachment_thumbnail);
-    this.audioView          = ViewUtil.findById(activity, R.id.attachment_audio);
-    this.mapView            = ViewUtil.findById(activity, R.id.attachment_location);
-    this.removableMediaView = ViewUtil.findById(activity, R.id.removable_media_view);
     this.context            = activity;
     this.attachmentListener = listener;
+    this.attachmentViewStub = ViewUtil.findStubById(activity, R.id.attachment_editor_stub);
+  }
 
-    removableMediaView.setRemoveClickListener(new RemoveButtonListener());
-    removableMediaView.setEditClickListener(new EditButtonListener());
-    thumbnail.setOnClickListener(new ThumbnailClickListener());
+  private void inflateStub() {
+    if (!attachmentViewStub.resolved()) {
+      View root = attachmentViewStub.get();
+
+      this.thumbnail          = ViewUtil.findById(root, R.id.attachment_thumbnail);
+      this.audioView          = ViewUtil.findById(root, R.id.attachment_audio);
+      this.mapView            = ViewUtil.findById(root, R.id.attachment_location);
+      this.removableMediaView = ViewUtil.findById(root, R.id.removable_media_view);
+
+      removableMediaView.setRemoveClickListener(new RemoveButtonListener());
+      removableMediaView.setEditClickListener(new EditButtonListener());
+      thumbnail.setOnClickListener(new ThumbnailClickListener());
+    }
+
   }
 
   public void clear() {
-    ViewUtil.fadeOut(attachmentView, 200).addListener(new Listener<Boolean>() {
-      @Override
-      public void onSuccess(Boolean result) {
-        thumbnail.clear();
-        attachmentView.setVisibility(View.GONE);
-        attachmentListener.onAttachmentChanged();
-      }
+    if (attachmentViewStub.resolved()) {
+      ViewUtil.fadeOut(attachmentViewStub.get(), 200).addListener(new Listener<Boolean>() {
+        @Override
+        public void onSuccess(Boolean result) {
+          thumbnail.clear();
+          attachmentViewStub.get().setVisibility(View.GONE);
+          attachmentListener.onAttachmentChanged();
+        }
 
-      @Override
-      public void onFailure(ExecutionException e) {}
-    });
+        @Override
+        public void onFailure(ExecutionException e) {
+        }
+      });
 
-    markGarbage(getSlideUri());
-    slide = Optional.absent();
-    audioView.cleanup();
+      markGarbage(getSlideUri());
+      slide = Optional.absent();
+
+      audioView.cleanup();
+    }
   }
 
   public void cleanup() {
@@ -153,9 +167,11 @@ public class AttachmentManager {
                           @NonNull final SignalPlace place,
                           @NonNull final MediaConstraints constraints)
   {
+    inflateStub();
+
     ListenableFuture<Bitmap> future = mapView.display(place);
 
-    attachmentView.setVisibility(View.VISIBLE);
+    attachmentViewStub.get().setVisibility(View.VISIBLE);
     removableMediaView.display(mapView, false);
 
     future.addListener(new AssertedSuccessListener<Bitmap>() {
@@ -177,12 +193,14 @@ public class AttachmentManager {
                        @NonNull final MediaType mediaType,
                        @NonNull final MediaConstraints constraints)
   {
+    inflateStub();
+
     new AsyncTask<Void, Void, Slide>() {
       @Override
       protected void onPreExecute() {
         thumbnail.clear();
         thumbnail.showProgressSpinner();
-        attachmentView.setVisibility(View.VISIBLE);
+        attachmentViewStub.get().setVisibility(View.VISIBLE);
       }
 
       @Override
@@ -202,18 +220,18 @@ public class AttachmentManager {
       @Override
       protected void onPostExecute(@Nullable final Slide slide) {
         if (slide == null) {
-          attachmentView.setVisibility(View.GONE);
+          attachmentViewStub.get().setVisibility(View.GONE);
           Toast.makeText(context,
                          R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
                          Toast.LENGTH_SHORT).show();
         } else if (!areConstraintsSatisfied(context, masterSecret, slide, constraints)) {
-          attachmentView.setVisibility(View.GONE);
+          attachmentViewStub.get().setVisibility(View.GONE);
           Toast.makeText(context,
                          R.string.ConversationActivity_attachment_exceeds_size_limits,
                          Toast.LENGTH_SHORT).show();
         } else {
           setSlide(slide);
-          attachmentView.setVisibility(View.VISIBLE);
+          attachmentViewStub.get().setVisibility(View.VISIBLE);
 
           if (slide.hasAudio()) {
             audioView.setAudio(masterSecret, (AudioSlide)slide, false);
@@ -230,7 +248,7 @@ public class AttachmentManager {
   }
 
   public boolean isAttachmentPresent() {
-    return attachmentView.getVisibility() == View.VISIBLE;
+    return attachmentViewStub.resolved() && attachmentViewStub.get().getVisibility() == View.VISIBLE;
   }
 
   public @NonNull SlideDeck buildSlideDeck() {
