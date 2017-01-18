@@ -257,6 +257,9 @@ public class ConversationItem extends LinearLayout
     mediaThumbnail.setFocusable(!shouldInterceptClicks(messageRecord) && batchSelected.isEmpty());
     mediaThumbnail.setClickable(!shouldInterceptClicks(messageRecord) && batchSelected.isEmpty());
     mediaThumbnail.setLongClickable(batchSelected.isEmpty());
+    audioView.setFocusable(!shouldInterceptClicks(messageRecord) && batchSelected.isEmpty());
+    audioView.setClickable(batchSelected.isEmpty());
+    audioView.setEnabled(batchSelected.isEmpty());
     bodyText.setAutoLinkMask(batchSelected.isEmpty() ? Linkify.ALL : 0);
   }
 
