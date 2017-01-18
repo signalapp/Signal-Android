@@ -274,20 +274,20 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         }
       } else {
         String summary = getString(R.string.preferences__default);
-        String signal_tone_uri_string = TextSecurePreferences.getNotificationRingtone(getActivity());
-        if (TextUtils.isEmpty(signal_tone_uri_string)) {
+        String signalToneUriString = TextSecurePreferences.getNotificationRingtone(getActivity());
+        if (TextUtils.isEmpty(signalToneUriString)) {
           summary += " (" + getString(R.string.preferences__silent) + ")";
         } else {
-          Ringtone signal_tone = RingtoneManager.getRingtone(getActivity(), Uri.parse(signal_tone_uri_string));
-          if (signal_tone != null) {
-            String tone_name = signal_tone.getTitle(getActivity());
-            if (tone_name.endsWith(")")) {
+          Ringtone signalTone = RingtoneManager.getRingtone(getActivity(), Uri.parse(signalToneUriString));
+          if (signalTone != null) {
+            String toneName = signalTone.getTitle(getActivity());
+            if (toneName.endsWith(")")) {
               //Strip $RINGTONE_NAME from "Default ringtone ($RINGTONE_NAME)"
-              String[] split = tone_name.split("\\(");
-              tone_name = split[split.length - 1];
-              tone_name = tone_name.substring(0, tone_name.length() - 1);
+              String[] split = toneName.split("\\(");
+              toneName = split[split.length - 1];
+              toneName = toneName.substring(0, toneName.length() - 1);
             }
-            summary += " (" + tone_name + ")";
+            summary += " (" + toneName + ")";
           }
         }
         ringtonePreference.setSummary(summary);
@@ -296,8 +296,8 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
       if (recipients.getVibrate() == VibrateState.DEFAULT) {
         String summary = getString(R.string.preferences__default);
-        boolean global_vibrate = TextSecurePreferences.isNotificationVibrateEnabled(getActivity());
-        if (global_vibrate) {
+        boolean globalVibrate = TextSecurePreferences.isNotificationVibrateEnabled(getActivity());
+        if (globalVibrate) {
           summary += " (" + getString(R.string.RecipientPreferenceActivity_enabled) + ")";
         } else {
           summary += " (" + getString(R.string.RecipientPreferenceActivity_disabled) + ")";
