@@ -23,10 +23,12 @@
                   android:clipToPadding="false"
                   android:clipChildren="false">
 
-        <org.thoughtcrime.securesms.components.reminder.ReminderView
-            android:id="@+id/reminder"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <ViewStub
+                android:id="@+id/reminder_stub"
+                android:layout="@layout/conversation_activity_reminderview_stub"
+                android:inflatedId="@+id/reminder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
         <FrameLayout android:id="@+id/fragment_content"
                      android:layout_width="match_parent"

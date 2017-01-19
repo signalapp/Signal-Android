@@ -55,6 +55,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.View.OnKeyListener;
+import android.view.ViewStub;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -143,6 +144,7 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
+import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -205,7 +207,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   Button                makeDefaultSmsButton;
   private   InputAwareLayout      container;
   private   View                  composePanel;
-  protected ReminderView          reminderView;
+  protected Stub<ReminderView>    reminderView;
 
   private   AttachmentTypeSelector attachmentTypeSelector;
   private   AttachmentManager      attachmentManager;
@@ -782,6 +784,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void handleAddAttachment() {
     if (this.isMmsEnabled || isSecureText) {
+      if (attachmentTypeSelector == null) {
+        attachmentTypeSelector = new AttachmentTypeSelector(this, getSupportLoaderManager(), new AttachmentTypeListener());
+      }
       attachmentTypeSelector.show(this, attachButton);
     } else {
       handleManualMmsRequired();
@@ -947,12 +952,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         @Override
         public void onClick(View v) {
           handleInviteLink();
-          reminderView.requestDismiss();
+          reminderView.get().requestDismiss();
         }
       });
-      reminderView.showReminder(reminder);
-    } else {
-      reminderView.hide();
+      reminderView.get().showReminder(reminder);
+    } else if (reminderView.resolved()) {
+      reminderView.get().hide();
     }
   }
 
@@ -987,7 +992,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     makeDefaultSmsButton  = ViewUtil.findById(this, R.id.make_default_sms_button);
     composePanel          = ViewUtil.findById(this, R.id.bottom_panel);
     container             = ViewUtil.findById(this, R.id.layout_container);
-    reminderView          = ViewUtil.findById(this, R.id.reminder);
+    reminderView          = ViewUtil.findStubById(this, R.id.reminder_stub);
     quickAttachmentDrawer = ViewUtil.findById(this, R.id.quick_attachment_drawer);
     quickAttachmentToggle = ViewUtil.findById(this, R.id.quick_attachment_toggle);
     inputPanel            = ViewUtil.findById(this, R.id.bottom_panel);
@@ -1005,7 +1010,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     composeBubble.getBackground().setColorFilter(defaultColor, PorterDuff.Mode.MULTIPLY);
     colors.recycle();
 
-    attachmentTypeSelector = new AttachmentTypeSelector(this, getSupportLoaderManager(), new AttachmentTypeListener());
+    attachmentTypeSelector = null;
     attachmentManager      = new AttachmentManager(this, this);
     audioRecorder          = new AudioRecorder(this, masterSecret);
 

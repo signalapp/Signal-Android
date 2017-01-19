@@ -42,6 +42,7 @@ import android.widget.TextView;
 
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
+import org.thoughtcrime.securesms.util.views.Stub;
 
 public class ViewUtil {
   @SuppressWarnings("deprecation")
@@ -119,6 +120,10 @@ public class ViewUtil {
   @SuppressWarnings("unchecked")
   public static <T extends View> T findById(@NonNull Activity parent, @IdRes int resId) {
     return (T) parent.findViewById(resId);
+  }
+
+  public static <T extends View> Stub<T> findStubById(@NonNull Activity parent, @IdRes int resId) {
+    return new Stub<T>((ViewStub)parent.findViewById(resId));
   }
 
   private static Animation getAlphaAnimation(float from, float to, int duration) {
