@@ -28,7 +28,7 @@ import java.util.Set;
 
 //Requires minimum SDK 25 (Android 7.1)
 @RequiresApi(api = Build.VERSION_CODES.N_MR1)
-public class DynamicShortcutHelper implements Runnable{
+public class DynamicShortcutHelper implements Runnable {
 
     private Context context;
     private ShortcutManager manager;
@@ -36,7 +36,7 @@ public class DynamicShortcutHelper implements Runnable{
     private int shorcutNumber = 0;
 
     //Boolean for waitung untel
-    private boolean waitingUntilConversationsLoaded = false;
+    private boolean waitingUntilConversationsLoaded = true;
     //Refresh rate if contacts are loaded
     private int refreshRate = 2;
     //When contacts are not loaded in 20 seconds, timeout!
@@ -62,21 +62,22 @@ public class DynamicShortcutHelper implements Runnable{
     }
 
     private void stopThread() {
-        running=false;
+        running = false;
         this.thread.interrupt();
     }
 
     @Override
     public void run() {
-        while(running) {
-            while(true) {
-                List<ShortcutInfo> infos = new ArrayList<>();
-                MasterSecret masterSecret = KeyCachingService.getMasterSecret(context);
+        while (running) {
+            List<ShortcutInfo> shortcutInfos = new ArrayList<>();
 
-                if (masterSecret == null) {
-                    return;
-                }
+            MasterSecret masterSecret = KeyCachingService.getMasterSecret(context);
+            if (masterSecret == null) {
+                return;
+            }
 
+            //Wait until all conversations are loaded and ready
+            while (waitingUntilConversationsLoaded) {
                 ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
                 Cursor cursor = threadDatabase.getShortcutList();
 
@@ -85,69 +86,71 @@ public class DynamicShortcutHelper implements Runnable{
                     ThreadRecord record;
 
                     while ((record = reader.getNext()) != null) {
-                        /* Check the name if it is null.
-                           Name is null:
-                                Go ahead, and wait 2 seconds
-                           Name is not null:
-                                Create all shortcuts with the latest three contacts
-                         */
                         if (record.getRecipients().getPrimaryRecipient().getName() != null) {
-                            final Intent intent = getBaseShareIntent(ConversationActivity.class);
-                            intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, record.getRecipients().getIds());
-                            intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, record.getThreadId());
-                            intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, record.getDistributionType());
-                            intent.setAction(Intent.ACTION_VIEW);
 
-                            Drawable drawable = record.getRecipients().getContactPhoto()
-                                    .asDrawable(context, record.getRecipients().getColor()
-                                            .toConversationColor(context));
-                            Bitmap avatar = BitmapUtil.createFromDrawable(drawable, 500, 500);
-
-                            //Category is needed for shortcut
-                            Set<String> category = new HashSet<>();
-                            category.add("android.shortcut.conversation");
-
-                            //Create shortcut with conversation intent, rank, name, shortname, category and contact photo
-                            ShortcutInfo info = new ShortcutInfo.Builder(context, record.getRecipients().getPrimaryRecipient().getName())
-                                    .setIntent(intent)
-                                    .setRank(infos.size())
-                                    .setShortLabel(record.getRecipients().getPrimaryRecipient().getName())
-                                    .setCategories(category)
-                                    .setIcon(Icon.createWithBitmap(avatar))
-                                    .build();
-
-                            infos.add(info);
-
-                            //Check if shortcutnumber is bigger than 2. If it is bigger break the bow
-                            shorcutNumber++;
-                            if (shorcutNumber > 2) break;
-
-                            //Because the contacts are loaded the while bow can be finished
-                            waitingUntilConversationsLoaded = true;
-
+                            waitingUntilConversationsLoaded = false;
+                            break;
                         }
-                    }
-
-                    //Try it every 2 seconds
-                    try {
-                        Thread.sleep(refreshRate * 1000);
-
-                        //End the thread because timeout!
-                        if(counter > timeout) stopThread();
-                        counter++;
-                    }catch (Exception ex) {
-                        Log.i("ShorcutHelper: ", "Thread crashed!");
                     }
 
                 } finally {
                     if (cursor != null) cursor.close();
-
-                    //Set all shortcuts from the list
-                    manager.setDynamicShortcuts(infos);
-
-                    //Break the while bow because all is done
-                    if(waitingUntilConversationsLoaded) break;
                 }
+
+                try {
+                    Thread.sleep(refreshRate * 1000);
+                } catch (Exception exception) {
+                }
+
+                //End the thread because timeout!
+                if (counter > timeout) stopThread();
+                counter++;
+            }
+
+            ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
+            Cursor cursor = threadDatabase.getShortcutList();
+
+            try {
+                ThreadDatabase.Reader reader = threadDatabase.readerFor(cursor, new MasterCipher(masterSecret));
+                ThreadRecord record;
+
+                while ((record = reader.getNext()) != null) {
+                    final Intent intent = getBaseShareIntent(ConversationActivity.class);
+                    intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, record.getRecipients().getIds());
+                    intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, record.getThreadId());
+                    intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, record.getDistributionType());
+                    intent.setAction(Intent.ACTION_VIEW);
+
+                    Drawable drawable = record.getRecipients().getContactPhoto()
+                            .asDrawable(context, record.getRecipients().getColor()
+                                    .toConversationColor(context));
+                    Bitmap avatar = BitmapUtil.createFromDrawable(drawable, 500, 500);
+
+                    //Category is needed for shortcut
+                    Set<String> category = new HashSet<>();
+                    category.add("android.shortcut.conversation");
+
+                    //Create shortcut with conversation intent, rank, name, shortname, category and contact photo
+                    ShortcutInfo info = new ShortcutInfo.Builder(context, record.getRecipients().getPrimaryRecipient().getName())
+                            .setIntent(intent)
+                            .setRank(shortcutInfos.size())
+                            .setShortLabel(record.getRecipients().getPrimaryRecipient().getName())
+                            .setCategories(category)
+                            .setIcon(Icon.createWithBitmap(avatar))
+                            .build();
+
+                    shortcutInfos.add(info);
+
+                    //Check if shortcutnumber is bigger than 2. If it is bigger break the bow
+                    shorcutNumber++;
+                    if (shorcutNumber > 2) break;
+                }
+
+            } finally {
+                if (cursor != null) cursor.close();
+
+                //Set all shortcuts from the list
+                manager.setDynamicShortcuts(shortcutInfos);
             }
 
             //End the thread because all shortcuts are set
@@ -156,8 +159,8 @@ public class DynamicShortcutHelper implements Runnable{
     }
 
     private Intent getBaseShareIntent(final @NonNull Class<?> target) {
-        final Intent intent      = new Intent(context, target);
-        final String textExtra   = intent.getStringExtra(Intent.EXTRA_TEXT);
+        final Intent intent = new Intent(context, target);
+        final String textExtra = intent.getStringExtra(Intent.EXTRA_TEXT);
         intent.putExtra(ConversationActivity.TEXT_EXTRA, textExtra);
 
         return intent;

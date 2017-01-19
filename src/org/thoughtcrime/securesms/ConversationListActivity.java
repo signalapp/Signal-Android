@@ -76,10 +76,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
     RatingManager.showRatingDialogIfNecessary(this);
 
-
-    if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-      new DynamicShortcutHelper(ConversationListActivity.this).buildShortcuts();
-    }
+    createShortcuts();
   }
 
   @Override
@@ -87,10 +84,14 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     super.onResume();
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
+
+    createShortcuts();
   }
 
   @Override
   public void onDestroy() {
+    createShortcuts();
+
     if (observer != null) getContentResolver().unregisterContentObserver(observer);
     super.onDestroy();
   }
@@ -244,5 +245,11 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
     getContentResolver().registerContentObserver(ContactsContract.Contacts.CONTENT_URI,
                                                  true, observer);
+  }
+
+  private void createShortcuts() {
+    if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+      new DynamicShortcutHelper(ConversationListActivity.this).buildShortcuts();
+    }
   }
 }
