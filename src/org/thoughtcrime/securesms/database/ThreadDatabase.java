@@ -349,6 +349,11 @@ public class ThreadDatabase extends Database {
     return cursor;
   }
 
+  public Cursor getDirectShareList() {
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+    return db.query(TABLE_NAME, null, null, null, null, null, DATE + " DESC");
+  }
+
   public Cursor getShortcutList() {
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
     return db.query(TABLE_NAME, null, null, null, null, null, DATE + " DESC");
