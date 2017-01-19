@@ -67,11 +67,12 @@
                   android:text="160/160 (1)" />
 
 
-        <org.thoughtcrime.securesms.components.emoji.EmojiDrawer
-                android:id="@+id/emoji_drawer"
+        <ViewStub
+                android:id="@+id/emoji_drawer_stub"
+                android:layout="@layout/conversation_activity_emojidrawer_stub"
+                android:inflatedId="@+id/emoji_drawer"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone" />
+                android:layout_height="wrap_content"/>
 
     </LinearLayout>
 </org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer>

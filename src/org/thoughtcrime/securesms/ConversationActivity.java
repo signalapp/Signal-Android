@@ -214,7 +214,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   AudioRecorder          audioRecorder;
   private   BroadcastReceiver      securityUpdateReceiver;
   private   BroadcastReceiver      recipientsStaleReceiver;
-  private   EmojiDrawer            emojiDrawer;
+  private   Stub<EmojiDrawer>      emojiDrawerStub;
   protected HidingLinearLayout     quickAttachmentToggle;
   private   QuickAttachmentDrawer  quickAttachmentDrawer;
   private   InputPanel             inputPanel;
@@ -326,7 +326,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     super.onConfigurationChanged(newConfig);
     composeText.setTransport(sendButton.getSelectedTransport());
     quickAttachmentDrawer.onConfigurationChanged();
-    if (container.getCurrentInput() == emojiDrawer) container.hideAttachedInput(true);
+
+    if (emojiDrawerStub.resolved() && container.getCurrentInput() == emojiDrawerStub.get()) {
+      container.hideAttachedInput(true);
+    }
   }
 
   @Override
@@ -987,7 +990,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     attachButton          = ViewUtil.findById(this, R.id.attach_button);
     composeText           = ViewUtil.findById(this, R.id.embedded_text_editor);
     charactersLeft        = ViewUtil.findById(this, R.id.space_left);
-    emojiDrawer           = ViewUtil.findById(this, R.id.emoji_drawer);
+    emojiDrawerStub       = ViewUtil.findStubById(this, R.id.emoji_drawer_stub);
     unblockButton         = ViewUtil.findById(this, R.id.unblock_button);
     makeDefaultSmsButton  = ViewUtil.findById(this, R.id.make_default_sms_button);
     composePanel          = ViewUtil.findById(this, R.id.bottom_panel);
@@ -1001,7 +1004,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     View        composeBubble     = ViewUtil.findById(this, R.id.compose_bubble);
 
     container.addOnKeyboardShownListener(this);
-    inputPanel.setListener(this, emojiDrawer);
+    inputPanel.setListener(this);
     inputPanel.setMediaListener(this);
 
     int[]      attributes   = new int[]{R.attr.conversation_item_bubble_background};
@@ -1017,7 +1020,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     SendButtonListener        sendButtonListener        = new SendButtonListener();
     ComposeKeyPressedListener composeKeyPressedListener = new ComposeKeyPressedListener();
 
-    emojiDrawer.setEmojiEventListener(inputPanel);
     composeText.setOnEditorActionListener(sendButtonListener);
     attachButton.setOnClickListener(new AttachButtonListener());
     attachButton.setOnLongClickListener(new AttachButtonLongClickListener());
@@ -1624,8 +1626,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onEmojiToggle() {
-    if (container.getCurrentInput() == emojiDrawer) container.showSoftkey(composeText);
-    else                                            container.show(composeText, emojiDrawer);
+    if (!emojiDrawerStub.resolved()) {
+      inputPanel.setEmojiDrawer(emojiDrawerStub.get());
+      emojiDrawerStub.get().setEmojiEventListener(inputPanel);
+    }
+
+    if (container.getCurrentInput() == emojiDrawerStub.get()) {
+      container.showSoftkey(composeText);
+    } else {
+      container.show(composeText, emojiDrawerStub.get());
+    }
   }
 
   @Override

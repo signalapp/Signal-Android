@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
+import org.thoughtcrime.securesms.util.views.Stub;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
@@ -99,10 +100,9 @@ public class InputPanel extends LinearLayout
     }
   }
 
-  public void setListener(final @NonNull Listener listener, @NonNull EmojiDrawer emojiDrawer) {
+  public void setListener(final @NonNull Listener listener) {
     this.listener = listener;
 
-    emojiToggle.attach(emojiDrawer);
     emojiToggle.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -113,6 +113,10 @@ public class InputPanel extends LinearLayout
 
   public void setMediaListener(@NonNull MediaListener listener) {
     composeText.setMediaListener(listener);
+  }
+
+  public void setEmojiDrawer(@NonNull EmojiDrawer emojiDrawer) {
+    emojiToggle.attach(emojiDrawer);
   }
 
   @Override
