@@ -64,29 +64,6 @@
                     android:textSize="@dimen/conversation_item_body_text_size"
                     tools:text="Mango pickle lorem ipsum" />
 
-            <LinearLayout android:id="@+id/mms_download_controls"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:orientation="horizontal">
-
-                <Button android:id="@+id/mms_download_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:text="@string/conversation_item_sent__download"
-                        android:visibility="gone" />
-
-                <TextView android:id="@+id/mms_label_downloading"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:layout_marginLeft="5dp"
-                          android:layout_marginRight="5dp"
-                          android:gravity="center"
-                          android:text="@string/conversation_item_sent__downloading"
-                          android:visibility="gone" />
-
-            </LinearLayout>
-
             <LinearLayout android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:orientation="horizontal"

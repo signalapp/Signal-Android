@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.database.SmsDatabase.Status;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
+import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
@@ -37,12 +38,12 @@ import java.util.LinkedList;
  *
  */
 
-public class NotificationMmsMessageRecord extends MessageRecord {
+public class NotificationMmsMessageRecord extends MmsMessageRecord {
 
   private final byte[] contentLocation;
-  private final long messageSize;
-  private final long expiry;
-  private final int status;
+  private final long   messageSize;
+  private final long   expiry;
+  private final int    status;
   private final byte[] transactionId;
 
   public NotificationMmsMessageRecord(Context context, long id, Recipients recipients,
@@ -50,12 +51,12 @@ public class NotificationMmsMessageRecord extends MessageRecord {
                                       long dateSent, long dateReceived, int receiptCount,
                                       long threadId, byte[] contentLocation, long messageSize,
                                       long expiry, int status, byte[] transactionId, long mailbox,
-                                      int subscriptionId)
+                                      int subscriptionId, SlideDeck slideDeck)
   {
     super(context, id, new Body("", true), recipients, individualRecipient, recipientDeviceId,
           dateSent, dateReceived, threadId, Status.STATUS_NONE, receiptCount, mailbox,
           new LinkedList<IdentityKeyMismatch>(), new LinkedList<NetworkFailure>(), subscriptionId,
-          0, 0);
+          0, 0, slideDeck);
 
     this.contentLocation = contentLocation;
     this.messageSize     = messageSize;
@@ -90,11 +91,6 @@ public class NotificationMmsMessageRecord extends MessageRecord {
   }
 
   @Override
-  public boolean isFailed() {
-    return MmsDatabase.Status.isHardError(status);
-  }
-
-  @Override
   public boolean isSecure() {
     return false;
   }
@@ -102,11 +98,6 @@ public class NotificationMmsMessageRecord extends MessageRecord {
   @Override
   public boolean isPending() {
     return false;
-  }
-
-  @Override
-  public boolean isMms() {
-    return true;
   }
 
   @Override
@@ -121,6 +112,12 @@ public class NotificationMmsMessageRecord extends MessageRecord {
 
   @Override
   public SpannableString getDisplayBody() {
-    return emphasisAdded(context.getString(R.string.NotificationMmsMessageRecord_multimedia_message));
+    if (status == MmsDatabase.Status.DOWNLOAD_INITIALIZED) {
+      return emphasisAdded(context.getString(R.string.NotificationMmsMessageRecord_multimedia_message));
+    } else if (status == MmsDatabase.Status.DOWNLOAD_CONNECTING) {
+      return emphasisAdded(context.getString(R.string.NotificationMmsMessageRecord_downloading_mms_message));
+    } else {
+      return emphasisAdded(context.getString(R.string.NotificationMmsMessageRecord_error_downloading_mms_message));
+    }
   }
 }
