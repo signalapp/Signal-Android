@@ -111,7 +111,7 @@ public class ConversationItem extends LinearLayout
 
   private @NonNull  Set<MessageRecord>  batchSelected = new HashSet<>();
   private @Nullable Recipients          conversationRecipients;
-  private @NonNull  ThumbnailView       mediaThumbnail;
+  private @NonNull  Stub<ThumbnailView> mediaThumbnailStub;
   private @NonNull  Stub<AudioView>     audioViewStub;
   private @NonNull  Button              mmsDownloadButton;
   private @NonNull  TextView            mmsDownloadingLabel;
@@ -158,18 +158,13 @@ public class ConversationItem extends LinearLayout
     this.mmsDownloadingLabel     = (TextView)           findViewById(R.id.mms_label_downloading);
     this.contactPhoto            = (AvatarImageView)    findViewById(R.id.contact_photo);
     this.bodyBubble              =                      findViewById(R.id.body_bubble);
-    this.mediaThumbnail          = (ThumbnailView)      findViewById(R.id.image_view);
+    this.mediaThumbnailStub      = new Stub<>((ViewStub) findViewById(R.id.image_view_stub));
     this.audioViewStub           = new Stub<>((ViewStub) findViewById(R.id.audio_view_stub));
     this.expirationTimer         = (ExpirationTimerView) findViewById(R.id.expiration_indicator);
-
 
     setOnClickListener(new ClickListener(null));
 
     mmsDownloadButton.setOnClickListener(mmsDownloadClickListener);
-    mediaThumbnail.setThumbnailClickListener(new ThumbnailClickListener());
-    mediaThumbnail.setDownloadClickListener(downloadClickListener);
-    mediaThumbnail.setOnLongClickListener(passthroughClickListener);
-    mediaThumbnail.setOnClickListener(passthroughClickListener);
     bodyText.setOnLongClickListener(passthroughClickListener);
     bodyText.setOnClickListener(passthroughClickListener);
   }
@@ -192,9 +187,9 @@ public class ConversationItem extends LinearLayout
     this.recipient.addListener(this);
     this.conversationRecipients.addListener(this);
 
-    setInteractionState(messageRecord);
     setBodyText(messageRecord);
     setMediaAttributes(messageRecord);
+    setInteractionState(messageRecord);
     setBubbleState(messageRecord, recipient);
     setStatusIcons(messageRecord);
     setContactPhoto(recipient);
@@ -232,11 +227,11 @@ public class ConversationItem extends LinearLayout
   private void setBubbleState(MessageRecord messageRecord, Recipient recipient) {
     if (messageRecord.isOutgoing()) {
       bodyBubble.getBackground().setColorFilter(defaultBubbleColor, PorterDuff.Mode.MULTIPLY);
-      mediaThumbnail.setBackgroundColorHint(defaultBubbleColor);
+      if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setBackgroundColorHint(defaultBubbleColor);
     } else {
       int color = recipient.getColor().toConversationColor(context);
       bodyBubble.getBackground().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
-      mediaThumbnail.setBackgroundColorHint(color);
+      if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setBackgroundColorHint(color);
     }
 
     if (audioViewStub.resolved()) {
@@ -258,10 +253,13 @@ public class ConversationItem extends LinearLayout
 
   private void setInteractionState(MessageRecord messageRecord) {
     setSelected(batchSelected.contains(messageRecord));
-    mediaThumbnail.setFocusable(!shouldInterceptClicks(messageRecord) && batchSelected.isEmpty());
-    mediaThumbnail.setClickable(!shouldInterceptClicks(messageRecord) && batchSelected.isEmpty());
-    mediaThumbnail.setLongClickable(batchSelected.isEmpty());
     bodyText.setAutoLinkMask(batchSelected.isEmpty() ? Linkify.ALL : 0);
+
+    if (mediaThumbnailStub.resolved()) {
+      mediaThumbnailStub.get().setFocusable(!shouldInterceptClicks(messageRecord) && batchSelected.isEmpty());
+      mediaThumbnailStub.get().setClickable(!shouldInterceptClicks(messageRecord) && batchSelected.isEmpty());
+      mediaThumbnailStub.get().setLongClickable(batchSelected.isEmpty());
+    }
   }
 
   private boolean isCaptionlessMms(MessageRecord messageRecord) {
@@ -296,14 +294,14 @@ public class ConversationItem extends LinearLayout
     boolean showControls = !messageRecord.isFailed() && (!messageRecord.isOutgoing() || messageRecord.isPending());
 
     if (messageRecord.isMmsNotification()) {
-      mediaThumbnail.setVisibility(View.GONE);
-      if (audioViewStub.resolved()) audioViewStub.get().setVisibility(View.GONE);
+      if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setVisibility(View.GONE);
+      if (audioViewStub.resolved())      audioViewStub.get().setVisibility(View.GONE);
 
       bodyText.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
       setNotificationMmsAttributes((NotificationMmsMessageRecord) messageRecord);
     } else if (hasAudio(messageRecord)) {
       audioViewStub.get().setVisibility(View.VISIBLE);
-      mediaThumbnail.setVisibility(View.GONE);
+      if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setVisibility(View.GONE);
 
       //noinspection ConstantConditions
       audioViewStub.get().setAudio(masterSecret, ((MediaMmsMessageRecord) messageRecord).getSlideDeck().getAudioSlide(), showControls);
@@ -312,17 +310,22 @@ public class ConversationItem extends LinearLayout
 
       bodyText.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
     } else if (hasThumbnail(messageRecord)) {
-      mediaThumbnail.setVisibility(View.VISIBLE);
+      mediaThumbnailStub.get().setVisibility(View.VISIBLE);
       if (audioViewStub.resolved()) audioViewStub.get().setVisibility(View.GONE);
 
       //noinspection ConstantConditions
-      mediaThumbnail.setImageResource(masterSecret,
-                                      ((MediaMmsMessageRecord)messageRecord).getSlideDeck().getThumbnailSlide(),
-                                      showControls);
+      mediaThumbnailStub.get().setImageResource(masterSecret,
+                                                ((MediaMmsMessageRecord)messageRecord).getSlideDeck().getThumbnailSlide(),
+                                                showControls);
+      mediaThumbnailStub.get().setThumbnailClickListener(new ThumbnailClickListener());
+      mediaThumbnailStub.get().setDownloadClickListener(downloadClickListener);
+      mediaThumbnailStub.get().setOnLongClickListener(passthroughClickListener);
+      mediaThumbnailStub.get().setOnClickListener(passthroughClickListener);
+
       bodyText.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
     } else {
-      mediaThumbnail.setVisibility(View.GONE);
-      if (audioViewStub.resolved()) audioViewStub.get().setVisibility(View.GONE);
+      if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setVisibility(View.GONE);
+      if (audioViewStub.resolved())      audioViewStub.get().setVisibility(View.GONE);
       bodyText.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
     }
   }

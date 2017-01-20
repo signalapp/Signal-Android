@@ -49,16 +49,11 @@
                       android:orientation="vertical"
                       tools:backgroundTint="@color/blue_900">
 
-            <org.thoughtcrime.securesms.components.ThumbnailView
-                    android:id="@+id/image_view"
+            <ViewStub
+                    android:id="@+id/image_view_stub"
+                    android:layout="@layout/conversation_item_received_thumbnail"
                     android:layout_width="@dimen/media_bubble_height"
-                    android:layout_height="@dimen/media_bubble_height"
-                    android:scaleType="centerCrop"
-                    android:adjustViewBounds="true"
-                    android:contentDescription="@string/conversation_item__mms_image_description"
-                    android:visibility="gone"
-                    tools:src="@drawable/ic_video_light"
-                    tools:visibility="gone" />
+                    android:layout_height="@dimen/media_bubble_height"/>
 
             <ViewStub
                     android:id="@+id/audio_view_stub"
