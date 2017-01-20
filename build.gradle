@@ -155,7 +155,12 @@ android {
         targetCompatibility JavaVersion.VERSION_1_7
     }
     signingConfigs {
-        release
+        release {
+            keyAlias System.env['KEY_ALIAS'] ? System.env['KEY_ALIAS'] : 'debug'
+            keyPassword System.env['KEY_PASS'] ? System.env['KEY_PASS'] : 'password'
+            storeFile file(System.env['KEY_FILE'] ? System.env['KEY_FILE'] : 'debug.keystore')
+            storePassword System.env['STORE_PASS'] ? System.env['STORE_PASS'] : 'password'
+        }
     }
 
     buildTypes {
@@ -234,28 +239,4 @@ tasks.whenTaskAdded { task ->
     if (task.name.equals("lint")) {
         task.enabled = false
     }
-}
-
-def Properties props = new Properties()
-def propFile = new File('signing.properties')
-
-if (propFile.canRead()) {
-    props.load(new FileInputStream(propFile))
-
-    if (props != null &&
-            props.containsKey('STORE_FILE') &&
-            props.containsKey('STORE_PASSWORD') &&
-            props.containsKey('KEY_ALIAS') &&
-            props.containsKey('KEY_PASSWORD')) {
-        android.signingConfigs.release.storeFile = file(props['STORE_FILE'])
-        android.signingConfigs.release.storePassword = props['STORE_PASSWORD']
-        android.signingConfigs.release.keyAlias = props['KEY_ALIAS']
-        android.signingConfigs.release.keyPassword = props['KEY_PASSWORD']
-    } else {
-        println 'signing.properties found but some entries are missing'
-        android.buildTypes.release.signingConfig = null
-    }
-} else {
-    println 'signing.properties not found'
-    android.buildTypes.release.signingConfig = null
 }
