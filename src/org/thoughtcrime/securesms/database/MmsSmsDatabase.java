@@ -138,8 +138,7 @@ public class MmsSmsDatabase extends Database {
     String[] mmsProjection = {MmsDatabase.DATE_SENT + " AS " + MmsSmsColumns.NORMALIZED_DATE_SENT,
                               MmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
                               MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " AS " + MmsSmsColumns.ID,
-                              "'MMS::' || " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID
-                                  + " || '::' || " + MmsDatabase.DATE_SENT
+                              "CAST('2' || " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " || " + MmsDatabase.DATE_SENT + " AS INTEGER)"
                                   + " AS " + MmsSmsColumns.UNIQUE_ROW_ID,
                               AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " AS " + AttachmentDatabase.ATTACHMENT_ID_ALIAS,
                               SmsDatabase.BODY, MmsSmsColumns.READ, MmsSmsColumns.THREAD_ID,
@@ -164,8 +163,7 @@ public class MmsSmsDatabase extends Database {
     String[] smsProjection = {SmsDatabase.DATE_SENT + " AS " + MmsSmsColumns.NORMALIZED_DATE_SENT,
                               SmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
                               MmsSmsColumns.ID,
-                              "'SMS::' || " + MmsSmsColumns.ID
-                                  + " || '::' || " + SmsDatabase.DATE_SENT
+                              "CAST('1' || " + MmsSmsColumns.ID + " || " + SmsDatabase.DATE_SENT + " AS INTEGER)"
                                   + " AS " + MmsSmsColumns.UNIQUE_ROW_ID,
                               "NULL AS " + AttachmentDatabase.ATTACHMENT_ID_ALIAS,
                               SmsDatabase.BODY, MmsSmsColumns.READ, MmsSmsColumns.THREAD_ID,

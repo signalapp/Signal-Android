@@ -29,7 +29,6 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 
-import org.thoughtcrime.redphone.util.Conversions;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -42,8 +41,6 @@ import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.lang.ref.SoftReference;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Locale;
@@ -78,7 +75,6 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   private final @NonNull  Recipients        recipients;
   private final @NonNull  MmsSmsDatabase    db;
   private final @NonNull  LayoutInflater    inflater;
-  private final @NonNull  MessageDigest     digest;
 
   protected static class ViewHolder extends RecyclerView.ViewHolder {
     public <V extends View & BindableConversationItem> ViewHolder(final @NonNull V itemView) {
@@ -100,17 +96,12 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   @VisibleForTesting
   ConversationAdapter(Context context, Cursor cursor) {
     super(context, cursor);
-    try {
-      this.masterSecret  = null;
-      this.locale        = null;
-      this.clickListener = null;
-      this.recipients    = null;
-      this.inflater      = null;
-      this.db            = null;
-      this.digest        = MessageDigest.getInstance("SHA1");
-    } catch (NoSuchAlgorithmException nsae) {
-      throw new AssertionError("SHA1 isn't supported!");
-    }
+    this.masterSecret  = null;
+    this.locale        = null;
+    this.clickListener = null;
+    this.recipients    = null;
+    this.inflater      = null;
+    this.db            = null;
   }
 
   public ConversationAdapter(@NonNull Context context,
@@ -121,19 +112,14 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
                              @NonNull Recipients recipients)
   {
     super(context, cursor);
-    try {
-      this.masterSecret  = masterSecret;
-      this.locale        = locale;
-      this.clickListener = clickListener;
-      this.recipients    = recipients;
-      this.inflater      = LayoutInflater.from(context);
-      this.db            = DatabaseFactory.getMmsSmsDatabase(context);
-      this.digest        = MessageDigest.getInstance("SHA1");
+    this.masterSecret  = masterSecret;
+    this.locale        = locale;
+    this.clickListener = clickListener;
+    this.recipients    = recipients;
+    this.inflater      = LayoutInflater.from(context);
+    this.db            = DatabaseFactory.getMmsSmsDatabase(context);
 
-      setHasStableIds(true);
-    } catch (NoSuchAlgorithmException nsae) {
-      throw new AssertionError("SHA1 isn't supported!");
-    }
+    setHasStableIds(true);
   }
 
   @Override
@@ -208,9 +194,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
 
   @Override
   public long getItemId(@NonNull Cursor cursor) {
-    final String unique = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsColumns.UNIQUE_ROW_ID));
-    final byte[] bytes  = digest.digest(unique.getBytes());
-    return Conversions.byteArrayToLong(bytes);
+    return cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.UNIQUE_ROW_ID));
   }
 
   private MessageRecord getMessageRecord(long messageId, Cursor cursor, String type) {
