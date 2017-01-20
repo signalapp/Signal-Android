@@ -33,6 +33,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewStub;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -70,6 +71,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.dualsim.SubscriptionInfoCompat;
 import org.thoughtcrime.securesms.util.dualsim.SubscriptionManagerCompat;
+import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.HashSet;
@@ -96,7 +98,7 @@ public class ConversationItem extends LinearLayout
   private boolean       groupThread;
   private Recipient     recipient;
 
-  private View               bodyBubble;
+  protected View             bodyBubble;
   private TextView           bodyText;
   private TextView           dateText;
   private TextView           simInfoText;
@@ -110,16 +112,19 @@ public class ConversationItem extends LinearLayout
   private @NonNull  Set<MessageRecord>  batchSelected = new HashSet<>();
   private @Nullable Recipients          conversationRecipients;
   private @NonNull  ThumbnailView       mediaThumbnail;
-  private @NonNull  AudioView           audioView;
+  private @NonNull  Stub<AudioView>     audioViewStub;
   private @NonNull  Button              mmsDownloadButton;
   private @NonNull  TextView            mmsDownloadingLabel;
   private @NonNull  ExpirationTimerView expirationTimer;
 
   private int defaultBubbleColor;
 
-  private final MmsDownloadClickListener    mmsDownloadClickListener    = new MmsDownloadClickListener();
-  private final MmsPreferencesClickListener mmsPreferencesClickListener = new MmsPreferencesClickListener();
-  private final Context                     context;
+  private final MmsDownloadClickListener        mmsDownloadClickListener    = new MmsDownloadClickListener();
+  private final MmsPreferencesClickListener     mmsPreferencesClickListener = new MmsPreferencesClickListener();
+  private final PassthroughClickListener        passthroughClickListener    = new PassthroughClickListener();
+  private final AttachmentDownloadClickListener downloadClickListener       = new AttachmentDownloadClickListener();
+
+  private final Context context;
 
   public ConversationItem(Context context) {
     this(context, null);
@@ -154,20 +159,17 @@ public class ConversationItem extends LinearLayout
     this.contactPhoto            = (AvatarImageView)    findViewById(R.id.contact_photo);
     this.bodyBubble              =                      findViewById(R.id.body_bubble);
     this.mediaThumbnail          = (ThumbnailView)      findViewById(R.id.image_view);
-    this.audioView               = (AudioView)          findViewById(R.id.audio_view);
+    this.audioViewStub           = new Stub<>((ViewStub) findViewById(R.id.audio_view_stub));
     this.expirationTimer         = (ExpirationTimerView) findViewById(R.id.expiration_indicator);
 
+
     setOnClickListener(new ClickListener(null));
-    PassthroughClickListener        passthroughClickListener = new PassthroughClickListener();
-    AttachmentDownloadClickListener downloadClickListener    = new AttachmentDownloadClickListener();
 
     mmsDownloadButton.setOnClickListener(mmsDownloadClickListener);
     mediaThumbnail.setThumbnailClickListener(new ThumbnailClickListener());
     mediaThumbnail.setDownloadClickListener(downloadClickListener);
     mediaThumbnail.setOnLongClickListener(passthroughClickListener);
     mediaThumbnail.setOnClickListener(passthroughClickListener);
-    audioView.setDownloadClickListener(downloadClickListener);
-    audioView.setOnLongClickListener(passthroughClickListener);
     bodyText.setOnLongClickListener(passthroughClickListener);
     bodyText.setOnClickListener(passthroughClickListener);
   }
@@ -192,12 +194,12 @@ public class ConversationItem extends LinearLayout
 
     setInteractionState(messageRecord);
     setBodyText(messageRecord);
+    setMediaAttributes(messageRecord);
     setBubbleState(messageRecord, recipient);
     setStatusIcons(messageRecord);
     setContactPhoto(recipient);
     setGroupMessageStatus(messageRecord, recipient);
     setMinimumWidth();
-    setMediaAttributes(messageRecord);
     setSimInfo(messageRecord);
     setExpiration(messageRecord);
   }
@@ -237,18 +239,20 @@ public class ConversationItem extends LinearLayout
       mediaThumbnail.setBackgroundColorHint(color);
     }
 
-    setAudioViewTint(messageRecord, conversationRecipients);
+    if (audioViewStub.resolved()) {
+      setAudioViewTint(messageRecord, conversationRecipients);
+    }
   }
 
   private void setAudioViewTint(MessageRecord messageRecord, Recipients recipients) {
     if (messageRecord.isOutgoing()) {
       if (DynamicTheme.LIGHT.equals(TextSecurePreferences.getTheme(context))) {
-        audioView.setTint(recipients.getColor().toConversationColor(context), defaultBubbleColor);
+        audioViewStub.get().setTint(recipients.getColor().toConversationColor(context), defaultBubbleColor);
       } else {
-        audioView.setTint(Color.WHITE, defaultBubbleColor);
+        audioViewStub.get().setTint(Color.WHITE, defaultBubbleColor);
       }
     } else {
-      audioView.setTint(Color.WHITE, recipients.getColor().toConversationColor(context));
+      audioViewStub.get().setTint(Color.WHITE, recipients.getColor().toConversationColor(context));
     }
   }
 
@@ -293,20 +297,23 @@ public class ConversationItem extends LinearLayout
 
     if (messageRecord.isMmsNotification()) {
       mediaThumbnail.setVisibility(View.GONE);
-      audioView.setVisibility(View.GONE);
+      if (audioViewStub.resolved()) audioViewStub.get().setVisibility(View.GONE);
 
       bodyText.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
       setNotificationMmsAttributes((NotificationMmsMessageRecord) messageRecord);
     } else if (hasAudio(messageRecord)) {
-      audioView.setVisibility(View.VISIBLE);
+      audioViewStub.get().setVisibility(View.VISIBLE);
       mediaThumbnail.setVisibility(View.GONE);
 
       //noinspection ConstantConditions
-      audioView.setAudio(masterSecret, ((MediaMmsMessageRecord) messageRecord).getSlideDeck().getAudioSlide(), showControls);
+      audioViewStub.get().setAudio(masterSecret, ((MediaMmsMessageRecord) messageRecord).getSlideDeck().getAudioSlide(), showControls);
+      audioViewStub.get().setDownloadClickListener(downloadClickListener);
+      audioViewStub.get().setOnLongClickListener(passthroughClickListener);
+
       bodyText.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
     } else if (hasThumbnail(messageRecord)) {
       mediaThumbnail.setVisibility(View.VISIBLE);
-      audioView.setVisibility(View.GONE);
+      if (audioViewStub.resolved()) audioViewStub.get().setVisibility(View.GONE);
 
       //noinspection ConstantConditions
       mediaThumbnail.setImageResource(masterSecret,
@@ -315,7 +322,7 @@ public class ConversationItem extends LinearLayout
       bodyText.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
     } else {
       mediaThumbnail.setVisibility(View.GONE);
-      audioView.setVisibility(View.GONE);
+      if (audioViewStub.resolved()) audioViewStub.get().setVisibility(View.GONE);
       bodyText.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
     }
   }

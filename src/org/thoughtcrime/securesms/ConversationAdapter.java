@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.LRUCache;
@@ -63,9 +64,11 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   private final Map<String,SoftReference<MessageRecord>> messageRecordCache =
       Collections.synchronizedMap(new LRUCache<String, SoftReference<MessageRecord>>(MAX_CACHE_SIZE));
 
-  public static final int MESSAGE_TYPE_OUTGOING = 0;
-  public static final int MESSAGE_TYPE_INCOMING = 1;
-  public static final int MESSAGE_TYPE_UPDATE   = 2;
+  private static final int MESSAGE_TYPE_OUTGOING       = 0;
+  private static final int MESSAGE_TYPE_INCOMING       = 1;
+  private static final int MESSAGE_TYPE_UPDATE         = 2;
+  private static final int MESSAGE_TYPE_AUDIO_OUTGOING = 3;
+  private static final int MESSAGE_TYPE_AUDIO_INCOMING = 4;
 
   private final Set<MessageRecord> batchSelected = Collections.synchronizedSet(new HashSet<MessageRecord>());
 
@@ -168,10 +171,12 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
 
   private @LayoutRes int getLayoutForViewType(int viewType) {
     switch (viewType) {
-    case ConversationAdapter.MESSAGE_TYPE_OUTGOING: return R.layout.conversation_item_sent;
-    case ConversationAdapter.MESSAGE_TYPE_INCOMING: return R.layout.conversation_item_received;
-    case ConversationAdapter.MESSAGE_TYPE_UPDATE:   return R.layout.conversation_item_update;
-    default: throw new IllegalArgumentException("unsupported item view type given to ConversationAdapter");
+      case MESSAGE_TYPE_AUDIO_OUTGOING:
+      case MESSAGE_TYPE_OUTGOING:        return R.layout.conversation_item_sent;
+      case MESSAGE_TYPE_AUDIO_INCOMING:
+      case MESSAGE_TYPE_INCOMING:        return R.layout.conversation_item_received;
+      case MESSAGE_TYPE_UPDATE:          return R.layout.conversation_item_update;
+      default: throw new IllegalArgumentException("unsupported item view type given to ConversationAdapter");
     }
   }
 
@@ -182,9 +187,11 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     MessageRecord messageRecord = getMessageRecord(id, cursor, type);
 
     if (messageRecord.isGroupAction() || messageRecord.isCallLog() || messageRecord.isJoined() || 
-        messageRecord.isExpirationTimerUpdate() || messageRecord.isEndSession() || messageRecord.isIdentityUpdate()) 
-   {
+        messageRecord.isExpirationTimerUpdate() || messageRecord.isEndSession() || messageRecord.isIdentityUpdate()) {
       return MESSAGE_TYPE_UPDATE;
+    } else if (hasAudio(messageRecord)) {
+      if (messageRecord.isOutgoing()) return MESSAGE_TYPE_AUDIO_OUTGOING;
+      else                            return MESSAGE_TYPE_AUDIO_INCOMING;
     } else if (messageRecord.isOutgoing()) {
       return MESSAGE_TYPE_OUTGOING;
     } else {
@@ -226,5 +233,11 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
 
   public Set<MessageRecord> getSelectedItems() {
     return Collections.unmodifiableSet(new HashSet<>(batchSelected));
+  }
+
+  private boolean hasAudio(MessageRecord messageRecord) {
+    return messageRecord.isMms() &&
+        !messageRecord.isMmsNotification() &&
+        ((MediaMmsMessageRecord)messageRecord).getSlideDeck().getAudioSlide() != null;
   }
 }

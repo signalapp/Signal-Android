@@ -51,13 +51,11 @@
                     tools:src="@drawable/ic_video_light"
                     tools:visibility="visible" />
 
-            <org.thoughtcrime.securesms.components.AudioView
-                    android:id="@+id/audio_view"
+            <ViewStub
+                    android:id="@+id/audio_view_stub"
+                    android:layout="@layout/conversation_item_sent_audio"
                     android:layout_width="210dp"
-                    android:layout_height="wrap_content"
-                    app:foregroundTintColor="@color/grey_500"
-                    app:backgroundTintColor="@color/white"
-                    android:visibility="gone"/>
+                    android:layout_height="wrap_content"/>
 
             <org.thoughtcrime.securesms.components.emoji.EmojiTextView
                     android:id="@+id/conversation_item_body"
