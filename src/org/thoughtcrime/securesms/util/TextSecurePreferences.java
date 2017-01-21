@@ -3,16 +3,11 @@ package org.thoughtcrime.securesms.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.hardware.Camera.CameraInfo;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.ArrayRes;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.text.TextUtils;
 import android.util.Log;
 
 import com.h6ah4i.android.compat.content.SharedPreferenceCompat;
@@ -494,27 +489,6 @@ public class TextSecurePreferences {
 
   public static String getNotificationRingtone(Context context) {
     return getStringPreference(context, RINGTONE_PREF, Settings.System.DEFAULT_NOTIFICATION_URI.toString());
-  }
-
-  @Nullable
-  public static String getNotificationRingtoneFriendlyName(Context context) {
-    String signalToneUriString = getNotificationRingtone(context);
-    if (TextUtils.isEmpty(signalToneUriString)) {
-      return context.getString(R.string.preferences__silent);
-    } else {
-      Ringtone signalTone = RingtoneManager.getRingtone(context, Uri.parse(signalToneUriString));
-      if (signalTone != null) {
-        String toneName = signalTone.getTitle(context);
-        if (toneName.endsWith(")")) {
-          //Strip $RINGTONE_NAME from "Default ringtone ($RINGTONE_NAME)"
-          String[] split = toneName.split("\\(");
-          toneName = split[split.length - 1];
-          toneName = toneName.substring(0, toneName.length() - 1);
-        }
-        return toneName;
-      }
-    }
-    return null;
   }
 
   public static boolean isNotificationVibrateEnabled(Context context) {

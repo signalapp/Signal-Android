@@ -17,6 +17,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.preference.PreferenceFragment;
 import android.support.v7.app.AlertDialog;
@@ -273,7 +274,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         }
       } else {
         String summary = getString(R.string.preferences__default);
-        String friendlyName = TextSecurePreferences.getNotificationRingtoneFriendlyName(getActivity());
+        String friendlyName = getNotificationRingtoneFriendlyName();
         if (friendlyName != null) {
           summary += " (" + friendlyName + ")";
         }
@@ -330,6 +331,28 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
           }
         });
       }
+    }
+
+    @Nullable
+    private String getNotificationRingtoneFriendlyName() {
+      Context context = getActivity();
+      String signalToneUriString = TextSecurePreferences.getNotificationRingtone(context);
+      if (TextUtils.isEmpty(signalToneUriString)) {
+        return context.getString(R.string.preferences__silent);
+      } else {
+        Ringtone signalTone = RingtoneManager.getRingtone(context, Uri.parse(signalToneUriString));
+        if (signalTone != null) {
+          String toneName = signalTone.getTitle(context);
+          if (toneName.endsWith(")")) {
+            //Strip $RINGTONE_NAME from "Default ringtone ($RINGTONE_NAME)"
+            String[] split = toneName.split("\\(");
+            toneName = split[split.length - 1];
+            toneName = toneName.substring(0, toneName.length() - 1);
+          }
+          return toneName;
+        }
+      }
+      return null;
     }
 
     @Override
