@@ -134,6 +134,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Velikost přílohy překročila limit pro typ zprávy kterou posíláte</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera není dostupná</string>
   <string name="ConversationActivity_unable_to_record_audio">Nemohu nahrávat audio!</string>
+  <string name="ConversationActivity_error_sending_voice_message">Chyba při odeslání hlasové zprávy</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Není zde žádná aplikace která by dokázala zpracovat tento odkaz.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Podrobnosti zprávy</string>
@@ -211,6 +212,7 @@
     <item quantity="other">Přesunuto %d konverzací do složky příchozích zpráv</item>
   </plurals>
   <!--ConversationListItem-->
+  <string name="ConversationListItem_key_exchange_message">Zpráva o výměně klíčů</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Archivované konverzace (%d)</string>
   <!--CustomDefaultPreference-->
@@ -223,6 +225,7 @@
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Rozpojit \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Rozpojením toho zařízení nebude dále možno posílat a přijímat zprávy.</string>
+  <string name="DeviceListActivity_network_connection_failed">Nepodařilo se připojit</string>
   <string name="DeviceListActivity_try_again">Zkusit znovu</string>
   <string name="DeviceListActivity_unlinking_device">Rozpojování zařízení...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Odděluji zařízení</string>
@@ -254,6 +257,7 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trvalá chyba komunikace Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal se nemůže registrovat k službě Google Play. Zprávy a volání jsou proto zakázány: Prosím zkuste se znovu registrovat v menu Nastavení &gt; Rozšířené.</string>
   <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Chyba při získávání GIF v pleném rozlišení</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIFy</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Nálepky</string>
@@ -333,6 +337,8 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="MessageDetailsRecipient_new_safety_number">Nové bezpečnostní kódy</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Chyba při ukládání MMS!</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Chyba při připojování k poskytovateli MMS</string>
+  <string name="MmsDownloader_error_reading_mms_settings">Chyba při čtení nastavení MMS</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Probíhá Signal volání</string>
   <string name="NotificationBarManager_missed_call_from_s">Zmeškaný hovor od %s</string>
@@ -375,6 +381,7 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nenalezeno žádné zařízení.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Chyba sítě.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Neplatný QR kód.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Omlouváme se, ale máte provázáno příliš mnoho zařízení, pokuste se některé odpojit</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Omlouváme se, ale toto není platný QR kód pro provázání zařízení</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Provázat zařízení Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Zdá se se snažíte provázat zařízení Signal použitím jiné skennovací aplikace. Pro vaši ochranu, prosím oskenujete kód ještě jednou z aplikace Signal.</string>
@@ -405,6 +412,7 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="RecipientPreferenceActivity_unblock">Odblokovat</string>
   <string name="RecipientPreferenceActivity_enabled">Povoleno</string>
   <string name="RecipientPreferenceActivity_disabled">Zakázáno</string>
+  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Bude k dispozici, jakmile bude poslána nebo přijata zpráva.</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">Odpovídám</string>
   <string name="RedPhone_ending_call">Ukončování hovoru</string>
@@ -446,6 +454,7 @@ telefonní číslo</string>
   <string name="RegistrationProgressActivity_verifying_number">Probíhá ověření čísla</string>
   <string name="RegistrationProgressActivity_edit_s">Upravit %s</string>
   <string name="RegistrationProgressActivity_registration_complete">Registrace dokončena!</string>
+  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Nejdříve musíte vložit přijatý kód</string>
   <string name="RegistrationProgressActivity_connecting">Probíhá připojování</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Probíhá připojení pro ověření...</string>
   <string name="RegistrationProgressActivity_network_error">Chyba sítě!</string>
@@ -480,7 +489,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s resetuje zabezpečenou konverzaci</string>
   <string name="SmsMessageRecord_duplicate_message">Duplicitní zpráva</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_secure_session_reset">Reset zabezpečené komunikace.</string>
+  <string name="ThreadRecord_left_the_group">Opustil skupinu.</string>
+  <string name="ThreadRecord_secure_session_reset">Reset zabezpečené konverzace.</string>
   <string name="ThreadRecord_draft">Koncept:</string>
   <string name="ThreadRecord_called">Vy jste volal</string>
   <string name="ThreadRecord_called_you">Volal vás</string>
@@ -501,7 +511,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Zahájit i přes probíhající požadavek?</string>
   <string name="KeyExchangeInitiator_send">Odeslat</string>
   <!--MessageDisplayHelper-->
+  <string name="MessageDisplayHelper_bad_encrypted_message">Chybně zašifrovaná zpráva</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Dešifruji, prosím čekejte...</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Zpráva zašifrována pro neexistující konverzaci</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">Chyba při dešifrování zprávy.</string>
   <!--ThreadDatabase-->
@@ -515,6 +527,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="MmsDatabase_error_decrypting_message">Chyba při dešifrování zprávy.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Dešifruji MMS, čekejte prosím...</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Chybně zašifrovaná MMS zpráva</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS zpráva byla zašifrována pro neexistující konverzaci</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Ztišit upozornění</string>
   <!--ApplicationMigrationService-->
@@ -530,6 +544,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nových zpráv v %2$d konverzacích</string>
   <string name="MessageNotifier_most_recent_from_s">Poslední od: %1$s</string>
+  <string name="MessageNotifier_locked_message">Zamčená zpráva</string>
   <string name="MessageNotifier_media_message_with_text">Multimediální zpráva: %s</string>
   <string name="MessageNotifier_no_subject">(Předmět neuveden)</string>
   <string name="MessageNotifier_message_delivery_failed">Selhalo doručení zprávy.</string>
@@ -575,6 +590,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Vybrat</string>
   <!--blocked_contacts_fragment-->
+  <string name="blocked_contacts_fragment__no_blocked_contacts">Nezablokované kontakty</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Žádné nedávné hovory</string>
   <!--conversation_title_view-->
@@ -624,6 +640,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Provázat zařízení</string>
   <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_linked">Žádná zařízení nejsou provázána</string>
   <string name="device_list_fragment__link_new_device">Provázat nové zařízení</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">pokračovat</string>

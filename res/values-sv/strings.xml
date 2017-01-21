@@ -24,9 +24,9 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Detta kommer permanent låsa upp Signal och meddelandeaviseringar.</string>
   <string name="ApplicationPreferencesActivity_disable">Inaktivera</string>
   <string name="ApplicationPreferencesActivity_unregistering">Avregistrering</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Avregistrerar från Signal-meddelanden och samtal...</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Inaktivera Signal-meddelanden och samtal?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Avaktivera Signal-meddelanden och samtal genom att avregistrera dig från servern. Du kommer behöva återregistrera ditt telefonnummer för att använda dem igen senare.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Avregistrerar från Signalmeddelanden och -samtal...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Inaktivera Signalmeddelanden och -samtal?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Avaktivera Signalmeddelanden och samtal genom att avregistrera dig från servern. Du kommer behöva återregistrera ditt telefonnummer för att använda dem igen senare.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fel vid anslutning till server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS aktiverat</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tryck för att ändra din standardapp för SMS</string>
@@ -152,6 +152,10 @@
     <item quantity="one">Det blev ett fel när bifogad fil skulle sparas till lagring!</item>
     <item quantity="other">Det blev ett fel när de bifogade filerna skulle sparas till lagring!</item>
   </plurals>
+  <plurals name="ConversationFragment_files_saved_successfully">
+    <item quantity="one">Sparande av fil lyckades.</item>
+    <item quantity="other">Sparande av filer lyckades.</item>
+  </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kan inte skriva till lagring!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Sparar bifogad fil</item>
@@ -225,7 +229,7 @@
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exportera</string>
   <string name="ExportFragment_export_plaintext_to_storage">Exportera okrypterat till lagring?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Varning, detta kommer exportera innehållet i dina Signal-meddelanden okrypterat till lagringen.</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Varning, detta kommer exportera innehållet i dina Signalmeddelanden okrypterat till lagringen.</string>
   <string name="ExportFragment_cancel">Avbryt</string>
   <string name="ExportFragment_exporting">Sparar</string>
   <string name="ExportFragment_exporting_plaintext_to_storage">Exporterar okrypterat till lagring...</string>
@@ -565,7 +569,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Konversation tystad</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Skicka Signal-meddelande</string>
+  <string name="conversation_activity__type_message_push">Skicka Signalmeddelande</string>
   <string name="conversation_activity__type_message_sms_insecure">Skicka okrypterat SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Skicka okrypterat MMS</string>
   <string name="conversation_activity__from_sim_name">Från %1$s</string>

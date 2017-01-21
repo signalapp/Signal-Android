@@ -38,7 +38,7 @@
   <string name="ApplicationPreferencesActivity_Off">Väljas</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Salaväljend %1$s, kuva turvalisus %2$s</string>
-  <string name="ApplicationPreferencesActivity_appearance_summary">Teema %1$s, keel %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">%1$s teema, %2$s keel</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">1 minut</item>
@@ -76,8 +76,8 @@
   <string name="ConversationItem_error_not_delivered">Ei toimetatud kohale</string>
   <string name="ConversationItem_view_secure_media_question">Vaata turvalist sisu?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Seda meediafaili hoitakse krüptitud andmebaasis. Selleks, et seda välise sisuvaatlejaga vaadata, tuleb kahjuks andmed ajutiselt dekrüptida ja kirjutada sisemällu. Kas oled kindel, et soovid seda teha?</string>
-  <string name="ConversationItem_error_received_stale_key_exchange_message">Viga, vastu võetud kopitanud võtmevahetuse sõnum.</string>
-  <string name="ConversationItem_received_key_exchange_message_tap_to_process">Võtmevahetuse sõnum vastuvõetud, koputa töötlemiseks.</string>
+  <string name="ConversationItem_error_received_stale_key_exchange_message">Viga, vastu võetud kopitanud võtmevahetussõnum.</string>
+  <string name="ConversationItem_received_key_exchange_message_tap_to_process">Võtmevahetussõnum vastuvõetud, koputa töötlemiseks.</string>
   <string name="ConversationItem_group_action_left">%1$s lahkus grupist.</string>
   <string name="ConversationItem_click_for_details">Koputa andmete nägemiseks</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Koputa turvamata taganemiseks</string>
@@ -118,7 +118,7 @@
   <string name="ConversationActivity_transport_insecure_sms">Ebaturvaline SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Ebaturvaline MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
-  <string name="ConversationActivity_lets_switch_to_signal">Vahetame Signalile %1$s</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Lähme Signalile üle %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Kasutame seda vestlemiseks: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Grupist lahkumisel tekkis viga...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS pole toetatud</string>
@@ -130,6 +130,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Manus ületab saadetava sõnumitüübi suuruspiiranguid.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kaamera pole saadaval</string>
   <string name="ConversationActivity_unable_to_record_audio">Ei saa heli salvestada!</string>
+  <string name="ConversationActivity_error_sending_voice_message">Viga helisõnumi saatmisel</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Sinu seadmes pole rakendust, mis oleks võimeline seda linki käsitlema.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Sõnumi andmed</string>
@@ -196,6 +197,7 @@
     <item quantity="other">%d vestlust postkasti liigutatud</item>
   </plurals>
   <!--ConversationListItem-->
+  <string name="ConversationListItem_key_exchange_message">Võtmevahetussõnum</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Arhiveeritud vestlused (%d)</string>
   <!--CustomDefaultPreference-->
@@ -208,6 +210,7 @@
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Eemaldada \"%s\" linkimine?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Eemaldades selle seadme lingi, ei ole see enam võimeline sõnumeid saatma ja vastu võtma.</string>
+  <string name="DeviceListActivity_network_connection_failed">Võrguühendus ebaõnnestus</string>
   <string name="DeviceListActivity_try_again">Proovi uuesti</string>
   <string name="DeviceListActivity_unlinking_device">Eemaldan seadme lingi...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Eemaldan seadme lingi</string>
@@ -239,6 +242,7 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Püsiv Signali ühendusviga!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal ei saanud registreerida teenusega Google Play Services. Signali sõnumid ja kõned on keelatud, palun proovi taas-registreerida menüüs Seaded &gt; Täpsem.</string>
   <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Täisresolutsiooniga GIFi vastuvõtmisel esines viga</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIFid</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Kleepsud</string>
@@ -311,7 +315,7 @@
     <item quantity="one">Saadad 1 SMS-kutse?</item>
     <item quantity="other">Saadad %d SMS-kutset?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Vahetame Signalile: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Lähme Signalile üle: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Tundub, et sul pole ühtegi rakendust, kuhu jagada.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Sõbrad ei luba sõpradel krüptimata rääkida.</string>
   <!--KeyScanningActivity-->
@@ -323,6 +327,8 @@
   <string name="MessageDetailsRecipient_new_safety_number">Uus turvanumber</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">MMSi salvestamisel tekkis viga!</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">MMS-pakkujaga ühendamisel esines viga</string>
+  <string name="MmsDownloader_error_reading_mms_settings">Võrgupakkuja MMS-seadete lugemisel esines viga</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signali kõne käib</string>
   <string name="NotificationBarManager_missed_call_from_s">Vastamata kõne kontaktilt %s</string>
@@ -366,6 +372,7 @@
   <string name="DeviceProvisioningActivity_content_progress_no_device">Seadet ei leitud.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Võrgu viga.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Sobimatu QR-kood.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Vabandust, sul on juba liiga palju seadmeid lingitud, proovi mõned eemaldada</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Vabandust, see ei ole sobiv seadme linkimise QR-kood.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Lingid Signali seadme?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Tundub, et proovid linkida Signali seadet, kasutades 3. osapoole skannerit. Sinu kaitseks, palun skanneeri kood uuesti Signali siseselt.</string>
@@ -396,6 +403,7 @@
   <string name="RecipientPreferenceActivity_unblock">Eemalda blokeering</string>
   <string name="RecipientPreferenceActivity_enabled">Lubatud</string>
   <string name="RecipientPreferenceActivity_disabled">Keelatud</string>
+  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Saadaval, kui sõnum on saadetud või vastuvõetud.</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">Vastuvõtmine</string>
   <string name="RedPhone_ending_call">Kõne lõpetamine</string>
@@ -447,6 +455,7 @@
   <string name="RegistrationProgressActivity_verifying_number">Kinnitan numbrit</string>
   <string name="RegistrationProgressActivity_edit_s">Muuda %s</string>
   <string name="RegistrationProgressActivity_registration_complete">Registreerimine õnnestus!</string>
+  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Sa pead eelnevalt sisestama saadud koodi</string>
   <string name="RegistrationProgressActivity_connecting">Ühendamine</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Ühendun kinnitamiseks...</string>
   <string name="RegistrationProgressActivity_network_error">Võrgu viga!</string>
@@ -474,16 +483,17 @@
   <string name="Slide_video">Video</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Vastuvõetud korrumpeerunud
-        võtmevahetuse sõnum!
+        võtmevahetussõnum!
     </string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
-        Vastuvõetud võtmevahetuse sõnum ebasobivale protokolli versioonile.
+        Vastuvõetud võtmevahetussõnum ebasobivale protokolli versioonile.
     </string>
   <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Vastuvõetud sõnum uue turvanumbriga. Koputa, et töödelda ja kuvada.</string>
   <string name="SmsMessageRecord_secure_session_reset">Sa lähtestasid turvalise sessiooni.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s lähtestas turvalise sessiooni.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplikaatsõnum.</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_left_the_group">Lahkus grupist</string>
   <string name="ThreadRecord_secure_session_reset">Turvaline sessioon lähtestatud.</string>
   <string name="ThreadRecord_draft">Mustand:</string>
   <string name="ThreadRecord_called">Sa helistasid</string>
@@ -505,7 +515,9 @@
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Käivitad sõltumata olemasolevast taotlusest?</string>
   <string name="KeyExchangeInitiator_send">Saada</string>
   <!--MessageDisplayHelper-->
+  <string name="MessageDisplayHelper_bad_encrypted_message">Halb krüptitud sõnum</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Dekrüptin, palun oota...</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Sõnum krüptitud mitteeksisteeriva sessiooni jaoks</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">Sõnumi dekrüptimisel tekkis viga.</string>
   <!--ThreadDatabase-->
@@ -519,6 +531,8 @@
   <string name="MmsDatabase_error_decrypting_message">Sõnumi dekrüptimisel tekkis viga.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Dekrüptin MMSi, palun oota...</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Halb krüptitud MSS sõnum</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-sõnum krüptitud mitteeksisteeriva sessiooni jaoks</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Vaigista teated</string>
   <!--ApplicationMigrationService-->
@@ -534,9 +548,10 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d uut sõnumit %2$d vestluses</string>
   <string name="MessageNotifier_most_recent_from_s">Viimatine kontaktilt %1$s</string>
+  <string name="MessageNotifier_locked_message">Lukustatud sõnum</string>
   <string name="MessageNotifier_media_message_with_text">Meediasõnum: %s</string>
   <string name="MessageNotifier_no_subject">(Pealkirjata)</string>
-  <string name="MessageNotifier_message_delivery_failed">Sõnumi kohale toimetamine ebaõnnestus.</string>
+  <string name="MessageNotifier_message_delivery_failed">Sõnumi kohaletoimetamine ebaõnnestus.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Sõnumi kohale toimetamine ebaõnnestus.</string>
   <string name="MessageNotifier_error_delivering_message">Sõnumi kohale toimetamisel tekkis viga.</string>
   <string name="MessageNotifier_mark_all_as_read">Märgi kõik loetuks</string>
@@ -579,6 +594,7 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Vali</string>
   <!--blocked_contacts_fragment-->
+  <string name="blocked_contacts_fragment__no_blocked_contacts">Blokeeritud kontakte pole</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Hiljutised kõned puuduvad.</string>
   <!--conversation_title_view-->
@@ -628,6 +644,7 @@
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Lingi seade</string>
   <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_linked">Lingitud seadmeid pole</string>
   <string name="device_list_fragment__link_new_device">Lingi uus seade</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">jätka</string>
@@ -677,7 +694,7 @@
   <string name="database_migration_activity__importing">IMPORTIMINE</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Uuendan andmebaasi</string>
-  <string name="export_fragment__export_plaintext_backup">Ekspordi lihtteksti varundust</string>
+  <string name="export_fragment__export_plaintext_backup">Ekspordi lihtteksti varundus</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">Ekspordi lihtteksti varundus, mis ühildub valikuga \"SMS-varundus ja taastamine\" sisemällu</string>
   <string name="import_fragment__import_system_sms_database">Impordi süsteemi SMS-andmebaas</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Impordi andmebaas vaikimisi süsteemi sõnumirakendusest</string>
@@ -717,7 +734,7 @@
   <string name="recipient_preferences__mute_conversation">Vaigista vestlus</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">Keela selle vestluse teated</string>
   <string name="recipient_preferences__notification_sound">Teadete heli</string>
-  <string name="recipient_preferences__vibrate">Vibreeri</string>
+  <string name="recipient_preferences__vibrate">Vibratsioon</string>
   <string name="recipient_preferences__block">Blokeeri</string>
   <string name="recipient_preferences__color">Värv</string>
   <string name="recipient_preferences__color_for_this_contact">Värv selle kontakti jaoks</string>
@@ -848,7 +865,7 @@
   <string name="arrays__mute_for_one_day">Vaigista 1 päevaks</string>
   <string name="arrays__mute_for_seven_days">Vaigista 7 päevaks</string>
   <string name="arrays__mute_for_one_year">Vaigista 1 aastaks</string>
-  <string name="arrays__settings_default">Seadete vaikeväärtused</string>
+  <string name="arrays__settings_default">Seadete vaikeväärtus</string>
   <string name="arrays__enabled">Lubatud</string>
   <string name="arrays__disabled">Keelatud</string>
   <string name="arrays__name_and_message">Nimi ja sõnum</string>
@@ -881,7 +898,7 @@
   <string name="preferences__change_your_passphrase">Muuda oma salaväljendit</string>
   <string name="preferences__enable_passphrase">Luba salaväljend</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lukusta Signal ja sõnumiteated salaväljendiga</string>
-  <string name="preferences__screen_security">Kuvaturvalisus</string>
+  <string name="preferences__screen_security">Kuva turvalisus</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokeeri kuvatõmmised viimatiste nimekirjas ja rakenduse sees</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Lukusta Signal automaatselt pärast määratud ebaaktiivsuse ajaintervalli</string>
   <string name="preferences__inactivity_timeout_passphrase">Ebaaktiivsuse ajalõpu salaväljend</string>
@@ -909,7 +926,7 @@
   <string name="preferences__three_times">Kolm korda</string>
   <string name="preferences__five_times">Viis korda</string>
   <string name="preferences__ten_times">Kümme korda</string>
-  <string name="preferences__vibrate">Vibreeri</string>
+  <string name="preferences__vibrate">Vibratsioon</string>
   <string name="preferences__also_vibrate_when_notified">Lisaks vibreeri teatamisel</string>
   <string name="preferences__minutes">minutit</string>
   <string name="preferences__hours">tundi</string>
@@ -936,8 +953,8 @@
   <string name="preferences__mms_proxy_port">MMS proksi port</string>
   <string name="preferences__mmsc_username">MMSC kasutajanimi</string>
   <string name="preferences__mmsc_password">MMSC parool</string>
-  <string name="preferences__sms_delivery_reports">SMSi kohale toimetamise rapordid</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Taotle kohale toimetamise raporti iga SMS-sõnumi kohta, mida saadad</string>
+  <string name="preferences__sms_delivery_reports">SMSi kohaletoimetamise rapordid</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Taotle kohaletoimetamise raporti iga SMS-sõnumi kohta, mida saadad</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Kustuta automaatselt vanad sõnumid, kui vestlus ületab määratud pikkuse</string>
   <string name="preferences__delete_old_messages">Kustuta vanad sõnumid</string>
   <string name="preferences__chats">Vestlused ja meedia</string>
@@ -955,7 +972,7 @@
   <string name="preferences__free_private_messages_and_calls">Tasuta privaatsõnumid ja kõned Signali kasutajatele</string>
   <string name="preferences__submit_debug_log">Saada silumislogi</string>
   <string name="preferences__support_wifi_calling">\"WiFi kõnede\" ühilduvusrežiim</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Luba, kui su seade kasutab SMS/MMS kohale toimetamist üle WiFi (luba ainult siis, kui \"WiFi kõned\" on sinu seadmes lubatud)</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Luba, kui su seade kasutab SMS/MMS kohaletoimetamist üle WiFi (luba ainult siis, kui \"WiFi kõned\" on sinu seadmes lubatud)</string>
   <string name="preferences_app_protection__blocked_contacts">Blokeeritud kontaktid</string>
   <string name="preferences_app_protection__safety_numbers_approval">Turvanumbrite kinnitus</string>
   <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Nõua kinnitust uute turvanumbrite kohta, kui need muutuvad</string>
@@ -1032,7 +1049,7 @@
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Lisa kontaktidesse</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Saajate nimekiri</string>
-  <string name="conversation_group_options__delivery">Kohale toimetamine</string>
+  <string name="conversation_group_options__delivery">Kohaletoimetamine</string>
   <string name="conversation_group_options__conversation">Vestlus</string>
   <string name="conversation_group_options__broadcast">Kanna üle</string>
   <!--key_scanning-->
