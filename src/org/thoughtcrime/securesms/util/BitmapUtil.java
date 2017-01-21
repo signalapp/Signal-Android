@@ -59,6 +59,9 @@ public class BitmapUtil {
                                                       constraints.getImageMaxHeight(context),
                                                       DecodeFormat.PREFER_RGB_565);
 
+    if (scaledBitmap == null) {
+      throw new BitmapDecodingException("Unable to decode image");
+    }
     try {
       do {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
