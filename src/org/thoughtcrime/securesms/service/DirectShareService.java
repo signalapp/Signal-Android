@@ -58,7 +58,7 @@ public class DirectShareService extends ChooserTargetService {
         ThreadRecord record;
 
         while ((record = reader.getNext()) != null) {
-          if (record.getRecipients().getPrimaryRecipient().getName() != null) {
+          if (record.getRecipients().getPrimaryRecipient().getName() != null && record.getRecipients().getPrimaryRecipient().getContactPhoto() != null) {
 
             waitingUntilConversationsLoaded = false;
             break;
@@ -88,7 +88,7 @@ public class DirectShareService extends ChooserTargetService {
       ThreadRecord record;
 
       while ((record = reader.getNext()) != null && results.size() < 10) {
-        if (record.getRecipients().getPrimaryRecipient().getName() != null && record.getRecipients().getPrimaryRecipient().getNumber() != null) {
+        if (record.getRecipients().getPrimaryRecipient().getName() != null && record.getRecipients().getPrimaryRecipient().getContactPhoto() != null) {
           Recipients recipients = RecipientFactory.getRecipientsForIds(this, record.getRecipients().getIds(), false);
           String name = recipients.toShortString();
           Drawable drawable = recipients.getContactPhoto().asDrawable(this, recipients.getColor().toConversationColor(this));
