@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.service;
 
-
 import android.content.ComponentName;
 import android.content.IntentFilter;
 import android.database.Cursor;
@@ -12,6 +11,7 @@ import android.os.Bundle;
 import android.service.chooser.ChooserTarget;
 import android.service.chooser.ChooserTargetService;
 import android.support.annotation.RequiresApi;
+import android.util.Log;
 
 import org.thoughtcrime.securesms.ShareActivity;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
@@ -29,17 +29,13 @@ import java.util.List;
 @RequiresApi(api = Build.VERSION_CODES.M)
 public class DirectShareService extends ChooserTargetService {
 
-  //Boolean for waiting until all conversations are encrypted
   private boolean waitingUntilConversationsLoaded = true;
-  //Refresh rate if contacts are loaded
-  private int refreshRate = 2;
-  //When contacts are not loaded in 20 seconds, timeout!
-  private int timeout = 5;
-  private int counter = 0;
+  private int getConversationsRetryRate = 2;
+  private int maxGetConversationTries = 5;
+  private int getConversationsTryCounter = 0;
 
   @Override
-  public List<ChooserTarget> onGetChooserTargets(ComponentName targetActivityName,
-                                                 IntentFilter matchedFilter)
+  public List<ChooserTarget> onGetChooserTargets(ComponentName targetActivityName, IntentFilter matchedFilter)
   {
     List<ChooserTarget> results        = new LinkedList<>();
     MasterSecret        masterSecret   = KeyCachingService.getMasterSecret(this);
@@ -48,7 +44,6 @@ public class DirectShareService extends ChooserTargetService {
       return results;
     }
 
-    //Wait until all conversations are loaded and ready
     while (waitingUntilConversationsLoaded) {
       ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(this);
       Cursor cursor = threadDatabase.getDirectShareList();
@@ -64,19 +59,23 @@ public class DirectShareService extends ChooserTargetService {
             break;
           }
         }
-
       } finally {
         if (cursor != null) cursor.close();
       }
 
       try {
-        Thread.sleep(refreshRate * 1000);
+        Thread.sleep(getConversationsRetryRate * 1000);
       } catch (Exception exception) {
+        Log.i("DirectShareService: ", exception.getMessage());
       }
 
-      //End the thread because timeout!
-      if (counter > timeout) waitingUntilConversationsLoaded = false;
-      counter++;
+      if (getConversationsTryCounter > maxGetConversationTries) {
+        Log.i("DirectShareService: ", "Timeout for getting Conversations!");
+        results.clear();
+        return results;
+      }
+
+      getConversationsTryCounter++;
     }
 
     ComponentName  componentName  = new ComponentName(this, ShareActivity.class);
