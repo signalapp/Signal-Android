@@ -36,10 +36,16 @@ public class PlaintextBackupImporter {
   private static File getPlaintextExportFile() {
     File backup    = PlaintextBackupExporter.getPlaintextExportFile();
     File oldBackup = new File(Environment.getExternalStorageDirectory(), "TextSecurePlaintextBackup.xml");
+    File oldRenamedBackup = new File(Environment.getExternalStorageDirectory(), "SignalPlaintextBackup.xml");
+
+    if (!backup.exists() && oldRenamedBackup.exists()) {
+      return oldRenamedBackup;
+    }
 
     if (!backup.exists() && oldBackup.exists()) {
       return oldBackup;
     }
+
     return backup;
   }
 
