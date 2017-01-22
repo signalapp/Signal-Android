@@ -29,10 +29,10 @@ import java.util.List;
 @RequiresApi(api = Build.VERSION_CODES.M)
 public class DirectShareService extends ChooserTargetService {
 
-  private boolean waitingUntilConversationsLoaded = true;
-  private int getConversationsRetryRate = 2;
-  private int maxGetConversationTries = 5;
-  private int getConversationsTryCounter = 0;
+  private boolean waitingUntilConversationsLoaded   = true;
+  private long    getConversationsRetryRate         = 200;
+  private int     maxGetConversationTries           = 15;
+  private int     getConversationsTryCounter        = 0;
 
   @Override
   public List<ChooserTarget> onGetChooserTargets(ComponentName targetActivityName,
@@ -46,8 +46,8 @@ public class DirectShareService extends ChooserTargetService {
     }
 
     while (waitingUntilConversationsLoaded) {
-      ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(this);
-      Cursor cursor = threadDatabase.getDirectShareList();
+      ThreadDatabase threadDatabase   = DatabaseFactory.getThreadDatabase(this);
+      Cursor         cursor           = threadDatabase.getDirectShareList();
 
       try {
         ThreadDatabase.Reader reader = threadDatabase.readerFor(cursor, new MasterCipher(masterSecret));
@@ -56,7 +56,6 @@ public class DirectShareService extends ChooserTargetService {
         while ((record = reader.getNext()) != null) {
           if (record.getRecipients().getPrimaryRecipient().getName() != null
                   && record.getRecipients().getPrimaryRecipient().getContactPhoto() != null) {
-
             waitingUntilConversationsLoaded = false;
             break;
           }
@@ -66,7 +65,7 @@ public class DirectShareService extends ChooserTargetService {
       }
 
       try {
-        Thread.sleep(getConversationsRetryRate * 1000);
+        Thread.sleep(getConversationsRetryRate);
       } catch (Exception exception) {
         Log.i("DirectShareService: ", exception.getMessage());
       }
@@ -80,9 +79,9 @@ public class DirectShareService extends ChooserTargetService {
       getConversationsTryCounter++;
     }
 
-    ComponentName  componentName  = new ComponentName(this, ShareActivity.class);
-    ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(this);
-    Cursor         cursor         = threadDatabase.getDirectShareList();
+    ComponentName  componentName    = new ComponentName(this, ShareActivity.class);
+    ThreadDatabase threadDatabase   = DatabaseFactory.getThreadDatabase(this);
+    Cursor         cursor           = threadDatabase.getDirectShareList();
 
     try {
       ThreadDatabase.Reader reader = threadDatabase.readerFor(cursor, new MasterCipher(masterSecret));
@@ -91,10 +90,10 @@ public class DirectShareService extends ChooserTargetService {
       while ((record = reader.getNext()) != null && results.size() < 10) {
         if (record.getRecipients().getPrimaryRecipient().getName() != null
                 && record.getRecipients().getPrimaryRecipient().getContactPhoto() != null) {
-          Recipients recipients = RecipientFactory.getRecipientsForIds(this, record.getRecipients().getIds(), false);
-          String name = recipients.toShortString();
-          Drawable drawable = recipients.getContactPhoto().asDrawable(this, recipients.getColor().toConversationColor(this));
-          Bitmap avatar = BitmapUtil.createFromDrawable(drawable, 500, 500);
+          Recipients recipients   = RecipientFactory.getRecipientsForIds(this, record.getRecipients().getIds(), false);
+          String     name         = recipients.toShortString();
+          Drawable   drawable     = recipients.getContactPhoto().asDrawable(this, recipients.getColor().toConversationColor(this));
+          Bitmap     avatar       = BitmapUtil.createFromDrawable(drawable, 500, 500);
 
           Bundle bundle = new Bundle();
           bundle.putLong(ShareActivity.EXTRA_THREAD_ID, record.getThreadId());
