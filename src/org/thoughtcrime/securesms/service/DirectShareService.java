@@ -35,7 +35,8 @@ public class DirectShareService extends ChooserTargetService {
   private int getConversationsTryCounter = 0;
 
   @Override
-  public List<ChooserTarget> onGetChooserTargets(ComponentName targetActivityName, IntentFilter matchedFilter)
+  public List<ChooserTarget> onGetChooserTargets(ComponentName targetActivityName,
+                                                 IntentFilter matchedFilter)
   {
     List<ChooserTarget> results        = new LinkedList<>();
     MasterSecret        masterSecret   = KeyCachingService.getMasterSecret(this);
@@ -53,7 +54,8 @@ public class DirectShareService extends ChooserTargetService {
         ThreadRecord record;
 
         while ((record = reader.getNext()) != null) {
-          if (record.getRecipients().getPrimaryRecipient().getName() != null && record.getRecipients().getPrimaryRecipient().getContactPhoto() != null) {
+          if (record.getRecipients().getPrimaryRecipient().getName() != null
+                  && record.getRecipients().getPrimaryRecipient().getContactPhoto() != null) {
 
             waitingUntilConversationsLoaded = false;
             break;
@@ -87,7 +89,8 @@ public class DirectShareService extends ChooserTargetService {
       ThreadRecord record;
 
       while ((record = reader.getNext()) != null && results.size() < 10) {
-        if (record.getRecipients().getPrimaryRecipient().getName() != null && record.getRecipients().getPrimaryRecipient().getContactPhoto() != null) {
+        if (record.getRecipients().getPrimaryRecipient().getName() != null
+                && record.getRecipients().getPrimaryRecipient().getContactPhoto() != null) {
           Recipients recipients = RecipientFactory.getRecipientsForIds(this, record.getRecipients().getIds(), false);
           String name = recipients.toShortString();
           Drawable drawable = recipients.getContactPhoto().asDrawable(this, recipients.getColor().toConversationColor(this));
