@@ -693,10 +693,10 @@ public class MmsDatabase extends MessagingDatabase {
     }
   }
 
-  private Pair<Long, Long> insertMessageInbox(MasterSecretUnion masterSecret,
-                                              IncomingMediaMessage retrieved,
-                                              String contentLocation,
-                                              long threadId, long mailbox)
+  private Optional<InsertResult> insertMessageInbox(MasterSecretUnion masterSecret,
+                                                    IncomingMediaMessage retrieved,
+                                                    String contentLocation,
+                                                    long threadId, long mailbox)
       throws MmsException
   {
     if (threadId == -1 || retrieved.isGroupMessage()) {
@@ -729,6 +729,11 @@ public class MmsDatabase extends MessagingDatabase {
       contentValues.put(DATE_SENT, contentValues.getAsLong(DATE_RECEIVED));
     }
 
+    if (retrieved.isPushMessage() && isDuplicate(retrieved, threadId)) {
+      Log.w(TAG, "Ignoring duplicate media message (" + retrieved.getSentTimeMillis() + ")");
+      return Optional.absent();
+    }
+
     long messageId = insertMediaMessage(masterSecret, retrieved.getAddresses(),
                                         retrieved.getBody(), retrieved.getAttachments(),
                                         contentValues);
@@ -741,12 +746,12 @@ public class MmsDatabase extends MessagingDatabase {
     notifyConversationListeners(threadId);
     jobManager.add(new TrimThreadJob(context, threadId));
 
-    return new Pair<>(messageId, threadId);
+    return Optional.of(new InsertResult(messageId, threadId));
   }
 
-  public Pair<Long, Long> insertMessageInbox(MasterSecretUnion masterSecret,
-                                             IncomingMediaMessage retrieved,
-                                             String contentLocation, long threadId)
+  public Optional<InsertResult> insertMessageInbox(MasterSecretUnion masterSecret,
+                                                   IncomingMediaMessage retrieved,
+                                                   String contentLocation, long threadId)
       throws MmsException
   {
     long type = Types.BASE_INBOX_TYPE;
@@ -768,9 +773,9 @@ public class MmsDatabase extends MessagingDatabase {
     return insertMessageInbox(masterSecret, retrieved, contentLocation, threadId, type);
   }
 
-  public Pair<Long, Long> insertSecureDecryptedMessageInbox(MasterSecretUnion masterSecret,
-                                                            IncomingMediaMessage retrieved,
-                                                            long threadId)
+  public Optional<InsertResult> insertSecureDecryptedMessageInbox(MasterSecretUnion masterSecret,
+                                                                  IncomingMediaMessage retrieved,
+                                                                  long threadId)
       throws MmsException
   {
     long type = Types.BASE_INBOX_TYPE | Types.SECURE_MESSAGE_BIT;
@@ -989,6 +994,20 @@ public class MmsDatabase extends MessagingDatabase {
     singleThreadSet.add(threadId);
     deleteThreads(singleThreadSet);
   }
+
+  private boolean isDuplicate(IncomingMediaMessage message, long threadId) {
+    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    Cursor         cursor   = database.query(TABLE_NAME, null, DATE_SENT + " = ? AND " + ADDRESS + " = ? AND " + THREAD_ID + " = ?",
+                                             new String[]{String.valueOf(message.getSentTimeMillis()), message.getAddresses().getFrom(), String.valueOf(threadId)},
+                                             null, null, null, "1");
+
+    try {
+      return cursor != null && cursor.moveToFirst();
+    } finally {
+      if (cursor != null) cursor.close();
+    }
+  }
+
 
   /*package*/ void deleteThreads(Set<Long> threadIds) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
