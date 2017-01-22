@@ -28,6 +28,15 @@ import java.util.List;
 
 @RequiresApi(api = Build.VERSION_CODES.M)
 public class DirectShareService extends ChooserTargetService {
+
+  //Boolean for waiting until all conversations are encrypted
+  private boolean waitingUntilConversationsLoaded = true;
+  //Refresh rate if contacts are loaded
+  private int refreshRate = 2;
+  //When contacts are not loaded in 20 seconds, timeout!
+  private int timeout = 5;
+  private int counter = 0;
+
   @Override
   public List<ChooserTarget> onGetChooserTargets(ComponentName targetActivityName,
                                                  IntentFilter matchedFilter)
@@ -39,6 +48,37 @@ public class DirectShareService extends ChooserTargetService {
       return results;
     }
 
+    //Wait until all conversations are loaded and ready
+    while (waitingUntilConversationsLoaded) {
+      ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(this);
+      Cursor cursor = threadDatabase.getDirectShareList();
+
+      try {
+        ThreadDatabase.Reader reader = threadDatabase.readerFor(cursor, new MasterCipher(masterSecret));
+        ThreadRecord record;
+
+        while ((record = reader.getNext()) != null) {
+          if (record.getRecipients().getPrimaryRecipient().getName() != null) {
+
+            waitingUntilConversationsLoaded = false;
+            break;
+          }
+        }
+
+      } finally {
+        if (cursor != null) cursor.close();
+      }
+
+      try {
+        Thread.sleep(refreshRate * 1000);
+      } catch (Exception exception) {
+      }
+
+      //End the thread because timeout!
+      if (counter > timeout) waitingUntilConversationsLoaded = false;
+      counter++;
+    }
+
     ComponentName  componentName  = new ComponentName(this, ShareActivity.class);
     ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(this);
     Cursor         cursor         = threadDatabase.getDirectShareList();
@@ -48,17 +88,19 @@ public class DirectShareService extends ChooserTargetService {
       ThreadRecord record;
 
       while ((record = reader.getNext()) != null && results.size() < 10) {
-        Recipients recipients = RecipientFactory.getRecipientsForIds(this, record.getRecipients().getIds(), false);
-        String     name       = recipients.toShortString();
-        Drawable   drawable   = recipients.getContactPhoto().asDrawable(this, recipients.getColor().toConversationColor(this));
-        Bitmap     avatar     = BitmapUtil.createFromDrawable(drawable, 500, 500);
+        if (record.getRecipients().getPrimaryRecipient().getName() != null && record.getRecipients().getPrimaryRecipient().getNumber() != null) {
+          Recipients recipients = RecipientFactory.getRecipientsForIds(this, record.getRecipients().getIds(), false);
+          String name = recipients.toShortString();
+          Drawable drawable = recipients.getContactPhoto().asDrawable(this, recipients.getColor().toConversationColor(this));
+          Bitmap avatar = BitmapUtil.createFromDrawable(drawable, 500, 500);
 
-        Bundle bundle = new Bundle();
-        bundle.putLong(ShareActivity.EXTRA_THREAD_ID, record.getThreadId());
-        bundle.putLongArray(ShareActivity.EXTRA_RECIPIENT_IDS, recipients.getIds());
-        bundle.putInt(ShareActivity.EXTRA_DISTRIBUTION_TYPE, record.getDistributionType());
+          Bundle bundle = new Bundle();
+          bundle.putLong(ShareActivity.EXTRA_THREAD_ID, record.getThreadId());
+          bundle.putLongArray(ShareActivity.EXTRA_RECIPIENT_IDS, recipients.getIds());
+          bundle.putInt(ShareActivity.EXTRA_DISTRIBUTION_TYPE, record.getDistributionType());
 
-        results.add(new ChooserTarget(name, Icon.createWithBitmap(avatar), 1.0f, componentName, bundle));
+          results.add(new ChooserTarget(name, Icon.createWithBitmap(avatar), 1.0f, componentName, bundle));
+        }
       }
 
       return results;
