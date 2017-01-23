@@ -116,10 +116,10 @@ public class SignalServiceNetworkAccess {
                                                                googleTrustStore, GMAIL_CONNECTION_SPEC),
                                           baseAndroid, baseGoogle, mapsOneAndroid, mapsTwoAndroid, mailAndroid});
 
-      put("+53", new SignalServiceUrl[] {new SignalServiceUrl("https://www.google.com.cu",
-                                                              APPSPOT_REFLECTOR_HOST,
-                                                              googleTrustStore, GMAIL_CONNECTION_SPEC),
-                                         baseAndroid, baseGoogle, mapsOneAndroid, mapsTwoAndroid, mailAndroid});
+//      put("+53", new SignalServiceUrl[] {new SignalServiceUrl("https://www.google.com.cu",
+//                                                              APPSPOT_REFLECTOR_HOST,
+//                                                              googleTrustStore, GMAIL_CONNECTION_SPEC),
+//                                         baseAndroid, baseGoogle, mapsOneAndroid, mapsTwoAndroid, mailAndroid});
 
       put("+968", new SignalServiceUrl[] {new SignalServiceUrl("https://www.google.com.om",
                                                                APPSPOT_REFLECTOR_HOST,
