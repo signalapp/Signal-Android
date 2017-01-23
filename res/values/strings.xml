@@ -729,6 +729,9 @@
     <string name="conversation_fragment_cab__batch_selection_mode">Batch selection mode</string>
     <string name="conversation_fragment_cab__batch_selection_amount">%s selected</string>
 
+    <!-- conversation_fragment -->
+    <string name="conversation_fragment__scroll_to_the_bottom_content_description">Scroll to the bottom</string>
+
     <!-- country_selection_fragment -->
     <string name="country_selection_fragment__loading_countries">Loading countries...</string>
     <string name="country_selection_fragment__search">Search</string>

@@ -91,6 +91,7 @@ public class ConversationFragment extends Fragment
   private RecyclerView list;
   private View         loadMoreView;
   private View         composeDivider;
+  private View         scrollToBottomButton;
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -102,8 +103,16 @@ public class ConversationFragment extends Fragment
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
     final View view = inflater.inflate(R.layout.conversation_fragment, container, false);
-    list           = ViewUtil.findById(view, android.R.id.list);
-    composeDivider = ViewUtil.findById(view, R.id.compose_divider);
+    list                 = ViewUtil.findById(view, android.R.id.list);
+    composeDivider       = ViewUtil.findById(view, R.id.compose_divider);
+    scrollToBottomButton = ViewUtil.findById(view, R.id.scroll_to_bottom_button);
+
+    scrollToBottomButton.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(final View view) {
+        scrollToBottom();
+      }
+    });
 
     final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, true);
     list.setHasFixedSize(false);
@@ -407,11 +416,14 @@ public class ConversationFragment extends Fragment
 
       if (wasAtBottom != currentlyAtBottom) {
         composeDivider.setVisibility(currentlyAtBottom ? View.INVISIBLE : View.VISIBLE);
+        scrollToBottomButton.setVisibility(currentlyAtBottom ? View.INVISIBLE : View.VISIBLE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR1) {
           composeDivider.animate().alpha(currentlyAtBottom ? 0 : 1);
+          scrollToBottomButton.animate().alpha(currentlyAtBottom ? 0 : 1);
         } else if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
           composeDivider.setAlpha(currentlyAtBottom ? 0 : 1);
+          scrollToBottomButton.setAlpha(currentlyAtBottom ? 0 : 1);
         }
 
         wasAtBottom = currentlyAtBottom;
