@@ -21,4 +21,16 @@
           android:alpha="0"
           android:visibility="invisible" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/scroll_to_bottom_button"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/scroll_to_bottom_button_margin_end"
+        android:layout_marginRight="@dimen/scroll_to_bottom_button_margin_end"
+        android:layout_marginBottom="@dimen/scroll_to_bottom_button_margin_bottom"
+        android:layout_gravity="bottom|end"
+        android:contentDescription="@string/conversation_fragment__scroll_to_the_bottom_content_description"
+        android:src="@drawable/ic_keyboard_arrow_down_white_36dp" />
+
 </FrameLayout>
