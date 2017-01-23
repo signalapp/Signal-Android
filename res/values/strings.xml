@@ -117,7 +117,7 @@
     <string name="ConversationActivity_message_is_empty_exclamation">Message is empty!</string>
     <string name="ConversationActivity_group_members">Group members</string>
     <string name="ConversationActivity_group_conversation">Group conversation</string>
-    <string name="ConversationActivity_unnamed_group">Unnamed group</string>
+
     <plurals name="ConversationActivity_d_recipients_in_group">
         <item quantity="one">1 member</item>
         <item quantity="other">%d members</item>
@@ -454,6 +454,9 @@
     <string name="RecipientPreferenceActivity_enabled">Enabled</string>
     <string name="RecipientPreferenceActivity_disabled">Disabled</string>
     <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Available once a message has been sent or received.</string>
+
+    <!-- RecipientProvider -->
+    <string name="RecipientProvider_unnamed_group">Unnamed group</string>
 
     <!-- RedPhone -->
     <string name="RedPhone_answering">Answering</string>

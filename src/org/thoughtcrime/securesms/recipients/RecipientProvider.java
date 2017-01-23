@@ -162,18 +162,24 @@ public class RecipientProvider {
 
   private @NonNull RecipientDetails getGroupRecipientDetails(Context context, String groupId) {
     try {
-      GroupDatabase.GroupRecord record  = DatabaseFactory.getGroupDatabase(context)
-                                                         .getGroup(GroupUtil.getDecodedId(groupId));
+      GroupDatabase.GroupRecord record = DatabaseFactory.getGroupDatabase(context)
+                                                        .getGroup(GroupUtil.getDecodedId(groupId));
 
       if (record != null) {
         ContactPhoto contactPhoto = ContactPhotoFactory.getGroupContactPhoto(record.getAvatar());
-        return new RecipientDetails(record.getTitle(), groupId, null, contactPhoto, null);
+        String       title        = record.getTitle();
+
+        if (title == null) {
+          title = context.getString(R.string.RecipientProvider_unnamed_group);;
+        }
+
+        return new RecipientDetails(title, groupId, null, contactPhoto, null);
       }
 
-      return new RecipientDetails(null, groupId, null, ContactPhotoFactory.getDefaultGroupPhoto(), null);
+      return new RecipientDetails(context.getString(R.string.RecipientProvider_unnamed_group), groupId, null, ContactPhotoFactory.getDefaultGroupPhoto(), null);
     } catch (IOException e) {
       Log.w("RecipientProvider", e);
-      return new RecipientDetails(null, groupId, null, ContactPhotoFactory.getDefaultGroupPhoto(), null);
+      return new RecipientDetails(context.getString(R.string.RecipientProvider_unnamed_group), groupId, null, ContactPhotoFactory.getDefaultGroupPhoto(), null);
     }
   }
 

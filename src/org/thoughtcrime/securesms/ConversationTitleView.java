@@ -71,11 +71,7 @@ public class ConversationTitleView extends LinearLayout {
         this.subtitle.setVisibility(View.VISIBLE);
       }
     } else {
-      String groupName = (!TextUtils.isEmpty(recipient.getName())) ?
-                         recipient.getName() :
-                         getContext().getString(R.string.ConversationActivity_unnamed_group);
-
-      this.title.setText(groupName);
+      this.title.setText(recipient.getName());
       this.subtitle.setText(null);
       this.subtitle.setVisibility(View.GONE);
     }
