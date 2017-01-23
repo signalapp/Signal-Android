@@ -66,4 +66,7 @@
     <dimen name="onboarding_subtitle_size">20sp</dimen>
 
     <dimen name="scribble_stroke_size">3dp</dimen>
+
+    <dimen name="scroll_to_bottom_button_margin_end">10dp</dimen>
+    <dimen name="scroll_to_bottom_button_margin_bottom">10dp</dimen>
 </resources>
