@@ -344,6 +344,14 @@ public class Recipients implements Iterable<Recipient>, RecipientModifiedListene
     this.stale = true;
   }
 
+  boolean isResolving() {
+    for (Recipient recipient : recipients) {
+      if (recipient.isResolving()) return true;
+    }
+
+    return false;
+  }
+
   public interface RecipientsModifiedListener {
     public void onModified(Recipients recipient);
   }

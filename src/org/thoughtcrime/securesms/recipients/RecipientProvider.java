@@ -49,7 +49,7 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 
-public class RecipientProvider {
+class RecipientProvider {
 
   private static final String TAG = RecipientProvider.class.getSimpleName();
 
@@ -72,7 +72,9 @@ public class RecipientProvider {
 
   @NonNull Recipient getRecipient(Context context, long recipientId, boolean asynchronous) {
     Recipient cachedRecipient = recipientCache.get(recipientId);
-    if (cachedRecipient != null && !cachedRecipient.isStale()) return cachedRecipient;
+    if (cachedRecipient != null && !cachedRecipient.isStale() && (asynchronous || !cachedRecipient.isResolving())) {
+      return cachedRecipient;
+    }
 
     String number = CanonicalAddressDatabase.getInstance(context).getAddressFromId(recipientId);
 
@@ -88,7 +90,9 @@ public class RecipientProvider {
 
   @NonNull Recipients getRecipients(Context context, long[] recipientIds, boolean asynchronous) {
     Recipients cachedRecipients = recipientsCache.get(new RecipientIds(recipientIds));
-    if (cachedRecipients != null && !cachedRecipients.isStale()) return cachedRecipients;
+    if (cachedRecipients != null && !cachedRecipients.isStale() && (asynchronous || !cachedRecipients.isResolving())) {
+      return cachedRecipients;
+    }
 
     List<Recipient> recipientList = new LinkedList<>();
 
