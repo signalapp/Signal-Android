@@ -227,6 +227,8 @@
     <!-- DateUtils -->
     <string name="DateUtils_just_now">Just now</string>
     <string name="DateUtils_minutes_ago">%d min</string>
+    <string name="DateUtils_today">Today</string>
+    <string name="DateUtils_yesterday">Yesterday</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">Unlink \'%s\'?</string>
@@ -726,6 +728,9 @@
     <!-- conversation_fragment_cab -->
     <string name="conversation_fragment_cab__batch_selection_mode">Batch selection mode</string>
     <string name="conversation_fragment_cab__batch_selection_amount">%s selected</string>
+
+    <!-- conversation_fragment -->
+    <string name="conversation_fragment__scroll_to_the_bottom_content_description">Scroll to the bottom</string>
 
     <!-- country_selection_fragment -->
     <string name="country_selection_fragment__loading_countries">Loading countries...</string>

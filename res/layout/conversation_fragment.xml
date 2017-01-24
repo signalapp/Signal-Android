@@ -2,7 +2,8 @@
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="fill_parent"
-             android:layout_height="match_parent">
+             android:layout_height="match_parent"
+             xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <android.support.v7.widget.RecyclerView
             android:id="@android:id/list"
@@ -11,14 +12,29 @@
             android:scrollbars="vertical"
             android:cacheColorHint="?conversation_background" />
 
-
-    <!--suppress AndroidLintUnusedAttribute-->
     <View android:id="@+id/compose_divider"
           android:layout_width="match_parent"
           android:layout_height="2dp"
           android:layout_gravity="bottom"
           android:background="@drawable/compose_divider_background"
-          android:alpha="0"
+          android:alpha="1"
           android:visibility="invisible" />
+
+    <ImageButton
+            android:id="@+id/scroll_to_bottom_button"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:padding="5dp"
+            android:layout_gravity="bottom|end"
+            android:background="@drawable/circle_tintable"
+            android:tint="@color/grey_600"
+            android:elevation="1dp"
+            android:alpha="0.9"
+            android:contentDescription="@string/conversation_fragment__scroll_to_the_bottom_content_description"
+            android:src="@drawable/ic_scroll_down"/>
 
 </FrameLayout>

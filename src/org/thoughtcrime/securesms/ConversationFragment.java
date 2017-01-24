@@ -24,6 +24,7 @@ import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
@@ -32,7 +33,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.ItemAnimator.ItemAnimatorFinishedListener;
 import android.support.v7.widget.RecyclerView.OnScrollListener;
 import android.text.ClipboardManager;
 import android.text.TextUtils;
@@ -45,6 +45,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.ConversationAdapter.ItemClickListener;
@@ -60,6 +62,7 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
+import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 
@@ -79,7 +82,6 @@ public class ConversationFragment extends Fragment
 
   private final ActionModeCallback actionModeCallback     = new ActionModeCallback();
   private final ItemClickListener  selectionClickListener = new ConversationFragmentItemClickListener();
-  private final OnScrollListener   scrollListener         = new ConversationScrollListener();
 
   private ConversationFragmentListener listener;
 
@@ -91,6 +93,7 @@ public class ConversationFragment extends Fragment
   private RecyclerView list;
   private View         loadMoreView;
   private View         composeDivider;
+  private View         scrollToBottomButton;
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -102,13 +105,20 @@ public class ConversationFragment extends Fragment
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
     final View view = inflater.inflate(R.layout.conversation_fragment, container, false);
-    list           = ViewUtil.findById(view, android.R.id.list);
-    composeDivider = ViewUtil.findById(view, R.id.compose_divider);
+    list                 = ViewUtil.findById(view, android.R.id.list);
+    composeDivider       = ViewUtil.findById(view, R.id.compose_divider);
+    scrollToBottomButton = ViewUtil.findById(view, R.id.scroll_to_bottom_button);
+
+    scrollToBottomButton.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(final View view) {
+        scrollToBottom();
+      }
+    });
 
     final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, true);
     list.setHasFixedSize(false);
     list.setLayoutManager(layoutManager);
-    list.addOnScrollListener(scrollListener);
     list.setItemAnimator(null);
 
     loadMoreView = inflater.inflate(R.layout.load_more_header, container, false);
@@ -164,13 +174,19 @@ public class ConversationFragment extends Fragment
   }
 
   private void initializeResources() {
-    this.recipients = RecipientFactory.getRecipientsForIds(getActivity(), getActivity().getIntent().getLongArrayExtra("recipients"), true);
-    this.threadId   = this.getActivity().getIntent().getLongExtra("thread_id", -1);
+    this.recipients     = RecipientFactory.getRecipientsForIds(getActivity(), getActivity().getIntent().getLongArrayExtra("recipients"), true);
+    this.threadId       = this.getActivity().getIntent().getLongExtra("thread_id", -1);
+
+    OnScrollListener scrollListener = new ConversationScrollListener(getActivity());
+    list.addOnScrollListener(scrollListener);
   }
 
   private void initializeListAdapter() {
     if (this.recipients != null && this.threadId != -1) {
-      list.setAdapter(new ConversationAdapter(getActivity(), masterSecret, locale, selectionClickListener, null, this.recipients));
+      ConversationAdapter adapter = new ConversationAdapter(getActivity(), masterSecret, locale, selectionClickListener, null, this.recipients);
+      list.setAdapter(adapter);
+      list.addItemDecoration(new StickyHeaderDecoration(adapter, false));
+
       getLoaderManager().restartLoader(0, Bundle.EMPTY, this);
     }
   }
@@ -396,23 +412,39 @@ public class ConversationFragment extends Fragment
   }
 
   private class ConversationScrollListener extends OnScrollListener {
-    private boolean wasAtBottom = true;
+
+    private final Animation scrollButtonInAnimation;
+    private final Animation scrollButtonOutAnimation;
+
+    private boolean wasAtBottom           = true;
+    private boolean wasAtZoomScrollHeight = false;
+
+    ConversationScrollListener(@NonNull Context context) {
+      this.scrollButtonInAnimation  = AnimationUtils.loadAnimation(context, R.anim.fade_scale_in);
+      this.scrollButtonOutAnimation = AnimationUtils.loadAnimation(context, R.anim.fade_scale_out);
+
+      this.scrollButtonInAnimation.setDuration(100);
+      this.scrollButtonOutAnimation.setDuration(50);
+    }
 
     @Override
     public void onScrolled(final RecyclerView rv, final int dx, final int dy) {
-      boolean currentlyAtBottom = isAtBottom();
+      boolean currentlyAtBottom           = isAtBottom();
+      boolean currentlyAtZoomScrollHeight = isAtZoomScrollHeight();
 
-      if (wasAtBottom != currentlyAtBottom) {
-        composeDivider.setVisibility(currentlyAtBottom ? View.INVISIBLE : View.VISIBLE);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR1) {
-          composeDivider.animate().alpha(currentlyAtBottom ? 0 : 1);
-        } else if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
-          composeDivider.setAlpha(currentlyAtBottom ? 0 : 1);
-        }
-
-        wasAtBottom = currentlyAtBottom;
+      if (currentlyAtBottom && !wasAtBottom) {
+        ViewUtil.fadeOut(composeDivider, 50, View.INVISIBLE);
+        ViewUtil.animateOut(scrollToBottomButton, scrollButtonOutAnimation, View.INVISIBLE);
+      } else if (!currentlyAtBottom && wasAtBottom) {
+        ViewUtil.fadeIn(composeDivider, 500);
       }
+
+      if (currentlyAtZoomScrollHeight && !wasAtZoomScrollHeight) {
+        ViewUtil.animateIn(scrollToBottomButton, scrollButtonInAnimation);
+      }
+
+      wasAtBottom           = currentlyAtBottom;
+      wasAtZoomScrollHeight = currentlyAtZoomScrollHeight;
     }
 
     private boolean isAtBottom() {
@@ -423,6 +455,10 @@ public class ConversationFragment extends Fragment
       boolean isAtBottom       = (firstVisibleItem == 0);
 
       return isAtBottom && bottomView.getBottom() <= list.getHeight();
+    }
+
+    private boolean isAtZoomScrollHeight() {
+      return ((LinearLayoutManager) list.getLayoutManager()).findFirstCompletelyVisibleItemPosition() > 4;
     }
   }
 

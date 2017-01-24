@@ -71,6 +71,7 @@
     <attr name="conversation_item_received_text_secondary_color" format="reference|color"/>
     <attr name="conversation_item_sent_text_indicator_tab_color" format="reference|color"/>
     <attr name="conversation_item_sent_indicator_text_background" format="reference" />
+    <attr name="conversation_item_header_background" format="reference"/>
 
     <attr name="dialog_info_icon" format="reference" />
     <attr name="dialog_alert_icon" format="reference" />

@@ -29,6 +29,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
@@ -39,11 +40,17 @@ import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.LRUCache;
+import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.ConversationAdapter.HeaderViewHolder;
 
 import java.lang.ref.SoftReference;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
@@ -59,6 +66,7 @@ import java.util.Set;
  */
 public class ConversationAdapter <V extends View & BindableConversationItem>
     extends CursorRecyclerViewAdapter<ConversationAdapter.ViewHolder>
+  implements StickyHeaderDecoration.StickyHeaderAdapter<HeaderViewHolder>
 {
 
   private static final int MAX_CACHE_SIZE = 40;
@@ -82,6 +90,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   private final @NonNull  Recipients        recipients;
   private final @NonNull  MmsSmsDatabase    db;
   private final @NonNull  LayoutInflater    inflater;
+  private final @NonNull  Calendar          calendar;
 
   protected static class ViewHolder extends RecyclerView.ViewHolder {
     public <V extends View & BindableConversationItem> ViewHolder(final @NonNull V itemView) {
@@ -93,6 +102,21 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
       return (V)itemView;
     }
   }
+
+
+  protected static class HeaderViewHolder extends RecyclerView.ViewHolder {
+    private TextView textView;
+
+    public HeaderViewHolder(View itemView) {
+      super(itemView);
+      textView = ViewUtil.findById(itemView, R.id.text);
+    }
+
+    public void setText(CharSequence text) {
+      textView.setText(text);
+    }
+  }
+
 
   public interface ItemClickListener {
     void onItemClick(MessageRecord item);
@@ -109,6 +133,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     this.recipients    = null;
     this.inflater      = null;
     this.db            = null;
+    this.calendar      = null;
   }
 
   public ConversationAdapter(@NonNull Context context,
@@ -125,6 +150,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     this.recipients    = recipients;
     this.inflater      = LayoutInflater.from(context);
     this.db            = DatabaseFactory.getMmsSmsDatabase(context);
+    this.calendar      = Calendar.getInstance();
 
     setHasStableIds(true);
   }
@@ -137,10 +163,8 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
 
   @Override
   public void onBindItemViewHolder(ViewHolder viewHolder, @NonNull Cursor cursor) {
-    long start = System.currentTimeMillis();
-    long          id            = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.ID));
-    String        type          = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
-    MessageRecord messageRecord = getMessageRecord(id, cursor, type);
+    long          start         = System.currentTimeMillis();
+    MessageRecord messageRecord = getMessageRecord(cursor);
 
     viewHolder.getView().bind(masterSecret, messageRecord, locale, batchSelected, recipients);
     Log.w(TAG, "Bind time: " + (System.currentTimeMillis() - start));
@@ -191,11 +215,9 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
 
   @Override
   public int getItemViewType(@NonNull Cursor cursor) {
-    long          id            = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.ID));
-    String        type          = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
-    MessageRecord messageRecord = getMessageRecord(id, cursor, type);
+    MessageRecord messageRecord = getMessageRecord(cursor);
 
-    if (messageRecord.isGroupAction() || messageRecord.isCallLog() || messageRecord.isJoined() || 
+    if (messageRecord.isGroupAction() || messageRecord.isCallLog() || messageRecord.isJoined() ||
         messageRecord.isExpirationTimerUpdate() || messageRecord.isEndSession() || messageRecord.isIdentityUpdate()) {
       return MESSAGE_TYPE_UPDATE;
     } else if (hasAudio(messageRecord)) {
@@ -216,7 +238,10 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     return cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.UNIQUE_ROW_ID));
   }
 
-  private MessageRecord getMessageRecord(long messageId, Cursor cursor, String type) {
+  private MessageRecord getMessageRecord(Cursor cursor) {
+    long   messageId = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.ID));
+    String type      = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
+
     final SoftReference<MessageRecord> reference = messageRecordCache.get(type + messageId);
     if (reference != null) {
       final MessageRecord record = reference.get();
@@ -254,4 +279,26 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   private boolean hasThumbnail(MessageRecord messageRecord) {
     return messageRecord.isMms() && ((MmsMessageRecord)messageRecord).getSlideDeck().getThumbnailSlide() != null;
   }
+
+
+  @Override
+  public long getHeaderId(int position) {
+    Cursor        cursor = getCursorAtPositionOrThrow(position);
+    MessageRecord record = getMessageRecord(cursor);
+
+    calendar.setTime(new Date(record.getDateSent()));
+    return Util.hashCode(calendar.get(Calendar.YEAR), calendar.get(Calendar.DAY_OF_YEAR));
+  }
+
+  @Override
+  public HeaderViewHolder onCreateHeaderViewHolder(ViewGroup parent) {
+    return new HeaderViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.conversation_item_header, parent, false));
+  }
+
+  @Override
+  public void onBindHeaderViewHolder(HeaderViewHolder viewHolder, int position) {
+    Cursor cursor = getCursorAtPositionOrThrow(position);
+    viewHolder.setText(DateUtils.getRelativeDate(getContext(), locale, getMessageRecord(cursor).getDateReceived()));
+  }
 }
+
