@@ -43,6 +43,7 @@ import android.widget.EditText;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
 import org.thoughtcrime.securesms.BuildConfig;
+import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.mms.OutgoingLegacyMmsConnection;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
 import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
@@ -458,5 +459,16 @@ public class Util {
   public static boolean isStringEquals(String first, String second) {
     if (first == null) return second == null;
     return first.equals(second);
+  }
+
+  public static boolean numberShouldBeIgnored(Context context, String number) {
+    if (number == null)
+      return false;
+    if (!TextSecurePreferences.isIgnoreUnknownNumbersEnabled(context))
+      return false;
+    ContactAccessor ca = ContactAccessor.getInstance();
+    if (!ca.isNumberUnknown(context, number))
+      return false;
+    return true;
   }
 }

@@ -75,6 +75,7 @@ public class TextSecurePreferences {
   private static final String SIGNED_PREKEY_ROTATION_TIME_PREF = "pref_signed_pre_key_rotation_time";
   private static final String IN_THREAD_NOTIFICATION_PREF      = "pref_key_inthread_notifications";
   private static final String BLOCKING_IDENTITY_CHANGES_PREF   = "pref_blocking_identity_changes";
+  private static final String IGNORE_UNKNOWN_NUMBERS           = "pref_ignore_unknown_numbers";
 
   private static final String LOCAL_REGISTRATION_ID_PREF       = "pref_local_registration_id";
   private static final String SIGNED_PREKEY_REGISTERED_PREF    = "pref_signed_prekey_registered";
@@ -122,6 +123,10 @@ public class TextSecurePreferences {
 
   public static void setBlockingIdentityUpdates(Context context, boolean value) {
     setBooleanPreference(context, BLOCKING_IDENTITY_CHANGES_PREF, value);
+  }
+
+  public static boolean isIgnoreUnknownNumbersEnabled(Context context) {
+    return getBooleanPreference(context, IGNORE_UNKNOWN_NUMBERS, false);
   }
 
   public static void setSignedPreKeyFailureCount(Context context, int value) {

@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -56,7 +57,7 @@ public class SmsReceiveJob extends ContextJob {
       masterSecretUnion = new MasterSecretUnion(masterSecret);
     }
 
-    if (message.isPresent() && !isBlocked(message.get())) {
+    if (message.isPresent() && !isBlocked(message.get()) && !Util.numberShouldBeIgnored(context, message.get().getSender())) {
       Optional<InsertResult> insertResult = storeMessage(masterSecretUnion, message.get());
 
       if (insertResult.isPresent()) {

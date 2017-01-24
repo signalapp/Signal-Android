@@ -56,7 +56,7 @@ public class MmsReceiveJob extends ContextJob {
       Log.w(TAG, e);
     }
 
-    if (isNotification(pdu) && !isBlocked(pdu)) {
+    if (isNotification(pdu) && !isBlocked(pdu) && !Util.numberShouldBeIgnored(context, Util.toIsoString(pdu.getFrom().getTextString()))) {
       MmsDatabase database                = DatabaseFactory.getMmsDatabase(context);
       Pair<Long, Long> messageAndThreadId = database.insertMessageInbox((NotificationInd)pdu, subscriptionId);
 
