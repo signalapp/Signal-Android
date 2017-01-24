@@ -103,7 +103,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Meldinga er tom.</string>
   <string name="ConversationActivity_group_members">Gruppemedlemmer</string>
   <string name="ConversationActivity_group_conversation">Gruppesamtale</string>
-  <string name="ConversationActivity_unnamed_group">Gruppe uten navn</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="one">1 medlem</item>
     <item quantity="other">%d medlemmer</item>
@@ -119,7 +118,6 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">La oss bytte til Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">La oss bruke dette til å prate: %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Klarte ikke å forlate gruppa på grunn av programfeil </string>
   <string name="ConversationActivity_mms_not_supported_title">MMS støttes ikke</string>
   <string name="ConversationActivity_mms_not_supported_message">Operatøren din støtter ikke MMS, og meldinga ble derfor ikke sendt.</string>
   <string name="ConversationActivity_specify_recipient">Velg en kontakt</string>
@@ -388,6 +386,7 @@ fører dette til dupliserte meldinger.</string>
   <string name="RecipientPreferenceActivity_unblock">Fjern blokkering</string>
   <string name="RecipientPreferenceActivity_enabled">Slått på</string>
   <string name="RecipientPreferenceActivity_disabled">Slått av</string>
+  <!--RecipientProvider-->
   <!--RedPhone-->
   <string name="RedPhone_answering">Svarer</string>
   <string name="RedPhone_ending_call">Avslutter samtale</string>

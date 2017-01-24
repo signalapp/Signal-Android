@@ -104,7 +104,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Το μήνυμα είναι κενό!</string>
   <string name="ConversationActivity_group_members">Μέλη ομάδας</string>
   <string name="ConversationActivity_group_conversation">Ομαδική συζήτηση</string>
-  <string name="ConversationActivity_unnamed_group">Ανώνυμη ομάδα</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="one">1 μέλος</item>
     <item quantity="other">%d μέλη</item>
@@ -120,7 +119,6 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Ας χρησιμοποιήσουμε το Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Ας χρησιμοποιήσουμε αυτό για να συνομιλήσουμε: %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Σφάλμα κατα την αποχώρηση από την ομάδα...</string>
   <string name="ConversationActivity_mms_not_supported_title">Τα MMS δεν υποστηρίζονται</string>
   <string name="ConversationActivity_mms_not_supported_message">Αυτό το μήνυμα δεν μπορεί να αποσταλεί δεδομένου ότι φορέας σου δεν υποστηρίζει MMS.</string>
   <string name="ConversationActivity_specify_recipient">Παρακαλώ επιλέξτε μια επαφή</string>
@@ -405,6 +403,7 @@
   <string name="RecipientPreferenceActivity_enabled">Ενεργοποιημένο</string>
   <string name="RecipientPreferenceActivity_disabled">Απενεργοποιημένο</string>
   <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Διαθέσιμο, εφόσον ένα μήνυμα έχει αποσταλεί ή παραληφθεί</string>
+  <!--RecipientProvider-->
   <!--RedPhone-->
   <string name="RedPhone_answering">Απάντηση</string>
   <string name="RedPhone_ending_call">Τερματισμός κλήσης</string>

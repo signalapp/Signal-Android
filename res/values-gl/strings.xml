@@ -96,7 +96,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">A mensaxe está baleira!</string>
   <string name="ConversationActivity_group_members">Membros do grupo</string>
   <string name="ConversationActivity_group_conversation">Grupo de conversa</string>
-  <string name="ConversationActivity_unnamed_group">Grupo sen nome</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="one">1 membro</item>
     <item quantity="other">%d membros</item>
@@ -111,7 +110,6 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS insegura</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Imos cambiar a Signal %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Erro ao abandonar o grupo...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS non admitida</string>
   <string name="ConversationActivity_mms_not_supported_message">Esta mensaxe non pode ser enviada porque o teu provedor non admite MMS.</string>
   <string name="ConversationActivity_specify_recipient">Por favor, elixe un contacto</string>
@@ -339,6 +337,7 @@
   <string name="RecipientPreferenceActivity_block">Bloquear</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Desbloquear este contacto?</string>
   <string name="RecipientPreferenceActivity_unblock">Desbloquear</string>
+  <!--RecipientProvider-->
   <!--RedPhone-->
   <string name="RedPhone_answering">Respondendo</string>
   <string name="RedPhone_dialing">Marcando</string>

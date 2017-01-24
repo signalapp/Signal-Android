@@ -104,7 +104,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Bericht is leeg!</string>
   <string name="ConversationActivity_group_members">Groepsleden</string>
   <string name="ConversationActivity_group_conversation">Groepsgesprek</string>
-  <string name="ConversationActivity_unnamed_group">Naamloze groep</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="one">1 lid</item>
     <item quantity="other">%d leden</item>
@@ -120,7 +119,7 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Laten we wisselen naar Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Laten we chatten met %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Fout bij het verlaten van de groep...</string>
+  <string name="ConversationActivity_error_leaving_group">Fout bij het verlaten van de groep</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS niet ondersteund</string>
   <string name="ConversationActivity_mms_not_supported_message">Dit bericht kan niet verzonden worden omdat je provider MMS niet ondersteunt.</string>
   <string name="ConversationActivity_specify_recipient">Kies een contact</string>
@@ -332,6 +331,8 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="NotificationBarManager__cancel_call">Oproep annuleren</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediabericht</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">Downloaden van MMS</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Fout bij het downloaden van een MMS bericht, tik om het nogmaals te proberen</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Dit bericht gebruikt verouderde versleuteling van een Signal-versie die niet meer ondersteund wordt. Vraag de afzender om bij te werken naar de meest recente versie en het bericht opnieuw te verzenden.</string>
   <string name="MessageRecord_left_group">Je hebt de groep verlaten.</string>
@@ -395,6 +396,8 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="RecipientPreferenceActivity_enabled">Ingeschakeld</string>
   <string name="RecipientPreferenceActivity_disabled">Uitgeschakeld</string>
   <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Beschikbaar zodra er een bericht verstuurd of ontvangen is</string>
+  <!--RecipientProvider-->
+  <string name="RecipientProvider_unnamed_group">Naamloze groep</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">Beantwoorden</string>
   <string name="RedPhone_ending_call">Oproep beëindigen</string>

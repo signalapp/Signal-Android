@@ -107,7 +107,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Повідомлення порожнє!</string>
   <string name="ConversationActivity_group_members">Учасники групи</string>
   <string name="ConversationActivity_group_conversation">Групова розмова</string>
-  <string name="ConversationActivity_unnamed_group">Неназвана група</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="one">1 учасник</item>
     <item quantity="few">%d учасники</item>
@@ -124,7 +123,6 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Давай перейдемо у Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Давай використовувати це для чату: %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Помилка виходу з групи...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS не підтримується</string>
   <string name="ConversationActivity_mms_not_supported_message">Це повідомлення неможливо надіслати, оскільки ваш оператор не підтримує MMS.</string>
   <string name="ConversationActivity_specify_recipient">Будь ласка, виберіть контакт</string>
@@ -407,6 +405,7 @@
   <string name="RecipientPreferenceActivity_unblock">Розблокувати</string>
   <string name="RecipientPreferenceActivity_enabled">Увімкнено </string>
   <string name="RecipientPreferenceActivity_disabled">Вимкнено</string>
+  <!--RecipientProvider-->
   <!--RedPhone-->
   <string name="RedPhone_answering">Відповідаємо</string>
   <string name="RedPhone_ending_call">Завершення дзвінка</string>

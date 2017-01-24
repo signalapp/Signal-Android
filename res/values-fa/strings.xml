@@ -100,7 +100,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">پیام خالی است!</string>
   <string name="ConversationActivity_group_members">اعضای گروه</string>
   <string name="ConversationActivity_group_conversation">گروه گفتگو</string>
-  <string name="ConversationActivity_unnamed_group">گروه بی نام</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="other">%d اعضای</item>
   </plurals>
@@ -115,7 +114,6 @@
   <string name="ConversationActivity_transport_signal">سیگنال</string>
   <string name="ConversationActivity_lets_switch_to_signal">بیایید از این برای سیگنال استفاده کنیم:  %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">بیایید از این برای چت استفاده کنیم:  %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">خطا ترک گروه ...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS پشتیبانی نمی شود</string>
   <string name="ConversationActivity_mms_not_supported_message">از آنجایی که اپراتور شما MMS را پشتیبانی نمی کند، این پیام قابل ارسال نمی باشد.</string>
   <string name="ConversationActivity_specify_recipient">لطفا یک تماس را انتخاب کنید</string>
@@ -350,6 +348,7 @@
   <string name="RecipientPreferenceActivity_unblock">رفع انسداد</string>
   <string name="RecipientPreferenceActivity_enabled">فعال</string>
   <string name="RecipientPreferenceActivity_disabled">غیر فعال</string>
+  <!--RecipientProvider-->
   <!--RedPhone-->
   <string name="RedPhone_answering">پاسخ دادن</string>
   <string name="RedPhone_ending_call">پایان دادن به پاسخ</string>

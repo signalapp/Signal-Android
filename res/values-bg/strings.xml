@@ -104,7 +104,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Съобщението е празно!</string>
   <string name="ConversationActivity_group_members">Членове на групата</string>
   <string name="ConversationActivity_group_conversation">Групов разговор</string>
-  <string name="ConversationActivity_unnamed_group">Безименна група</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="one">1 участник</item>
     <item quantity="other">%d участника</item>
@@ -120,7 +119,7 @@
   <string name="ConversationActivity_transport_signal">Сигнал</string>
   <string name="ConversationActivity_lets_switch_to_signal">Да преминем към Сигнал %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Да използваме следното за чатене: %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Грешка при напускането на група...</string>
+  <string name="ConversationActivity_error_leaving_group">Грешка при напускане на групата</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS не се поддържа</string>
   <string name="ConversationActivity_mms_not_supported_message">Това съобщение не може да бъде изпратезо, защото мобилния Ви оператор не поддържа MMS.</string>
   <string name="ConversationActivity_specify_recipient">Моля избери контакт</string>
@@ -337,6 +336,8 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="NotificationBarManager__cancel_call">Откажи обаждането</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Мултимедийно съобщение</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">Изтегляне на MMS съобщение</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Грешка при изтегляне на MMS съобщение, натиснете за да опитате повторно</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Получихте съобщение криптирано със стара версия на Сигнал, която вече не се поддържа. Моля помолете изпращача да обнови версията си и да препрати съобщението.</string>
   <string name="MessageRecord_left_group">Напуснахте групата.</string>
@@ -400,6 +401,8 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="RecipientPreferenceActivity_enabled">Разрешени</string>
   <string name="RecipientPreferenceActivity_disabled">Спрени</string>
   <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Активно, когато съобщение е изпратено или получено.</string>
+  <!--RecipientProvider-->
+  <string name="RecipientProvider_unnamed_group">Безименна група</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">Вдигане</string>
   <string name="RedPhone_ending_call">Прекратяване на обаждането</string>

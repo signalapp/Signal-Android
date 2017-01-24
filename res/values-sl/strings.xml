@@ -110,7 +110,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Sporočilo je prazno!</string>
   <string name="ConversationActivity_group_members">Člani skupine</string>
   <string name="ConversationActivity_group_conversation">Skupinski pogovor</string>
-  <string name="ConversationActivity_unnamed_group">Skupina brez imena</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="one">1 član</item>
     <item quantity="two">%d člana</item>
@@ -128,7 +127,6 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Začni uporabljati aplikacijo Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Uporabljajva tole za pogovore: %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Napaka pri zapuščanju skupine...</string>
   <string name="ConversationActivity_mms_not_supported_title">Sporočila MMS niso podprta</string>
   <string name="ConversationActivity_mms_not_supported_message">To sporočilo ne more biti poslano, ker vaš mobilni ponudnik ne podpira sporočil MMS.</string>
   <string name="ConversationActivity_specify_recipient">Prosimo, izberite stik</string>
@@ -428,6 +426,7 @@ Uvoz iz šifrirane varnostne kopije bo popolnoma nadomestil obstoječe ključe, 
   <string name="RecipientPreferenceActivity_enabled">Vklopljeno</string>
   <string name="RecipientPreferenceActivity_disabled">Izklopljeno</string>
   <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Na voljo šele po prvi izmenjavi sporočil</string>
+  <!--RecipientProvider-->
   <!--RedPhone-->
   <string name="RedPhone_answering">Odgovarjam</string>
   <string name="RedPhone_ending_call">Končujem klic</string>

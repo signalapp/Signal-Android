@@ -104,7 +104,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Sõnum on tühi!</string>
   <string name="ConversationActivity_group_members">Grupiliikmed</string>
   <string name="ConversationActivity_group_conversation">Grupivestlus</string>
-  <string name="ConversationActivity_unnamed_group">Nimetu grupp</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="one">1 liige</item>
     <item quantity="other">%d liiget</item>
@@ -120,7 +119,7 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Lähme Signalile üle %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Kasutame seda vestlemiseks: %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Grupist lahkumisel tekkis viga...</string>
+  <string name="ConversationActivity_error_leaving_group">Grupist lahkumisel tekkis viga</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS pole toetatud</string>
   <string name="ConversationActivity_mms_not_supported_message">Seda sõnumit ei saa saata kuna sinu teenusepakkuja ei toeta MMS\'i.</string>
   <string name="ConversationActivity_specify_recipient">Palun vali kontakt</string>
@@ -341,6 +340,8 @@
   <string name="NotificationBarManager__cancel_call">Tühista kõne</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimeediasõnum</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">Laadin alla MMS-sõnumit</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">MMS-sõnumi allalaadimisel tekkis viga, koputa uuesti proovimiseks</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Vastuvõetud sõnum, mis on krüptitud kasutades vana, mittetoetatud Signali versiooni. Palun palu saatjal uuendada uusimale versioonile ja siis sõnum uuesti saata.</string>
   <string name="MessageRecord_left_group">Sa lahkusid grupist.</string>
@@ -404,6 +405,8 @@
   <string name="RecipientPreferenceActivity_enabled">Lubatud</string>
   <string name="RecipientPreferenceActivity_disabled">Keelatud</string>
   <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Saadaval, kui sõnum on saadetud või vastuvõetud.</string>
+  <!--RecipientProvider-->
+  <string name="RecipientProvider_unnamed_group">Nimetu grupp</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">Vastuvõtmine</string>
   <string name="RedPhone_ending_call">Kõne lõpetamine</string>
@@ -870,7 +873,7 @@
   <string name="arrays__disabled">Keelatud</string>
   <string name="arrays__name_and_message">Nimi ja sõnum</string>
   <string name="arrays__name_only">Ainult nimi</string>
-  <string name="arrays__no_name_or_message">Pole nime ega sõnumit</string>
+  <string name="arrays__no_name_or_message">Ei nime ega sõnumit</string>
   <string name="arrays__images">Pildid</string>
   <string name="arrays__audio">Heli</string>
   <string name="arrays__video">Video</string>
@@ -898,7 +901,7 @@
   <string name="preferences__change_your_passphrase">Muuda oma salaväljendit</string>
   <string name="preferences__enable_passphrase">Luba salaväljend</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lukusta Signal ja sõnumiteated salaväljendiga</string>
-  <string name="preferences__screen_security">Kuva turvalisus</string>
+  <string name="preferences__screen_security">Kuva turvamine</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokeeri kuvatõmmised viimatiste nimekirjas ja rakenduse sees</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Lukusta Signal automaatselt pärast määratud ebaaktiivsuse ajaintervalli</string>
   <string name="preferences__inactivity_timeout_passphrase">Ebaaktiivsuse ajalõpu salaväljend</string>

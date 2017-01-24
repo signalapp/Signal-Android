@@ -104,7 +104,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">¡El mensaje está vacío!</string>
   <string name="ConversationActivity_group_members">Miembros del grupo</string>
   <string name="ConversationActivity_group_conversation">Conversación de grupo</string>
-  <string name="ConversationActivity_unnamed_group">Grupo sin nombre</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="one">1 miembro</item>
     <item quantity="other">%d miembros</item>
@@ -120,7 +119,6 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Pasémonos a Signal: %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Usemos esto para hablar: %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Error al dejar el grupo...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS no admitidos</string>
   <string name="ConversationActivity_mms_not_supported_message">Este mensaje no se puede enviar debido a que su proveedor no admite MMS.</string>
   <string name="ConversationActivity_specify_recipient">Por favor, elija un contacto</string>
@@ -405,6 +403,7 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="RecipientPreferenceActivity_enabled">Habilitado</string>
   <string name="RecipientPreferenceActivity_disabled">Deshabilitado</string>
   <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Disponible una vez que se ha enviado o recibido un mensaje</string>
+  <!--RecipientProvider-->
   <!--RedPhone-->
   <string name="RedPhone_answering">Respondiendo</string>
   <string name="RedPhone_ending_call">Finalizando llamada</string>

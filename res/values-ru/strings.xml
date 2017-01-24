@@ -110,7 +110,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Пустое сообщение!</string>
   <string name="ConversationActivity_group_members">Участники группы</string>
   <string name="ConversationActivity_group_conversation">Групповой разговор</string>
-  <string name="ConversationActivity_unnamed_group">Группа без названия</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="one">1 участник</item>
     <item quantity="few">%d участника</item>
@@ -128,7 +127,6 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Давайте перейдём на Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Давайте общаться через Signal: %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Ошибка при выходе из группы...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS не поддерживаются</string>
   <string name="ConversationActivity_mms_not_supported_message">Сообщение не может быть отправлено, так как ваш оператор не поддерживает MMS.</string>
   <string name="ConversationActivity_specify_recipient">Выберите контакт</string>
@@ -428,6 +426,7 @@
   <string name="RecipientPreferenceActivity_enabled">Включено</string>
   <string name="RecipientPreferenceActivity_disabled">Выключено</string>
   <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Доступно после отправки или получения сообщения.</string>
+  <!--RecipientProvider-->
   <!--RedPhone-->
   <string name="RedPhone_answering">Отвечаем</string>
   <string name="RedPhone_ending_call">Завершаем звонок</string>

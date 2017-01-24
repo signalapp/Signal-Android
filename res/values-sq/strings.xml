@@ -104,7 +104,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Lajmi është i zbrazët!</string>
   <string name="ConversationActivity_group_members">Anëtarët e grupit</string>
   <string name="ConversationActivity_group_conversation">Bisedë në grup</string>
-  <string name="ConversationActivity_unnamed_group">Grup i paemruar</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="one">1 anëtar</item>
     <item quantity="other">%d anëtarë</item>
@@ -120,7 +119,6 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Të kalojmë në Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Ta përdorim këtë për të biseduar: %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Gabim në lënjën e grupit...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS nuk mbështetet</string>
   <string name="ConversationActivity_mms_not_supported_message">Kjo porosi nuk mund të dërgohet pasi që operatori i juaj nuk mbështet MMS.</string>
   <string name="ConversationActivity_specify_recipient">Ju lutem, përzgjedhni një kontakt</string>
@@ -393,6 +391,7 @@ importimi i sërishëm do të rezultojë ne mesazhe duplikate.</string>
   <string name="RecipientPreferenceActivity_unblock">Zhblloko</string>
   <string name="RecipientPreferenceActivity_enabled">Aktivizuar</string>
   <string name="RecipientPreferenceActivity_disabled">Çaktivizar</string>
+  <!--RecipientProvider-->
   <!--RedPhone-->
   <string name="RedPhone_answering">Duke u përgjigjur</string>
   <string name="RedPhone_ending_call">Duke përfunduar thirrjen</string>

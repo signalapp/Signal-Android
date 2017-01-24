@@ -73,7 +73,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Пораката е празна!</string>
   <string name="ConversationActivity_group_members">Членови на групата</string>
   <string name="ConversationActivity_group_conversation">Групен разговор</string>
-  <string name="ConversationActivity_unnamed_group">Неименувана група</string>
   <string name="ConversationActivity_saved_draft">Скицата е снимена.</string>
   <string name="ConversationActivity_invalid_recipient">Погрешен примател!</string>
   <string name="ConversationActivity_calls_not_supported">Неподдржан повик</string>
@@ -83,7 +82,6 @@
   <string name="ConversationActivity_transport_insecure_sms">Незаштитена SMS порака</string>
   <string name="ConversationActivity_transport_insecure_mms">Незаштитена MMS порака</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
-  <string name="ConversationActivity_error_leaving_group">Грешка при напуштање на групата...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS не е поддржан</string>
   <string name="ConversationActivity_mms_not_supported_message">Оваа порака не може да се испрати, бидејќи вашиот провајдер не поддржува MMS.</string>
   <string name="ConversationActivity_specify_recipient">Изберете контакт</string>
@@ -233,6 +231,7 @@
   <string name="RecipientPreferenceActivity_unblock">Одблокирај</string>
   <string name="RecipientPreferenceActivity_enabled">Овозможено</string>
   <string name="RecipientPreferenceActivity_disabled">Оневозможено</string>
+  <!--RecipientProvider-->
   <!--RedPhone-->
   <string name="RedPhone_ending_call">Завршување на повик</string>
   <string name="RedPhone_dialing">Повикување</string>

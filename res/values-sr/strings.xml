@@ -108,7 +108,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Порука је празна!</string>
   <string name="ConversationActivity_group_members">Чланови групе</string>
   <string name="ConversationActivity_group_conversation">Групна преписка</string>
-  <string name="ConversationActivity_unnamed_group">Неименована група</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="one">1 члан</item>
     <item quantity="few">%d члана</item>
@@ -125,7 +124,6 @@
   <string name="ConversationActivity_transport_signal">Сигнал</string>
   <string name="ConversationActivity_lets_switch_to_signal">Пребацимо се на Сигнал %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Хајде да користимо ово за ћаскање: %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Грешка напуштања групе...</string>
   <string name="ConversationActivity_mms_not_supported_title">ММС није подржан</string>
   <string name="ConversationActivity_mms_not_supported_message">Порука није послата јер ваш оператер не подржава ММС.</string>
   <string name="ConversationActivity_specify_recipient">Одредите примаоца</string>
@@ -419,6 +417,7 @@
   <string name="RecipientPreferenceActivity_enabled">Укључено</string>
   <string name="RecipientPreferenceActivity_disabled">Искључено</string>
   <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Доступно ако порука није послата или примљена.</string>
+  <!--RecipientProvider-->
   <!--RedPhone-->
   <string name="RedPhone_answering">Јављам се</string>
   <string name="RedPhone_ending_call">Окончавам позив</string>
