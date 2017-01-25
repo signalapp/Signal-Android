@@ -206,6 +206,8 @@
   <!--DateUtils-->
   <string name="DateUtils_just_now">Gerade eben</string>
   <string name="DateUtils_minutes_ago">%d min</string>
+  <string name="DateUtils_today">Heute</string>
+  <string name="DateUtils_yesterday">Gestern</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">»%s« entfernen?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Nach Entfernen dieses Geräts wird es keine weiteren Nachrichten senden oder empfangen können.</string>
@@ -614,6 +616,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Mehrfachauswahl</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s ausgewählt</string>
+  <!--conversation_fragment-->
+  <string name="conversation_fragment__scroll_to_the_bottom_content_description">Zum unteren Ende scrollen</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Länder werden geladen …</string>
   <string name="country_selection_fragment__search">Suchen</string>

@@ -209,6 +209,7 @@
   <!--DateUtils-->
   <string name="DateUtils_just_now">Μόλις τώρα</string>
   <string name="DateUtils_minutes_ago">%d λεπ</string>
+  <string name="DateUtils_today">Σήμερα</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Αποσύνδεση του \'%s\';</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Αποσυνδέοντας αυτή την συσκευή, αυτή δεν θα μπορεί να λάβει ή να στείλει μηνύματα πια.</string>
@@ -628,6 +629,7 @@
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Λειτουργία μαζικής επιλογής</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s επιλέχτηκαν</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Γίνεται φόρτωση χωρών...</string>
   <string name="country_selection_fragment__search">Αναζήτηση</string>

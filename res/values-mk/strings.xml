@@ -383,6 +383,7 @@
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Повеќекратно селектирање</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s избрано</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Вчитување на држави...</string>
   <string name="country_selection_fragment__search">Барај</string>

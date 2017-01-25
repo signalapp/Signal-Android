@@ -213,6 +213,7 @@
   <!--DateUtils-->
   <string name="DateUtils_just_now">Щойно</string>
   <string name="DateUtils_minutes_ago">%d хв</string>
+  <string name="DateUtils_today">Сьогодні</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Від\'єднати \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Після від\'єднання цього пристрою він більше не зможе відправляти та одержувати повідомлення.</string>
@@ -628,6 +629,7 @@
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Режим групового виділення</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s обрано</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Завантаження країн...</string>
   <string name="country_selection_fragment__search">Пошук</string>

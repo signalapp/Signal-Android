@@ -206,6 +206,7 @@
   <!--DateUtils-->
   <string name="DateUtils_just_now">À l\'instant</string>
   <string name="DateUtils_minutes_ago">%d min</string>
+  <string name="DateUtils_today">Aujourd\'hui</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Dissocier \'%s\' ?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Si vous dissociez cet appareil, il ne pourra plus envoyer ou recevoir des messages.</string>
@@ -623,6 +624,7 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Mode de sélection par lot</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s sélectionné</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Chargement des pays...</string>
   <string name="country_selection_fragment__search">Chercher</string>

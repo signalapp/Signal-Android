@@ -256,6 +256,7 @@
   <!--DateUtils-->
   <string name="DateUtils_just_now">هذه اللحظة</string>
   <string name="DateUtils_minutes_ago">%d دقيقة</string>
+  <string name="DateUtils_today">اليوم</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">إلغاء ربط  \'%s\'؟</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">لن يكون إرسال واستقبال الرسائل ممكنا بمجرد إلغاء ربط الجهاز.</string>
@@ -651,6 +652,7 @@
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">وضع اختيار الدفعات</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s اختيار</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">تحميل البلدان جارٍ ...</string>
   <string name="country_selection_fragment__search">بحث</string>

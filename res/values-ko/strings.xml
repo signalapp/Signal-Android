@@ -181,6 +181,7 @@
   <string name="CustomDefaultPreference_none">없음</string>
   <!--DateUtils-->
   <string name="DateUtils_minutes_ago">%d분 전</string>
+  <string name="DateUtils_today">오늘</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">%s을(를) 연결 해제하시겠습니까?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">연결 해제를 통해 메시지를 보내거나 받지 못할 수 있습니다.</string>
@@ -529,6 +530,7 @@
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">여러 대화 선택</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s개 선택됨</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">국가 로드 중…</string>
   <string name="country_selection_fragment__search">검색</string>

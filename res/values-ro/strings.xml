@@ -221,6 +221,7 @@
   <!--DateUtils-->
   <string name="DateUtils_just_now">Tocmai acum</string>
   <string name="DateUtils_minutes_ago">%d min</string>
+  <string name="DateUtils_today">Azi</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Deconectez \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Prin deconectarea acestui dispozitiv, nu v-a mai putea trimite și primi mesaje.</string>
@@ -643,6 +644,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Mod selecţie multiplă</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s selectate</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Se încarcă țările...</string>
   <string name="country_selection_fragment__search">Caută</string>

@@ -188,6 +188,7 @@
   <!--DateUtils-->
   <string name="DateUtils_just_now">Az önce</string>
   <string name="DateUtils_minutes_ago">%d dk.</string>
+  <string name="DateUtils_today">Bugün</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">\'%s\' bağlantısını kaldır?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Bu cihazın bağlantısını kaldırarak, artık mesaj alamayacak ya da gönderemeyeceksiniz.</string>
@@ -585,6 +586,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Toplu seçim modu</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s seçildi</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Ülkeler yükleniyor...</string>
   <string name="country_selection_fragment__search">Ara</string>

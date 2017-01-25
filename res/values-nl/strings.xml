@@ -21,7 +21,7 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Verwijderen</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Wachtwoord uitschakelen?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Dit zal Signal- en berichtmeldingen voorgoed ontgrendelen.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Dit zal Signal- en berichtmeldingen blijvend ontgrendelen.</string>
   <string name="ApplicationPreferencesActivity_disable">Uitschakelen</string>
   <string name="ApplicationPreferencesActivity_unregistering">Aan het afmelden</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Aan het afmelden voor Signal-berichten en -oproepen...</string>
@@ -206,6 +206,8 @@
   <!--DateUtils-->
   <string name="DateUtils_just_now">Nu</string>
   <string name="DateUtils_minutes_ago">%d min</string>
+  <string name="DateUtils_today">Vandaag</string>
+  <string name="DateUtils_yesterday">Gisteren</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">\'%s\' ontkoppelen?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Door het ontkoppelen van dit apparaat kan het geen berichten meer verzenden of ontvangen.</string>
@@ -621,6 +623,8 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode"> Meerdere tegelijk selecteren</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s geselecteerd</string>
+  <!--conversation_fragment-->
+  <string name="conversation_fragment__scroll_to_the_bottom_content_description">Scroll naar beneden</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Landen laden...</string>
   <string name="country_selection_fragment__search">Zoeken</string>

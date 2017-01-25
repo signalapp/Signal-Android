@@ -221,6 +221,7 @@
   <!--DateUtils-->
   <string name="DateUtils_just_now">Управо сад</string>
   <string name="DateUtils_minutes_ago">%d минута</string>
+  <string name="DateUtils_today">Данас</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Да уклоним „%s“?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Овај уређај више неће моћи да шаље или прима поруке ако га уклоните.</string>
@@ -643,6 +644,7 @@
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Режим серијског избора</string>
   <string name="conversation_fragment_cab__batch_selection_amount">Изабрано: %s</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Учитавам државе...</string>
   <string name="country_selection_fragment__search">Тражи</string>

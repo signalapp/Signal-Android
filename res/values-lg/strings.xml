@@ -183,6 +183,7 @@ a</string>
   <string name="CustomDefaultPreference_none">tewali</string>
   <!--DateUtils-->
   <string name="DateUtils_minutes_ago">%d dakiika</string>
+  <string name="DateUtils_today">Leero</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Gyayoo \'%s\'?</string>
   <string name="DeviceListActivity_try_again">Gezaako neera</string>
@@ -538,6 +539,7 @@ Dammu okebere e namba yo.  Tugenda kugikakasa no bubaka ku simu</string>
   <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_amount">%s kilondedwako</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Ensi ziwanulwa</string>
   <string name="country_selection_fragment__search">Noonya</string>

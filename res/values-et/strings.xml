@@ -206,6 +206,7 @@
   <!--DateUtils-->
   <string name="DateUtils_just_now">Nüüd</string>
   <string name="DateUtils_minutes_ago">%d min</string>
+  <string name="DateUtils_today">Täna</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Eemaldada \"%s\" linkimine?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Eemaldades selle seadme lingi, ei ole see enam võimeline sõnumeid saatma ja vastu võtma.</string>
@@ -639,6 +640,7 @@
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Hulgivaliku režiim</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s valitud</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Laadin riike...</string>
   <string name="country_selection_fragment__search">Otsi</string>

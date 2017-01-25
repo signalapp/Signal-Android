@@ -193,6 +193,7 @@
   <string name="CustomDefaultPreference_none">No n\'hi ha</string>
   <!--DateUtils-->
   <string name="DateUtils_minutes_ago">%d min</string>
+  <string name="DateUtils_today">Avui</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Desenllaçar \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Si desenllaces aquest dispositiu, no es podran ni rebre ni enviar missatges.</string>
@@ -548,6 +549,7 @@ Comprova que aquest és el teu número! Anem a verificar-ho amb un SMS.</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Mode de selecció per lots</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s seleccionats</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Carregant països...</string>
   <string name="country_selection_fragment__search">Cerca</string>

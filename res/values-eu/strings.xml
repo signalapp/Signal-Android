@@ -197,6 +197,7 @@
   <string name="CustomDefaultPreference_none">Bat ere ez</string>
   <!--DateUtils-->
   <string name="DateUtils_minutes_ago">%d min</string>
+  <string name="DateUtils_today">Gaur</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">\'%s\'-rekin lotura ezabatu?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Gailu hau desparekatu ondoren ezin ditzakezu mezuak bidal eta jaso.</string>
@@ -583,6 +584,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Batch hautatzeko modua</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s hautatua</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Herrialdeak kargatzen...</string>
   <string name="country_selection_fragment__search">Bilatu</string>

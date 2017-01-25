@@ -220,6 +220,7 @@
   <!--DateUtils-->
   <string name="DateUtils_just_now">Teď</string>
   <string name="DateUtils_minutes_ago">%d minuta</string>
+  <string name="DateUtils_today">Dnes</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Rozpojit \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Rozpojením toho zařízení nebude dále možno posílat a přijímat zprávy.</string>
@@ -631,6 +632,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Hromadný výběr</string>
   <string name="conversation_fragment_cab__batch_selection_amount">Vybráno %s</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Načítám země...</string>
   <string name="country_selection_fragment__search">Hledat</string>

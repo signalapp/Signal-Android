@@ -203,6 +203,7 @@
   <!--DateUtils-->
   <string name="DateUtils_just_now">Akkurat no</string>
   <string name="DateUtils_minutes_ago">%d min</string>
+  <string name="DateUtils_today">I dag</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Vil du kopla frå «%s»?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Viss du koplar denne eininga frå tenesta, kan ho ikkje lenger senda eller motta meldingar.</string>
@@ -607,6 +608,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Vel fleire-modus</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s valt</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Lastar inn land …</string>
   <string name="country_selection_fragment__search">Søk</string>

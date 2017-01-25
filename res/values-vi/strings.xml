@@ -177,6 +177,7 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <string name="CustomDefaultPreference_none">Không</string>
   <!--DateUtils-->
   <string name="DateUtils_minutes_ago">%d phút</string>
+  <string name="DateUtils_today">Hôm nay</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Gỡ liên kết \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Khi gỡ liên kết thiết bị này, nó sẽ không thể gửi hoặc nhận tin nhắn được nữa.</string>
@@ -542,6 +543,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Dạng chọn hàng loạt</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s được chọn</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Nạp tên quốc gia...</string>
   <string name="country_selection_fragment__search">Tìm kiếm</string>

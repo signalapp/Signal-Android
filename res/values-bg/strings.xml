@@ -206,6 +206,8 @@
   <!--DateUtils-->
   <string name="DateUtils_just_now">Току що</string>
   <string name="DateUtils_minutes_ago">%d мин</string>
+  <string name="DateUtils_today">Днес</string>
+  <string name="DateUtils_yesterday">Вчера</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Премахни връзката \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Ако прекратиш връзката с това устройство, няма да можеш да изпращаш и получаваш съобщения от него.</string>
@@ -628,6 +630,8 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Режим на групово избиране</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s избран</string>
+  <!--conversation_fragment-->
+  <string name="conversation_fragment__scroll_to_the_bottom_content_description">Превъртане надолу</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Зареждане на държавите...</string>
   <string name="country_selection_fragment__search">Търси</string>

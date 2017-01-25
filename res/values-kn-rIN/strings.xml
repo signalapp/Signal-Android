@@ -170,6 +170,7 @@
   <string name="CustomDefaultPreference_none">ಯಾವುದೂ ಇಲ್ಲ</string>
   <!--DateUtils-->
   <string name="DateUtils_minutes_ago">%d ನಿಮಿಷ</string>
+  <string name="DateUtils_today">ಇಂದು</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">\'%s\'ನು ಅಗಲಿಸು?</string>
   <string name="DeviceListActivity_try_again">ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ</string>
@@ -432,6 +433,7 @@
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">ಗುಂಪು ಆಯ್ಕೆಯ ಕ್ರಮ</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s ಆಯ್ಕೆಮಾಡಲಾಗಿದೆ</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">ರಾಷ್ಟ್ರಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ ...</string>
   <string name="country_selection_fragment__search">ಹುಡುಕಿ</string>

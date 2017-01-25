@@ -182,6 +182,7 @@
   <string name="CustomDefaultPreference_none">هیچ کدام</string>
   <!--DateUtils-->
   <string name="DateUtils_minutes_ago">%d دقیقه</string>
+  <string name="DateUtils_today">امروز</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">قطع ارتباط \'%s\'؟</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">توسط لغو پیوند کردن این دستگاه،دیگر قادر به ارسال و دریافت پیام ها نخواهید بود.</string>
@@ -539,6 +540,7 @@
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">حالت انتخاب دسته ای</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s منتخب</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">کشورهای در حال بارگذاری ...</string>
   <string name="country_selection_fragment__search">جستجو</string>

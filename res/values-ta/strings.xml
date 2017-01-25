@@ -160,6 +160,7 @@
   <string name="CustomDefaultPreference_none">எதுவும் இல்லை</string>
   <!--DateUtils-->
   <string name="DateUtils_minutes_ago">%d நிமிடம்</string>
+  <string name="DateUtils_today">இன்று</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">\'%s\' துண்டி?</string>
   <string name="DeviceListActivity_try_again">மீண்டும் முயற்சிக்கவும்</string>
@@ -453,6 +454,7 @@
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">தொகுப்பாய் தேர்வு செய்யப்பட்டது</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s தேர்ந்தெடுக்கப்பட்டது</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">நாடுகள் ஏற்றப்படுகிறது...</string>
   <string name="country_selection_fragment__search">தேடல்</string>

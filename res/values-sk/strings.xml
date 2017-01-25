@@ -462,6 +462,7 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Mód hromadného výberu</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s vybraných</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Načítavanie krajín...</string>
   <string name="country_selection_fragment__search">Hľadaj</string>

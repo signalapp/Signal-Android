@@ -188,6 +188,7 @@
   <!--DateUtils-->
   <string name="DateUtils_just_now">剛剛</string>
   <string name="DateUtils_minutes_ago">%d 分鐘</string>
+  <string name="DateUtils_today">今天</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">取消連結 \'%s\'？</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">如果取消連結此裝置，它將不能再接受或傳送訊息。</string>
@@ -596,6 +597,7 @@
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">批次選擇模式</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s 已選</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">載入國家清單中...</string>
   <string name="country_selection_fragment__search">搜尋</string>
