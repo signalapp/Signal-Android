@@ -105,14 +105,11 @@ public class ContactAccessor {
 
   public boolean isNumberUnknown(Context context, String phoneNumber) {
     Uri uri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(phoneNumber));
-    String[] proj = new String[] { PhoneLookup.DISPLAY_NAME };
     ContentResolver contentResolver = context.getContentResolver();
-    Cursor contactLookup = contentResolver.query(uri, proj, null, null, null);
+    Cursor contactLookup = contentResolver.query(uri, null, null, null, null);
     try {
-      if (contactLookup != null && contactLookup.getCount() > 0) {
-        contactLookup.moveToNext();
+      if (contactLookup != null && contactLookup.getCount() > 0)
         return false;
-      }
     } finally {
       if (contactLookup != null) {
         contactLookup.close();
