@@ -86,7 +86,9 @@ public class DynamicShortcutCreator {
         } finally {
             if (cursor != null) cursor.close();
 
-            manager.setDynamicShortcuts(shortcutInfos);
+            if(!shortcutInfos.isEmpty()) {
+                manager.setDynamicShortcuts(shortcutInfos);
+            }
         }
     }
 
