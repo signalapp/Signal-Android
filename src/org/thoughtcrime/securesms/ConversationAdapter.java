@@ -300,5 +300,10 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     Cursor cursor = getCursorAtPositionOrThrow(position);
     viewHolder.setText(DateUtils.getRelativeDate(getContext(), locale, getMessageRecord(cursor).getDateReceived()));
   }
+
+  @Override
+  public boolean isActive() {
+    return isActiveCursor();
+  }
 }
 
