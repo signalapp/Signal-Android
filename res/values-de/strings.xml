@@ -104,7 +104,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Die Nachricht ist leer!</string>
   <string name="ConversationActivity_group_members">Gruppenmitglieder</string>
   <string name="ConversationActivity_group_conversation">Gruppenunterhaltung</string>
-  <string name="ConversationActivity_unnamed_group">Unbenannte Gruppe</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="one">1 Mitglied</item>
     <item quantity="other">%d Mitglieder</item>
@@ -120,7 +119,7 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Wechseln wir zu Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Unterhalten wir uns hiermit: %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Fehler beim Verlassen der Gruppe …</string>
+  <string name="ConversationActivity_error_leaving_group">Fehler beim Verlassen der Gruppe</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS nicht unterstützt</string>
   <string name="ConversationActivity_mms_not_supported_message">Diese Nachricht kann nicht gesendet werden, da dein Mobilfunkanbieter MMS nicht unterstützt.</string>
   <string name="ConversationActivity_specify_recipient">Bitte einen Kontakt auswählen</string>
@@ -207,6 +206,8 @@
   <!--DateUtils-->
   <string name="DateUtils_just_now">Gerade eben</string>
   <string name="DateUtils_minutes_ago">%d min</string>
+  <string name="DateUtils_today">Heute</string>
+  <string name="DateUtils_yesterday">Gestern</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">»%s« entfernen?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Nach Entfernen dieses Geräts wird es keine weiteren Nachrichten senden oder empfangen können.</string>
@@ -332,6 +333,8 @@ Das Wiederherstellen einer verschlüsselten Datensicherung ersetzt deine bestehe
   <string name="NotificationBarManager__cancel_call">Anruf abbrechen</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">MMS</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">MMS wird heruntergeladen …</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Fehler beim Herunterladen der MMS. Für erneuten Versuch antippen.</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Die empfangene Nachricht wurde mit einer veralteten Version von Signal verschlüsselt, die nicht mehr unterstützt wird. Bitte den Absender, Signal zu aktualisieren und die Nachricht erneut zu senden.</string>
   <string name="MessageRecord_left_group">Du hast die Gruppe verlassen</string>
@@ -393,6 +396,8 @@ Das Wiederherstellen einer verschlüsselten Datensicherung ersetzt deine bestehe
   <string name="RecipientPreferenceActivity_enabled">Aktiviert</string>
   <string name="RecipientPreferenceActivity_disabled">Deaktiviert</string>
   <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Verfügbar, sobald eine Nachricht gesendet oder empfangen wurde.</string>
+  <!--RecipientProvider-->
+  <string name="RecipientProvider_unnamed_group">Unbenannte Gruppe</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">Anruf wird angenommen</string>
   <string name="RedPhone_ending_call">Anruf wird beendet</string>
@@ -611,6 +616,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Mehrfachauswahl</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s ausgewählt</string>
+  <!--conversation_fragment-->
+  <string name="conversation_fragment__scroll_to_the_bottom_content_description">Zum unteren Ende scrollen</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Länder werden geladen …</string>
   <string name="country_selection_fragment__search">Suchen</string>

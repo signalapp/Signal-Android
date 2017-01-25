@@ -116,7 +116,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">الرسالة فارغة</string>
   <string name="ConversationActivity_group_members">أعضاء المجموعة</string>
   <string name="ConversationActivity_group_conversation">دردشة جماعية</string>
-  <string name="ConversationActivity_unnamed_group">مجموعة غير مسماه</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="zero">%d عضو</item>
     <item quantity="one">عضو</item>
@@ -136,7 +135,6 @@
   <string name="ConversationActivity_transport_signal">سيجنال</string>
   <string name="ConversationActivity_lets_switch_to_signal">هيا ننتقل إلى سيجنال %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">دعنا نتواصل عبر هذا: %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">خطأ أثناء ترك المجموعة...</string>
   <string name="ConversationActivity_mms_not_supported_title">رسائل الوسائط المتعددة غير مدعمة</string>
   <string name="ConversationActivity_mms_not_supported_message">لا يمكن الإرسال لأن شبكة الجوال التي تستخدمها لا تدعم رسائل الوسائط المتعددة.</string>
   <string name="ConversationActivity_specify_recipient">رجاء اختيار جهة اتصال</string>
@@ -258,6 +256,7 @@
   <!--DateUtils-->
   <string name="DateUtils_just_now">هذه اللحظة</string>
   <string name="DateUtils_minutes_ago">%d دقيقة</string>
+  <string name="DateUtils_today">اليوم</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">إلغاء ربط  \'%s\'؟</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">لن يكون إرسال واستقبال الرسائل ممكنا بمجرد إلغاء ربط الجهاز.</string>
@@ -440,6 +439,7 @@
   <string name="RecipientPreferenceActivity_unblock">رفع الحظر</string>
   <string name="RecipientPreferenceActivity_enabled">مفعل</string>
   <string name="RecipientPreferenceActivity_disabled">معطل</string>
+  <!--RecipientProvider-->
   <!--RedPhone-->
   <string name="RedPhone_answering">جارٍ الرد</string>
   <string name="RedPhone_ending_call">جارٍ إنهاء المكالمة</string>
@@ -652,6 +652,7 @@
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">وضع اختيار الدفعات</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s اختيار</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">تحميل البلدان جارٍ ...</string>
   <string name="country_selection_fragment__search">بحث</string>

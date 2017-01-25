@@ -61,7 +61,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Паведамленне пустое!</string>
   <string name="ConversationActivity_group_members">Удзельнікі групы</string>
   <string name="ConversationActivity_group_conversation">Групавая гутарка</string>
-  <string name="ConversationActivity_unnamed_group">Неназваная група</string>
   <string name="ConversationActivity_saved_draft">Захаваны чарнавік</string>
   <string name="ConversationActivity_invalid_recipient">Няправільны атрымальнік!</string>
   <string name="ConversationActivity_calls_not_supported">Званкі не падтрымліваюцца</string>
@@ -70,7 +69,6 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Вы ўпэўнены, што хочаце пакінуць групу?</string>
   <string name="ConversationActivity_transport_insecure_sms">Небяспечная SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Небяспечная MMS</string>
-  <string name="ConversationActivity_error_leaving_group">Памылка выхаду з групы...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS не падтрымліваюцца</string>
   <string name="ConversationActivity_mms_not_supported_message">Гэтае паведамленне ня можа быць даслана, бо ваша мабільны аператар не падтрымлівае MMS</string>
   <!--ConversationFragment-->
@@ -177,6 +175,7 @@
   <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
   <!--RecipientPreferencesActivity-->
+  <!--RecipientProvider-->
   <!--RedPhone-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Абярыце вашу краіну</string>
@@ -299,6 +298,7 @@
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Пакетны рэжым выбару</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s абрана</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Загрузка краінаў...</string>
   <string name="country_selection_fragment__search">Пошук</string>

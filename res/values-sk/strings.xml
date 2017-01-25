@@ -90,7 +90,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Správa je prázdna!</string>
   <string name="ConversationActivity_group_members">Členovia skupiny</string>
   <string name="ConversationActivity_group_conversation">Skupinová konverzácia</string>
-  <string name="ConversationActivity_unnamed_group">Nepomenovaná skupina</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="one">1 člen</item>
     <item quantity="few">%d členov</item>
@@ -105,7 +104,6 @@
   <string name="ConversationActivity_transport_insecure_sms">Nezašifrovaná SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nezašifrovaná MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
-  <string name="ConversationActivity_error_leaving_group">Chyba pri opúšťaní skupiny...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS nie sú podporované</string>
   <string name="ConversationActivity_mms_not_supported_message">Táto správa nemohla byť odoslaná keďže váš operátor nepodporuje MMS.</string>
   <string name="ConversationActivity_specify_recipient">Prosím vyberte kontakt</string>
@@ -264,6 +262,7 @@ opätovným importom zduplikujete správy.
   <string name="RecipientPreferenceActivity_unblock">Odblokovať</string>
   <string name="RecipientPreferenceActivity_enabled">Povolené</string>
   <string name="RecipientPreferenceActivity_disabled">Zakázané</string>
+  <!--RecipientProvider-->
   <!--RedPhone-->
   <string name="RedPhone_answering">Zodvíham</string>
   <string name="RedPhone_ending_call">Končím hovor</string>
@@ -463,6 +462,7 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Mód hromadného výberu</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s vybraných</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Načítavanie krajín...</string>
   <string name="country_selection_fragment__search">Hľadaj</string>

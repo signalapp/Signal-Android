@@ -101,7 +101,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Mesaj boş!</string>
   <string name="ConversationActivity_group_members">Grup üyeleri</string>
   <string name="ConversationActivity_group_conversation">Grup sohbeti</string>
-  <string name="ConversationActivity_unnamed_group">Adlandırılmamış grup</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="other">%d üye</item>
   </plurals>
@@ -116,7 +115,6 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Hadi Signal uygulamasını kullanmaya başlayalım %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Hadi sohbet etmek için bunu kullanalım: %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Gruptan ayrılma hatası...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS desteklenmiyor</string>
   <string name="ConversationActivity_mms_not_supported_message">Taşıyıcınız MMS desteklemediği için bu mesaj gönderilemez.</string>
   <string name="ConversationActivity_specify_recipient">Lütfen bir kişi seç</string>
@@ -190,6 +188,7 @@
   <!--DateUtils-->
   <string name="DateUtils_just_now">Az önce</string>
   <string name="DateUtils_minutes_ago">%d dk.</string>
+  <string name="DateUtils_today">Bugün</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">\'%s\' bağlantısını kaldır?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Bu cihazın bağlantısını kaldırarak, artık mesaj alamayacak ya da gönderemeyeceksiniz.</string>
@@ -369,6 +368,7 @@
   <string name="RecipientPreferenceActivity_unblock">Engeli kaldır</string>
   <string name="RecipientPreferenceActivity_enabled">Etkin</string>
   <string name="RecipientPreferenceActivity_disabled">Devre dışı</string>
+  <!--RecipientProvider-->
   <!--RedPhone-->
   <string name="RedPhone_answering">Cevap veriliyor</string>
   <string name="RedPhone_ending_call">Arama sonlandırılıyor</string>
@@ -586,6 +586,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Toplu seçim modu</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s seçildi</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Ülkeler yükleniyor...</string>
   <string name="country_selection_fragment__search">Ara</string>

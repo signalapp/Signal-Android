@@ -183,7 +183,7 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
     return cursor;
   }
 
-  private boolean isActiveCursor() {
+  protected boolean isActiveCursor() {
     return valid && cursor != null;
   }
 

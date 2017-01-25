@@ -93,7 +93,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Obubaka bukalu!</string>
   <string name="ConversationActivity_group_members">Ababaka b\'omukibinja</string>
   <string name="ConversationActivity_group_conversation">Emboozi y\'ekibinja</string>
-  <string name="ConversationActivity_unnamed_group">Ekibinja  ekitalina linya</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="one">munaffe 1</item>
     <item quantity="other">%d ababaka</item>
@@ -110,7 +109,6 @@ a</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Katudde ku Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Katukozese emboozi eno: %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">ensobi mukuva mu kibinja...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS tewagiddwa</string>
   <string name="ConversationActivity_specify_recipient">Bambi londa contact</string>
   <string name="ConversationActivity_unblock_this_contact_question">sumulula contact eno</string>
@@ -185,6 +183,7 @@ a</string>
   <string name="CustomDefaultPreference_none">tewali</string>
   <!--DateUtils-->
   <string name="DateUtils_minutes_ago">%d dakiika</string>
+  <string name="DateUtils_today">Leero</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Gyayoo \'%s\'?</string>
   <string name="DeviceListActivity_try_again">Gezaako neera</string>
@@ -348,6 +347,7 @@ a</string>
   <string name="RecipientPreferenceActivity_unblock">sumulula</string>
   <string name="RecipientPreferenceActivity_enabled">Etereddwaako</string>
   <string name="RecipientPreferenceActivity_disabled">Egyiddwaako</string>
+  <!--RecipientProvider-->
   <!--RedPhone-->
   <string name="RedPhone_answering">oddibwaamu</string>
   <string name="RedPhone_ending_call">essimu esalibwaako</string>
@@ -539,6 +539,7 @@ Dammu okebere e namba yo.  Tugenda kugikakasa no bubaka ku simu</string>
   <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_amount">%s kilondedwako</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Ensi ziwanulwa</string>
   <string name="country_selection_fragment__search">Noonya</string>

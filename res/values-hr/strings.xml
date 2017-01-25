@@ -107,7 +107,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Poruka je prazna!</string>
   <string name="ConversationActivity_group_members">Članovi grupe</string>
   <string name="ConversationActivity_group_conversation">Grupni razgovor</string>
-  <string name="ConversationActivity_unnamed_group">Neimenovana grupa</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="one">1 član</item>
     <item quantity="few">%d člana</item>
@@ -124,7 +123,6 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Prebaci se na Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Koristi ovo za razgovor: %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Greška prilikom napuštanja grupe...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS nije podržan</string>
   <string name="ConversationActivity_mms_not_supported_message">Ovu poruku nije moguće poslati jer vaš operater ne podržava MMS.</string>
   <string name="ConversationActivity_specify_recipient">Odaberite kontakt</string>
@@ -222,6 +220,7 @@
   <!--DateUtils-->
   <string name="DateUtils_just_now">Upravo sada</string>
   <string name="DateUtils_minutes_ago">%d min</string>
+  <string name="DateUtils_today">Danas</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Odspoji \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Odspajanjem ovog uređaja više nećete moći slati ili primati poruke.</string>
@@ -418,6 +417,7 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="RecipientPreferenceActivity_enabled">Omogućeno</string>
   <string name="RecipientPreferenceActivity_disabled">Onemogućeno</string>
   <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Dostupno nakon što pošaljete ili primite poruku.</string>
+  <!--RecipientProvider-->
   <!--RedPhone-->
   <string name="RedPhone_answering">Odgovaranje</string>
   <string name="RedPhone_ending_call">Završavanje poziva</string>
@@ -643,6 +643,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Način za višestruki odabir</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s odabrano</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Učitavanje zemalja...</string>
   <string name="country_selection_fragment__search">Traži</string>
