@@ -68,10 +68,23 @@ public class DynamicShortcutCreator {
                     Set<String> category = new HashSet<>();
                     category.add("android.shortcut.conversation");
 
+                    String shortLabel = record.getRecipients().getPrimaryRecipient().getName();
+                    if(shortLabel.length() > 10) {
+                        shortLabel = shortLabel.substring(0 ,9);
+                        shortLabel += ".";
+                    }
+
+                    String longLabel  = record.getRecipients().getPrimaryRecipient().getName();
+                    if(longLabel.length() > 25) {
+                        longLabel = longLabel.substring(0, 24);
+                        longLabel += ".";
+                    }
+
                     ShortcutInfo info = new ShortcutInfo.Builder(context, record.getRecipients().getPrimaryRecipient().getName())
                             .setIntent(intent)
                             .setRank(shortcutInfos.size())
-                            .setShortLabel(record.getRecipients().getPrimaryRecipient().getName())
+                            .setShortLabel(shortLabel)
+                            .setLongLabel(longLabel)
                             .setCategories(category)
                             .setIcon(Icon.createWithBitmap(avatar))
                             .build();
