@@ -23,14 +23,17 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.os.Build.VERSION;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -78,6 +81,11 @@ public class RecyclerViewFastScroller extends LinearLayout {
     inflate(context, R.layout.recycler_view_fast_scroller, this);
     bubble = ViewUtil.findById(this, R.id.fastscroller_bubble);
     handle = ViewUtil.findById(this, R.id.fastscroller_handle);
+
+    TypedArray styledAttributes = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.RecyclerViewFastScroller, 0, 0);
+    bubble.setTextSize(TypedValue.COMPLEX_UNIT_PX,
+                       styledAttributes.getDimension(R.styleable.RecyclerViewFastScroller_textSize, 0));
+    styledAttributes.recycle();
   }
 
   @Override
@@ -158,7 +166,8 @@ public class RecyclerViewFastScroller extends LinearLayout {
         proportion = y / (float)height;
       }
 
-      final int targetPos = Util.clamp((int)(proportion * (float)itemCount), 0, itemCount - 1);
+      final int targetPos = translatedChildPosition(Util.clamp((int)(proportion * (float)itemCount),
+                                                               0, itemCount - 1));
       ((LinearLayoutManager) recyclerView.getLayoutManager()).scrollToPositionWithOffset(targetPos, 0);
       final CharSequence bubbleText = ((FastScrollAdapter) recyclerView.getAdapter()).getBubbleText(targetPos);
       bubble.setText(bubbleText);
@@ -209,5 +218,15 @@ public class RecyclerViewFastScroller extends LinearLayout {
     } else {
       bubble.setVisibility(INVISIBLE);
     }
+  }
+
+  private boolean isReverseLayout(final RecyclerView parent) {
+    return (parent.getLayoutManager() instanceof LinearLayoutManager) &&
+        ((LinearLayoutManager)parent.getLayoutManager()).getReverseLayout();
+  }
+
+  private int translatedChildPosition(int position) {
+    if (recyclerView == null) return position;
+    return isReverseLayout(recyclerView) ? recyclerView.getAdapter().getItemCount() - 1 - position : position;
   }
 }

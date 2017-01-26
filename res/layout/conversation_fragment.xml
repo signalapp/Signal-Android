@@ -54,4 +54,11 @@
             android:contentDescription="@string/conversation_fragment__scroll_to_the_bottom_content_description"
             android:src="@drawable/ic_scroll_down"/>
 
+    <org.thoughtcrime.securesms.components.RecyclerViewFastScroller
+            android:id="@+id/fast_conversation_scroller"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:textSize="28sp"
+            android:visibility="gone"
+            android:layout_gravity="end"/>
 </FrameLayout>

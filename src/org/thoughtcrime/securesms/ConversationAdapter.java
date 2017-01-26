@@ -31,6 +31,7 @@ import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.thoughtcrime.securesms.components.RecyclerViewFastScroller.FastScrollAdapter;
 import org.thoughtcrime.securesms.ConversationAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
@@ -70,7 +71,7 @@ import java.util.Set;
  */
 public class ConversationAdapter <V extends View & BindableConversationItem>
     extends FastCursorRecyclerViewAdapter<ConversationAdapter.ViewHolder, MessageRecord>
-  implements StickyHeaderDecoration.StickyHeaderAdapter<HeaderViewHolder>
+  implements StickyHeaderDecoration.StickyHeaderAdapter<HeaderViewHolder>, FastScrollAdapter
 {
 
   private static final int MAX_CACHE_SIZE = 40;
@@ -395,8 +396,20 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
 
   @Override
   public void onBindHeaderViewHolder(HeaderViewHolder viewHolder, int position) {
+    viewHolder.setText(getHeaderString(position));
+  }
+
+  @Override
+  public @Nullable CharSequence getBubbleText(int position) {
+    if (isHeaderPosition(position)) return getBubbleText(position + 1);
+    if (isFooterPosition(position)) return getBubbleText(position - 1);
+    if (position >= getItemCount()) return null;
+    return getHeaderString(position);
+  }
+
+  private String getHeaderString(int position) {
     MessageRecord messageRecord = getRecordForPositionOrThrow(position);
-    viewHolder.setText(DateUtils.getRelativeDate(getContext(), locale, messageRecord.getDateReceived()));
+    return DateUtils.getRelativeDate(getContext(), locale, messageRecord.getDateReceived());
   }
 
   public void onBindLastSeenViewHolder(HeaderViewHolder viewHolder, int position) {

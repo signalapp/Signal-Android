@@ -10,7 +10,8 @@
               android:background="@drawable/recycler_view_fast_scroller_bubble"
               android:gravity="center"
               android:textColor="@color/white"
-              android:textSize="48sp"
+              android:paddingLeft="24dp"
+              android:paddingRight="24dp"
               android:visibility="gone"
               tools:visibility="visible"
               tools:text="A" />
