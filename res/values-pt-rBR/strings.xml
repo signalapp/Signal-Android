@@ -342,6 +342,8 @@
   <string name="NotificationBarManager__cancel_call">Cancelar ligação</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Mensagem multimídia</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">Baixando mensagem MMS</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Erro ao baixar mensagem MMS, clique para tentar novamente</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Foi recebida uma mensagem que foi criptografada usando uma versão antiga do Signal que não é mais suportada. Favor pedir ao remetente que atualize para a versão mais recente e reenvie a mensagem.</string>
   <string name="MessageRecord_left_group">Você saiu do grupo.</string>
@@ -406,6 +408,7 @@
   <string name="RecipientPreferenceActivity_disabled">Desabilitado</string>
   <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Disponível assim que uma mensagem tiver sido enviada ou recebida.</string>
   <!--RecipientProvider-->
+  <string name="RecipientProvider_unnamed_group">Grupo sem nome</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">Atendendo</string>
   <string name="RedPhone_ending_call">Encerrando chamada</string>
@@ -639,6 +642,7 @@
   <string name="conversation_fragment_cab__batch_selection_mode">Modo de seleção em grupo</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s selecionadas</string>
   <!--conversation_fragment-->
+  <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rolar para o final</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Carregando países...</string>
   <string name="country_selection_fragment__search">Procurar</string>

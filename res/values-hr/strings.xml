@@ -123,6 +123,7 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Prebaci se na Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Koristi ovo za razgovor: %1$s</string>
+  <string name="ConversationActivity_error_leaving_group">Greška pri napuštanju grupe</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS nije podržan</string>
   <string name="ConversationActivity_mms_not_supported_message">Ovu poruku nije moguće poslati jer vaš operater ne podržava MMS.</string>
   <string name="ConversationActivity_specify_recipient">Odaberite kontakt</string>
@@ -221,6 +222,7 @@
   <string name="DateUtils_just_now">Upravo sada</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <string name="DateUtils_today">Danas</string>
+  <string name="DateUtils_yesterday">Jučer</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Odspoji \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Odspajanjem ovog uređaja više nećete moći slati ili primati poruke.</string>
@@ -354,6 +356,8 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="NotificationBarManager__cancel_call">Otkaži poziv</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimedijalna poruka</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">Preuzimanje MMS poruke</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Greška pri preuzimanju MMS poruke, pritisnite za ponovni pokušaj</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Primljena je poruka kriptirana starom inačicom Signal aplikacije koja više nije podržana. Molimo zapitajte pošiljatelja da ažurira na najnoviju inačicu aplikacije i ponovno pošalje poruku.</string>
   <string name="MessageRecord_left_group">Napustili ste grupu.</string>
@@ -418,6 +422,7 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="RecipientPreferenceActivity_disabled">Onemogućeno</string>
   <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Dostupno nakon što pošaljete ili primite poruku.</string>
   <!--RecipientProvider-->
+  <string name="RecipientProvider_unnamed_group">Neimenovana grupa</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">Odgovaranje</string>
   <string name="RedPhone_ending_call">Završavanje poziva</string>
@@ -644,6 +649,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="conversation_fragment_cab__batch_selection_mode">Način za višestruki odabir</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s odabrano</string>
   <!--conversation_fragment-->
+  <string name="conversation_fragment__scroll_to_the_bottom_content_description">Kliži do dna</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Učitavanje zemalja...</string>
   <string name="country_selection_fragment__search">Traži</string>
