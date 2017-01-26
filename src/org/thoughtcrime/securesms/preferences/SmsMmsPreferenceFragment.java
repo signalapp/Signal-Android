@@ -48,6 +48,9 @@ public class SmsMmsPreferenceFragment extends PreferenceFragment {
     Preference       allMmsPreference    = findPreference(TextSecurePreferences.ALL_MMS_PREF);
     Preference       manualMmsPreference = findPreference(MMS_PREF);
 
+    defaultPreference.setEnabled(true);
+    defaultPreference.setOnPreferenceClickListener(new SmsPreferenceListener());
+
     if (VERSION.SDK_INT >= VERSION_CODES.KITKAT) {
       if (allSmsPreference != null) preferenceScreen.removePreference(allSmsPreference);
       if (allMmsPreference != null) preferenceScreen.removePreference(allMmsPreference);
@@ -84,6 +87,15 @@ public class SmsMmsPreferenceFragment extends PreferenceFragment {
       fragmentTransaction.commit();
 
       return true;
+    }
+  }
+
+  private class SmsPreferenceListener implements Preference.OnPreferenceClickListener {
+    @Override
+    public boolean onPreferenceClick(Preference preference) {
+      preference.setEnabled(false);
+
+      return false;
     }
   }
 

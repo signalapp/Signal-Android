@@ -35,6 +35,8 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
         .setOnPreferenceChangeListener(new ListSummaryListener());
     this.findPreference(TextSecurePreferences.RINGTONE_PREF)
         .setOnPreferenceChangeListener(new RingtoneSummaryListener());
+    this.findPreference(TextSecurePreferences.RINGTONE_PREF)
+        .setOnPreferenceClickListener(new RingtoneSummaryListener());
     this.findPreference(TextSecurePreferences.REPEAT_ALERTS_PREF)
         .setOnPreferenceChangeListener(new ListSummaryListener());
     this.findPreference(TextSecurePreferences.NOTIFICATION_PRIVACY_PREF)
@@ -51,9 +53,11 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
   public void onResume() {
     super.onResume();
     ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.preferences__notifications);
+    findPreference(TextSecurePreferences.RINGTONE_PREF).setEnabled(true);
   }
 
-  private class RingtoneSummaryListener implements Preference.OnPreferenceChangeListener {
+  private class RingtoneSummaryListener implements Preference.OnPreferenceChangeListener,
+          Preference.OnPreferenceClickListener {
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
       String value = (String) newValue;
@@ -66,6 +70,15 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
           preference.setSummary(tone.getTitle(getActivity()));
         }
       }
+
+      preference.setEnabled(true);
+
+      return true;
+    }
+
+    @Override
+    public boolean onPreferenceClick(final Preference preference) {
+      preference.setEnabled(false);
 
       return true;
     }

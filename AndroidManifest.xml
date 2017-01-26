@@ -365,6 +365,7 @@
 
     <activity android:name=".RecipientPreferenceActivity"
               android:theme="@style/TextSecure.LightNoActionBar"
+              android:launchMode="singleTop"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".BlockedContactsActivity"
