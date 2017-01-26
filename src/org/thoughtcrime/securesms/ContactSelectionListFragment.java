@@ -124,7 +124,7 @@ public class ContactSelectionListFragment extends    Fragment
                                                                           isMulti());
     selectedContacts = adapter.getSelectedContacts();
     recyclerView.setAdapter(adapter);
-    recyclerView.addItemDecoration(new StickyHeaderDecoration(adapter, true));
+    recyclerView.addItemDecoration(new StickyHeaderDecoration(adapter, true, true));
     this.getLoaderManager().initLoader(0, null, this);
   }
 

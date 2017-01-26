@@ -105,11 +105,16 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
 
 
   protected static class HeaderViewHolder extends RecyclerView.ViewHolder {
-    private TextView textView;
+    protected TextView textView;
 
     public HeaderViewHolder(View itemView) {
       super(itemView);
       textView = ViewUtil.findById(itemView, R.id.text);
+    }
+
+    public HeaderViewHolder(TextView textView) {
+      super(textView);
+      this.textView = textView;
     }
 
     public void setText(CharSequence text) {
@@ -283,6 +288,8 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
 
   @Override
   public long getHeaderId(int position) {
+    if (!isActiveCursor()) return -1;
+
     Cursor        cursor = getCursorAtPositionOrThrow(position);
     MessageRecord record = getMessageRecord(cursor);
 
@@ -299,11 +306,6 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   public void onBindHeaderViewHolder(HeaderViewHolder viewHolder, int position) {
     Cursor cursor = getCursorAtPositionOrThrow(position);
     viewHolder.setText(DateUtils.getRelativeDate(getContext(), locale, getMessageRecord(cursor).getDateReceived()));
-  }
-
-  @Override
-  public boolean isActive() {
-    return isActiveCursor();
   }
 }
 

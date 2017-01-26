@@ -103,6 +103,8 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
 
   @Override
   public long getHeaderId(int i) {
+    if (!isActiveCursor()) return -1;
+
     return Util.hashCode(getHeaderString(i), isPush(i));
   }
 
@@ -143,11 +145,6 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
   @Override
   public CharSequence getBubbleText(int position) {
     return getHeaderString(position);
-  }
-
-  @Override
-  public boolean isActive() {
-    return isActiveCursor();
   }
 
   public Map<Long, String> getSelectedContacts() {

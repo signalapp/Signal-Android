@@ -3,7 +3,24 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="fill_parent"
              android:layout_height="match_parent"
-             xmlns:app="http://schemas.android.com/apk/res-auto">
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView android:id="@+id/scroll_date_header"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:gravity="center"
+              android:layout_gravity="center_horizontal|top"
+              android:paddingLeft="6dp"
+              android:paddingRight="6dp"
+              android:paddingTop="3dp"
+              android:paddingBottom="3dp"
+              android:layout_marginTop="3dp"
+              android:textColor="@color/white"
+              android:background="?conversation_item_header_background"
+              android:textSize="14sp"
+              android:visibility="gone"
+              tools:text="March 1, 2015" />
 
     <android.support.v7.widget.RecyclerView
             android:id="@android:id/list"
