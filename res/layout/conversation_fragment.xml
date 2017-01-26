@@ -6,6 +6,13 @@
              xmlns:app="http://schemas.android.com/apk/res-auto"
              xmlns:tools="http://schemas.android.com/tools">
 
+    <android.support.v7.widget.RecyclerView
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            android:cacheColorHint="?conversation_background" />
+
     <TextView android:id="@+id/scroll_date_header"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
@@ -21,13 +28,6 @@
               android:textSize="14sp"
               android:visibility="gone"
               tools:text="March 1, 2015" />
-
-    <android.support.v7.widget.RecyclerView
-            android:id="@android:id/list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical"
-            android:cacheColorHint="?conversation_background" />
 
     <View android:id="@+id/compose_divider"
           android:layout_width="match_parent"

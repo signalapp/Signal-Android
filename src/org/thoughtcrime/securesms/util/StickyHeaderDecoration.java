@@ -7,6 +7,7 @@ import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -58,15 +59,19 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
 
   private boolean hasHeader(RecyclerView parent, StickyHeaderAdapter adapter, int adapterPos) {
     boolean isReverse = isReverseLayout(parent);
+    int     itemCount = ((RecyclerView.Adapter)adapter).getItemCount();
 
-    if (isReverse && adapterPos == ((RecyclerView.Adapter)adapter).getItemCount() - 1 || !isReverse && adapterPos == 0) {
+    if ((isReverse && adapterPos == itemCount - 1 && adapter.getHeaderId(adapterPos) != -1) ||
+        (!isReverse && adapterPos == 0))
+    {
       return true;
     }
 
-    int  previous = adapterPos + (isReverse ? 1 : -1);
-    long headerId = adapter.getHeaderId(adapterPos);
+    int  previous         = adapterPos + (isReverse ? 1 : -1);
+    long headerId         = adapter.getHeaderId(adapterPos);
+    long previousHeaderId = adapter.getHeaderId(previous);
 
-    return headerId != NO_HEADER_ID && (headerId != adapter.getHeaderId(previous));
+    return headerId != NO_HEADER_ID && previousHeaderId != NO_HEADER_ID && headerId != previousHeaderId;
   }
 
   private ViewHolder getHeader(RecyclerView parent, StickyHeaderAdapter adapter, int position) {

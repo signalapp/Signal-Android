@@ -488,7 +488,9 @@ public class ConversationFragment extends Fragment
     }
 
     private void bindScrollHeader(HeaderViewHolder headerViewHolder, int positionId) {
-      ((ConversationAdapter)list.getAdapter()).onBindHeaderViewHolder(headerViewHolder, positionId);
+      if (((ConversationAdapter)list.getAdapter()).getHeaderId(positionId) != -1) {
+        ((ConversationAdapter) list.getAdapter()).onBindHeaderViewHolder(headerViewHolder, positionId);
+      }
     }
   }
 
