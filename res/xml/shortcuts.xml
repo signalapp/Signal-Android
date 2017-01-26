@@ -3,23 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <shortcut
-        android:icon="@drawable/ic_shortcut_new_group"
-        android:enabled="true"
-        android:shortcutId="static-shortcut-GroupCreate"
-        android:shortcutShortLabel="@string/shortcut_new_group"
-        android:shortcutLongLabel="@string/shortcut_new_group"
-        tools:targetApi="n_mr1">
-
-        <intent
-            android:targetPackage="org.thoughtcrime.securesms"
-            android:action="android.intent.action.VIEW"
-            android:targetClass="org.thoughtcrime.securesms.GroupCreateActivity" />
-
-        <categories android:name="android.shortcut.conversation" />
-
-    </shortcut>
-
-    <shortcut
         android:icon="@drawable/ic_shortcut_new_conversation"
         android:enabled="true"
         android:shortcutId="static-shortcut-ChatCreate"

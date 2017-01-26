@@ -1293,7 +1293,6 @@
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
 
     <!-- Shortcuts -->
-    <string name="shortcut_new_group">New group</string>
     <string name="shortcut_new_conversation">New conversation</string>
 
     <!-- EOF -->
