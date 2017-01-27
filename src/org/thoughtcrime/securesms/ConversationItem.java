@@ -179,9 +179,9 @@ public class ConversationItem extends LinearLayout
     this.recipient.addListener(this);
     this.conversationRecipients.addListener(this);
 
-    setBodyText(messageRecord);
     setMediaAttributes(messageRecord);
     setInteractionState(messageRecord);
+    setBodyText(messageRecord);
     setBubbleState(messageRecord, recipient);
     setStatusIcons(messageRecord);
     setContactPhoto(recipient);
