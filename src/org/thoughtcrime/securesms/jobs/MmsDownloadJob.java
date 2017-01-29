@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.ApnUnavailableException;
@@ -194,12 +195,14 @@ public class MmsDownloadJob extends MasterSecretJob {
 
 
 
-    IncomingMediaMessage message  = new IncomingMediaMessage(from, to, cc, body, retrieved.getDate() * 1000L, attachments, subscriptionId, 0, false);
+    IncomingMediaMessage   message      = new IncomingMediaMessage(from, to, cc, body, retrieved.getDate() * 1000L, attachments, subscriptionId, 0, false);
+    Optional<InsertResult> insertResult = database.insertMessageInbox(new MasterSecretUnion(masterSecret),
+                                                                      message, contentLocation, threadId);
 
-    Pair<Long, Long> messageAndThreadId  = database.insertMessageInbox(new MasterSecretUnion(masterSecret),
-                                                                       message, contentLocation, threadId);
-    database.delete(messageId);
-    MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
+    if (insertResult.isPresent()) {
+      database.delete(messageId);
+      MessageNotifier.updateNotification(context, masterSecret, insertResult.get().getThreadId());
+    }
   }
 
   private void handleDownloadError(MasterSecret masterSecret, long messageId, long threadId,

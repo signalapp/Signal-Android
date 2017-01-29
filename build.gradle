@@ -25,10 +25,10 @@ repositories {
         url "https://raw.github.com/whispersystems/maven/master/smil/releases/"
     }
     maven {
-        url "https://raw.github.com/whispersystems/maven/master/shortcutbadger/releases/"
+        url "https://raw.github.com/whispersystems/maven/master/photoview/releases/"
     }
     maven {
-        url "https://raw.github.com/whispersystems/maven/master/photoview/releases/"
+        url "https://raw.github.com/whispersystems/maven/master/shortcutbadger/releases/"
     }
     maven { // textdrawable
         url 'https://dl.bintray.com/amulyakhare/maven'
@@ -59,7 +59,7 @@ dependencies {
     compile 'org.whispersystems:libpastelog:1.0.7'
     compile 'org.whispersystems:signal-service-android:2.4.7'
 
-    compile 'me.leolin:ShortcutBadger:1.1.0-WS1'
+    compile "me.leolin:ShortcutBadger:1.10-WS1"
     compile 'se.emilsjolander:stickylistheaders:2.7.0'
     compile 'com.jpardogo.materialtabstrip:library:1.0.9'
     compile 'org.w3c:smil:1.0.0'
@@ -124,7 +124,7 @@ dependencyVerification {
         'org.whispersystems:jobmanager:506f679fc2fcf7bb6d10f00f41d6f6ea0abf75c70dc95b913398661ad538a181',
         'org.whispersystems:libpastelog:bb331d9a98240fc139101128ba836c1edec3c40e000597cdbb29ebf4cbf34d88',
         'org.whispersystems:signal-service-android:0b5e607c1ffdbc90f8b1117c43ceaba62e3e19c01c8d29b3e1bf57cffce07f2b',
-        'me.leolin:ShortcutBadger:3142d017234bfa0cdd69ccded7cc5ea63f13b97574803c8c616c9bbeaad33ad9',
+        'me.leolin:ShortcutBadger:e8e39df8a59d8211a30f40b1eeab21b3fa57b3f3e0f03abb995f82d66588778c',
         'se.emilsjolander:stickylistheaders:a08ca948aa6b220f09d82f16bbbac395f6b78897e9eeac6a9f0b0ba755928eeb',
         'com.jpardogo.materialtabstrip:library:c6ef812fba4f74be7dc4a905faa4c2908cba261a94c13d4f96d5e67e4aad4aaa',
         'org.w3c:smil:085dc40f2bb249651578bfa07499fd08b16ad0886dbe2c4078586a408da62f9b',

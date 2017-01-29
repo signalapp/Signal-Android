@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
+import org.thoughtcrime.securesms.attachments.MmsNotificationAttachment;
 import org.thoughtcrime.securesms.crypto.AsymmetricMasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -692,10 +693,10 @@ public class MmsDatabase extends MessagingDatabase {
     }
   }
 
-  private Pair<Long, Long> insertMessageInbox(MasterSecretUnion masterSecret,
-                                              IncomingMediaMessage retrieved,
-                                              String contentLocation,
-                                              long threadId, long mailbox)
+  private Optional<InsertResult> insertMessageInbox(MasterSecretUnion masterSecret,
+                                                    IncomingMediaMessage retrieved,
+                                                    String contentLocation,
+                                                    long threadId, long mailbox)
       throws MmsException
   {
     if (threadId == -1 || retrieved.isGroupMessage()) {
@@ -728,6 +729,11 @@ public class MmsDatabase extends MessagingDatabase {
       contentValues.put(DATE_SENT, contentValues.getAsLong(DATE_RECEIVED));
     }
 
+    if (retrieved.isPushMessage() && isDuplicate(retrieved, threadId)) {
+      Log.w(TAG, "Ignoring duplicate media message (" + retrieved.getSentTimeMillis() + ")");
+      return Optional.absent();
+    }
+
     long messageId = insertMediaMessage(masterSecret, retrieved.getAddresses(),
                                         retrieved.getBody(), retrieved.getAttachments(),
                                         contentValues);
@@ -740,12 +746,12 @@ public class MmsDatabase extends MessagingDatabase {
     notifyConversationListeners(threadId);
     jobManager.add(new TrimThreadJob(context, threadId));
 
-    return new Pair<>(messageId, threadId);
+    return Optional.of(new InsertResult(messageId, threadId));
   }
 
-  public Pair<Long, Long> insertMessageInbox(MasterSecretUnion masterSecret,
-                                             IncomingMediaMessage retrieved,
-                                             String contentLocation, long threadId)
+  public Optional<InsertResult> insertMessageInbox(MasterSecretUnion masterSecret,
+                                                   IncomingMediaMessage retrieved,
+                                                   String contentLocation, long threadId)
       throws MmsException
   {
     long type = Types.BASE_INBOX_TYPE;
@@ -767,9 +773,9 @@ public class MmsDatabase extends MessagingDatabase {
     return insertMessageInbox(masterSecret, retrieved, contentLocation, threadId, type);
   }
 
-  public Pair<Long, Long> insertSecureDecryptedMessageInbox(MasterSecretUnion masterSecret,
-                                                            IncomingMediaMessage retrieved,
-                                                            long threadId)
+  public Optional<InsertResult> insertSecureDecryptedMessageInbox(MasterSecretUnion masterSecret,
+                                                                  IncomingMediaMessage retrieved,
+                                                                  long threadId)
       throws MmsException
   {
     long type = Types.BASE_INBOX_TYPE | Types.SECURE_MESSAGE_BIT;
@@ -989,6 +995,20 @@ public class MmsDatabase extends MessagingDatabase {
     deleteThreads(singleThreadSet);
   }
 
+  private boolean isDuplicate(IncomingMediaMessage message, long threadId) {
+    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    Cursor         cursor   = database.query(TABLE_NAME, null, DATE_SENT + " = ? AND " + ADDRESS + " = ? AND " + THREAD_ID + " = ?",
+                                             new String[]{String.valueOf(message.getSentTimeMillis()), message.getAddresses().getFrom(), String.valueOf(threadId)},
+                                             null, null, null, "1");
+
+    try {
+      return cursor != null && cursor.moveToFirst();
+    } finally {
+      if (cursor != null) cursor.close();
+    }
+  }
+
+
   /*package*/ void deleteThreads(Set<Long> threadIds) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     String where      = "";
@@ -1075,28 +1095,6 @@ public class MmsDatabase extends MessagingDatabase {
     public static final int DOWNLOAD_SOFT_FAILURE    = 4;
     public static final int DOWNLOAD_HARD_FAILURE    = 5;
     public static final int DOWNLOAD_APN_UNAVAILABLE = 6;
-
-    public static boolean isDisplayDownloadButton(int status) {
-      return
-          status == DOWNLOAD_INITIALIZED     ||
-          status == DOWNLOAD_NO_CONNECTIVITY ||
-          status == DOWNLOAD_SOFT_FAILURE;
-    }
-
-    public static String getLabelForStatus(Context context, int status) {
-      switch (status) {
-        case DOWNLOAD_CONNECTING:      return context.getString(R.string.MmsDatabase_connecting_to_mms_server);
-        case DOWNLOAD_INITIALIZED:     return context.getString(R.string.MmsDatabase_downloading_mms);
-        case DOWNLOAD_HARD_FAILURE:    return context.getString(R.string.MmsDatabase_mms_download_failed);
-        case DOWNLOAD_APN_UNAVAILABLE: return context.getString(R.string.MmsDatabase_mms_pending_download);
-      }
-
-      return context.getString(R.string.MmsDatabase_downloading);
-    }
-
-    public static boolean isHardError(int status) {
-      return status == DOWNLOAD_HARD_FAILURE;
-    }
   }
 
   public class Reader {
@@ -1157,11 +1155,13 @@ public class MmsDatabase extends MessagingDatabase {
       if (!TextUtils.isEmpty(transactionId))
         transactionIdBytes = org.thoughtcrime.securesms.util.Util.toIsoBytes(transactionId);
 
+      SlideDeck slideDeck = new SlideDeck(context, new MmsNotificationAttachment(status, messageSize));
+
 
       return new NotificationMmsMessageRecord(context, id, recipients, recipients.getPrimaryRecipient(),
                                               addressDeviceId, dateSent, dateReceived, receiptCount, threadId,
                                               contentLocationBytes, messageSize, expiry, status,
-                                              transactionIdBytes, mailbox, subscriptionId);
+                                              transactionIdBytes, mailbox, subscriptionId, slideDeck);
     }
 
     private MediaMmsMessageRecord getMediaMmsMessageRecord(Cursor cursor) {

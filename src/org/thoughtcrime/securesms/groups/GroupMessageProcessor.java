@@ -5,7 +5,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.util.Pair;
 
 import com.google.protobuf.ByteString;
 
@@ -15,6 +14,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.jobs.AvatarDownloadJob;
 import org.thoughtcrime.securesms.jobs.PushGroupUpdateJob;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
@@ -216,10 +216,14 @@ public class GroupMessageProcessor {
         IncomingTextMessage   incoming     = new IncomingTextMessage(envelope.getSource(), envelope.getSourceDevice(), envelope.getTimestamp(), body, Optional.of(group), 0);
         IncomingGroupMessage  groupMessage = new IncomingGroupMessage(incoming, storage, body);
 
-        Pair<Long, Long> messageAndThreadId = smsDatabase.insertMessageInbox(masterSecret, groupMessage);
-        MessageNotifier.updateNotification(context, masterSecret.getMasterSecret().orNull(), messageAndThreadId.second);
+        Optional<InsertResult> insertResult = smsDatabase.insertMessageInbox(masterSecret, groupMessage);
 
-        return messageAndThreadId.second;
+        if (insertResult.isPresent()) {
+          MessageNotifier.updateNotification(context, masterSecret.getMasterSecret().orNull(), insertResult.get().getThreadId());
+          return insertResult.get().getThreadId();
+        } else {
+          return null;
+        }
       }
     } catch (MmsException e) {
       Log.w(TAG, e);

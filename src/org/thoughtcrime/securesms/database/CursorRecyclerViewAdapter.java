@@ -183,15 +183,15 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
     return cursor;
   }
 
-  private boolean isActiveCursor() {
+  protected boolean isActiveCursor() {
     return valid && cursor != null;
   }
 
-  private boolean isFooterPosition(int position) {
+  protected boolean isFooterPosition(int position) {
     return hasFooterView() && position == getItemCount() - 1;
   }
 
-  private boolean isHeaderPosition(int position) {
+  protected boolean isHeaderPosition(int position) {
     return hasHeaderView() && position == 0;
   }
 

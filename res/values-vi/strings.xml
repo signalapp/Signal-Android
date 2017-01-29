@@ -102,7 +102,6 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <string name="ConversationActivity_message_is_empty_exclamation">Tin nhắn trống không!</string>
   <string name="ConversationActivity_group_members">Thành viên trong nhóm</string>
   <string name="ConversationActivity_group_conversation">Chuyện trò nhóm</string>
-  <string name="ConversationActivity_unnamed_group">Nhóm chưa đặt tên</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="other">%d thành viên</item>
   </plurals>
@@ -117,7 +116,6 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Hãy chuyển sang dùng Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Dùng cái này để chat: %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Có lỗi khi rời nhóm</string>
   <string name="ConversationActivity_mms_not_supported_title">Không hỗ trợ MMS</string>
   <string name="ConversationActivity_mms_not_supported_message">Tin nhắn không gửi được vì hãng điện thoại không hỗ trợ MMS.</string>
   <string name="ConversationActivity_specify_recipient">Xin chọn một liên lạc</string>
@@ -179,6 +177,7 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <string name="CustomDefaultPreference_none">Không</string>
   <!--DateUtils-->
   <string name="DateUtils_minutes_ago">%d phút</string>
+  <string name="DateUtils_today">Hôm nay</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Gỡ liên kết \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Khi gỡ liên kết thiết bị này, nó sẽ không thể gửi hoặc nhận tin nhắn được nữa.</string>
@@ -351,6 +350,7 @@ sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin
   <string name="RecipientPreferenceActivity_unblock">Không chặn</string>
   <string name="RecipientPreferenceActivity_enabled">Mở</string>
   <string name="RecipientPreferenceActivity_disabled">Tắt</string>
+  <!--RecipientProvider-->
   <!--RedPhone-->
   <string name="RedPhone_answering">Đang trả lời</string>
   <string name="RedPhone_ending_call">Đang kết thúc cuộc gọi</string>
@@ -543,6 +543,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Dạng chọn hàng loạt</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s được chọn</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Nạp tên quốc gia...</string>
   <string name="country_selection_fragment__search">Tìm kiếm</string>

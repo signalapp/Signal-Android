@@ -91,7 +91,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">செய்தி காலியாக உள்ளது!</string>
   <string name="ConversationActivity_group_members">குழு உறுப்பினர்கள்</string>
   <string name="ConversationActivity_group_conversation">குழு உரையாடல்</string>
-  <string name="ConversationActivity_unnamed_group">பெயரிடப்படாத குழு</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="one">1 உறுப்பினர்</item>
     <item quantity="other"> %d உறுப்பினர்கள்</item>
@@ -107,7 +106,6 @@
   <string name="ConversationActivity_transport_signal">சமிக்ஞை</string>
   <string name="ConversationActivity_lets_switch_to_signal">%1$s நாம் சமிக்ஞைக்கு மாறுவோம்</string>
   <string name="ConversationActivity_lets_use_this_to_chat">நாம் அரட்டையடிக்க இதை பயன்படுத்துவோம்: %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">குழுவை விட்டு விலகுவதில் பிழை...</string>
   <string name="ConversationActivity_mms_not_supported_title">எம்எம்எஸ் ஆதரவில்லை</string>
   <string name="ConversationActivity_mms_not_supported_message">இச் செய்தியை அனுப்ப ஆதரவில்லை உங்கள் தொலைதொடர்பு சாதனம்  எம் எம் எஸ் ஆதரவில்லை</string>
   <string name="ConversationActivity_specify_recipient">தயவு செய்து ஒரு தொடர்பை தேர்ந்தெடு</string>
@@ -162,6 +160,7 @@
   <string name="CustomDefaultPreference_none">எதுவும் இல்லை</string>
   <!--DateUtils-->
   <string name="DateUtils_minutes_ago">%d நிமிடம்</string>
+  <string name="DateUtils_today">இன்று</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">\'%s\' துண்டி?</string>
   <string name="DeviceListActivity_try_again">மீண்டும் முயற்சிக்கவும்</string>
@@ -287,6 +286,7 @@
   <string name="RecipientPreferenceActivity_unblock">தடுப்புநீக்க</string>
   <string name="RecipientPreferenceActivity_enabled">செயல்படுத்தப்பட்டது</string>
   <string name="RecipientPreferenceActivity_disabled">முடக்கப்பட்டது</string>
+  <!--RecipientProvider-->
   <!--RedPhone-->
   <string name="RedPhone_answering">பதிலளிக்கபடுகிறது </string>
   <string name="RedPhone_dialing">அழைத்தல்</string>
@@ -454,6 +454,7 @@
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">தொகுப்பாய் தேர்வு செய்யப்பட்டது</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s தேர்ந்தெடுக்கப்பட்டது</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">நாடுகள் ஏற்றப்படுகிறது...</string>
   <string name="country_selection_fragment__search">தேடல்</string>

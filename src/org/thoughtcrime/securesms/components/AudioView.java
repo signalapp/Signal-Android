@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -158,6 +159,35 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
   }
 
   @Override
+  public void setFocusable(boolean focusable) {
+    super.setFocusable(focusable);
+    this.playButton.setFocusable(focusable);
+    this.pauseButton.setFocusable(focusable);
+    this.seekBar.setFocusable(focusable);
+    this.seekBar.setFocusableInTouchMode(focusable);
+    this.downloadButton.setFocusable(focusable);
+  }
+
+  @Override
+  public void setClickable(boolean clickable) {
+    super.setClickable(clickable);
+    this.playButton.setClickable(clickable);
+    this.pauseButton.setClickable(clickable);
+    this.seekBar.setClickable(clickable);
+    this.seekBar.setOnTouchListener(clickable ? null : new TouchIgnoringListener());
+    this.downloadButton.setClickable(clickable);
+  }
+
+  @Override
+  public void setEnabled(boolean enabled) {
+    super.setEnabled(enabled);
+    this.playButton.setEnabled(enabled);
+    this.pauseButton.setEnabled(enabled);
+    this.seekBar.setEnabled(enabled);
+    this.downloadButton.setEnabled(enabled);
+  }
+
+  @Override
   public void onProgress(double progress, long millis) {
     int seekProgress = (int)Math.floor(progress * this.seekBar.getMax());
 
@@ -283,6 +313,13 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
       } catch (IOException e) {
         Log.w(TAG, e);
       }
+    }
+  }
+
+  private class TouchIgnoringListener implements OnTouchListener {
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+      return true;
     }
   }
 

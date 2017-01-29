@@ -108,7 +108,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Порука је празна!</string>
   <string name="ConversationActivity_group_members">Чланови групе</string>
   <string name="ConversationActivity_group_conversation">Групна преписка</string>
-  <string name="ConversationActivity_unnamed_group">Неименована група</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="one">1 члан</item>
     <item quantity="few">%d члана</item>
@@ -125,7 +124,7 @@
   <string name="ConversationActivity_transport_signal">Сигнал</string>
   <string name="ConversationActivity_lets_switch_to_signal">Пребацимо се на Сигнал %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Хајде да користимо ово за ћаскање: %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Грешка напуштања групе...</string>
+  <string name="ConversationActivity_error_leaving_group">Грешка при напуштању групе</string>
   <string name="ConversationActivity_mms_not_supported_title">ММС није подржан</string>
   <string name="ConversationActivity_mms_not_supported_message">Порука није послата јер ваш оператер не подржава ММС.</string>
   <string name="ConversationActivity_specify_recipient">Одредите примаоца</string>
@@ -223,6 +222,8 @@
   <!--DateUtils-->
   <string name="DateUtils_just_now">Управо сад</string>
   <string name="DateUtils_minutes_ago">%d минута</string>
+  <string name="DateUtils_today">Данас</string>
+  <string name="DateUtils_yesterday">Јуче</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Да уклоним „%s“?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Овај уређај више неће моћи да шаље или прима поруке ако га уклоните.</string>
@@ -356,6 +357,8 @@
   <string name="NotificationBarManager__cancel_call">Откажи позив</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Мултимедијална порука</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">Преузимам ММС поруку</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Грешка при преузимању ММС поруке, тапните да покушам поново</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Примљена је порука шифрована старим издањем Сигнала које више није подржано. Замолите пошиљаоца да надогради на најновије издање и поново пошаље поруку.</string>
   <string name="MessageRecord_left_group">Напустили сте групу.</string>
@@ -419,6 +422,8 @@
   <string name="RecipientPreferenceActivity_enabled">Укључено</string>
   <string name="RecipientPreferenceActivity_disabled">Искључено</string>
   <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Доступно ако порука није послата или примљена.</string>
+  <!--RecipientProvider-->
+  <string name="RecipientProvider_unnamed_group">Неименована група</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">Јављам се</string>
   <string name="RedPhone_ending_call">Окончавам позив</string>
@@ -644,6 +649,8 @@
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Режим серијског избора</string>
   <string name="conversation_fragment_cab__batch_selection_amount">Изабрано: %s</string>
+  <!--conversation_fragment-->
+  <string name="conversation_fragment__scroll_to_the_bottom_content_description">Клизај на дно</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Учитавам државе...</string>
   <string name="country_selection_fragment__search">Тражи</string>

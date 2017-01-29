@@ -46,6 +46,7 @@ public class Recipient {
   private @NonNull  String  number;
   private @Nullable String  name;
   private boolean stale;
+  private boolean resolving;
 
   private ContactPhoto contactPhoto;
   private Uri          contactUri;
@@ -61,6 +62,7 @@ public class Recipient {
     this.number       = number;
     this.contactPhoto = ContactPhotoFactory.getLoadingPhoto();
     this.color        = null;
+    this.resolving    = true;
 
     if (stale != null) {
       this.name         = stale.name;
@@ -79,6 +81,7 @@ public class Recipient {
             Recipient.this.contactUri   = result.contactUri;
             Recipient.this.contactPhoto = result.avatar;
             Recipient.this.color        = result.color;
+            Recipient.this.resolving    = false;
           }
 
           notifyListeners();
@@ -99,6 +102,7 @@ public class Recipient {
     this.name         = details.name;
     this.contactPhoto = details.avatar;
     this.color        = details.color;
+    this.resolving    = false;
   }
 
   public synchronized @Nullable Uri getContactUri() {
@@ -193,4 +197,9 @@ public class Recipient {
   void setStale() {
     this.stale = true;
   }
+
+  synchronized boolean isResolving() {
+    return resolving;
+  }
+
 }

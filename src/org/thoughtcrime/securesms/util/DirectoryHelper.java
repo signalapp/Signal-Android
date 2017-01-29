@@ -10,7 +10,6 @@ import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.util.Pair;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
@@ -18,6 +17,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SessionUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NotInDirectoryException;
+import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -223,14 +223,16 @@ public class DirectoryHelper {
 
     for (String newUser : newUsers) {
       if (!SessionUtil.hasSession(context, masterSecret, newUser) && !Util.isOwnNumber(context, newUser)) {
-        IncomingJoinedMessage message        = new IncomingJoinedMessage(newUser);
-        Pair<Long, Long>      smsAndThreadId = DatabaseFactory.getSmsDatabase(context).insertMessageInbox(message);
+        IncomingJoinedMessage  message      = new IncomingJoinedMessage(newUser);
+        Optional<InsertResult> insertResult = DatabaseFactory.getSmsDatabase(context).insertMessageInbox(message);
 
-        int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-        if (hour >= 9 && hour < 23) {
-          MessageNotifier.updateNotification(context, masterSecret, false, smsAndThreadId.second, true);
-        } else {
-          MessageNotifier.updateNotification(context, masterSecret, false, smsAndThreadId.second, false);
+        if (insertResult.isPresent()) {
+          int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+          if (hour >= 9 && hour < 23) {
+            MessageNotifier.updateNotification(context, masterSecret, false, insertResult.get().getThreadId(), true);
+          } else {
+            MessageNotifier.updateNotification(context, masterSecret, false, insertResult.get().getThreadId(), false);
+          }
         }
       }
     }
