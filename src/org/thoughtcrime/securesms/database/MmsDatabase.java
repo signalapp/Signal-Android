@@ -832,7 +832,10 @@ public class MmsDatabase extends MessagingDatabase {
       contentValues.put(DATE_SENT, contentValues.getAsLong(DATE_RECEIVED));
 
     long messageId = db.insert(TABLE_NAME, null, contentValues);
-    addressDatabase.insertAddressesForId(messageId, MmsAddresses.forFrom(Util.toIsoString(notification.getFrom().getTextString())));
+
+    if (headers.getEncodedStringValue(PduHeaders.FROM) != null) {
+      addressDatabase.insertAddressesForId(messageId, MmsAddresses.forFrom(Util.toIsoString(notification.getFrom().getTextString())));
+    }
 
     return new Pair<>(messageId, threadId);
   }
