@@ -357,7 +357,7 @@ public class AttachmentDatabase extends Database {
   }
 
   @VisibleForTesting
-  @Nullable InputStream getDataStream(MasterSecret masterSecret, AttachmentId attachmentId, String dataType)
+  protected @Nullable InputStream getDataStream(MasterSecret masterSecret, AttachmentId attachmentId, String dataType)
   {
     File dataFile = getAttachmentDataFile(attachmentId, dataType);
 
@@ -491,7 +491,7 @@ public class AttachmentDatabase extends Database {
 
 
   @VisibleForTesting
-  void updateAttachmentThumbnail(MasterSecret masterSecret, AttachmentId attachmentId, InputStream in, float aspectRatio)
+  protected void updateAttachmentThumbnail(MasterSecret masterSecret, AttachmentId attachmentId, InputStream in, float aspectRatio)
       throws MmsException
   {
     Log.w(TAG, "updating part thumbnail for #" + attachmentId);

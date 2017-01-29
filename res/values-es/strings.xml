@@ -130,7 +130,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">El adjunto excede los límites de tamaño para el tipo de mensaje que está enviando.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Cámara no disponible</string>
   <string name="ConversationActivity_unable_to_record_audio">¡No se ha podido grabar el audio!</string>
-  <string name="ConversationActivity_error_sending_voice_message">Error al enviar mensaje de voz...</string>
+  <string name="ConversationActivity_error_sending_voice_message">Error al enviar mensaje de voz</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">No hay ninguna aplicación disponible para usar este enlace en su dispositivo.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalles del mensaje</string>
@@ -178,7 +178,7 @@ Recibido:%4$s</string>
   <string name="ConversationFragment_deleting">Eliminando</string>
   <string name="ConversationFragment_deleting_messages">Borrando mensajes...</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">Buscar...</string>
+  <string name="ConversationListActivity_search">Buscar</string>
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">No hay ningún navegador instalado en su dispositivo</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
@@ -201,7 +201,7 @@ Recibido:%4$s</string>
     <item quantity="other">%d Conversaciones movidas a la bandeja de entrada</item>
   </plurals>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Mensaje de intercambio de claves...</string>
+  <string name="ConversationListItem_key_exchange_message">Mensaje de intercambio de claves</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Conversaciones archivadas (%d)</string>
   <!--CustomDefaultPreference-->
@@ -214,7 +214,7 @@ Recibido:%4$s</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">¿Desvincular \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Al desvincular este dispositivo, ya no podrá enviar y recibir mensajes.</string>
-  <string name="DeviceListActivity_network_connection_failed">Fallo de conexión a la red...</string>
+  <string name="DeviceListActivity_network_connection_failed">La conexión a la red falló</string>
   <string name="DeviceListActivity_try_again">Intentar de nuevo</string>
   <string name="DeviceListActivity_unlinking_device">Desvinculando dispositivo...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Desvinculando dispositivo</string>
@@ -246,7 +246,7 @@ Recibido:%4$s</string>
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">¡Fallo permanente de comunicación de Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal fué incapaz de registrarse con Google Play Services. Los mensajes y llamadas de Signal han sido desactivados, por favor, intenta registrarte otra vez en Configuración &gt; Avanzado.</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Error al descargar GIF a resolución completa...</string>
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Error al obtener un GIF a resolución completa</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Pegatinas (stickers)</string>
@@ -328,8 +328,8 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nuevo número de seguridad</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">¡Error guardando MMS!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Error conectando al proveedor MMS...</string>
-  <string name="MmsDownloader_error_reading_mms_settings">Error al leer la configuración MMS del proveedor...</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Error al conectar al proveedor de MMS</string>
+  <string name="MmsDownloader_error_reading_mms_settings">Error al leer la configuración MMS del proveedor inalámbrico</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Llamada de Signal en curso</string>
   <string name="NotificationBarManager_missed_call_from_s">Llamada perdida de %s</string>
@@ -373,7 +373,7 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">No se encontró ningun dispositivo.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Error de red.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Código QR no válido.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Lo sentimos, ya tiene demasiados dispositivos vinculados, pruebe a eliminar alguno...</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Lo sentimos, ya tiene demasiados dispositivos vinculados, trate de eliminar alguno</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Lo sentimos , este código QR no es ​​válido .</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">¿Enlazar un dispositivo Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Parece que estás intentando enlazar un dispositivo Signal usando un escáner de terceros. Para tu protección, por favor, escanea el código otra vez desde Signal.</string>
@@ -404,6 +404,7 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="RecipientPreferenceActivity_unblock">Desbloquear</string>
   <string name="RecipientPreferenceActivity_enabled">Habilitado</string>
   <string name="RecipientPreferenceActivity_disabled">Deshabilitado</string>
+  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Disponible una vez que se ha enviado o recibido un mensaje</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">Respondiendo</string>
   <string name="RedPhone_ending_call">Finalizando llamada</string>
@@ -455,7 +456,7 @@ requieren una cuenta de Google, pero deben tener la aplicación Play Store insta
   <string name="RegistrationProgressActivity_verifying_number">Verificando número</string>
   <string name="RegistrationProgressActivity_edit_s">Editar %s</string>
   <string name="RegistrationProgressActivity_registration_complete">¡Proceso de registro completado!</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Debe introducir primero el código que recibió...</string>
+  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Primero tiene que introducir el código que recibió</string>
   <string name="RegistrationProgressActivity_connecting">Conectando</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Conectando para verificación...</string>
   <string name="RegistrationProgressActivity_network_error">¡Error de red!</string>
@@ -493,7 +494,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="SmsMessageRecord_secure_session_reset_s">%s reinició la sesión segura.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplicar mensaje.</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">Ha dejado el grupo...</string>
+  <string name="ThreadRecord_left_the_group">Dejar el grupo</string>
   <string name="ThreadRecord_secure_session_reset">Reinicio de sesión segura.</string>
   <string name="ThreadRecord_draft">Borrador:</string>
   <string name="ThreadRecord_called">Llamó</string>
@@ -515,9 +516,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">¿Iniciar a pesar de la solicitud existente?</string>
   <string name="KeyExchangeInitiator_send">Enviar</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Mensaje cifrado incorrecto...</string>
+  <string name="MessageDisplayHelper_bad_encrypted_message">Mensaje cifrado erróneo</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Descifrando, por favor espere...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mensaje cifrado para una sesión no existente...</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">El mensaje se cifró para una sesión no existente</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">Error al descifrar mensaje.</string>
   <!--ThreadDatabase-->
@@ -531,8 +532,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MmsDatabase_error_decrypting_message">Error al descifrar mensaje.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Descifrando MMS, por favor espere...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Mensaje MMS mal cifrado</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Mensaje MMS cifrado para sesión no existente...</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Mensaje MMS cifrado erróneo</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">El mensaje MMS se cifró para una sesión no existente</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Silenciar notificaciones</string>
   <!--ApplicationMigrationService-->
@@ -548,7 +549,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d mensajes nuevos en %2$d conversaciones</string>
   <string name="MessageNotifier_most_recent_from_s">Más recientes desde: %1$s</string>
-  <string name="MessageNotifier_locked_message">Mensaje bloqueado...</string>
+  <string name="MessageNotifier_locked_message">Mensaje cerrado</string>
   <string name="MessageNotifier_media_message_with_text">Mensaje multimedia: %s</string>
   <string name="MessageNotifier_no_subject">(Sin asunto)</string>
   <string name="MessageNotifier_message_delivery_failed">Entrega de mensaje fallida.</string>
@@ -594,7 +595,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Seleccionar para</string>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">No hay contactos bloqueados...</string>
+  <string name="blocked_contacts_fragment__no_blocked_contacts">No hay contactos bloqueados</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">No hay llamadas recientes.</string>
   <!--conversation_title_view-->
@@ -644,7 +645,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Vincular dispositivo</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">No hay dispositivos vinculados...</string>
+  <string name="device_list_fragment__no_devices_linked">No hay dispositivos vinculados</string>
   <string name="device_list_fragment__link_new_device">Vincular nuevo dispositivo</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">continuar</string>

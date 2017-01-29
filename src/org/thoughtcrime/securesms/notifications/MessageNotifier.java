@@ -130,36 +130,47 @@ public class MessageNotifier {
     notifications.cancel(SUMMARY_NOTIFICATION_ID);
 
     if (Build.VERSION.SDK_INT >= 23) {
-      StatusBarNotification[] activeNotifications = notifications.getActiveNotifications();
+      try {
+        StatusBarNotification[] activeNotifications = notifications.getActiveNotifications();
 
-      for (StatusBarNotification activeNotification : activeNotifications) {
-        if (activeNotification.getId() != NotificationBarManager.RED_PHONE_NOTIFICATION) {
-          notifications.cancel(activeNotification.getId());
+        for (StatusBarNotification activeNotification : activeNotifications) {
+          if (activeNotification.getId() != NotificationBarManager.RED_PHONE_NOTIFICATION) {
+            notifications.cancel(activeNotification.getId());
+          }
         }
+      } catch (Throwable e) {
+        // XXX Appears to be a ROM bug, see #6043
+        Log.w(TAG, e);
+        notifications.cancelAll();
       }
     }
   }
 
   private static void cancelOrphanedNotifications(@NonNull Context context, NotificationState notificationState) {
     if (Build.VERSION.SDK_INT >= 23) {
-      NotificationManager     notifications       = ServiceUtil.getNotificationManager(context);
-      StatusBarNotification[] activeNotifications = notifications.getActiveNotifications();
+      try {
+        NotificationManager     notifications       = ServiceUtil.getNotificationManager(context);
+        StatusBarNotification[] activeNotifications = notifications.getActiveNotifications();
 
-      for (StatusBarNotification notification : activeNotifications) {
-        boolean validNotification = false;
+        for (StatusBarNotification notification : activeNotifications) {
+          boolean validNotification = false;
 
-        if (notification.getId() != SUMMARY_NOTIFICATION_ID && notification.getId() != NotificationBarManager.RED_PHONE_NOTIFICATION) {
-          for (NotificationItem item : notificationState.getNotifications()) {
-            if (notification.getId() == (SUMMARY_NOTIFICATION_ID + item.getThreadId())) {
-              validNotification = true;
-              break;
+          if (notification.getId() != SUMMARY_NOTIFICATION_ID && notification.getId() != NotificationBarManager.RED_PHONE_NOTIFICATION) {
+            for (NotificationItem item : notificationState.getNotifications()) {
+              if (notification.getId() == (SUMMARY_NOTIFICATION_ID + item.getThreadId())) {
+                validNotification = true;
+                break;
+              }
+            }
+
+            if (!validNotification) {
+              notifications.cancel(notification.getId());
             }
           }
-
-          if (!validNotification) {
-            notifications.cancel(notification.getId());
-          }
         }
+      } catch (Throwable e) {
+        // XXX Android ROM Bug, see #6043
+        Log.w(TAG, e);
       }
     }
   }

@@ -130,7 +130,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Anhang ist für diese Nachrichtenart zu groß.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera nicht verfügbar</string>
   <string name="ConversationActivity_unable_to_record_audio">Audioaufnahme nicht möglich!</string>
-  <string name="ConversationActivity_error_sending_voice_message">Fehler beim Senden der Sprachnachricht …</string>
+  <string name="ConversationActivity_error_sending_voice_message">Fehler beim Senden der Sprachnachricht</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Auf deinem Gerät ist derzeit keine App installiert, die mit diesem Link umgehen könnte.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Nachrichtendetails</string>
@@ -174,7 +174,7 @@
   <string name="ConversationFragment_deleting">Löschen</string>
   <string name="ConversationFragment_deleting_messages">Nachrichten werden gelöscht …</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">Suchen …</string>
+  <string name="ConversationListActivity_search">Suchen</string>
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Auf deinem Gerät ist derzeit kein Browser installiert.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
@@ -197,7 +197,7 @@
     <item quantity="other">%d Unterhaltungen in Eingang verschoben</item>
   </plurals>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Schlüsselaustausch-Nachricht …</string>
+  <string name="ConversationListItem_key_exchange_message">Schlüsselaustauschnachricht</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Archivierte Unterhaltungen (%d)</string>
   <!--CustomDefaultPreference-->
@@ -210,7 +210,7 @@
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">»%s« entfernen?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Nach Entfernen dieses Geräts wird es keine weiteren Nachrichten senden oder empfangen können.</string>
-  <string name="DeviceListActivity_network_connection_failed">Keine Netzwerkverbindung …</string>
+  <string name="DeviceListActivity_network_connection_failed">Keine Netzwerkverbindung</string>
   <string name="DeviceListActivity_try_again">Erneut versuchen</string>
   <string name="DeviceListActivity_unlinking_device">Gerät wird entfernt …</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Gerät entfernen</string>
@@ -242,7 +242,7 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Dauerhafter Signal-Kommunikationsfehler!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal konnte nicht für die Google Play-Dienste registriert werden. Signal-Nachrichten und -Anrufe wurden daher deaktiviert. Bitte registriere Signal im Menü »Einstellungen« &gt; »Weitere Einstellungen« erneut.</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Fehler beim Abruf des GIFs in voller Auflösung …</string>
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Fehler beim Abruf des GIFs in voller Auflösung</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Sticker</string>
@@ -318,8 +318,8 @@ Das Wiederherstellen einer verschlüsselten Datensicherung ersetzt deine bestehe
   <string name="MessageDetailsRecipient_new_safety_number">Neue Sicherheitsnummer</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Fehler beim Speichern der MMS!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Verbindung zum MMS-Anbieter fehlgeschlagen …</string>
-  <string name="MmsDownloader_error_reading_mms_settings">MMS-Einstellungen des Mobilfunkanbieters konnten nicht gelesen werden …</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Verbindung zum MMS-Anbieter fehlgeschlagen</string>
+  <string name="MmsDownloader_error_reading_mms_settings">MMS-Einstellungen des Mobilfunkanbieters konnten nicht gelesen werden</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-Anruf läuft</string>
   <string name="NotificationBarManager_missed_call_from_s">Entgangener Anruf von %s</string>
@@ -361,7 +361,7 @@ Das Wiederherstellen einer verschlüsselten Datensicherung ersetzt deine bestehe
   <string name="DeviceProvisioningActivity_content_progress_no_device">Kein Gerät gefunden.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Netzwerkfehler.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ungültiger QR-Code.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Es sind bereits zu viele Geräte verknüpft. Versuche, mindestens eines zu entfernen …</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Es sind bereits zu viele Geräte verknüpft. Versuche, mindestens eines zu entfernen.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Dies ist leider kein gültiger QR-Code zur Geräteverknüpfung.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Signal-Gerät verknüpfen?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Du versuchst offenbar, ein Signal-Gerät mithilfe einer Scanner-App eines Drittanbieters zu verknüpfen. Scanne den QR-Code zu deinem Schutz noch einmal direkt aus Signal ein.</string>
@@ -392,6 +392,7 @@ Das Wiederherstellen einer verschlüsselten Datensicherung ersetzt deine bestehe
   <string name="RecipientPreferenceActivity_unblock">Nicht mehr blockieren</string>
   <string name="RecipientPreferenceActivity_enabled">Aktiviert</string>
   <string name="RecipientPreferenceActivity_disabled">Deaktiviert</string>
+  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Verfügbar, sobald eine Nachricht gesendet oder empfangen wurde.</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">Anruf wird angenommen</string>
   <string name="RedPhone_ending_call">Anruf wird beendet</string>
@@ -432,7 +433,7 @@ Bitte kontrolliere noch einmal deine Rufnummer. Diese wird anschließend durch e
   <string name="RegistrationProgressActivity_verifying_number">Rufnummer wird überprüft</string>
   <string name="RegistrationProgressActivity_edit_s">%s bearbeiten</string>
   <string name="RegistrationProgressActivity_registration_complete">Registrierung abgeschlossen!</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Du musst den Code eingeben, den du zuvor empfangen hast …</string>
+  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Du musst den Code eingeben, den du zuvor empfangen hast</string>
   <string name="RegistrationProgressActivity_connecting">Verbinden</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Verbindung wird zur Bestätigung hergestellt …</string>
   <string name="RegistrationProgressActivity_network_error">Netzwerkfehler!</string>
@@ -467,7 +468,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <string name="SmsMessageRecord_secure_session_reset_s">%s hat die Verschlüsselung neu gestartet.</string>
   <string name="SmsMessageRecord_duplicate_message">Doppelte Nachricht.</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">Gruppe wurde verlassen …</string>
+  <string name="ThreadRecord_left_the_group">Gruppe wurde verlassen</string>
   <string name="ThreadRecord_secure_session_reset">Verschlüsselung neu gestartet</string>
   <string name="ThreadRecord_draft">Entwurf:</string>
   <string name="ThreadRecord_called">Ausgegangener Anruf</string>
@@ -489,9 +490,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Trotz bestehender Anfrage starten?</string>
   <string name="KeyExchangeInitiator_send">Senden</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Fehlerhaft verschlüsselte Nachricht …</string>
+  <string name="MessageDisplayHelper_bad_encrypted_message">Fehlerhaft verschlüsselte Nachricht</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Entschlüsselung läuft, bitte warten …</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Nachricht wurde für eine nicht existierende sichere Sitzung verschlüsselt …</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Nachricht wurde für eine nicht existierende sichere Sitzung verschlüsselt</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">Fehler beim Entschlüsseln der Nachricht.</string>
   <!--ThreadDatabase-->
@@ -505,8 +506,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <string name="MmsDatabase_error_decrypting_message">Fehler beim Entschlüsseln der Nachricht.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">MMS wird entschlüsselt. Bitte warten …</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Fehlerhaft verschlüsselte MMS …</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS wurde für eine nicht existierende sichere Sitzung verschlüsselt …</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Fehlerhaft verschlüsselte MMS</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS wurde für eine nicht existierende sichere Sitzung verschlüsselt</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Benachrichtigungen stummschalten</string>
   <!--ApplicationMigrationService-->
@@ -522,7 +523,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d neue Nachrichten in %2$d Unterhaltungen</string>
   <string name="MessageNotifier_most_recent_from_s">Neueste von: %1$s</string>
-  <string name="MessageNotifier_locked_message">Gesperrte Nachricht …</string>
+  <string name="MessageNotifier_locked_message">Gesperrte Nachricht</string>
   <string name="MessageNotifier_media_message_with_text">Nachricht mit Medieninhalten: %s</string>
   <string name="MessageNotifier_no_subject">(ohne Text)</string>
   <string name="MessageNotifier_message_delivery_failed">Nachrichtenübermittlung gescheitert.</string>
@@ -568,7 +569,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Auswählen für</string>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">Keine blockierten Kontakte …</string>
+  <string name="blocked_contacts_fragment__no_blocked_contacts">Keine blockierten Kontakte</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Keine kürzlichen Anrufe.</string>
   <!--conversation_title_view-->
@@ -618,7 +619,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Gerät verknüpfen</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">Keine Geräte verknüpft …</string>
+  <string name="device_list_fragment__no_devices_linked">Keine Geräte verknüpft</string>
   <string name="device_list_fragment__link_new_device">Neues Gerät verknüpfen</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">Fortsetzen</string>

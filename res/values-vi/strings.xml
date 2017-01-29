@@ -127,7 +127,6 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <string name="ConversationActivity_attachment_exceeds_size_limits">Văn bản đính kèm vượt quá giới hạn kích cỡ cho loại tin nhắn mà bạn đang gửi.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Máy ảnh không khả dụng</string>
   <string name="ConversationActivity_unable_to_record_audio">Không thể ghi âm!</string>
-  <string name="ConversationActivity_error_sending_voice_message">Lỗi khi gửi tin nhắn thoại...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Chi tiết tin nhắn</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Chuyển tải: %1$s\nGửi/Nhận: %2$s</string>
@@ -154,7 +153,7 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <string name="ConversationFragment_deleting">Đang xóa</string>
   <string name="ConversationFragment_deleting_messages">Đang xóa tin nhắn...</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">Tìm...</string>
+  <string name="ConversationListActivity_search">Tìm kiếm</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="other">Xoá các cuộc hội thoại đã chọn?</item>
@@ -172,7 +171,6 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
     <item quantity="other">Đã chuyển %d cuộc hội thoại vào hộp thư đến</item>
   </plurals>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Thông tin trao đổi chìa khóa...</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Các cuộc hội thoại đã bảo lưu (%d)</string>
   <!--CustomDefaultPreference-->
@@ -184,7 +182,6 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Gỡ liên kết \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Khi gỡ liên kết thiết bị này, nó sẽ không thể gửi hoặc nhận tin nhắn được nữa.</string>
-  <string name="DeviceListActivity_network_connection_failed">Kết nối vào mạng không được...</string>
   <string name="DeviceListActivity_try_again">Thử lại</string>
   <string name="DeviceListActivity_unlinking_device">Gỡ iên kết thiết bị...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Gỡ liên kết thiết bị</string>
@@ -289,8 +286,6 @@ sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin
   <string name="MessageDetailsRecipient_failed_to_send">Gửi đi không được</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Có lỗi lưu trữ MMS!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Có lỗi kết nối vào nhà dịch vụ MMS</string>
-  <string name="MmsDownloader_error_reading_mms_settings">Có lỗi khi đọc thiết đặt MMS của dịch vụ di động...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Cuộc gọi Signal đang tiến hành</string>
   <string name="NotificationBarManager_missed_call_from_s">Cuộc gọi nhỡ từ %s</string>
@@ -331,7 +326,6 @@ sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin
   <string name="DeviceProvisioningActivity_content_progress_no_device">Không tìm thấy thiết bị nào.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Lỗi mạng.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Mã QR không đúng.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Xin lỗi, bạn có quá nhiều thiết bị đã được liên kết, thử tháo bỏ vài cái...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Xin lỗi, đây không phải là mã QR liên kết thiết bị chính xác.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Liên kết một thiết bị dùng Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Có vẻ như bạn đang cố liên kết một thiết bị dùng Signal bằng phần mềm quét bên thứ 3. Để bảo vệ mình, hãy quét lại đoạn mã sử dụng Signal.</string>
@@ -404,7 +398,6 @@ mã số quốc gia bạn</string>
   <string name="RegistrationProgressActivity_verifying_number">Kiểm Chứng Số Điện Thoại</string>
   <string name="RegistrationProgressActivity_edit_s">Sửa %s</string>
   <string name="RegistrationProgressActivity_registration_complete">Đăng ký hoàn tất!</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Trước hết, bạn phải điền vào mã số đã nhận...</string>
   <string name="RegistrationProgressActivity_connecting">Đang kết nối</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Kết nối để kiểm chứng</string>
   <string name="RegistrationProgressActivity_network_error">Lỗi mạng!</string>
@@ -437,7 +430,6 @@ trao đổi chìa khóa bị hỏng!</string>
 Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không hợp lệ.</string>
   <string name="SmsMessageRecord_duplicate_message">Tin nhắn trùng lập.</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">Rời nhóm...</string>
   <string name="ThreadRecord_secure_session_reset">Đã tái thiết lập phiên bảo mật.</string>
   <string name="ThreadRecord_draft">Nháp:</string>
   <string name="ThreadRecord_called">Bạn đã gọi</string>
@@ -451,9 +443,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Khởi tạo mặc dầu đã có yêu cầu rồi?</string>
   <string name="KeyExchangeInitiator_send">Gửi</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Tin nhắn mã hóa bị hỏng...</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Đang giải mã, xin chờ...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Tin nhắn được mã hóa cho phiên trao đổi đã dứt...</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">Có lỗi giải mã tin nhắn.</string>
   <!--ThreadDatabase-->
@@ -467,8 +457,6 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="MmsDatabase_error_decrypting_message">Có lỗi giải mã tin nhắn.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Giải mã MMS, xin chờ...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Tin nhắn MMS mã hóa bị hỏng...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Tin nhắn MMS được mã hóa cho phiên trao đổi đã dứt...</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Tạm im thông báo</string>
   <!--ApplicationMigrationService-->
@@ -484,7 +472,6 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d tin nhắn mới trong %2$d cuộc chuyện trò</string>
   <string name="MessageNotifier_most_recent_from_s">Gần đây nhất từ: %1$s</string>
-  <string name="MessageNotifier_locked_message">Tin nhắn bị khóa...</string>
   <string name="MessageNotifier_media_message_with_text">Tin nhắn đa phương tiện: %s</string>
   <string name="MessageNotifier_no_subject">(Không tựa đề)</string>
   <string name="MessageNotifier_message_delivery_failed">Phân phối tin nhắn bị thất bại.</string>
@@ -521,7 +508,6 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Chọn cho</string>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">Không có liên lạc bị chặn...</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Không cú gọi gần đây</string>
   <!--conversation_title_view-->
@@ -565,7 +551,6 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Liên kết thiết bị</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">Không có thiết bị liên kết...</string>
   <string name="device_list_fragment__link_new_device">Liên kết thiết bị mới</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">tiếp tục</string>

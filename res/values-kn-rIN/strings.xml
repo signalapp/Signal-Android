@@ -118,7 +118,6 @@
   <string name="ConversationActivity_unblock">ನಿರ್ಬಂಧ ತೆಗೆಯಿರಿ</string>
   <string name="ConversationActivity_quick_camera_unavailable">ಕ್ಯಾಮೆರಾ ಲಭ್ಯವಿಲ್ಲ</string>
   <string name="ConversationActivity_unable_to_record_audio">ಧ್ವನಿ ಮುದ್ರಣ ಮಾಡಲು ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ!</string>
-  <string name="ConversationActivity_error_sending_voice_message">ಧ್ವನಿ ಸಂದೇಶ ಕಳುಹಿಸುವಲ್ಲಿ ದೋಷವಾಗಿದೆ ...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">ಸಂದೇಶದ ವಿವರಗಳು</string>
   <string name="ConversationFragment_transport_s_sent_received_s">ರವಾನೆ: %1$s \nಕಳುಹಿಸಲಾಗಿದೆ/ಸ್ವೀಕರಿಸಲಾಗಿದೆ:%2$s</string>
@@ -149,7 +148,7 @@
   <string name="ConversationFragment_deleting">ಅಳಿಸಲಾಗುತ್ತಿದೆ</string>
   <string name="ConversationFragment_deleting_messages">ಸಂದೇಶವನ್ನು ಅಳಿಸಲಾಗುತ್ತಿದೆ...</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">ಹುಡುಕಿ...</string>
+  <string name="ConversationListActivity_search">ಹುಡುಕಿ</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="other">ಆಯ್ಕೆ ಮಾಡಲಾದ ಸಂಭಾಷಣೆಗಳನ್ನು ಅಳಿಸಬಹುದೇ?</item>
@@ -165,7 +164,6 @@
   </plurals>
   <string name="ConversationListFragment_undo">ರದ್ದುಮಾಡು</string>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">ಕೀಲಿ ವಿನಿಮಯ ಸಂದೇಶ...</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">ಸಂಗ್ರಹಕ್ಕೆ ಸೇರಿಸಲಾಗಿದೆ (%d)</string>
   <!--CustomDefaultPreference-->
@@ -256,8 +254,6 @@
   <string name="MessageDetailsRecipient_failed_to_send">ಕಳುಹಿಸಲು ವಿಫಲವಾಗಿದೆ</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">ಎಂ. ಎಂ. ಎಸ್ ಸಂಗ್ರಹಿಸಿಡುವಾಗ ದೋಷ ಸಂಭವಿಸಿದೆ!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">ಎಂ.ಎಂ.ಎಸ್ ಪೂರೈಕೆದಾರರಿಗೆ ಸಂಪರ್ಕಿಸುವಾಗ ದೋಷ ...</string>
-  <string name="MmsDownloader_error_reading_mms_settings">ನಿಸ್ತಂತು ಒದಗಿಸುವವರ ಎಂ.ಎಂ.ಎಸ್ ಸೆಟ್ಟಿಂಗ್ಗಳನ್ನು ಓದುವಲ್ಲಿ ದೋಷವಾಗಿದೆ...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_missed_call_from_s">%s ನಿಂದ ತಪ್ಪಿದ ಕರೆ</string>
   <string name="NotificationBarManager_missed_signal_call">ತಪ್ಪಿದ ಸಿಗ್ನಲ್ ಕರೆ</string>
@@ -328,7 +324,6 @@
   <string name="RegistrationProgressActivity_verifying_number">ಸಂಖ್ಯೆಯನ್ನು ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ</string>
   <string name="RegistrationProgressActivity_edit_s">%s ಸಂಪಾದಿಸಿ</string>
   <string name="RegistrationProgressActivity_registration_complete">ನೋಂದಣಿ ಪೂರ್ಣಗೊಂಡಿದೆ!</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">ನೀವು ಮೊದಲ ಸ್ವೀಕರಿಸಿದ ಸಂಕೇತವನ್ನು ನಮೂದಿಸಬೇಕು ...</string>
   <string name="RegistrationProgressActivity_connecting">ಸಂಪರ್ಕಿಸಲಾಗುತ್ತಿದೆ</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">ಪರಿಶೀಲನೆಗಾಗಿ ಸಂಪರ್ಕಿಸಲಾಗುತ್ತಿದೆ ...</string>
   <string name="RegistrationProgressActivity_network_error">ಜಾಲಬಂಧದ ದೋಷ!</string>
@@ -355,7 +350,6 @@
 ಅಮಾನ್ಯವಾದ ಪ್ರೊಟೋಕಾಲ್ ಆವೃತ್ತಿಯ ಕೀಲಿ ವಿನಿಮಯ ಸಂದೇಶವನ್ನು ಸ್ವೀಕರಿಸಲಾಗಿದೆ.</string>
   <string name="SmsMessageRecord_duplicate_message">ನಕಲಿ ಸಂದೇಶ.</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">ಗುಂಪನ್ನು ಬಿಟ್ಟಿದ್ದಾರೆ ...</string>
   <string name="ThreadRecord_draft">ಕರಡು</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_no_app_to_share_to">ಹಂಚಿಕೊಳ್ಳಲು ತಾವು ಯಾವುದೇ ಅಪ್ಲಿಕೇಶನ್ಗಳು ಹೊಂದಿಲ್ಲ ಎಂದಣಿಸುತ್ತದೆ.</string>
@@ -363,9 +357,7 @@
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ವಿನಂತಿ ಹೊರತಾಗಿಯೂ ಸಹ ಪುನಃ ಪ್ರಾರಂಭಿಸಿ?</string>
   <string name="KeyExchangeInitiator_send">ಕಳುಹಿಸು</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">ಕಳಪೆ ಗೂಢಲಿಪೀಕರಣಗೊಂಡ ಸಂದೇಶ...</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">ಅಸಂಕೇತಿಕರಣಗೊಳಿಸಲಾಗುತ್ತಿದೆ, ದಯವಿಟ್ಟು ನಿರೀಕ್ಷಿಸಿ ...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">ಈ ಸಂದೇಶ ಅಸ್ತಿತ್ವದಲ್ಲಿರದ ಸೆಶನ್ನಿಗೆ ಗೂಢಲಿಪೀಕರಣಗೊಂಡಿದೆ ...</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">ಸಂದೇಶ ಡೀಕ್ರಿಪ್ಟ್ ಮಾಡುವಾಗ ದೋಷ.</string>
   <!--ThreadDatabase-->
@@ -379,8 +371,6 @@
   <string name="MmsDatabase_error_decrypting_message">ಸಂದೇಶ ಡೀಕ್ರಿಪ್ಟ್ ಮಾಡುವಾಗ ದೋಷ.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">ಎಂ. ಎಂ. ಎಸ್ ಅಸಂಕೇತಿಕರಣಗೊಳಿಸಲಾಗುತ್ತಿದೆ, ದಯವಿಟ್ಟು ನಿರೀಕ್ಷಿಸಿ ...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">ಕಳಪೆ ಗೂಢಲಿಪೀಕರಣಗೊಂಡ ಎಂ. ಎಂ. ಎಸ್ ಸಂದೇಶ ...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">ಎಂಎಂಎಸ್ ಸಂದೇಶವು ಅಸ್ತಿತ್ವದಲ್ಲಿರದ ಸೆಶನ್ನಿಗೆ ಗೂಢಲಿಪೀಕರಣಗೊಂಡಿದೆ...</string>
   <!--MuteDialog-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">ಆಮದು ಪ್ರಗತಿಯಲ್ಲಿದೆ</string>

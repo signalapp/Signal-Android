@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           package="org.thoughtcrime.securesms"
-      android:versionCode="225"
-      android:versionName="3.26.2">
+      android:versionCode="227"
+      android:versionName="3.27.1">
 
     <uses-sdk tools:overrideLibrary="com.amulyakhare.textdrawable,com.astuetz.pagerslidingtabstrip,pl.tajchert.waitingdots,com.h6ah4i.android.multiselectlistpreferencecompat,android.support.v13,com.davemorrissey.labs.subscaleview"/>
 
@@ -166,6 +166,10 @@
             <data android:mimeType="text/plain" />
             <data android:mimeType="video/*" />
         </intent-filter>
+
+        <meta-data
+                android:name="android.service.chooser.chooser_target_service"
+                android:value=".service.DirectShareService" />
 
     </activity>
 
@@ -410,6 +414,13 @@
         </intent-filter>
         <meta-data android:name="android.content.SyncAdapter" android:resource="@xml/syncadapter" />
         <meta-data android:name="android.provider.CONTACTS_STRUCTURE" android:resource="@xml/contactsformat" />
+    </service>
+
+    <service android:name=".service.DirectShareService"
+             android:permission="android.permission.BIND_CHOOSER_TARGET_SERVICE">
+        <intent-filter>
+            <action android:name="android.service.chooser.ChooserTargetService" />
+        </intent-filter>
     </service>
 
     <receiver android:name=".gcm.GcmBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND" >

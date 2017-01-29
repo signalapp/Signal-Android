@@ -196,7 +196,7 @@
   <string name="ConversationFragment_deleting">Brišem</string>
   <string name="ConversationFragment_deleting_messages">Brišem sporočila...</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">Iskanje...</string>
+  <string name="ConversationListActivity_search">Poišči</string>
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Na vaši napravi nimate nameščenega spletnega brskalnika.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
@@ -227,7 +227,7 @@
     <item quantity="other">%d pogovorov premaknjeno v nabiralnik</item>
   </plurals>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Sporočilo za izmenjavo ključev...</string>
+  <string name="ConversationListItem_key_exchange_message">Sporočilo za izmenjavo ključev</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Arhivirani pogovori (%d)</string>
   <!--CustomDefaultPreference-->
@@ -240,7 +240,7 @@
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Odstranim \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Z odstranitvijo naprave ta ne bo več mogla pošiljati ali prejemati sporočil.</string>
-  <string name="DeviceListActivity_network_connection_failed">Omrežno povezovanje ni bilo uspešno...</string>
+  <string name="DeviceListActivity_network_connection_failed">Povezovanje z omrežjem neuspešno</string>
   <string name="DeviceListActivity_try_again">Poskusite znova</string>
   <string name="DeviceListActivity_unlinking_device">Odstranjujem napravo...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Odstranjujem napravo</string>
@@ -272,7 +272,7 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trajna okvara pri komunikaciji aplikacije Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Registracija z Google Play Services ni bila uspešna. Podatkovna komunikacija je izklopljena, prosimo poskusite s ponovno registracijo v meniju Nastavive &gt; Napredno.</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Napaka pri iskanju GIF-ov v polni resoluciji...</string>
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Napaka pri pridobivanju GIF-a v polni ločljivosti</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIF-i</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Nalepke</string>
@@ -352,8 +352,8 @@ Uvoz iz šifrirane varnostne kopije bo popolnoma nadomestil obstoječe ključe, 
   <string name="MessageDetailsRecipient_new_safety_number">Novo varnostno število</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Napaka pri shranjevanju MMS sporočila!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Napaka pri povezavi s ponudnikom MMS...</string>
-  <string name="MmsDownloader_error_reading_mms_settings">Ne morem razbrati MMS nastavitev vašega operaterja...</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Napaka pri povezavi s ponudnikom MMS</string>
+  <string name="MmsDownloader_error_reading_mms_settings">Napaka pri branju nastavitev MMS brezžičnega ponudnika</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Klic Signal poteka</string>
   <string name="NotificationBarManager_missed_call_from_s">Neodgovorjen klic: %s</string>
@@ -396,7 +396,7 @@ Uvoz iz šifrirane varnostne kopije bo popolnoma nadomestil obstoječe ključe, 
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nobena naprava ni bila najdena.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Napaka omrežja.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Neveljavna koda QR.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Imate preveč povezanih naprav, poskusite kakšno odstraniti...</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Imate preveč registriranih naprav. Za povezavo nove najprej kakšno odstranite.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Koda QR za povezavo naprav ni veljavna.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Povežem z napravo Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Izgleda, da želite za povzavo z napravo Signal uporabiti zunanji optični čitalnik. Prosimo, da storite to znotraj aplikacije Signal, saj je tako najvarneje.</string>
@@ -427,6 +427,7 @@ Uvoz iz šifrirane varnostne kopije bo popolnoma nadomestil obstoječe ključe, 
   <string name="RecipientPreferenceActivity_unblock">Odblokiraj</string>
   <string name="RecipientPreferenceActivity_enabled">Vklopljeno</string>
   <string name="RecipientPreferenceActivity_disabled">Izklopljeno</string>
+  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Na voljo šele po prvi izmenjavi sporočil</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">Odgovarjam</string>
   <string name="RedPhone_ending_call">Končujem klic</string>
@@ -467,7 +468,7 @@ Preverite, če je to zares vaša telefonska številka! Potrdili jo bomo s sporo�
   <string name="RegistrationProgressActivity_verifying_number">Potrjujem številko</string>
   <string name="RegistrationProgressActivity_edit_s">Uredi %s</string>
   <string name="RegistrationProgressActivity_registration_complete">Registracija je končana!</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Najprej morate vnesti kodo, ki ste jo prejeli...</string>
+  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Vnesti morate kodo, ki ste jo dobili najprej</string>
   <string name="RegistrationProgressActivity_connecting">Povezujem</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Povezujem za verifikacijo...</string>
   <string name="RegistrationProgressActivity_network_error">Napaka v omrežju!</string>
@@ -503,7 +504,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="SmsMessageRecord_secure_session_reset_s">Oseba %s je ponastavila varno sejo.</string>
   <string name="SmsMessageRecord_duplicate_message">Podvojeno sporočilo.</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">Zapustili ste skupino...</string>
+  <string name="ThreadRecord_left_the_group">Zapustili ste skupino.</string>
   <string name="ThreadRecord_secure_session_reset">Varna seja ponastavljena.</string>
   <string name="ThreadRecord_draft">Osnutek:</string>
   <string name="ThreadRecord_called">Klicali ste</string>
@@ -525,9 +526,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Začnem kljub že poslani zahtevi?</string>
   <string name="KeyExchangeInitiator_send">Pošlji</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Okvarjeno šifrirano sporočilo...</string>
+  <string name="MessageDisplayHelper_bad_encrypted_message">Okvarjeno šifrirano sporočilo</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Dešifriram sporočilo, počakajte...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Sporočilo je šifrirano za neobstoječo sejo...</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Sporočilo je bilo šifrirano za neobstoječo sejo</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">Napaka pri dešifriranju sporočila.</string>
   <!--ThreadDatabase-->
@@ -541,8 +542,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="MmsDatabase_error_decrypting_message">Napaka pri dešifriranju sporočila.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Dešifriranje sporočila MMS, počakajte...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Okvarjeno šifrirano sporočilo MMS...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Sporočilo MMS šifrirano za neobstoječo sejo...</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Okvarjeno šifrirano MMS sporočilo</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Sporočilo MMS je bilo šifrirano za neobstoječo sejo</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Utišaj obvestila</string>
   <!--ApplicationMigrationService-->
@@ -558,7 +559,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">Novih sporočil: %1$d, pogovorov: %2$d</string>
   <string name="MessageNotifier_most_recent_from_s">Zadnje sporočilo od: %1$s</string>
-  <string name="MessageNotifier_locked_message">Zaklenjeno sporočilo...</string>
+  <string name="MessageNotifier_locked_message">Zaklenjeno sporočilo</string>
   <string name="MessageNotifier_media_message_with_text">Večpredstavno sporočilo: %s</string>
   <string name="MessageNotifier_no_subject">(brez naslova)</string>
   <string name="MessageNotifier_message_delivery_failed">Dostava sporočila ni uspela.</string>
@@ -604,7 +605,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Izberi za</string>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">Ni blokiranih stikov...</string>
+  <string name="blocked_contacts_fragment__no_blocked_contacts">Ni blokiranih stikov</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Ni zadnjih klicev.</string>
   <!--conversation_title_view-->
@@ -654,7 +655,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Poveži z napravo</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">Ni povezanih naprav...</string>
+  <string name="device_list_fragment__no_devices_linked">Ni povezanih naprav</string>
   <string name="device_list_fragment__link_new_device">Poveži z novo napravo</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">nadaljuj</string>

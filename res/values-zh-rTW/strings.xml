@@ -126,7 +126,6 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">當前訊息的附件類型已經超越大小限制。</string>
   <string name="ConversationActivity_quick_camera_unavailable">攝像頭不可用</string>
   <string name="ConversationActivity_unable_to_record_audio">無法錄音！</string>
-  <string name="ConversationActivity_error_sending_voice_message">傳送語音訊息時出現錯誤...</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">您的設備上沒有應用程序能處理這個鏈接。</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">訊息細節</string>
@@ -145,6 +144,9 @@
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="other">保存附件至存儲時遇到錯誤！</item>
   </plurals>
+  <plurals name="ConversationFragment_files_saved_successfully">
+    <item quantity="other">檔案已成功存儲。</item>
+  </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">無法寫入儲存裝置！</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="other">正在保存 %1$d 附件</item>
@@ -160,7 +162,7 @@
   <string name="ConversationFragment_deleting">正在刪除</string>
   <string name="ConversationFragment_deleting_messages">正在刪除訊息...</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">搜尋...</string>
+  <string name="ConversationListActivity_search">搜尋</string>
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">您的設備上未安裝瀏覽器。</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
@@ -179,7 +181,6 @@
     <item quantity="other">已經移動 %d 個對話到收件箱</item>
   </plurals>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">金鑰交換訊息...</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">存檔對話 (%d)</string>
   <!--CustomDefaultPreference-->
@@ -192,7 +193,6 @@
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">取消連結 \'%s\'？</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">如果取消連結此裝置，它將不能再接受或傳送訊息。</string>
-  <string name="DeviceListActivity_network_connection_failed">網路連線失敗...</string>
   <string name="DeviceListActivity_try_again">再試一次</string>
   <string name="DeviceListActivity_unlinking_device">取消連結裝置...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">取消連結裝置</string>
@@ -224,7 +224,6 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal 持續發生傳輸異常！</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal 無法順利註冊為 Google Play Services。Signal 訊息與通話已經停用，請嘗試在設定 &gt; 進階中重新註冊。</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">在下載完整的 GIF 時發生錯誤...</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">動態圖檔</string>
   <string name="GiphyFragmentPagerAdapter_stickers">貼圖</string>
@@ -305,8 +304,6 @@
   <string name="MessageDetailsRecipient_new_safety_number">新的安全碼</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">儲存多媒體訊息時有誤！</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">連線至多媒體訊息伺服器時有誤！</string>
-  <string name="MmsDownloader_error_reading_mms_settings">讀取多媒體訊息伺服器的無線設定時有誤！</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">正在處理 Signal 通話</string>
   <string name="NotificationBarManager_missed_call_from_s">來自 %s 的未接來電</string>
@@ -349,7 +346,6 @@
   <string name="DeviceProvisioningActivity_content_progress_no_device">未找到裝置。</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">網路錯誤。</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">QR 碼無效。</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">抱歉，您已連結太多的裝置，請先移除一些...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">抱歉，這不是有些的裝置連結 QR 碼。</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">連結 Signal 裝置？</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">看起來您正在嘗試使用第 3 方掃描器連結 Signal 裝置。為了安全著想，請使用 Signal 重新掃描代碼一次。</string>
@@ -428,7 +424,6 @@
   <string name="RegistrationProgressActivity_verifying_number">驗證門號</string>
   <string name="RegistrationProgressActivity_edit_s">編輯 %s</string>
   <string name="RegistrationProgressActivity_registration_complete">註冊完成！</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">您必須輸入剛才收到的驗證碼...</string>
   <string name="RegistrationProgressActivity_connecting">連線中</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">驗證碼確認連線中</string>
   <string name="RegistrationProgressActivity_network_error">網路錯誤！</string>
@@ -465,7 +460,6 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%s 重設安全對話。</string>
   <string name="SmsMessageRecord_duplicate_message">複製訊息。</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">離開這個群組...</string>
   <string name="ThreadRecord_secure_session_reset">安全對話已重設。</string>
   <string name="ThreadRecord_draft">草稿：</string>
   <string name="ThreadRecord_called">您呼叫</string>
@@ -488,9 +482,7 @@
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">忽略既有請求，依然啟動？</string>
   <string name="KeyExchangeInitiator_send">送出</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">損毀的加密訊息...</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">解密中... 請稍後...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">與加密訊息匹配的連線已不存在...</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">解密訊息時發生錯誤。</string>
   <!--ThreadDatabase-->
@@ -504,8 +496,6 @@
   <string name="MmsDatabase_error_decrypting_message">解密訊息時發生錯誤。</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">解密多媒體訊息中，請稍候...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">毀損的加密多媒體訊息...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">與加密多媒體訊息匹配的連線已不存在...</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">靜音通知</string>
   <!--ApplicationMigrationService-->
@@ -521,7 +511,6 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d 則新訊息在 %2$d 的對話中</string>
   <string name="MessageNotifier_most_recent_from_s">最新來自：%1$s</string>
-  <string name="MessageNotifier_locked_message">訊息鎖定...</string>
   <string name="MessageNotifier_media_message_with_text">媒體訊息：%s</string>
   <string name="MessageNotifier_no_subject">(在此輸入主題)</string>
   <string name="MessageNotifier_message_delivery_failed">訊息傳送失敗。</string>
@@ -567,7 +556,6 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">相片</string>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">無已封鎖聯絡人</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">沒有最近通話。</string>
   <!--conversation_title_view-->
@@ -617,7 +605,6 @@
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">連結裝置</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">無連結裝置...</string>
   <string name="device_list_fragment__link_new_device">連結新的裝置</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">繼續</string>

@@ -114,7 +114,6 @@
   <string name="ConversationActivity_unblock">Odblokovať</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera je momentálne neprístupná</string>
   <string name="ConversationActivity_unable_to_record_audio">Nemôžem zaznamenať zvuk!</string>
-  <string name="ConversationActivity_error_sending_voice_message">Chyba pri posielaní zvukovej správy...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detaily správy</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Prenos: %1$s\nodoslané/prijaté: %2$s</string>
@@ -139,11 +138,11 @@
   <string name="ConversationFragment_deleting">Vymazávanie</string>
   <string name="ConversationFragment_deleting_messages">Mažú sa správy...</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">Hľadaj...</string>
+  <string name="ConversationListActivity_search">Hľadaj</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_deleting">Vymazanie</string>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Správa vzájomnej výmeny kľúčov...</string>
+  <string name="ConversationListItem_key_exchange_message">Správa vzájomnej výmeny kľúčov</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Archivované konverzácie (%d)</string>
   <!--CustomDefaultPreference-->
@@ -215,8 +214,6 @@ opätovným importom zduplikujete správy.
   <string name="MessageDetailsRecipient_failed_to_send">Nepodarilo sa odoslať</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Chyba pri ukladaní MMS!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Chyba spojenia s poskytovateľom MMS...</string>
-  <string name="MmsDownloader_error_reading_mms_settings">Chyba pri čítaní MMS nastavení operátora...</string>
   <!--- NotificationBarManager-->
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediálna správa</string>
@@ -314,7 +311,6 @@ Skontrolujte pre istotu znovu, že ste správne zadali Vaše telefónne číslo!
   <string name="RegistrationProgressActivity_verifying_number">Overovanie čísla </string>
   <string name="RegistrationProgressActivity_edit_s">Upraviť %s</string>
   <string name="RegistrationProgressActivity_registration_complete">Registrácia dokončená.</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Musíte zadať kód, ktorý ste dostali ako prvý...</string>
   <string name="RegistrationProgressActivity_connecting">Pripájanie</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Pripájanie kvôli overovaniu...</string>
   <string name="RegistrationProgressActivity_network_error">Chyba siete! </string>
@@ -346,7 +342,6 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <string name="SmsMessageRecord_secure_session_reset">Obnovili ste bezpečnú reláciu.</string>
   <string name="SmsMessageRecord_duplicate_message">Zduplikuj správu.</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">Opustil skupinu...</string>
   <string name="ThreadRecord_secure_session_reset">Bezpečná relácia obnovená.</string>
   <string name="ThreadRecord_draft">Rozpísaná správa:</string>
   <string name="ThreadRecord_called">Volali ste</string>
@@ -361,9 +356,7 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Začať aj napriek existujúcemu požiadavku?</string>
   <string name="KeyExchangeInitiator_send">Odošli</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Nesprávne kryptovaná správa...</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Prosím čakaj, dekryptujem...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Správa zakryptovaná pre neexistujúcu session...</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">Chyba pri dešifrovaní správy.</string>
   <!--ThreadDatabase-->
@@ -377,8 +370,6 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <string name="MmsDatabase_error_decrypting_message">Chyba pri dešifrovaní správy.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Prosím čakaj, dekryptujem MMS...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Nesprávne kryptovaná MMS správa...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS správa zakryptovaná pre neexistujúcu session...</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Vypnúť upozornenia</string>
   <!--ApplicationMigrationService-->
@@ -393,7 +384,6 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <string name="KeyCachingService_lock">Zamkni s heslom</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_most_recent_from_s">Najnovšie od: %1$s</string>
-  <string name="MessageNotifier_locked_message">Zamknutá správa...</string>
   <string name="MessageNotifier_media_message_with_text">Multimediálna správa: %s</string>
   <string name="MessageNotifier_no_subject">(bez predmetu)</string>
   <string name="MessageNotifier_message_delivery_failed">Doručenie správy zlyhalo.</string>
@@ -436,7 +426,6 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Vyber pre</string>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">Žiadne zablokované kontaky...</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Žiadne nedávne hovory.</string>
   <!--conversation_title_view-->

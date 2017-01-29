@@ -132,7 +132,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">A melléklet meghaladja a mérethatárt ahhoz a típusú üzenethez, amit küldesz.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera nem elérhető</string>
   <string name="ConversationActivity_unable_to_record_audio">Nem lehet hangot rögzíteni!</string>
-  <string name="ConversationActivity_error_sending_voice_message">Hiba a hangüzenet küldése közben...</string>
+  <string name="ConversationActivity_error_sending_voice_message">Hiba hangüzenet küldésekor</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">A készülékeden nincs elérhető alkalmazás ennek a hivatkozásnak a kezeléséhez.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Üzenet részletek</string>
@@ -155,6 +155,10 @@
     <item quantity="one">Hiba történt a melléklet tárolóra mentése közben!</item>
     <item quantity="other">Hiba történt a mellékletek tárolóra mentése közben!</item>
   </plurals>
+  <plurals name="ConversationFragment_files_saved_successfully">
+    <item quantity="one">Fájl sikeresen mentve.</item>
+    <item quantity="other">Fájlok sikeresen mentve.</item>
+  </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nem lehet írni a tárolóra!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Melléklet mentése</item>
@@ -172,7 +176,7 @@
   <string name="ConversationFragment_deleting">Törlés</string>
   <string name="ConversationFragment_deleting_messages">Üzenetek törlése...</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">Keresés...</string>
+  <string name="ConversationListActivity_search">Keresés</string>
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nincs böngésző telepítve a készülékedre.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
@@ -195,7 +199,7 @@
     <item quantity="other">%d beszélgetés áthelyezve a bejövőbe</item>
   </plurals>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Kulcs-csere üzenet...</string>
+  <string name="ConversationListItem_key_exchange_message">Kulcs-csere üzenet</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Archivált beszélgetések (%d)</string>
   <!--CustomDefaultPreference-->
@@ -208,7 +212,7 @@
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Társítás megszüntetése ezzel: \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Ez a készülék társításának megszüntetésével ez többé nem lesz képes üzeneteket küldeni vagy fogadni.</string>
-  <string name="DeviceListActivity_network_connection_failed">Hálózati kapcsolódás sikertelen...</string>
+  <string name="DeviceListActivity_network_connection_failed">Hálózati kapcsolódás sikertelen</string>
   <string name="DeviceListActivity_try_again">Újrapróbálkozás</string>
   <string name="DeviceListActivity_unlinking_device">Készülék társításának megszüntetése...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Készülék társításának megszüntetése</string>
@@ -240,7 +244,7 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Elhúzódó Signal kommunikációs hiba!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">A Signal nem tudott regisztrálni a Google Play Szolgáltatásokkal. A Signal üzenetek és hívások le vannak tiltva, kérlek próbálj meg újraregisztrálni a Beállítások &gt; Haladó-ban.</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Hiba a teljes méretű GIF visszakeresésekor...</string>
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Hiba a teljes felbontású GIF visszakeresésekor</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIFek</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Matricák</string>
@@ -324,8 +328,8 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <string name="MessageDetailsRecipient_new_safety_number">Új biztonsági szám</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">MMS tárolása sikertelen!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">A kapcsolódás az MMS szolgáltatóhoz meghiúsult...</string>
-  <string name="MmsDownloader_error_reading_mms_settings">Hiba a vezeték nélküli szolgáltató MMS beállításainak olvasása közben...</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Hiba az MMS szolgáltatóhoz kapcsolódáskor</string>
+  <string name="MmsDownloader_error_reading_mms_settings">Hiba a vezeték nélküli szolgáltató MMS beállításainak olvasásában</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal hívás folyamatban</string>
   <string name="NotificationBarManager_missed_call_from_s">Nem fogadott hívás tőle: %s</string>
@@ -369,7 +373,7 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nem található készülék.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Hálózati hiba.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Érvénytelen QR kód.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Sajnáljuk, túl sok készüléked van társítva jelenleg, próbálj meg néhányat eltávolítani...</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Sajnáljuk, túl sok készüléked van társítva jelenleg, próbálj meg néhányat eltávolítani</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Sajnáljuk, ez nem egy érvényes készülék társítási QR kód.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Signal készülék társítása?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Úgy tűnik, hogy egy harmadik féltől származó szkennelővel próbálsz társítani egy Signal készüléket. A védelmed érdekében kérlek szkenneld újra a kódot Signal-on belül.</string>
@@ -401,6 +405,7 @@ Kérlek telepítsd újra a Google Play Szolgáltatásokat és próbálkozz újra
   <string name="RecipientPreferenceActivity_unblock">Feloldás</string>
   <string name="RecipientPreferenceActivity_enabled">Engedélyezett</string>
   <string name="RecipientPreferenceActivity_disabled">Letiltott</string>
+  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Elérhető, amint egy üzenet küldve vagy fogadva van.</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">Válaszol</string>
   <string name="RedPhone_ending_call">Hívás befejezése</string>
@@ -451,7 +456,7 @@ Ellenőrizd újra, hogy ez a te számod! Hamarosan egy SMS-ben fogjuk ellenőriz
   <string name="RegistrationProgressActivity_verifying_number">Ellenőrzési szám</string>
   <string name="RegistrationProgressActivity_edit_s">Szerkesztés %s</string>
   <string name="RegistrationProgressActivity_registration_complete">Regisztráció befejezve!</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Először a kapott kódot kell megadnod...</string>
+  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Először meg kell adnod a kapott kódot</string>
   <string name="RegistrationProgressActivity_connecting">Kapcsolódás</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Kapcsolódás az ellenőrzéshez...</string>
   <string name="RegistrationProgressActivity_network_error">Hálózati hiba!</string>
@@ -489,7 +494,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="SmsMessageRecord_secure_session_reset_s">%s alaphelyzetbe állította a biztonságos munkamenetet.</string>
   <string name="SmsMessageRecord_duplicate_message">Üzenet duplikálása.</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">Elhagyta a csoportot...</string>
+  <string name="ThreadRecord_left_the_group">Elhagyta a csoportot</string>
   <string name="ThreadRecord_secure_session_reset">Biztonságos munkamenet alaphelyzetbe állítása.</string>
   <string name="ThreadRecord_draft">Piszkozat:</string>
   <string name="ThreadRecord_called">Te hívtad</string>
@@ -511,9 +516,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Kezdeményezed a létező kérés ellenére?</string>
   <string name="KeyExchangeInitiator_send">Küldés</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Rossz titkosított üzenet...</string>
+  <string name="MessageDisplayHelper_bad_encrypted_message">Rossz titkosított üzenet</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Dekódolás, kérlek várj...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Üzenet titkosítva egy nem létező munkamenethez...</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Üzenet titkosítva nem létező munkamenethez</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">Hiba az üzenet dekódolása közben.</string>
   <!--ThreadDatabase-->
@@ -527,8 +532,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="MmsDatabase_error_decrypting_message">Hiba az üzenet dekódolása közben.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">MMS dekódolása, kérlek várj...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Rossz titkosított MMS üzenet...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS üzenet titkosítva egy nem létező munkamenethez...</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Rossz titkosított MMS üzenet</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS üzenet titkosítva nem létező munkamenethez</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Értesítések némítása</string>
   <!--ApplicationMigrationService-->
@@ -544,7 +549,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d új üzenet %2$d beszélgetésben</string>
   <string name="MessageNotifier_most_recent_from_s">Legfrissebb tőle: %1$s</string>
-  <string name="MessageNotifier_locked_message">Zárolt üzenet...</string>
+  <string name="MessageNotifier_locked_message">Zárolt üzenet</string>
   <string name="MessageNotifier_media_message_with_text">Média üzenet: %s</string>
   <string name="MessageNotifier_no_subject">(Nincs tárgy)</string>
   <string name="MessageNotifier_message_delivery_failed">Üzenet kézbesítése sikertelen!</string>
@@ -590,7 +595,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Kiválasztás erre:</string>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">Nincs letiltott névjegy...</string>
+  <string name="blocked_contacts_fragment__no_blocked_contacts">Nincs tiltott névjegy</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">A híváslista üres.</string>
   <!--conversation_title_view-->
@@ -640,7 +645,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Készülék társítása</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">Nincs társított készülék...</string>
+  <string name="device_list_fragment__no_devices_linked">Nincs társított készülék</string>
   <string name="device_list_fragment__link_new_device">Új készülék társítása</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">folytatás</string>

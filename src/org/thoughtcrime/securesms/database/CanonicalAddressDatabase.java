@@ -28,19 +28,14 @@ import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.google.i18n.phonenumbers.NumberParseException;
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
-import com.google.i18n.phonenumbers.Phonenumber;
-import com.google.i18n.phonenumbers.ShortNumberInfo;
-
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.ShortCodeUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
 import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -64,9 +59,9 @@ public class CanonicalAddressDatabase {
   private        DatabaseHelper           databaseHelper;
   private final  Context                  context;
 
-  private final Map<String, Long>        addressCache          = new ConcurrentHashMap<>();
-  private final Map<Long, String>        idCache               = new ConcurrentHashMap<>();
-  private final LRUCache<String, String> formattedAddressCache = new LRUCache<>(100);
+  private final Map<String, Long>   addressCache          = new ConcurrentHashMap<>();
+  private final Map<Long, String>   idCache               = new ConcurrentHashMap<>();
+  private final Map<String, String> formattedAddressCache = Collections.synchronizedMap(new LRUCache<String, String>(100));
 
   public synchronized static CanonicalAddressDatabase getInstance(Context context) {
     if (instance == null)

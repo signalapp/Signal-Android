@@ -1,11 +1,5 @@
 package org.thoughtcrime.redphone.signaling;
 
-import com.squareup.okhttp.MediaType;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.RequestBody;
-import com.squareup.okhttp.Response;
-
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -22,6 +16,13 @@ import java.security.cert.CertificateException;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
+import javax.net.ssl.X509TrustManager;
+
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class RedPhoneAccountManager {
 
@@ -39,7 +40,9 @@ public class RedPhoneAccountManager {
       this.baseUrl  = baseUrl;
       this.login    = login;
       this.password = password;
-      this.client   = new OkHttpClient().setSslSocketFactory(context.getSocketFactory());
+      this.client   = new OkHttpClient.Builder()
+                                      .sslSocketFactory(context.getSocketFactory(), (X509TrustManager)trustManagers[0])
+                                      .build();
     } catch (NoSuchAlgorithmException | KeyManagementException e) {
       throw new AssertionError(e);
     }
