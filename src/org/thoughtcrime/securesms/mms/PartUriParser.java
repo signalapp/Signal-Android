@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.mms;
 
-import android.content.ContentUris;
 import android.net.Uri;
 
 import org.thoughtcrime.securesms.attachments.AttachmentId;
@@ -18,7 +17,7 @@ public class PartUriParser {
   }
 
   private long getId() {
-    return ContentUris.parseId(uri);
+    return Long.parseLong(uri.getPathSegments().get(2));
   }
 
   private long getUniqueId() {

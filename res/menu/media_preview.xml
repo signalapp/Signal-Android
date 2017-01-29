@@ -5,6 +5,10 @@
           android:title="@string/media_preview__forward_title"
           android:icon="@drawable/ic_forward_white_24dp"
           app:showAsAction="always"/>
+    <item android:id="@+id/share"
+          android:title="Share"
+          android:icon="@drawable/ic_share_white_24dp"
+          app:showAsAction="always"/>
     <item android:id="@+id/save"
           android:title="@string/media_preview__save_title"
           android:icon="@drawable/ic_save_white_24dp"
