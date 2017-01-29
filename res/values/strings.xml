@@ -1276,6 +1276,7 @@
     <string name="media_preview__save_title">Save</string>
     <string name="media_preview__forward_title">Forward</string>
     <string name="media_preview__overview_title">All images</string>
+    <string name="media_preview__share_title">Share</string>
 
     <!-- media_overview -->
     <string name="media_overview__save_all">Save all</string>

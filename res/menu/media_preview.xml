@@ -6,7 +6,7 @@
           android:icon="@drawable/ic_forward_white_24dp"
           app:showAsAction="always"/>
     <item android:id="@+id/share"
-          android:title="Share"
+          android:title="@string/media_preview__share_title"
           android:icon="@drawable/ic_share_white_24dp"
           app:showAsAction="always"/>
     <item android:id="@+id/save"
