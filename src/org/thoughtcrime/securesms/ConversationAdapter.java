@@ -292,6 +292,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     if (isHeaderPosition(position)) return -1;
     if (isFooterPosition(position)) return -1;
     if (position >= getItemCount()) return -1;
+    if (position < 0)               return -1;
 
     Cursor        cursor = getCursorAtPositionOrThrow(position);
     MessageRecord record = getMessageRecord(cursor);
