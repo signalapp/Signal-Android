@@ -259,6 +259,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         initializeDraft();
       }
     });
+    initializeBetaCalling();
   }
 
   @Override
@@ -942,6 +943,38 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }.execute(recipients);
 
     return future;
+  }
+
+  private void initializeBetaCalling() {
+    if (!TextSecurePreferences.isWebrtcCallingEnabled(this)) {
+      return;
+    }
+
+    new AsyncTask<Void, Void, boolean[]>() {
+      @Override
+      protected boolean[] doInBackground(Void... params) {
+        try {
+          Context context = ConversationActivity.this;
+          UserCapabilities userCapabilities = DirectoryHelper.refreshDirectoryFor(context, masterSecret, recipients,
+                                                                                  TextSecurePreferences.getLocalNumber(context));
+
+
+          return new boolean[] {userCapabilities.getTextCapability() == Capability.SUPPORTED,
+                                userCapabilities.getVideoCapability() == Capability.SUPPORTED && !isSelfConversation(),
+                                Util.isDefaultSmsProvider(context)};
+        } catch (IOException e) {
+          Log.w(TAG, e);
+          return null;
+        }
+      }
+
+      @Override
+      protected void onPostExecute(boolean[] result) {
+        if (result != null && (result[0] != isSecureText || result[1] != isSecureVideo || result[2] != isDefaultSms)) {
+          handleSecurityChange(result[0], result[1], result[2]);
+        }
+      }
+    }.execute();
   }
 
   private void onSecurityUpdated() {
