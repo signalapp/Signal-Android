@@ -87,7 +87,7 @@ public class DatabaseFactory {
   private final EncryptingSmsDatabase encryptingSms;
   private final MmsDatabase mms;
   private final AttachmentDatabase attachments;
-  private final ImageDatabase image;
+  private final MediaDatabase media;
   private final ThreadDatabase thread;
   private final CanonicalAddressDatabase address;
   private final MmsAddressDatabase mmsAddress;
@@ -136,8 +136,8 @@ public class DatabaseFactory {
     return getInstance(context).attachments;
   }
 
-  public static ImageDatabase getImageDatabase(Context context) {
-    return getInstance(context).image;
+  public static MediaDatabase getMediaDatabase(Context context) {
+    return getInstance(context).media;
   }
 
   public static MmsAddressDatabase getMmsAddressDatabase(Context context) {
@@ -174,7 +174,7 @@ public class DatabaseFactory {
     this.encryptingSms               = new EncryptingSmsDatabase(context, databaseHelper);
     this.mms                         = new MmsDatabase(context, databaseHelper);
     this.attachments                 = new AttachmentDatabase(context, databaseHelper);
-    this.image                       = new ImageDatabase(context, databaseHelper);
+    this.media                       = new MediaDatabase(context, databaseHelper);
     this.thread                      = new ThreadDatabase(context, databaseHelper);
     this.address                     = CanonicalAddressDatabase.getInstance(context);
     this.mmsAddress                  = new MmsAddressDatabase(context, databaseHelper);

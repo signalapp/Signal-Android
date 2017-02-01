@@ -858,7 +858,7 @@
     <string name="load_more_header__see_full_conversation">See full conversation</string>
 
     <!-- media_overview_activity -->
-    <string name="media_overview_activity__no_images">No images</string>
+    <string name="media_overview_activity__no_media">No media</string>
 
     <!-- message_recipients_list_item -->
     <string name="message_recipients_list_item__verify">VERIFY</string>
@@ -1012,8 +1012,8 @@
     <string name="AndroidManifest__verify_safety_number">Verify safety number</string>
     <string name="AndroidManifest__log_submit">Submit debug log</string>
     <string name="AndroidManifest__media_preview">Media preview</string>
-    <string name="AndroidManifest__media_overview">All images</string>
-    <string name="AndroidManifest__media_overview_named">All images with %1$s</string>
+    <string name="AndroidManifest__all_media">All media</string>
+    <string name="AndroidManifest__all_media_named">All media with %1$s</string>
     <string name="AndroidManifest__message_details">Message details</string>
     <string name="AndroidManifest__linked_devices">Linked devices</string>
     <string name="AndroidManifest__invite_friends">Invite friends</string>
@@ -1233,7 +1233,7 @@
     <string name="conversation__menu_edit_group">Edit group</string>
     <string name="conversation__menu_leave_group">Leave group</string>
     <string name="conversation__menu_delete_thread">Delete conversation</string>
-    <string name="conversation__menu_view_media">All images</string>
+    <string name="conversation__menu_view_all_media">All media</string>
     <string name="conversation__menu_conversation_settings">Conversation settings</string>
 
     <!-- conversation_popup -->
@@ -1296,13 +1296,13 @@
     <!-- media_preview -->
     <string name="media_preview__save_title">Save</string>
     <string name="media_preview__forward_title">Forward</string>
-    <string name="media_preview__overview_title">All images</string>
+    <string name="media_preview__all_media_title">All media</string>
 
     <!-- media_overview -->
     <string name="media_overview__save_all">Save all</string>
 
     <!-- media_preview_activity -->
-    <string name="media_preview_activity__image_content_description">Image preview</string>
+    <string name="media_preview_activity__media_content_description">Media preview</string>
 
     <!-- new_conversation_activity -->
     <string name="new_conversation_activity__refresh">Refresh</string>
