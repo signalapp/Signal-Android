@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
@@ -50,7 +51,7 @@ public abstract class PushReceivedJob extends ContextJob {
     Recipients recipients = RecipientFactory.getRecipientsFromString(context, envelope.getSource(), false);
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
 
-    if (!recipients.isBlocked()) {
+    if (!recipients.isBlocked() && !Util.numberShouldBeIgnored(context, envelope.getSource())) {
       long messageId = DatabaseFactory.getPushDatabase(context).insert(envelope);
       jobManager.add(new PushDecryptJob(context, messageId, envelope.getSource()));
     } else {

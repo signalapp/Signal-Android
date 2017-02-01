@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
 
@@ -73,7 +74,7 @@ public class GcmBroadcastReceiver extends WakefulBroadcastReceiver {
           CompressedInitiateSignal signal                 = CompressedInitiateSignal.parseFrom(encryptedSignalMessage.getPlaintext());
           Recipients               recipients             = RecipientFactory.getRecipientsFromString(context, signal.getInitiator(), false);
 
-          if (!recipients.isBlocked()) {
+          if (!recipients.isBlocked() && !Util.numberShouldBeIgnored(context, signal.getInitiator())) {
             Intent intent = new Intent(context, RedPhoneService.class);
             intent.setAction(RedPhoneService.ACTION_INCOMING_CALL);
             intent.putExtra(RedPhoneService.EXTRA_REMOTE_NUMBER, signal.getInitiator());
