@@ -28,7 +28,7 @@ public class ContactsSyncAdapter extends AbstractThreadedSyncAdapter {
   {
     Log.w(TAG, "onPerformSync(" + authority +")");
 
-    if (TextSecurePreferences.isPushRegistered(getContext())) {
+    if (TextSecurePreferences.isRegistered(getContext())) {
       try {
         DirectoryHelper.refreshDirectory(getContext(), KeyCachingService.getMasterSecret(getContext()));
       } catch (IOException e) {

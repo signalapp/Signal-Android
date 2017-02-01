@@ -10,6 +10,8 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import org.thoughtcrime.redphone.signaling.RedPhoneAccountAttributes;
@@ -192,8 +194,9 @@ public class RegistrationService extends Service {
     }
 
     try {
-      String password     = Util.getSecret(18);
-      String signalingKey = Util.getSecret(52);
+      String  password     = Util.getSecret(18);
+      String  signalingKey = Util.getSecret(52);
+      boolean hasServices  = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) == ConnectionResult.SUCCESS;
 
       initializeChallengeListener();
 
@@ -203,7 +206,7 @@ public class RegistrationService extends Service {
 
       setState(new RegistrationState(RegistrationState.STATE_VERIFYING, number));
       String challenge = waitForChallenge();
-      accountManager.verifyAccountWithCode(challenge, signalingKey, registrationId, true);
+      accountManager.verifyAccountWithCode(challenge, signalingKey, registrationId, hasServices, !hasServices);
 
       handleCommonRegistration(accountManager, number, password, signalingKey);
       markAsVerified(number, password, signalingKey);
@@ -244,21 +247,24 @@ public class RegistrationService extends Service {
 
     setState(new RegistrationState(RegistrationState.STATE_GCM_REGISTERING, number));
 
-    String gcmRegistrationId = GoogleCloudMessaging.getInstance(this).register(GcmRefreshJob.REGISTRATION_ID);
-    accountManager.setGcmId(Optional.of(gcmRegistrationId));
-
-    TextSecurePreferences.setGcmRegistrationId(this, gcmRegistrationId);
     TextSecurePreferences.setWebsocketRegistered(this, true);
 
     DatabaseFactory.getIdentityDatabase(this).saveIdentity(self.getRecipientId(), identityKey.getPublicKey());
     DirectoryHelper.refreshDirectory(this, accountManager, number);
 
-    RedPhoneAccountManager redPhoneAccountManager = new RedPhoneAccountManager(BuildConfig.REDPHONE_MASTER_URL,
-                                                                               new RedPhoneTrustStore(this),
-                                                                               number, password);
+    if (GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) == ConnectionResult.SUCCESS) {
+      String gcmRegistrationId = GoogleCloudMessaging.getInstance(this).register(GcmRefreshJob.REGISTRATION_ID);
+      accountManager.setGcmId(Optional.of(gcmRegistrationId));
 
-    String verificationToken = accountManager.getAccountVerificationToken();
-    redPhoneAccountManager.createAccount(verificationToken, new RedPhoneAccountAttributes(signalingKey, gcmRegistrationId));
+      TextSecurePreferences.setGcmRegistrationId(this, gcmRegistrationId);
+
+      RedPhoneAccountManager redPhoneAccountManager = new RedPhoneAccountManager(BuildConfig.REDPHONE_MASTER_URL,
+                                                                                 new RedPhoneTrustStore(this),
+                                                                                 number, password);
+
+      String verificationToken = accountManager.getAccountVerificationToken();
+      redPhoneAccountManager.createAccount(verificationToken, new RedPhoneAccountAttributes(signalingKey, gcmRegistrationId));
+    }
 
     DirectoryRefreshListener.schedule(this);
     RotateSignedPreKeyListener.schedule(this);
@@ -291,12 +297,18 @@ public class RegistrationService extends Service {
 
     if (verifying) {
       TextSecurePreferences.setPushRegistered(this, false);
+      TextSecurePreferences.setRegistered(this, false);
     }
   }
 
   private void markAsVerified(String number, String password, String signalingKey) {
     TextSecurePreferences.setVerifying(this, false);
-    TextSecurePreferences.setPushRegistered(this, true);
+
+    if (GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) == ConnectionResult.SUCCESS) {
+      TextSecurePreferences.setPushRegistered(this, true);
+    }
+
+    TextSecurePreferences.setRegistered(this, true);
     TextSecurePreferences.setLocalNumber(this, number);
     TextSecurePreferences.setPushServerPassword(this, password);
     TextSecurePreferences.setSignalingKey(this, signalingKey);

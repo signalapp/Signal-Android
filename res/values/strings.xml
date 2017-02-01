@@ -1264,6 +1264,8 @@
     <string name="reminder_header_share_title">Invite your friends!</string>
     <string name="reminder_header_share_text">The more friends use Signal, the better it gets.</string>
     <string name="reminder_header_share_button">SHARE</string>
+    <string name="reminder_header_battery_optimisation_title">Disable battery optimisation</string>
+    <string name="reminder_header_battery_optimisation_text">Tap to disable battery optimisation for Signal.</string>
     <string name="reminder_header_close_button">CLOSE</string>
 
     <!-- MediaPreviewActivity -->
