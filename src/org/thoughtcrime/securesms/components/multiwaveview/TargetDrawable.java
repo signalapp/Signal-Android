@@ -128,7 +128,7 @@ public class TargetDrawable {
 
     /**
      * Makes drawables in a StateListDrawable all the same dimensions.
-     * If not a StateListDrawable, then justs sets the bounds to the intrinsic size of the
+     * If not a StateListDrawable, then just sets the bounds to the intrinsic size of the
      * drawable.
      */
 

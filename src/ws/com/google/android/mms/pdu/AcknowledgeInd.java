@@ -26,7 +26,7 @@ public class AcknowledgeInd extends GenericPdu {
     /**
      * Constructor, used when composing a M-Acknowledge.ind pdu.
      *
-     * @param mmsVersion current viersion of mms
+     * @param mmsVersion current version of mms
      * @param transactionId the transaction-id value
      * @throws InvalidHeaderValueException if parameters are invalid.
      *         NullPointerException if transactionId is null.

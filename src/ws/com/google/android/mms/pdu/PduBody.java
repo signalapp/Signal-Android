@@ -160,7 +160,7 @@ public class PduBody {
 
     /**
      * Get pdu part by Content-Location. Content-Location of part is
-     * the same as filename and name(param of content-type).
+     * the same as filename and name (param of content-type).
      *
      * @param fileName the value of filename.
      * @return the pdu part.

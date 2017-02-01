@@ -56,7 +56,7 @@ public class Base64 {
     }
 
     /**
-     * Decodes Base64 data into octects
+     * Decodes Base64 data into octets
      *
      * @param base64Data Byte array containing Base64 data
      * @return Array containing decoded data.
@@ -124,10 +124,10 @@ public class Base64 {
     }
 
     /**
-     * Check octect wheter it is a base64 encoding.
+     * Check octet whether it is a base64 encoding.
      *
      * @param octect to be checked byte
-     * @return ture if it is base64 encoding, false otherwise.
+     * @return true if it is base64 encoding, false otherwise.
      */
     private static boolean isBase64(byte octect) {
         if (octect == PAD) {

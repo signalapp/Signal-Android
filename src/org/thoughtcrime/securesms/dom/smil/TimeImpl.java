@@ -64,7 +64,7 @@ public class TimeImpl implements Time {
      * @return  A TimeImpl instance representing
      * @exception java.lang.IllegalArgumentException if the timeValue input
      *          parameter does not comply with the defined syntax
-     * @exception java.lang.NullPointerException if the timekValue string is
+     * @exception java.lang.NullPointerException if the timeValue string is
      *          <code>null</code>
      */
     TimeImpl(String timeValue, int constraints) {

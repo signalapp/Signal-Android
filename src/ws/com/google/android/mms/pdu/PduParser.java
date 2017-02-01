@@ -1489,7 +1489,7 @@ public class PduParser {
      * Parse part's headers.
      *
      * @param pduDataStream pdu data input stream
-     * @param part to store the header informations of the part
+     * @param part to store the header information of the part
      * @param length length of the headers
      * @return true if parse successfully, false otherwise
      */

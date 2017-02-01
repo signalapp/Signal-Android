@@ -52,7 +52,7 @@ public class SendReq extends MultimediaMessagePdu {
      *
      * @param contentType the content type value
      * @param from the from value
-     * @param mmsVersion current viersion of mms
+     * @param mmsVersion current version of mms
      * @param transactionId the transaction-id value
      * @throws InvalidHeaderValueException if parameters are invalid.
      *         NullPointerException if contentType, form or transactionId is null.

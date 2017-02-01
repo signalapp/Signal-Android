@@ -145,7 +145,7 @@ public class PduComposer {
      * Make the message. No need to check whether mandatory fields are set,
      * because the constructors of outgoing pdus are taking care of this.
      *
-     * @return OutputStream of maked message. Return null if
+     * @return OutputStream of made message. Return null if
      *         the PDU is invalid.
      */
     public byte[] make() {
@@ -1023,7 +1023,7 @@ public class PduComposer {
     }
 
     /**
-     *  Record current message informations.
+     *  Record current message information.
      */
     static private class LengthRecordNode {
         ByteArrayOutputStream currentMessage = null;
@@ -1033,7 +1033,7 @@ public class PduComposer {
     }
 
     /**
-     * Mark current message position and stact size.
+     * Mark current message position and stack size.
      */
     private class PositionMarker {
         private int c_pos;   // Current position

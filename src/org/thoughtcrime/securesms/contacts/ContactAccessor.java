@@ -41,7 +41,7 @@ import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 
 /**
  * This class was originally a layer of indirection between
- * ContactAccessorNewApi and ContactAccesorOldApi, which corresponded
+ * ContactAccessorNewApi and ContactAccessorOldApi, which corresponded
  * to the API changes between 1.x and 2.x.
  *
  * Now that we no longer support 1.x, this class mostly serves as a place

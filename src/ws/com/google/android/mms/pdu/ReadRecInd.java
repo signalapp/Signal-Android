@@ -25,7 +25,7 @@ public class ReadRecInd extends GenericPdu {
      *
      * @param from the from value
      * @param messageId the message ID value
-     * @param mmsVersion current viersion of mms
+     * @param mmsVersion current version of mms
      * @param readStatus the read status value
      * @param to the to value
      * @throws InvalidHeaderValueException if parameters are invalid.

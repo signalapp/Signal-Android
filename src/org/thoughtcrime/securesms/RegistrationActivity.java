@@ -32,7 +32,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
 
 /**
- * The register account activity.  Prompts ths user for their registration information
+ * The register account activity.  Prompts the user for their registration information
  * and begins the account registration process.
  *
  * @author Moxie Marlinspike
