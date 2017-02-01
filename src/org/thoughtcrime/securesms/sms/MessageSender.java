@@ -227,7 +227,7 @@ public class MessageSender {
 
   private static boolean isPushTextSend(Context context, Recipients recipients, boolean keyExchange) {
     try {
-      if (!TextSecurePreferences.isPushRegistered(context)) {
+      if (!TextSecurePreferences.isRegistered(context)) {
         return false;
       }
 
@@ -247,7 +247,7 @@ public class MessageSender {
 
   private static boolean isPushMediaSend(Context context, Recipients recipients) {
     try {
-      if (!TextSecurePreferences.isPushRegistered(context)) {
+      if (!TextSecurePreferences.isRegistered(context)) {
         return false;
       }
 
@@ -270,7 +270,7 @@ public class MessageSender {
   }
 
   private static boolean isSelfSend(Context context, Recipients recipients) {
-    if (!TextSecurePreferences.isPushRegistered(context)) {
+    if (!TextSecurePreferences.isRegistered(context)) {
       return false;
     }
 

@@ -496,10 +496,10 @@
         specified (%s) is invalid.
     </string>
     <string name="RegistrationActivity_unsupported">Unsupported</string>
-    <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Sorry,
-        this device is not supported for data messaging. Devices running versions of Android older
-        than 4.0 must have a registered Google Account. Devices running Android 4.0 or newer do not
-        require a Google account, but must have the Play Store app installed.
+    <string name="RegistrationActivity_this_device_does_not_have_google_services"> This device
+        doesn\'t have a release of Google\'s Play Services running on it. You can still use Signal
+        but be aware that using it in this way isn\'t how it was designed; you won\'t be able to send
+        or receive encrypted calls, and you may experience a drop in battery life.
     </string>
     <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
         Double-check that this is your number! We\'re about to verify it with an SMS.
@@ -1264,6 +1264,8 @@
     <string name="reminder_header_share_title">Invite your friends!</string>
     <string name="reminder_header_share_text">The more friends use Signal, the better it gets.</string>
     <string name="reminder_header_share_button">SHARE</string>
+    <string name="reminder_header_battery_optimisation_title">Disable battery optimisation</string>
+    <string name="reminder_header_battery_optimisation_text">Tap to disable battery optimisation for Signal.</string>
     <string name="reminder_header_close_button">CLOSE</string>
 
     <!-- MediaPreviewActivity -->

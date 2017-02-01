@@ -67,6 +67,16 @@ public class RegistrationActivity extends BaseActionBarActivity {
   }
 
   @Override
+  public void onResume() {
+    super.onResume();
+
+    if (!(GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) == ConnectionResult.SUCCESS)) {
+      Dialogs.showAlertDialog(this, getString(R.string.RegistrationActivity_unsupported),
+                              getString(R.string.RegistrationActivity_this_device_does_not_have_google_services));
+    }
+  }
+
+  @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     if (requestCode == PICK_COUNTRY && resultCode == RESULT_OK && data != null) {
       this.countryCode.setText(data.getIntExtra("country_code", 1)+"");
@@ -208,18 +218,6 @@ public class RegistrationActivity extends BaseActionBarActivity {
                              getString(R.string.RegistrationActivity_invalid_number),
                              String.format(getString(R.string.RegistrationActivity_the_number_you_specified_s_is_invalid),
                                            e164number));
-        return;
-      }
-
-      int gcmStatus = GooglePlayServicesUtil.isGooglePlayServicesAvailable(self);
-
-      if (gcmStatus != ConnectionResult.SUCCESS) {
-        if (GooglePlayServicesUtil.isUserRecoverableError(gcmStatus)) {
-          GooglePlayServicesUtil.getErrorDialog(gcmStatus, self, 9000).show();
-        } else {
-          Dialogs.showAlertDialog(self, getString(R.string.RegistrationActivity_unsupported),
-                                  getString(R.string.RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging));
-        }
         return;
       }
 

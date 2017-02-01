@@ -47,7 +47,7 @@ public class CreateSignedPreKeyJob extends MasterSecretJob implements Injectable
       return;
     }
 
-    if (!TextSecurePreferences.isPushRegistered(context)) {
+    if (!TextSecurePreferences.isRegistered(context)) {
       Log.w(TAG, "Not yet registered...");
       return;
     }

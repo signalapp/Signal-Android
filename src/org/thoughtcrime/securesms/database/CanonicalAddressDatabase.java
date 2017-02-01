@@ -152,7 +152,7 @@ public class CanonicalAddressDatabase {
         String localNumber = TextSecurePreferences.getLocalNumber(context);
 
         if (!isNumberAddress(address)                        ||
-            !TextSecurePreferences.isPushRegistered(context) ||
+            !TextSecurePreferences.isRegistered(context) ||
             ShortCodeUtil.isShortCode(localNumber, address))
         {
           formattedAddress = address;

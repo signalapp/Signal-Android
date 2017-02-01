@@ -167,7 +167,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
 
     private void setCategoryVisibility() {
       Preference devicePreference = this.findPreference(PREFERENCE_CATEGORY_DEVICES);
-      if (devicePreference != null && !TextSecurePreferences.isPushRegistered(getActivity())) {
+      if (devicePreference != null && !TextSecurePreferences.isRegistered(getActivity())) {
         getPreferenceScreen().removePreference(devicePreference);
       }
     }
