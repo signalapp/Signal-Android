@@ -104,7 +104,7 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 /**
- * The register account activity.  Prompts ths user for their registration information
+ * The register account activity.  Prompts the user for their registration information
  * and begins the account registration process.
  *
  * @author Moxie Marlinspike

@@ -34,7 +34,7 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
 /**
- * This class is used to asymmetricly encrypt local data.  This is used in the case
+ * This class is used to asymmetrically encrypt local data.  This is used in the case
  * where TextSecure receives an SMS, but the user's local encryption passphrase is
  * not cached (either because of a timeout, or because it hasn't yet been entered).
  * 
