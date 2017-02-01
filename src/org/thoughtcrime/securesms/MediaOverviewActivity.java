@@ -40,7 +40,7 @@ import android.widget.TextView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.ImageDatabase.ImageRecord;
+import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -114,8 +114,8 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
 
   private void initializeActionBar() {
     getSupportActionBar().setTitle(recipient == null
-                                   ? getString(R.string.AndroidManifest__media_overview)
-                                   : getString(R.string.AndroidManifest__media_overview_named, recipient.toShortString()));
+                                   ? getString(R.string.AndroidManifest__images_videos)
+                                   : getString(R.string.AndroidManifest__images_videos_named, recipient.toShortString()));
   }
 
   @Override
@@ -162,11 +162,11 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
                                                                                      R.string.please_wait) {
           @Override
           protected List<SaveAttachmentTask.Attachment> doInBackground(Void... params) {
-            Cursor cursor                                   = DatabaseFactory.getImageDatabase(c).getImagesForThread(threadId);
+            Cursor cursor                                   = DatabaseFactory.getImageDatabase(c).getMediaForThread(threadId);
             List<SaveAttachmentTask.Attachment> attachments = new ArrayList<>(cursor.getCount());
 
             while (cursor != null && cursor.moveToNext()) {
-              ImageRecord record = ImageRecord.from(cursor);
+              MediaRecord record = MediaRecord.from(cursor);
               attachments.add(new SaveAttachmentTask.Attachment(record.getAttachment().getDataUri(),
                                                                 record.getContentType(),
                                                                 record.getDate()));
@@ -220,7 +220,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
   @Override
   public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
     Log.w(TAG, "onLoadFinished()");
-    gridView.setAdapter(new ImageMediaAdapter(this, masterSecret, cursor, threadId));
+    gridView.setAdapter(new MediaAdapter(this, masterSecret, cursor, threadId));
     noImages.setVisibility(gridView.getAdapter().getItemCount() > 0 ? View.GONE : View.VISIBLE);
     invalidateOptionsMenu();
   }
@@ -240,7 +240,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
 
     @Override
     public Cursor getCursor() {
-      return DatabaseFactory.getImageDatabase(getContext()).getImagesForThread(threadId);
+      return DatabaseFactory.getImageDatabase(getContext()).getMediaForThread(threadId);
     }
   }
 }

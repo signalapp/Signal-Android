@@ -988,8 +988,8 @@
     <string name="AndroidManifest__verify_safety_number">Verify safety number</string>
     <string name="AndroidManifest__log_submit">Submit debug log</string>
     <string name="AndroidManifest__media_preview">Media preview</string>
-    <string name="AndroidManifest__media_overview">All images</string>
-    <string name="AndroidManifest__media_overview_named">All images with %1$s</string>
+    <string name="AndroidManifest__images_videos">Images and videos</string>
+    <string name="AndroidManifest__images_videos_named">Images and videos with %1$s</string>
     <string name="AndroidManifest__message_details">Message details</string>
     <string name="AndroidManifest__linked_devices">Linked devices</string>
     <string name="AndroidManifest__invite_friends">Invite friends</string>
@@ -1206,7 +1206,7 @@
     <string name="conversation__menu_update_group">Update group</string>
     <string name="conversation__menu_leave_group">Leave group</string>
     <string name="conversation__menu_delete_thread">Delete conversation</string>
-    <string name="conversation__menu_view_media">All images</string>
+    <string name="conversation__menu_view_images_and_videos">All images and videos</string>
     <string name="conversation__menu_conversation_settings">Conversation settings</string>
 
     <!-- conversation_popup -->
@@ -1274,13 +1274,13 @@
     <!-- media_preview -->
     <string name="media_preview__save_title">Save</string>
     <string name="media_preview__forward_title">Forward</string>
-    <string name="media_preview__overview_title">All images</string>
+    <string name="media_preview__all_images_and_videos_title">All images and videos</string>
 
     <!-- media_overview -->
     <string name="media_overview__save_all">Save all</string>
 
     <!-- media_preview_activity -->
-    <string name="media_preview_activity__image_content_description">Image preview</string>
+    <string name="media_preview_activity__media_content_description">Media preview</string>
 
     <!-- new_conversation_activity -->
     <string name="new_conversation_activity__refresh">Refresh</string>

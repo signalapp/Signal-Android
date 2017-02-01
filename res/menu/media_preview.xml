@@ -10,7 +10,7 @@
           android:icon="@drawable/ic_save_white_24dp"
           app:showAsAction="always"/>
     <item android:id="@+id/media_preview__overview"
-          android:title="@string/media_preview__overview_title"
+          android:title="@string/media_preview__all_images_and_videos_title"
           android:icon="@drawable/ic_photo_library_white_24dp"
           app:showAsAction="ifRoom"/>
 </menu>

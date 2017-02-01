@@ -27,18 +27,18 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
-import org.thoughtcrime.securesms.ImageMediaAdapter.ViewHolder;
+import org.thoughtcrime.securesms.MediaAdapter.ViewHolder;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
-import org.thoughtcrime.securesms.database.ImageDatabase.ImageRecord;
+import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
-public class ImageMediaAdapter extends CursorRecyclerViewAdapter<ViewHolder> {
-  private static final String TAG = ImageMediaAdapter.class.getSimpleName();
+public class MediaAdapter extends CursorRecyclerViewAdapter<ViewHolder> {
+  private static final String TAG = MediaAdapter.class.getSimpleName();
 
   private final MasterSecret masterSecret;
   private final long         threadId;
@@ -52,7 +52,7 @@ public class ImageMediaAdapter extends CursorRecyclerViewAdapter<ViewHolder> {
     }
   }
 
-  public ImageMediaAdapter(Context context, MasterSecret masterSecret, Cursor c, long threadId) {
+  public MediaAdapter(Context context, MasterSecret masterSecret, Cursor c, long threadId) {
     super(context, c);
     this.masterSecret = masterSecret;
     this.threadId     = threadId;
@@ -67,40 +67,41 @@ public class ImageMediaAdapter extends CursorRecyclerViewAdapter<ViewHolder> {
   @Override
   public void onBindItemViewHolder(final ViewHolder viewHolder, final @NonNull Cursor cursor) {
     final ThumbnailView imageView   = viewHolder.imageView;
-    final ImageRecord imageRecord = ImageRecord.from(cursor);
+    final MediaRecord   mediaRecord = MediaRecord.from(cursor);
 
-    Slide slide = MediaUtil.getSlideForAttachment(getContext(), imageRecord.getAttachment());
+    Slide slide = MediaUtil.getSlideForAttachment(getContext(), mediaRecord.getAttachment());
 
     if (slide != null) {
       imageView.setImageResource(masterSecret, slide, false);
     }
 
-    imageView.setOnClickListener(new OnMediaClickListener(imageRecord));
+    imageView.setOnClickListener(new OnMediaClickListener(mediaRecord));
   }
 
   private class OnMediaClickListener implements OnClickListener {
-    private final ImageRecord imageRecord;
+    private final MediaRecord mediaRecord;
 
-    private OnMediaClickListener(ImageRecord imageRecord) {
-      this.imageRecord = imageRecord;
+    private OnMediaClickListener(MediaRecord mediaRecord) {
+      this.mediaRecord = mediaRecord;
     }
 
     @Override
     public void onClick(View v) {
-      if (imageRecord.getAttachment().getDataUri() != null) {
+      if (mediaRecord.getAttachment().getDataUri() != null) {
         Intent intent = new Intent(getContext(), MediaPreviewActivity.class);
-        intent.putExtra(MediaPreviewActivity.DATE_EXTRA, imageRecord.getDate());
+        intent.putExtra(MediaPreviewActivity.DATE_EXTRA, mediaRecord.getDate());
+        intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, mediaRecord.getAttachment().getSize());
         intent.putExtra(MediaPreviewActivity.THREAD_ID_EXTRA, threadId);
 
-        if (!TextUtils.isEmpty(imageRecord.getAddress())) {
+        if (!TextUtils.isEmpty(mediaRecord.getAddress())) {
           Recipients recipients = RecipientFactory.getRecipientsFromString(getContext(),
-                                                                           imageRecord.getAddress(),
+                                                                           mediaRecord.getAddress(),
                                                                            true);
           if (recipients != null && recipients.getPrimaryRecipient() != null) {
             intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, recipients.getPrimaryRecipient().getRecipientId());
           }
         }
-        intent.setDataAndType(imageRecord.getAttachment().getDataUri(), imageRecord.getContentType());
+        intent.setDataAndType(mediaRecord.getAttachment().getDataUri(), mediaRecord.getContentType());
         getContext().startActivity(intent);
       }
     }
