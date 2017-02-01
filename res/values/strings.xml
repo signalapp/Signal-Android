@@ -1297,6 +1297,8 @@
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
 
+    <!-- VideoPlayer -->
+    <string name="VideoPlayer_error_playing_video">Error playing video</string>
 
     <!-- EOF -->
 
