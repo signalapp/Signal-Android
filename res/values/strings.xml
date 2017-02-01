@@ -625,6 +625,11 @@
     <string name="KeyCachingService_passphrase_cached">Signal is unlocked</string>
     <string name="KeyCachingService_lock">Lock with passphrase</string>
 
+    <!-- MediaPreviewActivity -->
+    <string name="MediaPreviewActivity_you">You</string>
+    <string name="MediaPreviewActivity_cant_display">Failed to preview this image</string>
+    <string name="MediaPreviewActivity_unssuported_media_type">Unsupported media type</string>
+
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages in %2$d conversations</string>
     <string name="MessageNotifier_most_recent_from_s">Most recent from: %1$s</string>
@@ -639,6 +644,14 @@
     <string name="MessageNotifier_media_message">Media message</string>
     <string name="MessageNotifier_reply">Reply</string>
 
+    <!-- MmsPreferencesFragment -->
+    <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Manual MMS settings are required for your phone.</string>
+    <string name="MmsPreferencesFragment__enabled">Enabled</string>
+    <string name="MmsPreferencesFragment__disabled">Disabled</string>
+    <string name="MmsPreferencesFragment__not_set">Not set</string>
+    <string name="MmsPreferencesFragment__invalid_uri">The text entered was not a valid URI</string>
+    <string name="MmsPreferencesFragment__invalid_host">The text entered was not a valid host</string>
+
     <!-- QuickResponseService -->
     <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Quick response unavailable when Signal is locked!</string>
     <string name="QuickResponseService_problem_sending_message">Problem sending message!</string>
@@ -647,6 +660,9 @@
     <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
     <string name="SingleRecipientNotificationBuilder_new_message">New message</string>
 
+    <!-- VideoPlayer -->
+    <string name="VideoPlayer_error_playing_video">Error playing video</string>
+
     <!-- WebRtcCallScreen -->
     <string name="WebRtcCallScreen_new_safety_numbers">The safety number for your conversation with %1$s has changed. This could either mean that someone is trying to intercept your communication, or that %2$s simply re-installed Signal.</string>
     <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">You may wish to verify your safety number with this contact.</string>
@@ -654,6 +670,7 @@
 
     <!-- WebRtcCallControls -->
     <string name="WebRtcCallControls_tap_to_enable_your_video">Tap to enable your video</string>
+
 
     <!-- attachment_type_selector -->
     <string name="attachment_type_selector__image">Image</string>
@@ -845,14 +862,6 @@
     <!-- message_recipients_list_item -->
     <string name="message_recipients_list_item__verify">VERIFY</string>
     <string name="message_recipients_list_item__resend">RESEND</string>
-
-    <!-- MmsPreferencesFragment -->
-    <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Manual MMS settings are required for your phone.</string>
-    <string name="MmsPreferencesFragment__enabled">Enabled</string>
-    <string name="MmsPreferencesFragment__disabled">Disabled</string>
-    <string name="MmsPreferencesFragment__not_set">Not set</string>
-    <string name="MmsPreferencesFragment__invalid_uri">The text entered was not a valid URI</string>
-    <string name="MmsPreferencesFragment__invalid_host">The text entered was not a valid host</string>
 
     <!-- GroupUtil -->
     <plurals name="GroupUtil_joined_the_group">
@@ -1282,11 +1291,6 @@
     <string name="reminder_header_share_text">The more friends use Signal, the better it gets.</string>
     <string name="reminder_header_share_button">SHARE</string>
     <string name="reminder_header_close_button">CLOSE</string>
-
-    <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">You</string>
-    <string name="MediaPreviewActivity_cant_display">Failed to preview this image</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">Unsupported media type</string>
 
     <!-- media_preview -->
     <string name="media_preview__save_title">Save</string>
