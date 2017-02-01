@@ -28,20 +28,20 @@ public abstract class MediaConstraints {
 
   public abstract int getImageMaxWidth(Context context);
   public abstract int getImageMaxHeight(Context context);
-  public abstract int getImageMaxSize();
+  public abstract int getImageMaxSize(Context context);
 
-  public abstract int getGifMaxSize();
+  public abstract int getGifMaxSize(Context context);
 
-  public abstract int getVideoMaxSize();
+  public abstract int getVideoMaxSize(Context context);
 
-  public abstract int getAudioMaxSize();
+  public abstract int getAudioMaxSize(Context context);
 
   public boolean isSatisfied(@NonNull Context context, @NonNull MasterSecret masterSecret, @NonNull Attachment attachment) {
     try {
-      return (MediaUtil.isGif(attachment)    && attachment.getSize() <= getGifMaxSize()   && isWithinBounds(context, masterSecret, attachment.getDataUri())) ||
-             (MediaUtil.isImage(attachment)  && attachment.getSize() <= getImageMaxSize() && isWithinBounds(context, masterSecret, attachment.getDataUri())) ||
-             (MediaUtil.isAudio(attachment)  && attachment.getSize() <= getAudioMaxSize()) ||
-             (MediaUtil.isVideo(attachment)  && attachment.getSize() <= getVideoMaxSize()) ||
+      return (MediaUtil.isGif(attachment)    && attachment.getSize() <= getGifMaxSize(context)   && isWithinBounds(context, masterSecret, attachment.getDataUri())) ||
+             (MediaUtil.isImage(attachment)  && attachment.getSize() <= getImageMaxSize(context) && isWithinBounds(context, masterSecret, attachment.getDataUri())) ||
+             (MediaUtil.isAudio(attachment)  && attachment.getSize() <= getAudioMaxSize(context)) ||
+             (MediaUtil.isVideo(attachment)  && attachment.getSize() <= getVideoMaxSize(context)) ||
              (!MediaUtil.isImage(attachment) && !MediaUtil.isAudio(attachment) && !MediaUtil.isVideo(attachment));
     } catch (IOException ioe) {
       Log.w(TAG, "Failed to determine if media's constraints are satisfied.", ioe);

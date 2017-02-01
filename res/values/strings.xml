@@ -1129,6 +1129,8 @@
     <string name="preferences_chats__message_trimming">Message trimming</string>
     <string name="preferences_advanced__use_system_emoji">Use system emoji</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Disable Signal\'s built-in emoji support</string>
+    <string name="preferences__mms_size">Carrier MMS Size</string>
+    <string name="preferences__mms_size_summary">Note: Use a smaller value if your MMS is failing</string>
 
     <!-- **************************************** -->
     <!-- menus -->

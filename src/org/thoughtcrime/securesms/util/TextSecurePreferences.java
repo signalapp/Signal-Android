@@ -99,6 +99,8 @@ public class TextSecurePreferences {
   private static final String MULTI_DEVICE_PROVISIONED_PREF    = "pref_multi_device";
   public  static final String DIRECT_CAPTURE_CAMERA_ID         = "pref_direct_capture_camera_id";
 
+  public  static final String MMS_MAX_SIZE                     = "pref_mms_size";
+
   public static void setDirectCaptureCameraId(Context context, int value) {
     setIntegerPrefrence(context, DIRECT_CAPTURE_CAMERA_ID, value);
   }
@@ -539,6 +541,10 @@ public class TextSecurePreferences {
     return getStringSetPreference(context,
                                   key,
                                   new HashSet<>(Arrays.asList(context.getResources().getStringArray(defaultValuesRes))));
+  }
+
+  public static int getMMSMaxSize(Context context) {
+    return Integer.parseInt(getStringPreference(context, MMS_MAX_SIZE, "280"));
   }
 
   public static void setBooleanPreference(Context context, String key, boolean value) {
