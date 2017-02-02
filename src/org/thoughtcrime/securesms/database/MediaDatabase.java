@@ -103,6 +103,18 @@ public class MediaDatabase extends Database {
       return date;
     }
 
+    @Override
+    public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+
+      return attachment.equals(((MediaRecord) o).attachment);
+    }
+
+    @Override
+    public int hashCode() {
+      return attachment.hashCode();
+    }
   }
 
 

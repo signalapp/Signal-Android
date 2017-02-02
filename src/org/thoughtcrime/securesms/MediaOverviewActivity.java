@@ -21,12 +21,15 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.view.ActionMode;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -34,11 +37,15 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import org.thoughtcrime.securesms.MediaAdapter.ItemClickListener;
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;
@@ -51,6 +58,7 @@ import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Activity for displaying media attachments in-app
@@ -63,6 +71,9 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
 
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
+  private final ActionModeCallback actionModeCallback     = new ActionModeCallback();
+  private final ItemClickListener  selectionClickListener = new MediaOverviewItemClickListener();
+
   private MasterSecret masterSecret;
 
   private RecyclerView      gridView;
@@ -70,6 +81,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
   private TextView          noImages;
   private Recipient         recipient;
   private long              threadId;
+  private ActionMode        actionMode;
 
   @Override
   protected void onPreCreate() {
@@ -189,6 +201,43 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
     }, gridView.getAdapter().getItemCount());
   }
 
+  private void handleDeleteAttachments(final Set<MediaRecord> mediaRecords) {
+    int                 attachmentCount = mediaRecords.size();
+    AlertDialog.Builder builder         = new AlertDialog.Builder(this);
+
+    builder.setIconAttribute(R.attr.dialog_alert_icon);
+    builder.setTitle(getResources().getQuantityString(R.plurals.MediaOverviewActivity_delete_selected_attachments, attachmentCount, attachmentCount));
+    builder.setMessage(getResources().getQuantityString(R.plurals.MediaOverviewActivity_this_will_permanently_delete_all_n_selected_attachments, attachmentCount, attachmentCount));
+    builder.setCancelable(true);
+
+    builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+      @Override
+      public void onClick(DialogInterface dialog, int which) {
+        new ProgressDialogAsyncTask<MediaRecord, Void, Void>(MediaOverviewActivity.this,
+                                                             R.string.MediaOverviewActivity_deleting,
+                                                             R.string.MediaOverviewActivity_deleting_messages)
+        {
+          @Override
+          protected Void doInBackground(MediaRecord... mediaRecords) {
+            AttachmentDatabase database = DatabaseFactory.getAttachmentDatabase(MediaOverviewActivity.this);
+            for (MediaRecord mediaRecord : mediaRecords) {
+              database.deleteAttachmentsForMessage(((DatabaseAttachment) mediaRecord.getAttachment()).getMmsId());
+            }
+
+            return null;
+          }
+        }.execute(mediaRecords.toArray(new MediaRecord[mediaRecords.size()]));
+      }
+    });
+
+    builder.setNegativeButton(android.R.string.cancel, null);
+    builder.show();
+  }
+
+  private MediaAdapter getListAdapter() {
+    return (MediaAdapter) gridView.getAdapter();
+  }
+
   @Override
   public boolean onPrepareOptionsMenu(Menu menu) {
     super.onPrepareOptionsMenu(menu);
@@ -222,7 +271,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
   @Override
   public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
     Log.w(TAG, "onLoadFinished()");
-    gridView.setAdapter(new MediaAdapter(this, masterSecret, cursor, threadId));
+    gridView.setAdapter(new MediaAdapter(this, masterSecret, selectionClickListener, cursor, threadId));
     noImages.setVisibility(gridView.getAdapter().getItemCount() > 0 ? View.GONE : View.VISIBLE);
     invalidateOptionsMenu();
   }
@@ -243,6 +292,72 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
     @Override
     public Cursor getCursor() {
       return DatabaseFactory.getMediaDatabase(getContext()).getMediaForThread(threadId);
+    }
+  }
+
+  private class MediaOverviewItemClickListener implements ItemClickListener {
+
+    @Override
+    public void onItemClick(MediaRecord mediaRecord) {
+      if (actionMode != null) {
+        getListAdapter().toggleSelection(mediaRecord);
+        if (getListAdapter().getSelectedItems().isEmpty()) actionMode.finish();
+      }
+    }
+
+    @Override
+    public void onItemLongClick(MediaRecord mediaRecord) {
+      if (actionMode == null) {
+        getListAdapter().toggleSelection(mediaRecord);
+        actionMode = startSupportActionMode(actionModeCallback);
+      }
+    }
+  }
+
+  private class ActionModeCallback implements ActionMode.Callback {
+
+    private int statusBarColor;
+
+    @Override
+    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+      MenuInflater inflater = mode.getMenuInflater();
+      inflater.inflate(R.menu.media_overview_context, menu);
+
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        Window window = getWindow();
+        statusBarColor = window.getStatusBarColor();
+        window.setStatusBarColor(getResources().getColor(R.color.action_mode_status_bar));
+      }
+
+      return true;
+    }
+
+    @Override
+    public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+      return false;
+    }
+
+    @Override
+    public void onDestroyActionMode(ActionMode mode) {
+      getListAdapter().clearSelection();
+
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        getWindow().setStatusBarColor(statusBarColor);
+      }
+
+      actionMode = null;
+    }
+
+    @Override
+    public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+      switch(item.getItemId()) {
+        case R.id.menu_context_delete_attachments:
+          handleDeleteAttachments(getListAdapter().getSelectedItems());
+          actionMode.finish();
+          return true;
+      }
+
+      return false;
     }
   }
 }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:title="@string/media_overview_context__menu_delete_attachments"
+          android:id="@+id/menu_context_delete_attachments"
+          android:icon="?menu_trash_icon"
+          app:showAsAction="always" />
+</menu>

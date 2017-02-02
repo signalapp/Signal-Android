@@ -8,6 +8,7 @@
             android:id="@+id/image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:contentDescription="@string/media_preview_activity__media_content_description" />
+            android:contentDescription="@string/media_preview_activity__media_content_description"
+            android:foreground="@drawable/media_overview_item_foreground" />
 
 </org.thoughtcrime.securesms.components.SquareFrameLayout>

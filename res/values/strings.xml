@@ -954,6 +954,18 @@
     <!-- load_more_header -->
     <string name="load_more_header__see_full_conversation">See full conversation</string>
 
+    <!-- MediaOverviewActivity -->
+    <plurals name="MediaOverviewActivity_delete_selected_attachments">
+        <item quantity="one">Delete selected attachment?</item>
+        <item quantity="other">Delete selected attachments?</item>
+    </plurals>
+    <plurals name="MediaOverviewActivity_this_will_permanently_delete_all_n_selected_attachments">
+        <item quantity="one">This will permanently delete the selected attachment.</item>
+        <item quantity="other">This will permanently delete all %1$d selected attachments.</item>
+    </plurals>
+    <string name="MediaOverviewActivity_deleting">Deleting</string>
+    <string name="MediaOverviewActivity_deleting_messages">Deleting attachments...</string>
+
     <!-- media_overview_activity -->
     <string name="media_overview_activity__no_media">No media</string>
 
@@ -1437,6 +1449,9 @@
 
     <!-- media_overview -->
     <string name="media_overview__save_all">Save all</string>
+
+    <!-- media_overview_context -->
+    <string name="media_overview_context__menu_delete_attachments">Delete attachments</string>
 
     <!-- media_preview_activity -->
     <string name="media_preview_activity__media_content_description">Media preview</string>
