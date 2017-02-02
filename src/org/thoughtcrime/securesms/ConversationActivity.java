@@ -56,7 +56,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.View.OnKeyListener;
-import android.view.ViewStub;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -901,25 +900,24 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     new AsyncTask<Recipients, Void, boolean[]>() {
       @Override
       protected boolean[] doInBackground(Recipients... params) {
-        try {
-          Context           context      = ConversationActivity.this;
-          Recipients        recipients   = params[0];
-          UserCapabilities  capabilities = DirectoryHelper.getUserCapabilities(context, recipients);
+        Context           context      = ConversationActivity.this;
+        Recipients        recipients   = params[0];
+        UserCapabilities  capabilities = DirectoryHelper.getUserCapabilities(context, recipients);
 
-          if (capabilities.getTextCapability() == Capability.UNKNOWN ||
-              capabilities.getVoiceCapability() == Capability.UNKNOWN)
-          {
+        if (capabilities.getTextCapability() == Capability.UNKNOWN ||
+            capabilities.getVoiceCapability() == Capability.UNKNOWN)
+        {
+          try {
             capabilities = DirectoryHelper.refreshDirectoryFor(context, masterSecret, recipients,
                                                                TextSecurePreferences.getLocalNumber(context));
+          } catch (IOException e) {
+            Log.w(TAG, e);
           }
-
-          return new boolean[] {capabilities.getTextCapability() == Capability.SUPPORTED,
-                                capabilities.getVoiceCapability() == Capability.SUPPORTED && !isSelfConversation(),
-                                Util.isDefaultSmsProvider(context)};
-        } catch (IOException e) {
-          Log.w(TAG, e);
-          return new boolean[]{false, false, false};
         }
+
+        return new boolean[] {capabilities.getTextCapability() == Capability.SUPPORTED,
+                              capabilities.getVoiceCapability() == Capability.SUPPORTED && !isSelfConversation(),
+                              Util.isDefaultSmsProvider(context)};
       }
 
       @Override

@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           package="org.thoughtcrime.securesms"
-      android:versionCode="229"
-      android:versionName="3.28.1">
+      android:versionCode="232"
+      android:versionName="3.28.4">
 
     <uses-sdk tools:overrideLibrary="com.amulyakhare.textdrawable,com.astuetz.pagerslidingtabstrip,pl.tajchert.waitingdots,com.h6ah4i.android.multiselectlistpreferencecompat,android.support.v13,com.davemorrissey.labs.subscaleview"/>
 
@@ -108,8 +108,8 @@
     <meta-data android:name="org.thoughtcrime.securesms.mms.TextSecureGlideModule"
                android:value="GlideModule" />
 
-    <meta-data android:name="com.google.android.gms.car.application"
-               android:resource="@xml/automotive_app_desc" />
+    <!--<meta-data android:name="com.google.android.gms.car.application"-->
+               <!--android:resource="@xml/automotive_app_desc" />-->
 
     <activity android:name="org.thoughtcrime.redphone.RedPhone"
               android:excludeFromRecents="true"
