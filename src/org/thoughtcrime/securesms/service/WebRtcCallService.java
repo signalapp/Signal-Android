@@ -701,6 +701,10 @@ public class WebRtcCallService extends Service implements InjectableType, CallSt
       localRenderer.release();
       remoteRenderer.release();
       eglBase.release();
+
+      localRenderer  = null;
+      remoteRenderer = null;
+      eglBase        = null;
     }
 
     shutdownAudio();
