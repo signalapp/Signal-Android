@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.MessageRetrievalService;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
+import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.whispersystems.libsignal.IdentityKey;
@@ -91,7 +92,9 @@ public class WebRtcCallActivity extends Activity {
     if (!networkAccess.isCensored(this)) MessageRetrievalService.registerActivityStarted(this);
     initializeScreenshotSecurity();
     EventBus.getDefault().registerSticky(this);
+
     registerBluetoothReceiver();
+    registerWiredHeadsetReceiver();
   }
 
   @Override
@@ -113,6 +116,7 @@ public class WebRtcCallActivity extends Activity {
     if (!networkAccess.isCensored(this)) MessageRetrievalService.registerActivityStopped(this);
     EventBus.getDefault().unregister(this);
     unregisterReceiver(bluetoothStateReceiver);
+    unregisterReceiver(wiredHeadsetStateReceiver);
   }
 
   @Override
@@ -149,7 +153,12 @@ public class WebRtcCallActivity extends Activity {
   }
 
   private void handleSetMuteVideo(boolean muted) {
-//    callScreen.setLocalVideoEnabled(!muted);
+    AudioManager audioManager = ServiceUtil.getAudioManager(this);
+
+    if (!muted && !audioManager.isWiredHeadsetOn() && !audioManager.isBluetoothScoOn()) {
+      AudioUtils.enableSpeakerphoneRouting(WebRtcCallActivity.this);
+      callScreen.notifyAudioRoutingChange();
+    }
 
     Intent intent = new Intent(this, WebRtcCallService.class);
     intent.setAction(WebRtcCallService.ACTION_SET_MUTE_VIDEO);
@@ -350,6 +359,27 @@ public class WebRtcCallActivity extends Activity {
 
     registerReceiver(bluetoothStateReceiver, filter);
     callScreen.notifyBluetoothChange();
+  }
+
+  private void registerWiredHeadsetReceiver() {
+    IntentFilter filter = new IntentFilter();
+    filter.addAction(AudioUtils.getWiredHeadsetUpdateAction());
+    wiredHeadsetStateReceiver = new BroadcastReceiver() {
+      @Override
+      public void onReceive(Context context, Intent intent) {
+        int state = intent.getIntExtra("state", -1);
+
+        if (state == 0 && callScreen.isVideoEnabled()) {
+          AudioUtils.enableSpeakerphoneRouting(WebRtcCallActivity.this);
+          callScreen.notifyAudioRoutingChange();
+        } else if (state == 1) {
+          AudioUtils.enableDefaultRouting(WebRtcCallActivity.this);
+          callScreen.notifyAudioRoutingChange();
+        }
+
+      }
+    };
+    registerReceiver(wiredHeadsetStateReceiver, filter);
   }
 
   private class AudioButtonListener implements WebRtcCallControls.AudioButtonListener {

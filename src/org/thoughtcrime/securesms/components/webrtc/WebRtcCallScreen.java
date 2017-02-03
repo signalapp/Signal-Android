@@ -179,6 +179,10 @@ public class WebRtcCallScreen extends FrameLayout implements Recipient.Recipient
     this.controls.updateAudioButton();
   }
 
+  public void notifyAudioRoutingChange() {
+    this.controls.updateAudioButton();
+  }
+
   public void setLocalVideoEnabled(boolean enabled) {
     if (enabled && this.localRenderLayout.isHidden()) {
       this.localRenderLayout.setHidden(false);
@@ -197,6 +201,10 @@ public class WebRtcCallScreen extends FrameLayout implements Recipient.Recipient
       this.remoteRenderLayout.setHidden(true);
       this.remoteRenderLayout.requestLayout();
     }
+  }
+
+  public boolean isVideoEnabled() {
+    return controls.isVideoEnabled();
   }
 
   private void initialize() {

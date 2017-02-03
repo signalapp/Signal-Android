@@ -1,6 +1,7 @@
 package org.thoughtcrime.redphone.util;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Build;
 import android.util.Log;
@@ -60,6 +61,14 @@ public class AudioUtils {
       return AudioManager.ACTION_SCO_AUDIO_STATE_UPDATED;
     } else {
       return AudioManager.ACTION_SCO_AUDIO_STATE_CHANGED;
+    }
+  }
+
+  public static String getWiredHeadsetUpdateAction() {
+    if (Build.VERSION.SDK_INT >= 21) {
+      return AudioManager.ACTION_HEADSET_PLUG;
+    } else {
+      return Intent.ACTION_HEADSET_PLUG;
     }
   }
 }
