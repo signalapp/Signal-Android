@@ -459,4 +459,8 @@ public class Util {
     if (first == null) return second == null;
     return first.equals(second);
   }
+
+  public static boolean isEquals(@Nullable Long first, long second) {
+    return first != null && first == second;
+  }
 }

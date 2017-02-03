@@ -90,6 +90,7 @@ public class TextSecurePreferences {
   public  static final String REPEAT_ALERTS_PREF               = "pref_repeat_alerts";
   public  static final String NOTIFICATION_PRIVACY_PREF        = "pref_notification_privacy";
   public  static final String NEW_CONTACTS_NOTIFICATIONS       = "pref_enable_new_contacts_notifications";
+  public  static final String WEBRTC_CALLING_PREF              = "pref_webrtc_calling";
 
   public  static final String MEDIA_DOWNLOAD_MOBILE_PREF       = "pref_media_download_mobile";
   public  static final String MEDIA_DOWNLOAD_WIFI_PREF         = "pref_media_download_wifi";
@@ -98,6 +99,14 @@ public class TextSecurePreferences {
   public  static final String SYSTEM_EMOJI_PREF                = "pref_system_emoji";
   private static final String MULTI_DEVICE_PROVISIONED_PREF    = "pref_multi_device";
   public  static final String DIRECT_CAPTURE_CAMERA_ID         = "pref_direct_capture_camera_id";
+
+  public static boolean isWebrtcCallingEnabled(Context context) {
+    return getBooleanPreference(context, WEBRTC_CALLING_PREF, false);
+  }
+
+  public static void setWebrtcCallingEnabled(Context context, boolean enabled) {
+    setBooleanPreference(context, WEBRTC_CALLING_PREF, enabled);
+  }
 
   public static void setDirectCaptureCameraId(Context context, int value) {
     setIntegerPrefrence(context, DIRECT_CAPTURE_CAMERA_ID, value);

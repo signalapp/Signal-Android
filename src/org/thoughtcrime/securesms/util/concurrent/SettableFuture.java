@@ -42,6 +42,7 @@ public class SettableFuture<T> implements ListenableFuture<T> {
 
       this.result    = result;
       this.completed = true;
+
       notifyAll();
     }
 
@@ -55,6 +56,7 @@ public class SettableFuture<T> implements ListenableFuture<T> {
 
       this.exception = throwable;
       this.completed = true;
+
       notifyAll();
     }
 

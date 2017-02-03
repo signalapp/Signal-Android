@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           package="org.thoughtcrime.securesms"
-      android:versionCode="232"
-      android:versionName="3.28.4">
+      android:versionCode="234"
+      android:versionName="3.29.1">
 
     <uses-sdk tools:overrideLibrary="com.amulyakhare.textdrawable,com.astuetz.pagerslidingtabstrip,pl.tajchert.waitingdots,com.h6ah4i.android.multiselectlistpreferencecompat,android.support.v13,com.davemorrissey.labs.subscaleview"/>
 
@@ -117,6 +117,14 @@
               android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|fontScale"
               android:launchMode="singleTask">
     </activity>
+
+    <activity android:name="org.thoughtcrime.securesms.WebRtcCallActivity"
+              android:excludeFromRecents="true"
+              android:screenOrientation="portrait"
+              android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|fontScale"
+              android:launchMode="singleTask">
+    </activity>
+
 
     <activity android:name=".CountrySelectionActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
@@ -349,7 +357,7 @@
         </intent-filter>
     </activity>
 
-    <activity android:name="org.thoughtcrime.redphone.RedPhoneShare"
+    <activity android:name="org.thoughtcrime.redphone.VoiceCallShare"
               android:excludeFromRecents="true"
               android:theme="@style/NoAnimation.Theme.BlackScreen"
               android:launchMode="singleTask"
@@ -383,6 +391,7 @@
     <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
 
     <service android:enabled="true" android:name="org.thoughtcrime.redphone.RedPhoneService"/>
+    <service android:enabled="true" android:name="org.thoughtcrime.securesms.service.WebRtcCallService"/>
 
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>
     <service android:enabled="true" android:name=".service.KeyCachingService"/>

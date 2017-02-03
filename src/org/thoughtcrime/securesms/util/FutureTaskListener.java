@@ -16,7 +16,9 @@
  */
 package org.thoughtcrime.securesms.util;
 
+import java.util.concurrent.ExecutionException;
+
 public interface FutureTaskListener<V> {
   public void onSuccess(V result);
-  public void onFailure(Throwable error);
+  public void onFailure(ExecutionException exception);
 }

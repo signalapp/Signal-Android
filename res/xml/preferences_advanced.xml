@@ -19,6 +19,12 @@
                         android:title="@string/preferences_advanced__use_system_emoji"
                         android:summary="@string/preferences_advanced__disable_signal_built_in_emoji_support" />
 
+    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="pref_webrtc_calling"
+            android:title="@string/preferences_advanced__video_calling_beta"
+            android:summary="@string/preferences_advanced__enable_support_for_next_generation_video_and_voice_calls"/>
+
     <Preference android:key="pref_choose_identity"
                 android:title="@string/preferences__choose_identity"
                 android:summary="@string/preferences__choose_your_contact_entry_from_the_contacts_list"/>
