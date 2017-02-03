@@ -99,6 +99,10 @@ public class WebRtcCallControls extends LinearLayout {
     });
   }
 
+  public boolean isVideoMuted() {
+    return !videoMuteButton.isChecked();
+  }
+
   public void setAudioButtonListener(final AudioButtonListener listener) {
     audioButton.setListener(listener);
   }

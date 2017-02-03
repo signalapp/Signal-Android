@@ -180,23 +180,23 @@ public class WebRtcCallScreen extends FrameLayout implements Recipient.Recipient
   }
 
   public void setLocalVideoEnabled(boolean enabled) {
-    if (enabled) {
+    if (enabled && this.localRenderLayout.isHidden()) {
       this.localRenderLayout.setHidden(false);
-    } else {
+      this.localRenderLayout.requestLayout();
+    } else  if (!enabled && !this.localRenderLayout.isHidden()){
       this.localRenderLayout.setHidden(true);
+      this.localRenderLayout.requestLayout();
     }
-
-    this.localRenderLayout.requestLayout();
   }
 
   public void setRemoteVideoEnabled(boolean enabled) {
-    if (enabled) {
+    if (enabled && this.remoteRenderLayout.isHidden()) {
       this.remoteRenderLayout.setHidden(false);
-    } else {
+      this.remoteRenderLayout.requestLayout();
+    } else if (!enabled && !this.remoteRenderLayout.isHidden()){
       this.remoteRenderLayout.setHidden(true);
+      this.remoteRenderLayout.requestLayout();
     }
-
-    this.remoteRenderLayout.requestLayout();
   }
 
   private void initialize() {
@@ -226,21 +226,31 @@ public class WebRtcCallScreen extends FrameLayout implements Recipient.Recipient
   private void setConnected(SurfaceViewRenderer localRenderer,
                             SurfaceViewRenderer remoteRenderer)
   {
-    localRenderLayout.setPosition(7, 7, 25, 25);
-    localRenderLayout.setSquare(true);
-    remoteRenderLayout.setPosition(0, 0, 100, 100);
+    if (localRenderLayout.getChildCount() == 0 && remoteRenderLayout.getChildCount() == 0) {
+      if (localRenderer.getParent() != null) {
+        ((ViewGroup)localRenderer.getParent()).removeView(localRenderer);
+      }
 
-    localRenderer.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                                                               ViewGroup.LayoutParams.MATCH_PARENT));
+      if (remoteRenderer.getParent() != null) {
+        ((ViewGroup)remoteRenderer.getParent()).removeView(remoteRenderer);
+      }
 
-    remoteRenderer.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                                                                ViewGroup.LayoutParams.MATCH_PARENT));
+      localRenderLayout.setPosition(7, 7, 25, 25);
+      localRenderLayout.setSquare(true);
+      remoteRenderLayout.setPosition(0, 0, 100, 100);
 
-    localRenderer.setMirror(true);
-    localRenderer.setZOrderMediaOverlay(true);
+      localRenderer.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                                                                 ViewGroup.LayoutParams.MATCH_PARENT));
 
-    localRenderLayout.addView(localRenderer);
-    remoteRenderLayout.addView(remoteRenderer);
+      remoteRenderer.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                                                                  ViewGroup.LayoutParams.MATCH_PARENT));
+
+      localRenderer.setMirror(true);
+      localRenderer.setZOrderMediaOverlay(true);
+
+      localRenderLayout.addView(localRenderer);
+      remoteRenderLayout.addView(remoteRenderer);
+    }
   }
 
   private void setPersonInfo(final @NonNull Recipient recipient) {

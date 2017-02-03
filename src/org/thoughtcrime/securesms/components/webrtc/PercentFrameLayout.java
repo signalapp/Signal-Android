@@ -60,6 +60,10 @@ public class PercentFrameLayout extends ViewGroup {
     this.hidden = hidden;
   }
 
+  public boolean isHidden() {
+    return this.hidden;
+  }
+
   public void setPosition(int xPercent, int yPercent, int widthPercent, int heightPercent) {
     this.xPercent = xPercent;
     this.yPercent = yPercent;
