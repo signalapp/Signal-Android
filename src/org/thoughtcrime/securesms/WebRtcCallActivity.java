@@ -181,11 +181,11 @@ public class WebRtcCallActivity extends Activity {
     intent.setAction(WebRtcCallService.ACTION_LOCAL_HANGUP);
     startService(intent);
 
-    WebRtcViewModel event = EventBus.getDefault().getStickyEvent(WebRtcViewModel.class);
-
-    if (event != null) {
-      WebRtcCallActivity.this.handleTerminate(event.getRecipient());
-    }
+//    WebRtcViewModel event = EventBus.getDefault().getStickyEvent(WebRtcViewModel.class);
+//
+//    if (event != null) {
+//      WebRtcCallActivity.this.handleTerminate(event.getRecipient());
+//    }
   }
 
   private void handleIncomingCall(@NonNull WebRtcViewModel event) {

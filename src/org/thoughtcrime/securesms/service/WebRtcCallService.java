@@ -569,6 +569,7 @@ public class WebRtcCallService extends Service implements InjectableType, CallSt
 
       this.dataChannel.send(new DataChannel.Buffer(ByteBuffer.wrap(Data.newBuilder().setHangup(Hangup.newBuilder().setId(this.callId)).build().toByteArray()), false));
       sendMessage(this.recipient, SignalServiceCallMessage.forHangup(new HangupMessage(this.callId)));
+      sendMessage(WebRtcViewModel.State.CALL_DISCONNECTED, this.recipient, localVideoEnabled, remoteVideoEnabled);
     }
 
     terminate();
@@ -621,7 +622,7 @@ public class WebRtcCallService extends Service implements InjectableType, CallSt
                                                                                                                                      .setEnabled(localVideoEnabled))
                                                                        .build().toByteArray()), false));
     }
-    
+
     sendMessage(viewModelStateFor(callState), this.recipient, localVideoEnabled, remoteVideoEnabled);
   }
 
