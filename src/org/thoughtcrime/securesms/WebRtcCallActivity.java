@@ -68,6 +68,7 @@ public class WebRtcCallActivity extends Activity {
   public void onCreate(Bundle savedInstanceState) {
     Log.w(TAG, "onCreate()");
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
+    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     super.onCreate(savedInstanceState);
 
     requestWindowFeature(Window.FEATURE_NO_TITLE);
