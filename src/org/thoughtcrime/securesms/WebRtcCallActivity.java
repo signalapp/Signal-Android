@@ -42,7 +42,9 @@ import org.thoughtcrime.securesms.components.webrtc.WebRtcIncomingCallOverlay;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
+import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.service.MessageRetrievalService;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -61,8 +63,10 @@ public class WebRtcCallActivity extends Activity {
   public static final String DENY_ACTION     = WebRtcCallActivity.class.getCanonicalName() + ".DENY_ACTION";
   public static final String END_CALL_ACTION = WebRtcCallActivity.class.getCanonicalName() + ".END_CALL_ACTION";
 
-  private WebRtcCallScreen  callScreen;
-  private BroadcastReceiver bluetoothStateReceiver;
+  private WebRtcCallScreen           callScreen;
+  private BroadcastReceiver          bluetoothStateReceiver;
+  private BroadcastReceiver          wiredHeadsetStateReceiver;
+  private SignalServiceNetworkAccess networkAccess;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -84,7 +88,7 @@ public class WebRtcCallActivity extends Activity {
   public void onResume() {
     Log.w(TAG, "onResume()");
     super.onResume();
-
+    if (!networkAccess.isCensored(this)) MessageRetrievalService.registerActivityStarted(this);
     initializeScreenshotSecurity();
     EventBus.getDefault().registerSticky(this);
     registerBluetoothReceiver();
@@ -106,7 +110,7 @@ public class WebRtcCallActivity extends Activity {
   public void onPause() {
     Log.w(TAG, "onPause");
     super.onPause();
-
+    if (!networkAccess.isCensored(this)) MessageRetrievalService.registerActivityStopped(this);
     EventBus.getDefault().unregister(this);
     unregisterReceiver(bluetoothStateReceiver);
   }
@@ -133,6 +137,8 @@ public class WebRtcCallActivity extends Activity {
     callScreen.setAudioMuteButtonListener(new AudioMuteButtonListener());
     callScreen.setVideoMuteButtonListener(new VideoMuteButtonListener());
     callScreen.setAudioButtonListener(new AudioButtonListener());
+
+    networkAccess = new SignalServiceNetworkAccess(this);
   }
 
   private void handleSetMuteAudio(boolean enabled) {
