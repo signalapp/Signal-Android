@@ -28,7 +28,7 @@ import javax.inject.Inject;
 
 public class PushGroupUpdateJob extends ContextJob implements InjectableType {
 
-  private static final String TAG = RequestGroupInfoJob.class.getSimpleName();
+  private static final String TAG = PushGroupUpdateJob.class.getSimpleName();
 
   private static final long serialVersionUID = 0L;
 
