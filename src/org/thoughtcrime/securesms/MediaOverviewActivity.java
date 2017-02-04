@@ -114,8 +114,8 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
 
   private void initializeActionBar() {
     getSupportActionBar().setTitle(recipient == null
-                                   ? getString(R.string.AndroidManifest__images_videos)
-                                   : getString(R.string.AndroidManifest__images_videos_named, recipient.toShortString()));
+                                   ? getString(R.string.AndroidManifest__all_media)
+                                   : getString(R.string.AndroidManifest__all_media_named, recipient.toShortString()));
   }
 
   @Override

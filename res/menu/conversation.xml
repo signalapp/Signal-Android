@@ -4,7 +4,7 @@
     <item android:title="@string/conversation__menu_add_attachment"
           android:id="@+id/menu_add_attachment" />
 
-    <item android:title="@string/conversation__menu_view_images_and_videos"
+    <item android:title="@string/conversation__menu_view_all_media"
           android:id="@+id/menu_view_media" />
 
     <item android:title="@string/conversation__menu_conversation_settings"
