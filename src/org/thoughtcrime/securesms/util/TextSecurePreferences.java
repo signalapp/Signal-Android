@@ -99,6 +99,8 @@ public class TextSecurePreferences {
   private static final String MULTI_DEVICE_PROVISIONED_PREF    = "pref_multi_device";
   public  static final String DIRECT_CAPTURE_CAMERA_ID         = "pref_direct_capture_camera_id";
 
+  public  static final String RECENT_EMOJI2_PREF               = "pref_recent_emoji2";
+
   public static void setDirectCaptureCameraId(Context context, int value) {
     setIntegerPrefrence(context, DIRECT_CAPTURE_CAMERA_ID, value);
   }
@@ -521,6 +523,10 @@ public class TextSecurePreferences {
 
   public static boolean isSystemEmojiPreferred(Context context) {
     return getBooleanPreference(context, SYSTEM_EMOJI_PREF, false);
+  }
+
+  public static void DeleteRecentEmoji(Context context) {
+    setStringPreference(context, RECENT_EMOJI2_PREF, null);
   }
 
   public static @NonNull Set<String> getMobileMediaDownloadAllowed(Context context) {

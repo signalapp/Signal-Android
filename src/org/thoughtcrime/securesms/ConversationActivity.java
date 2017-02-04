@@ -481,6 +481,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case R.id.menu_call_insecure:             handleDial(getRecipients().getPrimaryRecipient()); return true;
     case R.id.menu_add_attachment:            handleAddAttachment();                             return true;
     case R.id.menu_view_media:                handleViewMedia();                                 return true;
+    case R.id.menu_delete_recent_emojis:      handleDeleteRecentEmojies();                       return true;
     case R.id.menu_add_to_contacts:           handleAddToContacts();                             return true;
     case R.id.menu_reset_secure_session:      handleResetSecureSession();                        return true;
     case R.id.menu_group_recipients:          handleDisplayGroupRecipients();                    return true;
@@ -665,6 +666,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Intent intent = new Intent(this, MediaOverviewActivity.class);
     intent.putExtra(MediaOverviewActivity.THREAD_ID_EXTRA, threadId);
     intent.putExtra(MediaOverviewActivity.RECIPIENT_EXTRA, recipients.getPrimaryRecipient().getRecipientId());
+    startActivity(intent);
+  }
+
+  private void handleDeleteRecentEmojies() {
+    final Context context = getApplicationContext();
+    TextSecurePreferences.DeleteRecentEmoji(context);
+    Intent intent = getIntent();
+    finish();
     startActivity(intent);
   }
 
