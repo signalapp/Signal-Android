@@ -7,10 +7,14 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.zxing.common.StringUtils;
+
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.gcm.GcmBroadcastReceiver;
 import org.thoughtcrime.securesms.jobs.PushContentReceiveJob;
+import org.thoughtcrime.securesms.util.NumberUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.jobqueue.requirements.NetworkRequirementProvider;
@@ -20,6 +24,7 @@ import org.whispersystems.signalservice.api.SignalServiceMessagePipe;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 
+import java.security.MessageDigest;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -86,7 +91,7 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
                       new SignalServiceMessagePipe.MessagePipeCallback() {
                         @Override
                         public void onMessage(SignalServiceEnvelope envelope) {
-                          Log.w(TAG, "Retrieved envelope! " + envelope.getSource());
+                          Log.w(TAG, "Retrieved envelope! " + NumberUtil.anonymizePhoneNumber(envelope.getSource()));
 
                           PushContentReceiveJob receiveJob = new PushContentReceiveJob(MessageRetrievalService.this);
                           receiveJob.handle(envelope, false);

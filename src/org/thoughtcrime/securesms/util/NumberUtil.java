@@ -40,6 +40,23 @@ public class NumberUtil {
         GroupUtil.isEncodedGroup(number);
   }
 
+  /**
+   * Anonymizes given phone number for a use in logs. It parses a number to get correct country code.
+   * For a number "+48123456789" it will return "+*********89".
+   *
+   * @param phoneNumber The phone number to be anonymized
+   * @return Anonymized phone number
+   */
+  public static String anonymizePhoneNumber(String phoneNumber) {
+    StringBuilder sb = new StringBuilder(phoneNumber.length());
+    sb.append(phoneNumber.substring(0, 1));
+    for (int i=1; i<phoneNumber.length()-2; i++) {
+      sb.append("*");
+    }
+    sb.append(phoneNumber.substring(phoneNumber.length()-2, phoneNumber.length()));
+    return sb.toString();
+  }
+
   public static String filterNumber(String number) {
     if (number == null) return null;
 
