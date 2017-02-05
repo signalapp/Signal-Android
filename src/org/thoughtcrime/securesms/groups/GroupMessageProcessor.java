@@ -6,8 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.google.protobuf.ByteString;
-
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -40,7 +38,6 @@ import java.util.Set;
 import ws.com.google.android.mms.MmsException;
 
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
-import static org.whispersystems.signalservice.internal.push.SignalServiceProtos.AttachmentPointer;
 import static org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 
 public class GroupMessageProcessor {
@@ -85,7 +82,7 @@ public class GroupMessageProcessor {
   {
     GroupDatabase        database = DatabaseFactory.getGroupDatabase(context);
     byte[]               id       = group.getGroupId();
-    GroupContext.Builder builder  = createGroupContext(group);
+    GroupContext.Builder builder  = GroupUtil.createGroupContext(group);
     builder.setType(GroupContext.Type.UPDATE);
 
     SignalServiceAttachment avatar = group.getAvatar().orNull();
@@ -117,7 +114,7 @@ public class GroupMessageProcessor {
     Set<String> missingMembers = new HashSet<>(recordMembers);
     missingMembers.removeAll(messageMembers);
 
-    GroupContext.Builder builder = createGroupContext(group);
+    GroupContext.Builder builder = GroupUtil.createGroupContext(group);
     builder.setType(GroupContext.Type.UPDATE);
 
     if (addedMembers.size() > 0) {
@@ -173,7 +170,7 @@ public class GroupMessageProcessor {
     byte[]        id       = group.getGroupId();
     List<String>  members  = record.getMembers();
 
-    GroupContext.Builder builder = createGroupContext(group);
+    GroupContext.Builder builder = GroupUtil.createGroupContext(group);
     builder.setType(GroupContext.Type.QUIT);
 
     if (members.contains(envelope.getSource())) {
@@ -230,28 +227,6 @@ public class GroupMessageProcessor {
     }
 
     return null;
-  }
-
-  private static GroupContext.Builder createGroupContext(SignalServiceGroup group) {
-    GroupContext.Builder builder = GroupContext.newBuilder();
-    builder.setId(ByteString.copyFrom(group.getGroupId()));
-
-    if (group.getAvatar().isPresent() && group.getAvatar().get().isPointer()) {
-      builder.setAvatar(AttachmentPointer.newBuilder()
-                                         .setId(group.getAvatar().get().asPointer().getId())
-                                         .setKey(ByteString.copyFrom(group.getAvatar().get().asPointer().getKey()))
-                                         .setContentType(group.getAvatar().get().getContentType()));
-    }
-
-    if (group.getName().isPresent()) {
-      builder.setName(group.getName().get());
-    }
-
-    if (group.getMembers().isPresent()) {
-      builder.addAllMembers(group.getMembers().get());
-    }
-
-    return builder;
   }
 
 }

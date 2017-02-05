@@ -19,18 +19,23 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
+import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
+import org.whispersystems.signalservice.api.messages.SignalServiceGroup.Type;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.EncapsulatedExceptions;
 import org.whispersystems.signalservice.api.push.exceptions.NetworkFailureException;
+import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 
@@ -107,6 +112,23 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       for (UntrustedIdentityException uie : e.getUntrustedIdentityExceptions()) {
         Recipient recipient = RecipientFactory.getRecipientsFromString(context, uie.getE164Number(), false).getPrimaryRecipient();
         database.addMismatchedIdentity(messageId, recipient.getRecipientId(), uie.getIdentityKey());
+      }
+
+      for (UnregisteredUserException uue : e.getUnregisteredUserExceptions()) {
+        byte[]               groupId      = GroupUtil.getDecodedId(message.getRecipients().getPrimaryRecipient().getNumber());
+        SignalServiceGroup   group        = SignalServiceGroup.newBuilder(Type.QUIT)
+                                                              .withId(groupId)
+                                                              .build();
+        GroupContext         groupContext = GroupUtil.createGroupContext(group)
+                                                     .setType(GroupContext.Type.QUIT)
+                                                     .build();
+        IncomingTextMessage  incoming     = new IncomingTextMessage(uue.getE164Number(), 1,
+                                                                    System.currentTimeMillis(), null,
+                                                                    Optional.of(group), 0);
+        IncomingGroupMessage groupUpdate  = new IncomingGroupMessage(incoming, groupContext, null);
+
+        DatabaseFactory.getSmsDatabase(context).insertMessageInbox(groupUpdate);
+        DatabaseFactory.getGroupDatabase(context).remove(groupId, uue.getE164Number());
       }
 
       database.addFailures(messageId, failures);

@@ -5,9 +5,13 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.google.protobuf.ByteString;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
 import java.io.IOException;
 
@@ -46,6 +50,28 @@ public class GroupUtil {
       Log.w(TAG, e);
       return new GroupDescription(context, null);
     }
+  }
+
+  public static GroupContext.Builder createGroupContext(SignalServiceGroup group) {
+    GroupContext.Builder builder = GroupContext.newBuilder();
+    builder.setId(ByteString.copyFrom(group.getGroupId()));
+
+    if (group.getAvatar().isPresent() && group.getAvatar().get().isPointer()) {
+      builder.setAvatar(SignalServiceProtos.AttachmentPointer.newBuilder()
+                                           .setId(group.getAvatar().get().asPointer().getId())
+                                           .setKey(ByteString.copyFrom(group.getAvatar().get().asPointer().getKey()))
+                                           .setContentType(group.getAvatar().get().getContentType()));
+    }
+
+    if (group.getName().isPresent()) {
+      builder.setName(group.getName().get());
+    }
+
+    if (group.getMembers().isPresent()) {
+      builder.addAllMembers(group.getMembers().get());
+    }
+
+    return builder;
   }
 
   public static class GroupDescription {
