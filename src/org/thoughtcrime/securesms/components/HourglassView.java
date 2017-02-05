@@ -5,12 +5,10 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -54,8 +52,7 @@ public class HourglassView extends View {
     this.foregroundPaint = new Paint();
     this.progressPaint   = new Paint();
 
-    this.backgroundPaint.setColorFilter(new PorterDuffColorFilter(tint, PorterDuff.Mode.MULTIPLY));
-    this.foregroundPaint.setColorFilter(new PorterDuffColorFilter(tint, PorterDuff.Mode.MULTIPLY));
+    setPaintBasedOnTint();
 
     this.progressPaint.setColor(getResources().getColor(R.color.black));
     this.progressPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
@@ -64,6 +61,11 @@ public class HourglassView extends View {
     {
       setLayerType(View.LAYER_TYPE_SOFTWARE, null);
     }
+  }
+
+  private void setPaintBasedOnTint() {
+    this.backgroundPaint.setColorFilter(new PorterDuffColorFilter(tint, PorterDuff.Mode.MULTIPLY));
+    this.foregroundPaint.setColorFilter(new PorterDuffColorFilter(tint, PorterDuff.Mode.MULTIPLY));
   }
 
   @Override
@@ -80,6 +82,9 @@ public class HourglassView extends View {
     invalidate();
   }
 
+  public void setTint(int tint) {
+    this.tint = tint;
 
-
+    setPaintBasedOnTint();
+  }
 }
