@@ -2,13 +2,18 @@ package org.thoughtcrime.securesms.service;
 
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
+import android.os.Bundle;
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.IBinder;
+import android.os.ResultReceiver;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.WorkerThread;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -16,10 +21,10 @@ import android.util.Pair;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 
+import org.thoughtcrime.redphone.RedPhoneService;
 import org.thoughtcrime.redphone.audio.IncomingRinger;
 import org.thoughtcrime.redphone.call.LockManager;
-import org.thoughtcrime.redphone.pstn.CallStateView;
-import org.thoughtcrime.redphone.pstn.IncomingPstnCallListener;
+import org.thoughtcrime.redphone.pstn.IncomingPstnCallReceiver;
 import org.thoughtcrime.redphone.util.AudioUtils;
 import org.thoughtcrime.redphone.util.UncaughtExceptionHandlerManager;
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -71,6 +76,7 @@ import org.whispersystems.signalservice.api.messages.calls.TurnServerInfo;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
+import org.whispersystems.signalservice.internal.util.concurrent.SettableFuture;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -93,7 +99,7 @@ import static org.thoughtcrime.securesms.webrtc.CallNotificationManager.TYPE_EST
 import static org.thoughtcrime.securesms.webrtc.CallNotificationManager.TYPE_INCOMING_RINGING;
 import static org.thoughtcrime.securesms.webrtc.CallNotificationManager.TYPE_OUTGOING_RINGING;
 
-public class WebRtcCallService extends Service implements InjectableType, CallStateView, PeerConnection.Observer, DataChannel.Observer {
+public class WebRtcCallService extends Service implements InjectableType, PeerConnection.Observer, DataChannel.Observer {
 
   private static final String TAG = WebRtcCallService.class.getSimpleName();
 
@@ -111,6 +117,7 @@ public class WebRtcCallService extends Service implements InjectableType, CallSt
   public static final String EXTRA_ICE_SDP            = "ice_sdp";
   public static final String EXTRA_ICE_SDP_MID        = "ice_sdp_mid";
   public static final String EXTRA_ICE_SDP_LINE_INDEX = "ice_sdp_line_index";
+  public static final String EXTRA_RESULT_RECEIVER    = "result_receiver";
 
   public static final String ACTION_INCOMING_CALL  = "CALL_INCOMING";
   public static final String ACTION_OUTGOING_CALL  = "CALL_OUTGOING";
@@ -120,6 +127,7 @@ public class WebRtcCallService extends Service implements InjectableType, CallSt
   public static final String ACTION_SET_MUTE_AUDIO = "SET_MUTE_AUDIO";
   public static final String ACTION_SET_MUTE_VIDEO = "SET_MUTE_VIDEO";
   public static final String ACTION_CHECK_TIMEOUT     = "CHECK_TIMEOUT";
+  public static final String ACTION_IS_IN_CALL_QUERY = "IS_IN_CALL";
 
   public static final String ACTION_RESPONSE_MESSAGE  = "RESPONSE_MESSAGE";
   public static final String ACTION_ICE_MESSAGE       = "ICE_MESSAGE";
@@ -145,6 +153,9 @@ public class WebRtcCallService extends Service implements InjectableType, CallSt
   private OutgoingRinger             outgoingRinger;
   private LockManager                lockManager;
 
+  private IncomingPstnCallReceiver        callReceiver;
+  private UncaughtExceptionHandlerManager uncaughtExceptionHandlerManager;
+
   @Nullable private Long                   callId;
   @Nullable private Recipient              recipient;
   @Nullable private PeerConnectionWrapper  peerConnection;
@@ -165,7 +176,8 @@ public class WebRtcCallService extends Service implements InjectableType, CallSt
 
     initializeResources();
     initializeRingers();
-    initializePstnCallListener();
+
+    registerIncomingPstnCallReceiver();
     registerUncaughtExceptionHandler();
   }
 
@@ -194,10 +206,24 @@ public class WebRtcCallService extends Service implements InjectableType, CallSt
         else if (intent.getAction().equals(ACTION_ICE_CONNECTED))             handleIceConnected(intent);
         else if (intent.getAction().equals(ACTION_CALL_CONNECTED))            handleCallConnected(intent);
         else if (intent.getAction().equals(ACTION_CHECK_TIMEOUT))             handleCheckTimeout(intent);
+        else if (intent.getAction().equals(ACTION_IS_IN_CALL_QUERY))          handleIsInCallQuery(intent);
       }
     });
 
     return START_NOT_STICKY;
+  }
+
+  @Override
+  public void onDestroy() {
+    super.onDestroy();
+
+    if (callReceiver != null) {
+      unregisterReceiver(callReceiver);
+    }
+
+    if (uncaughtExceptionHandlerManager != null) {
+      uncaughtExceptionHandlerManager.unregister();
+    }
   }
 
   // Initializers
@@ -205,11 +231,6 @@ public class WebRtcCallService extends Service implements InjectableType, CallSt
   private void initializeRingers() {
     this.outgoingRinger = new OutgoingRinger(this);
     this.incomingRinger = new IncomingRinger(this);
-  }
-
-  private void initializePstnCallListener() {
-    IncomingPstnCallListener pstnCallListener = new IncomingPstnCallListener(this);
-    registerReceiver(pstnCallListener, new IntentFilter("android.intent.action.PHONE_STATE"));
   }
 
   private void initializeResources() {
@@ -223,8 +244,13 @@ public class WebRtcCallService extends Service implements InjectableType, CallSt
     this.accountManager.setSoTimeoutMillis(TimeUnit.SECONDS.toMillis(10));
   }
 
+  private void registerIncomingPstnCallReceiver() {
+    callReceiver = new IncomingPstnCallReceiver();
+    registerReceiver(callReceiver, new IntentFilter("android.intent.action.PHONE_STATE"));
+  }
+
   private void registerUncaughtExceptionHandler() {
-    UncaughtExceptionHandlerManager uncaughtExceptionHandlerManager = new UncaughtExceptionHandlerManager();
+    uncaughtExceptionHandlerManager = new UncaughtExceptionHandlerManager();
     uncaughtExceptionHandlerManager.registerHandler(new ProximityLockRelease(lockManager));
   }
 
@@ -515,6 +541,14 @@ public class WebRtcCallService extends Service implements InjectableType, CallSt
     }
   }
 
+  private void handleIsInCallQuery(Intent intent) {
+    ResultReceiver resultReceiver = intent.getParcelableExtra(EXTRA_RESULT_RECEIVER);
+
+    if (resultReceiver != null) {
+      resultReceiver.send(callState != CallState.STATE_IDLE ? 1 : 0, null);
+    }
+  }
+
   private void insertMissedCall(@NonNull Recipient recipient, boolean signal) {
     Pair<Long, Long> messageAndThreadId = DatabaseFactory.getSmsDatabase(this).insertMissedCall(recipient.getNumber());
     MessageNotifier.updateNotification(this, KeyCachingService.getMasterSecret(this),
@@ -643,7 +677,10 @@ public class WebRtcCallService extends Service implements InjectableType, CallSt
 
   private boolean isBusy() {
     TelephonyManager telephonyManager = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
-    return callState != CallState.STATE_IDLE || telephonyManager.getCallState() != TelephonyManager.CALL_STATE_IDLE;
+
+    return callState != CallState.STATE_IDLE                                   ||
+           telephonyManager.getCallState() != TelephonyManager.CALL_STATE_IDLE ||
+           RedPhoneService.isCallActive(this);
   }
 
   private boolean isIdle() {
@@ -791,11 +828,6 @@ public class WebRtcCallService extends Service implements InjectableType, CallSt
   @Override
   public IBinder onBind(Intent intent) {
     return null;
-  }
-
-  @Override
-  public boolean isInCall() {
-    return false;
   }
 
   /// PeerConnection Observer
@@ -1066,5 +1098,48 @@ public class WebRtcCallService extends Service implements InjectableType, CallSt
       Log.w(TAG, throwable);
       throw new AssertionError(throwable);
     }
+  }
+
+  @WorkerThread
+  public static boolean isCallActive(Context context) {
+    Log.w(TAG, "isCallActive()");
+
+    HandlerThread handlerThread = null;
+
+    try {
+      handlerThread = new HandlerThread("webrtc-callback");
+      handlerThread.start();
+
+      final SettableFuture<Boolean> future = new SettableFuture<>();
+
+      ResultReceiver resultReceiver = new ResultReceiver(new Handler(handlerThread.getLooper())) {
+        protected void onReceiveResult(int resultCode, Bundle resultData) {
+          Log.w(TAG, "Got result...");
+          future.set(resultCode == 1);
+        }
+      };
+
+      Intent intent = new Intent(context, WebRtcCallService.class);
+      intent.setAction(ACTION_IS_IN_CALL_QUERY);
+      intent.putExtra(EXTRA_RESULT_RECEIVER, resultReceiver);
+
+      context.startService(intent);
+
+      Log.w(TAG, "Blocking on result...");
+      return future.get();
+    } catch (InterruptedException | ExecutionException e) {
+      Log.w(TAG, e);
+      return false;
+    } finally {
+      if (handlerThread != null) handlerThread.quit();
+    }
+  }
+
+  public static void isCallActive(Context context, ResultReceiver resultReceiver) {
+    Intent intent = new Intent(context, WebRtcCallService.class);
+    intent.setAction(ACTION_IS_IN_CALL_QUERY);
+    intent.putExtra(EXTRA_RESULT_RECEIVER, resultReceiver);
+
+    context.startService(intent);
   }
 }
