@@ -10,6 +10,7 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.text.TextUtils;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.util.NumberUtil;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
 import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
@@ -151,7 +152,7 @@ public class TextSecureDirectory {
 
     try {
       for (ContactTokenDetails token : activeTokens) {
-        Log.w("Directory", "Adding active token: " + token.getNumber() + ", " + token.getToken());
+        Log.w("Directory", "Adding active token: " + NumberUtil.anonymizePhoneNumber(token.getNumber()) + ", " + token.getToken());
         ContentValues values = new ContentValues();
         values.put(NUMBER, token.getNumber());
         values.put(REGISTERED, 1);
