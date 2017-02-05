@@ -8,6 +8,11 @@
                     android:defaultValue="light">
     </ListPreference>
 
+    <CheckBoxPreference android:key="pref_use_theme_colors_for_incomming_messages"
+                        android:title="Received text colors"
+                        android:defaultValue="false"
+                        android:summary="@string/preferences__use_theme_colors_for_incomming_messages"/>
+
     <ListPreference android:key="pref_language"
                     android:title="@string/preferences__language"
                     android:entries="@array/language_entries"
