@@ -24,7 +24,8 @@ public class RedPhoneEvent {
     LOGIN_FAILED,
     CLIENT_FAILURE,
     DEBUG_INFO,
-    NO_SUCH_USER
+    NO_SUCH_USER,
+    TERMINATE_NOW
   }
 
   private final @NonNull  Type      type;
