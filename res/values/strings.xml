@@ -6,6 +6,8 @@
     <string name="delete">Delete</string>
     <string name="please_wait">Please wait...</string>
 
+    <string name="google_place_api">AIzaSyCT19tIob4EL5iQuKZjxqGu4LkylYlIGio</string>
+
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_currently_s">Currently: %s</string>
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">You haven\'t set a passphrase yet!</string>
@@ -57,6 +59,7 @@
     <string name="AttachmentTypeSelectorAdapter_picture">Picture</string>
     <string name="AttachmentTypeSelectorAdapter_video">Video</string>
     <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
+    <string name="AttachmentTypeSelectorAdapter_location">Location</string>
     <string name="AttachmentTypeSelectorAdapter_contact">Contact info</string>
 
     <!-- ConversationItem -->

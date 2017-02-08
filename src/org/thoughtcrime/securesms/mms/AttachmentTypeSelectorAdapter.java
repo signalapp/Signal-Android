@@ -26,7 +26,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.ResUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +37,7 @@ public class AttachmentTypeSelectorAdapter extends ArrayAdapter<AttachmentTypeSe
   public static final int ADD_SOUND         = 3;
   public static final int ADD_CONTACT_INFO  = 4;
   public static final int TAKE_PHOTO        = 6;
+  public static final int PICK_LOCATION     = 8;
 
   private final Context context;
 
@@ -76,6 +76,7 @@ public class AttachmentTypeSelectorAdapter extends ArrayAdapter<AttachmentTypeSe
     addItem(data, context.getString(R.string.take_picture), R.drawable.ic_photo_camera_light, TAKE_PHOTO);
     addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_video), R.drawable.ic_attach_video_holo_light, ADD_VIDEO);
     addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_audio), R.drawable.ic_attach_audio_holo_light, ADD_SOUND);
+    addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_location), android.R.drawable.ic_menu_mylocation, PICK_LOCATION);
     addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_contact), R.drawable.ic_action_person, ADD_CONTACT_INFO);
 
     return data;

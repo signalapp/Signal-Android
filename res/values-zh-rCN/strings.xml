@@ -49,6 +49,8 @@
   <string name="AttachmentTypeSelectorAdapter_video">视频</string>
   <string name="AttachmentTypeSelectorAdapter_audio">音频</string>
   <string name="AttachmentTypeSelectorAdapter_contact">联系人信息</string>
+  <string name="attachment_type_selector__location">位置</string>
+  
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">信息大小： %d KB</string>
   <string name="ConversationItem_expires_s">到期： %s</string>

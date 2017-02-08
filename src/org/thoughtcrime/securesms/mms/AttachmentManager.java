@@ -21,25 +21,39 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
+
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.ui.PlacePicker;
 
 import org.thoughtcrime.securesms.ConversationActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.RemovableMediaView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
+import org.thoughtcrime.securesms.components.location.SignalMapView;
+import org.thoughtcrime.securesms.components.location.SignalPlace;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
+import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
+import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
+import org.whispersystems.libaxolotl.util.guava.Optional;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -63,25 +77,39 @@ public class AttachmentManager {
   private final ImageButton        removeButton;
   private final SlideDeck          slideDeck;
   private final AttachmentListener attachmentListener;
+  private final RemovableMediaView removableMediaView;
+  private final SignalMapView mapView;
+
+  private @NonNull
+  Optional<Slide> slide   = Optional.absent();
+  private @Nullable Uri             captureUri;
 
   private int widthBefore = 0;
 
   private static File captureFile;
 
+  private String locationURL = "";
+
   public AttachmentManager(Activity view, AttachmentListener listener) {
     this.attachmentView     = view.findViewById(R.id.attachment_editor);
     this.thumbnail          = (ThumbnailView)view.findViewById(R.id.attachment_thumbnail);
-    this.removeButton       = (ImageButton)view.findViewById(R.id.remove_image_button);
+    this.removeButton       = (ImageButton)view.findViewById(R.id.cancel_image_button);
     this.slideDeck          = new SlideDeck();
     this.context            = view;
     this.attachmentListener = listener;
 
     this.removeButton.setOnClickListener(new RemoveButtonListener());
+
+    this.mapView = (SignalMapView) view.findViewById(R.id.attachment_location);
+    this.removableMediaView = (RemovableMediaView) view.findViewById(R.id.removable_media_view);
   }
 
   public void clear() {
     slideDeck.clear();
+    thumbnail.setVisibility(View.GONE);
     attachmentView.setVisibility(View.GONE);
+    removableMediaView.setVisibility(View.GONE);
+    setLocationURL("");
     attachmentListener.onAttachmentChanged();
   }
 
@@ -89,7 +117,86 @@ public class AttachmentManager {
     if (captureFile != null) captureFile.delete();
     captureFile = null;
   }
+
+  private void cleanup(final @Nullable Uri uri) {
+    if (uri != null && PersistentBlobProvider.isAuthority(context, uri)) {
+      Log.w(TAG, "cleaning up " + uri);
+      PersistentBlobProvider.getInstance(context).delete(uri);
+    }
+  }
+
+  private @Nullable
+  Uri getSlideUri() {
+    return slide.isPresent() ? slide.get().getUri() : null;
+  }
+
+  private void setSlide(@NonNull Slide slide) {
+    if (getSlideUri() != null)                                    cleanup(getSlideUri());
+    if (captureUri != null && !captureUri.equals(slide.getUri())) cleanup(captureUri);
+
+    this.captureUri = null;
+    this.slide      = Optional.of(slide);
+  }
+
+  public Uri getImageUri(Context inContext, Bitmap inImage) {
+    ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+    inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+    String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+    return Uri.parse(path);
+  }
+  public void setLocation(@NonNull final MasterSecret masterSecret, @NonNull final SignalPlace place)
+  {
+    clear();
+    attachmentView.findViewById(R.id.triangle_tick).setVisibility(View.GONE);
+
+    ListenableFuture<Bitmap> future = mapView.display(place);
+
+    attachmentView.setVisibility(View.VISIBLE);
+    removableMediaView.setVisibility(View.VISIBLE);
+    removableMediaView.display(mapView);
+
+    setLocationURL(place.getDescription());
+
+
+    future.addListener(new AssertedSuccessListener<Bitmap>() {
+      @Override
+      public void onSuccess(@NonNull Bitmap result) {
+        byte[]        blob          = BitmapUtil.toByteArray(result);
+        Uri           uri           = PersistentBlobProvider.getInstance(context)
+                .create(masterSecret, blob, ContentType.IMAGE_PNG);
+        LocationSlide locationSlide = null;
+        try {
+          if(getLocationURL().isEmpty()) {
+            return;
+          }
+          locationSlide = new LocationSlide(context, uri, blob.length, place);
+
+          slideDeck.clear();
+          slideDeck.addSlide(new ImageSlide(context, getImageUri(context,result)));
+
+
+        } catch (IOException e) {
+          e.printStackTrace();
+        } catch (BitmapDecodingException e) {
+          e.printStackTrace();
+        }
+
+        setSlide(locationSlide);
+        attachmentListener.onAttachmentChanged();
+      }
+    });
+  }
+  public void setLocationURL(String lUrl) {
+    locationURL = lUrl;
+    Log.e(TAG, "Location description set to: "+ lUrl);
+  }
+
+  public String getLocationURL() {
+    return locationURL;
+  }
+
   public void setMedia(final Slide slide) {
+    clear();
     slideDeck.clear();
     slideDeck.addSlide(slide);
     if(slide.hasVideo()) {
@@ -99,6 +206,7 @@ public class AttachmentManager {
       }
     }
     attachmentView.setVisibility(View.VISIBLE);
+    thumbnail.setVisibility(View.VISIBLE);
     thumbnail.setImageResource(slide);
     if(slide instanceof AudioSlide) {
       widthBefore =  widthBefore < thumbnail.getLayoutParams().height ? thumbnail.getLayoutParams().height : widthBefore;
@@ -122,16 +230,6 @@ public class AttachmentManager {
         attachmentView.findViewById(R.id.triangle_tick).setVisibility(View.VISIBLE);
       }
     }
-      /*
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-          attachmentView.findViewById(R.id.triangle_tick).setVisibility(View.VISIBLE);
-          thumbnail.setImageAlpha(255);
-        }
-        attachmentView.getLayoutParams().height = 200;
-        thumbnail.getLayoutParams().height = 200;
-        thumbnail.getLayoutParams().width = 200;
-        thumbnail.setBackgroundResource(R.drawable.ic_settings_voice_black);
-      }*/
     attachmentListener.onAttachmentChanged();
   }
 
@@ -203,6 +301,16 @@ public class AttachmentManager {
 
     return mediaFile;
   }
+
+  public static void selectLocation(Activity activity, int requestCode) {
+    try {
+      activity.startActivityForResult(new PlacePicker.IntentBuilder().build(activity), requestCode);
+    } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
+      Log.w(TAG, e);
+    }
+  }
+
+
   public ImageSlide copyUriToStorageAndGenerateImageSlide(Uri uri) {
     ImageSlide chosenImage = null;
     if (uri != null) {
@@ -281,9 +389,7 @@ public class AttachmentManager {
   public void setVideo(Uri video, boolean sendOrReceive) throws IOException, MediaTooLargeException {
     setMedia(new VideoSlide(context, video, sendOrReceive));
   }
-  public void setVideo(Uri video, String contentType, boolean sendOrReceive) throws IOException, MediaTooLargeException {
-    setMedia(new VideoSlide(context, video, contentType, sendOrReceive));
-  }
+
   public void setAudio(Uri audio, String contentType, boolean sendOrReceive) throws IOException, MediaTooLargeException {
     setMedia(new AudioSlide(context, audio, contentType, sendOrReceive));
   }

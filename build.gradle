@@ -44,7 +44,9 @@ dependencies {
 
     compile 'me.leolin:ShortcutBadger:1.0.2-WS2'
     compile 'se.emilsjolander:stickylistheaders:2.2.0'
-    compile 'com.google.android.gms:play-services-base:6.5.87'
+    compile 'com.google.android.gms:play-services-gcm:8.1.0'
+    compile 'com.google.android.gms:play-services-maps:8.1.0'
+    compile 'com.google.android.gms:play-services-location:8.1.0'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
     compile 'org.w3c:smil:1.0.0'
     compile 'org.apache.httpcomponents:httpclient-android:4.3.5'
@@ -91,7 +93,8 @@ dependencyVerification {
     verify = [
             'me.leolin:ShortcutBadger:027977c718035e5997035e04e05152d6c72d94df645e8b7099a274ada722bd14',
             'se.emilsjolander:stickylistheaders:89146b46c96fea0e40200474a2625cda10fe94891e4128f53cdb42375091b9b6',
-            'com.google.android.gms:play-services-base:832cb6b3130e871db6a412c4ab585656dbcc5e7948101f190186757785703f75',
+            'com.google.android.gms:play-services-base:ef36e50fa5c0415ed41f74dd399a889efd2fa327c449036e140c7c3786aa0e1f',
+            'com.google.android.gms:play-services-base:ef36e50fa5c0415ed41f74dd399a889efd2fa327c449036e140c7c3786aa0e1f',
             'com.astuetz:pagerslidingtabstrip:f1641396732c7132a7abb837e482e5ee2b0ebb8d10813fc52bbaec2c15c184c2',
             'org.w3c:smil:085dc40f2bb249651578bfa07499fd08b16ad0886dbe2c4078586a408da62f9b',
             'org.apache.httpcomponents:httpclient-android:6f56466a9bd0d42934b90bfbfe9977a8b654c058bf44a12bdc2877c4e1f033f1',
@@ -101,7 +104,7 @@ dependencyVerification {
             'com.madgag.spongycastle:prov:b8c3fec3a59aac1aa04ccf4dad7179351e54ef7672f53f508151b614c131398a',
             'me.dm7.barcodescanner:zxing:0d6dbf8182bbe4ab7984a743b5318c40c205374294738ec1fc9d0f2cad6692e9',
             'com.android.support:cardview-v7:45c48c2ab056bc7a8573970b10f8902742c5d443f180dae43c56557397ac39af',
-            'com.afollestad:material-dialogs:c17205f0d300baa307599c428a5473a6659684c94a5f68ae3c2b84b5e4741172',
+            //'com.afollestad:material-dialogs:c17205f0d300baa307599c428a5473a6659684c94a5f68ae3c2b84b5e4741172',
             'com.github.bumptech.glide:glide:adf657e6bddccb168a29e18ab0954043af46a9b5c736d8c3193c9783fd83d69e',
             'com.makeramen:roundedimageview:7dda2e78c406760e5c356ccce59b0df46b5b171cf18abb891998594405021548',
             'com.android.support:support-v4-preferencefragment:5470f5872514a6226fa1fc6f4e000991f38805691c534cf0bd2778911fc773ad',
@@ -139,6 +142,7 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 22
+        multiDexEnabled true
 
         buildConfigField "long", "BUILD_TIMESTAMP", System.currentTimeMillis() + "L"
         buildConfigField "String", "USER_AGENT", "\"GDATA SecureChat " + verName + "\""
@@ -150,6 +154,7 @@ android {
 
         resConfigs "en", "de", "fr", "it", "es", "pt", "pt-rBR", "nl", "ja", "tr", "ru", "pl", "zh-rCN", "zh-rTW"
     }
+    
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7

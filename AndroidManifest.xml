@@ -45,6 +45,9 @@
     <uses-permission android:name="de.gdata.mobilesecurity.ACCESS_GISFA_DATA" />
     <uses-permission android:name="de.gdata.mobilesecurity.ACCESS_REGISTRATION_DATA_PROVIDER" />
     <uses-permission android:name="de.gdata.mobilesecurity.ACCESS_REGISTRATION_PRIVACY" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".ApplicationContext"
@@ -66,6 +69,12 @@
         <meta-data
             android:name="org.thoughtcrime.securesms.mms.TextSecureGlideModule"
             android:value="GlideModule" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_place_api" />
+        <meta-data android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
         <activity
             android:name=".RoutingActivity"

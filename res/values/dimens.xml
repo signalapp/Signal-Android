@@ -20,4 +20,6 @@
     <dimen name="fab_compat_margin">16dp</dimen>
     <dimen name="fab_compat_margin_bottom">0dp</dimen>
     <dimen name="fab_compat_margin_right">4.5dp</dimen>
+
+    <dimen name="media_bubble_remove_button_size">24dp</dimen>
 </resources>
