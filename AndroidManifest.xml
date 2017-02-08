@@ -90,6 +90,7 @@
 
     <application android:name=".ApplicationContext"
                  android:icon="@drawable/icon"
+                 android:roundIcon="@drawable/icon_circle"
                  android:label="@string/app_name"
                  android:supportsRtl="true"
                  tools:replace="android:allowBackup"
@@ -260,7 +261,7 @@
     <activity android:name=".PassphraseCreateActivity"
               android:label="@string/AndroidManifest__create_passphrase"
               android:windowSoftInputMode="stateUnchanged"
-              android:theme="@style/TextSecure.LightIntroTheme"
+              android:theme="@style/TextSecure.LightNoActionBar"
               android:launchMode="singleTask"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
