@@ -70,7 +70,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
 {
 
   private static final int MAX_CACHE_SIZE = 40;
-  private static final String TAG = ConversationAdapter.class.getName();
+  private static final String TAG = ConversationAdapter.class.getSimpleName();
   private final Map<String,SoftReference<MessageRecord>> messageRecordCache =
       Collections.synchronizedMap(new LRUCache<String, SoftReference<MessageRecord>>(MAX_CACHE_SIZE));
 
