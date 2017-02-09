@@ -168,6 +168,10 @@ public class ConversationListFragment extends Fragment
     }
   }
 
+  private boolean isSearchActive() {
+    return !TextUtils.isEmpty(this.queryFilter);
+  }
+
   private void updateReminders() {
     reminderView.hide();
     new AsyncTask<Context, Void, Optional<? extends Reminder>>() {
@@ -446,8 +450,9 @@ public class ConversationListFragment extends Fragment
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
       final long    threadId = ((ConversationListItem)viewHolder.itemView).getThreadId();
       final boolean read     = ((ConversationListItem)viewHolder.itemView).getRead();
+      final int     position = viewHolder.getAdapterPosition();
 
-      if (archive) {
+      if (((ConversationListItem)viewHolder.itemView).getArchived()) {
         new SnackbarAsyncTask<Long>(getView(),
                                     getResources().getQuantityString(R.plurals.ConversationListFragment_moved_conversations_to_inbox, 1, 1),
                                     getString(R.string.ConversationListFragment_undo),
@@ -457,6 +462,7 @@ public class ConversationListFragment extends Fragment
           @Override
           protected void executeAction(@Nullable Long parameter) {
             DatabaseFactory.getThreadDatabase(getActivity()).unarchiveConversation(threadId);
+            if (isSearchActive()) getListAdapter().notifyItemChanged(position);
           }
 
           @Override
@@ -474,6 +480,7 @@ public class ConversationListFragment extends Fragment
           @Override
           protected void executeAction(@Nullable Long parameter) {
             DatabaseFactory.getThreadDatabase(getActivity()).archiveConversation(threadId);
+            if (isSearchActive()) getListAdapter().notifyItemChanged(position);
 
             if (!read) {
               List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(getActivity()).setRead(threadId, false);
@@ -509,8 +516,11 @@ public class ConversationListFragment extends Fragment
         if (dX > 0) {
           Bitmap icon;
 
-          if (archive) icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_unarchive_white_36dp);
-          else         icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_archive_white_36dp);
+          if (((ConversationListItem)itemView).getArchived()) {
+            icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_unarchive_white_36dp);
+          } else {
+            icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_archive_white_36dp);
+          }
 
           p.setColor(getResources().getColor(R.color.green_500));
 
