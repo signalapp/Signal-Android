@@ -1,5 +1,5 @@
-[submodule "IsfaServerDefinitions"]
-	path = IsfaServerDefinitions
+[submodule "isfaserverdefinitions"]
+	path = isfaserverdefinitions
 	url = git@bitbucket.gdata.de:7999/mob/isfaserverdefinitions.git
 [submodule "libtextsecure-java"]
 	path = libtextsecure-java
