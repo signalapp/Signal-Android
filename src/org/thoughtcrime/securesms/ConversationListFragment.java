@@ -172,6 +172,32 @@ public class ConversationListFragment extends Fragment
     return !TextUtils.isEmpty(this.queryFilter);
   }
 
+  private void setCorrectMenuVisibility(Menu menu) {
+    boolean showArchiveAction, showUnarchiveAction;
+
+    if (!isSearchActive()) {
+      showArchiveAction   = !archive;
+      showUnarchiveAction = archive;
+    } else {
+      switch (getListAdapter().getBatchSelectionArchivedState()) {
+      case ALL_ARCHIVED:
+        showArchiveAction   = false;
+        showUnarchiveAction = true;
+        break;
+      case ALL_UNARCHIVED:
+        showArchiveAction   = true;
+        showUnarchiveAction = false;
+        break;
+      default:
+        showArchiveAction   = false;
+        showUnarchiveAction = false;
+      }
+    }
+
+    menu.findItem(R.id.menu_archive_selected).setVisible(showArchiveAction);
+    menu.findItem(R.id.menu_unarchive_selected).setVisible(showUnarchiveAction);
+  }
+
   private void updateReminders() {
     reminderView.hide();
     new AsyncTask<Context, Void, Optional<? extends Reminder>>() {
@@ -209,14 +235,13 @@ public class ConversationListFragment extends Fragment
     getLoaderManager().restartLoader(0, null, this);
   }
 
-  private void handleArchiveAllSelected() {
+  private void handleArchiveAllSelected(final boolean unarchive) {
     final Set<Long> selectedConversations = new HashSet<>(getListAdapter().getBatchSelections());
-    final boolean   archive               = this.archive;
 
     int snackBarTitleId;
 
-    if (archive) snackBarTitleId = R.plurals.ConversationListFragment_moved_conversations_to_inbox;
-    else         snackBarTitleId = R.plurals.ConversationListFragment_conversations_archived;
+    if (unarchive) snackBarTitleId = R.plurals.ConversationListFragment_moved_conversations_to_inbox;
+    else           snackBarTitleId = R.plurals.ConversationListFragment_conversations_archived;
 
     int count            = selectedConversations.size();
     String snackBarTitle = getResources().getQuantityString(snackBarTitleId, count, count);
@@ -240,16 +265,16 @@ public class ConversationListFragment extends Fragment
       @Override
       protected void executeAction(@Nullable Void parameter) {
         for (long threadId : selectedConversations) {
-          if (!archive) DatabaseFactory.getThreadDatabase(getActivity()).archiveConversation(threadId);
-          else          DatabaseFactory.getThreadDatabase(getActivity()).unarchiveConversation(threadId);
+          if (unarchive) DatabaseFactory.getThreadDatabase(getActivity()).unarchiveConversation(threadId);
+          else           DatabaseFactory.getThreadDatabase(getActivity()).archiveConversation(threadId);
         }
       }
 
       @Override
       protected void reverseAction(@Nullable Void parameter) {
         for (long threadId : selectedConversations) {
-          if (!archive) DatabaseFactory.getThreadDatabase(getActivity()).unarchiveConversation(threadId);
-          else          DatabaseFactory.getThreadDatabase(getActivity()).archiveConversation(threadId);
+          if (unarchive) DatabaseFactory.getThreadDatabase(getActivity()).archiveConversation(threadId);
+          else           DatabaseFactory.getThreadDatabase(getActivity()).unarchiveConversation(threadId);
         }
       }
     }.execute();
@@ -346,6 +371,7 @@ public class ConversationListFragment extends Fragment
       } else {
         actionMode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount,
                                          adapter.getBatchSelections().size()));
+        setCorrectMenuVisibility(actionMode.getMenu());
       }
 
       adapter.notifyDataSetChanged();
@@ -358,6 +384,7 @@ public class ConversationListFragment extends Fragment
 
     getListAdapter().initializeBatchMode(true);
     getListAdapter().toggleThreadInBatchSet(item.getThreadId());
+    setCorrectMenuVisibility(actionMode.getMenu());
     getListAdapter().notifyDataSetChanged();
   }
 
@@ -374,9 +401,6 @@ public class ConversationListFragment extends Fragment
   @Override
   public boolean onCreateActionMode(ActionMode mode, Menu menu) {
     MenuInflater inflater = getActivity().getMenuInflater();
-
-    if (archive) inflater.inflate(R.menu.conversation_list_batch_unarchive, menu);
-    else         inflater.inflate(R.menu.conversation_list_batch_archive, menu);
 
     inflater.inflate(R.menu.conversation_list_batch, menu);
 
@@ -398,9 +422,10 @@ public class ConversationListFragment extends Fragment
   @Override
   public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
     switch (item.getItemId()) {
-    case R.id.menu_select_all:       handleSelectAllThreads();   return true;
-    case R.id.menu_delete_selected:  handleDeleteAllSelected();  return true;
-    case R.id.menu_archive_selected: handleArchiveAllSelected(); return true;
+    case R.id.menu_select_all:         handleSelectAllThreads();        return true;
+    case R.id.menu_delete_selected:    handleDeleteAllSelected();       return true;
+    case R.id.menu_archive_selected:   handleArchiveAllSelected(false); return true;
+    case R.id.menu_unarchive_selected: handleArchiveAllSelected(true);  return true;
     }
 
     return false;

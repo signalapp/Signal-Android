@@ -177,6 +177,29 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
     return batchSet;
   }
 
+  public BatchSelectionArchivedState getBatchSelectionArchivedState() {
+    boolean allArchived   = true;
+    boolean allUnarchived = true;
+    ThreadRecord threadRecord;
+    for (int i = 0; i < getItemCount(); i++) {
+      threadRecord = getThreadRecord(getCursorAtPositionOrThrow(i));
+      if (!batchSet.contains(threadRecord.getThreadId())) continue;
+
+      if (threadRecord.isArchived()) {
+        allUnarchived = false;
+      } else {
+        allArchived = false;
+      }
+    }
+    if      (allArchived)   return BatchSelectionArchivedState.ALL_ARCHIVED;
+    else if (allUnarchived) return BatchSelectionArchivedState.ALL_UNARCHIVED;
+    else                    return BatchSelectionArchivedState.NONE;
+  }
+
+  public enum BatchSelectionArchivedState {
+    ALL_ARCHIVED, ALL_UNARCHIVED, NONE
+  }
+
   public void initializeBatchMode(boolean toggle) {
     this.batchMode = toggle;
     unselectAllThreads();
