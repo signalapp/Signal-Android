@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.IncomingPreKeyBundleMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
+import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.GroupUtil;
@@ -478,6 +479,16 @@ public class PushDecryptJob extends ContextJob {
     if (smsMessageId.isPresent() && !message.getGroupInfo().isPresent()) {
       threadId = database.updateBundleMessageBody(masterSecret, smsMessageId.get(), body).second;
     } else {
+      if (envelope.getSource().equals(TextSecurePreferences.getLocalNumber(context))) {
+        threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
+        OutgoingTextMessage textMessage = new OutgoingTextMessage(RecipientFactory.getRecipientsFromString(context, envelope.getSource(), false),
+                                                                  body, message.getExpiresInSeconds() * 1000, -1);
+
+        long id = database.insertMessageOutbox(masterSecret, threadId, textMessage, false, envelope.getTimestamp());
+        database.markAsSent(id, true);
+        return;
+      }
+
       IncomingTextMessage textMessage = new IncomingTextMessage(envelope.getSource(),
                                                                 envelope.getSourceDevice(),
                                                                 message.getTimestamp(), body,
