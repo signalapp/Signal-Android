@@ -1270,6 +1270,7 @@
     <string name="MediaPreviewActivity_you">You</string>
     <string name="MediaPreviewActivity_cant_display">Failed to preview this image</string>
     <string name="MediaPreviewActivity_unssuported_media_type">Unsupported media type</string>
+    <string name="MediaPreviewActivity_draft">Draft</string>
 
     <!-- media_preview -->
     <string name="media_preview__save_title">Save</string>
