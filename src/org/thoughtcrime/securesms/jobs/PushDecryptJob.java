@@ -356,6 +356,27 @@ public class PushDecryptJob extends ContextJob {
     MmsDatabase          database     = DatabaseFactory.getMmsDatabase(context);
     String               localNumber  = TextSecurePreferences.getLocalNumber(context);
     Recipients           recipients   = getMessageDestination(envelope, message);
+
+    if ((envelope.getSource().equals(TextSecurePreferences.getLocalNumber(context)))) {
+      OutgoingMediaMessage  mediaMessage = new OutgoingMediaMessage(recipients, message.getBody().orNull(),
+                                                                    PointerAttachment.forPointers(masterSecret, message.getAttachments()),
+                                                                    message.getTimestamp(), -1,
+                                                                    message.getExpiresInSeconds() * 1000,
+                                                                    ThreadDatabase.DistributionTypes.DEFAULT);
+
+      mediaMessage = new OutgoingSecureMediaMessage(mediaMessage);
+      long threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
+      long id = database.insertMessageOutbox(masterSecret, mediaMessage, threadId, false);
+      database.markAsSent(id, true);
+
+      for (DatabaseAttachment attachment : DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(id)) {
+        ApplicationContext.getInstance(context)
+            .getJobManager()
+            .add(new AttachmentDownloadJob(context, messageId, attachment.getAttachmentId()));
+      }
+      return;
+    }
+
     IncomingMediaMessage mediaMessage = new IncomingMediaMessage(masterSecret, envelope.getSource(),
                                                                  localNumber, message.getTimestamp(), -1,
                                                                  message.getExpiresInSeconds() * 1000, false,
