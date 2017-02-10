@@ -2,7 +2,7 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:title="@string/GroupCreateActivity_menu_create_title"
+    <item android:title="@string/GroupCreateActivity_menu_apply_button"
           android:id="@+id/menu_create_group"
           android:icon="?menu_accept_icon"
           app:showAsAction="always|withText"/>

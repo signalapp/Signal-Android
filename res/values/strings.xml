@@ -285,7 +285,7 @@
     
     <!-- GroupCreateActivity -->
     <string name="GroupCreateActivity_actionbar_title">New group</string>
-    <string name="GroupCreateActivity_actionbar_update_title">Update group</string>
+    <string name="GroupCreateActivity_actionbar_edit_title">Edit group</string>
     <string name="GroupCreateActivity_group_name_hint">Group name</string>
     <string name="GroupCreateActivity_actionbar_mms_title">New MMS group</string>
     <string name="GroupCreateActivity_contacts_dont_support_push">You have selected a contact that doesn\'t support Signal groups, so this group will be MMS.</string>
@@ -294,7 +294,7 @@
     <string name="GroupCreateActivity_contacts_no_members">You need at least one person in your group!</string>
     <string name="GroupCreateActivity_contacts_invalid_number">One of the members of your group has a number that can\'t be read correctly. Please fix or remove that contact and try again.</string>
     <string name="GroupCreateActivity_avatar_content_description">Group avatar</string>
-    <string name="GroupCreateActivity_menu_create_title">Create group</string>
+    <string name="GroupCreateActivity_menu_apply_button">Apply</string>
     <string name="GroupCreateActivity_creating_group">Creating %1$s&#8230;</string>
     <string name="GroupCreateActivity_updating_group">Updating %1$s...</string>
     <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Couldn\'t add %1$s because they\'re not a Signal user.</string>
@@ -1229,7 +1229,7 @@
 
     <!-- conversation -->
     <string name="conversation__menu_add_attachment">Add attachment</string>
-    <string name="conversation__menu_update_group">Update group</string>
+    <string name="conversation__menu_edit_group">Edit group</string>
     <string name="conversation__menu_leave_group">Leave group</string>
     <string name="conversation__menu_delete_thread">Delete conversation</string>
     <string name="conversation__menu_view_media">All images</string>
