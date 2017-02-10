@@ -629,6 +629,7 @@
     <string name="MediaPreviewActivity_you">You</string>
     <string name="MediaPreviewActivity_cant_display">Failed to preview this image</string>
     <string name="MediaPreviewActivity_unssuported_media_type">Unsupported media type</string>
+    <string name="MediaPreviewActivity_draft">Draft</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages in %2$d conversations</string>
