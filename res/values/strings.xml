@@ -648,6 +648,8 @@
     </string>
     <string name="WebRtcCallScreen_new_safety_numbers_title">New safety numbers</string>
 
+    <!-- WebRtcCallControls -->
+    <string name="WebRtcCallControls_tap_to_enable_your_video">Tap to enable your video</string>
 
     <!-- attachment_type_selector -->
     <string name="attachment_type_selector__image">Image</string>

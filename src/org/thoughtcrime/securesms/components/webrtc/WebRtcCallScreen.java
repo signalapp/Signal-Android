@@ -24,6 +24,7 @@ import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.ViewCompat;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
@@ -36,6 +37,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
@@ -44,6 +46,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.util.VerifySpan;
+import org.thoughtcrime.securesms.util.ViewUtil;
 import org.webrtc.SurfaceViewRenderer;
 import org.whispersystems.libsignal.IdentityKey;
 
@@ -72,8 +75,11 @@ public class WebRtcCallScreen extends FrameLayout implements Recipient.Recipient
   private TextView             status;
   private FloatingActionButton endCallButton;
   private WebRtcCallControls   controls;
+  private RelativeLayout       expandedInfo;
+  private ViewGroup            callHeader;
 
   private Recipient recipient;
+  private boolean   minimized;
 
   private WebRtcIncomingCallOverlay incomingCallOverlay;
 
@@ -106,6 +112,7 @@ public class WebRtcCallScreen extends FrameLayout implements Recipient.Recipient
   public void setIncomingCall(Recipient personInfo) {
     setCard(personInfo, getContext().getString(R.string.CallScreen_Incoming_call));
     incomingCallOverlay.setIncomingCall();
+    endCallButton.setVisibility(View.INVISIBLE);
   }
 
   public void setUntrustedIdentity(Recipient personInfo, IdentityKey untrustedIdentity) {
@@ -131,8 +138,10 @@ public class WebRtcCallScreen extends FrameLayout implements Recipient.Recipient
 
   public void reset() {
     setPersonInfo(Recipient.getUnknownRecipient());
+    setMinimized(false);
     this.status.setText("");
     this.recipient = null;
+
     this.controls.reset();
     this.untrustedIdentityExplanation.setText("");
     this.untrustedIdentityContainer.setVisibility(View.GONE);
@@ -185,9 +194,11 @@ public class WebRtcCallScreen extends FrameLayout implements Recipient.Recipient
 
   public void setLocalVideoEnabled(boolean enabled) {
     if (enabled && this.localRenderLayout.isHidden()) {
+      this.controls.setVideoEnabled(true);
       this.localRenderLayout.setHidden(false);
       this.localRenderLayout.requestLayout();
     } else  if (!enabled && !this.localRenderLayout.isHidden()){
+      this.controls.setVideoEnabled(false);
       this.localRenderLayout.setHidden(true);
       this.localRenderLayout.requestLayout();
     }
@@ -195,9 +206,16 @@ public class WebRtcCallScreen extends FrameLayout implements Recipient.Recipient
 
   public void setRemoteVideoEnabled(boolean enabled) {
     if (enabled && this.remoteRenderLayout.isHidden()) {
+      this.photo.setVisibility(View.INVISIBLE);
+      setMinimized(true);
+
       this.remoteRenderLayout.setHidden(false);
       this.remoteRenderLayout.requestLayout();
+
+      if (localRenderLayout.isHidden()) this.controls.displayVideoTooltip(callHeader);
     } else if (!enabled && !this.remoteRenderLayout.isHidden()){
+      setMinimized(false);
+      this.photo.setVisibility(View.VISIBLE);
       this.remoteRenderLayout.setHidden(true);
       this.remoteRenderLayout.requestLayout();
     }
@@ -226,9 +244,19 @@ public class WebRtcCallScreen extends FrameLayout implements Recipient.Recipient
     this.untrustedIdentityExplanation = (TextView) findViewById(R.id.untrusted_explanation);
     this.acceptIdentityButton         = (Button)findViewById(R.id.accept_safety_numbers);
     this.cancelIdentityButton         = (Button)findViewById(R.id.cancel_safety_numbers);
+    this.expandedInfo                 = (RelativeLayout)findViewById(R.id.expanded_info);
+    this.callHeader                   = (ViewGroup)findViewById(R.id.call_info_1);
 
     this.localRenderLayout.setHidden(true);
     this.remoteRenderLayout.setHidden(true);
+    this.minimized = false;
+
+    this.remoteRenderLayout.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        setMinimized(!minimized);
+      }
+    });
   }
 
   private void setConnected(SurfaceViewRenderer localRenderer,
@@ -243,7 +271,7 @@ public class WebRtcCallScreen extends FrameLayout implements Recipient.Recipient
         ((ViewGroup)remoteRenderer.getParent()).removeView(remoteRenderer);
       }
 
-      localRenderLayout.setPosition(7, 7, 25, 25);
+      localRenderLayout.setPosition(7, 70, 25, 25);
       localRenderLayout.setSquare(true);
       remoteRenderLayout.setPosition(0, 0, 100, 100);
 
@@ -293,6 +321,24 @@ public class WebRtcCallScreen extends FrameLayout implements Recipient.Recipient
     this.status.setText(status);
     this.untrustedIdentityContainer.setVisibility(View.GONE);
     this.endCallButton.setVisibility(View.VISIBLE);
+  }
+
+  private void setMinimized(boolean minimized) {
+    if (minimized) {
+      ViewCompat.animate(callHeader).translationY(-1 * expandedInfo.getHeight());
+      ViewCompat.animate(status).alpha(0);
+      ViewCompat.animate(endCallButton).translationY(endCallButton.getHeight() + ViewUtil.dpToPx(getContext(), 40));
+      ViewCompat.animate(endCallButton).alpha(0);
+
+      this.minimized = true;
+    } else {
+      ViewCompat.animate(callHeader).translationY(0);
+      ViewCompat.animate(status).alpha(1);
+      ViewCompat.animate(endCallButton).translationY(0);
+      ViewCompat.animate(endCallButton).alpha(1);
+
+      this.minimized = false;
+    }
   }
 
   @Override
