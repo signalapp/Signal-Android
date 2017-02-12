@@ -917,7 +917,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         UserCapabilities  capabilities = DirectoryHelper.getUserCapabilities(context, recipients);
 
         if (capabilities.getTextCapability() == Capability.UNKNOWN ||
-            capabilities.getVoiceCapability() == Capability.UNKNOWN)
+            capabilities.getVideoCapability() == Capability.UNKNOWN)
         {
           try {
             capabilities = DirectoryHelper.refreshDirectoryFor(context, masterSecret, recipients,
@@ -928,7 +928,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         }
 
         return new boolean[] {capabilities.getTextCapability() == Capability.SUPPORTED,
-                              capabilities.getVoiceCapability() == Capability.SUPPORTED && !isSelfConversation(),
+                              capabilities.getVideoCapability() == Capability.SUPPORTED && !isSelfConversation(),
                               Util.isDefaultSmsProvider(context)};
       }
 
@@ -950,31 +950,32 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       return;
     }
 
-    new AsyncTask<Void, Void, boolean[]>() {
+    new Thread() {
       @Override
-      protected boolean[] doInBackground(Void... params) {
+      public void run() {
         try {
-          Context context = ConversationActivity.this;
+          Context          context          = ConversationActivity.this;
           UserCapabilities userCapabilities = DirectoryHelper.refreshDirectoryFor(context, masterSecret, recipients,
                                                                                   TextSecurePreferences.getLocalNumber(context));
 
 
-          return new boolean[] {userCapabilities.getTextCapability() == Capability.SUPPORTED,
-                                userCapabilities.getVideoCapability() == Capability.SUPPORTED && !isSelfConversation(),
-                                Util.isDefaultSmsProvider(context)};
+          final boolean secureText  = userCapabilities.getTextCapability() == Capability.SUPPORTED;
+          final boolean secureVideo = userCapabilities.getVideoCapability() == Capability.SUPPORTED;
+          final boolean defaultSms  = Util.isDefaultSmsProvider(context);
+
+          Util.runOnMain(new Runnable() {
+            @Override
+            public void run() {
+              if (secureText != isSecureText || secureVideo != isSecureVideo || defaultSms != isDefaultSms) {
+                handleSecurityChange(secureText, secureVideo, defaultSms);
+              }
+            }
+          });
         } catch (IOException e) {
           Log.w(TAG, e);
-          return null;
         }
       }
-
-      @Override
-      protected void onPostExecute(boolean[] result) {
-        if (result != null && (result[0] != isSecureText || result[1] != isSecureVideo || result[2] != isDefaultSms)) {
-          handleSecurityChange(result[0], result[1], result[2]);
-        }
-      }
-    }.execute();
+    }.start();
   }
 
   private void onSecurityUpdated() {

@@ -166,9 +166,11 @@ public class TextSecureDirectory {
     SQLiteDatabase db     = databaseHelper.getWritableDatabase();
     ContentValues  values = new ContentValues();
     values.put(NUMBER, token.getNumber());
-    values.put(RELAY, token.getRelay());
     values.put(REGISTERED, active ? 1 : 0);
     values.put(TIMESTAMP, System.currentTimeMillis());
+    values.put(RELAY, token.getRelay());
+    values.put(VOICE, token.isVoice());
+    values.put(VIDEO, token.isVideo());
     db.replace(TABLE_NAME, null, values);
   }
 
