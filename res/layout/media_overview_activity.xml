@@ -21,6 +21,6 @@
               android:gravity="center_horizontal"
               android:paddingTop="30dp"
               android:visibility="gone"
-              android:text="@string/media_overview_activity__no_images" />
+              android:text="@string/media_overview_activity__no_media" />
 
 </RelativeLayout>

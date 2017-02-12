@@ -826,7 +826,7 @@
     <string name="load_more_header__see_full_conversation">See full conversation</string>
 
     <!-- media_overview_activity -->
-    <string name="media_overview_activity__no_images">No images</string>
+    <string name="media_overview_activity__no_media">No media</string>
 
     <!-- message_recipients_list_item -->
     <string name="message_recipients_list_item__verify">VERIFY</string>
