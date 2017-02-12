@@ -162,7 +162,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
                                                                                      R.string.please_wait) {
           @Override
           protected List<SaveAttachmentTask.Attachment> doInBackground(Void... params) {
-            Cursor cursor                                   = DatabaseFactory.getImageDatabase(c).getMediaForThread(threadId);
+            Cursor cursor                                   = DatabaseFactory.getMediaDatabase(c).getMediaForThread(threadId);
             List<SaveAttachmentTask.Attachment> attachments = new ArrayList<>(cursor.getCount());
 
             while (cursor != null && cursor.moveToNext()) {
@@ -240,7 +240,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
 
     @Override
     public Cursor getCursor() {
-      return DatabaseFactory.getImageDatabase(getContext()).getMediaForThread(threadId);
+      return DatabaseFactory.getMediaDatabase(getContext()).getMediaForThread(threadId);
     }
   }
 }
