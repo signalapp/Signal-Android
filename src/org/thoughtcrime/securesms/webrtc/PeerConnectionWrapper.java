@@ -62,6 +62,7 @@ public class PeerConnectionWrapper {
 
     constraints.optional.add(new MediaConstraints.KeyValuePair("DtlsSrtpKeyAgreement", "true"));
     audioConstraints.optional.add(new MediaConstraints.KeyValuePair("DtlsSrtpKeyAgreement", "true"));
+    audioConstraints.mandatory.add(new MediaConstraints.KeyValuePair("levelControl", "true"));
 
     this.peerConnection = factory.createPeerConnection(configuration, constraints, observer);
     this.videoCapturer  = createVideoCapturer(context);
