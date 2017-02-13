@@ -570,6 +570,14 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Új üzenet</string>
+  <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_new_safety_numbers">A biztonsági számaid megváltoztak vele: %1$s. Ez jelentheti azt, hogy valaki megpróbálja lehallgatni a kommunikációdat, vagy azt, hogy %2$s egyszerűen újratelepítette a Signal-t.    </string>
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Érdemes lenne ellenőrizned
+        a biztonsági számokat ehhez a névjegyhez.
+    </string>
+  <string name="WebRtcCallScreen_new_safety_numbers_title">Új biztonsági számok</string>
+  <!--WebRtcCallControls-->
+  <string name="WebRtcCallControls_tap_to_enable_your_video">Érints a videód engedélyezéséhez</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Kép</string>
   <string name="attachment_type_selector__image_description">Kép</string>
@@ -993,6 +1001,8 @@ sikertelen.
   <string name="preferences_chats__message_trimming">Üzenet csonkolás</string>
   <string name="preferences_advanced__use_system_emoji">Rendszer emoji használata</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">A Signal beépített emoji támogatásának letiltása</string>
+  <string name="preferences_advanced__video_calling_beta">Videóhívás beta</string>
+  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Támogatás a következő generációs videó- és hanghívásokhoz, amikor mindkét félnél engedélyezve van. Ez a funkció jelenleg beta.</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

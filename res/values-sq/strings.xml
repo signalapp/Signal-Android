@@ -538,6 +538,8 @@ U pranua mesazh për shkembim çelsash për një verzion të protokolli jo valid
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mesazh i ri</string>
+  <!--WebRtcCallScreen-->
+  <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Imazh</string>
   <string name="attachment_type_selector__image_description">Pamje</string>

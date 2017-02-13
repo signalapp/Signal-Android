@@ -135,6 +135,7 @@
   <string name="ConversationActivity_transport_signal">سيجنال</string>
   <string name="ConversationActivity_lets_switch_to_signal">هيا ننتقل إلى سيجنال %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">دعنا نتواصل عبر هذا: %1$s</string>
+  <string name="ConversationActivity_error_leaving_group">خطأ أثناء مغادرة المجموعة</string>
   <string name="ConversationActivity_mms_not_supported_title">رسائل الوسائط المتعددة غير مدعمة</string>
   <string name="ConversationActivity_mms_not_supported_message">لا يمكن الإرسال لأن شبكة الجوال التي تستخدمها لا تدعم رسائل الوسائط المتعددة.</string>
   <string name="ConversationActivity_specify_recipient">رجاء اختيار جهة اتصال</string>
@@ -144,6 +145,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">حجم المرفق تجاوز الحد المسموح بهذا النوع من الرسائل.</string>
   <string name="ConversationActivity_quick_camera_unavailable">الكاميرا غير موجودة</string>
   <string name="ConversationActivity_unable_to_record_audio">تعذر تسجيل الصوت!</string>
+  <string name="ConversationActivity_error_sending_voice_message">خطأ في إرسال الرسالة الصوتية</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">لا يوجد تطبيق على الجهاز لمعالجة الرابط.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">تفاصيل الرسالة</string>
@@ -257,6 +259,7 @@
   <string name="DateUtils_just_now">هذه اللحظة</string>
   <string name="DateUtils_minutes_ago">%d دقيقة</string>
   <string name="DateUtils_today">اليوم</string>
+  <string name="DateUtils_yesterday">البارحة</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">إلغاء ربط  \'%s\'؟</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">لن يكون إرسال واستقبال الرسائل ممكنا بمجرد إلغاء ربط الجهاز.</string>
@@ -292,6 +295,7 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">فشل دائما في اتصال سيجنال!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">سيجنال لم يتمكن من التسجيل مع خدمات جوجل بلاي، وتم تعطيل رسائل ومكالمات سيجنال. رجاء محاولة إعادة التسجيل عبر قائمة الإعدادات بالتطبيق ثم اختيار متقدم.</string>
   <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">خطأ أثناء جلب كامل دقة صورة GIF</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">صور GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">لصاقات</string>
@@ -440,6 +444,7 @@
   <string name="RecipientPreferenceActivity_enabled">مفعل</string>
   <string name="RecipientPreferenceActivity_disabled">معطل</string>
   <!--RecipientProvider-->
+  <string name="RecipientProvider_unnamed_group">مجموعة بلا اسم</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">جارٍ الرد</string>
   <string name="RedPhone_ending_call">جارٍ إنهاء المكالمة</string>
@@ -481,6 +486,7 @@
   <string name="RegistrationProgressActivity_verifying_number">جارٍ التحقق من الرقم</string>
   <string name="RegistrationProgressActivity_edit_s">تحرير %s</string>
   <string name="RegistrationProgressActivity_registration_complete">اكتمل التسجيل!</string>
+  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">عليك إدخال الرمز الذي تلقيته أولاً</string>
   <string name="RegistrationProgressActivity_connecting">الاتصال جارٍ</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">جارٍ الإتصال للتحقق...</string>
   <string name="RegistrationProgressActivity_network_error">خطأ في الشبكة!</string>
@@ -515,6 +521,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%s أعاد ضبط تأمين المحادثة.</string>
   <string name="SmsMessageRecord_duplicate_message">رسالة مكررة.</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_left_the_group">غادر المجموعة</string>
   <string name="ThreadRecord_secure_session_reset">إعادة ضبط جلسة آمنة.</string>
   <string name="ThreadRecord_draft">مسودة:</string>
   <string name="ThreadRecord_called">مكالمات صاردة</string>
@@ -581,6 +588,8 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">سيجنال</string>
   <string name="SingleRecipientNotificationBuilder_new_message">رسالة جديدة</string>
+  <!--WebRtcCallScreen-->
+  <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">صورة</string>
   <string name="attachment_type_selector__image_description">صورة</string>

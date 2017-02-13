@@ -569,6 +569,14 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nova mensagem</string>
+  <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_new_safety_numbers">Os números de segurança da sua conversa com %1$s mudaram. Isto pode significar que alguém está tentando interceptar sua comunicação, ou que %2$s simplesmente reinstalou o Signal.</string>
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Talvez você queira verificar
+        os números de segurança deste contato.
+    </string>
+  <string name="WebRtcCallScreen_new_safety_numbers_title">Novos números de segurança</string>
+  <!--WebRtcCallControls-->
+  <string name="WebRtcCallControls_tap_to_enable_your_video">Clique para habilitar seu vídeo</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Imagem</string>
   <string name="attachment_type_selector__image_description">Imagem</string>
@@ -977,6 +985,8 @@ falhou.</string>
   <string name="preferences_chats__message_trimming">Aparar mensagem</string>
   <string name="preferences_advanced__use_system_emoji">Usar emoji do sistema</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Desabilitar o suporte a emoji embutido no Signal</string>
+  <string name="preferences_advanced__video_calling_beta">Chamada de vídeo em fase beta</string>
+  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Suporte para chamadas de voz e vídeo de última geração quando habilitado por ambas as partes. Esta funcionalidade está em fase beta.</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

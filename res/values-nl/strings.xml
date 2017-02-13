@@ -307,7 +307,7 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
     <item quantity="one">1 SMS-uitnodiging versturen?</item>
     <item quantity="other">%d SMS-uitnodigingen verzenden?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Laten we wisselen naar Signal: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Laten we overstappen naar Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Het lijkt erop dat je geen apps hebt om naar te delen.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Vrienden laten vrienden niet onversleuteld chatten.</string>
   <!--KeyScanningActivity-->
@@ -551,6 +551,12 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nieuw bericht</string>
+  <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_new_safety_numbers">De veiligheidsnummers voor je gesprek met %1$s zijn veranderd. Dat kan betekenen dat iemand je communicatie probeert te onderscheppen, of gewoon dat %2$s Signal opnieuw geïnstalleerd heeft.</string>
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Je zou de veiligheidsnummers voor dit contact kunnen verifiëren</string>
+  <string name="WebRtcCallScreen_new_safety_numbers_title">Nieuwe veiligheidsnummers</string>
+  <!--WebRtcCallControls-->
+  <string name="WebRtcCallControls_tap_to_enable_your_video">Tik om je video in te schakelen</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Afbeelding</string>
   <string name="attachment_type_selector__image_description">Afbeelding</string>
@@ -941,7 +947,7 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Schakel dit in als je apparaat SMS/MMS over WiFi gebruikt (alleen inschakelen als \'Bellen via WiFi\' is ingeschakeld op je apparaat)</string>
   <string name="preferences_app_protection__blocked_contacts">Geblokkeerde contacten</string>
   <string name="preferences_app_protection__safety_numbers_approval">De veiligheidsnummers zijn in orde</string>
-  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Vereis dat veranderde veiligheidsnummers eerst goedgekeurd moeten worden</string>
+  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Vereist dat veranderde veiligheidsnummers eerst goedgekeurd moeten worden</string>
   <string name="preferences_notifications__display_in_notifications">Toon in meldingen</string>
   <string name="preferences_chats__when_using_mobile_data">Wanneer mobiele gegevensoverdracht gebruikt wordt</string>
   <string name="preferences_chats__when_using_wifi">Wanneer Wi-Fi gebruikt wordt</string>
@@ -950,6 +956,8 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="preferences_chats__message_trimming">Bericht inkorten</string>
   <string name="preferences_advanced__use_system_emoji">Gebruik systeem-emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">De ingebouwde emoji-ondersteuning van Signal uitschakelen</string>
+  <string name="preferences_advanced__video_calling_beta">Videobellen</string>
+  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Biedt ondersteuning voor video- en audiogesprekken van de volgende generatie, indien ingeschakeld door beide partijen. Deze functie is in bèta.</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
