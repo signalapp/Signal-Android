@@ -251,6 +251,7 @@
         <item>43200</item>
         <item>86400</item>
         <item>604800</item>
+        <item>1814400</item> 
     </integer-array>
 
     <array name="scribble_colors">
