@@ -18,6 +18,8 @@ package org.thoughtcrime.securesms;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -104,15 +106,15 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   }
 
 
-  protected static class HeaderViewHolder extends RecyclerView.ViewHolder {
-    protected TextView textView;
+  static class HeaderViewHolder extends RecyclerView.ViewHolder {
+    TextView textView;
 
-    public HeaderViewHolder(View itemView) {
+    HeaderViewHolder(View itemView) {
       super(itemView);
       textView = ViewUtil.findById(itemView, R.id.text);
     }
 
-    public HeaderViewHolder(TextView textView) {
+    HeaderViewHolder(TextView textView) {
       super(textView);
       this.textView = textView;
     }
@@ -263,6 +265,24 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     getCursor().close();
   }
 
+  public int findLastSeenPosition(long lastSeen) {
+    if (lastSeen <= 0)     return -1;
+    if (!isActiveCursor()) return -1;
+
+    int count = getItemCount();
+
+    for (int i=0;i<count;i++) {
+      Cursor        cursor        = getCursorAtPositionOrThrow(i);
+      MessageRecord messageRecord = getMessageRecord(cursor);
+
+      if (messageRecord.getTimestamp() < lastSeen) {
+        return i;
+      }
+    }
+
+    return -1;
+  }
+
   public void toggleSelection(MessageRecord messageRecord) {
     if (!batchSelected.remove(messageRecord)) {
       batchSelected.add(messageRecord);
@@ -301,9 +321,26 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     return Util.hashCode(calendar.get(Calendar.YEAR), calendar.get(Calendar.DAY_OF_YEAR));
   }
 
+  public long getTimestamp(int position) {
+    if (!isActiveCursor())          return 0;
+    if (isHeaderPosition(position)) return 0;
+    if (isFooterPosition(position)) return 0;
+    if (position >= getItemCount()) return 0;
+    if (position < 0)               return 0;
+
+    Cursor        cursor        = getCursorAtPositionOrThrow(position);
+    MessageRecord messageRecord = getMessageRecord(cursor);
+
+    return messageRecord.getTimestamp();
+  }
+
   @Override
   public HeaderViewHolder onCreateHeaderViewHolder(ViewGroup parent) {
     return new HeaderViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.conversation_item_header, parent, false));
+  }
+
+  public HeaderViewHolder onCreateLastSeenViewHolder(ViewGroup parent) {
+    return new HeaderViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.conversation_item_last_seen, parent, false));
   }
 
   @Override
@@ -311,5 +348,55 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     Cursor cursor = getCursorAtPositionOrThrow(position);
     viewHolder.setText(DateUtils.getRelativeDate(getContext(), locale, getMessageRecord(cursor).getDateReceived()));
   }
+
+  public void onBindLastSeenViewHolder(HeaderViewHolder viewHolder, int position) {
+    viewHolder.setText(getContext().getResources().getQuantityString(R.plurals.ConversationAdapter_n_unread_messages, (position + 1), (position + 1)));
+  }
+
+  public static class LastSeenHeader extends StickyHeaderDecoration {
+
+    private final ConversationAdapter adapter;
+    private final long                lastSeenTimestamp;
+
+    public LastSeenHeader(ConversationAdapter adapter, long lastSeenTimestamp) {
+      super(adapter, false, false);
+      this.adapter           = adapter;
+      this.lastSeenTimestamp = lastSeenTimestamp;
+    }
+
+    @Override
+    protected boolean hasHeader(RecyclerView parent, StickyHeaderAdapter stickyAdapter, int position) {
+      if (!adapter.isActiveCursor()) {
+        return false;
+      }
+
+      if (lastSeenTimestamp <= 0) {
+        return false;
+      }
+
+      long currentRecordTimestamp  = adapter.getTimestamp(position);
+      long previousRecordTimestamp = adapter.getTimestamp(position + 1);
+
+      return currentRecordTimestamp > lastSeenTimestamp && previousRecordTimestamp < lastSeenTimestamp;
+    }
+
+    @Override
+    protected HeaderViewHolder getHeader(RecyclerView parent, StickyHeaderAdapter stickyAdapter, int position) {
+      HeaderViewHolder viewHolder = adapter.onCreateLastSeenViewHolder(parent);
+      adapter.onBindLastSeenViewHolder(viewHolder, position);
+
+      int widthSpec  = View.MeasureSpec.makeMeasureSpec(parent.getWidth(), View.MeasureSpec.EXACTLY);
+      int heightSpec = View.MeasureSpec.makeMeasureSpec(parent.getHeight(), View.MeasureSpec.UNSPECIFIED);
+
+      int childWidth  = ViewGroup.getChildMeasureSpec(widthSpec, parent.getPaddingLeft() + parent.getPaddingRight(), viewHolder.itemView.getLayoutParams().width);
+      int childHeight = ViewGroup.getChildMeasureSpec(heightSpec, parent.getPaddingTop() + parent.getPaddingBottom(), viewHolder.itemView.getLayoutParams().height);
+
+      viewHolder.itemView.measure(childWidth, childHeight);
+      viewHolder.itemView.layout(0, 0, viewHolder.itemView.getMeasuredWidth(), viewHolder.itemView.getMeasuredHeight());
+
+      return viewHolder;
+    }
+  }
+
 }
 

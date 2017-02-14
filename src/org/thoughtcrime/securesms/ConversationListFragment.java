@@ -307,8 +307,8 @@ public class ConversationListFragment extends Fragment
                                      getListAdapter().getBatchSelections().size()));
   }
 
-  private void handleCreateConversation(long threadId, Recipients recipients, int distributionType) {
-    ((ConversationSelectedListener)getActivity()).onCreateConversation(threadId, recipients, distributionType);
+  private void handleCreateConversation(long threadId, Recipients recipients, int distributionType, long lastSeen) {
+    ((ConversationSelectedListener)getActivity()).onCreateConversation(threadId, recipients, distributionType, lastSeen);
   }
 
   @Override
@@ -330,7 +330,7 @@ public class ConversationListFragment extends Fragment
   public void onItemClick(ConversationListItem item) {
     if (actionMode == null) {
       handleCreateConversation(item.getThreadId(), item.getRecipients(),
-                               item.getDistributionType());
+                               item.getDistributionType(), item.getLastSeen());
     } else {
       ConversationListAdapter adapter = (ConversationListAdapter)list.getAdapter();
       adapter.toggleThreadInBatchSet(item.getThreadId());
@@ -361,7 +361,7 @@ public class ConversationListFragment extends Fragment
   }
 
   public interface ConversationSelectedListener {
-    void onCreateConversation(long threadId, Recipients recipients, int distributionType);
+    void onCreateConversation(long threadId, Recipients recipients, int distributionType, long lastSeen);
     void onSwitchToArchive();
 }
 
