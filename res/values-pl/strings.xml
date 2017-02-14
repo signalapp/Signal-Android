@@ -13,12 +13,14 @@
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
     <item quantity="one">1 wiadomość na rozmowę</item>
     <item quantity="few">%d wiadomości na rozmowę</item>
+    <item quantity="many">%d wiadomości na konwersacje</item>
     <item quantity="other">%d wiadomości na konwersacje</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Usunąć wszystkie stare wiadomości?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">To sprawi natychmiastowe przycięcie wszystkich konwersacji aż do najnowszej wiadomości.</item>
     <item quantity="few">To sprawi natychmiastowe przycięcie wszystkich konwersacji aż do %d najnowszych wiadomości.</item>
+    <item quantity="many">To sprawi natychmiastowe przycięcie wszystkich konwersacji aż do %d najnowszych wiadomości.</item>
     <item quantity="other">To sprawi natychmiastowe przycięcie wszystkich konwersacji aż do %d najnowszych wiadomości.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Usuń</string>
@@ -45,6 +47,7 @@
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">1 minutę</item>
     <item quantity="few">%d minuty</item>
+    <item quantity="many">%d minuty</item>
     <item quantity="other">%d minuty</item>
   </plurals>
   <!--DraftDatabase-->
@@ -110,6 +113,7 @@
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="one">1 użytkownik</item>
     <item quantity="few">%d użytkowników</item>
+    <item quantity="many">%d użytkowników</item>
     <item quantity="other">%d użytkowników</item>
   </plurals>
   <string name="ConversationActivity_saved_draft">Zapisane wersje robocze</string>
@@ -142,38 +146,45 @@
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Usunąć wybraną wiadomość?</item>
     <item quantity="few">Usunąć wybrane wiadomości?</item>
+    <item quantity="many">Usunąć wybrane wiadomości?</item>
     <item quantity="other">Usunąć wybrane wiadomości?</item>
   </plurals>
   <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
     <item quantity="one">To spowoduje permanentne usunięcie zaznaczonej wiadomości.</item>
     <item quantity="few">To spowoduje permanentne usunięcie wszystkich %1$d zaznaczonych wiadomości.</item>
+    <item quantity="many">To spowoduje permanentne usunięcie wszystkich %1$d zaznaczonych wiadomości.</item>
     <item quantity="other">To spowoduje permanentne usunięcie wszystkich %1$d zaznaczonych wiadomości.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Zapisać na dysk?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
     <item quantity="one">Zapisanie tego załącznika na dysku pozwoli na dostęp do nich innym aplikacjom na Twoim urządzeniu.\n\nKontynuuj?</item>
     <item quantity="few">Zapisywanie %1$d załączników na dysku pozwoli na dostęp do nich innym aplikacjom na Twoim urządzeniu.\n\nKontynuuj?</item>
+    <item quantity="many">Zapisywanie wszystkich %1$d załączników na dysku pozwoli na dostęp do nich innym aplikacjom na Twoim urządzeniu.\n\nKontynuuj?</item>
     <item quantity="other">Zapisywanie wszystkich %1$d załączników na dysku pozwoli na dostęp do nich innym aplikacjom na Twoim urządzeniu.\n\nKontynuuj?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">Wystąpił błąd podczas zapisywania załącznika na dysku!</item>
     <item quantity="few">Wystąpił błąd podczas zapisywania załączników na dysku!</item>
+    <item quantity="many">Wystąpił błąd podczas zapisywania załączników na dysku!</item>
     <item quantity="other">Wystąpił błąd podczas zapisywania załączników na dysku!</item>
   </plurals>
   <plurals name="ConversationFragment_files_saved_successfully">
     <item quantity="one">Plik został zapisany pomyślnie.</item>
     <item quantity="few">Pliki zostały zapisane pomyślnie.</item>
+    <item quantity="many">Pliki zostały zapisane pomyślnie.</item>
     <item quantity="other">Pliki zostały zapisane pomyślnie.</item>
   </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nie udało zapisać się pliku!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Zapisywanie załącznika</item>
     <item quantity="few">Zapisywanie załączników</item>
+    <item quantity="many">Zapisywanie załączników</item>
     <item quantity="other">Zapisywanie załączników</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
     <item quantity="one">Zapisywanie załącznika na dysku</item>
     <item quantity="few">Zapisywanie %1$d załączników na dysku</item>
+    <item quantity="many">Zapisywanie %1$d załączników na dysku</item>
     <item quantity="other">Zapisywanie %1$d załączników na dysku</item>
   </plurals>
   <string name="ConversationFragment_collecting_attahments">Zbieranie załączników...</string>
@@ -190,11 +201,13 @@
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Usunąć wybraną konwersację?</item>
     <item quantity="few">Usunąć wybrane konwersacje?</item>
+    <item quantity="many">Usunąć wybrane konwersacje?</item>
     <item quantity="other">Usunąć wybrane konwersacje?</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
     <item quantity="one">To spowoduje permanentne usunięcie wybranej konwersacji.</item>
     <item quantity="few">To spowoduje permanentne usunięcie wszystkich %1$d zaznaczonych konwersacji.</item>
+    <item quantity="many">To spowoduje permanentne usunięcie wszystkich %1$d zaznaczonych konwersacji.</item>
     <item quantity="other">To spowoduje permanentne usunięcie wszystkich %1$d zaznaczonych konwersacji.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Usuwanie...</string>
@@ -202,12 +215,14 @@
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one">Konwersacja została dodana do archiwum</item>
     <item quantity="few">%d konwersacji dodano do archiwum</item>
+    <item quantity="many">%d konwersacji dodano do archiwum</item>
     <item quantity="other">%d konwersacji dodano do archiwum</item>
   </plurals>
   <string name="ConversationListFragment_undo">COFNIJ</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">Konwersacja została przeniesiona do skrzynki odbiorczej</item>
     <item quantity="few">Przeniesiono %d konwersacji do skrzynki odbiorczej</item>
+    <item quantity="many">Przeniesiono %d konwersacji do skrzynki odbiorczej</item>
     <item quantity="other">Przeniesiono %d konwersacji do skrzynki odbiorczej</item>
   </plurals>
   <!--ConversationListItem-->
@@ -319,11 +334,13 @@ Stracisz wszystkie informacje obecnie zawarte w aplikacji Signal z wyjątkiem ty
   <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">WYŚLIJ SMS DO 1 ZNAJOMEGO</item>
     <item quantity="few">WYŚLIJ SMS DO %d ZNAJOMYCH</item>
+    <item quantity="many">WYŚLIJ SMS DO %d ZNAJOMYCH</item>
     <item quantity="other">WYŚLIJ SMS DO %d ZNAJOMYCH</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Wysłać 1 zaproszenie SMS?</item>
     <item quantity="few">Wysłać %d zaproszeń SMS?</item>
+    <item quantity="many">Wysłać %d zaproszeń SMS?</item>
     <item quantity="other">Wysłać %d zaproszeń SMS?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Zacznij używać Signal: %1$s</string>
@@ -661,30 +678,35 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <plurals name="expiration_seconds">
     <item quantity="one">1 sekunda</item>
     <item quantity="few">%d sekund</item>
+    <item quantity="many">%d sekund</item>
     <item quantity="other">%d sekund</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%ds</string>
   <plurals name="expiration_minutes">
     <item quantity="one">1 minuta</item>
     <item quantity="few">%d minut</item>
+    <item quantity="many">%d minut</item>
     <item quantity="other">%d minut</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%dm</string>
   <plurals name="expiration_hours">
     <item quantity="one">1 godzina</item>
     <item quantity="few">%d godzin</item>
+    <item quantity="many">%d godzin</item>
     <item quantity="other">%d godzin</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%dg</string>
   <plurals name="expiration_days">
     <item quantity="one">1 dzień</item>
     <item quantity="few">%d dni</item>
+    <item quantity="many">%d dni</item>
     <item quantity="other">%d dni</item>
   </plurals>
   <string name="expiration_days_abbreviated">%dd</string>
   <plurals name="expiration_weeks">
     <item quantity="one">1 tygodzień</item>
     <item quantity="few">%d tygodni</item>
+    <item quantity="many">%d tygodni</item>
     <item quantity="other">%d tygodni</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dt</string>
@@ -733,6 +755,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s dołączył do grupy.</item>
     <item quantity="few">%1$s dołączyli do grupy.</item>
+    <item quantity="many">%1$s dołączył do grupy.</item>
     <item quantity="other">%1$s dołączył do grupy.</item>
   </plurals>
   <string name="GroupUtil_group_updated">Grupa została zaktualizowana.</string>
@@ -862,6 +885,7 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <plurals name="hours_ago">
     <item quantity="one">%d godzina</item>
     <item quantity="few">%d godzin</item>
+    <item quantity="many">%d godzin</item>
     <item quantity="other">%d godzin</item>
   </plurals>
   <!--preferences.xml-->
@@ -1057,6 +1081,7 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Twoja wersja Signal wygaśnie za 1 dzień. Dotknij, aby zaktualizować do najnowszej wersji.</item>
     <item quantity="few">Twoja wersja Signal wygaśnie za %d dni. Dotknij, aby zaktualizować do najnowszej wersji.</item>
+    <item quantity="many">Twoja wersja Signal wygaśnie za %d dni. Dotknij, aby zaktualizować do najnowszej wersji.</item>
     <item quantity="other">Twoja wersja Signal wygaśnie za %d dni. Dotknij, aby zaktualizować do najnowszej wersji.</item>
   </plurals>
   <string name="reminder_header_outdated_build_details_today">Twoja wersja Signal dzisiaj będzie już nieaktualna. Dotknij, aby zaktualizować do najnowszej wersji.</string>

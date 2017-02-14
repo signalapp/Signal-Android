@@ -554,7 +554,13 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nytt meddelande</string>
   <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_new_safety_numbers">Säkerhetsnumret för din konversation med %1$s har ändrats. Detta kan antingen betyda att någon försöker avlyssna er kommunikation, eller att %2$s helt enkelt har ominstallerat Signal.</string>
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Du kan vilja verifiera
+        säkerhetsnumret för denna kontakt.
+    </string>
+  <string name="WebRtcCallScreen_new_safety_numbers_title">Nya säkerhetsnummer</string>
   <!--WebRtcCallControls-->
+  <string name="WebRtcCallControls_tap_to_enable_your_video">Tryck för att aktivera video</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Bild</string>
   <string name="attachment_type_selector__image_description">Bild</string>
@@ -953,6 +959,8 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="preferences_chats__message_trimming">Trimma meddelanden</string>
   <string name="preferences_advanced__use_system_emoji">Använd systemets emojis</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Stäng av Signals inbyggda emojistöd</string>
+  <string name="preferences_advanced__video_calling_beta">Videosamtal beta</string>
+  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Stöd för nästa generations video- och röstsamtal om det aktiverats av båda parter. Denna funktion är i beta.</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

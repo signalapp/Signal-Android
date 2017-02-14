@@ -554,7 +554,12 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nouveau message</string>
   <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_new_safety_numbers">Les numéros de sécurité de votre conversation avec %1$s ont changé. Cela pourrait signifier que quelqu\'un tente d\'intercepter votre communication, ou que%2$s a simplement réinstallé Signal.</string>
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Vous voudrez peut-être vérifier
+Numéros de sécurité pour ce contact.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers_title">Nouveaux numéros de sécurité</string>
   <!--WebRtcCallControls-->
+  <string name="WebRtcCallControls_tap_to_enable_your_video">Appuyez pour activer votre vidéo</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Image</string>
   <string name="attachment_type_selector__image_description">Image</string>
@@ -959,6 +964,8 @@ par SMS.</string>
   <string name="preferences_chats__message_trimming">Élagage des messages</string>
   <string name="preferences_advanced__use_system_emoji">Utiliser les Emoji du système</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Désactiver le support des emojis inclus dans Signal</string>
+  <string name="preferences_advanced__video_calling_beta">Appel vidéo bêta</string>
+  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Prise en charge des appels vidéo et vocaux de prochaine génération lorsque les deux parties le permettent. Cette fonctionnalité est en version bêta.</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

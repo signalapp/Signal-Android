@@ -64,8 +64,8 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Eingehender Anruf</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Deine Sicherheitsnummer mit %1$s hat sich geändert. Dies könnte bedeuten, dass jemand versucht, eure Kommunikation abzuhören. Oder aber, dass %2$s Signal einfach erneut installiert hat.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Vielleicht möchtest du deine Sicherheitsnummer mit diesem Kontakt überprüfen.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Deine Sicherheitsnummer von %1$s hat sich geändert. Jemand könnte versuchen eure Kommunikation abzuhören oder %2$s hat einfach Signal neu installiert.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Vielleicht möchtest du deine Sicherheitsnummer von diesem Kontakt überprüfen.</string>
   <string name="ConfirmIdentityDialog_accept">OK</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Nachricht %s</string>
@@ -345,7 +345,7 @@ Das Wiederherstellen einer verschlüsselten Datensicherung ersetzt deine bestehe
   <string name="MessageRecord_s_is_on_signal_say_hey">%s ist bei Signal. Zeit, Hallo zu sagen! </string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du hast die Zeit für verschwindende Nachrichten auf %1$s festgelegt</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s hat die Zeit für verschwindende Nachrichten auf %2$s festgelegt</string>
-  <string name="MessageRecord_your_safety_number_with_s_has_changed">Deine Sicherheitsnummer mit %s hat sich geändert</string>
+  <string name="MessageRecord_your_safety_number_with_s_has_changed">Deine Sicherheitsnummer von %s hat sich geändert.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passwörter stimmen nicht überein!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Das eingegebene alte Passwort ist falsch!</string>
@@ -482,15 +482,15 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <string name="ThreadRecord_media_message">Nachricht mit Medieninhalten</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s ist bei Signal. Zeit, Hallo zu sagen!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Zeit für verschwindende Nachrichten auf %s festgelegt</string>
-  <string name="ThreadRecord_your_safety_number_with_s_has_changed">Deine Sicherheitsnummer mit %s hat sich geändert</string>
+  <string name="ThreadRecord_your_safety_number_with_s_has_changed">Deine Sicherheitsnummer von %s hat sich geändert.</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Dein Kontakt verwendet eine alte Version von Signal. Bitte ihn Signal zu aktualisieren, bevor ihr eure Sicherheitsnummer überprüft.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Dein Kontakt verwendet eine alte Version von Signal. Bitte ihn Signal zu aktualisieren, bevor ihr eure Sicherheitsnummer bestätigt.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Dein Kontakt verwendet eine neuere Version von Signal mit einem inkompatiblen QR-Code-Format. Zum Vergleichen bitte aktualisieren.</string>
-  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Der eingescannte QR-Code ist kein korrekt formatierter Überprüfungscode für eine Sicherheitsnummer. Bitte versuche es erneut.</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">Sicherheitsnummer teilen über …</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Der eingescannte QR-Code ist kein korrekt formatierter Überprüfungscode einer Sicherheitsnummer. Bitte versuche es erneut.</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Sicherheitsnummer teilen via …</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Unsere Signal-Sicherheitsnummer:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Anscheinend hast du keine zum Teilen geeigneten Apps installiert.</string>
-  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Keine zu vergleichende Sicherheitsnummer in der Zwischenablage gefunden</string>
+  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Keine vergleichbare Sicherheitsnummer in der Zwischenablage gefunden</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Trotz bestehender Anfrage starten?</string>
   <string name="KeyExchangeInitiator_send">Senden</string>
@@ -545,9 +545,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Neue Nachricht</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">Deine Sicherheitsnummer mit %1$s hat sich geändert. Dies könnte bedeuten, dass jemand versucht, eure Kommunikation abzuhören. Oder aber, dass %2$s Signal einfach erneut installiert hat.</string>
-  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Vielleicht möchtest du die Sicherheitsnummer für diesen Kontakt überprüfen.</string>
-  <string name="WebRtcCallScreen_new_safety_numbers_title">Neue Sicherheitsnummern</string>
+  <string name="WebRtcCallScreen_new_safety_numbers">Deine Sicherheitsnummer von %1$s hat sich geändert. Jemand könnte versuchen eure Kommunikation abzuhören oder %2$s hat einfach Signal neu installiert.</string>
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Vielleicht möchtest du die Sicherheitsnummer von diesem Kontakt überprüfen.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers_title">Neue Sicherheitsnummer</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Zum Aktivieren deines Videos antippen</string>
   <!--attachment_type_selector-->
@@ -726,7 +726,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <string name="recipient_preferences__block">Kontakt blockieren</string>
   <string name="recipient_preferences__color">Farbe</string>
   <string name="recipient_preferences__color_for_this_contact">Farbe für diesen Kontakt</string>
-  <string name="recipient_preferences__verify_safety_number">Sicherheitsnummer überprüfen</string>
+  <string name="recipient_preferences__verify_safety_number">Sicherheitsnummer bestätigen</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal-Anruf</string>
   <string name="redphone_call_controls__end_call">Anruf beenden</string>
@@ -785,7 +785,7 @@ Das Warten auf eine Bestätigungs-SMS hat zu lange gedauert.</string>
   <string name="recipients_panel__to"><small>Name/Rufnummer eingeben</small></string>
   <string name="recipients_panel__add_members">Mitglieder hinzufügen</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Falls du die Sicherheit deiner Ende-zu-Ende-Verschlüsselung mit %s überprüfen möchtest, so vergleiche bitte die oben dargestellte Nummer mit der Nummer auf dem Gerät deines Kontakts. Alternativ kannst du den Code deines Kontakts einscannen oder ihn deinen eigenen Code einscannen lassen. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Mehr über das Überprüfen von Sicherheitsnummern erfahren</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Um die Sicherheit deiner Ende-zu-Ende-Verschlüsselung mit %s zu überprüfen, gleiche bitte die oben dargestellte Nummer mit der Nummer auf dem Gerät deines Kontakts ab. Alternativ kannst du den Code deines Kontakts einscannen oder ihn deinen eigenen Code einscannen lassen. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Mehr über das Bestätigen von Sicherheitsnummern erfahren</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Zum Scannen antippen</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Sicherheitsnummer teilen</string>
@@ -804,7 +804,7 @@ Das Warten auf eine Bestätigungs-SMS hat zu lange gedauert.</string>
   <string name="AndroidManifest__select_contacts">Kontakte auswählen</string>
   <string name="AndroidManifest__signal_detected">Signal erkannt</string>
   <string name="AndroidManifest__change_passphrase">Passwort ändern</string>
-  <string name="AndroidManifest__verify_safety_number">Sicherheitsnummer überprüfen</string>
+  <string name="AndroidManifest__verify_safety_number">Sicherheitsnummer bestätigen</string>
   <string name="AndroidManifest__log_submit">Diagnoseprotokoll übermitteln</string>
   <string name="AndroidManifest__media_preview">Medieninhaltevorschau</string>
   <string name="AndroidManifest__media_overview">Alle Bilder</string>
@@ -942,7 +942,7 @@ Das Warten auf eine Bestätigungs-SMS hat zu lange gedauert.</string>
   <string name="preferences_advanced__use_system_emoji">System-Emojis verwenden</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Integrierte Emojis deaktivieren und stattdessen System-Emojis verwenden</string>
   <string name="preferences_advanced__video_calling_beta">Videoanrufe beta</string>
-  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Unterstützung für Video- und Sprachanrufe der nächsten Generation, falls bei beiden Teilnehmern aktiviert. Diese Funktion besitzt Betastatus.</string>
+  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Unterstützung für Video- und Sprachanrufe der nächsten Generation, falls bei beiden Beteiligten aktiviert. Diese Funktion befindet sich im Beta-Test.</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

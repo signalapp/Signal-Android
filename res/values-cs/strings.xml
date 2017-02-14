@@ -566,7 +566,12 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nová zpráva</string>
   <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_new_safety_numbers">Bezpečnostní kódy pro vaši konverzaci s %1$s se změnily. To může znamenat, že se někdo pokouší zachytit vaši komunikaci, nebo že %2$s jednoduše jen přeinstaloval aplikaci Signal.</string>
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Možná budete chtít zkontrolovat
+ověřovací kódy pro tento kontakt.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers_title">Nové bezpečnostní kódy</string>
   <!--WebRtcCallControls-->
+  <string name="WebRtcCallControls_tap_to_enable_your_video">Ťuknutím povolíte video</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Obrázek</string>
   <string name="attachment_type_selector__image_description">Obrázek</string>
@@ -978,6 +983,8 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="preferences_chats__message_trimming">Ořezávání práv</string>
   <string name="preferences_advanced__use_system_emoji">Použít systémové smajlíky</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Zakázat použití interních smajlíků aplikace Signal </string>
+  <string name="preferences_advanced__video_calling_beta">Video volaní beta</string>
+  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Podpora pro novu generace video a hlasového volání pokud je povolena oběma účastníky. Tato tunkce je beta verze.</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
