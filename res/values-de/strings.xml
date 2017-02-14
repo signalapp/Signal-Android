@@ -64,7 +64,7 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Eingehender Anruf</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Deine Sicherheitsnummer mit %1$s hat sich geändert. Dies könnte entweder bedeuten, dass jemand versucht, deine Kommunikation abzuhören, oder aber dass %2$s Signal einfach erneut installiert hat.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Deine Sicherheitsnummer mit %1$s hat sich geändert. Dies könnte bedeuten, dass jemand versucht, eure Kommunikation abzuhören. Oder aber, dass %2$s Signal einfach erneut installiert hat.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Vielleicht möchtest du deine Sicherheitsnummer mit diesem Kontakt überprüfen.</string>
   <string name="ConfirmIdentityDialog_accept">OK</string>
   <!--ContactsDatabase-->
@@ -544,6 +544,12 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Neue Nachricht</string>
+  <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_new_safety_numbers">Deine Sicherheitsnummer mit %1$s hat sich geändert. Dies könnte bedeuten, dass jemand versucht, eure Kommunikation abzuhören. Oder aber, dass %2$s Signal einfach erneut installiert hat.</string>
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Vielleicht möchtest du die Sicherheitsnummer für diesen Kontakt überprüfen.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers_title">Neue Sicherheitsnummern</string>
+  <!--WebRtcCallControls-->
+  <string name="WebRtcCallControls_tap_to_enable_your_video">Zum Aktivieren deines Videos antippen</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Bild</string>
   <string name="attachment_type_selector__image_description">Bild</string>
@@ -935,6 +941,8 @@ Das Warten auf eine Bestätigungs-SMS hat zu lange gedauert.</string>
   <string name="preferences_chats__message_trimming">Unterhaltungen kürzen</string>
   <string name="preferences_advanced__use_system_emoji">System-Emojis verwenden</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Integrierte Emojis deaktivieren und stattdessen System-Emojis verwenden</string>
+  <string name="preferences_advanced__video_calling_beta">Videoanrufe beta</string>
+  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Unterstützung für Video- und Sprachanrufe der nächsten Generation, falls bei beiden Teilnehmern aktiviert. Diese Funktion besitzt Betastatus.</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

@@ -487,6 +487,8 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Tin nhắn mới</string>
+  <!--WebRtcCallScreen-->
+  <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Hình ảnh</string>
   <string name="attachment_type_selector__audio">Âm thanh</string>

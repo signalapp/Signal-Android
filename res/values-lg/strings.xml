@@ -483,6 +483,8 @@ Dammu okebere e namba yo.  Tugenda kugikakasa no bubaka ku simu</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">mayengo</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Obubaka obupya</string>
+  <!--WebRtcCallScreen-->
+  <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">kifananyi</string>
   <string name="attachment_type_selector__audio">doboozi</string>

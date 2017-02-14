@@ -15,7 +15,13 @@
     <item quantity="other">%d пораки по разговор</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Избришете ги сите стари пораки?</string>
+  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="one">Да ви остане само последнита порака на сите ваши разговори.</item>
+    <item quantity="other">Да ви останат само последните %d пораки на сите ваши разговори.</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete">Избриши</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Избриши ја лозинката</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Трајно овозможи ги нотификациите на Signal апликацијата.</string>
   <string name="ApplicationPreferencesActivity_disable">Оневозможи</string>
   <string name="ApplicationPreferencesActivity_unregistering">Одјавување</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Грешка при поврзување со серверот!</string>
@@ -338,6 +344,8 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Нова порака</string>
+  <!--WebRtcCallScreen-->
+  <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Звук</string>
   <string name="attachment_type_selector__camera">камера</string>

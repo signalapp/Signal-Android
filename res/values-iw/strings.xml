@@ -540,6 +540,8 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">סיגנל</string>
   <string name="SingleRecipientNotificationBuilder_new_message">מסר חדש</string>
+  <!--WebRtcCallScreen-->
+  <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">תמונה</string>
   <string name="attachment_type_selector__image_description">תמונה</string>

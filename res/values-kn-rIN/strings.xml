@@ -391,6 +391,8 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">ಸಿಗ್ನಲ್</string>
   <string name="SingleRecipientNotificationBuilder_new_message">ಹೊಸ ಸಂದೇಶ</string>
+  <!--WebRtcCallScreen-->
+  <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <!--contact_selection_activity-->

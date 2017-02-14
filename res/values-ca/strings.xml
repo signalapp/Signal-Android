@@ -493,6 +493,8 @@ Comprova que aquest és el teu número! Anem a verificar-ho amb un SMS.</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nou missatge</string>
+  <!--WebRtcCallScreen-->
+  <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Imatge</string>
   <string name="attachment_type_selector__audio">Àudio</string>

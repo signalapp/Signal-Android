@@ -577,6 +577,13 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Сигнал</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Нова порука</string>
+  <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_new_safety_numbers">Безбедносни бројеви за преписку са %1$s су промењени. Ово може да значи или да неко покушава да пресретне вашу комуникацију или да је корисник %2$s једноставно поново инсталирао Сигнал.</string>
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Можда желите да оверите
+безбедносне бројеве за овај контакт.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers_title">Нови безбедносни бројеви</string>
+  <!--WebRtcCallControls-->
+  <string name="WebRtcCallControls_tap_to_enable_your_video">Тапните да укључите ваш видео</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Слика</string>
   <string name="attachment_type_selector__image_description">Слика</string>
@@ -987,6 +994,8 @@
   <string name="preferences_chats__message_trimming">Скраћивање порука</string>
   <string name="preferences_advanced__use_system_emoji">Користи системски емоџи</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Искључи уграђене Сигналове емоџије</string>
+  <string name="preferences_advanced__video_calling_beta">Видео позиви бета</string>
+  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Подршка за видео и гласовне позиве следеће генерације ако су укључени за обе стране. Ова функционалност је у пробној фази.</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

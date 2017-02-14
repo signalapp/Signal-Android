@@ -222,6 +222,7 @@
   <string name="DateUtils_just_now">Teraz</string>
   <string name="DateUtils_minutes_ago">%d minuta</string>
   <string name="DateUtils_today">Dziś</string>
+  <string name="DateUtils_yesterday">Wczoraj</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Wyrejestrować \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Wyrejestrowanie tego urządzenia spowoduje, że nie będziesz miał możliwości wysyłania i odbierania wiadomości.</string>
@@ -567,6 +568,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nowa wiadomość</string>
+  <!--WebRtcCallScreen-->
+  <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Obraz</string>
   <string name="attachment_type_selector__image_description">Obraz</string>
@@ -640,6 +643,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="conversation_fragment_cab__batch_selection_mode">Tryb wyboru grupy</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s wybranych</string>
   <!--conversation_fragment-->
+  <string name="conversation_fragment__scroll_to_the_bottom_content_description">Przewiń do dołu</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Wczytywanie krajów...</string>
   <string name="country_selection_fragment__search">Szukaj</string>

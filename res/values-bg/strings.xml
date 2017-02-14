@@ -558,6 +558,13 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Сигнал</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ново съобщение</string>
+  <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_new_safety_numbers">Числата Ви за сигурност с %1$s са променени. Това означава, че или някой се опитва да прехване комуникацията Ви, или че %2$s е преинсталирал Signal.</string>
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Може да желаете да проверите
+числата за сигурност на този контакт.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers_title">Нови числа за сигурност</string>
+  <!--WebRtcCallControls-->
+  <string name="WebRtcCallControls_tap_to_enable_your_video">Натиснете, за да активирате видео</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Изображение</string>
   <string name="attachment_type_selector__image_description">Изображение</string>
@@ -963,6 +970,8 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="preferences_chats__message_trimming">Съкращаване на съобщенията</string>
   <string name="preferences_advanced__use_system_emoji">Използвай вградените emoji-та</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Деактивирай вградена в Сигнал подръжка на emoji-та</string>
+  <string name="preferences_advanced__video_calling_beta">Видео обаждане бета</string>
+  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Поддръжка за следващото поколение видео и аудио обаждания, когато е активирано и от двете страни. Тази функционалонст е в бета режим.</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

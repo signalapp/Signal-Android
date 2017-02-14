@@ -14,17 +14,24 @@
      limitations under the License.
 -->
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              xmlns:app="http://schemas.android.com/apk/res-auto"
              android:id="@+id/incall_screen"
              android:layout_width="match_parent"
              android:layout_height="match_parent">
 
+    <org.thoughtcrime.securesms.components.webrtc.PercentFrameLayout
+            android:id="@+id/remote_render_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:visibility="invisible"/>
+
     <!-- "Call info" block #1, for the foreground call. -->
     <RelativeLayout android:id="@+id/call_info_1"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:animateLayoutChanges="true">
 
         <!-- Contact photo for call_info_1 -->
         <FrameLayout android:id="@+id/image_container"
@@ -39,6 +46,7 @@
                        android:background="@android:color/black"
                        android:scaleType="centerCrop"
                        android:visibility="visible"
+                       android:clickable="true"
                        tools:src="@drawable/ic_contact_picture_large"
                     />
 
@@ -48,7 +56,8 @@
                           android:background="@color/grey_400"
                           android:orientation="vertical"
                           android:visibility="gone"
-                          android:gravity="center">
+                          android:gravity="center"
+                          android:clickable="true">
 
                 <TextView android:id="@+id/untrusted_explanation"
                           android:layout_width="wrap_content"
@@ -81,17 +90,6 @@
 
             </LinearLayout>
 
-            <org.thoughtcrime.securesms.components.webrtc.PercentFrameLayout
-                    android:id="@+id/remote_render_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    tools:visibility="invisible"/>
-
-            <org.thoughtcrime.securesms.components.webrtc.PercentFrameLayout
-                    android:id="@+id/local_render_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    tools:visibility="invisible"/>
 
         </FrameLayout>
 
@@ -100,108 +98,106 @@
              including the contact name, phone number, call time counter,
              and other status info.  This info is shown as a "banner"
              overlaid across the top of contact photo. -->
-        <RelativeLayout android:id="@+id/call_banner_1"
+        <LinearLayout android:id="@+id/call_banner_1"
                         android:layout_alignParentTop="true"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:minHeight="80dp"
-                        android:paddingLeft="24dp"
-                        android:paddingRight="24dp"
-                        android:paddingTop="16dp"
-                        android:paddingBottom="16dp"
-                        android:background="@color/textsecure_primary"
-                >
+                        android:orientation="vertical">
 
-            <!-- Name (or the phone number, if we don't have a name to display). -->
-            <TextView android:id="@+id/name"
-                      android:layout_alignParentTop="true"
-                      android:layout_alignParentLeft="true"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:paddingRight="50sp"
-                      android:textSize="40sp"
-                      android:textColor="#FFFFFF"
-                      android:singleLine="true"
-                      android:maxLines="1"
-                      android:ellipsize="end"
-                      tools:text="Ali Connors"
-                    />
+            <RelativeLayout android:id="@+id/expanded_info"
+                            android:background="@color/textsecure_primary"
+                            android:paddingLeft="24dp"
+                            android:paddingRight="24dp"
+                            android:paddingTop="16dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="true">
 
-            <!-- Label (like "Mobile" or "Work", if present) and phone number, side by side -->
-            <LinearLayout android:id="@+id/labelAndNumber"
-                          android:layout_below="@id/name"
-                          android:layout_width="wrap_content"
+
+                <!-- Name (or the phone number, if we don't have a name to display). -->
+                <TextView android:id="@+id/name"
+                          android:layout_alignParentTop="true"
+                          android:layout_alignParentLeft="true"
+                          android:layout_width="match_parent"
                           android:layout_height="wrap_content"
                           android:paddingRight="50sp"
-                          android:orientation="horizontal"
-                    >
-                <TextView android:id="@+id/label"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
+                          android:textSize="40sp"
                           android:textColor="#FFFFFF"
                           android:singleLine="true"
-                          android:textAppearance="?android:attr/textAppearanceSmall"
-                          android:text="@string/redphone_call_card__signal_call"
-                          android:layout_marginRight="10dp"
+                          android:maxLines="1"
+                          android:ellipsize="end"
+                          tools:text="Ali Connors"
                         />
-                <TextView android:id="@+id/phoneNumber"
+
+                <!-- Label (like "Mobile" or "Work", if present) and phone number, side by side -->
+                <LinearLayout android:id="@+id/labelAndNumber"
+                              android:layout_below="@id/name"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:paddingRight="50sp"
+                              android:orientation="horizontal"
+                        >
+                    <TextView android:id="@+id/label"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:textColor="#FFFFFF"
+                              android:singleLine="true"
+                              android:textAppearance="?android:attr/textAppearanceSmall"
+                              android:text="@string/redphone_call_card__signal_call"
+                              android:layout_marginRight="10dp"
+                            />
+                    <TextView android:id="@+id/phoneNumber"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:textAppearance="?android:attr/textAppearanceSmall"
+                              android:textColor="#FFFFFF"
+                              android:singleLine="true"
+                              tools:text="+14152222222"
+                            />
+
+                </LinearLayout>
+
+                <!-- Elapsed time indication for a call in progress. -->
+                <TextView android:id="@+id/elapsedTime"
+                          android:layout_alignParentRight="true"
+                          android:layout_centerVertical="true"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
-                          android:textAppearance="?android:attr/textAppearanceSmall"
+                          android:textAppearance="?android:attr/textAppearanceMedium"
                           android:textColor="#FFFFFF"
                           android:singleLine="true"
-                          tools:text="+14152222222"
                         />
 
-            </LinearLayout>
-
-            <!-- Elapsed time indication for a call in progress. -->
-            <TextView android:id="@+id/elapsedTime"
-                      android:layout_alignParentRight="true"
-                      android:layout_centerVertical="true"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:textAppearance="?android:attr/textAppearanceMedium"
-                      android:textColor="#FFFFFF"
-                      android:singleLine="true"
-                    />
-
-            <!-- Call type indication: a special label and/or branding
-                 for certain kinds of calls (like "Internet call" for a SIP call.) -->
-            <TextView android:id="@+id/callTypeLabel"
-                      android:layout_below="@id/labelAndNumber"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:textAppearance="?android:attr/textAppearanceSmall"
-                      android:textColor="#FFFFFF"
-                      android:maxLines="1"
-                      android:ellipsize="end"
-                      android:visibility="gone"
-                      android:text="@string/redphone_call_card__signal_call"
-                    />
-
-            <!-- Social status (currently unused) -->
-            <TextView android:id="@+id/socialStatus"
-                      android:layout_below="@id/callTypeLabel"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:textAppearance="?android:attr/textAppearanceSmall"
-                      android:textColor="#FFFFFF"
-                      android:maxLines="2"
-                      android:ellipsize="end"
-                    />
+            </RelativeLayout>
 
             <org.thoughtcrime.securesms.components.webrtc.WebRtcCallControls
                     android:id="@+id/inCallControls"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="15dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@id/labelAndNumber"/>
+                    android:background="@color/textsecure_primary"
 
+                    android:paddingLeft="24dp"
+                    android:paddingRight="24dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="20dp"
+                    android:clickable="true"/>
 
-        </RelativeLayout>  <!-- End of call_banner for call_info #1. -->
+            <TextView android:id="@+id/callStateLabel"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:gravity="right"
+                      android:paddingTop="8dp"
+                      android:paddingBottom="8dp"
+                      android:paddingRight="24dp"
+                      android:textAppearance="?android:attr/textAppearanceSmall"
+                      android:textColor="#FFFFFF"
+                      android:textAllCaps="true"
+                      android:background="#8033b5e5"
+                      tools:text="connected"
+                    />
+
+        </LinearLayout>  <!-- End of call_banner for call_info #1. -->
 
         <!-- The "call state label": In some states, this shows a special
              indication like "Dialing" or "Incoming call" or "Call ended".
@@ -209,36 +205,27 @@
         <!-- This is visually part of the call banner, but it's not actually
              part of the "call_banner_1" RelativeLayout since it needs a
              different background color. -->
-        <TextView android:id="@+id/callStateLabel"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_below="@id/call_banner_1"
-                  android:gravity="right"
-                  android:paddingTop="8dp"
-                  android:paddingBottom="8dp"
-                  android:paddingRight="24dp"
-                  android:textAppearance="?android:attr/textAppearanceSmall"
-                  android:textColor="#FFFFFF"
-                  android:textAllCaps="true"
-                  android:background="#8033b5e5"
-                  tools:text="connected"
-                />
-
-        <android.support.design.widget.FloatingActionButton
-                android:id="@+id/hangup_fab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/ic_call_end_white_48dp"
-                android:focusable="true"
-                app:backgroundTint="@color/red_500"
-                android:visibility="visible"
-                android:contentDescription="End call"
-                tools:visibility="visible"/>
 
     </RelativeLayout>
+
+    <org.thoughtcrime.securesms.components.webrtc.PercentFrameLayout
+            android:id="@+id/local_render_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:visibility="invisible"/>
+
+    <android.support.design.widget.FloatingActionButton
+            android:id="@+id/hangup_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:layout_gravity="bottom"
+            android:src="@drawable/ic_call_end_white_48dp"
+            android:focusable="true"
+            app:backgroundTint="@color/red_500"
+            android:visibility="visible"
+            android:contentDescription="End call"
+            tools:visibility="visible"/>
 
     <org.thoughtcrime.securesms.components.webrtc.WebRtcIncomingCallOverlay
             android:id="@+id/callControls"
@@ -246,4 +233,4 @@
             android:layout_height="match_parent"
             />
 
-</FrameLayout>
+</android.support.design.widget.CoordinatorLayout>

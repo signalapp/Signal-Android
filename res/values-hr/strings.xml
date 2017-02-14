@@ -576,6 +576,8 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nova poruka</string>
+  <!--WebRtcCallScreen-->
+  <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Slika</string>
   <string name="attachment_type_selector__image_description">Slika</string>

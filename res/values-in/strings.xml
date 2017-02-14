@@ -512,6 +512,8 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Pesan baru</string>
+  <!--WebRtcCallScreen-->
+  <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Gambar</string>
   <string name="attachment_type_selector__audio">Audio</string>

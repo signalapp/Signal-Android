@@ -119,6 +119,7 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Passiamo a Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Chattiamo con questa app: %1$s</string>
+  <string name="ConversationActivity_error_leaving_group">Errore nell\'uscita dal gruppo</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS non supportati</string>
   <string name="ConversationActivity_mms_not_supported_message">Questo messaggio non può essere inviato poiché il tuo operatore non supporta gli MMS</string>
   <string name="ConversationActivity_specify_recipient">Scegli un contatto</string>
@@ -195,7 +196,7 @@
     <item quantity="other">%d conversazioni spostate nei messaggi in arrivo</item>
   </plurals>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Messaggio per la contrattazione della chiave</string>
+  <string name="ConversationListItem_key_exchange_message">Messaggio per lo scambio della chiave</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Conversazioni archiviate (%d)</string>
   <!--CustomDefaultPreference-->
@@ -206,6 +207,7 @@
   <string name="DateUtils_just_now">Ora</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <string name="DateUtils_today">Oggi</string>
+  <string name="DateUtils_yesterday">Ieri</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Scollegare \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Scollegando questo dispositivo non gli sarà più possibile inviare o ricevere messaggi.</string>
@@ -334,6 +336,8 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="NotificationBarManager__cancel_call">Annulla chiamata</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Messaggio multimediale</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">Scarico MMS</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Errore nello scaricare MMS, premi per riprovare</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Hai ricevuto un messaggio cifrato usando una vecchia versione di Signal che non è più supportata. Ti preghiamo di chiedere al mittente di aggiornare l\'app e rimandare il messaggio.</string>
   <string name="MessageRecord_left_group">Hai lasciato il gruppo.</string>
@@ -364,7 +368,7 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nessun dispositivo trovato.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Errore di rete.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Codice QR non valido.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Siamo spiacenti, hai troppi dispositivi connessi, prova scollegare qualcuno</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Siamo spiacenti, hai troppi dispositivi connessi, prova a scollegarne qualcuno</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Ci spiace, questo non è un codice QR valido per collegare il dispositivo.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Collegare un dispositivo Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Sembrerebbe che tu stia provando a connettere un dispositivo Signal usando uno scanner di terze parti. Per la tua protezione ti preghiamo di  scansionare nuovamente il codice usando Signal.</string>
@@ -397,6 +401,7 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="RecipientPreferenceActivity_disabled">Disattivato</string>
   <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Disponibile una volta che un messaggio è stato inviato o ricevuto.</string>
   <!--RecipientProvider-->
+  <string name="RecipientProvider_unnamed_group">Gruppo senza nome</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">In risposta</string>
   <string name="RedPhone_ending_call">In chiusura chiamata</string>
@@ -531,7 +536,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="KeyCachingService_signal_passphrase_cached">Tocca per aprire.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Tocca per aprire, o tocca il lucchetto per chiudere.</string>
   <string name="KeyCachingService_passphrase_cached">Signal è sbloccato</string>
-  <string name="KeyCachingService_lock">Chiudi con password</string>
+  <string name="KeyCachingService_lock">Blocca con password</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nuovi messaggi in %2$d conversazioni</string>
   <string name="MessageNotifier_most_recent_from_s">Il più recente da: %1$s</string>
@@ -542,7 +547,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="MessageNotifier_failed_to_deliver_message">L\'invio del messaggio non è riuscito</string>
   <string name="MessageNotifier_error_delivering_message">C\'è stato un errore durante l\'invio del messaggio</string>
   <string name="MessageNotifier_mark_all_as_read">Segna tutto come già letto</string>
-  <string name="MessageNotifier_mark_read">Ho letto</string>
+  <string name="MessageNotifier_mark_read">Segna come già letto</string>
   <string name="MessageNotifier_media_message">Messaggio multimediale</string>
   <string name="MessageNotifier_reply">Rispondi</string>
   <!--QuickResponseService-->
@@ -551,6 +556,12 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nuovo messaggio</string>
+  <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_new_safety_numbers">I numeri sicuri per la tua conversazione con %1$s sono cambiati. Questo potrebbe indicare che qualcuno sta cercando d\'intercettare la tua comunicazione, oppure semplicemente che %2$s ha ri-installato Signal.</string>
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Potrebbe essere opportuno verificare i numeri sicuri per questo contatto.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers_title">Numeri sicuri nuovi</string>
+  <!--WebRtcCallControls-->
+  <string name="WebRtcCallControls_tap_to_enable_your_video">Tocca per abilitare il tuo video</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Immagine</string>
   <string name="attachment_type_selector__image_description">Immagine</string>
@@ -624,6 +635,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="conversation_fragment_cab__batch_selection_mode">Modalità di selezione di gruppo</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s selezionati</string>
   <!--conversation_fragment-->
+  <string name="conversation_fragment__scroll_to_the_bottom_content_description">Salta alla fine</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Caricamento dei paese...</string>
   <string name="country_selection_fragment__search">Cerca</string>
@@ -874,7 +886,7 @@ non riuscita.
   <string name="preferences__enable_passphrase">Usa password</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Blocca Signal e le notifiche dei messaggi con una password</string>
   <string name="preferences__screen_security">Sicurezza schermo</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">Blocca il fotografare dello schermo nella lista recenti e all\'interno dell\'app</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Non consentire di effettuare screenshot nella lista delle applicazione recenti ed all\'interno dell\'app stessa.</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Blocca automaticamente Signal dopo uno specifico intervallo di intattività</string>
   <string name="preferences__inactivity_timeout_passphrase">Password intervallo di inattività</string>
   <string name="preferences__inactivity_timeout_interval">Intervallo di timeout per inattività</string>
@@ -959,6 +971,8 @@ non riuscita.
   <string name="preferences_chats__message_trimming">Cancellazione messaggi</string>
   <string name="preferences_advanced__use_system_emoji">Usa le emoji di sistema</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Disattiva le emoji di Signal</string>
+  <string name="preferences_advanced__video_calling_beta">Videochiamata versione beta</string>
+  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Supporta le telefonate e videochiamate di ultimissima generazione quando abilitata da entrambi le parti. Questa funzionalità è in versione beta.</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

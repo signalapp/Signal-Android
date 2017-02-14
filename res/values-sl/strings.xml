@@ -580,6 +580,12 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Novo sporočilo</string>
+  <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_new_safety_numbers">Varnostna števila za komunikacijo z uporabnikom %1$s so bila spremenjena. To lahko pomeni, da poskuša nekdo prestrezati vajino komunikacijo ali pa je %2$s zgolj ponovno namestil aplikacijo Signal.</string>
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Morda želite preveriti varnostna števila za ta stik.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers_title">Nova varnostna števila</string>
+  <!--WebRtcCallControls-->
+  <string name="WebRtcCallControls_tap_to_enable_your_video">Tapnite za vklop videa</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Slika</string>
   <string name="attachment_type_selector__image_description">Slika</string>
@@ -992,6 +998,8 @@ bila uspešna.</string>
   <string name="preferences_chats__message_trimming">Izbris starih sporočil</string>
   <string name="preferences_advanced__use_system_emoji">Uporabi sistemske emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Onemogoči vgrajeno podporo za emoji aplikacije Signal</string>
+  <string name="preferences_advanced__video_calling_beta">Video klici beta</string>
+  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Podpora za video in glasovne klice naslednje generacije. Gre za preizkusno storitev, ki deluje le, če je vključena pri klicatelju in klicanemu.</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

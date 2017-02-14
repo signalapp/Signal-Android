@@ -570,6 +570,13 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nuevo mensaje</string>
+  <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_new_safety_numbers">Los números de seguridad para su conversación con %1$s han cambiado. Esto podría significar que alguien está tratando de interceptar su comunicación, o bien que %2$s simplemente ha reinstalado Signal.</string>
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Puede que quiera verificar 
+los números de seguridad para este contacto.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers_title">Nuevos números de seguridad</string>
+  <!--WebRtcCallControls-->
+  <string name="WebRtcCallControls_tap_to_enable_your_video">Pulse para habilitar su vídeo</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Imagen</string>
   <string name="attachment_type_selector__image_description">Imagen</string>
@@ -986,6 +993,8 @@ por SMS.
   <string name="preferences_chats__message_trimming">Recortado de mensaje</string>
   <string name="preferences_advanced__use_system_emoji">Usar emoji del sistema</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Deshabilitar soporte de emoji integrado de Signal</string>
+  <string name="preferences_advanced__video_calling_beta">Vídeo llamada beta</string>
+  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Soporte para la nueva generación de llamadas de vídeo y voz cuando estén habilitadas por ambas partes. Esta característica está en fase beta.</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

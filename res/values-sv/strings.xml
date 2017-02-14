@@ -69,7 +69,7 @@
   <string name="ConfirmIdentityDialog_accept">Acceptera</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Meddelande %s</string>
-  <string name="ContactsDatabase_signal_call_s">Signalsamtal %s</string>
+  <string name="ContactsDatabase_signal_call_s">Signal samtal %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Meddelandestorlek: %d kB</string>
   <string name="ConversationItem_expires_s">Går ut: %s</string>
@@ -347,8 +347,8 @@ som inte finns i säkerhetskopian.</string>
   <string name="MessageRecord_called_s">Ringde %s</string>
   <string name="MessageRecord_missed_call_from">Missat samtal från %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s finns på Signal, skriv hej!</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du satte tiden för försvinnande meddelanden till %1$s.</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s satte tiden för försvinnande meddelanden till %2$s.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du ställde in tiden för försvinnande meddelanden till %1$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ställde in tiden för försvinnande meddelanden till %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Ditt säkerhetsnummer med %s har ändrats.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Lösenorden matchar inte!</string>
@@ -490,7 +490,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ThreadRecord_missed_call">Missat samtal</string>
   <string name="ThreadRecord_media_message">Mediameddelande</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s finns på Signal, skriv hej!</string>
-  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tiden för försvinnande meddelanden satt till %s</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tiden för försvinnande meddelanden inställd till %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Ditt säkerhetsnummer med %s har ändrats.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Din kontakt använder en äldre version av Signal. Be dem uppdatera sin mjukvara innan de verifierar din säkerhetskod.  </string>
@@ -553,6 +553,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nytt meddelande</string>
+  <!--WebRtcCallScreen-->
+  <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Bild</string>
   <string name="attachment_type_selector__image_description">Bild</string>
@@ -824,7 +826,7 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="AndroidManifest__invite_friends">Bjud in vänner</string>
   <string name="AndroidManifest_archived_conversations">Arkiverade konversationer</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Importera / exportera</string>
+  <string name="arrays__import_export">Importera/exportera</string>
   <string name="arrays__use_default">Använd standardinställning</string>
   <string name="arrays__use_custom">Använd anpassad inställning</string>
   <string name="arrays__mute_for_one_hour">Tysta i 1 timme</string>

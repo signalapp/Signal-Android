@@ -211,7 +211,7 @@ Vastaanotettu: %4$s</string>
   <string name="DateUtils_just_now">Juuri äsken</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <string name="DateUtils_today">tänään</string>
-  <string name="DateUtils_yesterday">Eilen</string>
+  <string name="DateUtils_yesterday">eilen</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Poista \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Jos poistat tämän laitteen, sillä ei voi enää lähettää eikä vastaanottaa viestejä.</string>
@@ -560,6 +560,12 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Uusi viesti</string>
+  <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_new_safety_numbers">Turvanumerosi yhteystiedon %1$s kanssa on vaihtunut. Tämä voi tarkoittaa joko sitä, että joku yrittää kaapata viestiliikennettänne, tai sitä, että %2$s on vain yksinkertaisesti asentanut Signalin uudelleen.</string>
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Saatat haluta varmentaa tämän yhteystiedon turvanumeron.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers_title">Uusi turvanumero</string>
+  <!--WebRtcCallControls-->
+  <string name="WebRtcCallControls_tap_to_enable_your_video">Käytä video-tilaa napsauttamalla</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Kuva</string>
   <string name="attachment_type_selector__image_description">Kuva</string>
@@ -956,6 +962,8 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="preferences_chats__message_trimming">Keskustelujen karsiminen</string>
   <string name="preferences_advanced__use_system_emoji">Käytä järjestelmän hymiöitä</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Ota Signalin oletushymiöt pois käytöstä</string>
+  <string name="preferences_advanced__video_calling_beta">Videopuheluiden beta</string>
+  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Tuki seuraavan sukupolven video- ja äänipuheluille, jos asetus on päällä molemmilla osapuolilla. Tämä on vielä beta-vaiheessa.</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

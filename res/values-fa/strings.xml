@@ -484,6 +484,8 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">سیگنال</string>
   <string name="SingleRecipientNotificationBuilder_new_message">پیام جدید</string>
+  <!--WebRtcCallScreen-->
+  <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">تصویر</string>
   <string name="attachment_type_selector__audio">صدا</string>
