@@ -13,21 +13,22 @@ Building Signal
 
 The following steps should help you (re)build Signal from the command line.
 
-1. Checkout the Signal-Android project source with the command:
+1. Signal-Android requires Java SDK 1.8+ on your system.
+2. Checkout the Signal-Android project source with the command:
 
         git clone https://github.com/WhisperSystems/Signal-Android.git
 
-2. Make sure you have the [Android SDK](https://developer.android.com/sdk/index.html) installed.
-3. Ensure that the following packages are installed from the Android SDK manager:
+3. Make sure you have the [Android SDK](https://developer.android.com/sdk/index.html) installed.
+4. Ensure that the following packages are installed from the Android SDK manager:
     * Android SDK Build Tools
     * SDK Platform (API level 22)
     * Android Support Repository
     * Google Repository
-4. Create a local.properties file at the root of your source checkout and add an sdk.dir entry to it.  For example:
+5. Create a local.properties file at the root of your source checkout and add an sdk.dir entry to it.  For example:
 
         sdk.dir=/Application/android-sdk-macosx
 
-5. Execute Gradle:
+6. Execute Gradle:
 
         ./gradlew build
 
