@@ -117,7 +117,7 @@ public class WebRtcCallScreen extends FrameLayout implements Recipient.Recipient
 
   public void setUntrustedIdentity(Recipient personInfo, IdentityKey untrustedIdentity) {
     String          name            = recipient.toShortString();
-    String          introduction    = String.format(getContext().getString(R.string.WebRtcCallScreen_new_safety_numbers), name, name);
+    String          introduction    = String.format(getContext().getString(R.string.WebRtcCallScreen_new_safety_number), name, name);
     SpannableString spannableString = new SpannableString(introduction + " " + getContext().getString(R.string.WebRtcCallScreen_you_may_wish_to_verify_this_contact));
 
     spannableString.setSpan(new VerifySpan(getContext(), personInfo.getRecipientId(), untrustedIdentity),
@@ -127,7 +127,7 @@ public class WebRtcCallScreen extends FrameLayout implements Recipient.Recipient
     setPersonInfo(personInfo);
 
     this.incomingCallOverlay.setActiveCall();
-    this.status.setText(R.string.WebRtcCallScreen_new_safety_numbers_title);
+    this.status.setText(R.string.WebRtcCallScreen_new_safety_number_title);
     this.untrustedIdentityContainer.setVisibility(View.VISIBLE);
     this.untrustedIdentityExplanation.setText(spannableString);
     this.untrustedIdentityExplanation.setMovementMethod(LinkMovementMethod.getInstance());
