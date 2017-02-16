@@ -3,11 +3,13 @@ package org.thoughtcrime.securesms.service;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.DynamicShortcutCreator;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.gcm.GcmBroadcastReceiver;
 import org.thoughtcrime.securesms.jobs.PushContentReceiveJob;
@@ -92,6 +94,8 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
                           receiveJob.handle(envelope, false);
 
                           decrementPushReceived();
+
+                          createShortcuts();
                         }
                       });
           } catch (TimeoutException e) {
@@ -124,12 +128,14 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
   }
 
   private synchronized void incrementActive() {
+    createShortcuts();
     activeActivities++;
     Log.w(TAG, "Active Count: " + activeActivities);
     notifyAll();
   }
 
   private synchronized void decrementActive() {
+    createShortcuts();
     activeActivities--;
     Log.w(TAG, "Active Count: " + activeActivities);
     notifyAll();
@@ -187,5 +193,11 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
 
   public static @Nullable SignalServiceMessagePipe getPipe() {
     return pipe;
+  }
+
+  private void createShortcuts() {
+    if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+      new DynamicShortcutCreator(MessageRetrievalService.this).buildShortcuts();
+    }
   }
 }
