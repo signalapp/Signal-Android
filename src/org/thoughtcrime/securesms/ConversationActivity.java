@@ -55,6 +55,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.View.OnKeyListener;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -1600,6 +1601,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   public void onRecorderStarted() {
     Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
     vibrator.vibrate(20);
+    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
     audioRecorder.startRecording();
   }
@@ -1608,6 +1610,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   public void onRecorderFinished() {
     Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
     vibrator.vibrate(20);
+    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
     ListenableFuture<Pair<Uri, Long>> future = audioRecorder.stopRecording();
     future.addListener(new ListenableFuture.Listener<Pair<Uri, Long>>() {
@@ -1650,6 +1653,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   public void onRecorderCanceled() {
     Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
     vibrator.vibrate(50);
+    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
     ListenableFuture<Pair<Uri, Long>> future = audioRecorder.stopRecording();
     future.addListener(new ListenableFuture.Listener<Pair<Uri, Long>>() {
