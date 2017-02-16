@@ -127,7 +127,7 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
     }
   }
 
-  private int getHeaderTop(RecyclerView parent, View child, View header, int adapterPos,
+  protected int getHeaderTop(RecyclerView parent, View child, View header, int adapterPos,
                            int layoutPos)
   {
     int headerHeight = getHeaderHeightForLayout(header);
@@ -172,7 +172,7 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
     }
   }
 
-  private int getHeaderHeightForLayout(View header) {
+  protected int getHeaderHeightForLayout(View header) {
     return renderInline ? 0 : header.getHeight();
   }
 

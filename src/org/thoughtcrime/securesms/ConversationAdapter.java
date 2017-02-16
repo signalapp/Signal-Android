@@ -353,12 +353,12 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     viewHolder.setText(getContext().getResources().getQuantityString(R.plurals.ConversationAdapter_n_unread_messages, (position + 1), (position + 1)));
   }
 
-  public static class LastSeenHeader extends StickyHeaderDecoration {
+  static class LastSeenHeader extends StickyHeaderDecoration {
 
     private final ConversationAdapter adapter;
     private final long                lastSeenTimestamp;
 
-    public LastSeenHeader(ConversationAdapter adapter, long lastSeenTimestamp) {
+    LastSeenHeader(ConversationAdapter adapter, long lastSeenTimestamp) {
       super(adapter, false, false);
       this.adapter           = adapter;
       this.lastSeenTimestamp = lastSeenTimestamp;
@@ -378,6 +378,11 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
       long previousRecordTimestamp = adapter.getTimestamp(position + 1);
 
       return currentRecordTimestamp > lastSeenTimestamp && previousRecordTimestamp < lastSeenTimestamp;
+    }
+
+    @Override
+    protected int getHeaderTop(RecyclerView parent, View child, View header, int adapterPos, int layoutPos) {
+      return parent.getLayoutManager().getDecoratedTop(child);
     }
 
     @Override
