@@ -335,7 +335,13 @@ public class WebRtcCallScreen extends FrameLayout implements Recipient.Recipient
       ViewCompat.animate(callHeader).translationY(0);
       ViewCompat.animate(status).alpha(1);
       ViewCompat.animate(endCallButton).translationY(0);
-      ViewCompat.animate(endCallButton).alpha(1);
+      ViewCompat.animate(endCallButton).alpha(1).withEndAction(new Runnable() {
+        @Override
+        public void run() {
+          // Note: This is to work around an Android bug, see #6225
+          endCallButton.requestLayout();
+        }
+      });
 
       this.minimized = false;
     }
