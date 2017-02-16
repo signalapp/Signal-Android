@@ -34,6 +34,7 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.components.ZoomingImageView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
@@ -225,6 +226,15 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     return true;
   }
 
+  private void share() {
+    Intent intent = new Intent(Intent.ACTION_SEND);
+    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+    intent.setType(mediaType);
+    intent.putExtra(Intent.EXTRA_STREAM, PartAuthority.getAttachmentPublicUri(mediaUri, mediaType));
+
+    startActivity(Intent.createChooser(intent, getString(R.string.MediaPreviewActivity_share_via)));
+  }
+
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     super.onOptionsItemSelected(item);
@@ -233,6 +243,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
       case R.id.media_preview__overview: showOverview(); return true;
       case R.id.media_preview__forward:  forward();      return true;
       case R.id.save:                    saveToDisk();   return true;
+      case R.id.share:                   share();        return true;
       case android.R.id.home:            finish();       return true;
     }
 
