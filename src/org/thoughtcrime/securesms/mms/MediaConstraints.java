@@ -28,21 +28,21 @@ public abstract class MediaConstraints {
 
   public abstract int getImageMaxWidth(Context context);
   public abstract int getImageMaxHeight(Context context);
-  public abstract int getImageMaxSize();
+  public abstract int getImageMaxSize(Context context);
 
-  public abstract int getGifMaxSize();
+  public abstract int getGifMaxSize(Context context);
 
-  public abstract int getVideoMaxSize();
+  public abstract int getVideoMaxSize(Context context);
 
-  public abstract int getAudioMaxSize();
+  public abstract int getAudioMaxSize(Context context);
 
   public boolean isSatisfied(@NonNull Context context, @NonNull MasterSecret masterSecret, @NonNull Attachment attachment) {
     try {
-      return (MediaUtil.isGif(attachment)    && attachment.getSize() <= getGifMaxSize()   && isWithinBounds(context, masterSecret, attachment.getDataUri())) ||
-             (MediaUtil.isImage(attachment)  && attachment.getSize() <= getImageMaxSize() && isWithinBounds(context, masterSecret, attachment.getDataUri())) ||
-             (MediaUtil.isAudio(attachment)  && attachment.getSize() <= getAudioMaxSize()) ||
-             (MediaUtil.isVideo(attachment)  && attachment.getSize() <= getVideoMaxSize()) ||
-             (!MediaUtil.isImage(attachment) && !MediaUtil.isAudio(attachment) && !MediaUtil.isVideo(attachment));
+      return (MediaUtil.isGif(attachment)    && attachment.getSize() <= getGifMaxSize(context)   && isWithinBounds(context, masterSecret, attachment.getDataUri())) ||
+              (MediaUtil.isImage(attachment)  && attachment.getSize() <= getImageMaxSize(context) && isWithinBounds(context, masterSecret, attachment.getDataUri())) ||
+              (MediaUtil.isAudio(attachment)  && attachment.getSize() <= getAudioMaxSize(context)) ||
+              (MediaUtil.isVideo(attachment)  && attachment.getSize() <= getVideoMaxSize(context)) ||
+              (!MediaUtil.isImage(attachment) && !MediaUtil.isAudio(attachment) && !MediaUtil.isVideo(attachment));
     } catch (IOException ioe) {
       Log.w(TAG, "Failed to determine if media's constraints are satisfied.", ioe);
       return false;
@@ -54,7 +54,7 @@ public abstract class MediaConstraints {
       InputStream is = PartAuthority.getAttachmentStream(context, masterSecret, uri);
       Pair<Integer, Integer> dimensions = BitmapUtil.getDimensions(is);
       return dimensions.first  > 0 && dimensions.first  <= getImageMaxWidth(context) &&
-             dimensions.second > 0 && dimensions.second <= getImageMaxHeight(context);
+              dimensions.second > 0 && dimensions.second <= getImageMaxHeight(context);
     } catch (BitmapDecodingException e) {
       throw new IOException(e);
     }
@@ -67,7 +67,7 @@ public abstract class MediaConstraints {
   public MediaStream getResizedMedia(@NonNull Context context,
                                      @NonNull MasterSecret masterSecret,
                                      @NonNull Attachment attachment)
-      throws IOException
+          throws IOException
   {
     if (!canResize(attachment)) {
       throw new UnsupportedOperationException("Cannot resize this content type");
@@ -76,7 +76,7 @@ public abstract class MediaConstraints {
     try {
       // XXX - This is loading everything into memory! We want the send path to be stream-like.
       return new MediaStream(new ByteArrayInputStream(BitmapUtil.createScaledBytes(context, new DecryptableUri(masterSecret, attachment.getDataUri()), this)),
-                             ContentType.IMAGE_JPEG);
+              ContentType.IMAGE_JPEG);
     } catch (BitmapDecodingException e) {
       throw new IOException(e);
     }
