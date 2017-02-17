@@ -542,7 +542,7 @@ public class MessageNotifier {
         protected Void doInBackground(Void... params) {
           MasterSecret masterSecret  = KeyCachingService.getMasterSecret(context);
           int          reminderCount = intent.getIntExtra("reminder_count", 0);
-          MessageNotifier.updateNotification(context, masterSecret, true, true, reminderCount + 1);
+          MessageNotifier.updateNotification(context, masterSecret, true, false, reminderCount + 1);
 
           return null;
         }
