@@ -99,6 +99,11 @@ public class TextSecurePreferences {
   public  static final String SYSTEM_EMOJI_PREF                = "pref_system_emoji";
   private static final String MULTI_DEVICE_PROVISIONED_PREF    = "pref_multi_device";
   public  static final String DIRECT_CAPTURE_CAMERA_ID         = "pref_direct_capture_camera_id";
+  private static final String ALWAYS_RELAY_CALLS_PREF          = "pref_turn_only";
+
+  public static boolean isTurnOnly(Context context) {
+    return getBooleanPreference(context, ALWAYS_RELAY_CALLS_PREF, false);
+  }
 
   public static boolean isWebrtcCallingEnabled(Context context) {
     return getBooleanPreference(context, WEBRTC_CALLING_PREF, false);
