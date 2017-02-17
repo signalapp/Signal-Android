@@ -641,16 +641,6 @@
     <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
     <string name="SingleRecipientNotificationBuilder_new_message">New message</string>
 
-    <!-- WebRtcCallScreen -->
-    <string name="WebRtcCallScreen_new_safety_numbers">The safety numbers for your conversation with %1$s have changed. This could either mean that someone is trying to intercept your communication, or that %2$s simply re-installed Signal.</string>
-    <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">You may wish to verify
-        safety numbers for this contact.
-    </string>
-    <string name="WebRtcCallScreen_new_safety_numbers_title">New safety numbers</string>
-
-    <!-- WebRtcCallControls -->
-    <string name="WebRtcCallControls_tap_to_enable_your_video">Tap to enable your video</string>
-
     <!-- attachment_type_selector -->
     <string name="attachment_type_selector__image">Image</string>
     <string name="attachment_type_selector__image_description">Image</string>
@@ -1139,9 +1129,6 @@
     <string name="preferences_chats__message_trimming">Message trimming</string>
     <string name="preferences_advanced__use_system_emoji">Use system emoji</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Disable Signal\'s built-in emoji support</string>
-    <string name="preferences_advanced__video_calling_beta">Video calling beta</string>
-    <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Support for next-generation video and voice calls when enabled by both parties. This feature is in beta.</string>
-
 
     <!-- **************************************** -->
     <!-- menus -->
@@ -1310,6 +1297,22 @@
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
 
+    <!-- MMS Carrier Size Limits -->
+    <string-array name="CarrierConstraintKeys">
+        <item>default</item>
+        <item>http://mms.msg.eng.t-mobile.com/mms/wapenc</item>
+        <item>http://mms.sprintpcs.com/servlets/mms</item>
+        <item>http://mmsc.mobile.att.net</item>
+        <item>http://mms.vtext.com/servlets/mms</item>
+    </string-array>
+
+    <string-array name="CarrierConstraintValues">
+        <item>280</item>
+        <item>984</item>
+        <item>1984</item>
+        <item>584</item>
+        <item>1176</item>
+    </string-array>
 
     <!-- EOF -->
 

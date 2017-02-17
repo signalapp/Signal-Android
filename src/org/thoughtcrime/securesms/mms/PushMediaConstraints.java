@@ -21,22 +21,22 @@ public class PushMediaConstraints extends MediaConstraints {
   }
 
   @Override
-  public int getImageMaxSize() {
+  public int getImageMaxSize(Context context) {
     return 6 * MB;
   }
 
   @Override
-  public int getGifMaxSize() {
+  public int getGifMaxSize(Context context) {
     return 6 * MB;
   }
 
   @Override
-  public int getVideoMaxSize() {
+  public int getVideoMaxSize(Context context) {
     return 100 * MB;
   }
 
   @Override
-  public int getAudioMaxSize() {
+  public int getAudioMaxSize(Context context) {
     return 100 * MB;
   }
 }
