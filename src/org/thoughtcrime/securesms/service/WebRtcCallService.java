@@ -21,6 +21,7 @@ import android.util.Pair;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 
+import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.redphone.RedPhoneService;
 import org.thoughtcrime.redphone.audio.IncomingRinger;
 import org.thoughtcrime.redphone.call.LockManager;
@@ -95,7 +96,6 @@ import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
-import de.greenrobot.event.EventBus;
 
 import static org.thoughtcrime.securesms.webrtc.CallNotificationManager.TYPE_ESTABLISHED;
 import static org.thoughtcrime.securesms.webrtc.CallNotificationManager.TYPE_INCOMING_RINGING;

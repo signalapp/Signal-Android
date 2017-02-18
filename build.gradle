@@ -69,7 +69,7 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.makeramen:roundedimageview:2.1.0'
     compile 'com.pnikosis:materialish-progress:1.5'
-    compile 'de.greenrobot:eventbus:2.4.0'
+    compile 'org.greenrobot:eventbus:3.0.0'
     compile 'pl.tajchert:waitingdots:0.1.0'
     compile 'com.soundcloud.android:android-crop:0.9.10@aar'
     compile 'com.melnykov:floatingactionbutton:1.3.0'
@@ -138,7 +138,7 @@ dependencyVerification {
         'com.github.bumptech.glide:glide:76ef123957b5fbaebb05fcbe6606dd58c3bc3fcdadb257f99811d0ac9ea9b88b',
         'com.makeramen:roundedimageview:1f5a1865796b308c6cdd114acc6e78408b110f0a62fc63553278fbeacd489cd1',
         'com.pnikosis:materialish-progress:d71d80e00717a096784482aee21001a9d299fec3833e4ebd87739ed36cf77c54',
-        'de.greenrobot:eventbus:61d743a748156a372024d083de763b9e91ac2dcb3f6a1cbc74995c7ddab6e968',
+        'org.greenrobot:eventbus:180d4212467df06f2fbc9c8d8a2984533ac79c87769ad883bc421612f0b4e17c',
         'pl.tajchert:waitingdots:2835d49e0787dbcb606c5a60021ced66578503b1e9fddcd7a5ef0cd5f095ba2c',
         'com.soundcloud.android:android-crop:ffd4b973cf6e97f7d64118a0dc088df50e9066fd5634fe6911dd0c0c5d346177',
         'com.melnykov:floatingactionbutton:15d58d4fac0f7a288d0e5301bbaf501a146f5b3f5921277811bf99bd3b397263',
