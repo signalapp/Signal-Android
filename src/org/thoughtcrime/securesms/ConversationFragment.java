@@ -442,10 +442,15 @@ public class ConversationFragment extends Fragment
   }
 
   private void scrollToLastSeenPosition(long lastSeen) {
-    int lastSeenPosition = getListAdapter().findLastSeenPosition(lastSeen);
+    final int lastSeenPosition = getListAdapter().findLastSeenPosition(lastSeen);
 
     if (lastSeenPosition > 0) {
-      ((LinearLayoutManager)list.getLayoutManager()).scrollToPositionWithOffset(lastSeenPosition, list.getHeight());
+      list.post(new Runnable() {
+        @Override
+        public void run() {
+          ((LinearLayoutManager)list.getLayoutManager()).scrollToPositionWithOffset(lastSeenPosition, list.getHeight());
+        }
+      });
     } else {
       setLastSeen(0);
     }
