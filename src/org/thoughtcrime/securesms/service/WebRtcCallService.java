@@ -491,7 +491,9 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
 
     initializeAudio();
     outgoingRinger.playComplete();
-    lockManager.updatePhoneState(LockManager.PhoneState.IN_CALL);
+
+    if (localVideoEnabled) lockManager.updatePhoneState(LockManager.PhoneState.IN_VIDEO);
+    else                   lockManager.updatePhoneState(LockManager.PhoneState.IN_CALL);
 
     sendMessage(WebRtcViewModel.State.CALL_CONNECTED, recipient, localVideoEnabled, remoteVideoEnabled);
 
@@ -662,6 +664,11 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
                                                                                                                                      .setId(this.callId)
                                                                                                                                      .setEnabled(localVideoEnabled))
                                                                        .build().toByteArray()), false));
+    }
+
+    if (callState == CallState.STATE_CONNECTED) {
+      if (localVideoEnabled) this.lockManager.updatePhoneState(LockManager.PhoneState.IN_VIDEO);
+      else                   this.lockManager.updatePhoneState(LockManager.PhoneState.IN_CALL);
     }
 
     sendMessage(viewModelStateFor(callState), this.recipient, localVideoEnabled, remoteVideoEnabled);
