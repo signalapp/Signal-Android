@@ -197,6 +197,10 @@ public class AudioSlidePlayer implements SensorEventListener {
     }
   }
 
+  public static boolean isPlaying(@Nullable AudioSlide slide) {
+    return playing.isPresent() && playing.get().getAudioSlide().equals(slide);
+  }
+
   public void setListener(@NonNull Listener listener) {
     this.listener = new WeakReference<>(listener);
 
