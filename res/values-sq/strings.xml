@@ -129,6 +129,7 @@
   <string name="ConversationActivity_quick_camera_unavailable">Kamera nuk është në dispozicion</string>
   <string name="ConversationActivity_unable_to_record_audio">E pamundur të regjistrohet zë!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nuk ekziston aplikacion në celularin tuaj që mund ta procesojë këtë.</string>
+  <!--ConversationAdapter-->
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Hollësitë e mesazhit</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transportur me: %1$s\nDërguar/Pranuar: %2$s</string>
@@ -212,6 +213,7 @@
   <string name="DeviceListItem_linked_s">U lidh %s</string>
   <string name="DeviceListItem_last_active_s">Aktiv së ovni %s</string>
   <string name="DeviceListItem_today">Sot</string>
+  <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Ndaje me</string>
   <!--ExperienceUpgradeActivity-->
@@ -239,7 +241,6 @@
   <string name="GiphyFragmentPagerAdapter_stickers">Afishe</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Grup i ri</string>
-  <string name="GroupCreateActivity_actionbar_update_title">Fresko grupiin</string>
   <string name="GroupCreateActivity_group_name_hint">Emri i grupit</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Grup MMS i ri</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Keni përzgjedhur kontakt që nuk mbështet Signal grupe, prandaj ky grup do të jetë MMS.Service</string>
@@ -248,7 +249,6 @@
   <string name="GroupCreateActivity_contacts_no_members">Duhet të kesh së paku një person në grup!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Një pjesëmarrës i grupit tuaj ka numër që nuk mund të lexohet në mënyrë korrekte. Ju lutemi riparoni ose fshini kontaktin dhe provoni sërisht.</string>
   <string name="GroupCreateActivity_avatar_content_description">Avatari i grupit</string>
-  <string name="GroupCreateActivity_menu_create_title">Krijo grup</string>
   <string name="GroupCreateActivity_creating_group">Po krijohet %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Po freskohet %1$s...</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group"> %1$s nuk mundi të shtohet sepse nuk është përdorues i Signal-it.</string>
@@ -318,6 +318,8 @@ importimi i sërishëm do të rezultojë ne mesazhe duplikate.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Dështoj dërgimi</string>
   <string name="MessageDetailsRecipient_new_safety_number">Numër sigurie i ri</string>
+  <!--MessageRetrievalService-->
+  <string name="MessageRetrievalService_signal">Signal</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Gabim në ruajtjën e MMS!</string>
   <!--- NotificationBarManager-->
@@ -426,8 +428,6 @@ numrin tuaj të telefonit
   <string name="RegistrationActivity_invalid_number">Numër jo-valid</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numri që
 e zgjodhët (%s) nuk është korrekt.</string>
-  <string name="RegistrationActivity_unsupported">I papërkrahsur</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Kjo paisje nuk mbështet biseda që përmbajnë të dhëna. Paisjet me verzione më të vjetra se Android 4.0 duhet të jenë të regjistruara me Google llogari. Paisjet me Android 4.0 apo sisteme më të reja nuk kërkojnë Google llogari, megjithatë Play Store aplikacioni duhet të jetë i instaluar.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
 Kontrolloni/sigurohuni nëse ky është numri juaj! Do ta verifikojmë me një SMS.</string>
   <string name="RegistrationActivity_continue">Vazhdo</string>
@@ -520,6 +520,10 @@ U pranua mesazh për shkembim çelsash për një verzion të protokolli jo valid
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Prek për të hapur, ose prek qelësin për të mbyllur.</string>
   <string name="KeyCachingService_passphrase_cached">Signal u hap</string>
   <string name="KeyCachingService_lock">Kyçe me fjalëkalim</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">Ti</string>
+  <string name="MediaPreviewActivity_cant_display">Dështoi në parashikimin e porosisë.</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Tip i medias i pambështetur</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d mesazhe të reja në %2$d biseda</string>
   <string name="MessageNotifier_most_recent_from_s">Më të fundit nga: %1$s</string>
@@ -532,13 +536,22 @@ U pranua mesazh për shkembim çelsash për një verzion të protokolli jo valid
   <string name="MessageNotifier_mark_read">Shëno si të lexuar</string>
   <string name="MessageNotifier_media_message">Mesazh medial</string>
   <string name="MessageNotifier_reply">Përgjigju</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Për celularin tuaj duhen rregullime manuale MMS.</string>
+  <string name="MmsPreferencesFragment__enabled">Aktivizuar</string>
+  <string name="MmsPreferencesFragment__disabled">Çaktivizar</string>
+  <string name="MmsPreferencesFragment__not_set">Pavendosur</string>
+  <string name="MmsPreferencesFragment__invalid_uri">Teksti i futur nuk ishte URI i vlefshëm</string>
+  <string name="MmsPreferencesFragment__invalid_host">Teksti i futur nuk ishte adresë e vlefshme</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Përgjigja e shpejtë nuk është në dispozicion kur Signal është i mbyllur!</string>
   <string name="QuickResponseService_problem_sending_message">Problem në dërgimin e porosisë!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mesazh i ri</string>
+  <!--VideoPlayer-->
   <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Ndoshta deshironi të verifikoni numrin e juaj sigurie me këtë kontakt.</string>
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Imazh</string>
@@ -680,17 +693,9 @@ U pranua mesazh për shkembim çelsash për një verzion të protokolli jo valid
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Shiko bisedën e plotë</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_images">S\'ka imazhe</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">VERIFIKO</string>
   <string name="message_recipients_list_item__resend">RIDËRGO</string>
-  <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Për celularin tuaj duhen rregullime manuale MMS.</string>
-  <string name="MmsPreferencesFragment__enabled">Aktivizuar</string>
-  <string name="MmsPreferencesFragment__disabled">Çaktivizar</string>
-  <string name="MmsPreferencesFragment__not_set">Pavendosur</string>
-  <string name="MmsPreferencesFragment__invalid_uri">Teksti i futur nuk ishte URI i vlefshëm</string>
-  <string name="MmsPreferencesFragment__invalid_host">Teksti i futur nuk ishte adresë e vlefshme</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s u bashkangjit në grup.</item>
@@ -787,7 +792,7 @@ Signal u ndal derisa pritej SMSi për verifikim.</string>
   <string name="recipients_panel__to"><small>Shkruaj një emër ose numër</small></string>
   <string name="recipients_panel__add_members">Shto pjesëmarrës</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Nëse dëshironi të verifikoni sigurinë e enkriptimit tuaj end-to-end me %s, krahasoni numrin lartë me numrin në pajisjen e asaj/atij. Përndryshe mundeni të skanoni kodin në telefonin e asaj/atij ose kërkoni prej asaj/atij të skanojë kodin e juaj. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Mësoni më shumë për verifikimin e numrave sigurie</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Nëse dëshironi të verifikoni sigurinë e enkriptimit tuaj end-to-end me %s, krahasoni numrin lartë me numrin në pajisjen e asaj/atij. Përndryshe mundeni të skanoni kodin në telefonin e asaj/atij ose kërkoni prej asaj/atij të skanojë kodin e juaj. <a href="https://whispersystems.org/redirect/safety-numbers">Mësoni më shumë për verifikimin e numrave sigurie</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Shtypni për të skanuar</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Shpërndajeni numrin sigurie</string>
@@ -809,8 +814,6 @@ Signal u ndal derisa pritej SMSi për verifikim.</string>
   <string name="AndroidManifest__verify_safety_number">Verifiko numrin sigurie</string>
   <string name="AndroidManifest__log_submit">Dërgo logun e gabimeve</string>
   <string name="AndroidManifest__media_preview">Parapamje e medias</string>
-  <string name="AndroidManifest__media_overview">Gjitha imazhet</string>
-  <string name="AndroidManifest__media_overview_named">Gjitha imazhet me %1$s</string>
   <string name="AndroidManifest__message_details">Hollësitë e mesazhit</string>
   <string name="AndroidManifest__linked_devices">Pajisjet e lidhura</string>
   <string name="AndroidManifest__invite_friends">Fto shokët</string>
@@ -997,10 +1000,8 @@ Signal u ndal derisa pritej SMSi për verifikim.</string>
   <string name="conversation_unmuted__mute_notifications">Hesht lajmërimet</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Shto bashkëngjitje</string>
-  <string name="conversation__menu_update_group">Fresko grupit</string>
   <string name="conversation__menu_leave_group">Lëre grupin</string>
   <string name="conversation__menu_delete_thread">Fshij bisedën</string>
-  <string name="conversation__menu_view_media">Gjitha imazhet</string>
   <string name="conversation__menu_conversation_settings">Përzgjedhjet e bisedës</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Zgjero balonën</string>
@@ -1052,18 +1053,13 @@ Signal u ndal derisa pritej SMSi për verifikim.</string>
   <string name="reminder_header_share_text">Sa më shumë shokë që përdorin Signal, aq më i mirë bëhet</string>
   <string name="reminder_header_share_button">NDAJ</string>
   <string name="reminder_header_close_button">MBYLL</string>
-  <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">Ti</string>
-  <string name="MediaPreviewActivity_cant_display">Dështoi në parashikimin e porosisë.</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Tip i medias i pambështetur</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Ruaj</string>
   <string name="media_preview__forward_title">Përpara</string>
-  <string name="media_preview__overview_title">Gjithë pamjet</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Ruaj të gjitha</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">Parapamje e imazhit</string>
+  <string name="media_preview_activity__media_content_description">Parapamje e medias</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">FRESKO</string>
   <!--redphone_audio_popup_menu-->

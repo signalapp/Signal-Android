@@ -125,6 +125,7 @@
   <string name="ConversationActivity_quick_camera_unavailable">Kamera tidak tersedia</string>
   <string name="ConversationActivity_unable_to_record_audio">Tidak bisa merekam audio!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Tidak ada aplikasi tersedia untuk menangani tautan ini pada perangkat Anda</string>
+  <!--ConversationAdapter-->
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Rincian pesan</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nKirim/Terima: %2$s</string>
@@ -198,6 +199,7 @@
   <string name="DeviceListItem_linked_s">Terkait %s</string>
   <string name="DeviceListItem_last_active_s">Terakhir aktif %s</string>
   <string name="DeviceListItem_today">Hari ini</string>
+  <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Berbagi dengan</string>
   <!--ExperienceUpgradeActivity-->
@@ -223,7 +225,6 @@
   <!--GiphyFragmentPageAdapter-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Grup baru</string>
-  <string name="GroupCreateActivity_actionbar_update_title">Perbarui grup</string>
   <string name="GroupCreateActivity_group_name_hint">Nama grup</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Grup MMS baru</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Anda telah memilih kontak yang tidak mendukung grup Signal, maka grup ini akan menjadi grup MMS.</string>
@@ -232,7 +233,6 @@
   <string name="GroupCreateActivity_contacts_no_members">Anda butuh minimal satu orang tergabung dalam grup Anda!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Salah satu anggota grup Anda memiliki nomor yang tidak dapat dibaca, silakan perbaiki atau keluarkan kontak tersebut dan coba lagi.</string>
   <string name="GroupCreateActivity_avatar_content_description">Avatar grup</string>
-  <string name="GroupCreateActivity_menu_create_title">Buat grup</string>
   <string name="GroupCreateActivity_creating_group">Membuat %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Memperbarui %1$s...</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Tidak bisa menambahkan %1$s karena mereka bukan pengguna Signal.</string>
@@ -297,6 +297,8 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Gagal mengirim</string>
   <string name="MessageDetailsRecipient_new_safety_number">Angka keamanan baru</string>
+  <!--MessageRetrievalService-->
+  <string name="MessageRetrievalService_signal">Signal</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Kesalahan dalam menyimpan MMS!</string>
   <!--- NotificationBarManager-->
@@ -404,12 +406,6 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Nomor yang anda
 isikan (%s) tidak tepat.
 </string>
-  <string name="RegistrationActivity_unsupported">Tidak didukung</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Maaf,
-        perangkat ini tidak mendukung perpesanan data. Perangkat Android yang
-        lebih lama dari versi 4.0 harus memiliki dan terdaftar dengan Akun Google. Perangkat Android 4.0 atau lebih baru tidak membutuhkan
-        akun Google, tetapi harus memiliki dan memasang aplikasi Play Store.
-    </string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
         Periksa lagi bahwa ini adalah nomor Anda! Kami akan memverifikasinya dengan SMS.
     </string>
@@ -494,6 +490,10 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Sentuh untuk membuka, atau sentuh kunci untuk menutup.</string>
   <string name="KeyCachingService_passphrase_cached">Signal tidak terkunci</string>
   <string name="KeyCachingService_lock">Kunci dengan kata sandi</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">Anda</string>
+  <string name="MediaPreviewActivity_cant_display">Gagal meninjau gambar ini</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Tipe media tidak didukung</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d pesan baru dalam %2$d percakapan</string>
   <string name="MessageNotifier_most_recent_from_s">Paling baru dari: %1$s</string>
@@ -506,13 +506,22 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MessageNotifier_mark_read">Tandai sudah dibaca</string>
   <string name="MessageNotifier_media_message">Pesan media</string>
   <string name="MessageNotifier_reply">Balas</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Telepon Anda membutuhkan pengaturan MMS secara manual.</string>
+  <string name="MmsPreferencesFragment__enabled">Aktif</string>
+  <string name="MmsPreferencesFragment__disabled">Nonaktif</string>
+  <string name="MmsPreferencesFragment__not_set">Belum ditetapkan</string>
+  <string name="MmsPreferencesFragment__invalid_uri">Teks yang dimasukkan bukan URI yang valid</string>
+  <string name="MmsPreferencesFragment__invalid_host">Teks yang dimasukkan bukan host yang valid</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Tanggapan cepat tidak tersedia ketika Signal sedang dikunci!</string>
   <string name="QuickResponseService_problem_sending_message">Terjadi masalah saat mengirim pesan!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Pesan baru</string>
+  <!--VideoPlayer-->
   <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Mungkin sebaiknya anda memastikan angka keamanan dengan kontak ini.</string>
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Gambar</string>
@@ -611,17 +620,9 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Lihat seluruh percakapan</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_images">Tidak ada gambar</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">VERIFIKASI</string>
   <string name="message_recipients_list_item__resend">KIRIM ULANG</string>
-  <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Telepon Anda membutuhkan pengaturan MMS secara manual.</string>
-  <string name="MmsPreferencesFragment__enabled">Aktif</string>
-  <string name="MmsPreferencesFragment__disabled">Nonaktif</string>
-  <string name="MmsPreferencesFragment__not_set">Belum ditetapkan</string>
-  <string name="MmsPreferencesFragment__invalid_uri">Teks yang dimasukkan bukan URI yang valid</string>
-  <string name="MmsPreferencesFragment__invalid_host">Teks yang dimasukkan bukan host yang valid</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">%1$s bergabung dengan grup</item>
@@ -749,8 +750,6 @@ gagal
   <string name="AndroidManifest__verify_safety_number">Periksa angka keamanan</string>
   <string name="AndroidManifest__log_submit">Kirim debug log</string>
   <string name="AndroidManifest__media_preview">Pratinjau media</string>
-  <string name="AndroidManifest__media_overview">Semua gambar</string>
-  <string name="AndroidManifest__media_overview_named">Semua gambar dengan %1$s</string>
   <string name="AndroidManifest__message_details">Rincian pesan</string>
   <string name="AndroidManifest__linked_devices">Perangkat terkait</string>
   <string name="AndroidManifest__invite_friends">Undang teman</string>
@@ -932,10 +931,8 @@ gagal
   <string name="conversation_unmuted__mute_notifications">Bisukan pemberitahuan</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Tambahkan lampiran</string>
-  <string name="conversation__menu_update_group">Perbarui grup</string>
   <string name="conversation__menu_leave_group">Keluar grup</string>
   <string name="conversation__menu_delete_thread">Hapus percakapan</string>
-  <string name="conversation__menu_view_media">Semua gambar</string>
   <string name="conversation__menu_conversation_settings">Pengaturan percakapan</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Lebarkan munculan</string>
@@ -984,16 +981,12 @@ gagal
   <string name="reminder_header_share_text">Semakin banyak teman menggunakan Signal, semakin lebih baik.</string>
   <string name="reminder_header_share_button">BERBAGI</string>
   <string name="reminder_header_close_button">TUTUP</string>
-  <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">Anda</string>
-  <string name="MediaPreviewActivity_cant_display">Gagal meninjau gambar ini</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Tipe media tidak didukung</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Simpan</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Simpan semua</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">Prantinjau gambar</string>
+  <string name="media_preview_activity__media_content_description">Pratinjau media</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Perbaharui</string>
   <!--redphone_audio_popup_menu-->

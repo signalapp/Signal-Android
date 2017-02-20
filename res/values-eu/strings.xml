@@ -127,6 +127,7 @@
   <string name="ConversationActivity_quick_camera_unavailable">Kamera ez dago eskuragarri</string>
   <string name="ConversationActivity_unable_to_record_audio">Ezgai audioa grabatzeko!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Ez dago erabil daitekeen aplikaziorik lotura hau tratatzeko zure gailuan.</string>
+  <!--ConversationAdapter-->
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Mezuaren detaileak</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Garraioa: %1$s\nBidalita/Jasota: %2$s</string>
@@ -211,6 +212,7 @@
   <string name="DeviceListItem_linked_s">%s lotuta</string>
   <string name="DeviceListItem_last_active_s">Azken konexioa: %s</string>
   <string name="DeviceListItem_today">Gaur</string>
+  <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Norekin konpartitu</string>
   <!--ExperienceUpgradeActivity-->
@@ -238,7 +240,6 @@
   <string name="GiphyFragmentPagerAdapter_stickers">Eranskailuak</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Talde berria</string>
-  <string name="GroupCreateActivity_actionbar_update_title">Taldea eguneratu</string>
   <string name="GroupCreateActivity_group_name_hint">Taldearen izena</string>
   <string name="GroupCreateActivity_actionbar_mms_title">MMS talde berria</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Signal taldeak onartzen ez duen kontaktu bat aukeratu duzu; beraz, talde hau MMS izango da.</string>
@@ -247,7 +248,6 @@
   <string name="GroupCreateActivity_contacts_no_members">Gutxienez pertsona bat behar duzu zure taldean!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Zure taldeko partaide batek ondo irakurri ezin daitekeen zenbaki bat dauka. Konpondu edo ezabatu kontaktua eta saiatu berriro mesedez.</string>
   <string name="GroupCreateActivity_avatar_content_description">Taldearen abatarra</string>
-  <string name="GroupCreateActivity_menu_create_title">Taldea sortu</string>
   <string name="GroupCreateActivity_creating_group">Sortzen %1$s...</string>
   <string name="GroupCreateActivity_updating_group">Eguneratzen: %1$s...</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Ezin izan da %1$s gehitu Signal erabiltzailea ez delako.</string>
@@ -311,6 +311,8 @@ Babeskopia hau lehenago inportatu baduzu, mezu bikoiztuak sor daitezke.
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signalek Barcode Scanner aplikazioa behar du QR kodeak irakurtzeko.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Bidalketak huts egin du</string>
+  <!--MessageRetrievalService-->
+  <string name="MessageRetrievalService_signal">Signal</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Errorea MMS gordetzen!</string>
   <!--- NotificationBarManager-->
@@ -420,10 +422,6 @@ zehaztu behar duzu
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Zehaztu duzun 
 zenbakia (%s) baliogabea da.
 </string>
-  <string name="RegistrationActivity_unsupported">Ez onartua</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Sentitzen dugu,
-baina gailu honek ez dago onartuta datuen bidezko mezulararitzarako. Android 4.0 bertsioa baino zaharragoa duten gailuek Google Kontu bat izan behar dute. 
-Android 4.0 edo berriagoa badute, ez da beharrezkoa Google Kontu bat izatea, baina Play Store-eko aplikakzioa instalatuta eduki behar da.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">Egiaztatu hau dela zure zenbakia!  SMS bidez egiaztatzear gaude.</string>
   <string name="RegistrationActivity_continue">Jarraitu</string>
   <string name="RegistrationActivity_edit">Editatu</string>
@@ -510,6 +508,10 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Ukitu irekitzeko, edo sarraila ukitu ixteko.</string>
   <string name="KeyCachingService_passphrase_cached">Signal desblokeatuta dago</string>
   <string name="KeyCachingService_lock">Blokeatu pasahitz bat erabiliz</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">Zu</string>
+  <string name="MediaPreviewActivity_cant_display">Ezgai irudi honen aurrebista sortzeko</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Euskarri mota ez-onartua</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d mezu berri %2$d solasalditan</string>
   <string name="MessageNotifier_most_recent_from_s">Berriena %1$s-(e)tik</string>
@@ -522,12 +524,20 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="MessageNotifier_mark_read">Markatu irakurritako gisa</string>
   <string name="MessageNotifier_media_message">Multimedia mezua</string>
   <string name="MessageNotifier_reply">Erantzun</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">MMS eskuzko ezarpenak behar dira zure telefonorako.</string>
+  <string name="MmsPreferencesFragment__enabled">Gaituta</string>
+  <string name="MmsPreferencesFragment__disabled">Ezgaituta</string>
+  <string name="MmsPreferencesFragment__not_set">Ez ezarria</string>
+  <string name="MmsPreferencesFragment__invalid_uri">Sartutako testua URI baliogabea da</string>
+  <string name="MmsPreferencesFragment__invalid_host">Sartutako testua host baliogabea da</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Erantzun bizkorra eskuraezina Signal blokeatuta badago!</string>
   <string name="QuickResponseService_problem_sending_message">Arazoa mezua bidaltzen!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mezu berria</string>
+  <!--VideoPlayer-->
   <!--WebRtcCallScreen-->
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
@@ -659,17 +669,9 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Ikusi solasaldi osoa</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_images">Irudirik ez</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">EGIAZTATU</string>
   <string name="message_recipients_list_item__resend">BIRBIDALI</string>
-  <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">MMS eskuzko ezarpenak behar dira zure telefonorako.</string>
-  <string name="MmsPreferencesFragment__enabled">Gaituta</string>
-  <string name="MmsPreferencesFragment__disabled">Ezgaituta</string>
-  <string name="MmsPreferencesFragment__not_set">Ez ezarria</string>
-  <string name="MmsPreferencesFragment__invalid_uri">Sartutako testua URI baliogabea da</string>
-  <string name="MmsPreferencesFragment__invalid_host">Sartutako testua host baliogabea da</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s taldean sartu da.</item>
@@ -783,8 +785,6 @@ huts egin du.
   <string name="AndroidManifest__change_passphrase">Pasahitza aldatu</string>
   <string name="AndroidManifest__log_submit">Bidali arazketa-erregistroa</string>
   <string name="AndroidManifest__media_preview">Multimediaren aurrebista</string>
-  <string name="AndroidManifest__media_overview">Irudi guztiak</string>
-  <string name="AndroidManifest__media_overview_named">%1$s-(r)ekiko irudi guztiak</string>
   <string name="AndroidManifest__message_details">Mezuaren xehetasunak</string>
   <string name="AndroidManifest__linked_devices">Lotutako gailuak</string>
   <string name="AndroidManifest__invite_friends">Gonbidatu lagunak</string>
@@ -971,10 +971,8 @@ huts egin du.
   <string name="conversation_unmuted__mute_notifications">Desaktibatu jakinarazpenak</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Eranskina gehitu</string>
-  <string name="conversation__menu_update_group">Taldea eguneratu</string>
   <string name="conversation__menu_leave_group">Taldea utzi</string>
   <string name="conversation__menu_delete_thread">Ezabatu solasaldia</string>
-  <string name="conversation__menu_view_media">Irudi guztiak</string>
   <string name="conversation__menu_conversation_settings">Solasaldiaren ezarpenak</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Zabaldu leihoa</string>
@@ -1026,17 +1024,13 @@ huts egin du.
   <string name="reminder_header_share_text">Zenbat eta Signalen adiskide gehiago izan, hobe.</string>
   <string name="reminder_header_share_button">PARTEKATU</string>
   <string name="reminder_header_close_button">ITXI</string>
-  <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">Zu</string>
-  <string name="MediaPreviewActivity_cant_display">Ezgai irudi honen aurrebista sortzeko</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Euskarri mota ez-onartua</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Gorde</string>
   <string name="media_preview__forward_title">Birbidali</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Dena gorde</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">Irudiaren aurrebista</string>
+  <string name="media_preview_activity__media_content_description">Multimediaren aurrebista</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Freskatu</string>
   <!--redphone_audio_popup_menu-->

@@ -127,6 +127,7 @@
   <string name="ConversationActivity_unable_to_record_audio">録音できません！</string>
   <string name="ConversationActivity_error_sending_voice_message">音声メッセージの送信エラー</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">このリンクを扱えるアプリがインストールされていません</string>
+  <!--ConversationAdapter-->
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">メッセージの詳細</string>
   <string name="ConversationFragment_transport_s_sent_received_s">送信方法: %1$s\n送信/受信: %2$s</string>
@@ -206,6 +207,7 @@
   <string name="DeviceListItem_linked_s">%sを結び付けました</string>
   <string name="DeviceListItem_last_active_s">最終活動 %s</string>
   <string name="DeviceListItem_today">今日</string>
+  <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">共有</string>
   <!--ExperienceUpgradeActivity-->
@@ -234,7 +236,6 @@
   <string name="GiphyFragmentPagerAdapter_stickers">ステッカー</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">新規グループ</string>
-  <string name="GroupCreateActivity_actionbar_update_title">グループを更新する</string>
   <string name="GroupCreateActivity_group_name_hint">グループ名</string>
   <string name="GroupCreateActivity_actionbar_mms_title">新規MMSグループ</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Signalユーザーでない人がいるため、このグループはMMSとなります。</string>
@@ -243,7 +244,6 @@
   <string name="GroupCreateActivity_contacts_no_members">グループには誰か１人は必要です！</string>
   <string name="GroupCreateActivity_contacts_invalid_number">グループのメンバーで電話番号が正しくない人がいます。番号を修正するか、そのメンバーを削除してからやり直してください。</string>
   <string name="GroupCreateActivity_avatar_content_description">グループアバター</string>
-  <string name="GroupCreateActivity_menu_create_title">グループ作成</string>
   <string name="GroupCreateActivity_creating_group">%1$sを作成中...</string>
   <string name="GroupCreateActivity_updating_group">%1$sを更新...</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Signalユーザーでないので%1$sを加えることはできません</string>
@@ -299,6 +299,8 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">送信失敗</string>
   <string name="MessageDetailsRecipient_new_safety_number">新しい安全番号</string>
+  <!--MessageRetrievalService-->
+  <string name="MessageRetrievalService_signal">Signal</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">MMS保存中にエラーがありました。</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">MMSプロバイダへの接続でエラー</string>
@@ -408,8 +410,6 @@
   <string name="RegistrationActivity_you_must_specify_your_phone_number">電話番号を入力して下さい</string>
   <string name="RegistrationActivity_invalid_number">無効な番号</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">指定された番号(%s)はお使いできません。</string>
-  <string name="RegistrationActivity_unsupported">使用不可能</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">申し訳ありませんが、 データメッセージの送信はお使いのデバイスではできません。アンドロイドのバージョンが4.0より古い場合、グーグルアカウントに登録する必要があります。バージョンが4.0以降の場合はグーグルアカウントへの登録は不要ですが、Google Playのアプリをインストールする必要があります。</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">この番号で正しいか確認してください。このあとSMSを使って番号の確認を行います。
     </string>
   <string name="RegistrationActivity_continue">続行</string>
@@ -506,6 +506,10 @@
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">タッチして開くか、鍵をタッチして閉じる</string>
   <string name="KeyCachingService_passphrase_cached">Signalのロック解除</string>
   <string name="KeyCachingService_lock">パスワードでロックする</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">あなた</string>
+  <string name="MediaPreviewActivity_cant_display">この画像のプレビューに失敗</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">サポートされないメディア種別</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d個の会話に%1$d個の新着メッセージ</string>
   <string name="MessageNotifier_most_recent_from_s">最新の受信: %1$s</string>
@@ -519,13 +523,22 @@
   <string name="MessageNotifier_mark_read">既読にする</string>
   <string name="MessageNotifier_media_message">メディアメッセージ</string>
   <string name="MessageNotifier_reply">返信</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">この電話ではMMSの設定を手動で行う必要があります</string>
+  <string name="MmsPreferencesFragment__enabled">有効</string>
+  <string name="MmsPreferencesFragment__disabled">無効</string>
+  <string name="MmsPreferencesFragment__not_set">設定なし</string>
+  <string name="MmsPreferencesFragment__invalid_uri">入力されたURIは正しくありません</string>
+  <string name="MmsPreferencesFragment__invalid_host">入力されたホストは正しくありません</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signalのロック中はクイック・レスポンスは使えません</string>
   <string name="QuickResponseService_problem_sending_message">メッセージ送信で問題発生</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">新規メッセージ</string>
+  <!--VideoPlayer-->
   <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">この連絡先との安全番号を確認しておいた方がいいかも知れません。</string>
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">画像</string>
@@ -665,17 +678,9 @@
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">会話全体を見る</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_images">画像なし</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">確認</string>
   <string name="message_recipients_list_item__resend">再送</string>
-  <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">この電話ではMMSの設定を手動で行う必要があります</string>
-  <string name="MmsPreferencesFragment__enabled">有効</string>
-  <string name="MmsPreferencesFragment__disabled">無効</string>
-  <string name="MmsPreferencesFragment__not_set">設定なし</string>
-  <string name="MmsPreferencesFragment__invalid_uri">入力されたURIは正しくありません</string>
-  <string name="MmsPreferencesFragment__invalid_host">入力されたホストは正しくありません</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">%1$sがグループに加わりました</item>
@@ -749,7 +754,7 @@
   <string name="recipients_panel__to"><small>名前または番号を入力して下さい</small></string>
   <string name="recipients_panel__add_members">メンバーを追加</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%sとの端末間の暗号化を確認するには，上記の番号と相手の端末上の番号を比べてください。あるいは，相手端末上のQRコードを読み取るか，上のQRコードを相手に読み取ってもらってください。<a href=\"https://whispersystems.org/redirect/safety-numbers\">安全番号の確認についての詳細</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%sとの端末間の暗号化を確認するには，上記の番号と相手の端末上の番号を比べてください。あるいは，相手端末上のQRコードを読み取るか，上のQRコードを相手に読み取ってもらってください。<a href="https://whispersystems.org/redirect/safety-numbers">安全番号の確認についての詳細</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">読み取る</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">安全番号を共有する</string>
@@ -771,8 +776,6 @@
   <string name="AndroidManifest__verify_safety_number">安全番号を確認する</string>
   <string name="AndroidManifest__log_submit">デバッグログを提出</string>
   <string name="AndroidManifest__media_preview">メディアのプレビュー</string>
-  <string name="AndroidManifest__media_overview">すべての画像</string>
-  <string name="AndroidManifest__media_overview_named">%1$sとの画像</string>
   <string name="AndroidManifest__message_details">メッセージ詳細</string>
   <string name="AndroidManifest__linked_devices">結び付いているデバイス</string>
   <string name="AndroidManifest__invite_friends">友達にオススメする</string>
@@ -958,10 +961,8 @@
   <string name="conversation_unmuted__mute_notifications">無音通知</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">添付</string>
-  <string name="conversation__menu_update_group">グループを更新する</string>
   <string name="conversation__menu_leave_group">グループを抜ける</string>
   <string name="conversation__menu_delete_thread">会話を削除</string>
-  <string name="conversation__menu_view_media">すべての画像</string>
   <string name="conversation__menu_conversation_settings">会話の設定</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">ポップアップを拡大</string>
@@ -1012,18 +1013,13 @@
   <string name="reminder_header_share_text">Signalが周囲に広まると便利ですよ</string>
   <string name="reminder_header_share_button">シェア</string>
   <string name="reminder_header_close_button">閉じる</string>
-  <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">あなた</string>
-  <string name="MediaPreviewActivity_cant_display">この画像のプレビューに失敗</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">サポートされないメディア種別</string>
   <!--media_preview-->
   <string name="media_preview__save_title">保存</string>
   <string name="media_preview__forward_title">早送り</string>
-  <string name="media_preview__overview_title">すべての画像</string>
   <!--media_overview-->
   <string name="media_overview__save_all">すべて保存</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">画像のプレビュー</string>
+  <string name="media_preview_activity__media_content_description">メディアのプレビュー</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">更新</string>
   <!--redphone_audio_popup_menu-->

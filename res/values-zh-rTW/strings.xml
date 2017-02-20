@@ -80,7 +80,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">輕觸回收不安全的通訊</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">回收未加密的手機簡訊？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">回收未加密的多媒體訊息？</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">由於對方已經不再是Signal的使用者，當前訊息<b>不會</b>被加密。\n\n傳送不加密的訊息？</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">由於對方已經不再是 Signal 的使用者，當前訊息<b>不會</b>被加密。\n\n傳送不加密的訊息？</string>
   <string name="ConversationItem_unable_to_open_media">找不到合適的應用程式來開啟媒體檔案。</string>
   <string name="ConversationItem_from_s">來自 %s</string>
   <string name="ConversationItem_to_s">至 %s</string>
@@ -127,6 +127,10 @@
   <string name="ConversationActivity_unable_to_record_audio">無法錄音！</string>
   <string name="ConversationActivity_error_sending_voice_message">傳送語音訊息發生錯誤</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">您的設備上沒有應用程序能處理這個鏈接。</string>
+  <!--ConversationAdapter-->
+  <plurals name="ConversationAdapter_n_unread_messages">
+    <item quantity="other">%d 個未讀訊息</item>
+  </plurals>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">訊息細節</string>
   <string name="ConversationFragment_transport_s_sent_received_s">傳送狀態: %1$s\n已傳送/已接收: %2$s</string>
@@ -206,6 +210,7 @@
   <string name="DeviceListItem_linked_s">已連結 %s</string>
   <string name="DeviceListItem_last_active_s">最後活躍 %s</string>
   <string name="DeviceListItem_today">今天</string>
+  <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">分享給</string>
   <!--ExperienceUpgradeActivity-->
@@ -234,7 +239,7 @@
   <string name="GiphyFragmentPagerAdapter_stickers">貼圖</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">新增群組</string>
-  <string name="GroupCreateActivity_actionbar_update_title">更新群組</string>
+  <string name="GroupCreateActivity_actionbar_edit_title">編輯群組</string>
   <string name="GroupCreateActivity_group_name_hint">群組的名稱</string>
   <string name="GroupCreateActivity_actionbar_mms_title">新的 MMS 群組</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">您所選擇的聯絡人並不支援 Signal 群組，所以此組將以多媒體訊息形式存在。</string>
@@ -243,7 +248,7 @@
   <string name="GroupCreateActivity_contacts_no_members">建立群組至少需要加入一個聯絡人！</string>
   <string name="GroupCreateActivity_contacts_invalid_number">群組中某個聯絡人的號碼有誤，請更正或移除此聯絡人，並再試一次。</string>
   <string name="GroupCreateActivity_avatar_content_description">群組的大頭照</string>
-  <string name="GroupCreateActivity_menu_create_title">建立群組</string>
+  <string name="GroupCreateActivity_menu_apply_button">應用</string>
   <string name="GroupCreateActivity_creating_group">%1$s 建立中…</string>
   <string name="GroupCreateActivity_updating_group">更新中 %1$s...</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">無法新增 %1$s，因為他們不是 Signal 使用者。</string>
@@ -307,6 +312,8 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">傳送失敗</string>
   <string name="MessageDetailsRecipient_new_safety_number">新的安全碼</string>
+  <!--MessageRetrievalService-->
+  <string name="MessageRetrievalService_signal">Signal</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">儲存多媒體訊息時有誤！</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">連線到MMS供應商時發生錯誤</string>
@@ -421,12 +428,6 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">您輸入的
         號碼 (%s) 是無效的
     </string>
-  <string name="RegistrationActivity_unsupported">不支援</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">抱歉，
-        你目前使用裝置不支援 TextSecure 即時訊息功能。.採用早於 Android 4.0 或更舊版
-        必須登入已註冊的 Google Account. 採用 Android 4.0 或更新版
-        的手機則無須 Google account，但須具備 Play Store APP。
-    </string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
 請仔細檢查您的號碼！我們將透過簡訊進行驗證。</string>
   <string name="RegistrationActivity_continue">繼續</string>
@@ -527,6 +528,11 @@
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">按一下開啟，或按一下鎖住並關閉。</string>
   <string name="KeyCachingService_passphrase_cached">Signal 已經解鎖</string>
   <string name="KeyCachingService_lock">以自訂密碼進行鎖定</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">您</string>
+  <string name="MediaPreviewActivity_cant_display">預覽圖片失敗</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">不支援的媒體類型</string>
+  <string name="MediaPreviewActivity_draft">草稿</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d 則新訊息在 %2$d 的對話中</string>
   <string name="MessageNotifier_most_recent_from_s">最新來自：%1$s</string>
@@ -540,16 +546,24 @@
   <string name="MessageNotifier_mark_read">標示已讀</string>
   <string name="MessageNotifier_media_message">媒體訊息</string>
   <string name="MessageNotifier_reply">回覆</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">您的手機需要手動設定多媒體訊息。</string>
+  <string name="MmsPreferencesFragment__enabled">啟用</string>
+  <string name="MmsPreferencesFragment__disabled">停用</string>
+  <string name="MmsPreferencesFragment__not_set">未設定</string>
+  <string name="MmsPreferencesFragment__invalid_uri">輸入的文字並非真實的 URI</string>
+  <string name="MmsPreferencesFragment__invalid_host">輸入的文字並非真實的主機</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">當 Signal 鎖定時無法使用快速回覆！</string>
   <string name="QuickResponseService_problem_sending_message">傳送訊息出現問題！</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">新訊息</string>
+  <!--VideoPlayer-->
+  <string name="VideoPlayer_error_playing_video">播放影片時發生錯誤</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">你與 %1$s 的對話安全碼已經改變。這可能意味有人試圖攔截你的通訊，或者 %2$s 只是重新安裝了 Signal。</string>
-  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">你也許想驗證
-此聯絡人的安全碼。</string>
+  <string name="WebRtcCallScreen_new_safety_numbers">%1$s 的安全碼產生變動。這有可能是有不明人士試圖攔截您的通訊／對話內容，或是因為 %2$s 重新安裝 Signal。</string>
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">您可能希望驗證這名聯絡人的安全碼。</string>
   <string name="WebRtcCallScreen_new_safety_numbers_title">新的安全碼</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">輕觸開啟你的語音</string>
@@ -691,17 +705,10 @@
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">查閱完整對話</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_images">無圖片</string>
+  <string name="media_overview_activity__no_media">無媒體</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">驗證</string>
   <string name="message_recipients_list_item__resend">重新傳送</string>
-  <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">您的手機需要手動設定多媒體訊息。</string>
-  <string name="MmsPreferencesFragment__enabled">啟用</string>
-  <string name="MmsPreferencesFragment__disabled">停用</string>
-  <string name="MmsPreferencesFragment__not_set">未設定</string>
-  <string name="MmsPreferencesFragment__invalid_uri">輸入的文字並非真實的 URI</string>
-  <string name="MmsPreferencesFragment__invalid_host">輸入的文字並非真實的主機</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">%1$s 加入了群組。</item>
@@ -796,7 +803,7 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="recipients_panel__to"><small>輸入名稱或手機號碼</small></string>
   <string name="recipients_panel__add_members">新增成員</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ 如果您想驗證和 %s 的端到端加密，請和他們比較上方的數字是否一致。或者，您可以掃描他們手機上的二維碼，或讓他們掃描您手機上面的二維碼。<a href=\"https://whispersystems.org/redirect/safety-numbers\"> 了解更多有關驗證安全碼的訊息 </a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ 如果您想驗證和 %s 的端到端加密，請和他們比較上方的數字是否一致。或者，您可以掃描他們手機上的二維碼，或讓他們掃描您手機上面的二維碼。<a href="https://whispersystems.org/redirect/safety-numbers"> 了解更多有關驗證安全碼的訊息 </a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">點擊掃描</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">分享安全碼</string>
@@ -818,8 +825,8 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="AndroidManifest__verify_safety_number">驗證安全碼</string>
   <string name="AndroidManifest__log_submit">送出偵錯紀錄</string>
   <string name="AndroidManifest__media_preview">媒體預覽</string>
-  <string name="AndroidManifest__media_overview">所有圖片</string>
-  <string name="AndroidManifest__media_overview_named">所有圖片與 %1$s</string>
+  <string name="AndroidManifest__all_media">所有的媒體</string>
+  <string name="AndroidManifest__all_media_named">%1$s 的所有媒體</string>
   <string name="AndroidManifest__message_details">訊息細節</string>
   <string name="AndroidManifest__linked_devices">已連結裝置</string>
   <string name="AndroidManifest__invite_friends">邀請好友</string>
@@ -953,6 +960,8 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">停用 Signal 內建的表情支援</string>
   <string name="preferences_advanced__video_calling_beta">語音通話測試版本</string>
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">當雙方啟動時，會支援下一代語音通話。此功能是測試版本。</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">透過 Signal 伺服器轉發通話，來避免透露你的 IP 位址給你的聯絡人。啟用時，會降低通話品質。</string>
+  <string name="preferences_advanced__always_relay_calls">永遠轉發通話</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1007,10 +1016,10 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="conversation_unmuted__mute_notifications">靜音通知</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">增加附件檔案</string>
-  <string name="conversation__menu_update_group">更新群組</string>
+  <string name="conversation__menu_edit_group">編輯群組</string>
   <string name="conversation__menu_leave_group">離開對話群組</string>
   <string name="conversation__menu_delete_thread">刪除對話</string>
-  <string name="conversation__menu_view_media">所有圖片</string>
+  <string name="conversation__menu_view_all_media">所有的媒體</string>
   <string name="conversation__menu_conversation_settings">對話設定</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">展開快顯</string>
@@ -1061,18 +1070,14 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="reminder_header_share_text">當更多的朋友使用 Signal，它將變得更好。</string>
   <string name="reminder_header_share_button">分享</string>
   <string name="reminder_header_close_button">關閉</string>
-  <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">您</string>
-  <string name="MediaPreviewActivity_cant_display">預覽圖片失敗</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">不支援的媒體類型</string>
   <!--media_preview-->
   <string name="media_preview__save_title">儲存</string>
   <string name="media_preview__forward_title">轉寄</string>
-  <string name="media_preview__overview_title">所有圖片</string>
+  <string name="media_preview__all_media_title">所有的媒體</string>
   <!--media_overview-->
   <string name="media_overview__save_all">儲存所有</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">圖片預覽</string>
+  <string name="media_preview_activity__media_content_description">媒體預覽</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">重新整理</string>
   <!--redphone_audio_popup_menu-->

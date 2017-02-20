@@ -124,6 +124,7 @@
   <string name="ConversationActivity_unable_to_record_audio">오디오 녹음할 수 없음</string>
   <string name="ConversationActivity_error_sending_voice_message">음성 메시지 보내는 동안 오류 발생</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">작업을 처리할 수 있는 앱 없음</string>
+  <!--ConversationAdapter-->
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">메시지 세부정보</string>
   <string name="ConversationFragment_transport_s_sent_received_s">전송: %1$s\n송수신: %2$s</string>
@@ -201,6 +202,7 @@
   <string name="DeviceListItem_linked_s">연결: %s</string>
   <string name="DeviceListItem_last_active_s">최근 사용: %s</string>
   <string name="DeviceListItem_today">오늘</string>
+  <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">공유 대상</string>
   <!--ExperienceUpgradeActivity-->
@@ -229,7 +231,6 @@
   <string name="GiphyFragmentPagerAdapter_stickers">스티커</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">그룹 만들기</string>
-  <string name="GroupCreateActivity_actionbar_update_title">그룹 업데이트 하기</string>
   <string name="GroupCreateActivity_group_name_hint">그룹 이름</string>
   <string name="GroupCreateActivity_actionbar_mms_title">MMS 그룹 만들기</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">선택된 연락처는 Signal 그룹을 지원하지 않아서 이 그룹은 MMS를 사용하게 됩니다.</string>
@@ -238,7 +239,6 @@
   <string name="GroupCreateActivity_contacts_no_members">그룹 멤버 한명 이상 선택 되어야 함</string>
   <string name="GroupCreateActivity_contacts_invalid_number">그룹 멤버 중 한명은 잘못된 전화번호가 있으므로 정확한 전화번호를 입력하거나 그 연락처를 삭제하고 다시 시도해 주세요.</string>
   <string name="GroupCreateActivity_avatar_content_description">그룹 프로필 사진</string>
-  <string name="GroupCreateActivity_menu_create_title">그룹 만들기</string>
   <string name="GroupCreateActivity_creating_group">%1$s을(를) 만드는 중…</string>
   <string name="GroupCreateActivity_updating_group">%1$s을(를) 업데이트 중…</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s님은 Signal 사용자가 아니어서 추가할 수 없음</string>
@@ -293,6 +293,8 @@
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">QR코드 스캔하려면 Signal은 바코드 스캐너가 필요합니다.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">전송 실패</string>
+  <!--MessageRetrievalService-->
+  <string name="MessageRetrievalService_signal">Signal</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">MMS 메시지를 저장 오류 발생</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">MMS 제공자(이동통신사)에 연결 오류 발생</string>
@@ -390,8 +392,6 @@
   <string name="RegistrationActivity_you_must_specify_your_phone_number">전화번호를 입력해야 함</string>
   <string name="RegistrationActivity_invalid_number">전화번호가 잘못됨</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">입력한 전화번호가 (%s) 잘못되었습니다.</string>
-  <string name="RegistrationActivity_unsupported">지원하지 않는 기기</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">죄송합니다. 해당 기기가 인터넷 메시지를 지원하지 않습니다. 안드로이드 4.0 이하 버전을 실행하는 기기들은 Google 계정이 필요합니다. 안드로이드 4.0이나 상위 버전을 실행하는 기기들은 Google 계정이 필요하지 않지만 Google Play 스토어 앱이 설치돼야 합니다.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">인증메시지를 SMS으로 보냅니다. 전화번호가 정확한지 확인하세요.</string>
   <string name="RegistrationActivity_continue">확인</string>
   <string name="RegistrationActivity_edit">수정</string>
@@ -470,6 +470,10 @@
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">열려면 터치하세요. 그러나 잠그려면 자물쇠를 터치하세요.</string>
   <string name="KeyCachingService_passphrase_cached">Signal 잠금 해제 됨</string>
   <string name="KeyCachingService_lock">암호로 잠금</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">나</string>
+  <string name="MediaPreviewActivity_cant_display">이미지 미리보기 실패</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">지원되지 않는 미디어 형식</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">대화 %2$d개에 새 메시지 %1$d개</string>
   <string name="MessageNotifier_most_recent_from_s">%1$s님에게서 최근 메시지</string>
@@ -482,12 +486,20 @@
   <string name="MessageNotifier_mark_read">읽음으로 표시</string>
   <string name="MessageNotifier_media_message">미디어 메시지</string>
   <string name="MessageNotifier_reply">답장</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">MMS는 수동 설정 필요</string>
+  <string name="MmsPreferencesFragment__enabled">사용</string>
+  <string name="MmsPreferencesFragment__disabled">사용 안함</string>
+  <string name="MmsPreferencesFragment__not_set">설정되지 않음</string>
+  <string name="MmsPreferencesFragment__invalid_uri">입력한 URI가 잘못됨</string>
+  <string name="MmsPreferencesFragment__invalid_host">입력한 호스트 이름이 잘못됨</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal 잠겨 있는 경우 빠른 응답 사용할 수 없음</string>
   <string name="QuickResponseService_problem_sending_message">메시지 보내지 못함</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">새 메시지</string>
+  <!--VideoPlayer-->
   <!--WebRtcCallScreen-->
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
@@ -622,17 +634,9 @@
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">대화 전체 보기</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_images">이미지 없음</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">확인</string>
   <string name="message_recipients_list_item__resend">다시 보내기</string>
-  <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">MMS는 수동 설정 필요</string>
-  <string name="MmsPreferencesFragment__enabled">사용</string>
-  <string name="MmsPreferencesFragment__disabled">사용 안함</string>
-  <string name="MmsPreferencesFragment__not_set">설정되지 않음</string>
-  <string name="MmsPreferencesFragment__invalid_uri">입력한 URI가 잘못됨</string>
-  <string name="MmsPreferencesFragment__invalid_host">입력한 호스트 이름이 잘못됨</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">%1$s님께서 그룹에 참여했습니다.</item>
@@ -720,8 +724,6 @@
   <string name="AndroidManifest__change_passphrase">암호 변경</string>
   <string name="AndroidManifest__log_submit">디버그 로그 보내기</string>
   <string name="AndroidManifest__media_preview">미디어 미리보기</string>
-  <string name="AndroidManifest__media_overview">전체 이미지</string>
-  <string name="AndroidManifest__media_overview_named">%1$s님이랑 대화의 전체 이미지</string>
   <string name="AndroidManifest__message_details">메시지 세부정보</string>
   <string name="AndroidManifest__linked_devices">연결된 기기</string>
   <string name="AndroidManifest__invite_friends">친구 초대</string>
@@ -903,10 +905,8 @@
   <string name="conversation_unmuted__mute_notifications">알림 끄기</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">첨부</string>
-  <string name="conversation__menu_update_group">그룹 업데이트</string>
   <string name="conversation__menu_leave_group">그룹 나가기</string>
   <string name="conversation__menu_delete_thread">대화 삭제</string>
-  <string name="conversation__menu_view_media">전체 이미지</string>
   <string name="conversation__menu_conversation_settings">대화 설정</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">팝업 펼치기</string>
@@ -957,17 +957,12 @@
   <string name="reminder_header_share_text">Signal을 사용하는 친구가 많을수록 더 많은 것을 경험할 수 있습니다.</string>
   <string name="reminder_header_share_button">공유</string>
   <string name="reminder_header_close_button">닫기</string>
-  <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">나</string>
-  <string name="MediaPreviewActivity_cant_display">이미지 미리보기 실패</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">지원되지 않는 미디어 형식</string>
   <!--media_preview-->
   <string name="media_preview__save_title">저장</string>
-  <string name="media_preview__overview_title">모든 이미지</string>
   <!--media_overview-->
   <string name="media_overview__save_all">모두 저장</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">이미지 미리보기</string>
+  <string name="media_preview_activity__media_content_description">미디어 미리보기</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">새로고침</string>
   <!--redphone_audio_popup_menu-->
