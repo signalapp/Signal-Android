@@ -67,7 +67,10 @@ public class ConversationTitleView extends LinearLayout {
         this.subtitle.setVisibility(View.GONE);
       } else {
         this.title.setText(recipient.getName());
-        this.subtitle.setText(recipient.getNumber());
+
+        if (recipient.getCustomLabel() != null) this.subtitle.setText(recipient.getCustomLabel());
+        else                                    this.subtitle.setText(recipient.getNumber());
+
         this.subtitle.setVisibility(View.VISIBLE);
       }
     } else {
