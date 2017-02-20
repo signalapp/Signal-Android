@@ -251,6 +251,10 @@
     <string name="DeviceListItem_last_active_s">Last active %s</string>
     <string name="DeviceListItem_today">Today</string>
 
+    <!-- DozeReminder -->
+    <string name="DozeReminder_optimize_for_missing_play_services">Optimize for missing Play Services</string>
+    <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">This device does not support Play Services. Tap to disable system battery optimizations that prevent Signal from retrieving messages while inactive.</string>
+
     <!-- ShareActivity -->
     <string name="ShareActivity_share_with">Share with</string>
 

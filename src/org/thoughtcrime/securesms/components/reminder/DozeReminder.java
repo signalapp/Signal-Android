@@ -11,14 +11,15 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.view.View;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class DozeReminder extends Reminder {
 
   @RequiresApi(api = Build.VERSION_CODES.M)
   public DozeReminder(@NonNull final Context context) {
-    super("Optimize for missing Play Services",
-          "This device does not support Play Services. Tap to disable system battery optimizations that prevent Signal from retrieving messages while inactive.");
+    super(context.getString(R.string.DozeReminder_optimize_for_missing_play_services),
+          context.getString(R.string.DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery));
 
     setOkListener(new View.OnClickListener() {
       @Override
