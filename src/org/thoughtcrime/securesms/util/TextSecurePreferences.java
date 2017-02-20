@@ -69,6 +69,7 @@ public class TextSecurePreferences {
   private static final String GCM_PASSWORD_PREF                = "pref_gcm_password";
   private static final String PROMPTED_PUSH_REGISTRATION_PREF  = "pref_prompted_push_registration";
   private static final String PROMPTED_DEFAULT_SMS_PREF        = "pref_prompted_default_sms";
+  private static final String PROMPTED_OPTIMIZE_DOZE_PREF      = "pref_prompted_optimize_doze";
   private static final String PROMPTED_SHARE_PREF              = "pref_prompted_share";
   private static final String SIGNALING_KEY_PREF               = "pref_signaling_key";
   private static final String DIRECTORY_FRESH_TIME_PREF        = "pref_directory_refresh_time";
@@ -80,6 +81,7 @@ public class TextSecurePreferences {
   private static final String SIGNED_PREKEY_REGISTERED_PREF    = "pref_signed_prekey_registered";
   private static final String WIFI_SMS_PREF                    = "pref_wifi_sms";
 
+  private static final String GCM_DISABLED_PREF                = "pref_gcm_disabled";
   private static final String GCM_REGISTRATION_ID_PREF         = "pref_gcm_registration_id";
   private static final String GCM_REGISTRATION_ID_VERSION_PREF = "pref_gcm_registration_id_version";
   private static final String WEBSOCKET_REGISTERED_PREF        = "pref_websocket_registered";
@@ -103,6 +105,14 @@ public class TextSecurePreferences {
 
   public static boolean isTurnOnly(Context context) {
     return getBooleanPreference(context, ALWAYS_RELAY_CALLS_PREF, false);
+  }
+
+  public static boolean isGcmDisabled(Context context) {
+    return getBooleanPreference(context, GCM_DISABLED_PREF, false);
+  }
+
+  public static void setGcmDisabled(Context context, boolean disabled) {
+    setBooleanPreference(context, GCM_DISABLED_PREF, disabled);
   }
 
   public static boolean isWebrtcCallingEnabled(Context context) {
@@ -479,6 +489,14 @@ public class TextSecurePreferences {
 
   public static void setPromptedDefaultSmsProvider(Context context, boolean value) {
     setBooleanPreference(context, PROMPTED_DEFAULT_SMS_PREF, value);
+  }
+
+  public static void setPromptedOptimizeDoze(Context context, boolean value) {
+    setBooleanPreference(context, PROMPTED_OPTIMIZE_DOZE_PREF, value);
+  }
+
+  public static boolean hasPromptedOptimizeDoze(Context context) {
+    return getBooleanPreference(context, PROMPTED_OPTIMIZE_DOZE_PREF, false);
   }
 
   public static boolean hasPromptedShare(Context context) {

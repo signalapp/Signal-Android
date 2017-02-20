@@ -54,6 +54,7 @@ import android.view.ViewGroup;
 import org.thoughtcrime.securesms.ConversationListAdapter.ItemClickListener;
 import org.thoughtcrime.securesms.components.recyclerview.DeleteItemAnimator;
 import org.thoughtcrime.securesms.components.reminder.DefaultSmsReminder;
+import org.thoughtcrime.securesms.components.reminder.DozeReminder;
 import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder;
 import org.thoughtcrime.securesms.components.reminder.OutdatedBuildReminder;
 import org.thoughtcrime.securesms.components.reminder.PushRegistrationReminder;
@@ -184,6 +185,8 @@ public class ConversationListFragment extends Fragment
           return Optional.of((new PushRegistrationReminder(context, masterSecret)));
         } else if (ShareReminder.isEligible(context)) {
           return Optional.of(new ShareReminder(context));
+        } else if (DozeReminder.isEligible(context)) {
+          return Optional.of(new DozeReminder(context));
         } else {
           return Optional.absent();
         }

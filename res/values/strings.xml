@@ -370,6 +370,10 @@
     <string name="MessageDetailsRecipient_failed_to_send">Failed to send</string>
     <string name="MessageDetailsRecipient_new_safety_number">New safety number</string>
 
+    <!-- MessageRetrievalService -->
+    <string name="MessageRetrievalService_signal">Signal</string>
+    <string name="MessageRetrievalService_background_connection_enabled">Background connection enabled</string>
+
     <!-- MmsDownloader -->
     <string name="MmsDownloader_error_storing_mms">Error storing MMS!</string>
     <string name="MmsDownloader_error_connecting_to_mms_provider">Error connecting to MMS provider</string>
@@ -501,17 +505,16 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">The number you
         specified (%s) is invalid.
     </string>
-    <string name="RegistrationActivity_unsupported">Unsupported</string>
-    <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Sorry,
-        this device is not supported for data messaging. Devices running versions of Android older
-        than 4.0 must have a registered Google Account. Devices running Android 4.0 or newer do not
-        require a Google account, but must have the Play Store app installed.
-    </string>
     <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
         Double-check that this is your number! We\'re about to verify it with an SMS.
     </string>
     <string name="RegistrationActivity_continue">Continue</string>
     <string name="RegistrationActivity_edit">Edit</string>
+    <string name="RegistrationActivity_missing_google_play_services">Missing Google Play Services</string>
+    <string name="RegistrationActivity_this_device_is_missing_google_play_services">This device is missing Google Play Services. You can still use Signal, but this configuration may result in reduced reliability or performance.\n\nIf you are not an advanced user, are not running an aftermarket Android ROM, or believe that you are seeing this in error, please contact support@whispersystems.org for help trouble shooting.</string>
+    <string name="RegistrationActivity_i_understand">I understand</string>
+    <string name="RegistrationActivity_play_services_error">Play Services Error</string>
+    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services is updating or temporarily unavailable. Please try again.</string>
 
     <!-- RegistrationProblemsActivity -->
     <string name="RegistrationProblemsActivity_possible_problems">Possible problems</string>

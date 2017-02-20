@@ -58,9 +58,11 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.service.MessageRetrievalService;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.webrtc.CallNotificationManager;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 
 import java.util.HashSet;
@@ -155,7 +157,12 @@ public class MessageNotifier {
         for (StatusBarNotification notification : activeNotifications) {
           boolean validNotification = false;
 
-          if (notification.getId() != SUMMARY_NOTIFICATION_ID && notification.getId() != NotificationBarManager.RED_PHONE_NOTIFICATION) {
+          if (notification.getId() != SUMMARY_NOTIFICATION_ID &&
+              notification.getId() != NotificationBarManager.RED_PHONE_NOTIFICATION &&
+              notification.getId() != CallNotificationManager.WEBRTC_NOTIFICATION   &&
+              notification.getId() != KeyCachingService.SERVICE_RUNNING_ID          &&
+              notification.getId() != MessageRetrievalService.FOREGROUND_ID)
+          {
             for (NotificationItem item : notificationState.getNotifications()) {
               if (notification.getId() == (SUMMARY_NOTIFICATION_ID + item.getThreadId())) {
                 validNotification = true;

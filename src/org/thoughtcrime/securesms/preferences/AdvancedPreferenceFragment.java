@@ -99,7 +99,9 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
   }
 
   private void initializeWebrtcCallingToggle() {
-    if (Build.VERSION.SDK_INT >= 11) {
+    if (TextSecurePreferences.isGcmDisabled(getContext())) {
+      getPreferenceScreen().removePreference(findPreference(TextSecurePreferences.WEBRTC_CALLING_PREF));
+    } else if (Build.VERSION.SDK_INT >= 11) {
       this.findPreference(TextSecurePreferences.WEBRTC_CALLING_PREF)
           .setOnPreferenceChangeListener(new WebRtcClickListener());
     } else {
