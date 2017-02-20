@@ -61,11 +61,12 @@ class RecipientProvider {
     PhoneLookup.DISPLAY_NAME,
     PhoneLookup.LOOKUP_KEY,
     PhoneLookup._ID,
-    PhoneLookup.NUMBER
+    PhoneLookup.NUMBER,
+    PhoneLookup.LABEL
   };
 
   private static final Map<String, RecipientDetails> STATIC_DETAILS = new HashMap<String, RecipientDetails>() {{
-    put("262966", new RecipientDetails("Amazon", "262966", null,
+    put("262966", new RecipientDetails("Amazon", "262966", null, null,
                                        ContactPhotoFactory.getResourceContactPhoto(R.drawable.ic_amazon),
                                        ContactColors.UNKNOWN_COLOR));
   }};
@@ -150,7 +151,7 @@ class RecipientProvider {
                                                                           Uri.withAppendedPath(Contacts.CONTENT_URI, cursor.getLong(2) + ""),
                                                                           name);
 
-          return new RecipientDetails(cursor.getString(0), resultNumber, contactUri, contactPhoto, color);
+          return new RecipientDetails(cursor.getString(0), resultNumber, cursor.getString(4), contactUri, contactPhoto, color);
         } else {
           Log.w(TAG, "resultNumber is null");
         }
@@ -161,7 +162,7 @@ class RecipientProvider {
     }
 
     if (STATIC_DETAILS.containsKey(number)) return STATIC_DETAILS.get(number);
-    else                                    return new RecipientDetails(null, number, null, ContactPhotoFactory.getDefaultContactPhoto(null), color);
+    else                                    return new RecipientDetails(null, number, null, null, ContactPhotoFactory.getDefaultContactPhoto(null), color);
   }
 
   private @NonNull RecipientDetails getGroupRecipientDetails(Context context, String groupId) {
@@ -177,13 +178,13 @@ class RecipientProvider {
           title = context.getString(R.string.RecipientProvider_unnamed_group);;
         }
 
-        return new RecipientDetails(title, groupId, null, contactPhoto, null);
+        return new RecipientDetails(title, groupId, null, null, contactPhoto, null);
       }
 
-      return new RecipientDetails(context.getString(R.string.RecipientProvider_unnamed_group), groupId, null, ContactPhotoFactory.getDefaultGroupPhoto(), null);
+      return new RecipientDetails(context.getString(R.string.RecipientProvider_unnamed_group), groupId, null, null, ContactPhotoFactory.getDefaultGroupPhoto(), null);
     } catch (IOException e) {
       Log.w("RecipientProvider", e);
-      return new RecipientDetails(context.getString(R.string.RecipientProvider_unnamed_group), groupId, null, ContactPhotoFactory.getDefaultGroupPhoto(), null);
+      return new RecipientDetails(context.getString(R.string.RecipientProvider_unnamed_group), groupId, null, null, ContactPhotoFactory.getDefaultGroupPhoto(), null);
     }
   }
 
@@ -209,19 +210,21 @@ class RecipientProvider {
   public static class RecipientDetails {
     @Nullable public final String        name;
     @NonNull  public final String        number;
+    @Nullable public final String        customLabel;
     @NonNull  public final ContactPhoto  avatar;
     @Nullable public final Uri           contactUri;
     @Nullable public final MaterialColor color;
 
     public RecipientDetails(@Nullable String name, @NonNull String number,
-                            @Nullable Uri contactUri, @NonNull ContactPhoto avatar,
-                            @Nullable MaterialColor color)
+                            @Nullable String customLabel, @Nullable Uri contactUri,
+                            @NonNull ContactPhoto avatar, @Nullable MaterialColor color)
     {
-      this.name       = name;
-      this.number     = number;
-      this.avatar     = avatar;
-      this.contactUri = contactUri;
-      this.color      = color;
+      this.name         = name;
+      this.customLabel  = customLabel;
+      this.number       = number;
+      this.avatar       = avatar;
+      this.contactUri   = contactUri;
+      this.color        = color;
     }
   }
 
