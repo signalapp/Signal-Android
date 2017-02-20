@@ -37,9 +37,9 @@
                 android:visibility="gone"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
-                app:widgetBackground="@color/white"
+                app:widgetBackground="?conversation_item_bubble_background"
                 app:foregroundTintColor="@color/grey_500"
-                app:backgroundTintColor="@color/white"/>
+                app:backgroundTintColor="?conversation_item_bubble_background"/>
 
     </org.thoughtcrime.securesms.components.RemovableEditableMediaView>
 
