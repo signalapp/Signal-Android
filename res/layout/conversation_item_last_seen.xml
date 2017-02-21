@@ -3,8 +3,8 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
-             android:paddingTop="10dp"
-             android:paddingBottom="10dp"
+             android:paddingTop="5dp"
+             android:paddingBottom="5dp"
              android:layout_marginBottom="5dp"
              android:background="?conversation_item_last_seen_background">
 
@@ -12,12 +12,9 @@
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_gravity="center"
-                  android:paddingLeft="6dp"
-                  android:paddingRight="6dp"
-                  android:paddingTop="3dp"
-                  android:paddingBottom="3dp"
                   android:textSize="12sp"
-                  android:padding="12dp"
+                  android:textAllCaps="true"
+                  android:textStyle="bold"
                   android:background="@drawable/last_seen_divider_text_background"
                   tools:text="3 unread messages" />
 </FrameLayout>

@@ -3,5 +3,5 @@
     <solid android:color="?conversation_item_last_seen_text_background"/>
 
     <corners android:radius="65dp"/>
-    <padding android:bottom="15dp" android:left="15dp" android:right="15dp" android:top="15dp"/>
+    <padding android:bottom="10dp" android:left="15dp" android:right="15dp" android:top="10dp"/>
 </shape>
