@@ -6,7 +6,7 @@
              android:paddingTop="10dp"
              android:paddingBottom="10dp"
              android:layout_marginBottom="5dp"
-             android:background="@drawable/last_seen_background">
+             android:background="?conversation_item_last_seen_background">
 
         <TextView android:id="@+id/text"
                   android:layout_width="wrap_content"
