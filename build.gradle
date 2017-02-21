@@ -155,7 +155,12 @@ android {
         targetCompatibility JavaVersion.VERSION_1_7
     }
     signingConfigs {
-        release
+        release {
+            keyAlias System.env['KEY_ALIAS'] ? System.env['KEY_ALIAS'] : 'debug'
+            keyPassword System.env['KEY_PASS'] ? System.env['KEY_PASS'] : 'password'
+            storeFile file(System.env['KEY_FILE'] ? System.env['KEY_FILE'] : 'debug.keystore')
+            storePassword System.env['STORE_PASS'] ? System.env['STORE_PASS'] : 'password'
+        }
     }
 
     buildTypes {
