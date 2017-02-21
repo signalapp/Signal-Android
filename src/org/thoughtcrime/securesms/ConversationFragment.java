@@ -101,6 +101,13 @@ public class ConversationFragment extends Fragment
   private View                        scrollToBottomButton;
   private TextView                    scrollDateHeader;
 
+  public void setTextSize(float size) {
+    if (list == null) return;
+    ConversationAdapter a = (ConversationAdapter) list.getAdapter();
+    if (a == null) return;
+    a.setTextSize(size);
+  }
+
   @Override
   public void onCreate(Bundle icicle) {
     super.onCreate(icicle);

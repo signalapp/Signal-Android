@@ -103,6 +103,17 @@ public class TextSecurePreferences {
   public  static final String DIRECT_CAPTURE_CAMERA_ID         = "pref_direct_capture_camera_id";
   private static final String ALWAYS_RELAY_CALLS_PREF          = "pref_turn_only";
 
+  private static final String CONVERSATION_TEXT_SIZE_PREF      = "pref_conversation_text_size";
+
+  public static float getConversationTextSize(Context context) {
+    // Default value stolen from conversation_item_body_text_size in res/values/dimens.xml
+    return getFloatPreference(context, CONVERSATION_TEXT_SIZE_PREF, 16.0f);
+  }
+
+  public static void setConversationTextSize(Context context, float size) {
+    setFloatPreference(context, CONVERSATION_TEXT_SIZE_PREF, size);
+  }
+
   public static boolean isTurnOnly(Context context) {
     return getBooleanPreference(context, ALWAYS_RELAY_CALLS_PREF, false);
   }
@@ -607,6 +618,14 @@ public class TextSecurePreferences {
 
   private static void setLongPreference(Context context, String key, long value) {
     PreferenceManager.getDefaultSharedPreferences(context).edit().putLong(key, value).apply();
+  }
+
+  private static float getFloatPreference(Context context, String key, float defaultValue) {
+    return PreferenceManager.getDefaultSharedPreferences(context).getFloat(key, defaultValue);
+  }
+
+  private static void setFloatPreference(Context context, String key, float value) {
+    PreferenceManager.getDefaultSharedPreferences(context).edit().putFloat(key, value).apply();
   }
 
   private static Set<String> getStringSetPreference(Context context, String key, Set<String> defaultValues) {
