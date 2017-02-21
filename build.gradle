@@ -154,6 +154,11 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
     signingConfigs {
         release {
             keyAlias System.env['KEY_ALIAS'] ? System.env['KEY_ALIAS'] : 'debug'
