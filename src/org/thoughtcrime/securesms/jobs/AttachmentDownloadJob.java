@@ -5,6 +5,7 @@ import android.support.annotation.VisibleForTesting;
 import android.text.TextUtils;
 import android.util.Log;
 
+import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.crypto.AsymmetricMasterSecret;
@@ -33,7 +34,6 @@ import java.io.InputStream;
 
 import javax.inject.Inject;
 
-import de.greenrobot.event.EventBus;
 import ws.com.google.android.mms.MmsException;
 
 public class AttachmentDownloadJob extends MasterSecretJob implements InjectableType {

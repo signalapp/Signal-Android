@@ -73,6 +73,7 @@ public class ConversationListItem extends RelativeLayout
   private TextView           archivedView;
   private DeliveryStatusView deliveryStatusIndicator;
   private AlertView          alertView;
+  private long               lastSeen;
 
   private boolean         read;
   private AvatarImageView contactPhotoImage;
@@ -119,6 +120,7 @@ public class ConversationListItem extends RelativeLayout
     this.threadId         = thread.getThreadId();
     this.read             = thread.isRead();
     this.distributionType = thread.getDistributionType();
+    this.lastSeen         = thread.getLastSeen();
 
     this.recipients.addListener(this);
     this.fromView.setText(recipients, read);
@@ -169,6 +171,10 @@ public class ConversationListItem extends RelativeLayout
 
   public int getDistributionType() {
     return distributionType;
+  }
+
+  public long getLastSeen() {
+    return lastSeen;
   }
 
   private void setThumbnailSnippet(MasterSecret masterSecret, ThreadRecord thread) {

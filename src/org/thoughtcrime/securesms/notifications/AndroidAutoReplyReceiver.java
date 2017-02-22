@@ -91,6 +91,8 @@ public class AndroidAutoReplyReceiver extends MasterSecretBroadcastReceiver {
           }
 
           List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(replyThreadId);
+          DatabaseFactory.getThreadDatabase(context).setLastSeen(replyThreadId);
+
           MessageNotifier.updateNotification(context, masterSecret);
           MarkReadReceiver.process(context, messageIds);
 

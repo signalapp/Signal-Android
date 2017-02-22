@@ -74,7 +74,8 @@ public class DatabaseFactory {
   private static final int INTRODUCED_SUBSCRIPTION_ID_VERSION              = 27;
   private static final int INTRODUCED_VERIFIED_ID_VERSION                  = 28;
   private static final int INTRODUCED_EXPIRE_MESSAGES_VERSION              = 29;
-  private static final int DATABASE_VERSION                                = 29;
+  private static final int INTRODUCED_LAST_SEEN                            = 30;
+  private static final int DATABASE_VERSION                                = 30;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -87,7 +88,7 @@ public class DatabaseFactory {
   private final EncryptingSmsDatabase encryptingSms;
   private final MmsDatabase mms;
   private final AttachmentDatabase attachments;
-  private final ImageDatabase image;
+  private final MediaDatabase media;
   private final ThreadDatabase thread;
   private final CanonicalAddressDatabase address;
   private final MmsAddressDatabase mmsAddress;
@@ -136,8 +137,8 @@ public class DatabaseFactory {
     return getInstance(context).attachments;
   }
 
-  public static ImageDatabase getImageDatabase(Context context) {
-    return getInstance(context).image;
+  public static MediaDatabase getMediaDatabase(Context context) {
+    return getInstance(context).media;
   }
 
   public static MmsAddressDatabase getMmsAddressDatabase(Context context) {
@@ -174,7 +175,7 @@ public class DatabaseFactory {
     this.encryptingSms               = new EncryptingSmsDatabase(context, databaseHelper);
     this.mms                         = new MmsDatabase(context, databaseHelper);
     this.attachments                 = new AttachmentDatabase(context, databaseHelper);
-    this.image                       = new ImageDatabase(context, databaseHelper);
+    this.media                       = new MediaDatabase(context, databaseHelper);
     this.thread                      = new ThreadDatabase(context, databaseHelper);
     this.address                     = CanonicalAddressDatabase.getInstance(context);
     this.mmsAddress                  = new MmsAddressDatabase(context, databaseHelper);
@@ -833,6 +834,10 @@ public class DatabaseFactory {
         db.execSQL("ALTER TABLE sms ADD COLUMN expire_started INTEGER DEFAULT 0");
         db.execSQL("ALTER TABLE mms ADD COLUMN expire_started INTEGER DEFAULT 0");
         db.execSQL("ALTER TABLE thread ADD COLUMN expires_in INTEGER DEFAULT 0");
+      }
+
+      if (oldVersion < INTRODUCED_LAST_SEEN) {
+        db.execSQL("ALTER TABLE thread ADD COLUMN last_seen INTEGER DEFAULT 0");
       }
 
       db.setTransactionSuccessful();

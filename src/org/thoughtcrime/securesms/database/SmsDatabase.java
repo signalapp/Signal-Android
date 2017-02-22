@@ -567,6 +567,10 @@ public class SmsDatabase extends MessagingDatabase {
         DatabaseFactory.getThreadDatabase(context).update(threadId, true);
       }
 
+      if (message.getSubscriptionId() != -1) {
+        DatabaseFactory.getRecipientPreferenceDatabase(context).setDefaultSubscriptionId(recipients, message.getSubscriptionId());
+      }
+
       notifyConversationListeners(threadId);
       jobManager.add(new TrimThreadJob(context, threadId));
 

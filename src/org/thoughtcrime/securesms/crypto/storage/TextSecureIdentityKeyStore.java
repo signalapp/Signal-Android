@@ -4,6 +4,7 @@ import android.content.Context;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+import org.thoughtcrime.securesms.crypto.SessionUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.jobs.IdentityUpdateJob;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -47,6 +48,7 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
       return true;
     } else if (!TextSecurePreferences.isBlockingIdentityUpdates(context)) {
       saveIdentity(address, identityKey);
+      new TextSecureSessionStore(context).deleteAllSessions(address.getName());
 
       ApplicationContext.getInstance(context)
                         .getJobManager()

@@ -66,6 +66,9 @@ import android.widget.Toast;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.protobuf.ByteString;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.thoughtcrime.redphone.RedPhone;
 import org.thoughtcrime.redphone.RedPhoneService;
 import org.thoughtcrime.securesms.TransportOptions.OnTransportChangedListener;
@@ -97,6 +100,7 @@ import org.thoughtcrime.securesms.database.DraftDatabase.Drafts;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MmsSmsColumns.Types;
+import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientPreferenceEvent;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
@@ -183,6 +187,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   public static final String TEXT_EXTRA              = "draft_text";
   public static final String DISTRIBUTION_TYPE_EXTRA = "distribution_type";
   public static final String TIMING_EXTRA            = "timing";
+  public static final String LAST_SEEN_EXTRA         = "last_seen";
 
   private static final int PICK_IMAGE        = 1;
   private static final int PICK_VIDEO        = 2;
@@ -291,6 +296,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override
+  protected void onStart() {
+    super.onStart();
+    EventBus.getDefault().register(this);
+  }
+
+  @Override
   protected void onResume() {
     super.onResume();
     dynamicTheme.onResume(this);
@@ -320,7 +331,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     quickAttachmentDrawer.onPause();
     inputPanel.onPause();
 
+    fragment.setLastSeen(System.currentTimeMillis());
+    markLastSeen();
     AudioSlidePlayer.stopAll();
+    EventBus.getDefault().unregister(this);
+  }
+
+  @Override
+  protected void onStop() {
+    super.onStop();
+    EventBus.getDefault().unregister(this);
   }
 
   @Override
@@ -540,8 +560,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             OutgoingExpirationUpdateMessage outgoingMessage = new OutgoingExpirationUpdateMessage(getRecipients(), System.currentTimeMillis(), expirationTime * 1000);
             MessageSender.send(ConversationActivity.this, masterSecret, outgoingMessage, threadId, false);
 
-            invalidateOptionsMenu();
             return null;
+          }
+
+          @Override
+          protected void onPostExecute(Void result) {
+            invalidateOptionsMenu();
+            if (fragment != null) fragment.setLastSeen(0);
           }
         }.execute();
       }
@@ -1159,6 +1184,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     });
   }
 
+  @Subscribe(threadMode = ThreadMode.MAIN)
+  public void onRecipientPreferenceUpdate(final RecipientPreferenceEvent event) {
+    if (event.getRecipients().getSortedIdsString().equals(this.recipients.getSortedIdsString())) {
+      new RecipientPreferencesTask().execute(this.recipients);
+    }
+  }
+
   private void initializeReceivers() {
     securityUpdateReceiver = new BroadcastReceiver() {
       @Override
@@ -1405,6 +1437,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }.execute(threadId);
   }
 
+  private void markLastSeen() {
+    new AsyncTask<Long, Void, Void>() {
+      @Override
+      protected Void doInBackground(Long... params) {
+        DatabaseFactory.getThreadDatabase(ConversationActivity.this).setLastSeen(params[0]);
+        return null;
+      }
+    }.execute(threadId);
+  }
+
   protected void sendComplete(long threadId) {
     boolean refreshFragment = (threadId != this.threadId);
     this.threadId = threadId;
@@ -1412,6 +1454,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (fragment == null || !fragment.isVisible() || isFinishing()) {
       return;
     }
+
+    fragment.setLastSeen(0);
 
     if (refreshFragment) {
       fragment.reload(recipients, threadId);

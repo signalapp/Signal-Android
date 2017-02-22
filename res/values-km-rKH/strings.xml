@@ -127,6 +127,10 @@
   <string name="ConversationActivity_unable_to_record_audio">មិនអាចថតសំឡេងបាន!</string>
   <string name="ConversationActivity_error_sending_voice_message">បញ្ហាបញ្ជូនសារសំឡេង</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">មិនមានកម្មវិធីដើម្បីបើកតំណនេះ នៅលើឧបករណ៍របស់អ្នកទេ។</string>
+  <!--ConversationAdapter-->
+  <plurals name="ConversationAdapter_n_unread_messages">
+    <item quantity="other">%d សារមិនទាន់អាន</item>
+  </plurals>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">សារលម្អិត</string>
   <string name="ConversationFragment_transport_s_sent_received_s">បញ្ជូន៖ %1$s\nបានផ្ញើ/ទទួល៖ %2$s</string>
@@ -206,6 +210,7 @@
   <string name="DeviceListItem_linked_s">បានភ្ជាប់ %s</string>
   <string name="DeviceListItem_last_active_s">សកម្មក្រោយគេ​ %s</string>
   <string name="DeviceListItem_today">ថ្ងៃនេះ</string>
+  <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">ចែកទៅកាន់</string>
   <!--ExperienceUpgradeActivity-->
@@ -234,7 +239,7 @@
   <string name="GiphyFragmentPagerAdapter_stickers">ស្ទីកគ័រ</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">ក្រុមថ្មី</string>
-  <string name="GroupCreateActivity_actionbar_update_title">ក្រុមកែថ្មី</string>
+  <string name="GroupCreateActivity_actionbar_edit_title">កែប្រែក្រុម</string>
   <string name="GroupCreateActivity_group_name_hint">ឈ្មោះក្រុម</string>
   <string name="GroupCreateActivity_actionbar_mms_title">ក្រុមMMSថ្មី</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">អ្នកបានជ្រើសរើសលេខទំនាក់ទំនង១ ដែលមិនស្គាល់ក្រុមស៊ីកណល។ ដូចនេះ ក្រុមនេះនឹងទៅជា MMS។</string>
@@ -243,7 +248,7 @@
   <string name="GroupCreateActivity_contacts_no_members">អ្នកត្រូវមានសមាជិកយ៉ាងហោច១នាក់ នៅក្នុងក្រុម!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">សមាជិក១ក្នុងក្រុមរបស់អ្នក មានលេខទំនាក់ទំនងមិនត្រឹមត្រូវ។ សូមកែ ឬលុប លេខទំនាក់ទំនងនោះ និងព្យាយាមម្តងទៀត។</string>
   <string name="GroupCreateActivity_avatar_content_description">រូបតំណាងក្រុម</string>
-  <string name="GroupCreateActivity_menu_create_title">បង្កើតក្រុម</string>
+  <string name="GroupCreateActivity_menu_apply_button">អនុវត្ត</string>
   <string name="GroupCreateActivity_creating_group">កំពុងបង្កើត %1$s…</string>
   <string name="GroupCreateActivity_updating_group">កំពុងធ្វើបច្ចុប្បន្នភាព %1$s...</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">មិនអាចថែម %1$s ព្រោះពួកគេមិនប្រើប្រាស់ស៊ីកណល។</string>
@@ -305,6 +310,8 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">ផ្ញើបរាជ័យ</string>
   <string name="MessageDetailsRecipient_new_safety_number">លេខសុវត្ថិភាពថ្មី</string>
+  <!--MessageRetrievalService-->
+  <string name="MessageRetrievalService_signal">ស៊ីកណល</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">បញ្ហារក្សាទុក MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">បញ្ហាតភ្ជាប់ទៅកាន់ក្រុមហ៊ុន MMS</string>
@@ -418,11 +425,6 @@
   <string name="RegistrationActivity_invalid_number">លេខទូរស័ព្ទមិនត្រឹមត្រូវ</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">លេខរបស់អ្នក
 ដែលបានបញ្ជាក់(%s) មិនត្រឹមត្រូវ</string>
-  <string name="RegistrationActivity_unsupported">មិនគាំទ្រ</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">សុំទោស
-ឧបករណ៍នេះមិនអាចផ្ញើសារជាទិន្នន័យបាន។ ឧបករណ៍ដែលដំណើរការ Android ចាប់ពីជំនាន់ 4.0 
-ចុះក្រោម ត្រូវចុះឈ្មោះ គណនី Google។ ឧបករណ៍ដែលដំណើរការ Android ចាប់ពីជំនាន់ 4.0 
-ឬខ្ពស់ជាងនេះ មិនត្រូវការ គណនី Google ទេ ប៉ុន្តែត្រូវមានកម្មវិធីPlay Store បញ្ចូលហើយ។ </string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
 សូមត្រួតពិនិត្យលេខទូរស័ព្ទនេះម្តងទៀត! យើងនឹងផ្ទៀងផ្ទាត់វាជាមួយសារ SMS ឆាប់ៗនេះ។</string>
   <string name="RegistrationActivity_continue">បន្ត</string>
@@ -521,6 +523,11 @@
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">ប៉ះ ដើម្បីបើក ឬ ប៉ះសោច ដើម្បីបិទ។</string>
   <string name="KeyCachingService_passphrase_cached">ស៊ីកណល ដោះសោរ</string>
   <string name="KeyCachingService_lock">ចាក់សោរជាមួយឃ្លាសម្ងាត់</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">អ្នក</string>
+  <string name="MediaPreviewActivity_cant_display">មិនអាចបង្ហាញរូបភាពនេះ</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">ប្រភេទឯកសារមិនគាំទ្រ</string>
+  <string name="MediaPreviewActivity_draft">ព្រាង</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d សារថ្មីក្នុង %2$d សន្ទនា</string>
   <string name="MessageNotifier_most_recent_from_s">សារថ្មីៗពី៖ %1$s</string>
@@ -534,16 +541,24 @@
   <string name="MessageNotifier_mark_read">ដាក់អាន</string>
   <string name="MessageNotifier_media_message">សារមេឌា</string>
   <string name="MessageNotifier_reply">ឆ្លើយតប</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">អ្នកត្រូវកំណត់ MMS លើឧបករណ៍ដោយខ្លួនឯង។</string>
+  <string name="MmsPreferencesFragment__enabled">បានបើក</string>
+  <string name="MmsPreferencesFragment__disabled">បានបិទ</string>
+  <string name="MmsPreferencesFragment__not_set">មិនទាន់កំណត់</string>
+  <string name="MmsPreferencesFragment__invalid_uri">អក្សរដែលវាយបញ្ចូលជាURI មិនត្រឹមត្រូវ</string>
+  <string name="MmsPreferencesFragment__invalid_host">អក្សរដែលវាយបញ្ចូលជាhost មិនត្រឹមត្រូវ</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">មិនមានការឆ្លើយតបភ្លាមៗ នៅពេលស៊ីកណលត្រូវបានចាក់សោរ!</string>
   <string name="QuickResponseService_problem_sending_message">សារដែលមានបញ្ហាបញ្ជូន!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">ស៊ីកណល</string>
   <string name="SingleRecipientNotificationBuilder_new_message">សារថ្មី</string>
+  <!--VideoPlayer-->
+  <string name="VideoPlayer_error_playing_video">បញ្ហាចាក់មើលវីដេអូ</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">លេខសុវត្ថិភាពក្នុងការសន្ទនារបស់អ្នកជាមួយ %1$s បានផ្លាស់ប្តូរ។ អាចមានន័យថា មានអ្នកផ្សេងព្យាយាមជ្រាតចូលការទំនាក់ទំនង ឬយកល្អ %2$s ដំឡើងស៊ីកណលឡើងវិញ។</string>
-  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">អ្នកប្រហែលចង់ផ្ទៀងផ្ទាត់
-លេខសុវត្ថិភាពសម្រាប់លេខទំនាក់ទំនងនេះ។</string>
+  <string name="WebRtcCallScreen_new_safety_numbers">លេខសុវត្ថិភាពសម្រាប់ការសន្ទនារបស់អ្នកជាមួយ %1$s បានផ្លាស់ប្តូរ។ អាចមានន័យថា មានអ្នកផ្សេងព្យាយាមជ្រាតចូលការទំនាក់ទំនង ឬយកល្អ %2$s ដំឡើងស៊ីកណលឡើងវិញ។</string>
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">អ្នកប្រហែល ចង់ផ្ទៀងផ្ទាត់លេខសុវត្ថិភាពរបស់អ្នក ជាមួយលេខទំនាក់ទំនងនេះ។</string>
   <string name="WebRtcCallScreen_new_safety_numbers_title">លេខសុវត្ថិភាពថ្មី</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">ចុច ដើម្បីបើកវីដេអូរបស់អ្នក</string>
@@ -685,17 +700,10 @@
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">មើលសារសន្ទនាទាំងស្រុង</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_images">គ្មានរូបភាព</string>
+  <string name="media_overview_activity__no_media">គ្មានមេឌា</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">ផ្ទៀងផ្ទាត់</string>
   <string name="message_recipients_list_item__resend">ផ្ញើសារឡើងវិញ</string>
-  <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">អ្នកត្រូវកំណត់ MMS លើឧបករណ៍ដោយខ្លួនឯង។</string>
-  <string name="MmsPreferencesFragment__enabled">បានបើក</string>
-  <string name="MmsPreferencesFragment__disabled">បានបិទ</string>
-  <string name="MmsPreferencesFragment__not_set">មិនទាន់កំណត់</string>
-  <string name="MmsPreferencesFragment__invalid_uri">អក្សរដែលវាយបញ្ចូលជាURI មិនត្រឹមត្រូវ</string>
-  <string name="MmsPreferencesFragment__invalid_host">អក្សរដែលវាយបញ្ចូលជាhost មិនត្រឹមត្រូវ</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">%1$s ចូលក្រុម។</item>
@@ -789,7 +797,7 @@
   <string name="recipients_panel__to"><small>បញ្ចូលឈ្មោះ និងលេខទូរស័ព្ទ</small></string>
   <string name="recipients_panel__add_members">ថែមសមាជិក</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[បើអ្នកចង់ផ្ទៀងផ្ទាត់សុវត្ថិភាពការអ៊ិនគ្រីបទាំងសងខាងជាមួយ %s សូមប្រៀបធៀបលេខខាងលើ ជាមួយលេខនៅលើឧបករណ៍គេ។​ ក្រៅពីនេះ អ្នកអាចស្កេនកូដនៅលើឧបករណ៍គេ ឬសុំអោយគេស្កេនកូដរបស់អ្នកក៏បាន។ <a href=\"https://whispersystems.org/redirect/safety-numbers\">យល់ដឹងបន្ថែមពីការផ្ទៀងផ្ទាត់លេខសុវត្ថិភាព</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[បើអ្នកចង់ផ្ទៀងផ្ទាត់សុវត្ថិភាពការអ៊ិនគ្រីបទាំងសងខាងជាមួយ %s សូមប្រៀបធៀបលេខខាងលើ ជាមួយលេខនៅលើឧបករណ៍គេ។​ ក្រៅពីនេះ អ្នកអាចស្កេនកូដនៅលើឧបករណ៍គេ ឬសុំអោយគេស្កេនកូដរបស់អ្នកក៏បាន។ <a href="https://whispersystems.org/redirect/safety-numbers">យល់ដឹងបន្ថែមពីការផ្ទៀងផ្ទាត់លេខសុវត្ថិភាព</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">ចុច ដើម្បីស្កេន</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">ចែករំលែកលេខសុវត្ថិភាព</string>
@@ -811,8 +819,8 @@
   <string name="AndroidManifest__verify_safety_number">ផ្ទៀងផ្ទាត់លេខសុវត្ថិភាព</string>
   <string name="AndroidManifest__log_submit">បញ្ជូនកំណត់ហេតុកំហុស</string>
   <string name="AndroidManifest__media_preview">ការបង្ហាញមេឌា</string>
-  <string name="AndroidManifest__media_overview">រូបភាពទាំងអស់</string>
-  <string name="AndroidManifest__media_overview_named">រូបភាពទាំងអស់ជាមួយ %1$s</string>
+  <string name="AndroidManifest__all_media">មេឌាទាំងអស់</string>
+  <string name="AndroidManifest__all_media_named">មេឌាទាំងអស់ជាមួយ %1$s</string>
   <string name="AndroidManifest__message_details">សារលម្អិត</string>
   <string name="AndroidManifest__linked_devices">ភ្ជាប់ឧបករណ៍</string>
   <string name="AndroidManifest__invite_friends">អញ្ជើញមិត្តភក្តិ</string>
@@ -946,6 +954,8 @@
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">បិទមិនប្រើរូបអារម្មណ៍emoji នៅក្នុងប្រព័ន្ធ</string>
   <string name="preferences_advanced__video_calling_beta">សាកល្បងការហៅវីដេអូ</string>
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">គាំទ្រការហៅវីដេអូនិងសំឡេង សម្រាប់ជំនាន់ក្រោយ នៅពេលត្រូវបានបើកដោយភាគីទាំងពីរ។ នេះជាមុខងារសាកល្បង។</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">បញ្ជូនការហៅទូរស័ព្ទទាំងអស់តាមរយៈម៉ាស៊ីនមេស៊ីកណល ដើម្បីជៀសវាងការបង្ហាញអាសយដ្ឋាន IP របស់អ្នកទៅកាន់លេខទំនាក់ទំនងរបស់អ្នក។ ការអនុញ្ញាតនេះនឹងកាត់បន្ថយគុណភាពការហៅ។</string>
+  <string name="preferences_advanced__always_relay_calls">តែងតែបញ្ជូនការហៅ</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1000,10 +1010,10 @@
   <string name="conversation_unmuted__mute_notifications">បិទសំឡេងសារដំណឹង</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">ភ្ជាប់ឯកសារ?</string>
-  <string name="conversation__menu_update_group">ក្រុមកែថ្មី</string>
+  <string name="conversation__menu_edit_group">កែប្រែក្រុម</string>
   <string name="conversation__menu_leave_group">ចាកចេញពីក្រុម</string>
   <string name="conversation__menu_delete_thread">លុបការសន្ទនា</string>
-  <string name="conversation__menu_view_media">រូបភាពទាំងអស់</string>
+  <string name="conversation__menu_view_all_media">មេឌាទាំងអស់</string>
   <string name="conversation__menu_conversation_settings">ការកំណត់ការសន្ទនា</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">ពង្រីកការផុសឡើង</string>
@@ -1054,18 +1064,14 @@
   <string name="reminder_header_share_text">មិត្តភក្តិប្រើស៊ីកណលកាន់តែច្រើន វាកាន់តែប្រសើរឡើង!</string>
   <string name="reminder_header_share_button">ចែករំលែក</string>
   <string name="reminder_header_close_button">បិទ</string>
-  <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">អ្នក</string>
-  <string name="MediaPreviewActivity_cant_display">មិនអាចបង្ហាញរូបភាពនេះ</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">ប្រភេទឯកសារមិនគាំទ្រ</string>
   <!--media_preview-->
   <string name="media_preview__save_title">រក្សាទុក</string>
   <string name="media_preview__forward_title">បញ្ជូនបន្ត</string>
-  <string name="media_preview__overview_title">រូបភាពទាំងអស់</string>
+  <string name="media_preview__all_media_title">មេឌាទាំងអស់</string>
   <!--media_overview-->
   <string name="media_overview__save_all">រក្សាទុកទាំងអស់</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">បង្ហាញរូបភាព</string>
+  <string name="media_preview_activity__media_content_description">ការបង្ហាញមេឌា</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">បន្សុតថ្មី</string>
   <!--redphone_audio_popup_menu-->

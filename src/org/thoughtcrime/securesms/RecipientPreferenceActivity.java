@@ -21,7 +21,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.preference.PreferenceFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -264,21 +263,21 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
       mutePreference.setChecked(recipients.isMuted());
 
-      if (recipients.getRingtone() != null) {
-        if (recipients.getRingtone().toString().isEmpty()) {
-          ringtonePreference.setSummary(R.string.preferences__silent);
-          ringtonePreference.setCurrentRingtone(null);
-        } else {
-          Ringtone tone = RingtoneManager.getRingtone(getActivity(), recipients.getRingtone());
+      final Uri toneUri = recipients.getRingtone();
 
-          if (tone != null) {
-            ringtonePreference.setSummary(tone.getTitle(getActivity()));
-            ringtonePreference.setCurrentRingtone(recipients.getRingtone());
-          }
-        }
-      } else {
+      if (toneUri == null) {
         ringtonePreference.setSummary(R.string.preferences__default);
         ringtonePreference.setCurrentRingtone(Settings.System.DEFAULT_NOTIFICATION_URI);
+      } else if (toneUri.toString().isEmpty()) {
+        ringtonePreference.setSummary(R.string.preferences__silent);
+        ringtonePreference.setCurrentRingtone(null);
+      } else {
+        Ringtone tone = RingtoneManager.getRingtone(getActivity(), toneUri);
+
+        if (tone != null) {
+          ringtonePreference.setSummary(tone.getTitle(getActivity()));
+          ringtonePreference.setCurrentRingtone(toneUri);
+        }
       }
 
       if (recipients.getVibrate() == VibrateState.DEFAULT) {

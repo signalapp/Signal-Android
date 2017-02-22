@@ -37,6 +37,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
 
+import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.redphone.audio.IncomingRinger;
 import org.thoughtcrime.redphone.audio.OutgoingRinger;
 import org.thoughtcrime.redphone.call.CallManager;
@@ -71,7 +72,6 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.concurrent.ExecutionException;
 
-import de.greenrobot.event.EventBus;
 
 /**
  * The major entry point for all of the heavy lifting associated with
