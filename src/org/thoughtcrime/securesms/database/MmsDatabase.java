@@ -524,6 +524,7 @@ public class MmsDatabase extends MessagingDatabase {
               database.update(TABLE_NAME, values, ID_WHERE, new String[]{String.valueOf(id)});
 
               DatabaseFactory.getThreadDatabase(context).updateReadState(threadId);
+              DatabaseFactory.getThreadDatabase(context).setLastSeen(threadId);
               notifyConversationListeners(threadId);
             }
           } catch (InvalidNumberException e) {

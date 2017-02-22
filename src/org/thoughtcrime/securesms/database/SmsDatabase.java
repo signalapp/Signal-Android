@@ -383,6 +383,7 @@ public class SmsDatabase extends MessagingDatabase {
             database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {cursor.getLong(cursor.getColumnIndexOrThrow(ID)) + ""});
 
             DatabaseFactory.getThreadDatabase(context).updateReadState(threadId);
+            DatabaseFactory.getThreadDatabase(context).setLastSeen(threadId);
             notifyConversationListeners(threadId);
           }
         } catch (InvalidNumberException e) {
