@@ -80,8 +80,7 @@ public class RemoteReplyReceiver extends MasterSecretBroadcastReceiver {
             threadId = MessageSender.send(context, masterSecret, reply, -1, false);
           }
 
-          List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(threadId);
-          DatabaseFactory.getThreadDatabase(context).setLastSeen(threadId);
+          List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(threadId, true);
 
           MessageNotifier.updateNotification(context, masterSecret);
           MarkReadReceiver.process(context, messageIds);

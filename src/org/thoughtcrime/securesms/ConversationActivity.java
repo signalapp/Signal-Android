@@ -1443,7 +1443,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       @Override
       protected Void doInBackground(Long... params) {
         Context                 context    = ConversationActivity.this;
-        List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(params[0]);
+        List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(params[0], false);
 
         MessageNotifier.updateNotification(context, masterSecret);
         MarkReadReceiver.process(context, messageIds);

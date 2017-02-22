@@ -476,7 +476,7 @@ public class ConversationListFragment extends Fragment
             DatabaseFactory.getThreadDatabase(getActivity()).archiveConversation(threadId);
 
             if (!read) {
-              List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(getActivity()).setRead(threadId);
+              List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(getActivity()).setRead(threadId, false);
               MessageNotifier.updateNotification(getActivity(), masterSecret);
               MarkReadReceiver.process(getActivity(), messageIds);
             }

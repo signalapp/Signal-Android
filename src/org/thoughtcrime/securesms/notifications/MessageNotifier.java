@@ -223,7 +223,7 @@ public class MessageNotifier {
                                                .getRecipientsForThreadId(threadId);
 
     if (isVisible) {
-      List<MarkedMessageInfo> messageIds = threads.setRead(threadId);
+      List<MarkedMessageInfo> messageIds = threads.setRead(threadId, false);
       MarkReadReceiver.process(context, messageIds);
     }
 

@@ -373,7 +373,7 @@ public class PushDecryptJob extends ContextJob {
     }
 
     if (threadId != null) {
-      DatabaseFactory.getThreadDatabase(getContext()).setRead(threadId);
+      DatabaseFactory.getThreadDatabase(getContext()).setRead(threadId, true);
       MessageNotifier.updateNotification(getContext(), masterSecret.getMasterSecret().orNull());
     }
 
