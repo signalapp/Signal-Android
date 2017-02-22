@@ -44,7 +44,7 @@ import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.webrtc.CallNotificationManager;
+import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder;
 import org.thoughtcrime.securesms.webrtc.PeerConnectionFactoryOptions;
 import org.thoughtcrime.securesms.webrtc.PeerConnectionWrapper;
 import org.thoughtcrime.securesms.webrtc.PeerConnectionWrapper.PeerConnectionException;
@@ -97,9 +97,9 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 
 
-import static org.thoughtcrime.securesms.webrtc.CallNotificationManager.TYPE_ESTABLISHED;
-import static org.thoughtcrime.securesms.webrtc.CallNotificationManager.TYPE_INCOMING_RINGING;
-import static org.thoughtcrime.securesms.webrtc.CallNotificationManager.TYPE_OUTGOING_RINGING;
+import static org.thoughtcrime.securesms.webrtc.CallNotificationBuilder.TYPE_ESTABLISHED;
+import static org.thoughtcrime.securesms.webrtc.CallNotificationBuilder.TYPE_INCOMING_RINGING;
+import static org.thoughtcrime.securesms.webrtc.CallNotificationBuilder.TYPE_OUTGOING_RINGING;
 
 public class WebRtcCallService extends Service implements InjectableType, PeerConnection.Observer, DataChannel.Observer {
 
@@ -326,7 +326,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
       lockManager.updatePhoneState(LockManager.PhoneState.IN_CALL);
       outgoingRinger.playSonar();
 
-      CallNotificationManager.setCallInProgress(this, TYPE_OUTGOING_RINGING, recipient);
+      setCallInProgressNotification(TYPE_OUTGOING_RINGING, recipient);
       DatabaseFactory.getSmsDatabase(this).insertOutgoingCall(recipient.getNumber());
 
       timeoutExecutor.schedule(new TimeoutRunnable(this.callId), 2, TimeUnit.MINUTES);
@@ -461,7 +461,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
       sendMessage(WebRtcViewModel.State.CALL_INCOMING, recipient, localVideoEnabled, remoteVideoEnabled);
       startCallCardActivity();
       incomingRinger.start();
-      CallNotificationManager.setCallInProgress(this, TYPE_INCOMING_RINGING, recipient);
+      setCallInProgressNotification(TYPE_INCOMING_RINGING, recipient);
     } else if (callState == CallState.STATE_DIALING) {
       if (this.recipient == null) throw new AssertionError("assert");
 
@@ -497,7 +497,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
 
     sendMessage(WebRtcViewModel.State.CALL_CONNECTED, recipient, localVideoEnabled, remoteVideoEnabled);
 
-    CallNotificationManager.setCallInProgress(this, TYPE_ESTABLISHED, recipient);
+    setCallInProgressNotification(TYPE_ESTABLISHED, recipient);
 
     this.peerConnection.setAudioEnabled(audioEnabled);
     this.peerConnection.setVideoEnabled(localVideoEnabled);
@@ -731,6 +731,11 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
     });
   }
 
+  private void setCallInProgressNotification(int type, Recipient recipient) {
+    startForeground(CallNotificationBuilder.WEBRTC_NOTIFICATION,
+                    CallNotificationBuilder.getCallInProgressNotification(this, type, recipient));
+  }
+
   private void shutdownAudio() {
     Log.d(TAG, "reset audio mode and abandon focus");
     AudioUtils.resetConfiguration(this);
@@ -742,7 +747,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
 
   private synchronized void terminate() {
     lockManager.updatePhoneState(LockManager.PhoneState.PROCESSING);
-    CallNotificationManager.setCallEnded(this);
+    stopForeground(true);
 
     incomingRinger.stop();
     outgoingRinger.stop();

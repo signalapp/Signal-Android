@@ -1,7 +1,9 @@
 package org.thoughtcrime.securesms.webrtc;
 
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.DrawableRes;
@@ -22,7 +24,7 @@ import org.thoughtcrime.securesms.util.ServiceUtil;
  *
  */
 
-public class CallNotificationManager {
+public class CallNotificationBuilder {
 
   public static final int WEBRTC_NOTIFICATION   = 313388;
 
@@ -30,14 +32,7 @@ public class CallNotificationManager {
   public static final int TYPE_OUTGOING_RINGING = 2;
   public static final int TYPE_ESTABLISHED      = 3;
 
-  public static void setCallEnded(Context context) {
-    NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
-    notificationManager.cancel(WEBRTC_NOTIFICATION);
-  }
-
-  public static void setCallInProgress(Context context, int type, Recipient recipient) {
-    NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
-
+  public static Notification getCallInProgressNotification(Context context, int type, Recipient recipient) {
     Intent contentIntent = new Intent(context, WebRtcCallActivity.class);
     contentIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
@@ -61,7 +56,7 @@ public class CallNotificationManager {
       builder.addAction(getServiceNotificationAction(context, WebRtcCallService.ACTION_LOCAL_HANGUP, R.drawable.ic_call_end_grey600_32dp, R.string.NotificationBarManager__end_call));
     }
 
-    notificationManager.notify(WEBRTC_NOTIFICATION, builder.build());
+    return builder.build();
   }
 
   private static NotificationCompat.Action getServiceNotificationAction(Context context, String action, int iconResId, int titleResId) {
