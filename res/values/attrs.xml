@@ -73,7 +73,7 @@
     <attr name="conversation_item_sent_indicator_text_background" format="reference" />
     <attr name="conversation_item_header_background" format="reference"/>
     <attr name="conversation_item_last_seen_background" format="reference|color"/>
-    <attr name="conversation_item_last_seen_text_background" format="color"/>
+    <attr name="conversation_item_last_seen_text_background" format="reference"/>
 
     <attr name="dialog_info_icon" format="reference" />
     <attr name="dialog_alert_icon" format="reference" />
