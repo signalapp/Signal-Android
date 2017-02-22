@@ -132,6 +132,7 @@
   <string name="ConversationActivity_unable_to_record_audio">Fejl ved lydoptagelse!</string>
   <string name="ConversationActivity_error_sending_voice_message">Der skete en fejl, da vi sendte voice besked.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Der er ingen app, der kan åbne dette link på dit device.</string>
+  <!--ConversationAdapter-->
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Beskeddetaljer</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Overførsel: %1$s\nSendt/Modtaget: %2$s</string>
@@ -222,6 +223,7 @@
   <string name="DeviceListItem_linked_s">Tilkoblede %s</string>
   <string name="DeviceListItem_last_active_s">Sidste aktive %s</string>
   <string name="DeviceListItem_today">I dag</string>
+  <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Del med</string>
   <!--ExperienceUpgradeActivity-->
@@ -250,7 +252,6 @@
   <string name="GiphyFragmentPagerAdapter_stickers">Klistermærke</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Ny gruppe</string>
-  <string name="GroupCreateActivity_actionbar_update_title">Opdatér gruppe</string>
   <string name="GroupCreateActivity_group_name_hint">Gruppenavn</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Ny MMS-gruppe</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Du har valgt en person der ikke understøtter Signal-grupper. Denne gruppe vil være en MMS-gruppe.</string>
@@ -259,7 +260,6 @@
   <string name="GroupCreateActivity_contacts_no_members">Der skal være mindst én person i gruppen!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">En kontakt i gruppen har et nummer, der ikke kan læses. Ret nummeret eller fjern kontakten og prøv igen.</string>
   <string name="GroupCreateActivity_avatar_content_description">Gruppeikon</string>
-  <string name="GroupCreateActivity_menu_create_title">Opret gruppe</string>
   <string name="GroupCreateActivity_creating_group">Opretter %1$s...</string>
   <string name="GroupCreateActivity_updating_group">Opdaterer %1$s...</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Kunne ikke tilføje, da %1$s ikke er en Signal-bruger.</string>
@@ -320,6 +320,8 @@ vil det resultere i dupletter.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Kunne ikke sende</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nyt sikkerhedsnummer</string>
+  <!--MessageRetrievalService-->
+  <string name="MessageRetrievalService_signal">Signal</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Fejl ved lagring af MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Der skete en fejl, i forsøget på at forbinde til MMS udbyder</string>
@@ -437,12 +439,6 @@ telefonnummer
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Det nummer, du
 indtastede (%s) er ugyldigt.
 </string>
-  <string name="RegistrationActivity_unsupported">Ikke understøttet</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Beklager,
-denne enhed understøtter ikke meddelelser sendt over mobil data. Enheder som kører versioner af Android lavere
-end 4.0 kræver en Google-konto. Enheder, som kører versioner af Android 4.0 eller nyere, kræver
-ikke en Google-konto, men Play Store-appen skal være installeret.
-</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
 Dobbelttjek, at dette er dit nummer! Vi er ved at verificere det med en SMS.
 </string>
@@ -544,6 +540,10 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Tryk for at åbne, eller tryk på låsen for at lukke.</string>
   <string name="KeyCachingService_passphrase_cached">Signal er låst op</string>
   <string name="KeyCachingService_lock">Lås med et kodeord</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">Dig</string>
+  <string name="MediaPreviewActivity_cant_display">Kunne ikke forhåndsvise dette billede</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Ikke-understøttet multimedietype</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nye beskeder i %2$d samtaler</string>
   <string name="MessageNotifier_most_recent_from_s">Seneste fra: %1$s</string>
@@ -557,13 +557,22 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="MessageNotifier_mark_read">Markér som læst</string>
   <string name="MessageNotifier_media_message">Multimediebesked</string>
   <string name="MessageNotifier_reply">Svar</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Din telefon kræver manuel indtastning af MMS-indstillinger.</string>
+  <string name="MmsPreferencesFragment__enabled">Aktiveret</string>
+  <string name="MmsPreferencesFragment__disabled">Deaktiveret</string>
+  <string name="MmsPreferencesFragment__not_set">Ikke indstillet</string>
+  <string name="MmsPreferencesFragment__invalid_uri">Den indtastede tekst er ikke en gyldig URI</string>
+  <string name="MmsPreferencesFragment__invalid_host">Den indtastede tekst er ikke en gyldig værtsmaskine</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Hurtig-svar utilgængelig når Signal er låst!</string>
   <string name="QuickResponseService_problem_sending_message">Problem med at sende besked!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ny besked</string>
+  <!--VideoPlayer-->
   <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Du bør verificere din sikkerhedsnøgle med denne kontakt</string>
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Billede</string>
@@ -708,17 +717,9 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Se fuld samtale</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_images">Ingen billeder</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">VERIFICÉR</string>
   <string name="message_recipients_list_item__resend">SEND IGEN</string>
-  <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Din telefon kræver manuel indtastning af MMS-indstillinger.</string>
-  <string name="MmsPreferencesFragment__enabled">Aktiveret</string>
-  <string name="MmsPreferencesFragment__disabled">Deaktiveret</string>
-  <string name="MmsPreferencesFragment__not_set">Ikke indstillet</string>
-  <string name="MmsPreferencesFragment__invalid_uri">Den indtastede tekst er ikke en gyldig URI</string>
-  <string name="MmsPreferencesFragment__invalid_host">Den indtastede tekst er ikke en gyldig værtsmaskine</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s tilsluttede sig gruppen.</item>
@@ -802,7 +803,7 @@ mislykkedes.</string>
   <string name="recipients_panel__to"><small>Indtast navn eller nummer</small></string>
   <string name="recipients_panel__add_members">Tilføj medlem</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Hvis du gerne vil verificere sikkerheden af din end-to-end kryptering med %s, så skal du sammenligne sikkerhedsnøglen ovenover med sikkerhedsnøglen på din enhed. Alternativ, så kan du skanne koden på hans mobil, og bede ham skanne koden på din mobil. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Lær mere om at verificere sikkerhedsnøgler - på engelsk</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Hvis du gerne vil verificere sikkerheden af din end-to-end kryptering med %s, så skal du sammenligne sikkerhedsnøglen ovenover med sikkerhedsnøglen på din enhed. Alternativ, så kan du skanne koden på hans mobil, og bede ham skanne koden på din mobil. <a href="https://whispersystems.org/redirect/safety-numbers">Lær mere om at verificere sikkerhedsnøgler - på engelsk</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tryk for at skanne</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Del sikkerhedsnøgle</string>
@@ -824,8 +825,6 @@ mislykkedes.</string>
   <string name="AndroidManifest__verify_safety_number">Verificer sikkerhedsnøgle</string>
   <string name="AndroidManifest__log_submit">Indsend fejlfindingslog</string>
   <string name="AndroidManifest__media_preview">Mediepreview</string>
-  <string name="AndroidManifest__media_overview">Alle billeder</string>
-  <string name="AndroidManifest__media_overview_named">Alle billeder med %1$s</string>
   <string name="AndroidManifest__message_details">Besked-detaljer</string>
   <string name="AndroidManifest__linked_devices">Enheder</string>
   <string name="AndroidManifest__invite_friends">Invitér venner</string>
@@ -1012,10 +1011,8 @@ mislykkedes.</string>
   <string name="conversation_unmuted__mute_notifications">Dæmp notifikationer</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Vedhæft fil</string>
-  <string name="conversation__menu_update_group">Opdatér gruppe</string>
   <string name="conversation__menu_leave_group">Forlad gruppe</string>
   <string name="conversation__menu_delete_thread">Slet samtale</string>
-  <string name="conversation__menu_view_media">Alle billeder</string>
   <string name="conversation__menu_conversation_settings">Samtaleindstillinger</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Udvid popup</string>
@@ -1067,18 +1064,13 @@ mislykkedes.</string>
   <string name="reminder_header_share_text">Jo flere venner der bruger Signal, desto bedre bliver den.</string>
   <string name="reminder_header_share_button">DEL</string>
   <string name="reminder_header_close_button">LUK</string>
-  <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">Dig</string>
-  <string name="MediaPreviewActivity_cant_display">Kunne ikke forhåndsvise dette billede</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Ikke-understøttet multimedietype</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Gem</string>
   <string name="media_preview__forward_title">Videresend besked</string>
-  <string name="media_preview__overview_title">Alle billeder</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Gem alle</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">Billedpreview</string>
+  <string name="media_preview_activity__media_content_description">Mediepreview</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Opdater</string>
   <!--redphone_audio_popup_menu-->

@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.StrictMode;
 import android.os.StrictMode.ThreadPolicy;
 import android.os.StrictMode.VmPolicy;
@@ -87,7 +88,9 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     initializePeriodicTasks();
     initializeCircumvention();
 
-    PeerConnectionFactory.initializeAndroidGlobals(this, true, true, true);
+    if (Build.VERSION.SDK_INT >= 11) {
+      PeerConnectionFactory.initializeAndroidGlobals(this, true, true, true);
+    }
   }
 
   @Override

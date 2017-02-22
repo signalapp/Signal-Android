@@ -62,6 +62,7 @@ public class AndroidAutoHeardReceiver extends MasterSecretBroadcastReceiver {
           for (long threadId : threadIds) {
             Log.i(TAG, "Marking meassage as read: " + threadId);
             List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(threadId);
+            DatabaseFactory.getThreadDatabase(context).setLastSeen(threadId);
 
             messageIdsCollection.addAll(messageIds);
           }

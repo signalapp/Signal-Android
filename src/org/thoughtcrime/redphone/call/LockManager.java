@@ -26,12 +26,14 @@ public class LockManager {
 
 
   private int orientation = AccelerometerListener.ORIENTATION_UNKNOWN;
+  private boolean proximityDisabled = false;
 
   public enum PhoneState {
     IDLE,
     PROCESSING,  //used when the phone is active but before the user should be alerted.
     INTERACTIVE,
     IN_CALL,
+    IN_VIDEO
   }
 
   private enum LockState {
@@ -78,8 +80,7 @@ public class LockManager {
   }
 
   private void updateInCallLockState() {
-    if (orientation != AccelerometerListener.ORIENTATION_HORIZONTAL
-      && wifiLockEnforced) {
+    if (orientation != AccelerometerListener.ORIENTATION_HORIZONTAL && wifiLockEnforced && !proximityDisabled) {
       setLockState(LockState.PROXIMITY);
     } else {
       setLockState(LockState.FULL);
@@ -100,7 +101,13 @@ public class LockManager {
         setLockState(LockState.FULL);
         accelerometerListener.enable(false);
         break;
+      case IN_VIDEO:
+        proximityDisabled = true;
+        accelerometerListener.enable(false);
+        updateInCallLockState();
+        break;
       case IN_CALL:
+        proximityDisabled = false;
         accelerometerListener.enable(true);
         updateInCallLockState();
         break;

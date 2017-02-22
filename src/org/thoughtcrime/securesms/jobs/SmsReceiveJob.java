@@ -45,6 +45,8 @@ public class SmsReceiveJob extends ContextJob {
 
   @Override
   public void onRun() {
+    Log.w(TAG, "onRun()");
+    
     Optional<IncomingTextMessage> message      = assembleMessageFragments(pdus, subscriptionId);
     MasterSecret                  masterSecret = KeyCachingService.getMasterSecret(context);
 
@@ -64,6 +66,8 @@ public class SmsReceiveJob extends ContextJob {
       }
     } else if (message.isPresent()) {
       Log.w(TAG, "*** Received blocked SMS, ignoring...");
+    } else {
+      Log.w(TAG, "*** Failed to assemble message fragments!");
     }
   }
 

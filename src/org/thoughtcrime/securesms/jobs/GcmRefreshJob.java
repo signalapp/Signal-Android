@@ -60,6 +60,8 @@ public class GcmRefreshJob extends ContextJob implements InjectableType {
 
   @Override
   public void onRun() throws Exception {
+    if (TextSecurePreferences.isGcmDisabled(context)) return;
+
     String registrationId = TextSecurePreferences.getGcmRegistrationId(context);
 
     if (registrationId == null) {

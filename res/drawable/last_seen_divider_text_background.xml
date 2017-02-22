@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle" >
+    <solid android:color="?conversation_item_last_seen_text_background"/>
+
+    <corners android:radius="65dp"/>
+    <padding android:bottom="10dp" android:left="15dp" android:right="15dp" android:top="10dp"/>
+</shape>

@@ -31,12 +31,13 @@ import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.thoughtcrime.redphone.util.Conversions;
+import org.thoughtcrime.securesms.ConversationAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
-import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -45,9 +46,10 @@ import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
-import org.thoughtcrime.securesms.ConversationAdapter.HeaderViewHolder;
 
 import java.lang.ref.SoftReference;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
@@ -70,7 +72,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
 {
 
   private static final int MAX_CACHE_SIZE = 40;
-  private static final String TAG = ConversationAdapter.class.getName();
+  private static final String TAG = ConversationAdapter.class.getSimpleName();
   private final Map<String,SoftReference<MessageRecord>> messageRecordCache =
       Collections.synchronizedMap(new LRUCache<String, SoftReference<MessageRecord>>(MAX_CACHE_SIZE));
 
@@ -91,6 +93,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   private final @NonNull  MmsSmsDatabase    db;
   private final @NonNull  LayoutInflater    inflater;
   private final @NonNull  Calendar          calendar;
+  private final @NonNull  MessageDigest     digest;
 
   protected static class ViewHolder extends RecyclerView.ViewHolder {
     public <V extends View & BindableConversationItem> ViewHolder(final @NonNull V itemView) {
@@ -104,15 +107,15 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   }
 
 
-  protected static class HeaderViewHolder extends RecyclerView.ViewHolder {
-    protected TextView textView;
+  static class HeaderViewHolder extends RecyclerView.ViewHolder {
+    TextView textView;
 
-    public HeaderViewHolder(View itemView) {
+    HeaderViewHolder(View itemView) {
       super(itemView);
       textView = ViewUtil.findById(itemView, R.id.text);
     }
 
-    public HeaderViewHolder(TextView textView) {
+    HeaderViewHolder(TextView textView) {
       super(textView);
       this.textView = textView;
     }
@@ -132,13 +135,18 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   @VisibleForTesting
   ConversationAdapter(Context context, Cursor cursor) {
     super(context, cursor);
-    this.masterSecret  = null;
-    this.locale        = null;
-    this.clickListener = null;
-    this.recipients    = null;
-    this.inflater      = null;
-    this.db            = null;
-    this.calendar      = null;
+    try {
+      this.masterSecret  = null;
+      this.locale        = null;
+      this.clickListener = null;
+      this.recipients    = null;
+      this.inflater      = null;
+      this.db            = null;
+      this.calendar      = null;
+      this.digest        = MessageDigest.getInstance("SHA1");
+    } catch (NoSuchAlgorithmException nsae) {
+      throw new AssertionError("SHA1 isn't supported!");
+    }
   }
 
   public ConversationAdapter(@NonNull Context context,
@@ -149,15 +157,21 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
                              @NonNull Recipients recipients)
   {
     super(context, cursor);
-    this.masterSecret  = masterSecret;
-    this.locale        = locale;
-    this.clickListener = clickListener;
-    this.recipients    = recipients;
-    this.inflater      = LayoutInflater.from(context);
-    this.db            = DatabaseFactory.getMmsSmsDatabase(context);
-    this.calendar      = Calendar.getInstance();
 
-    setHasStableIds(true);
+    try {
+      this.masterSecret  = masterSecret;
+      this.locale        = locale;
+      this.clickListener = clickListener;
+      this.recipients    = recipients;
+      this.inflater      = LayoutInflater.from(context);
+      this.db            = DatabaseFactory.getMmsSmsDatabase(context);
+      this.calendar      = Calendar.getInstance();
+      this.digest        = MessageDigest.getInstance("SHA1");
+
+      setHasStableIds(true);
+    } catch (NoSuchAlgorithmException nsae) {
+      throw new AssertionError("SHA1 isn't supported!");
+    }
   }
 
   @Override
@@ -240,7 +254,9 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
 
   @Override
   public long getItemId(@NonNull Cursor cursor) {
-    return cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.UNIQUE_ROW_ID));
+    final String unique = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsColumns.UNIQUE_ROW_ID));
+    final byte[] bytes  = digest.digest(unique.getBytes());
+    return Conversions.byteArrayToLong(bytes);
   }
 
   private MessageRecord getMessageRecord(Cursor cursor) {
@@ -261,6 +277,24 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
 
   public void close() {
     getCursor().close();
+  }
+
+  public int findLastSeenPosition(long lastSeen) {
+    if (lastSeen <= 0)     return -1;
+    if (!isActiveCursor()) return -1;
+
+    int count = getItemCount();
+
+    for (int i=0;i<count;i++) {
+      Cursor        cursor        = getCursorAtPositionOrThrow(i);
+      MessageRecord messageRecord = getMessageRecord(cursor);
+
+      if (messageRecord.getTimestamp() < lastSeen) {
+        return i;
+      }
+    }
+
+    return -1;
   }
 
   public void toggleSelection(MessageRecord messageRecord) {
@@ -301,9 +335,26 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     return Util.hashCode(calendar.get(Calendar.YEAR), calendar.get(Calendar.DAY_OF_YEAR));
   }
 
+  public long getTimestamp(int position) {
+    if (!isActiveCursor())          return 0;
+    if (isHeaderPosition(position)) return 0;
+    if (isFooterPosition(position)) return 0;
+    if (position >= getItemCount()) return 0;
+    if (position < 0)               return 0;
+
+    Cursor        cursor        = getCursorAtPositionOrThrow(position);
+    MessageRecord messageRecord = getMessageRecord(cursor);
+
+    return messageRecord.getTimestamp();
+  }
+
   @Override
   public HeaderViewHolder onCreateHeaderViewHolder(ViewGroup parent) {
     return new HeaderViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.conversation_item_header, parent, false));
+  }
+
+  public HeaderViewHolder onCreateLastSeenViewHolder(ViewGroup parent) {
+    return new HeaderViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.conversation_item_last_seen, parent, false));
   }
 
   @Override
@@ -311,5 +362,60 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     Cursor cursor = getCursorAtPositionOrThrow(position);
     viewHolder.setText(DateUtils.getRelativeDate(getContext(), locale, getMessageRecord(cursor).getDateReceived()));
   }
+
+  public void onBindLastSeenViewHolder(HeaderViewHolder viewHolder, int position) {
+    viewHolder.setText(getContext().getResources().getQuantityString(R.plurals.ConversationAdapter_n_unread_messages, (position + 1), (position + 1)));
+  }
+
+  static class LastSeenHeader extends StickyHeaderDecoration {
+
+    private final ConversationAdapter adapter;
+    private final long                lastSeenTimestamp;
+
+    LastSeenHeader(ConversationAdapter adapter, long lastSeenTimestamp) {
+      super(adapter, false, false);
+      this.adapter           = adapter;
+      this.lastSeenTimestamp = lastSeenTimestamp;
+    }
+
+    @Override
+    protected boolean hasHeader(RecyclerView parent, StickyHeaderAdapter stickyAdapter, int position) {
+      if (!adapter.isActiveCursor()) {
+        return false;
+      }
+
+      if (lastSeenTimestamp <= 0) {
+        return false;
+      }
+
+      long currentRecordTimestamp  = adapter.getTimestamp(position);
+      long previousRecordTimestamp = adapter.getTimestamp(position + 1);
+
+      return currentRecordTimestamp > lastSeenTimestamp && previousRecordTimestamp < lastSeenTimestamp;
+    }
+
+    @Override
+    protected int getHeaderTop(RecyclerView parent, View child, View header, int adapterPos, int layoutPos) {
+      return parent.getLayoutManager().getDecoratedTop(child);
+    }
+
+    @Override
+    protected HeaderViewHolder getHeader(RecyclerView parent, StickyHeaderAdapter stickyAdapter, int position) {
+      HeaderViewHolder viewHolder = adapter.onCreateLastSeenViewHolder(parent);
+      adapter.onBindLastSeenViewHolder(viewHolder, position);
+
+      int widthSpec  = View.MeasureSpec.makeMeasureSpec(parent.getWidth(), View.MeasureSpec.EXACTLY);
+      int heightSpec = View.MeasureSpec.makeMeasureSpec(parent.getHeight(), View.MeasureSpec.UNSPECIFIED);
+
+      int childWidth  = ViewGroup.getChildMeasureSpec(widthSpec, parent.getPaddingLeft() + parent.getPaddingRight(), viewHolder.itemView.getLayoutParams().width);
+      int childHeight = ViewGroup.getChildMeasureSpec(heightSpec, parent.getPaddingTop() + parent.getPaddingBottom(), viewHolder.itemView.getLayoutParams().height);
+
+      viewHolder.itemView.measure(childWidth, childHeight);
+      viewHolder.itemView.layout(0, 0, viewHolder.itemView.getMeasuredWidth(), viewHolder.itemView.getMeasuredHeight());
+
+      return viewHolder;
+    }
+  }
+
 }
 

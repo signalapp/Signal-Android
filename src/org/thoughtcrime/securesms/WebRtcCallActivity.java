@@ -35,6 +35,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.thoughtcrime.redphone.util.AudioUtils;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallControls;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallScreen;
@@ -50,8 +53,6 @@ import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.whispersystems.libsignal.IdentityKey;
-
-import de.greenrobot.event.EventBus;
 
 public class WebRtcCallActivity extends Activity {
 
@@ -91,7 +92,7 @@ public class WebRtcCallActivity extends Activity {
     super.onResume();
     if (!networkAccess.isCensored(this)) MessageRetrievalService.registerActivityStarted(this);
     initializeScreenshotSecurity();
-    EventBus.getDefault().registerSticky(this);
+    EventBus.getDefault().register(this);
 
     registerBluetoothReceiver();
     registerWiredHeadsetReceiver();
@@ -306,7 +307,7 @@ public class WebRtcCallActivity extends Activity {
     }, delayMillis);
   }
 
-  @SuppressWarnings("unused")
+  @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
   public void onEventMainThread(final WebRtcViewModel event) {
     Log.w(TAG, "Got message from service: " + event);
 

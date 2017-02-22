@@ -131,6 +131,7 @@ public class NotificationState {
     if (threads.size() != 1) throw new AssertionError("We only support replies to single thread notifications!");
 
     Intent intent = new Intent(AndroidAutoReplyReceiver.REPLY_ACTION);
+    intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
     intent.setClass(context, AndroidAutoReplyReceiver.class);
     intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
     intent.putExtra(AndroidAutoReplyReceiver.RECIPIENT_IDS_EXTRA, recipients.getIds());
@@ -149,6 +150,7 @@ public class NotificationState {
     }
 
     Intent intent = new Intent(AndroidAutoHeardReceiver.HEARD_ACTION);
+    intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
     intent.setClass(context, AndroidAutoHeardReceiver.class);
     intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
     intent.putExtra(AndroidAutoHeardReceiver.THREAD_IDS_EXTRA, threadArray);

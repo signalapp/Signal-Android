@@ -116,6 +116,7 @@
   <string name="ConversationActivity_unblock">ನಿರ್ಬಂಧ ತೆಗೆಯಿರಿ</string>
   <string name="ConversationActivity_quick_camera_unavailable">ಕ್ಯಾಮೆರಾ ಲಭ್ಯವಿಲ್ಲ</string>
   <string name="ConversationActivity_unable_to_record_audio">ಧ್ವನಿ ಮುದ್ರಣ ಮಾಡಲು ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ!</string>
+  <!--ConversationAdapter-->
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">ಸಂದೇಶದ ವಿವರಗಳು</string>
   <string name="ConversationFragment_transport_s_sent_received_s">ರವಾನೆ: %1$s \nಕಳುಹಿಸಲಾಗಿದೆ/ಸ್ವೀಕರಿಸಲಾಗಿದೆ:%2$s</string>
@@ -179,6 +180,7 @@
   <string name="DeviceListItem_unnamed_device">ಅನಾಮಧೇಯ ಸಾಧನ</string>
   <string name="DeviceListItem_last_active_s">ಕೊನೆಯದಾಗಿ ಸಕ್ರಿಯವಾಗಿದದ್ದು  %s</string>
   <string name="DeviceListItem_today">ಇಂದು</string>
+  <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">ಜೊತೆ ಹಂಚಿಕೊಳ್ಳಿ </string>
   <!--ExperienceUpgradeActivity-->
@@ -199,14 +201,12 @@
   <!--GiphyFragmentPageAdapter-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">ಹೋಸ ಸಮೂಹ </string>
-  <string name="GroupCreateActivity_actionbar_update_title">ಸಮೂಹವನ್ನು ನವೀಕರಿಸಿ</string>
   <string name="GroupCreateActivity_group_name_hint">ಸಮೂಹದ ಹೆಸರು</string>
   <string name="GroupCreateActivity_actionbar_mms_title">ಹೊಸ ಎಮ್.ಎಮ್.ಎಸ್ ಸಮೂಹ</string>
   <string name="GroupCreateActivity_contacts_mms_exception">ಅನಿರೀಕ್ಷಿತ ದೋಷ ಸಂಭವಿಸಿದೆ ಹಾಗು ಗುಂಪು ಸೃಷ್ಟಿ ವಿಫಲಗೊಂಡಿದೆ .</string>
   <string name="GroupCreateActivity_contacts_no_members">ನಿಮ್ಮ ಗುಂಪಿನಲ್ಲಿ ಕನಿಷ್ಠ ಒಬ್ಬ ವ್ಯಕ್ತಿಯ ಅಗತ್ಯವಿದೆ!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">ನಿಮ್ಮ ಗುಂಪಿನ ಒಬ್ಬ ಸದಸ್ಯ ಸರಿಯಾಗಿ ಓದಲು ಸಾಧ್ಯವಿಲ್ಲದ ಸಂಖ್ಯೆಯನ್ನು ಹೊಂದಿದ್ದಾರೆ. ಸರಿಪಡಿಸಿ ಅಥವಾ ಸಂಪರ್ಕವನ್ನು ತೆಗೆದು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</string>
   <string name="GroupCreateActivity_avatar_content_description">ಸಮೂಹದ ಚಿತ್ರ</string>
-  <string name="GroupCreateActivity_menu_create_title">ಸಮೂಹವನ್ನು ರಚಿಸಿ</string>
   <string name="GroupCreateActivity_creating_group">ಸೃಷ್ಟಿಸಲಾಗುತ್ತಿದೆ %1$s…</string>
   <string name="GroupCreateActivity_updating_group">%1$s ಆಧುನಿಕಗೊಳಿಸಲಾಗುತ್ತಿದೆ ...</string>
   <string name="GroupCreateActivity_loading_group_details">ಗುಂಪಿನ ವಿವರಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ ...</string>
@@ -251,6 +251,8 @@
   <string name="KeyScanningActivity_install_barcode_Scanner">ಬಾರ್ ಕೋಡ್ ಸ್ಕ್ಯಾನರ್ ಸ್ಥಾಪಿಸಲೆ?</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">ಕಳುಹಿಸಲು ವಿಫಲವಾಗಿದೆ</string>
+  <!--MessageRetrievalService-->
+  <string name="MessageRetrievalService_signal">ಸಿಗ್ನಲ್</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">ಎಂ. ಎಂ. ಎಸ್ ಸಂಗ್ರಹಿಸಿಡುವಾಗ ದೋಷ ಸಂಭವಿಸಿದೆ!</string>
   <!--- NotificationBarManager-->
@@ -310,9 +312,6 @@
   <string name="RegistrationActivity_invalid_number">ಅಮಾನ್ಯವಾದ ಸಂಖ್ಯೆ</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">ನೀವು ಸೂಚಿಸಿದ 
 ಸಂಖ್ಯೆ (%s) ಅಮಾನ್ಯವಾಗಿದೆ. </string>
-  <string name="RegistrationActivity_unsupported">ಬೆಂಬಲವಿಲ್ಲ</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">ಕ್ಷಮಿಸಿ, 
-ಈ ಸಾಧನ ಮಾಹಿತಿ ಆಧಾರಿತ ಸಂದೇಶ ರವಾನೆಯನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ. ಆವೃತ್ತಿ 4.0 ಗಿಂತ ಹಳೆಯದಾಗಿರುವ ಆಂಡ್ರಾಯ್ಡ್ ಚಾಲನೆಯಲ್ಲಿರುವ ಸಾಧನಗಳು ನೋಂದಾಯಿತ ಗೂಗಲ್ ಖಾತೆಯನ್ನು ಹೊಂದಿರಬೇಕು. ಆಂಡ್ರಾಯ್ಡ್ ೪.೦ ಅಥವಾ ಹೊಸ ಆವೃತ್ತಿ ಚಾಲನೆಯಲ್ಲಿರುವ ಸಾಧನಗಳಿಗೆ ಗೂಗಲ್ ಖಾತೆಯ ಅಗತ್ಯವಿಲ್ಲ, ಆದರೆ ಪ್ಲೇ ಅಂಗಡಿ ಅಪ್ಲಿಕೇಶನ್ ಪ್ರತಿಸ್ಟಾಪಿಸಿರಬೇಕು. </string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
         ಈದು ನಿಮ್ಮ ಸಂಖ್ಯೆ ಎಂದು ಮರುಪರಿಶೀಲಿಸಿ! ನಾವು ಒಂದು ಪರಿಶೀಲಿನ ಎಸ್ ಎಮ್ ಎಸ್ ಅನ್ನು ಕಳುಸಲಿದ್ದೇವೆ.
     </string>
@@ -377,6 +376,10 @@
   <string name="ApplicationMigrationService_importing_text_messages">ಪಠ್ಯ ಸಂದೇಶಗಳನ್ನು ಆಮದು ಮಾಡಲಾಗುತ್ತಿದೆ</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_lock">ಗುಪ್ತಪದವನ್ನು ಉಪಯೋಗಿಸಿಕೊಂಡು ಬೀಗ ಹಾಕಿ</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">ನೀವು</string>
+  <string name="MediaPreviewActivity_cant_display">ಈ ಚಿತ್ರದ ಮುನ್ನೋಟ ವಿಫಲಗೊಂಡಿದೆ</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">ಬೆಂಬಲವಿಲ್ಲದ ಮಾಧ್ಯಮ ಪ್ರಕಾರ</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_most_recent_from_s">%1$s ನಿಂದ ಇತ್ತೀಚಿನ</string>
   <string name="MessageNotifier_media_message_with_text">ಬಹುಮಾಧ್ಯಮ ಸಂದೇಶ: %s</string>
@@ -387,10 +390,18 @@
   <string name="MessageNotifier_mark_all_as_read">ಎಲ್ಲವನ್ನು ಓದಿದೆ ಎಂದು ಗುರುತು ಮಾಡಿ</string>
   <string name="MessageNotifier_mark_read">ಓದಿದೆ ಎಂದು ಗುರುತು ಮಾಡಿ</string>
   <string name="MessageNotifier_media_message">ಬಹುಮಾಧ್ಯಮ ಸಂದೇಶ</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">ನಿಮ್ಮ ದೂರವಾಣಿಗೆ ಹಸ್ತಚಾಲಿತ ಎಂ.ಎಂ.ಎಸ್ ಸೆಟ್ಟಿಂಗ್ಗಳ ಅಗತ್ಯವಿದೆ.</string>
+  <string name="MmsPreferencesFragment__enabled">ಸಕ್ರಿಯಗೊಳಿಸು</string>
+  <string name="MmsPreferencesFragment__disabled">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸು</string>
+  <string name="MmsPreferencesFragment__not_set">ಹೊಂದಿಸಿ</string>
+  <string name="MmsPreferencesFragment__invalid_uri">ನಮೂದಿಸಿದ ಪಠ್ಯ ಮಾನ್ಯ URI ಅಲ್ಲ</string>
+  <string name="MmsPreferencesFragment__invalid_host">ನಮೂದಿಸಿದ ಪಠ್ಯ ಮಾನ್ಯ ಹೋಸ್ಟ್ ಅಲ್ಲ</string>
   <!--QuickResponseService-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">ಸಿಗ್ನಲ್</string>
   <string name="SingleRecipientNotificationBuilder_new_message">ಹೊಸ ಸಂದೇಶ</string>
+  <!--VideoPlayer-->
   <!--WebRtcCallScreen-->
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
@@ -464,17 +475,9 @@
   <string name="import_fragment__import_plaintext_backup">ಸರಳಪಠ್ಯದ  ಬ್ಯಾಕಪ್ ಅನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಿ</string>
   <!--load_more_header-->
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_images">ಯಾವುದೇ ಚಿತ್ರಗಳಿಲ್ಲ</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">ಪರಿಶೀಲಿಸಿ</string>
   <string name="message_recipients_list_item__resend">ಪುನಃ ಕಳುಹಿಸಿ</string>
-  <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">ನಿಮ್ಮ ದೂರವಾಣಿಗೆ ಹಸ್ತಚಾಲಿತ ಎಂ.ಎಂ.ಎಸ್ ಸೆಟ್ಟಿಂಗ್ಗಳ ಅಗತ್ಯವಿದೆ.</string>
-  <string name="MmsPreferencesFragment__enabled">ಸಕ್ರಿಯಗೊಳಿಸು</string>
-  <string name="MmsPreferencesFragment__disabled">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸು</string>
-  <string name="MmsPreferencesFragment__not_set">ಹೊಂದಿಸಿ</string>
-  <string name="MmsPreferencesFragment__invalid_uri">ನಮೂದಿಸಿದ ಪಠ್ಯ ಮಾನ್ಯ URI ಅಲ್ಲ</string>
-  <string name="MmsPreferencesFragment__invalid_host">ನಮೂದಿಸಿದ ಪಠ್ಯ ಮಾನ್ಯ ಹೋಸ್ಟ್ ಅಲ್ಲ</string>
   <!--GroupUtil-->
   <string name="GroupUtil_group_updated">ಗುಂಪನ್ನು ನವೀಕರಿಸಿ</string>
   <!--prompt_passphrase_activity-->
@@ -538,8 +541,6 @@
   <string name="AndroidManifest__enter_passphrase">ಗುಪ್ತಪದ ನಮೂದಿಸಿ</string>
   <string name="AndroidManifest__select_contacts">ಸಂಪರ್ಕಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
   <string name="AndroidManifest__change_passphrase">ಗುಪ್ತಪದವನ್ನು ಬದಲಾಯಿಸಿ</string>
-  <string name="AndroidManifest__media_overview">ಎಲ್ಲಾ ಚಿತ್ರಗಳು</string>
-  <string name="AndroidManifest__media_overview_named">ಎಲ್ಲಾ ಚಿತ್ರಗಳು %1$s ಜೊತೆ</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">ಆಮದು / ರಫ್ತು</string>
   <string name="arrays__enabled">ಸಕ್ರಿಯಗೊಳಿಸು</string>
@@ -659,9 +660,7 @@
   <!--conversation_unmuted-->
   <!--conversation-->
   <string name="conversation__menu_add_attachment">ಲಗತ್ತು ಸೇರಿಸಿ</string>
-  <string name="conversation__menu_update_group">ಸಮೂಹವನ್ನು ನವೀಕರಿಸಿ</string>
   <string name="conversation__menu_leave_group">ಸಮೂಹವನ್ನು ಬಿಟ್ಟುಬಿಡಿ </string>
-  <string name="conversation__menu_view_media">ಎಲ್ಲಾ ಚಿತ್ರಗಳು</string>
   <!--conversation_popup-->
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">ಸಂಪರ್ಕಗಳಿಗೆ ಸೇರಿಸು</string>
@@ -691,16 +690,11 @@
   <string name="reminder_header_share_text">ಹೆಚ್ಚು ಸ್ನೇಹಿತರು ಸಿಗ್ನಲ್ ಬಳಸಿದಷ್ಟು, ಸಿಗ್ನಲ್ ಉತ್ತಮಗೊಳ್ಳುತ್ತದೆ.</string>
   <string name="reminder_header_share_button">ಹಂಚಿಕೊಳ್ಳಿ</string>
   <string name="reminder_header_close_button">ಮುಚ್ಚು</string>
-  <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">ನೀವು</string>
-  <string name="MediaPreviewActivity_cant_display">ಈ ಚಿತ್ರದ ಮುನ್ನೋಟ ವಿಫಲಗೊಂಡಿದೆ</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">ಬೆಂಬಲವಿಲ್ಲದ ಮಾಧ್ಯಮ ಪ್ರಕಾರ</string>
   <!--media_preview-->
   <string name="media_preview__save_title">ಉಳಿಸಿ</string>
   <!--media_overview-->
   <string name="media_overview__save_all">ಎಲ್ಲಾ ಉಳಿಸು</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">ಚಿತ್ರ ಮುನ್ನೋಟ</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">ಪುನಶ್ಚೇತನ</string>
   <!--redphone_audio_popup_menu-->

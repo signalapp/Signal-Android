@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -146,6 +147,7 @@ public class RecipientPreferenceDatabase extends Database {
     ContentValues values = new ContentValues();
     values.put(DEFAULT_SUBSCRIPTION_ID, defaultSubscriptionId);
     updateOrInsert(recipients, values);
+    EventBus.getDefault().post(new RecipientPreferenceEvent(recipients));
   }
 
   private static String encodeIdentityKey(IdentityKey identity) {
@@ -309,6 +311,19 @@ public class RecipientPreferenceDatabase extends Database {
       }
 
       return getCurrent();
+    }
+  }
+
+  public static class RecipientPreferenceEvent {
+
+    private final Recipients recipients;
+
+    public RecipientPreferenceEvent(Recipients recipients) {
+      this.recipients = recipients;
+    }
+
+    public Recipients getRecipients() {
+      return recipients;
     }
   }
 }

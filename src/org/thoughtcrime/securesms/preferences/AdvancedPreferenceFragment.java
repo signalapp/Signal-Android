@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
@@ -98,8 +99,15 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
   }
 
   private void initializeWebrtcCallingToggle() {
-    this.findPreference(TextSecurePreferences.WEBRTC_CALLING_PREF)
-        .setOnPreferenceChangeListener(new WebRtcClickListener());
+    if (TextSecurePreferences.isGcmDisabled(getContext())) {
+      getPreferenceScreen().removePreference(findPreference(TextSecurePreferences.WEBRTC_CALLING_PREF));
+    } else if (Build.VERSION.SDK_INT >= 11) {
+      this.findPreference(TextSecurePreferences.WEBRTC_CALLING_PREF)
+          .setOnPreferenceChangeListener(new WebRtcClickListener());
+    } else {
+      this.findPreference(TextSecurePreferences.WEBRTC_CALLING_PREF)
+          .setEnabled(false);
+    }
   }
 
   private void initializeIdentitySelection() {

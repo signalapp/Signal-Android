@@ -69,7 +69,7 @@
   <string name="ConfirmIdentityDialog_accept">Acceptera</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Meddelande %s</string>
-  <string name="ContactsDatabase_signal_call_s">Signal samtal %s</string>
+  <string name="ContactsDatabase_signal_call_s">Signalsamtal %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Meddelandestorlek: %d kB</string>
   <string name="ConversationItem_expires_s">Går ut: %s</string>
@@ -131,6 +131,7 @@
   <string name="ConversationActivity_unable_to_record_audio">Kunde inte spela in ljud!</string>
   <string name="ConversationActivity_error_sending_voice_message">Fel när röstmeddelande skickades</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Det finns ingen app på din enhet som kan hantera den här länken.</string>
+  <!--ConversationAdapter-->
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Meddelandedetaljer</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nSkickat/Mottagits: %2$s</string>
@@ -221,6 +222,7 @@
   <string name="DeviceListItem_linked_s">Länkade %s</string>
   <string name="DeviceListItem_last_active_s">Senast aktiv %s</string>
   <string name="DeviceListItem_today">Idag</string>
+  <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Dela med</string>
   <!--ExperienceUpgradeActivity-->
@@ -249,7 +251,6 @@
   <string name="GiphyFragmentPagerAdapter_stickers">Stickers</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Ny grupp</string>
-  <string name="GroupCreateActivity_actionbar_update_title">Uppdatera grupp</string>
   <string name="GroupCreateActivity_group_name_hint">Gruppnamn</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Ny MMS-grupp</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Du har valt en kontakt som inte har stöd för Signalgrupper, så denna grupp kommer använda MMS.</string>
@@ -258,7 +259,6 @@
   <string name="GroupCreateActivity_contacts_no_members">Du behöver åtminstone en person i din grupp!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">En av deltagarna i din grupp har ett nummer som inte kan läsas ordentligt. Vänligen åtgärda eller ta bort kontakten och försök igen.</string>
   <string name="GroupCreateActivity_avatar_content_description">Gruppavatar</string>
-  <string name="GroupCreateActivity_menu_create_title">Skapa grupp</string>
   <string name="GroupCreateActivity_creating_group">Skapar %1$s...</string>
   <string name="GroupCreateActivity_updating_group">Uppdaterar %1$s...</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Kunde inte lägga till %1$s för han/hon är ingen Signal-användare.</string>
@@ -321,6 +321,8 @@ som inte finns i säkerhetskopian.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Misslyckades att skicka</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nytt säkerhetsnummer</string>
+  <!--MessageRetrievalService-->
+  <string name="MessageRetrievalService_signal">Signal</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Fel vid lagring av MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Fel vid anslutning till MMS-leverantör</string>
@@ -434,8 +436,6 @@ telefonnummer</string>
   <string name="RegistrationActivity_invalid_number">Ogiltigt nummer</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numret du
 angav (%s) är ogiltigt.</string>
-  <string name="RegistrationActivity_unsupported">Stöds ej</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Tyvärr stödjer inte den här enheten datameddelanden. Enheter som kör versioner av Android äldre än 4.0 måste ha ett registrerat Google-konto. Enheter som kör Android 4.0 eller nyare behöver inte ett Google-konto, men måste ha appen Play Store installerad.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
 Dubbelkolla att det här är ditt nummer! Vi ska nu verifiera det med ett SMS.</string>
   <string name="RegistrationActivity_continue">Fortsätt</string>
@@ -534,6 +534,10 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Tryck för att öppna, tryck på låset för att stänga.</string>
   <string name="KeyCachingService_passphrase_cached">Signal är olåst</string>
   <string name="KeyCachingService_lock">Lås med lösenord</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">Du</string>
+  <string name="MediaPreviewActivity_cant_display">Misslyckades med att förhandsgranska bilden</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Mediatypen stöds ej</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nya meddelanden i %2$d konversationer</string>
   <string name="MessageNotifier_most_recent_from_s">Senaste från %1$s</string>
@@ -547,14 +551,25 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MessageNotifier_mark_read">Markera läst</string>
   <string name="MessageNotifier_media_message">Mediameddelande</string>
   <string name="MessageNotifier_reply">Svara</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Manuella MMS-inställningar krävs för din telefon.</string>
+  <string name="MmsPreferencesFragment__enabled">Aktiverad</string>
+  <string name="MmsPreferencesFragment__disabled">Inaktiverad</string>
+  <string name="MmsPreferencesFragment__not_set">Inte satt</string>
+  <string name="MmsPreferencesFragment__invalid_uri">Texten var inte en giltig URI</string>
+  <string name="MmsPreferencesFragment__invalid_host">Texten var inte ett giltigt värdnamn</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Snabbsvar är ej tillgängligt när Signal är låst!</string>
   <string name="QuickResponseService_problem_sending_message">Problem med att skicka meddelandet!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nytt meddelande</string>
+  <!--VideoPlayer-->
   <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Du kan vilja verifiera ditt säkerhetsnummer med denna kontakt.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers_title">Nya säkerhetsnummer</string>
   <!--WebRtcCallControls-->
+  <string name="WebRtcCallControls_tap_to_enable_your_video">Tryck för att aktivera video</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Bild</string>
   <string name="attachment_type_selector__image_description">Bild</string>
@@ -698,17 +713,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Se hela konversationen</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_images">Inga bilder</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">VERIFIERA</string>
   <string name="message_recipients_list_item__resend">SKICKA OM</string>
-  <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Manuella MMS-inställningar krävs för din telefon.</string>
-  <string name="MmsPreferencesFragment__enabled">Aktiverad</string>
-  <string name="MmsPreferencesFragment__disabled">Inaktiverad</string>
-  <string name="MmsPreferencesFragment__not_set">Inte satt</string>
-  <string name="MmsPreferencesFragment__invalid_uri">Texten var inte en giltig URI</string>
-  <string name="MmsPreferencesFragment__invalid_host">Texten var inte ett giltigt värdnamn</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s gick med i gruppen.</item>
@@ -797,7 +804,7 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="recipients_panel__to"><small>Fyll i ett namn eller nummer</small></string>
   <string name="recipients_panel__add_members">Lägg till medlemmar</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Om du önskar verifiera säkerheten för din ändpunkt-till-ändpunktskryptering med %s, jämför numret ovan med numret på deras enhet. Alternativt, kan du läsa in koden på deras telefon, eller be dem läsa in din kod. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Lär dig mer om att verifiera säkerhetsnummer</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Om du önskar verifiera säkerheten för din ändpunkt-till-ändpunktskryptering med %s, jämför numret ovan med numret på deras enhet. Alternativt, kan du läsa in koden på deras telefon, eller be dem läsa in din kod. <a href="https://whispersystems.org/redirect/safety-numbers">Lär dig mer om att verifiera säkerhetsnummer</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tryck för att skanna</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Dela säkerhetsnummer</string>
@@ -819,8 +826,6 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="AndroidManifest__verify_safety_number">Verifiera säkerhetsnummer</string>
   <string name="AndroidManifest__log_submit">Skicka in felsökningslogg</string>
   <string name="AndroidManifest__media_preview">Mediaförhandsgranskning</string>
-  <string name="AndroidManifest__media_overview">Alla bilder</string>
-  <string name="AndroidManifest__media_overview_named">Alla bilder med %1$s</string>
   <string name="AndroidManifest__message_details">Meddelandedetaljer</string>
   <string name="AndroidManifest__linked_devices">Länkade enheter</string>
   <string name="AndroidManifest__invite_friends">Bjud in vänner</string>
@@ -953,6 +958,8 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="preferences_chats__message_trimming">Trimma meddelanden</string>
   <string name="preferences_advanced__use_system_emoji">Använd systemets emojis</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Stäng av Signals inbyggda emojistöd</string>
+  <string name="preferences_advanced__video_calling_beta">Videosamtal beta</string>
+  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Stöd för nästa generations video- och röstsamtal om det aktiverats av båda parter. Denna funktion är i beta.</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1007,10 +1014,8 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="conversation_unmuted__mute_notifications">Tysta ner aviseringar</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Bifoga fil</string>
-  <string name="conversation__menu_update_group">Uppdatera grupp</string>
   <string name="conversation__menu_leave_group">Lämna grupp</string>
   <string name="conversation__menu_delete_thread">Radera konversation</string>
-  <string name="conversation__menu_view_media">Alla bilder</string>
   <string name="conversation__menu_conversation_settings">Konversationsinställningar</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Expandera popup</string>
@@ -1062,18 +1067,13 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="reminder_header_share_text">Ju fler av dina vänner som använder Signal, desto bättre blir det.</string>
   <string name="reminder_header_share_button">DELA</string>
   <string name="reminder_header_close_button">STÄNG</string>
-  <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">Du</string>
-  <string name="MediaPreviewActivity_cant_display">Misslyckades med att förhandsgranska bilden</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Mediatypen stöds ej</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Spara</string>
   <string name="media_preview__forward_title">Vidarebefordra</string>
-  <string name="media_preview__overview_title">Alla bilder</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Spara alla</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">Bildförhandsgranskning</string>
+  <string name="media_preview_activity__media_content_description">Mediaförhandsgranskning</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Uppdatera</string>
   <!--redphone_audio_popup_menu-->
