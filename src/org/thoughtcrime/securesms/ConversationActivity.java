@@ -776,7 +776,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void handleDial(final Recipient recipient) {
     if (recipient == null) return;
 
-    if (isSecureVideo && TextSecurePreferences.isWebrtcCallingEnabled(this)) {
+    if ((isSecureVideo && TextSecurePreferences.isWebrtcCallingEnabled(this)) ||
+        (isSecureText && TextSecurePreferences.isGcmDisabled(this)))
+    {
       Intent intent = new Intent(this, WebRtcCallService.class);
       intent.setAction(WebRtcCallService.ACTION_OUTGOING_CALL);
       intent.putExtra(WebRtcCallService.EXTRA_REMOTE_NUMBER, recipient.getNumber());
