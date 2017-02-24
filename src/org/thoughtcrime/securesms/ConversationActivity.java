@@ -1162,7 +1162,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
-  private void textSizeUp() {
+  public void textSizeUp() {
     float size = TextSecurePreferences.getConversationTextSize(this);
     if (size < 80.0f) {
       size += 2.0f;
@@ -1171,7 +1171,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     applyTextSize();
   }
 
-  private void textSizeDown() {
+  public void textSizeDown() {
     float size = TextSecurePreferences.getConversationTextSize(this);
     if (size > 10.0f) {
       size -= 2.0f;
