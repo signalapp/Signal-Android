@@ -270,7 +270,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
 
     if (isIncomingMessageExpired(intent)) {
       insertMissedCall(this.recipient, true);
-      terminate();
+      terminate(false);
       return;
     }
 
@@ -298,12 +298,24 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
             @Override
             public void onFailureContinue(Throwable error) {
               Log.w(TAG, error);
-              terminate();
+
+              boolean missed = (WebRtcCallService.this.callState != CallState.STATE_CONNECTED);
+              if (missed) {
+                insertMissedCall(WebRtcCallService.this.recipient, true);
+              }
+
+              terminate(!missed);
             }
           });
         } catch (PeerConnectionException e) {
           Log.w(TAG, e);
-          terminate();
+
+          boolean missed = (WebRtcCallService.this.callState != CallState.STATE_CONNECTED);
+          if (missed) {
+            insertMissedCall(WebRtcCallService.this.recipient, true);
+          }
+
+          terminate(!missed);
         }
       }
     });
@@ -361,12 +373,12 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
                   sendMessage(WebRtcViewModel.State.NETWORK_FAILURE, recipient, localVideoEnabled, remoteVideoEnabled);
                 }
 
-                terminate();
+                terminate(true);
               }
             });
           } catch (PeerConnectionException e) {
             Log.w(TAG, e);
-            terminate();
+            terminate(true);
           }
         }
       });
@@ -397,7 +409,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
             Log.w(TAG, error);
             sendMessage(WebRtcViewModel.State.NETWORK_FAILURE, recipient, localVideoEnabled, remoteVideoEnabled);
 
-            terminate();
+            terminate(true);
           }
         });
       }
@@ -406,7 +418,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
       this.pendingIceUpdates = null;
     } catch (PeerConnectionException e) {
       Log.w(TAG, e);
-      terminate();
+      terminate(true);
     }
   }
 
@@ -446,7 +458,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
         Log.w(TAG, error);
         sendMessage(WebRtcViewModel.State.NETWORK_FAILURE, recipient, localVideoEnabled, remoteVideoEnabled);
 
-        terminate();
+        terminate(true);
       }
     });
   }
@@ -534,7 +546,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
     serviceHandler.postDelayed(new Runnable() {
       @Override
       public void run() {
-        WebRtcCallService.this.terminate();
+        WebRtcCallService.this.terminate(false);
       }
     }, WebRtcCallActivity.BUSY_SIGNAL_DELAY_FINISH);
   }
@@ -546,7 +558,13 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
     {
       Log.w(TAG, "Timing out call: " + this.callId);
       sendMessage(WebRtcViewModel.State.CALL_DISCONNECTED, this.recipient, localVideoEnabled, remoteVideoEnabled);
-      terminate();
+
+      boolean missed = (this.callState == CallState.STATE_ANSWERING || this.callState == CallState.STATE_LOCAL_RINGING);
+      if (missed) {
+        insertMissedCall(this.recipient, true);
+      }
+
+      terminate(!missed);
     }
   }
 
@@ -602,7 +620,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
 
     DatabaseFactory.getSmsDatabase(this).insertMissedCall(recipient.getNumber());
 
-    this.terminate();
+    this.terminate(false);
   }
 
   private void handleLocalHangup(Intent intent) {
@@ -615,7 +633,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
       sendMessage(WebRtcViewModel.State.CALL_DISCONNECTED, this.recipient, localVideoEnabled, remoteVideoEnabled);
     }
 
-    terminate();
+    terminate(true);
   }
 
   private void handleRemoteHangup(Intent intent) {
@@ -634,11 +652,12 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
       sendMessage(WebRtcViewModel.State.CALL_DISCONNECTED, this.recipient, localVideoEnabled, remoteVideoEnabled);
     }
 
-    if (this.callState == CallState.STATE_ANSWERING || this.callState == CallState.STATE_LOCAL_RINGING) {
+    boolean missed = (this.callState == CallState.STATE_ANSWERING || this.callState == CallState.STATE_LOCAL_RINGING);
+    if (missed) {
       insertMissedCall(this.recipient, true);
     }
 
-    this.terminate();
+    this.terminate(!missed);
   }
 
   private void handleSetMuteAudio(Intent intent) {
@@ -740,13 +759,15 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
     am.stopBluetoothSco();
   }
 
-  private synchronized void terminate() {
+  private synchronized void terminate(boolean disconnected) {
     lockManager.updatePhoneState(LockManager.PhoneState.PROCESSING);
     CallNotificationManager.setCallEnded(this);
 
     incomingRinger.stop();
     outgoingRinger.stop();
-    outgoingRinger.playDisconnected();
+    if (disconnected) {
+      outgoingRinger.playDisconnected();
+    }
 
     if (peerConnection != null) {
       peerConnection.dispose();
