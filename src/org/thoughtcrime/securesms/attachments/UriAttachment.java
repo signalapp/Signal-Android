@@ -16,7 +16,7 @@ public class UriAttachment extends Attachment {
   public UriAttachment(@NonNull Uri dataUri, @Nullable Uri thumbnailUri,
                        @NonNull String contentType, int transferState, long size)
   {
-    super(contentType, transferState, size, null, null, null);
+    super(contentType, transferState, size, null, null, null, null);
     this.dataUri      = dataUri;
     this.thumbnailUri = thumbnailUri;
   }

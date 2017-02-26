@@ -142,6 +142,7 @@ public class MmsDatabase extends MessagingDatabase {
       AttachmentDatabase.THUMBNAIL,
       AttachmentDatabase.CONTENT_TYPE,
       AttachmentDatabase.CONTENT_LOCATION,
+      AttachmentDatabase.DIGEST,
       AttachmentDatabase.CONTENT_DISPOSITION,
       AttachmentDatabase.NAME,
       AttachmentDatabase.TRANSFER_STATE
@@ -681,7 +682,8 @@ public class MmsDatabase extends MessagingDatabase {
                                                databaseAttachment.getSize(),
                                                databaseAttachment.getLocation(),
                                                databaseAttachment.getKey(),
-                                               databaseAttachment.getRelay()));
+                                               databaseAttachment.getRelay(),
+                                               databaseAttachment.getDigest()));
       }
 
       return insertMediaMessage(new MasterSecretUnion(masterSecret),
