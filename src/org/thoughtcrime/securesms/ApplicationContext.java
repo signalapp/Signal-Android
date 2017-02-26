@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
+import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.webrtc.PeerConnectionFactory;
 import org.whispersystems.jobqueue.JobManager;
@@ -169,6 +170,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   private void initializePeriodicTasks() {
     RotateSignedPreKeyListener.schedule(this);
     DirectoryRefreshListener.schedule(this);
+
+    if (BuildConfig.PLAY_STORE_DISABLED) {
+      UpdateApkRefreshListener.schedule(this);
+    }
   }
 
   private void initializeCircumvention() {

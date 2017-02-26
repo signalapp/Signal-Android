@@ -1,3 +1,5 @@
+import java.security.MessageDigest
+
 buildscript {
     repositories {
         maven {
@@ -194,11 +196,15 @@ android {
     }
 
     defaultConfig {
+        versionCode 244
+        versionName "3.30.4"
+
         minSdkVersion 9
         targetSdkVersion 22
         multiDexEnabled true
 
         vectorDrawables.useSupportLibrary = true
+        project.ext.set("archivesBaseName", "Signal");
 
         buildConfigField "long", "BUILD_TIMESTAMP", getLastCommitTimestamp() + "L"
         buildConfigField "String", "SIGNAL_URL", "\"https://textsecure-service.whispersystems.org\""
@@ -257,6 +263,28 @@ android {
         }
     }
 
+    productFlavors {
+        play {
+            ext.websiteUpdateUrl = "null"
+            buildConfigField "boolean", "PLAY_STORE_DISABLED", "false"
+            buildConfigField "String", "NOPLAY_UPDATE_URL", "$ext.websiteUpdateUrl"
+        }
+
+        website {
+            ext.websiteUpdateUrl = "https://updates.signal.org/android"
+            buildConfigField "boolean", "PLAY_STORE_DISABLED", "true"
+            buildConfigField "String", "NOPLAY_UPDATE_URL", "\"$ext.websiteUpdateUrl\""
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            output.outputFile = new File(
+                    output.outputFile.parent,
+                    output.outputFile.name.replace(".apk", "-${variant.versionName}.apk"))
+        }
+    }
+
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
@@ -274,6 +302,8 @@ android {
         test {
             java.srcDirs = ['test/unitTest/java']
         }
+
+        website.manifest.srcFile 'website/AndroidManifest.xml'
     }
 
      lintOptions {
@@ -281,9 +311,47 @@ android {
     }
 }
 
+task assembleWebsiteDescriptor << {
+    android.applicationVariants.all { variant ->
+        if (variant.name.equals("websiteDebug") ||
+            variant.name.equals("websiteRelease"))
+        {
+            File file = new File(variant.outputs[0].outputFile.path)
+
+            if (file.exists()) {
+                MessageDigest md = MessageDigest.getInstance("SHA-256");
+                file.eachByte 4096, {bytes, size ->
+                    md.update(bytes, 0, size);
+                }
+
+                String digest = md.digest().collect {String.format "%02x", it}.join();
+                String url = variant.productFlavors.get(0).ext.websiteUpdateUrl
+                String apkName = variant.outputs[0].outputFile.name
+
+                String descriptor = "{" +
+                        "\"versionCode\" : $project.android.defaultConfig.versionCode," +
+                        "\"versionName\" : \"$project.android.defaultConfig.versionName\"," +
+                        "\"sha256sum\" : \"$digest\"," +
+                        "\"url\" : \"$url/$apkName\"" +
+                        "}"
+
+                File descriptorFile = new File(variant.outputs[0].outputFile.parent, apkName.replace(".apk", ".json"))
+
+                descriptorFile.write(descriptor)
+            }
+        }
+    }
+}
+
 tasks.whenTaskAdded { task ->
     if (task.name.equals("lint")) {
         task.enabled = false
+    }
+
+    if (task.name.equals("assembleWebsiteDebug") ||
+        task.name.equals("assembleWebsiteRelease"))
+    {
+         task.finalizedBy assembleWebsiteDescriptor
     }
 }
 
