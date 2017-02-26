@@ -289,7 +289,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
       Cursor        cursor        = getCursorAtPositionOrThrow(i);
       MessageRecord messageRecord = getMessageRecord(cursor);
 
-      if (messageRecord.getDateReceived() <= lastSeen) {
+      if (messageRecord.isOutgoing() || messageRecord.getDateReceived() <= lastSeen) {
         return i;
       }
     }
@@ -345,7 +345,8 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     Cursor        cursor        = getCursorAtPositionOrThrow(position);
     MessageRecord messageRecord = getMessageRecord(cursor);
 
-    return messageRecord.getDateReceived();
+    if (messageRecord.isOutgoing()) return 0;
+    else                            return messageRecord.getDateReceived();
   }
 
   @Override
