@@ -391,7 +391,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
       long currentRecordTimestamp  = adapter.getReceivedTimestamp(position);
       long previousRecordTimestamp = adapter.getReceivedTimestamp(position + 1);
 
-      return currentRecordTimestamp > lastSeenTimestamp && previousRecordTimestamp < lastSeenTimestamp;
+      return currentRecordTimestamp > lastSeenTimestamp && previousRecordTimestamp <= lastSeenTimestamp;
     }
 
     @Override
