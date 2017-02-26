@@ -58,7 +58,7 @@ dependencies {
     compile 'org.whispersystems:jobmanager:1.0.2'
     compile 'org.whispersystems:libpastelog:1.0.7'
     compile 'org.whispersystems:signal-service-android:2.5.1'
-    compile 'org.whispersystems:webrtc-android:M56-S1'
+    compile 'org.whispersystems:webrtc-android:M57'
 
     compile "me.leolin:ShortcutBadger:1.10-WS1"
     compile 'se.emilsjolander:stickylistheaders:2.7.0'
@@ -128,7 +128,7 @@ dependencyVerification {
         'org.whispersystems:jobmanager:506f679fc2fcf7bb6d10f00f41d6f6ea0abf75c70dc95b913398661ad538a181',
         'org.whispersystems:libpastelog:bb331d9a98240fc139101128ba836c1edec3c40e000597cdbb29ebf4cbf34d88',
         'org.whispersystems:signal-service-android:b0329b155cc9ad5e7fc08e4660538df1827c6d9485b05cab41946f36ad7ee0ab',
-        'org.whispersystems:webrtc-android:776a2769348f62aec28b9be6e97dcfea9c07b472ddbe24ac1ca1c46567cf8a8e',
+        'org.whispersystems:webrtc-android:acf78f6148c2e946b846cc5395887079ba37ddb892bf0d993fed18f1b9f521f8',
         'me.leolin:ShortcutBadger:e8e39df8a59d8211a30f40b1eeab21b3fa57b3f3e0f03abb995f82d66588778c',
         'se.emilsjolander:stickylistheaders:a08ca948aa6b220f09d82f16bbbac395f6b78897e9eeac6a9f0b0ba755928eeb',
         'com.jpardogo.materialtabstrip:library:c6ef812fba4f74be7dc4a905faa4c2908cba261a94c13d4f96d5e67e4aad4aaa',

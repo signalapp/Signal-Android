@@ -61,6 +61,7 @@ import org.webrtc.MediaConstraints;
 import org.webrtc.MediaStream;
 import org.webrtc.PeerConnection;
 import org.webrtc.PeerConnectionFactory;
+import org.webrtc.RtpReceiver;
 import org.webrtc.SessionDescription;
 import org.webrtc.SurfaceViewRenderer;
 import org.webrtc.VideoRenderer;
@@ -917,7 +918,11 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
       videoTrack.setEnabled(true);
       videoTrack.addRenderer(new VideoRenderer(remoteRenderer));
     }
+  }
 
+  @Override
+  public void onAddTrack(RtpReceiver rtpReceiver, MediaStream[] mediaStreams) {
+    Log.w(TAG, "onAddTrack: " + mediaStreams);
   }
 
   @Override
