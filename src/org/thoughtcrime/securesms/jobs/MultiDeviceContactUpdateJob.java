@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -31,6 +32,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.DeviceContact;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceContactsOutputStream;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -89,7 +91,7 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
       DeviceContactsOutputStream out       = new DeviceContactsOutputStream(new FileOutputStream(contactDataFile));
       Recipient                  recipient = RecipientFactory.getRecipientForId(context, recipientId, false);
 
-      out.write(new DeviceContact(recipient.getNumber(),
+      out.write(new DeviceContact(Util.canonicalizeNumber(context, recipient.getNumber()),
                                   Optional.fromNullable(recipient.getName()),
                                   getAvatar(recipient.getContactUri()),
                                   Optional.fromNullable(recipient.getColor().serialize())));
@@ -97,6 +99,8 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
       out.close();
       sendUpdate(messageSender, contactDataFile);
 
+    } catch(InvalidNumberException e) {
+      Log.w(TAG, e);
     } finally {
       if (contactDataFile != null) contactDataFile.delete();
     }
@@ -114,7 +118,7 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
 
       for (ContactData contactData : contacts) {
         Uri              contactUri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_URI, String.valueOf(contactData.id));
-        String           number     = contactData.numbers.get(0).number;
+        String           number     = Util.canonicalizeNumber(context, contactData.numbers.get(0).number);
         Optional<String> name       = Optional.fromNullable(contactData.name);
         Optional<String> color      = getColor(number);
 
@@ -123,7 +127,8 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
 
       out.close();
       sendUpdate(messageSender, contactDataFile);
-
+    } catch(InvalidNumberException e) {
+      Log.w(TAG, e);
     } finally {
       if (contactDataFile != null) contactDataFile.delete();
     }
