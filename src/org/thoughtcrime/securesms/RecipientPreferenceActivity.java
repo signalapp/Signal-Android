@@ -266,13 +266,9 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
       mutePreference.setChecked(recipients.isMuted());
 
-      if (recipients.getRingtone() != null) {
-        Ringtone tone = RingtoneManager.getRingtone(getActivity(), recipients.getRingtone());
-        if (tone != null) {
-          ringtonePreference.setSummary(tone.getTitle(getActivity()));
-          ringtonePreference.setCurrentRingtone(recipients.getRingtone());
-        }
-      } else {
+      final Uri toneUri = recipients.getRingtone();
+
+      if (toneUri == null) {
         String summary = getString(R.string.preferences__default);
         String friendlyName = getNotificationRingtoneFriendlyName();
         if (friendlyName != null) {
@@ -280,6 +276,16 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         }
         ringtonePreference.setSummary(summary);
         ringtonePreference.setCurrentRingtone(Settings.System.DEFAULT_NOTIFICATION_URI);
+      } else if (toneUri.toString().isEmpty()) {
+        ringtonePreference.setSummary(R.string.preferences__silent);
+        ringtonePreference.setCurrentRingtone(null);
+      } else {
+        Ringtone tone = RingtoneManager.getRingtone(getActivity(), toneUri);
+
+        if (tone != null) {
+          ringtonePreference.setSummary(tone.getTitle(getActivity()));
+          ringtonePreference.setCurrentRingtone(toneUri);
+        }
       }
 
       if (recipients.getVibrate() == VibrateState.DEFAULT) {
@@ -372,7 +378,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
         final Uri uri;
 
-        if (TextUtils.isEmpty(value) || Settings.System.DEFAULT_NOTIFICATION_URI.toString().equals(value)) {
+        if (Settings.System.DEFAULT_NOTIFICATION_URI.toString().equals(value)) {
           uri = null;
         } else {
           uri = Uri.parse(value);

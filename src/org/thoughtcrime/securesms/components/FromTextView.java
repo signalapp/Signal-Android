@@ -3,13 +3,10 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.util.AttributeSet;
-import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
@@ -38,24 +35,13 @@ public class FromTextView extends EmojiTextView {
   }
 
   public void setText(Recipients recipients, boolean read) {
-    int        attributes[]   = new int[]{R.attr.conversation_list_item_count_color};
-    TypedArray colors         = getContext().obtainStyledAttributes(attributes);
-    boolean    isUnnamedGroup = recipients.isGroupRecipient() && TextUtils.isEmpty(recipients.getPrimaryRecipient().getName());
-
-    String fromString;
-
-    if (isUnnamedGroup) {
-      fromString = getContext().getString(R.string.ConversationActivity_unnamed_group);
-    } else {
-      fromString = recipients.toShortString();
-    }
+    int        attributes[] = new int[]{R.attr.conversation_list_item_count_color};
+    TypedArray colors       = getContext().obtainStyledAttributes(attributes);
+    String     fromString   = recipients.toShortString();
 
     int typeface;
 
-    if (isUnnamedGroup) {
-      if (!read) typeface = Typeface.BOLD_ITALIC;
-      else       typeface = Typeface.ITALIC;
-    } else if (!read) {
+    if (!read) {
       typeface = Typeface.BOLD;
     } else {
       typeface = Typeface.NORMAL;

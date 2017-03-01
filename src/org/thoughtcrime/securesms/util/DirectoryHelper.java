@@ -10,7 +10,6 @@ import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.util.Pair;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
@@ -18,6 +17,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SessionUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NotInDirectoryException;
+import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -40,8 +40,8 @@ public class DirectoryHelper {
 
   public static class UserCapabilities {
 
-    public static final UserCapabilities UNKNOWN     = new UserCapabilities(Capability.UNKNOWN, Capability.UNKNOWN);
-    public static final UserCapabilities UNSUPPORTED = new UserCapabilities(Capability.UNSUPPORTED, Capability.UNSUPPORTED);
+    public static final UserCapabilities UNKNOWN     = new UserCapabilities(Capability.UNKNOWN, Capability.UNKNOWN, Capability.UNKNOWN);
+    public static final UserCapabilities UNSUPPORTED = new UserCapabilities(Capability.UNSUPPORTED, Capability.UNSUPPORTED, Capability.UNSUPPORTED);
 
     public enum Capability {
       UNKNOWN, SUPPORTED, UNSUPPORTED
@@ -49,10 +49,12 @@ public class DirectoryHelper {
 
     private final Capability text;
     private final Capability voice;
+    private final Capability video;
 
-    public UserCapabilities(Capability text, Capability voice) {
+    public UserCapabilities(Capability text, Capability voice, Capability video) {
       this.text  = text;
       this.voice = voice;
+      this.video = video;
     }
 
     public Capability getTextCapability() {
@@ -61,6 +63,10 @@ public class DirectoryHelper {
 
     public Capability getVoiceCapability() {
       return voice;
+    }
+
+    public Capability getVideoCapability() {
+      return video;
     }
   }
 
@@ -131,7 +137,9 @@ public class DirectoryHelper {
           notifyNewUsers(context, masterSecret, result.getNewUsers());
         }
 
-        return new UserCapabilities(Capability.SUPPORTED, details.get().isVoice() ? Capability.SUPPORTED : Capability.UNSUPPORTED);
+        return new UserCapabilities(Capability.SUPPORTED,
+                                    details.get().isVoice() ? Capability.SUPPORTED : Capability.UNSUPPORTED,
+                                    details.get().isVideo() ? Capability.SUPPORTED : Capability.UNSUPPORTED);
       } else {
         ContactTokenDetails absent = new ContactTokenDetails();
         absent.setNumber(number);
@@ -161,7 +169,7 @@ public class DirectoryHelper {
       }
 
       if (recipients.isGroupRecipient()) {
-        return new UserCapabilities(Capability.SUPPORTED, Capability.UNSUPPORTED);
+        return new UserCapabilities(Capability.SUPPORTED, Capability.UNSUPPORTED, Capability.UNSUPPORTED);
       }
 
       final String number = recipients.getPrimaryRecipient().getNumber();
@@ -173,9 +181,11 @@ public class DirectoryHelper {
       String  e164number  = Util.canonicalizeNumber(context, number);
       boolean secureText  = TextSecureDirectory.getInstance(context).isSecureTextSupported(e164number);
       boolean secureVoice = TextSecureDirectory.getInstance(context).isSecureVoiceSupported(e164number);
+      boolean secureVideo = TextSecureDirectory.getInstance(context).isSecureVideoSupported(e164number);
 
       return new UserCapabilities(secureText  ? Capability.SUPPORTED : Capability.UNSUPPORTED,
-                                  secureVoice ? Capability.SUPPORTED : Capability.UNSUPPORTED);
+                                  secureVoice ? Capability.SUPPORTED : Capability.UNSUPPORTED,
+                                  secureVideo ? Capability.SUPPORTED : Capability.UNSUPPORTED);
 
     } catch (InvalidNumberException e) {
       Log.w(TAG, e);
@@ -223,14 +233,16 @@ public class DirectoryHelper {
 
     for (String newUser : newUsers) {
       if (!SessionUtil.hasSession(context, masterSecret, newUser) && !Util.isOwnNumber(context, newUser)) {
-        IncomingJoinedMessage message        = new IncomingJoinedMessage(newUser);
-        Pair<Long, Long>      smsAndThreadId = DatabaseFactory.getSmsDatabase(context).insertMessageInbox(message);
+        IncomingJoinedMessage  message      = new IncomingJoinedMessage(newUser);
+        Optional<InsertResult> insertResult = DatabaseFactory.getSmsDatabase(context).insertMessageInbox(message);
 
-        int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-        if (hour >= 9 && hour < 23) {
-          MessageNotifier.updateNotification(context, masterSecret, false, smsAndThreadId.second, true);
-        } else {
-          MessageNotifier.updateNotification(context, masterSecret, false, smsAndThreadId.second, false);
+        if (insertResult.isPresent()) {
+          int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+          if (hour >= 9 && hour < 23) {
+            MessageNotifier.updateNotification(context, masterSecret, false, insertResult.get().getThreadId(), true);
+          } else {
+            MessageNotifier.updateNotification(context, masterSecret, false, insertResult.get().getThreadId(), false);
+          }
         }
       }
     }

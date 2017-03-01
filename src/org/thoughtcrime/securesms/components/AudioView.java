@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -21,6 +22,9 @@ import android.widget.TextView;
 
 import com.pnikosis.materialishprogress.ProgressWheel;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.audio.AudioSlidePlayer;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -33,7 +37,6 @@ import org.thoughtcrime.securesms.util.Util;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import de.greenrobot.event.EventBus;
 
 public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener {
 
@@ -96,7 +99,7 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
   @Override
   protected void onAttachedToWindow() {
     super.onAttachedToWindow();
-    if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().registerSticky(this);
+    if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().register(this);
   }
 
   @Override
@@ -155,6 +158,35 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
       backwardsCounter = 4;
       onProgress(0.0, 0);
     }
+  }
+
+  @Override
+  public void setFocusable(boolean focusable) {
+    super.setFocusable(focusable);
+    this.playButton.setFocusable(focusable);
+    this.pauseButton.setFocusable(focusable);
+    this.seekBar.setFocusable(focusable);
+    this.seekBar.setFocusableInTouchMode(focusable);
+    this.downloadButton.setFocusable(focusable);
+  }
+
+  @Override
+  public void setClickable(boolean clickable) {
+    super.setClickable(clickable);
+    this.playButton.setClickable(clickable);
+    this.pauseButton.setClickable(clickable);
+    this.seekBar.setClickable(clickable);
+    this.seekBar.setOnTouchListener(clickable ? null : new TouchIgnoringListener());
+    this.downloadButton.setClickable(clickable);
+  }
+
+  @Override
+  public void setEnabled(boolean enabled) {
+    super.setEnabled(enabled);
+    this.playButton.setEnabled(enabled);
+    this.pauseButton.setEnabled(enabled);
+    this.seekBar.setEnabled(enabled);
+    this.downloadButton.setEnabled(enabled);
   }
 
   @Override
@@ -286,7 +318,14 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
     }
   }
 
-  @SuppressWarnings("unused")
+  private class TouchIgnoringListener implements OnTouchListener {
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+      return true;
+    }
+  }
+
+  @Subscribe(sticky = true, threadMode = ThreadMode.ASYNC)
   public void onEventAsync(final PartProgressEvent event) {
     if (audioSlidePlayer != null && event.attachment.equals(this.audioSlidePlayer.getAudioSlide().asAttachment())) {
       Util.runOnMain(new Runnable() {

@@ -49,6 +49,10 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
 
   private static final String TAG = RegistrationProgressActivity.class.getSimpleName();
 
+  public static final String NUMBER_EXTRA        = "e164number";
+  public static final String MASTER_SECRET_EXTRA = "master_secret";
+  public static final String GCM_SUPPORTED_EXTRA = "gcm_supported";
+
   private static final int FOCUSED_COLOR   = Color.parseColor("#ff333333");
   private static final int UNFOCUSED_COLOR = Color.parseColor("#ff808080");
 
@@ -89,6 +93,7 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
   private EditText    codeEditText;
 
   private MasterSecret masterSecret;
+  private boolean      gcmSupported;
   private volatile boolean visible;
 
   @Override
@@ -131,7 +136,8 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
   }
 
   private void initializeResources() {
-    this.masterSecret              = getIntent().getParcelableExtra("master_secret");
+    this.masterSecret              = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
+    this.gcmSupported              = getIntent().getBooleanExtra(GCM_SUPPORTED_EXTRA, true);
     this.registrationLayout        = (LinearLayout)findViewById(R.id.registering_layout);
     this.verificationFailureLayout = (LinearLayout)findViewById(R.id.verification_failure_layout);
     this.connectivityFailureLayout = (LinearLayout)findViewById(R.id.connectivity_failure_layout);
@@ -199,8 +205,9 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
     if (hasNumberDirective()) {
       Intent intent = new Intent(this, RegistrationService.class);
       intent.setAction(RegistrationService.REGISTER_NUMBER_ACTION);
-      intent.putExtra("e164number", getNumberDirective());
-      intent.putExtra("master_secret", masterSecret);
+      intent.putExtra(RegistrationService.NUMBER_EXTRA, getNumberDirective());
+      intent.putExtra(RegistrationService.MASTER_SECRET_EXTRA, masterSecret);
+      intent.putExtra(RegistrationService.GCM_SUPPORTED_EXTRA, gcmSupported);
       startService(intent);
     } else {
       Intent intent = new Intent(this, RegistrationActivity.class);
@@ -295,7 +302,7 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
 
   private void handleVerificationRequestedVoice(RegistrationState state) {
     handleVerificationTimeout(state);
-    verifyButton.setOnClickListener(new VerifyClickListener(state.number, state.password));
+    verifyButton.setOnClickListener(new VerifyClickListener(state.number, state.password, gcmSupported));
     verifyButton.setEnabled(true);
     codeEditText.setEnabled(true);
   }
@@ -354,11 +361,11 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
   }
 
   private boolean hasNumberDirective() {
-    return getIntent().getStringExtra("e164number") != null;
+    return getIntent().getStringExtra(NUMBER_EXTRA) != null;
   }
 
   private String getNumberDirective() {
-    return getIntent().getStringExtra("e164number");
+    return getIntent().getStringExtra(NUMBER_EXTRA);
   }
 
   private void shutdownServiceBinding() {
@@ -426,7 +433,8 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
       shutdownService();
 
       Intent activityIntent = new Intent(RegistrationProgressActivity.this, RegistrationActivity.class);
-      activityIntent.putExtra("master_secret", masterSecret);
+      activityIntent.putExtra(RegistrationProgressActivity.MASTER_SECRET_EXTRA, masterSecret);
+      activityIntent.putExtra(RegistrationProgressActivity.GCM_SUPPORTED_EXTRA, gcmSupported);
       startActivity(activityIntent);
       finish();
     }
@@ -447,17 +455,19 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
     private static final int VERIFICATION_ERROR       = 3;
     private static final int MULTI_REGISTRATION_ERROR = 4;
 
-    private final String e164number;
-    private final String password;
-    private final String signalingKey;
+    private final String  e164number;
+    private final String  password;
+    private final String  signalingKey;
+    private final boolean gcmSupported;
     private final Context context;
 
     private ProgressDialog progressDialog;
 
-    public VerifyClickListener(String e164number, String password) {
+    public VerifyClickListener(String e164number, String password, boolean gcmSupported) {
       this.e164number   = e164number;
       this.password     = password;
       this.signalingKey = Util.getSecret(52);
+      this.gcmSupported = gcmSupported;
       this.context      = RegistrationProgressActivity.this;
     }
 
@@ -490,10 +500,11 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
             case SUCCESS:
               Intent intent = new Intent(context, RegistrationService.class);
               intent.setAction(RegistrationService.VOICE_REGISTER_ACTION);
-              intent.putExtra("e164number", e164number);
-              intent.putExtra("password", password);
-              intent.putExtra("signaling_key", signalingKey);
-              intent.putExtra("master_secret", masterSecret);
+              intent.putExtra(RegistrationService.NUMBER_EXTRA, e164number);
+              intent.putExtra(RegistrationService.PASSWORD_EXTRA, password);
+              intent.putExtra(RegistrationService.SIGNALING_KEY_EXTRA, signalingKey);
+              intent.putExtra(RegistrationService.MASTER_SECRET_EXTRA, masterSecret);
+              intent.putExtra(RegistrationService.GCM_SUPPORTED_EXTRA, gcmSupported);
               startService(intent);
               break;
             case NETWORK_ERROR:
@@ -520,8 +531,9 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
           try {
             SignalServiceAccountManager accountManager = AccountManagerFactory.createManager(context, e164number, password);
             int                         registrationId = TextSecurePreferences.getLocalRegistrationId(context);
+            boolean                     video          = TextSecurePreferences.isWebrtcCallingEnabled(context);
 
-            accountManager.verifyAccountWithCode(code, signalingKey, registrationId, true);
+            accountManager.verifyAccountWithCode(code, signalingKey, registrationId, true, video, !gcmSupported);
 
             return SUCCESS;
           } catch (ExpectationFailedException e) {
@@ -577,9 +589,10 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
             case SUCCESS:
               Intent intent = new Intent(context, RegistrationService.class);
               intent.setAction(RegistrationService.VOICE_REQUESTED_ACTION);
-              intent.putExtra("e164number", e164number);
-              intent.putExtra("password", password);
-              intent.putExtra("master_secret", masterSecret);
+              intent.putExtra(RegistrationService.NUMBER_EXTRA, e164number);
+              intent.putExtra(RegistrationService.PASSWORD_EXTRA, password);
+              intent.putExtra(RegistrationService.MASTER_SECRET_EXTRA, masterSecret);
+              intent.putExtra(RegistrationService.GCM_SUPPORTED_EXTRA, gcmSupported);
               startService(intent);
 
               callButton.setEnabled(false);
@@ -616,10 +629,10 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
 
             return SUCCESS;
           } catch (RateLimitException e) {
-            Log.w("RegistrationProgressActivity", e);
+            Log.w(TAG, e);
             return RATE_LIMIT_EXCEEDED;
           } catch (IOException e) {
-            Log.w("RegistrationProgressActivity", e);
+            Log.w(TAG, e);
             return NETWORK_ERROR;
           }
         }

@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.util.Log;
 
+import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.TextSecureExpiredException;
 import org.thoughtcrime.securesms.attachments.Attachment;
@@ -29,7 +30,6 @@ import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
 
-import de.greenrobot.event.EventBus;
 import ws.com.google.android.mms.ContentType;
 
 public abstract class PushSendJob extends SendJob {

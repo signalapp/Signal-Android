@@ -61,7 +61,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Паведамленне пустое!</string>
   <string name="ConversationActivity_group_members">Удзельнікі групы</string>
   <string name="ConversationActivity_group_conversation">Групавая гутарка</string>
-  <string name="ConversationActivity_unnamed_group">Неназваная група</string>
   <string name="ConversationActivity_saved_draft">Захаваны чарнавік</string>
   <string name="ConversationActivity_invalid_recipient">Няправільны атрымальнік!</string>
   <string name="ConversationActivity_calls_not_supported">Званкі не падтрымліваюцца</string>
@@ -70,9 +69,9 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Вы ўпэўнены, што хочаце пакінуць групу?</string>
   <string name="ConversationActivity_transport_insecure_sms">Небяспечная SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Небяспечная MMS</string>
-  <string name="ConversationActivity_error_leaving_group">Памылка выхаду з групы...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS не падтрымліваюцца</string>
   <string name="ConversationActivity_mms_not_supported_message">Гэтае паведамленне ня можа быць даслана, бо ваша мабільны аператар не падтрымлівае MMS</string>
+  <!--ConversationAdapter-->
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Дэталі паведамлення</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Транспарт: %1$s\nДаслана/Атрымана: %2$s</string>
@@ -96,6 +95,7 @@
   <!--DateUtils-->
   <!--DeviceListActivity-->
   <!--DeviceListItem-->
+  <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Падзяліцца з</string>
   <!--ExperienceUpgradeActivity-->
@@ -108,14 +108,12 @@
   <!--GiphyFragmentPageAdapter-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Новая група</string>
-  <string name="GroupCreateActivity_actionbar_update_title">Абнавіць групу</string>
   <string name="GroupCreateActivity_group_name_hint">Імя групы</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Новая MMS група</string>
   <string name="GroupCreateActivity_contacts_mms_exception">З прычыны раптоўнай памылкі, стварэнне групы не атрымалася.</string>
   <string name="GroupCreateActivity_contacts_no_members">Для вашай групы неабходны як мінімум адзін ўдзельнік!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Адзін з удзельнікаў вашай групы мае некарэтна напісаны нумар. Калі ласка выправіце напісанне гэтага нумару, альбо выдаліце яго ды паспрабуйце паўтарыць ізноў.</string>
   <string name="GroupCreateActivity_avatar_content_description">Групавы аватар</string>
-  <string name="GroupCreateActivity_menu_create_title">Стварыць групу</string>
   <string name="GroupCreateActivity_creating_group">Стварэнне %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Абнаўленне %1$s...</string>
   <string name="GroupCreateActivity_loading_group_details">Загрузка дэталяў групы...</string>
@@ -148,6 +146,7 @@
   <string name="KeyScanningActivity_install_barcode_Scanner">Усталяваць сканэр штрыхкодаў?</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Не атрымалася даслаць</string>
+  <!--MessageRetrievalService-->
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Памылка захавання MMS!</string>
   <!--- NotificationBarManager-->
@@ -177,6 +176,7 @@
   <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
   <!--RecipientPreferencesActivity-->
+  <!--RecipientProvider-->
   <!--RedPhone-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Абярыце вашу краіну</string>
@@ -184,8 +184,6 @@
   <string name="RegistrationActivity_you_must_specify_your_phone_number">Вы мусіце ўказаць ваш нумар тэлефона</string>
   <string name="RegistrationActivity_invalid_number">Няправільны нумар</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Вы ўказалі няправільны нумар (%s) </string>
-  <string name="RegistrationActivity_unsupported">Не падтрымліваецца</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Нажаль гэты дэвайс не падтрымлівае дадзеныя паведамленні. Смартфон з версіяй Android ранейшай за 4.0 мусіць мець зарэгістраваны ўліковы запіс Google. Смартфон з версіяй Android пазней за 4.0 не патрабуе ўліковы запіс Google , але мусіць мець усталяваны Play Store.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">Праверці ці гэта сапраўды Ваш нумар. Ён будзе правярацца з дапамогай SMS.</string>
   <string name="RegistrationActivity_continue">Працягнуць</string>
   <string name="RegistrationActivity_edit">Рэдагаваць</string>
@@ -246,6 +244,10 @@
   <string name="ApplicationMigrationService_importing_text_messages">Імпарт тэкставых паведамленняў</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_lock">Замкнуць гэты пароль</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">Вы</string>
+  <string name="MediaPreviewActivity_cant_display">Не атрымліваецца папярэдне праглядзець выяву</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Гэты медыя тып не падтрымліваецца</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_media_message_with_text">Мультымедыя паведамленне: %s</string>
   <string name="MessageNotifier_no_subject">(Няма тэмы)</string>
@@ -254,9 +256,19 @@
   <string name="MessageNotifier_error_delivering_message">Памылка дастаўкі паведамлення.</string>
   <string name="MessageNotifier_mark_all_as_read">Пазначыць усе як прачытаныя</string>
   <string name="MessageNotifier_media_message">Мультымедыя паведамленне</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Для вашага тэлефона патрэбныя ручныя налады SMS</string>
+  <string name="MmsPreferencesFragment__enabled">Уключана</string>
+  <string name="MmsPreferencesFragment__disabled">Выключана</string>
+  <string name="MmsPreferencesFragment__not_set">Не ўсталявана</string>
+  <string name="MmsPreferencesFragment__invalid_uri">Уведзены тэкст ня быў сапраўдным URI</string>
+  <string name="MmsPreferencesFragment__invalid_host">Уведзены тэкст ня быў сапраўдным хастом</string>
   <!--QuickResponseService-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_new_message">Новае паведамленне</string>
+  <!--VideoPlayer-->
+  <!--WebRtcCallScreen-->
+  <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <!--contact_selection_activity-->
@@ -299,6 +311,7 @@
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Пакетны рэжым выбару</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s абрана</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Загрузка краінаў...</string>
   <string name="country_selection_fragment__search">Пошук</string>
@@ -327,17 +340,9 @@
   <string name="import_fragment__import_plaintext_backup">Імпартаваць рэзервную копію простым тэкстам</string>
   <!--load_more_header-->
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_images">Няма выявы</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">ВЕРЫФІКАВАЦЬ</string>
   <string name="message_recipients_list_item__resend">ДАСЛАЦЬ ПАЎТОРНА</string>
-  <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Для вашага тэлефона патрэбныя ручныя налады SMS</string>
-  <string name="MmsPreferencesFragment__enabled">Уключана</string>
-  <string name="MmsPreferencesFragment__disabled">Выключана</string>
-  <string name="MmsPreferencesFragment__not_set">Не ўсталявана</string>
-  <string name="MmsPreferencesFragment__invalid_uri">Уведзены тэкст ня быў сапраўдным URI</string>
-  <string name="MmsPreferencesFragment__invalid_host">Уведзены тэкст ня быў сапраўдным хастом</string>
   <!--GroupUtil-->
   <string name="GroupUtil_group_updated">Група абноўлена.</string>
   <!--prompt_passphrase_activity-->
@@ -396,8 +401,6 @@
   <string name="AndroidManifest__enter_passphrase">Увядзіце пароль</string>
   <string name="AndroidManifest__select_contacts">Абраць кантакты</string>
   <string name="AndroidManifest__change_passphrase">Змяніць пароль</string>
-  <string name="AndroidManifest__media_overview">Усе выявы</string>
-  <string name="AndroidManifest__media_overview_named">Усе выявы з %1$s</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Імпарт / экспарт</string>
   <string name="arrays__use_default">Выкарыстоўваць стандартны</string>
@@ -525,9 +528,7 @@
   <!--conversation_unmuted-->
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Прыкласці дадатак</string>
-  <string name="conversation__menu_update_group">Абнавіць групу</string>
   <string name="conversation__menu_leave_group">Пакінуць групу</string>
-  <string name="conversation__menu_view_media">Усе выявы</string>
   <!--conversation_popup-->
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Дадаць да кантактаў</string>
@@ -546,10 +547,6 @@
   <string name="text_secure_normal__mark_all_as_read">Пазначыць усе як прачытаныя</string>
   <!--verify_display_fragment-->
   <!--reminder_header-->
-  <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">Вы</string>
-  <string name="MediaPreviewActivity_cant_display">Не атрымліваецца папярэдне праглядзець выяву</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Гэты медыя тып не падтрымліваецца</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Захаваць</string>
   <!--media_overview-->

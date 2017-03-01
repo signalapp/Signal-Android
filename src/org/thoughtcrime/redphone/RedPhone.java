@@ -35,6 +35,9 @@ import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.thoughtcrime.redphone.ui.CallControls;
 import org.thoughtcrime.redphone.ui.CallScreen;
 import org.thoughtcrime.redphone.util.AudioUtils;
@@ -43,7 +46,6 @@ import org.thoughtcrime.securesms.events.RedPhoneEvent;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
-import de.greenrobot.event.EventBus;
 
 /**
  * The main UI class for RedPhone.  Most of the heavy lifting is
@@ -87,7 +89,7 @@ public class RedPhone extends Activity {
     super.onResume();
 
     initializeScreenshotSecurity();
-    EventBus.getDefault().registerSticky(this);
+    EventBus.getDefault().register(this);
     registerBluetoothReceiver();
   }
 
@@ -305,7 +307,7 @@ public class RedPhone extends Activity {
     }, delayMillis);
   }
 
-  @SuppressWarnings("unused")
+  @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
   public void onEventMainThread(final RedPhoneEvent event) {
     Log.w(TAG, "Got message from service: " + event.getType());
 

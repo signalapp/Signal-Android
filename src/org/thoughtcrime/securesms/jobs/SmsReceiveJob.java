@@ -3,13 +3,13 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.telephony.SmsMessage;
 import android.util.Log;
-import android.util.Pair;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
+import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -45,6 +45,8 @@ public class SmsReceiveJob extends ContextJob {
 
   @Override
   public void onRun() {
+    Log.w(TAG, "onRun()");
+    
     Optional<IncomingTextMessage> message      = assembleMessageFragments(pdus, subscriptionId);
     MasterSecret                  masterSecret = KeyCachingService.getMasterSecret(context);
 
@@ -57,10 +59,15 @@ public class SmsReceiveJob extends ContextJob {
     }
 
     if (message.isPresent() && !isBlocked(message.get())) {
-      Pair<Long, Long> messageAndThreadId = storeMessage(masterSecretUnion, message.get());
-      MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
+      Optional<InsertResult> insertResult = storeMessage(masterSecretUnion, message.get());
+
+      if (insertResult.isPresent()) {
+        MessageNotifier.updateNotification(context, masterSecret, insertResult.get().getThreadId());
+      }
     } else if (message.isPresent()) {
       Log.w(TAG, "*** Received blocked SMS, ignoring...");
+    } else {
+      Log.w(TAG, "*** Failed to assemble message fragments!");
     }
   }
 
@@ -83,20 +90,18 @@ public class SmsReceiveJob extends ContextJob {
     return false;
   }
 
-  private Pair<Long, Long> storeMessage(MasterSecretUnion masterSecret, IncomingTextMessage message) {
+  private Optional<InsertResult> storeMessage(MasterSecretUnion masterSecret, IncomingTextMessage message) {
     EncryptingSmsDatabase database = DatabaseFactory.getEncryptingSmsDatabase(context);
 
-    Pair<Long, Long> messageAndThreadId;
-
     if (message.isSecureMessage()) {
-      IncomingTextMessage placeholder = new IncomingTextMessage(message, "");
-      messageAndThreadId = database.insertMessageInbox(placeholder);
-      database.markAsLegacyVersion(messageAndThreadId.first);
-    } else {
-      messageAndThreadId = database.insertMessageInbox(masterSecret, message);
-    }
+      IncomingTextMessage    placeholder  = new IncomingTextMessage(message, "");
+      Optional<InsertResult> insertResult = database.insertMessageInbox(placeholder);
+      database.markAsLegacyVersion(insertResult.get().getMessageId());
 
-    return messageAndThreadId;
+      return insertResult;
+    } else {
+      return database.insertMessageInbox(masterSecret, message);
+    }
   }
 
   private Optional<IncomingTextMessage> assembleMessageFragments(Object[] pdus, int subscriptionId) {

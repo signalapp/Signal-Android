@@ -19,6 +19,14 @@ public class SubscriptionManagerCompat {
     this.context = context.getApplicationContext();
   }
 
+  public Optional<Integer> getPreferredSubscriptionId() {
+    if (Build.VERSION.SDK_INT < 24) {
+      return Optional.absent();
+    }
+
+    return Optional.of(SubscriptionManager.getDefaultSmsSubscriptionId());
+  }
+
   public Optional<SubscriptionInfoCompat> getActiveSubscriptionInfo(int subscriptionId) {
     if (Build.VERSION.SDK_INT < 22) {
       return Optional.absent();

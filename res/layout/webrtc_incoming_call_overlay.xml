@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <org.thoughtcrime.redphone.util.multiwaveview.MultiWaveView
+            android:id="@+id/incomingCallWidget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="-46dp"
+            android:background="@android:color/black"
+            android:visibility="gone"
+            />
+
+    <TextView android:id="@+id/redphone_banner"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_alignTop="@id/incomingCallWidget"
+              android:gravity="center"
+              android:paddingTop="8dp"
+              android:paddingBottom="8dp"
+              android:textAppearance="?android:attr/textAppearanceLarge"
+              android:textColor="#FFFFFF"
+              android:textAllCaps="true"
+              android:background="@color/textsecure_primary"
+              android:text="@string/redphone_call_controls__signal_call"/>
+
+</RelativeLayout>

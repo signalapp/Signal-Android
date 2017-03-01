@@ -69,6 +69,7 @@ public class ThreadDatabase extends Database {
   public  static final String STATUS          = "status";
   public  static final String RECEIPT_COUNT   = "delivery_receipt_count";
   public  static final String EXPIRES_IN      = "expires_in";
+  public  static final String LAST_SEEN       = "last_seen";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " ("                    +
     ID + " INTEGER PRIMARY KEY, " + DATE + " INTEGER DEFAULT 0, "                                  +
@@ -77,7 +78,8 @@ public class ThreadDatabase extends Database {
     TYPE + " INTEGER DEFAULT 0, " + ERROR + " INTEGER DEFAULT 0, "                                 +
     SNIPPET_TYPE + " INTEGER DEFAULT 0, " + SNIPPET_URI + " TEXT DEFAULT NULL, "                   +
     ARCHIVED + " INTEGER DEFAULT 0, " + STATUS + " INTEGER DEFAULT 0, "                            +
-    RECEIPT_COUNT + " INTEGER DEFAULT 0, " + EXPIRES_IN + " INTEGER DEFAULT 0);";
+    RECEIPT_COUNT + " INTEGER DEFAULT 0, " + EXPIRES_IN + " INTEGER DEFAULT 0, "                   +
+    LAST_SEEN + " INTEGER DEFAULT 0);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS thread_recipient_ids_index ON " + TABLE_NAME + " (" + RECIPIENT_IDS + ");",
@@ -262,9 +264,13 @@ public class ThreadDatabase extends Database {
     notifyConversationListListeners();
   }
 
-  public List<MarkedMessageInfo> setRead(long threadId) {
+  public List<MarkedMessageInfo> setRead(long threadId, boolean lastSeen) {
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(READ, 1);
+
+    if (lastSeen) {
+      contentValues.put(LAST_SEEN, System.currentTimeMillis());
+    }
 
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {threadId+""});
@@ -389,6 +395,31 @@ public class ThreadDatabase extends Database {
 
     db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {threadId + ""});
     notifyConversationListListeners();
+  }
+
+  public void setLastSeen(long threadId) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    ContentValues contentValues = new ContentValues(1);
+    contentValues.put(LAST_SEEN, System.currentTimeMillis());
+
+    db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {String.valueOf(threadId)});
+    notifyConversationListListeners();
+  }
+
+  public long getLastSeen(long threadId) {
+    SQLiteDatabase db     = databaseHelper.getReadableDatabase();
+    Cursor         cursor = db.query(TABLE_NAME, new String[]{LAST_SEEN}, ID_WHERE, new String[]{String.valueOf(threadId)}, null, null, null);
+
+    try {
+      if (cursor != null && cursor.moveToFirst()) {
+        return cursor.getLong(0);
+      }
+
+      return -1;
+    } finally {
+      if (cursor != null) cursor.close();
+    }
+
   }
 
   public void deleteConversation(long threadId) {
@@ -582,11 +613,12 @@ public class ThreadDatabase extends Database {
       int status              = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.STATUS));
       int receiptCount        = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.RECEIPT_COUNT));
       long expiresIn          = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.EXPIRES_IN));
+      long lastSeen           = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.LAST_SEEN));
       Uri snippetUri          = getSnippetUri(cursor);
 
       return new ThreadRecord(context, body, snippetUri, recipients, date, count, read == 1,
                               threadId, receiptCount, status, type, distributionType, archived,
-                              expiresIn);
+                              expiresIn, lastSeen);
     }
 
     private DisplayRecord.Body getPlaintextBody(Cursor cursor) {

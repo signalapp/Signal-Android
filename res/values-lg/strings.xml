@@ -93,7 +93,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Obubaka bukalu!</string>
   <string name="ConversationActivity_group_members">Ababaka b\'omukibinja</string>
   <string name="ConversationActivity_group_conversation">Emboozi y\'ekibinja</string>
-  <string name="ConversationActivity_unnamed_group">Ekibinja  ekitalina linya</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="one">munaffe 1</item>
     <item quantity="other">%d ababaka</item>
@@ -110,7 +109,6 @@ a</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Katudde ku Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Katukozese emboozi eno: %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">ensobi mukuva mu kibinja...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS tewagiddwa</string>
   <string name="ConversationActivity_specify_recipient">Bambi londa contact</string>
   <string name="ConversationActivity_unblock_this_contact_question">sumulula contact eno</string>
@@ -120,6 +118,7 @@ a</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera teriiko</string>
   <string name="ConversationActivity_unable_to_record_audio">Tesobodde kukwata ddoboozi!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Tewali App kukwasaganya </string>
+  <!--ConversationAdapter-->
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">obulambulukufu bw\'obubaka</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Entambula:%1$s/esindikiddwa/etuuse
@@ -185,6 +184,7 @@ a</string>
   <string name="CustomDefaultPreference_none">tewali</string>
   <!--DateUtils-->
   <string name="DateUtils_minutes_ago">%d dakiika</string>
+  <string name="DateUtils_today">Leero</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Gyayoo \'%s\'?</string>
   <string name="DeviceListActivity_try_again">Gezaako neera</string>
@@ -194,6 +194,7 @@ a</string>
   <string name="DeviceListItem_linked_s">Kigatiddwa %s</string>
   <string name="DeviceListItem_last_active_s">ebyasembayo okuba ebilamu %s</string>
   <string name="DeviceListItem_today">Leero</string>
+  <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Gabana ne</string>
   <!--ExperienceUpgradeActivity-->
@@ -216,7 +217,6 @@ a</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Enkwaso</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Ekibinja ekipya</string>
-  <string name="GroupCreateActivity_actionbar_update_title">Zabugya ekibinja</string>
   <string name="GroupCreateActivity_group_name_hint">Erinya ly\'ekibinja</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Akaboondo ka mms akapya</string>
   <string name="GroupCreateActivity_youre_not_registered_for_signal">Tewewandisa ku bubaka bwa Signal n\'amasimu, era ebibinja bya Signal bijiddwako. Bambi gezaako okwewandisa mu kwerobooza &gt; Okwawaggulu</string>
@@ -224,7 +224,6 @@ a</string>
   <string name="GroupCreateActivity_contacts_no_members">Wetagaayo ekitono enyo omuntu omu mu kibinja kyo!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Omu ku babaka mu kibinja kyo alina enamba etasobola kusomwa bulungi, bambi gyitereze or gyigyeemu oddemu ogezeeko.</string>
   <string name="GroupCreateActivity_avatar_content_description">Ekisikirize ky\'ekibinja</string>
-  <string name="GroupCreateActivity_menu_create_title">Tondawo ekibinja</string>
   <string name="GroupCreateActivity_creating_group">ku tondawo %1$s…</string>
   <string name="GroupCreateActivity_updating_group">ku zabujja %1$s.</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Tekisobose kugattako %1$s kubanga tebakozesa Signal</string>
@@ -276,6 +275,8 @@ a</string>
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal needs Barcode Scanner for QR codes.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Eremereddwa okuwerezwa</string>
+  <!--MessageRetrievalService-->
+  <string name="MessageRetrievalService_signal">mayengo</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Error storing MMS!</string>
   <!--- NotificationBarManager-->
@@ -348,6 +349,7 @@ a</string>
   <string name="RecipientPreferenceActivity_unblock">sumulula</string>
   <string name="RecipientPreferenceActivity_enabled">Etereddwaako</string>
   <string name="RecipientPreferenceActivity_disabled">Egyiddwaako</string>
+  <!--RecipientProvider-->
   <!--RedPhone-->
   <string name="RedPhone_answering">oddibwaamu</string>
   <string name="RedPhone_ending_call">essimu esalibwaako</string>
@@ -377,8 +379,6 @@ a</string>
   <string name="RegistrationActivity_invalid_number">E\'namba sintuufu</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Enamba 
 gy\'olonze (%s) sintuufu.</string>
-  <string name="RegistrationActivity_unsupported">Tekiwagirwa</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">sorry. device tekola ku signal.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
 Dammu okebere e namba yo.  Tugenda kugikakasa no bubaka ku simu</string>
   <string name="RegistrationActivity_continue">genda maaso</string>
@@ -465,6 +465,10 @@ Dammu okebere e namba yo.  Tugenda kugikakasa no bubaka ku simu</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Kwatako okugulaaawo, oba kwataku kufulu okugalawo.</string>
   <string name="KeyCachingService_passphrase_cached">Signal eggudwa</string>
   <string name="KeyCachingService_lock"> Siba ne passiwadi yebigambo ne namba</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">Gwe</string>
+  <string name="MediaPreviewActivity_cant_display">Olemeddwa okulaba ekifanayi kino</string>
+  <string name="MediaPreviewActivity_unssuported_media_type"> ekika kino ekya  Tekiwaniriddwa </string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d obubaka obupya mu %2$d mboozi</string>
   <string name="MessageNotifier_most_recent_from_s">Ebiyiseewo okuva:%1$s</string>
@@ -477,12 +481,22 @@ Dammu okebere e namba yo.  Tugenda kugikakasa no bubaka ku simu</string>
   <string name="MessageNotifier_mark_read">lamba osome</string>
   <string name="MessageNotifier_media_message">obubaka bwemikutu</string>
   <string name="MessageNotifier_reply">ddamu</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Essimu yetaaga okusentingibwa omuntu</string>
+  <string name="MmsPreferencesFragment__enabled">Etereddwaako</string>
+  <string name="MmsPreferencesFragment__disabled">Egyiddwaako</string>
+  <string name="MmsPreferencesFragment__not_set">Tesetingiddwa</string>
+  <string name="MmsPreferencesFragment__invalid_uri">Endagiriro yomukutu nfu </string>
+  <string name="MmsPreferencesFragment__invalid_host">Network gyosikako nfu</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">okudamu okwangu tekubawo nga amayengo gasibidwa</string>
   <string name="QuickResponseService_problem_sending_message">obuzibu mukusindika obubaka</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">mayengo</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Obubaka obupya</string>
+  <!--VideoPlayer-->
+  <!--WebRtcCallScreen-->
+  <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">kifananyi</string>
   <string name="attachment_type_selector__audio">doboozi</string>
@@ -539,6 +553,7 @@ Dammu okebere e namba yo.  Tugenda kugikakasa no bubaka ku simu</string>
   <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_amount">%s kilondedwako</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Ensi ziwanulwa</string>
   <string name="country_selection_fragment__search">Noonya</string>
@@ -608,18 +623,10 @@ Dammu okebere e namba yo.  Tugenda kugikakasa no bubaka ku simu</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Laba emboozi yonna</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_images">Tewali bifananyi</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">Kakasa</string>
   <string name="message_recipients_list_item__resend">Ddamu owerezze
 </string>
-  <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Essimu yetaaga okusentingibwa omuntu</string>
-  <string name="MmsPreferencesFragment__enabled">Etereddwaako</string>
-  <string name="MmsPreferencesFragment__disabled">Egyiddwaako</string>
-  <string name="MmsPreferencesFragment__not_set">Tesetingiddwa</string>
-  <string name="MmsPreferencesFragment__invalid_uri">Endagiriro yomukutu nfu </string>
-  <string name="MmsPreferencesFragment__invalid_host">Network gyosikako nfu</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s yeegasse mu group</item>
@@ -737,8 +744,6 @@ Signal evudeko bwebadde erinda obubaka okukakasa.</string>
   <string name="AndroidManifest__change_passphrase">Kyusa pasiwadi yebigambo n\'enamba</string>
   <string name="AndroidManifest__log_submit">Waayo olukalala lwa bili kibaddewo</string>
   <string name="AndroidManifest__media_preview">Lozaako ku bifaananyi, vidiyo n\'enyimba</string>
-  <string name="AndroidManifest__media_overview">Ebifaananyi byona</string>
-  <string name="AndroidManifest__media_overview_named">Ebifaananyi byona wamu ne %1$s</string>
   <string name="AndroidManifest__message_details">Ebikwaata ku message</string>
   <string name="AndroidManifest__linked_devices">Abyampuliziganya ebikwataganye</string>
   <string name="AndroidManifest__invite_friends">Yita  abemikwano </string>
@@ -932,10 +937,8 @@ Tekako obude nga emboozi egenda maaso</string>
   <string name="conversation_unmuted__mute_notifications">zikiza obude bwemboozi</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Gatako ekigatiddwako</string>
-  <string name="conversation__menu_update_group">Zabugya ekibinja</string>
   <string name="conversation__menu_leave_group">Vva mukibinja</string>
   <string name="conversation__menu_delete_thread">Sangula emboozi.</string>
-  <string name="conversation__menu_view_media">Ebifaananyi byona</string>
   <string name="conversation__menu_conversation_settings">Enteekateeka yemboozi.</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">gaziya popup</string>
@@ -988,17 +991,13 @@ Tekako obude nga emboozi egenda maaso</string>
   <string name="reminder_header_share_button">Okugaba
 </string>
   <string name="reminder_header_close_button">Galawo</string>
-  <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">Gwe</string>
-  <string name="MediaPreviewActivity_cant_display">Olemeddwa okulaba ekifanayi kino</string>
-  <string name="MediaPreviewActivity_unssuported_media_type"> ekika kino ekya  Tekiwaniriddwa </string>
   <!--media_preview-->
   <string name="media_preview__save_title">Tereka</string>
   <string name="media_preview__forward_title">sindikirako omulala</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Tereka byonna</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">Okulaba ekifanayi</string>
+  <string name="media_preview_activity__media_content_description">Lozaako ku bifaananyi, vidiyo n\'enyimba</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Damu bupya</string>
   <!--redphone_audio_popup_menu-->

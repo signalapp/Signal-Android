@@ -103,7 +103,6 @@ Om du vil benytte Signal for meldinger og anrop igjen i fremtiden må du registr
   <string name="ConversationActivity_message_is_empty_exclamation">Meldingen er tom!</string>
   <string name="ConversationActivity_group_members">Gruppemedlemmer</string>
   <string name="ConversationActivity_group_conversation">Gruppesamtale</string>
-  <string name="ConversationActivity_unnamed_group">Navnløs gruppe</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="one">1 medlem</item>
     <item quantity="other">%d medlemmer</item>
@@ -119,7 +118,6 @@ Om du vil benytte Signal for meldinger og anrop igjen i fremtiden må du registr
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">La oss bytte til Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">La oss bruke dette til å chatte: %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Feil ved utmelding av gruppen...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS ikke støttet</string>
   <string name="ConversationActivity_mms_not_supported_message">Denne meldingen kan ikke sendes fordi operatøren din ikke støtter MMS.</string>
   <string name="ConversationActivity_specify_recipient">Velg kontaktperson</string>
@@ -130,6 +128,7 @@ Om du vil benytte Signal for meldinger og anrop igjen i fremtiden må du registr
   <string name="ConversationActivity_quick_camera_unavailable">Kamera utilgjengelig</string>
   <string name="ConversationActivity_unable_to_record_audio">Kunne ikke ta opp lyd!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Det er ingen app tilgjengelig på enheten din for å håndtere denne linken.</string>
+  <!--ConversationAdapter-->
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Meldingsdetaljer</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nSendt/Mottatt: %2$s</string>
@@ -200,6 +199,7 @@ Om du vil benytte Signal for meldinger og anrop igjen i fremtiden må du registr
   <string name="CustomDefaultPreference_none">Ingen</string>
   <!--DateUtils-->
   <string name="DateUtils_minutes_ago">%d min</string>
+  <string name="DateUtils_today">I dag</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Frakoble \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Ved å frakoble denne enheten vil den ikke lenger være i stand til å sende eller motta meldinger.</string>
@@ -212,6 +212,7 @@ Om du vil benytte Signal for meldinger og anrop igjen i fremtiden må du registr
   <string name="DeviceListItem_linked_s">%s tilkoblet</string>
   <string name="DeviceListItem_last_active_s">Sist aktiv %s</string>
   <string name="DeviceListItem_today">I dag</string>
+  <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Del med</string>
   <!--ExperienceUpgradeActivity-->
@@ -237,7 +238,6 @@ Om du vil benytte Signal for meldinger og anrop igjen i fremtiden må du registr
   <!--GiphyFragmentPageAdapter-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Ny gruppe</string>
-  <string name="GroupCreateActivity_actionbar_update_title">Oppdater gruppe</string>
   <string name="GroupCreateActivity_group_name_hint">Gruppenavn</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Ny MMS gruppe</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Du har valgt en kontakt som ikke støtter Signal grupper, så dette vil bli en MMS gruppe.</string>
@@ -246,7 +246,6 @@ Om du vil benytte Signal for meldinger og anrop igjen i fremtiden må du registr
   <string name="GroupCreateActivity_contacts_no_members">Du må ha minst en person i gruppen din!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">En av gruppemedlemmene har et nummer som ikke kan tolkes. Vær vennlig og korriger eller slett kontakten og prøv igjen. </string>
   <string name="GroupCreateActivity_avatar_content_description">Gruppeavatar</string>
-  <string name="GroupCreateActivity_menu_create_title">Opprett gruppe</string>
   <string name="GroupCreateActivity_creating_group">Oppretter %1$s...</string>
   <string name="GroupCreateActivity_updating_group">Oppdaterer %1$s...</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Kunne ikke legge til %1$s på grunn av at de ikke er Signal-brukere.</string>
@@ -304,6 +303,8 @@ Innlasting av en kryptert backup vil erstatte dine eksisterende nøkler, prefera
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal trenger Barcode Scanner for QR koder.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Sending feilet</string>
+  <!--MessageRetrievalService-->
+  <string name="MessageRetrievalService_signal">Signal</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Feil ved lagring av MMS!</string>
   <!--- NotificationBarManager-->
@@ -375,6 +376,7 @@ Innlasting av en kryptert backup vil erstatte dine eksisterende nøkler, prefera
   <string name="RecipientPreferenceActivity_unblock">Opphev blokkering</string>
   <string name="RecipientPreferenceActivity_enabled">Aktivert</string>
   <string name="RecipientPreferenceActivity_disabled">Deaktivert</string>
+  <!--RecipientProvider-->
   <!--RedPhone-->
   <string name="RedPhone_answering">Svar</string>
   <string name="RedPhone_ending_call">Avslutter anrop</string>
@@ -406,8 +408,6 @@ telefonnummeret ditt</string>
   <string name="RegistrationActivity_invalid_number">Ugyldig nummer</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Nummeret du 
 oppga (%s) er ugylig.</string>
-  <string name="RegistrationActivity_unsupported">Ikke støttet</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Beklager, denne enheten støtter ikke meldinger over mobil data. Enheter som kjører versjoner av Android lavere enn 4.0 krever en Google konto. Enheter som kjører versjoner av Android 4.0 eller nyere krever ikke en Google konto, men Play Store applikasjonen må være installert.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
 Dobbelsjekk at dette er nummeret ditt! Vi er i ferd med å verifisere det med en SMS.
 </string>
@@ -492,6 +492,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Berør for å åpne, eller velg låsen for å lukke.</string>
   <string name="KeyCachingService_passphrase_cached">Signal er ulåst</string>
   <string name="KeyCachingService_lock">Lås med passord</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">Du</string>
+  <string name="MediaPreviewActivity_cant_display">Klarte ikke å forhåndsvise dette bildet</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Media typen er ikke støttet</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nye meldinger i %2$d samtaler</string>
   <string name="MessageNotifier_most_recent_from_s">Nyeste fra: %1$s</string>
@@ -504,12 +508,22 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="MessageNotifier_mark_read">Marker som lest</string>
   <string name="MessageNotifier_media_message">Multimediamelding</string>
   <string name="MessageNotifier_reply">Svar</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Det er nødvendig med manuelle MMS innstillinger for din telefon.</string>
+  <string name="MmsPreferencesFragment__enabled">Aktivert</string>
+  <string name="MmsPreferencesFragment__disabled">Deaktivert</string>
+  <string name="MmsPreferencesFragment__not_set">Ikke satt</string>
+  <string name="MmsPreferencesFragment__invalid_uri">Teksten som ble tastet inn var ikke en gyldig URI</string>
+  <string name="MmsPreferencesFragment__invalid_host">Teksten som ble tastet inn var ikke en gyldig vert</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Rask tilbakemelding ikke tilgjengelig når Signal er låst!</string>
   <string name="QuickResponseService_problem_sending_message">Kunne ikke sende melding!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ny melding</string>
+  <!--VideoPlayer-->
+  <!--WebRtcCallScreen-->
+  <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Bilde</string>
   <string name="attachment_type_selector__audio">Lyd</string>
@@ -566,6 +580,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Batch valg modus</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s valgte</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Laster land...</string>
   <string name="country_selection_fragment__search">Søk</string>
@@ -632,17 +647,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Se hele samtalen</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_images">Ingen bilder</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">VERIFISER</string>
   <string name="message_recipients_list_item__resend">SEND OM IGJEN</string>
-  <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Det er nødvendig med manuelle MMS innstillinger for din telefon.</string>
-  <string name="MmsPreferencesFragment__enabled">Aktivert</string>
-  <string name="MmsPreferencesFragment__disabled">Deaktivert</string>
-  <string name="MmsPreferencesFragment__not_set">Ikke satt</string>
-  <string name="MmsPreferencesFragment__invalid_uri">Teksten som ble tastet inn var ikke en gyldig URI</string>
-  <string name="MmsPreferencesFragment__invalid_host">Teksten som ble tastet inn var ikke en gyldig vert</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s ble med i gruppen.</item>
@@ -747,8 +754,6 @@ feilet.</string>
   <string name="AndroidManifest__change_passphrase">Passordbytte</string>
   <string name="AndroidManifest__log_submit">Send debug logg</string>
   <string name="AndroidManifest__media_preview">Forhåndsvisning av media</string>
-  <string name="AndroidManifest__media_overview">Alle bilder</string>
-  <string name="AndroidManifest__media_overview_named">Alle bilder med %1$s</string>
   <string name="AndroidManifest__message_details">Meldingsdetaljer</string>
   <string name="AndroidManifest__linked_devices">Tilknyttede enheter</string>
   <string name="AndroidManifest__invite_friends">Inviter venner</string>
@@ -935,10 +940,8 @@ feilet.</string>
   <string name="conversation_unmuted__mute_notifications">Slå av varslingslyd</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Legg til vedlegg</string>
-  <string name="conversation__menu_update_group">Oppdater gruppe</string>
   <string name="conversation__menu_leave_group">Forlat gruppe</string>
   <string name="conversation__menu_delete_thread">Slett samtale</string>
-  <string name="conversation__menu_view_media">Alle bilder</string>
   <string name="conversation__menu_conversation_settings">Samtaleinstillinger</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Utvid pop-up</string>
@@ -988,16 +991,12 @@ feilet.</string>
   <string name="reminder_header_share_text">Jo flere venner som bruker Signal, jo bedre blir det.</string>
   <string name="reminder_header_share_button">DEL</string>
   <string name="reminder_header_close_button">LUKK</string>
-  <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">Du</string>
-  <string name="MediaPreviewActivity_cant_display">Klarte ikke å forhåndsvise dette bildet</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Media typen er ikke støttet</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Lagre</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Lagre alt</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">Forhåndsvisning av bilde</string>
+  <string name="media_preview_activity__media_content_description">Forhåndsvisning av media</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Refresh</string>
   <!--redphone_audio_popup_menu-->

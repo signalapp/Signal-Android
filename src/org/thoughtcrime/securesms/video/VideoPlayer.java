@@ -60,7 +60,7 @@ public class VideoPlayer extends FrameLayout {
       Log.w(TAG, "Playing video directly from non-local Uri...");
       this.videoView.setVideoURI(videoSource.getUri());
     } else {
-      Toast.makeText(getContext(), "Error playing video...", Toast.LENGTH_LONG).show();
+      Toast.makeText(getContext(), getContext().getString(R.string.VideoPlayer_error_playing_video), Toast.LENGTH_LONG).show();
       return;
     }
 

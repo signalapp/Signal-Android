@@ -102,7 +102,6 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <string name="ConversationActivity_message_is_empty_exclamation">Tin nhắn trống không!</string>
   <string name="ConversationActivity_group_members">Thành viên trong nhóm</string>
   <string name="ConversationActivity_group_conversation">Chuyện trò nhóm</string>
-  <string name="ConversationActivity_unnamed_group">Nhóm chưa đặt tên</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="other">%d thành viên</item>
   </plurals>
@@ -117,7 +116,6 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Hãy chuyển sang dùng Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Dùng cái này để chat: %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Có lỗi khi rời nhóm</string>
   <string name="ConversationActivity_mms_not_supported_title">Không hỗ trợ MMS</string>
   <string name="ConversationActivity_mms_not_supported_message">Tin nhắn không gửi được vì hãng điện thoại không hỗ trợ MMS.</string>
   <string name="ConversationActivity_specify_recipient">Xin chọn một liên lạc</string>
@@ -127,6 +125,7 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <string name="ConversationActivity_attachment_exceeds_size_limits">Văn bản đính kèm vượt quá giới hạn kích cỡ cho loại tin nhắn mà bạn đang gửi.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Máy ảnh không khả dụng</string>
   <string name="ConversationActivity_unable_to_record_audio">Không thể ghi âm!</string>
+  <!--ConversationAdapter-->
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Chi tiết tin nhắn</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Chuyển tải: %1$s\nGửi/Nhận: %2$s</string>
@@ -179,6 +178,7 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <string name="CustomDefaultPreference_none">Không</string>
   <!--DateUtils-->
   <string name="DateUtils_minutes_ago">%d phút</string>
+  <string name="DateUtils_today">Hôm nay</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Gỡ liên kết \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Khi gỡ liên kết thiết bị này, nó sẽ không thể gửi hoặc nhận tin nhắn được nữa.</string>
@@ -191,6 +191,7 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <string name="DeviceListItem_linked_s">Liênt kết %s</string>
   <string name="DeviceListItem_last_active_s">Lần chót hoạt động %s</string>
   <string name="DeviceListItem_today">Hôm nay</string>
+  <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Chia sẻ với</string>
   <!--ExperienceUpgradeActivity-->
@@ -216,7 +217,6 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <!--GiphyFragmentPageAdapter-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Tạo nhóm mới</string>
-  <string name="GroupCreateActivity_actionbar_update_title">Cập nhật nhóm</string>
   <string name="GroupCreateActivity_group_name_hint">Tên nhóm</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Tạo nhóm MMS mới</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Bạn đã chọn một liên hệ không hỗ trợ nhóm Signal, vậy nên nhóm này sẽ dùng MMS.</string>
@@ -225,7 +225,6 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <string name="GroupCreateActivity_contacts_no_members">Cần có ít nhất một người trong nhóm!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Một người trong nhóm có số điện thoại không đọc được. Xin điều chỉnh hoặc xóa đi và thử lại.</string>
   <string name="GroupCreateActivity_avatar_content_description">Biểu tượng nhóm</string>
-  <string name="GroupCreateActivity_menu_create_title">Tạo nhóm</string>
   <string name="GroupCreateActivity_creating_group">Tạo %1$s...</string>
   <string name="GroupCreateActivity_updating_group">Cập nhật %1$s...</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Không thể thêm %1$s vì họ không phải người dùng Signal.</string>
@@ -284,6 +283,8 @@ sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal cần Barcode Scanner cho mã QR.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Gửi đi không được</string>
+  <!--MessageRetrievalService-->
+  <string name="MessageRetrievalService_signal">Signal</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Có lỗi lưu trữ MMS!</string>
   <!--- NotificationBarManager-->
@@ -351,6 +352,7 @@ sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin
   <string name="RecipientPreferenceActivity_unblock">Không chặn</string>
   <string name="RecipientPreferenceActivity_enabled">Mở</string>
   <string name="RecipientPreferenceActivity_disabled">Tắt</string>
+  <!--RecipientProvider-->
   <!--RedPhone-->
   <string name="RedPhone_answering">Đang trả lời</string>
   <string name="RedPhone_ending_call">Đang kết thúc cuộc gọi</string>
@@ -381,12 +383,6 @@ mã số quốc gia bạn</string>
 điện thoại của bạn</string>
   <string name="RegistrationActivity_invalid_number">Số không đúng</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Số bạn cung cấp (%s) không đúng.</string>
-  <string name="RegistrationActivity_unsupported">Không hỗ trợ</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Xin lỗi,
-        thiết bị này không được hỗ trợ cho thông tin qua đường truyền dữ liệu. Thiết bị chạy phiên bản Android cũ
-        hơn 4.0 phải có Tài khoản Google đăng ký. Thiết bị chạy Android 4.0 hay mới hơn không cần
-        có tài khoản Google, nhưng phải cài đặt ứng dụng Cửa Hàng.
-    </string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
         Xem lại lần nữa để bảo đảm đây là số của bạn! Chúng tôi sắp sửa phối kiểm nó với một SMS.
     </string>
@@ -469,6 +465,10 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Chạm vào để mở, hoặc chạm vào ổ khóa để đóng lại.</string>
   <string name="KeyCachingService_passphrase_cached">Signal đã mở khóa</string>
   <string name="KeyCachingService_lock">Khóa bằng cụm từ mật khẩu</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">Bạn</string>
+  <string name="MediaPreviewActivity_cant_display">Không xem trước hình được</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Không hỗ trợ dạng truyền thông này</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d tin nhắn mới trong %2$d cuộc chuyện trò</string>
   <string name="MessageNotifier_most_recent_from_s">Gần đây nhất từ: %1$s</string>
@@ -481,12 +481,23 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="MessageNotifier_mark_read">Đánh dấu đã đọc</string>
   <string name="MessageNotifier_media_message">Tin nhắn đa phương tiện</string>
   <string name="MessageNotifier_reply">Hồi âm</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Phải làm thiết đặt MMS bằng tay cho điện thoại của bạn.</string>
+  <string name="MmsPreferencesFragment__enabled">Mở</string>
+  <string name="MmsPreferencesFragment__disabled">Tắt</string>
+  <string name="MmsPreferencesFragment__not_set">Chưa thiết lập</string>
+  <string name="MmsPreferencesFragment__invalid_uri">Văn bản điền vào không phải là đường dẫn hợp lệ</string>
+  <string name="MmsPreferencesFragment__invalid_host">Văn bản điền vào không phải là máy chủ hợp lệ</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Trả lời nhanh không khả thi khi Signal bị khoá!</string>
   <string name="QuickResponseService_problem_sending_message">Có vấn đề khi gửi tin nhắn!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Tin nhắn mới</string>
+  <!--VideoPlayer-->
+  <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Bạn có thể sẽ cần xác minh mã số an toàn với liên hệ này.</string>
+  <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Hình ảnh</string>
   <string name="attachment_type_selector__audio">Âm thanh</string>
@@ -543,6 +554,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Dạng chọn hàng loạt</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s được chọn</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Nạp tên quốc gia...</string>
   <string name="country_selection_fragment__search">Tìm kiếm</string>
@@ -583,17 +595,9 @@ Phục hồi sao lưu Signal đã mã khóa từng xuất ra trước đó</stri
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Xem cuộc hội thoại đầy đủ</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_images">Không hình ảnh</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">KIỂM CHỨNG</string>
   <string name="message_recipients_list_item__resend">GỬI LẠI</string>
-  <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Phải làm thiết đặt MMS bằng tay cho điện thoại của bạn.</string>
-  <string name="MmsPreferencesFragment__enabled">Mở</string>
-  <string name="MmsPreferencesFragment__disabled">Tắt</string>
-  <string name="MmsPreferencesFragment__not_set">Chưa thiết lập</string>
-  <string name="MmsPreferencesFragment__invalid_uri">Văn bản điền vào không phải là đường dẫn hợp lệ</string>
-  <string name="MmsPreferencesFragment__invalid_host">Văn bản điền vào không phải là máy chủ hợp lệ</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">%1$s đã tham gia nhóm.</item>
@@ -710,8 +714,6 @@ SMS thất bại.
   <string name="AndroidManifest__signal_detected">Đã phát hiện Signal</string>
   <string name="AndroidManifest__change_passphrase">Đổi cụm từ mật khẩu</string>
   <string name="AndroidManifest__media_preview">Xem trước tệp đa phương tiện</string>
-  <string name="AndroidManifest__media_overview">Tất cả hình ảnh</string>
-  <string name="AndroidManifest__media_overview_named">Tất cả hình ảnh với %1$s</string>
   <string name="AndroidManifest__message_details">Chi tiết tin nhắn</string>
   <string name="AndroidManifest__linked_devices">Các thiết bị đã liên kết</string>
   <string name="AndroidManifest__invite_friends">Mời bạn bè</string>
@@ -895,10 +897,8 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <string name="conversation_unmuted__mute_notifications">Tạm im thông báo</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Thêm tập tin đính kèm</string>
-  <string name="conversation__menu_update_group">Cập nhật nhóm</string>
   <string name="conversation__menu_leave_group">Rời nhóm</string>
   <string name="conversation__menu_delete_thread">Xoá cuộc hội thoại</string>
-  <string name="conversation__menu_view_media">Tất cả hình ảnh</string>
   <string name="conversation__menu_conversation_settings">Thiết đặt chuyện trò</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Nới rộng khung popup</string>
@@ -945,16 +945,12 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <string name="reminder_header_share_text">Càng đông bạn dùng Signal càng vui.</string>
   <string name="reminder_header_share_button">CHIA SẺ</string>
   <string name="reminder_header_close_button">ĐÓNG</string>
-  <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">Bạn</string>
-  <string name="MediaPreviewActivity_cant_display">Không xem trước hình được</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Không hỗ trợ dạng truyền thông này</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Lưu</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Lưu lại tất cả</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">Xem trước hình</string>
+  <string name="media_preview_activity__media_content_description">Xem trước tệp đa phương tiện</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Làm mới</string>
   <!--redphone_audio_popup_menu-->

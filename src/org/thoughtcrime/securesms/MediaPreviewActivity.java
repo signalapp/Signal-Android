@@ -106,7 +106,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     if (date > 0) {
       relativeTimeSpan = DateUtils.getExtendedRelativeTimeSpanString(this,dynamicLanguage.getCurrentLocale(),date);
     } else {
-      relativeTimeSpan = null;
+      relativeTimeSpan = getString(R.string.MediaPreviewActivity_draft);
     }
     getSupportActionBar().setTitle(recipient == null ? getString(R.string.MediaPreviewActivity_you)
                                                      : recipient.toShortString());
@@ -147,7 +147,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
     mediaUri     = getIntent().getData();
     mediaType    = getIntent().getType();
-    date         = getIntent().getLongExtra(DATE_EXTRA, System.currentTimeMillis());
+    date         = getIntent().getLongExtra(DATE_EXTRA, -1);
     size         = getIntent().getLongExtra(SIZE_EXTRA, 0);
     threadId     = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
 
@@ -208,7 +208,8 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
       @Override
       public void onClick(DialogInterface dialogInterface, int i) {
         SaveAttachmentTask saveTask = new SaveAttachmentTask(MediaPreviewActivity.this, masterSecret);
-        saveTask.execute(new Attachment(mediaUri, mediaType, date));
+        long saveDate = (date > 0) ? date : System.currentTimeMillis();
+        saveTask.execute(new Attachment(mediaUri, mediaType, saveDate));
       }
     });
   }

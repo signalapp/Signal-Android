@@ -38,26 +38,17 @@
                       android:background="@drawable/sent_bubble"
                       android:orientation="vertical">
 
-            <org.thoughtcrime.securesms.components.ThumbnailView
-                    android:id="@+id/image_view"
+            <ViewStub
+                    android:id="@+id/image_view_stub"
                     android:layout_width="@dimen/media_bubble_height"
                     android:layout_height="@dimen/media_bubble_height"
-                    android:layout_marginBottom="5dp"
-                    android:layout_gravity="center"
-                    android:scaleType="centerCrop"
-                    android:adjustViewBounds="true"
-                    android:contentDescription="@string/conversation_item__mms_image_description"
-                    android:visibility="gone"
-                    tools:src="@drawable/ic_video_light"
-                    tools:visibility="visible" />
+                    android:layout="@layout/conversation_item_sent_thumbnail"/>
 
-            <org.thoughtcrime.securesms.components.AudioView
-                    android:id="@+id/audio_view"
+            <ViewStub
+                    android:id="@+id/audio_view_stub"
+                    android:layout="@layout/conversation_item_sent_audio"
                     android:layout_width="210dp"
-                    android:layout_height="wrap_content"
-                    app:foregroundTintColor="@color/grey_500"
-                    app:backgroundTintColor="@color/white"
-                    android:visibility="gone"/>
+                    android:layout_height="wrap_content"/>
 
             <org.thoughtcrime.securesms.components.emoji.EmojiTextView
                     android:id="@+id/conversation_item_body"
@@ -72,29 +63,6 @@
                     android:textColorLink="?conversation_item_sent_text_primary_color"
                     android:textSize="@dimen/conversation_item_body_text_size"
                     tools:text="Mango pickle lorem ipsum" />
-
-            <LinearLayout android:id="@+id/mms_download_controls"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:orientation="horizontal">
-
-                <Button android:id="@+id/mms_download_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:text="@string/conversation_item_sent__download"
-                        android:visibility="gone" />
-
-                <TextView android:id="@+id/mms_label_downloading"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:layout_marginLeft="5dp"
-                          android:layout_marginRight="5dp"
-                          android:gravity="center"
-                          android:text="@string/conversation_item_sent__downloading"
-                          android:visibility="gone" />
-
-            </LinearLayout>
 
             <LinearLayout android:layout_width="wrap_content"
                           android:layout_height="wrap_content"

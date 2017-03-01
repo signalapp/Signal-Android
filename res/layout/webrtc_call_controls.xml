@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/inCallControls"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              tools:background="@color/textsecure_primary">
+
+        <ToggleButton android:id="@+id/audioButton"
+                      style="@style/WebRtcCallCompoundButton"
+                      android:background="@drawable/webrtc_audio_button"
+                      tools:checked="true"
+                      android:layout_marginRight="15dp"/>
+
+
+        <ToggleButton android:id="@+id/muteButton"
+                      style="@style/WebRtcCallCompoundButton"
+                      android:background="@drawable/webrtc_mute_button"
+                      android:contentDescription="@string/redphone_call_controls__mute"
+                      android:layout_marginRight="15dp"
+                      tools:checked="false"
+                />
+
+        <ToggleButton android:id="@+id/video_mute_button"
+                      style="@style/WebRtcCallCompoundButton"
+                      android:background="@drawable/webrtc_video_mute_button"/>
+
+</merge>

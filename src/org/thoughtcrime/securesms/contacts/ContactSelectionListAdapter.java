@@ -35,7 +35,7 @@ import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.RecyclerViewFastScroller.FastScrollAdapter;
-import org.thoughtcrime.securesms.ContactSelectionListFragment.StickyHeaderAdapter;
+import org.thoughtcrime.securesms.util.StickyHeaderDecoration.StickyHeaderAdapter;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter.ViewHolder;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
@@ -103,6 +103,8 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
 
   @Override
   public long getHeaderId(int i) {
+    if (!isActiveCursor()) return -1;
+
     return Util.hashCode(getHeaderString(i), isPush(i));
   }
 

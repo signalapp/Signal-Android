@@ -110,7 +110,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Пустое сообщение!</string>
   <string name="ConversationActivity_group_members">Участники группы</string>
   <string name="ConversationActivity_group_conversation">Групповой разговор</string>
-  <string name="ConversationActivity_unnamed_group">Группа без названия</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="one">1 участник</item>
     <item quantity="few">%d участника</item>
@@ -128,7 +127,7 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Давайте перейдём на Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Давайте общаться через Signal: %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Ошибка при выходе из группы...</string>
+  <string name="ConversationActivity_error_leaving_group">Ошибка выхода из группы</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS не поддерживаются</string>
   <string name="ConversationActivity_mms_not_supported_message">Сообщение не может быть отправлено, так как ваш оператор не поддерживает MMS.</string>
   <string name="ConversationActivity_specify_recipient">Выберите контакт</string>
@@ -140,6 +139,13 @@
   <string name="ConversationActivity_unable_to_record_audio">Невозможно записать аудио!</string>
   <string name="ConversationActivity_error_sending_voice_message">Ошибка при отправке голосового сообщения</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">На вашем устройстве не найдено приложение для открытия этой ссылки.</string>
+  <!--ConversationAdapter-->
+  <plurals name="ConversationAdapter_n_unread_messages">
+    <item quantity="one">%d непрочитанное сообщение</item>
+    <item quantity="few">Непрочитанных сообщений: %d</item>
+    <item quantity="many">Непрочитанных сообщений: %d</item>
+    <item quantity="other">Непрочитанных сообщений: %d</item>
+  </plurals>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Подробности</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Транспорт: %1$s\nОтправлено/Получено: %2$s</string>
@@ -237,6 +243,8 @@
   <!--DateUtils-->
   <string name="DateUtils_just_now">Только что</string>
   <string name="DateUtils_minutes_ago">%d мин</string>
+  <string name="DateUtils_today">Сегодня</string>
+  <string name="DateUtils_yesterday">Вчера</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Отвязать «%s»?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">После отвязки устройство больше не сможет отправлять и получать сообщения.</string>
@@ -250,6 +258,7 @@
   <string name="DeviceListItem_linked_s">Привязано %s</string>
   <string name="DeviceListItem_last_active_s">Было онлайн %s</string>
   <string name="DeviceListItem_today">Сегодня</string>
+  <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Поделиться с</string>
   <!--ExperienceUpgradeActivity-->
@@ -278,7 +287,7 @@
   <string name="GiphyFragmentPagerAdapter_stickers">Стикеры</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Новая группа</string>
-  <string name="GroupCreateActivity_actionbar_update_title">Обновить группу</string>
+  <string name="GroupCreateActivity_actionbar_edit_title">Редактировать группу</string>
   <string name="GroupCreateActivity_group_name_hint">Название группы</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Новая MMS-группа</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Выбранный контакт не поддерживает Signal-группы, поэтому эта группа будет преобразована в MMS.</string>
@@ -287,7 +296,7 @@
   <string name="GroupCreateActivity_contacts_no_members">Нужен как минимум один участник в группе!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Один из участников имеет неправильный номер. Пожалуйста, исправьте или удалите этот контакт и попробуйте снова.</string>
   <string name="GroupCreateActivity_avatar_content_description">Аватар группы</string>
-  <string name="GroupCreateActivity_menu_create_title">Создать группу</string>
+  <string name="GroupCreateActivity_menu_apply_button">Применить</string>
   <string name="GroupCreateActivity_creating_group">Создаём %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Обновляем %1$s...</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Невозможно добавить %1$s, так как он(а) не является пользователем Signal.</string>
@@ -350,6 +359,8 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Не удалось отправить</string>
   <string name="MessageDetailsRecipient_new_safety_number">Новый код безопасности</string>
+  <!--MessageRetrievalService-->
+  <string name="MessageRetrievalService_signal">Signal</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Ошибка при сохранении MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Ошибка при подключении к провайдеру MMS</string>
@@ -366,6 +377,8 @@
   <string name="NotificationBarManager__cancel_call">Отменить</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">MMS-сообщение</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">Скачивание MMS-сообщения</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Ошибка скачивания MMS-сообщения, нажмите для повтора попытки</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Полученное сообщение зашифровано в старой версии Signal, которая больше не поддерживается. Пожалуйста, попросите отправителя обновиться до последней версии и заново отправить сообщение.</string>
   <string name="MessageRecord_left_group">Вы покинули группу.</string>
@@ -428,6 +441,8 @@
   <string name="RecipientPreferenceActivity_enabled">Включено</string>
   <string name="RecipientPreferenceActivity_disabled">Выключено</string>
   <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Доступно после отправки или получения сообщения.</string>
+  <!--RecipientProvider-->
+  <string name="RecipientProvider_unnamed_group">Безымянная группа</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">Отвечаем</string>
   <string name="RedPhone_ending_call">Завершаем звонок</string>
@@ -457,8 +472,6 @@
   <string name="RegistrationActivity_invalid_number">Неверный номер</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Указанный вами 
 номер телефона (%s) неверен.</string>
-  <string name="RegistrationActivity_unsupported">Устройство не поддерживается</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">К сожалению, на вашем устройстве невозможен обмен сообщениями через интернет. На устройствах с Android версии ниже 4.0 должен быть зарегистрирован аккаунт Google. На устройствах с Android 4.0 или выше аккаунт Google необязателен, но должно иметься приложение «Play Маркет».</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
 Перепроверьте, что это ваш номер! На него будет отправлено SMS для подтверждения.</string>
   <string name="RegistrationActivity_continue">Продолжить</string>
@@ -559,6 +572,11 @@
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Нажмите, чтобы открыть; нажмите на замок, чтобы закрыть.</string>
   <string name="KeyCachingService_passphrase_cached">Signal разблокирован</string>
   <string name="KeyCachingService_lock">Заблокировать парольной фразой</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">Вы</string>
+  <string name="MediaPreviewActivity_cant_display">Не удалось просмотреть это изобажение</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Тип медиа-файла не поддерживается</string>
+  <string name="MediaPreviewActivity_draft">Черновик</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d новых сообщений в %2$d разговорах</string>
   <string name="MessageNotifier_most_recent_from_s">Последнее от %1$s</string>
@@ -572,12 +590,27 @@
   <string name="MessageNotifier_mark_read">Прочитано</string>
   <string name="MessageNotifier_media_message">Медиа-сообщение</string>
   <string name="MessageNotifier_reply">Ответить</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Для вашего телефона необходимо настроить MMS вручную.</string>
+  <string name="MmsPreferencesFragment__enabled">Включено</string>
+  <string name="MmsPreferencesFragment__disabled">Отключено</string>
+  <string name="MmsPreferencesFragment__not_set">Не настроен</string>
+  <string name="MmsPreferencesFragment__invalid_uri">Введён неверный адрес</string>
+  <string name="MmsPreferencesFragment__invalid_host">Введён неверный адрес хоста</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Быстрые ответы недоступны, когда Signal заблокирован!</string>
   <string name="QuickResponseService_problem_sending_message">Проблема при отправке сообщения!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Новое сообщение</string>
+  <!--VideoPlayer-->
+  <string name="VideoPlayer_error_playing_video">Ошибка воспроизведения видео</string>
+  <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_new_safety_numbers">Ваш с %1$s код безопасности изменился. Это может означать, что кто-то пытается перехватить вашу переписку и звонки, или что %2$s просто переустановил(а) Signal.</string>
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Возможно, вам стоит подтвердить код безопасности с этим контактом.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers_title">Новый код безопасности</string>
+  <!--WebRtcCallControls-->
+  <string name="WebRtcCallControls_tap_to_enable_your_video">Нажмите для активации видео</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Изображение</string>
   <string name="attachment_type_selector__image_description">Изображение</string>
@@ -650,6 +683,8 @@
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Выбрать несколько</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s выбрано</string>
+  <!--conversation_fragment-->
+  <string name="conversation_fragment__scroll_to_the_bottom_content_description">Промотать вниз</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Загружаем страны...</string>
   <string name="country_selection_fragment__search">Поиск</string>
@@ -729,17 +764,10 @@
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Посмотреть весь разговор</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_images">Изображений нет</string>
+  <string name="media_overview_activity__no_media">Нет вложений</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">ПОДТВЕРДИТЬ</string>
   <string name="message_recipients_list_item__resend">ОТПРАВИТЬ ЕЩЁ РАЗ</string>
-  <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Для вашего телефона необходимо настроить MMS вручную.</string>
-  <string name="MmsPreferencesFragment__enabled">Включено</string>
-  <string name="MmsPreferencesFragment__disabled">Отключено</string>
-  <string name="MmsPreferencesFragment__not_set">Не настроен</string>
-  <string name="MmsPreferencesFragment__invalid_uri">Введён неверный адрес</string>
-  <string name="MmsPreferencesFragment__invalid_host">Введён неверный адрес хоста</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s присоединился к группе.</item>
@@ -836,7 +864,7 @@ SMS-подтверждения...
   <string name="recipients_panel__to"><small>Введите имя или номер</small></string>
   <string name="recipients_panel__add_members">Добавить участников</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Чтобы подтвердить безопасность сквозного шифрования между вами и %s, сравните этот код, с кодом, показанным на устройстве вашего собеседника. Для удобства вы можете просканировать код на устройстве собеседника или попросить его просканировать ваш код. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Узнать больше про подтверждение кодов безопасности</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Чтобы подтвердить безопасность сквозного шифрования между вами и %s, сравните этот код, с кодом, показанным на устройстве вашего собеседника. Для удобства вы можете просканировать код на устройстве собеседника или попросить его просканировать ваш код. <a href="https://whispersystems.org/redirect/safety-numbers">Узнать больше про подтверждение кодов безопасности</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Сканировать</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Поделиться кодом безопасности</string>
@@ -858,8 +886,8 @@ SMS-подтверждения...
   <string name="AndroidManifest__verify_safety_number">Подтвердить код безопасности</string>
   <string name="AndroidManifest__log_submit">Отправить журнал отладки</string>
   <string name="AndroidManifest__media_preview">Предпросмотр</string>
-  <string name="AndroidManifest__media_overview">Все изображения</string>
-  <string name="AndroidManifest__media_overview_named">Все изображения с %1$s</string>
+  <string name="AndroidManifest__all_media">Все вложения</string>
+  <string name="AndroidManifest__all_media_named">Общие вложения с пользователем %1$s</string>
   <string name="AndroidManifest__message_details">Подробности сообщения</string>
   <string name="AndroidManifest__linked_devices">Привязанные устройства</string>
   <string name="AndroidManifest__invite_friends">Пригласить друзей в Signal</string>
@@ -994,6 +1022,10 @@ SMS-подтверждения...
   <string name="preferences_chats__message_trimming">Обрезка сообщений</string>
   <string name="preferences_advanced__use_system_emoji">Использовать системные эмодзи</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Отключить встроенные эмодзи Signal</string>
+  <string name="preferences_advanced__video_calling_beta">Видео-звонки (beta)</string>
+  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Поддержка видео- и голосовых звонков нового поколения, при условии подключения обоих собеседников. Этот функционал находится в фазе beta-тестирования.</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Пропускать все звонки через Signal-сервер для предотвращения раскрытия вашего IP-адреса собеседнику. Качество звонка может ухудшиться. </string>
+  <string name="preferences_advanced__always_relay_calls">Всегда использовать Signal-сервер</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1048,10 +1080,10 @@ SMS-подтверждения...
   <string name="conversation_unmuted__mute_notifications">Откл. звук уведомлений</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Добавить вложение</string>
-  <string name="conversation__menu_update_group">Обновить группу</string>
+  <string name="conversation__menu_edit_group">Редактировать группу</string>
   <string name="conversation__menu_leave_group">Покинуть группу</string>
   <string name="conversation__menu_delete_thread">Удалить разговор</string>
-  <string name="conversation__menu_view_media">Все изображения</string>
+  <string name="conversation__menu_view_all_media">Все вложения</string>
   <string name="conversation__menu_conversation_settings">Настройки разговора</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Расширить</string>
@@ -1105,18 +1137,14 @@ SMS-подтверждения...
   <string name="reminder_header_share_text">Чем больше друзей пользуется Signal, тем лучше он становится.</string>
   <string name="reminder_header_share_button">ПОДЕЛИТЬСЯ</string>
   <string name="reminder_header_close_button">ЗАКРЫТЬ</string>
-  <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">Вы</string>
-  <string name="MediaPreviewActivity_cant_display">Не удалось просмотреть это изобажение</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Тип медиа-файла не поддерживается</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Сохранить</string>
   <string name="media_preview__forward_title">Переслать</string>
-  <string name="media_preview__overview_title">Все изображения</string>
+  <string name="media_preview__all_media_title">Все вложения</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Сохранить всё</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">Предпросмотр </string>
+  <string name="media_preview_activity__media_content_description">Предпросмотр</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Обновить</string>
   <!--redphone_audio_popup_menu-->

@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 class EmojiProvider {
 
@@ -108,7 +109,7 @@ class EmojiProvider {
         });
       }
 
-      @Override public void onFailure(Throwable error) {
+      @Override public void onFailure(ExecutionException error) {
         Log.w(TAG, error);
       }
     });

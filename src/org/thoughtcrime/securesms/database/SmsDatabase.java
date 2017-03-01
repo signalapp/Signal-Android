@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.whispersystems.jobqueue.JobManager;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.IOException;
@@ -232,6 +233,10 @@ public class SmsDatabase extends MessagingDatabase {
     updateTypeBitmask(id, Types.BASE_TYPE_MASK, Types.BASE_SENT_TYPE | (isSecure ? Types.PUSH_MESSAGE_BIT | Types.SECURE_MESSAGE_BIT : 0));
   }
 
+  public void markAsMissedCall(long id) {
+    updateTypeBitmask(id, Types.TOTAL_MASK, Types.MISSED_CALL_TYPE);
+  }
+
   public void markExpireStarted(long id) {
     markExpireStarted(id, System.currentTimeMillis());
   }
@@ -378,6 +383,7 @@ public class SmsDatabase extends MessagingDatabase {
             database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {cursor.getLong(cursor.getColumnIndexOrThrow(ID)) + ""});
 
             DatabaseFactory.getThreadDatabase(context).updateReadState(threadId);
+            DatabaseFactory.getThreadDatabase(context).setLastSeen(threadId);
             notifyConversationListeners(threadId);
           }
         } catch (InvalidNumberException e) {
@@ -482,7 +488,7 @@ public class SmsDatabase extends MessagingDatabase {
     return new Pair<>(messageId, threadId);
   }
 
-  protected Pair<Long, Long> insertMessageInbox(IncomingTextMessage message, long type) {
+  protected Optional<InsertResult> insertMessageInbox(IncomingTextMessage message, long type) {
     if (message.isJoined()) {
       type = (type & (Types.TOTAL_MASK - Types.BASE_TYPE_MASK)) | Types.JOINED_TYPE;
     } else if (message.isPreKeyBundle()) {
@@ -498,8 +504,9 @@ public class SmsDatabase extends MessagingDatabase {
       type |= Types.END_SESSION_BIT;
     }
 
-    if (message.isPush())           type |= Types.PUSH_MESSAGE_BIT;
-    if (message.isIdentityUpdate()) type |= Types.KEY_EXCHANGE_IDENTITY_UPDATE_BIT;
+    if (message.isPush())                type |= Types.PUSH_MESSAGE_BIT;
+    if (message.isIdentityUpdate())      type |= Types.KEY_EXCHANGE_IDENTITY_UPDATE_BIT;
+    if (message.isContentPreKeyBundle()) type |= Types.KEY_EXCHANGE_CONTENT_FORMAT;
 
     Recipients recipients;
 
@@ -546,24 +553,33 @@ public class SmsDatabase extends MessagingDatabase {
     values.put(TYPE, type);
     values.put(THREAD_ID, threadId);
 
-    SQLiteDatabase db = databaseHelper.getWritableDatabase();
-    long messageId    = db.insert(TABLE_NAME, null, values);
+    if (message.isPush() && isDuplicate(message, threadId)) {
+      Log.w(TAG, "Duplicate message (" + message.getSentTimestampMillis() + "), ignoring...");
+      return Optional.absent();
+    } else {
+      SQLiteDatabase db        = databaseHelper.getWritableDatabase();
+      long           messageId = db.insert(TABLE_NAME, null, values);
 
-    if (unread) {
-      DatabaseFactory.getThreadDatabase(context).setUnread(threadId);
+      if (unread) {
+        DatabaseFactory.getThreadDatabase(context).setUnread(threadId);
+      }
+
+      if (!message.isIdentityUpdate()) {
+        DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+      }
+
+      if (message.getSubscriptionId() != -1) {
+        DatabaseFactory.getRecipientPreferenceDatabase(context).setDefaultSubscriptionId(recipients, message.getSubscriptionId());
+      }
+
+      notifyConversationListeners(threadId);
+      jobManager.add(new TrimThreadJob(context, threadId));
+
+      return Optional.of(new InsertResult(messageId, threadId));
     }
-
-    if (!message.isIdentityUpdate()) {
-      DatabaseFactory.getThreadDatabase(context).update(threadId, true);
-    }
-
-    notifyConversationListeners(threadId);
-    jobManager.add(new TrimThreadJob(context, threadId));
-
-    return new Pair<>(messageId, threadId);
   }
 
-  public Pair<Long, Long> insertMessageInbox(IncomingTextMessage message) {
+  public Optional<InsertResult> insertMessageInbox(IncomingTextMessage message) {
     return insertMessageInbox(message, Types.BASE_INBOX_TYPE);
   }
 
@@ -598,6 +614,7 @@ public class SmsDatabase extends MessagingDatabase {
     long           messageId = db.insert(TABLE_NAME, ADDRESS, contentValues);
 
     DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+    DatabaseFactory.getThreadDatabase(context).setLastSeen(threadId);
     notifyConversationListeners(threadId);
     jobManager.add(new TrimThreadJob(context, threadId));
 
@@ -651,6 +668,19 @@ public class SmsDatabase extends MessagingDatabase {
     boolean threadDeleted = DatabaseFactory.getThreadDatabase(context).update(threadId, false);
     notifyConversationListeners(threadId);
     return threadDeleted;
+  }
+
+  private boolean isDuplicate(IncomingTextMessage message, long threadId) {
+    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    Cursor         cursor   = database.query(TABLE_NAME, null, DATE_SENT + " = ? AND " + ADDRESS + " = ? AND " + THREAD_ID + " = ?",
+                                             new String[]{String.valueOf(message.getSentTimestampMillis()), message.getSender(), String.valueOf(threadId)},
+                                             null, null, null, "1");
+
+    try {
+      return cursor != null && cursor.moveToFirst();
+    } finally {
+      if (cursor != null) cursor.close();
+    }
   }
 
   /*package */void deleteThread(long threadId) {
@@ -817,4 +847,5 @@ public class SmsDatabase extends MessagingDatabase {
       cursor.close();
     }
   }
+
 }

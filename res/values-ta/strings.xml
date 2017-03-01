@@ -91,7 +91,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">செய்தி காலியாக உள்ளது!</string>
   <string name="ConversationActivity_group_members">குழு உறுப்பினர்கள்</string>
   <string name="ConversationActivity_group_conversation">குழு உரையாடல்</string>
-  <string name="ConversationActivity_unnamed_group">பெயரிடப்படாத குழு</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="one">1 உறுப்பினர்</item>
     <item quantity="other"> %d உறுப்பினர்கள்</item>
@@ -107,13 +106,13 @@
   <string name="ConversationActivity_transport_signal">சமிக்ஞை</string>
   <string name="ConversationActivity_lets_switch_to_signal">%1$s நாம் சமிக்ஞைக்கு மாறுவோம்</string>
   <string name="ConversationActivity_lets_use_this_to_chat">நாம் அரட்டையடிக்க இதை பயன்படுத்துவோம்: %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">குழுவை விட்டு விலகுவதில் பிழை...</string>
   <string name="ConversationActivity_mms_not_supported_title">எம்எம்எஸ் ஆதரவில்லை</string>
   <string name="ConversationActivity_mms_not_supported_message">இச் செய்தியை அனுப்ப ஆதரவில்லை உங்கள் தொலைதொடர்பு சாதனம்  எம் எம் எஸ் ஆதரவில்லை</string>
   <string name="ConversationActivity_specify_recipient">தயவு செய்து ஒரு தொடர்பை தேர்ந்தெடு</string>
   <string name="ConversationActivity_unblock">தடுப்புநீக்க</string>
   <string name="ConversationActivity_quick_camera_unavailable">புகைப்படக் கருவி கிடைப்பிலில்லை</string>
   <string name="ConversationActivity_unable_to_record_audio">ஒலி பதிவுச் செய்ய  இயலவில்லை!</string>
+  <!--ConversationAdapter-->
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">செய்தி விவரங்கள்</string>
   <string name="ConversationFragment_transport_s_sent_received_s">போக்குவரத்து: %1$s\nஅனுப்பியது/பெற்றது: %2$s</string>
@@ -162,6 +161,7 @@
   <string name="CustomDefaultPreference_none">எதுவும் இல்லை</string>
   <!--DateUtils-->
   <string name="DateUtils_minutes_ago">%d நிமிடம்</string>
+  <string name="DateUtils_today">இன்று</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">\'%s\' துண்டி?</string>
   <string name="DeviceListActivity_try_again">மீண்டும் முயற்சிக்கவும்</string>
@@ -173,6 +173,7 @@
   <string name="DeviceListItem_linked_s">%s இணைக்கப்பட்டது.</string>
   <string name="DeviceListItem_last_active_s">கடைசியாக செயலில் %s</string>
   <string name="DeviceListItem_today">இன்று</string>
+  <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">பகிர்</string>
   <!--ExperienceUpgradeActivity-->
@@ -189,14 +190,12 @@
   <!--GiphyFragmentPageAdapter-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">புதிய குழு</string>
-  <string name="GroupCreateActivity_actionbar_update_title">குழுவை மேம்படுத்து</string>
   <string name="GroupCreateActivity_group_name_hint">குழுவின் பெயர்</string>
   <string name="GroupCreateActivity_actionbar_mms_title">புதிய MMS குழு</string>
   <string name="GroupCreateActivity_contacts_mms_exception">ஒரு எதிர்பாராத பிழை ஒன்றால் குழு உருவாக்கம் தோல்வியுற்றது.</string>
   <string name="GroupCreateActivity_contacts_no_members"> உங்கள் குழுவில் குறைந்தது ஒரு நபராவது தேவை!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">உங்கள் குழு உறுப்பினர்களுள் ஒருவர் சரியாக படிக்கமுடியாத எண்ணை கொண்டுள்ளார். இதை சரி செய்யவும் அல்லது அந்த தொடர்பை நீக்கி, மீண்டும் முயற்சிக்கவும்.</string>
   <string name="GroupCreateActivity_avatar_content_description">குழு சின்னம்</string>
-  <string name="GroupCreateActivity_menu_create_title">குழு உருவாக்குக</string>
   <string name="GroupCreateActivity_creating_group">%1$s உருவாக்கபடுகிறது…</string>
   <string name="GroupCreateActivity_updating_group">%1$s மேம்படுத்தப்படுகிறது...</string>
   <string name="GroupCreateActivity_loading_group_details">குழு விவரங்கள் ஏற்றப்படுகிறது...</string>
@@ -238,6 +237,8 @@
   <string name="KeyScanningActivity_install_barcode_Scanner">பார்கோடு ஸ்கேனர் நிறுவலாமா?</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">அனுப்ப முடியவில்லை</string>
+  <!--MessageRetrievalService-->
+  <string name="MessageRetrievalService_signal">சமிக்ஞை</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">MMS  சேமிப்பதில் பிழை!</string>
   <!--- NotificationBarManager-->
@@ -287,6 +288,7 @@
   <string name="RecipientPreferenceActivity_unblock">தடுப்புநீக்க</string>
   <string name="RecipientPreferenceActivity_enabled">செயல்படுத்தப்பட்டது</string>
   <string name="RecipientPreferenceActivity_disabled">முடக்கப்பட்டது</string>
+  <!--RecipientProvider-->
   <!--RedPhone-->
   <string name="RedPhone_answering">பதிலளிக்கபடுகிறது </string>
   <string name="RedPhone_dialing">அழைத்தல்</string>
@@ -309,11 +311,6 @@
   <string name="RegistrationActivity_invalid_number">செல்லா எண்</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">நீங்கள் குறிப்பிட்ட 
 எண் (%s) செல்லாது.</string>
-  <string name="RegistrationActivity_unsupported">ஆதரவற்ற</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">மன்னிக்கவும், 
-இந்த சாதனத்தில்  இணையத்தின் மூலம் செய்தியனுப்பும் ஆதரவில்லை. அண்ட்ராய்டு 4.0-கிற்கு
-முன்னுள்ள பதிப்புகளில் இயங்கும் சாதனங்களில் பதிவுச்செய்யபட்ட Google கணக்கு அவசியம். 
-அண்ட்ராய்டு 4.0 அல்லது அதன்பின்னுள்ள பதிப்புகளுக்கு Google கணக்கு அவசியமில்லை, ஆனால் Play Store மென்பொருள் நிறுவியிருப்பது அவசியம்.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
 இந்த உங்கள் எண்தானா என இருமுறை சரிபாருங்கள்! நாங்கள் ஒரு SMS மூலம் இதை சரிபார்க்கப்போகிறோம்.</string>
   <string name="RegistrationActivity_continue">தொடர்</string>
@@ -386,6 +383,10 @@
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">திறக்க தொடு.</string>
   <string name="KeyCachingService_lock">கடவுச்சொல்லை வைத்து பூட்டவும் </string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">நீங்கள்</string>
+  <string name="MediaPreviewActivity_cant_display">இந்த படத்தின் முன்னோட்டம் தோல்வியுற்றது</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">ஆதரிக்கப்படாத மீடியா வகை</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_media_message_with_text">மீடியா செய்தி: %s</string>
   <string name="MessageNotifier_no_subject">(தலைப்பு இல்லை)</string>
@@ -396,11 +397,21 @@
   <string name="MessageNotifier_mark_read">படித்தாக குறியிடு</string>
   <string name="MessageNotifier_media_message">மீடியா செய்தி</string>
   <string name="MessageNotifier_reply">மறுமொழி கூறு</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">இந்த தொலைபேசிக்கான MMS அமைப்புகளை நீங்கள்தான் செய்யவேண்டும்.</string>
+  <string name="MmsPreferencesFragment__enabled">செயல்பாட்டில் உள்ளது</string>
+  <string name="MmsPreferencesFragment__disabled">செயல்பாட்டில் இல்லை</string>
+  <string name="MmsPreferencesFragment__not_set">அமைக்கப்படவில்லை</string>
+  <string name="MmsPreferencesFragment__invalid_uri">உள்ளிட்ட உரை ஒரு செல்லுபடியாகும் URI அல்ல</string>
+  <string name="MmsPreferencesFragment__invalid_host">உள்ளிட்ட உரை ஒரு செல்லுபடியாகும் Host அல்ல</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_problem_sending_message">செய்தி அனுப்புவதில் பிரச்சணை!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">சமிக்ஞை</string>
   <string name="SingleRecipientNotificationBuilder_new_message">புதிய செய்தி</string>
+  <!--VideoPlayer-->
+  <!--WebRtcCallScreen-->
+  <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">படம்</string>
   <string name="attachment_type_selector__audio">கேள்</string>
@@ -454,6 +465,7 @@
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">தொகுப்பாய் தேர்வு செய்யப்பட்டது</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s தேர்ந்தெடுக்கப்பட்டது</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">நாடுகள் ஏற்றப்படுகிறது...</string>
   <string name="country_selection_fragment__search">தேடல்</string>
@@ -487,17 +499,9 @@
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">முழு உரையாடலைப் பார்க்க</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_images">படங்கள் இல்லை</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">சரிபார்க்கவும்</string>
   <string name="message_recipients_list_item__resend">மீண்டும் அனுப்பு</string>
-  <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">இந்த தொலைபேசிக்கான MMS அமைப்புகளை நீங்கள்தான் செய்யவேண்டும்.</string>
-  <string name="MmsPreferencesFragment__enabled">செயல்பாட்டில் உள்ளது</string>
-  <string name="MmsPreferencesFragment__disabled">செயல்பாட்டில் இல்லை</string>
-  <string name="MmsPreferencesFragment__not_set">அமைக்கப்படவில்லை</string>
-  <string name="MmsPreferencesFragment__invalid_uri">உள்ளிட்ட உரை ஒரு செல்லுபடியாகும் URI அல்ல</string>
-  <string name="MmsPreferencesFragment__invalid_host">உள்ளிட்ட உரை ஒரு செல்லுபடியாகும் Host அல்ல</string>
   <!--GroupUtil-->
   <string name="GroupUtil_group_updated">குழு மேம்படுத்தப்பட்டது.</string>
   <string name="GroupUtil_group_name_is_now">இக்குழுவின் பெயர் \'%1$s\'.</string>
@@ -572,8 +576,6 @@
   <string name="AndroidManifest__select_contacts">தொடர்புகளை தேர்ந்தெடு</string>
   <string name="AndroidManifest__signal_detected">சிக்னல் செயலி உணரப்பட்டது</string>
   <string name="AndroidManifest__change_passphrase">கடவுச்சொல்லை மாற்று</string>
-  <string name="AndroidManifest__media_overview">அனைத்து படங்கள்</string>
-  <string name="AndroidManifest__media_overview_named">%1$s உடன் உள்ள அனைத்து படங்கள்</string>
   <string name="AndroidManifest__message_details">செய்தி விவரங்கள்</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">இறக்குமதி / ஏற்றுமதி</string>
@@ -715,9 +717,7 @@
   <string name="conversation_unmuted__mute_notifications">அறிவிப்பை ஊமையாக்கு</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">இணைப்பு சேர்க்க</string>
-  <string name="conversation__menu_update_group">குழுவை மேம்படுத்து</string>
   <string name="conversation__menu_leave_group">குழுவிலுருந்து விலகு</string>
-  <string name="conversation__menu_view_media">அனைத்து படங்கள்</string>
   <!--conversation_popup-->
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">தொடர்புகளுடன் சேர்க்க</string>
@@ -746,16 +746,11 @@
   <string name="reminder_header_share_title">நண்பர்களை அழைக்கவும்</string>
   <string name="reminder_header_share_button">பகிர்</string>
   <string name="reminder_header_close_button">மூடு</string>
-  <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">நீங்கள்</string>
-  <string name="MediaPreviewActivity_cant_display">இந்த படத்தின் முன்னோட்டம் தோல்வியுற்றது</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">ஆதரிக்கப்படாத மீடியா வகை</string>
   <!--media_preview-->
   <string name="media_preview__save_title">சேமி</string>
   <!--media_overview-->
   <string name="media_overview__save_all">அனைத்தையும் சேமி</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">படத்தின் மாதிரிக்காட்சி</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">புதுப்பி.</string>
   <!--redphone_audio_popup_menu-->

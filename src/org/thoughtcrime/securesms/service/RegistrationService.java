@@ -71,7 +71,12 @@ public class RegistrationService extends Service {
   public static final String CHALLENGE_EVENT        = "org.thoughtcrime.securesms.CHALLENGE_EVENT";
   public static final String REGISTRATION_EVENT     = "org.thoughtcrime.securesms.REGISTRATION_EVENT";
 
-  public static final String CHALLENGE_EXTRA        = "CAAChallenge";
+  public static final String NUMBER_EXTRA        = "e164number";
+  public static final String MASTER_SECRET_EXTRA = "master_secret";
+  public static final String GCM_SUPPORTED_EXTRA = "gcm_supported";
+  public static final String PASSWORD_EXTRA      = "password";
+  public static final String SIGNALING_KEY_EXTRA = "signaling_key";
+  public static final String CHALLENGE_EXTRA     = "CAAChallenge";
 
   private static final long REGISTRATION_TIMEOUT_MILLIS = 120000;
 
@@ -149,21 +154,22 @@ public class RegistrationService extends Service {
 
   private void handleVoiceRequestedIntent(Intent intent) {
     setState(new RegistrationState(RegistrationState.STATE_VOICE_REQUESTED,
-                                   intent.getStringExtra("e164number"),
-                                   intent.getStringExtra("password")));
+                                   intent.getStringExtra(NUMBER_EXTRA),
+                                   intent.getStringExtra(PASSWORD_EXTRA)));
   }
 
   private void handleVoiceRegistrationIntent(Intent intent) {
     markAsVerifying(true);
 
-    String number       = intent.getStringExtra("e164number");
-    String password     = intent.getStringExtra("password");
-    String signalingKey = intent.getStringExtra("signaling_key");
+    String  number       = intent.getStringExtra(NUMBER_EXTRA);
+    String  password     = intent.getStringExtra(PASSWORD_EXTRA);
+    String  signalingKey = intent.getStringExtra(SIGNALING_KEY_EXTRA);
+    boolean supportsGcm  = intent.getBooleanExtra(GCM_SUPPORTED_EXTRA, true);
 
     try {
       SignalServiceAccountManager accountManager = AccountManagerFactory.createManager(this, number, password);
 
-      handleCommonRegistration(accountManager, number, password, signalingKey);
+      handleCommonRegistration(accountManager, number, password, signalingKey, supportsGcm);
 
       markAsVerified(number, password, signalingKey);
 
@@ -183,8 +189,10 @@ public class RegistrationService extends Service {
   private void handleSmsRegistrationIntent(Intent intent) {
     markAsVerifying(true);
 
-    String number         = intent.getStringExtra("e164number");
-    int    registrationId = TextSecurePreferences.getLocalRegistrationId(this);
+    String  number         = intent.getStringExtra(NUMBER_EXTRA);
+    boolean supportsGcm    = intent.getBooleanExtra(GCM_SUPPORTED_EXTRA, true);
+    int     registrationId = TextSecurePreferences.getLocalRegistrationId(this);
+    boolean supportsVideo  = TextSecurePreferences.isWebrtcCallingEnabled(this) || !supportsGcm;
 
     if (registrationId == 0) {
       registrationId = KeyHelper.generateRegistrationId(false);
@@ -203,9 +211,9 @@ public class RegistrationService extends Service {
 
       setState(new RegistrationState(RegistrationState.STATE_VERIFYING, number));
       String challenge = waitForChallenge();
-      accountManager.verifyAccountWithCode(challenge, signalingKey, registrationId, true);
+      accountManager.verifyAccountWithCode(challenge, signalingKey, registrationId, true, supportsVideo, !supportsGcm);
 
-      handleCommonRegistration(accountManager, number, password, signalingKey);
+      handleCommonRegistration(accountManager, number, password, signalingKey, supportsGcm);
       markAsVerified(number, password, signalingKey);
 
       setState(new RegistrationState(RegistrationState.STATE_COMPLETE, number));
@@ -231,7 +239,7 @@ public class RegistrationService extends Service {
     }
   }
 
-  private void handleCommonRegistration(SignalServiceAccountManager accountManager, String number, String password, String signalingKey)
+  private void handleCommonRegistration(SignalServiceAccountManager accountManager, String number, String password, String signalingKey, boolean supportsGcm)
       throws IOException
   {
     setState(new RegistrationState(RegistrationState.STATE_GENERATING_KEYS, number));
@@ -244,21 +252,29 @@ public class RegistrationService extends Service {
 
     setState(new RegistrationState(RegistrationState.STATE_GCM_REGISTERING, number));
 
-    String gcmRegistrationId = GoogleCloudMessaging.getInstance(this).register(GcmRefreshJob.REGISTRATION_ID);
-    accountManager.setGcmId(Optional.of(gcmRegistrationId));
+    if (supportsGcm) {
+      String gcmRegistrationId = GoogleCloudMessaging.getInstance(this).register(GcmRefreshJob.REGISTRATION_ID);
+      accountManager.setGcmId(Optional.of(gcmRegistrationId));
 
-    TextSecurePreferences.setGcmRegistrationId(this, gcmRegistrationId);
+      TextSecurePreferences.setGcmRegistrationId(this, gcmRegistrationId);
+      TextSecurePreferences.setGcmDisabled(this, false);
+    } else {
+      TextSecurePreferences.setGcmDisabled(this, true);
+    }
+
     TextSecurePreferences.setWebsocketRegistered(this, true);
 
     DatabaseFactory.getIdentityDatabase(this).saveIdentity(self.getRecipientId(), identityKey.getPublicKey());
     DirectoryHelper.refreshDirectory(this, accountManager, number);
 
-    RedPhoneAccountManager redPhoneAccountManager = new RedPhoneAccountManager(BuildConfig.REDPHONE_MASTER_URL,
-                                                                               new RedPhoneTrustStore(this),
-                                                                               number, password);
+    if (supportsGcm) {
+      RedPhoneAccountManager redPhoneAccountManager = new RedPhoneAccountManager(BuildConfig.REDPHONE_MASTER_URL,
+                                                                                 new RedPhoneTrustStore(this),
+                                                                                 number, password);
 
-    String verificationToken = accountManager.getAccountVerificationToken();
-    redPhoneAccountManager.createAccount(verificationToken, new RedPhoneAccountAttributes(signalingKey, gcmRegistrationId));
+      String verificationToken = accountManager.getAccountVerificationToken();
+      redPhoneAccountManager.createAccount(verificationToken, new RedPhoneAccountAttributes(signalingKey, TextSecurePreferences.getGcmRegistrationId(this)));
+    }
 
     DirectoryRefreshListener.schedule(this);
     RotateSignedPreKeyListener.schedule(this);

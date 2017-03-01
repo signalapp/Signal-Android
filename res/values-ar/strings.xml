@@ -116,7 +116,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">الرسالة فارغة</string>
   <string name="ConversationActivity_group_members">أعضاء المجموعة</string>
   <string name="ConversationActivity_group_conversation">دردشة جماعية</string>
-  <string name="ConversationActivity_unnamed_group">مجموعة غير مسماه</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="zero">%d عضو</item>
     <item quantity="one">عضو</item>
@@ -136,7 +135,7 @@
   <string name="ConversationActivity_transport_signal">سيجنال</string>
   <string name="ConversationActivity_lets_switch_to_signal">هيا ننتقل إلى سيجنال %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">دعنا نتواصل عبر هذا: %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">خطأ أثناء ترك المجموعة...</string>
+  <string name="ConversationActivity_error_leaving_group">خطأ أثناء مغادرة المجموعة</string>
   <string name="ConversationActivity_mms_not_supported_title">رسائل الوسائط المتعددة غير مدعمة</string>
   <string name="ConversationActivity_mms_not_supported_message">لا يمكن الإرسال لأن شبكة الجوال التي تستخدمها لا تدعم رسائل الوسائط المتعددة.</string>
   <string name="ConversationActivity_specify_recipient">رجاء اختيار جهة اتصال</string>
@@ -146,7 +145,9 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">حجم المرفق تجاوز الحد المسموح بهذا النوع من الرسائل.</string>
   <string name="ConversationActivity_quick_camera_unavailable">الكاميرا غير موجودة</string>
   <string name="ConversationActivity_unable_to_record_audio">تعذر تسجيل الصوت!</string>
+  <string name="ConversationActivity_error_sending_voice_message">خطأ في إرسال الرسالة الصوتية</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">لا يوجد تطبيق على الجهاز لمعالجة الرابط.</string>
+  <!--ConversationAdapter-->
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">تفاصيل الرسالة</string>
   <string name="ConversationFragment_transport_s_sent_received_s">نقل: %1$s\nSent/Received: %2$s</string>
@@ -258,6 +259,8 @@
   <!--DateUtils-->
   <string name="DateUtils_just_now">هذه اللحظة</string>
   <string name="DateUtils_minutes_ago">%d دقيقة</string>
+  <string name="DateUtils_today">اليوم</string>
+  <string name="DateUtils_yesterday">البارحة</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">إلغاء ربط  \'%s\'؟</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">لن يكون إرسال واستقبال الرسائل ممكنا بمجرد إلغاء ربط الجهاز.</string>
@@ -270,6 +273,7 @@
   <string name="DeviceListItem_linked_s">مقترن %s</string>
   <string name="DeviceListItem_last_active_s">آخر مرة %s</string>
   <string name="DeviceListItem_today">اليوم</string>
+  <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">شارك مع</string>
   <!--ExperienceUpgradeActivity-->
@@ -293,12 +297,12 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">فشل دائما في اتصال سيجنال!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">سيجنال لم يتمكن من التسجيل مع خدمات جوجل بلاي، وتم تعطيل رسائل ومكالمات سيجنال. رجاء محاولة إعادة التسجيل عبر قائمة الإعدادات بالتطبيق ثم اختيار متقدم.</string>
   <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">خطأ أثناء جلب كامل دقة صورة GIF</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">صور GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">لصاقات</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">مجموعة جديدة</string>
-  <string name="GroupCreateActivity_actionbar_update_title">تحديث المجموعة</string>
   <string name="GroupCreateActivity_group_name_hint">أسم المجموعة</string>
   <string name="GroupCreateActivity_actionbar_mms_title">مجموعة وسائط متعددة جديدة</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">قمت باختيار شخص لا يدعم مجوعات سيجنال وبالتالي ستكون مجموعة وسائط متعددة.</string>
@@ -307,7 +311,6 @@
   <string name="GroupCreateActivity_contacts_no_members">تحتاج إلى شخص واحد على الأقل في المجموعة!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">لا يمكن قراءة رقم أحد أعضاء المجموعة بشكل صحيح. رجاء تصحيح أو حذف هذا العضو والمحاولة مرة أخرى.</string>
   <string name="GroupCreateActivity_avatar_content_description">الصورة الرمزية للمجموعة</string>
-  <string name="GroupCreateActivity_menu_create_title">إنشاء مجموعة</string>
   <string name="GroupCreateActivity_creating_group">الإنشاء جارٍ %1$s…</string>
   <string name="GroupCreateActivity_updating_group">التحديث جارٍ %1$s...</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">لا يمكن إضافة %1$s بسبب عدم استخدام سيجنال.</string>
@@ -366,6 +369,8 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">الإرسال فشل.</string>
   <string name="MessageDetailsRecipient_new_safety_number">رقم أمان جديد</string>
+  <!--MessageRetrievalService-->
+  <string name="MessageRetrievalService_signal">سيجنال</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">خطأ بتخزين رسالة الوسائط المتعددة!</string>
   <!--- NotificationBarManager-->
@@ -440,6 +445,8 @@
   <string name="RecipientPreferenceActivity_unblock">رفع الحظر</string>
   <string name="RecipientPreferenceActivity_enabled">مفعل</string>
   <string name="RecipientPreferenceActivity_disabled">معطل</string>
+  <!--RecipientProvider-->
+  <string name="RecipientProvider_unnamed_group">مجموعة بلا اسم</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">جارٍ الرد</string>
   <string name="RedPhone_ending_call">جارٍ إنهاء المكالمة</string>
@@ -469,8 +476,6 @@
 رقم الهاتف الخاص بك</string>
   <string name="RegistrationActivity_invalid_number">الرقم غير صحيح</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">الرقم الذي حددته (%s) غير صحيح.</string>
-  <string name="RegistrationActivity_unsupported">غير مدعوم</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">عذرا، هذا المحمول لا يدعم المراسلات عبر بيانات شبكة الجوال. الهواتف العاملة بأنظمة أقدم من أندرويد 4.0 يجب أن يكون لديها حساب جوجل مسجل. الهواتف العاملة بنظام أندرويد 4.0 أو الأعلى لا تطلب حساب جوجل ولكن يجب أن يكون مثبت بها تطبيق سوق بلاي.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
 رجاء التأكد من أنه رقمك! نحن على وشك التحقق بواسطة رسالة نصية.</string>
   <string name="RegistrationActivity_continue">استمر</string>
@@ -481,6 +486,7 @@
   <string name="RegistrationProgressActivity_verifying_number">جارٍ التحقق من الرقم</string>
   <string name="RegistrationProgressActivity_edit_s">تحرير %s</string>
   <string name="RegistrationProgressActivity_registration_complete">اكتمل التسجيل!</string>
+  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">عليك إدخال الرمز الذي تلقيته أولاً</string>
   <string name="RegistrationProgressActivity_connecting">الاتصال جارٍ</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">جارٍ الإتصال للتحقق...</string>
   <string name="RegistrationProgressActivity_network_error">خطأ في الشبكة!</string>
@@ -515,6 +521,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%s أعاد ضبط تأمين المحادثة.</string>
   <string name="SmsMessageRecord_duplicate_message">رسالة مكررة.</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_left_the_group">غادر المجموعة</string>
   <string name="ThreadRecord_secure_session_reset">إعادة ضبط جلسة آمنة.</string>
   <string name="ThreadRecord_draft">مسودة:</string>
   <string name="ThreadRecord_called">مكالمات صاردة</string>
@@ -563,6 +570,10 @@
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">المس للفتح أو المس رمز القفل للإغلاق.</string>
   <string name="KeyCachingService_passphrase_cached">سيجنال غير مقفول</string>
   <string name="KeyCachingService_lock">أقفل بالعبارة السرية</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">أنت</string>
+  <string name="MediaPreviewActivity_cant_display">خطأ في معاينة هذه الصورة</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">غير مدعوم.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d رسائل جديدة في %2$d محادثات</string>
   <string name="MessageNotifier_most_recent_from_s">الأحدث من: %1$s</string>
@@ -575,12 +586,23 @@
   <string name="MessageNotifier_mark_read">اعتبرها مقروءة</string>
   <string name="MessageNotifier_media_message">رسالة وسائط متعددة</string>
   <string name="MessageNotifier_reply">رَدّ</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">إعدادات يدوية لرسائل الوسائط المتعددة مطلوبة لهاتفك.</string>
+  <string name="MmsPreferencesFragment__enabled">مفعل</string>
+  <string name="MmsPreferencesFragment__disabled">معطل</string>
+  <string name="MmsPreferencesFragment__not_set">لم يتم التعيين</string>
+  <string name="MmsPreferencesFragment__invalid_uri">النص  ليس وفقا لصيغة معرّف موارد صحيحة</string>
+  <string name="MmsPreferencesFragment__invalid_host">النص ليس وفقا لصيغة خادم صحيحة</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">الردود السريعة غير متاحة عند قفل سيجنال!</string>
   <string name="QuickResponseService_problem_sending_message">مشكلة في الإرسال!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">سيجنال</string>
   <string name="SingleRecipientNotificationBuilder_new_message">رسالة جديدة</string>
+  <!--VideoPlayer-->
+  <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">لربما ترغب بالتحقق من رقم الأمان مع هذا المتصل.</string>
+  <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">صورة</string>
   <string name="attachment_type_selector__image_description">صورة</string>
@@ -652,6 +674,7 @@
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">وضع اختيار الدفعات</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s اختيار</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">تحميل البلدان جارٍ ...</string>
   <string name="country_selection_fragment__search">بحث</string>
@@ -732,17 +755,9 @@
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">مطالعة المحادثة بالكامل</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_images">لا توجد صور</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">تحقق</string>
   <string name="message_recipients_list_item__resend">إعادة الإرسال</string>
-  <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">إعدادات يدوية لرسائل الوسائط المتعددة مطلوبة لهاتفك.</string>
-  <string name="MmsPreferencesFragment__enabled">مفعل</string>
-  <string name="MmsPreferencesFragment__disabled">معطل</string>
-  <string name="MmsPreferencesFragment__not_set">لم يتم التعيين</string>
-  <string name="MmsPreferencesFragment__invalid_uri">النص  ليس وفقا لصيغة معرّف موارد صحيحة</string>
-  <string name="MmsPreferencesFragment__invalid_host">النص ليس وفقا لصيغة خادم صحيحة</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="zero">%1$s انضموا إلى المجموعة.</item>
@@ -829,7 +844,7 @@
   <string name="recipients_panel__to"><small>أدخل اسم أو رقم</small></string>
   <string name="recipients_panel__add_members">إضافة أعضاء</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[إن كنت ترغب في فحص أمان التشفير الحاصل بينك وبين %s من طرفيه ، قارن الرقم في الأعلى بالرقم الموجود على جهازهم. أو يمكنك كحل آخر إجراء مسح تصويري للرمز الموجود على جهازهم أو أن تطلب منهم إجراء مسح تصويري للرمز الذي على جهازك.<a href=\"https://whispersystems.org/redirect/safety-numbers\">تعلم المزيد عن التحقق من أرقام الأمان</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[إن كنت ترغب في فحص أمان التشفير الحاصل بينك وبين %s من طرفيه ، قارن الرقم في الأعلى بالرقم الموجود على جهازهم. أو يمكنك كحل آخر إجراء مسح تصويري للرمز الموجود على جهازهم أو أن تطلب منهم إجراء مسح تصويري للرمز الذي على جهازك.<a href="https://whispersystems.org/redirect/safety-numbers">تعلم المزيد عن التحقق من أرقام الأمان</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">المس للمسح</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">شارك رقم الأمان</string>
@@ -851,8 +866,6 @@
   <string name="AndroidManifest__verify_safety_number">تحقق من رقم الأمان</string>
   <string name="AndroidManifest__log_submit">أرسل سجل التشغيل.</string>
   <string name="AndroidManifest__media_preview">معاينة الوسائط</string>
-  <string name="AndroidManifest__media_overview">جميع الصور</string>
-  <string name="AndroidManifest__media_overview_named">جميع الصور مع %1$s</string>
   <string name="AndroidManifest__message_details">تفاصيل الرسالة</string>
   <string name="AndroidManifest__linked_devices">الأجهزة المتصلة</string>
   <string name="AndroidManifest__invite_friends">دعوة الأصدقاء</string>
@@ -1043,10 +1056,8 @@
   <string name="conversation_unmuted__mute_notifications">كتم الإشعارات</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">إضافات</string>
-  <string name="conversation__menu_update_group">تحديث المجموعة</string>
   <string name="conversation__menu_leave_group">أترك المجموعة</string>
   <string name="conversation__menu_delete_thread">حذف المحادثة</string>
-  <string name="conversation__menu_view_media">جميع الصور</string>
   <string name="conversation__menu_conversation_settings">إعدادات المحادثة</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">توسيع الإشعار</string>
@@ -1102,18 +1113,13 @@
   <string name="reminder_header_share_text">زيادة عدد الأصدقاء المستخدمي لسيجنال يجعله أفضل بكثير.</string>
   <string name="reminder_header_share_button">شارك</string>
   <string name="reminder_header_close_button">إغلاق</string>
-  <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">أنت</string>
-  <string name="MediaPreviewActivity_cant_display">خطأ في معاينة هذه الصورة</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">غير مدعوم.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">أحفظ</string>
   <string name="media_preview__forward_title">إعادة إرسال</string>
-  <string name="media_preview__overview_title">كل الصور</string>
   <!--media_overview-->
   <string name="media_overview__save_all">حفظ الكل</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">معاينه الصوره</string>
+  <string name="media_preview_activity__media_content_description">معاينة الوسائط</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">إنعاش</string>
   <!--redphone_audio_popup_menu-->

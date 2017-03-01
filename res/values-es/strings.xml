@@ -104,7 +104,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">¡El mensaje está vacío!</string>
   <string name="ConversationActivity_group_members">Miembros del grupo</string>
   <string name="ConversationActivity_group_conversation">Conversación de grupo</string>
-  <string name="ConversationActivity_unnamed_group">Grupo sin nombre</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="one">1 miembro</item>
     <item quantity="other">%d miembros</item>
@@ -120,7 +119,7 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Pasémonos a Signal: %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Usemos esto para hablar: %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Error al dejar el grupo...</string>
+  <string name="ConversationActivity_error_leaving_group">Error al dejar el grupo</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS no admitidos</string>
   <string name="ConversationActivity_mms_not_supported_message">Este mensaje no se puede enviar debido a que su proveedor no admite MMS.</string>
   <string name="ConversationActivity_specify_recipient">Por favor, elija un contacto</string>
@@ -132,6 +131,11 @@
   <string name="ConversationActivity_unable_to_record_audio">¡No se ha podido grabar el audio!</string>
   <string name="ConversationActivity_error_sending_voice_message">Error al enviar mensaje de voz</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">No hay ninguna aplicación disponible para usar este enlace en su dispositivo.</string>
+  <!--ConversationAdapter-->
+  <plurals name="ConversationAdapter_n_unread_messages">
+    <item quantity="one">%d mensaje no leído</item>
+    <item quantity="other">%d mensajes no leídos</item>
+  </plurals>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalles del mensaje</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transporte: %1$s
@@ -211,6 +215,8 @@ Recibido:%4$s</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Ahora mismo</string>
   <string name="DateUtils_minutes_ago">%d mins</string>
+  <string name="DateUtils_today">Hoy</string>
+  <string name="DateUtils_yesterday">Ayer</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">¿Desvincular \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Al desvincular este dispositivo, ya no podrá enviar y recibir mensajes.</string>
@@ -224,6 +230,7 @@ Recibido:%4$s</string>
   <string name="DeviceListItem_linked_s">Se vinculó %s</string>
   <string name="DeviceListItem_last_active_s">Activo por última vez el %s</string>
   <string name="DeviceListItem_today">Hoy</string>
+  <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Compartir con</string>
   <!--ExperienceUpgradeActivity-->
@@ -252,7 +259,7 @@ Recibido:%4$s</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Pegatinas (stickers)</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nuevo grupo</string>
-  <string name="GroupCreateActivity_actionbar_update_title">Actualizar grupo</string>
+  <string name="GroupCreateActivity_actionbar_edit_title">Editar grupo</string>
   <string name="GroupCreateActivity_group_name_hint">Nombre del grupo</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nuevo grupo de MMS</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Ha seleccionado un contacto que no soporta grupos de Signal, así que este grupo será de MMS.</string>
@@ -261,7 +268,7 @@ Recibido:%4$s</string>
   <string name="GroupCreateActivity_contacts_no_members">¡Necesita al menos una persona en su grupo!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Uno de los miembros de su grupo tiene un número que no puede ser leído correctamente. Por favor arréglelo o elimine ese contacto, e inténtelo de nuevo.</string>
   <string name="GroupCreateActivity_avatar_content_description">Avatar del grupo</string>
-  <string name="GroupCreateActivity_menu_create_title">Crear grupo</string>
+  <string name="GroupCreateActivity_menu_apply_button">Aplicar</string>
   <string name="GroupCreateActivity_creating_group">Creando %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Actualizando %1$s...</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">No se ha podido agregar a %1$s porque no es usuario de Signal.</string>
@@ -326,6 +333,8 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Fallo al enviar</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nuevo número de seguridad</string>
+  <!--MessageRetrievalService-->
+  <string name="MessageRetrievalService_signal">Signal</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">¡Error guardando MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Error al conectar al proveedor de MMS</string>
@@ -342,6 +351,8 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="NotificationBarManager__cancel_call">Cancelar llamada</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Mensaje multimedia</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">Descargando mensaje MMS</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Error al descargar mensaje MMS, pulse para reintentar</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Se ha recibido un mensaje encriptado usando una versión de Signal antigua que ya no está soportada. Por favor, avisa al quien te lo ha enviado para que actualice a la versión más reciente y reenvíe el mensaje.</string>
   <string name="MessageRecord_left_group">Ha dejado el grupo.</string>
@@ -405,6 +416,8 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="RecipientPreferenceActivity_enabled">Habilitado</string>
   <string name="RecipientPreferenceActivity_disabled">Deshabilitado</string>
   <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Disponible una vez que se ha enviado o recibido un mensaje</string>
+  <!--RecipientProvider-->
+  <string name="RecipientProvider_unnamed_group">Grupo sin nombre</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">Respondiendo</string>
   <string name="RedPhone_ending_call">Finalizando llamada</string>
@@ -439,12 +452,6 @@ número de teléfono
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">El número que especificó
 (%s) no es válido.
 </string>
-  <string name="RegistrationActivity_unsupported">No admitido</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Lo sentimos,
-este dispositivo no es compatible con la mensajería de datos. Los dispositivos que ejecutan versiones de Android anteriores
-a la 4.0 deben tener una cuenta de Google registrada. Los dispositivos que ejecutan Android 4.0 o posterior no
-requieren una cuenta de Google, pero deben tener la aplicación Play Store instalada.
- </string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
 ¡Compruebe dos veces que este es su número! Estamos a punto de verificarlo con un SMS.
     </string>
@@ -546,6 +553,11 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Pulse para abrir, o pulse el candado para cerrar.</string>
   <string name="KeyCachingService_passphrase_cached">Signal está desbloqueado</string>
   <string name="KeyCachingService_lock">Bloquear con clave de acceso</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">Usted</string>
+  <string name="MediaPreviewActivity_cant_display">Fallo al previsualizar la imagen</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Formato de contenido no compatible</string>
+  <string name="MediaPreviewActivity_draft">Borrador</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d mensajes nuevos en %2$d conversaciones</string>
   <string name="MessageNotifier_most_recent_from_s">Más recientes desde: %1$s</string>
@@ -559,12 +571,27 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MessageNotifier_mark_read">Marcar como leído</string>
   <string name="MessageNotifier_media_message">Mensaje multimedia</string>
   <string name="MessageNotifier_reply">Responder</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Se requiere configuración manual de MMS para su teléfono.</string>
+  <string name="MmsPreferencesFragment__enabled">Habilitado</string>
+  <string name="MmsPreferencesFragment__disabled">Deshabilitado</string>
+  <string name="MmsPreferencesFragment__not_set">No establecido</string>
+  <string name="MmsPreferencesFragment__invalid_uri">El texto introducido no era una URI válida</string>
+  <string name="MmsPreferencesFragment__invalid_host">El texto introducido no era un servidor válido</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">¡La respuesta rápida no está disponible cuando Signal está bloqueado!</string>
   <string name="QuickResponseService_problem_sending_message">¡Hubo un problema al enviar el mensaje!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nuevo mensaje</string>
+  <!--VideoPlayer-->
+  <string name="VideoPlayer_error_playing_video">Error al reproducir el vídeo</string>
+  <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_new_safety_numbers">El número de seguridad para su conversación con %1$s ha cambiado. Esto podría significar que alguien está tratando de interceptar su comunicación, o bien que %2$s simplemente ha reinstalado Signal.</string>
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Puede que desee verificar su número de seguridad con este contacto.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers_title">Nuevos números de seguridad</string>
+  <!--WebRtcCallControls-->
+  <string name="WebRtcCallControls_tap_to_enable_your_video">Pulse para habilitar su vídeo</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Imagen</string>
   <string name="attachment_type_selector__image_description">Imagen</string>
@@ -637,6 +664,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Modo de selección por lotes</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s seleccionado</string>
+  <!--conversation_fragment-->
+  <string name="conversation_fragment__scroll_to_the_bottom_content_description">Desplazarse hasta el final</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Cargando países...</string>
   <string name="country_selection_fragment__search">Buscar</string>
@@ -706,17 +735,10 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Ver conversación completa</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_images">No hay imágenes</string>
+  <string name="media_overview_activity__no_media">Sin audiovisual</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">VERIFICAR</string>
   <string name="message_recipients_list_item__resend">REENVIAR</string>
-  <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Se requiere configuración manual de MMS para su teléfono.</string>
-  <string name="MmsPreferencesFragment__enabled">Habilitado</string>
-  <string name="MmsPreferencesFragment__disabled">Deshabilitado</string>
-  <string name="MmsPreferencesFragment__not_set">No establecido</string>
-  <string name="MmsPreferencesFragment__invalid_uri">El texto introducido no era una URI válida</string>
-  <string name="MmsPreferencesFragment__invalid_host">El texto introducido no era un servidor válido</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s se unió al grupo.</item>
@@ -823,7 +845,7 @@ por SMS.
   <string name="recipients_panel__to"><small>Introduzca un nombre o número</small></string>
   <string name="recipients_panel__add_members">Añadir miembros</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Si desea verificar la seguridad de su cifrado extremo-a-extremo con %s, compare el número de arriba con el número en su dispositivo. Como alternativa, puede escanear el código en el teléfono de su interlocutor, o pedirle a este que escanee el código de usted. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Conozca más acerca de la verificación de números de seguridad</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Si desea verificar la seguridad de su cifrado extremo-a-extremo con %s, compare el número de arriba con el número en su dispositivo. Como alternativa, puede escanear el código en el teléfono de su interlocutor, o pedirle a este que escanee el código de usted. <a href="https://whispersystems.org/redirect/safety-numbers">Conozca más acerca de la verificación de números de seguridad</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Pulse para escanear</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Compartir número de seguridad</string>
@@ -845,8 +867,8 @@ por SMS.
   <string name="AndroidManifest__verify_safety_number">Verificar número de seguridad</string>
   <string name="AndroidManifest__log_submit">Remitir registro (log) de depuración</string>
   <string name="AndroidManifest__media_preview">Previsualizar multimedia</string>
-  <string name="AndroidManifest__media_overview">Todas las imágenes</string>
-  <string name="AndroidManifest__media_overview_named">Todas la imágenes con %1$s</string>
+  <string name="AndroidManifest__all_media">Todos los audiovisuales</string>
+  <string name="AndroidManifest__all_media_named">Todos los audiovisuales con %1$s</string>
   <string name="AndroidManifest__message_details">Detalles del mensaje</string>
   <string name="AndroidManifest__linked_devices">Dispositivos enlazados</string>
   <string name="AndroidManifest__invite_friends">Invitar amigos</string>
@@ -979,6 +1001,10 @@ por SMS.
   <string name="preferences_chats__message_trimming">Recortado de mensaje</string>
   <string name="preferences_advanced__use_system_emoji">Usar emoji del sistema</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Deshabilitar soporte de emoji integrado de Signal</string>
+  <string name="preferences_advanced__video_calling_beta">Vídeo llamada beta</string>
+  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Soporte para la nueva generación de llamadas de vídeo y voz cuando estén habilitadas por ambas partes. Esta característica está en fase beta.</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Hacer que el servidor de Signal repita todas las llamadas para evitar revelar su dirección IP a su contacto. Habilitando esto reducirá la calidad de la llamada.</string>
+  <string name="preferences_advanced__always_relay_calls">Pasar siempre las llamadas por repetidor</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1033,10 +1059,10 @@ por SMS.
   <string name="conversation_unmuted__mute_notifications">Silenciar notificaciones</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Añadir archivo adjunto</string>
-  <string name="conversation__menu_update_group">Actualizar grupo</string>
+  <string name="conversation__menu_edit_group">Editar grupo</string>
   <string name="conversation__menu_leave_group">Abandonar grupo</string>
   <string name="conversation__menu_delete_thread">Eliminar conversación</string>
-  <string name="conversation__menu_view_media">Todas las imágenes</string>
+  <string name="conversation__menu_view_all_media">Todos los audiovisuales</string>
   <string name="conversation__menu_conversation_settings">Opciones de conversación</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Expandir emergente</string>
@@ -1088,18 +1114,14 @@ por SMS.
   <string name="reminder_header_share_text">Cuantos amigos más usen Signal, mejor será.</string>
   <string name="reminder_header_share_button">COMPARTIR</string>
   <string name="reminder_header_close_button">CERRAR</string>
-  <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">Usted</string>
-  <string name="MediaPreviewActivity_cant_display">Fallo al previsualizar la imagen</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Formato de contenido no compatible</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Guardar</string>
   <string name="media_preview__forward_title">Avanzar</string>
-  <string name="media_preview__overview_title">Todas las imágenes</string>
+  <string name="media_preview__all_media_title">Todos los audiovisuales</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Guardar todo</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">Previsualización de imagen</string>
+  <string name="media_preview_activity__media_content_description">Previsualizar multimedia</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Recargar</string>
   <!--redphone_audio_popup_menu-->

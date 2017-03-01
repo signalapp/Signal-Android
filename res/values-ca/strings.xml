@@ -102,7 +102,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">El missatge és buit!</string>
   <string name="ConversationActivity_group_members">Membres del grup</string>
   <string name="ConversationActivity_group_conversation">Conversa en grup</string>
-  <string name="ConversationActivity_unnamed_group">Grup sense nom</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="one">1 membre</item>
     <item quantity="other">%d membres</item>
@@ -118,7 +117,6 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Canviem a Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Fem servir això per xerrar %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Error al sortir del grup</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS no disponibles</string>
   <string name="ConversationActivity_mms_not_supported_message">Aquest missatge no ha pogut ser enviat perquè el seu operador de telefonia no accepta MMS.</string>
   <string name="ConversationActivity_specify_recipient">Escull un contacte, si us plau.</string>
@@ -127,6 +125,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">L\'arxiu adjunt excedeix la mida màxima pel tipus de missatge que estàs enviant.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Càmara no disponible</string>
   <string name="ConversationActivity_unable_to_record_audio">No s\'ha pogut gravar el so!</string>
+  <!--ConversationAdapter-->
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalls del missatge</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Trànsit: %1$s\nEnviat/Rebut: %2$s</string>
@@ -195,6 +194,7 @@
   <string name="CustomDefaultPreference_none">No n\'hi ha</string>
   <!--DateUtils-->
   <string name="DateUtils_minutes_ago">%d min</string>
+  <string name="DateUtils_today">Avui</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Desenllaçar \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Si desenllaces aquest dispositiu, no es podran ni rebre ni enviar missatges.</string>
@@ -207,6 +207,7 @@
   <string name="DeviceListItem_linked_s">Enllaçat %s</string>
   <string name="DeviceListItem_last_active_s">Darrera activitat %s</string>
   <string name="DeviceListItem_today">Avui</string>
+  <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Compartir amb</string>
   <!--ExperienceUpgradeActivity-->
@@ -232,7 +233,6 @@
   <!--GiphyFragmentPageAdapter-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nou grup</string>
-  <string name="GroupCreateActivity_actionbar_update_title">Actualitzar grup</string>
   <string name="GroupCreateActivity_group_name_hint">Nom del grup</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nou grup de MMS</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Has seleccionat un contact que no pot gestionar els grups de Signal, per tant aquest grup serà per MMS.</string>
@@ -241,7 +241,6 @@
   <string name="GroupCreateActivity_contacts_no_members">Necessites almenys una persona dins el teu grup!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Un dels membres del teu grup té un número que no pot ser llegit correctament. Si us plau corregeix o treu aquest contacte i intenta-ho de nou.</string>
   <string name="GroupCreateActivity_avatar_content_description">Avatar del grup</string>
-  <string name="GroupCreateActivity_menu_create_title">Crear un grup</string>
   <string name="GroupCreateActivity_creating_group">Creant %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Actualitzant %1$s...</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">No s\'ha pogut afegir %1$s perquè no és un usuari de Signal.</string>
@@ -298,6 +297,8 @@ a la còpia de seguretat.</string>
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal necessita Barcode Scanner pels codis QR.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">No s\'ha pogut enviar</string>
+  <!--MessageRetrievalService-->
+  <string name="MessageRetrievalService_signal">Signal</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Error emmagatzemant MMS!</string>
   <!--- NotificationBarManager-->
@@ -363,6 +364,7 @@ a la còpia de seguretat.</string>
   <string name="RecipientPreferenceActivity_unblock">Desbloca</string>
   <string name="RecipientPreferenceActivity_enabled">Habilitat</string>
   <string name="RecipientPreferenceActivity_disabled">Inhabilitat</string>
+  <!--RecipientProvider-->
   <!--RedPhone-->
   <string name="RedPhone_answering">Contestant</string>
   <string name="RedPhone_ending_call">Penjant la trucada</string>
@@ -391,11 +393,6 @@ a la còpia de seguretat.</string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">Has d\'especificar el teu número de telèfon</string>
   <string name="RegistrationActivity_invalid_number">Número invàlid</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">El número que has especificat (%s) és invàlid.</string>
-  <string name="RegistrationActivity_unsupported">No suportat</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Disculpa,
-aquest dispositiu no suporta missatges de dades. Els dispositius que fan servir versions d\'Android més velles
-que 4.0 han de tenir un compte Google registrat. Els dispositius que fan servir Android 4.0 o superior no
-necessiten un compte Google, però han de tenir l\'app Play Store instal·lada.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
 Comprova que aquest és el teu número! Anem a verificar-ho amb un SMS.</string>
   <string name="RegistrationActivity_continue">Continua</string>
@@ -475,6 +472,10 @@ Comprova que aquest és el teu número! Anem a verificar-ho amb un SMS.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Prem per obrir, or prem el candau per tancar.</string>
   <string name="KeyCachingService_passphrase_cached">S\'ha desbloquejat Signal</string>
   <string name="KeyCachingService_lock">Bloqueja amb una frase contrasenya</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">Tu</string>
+  <string name="MediaPreviewActivity_cant_display">No s\'ha pogut mostrar la imatge</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Tipus d\'arxiu no suportat</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nous missatges a %2$d converses</string>
   <string name="MessageNotifier_most_recent_from_s">Més recent de: %1$s</string>
@@ -487,12 +488,22 @@ Comprova que aquest és el teu número! Anem a verificar-ho amb un SMS.</string>
   <string name="MessageNotifier_mark_read">Marca els llegits</string>
   <string name="MessageNotifier_media_message">Missatge multimèdia</string>
   <string name="MessageNotifier_reply">Respondre</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">En el teu telèfon són necessaris els ajustaments MMS manuals.</string>
+  <string name="MmsPreferencesFragment__enabled">Habilitat</string>
+  <string name="MmsPreferencesFragment__disabled">Inhabilitat</string>
+  <string name="MmsPreferencesFragment__not_set">No configurat</string>
+  <string name="MmsPreferencesFragment__invalid_uri">El text escrit no és una URl vàlida</string>
+  <string name="MmsPreferencesFragment__invalid_host">El text escrit no ha estat una host vàlid</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Resposta ràpida no disponible quan Signal està bloquejat!</string>
   <string name="QuickResponseService_problem_sending_message">Hi ha hagut un problema enviant el missatge!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nou missatge</string>
+  <!--VideoPlayer-->
+  <!--WebRtcCallScreen-->
+  <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Imatge</string>
   <string name="attachment_type_selector__audio">Àudio</string>
@@ -549,6 +560,7 @@ Comprova que aquest és el teu número! Anem a verificar-ho amb un SMS.</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Mode de selecció per lots</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s seleccionats</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Carregant països...</string>
   <string name="country_selection_fragment__search">Cerca</string>
@@ -589,17 +601,9 @@ Comprova que aquest és el teu número! Anem a verificar-ho amb un SMS.</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Veure tota la conversa</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_images">Sense imatges</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">VERIFICAR</string>
   <string name="message_recipients_list_item__resend">REENVIAR</string>
-  <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">En el teu telèfon són necessaris els ajustaments MMS manuals.</string>
-  <string name="MmsPreferencesFragment__enabled">Habilitat</string>
-  <string name="MmsPreferencesFragment__disabled">Inhabilitat</string>
-  <string name="MmsPreferencesFragment__not_set">No configurat</string>
-  <string name="MmsPreferencesFragment__invalid_uri">El text escrit no és una URl vàlida</string>
-  <string name="MmsPreferencesFragment__invalid_host">El text escrit no ha estat una host vàlid</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s s\'ha afegit al grup.</item>
@@ -702,8 +706,6 @@ La verificació per SMS ha tardat massa temps, s\'ha superat el temps màxim d\'
   <string name="AndroidManifest__change_passphrase">Canvia frase contrasenya</string>
   <string name="AndroidManifest__log_submit">Envia registre de debug</string>
   <string name="AndroidManifest__media_preview">Previsualització multimèdia</string>
-  <string name="AndroidManifest__media_overview">Totes les imatges</string>
-  <string name="AndroidManifest__media_overview_named">Totes les imatges amb %1$s</string>
   <string name="AndroidManifest__message_details">Informació del missatge</string>
   <string name="AndroidManifest__linked_devices">Dispositiu enllaçats</string>
   <string name="AndroidManifest__invite_friends">Convida a amics/gues</string>
@@ -886,10 +888,8 @@ La verificació per SMS ha tardat massa temps, s\'ha superat el temps màxim d\'
   <string name="conversation_unmuted__mute_notifications">Silencia les notificacions</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Afegeix un adjunt</string>
-  <string name="conversation__menu_update_group">Actualitzar grup</string>
   <string name="conversation__menu_leave_group">Deixa el grup</string>
   <string name="conversation__menu_delete_thread">Suprimeix la conversa</string>
-  <string name="conversation__menu_view_media">Totes les imatges</string>
   <string name="conversation__menu_conversation_settings">Ajustaments de conversa</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Expandeix el popup</string>
@@ -939,16 +939,12 @@ La verificació per SMS ha tardat massa temps, s\'ha superat el temps màxim d\'
   <string name="reminder_header_share_text">Com més amics/gues fan servir Signal, millor.</string>
   <string name="reminder_header_share_button">COMPARTIR</string>
   <string name="reminder_header_close_button">TANCA</string>
-  <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">Tu</string>
-  <string name="MediaPreviewActivity_cant_display">No s\'ha pogut mostrar la imatge</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Tipus d\'arxiu no suportat</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Desa</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Desa-ho tot</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">Previsualització d\'imatges</string>
+  <string name="media_preview_activity__media_content_description">Previsualització multimèdia</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Actualitza</string>
   <!--redphone_audio_popup_menu-->

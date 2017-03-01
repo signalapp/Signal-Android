@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GifSlide;
 import org.thoughtcrime.securesms.mms.ImageSlide;
+import org.thoughtcrime.securesms.mms.MmsSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.VideoSlide;
@@ -79,6 +80,8 @@ public class MediaUtil {
       slide = new VideoSlide(context, attachment);
     } else if (ContentType.isAudioType(attachment.getContentType())) {
       slide = new AudioSlide(context, attachment);
+    } else if (isMms(attachment.getContentType())) {
+      slide = new MmsSlide(context, attachment);
     }
 
     return slide;
@@ -126,6 +129,10 @@ public class MediaUtil {
     in.close();
 
     return size;
+  }
+
+  public static boolean isMms(String contentType) {
+    return !TextUtils.isEmpty(contentType) && contentType.trim().equals("application/mms");
   }
 
   public static boolean isGif(String contentType) {

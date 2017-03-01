@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.text.format.DateFormat;
 
 import java.text.SimpleDateFormat;
@@ -35,6 +36,10 @@ public class DateUtils extends android.text.format.DateUtils {
 
   private static boolean isWithin(final long millis, final long span, final TimeUnit unit) {
     return System.currentTimeMillis() - millis <= unit.toMillis(span);
+  }
+
+  private static boolean isYesterday(final long when) {
+    return DateUtils.isToday(when + TimeUnit.DAYS.toMillis(1));
   }
 
   private static int convertDelta(final long millis, TimeUnit to) {
@@ -109,6 +114,19 @@ public class DateUtils extends android.text.format.DateUtils {
     }
 
     return new SimpleDateFormat(dateFormatPattern, locale);
+  }
+
+  public static String getRelativeDate(@NonNull Context context,
+                                       @NonNull Locale locale,
+                                       long timestamp)
+  {
+    if (isToday(timestamp)) {
+      return context.getString(R.string.DateUtils_today);
+    } else if (isYesterday(timestamp)) {
+      return context.getString(R.string.DateUtils_yesterday);
+    } else {
+      return getFormattedDateTime(timestamp, "EEE, MMM d, yyyy", locale);
+    }
   }
 
   private static String getLocalizedPattern(String template, Locale locale) {

@@ -30,6 +30,7 @@ import android.support.v4.view.ViewCompat;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +43,7 @@ import android.widget.TextView;
 
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
+import org.thoughtcrime.securesms.util.views.Stub;
 
 public class ViewUtil {
   @SuppressWarnings("deprecation")
@@ -119,6 +121,10 @@ public class ViewUtil {
   @SuppressWarnings("unchecked")
   public static <T extends View> T findById(@NonNull Activity parent, @IdRes int resId) {
     return (T) parent.findViewById(resId);
+  }
+
+  public static <T extends View> Stub<T> findStubById(@NonNull Activity parent, @IdRes int resId) {
+    return new Stub<T>((ViewStub)parent.findViewById(resId));
   }
 
   private static Animation getAlphaAnimation(float from, float to, int duration) {
@@ -200,5 +206,9 @@ public class ViewUtil {
         DynamicLanguage.getLayoutDirection(context) == View.LAYOUT_DIRECTION_RTL) {
       view.setScaleX(-1.0f);
     }
+  }
+
+  public static int dpToPx(Context context, int dp) {
+    return (int)((dp * context.getResources().getDisplayMetrics().density) + 0.5);
   }
 }

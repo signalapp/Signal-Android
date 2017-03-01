@@ -104,7 +104,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">המסר ריק!</string>
   <string name="ConversationActivity_group_members">חברי הקבוצה</string>
   <string name="ConversationActivity_group_conversation">שיחה קבוצתית</string>
-  <string name="ConversationActivity_unnamed_group">קבוצה ללא שם</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
     <item quantity="one">חבר אחד</item>
     <item quantity="other">%d חברים</item>
@@ -120,7 +119,6 @@
   <string name="ConversationActivity_transport_signal">סיגנל</string>
   <string name="ConversationActivity_lets_switch_to_signal">הבה נעבור להשתמש בסיגנל %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">הבה נשתמש בזה בשביל התכתבות: %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">שגיאה בעזיבת הקבוצה...</string>
   <string name="ConversationActivity_mms_not_supported_title">אין תמיכה ב־MMS</string>
   <string name="ConversationActivity_mms_not_supported_message">אי־אפשר לשלוח את המסר הזה כי הספק שלך אינו תומך ב־MMS.</string>
   <string name="ConversationActivity_specify_recipient">נא לבחור איש קשר</string>
@@ -132,6 +130,7 @@
   <string name="ConversationActivity_unable_to_record_audio">לא ניתן להקליט קול!</string>
   <string name="ConversationActivity_error_sending_voice_message">שגיאה בשליחת הודעה קולית</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">אין אפליקציה זמינה לטיפול בקישור כזה במכשיר שלך.</string>
+  <!--ConversationAdapter-->
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">פרטי מסר</string>
   <string name="ConversationFragment_transport_s_sent_received_s">תעבורה: %1$s\nנשלח/התקבל: %2$s</string>
@@ -207,6 +206,7 @@
   <!--DateUtils-->
   <string name="DateUtils_just_now">זה עתה</string>
   <string name="DateUtils_minutes_ago">%d דק׳</string>
+  <string name="DateUtils_today">היום</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">לבטל את הקישור אל \"%s\"?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">ביטול הקישור של המכשיר הזה ימנע ממנו שליחה וקבלה של מסרים.</string>
@@ -219,6 +219,7 @@
   <string name="DeviceListItem_linked_s">קישרתי את %s</string>
   <string name="DeviceListItem_last_active_s">פעל לאחרונה %s</string>
   <string name="DeviceListItem_today">היום</string>
+  <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">לשתף עם</string>
   <!--ExperienceUpgradeActivity-->
@@ -246,7 +247,6 @@
   <string name="GiphyFragmentPagerAdapter_stickers">מדבקות</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">קבוצה חדשה</string>
-  <string name="GroupCreateActivity_actionbar_update_title">עדכון קבוצה</string>
   <string name="GroupCreateActivity_group_name_hint">שם הקבוצה</string>
   <string name="GroupCreateActivity_actionbar_mms_title">קבוצת MMS חדשה</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">בחרת איש קשר שאינו תומך בקבוצות סיגנל, אז הקבוצה הזאת תהיה מסוג MMS.</string>
@@ -255,7 +255,6 @@
   <string name="GroupCreateActivity_contacts_no_members">צריך להיות לפחות אדם אחד בקבוצה הזאת!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">לאחד החברים בקבוצה שלך יש מספר שאי־אפשר לקרוא נכון. נא לתקן את זה או להסיר את איש הקשר הזה ולנסות שוב.</string>
   <string name="GroupCreateActivity_avatar_content_description">תמונת קבוצה</string>
-  <string name="GroupCreateActivity_menu_create_title">יצירת קבוצה</string>
   <string name="GroupCreateActivity_creating_group">יוצר את %1$s…</string>
   <string name="GroupCreateActivity_updating_group">מעדכן את %1$s…</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">לא הצלחתי להוסיף את %1$s כי זה לא משתמש סיגנל.</string>
@@ -321,6 +320,8 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">השליחה לא עבדה</string>
   <string name="MessageDetailsRecipient_new_safety_number">מספר בטיחות חדש</string>
+  <!--MessageRetrievalService-->
+  <string name="MessageRetrievalService_signal">סיגנל</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">שגיאה באחסון ה־MMS!</string>
   <!--- NotificationBarManager-->
@@ -395,6 +396,7 @@
   <string name="RecipientPreferenceActivity_unblock">הסרת חסימה</string>
   <string name="RecipientPreferenceActivity_enabled">מופעל</string>
   <string name="RecipientPreferenceActivity_disabled">כבוי</string>
+  <!--RecipientProvider-->
   <!--RedPhone-->
   <string name="RedPhone_answering">עונה</string>
   <string name="RedPhone_ending_call">מסיים את השיחה</string>
@@ -426,11 +428,6 @@
   <string name="RegistrationActivity_invalid_number">מספר בלתי־תקין</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">המספר שציינת (%s)
 אינו תקין.</string>
-  <string name="RegistrationActivity_unsupported">לא נתמך</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">סליחה,
-המכשיר הזה לא תומך בשליחת מסרים עם נתונים. למכשירים שמריצים אנדרואיד ישן יותר
-מגרסה 4.0 צריך להיות חשבון גוגל רשום. מכשירים עם אנדרואיד 4.0 או חדש יותר
-אינם דורשים חשבון גוגל, אבל כן צריכה להיות בהם אפליקציית חנות Play.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
 נא לוודא שזה המספר שלך! אנחנו עומדים לאמת אותו באמצעות SMS.</string>
   <string name="RegistrationActivity_continue">המשך</string>
@@ -522,6 +519,10 @@
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">נא לגעת לפתיחה, או לגעת במנעול לסגירה.</string>
   <string name="KeyCachingService_passphrase_cached">סיגנל לא נעול</string>
   <string name="KeyCachingService_lock">לנעול עם משפט סודי</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">אני</string>
+  <string name="MediaPreviewActivity_cant_display">התצוגה המקדימה של התמונה הזאת לא עבדה</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">סוג מדיה שאינו נתמך</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d מסרים חדשים ב־%2$d שיחות</string>
   <string name="MessageNotifier_most_recent_from_s">האחרון מאת: %1$s</string>
@@ -534,12 +535,23 @@
   <string name="MessageNotifier_mark_read">לסמן שקראתי</string>
   <string name="MessageNotifier_media_message">מסר מדיה</string>
   <string name="MessageNotifier_reply">להשיב</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">נדרשות הגדרות MMS ידניות עבור מכשירך.</string>
+  <string name="MmsPreferencesFragment__enabled">מופעל</string>
+  <string name="MmsPreferencesFragment__disabled">כבוע</string>
+  <string name="MmsPreferencesFragment__not_set">לא מוגדר</string>
+  <string name="MmsPreferencesFragment__invalid_uri">הטקסט שהוזן הוא לא כתובת URI תקינה</string>
+  <string name="MmsPreferencesFragment__invalid_host">הטקסט שהוזן הוא לא שרת תקין</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">תשובה מהירה אינה זמינה כשסיגנל נעול!</string>
   <string name="QuickResponseService_problem_sending_message">בעיה בשליחת מסר!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">סיגנל</string>
   <string name="SingleRecipientNotificationBuilder_new_message">מסר חדש</string>
+  <!--VideoPlayer-->
+  <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">אולי תרצה לוודא את מספרי הבטיחות שלך עם איש הקשר הזה.</string>
+  <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">תמונה</string>
   <string name="attachment_type_selector__image_description">תמונה</string>
@@ -607,6 +619,7 @@
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">מצב בחירה מרובה</string>
   <string name="conversation_fragment_cab__batch_selection_amount">נבחרו %s</string>
+  <!--conversation_fragment-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">טעינת מדינות...</string>
   <string name="country_selection_fragment__search">חיפוש</string>
@@ -675,17 +688,9 @@
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">הצגת השיחה המלאה</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_images">אין תמונות</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">אימות</string>
   <string name="message_recipients_list_item__resend">שליחה חוזרת</string>
-  <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">נדרשות הגדרות MMS ידניות עבור מכשירך.</string>
-  <string name="MmsPreferencesFragment__enabled">מופעל</string>
-  <string name="MmsPreferencesFragment__disabled">כבוע</string>
-  <string name="MmsPreferencesFragment__not_set">לא מוגדר</string>
-  <string name="MmsPreferencesFragment__invalid_uri">הטקסט שהוזן הוא לא כתובת URI תקינה</string>
-  <string name="MmsPreferencesFragment__invalid_host">הטקסט שהוזן הוא לא שרת תקין</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s הצטרף לקבוצה.</item>
@@ -778,7 +783,7 @@
   <string name="recipients_panel__to"><small>נא להזין שם או מספר</small></string>
   <string name="recipients_panel__add_members">הוספת חברים</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[אם ברצונך לוודא את האבטחה של ההצפנה מקצה לקצה עם %s, יש להשוות את המספרים בחלק העליון עם המספרים במכשיר שלו.  או לחלופין, באפשרותך לסרוק את הקוד במכשיר שלו או לבקש ממנו לסרוק את הקוד שלך. <a href=\"https://whispersystems.org/redirect/safety-numbers\">מידע נוסף על מספרי בטיחות</a>.]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[אם ברצונך לוודא את האבטחה של ההצפנה מקצה לקצה עם %s, יש להשוות את המספרים בחלק העליון עם המספרים במכשיר שלו.  או לחלופין, באפשרותך לסרוק את הקוד במכשיר שלו או לבקש ממנו לסרוק את הקוד שלך. <a href="https://whispersystems.org/redirect/safety-numbers">מידע נוסף על מספרי בטיחות</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">יש ללחוץ לסריקה</string>
   <!--verify_identity-->
   <!--message_details_header-->
@@ -798,8 +803,6 @@
   <string name="AndroidManifest__change_passphrase">שינוי משפט סודי</string>
   <string name="AndroidManifest__log_submit">שליחת יומן תיקון שגיאות</string>
   <string name="AndroidManifest__media_preview">תצוגה מקדימה של מדיה</string>
-  <string name="AndroidManifest__media_overview">כל התמונות</string>
-  <string name="AndroidManifest__media_overview_named">כל התמונות עם %1$s</string>
   <string name="AndroidManifest__message_details">פרטי מסר</string>
   <string name="AndroidManifest__linked_devices">מכשירים מקושרים</string>
   <string name="AndroidManifest__invite_friends">להזמין חברים</string>
@@ -986,10 +989,8 @@
   <string name="conversation_unmuted__mute_notifications">השתקת התראות</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">צירוף קובץ</string>
-  <string name="conversation__menu_update_group">עדכון קבוצה</string>
   <string name="conversation__menu_leave_group">לעזוב את הקבוצה</string>
   <string name="conversation__menu_delete_thread">למחוק את השיחה</string>
-  <string name="conversation__menu_view_media">כל התמונות</string>
   <string name="conversation__menu_conversation_settings">הגדרות שיחה</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">הרחבת חלון קופץ</string>
@@ -1040,18 +1041,13 @@
   <string name="reminder_header_share_text">ככל שיותר חברים משתמשים בסיגנל, הוא משתפר.</string>
   <string name="reminder_header_share_button">שיתוף</string>
   <string name="reminder_header_close_button">סגירה</string>
-  <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">אני</string>
-  <string name="MediaPreviewActivity_cant_display">התצוגה המקדימה של התמונה הזאת לא עבדה</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">סוג מדיה שאינו נתמך</string>
   <!--media_preview-->
   <string name="media_preview__save_title">שמירה</string>
   <string name="media_preview__forward_title">העברה</string>
-  <string name="media_preview__overview_title">כל התמונות</string>
   <!--media_overview-->
   <string name="media_overview__save_all">לשמור הכול</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">תצוגה מקדימה של תמונה</string>
+  <string name="media_preview_activity__media_content_description">תצוגה מקדימה של מדיה</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">רענון</string>
   <!--redphone_audio_popup_menu-->

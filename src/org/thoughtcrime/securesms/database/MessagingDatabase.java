@@ -235,4 +235,21 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
     }
   }
 
+  public static class InsertResult {
+    private final long messageId;
+    private final long threadId;
+
+    public InsertResult(long messageId, long threadId) {
+      this.messageId = messageId;
+      this.threadId = threadId;
+    }
+
+    public long getMessageId() {
+      return messageId;
+    }
+
+    public long getThreadId() {
+      return threadId;
+    }
+  }
 }
