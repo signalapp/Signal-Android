@@ -427,7 +427,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
     }
 
     if (recipient == null || callId == null) {
-      throw new AssertionError("assert");
+      throw new AssertionError("assert: " + callState + ", " + callId);
     }
 
     IceUpdateMessage iceUpdateMessage = new IceUpdateMessage(this.callId, intent.getStringExtra(EXTRA_ICE_SDP_MID),
