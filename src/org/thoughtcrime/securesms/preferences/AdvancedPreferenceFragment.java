@@ -234,7 +234,9 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
             Log.w(TAG, e);
           }
 
-          GoogleCloudMessaging.getInstance(context).unregister();
+          if (!TextSecurePreferences.isGcmDisabled(context)) {
+            GoogleCloudMessaging.getInstance(context).unregister();
+          }
 
           return SUCCESS;
         } catch (IOException ioe) {
