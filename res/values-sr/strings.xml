@@ -136,6 +136,7 @@
   <string name="ConversationActivity_unable_to_record_audio">Не могу да снимим звук!</string>
   <string name="ConversationActivity_error_sending_voice_message">Грешка слања гласовне поруке</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Нема апликације за руковање овом везом на вашем уређају.</string>
+  <!--ConversationAdapter-->
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Детаљи поруке</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Пренос: %1$s\nПослата/примљена: %2$s</string>
@@ -237,6 +238,7 @@
   <string name="DeviceListItem_linked_s">Повезан %s</string>
   <string name="DeviceListItem_last_active_s">Последња активност %s</string>
   <string name="DeviceListItem_today">Данас</string>
+  <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Подели са</string>
   <!--ExperienceUpgradeActivity-->
@@ -265,7 +267,6 @@
   <string name="GiphyFragmentPagerAdapter_stickers">Налепнице</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Нова група</string>
-  <string name="GroupCreateActivity_actionbar_update_title">Ажурирај групу</string>
   <string name="GroupCreateActivity_group_name_hint">Назив групе</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Нова ММС група</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Изабрали сте контакт који не подржава Сигналове групе, па ће ово бити ММС група.</string>
@@ -274,7 +275,6 @@
   <string name="GroupCreateActivity_contacts_no_members">Требате бар једну особу у вашој групи!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Један од чланова ваше групе има број који не може бити исправно очитан. Поправите или уклоните тај контакт и покушајте поново.</string>
   <string name="GroupCreateActivity_avatar_content_description">Аватар групе</string>
-  <string name="GroupCreateActivity_menu_create_title">Направи групу</string>
   <string name="GroupCreateActivity_creating_group">Правим %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Ажурирам %1$s...</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Не могу да додам %1$s јер нису корисници Сигнала.</string>
@@ -341,6 +341,8 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Неуспех слања</string>
   <string name="MessageDetailsRecipient_new_safety_number">Нови безбедносни број</string>
+  <!--MessageRetrievalService-->
+  <string name="MessageRetrievalService_signal">Сигнал</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Грешка уписа ММС-а!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Грешка повезивања са ММС послужиоцем</string>
@@ -455,11 +457,6 @@
   <string name="RegistrationActivity_invalid_number">Неисправан број</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Број који сте
 навели (%s) није исправан.</string>
-  <string name="RegistrationActivity_unsupported">Није подржано</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Нажалост,
-овај уређај не подржава поруке преко интернета. Уређаји на Андроидима старијим од издања 4.0
-морају имати регистрован Гуглов налог. Уређаји на Андроидима 4.0 или новијим не захтевају
-Гуглов налог, али морају имати инсталирану Плеј продавницу.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
 Проверите да ли је ово ваш број! Проверићемо га помоћу СМС поруке.</string>
   <string name="RegistrationActivity_continue">Настави</string>
@@ -558,6 +555,10 @@
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Тапните за отварање или тапните браву да затворите.</string>
   <string name="KeyCachingService_passphrase_cached">Сигнал је откључан</string>
   <string name="KeyCachingService_lock">Закључај лозинком</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">Ви</string>
+  <string name="MediaPreviewActivity_cant_display">Неуспех приказа ове слике</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Неподржан тип медијума</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d нових порука у %2$d преписки</string>
   <string name="MessageNotifier_most_recent_from_s">Најскорија од: %1$s</string>
@@ -571,12 +572,25 @@
   <string name="MessageNotifier_mark_read">Означи прочитаним</string>
   <string name="MessageNotifier_media_message">Мултимедијална порука</string>
   <string name="MessageNotifier_reply">Одговори</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Потребне су ручне ММС поставке за ваш телефон.</string>
+  <string name="MmsPreferencesFragment__enabled">Омогућене</string>
+  <string name="MmsPreferencesFragment__disabled">Онемогућене</string>
+  <string name="MmsPreferencesFragment__not_set">Није постављено</string>
+  <string name="MmsPreferencesFragment__invalid_uri">Унети текст није исправан УРИ</string>
+  <string name="MmsPreferencesFragment__invalid_host">Унети текст није исправна адреса домаћина</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Брзи одговор није доступан ако је Сигнал закључан!</string>
   <string name="QuickResponseService_problem_sending_message">Проблем са слањем поруке!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Сигнал</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Нова порука</string>
+  <!--VideoPlayer-->
+  <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Можда желите да потврдите ваш безбедносни број за овај контакт.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers_title">Нови безбедносни бројеви</string>
+  <!--WebRtcCallControls-->
+  <string name="WebRtcCallControls_tap_to_enable_your_video">Тапните да укључите ваш видео</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Слика</string>
   <string name="attachment_type_selector__image_description">Слика</string>
@@ -725,17 +739,9 @@
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Погледај читаву преписку</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_images">Нема слика</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">ПОТВРДИ</string>
   <string name="message_recipients_list_item__resend">ПОШАЉИ ПОНОВО</string>
-  <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Потребне су ручне ММС поставке за ваш телефон.</string>
-  <string name="MmsPreferencesFragment__enabled">Омогућене</string>
-  <string name="MmsPreferencesFragment__disabled">Онемогућене</string>
-  <string name="MmsPreferencesFragment__not_set">Није постављено</string>
-  <string name="MmsPreferencesFragment__invalid_uri">Унети текст није исправан УРИ</string>
-  <string name="MmsPreferencesFragment__invalid_host">Унети текст није исправна адреса домаћина</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s се придружи групи.</item>
@@ -830,7 +836,7 @@
   <string name="recipients_panel__to"><small>Унесите име или број</small></string>
   <string name="recipients_panel__add_members">Додај чланове</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ако желите да потврдите безбедност вашег с-краја-на-крај шифровања са %s, упоредите број изнад са бројем на њиховом уређају. Alternatively, можете да очитате кôд на њиховом телефону, или их замолити да очитају ваш кôд. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Сазнајте више о потврђивању безбедносног броја</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ако желите да потврдите безбедност вашег с-краја-на-крај шифровања са %s, упоредите број изнад са бројем на њиховом уређају. Alternatively, можете да очитате кôд на њиховом телефону, или их замолити да очитају ваш кôд. <a href="https://whispersystems.org/redirect/safety-numbers">Сазнајте више о потврђивању безбедносног броја</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Тапните за скенирање</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Подели безбедносни број</string>
@@ -852,8 +858,6 @@
   <string name="AndroidManifest__verify_safety_number">Потврди безбедносни број</string>
   <string name="AndroidManifest__log_submit">Пошаљи дневник исправљања грешака</string>
   <string name="AndroidManifest__media_preview">Преглед медијума</string>
-  <string name="AndroidManifest__media_overview">Све слике</string>
-  <string name="AndroidManifest__media_overview_named">Све слика са %1$s</string>
   <string name="AndroidManifest__message_details">Детаљи поруке</string>
   <string name="AndroidManifest__linked_devices">Повезани уређаји</string>
   <string name="AndroidManifest__invite_friends">Позивница пријатељима</string>
@@ -987,6 +991,8 @@
   <string name="preferences_chats__message_trimming">Скраћивање порука</string>
   <string name="preferences_advanced__use_system_emoji">Користи системски емоџи</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Искључи уграђене Сигналове емоџије</string>
+  <string name="preferences_advanced__video_calling_beta">Видео позиви бета</string>
+  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Подршка за видео и гласовне позиве следеће генерације ако су укључени за обе стране. Ова функционалност је у пробној фази.</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1041,10 +1047,8 @@
   <string name="conversation_unmuted__mute_notifications">Утишај обавештења</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Додај прилог</string>
-  <string name="conversation__menu_update_group">Ажурирај групу</string>
   <string name="conversation__menu_leave_group">Напусти групу</string>
   <string name="conversation__menu_delete_thread">Обриши преписку</string>
-  <string name="conversation__menu_view_media">Све слике</string>
   <string name="conversation__menu_conversation_settings">Поставке преписке</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Рашири прозорче</string>
@@ -1097,18 +1101,13 @@
   <string name="reminder_header_share_text">Што га више пријатеља користи, Сигнал је бољи.</string>
   <string name="reminder_header_share_button">ДЕЛИ</string>
   <string name="reminder_header_close_button">ЗАТВОРИ</string>
-  <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">Ви</string>
-  <string name="MediaPreviewActivity_cant_display">Неуспех приказа ове слике</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Неподржан тип медијума</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Сачувај</string>
   <string name="media_preview__forward_title">Проследи</string>
-  <string name="media_preview__overview_title">Све слике</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Сачувај све</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">Преглед слике</string>
+  <string name="media_preview_activity__media_content_description">Преглед медијума</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Освежи</string>
   <!--redphone_audio_popup_menu-->

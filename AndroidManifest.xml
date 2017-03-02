@@ -2,10 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           package="org.thoughtcrime.securesms"
-      android:versionCode="232"
-      android:versionName="3.28.4">
+      android:versionCode="244"
+      android:versionName="3.30.4">
 
-    <uses-sdk tools:overrideLibrary="com.amulyakhare.textdrawable,com.astuetz.pagerslidingtabstrip,pl.tajchert.waitingdots,com.h6ah4i.android.multiselectlistpreferencecompat,android.support.v13,com.davemorrissey.labs.subscaleview"/>
+    <uses-sdk tools:overrideLibrary="com.amulyakhare.textdrawable,com.astuetz.pagerslidingtabstrip,pl.tajchert.waitingdots,com.h6ah4i.android.multiselectlistpreferencecompat,android.support.v13,com.davemorrissey.labs.subscaleview,com.tomergoldst.tooltips"/>
 
     <permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"
                 android:label="Access to TextSecure Secrets"
@@ -84,6 +84,7 @@
     <uses-permission android:name="android.permission.READ_CALL_STATE"/>
     <uses-permission android:name="android.permission.READ_LOGS"/>
     <uses-permission android:name="android.permission.WRITE_CALL_LOG"/>
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
 
     <permission android:name="org.thoughtcrime.securesms.permission.C2D_MESSAGE"
                 android:protectionLevel="signature" />
@@ -108,8 +109,8 @@
     <meta-data android:name="org.thoughtcrime.securesms.mms.TextSecureGlideModule"
                android:value="GlideModule" />
 
-    <!--<meta-data android:name="com.google.android.gms.car.application"-->
-               <!--android:resource="@xml/automotive_app_desc" />-->
+    <meta-data android:name="com.google.android.gms.car.application"
+               android:resource="@xml/automotive_app_desc" />
 
     <activity android:name="org.thoughtcrime.redphone.RedPhone"
               android:excludeFromRecents="true"
@@ -117,6 +118,14 @@
               android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|fontScale"
               android:launchMode="singleTask">
     </activity>
+
+    <activity android:name="org.thoughtcrime.securesms.WebRtcCallActivity"
+              android:excludeFromRecents="true"
+              android:screenOrientation="portrait"
+              android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|fontScale"
+              android:launchMode="singleTask">
+    </activity>
+
 
     <activity android:name=".CountrySelectionActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
@@ -349,7 +358,7 @@
         </intent-filter>
     </activity>
 
-    <activity android:name="org.thoughtcrime.redphone.RedPhoneShare"
+    <activity android:name="org.thoughtcrime.redphone.VoiceCallShare"
               android:excludeFromRecents="true"
               android:theme="@style/NoAnimation.Theme.BlackScreen"
               android:launchMode="singleTask"
@@ -383,6 +392,7 @@
     <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
 
     <service android:enabled="true" android:name="org.thoughtcrime.redphone.RedPhoneService"/>
+    <service android:enabled="true" android:name="org.thoughtcrime.securesms.service.WebRtcCallService"/>
 
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>
     <service android:enabled="true" android:name=".service.KeyCachingService"/>
@@ -521,6 +531,12 @@
     <receiver android:name=".service.RotateSignedPreKeyListener">
         <intent-filter>
             <action android:name="android.intent.action.BOOT_COMPLETED" />
+        </intent-filter>
+    </receiver>
+
+    <receiver android:name=".service.PersistentConnectionBootListener">
+        <intent-filter>
+            <action android:name="android.intent.action.BOOT_COMPLETED"/>
         </intent-filter>
     </receiver>
 

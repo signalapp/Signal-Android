@@ -9,9 +9,9 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 
-public class ImageDatabase extends Database {
+public class MediaDatabase extends Database {
 
-    private final static String IMAGES_QUERY = "SELECT " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + ", "
+    private final static String MEDIA_QUERY = "SELECT " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_TYPE + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.THUMBNAIL_ASPECT_RATIO + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.UNIQUE_ID + ", "
@@ -28,23 +28,24 @@ public class ImageDatabase extends Database {
         + " ON " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + " = " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " "
         + "WHERE " + AttachmentDatabase.MMS_ID + " IN (SELECT " + MmsSmsColumns.ID
         + " FROM " + MmsDatabase.TABLE_NAME
-        + " WHERE " + MmsDatabase.THREAD_ID + " = ?) AND "
-        + AttachmentDatabase.CONTENT_TYPE + " LIKE 'image/%' AND "
+        + " WHERE " + MmsDatabase.THREAD_ID + " = ?) AND ("
+        + AttachmentDatabase.CONTENT_TYPE + " LIKE 'image/%' OR "
+        + AttachmentDatabase.CONTENT_TYPE + " LIKE 'video/%') AND "
         + AttachmentDatabase.DATA + " IS NOT NULL "
         + "ORDER BY " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " DESC";
 
-  public ImageDatabase(Context context, SQLiteOpenHelper databaseHelper) {
+  public MediaDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
   }
 
-  public Cursor getImagesForThread(long threadId) {
+  public Cursor getMediaForThread(long threadId) {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
-    Cursor cursor = database.rawQuery(IMAGES_QUERY, new String[]{threadId+""});
+    Cursor cursor = database.rawQuery(MEDIA_QUERY, new String[]{threadId+""});
     setNotifyConverationListeners(cursor, threadId);
     return cursor;
   }
 
-  public static class ImageRecord {
+  public static class MediaRecord {
     private final AttachmentId attachmentId;
     private final long         mmsId;
     private final boolean      hasData;
@@ -55,7 +56,7 @@ public class ImageDatabase extends Database {
     private final int          transferState;
     private final long         size;
 
-    private ImageRecord(AttachmentId attachmentId, long mmsId,
+    private MediaRecord(AttachmentId attachmentId, long mmsId,
                         boolean hasData, boolean hasThumbnail,
                         String contentType, String address, long date,
                         int transferState, long size)
@@ -71,7 +72,7 @@ public class ImageDatabase extends Database {
       this.size          = size;
     }
 
-    public static ImageRecord from(Cursor cursor) {
+    public static MediaRecord from(Cursor cursor) {
       AttachmentId attachmentId = new AttachmentId(cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.ROW_ID)),
                                                    cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.UNIQUE_ID)));
 
@@ -83,7 +84,7 @@ public class ImageDatabase extends Database {
         date = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.DATE_RECEIVED));
       }
 
-      return new ImageRecord(attachmentId,
+      return new MediaRecord(attachmentId,
                              cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.MMS_ID)),
                              !cursor.isNull(cursor.getColumnIndexOrThrow(AttachmentDatabase.DATA)),
                              !cursor.isNull(cursor.getColumnIndexOrThrow(AttachmentDatabase.THUMBNAIL)),

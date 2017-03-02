@@ -30,8 +30,9 @@ public class TransportOptions {
   private Optional<TransportOption> selectedOption        = Optional.absent();
 
   public TransportOptions(Context context, boolean media) {
-    this.context           = context;
-    this.enabledTransports = initializeAvailableTransports(media);
+    this.context               = context;
+    this.enabledTransports     = initializeAvailableTransports(media);
+    this.defaultSubscriptionId = new SubscriptionManagerCompat(context).getPreferredSubscriptionId();
   }
 
   public void reset(boolean media) {

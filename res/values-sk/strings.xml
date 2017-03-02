@@ -112,6 +112,7 @@
   <string name="ConversationActivity_unblock">Odblokovať</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera je momentálne neprístupná</string>
   <string name="ConversationActivity_unable_to_record_audio">Nemôžem zaznamenať zvuk!</string>
+  <!--ConversationAdapter-->
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detaily správy</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Prenos: %1$s\nodoslané/prijaté: %2$s</string>
@@ -156,6 +157,7 @@
   <string name="DeviceListActivity_unlinking_device">Odoberám zariadenie...</string>
   <string name="DeviceListActivity_network_failed">Chyba siete! </string>
   <!--DeviceListItem-->
+  <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Zdieľaj s</string>
   <!--ExperienceUpgradeActivity-->
@@ -168,14 +170,12 @@
   <!--GiphyFragmentPageAdapter-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nová skupina</string>
-  <string name="GroupCreateActivity_actionbar_update_title">Aktualizuj skupinu</string>
   <string name="GroupCreateActivity_group_name_hint">Názov skupiny</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nová MMS skupina</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Vytvorenie skupiny zlyhalo pre nečakanú chybu.</string>
   <string name="GroupCreateActivity_contacts_no_members">Potrebuješ najmenej jednu osobu v tvojej skupine!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Jeden z členov Vašej skupiny má číslo, ktoré sa nepodarilo správne prečítať. Prosím, upravte tento kontakt a skúste to znovu.</string>
   <string name="GroupCreateActivity_avatar_content_description">Obrázok skupiny</string>
-  <string name="GroupCreateActivity_menu_create_title">Vytvoriť skupinu</string>
   <string name="GroupCreateActivity_creating_group">Vytváranie %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Aktualizácia %1$s...</string>
   <string name="GroupCreateActivity_loading_group_details">Načítavajú sa údaje o skupine...</string>
@@ -210,6 +210,8 @@ opätovným importom zduplikujete správy.
   <string name="KeyScanningActivity_install_barcode_Scanner">Nainštalovať čítačku čiarových kódov?</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Nepodarilo sa odoslať</string>
+  <!--MessageRetrievalService-->
+  <string name="MessageRetrievalService_signal">Signal</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Chyba pri ukladaní MMS!</string>
   <!--- NotificationBarManager-->
@@ -295,11 +297,6 @@ telefónne číslo</string>
   <string name="RegistrationActivity_invalid_number">Neplatné číslo</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Vami zadané telefónne číslo
 (%s) je nesprávne.</string>
-  <string name="RegistrationActivity_unsupported">Nepodporované</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Bohužiaľ,
-toto zariadenie nepodporuje dátove prenosy. Zariadenia s verziou OS Android staršou než 4.0
-musia mať zaregistrovaný účet Google. Zariadenia s verziou OS novšou než 4.0
-nepotrebujú účet Google, ale musia mať nainštalovanú aplikáciu Play Store.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
 Skontrolujte pre istotu znovu, že ste správne zadali Vaše telefónne číslo! Prebehne overenie pomocou SMS.</string>
   <string name="RegistrationActivity_continue">Pokračovať</string>
@@ -381,6 +378,10 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Dotykom otvorte alebo dotykom zámku zatvorte.</string>
   <string name="KeyCachingService_passphrase_cached">Signal je odomknutý</string>
   <string name="KeyCachingService_lock">Zamkni s heslom</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">Vy</string>
+  <string name="MediaPreviewActivity_cant_display">Nepodarilo sa zobraziť náhľad pre tento obrázok</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Nepodporovaný typ súboru</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_most_recent_from_s">Najnovšie od: %1$s</string>
   <string name="MessageNotifier_media_message_with_text">Multimediálna správa: %s</string>
@@ -392,10 +393,20 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <string name="MessageNotifier_mark_read">Označiť ako prečítané</string>
   <string name="MessageNotifier_media_message">Multimediálna správa</string>
   <string name="MessageNotifier_reply">Odpovedať</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Manuálne MMS nastavenia sú vyžadované pre tvoj telefón.</string>
+  <string name="MmsPreferencesFragment__enabled">Povolené</string>
+  <string name="MmsPreferencesFragment__disabled">Zakázané</string>
+  <string name="MmsPreferencesFragment__not_set">Nenastavené</string>
+  <string name="MmsPreferencesFragment__invalid_uri">Vložený text nie je platná adresa URL</string>
+  <string name="MmsPreferencesFragment__invalid_host">Vložený text nie je platná adresa počítača</string>
   <!--QuickResponseService-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nová správa</string>
+  <!--VideoPlayer-->
+  <!--WebRtcCallScreen-->
+  <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Obrázok</string>
   <string name="attachment_type_selector__image_description">Obrázok</string>
@@ -492,17 +503,9 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <string name="import_fragment__import_plaintext_backup">Importovať nezakryptovanú zálohu</string>
   <!--load_more_header-->
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_images">Žiadne obrázky</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">OVERIŤ</string>
   <string name="message_recipients_list_item__resend">POSLAŤ ZNOVU</string>
-  <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Manuálne MMS nastavenia sú vyžadované pre tvoj telefón.</string>
-  <string name="MmsPreferencesFragment__enabled">Povolené</string>
-  <string name="MmsPreferencesFragment__disabled">Zakázané</string>
-  <string name="MmsPreferencesFragment__not_set">Nenastavené</string>
-  <string name="MmsPreferencesFragment__invalid_uri">Vložený text nie je platná adresa URL</string>
-  <string name="MmsPreferencesFragment__invalid_host">Vložený text nie je platná adresa počítača</string>
   <!--GroupUtil-->
   <string name="GroupUtil_group_updated">Skupina aktualizovaná.</string>
   <!--prompt_passphrase_activity-->
@@ -575,8 +578,6 @@ zlyhalo.
   <string name="AndroidManifest__enter_passphrase">Zadaj heslo</string>
   <string name="AndroidManifest__select_contacts">Vyber kontakty</string>
   <string name="AndroidManifest__change_passphrase">Zmeň heslo</string>
-  <string name="AndroidManifest__media_overview">Všetky obrázky</string>
-  <string name="AndroidManifest__media_overview_named">Všetky obrázky s %1$s</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Import / export</string>
   <string name="arrays__use_default">Použiť predvolené</string>
@@ -713,9 +714,7 @@ zlyhalo.
   <string name="conversation_unmuted__mute_notifications">Vypnúť upozornenia</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Pridaj prílohu</string>
-  <string name="conversation__menu_update_group">Aktualizuj skupinu</string>
   <string name="conversation__menu_leave_group">Opusti skupinu</string>
-  <string name="conversation__menu_view_media">Všetky obrázky</string>
   <string name="conversation__menu_conversation_settings">Nastavenia konverzácií</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Rozšíriť okno</string>
@@ -737,10 +736,6 @@ zlyhalo.
   <!--verify_display_fragment-->
   <!--reminder_header-->
   <string name="reminder_header_sms_default_text">Ťuknutím nastavte Signal ako Vašu predvolenú SMS aplikáciu.</string>
-  <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">Vy</string>
-  <string name="MediaPreviewActivity_cant_display">Nepodarilo sa zobraziť náhľad pre tento obrázok</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Nepodporovaný typ súboru</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Uložiť</string>
   <!--media_overview-->

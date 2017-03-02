@@ -135,6 +135,7 @@
   <string name="ConversationActivity_unable_to_record_audio">Nu se poate înregistra audio!</string>
   <string name="ConversationActivity_error_sending_voice_message">Eroare la trimiterea mesajului vocal</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nu există nici o aplicație disponibilă pe dispozitivul tău care să poată deschide acest link.</string>
+  <!--ConversationAdapter-->
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalii mesaj</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nTrimis/Primit: %2$s</string>
@@ -222,6 +223,7 @@
   <string name="DateUtils_just_now">Tocmai acum</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <string name="DateUtils_today">Azi</string>
+  <string name="DateUtils_yesterday">Ieri</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Deconectez \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Prin deconectarea acestui dispozitiv, nu v-a mai putea trimite și primi mesaje.</string>
@@ -235,6 +237,7 @@
   <string name="DeviceListItem_linked_s">Conectat %s</string>
   <string name="DeviceListItem_last_active_s">Ultima oară activ %s</string>
   <string name="DeviceListItem_today">Azi</string>
+  <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Partajează cu</string>
   <!--ExperienceUpgradeActivity-->
@@ -263,7 +266,6 @@
   <string name="GiphyFragmentPagerAdapter_stickers">Autocolante</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Grup nou</string>
-  <string name="GroupCreateActivity_actionbar_update_title">Actualizează grup</string>
   <string name="GroupCreateActivity_group_name_hint">Nume grup</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Grup MMS nou</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Ai selectat un contact care nu suportă grupuri Signal, astfel acest grup va fi de tip MMS.</string>
@@ -272,7 +274,6 @@
   <string name="GroupCreateActivity_contacts_no_members">Ai nevoie de cel puțin o persoană în grupul tău!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Unul dintre membrii grupului tău are un număr de telefon ce nu poate fi citit corect. Te rog să remediezi problema sau să elimini acel contact şi să încerci din nou.</string>
   <string name="GroupCreateActivity_avatar_content_description">Avatar de grup</string>
-  <string name="GroupCreateActivity_menu_create_title">Creează grup </string>
   <string name="GroupCreateActivity_creating_group">Se creează %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Se actualizează %1$s...</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s nu a putut fi adăugat deoarece nu este un utlizator Signal.</string>
@@ -336,6 +337,8 @@ Vei pierde orice informație care se află în instalarea curentă de Signal și
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Expediere eşuată</string>
   <string name="MessageDetailsRecipient_new_safety_number">Număr nou de siguranță</string>
+  <!--MessageRetrievalService-->
+  <string name="MessageRetrievalService_signal">Signal</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Eroare la stocarea MMS-ului!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Eroare de conectare la furnizorul MMS</string>
@@ -450,11 +453,6 @@ numărul tău de telefon</string>
   <string name="RegistrationActivity_invalid_number">Număr invalid</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numărul de telefon
 furnizat (%s) este invalid.</string>
-  <string name="RegistrationActivity_unsupported">Neacceptat</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Ne pare rău,
-acest dispozitiv nu suportă mesagerie de tip date. Dispozitivele care rulează o versiune mai veche 
-de Android 4.0 trebuie să aibe un cont Google înregistrat. Dispozitivele care rulează versiunea de Android 4.0 sau mai noi 
-nu au nevoie de un cont Google, dar au nevoie ca aplicația Magazinul Play să fie instalată.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
 Verifică din nou dacă acesta este numărul tău! Suntem pe cale să-l verificăm printr-un SMS.</string>
   <string name="RegistrationActivity_continue">Continuă</string>
@@ -553,6 +551,10 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Atinge pentru a deschide sau atinge lacătul pentru a închide.</string>
   <string name="KeyCachingService_passphrase_cached">Signal este deblocat</string>
   <string name="KeyCachingService_lock">Blocare acces cu parolă</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">Tu</string>
+  <string name="MediaPreviewActivity_cant_display">Previzualizarea imaginii a eșuat</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Tip media nesuportat</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d mesaje noi în %2$d conversaţii</string>
   <string name="MessageNotifier_most_recent_from_s">Cel mai recent de la: %1$s</string>
@@ -566,12 +568,25 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MessageNotifier_mark_read">Marchează ca citit</string>
   <string name="MessageNotifier_media_message">Mesaj media</string>
   <string name="MessageNotifier_reply">Răspunde</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Pentru telefonul tău sunt necesare setări MMS manuale.</string>
+  <string name="MmsPreferencesFragment__enabled">Activat</string>
+  <string name="MmsPreferencesFragment__disabled">Dezactivat</string>
+  <string name="MmsPreferencesFragment__not_set">Nesetat</string>
+  <string name="MmsPreferencesFragment__invalid_uri">Textul introdus nu este un URI valid</string>
+  <string name="MmsPreferencesFragment__invalid_host">Textul introdus nu este o gazdă validă</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Răspunsul rapid nu este disponibil cât timp Signal este blocat!</string>
   <string name="QuickResponseService_problem_sending_message">Problemă la trimiterea mesajului!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mesaj nou</string>
+  <!--VideoPlayer-->
+  <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Probabil că dorești să verifici numărul de siguranță pentru acest contact.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers_title">Numere noi de siguranță</string>
+  <!--WebRtcCallControls-->
+  <string name="WebRtcCallControls_tap_to_enable_your_video">Apasă pentru a activa video-ul tău</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Imagine</string>
   <string name="attachment_type_selector__image_description">Imagine</string>
@@ -645,6 +660,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="conversation_fragment_cab__batch_selection_mode">Mod selecţie multiplă</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s selectate</string>
   <!--conversation_fragment-->
+  <string name="conversation_fragment__scroll_to_the_bottom_content_description">Derulați până jos</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Se încarcă țările...</string>
   <string name="country_selection_fragment__search">Caută</string>
@@ -719,17 +735,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Vezi conversația completă.</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_images">Nu sunt imagini</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">VERIFICĂ</string>
   <string name="message_recipients_list_item__resend">RETRIMITE</string>
-  <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Pentru telefonul tău sunt necesare setări MMS manuale.</string>
-  <string name="MmsPreferencesFragment__enabled">Activat</string>
-  <string name="MmsPreferencesFragment__disabled">Dezactivat</string>
-  <string name="MmsPreferencesFragment__not_set">Nesetat</string>
-  <string name="MmsPreferencesFragment__invalid_uri">Textul introdus nu este un URI valid</string>
-  <string name="MmsPreferencesFragment__invalid_host">Textul introdus nu este o gazdă validă</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s s-a alăturat grupului.</item>
@@ -835,7 +843,7 @@ SMS a eșuat.</string>
   <string name="recipients_panel__to"><small>Introdu un nume sau un număr</small></string>
   <string name="recipients_panel__add_members">Adaugă membri</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Dacă dorești să verifici securitatea criptării integrale cu %s, compară numărul de deasupra cu numărul de pe dispozitivul lor. Alternativ, poți scana codul de pe telefonul lor sau îi poți ruga să scaneze codul tău. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Află mai multe despre verificarea numerelor de siguranță</a>.]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Dacă dorești să verifici securitatea criptării integrale cu %s, compară numărul de deasupra cu numărul de pe dispozitivul lor. Alternativ, poți scana codul de pe telefonul lor sau îi poți ruga să scaneze codul tău. <a href="https://whispersystems.org/redirect/safety-numbers">Află mai multe despre verificarea numerelor de siguranță</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Apasă pentru a scana</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Partajează numărul de siguranță</string>
@@ -857,8 +865,6 @@ SMS a eșuat.</string>
   <string name="AndroidManifest__verify_safety_number">Verifică numărul de siguranță</string>
   <string name="AndroidManifest__log_submit">Trimite jurnalul de depanare</string>
   <string name="AndroidManifest__media_preview">Previzualizare media</string>
-  <string name="AndroidManifest__media_overview">Toate imaginile</string>
-  <string name="AndroidManifest__media_overview_named">Toate imaginile cu %1$s</string>
   <string name="AndroidManifest__message_details">Detalii mesaj</string>
   <string name="AndroidManifest__linked_devices">Dispozitive conectate</string>
   <string name="AndroidManifest__invite_friends">Invită prieteni</string>
@@ -993,6 +999,8 @@ SMS a eșuat.</string>
   <string name="preferences_chats__message_trimming">Scurtarea mesajelor</string>
   <string name="preferences_advanced__use_system_emoji">Foloseşte emoji de sistem</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Dezactivează icoanele emoji oferite de Signal </string>
+  <string name="preferences_advanced__video_calling_beta">Apelare video beta</string>
+  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Suport pentru următoarea generație de apeluri video și voce când este activată de ambele părți. Această funcționalitate este în beta.</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1047,10 +1055,8 @@ SMS a eșuat.</string>
   <string name="conversation_unmuted__mute_notifications">Notificări silenţioase</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Adaugă atașament</string>
-  <string name="conversation__menu_update_group">Actualizează grup</string>
   <string name="conversation__menu_leave_group">Părăseşte grupul</string>
   <string name="conversation__menu_delete_thread">Șterge conversația</string>
-  <string name="conversation__menu_view_media">Toate imaginile</string>
   <string name="conversation__menu_conversation_settings">Setări conversaţie</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Extinde popup-ul</string>
@@ -1103,18 +1109,13 @@ SMS a eșuat.</string>
   <string name="reminder_header_share_text">Cu cât mai mulți prieteni utilizează Signal, cu atât devine mai bun.</string>
   <string name="reminder_header_share_button">PARTAJEAZĂ</string>
   <string name="reminder_header_close_button">ÎNCHIDE</string>
-  <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">Tu</string>
-  <string name="MediaPreviewActivity_cant_display">Previzualizarea imaginii a eșuat</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Tip media nesuportat</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Salvează</string>
   <string name="media_preview__forward_title">Expediază</string>
-  <string name="media_preview__overview_title">Toate imaginile</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Salvează tot</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">Previzualizare imagine</string>
+  <string name="media_preview_activity__media_content_description">Previzualizare media</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Reîmprospătare</string>
   <!--redphone_audio_popup_menu-->

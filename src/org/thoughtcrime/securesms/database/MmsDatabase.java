@@ -524,6 +524,7 @@ public class MmsDatabase extends MessagingDatabase {
               database.update(TABLE_NAME, values, ID_WHERE, new String[]{String.valueOf(id)});
 
               DatabaseFactory.getThreadDatabase(context).updateReadState(threadId);
+              DatabaseFactory.getThreadDatabase(context).setLastSeen(threadId);
               notifyConversationListeners(threadId);
             }
           } catch (InvalidNumberException e) {
@@ -910,6 +911,7 @@ public class MmsDatabase extends MessagingDatabase {
     long messageId = insertMediaMessage(masterSecret, addresses, message.getBody(),
                                         message.getAttachments(), contentValues);
 
+    DatabaseFactory.getThreadDatabase(context).setLastSeen(threadId);
     jobManager.add(new TrimThreadJob(context, threadId));
 
     return messageId;

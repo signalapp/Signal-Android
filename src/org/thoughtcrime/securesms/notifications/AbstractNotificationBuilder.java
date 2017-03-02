@@ -44,8 +44,8 @@ public abstract class AbstractNotificationBuilder extends NotificationCompat.Bui
     String  defaultRingtoneName = TextSecurePreferences.getNotificationRingtone(context);
     boolean defaultVibrate      = TextSecurePreferences.isNotificationVibrateEnabled(context);
 
-    if      (ringtone != null)                        setSound(ringtone);
-    else if (!TextUtils.isEmpty(defaultRingtoneName)) setSound(Uri.parse(defaultRingtoneName));
+    if      (ringtone == null && !TextUtils.isEmpty(defaultRingtoneName)) setSound(Uri.parse(defaultRingtoneName));
+    else if (ringtone != null && !ringtone.toString().isEmpty())          setSound(ringtone);
 
     if (vibrate == RecipientPreferenceDatabase.VibrateState.ENABLED ||
         (vibrate == RecipientPreferenceDatabase.VibrateState.DEFAULT && defaultVibrate))

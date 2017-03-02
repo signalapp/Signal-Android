@@ -30,6 +30,7 @@ import android.support.v4.view.ViewCompat;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -205,5 +206,9 @@ public class ViewUtil {
         DynamicLanguage.getLayoutDirection(context) == View.LAYOUT_DIRECTION_RTL) {
       view.setScaleX(-1.0f);
     }
+  }
+
+  public static int dpToPx(Context context, int dp) {
+    return (int)((dp * context.getResources().getDisplayMetrics().density) + 0.5);
   }
 }

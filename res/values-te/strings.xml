@@ -1,0 +1,994 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">సిగ్నల్</string>
+  <string name="yes">అవును</string>
+  <string name="no">కాదు</string>
+  <string name="delete">తొలగించండి</string>
+  <string name="please_wait">దయచేసి వేచి ఉండండి...</string>
+  <!--AbstractNotificationBuilder-->
+  <string name="AbstractNotificationBuilder_new_message">కొత్త సందేశం</string>
+  <!--ApplicationPreferencesActivity-->
+  <string name="ApplicationPreferencesActivity_currently_s">ప్రస్తుతంగా: %s</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">మీరింకా సంకేతపదమును సెట్ చేయలేదు!</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="one">సాధనంగా సంభాషణకు 1 సందేశం</item>
+    <item quantity="other"> సాధనంగా సంభాషణకు %d సందేశాలు</item>
+  </plurals>
+  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">పాత సందేశాలన్ని ఇప్పుడు చెరిపివేయాలా?</string>
+  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="one">ఇది వెంటనే ఇటీవల సందేశానికి అన్ని సంభాశనలో సవరణ చేస్తుంది</item>
+    <item quantity="other">ఇది వెంటనే ఇటీవల  %d  సందేశాలకు  అన్ని సంభాశనలో సవరణ చేస్తుంది</item>
+  </plurals>
+  <string name="ApplicationPreferencesActivity_delete">తొలగించండి</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">సంకేతపదమును ఆపివేయాలా?</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">ఇది శాశ్వతంగా  సిగ్నల్ మరియు సందేశ ప్రకటనలను అన్లాక్ చేస్తుంది</string>
+  <string name="ApplicationPreferencesActivity_disable">అచేతనించు</string>
+  <string name="ApplicationPreferencesActivity_unregistering">నమోదు చేయలేనిది</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">సిగ్నల్ సందేశాలు మరియు కాల్స్ నుండి నమోదును ...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">   సిగ్నల్ సందేశాలు మరియు కాల్స్ ఆపివేయాలా?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">సర్వర్ నుండి నమోదుని తీసివేయడానికి ద్వారా సిగ్నల్ సందేశాలు మరియు కాల్స్ ఆపివేయి. మీరు భవిష్యత్తులో మళ్ళీ వాటిని ఉపయోగించడానికి మీ ఫోన్ నంబర్ తిరిగి నమోదు అవసరం.</string>
+  <string name="ApplicationPreferencesActivity_error_connecting_to_server"> సర్వర్ కి కలిపినపుడు లోపం!</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">ఎస్సెమ్మెస్ చేతనం అయింది</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">మీ అప్రమేయ ఎస్సెమ్మెస్ అప్ మార్చడానికి తాకండి</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">ఎస్సెమ్మెస్ అచేతనం అయింది</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">మీ డిఫాల్ట్ 
+ఎస్సెమ్మెస్ అనువర్తనాన్ని మార్చడానికి తాకండి</string>
+  <string name="ApplicationPreferencesActivity_on">ఆన్</string>
+  <string name="ApplicationPreferencesActivity_On">ఆన్</string>
+  <string name="ApplicationPreferencesActivity_off">ఆఫ్</string>
+  <string name="ApplicationPreferencesActivity_Off">ఆఫ్</string>
+  <string name="ApplicationPreferencesActivity_sms_mms_summary">ఎస్సెమ్మెస్ %1$s, ఎమ్మెమ్మెస్ %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">సంకేతపదము %1$s,  విడదీయు తెర భద్రతా%2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">థీమ్ %1$s, భాష %2$s</string>
+  <!--AppProtectionPreferenceFragment-->
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="one">1 నిమిషం</item>
+    <item quantity="other">%d నిమిషాలు</item>
+  </plurals>
+  <!--DraftDatabase-->
+  <string name="DraftDatabase_Draft_image_snippet">(చిత్రం)</string>
+  <string name="DraftDatabase_Draft_audio_snippet">(ఆడియో)</string>
+  <string name="DraftDatabase_Draft_video_snippet">(వీడియో)</string>
+  <string name="DraftDatabase_Draft_location_snippet">(ప్రదేశం)</string>
+  <!--AttchmentManager-->
+  <string name="AttachmentManager_cant_open_media_selection">మీడియా ఎంచుకోవడానికి అనువర్తనం దొరకదు.</string>
+  <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_camera">కెమెరా</string>
+  <string name="AttachmentTypeSelectorAdapter_picture">చిత్రం</string>
+  <string name="AttachmentTypeSelectorAdapter_video">వీడియో</string>
+  <string name="AttachmentTypeSelectorAdapter_audio">ఆడియో</string>
+  <string name="AttachmentTypeSelectorAdapter_contact">సంప్రదింపు సమాచారం</string>
+  <!--AudioSlidePlayer-->
+  <string name="AudioSlidePlayer_error_playing_audio">ఆడియో ప్రదర్శనా లోపం!</string>
+  <!--BlockedContactsActivity-->
+  <string name="BlockedContactsActivity_blocked_contacts">నిరోధించిన పరిచయాలు</string>
+  <!--CallScreen-->
+  <string name="CallScreen_Incoming_call">కొత్తగా వచ్చిన కాల్</string>
+  <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">ఈ పరిచయంతో మీ భద్రత సంఖ్య ధ్రువీకరించాలనుకోవొచ్చు.</string>
+  <string name="ConfirmIdentityDialog_accept">అంగీకరించండి</string>
+  <!--ContactsDatabase-->
+  <string name="ContactsDatabase_message_s">%sకి సందేశం పంపు</string>
+  <string name="ContactsDatabase_signal_call_s">సిగ్నల్ కాల్ %s</string>
+  <!--ConversationItem-->
+  <string name="ConversationItem_message_size_d_kb">సందేశ పరిమాణం: %d KB</string>
+  <string name="ConversationItem_expires_s">ముగుస్తుంది: %s</string>
+  <string name="ConversationItem_error_not_delivered">పంపిణీ కాలేదు</string>
+  <string name="ConversationItem_view_secure_media_question">సురక్షిత మీడియా వీక్షించు?</string>
+  <string name="ConversationItem_error_received_stale_key_exchange_message">లోపం, కాలం చెల్లిన కీ మార్పిడి సందేశాన్ని పొందింది.</string>
+  <string name="ConversationItem_received_key_exchange_message_tap_to_process">స్వీకరించు మీట మార్పిడి సందేశం, తట్టు తో క్రమణం</string>
+  <string name="ConversationItem_group_action_left">%1$s సమూహం వదిలి వెళ్లారు</string>
+  <string name="ConversationItem_click_for_details">వివరాల కోసం తాకండి</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">భద్రతలేదు తిరిగి నొక్కండి</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">ఎన్క్రిప్టు కాని ఎస్సెమ్మెస్ తిరిగి  అయ్యిందా?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">ఎన్క్రిప్టు కాని ఎమ్మెమ్మెస్ తిరిగి  అయ్యిందా?</string>
+  <string name="ConversationItem_unable_to_open_media">మీడియా ఎంచుకోవడానికి అనువర్తనం దొరకదు.</string>
+  <string name="ConversationItem_from_s">%s నుండి</string>
+  <string name="ConversationItem_to_s">%s వరకు</string>
+  <!--ConversationActivity-->
+  <string name="ConversationActivity_reset_secure_session_question"> సురక్షిత  సెషన్ పునరుద్ధరించు ?</string>
+  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">మీకు ఈ సంభాషణ లో ఎన్క్రిప్షన్ సమస్యలు ఉన్నట్లయితే ఇది సహాయపడవచ్చు. మీ సందేశాలు ఉంచబడతాయి.</string>
+  <string name="ConversationActivity_reset">పునరుద్ధరించు</string>
+  <string name="ConversationActivity_delete_thread_question">సందేశాలను తొలగించాలా?</string>
+  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">ఇది శాశ్వతంగా ఈ సంభాషణలోని అన్ని సందేశాలను తొలగిస్తుంది.</string>
+  <string name="ConversationActivity_add_attachment">అటాచ్మెంట్ జోడించండి</string>
+  <string name="ConversationActivity_select_contact_info">సంప్రదింపు సమాచారం ఎంచుకొండి</string>
+  <string name="ConversationActivity_compose_message">సందేశాన్ని సృష్టించు</string>
+  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">క్షమించండి, మీ అటాచ్మెంట్ అమర్చడంలో లోపం ఉంది.</string>
+  <string name="ConversationActivity_the_gif_you_selected_was_too_big">మీరు ఎంచుకున్న gif చాలా  పెద్దది!</string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">క్షమించండి, ఎంచుకున్న వీడియో సందేశం యొక్క పరిమాణం పరిమితులను (%1$sKB) మించిపోయింది.</string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">క్షమించండి, ఎంచుకున్న ఆడియో సందేశం యొక్క పరిమాణంన పరిమితులు (%1$sKB) మించిపోయింది.</string>
+  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">స్వీకర్త చెల్లుబాటుకాని ఎస్ఎంఎస్ లేదా ఇమెయిలు చిరునామా !</string>
+  <string name="ConversationActivity_message_is_empty_exclamation">సందేశం ఖాళీగా ఉంది!</string>
+  <string name="ConversationActivity_group_members">సమూహ సభ్యులు</string>
+  <string name="ConversationActivity_group_conversation">సమూహ సంభాషణ</string>
+  <plurals name="ConversationActivity_d_recipients_in_group">
+    <item quantity="one">1 సభ్యుడు</item>
+    <item quantity="other">%d సభ్యులు</item>
+  </plurals>
+  <string name="ConversationActivity_saved_draft">చిత్తు పత్రం భద్రపరచబడినది</string>
+  <string name="ConversationActivity_invalid_recipient">చెల్లని గ్రహీత!</string>
+  <string name="ConversationActivity_calls_not_supported">కాల్స్‌కు మద్దతు లేదు</string>
+  <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">ఈ పరికరం డయల్ చర్యలుకు మద్దతు కనిపించడం లేదు.</string>
+  <string name="ConversationActivity_leave_group">సమూహం నుండి వైదొలగాలా?</string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">మీరు ఈ సమూహాన్ని వదిలిపెట్టాలనుకుంటున్నారా?</string>
+  <string name="ConversationActivity_transport_insecure_sms">అసురక్షిత సందేశం</string>
+  <string name="ConversationActivity_transport_insecure_mms">అసురక్షిత ఎమ్మెమ్మెస్</string>
+  <string name="ConversationActivity_transport_signal">సిగ్నల్</string>
+  <string name="ConversationActivity_lets_switch_to_signal">మనం సిగ్నల్ %1$sకు మారుదాం</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">ఈ యొక్క చాట్ ని  ఉపయోగించు: %1$s</string>
+  <string name="ConversationActivity_error_leaving_group">సమూహం నుండి వైదొలగటంలో లోపం</string>
+  <string name="ConversationActivity_mms_not_supported_title">ఎమ్మెమ్మెస్ కు సహాయంలేదు</string>
+  <string name="ConversationActivity_mms_not_supported_message">ఈ సందేశం మీకు పంపలెము యంధుకంతే మీ వాహకము MMS సేవలను సహకరించడు. </string>
+  <string name="ConversationActivity_specify_recipient">దయచేసి ఒక పరిచయం ఎంచుకోండి</string>
+  <string name="ConversationActivity_unblock_this_contact_question">ఈ పరిచయం నిరోధించాలా?</string>
+  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">మీరు మరోసారి ఈ పరిచయం నుండి సందేశాలను మరియు కాల్స్ అందుకోగలరు.</string>
+  <string name="ConversationActivity_unblock">అనుమతించు</string>
+  <string name="ConversationActivity_quick_camera_unavailable">కెమెరా అందుబాటులో లేదు </string>
+  <string name="ConversationActivity_unable_to_record_audio">ఆడియో రికార్డ్ చేయడం సాధ్యపడలేదు!</string>
+  <string name="ConversationActivity_error_sending_voice_message">స్వర సందేశం పంపడంలొ లోపం</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">మీ పరికరం ఈ లింక్ నిర్వహించడానికి ఎలాంటి అనువర్తనం లేదు.</string>
+  <!--ConversationAdapter-->
+  <plurals name="ConversationAdapter_n_unread_messages">
+    <item quantity="one">%d చదవని సందేశం </item>
+    <item quantity="other">%d చదవని సందేశాలు </item>
+  </plurals>
+  <!--ConversationFragment-->
+  <string name="ConversationFragment_message_details">సందేశం వివరాలు</string>
+  <string name="ConversationFragment_transport_s_sent_received_s">రవాణా: %1$s\n పంపబడింది / అందుకున్న: %2$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">పంపినవారు: %1$s\nరవాణా: %2$s\nపంపబడింది: %3$s\nస్వీకరించబడింది: %4$s</string>
+  <plurals name="ConversationFragment_delete_selected_messages">
+    <item quantity="one">ఎంపికైన సందేశం తొలగించాలా?</item>
+    <item quantity="other">ఎంపిక చేసిన సందేశాలను తొలగించాలా?</item>
+  </plurals>
+  <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+    <item quantity="one">ఎంపికైన సందేశాన్ని శాశ్వతంగా తొలగిస్తుంది.</item>
+    <item quantity="other">%1$d ఎంపికైన సందేశాలను శాశ్వతంగా తొలగిస్తుంది.</item>
+  </plurals>
+  <string name="ConversationFragment_save_to_sd_card">నిల్వలొ దాచు?</string>
+  <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+    <item quantity="one">సంగ్రహించిన జోడింపును  నిల్వచేయుటలో లోపం!</item>
+    <item quantity="other">సంగ్రహించిన జోడింపులను  నిల్వచేయుటలో లోపం!</item>
+  </plurals>
+  <plurals name="ConversationFragment_files_saved_successfully">
+    <item quantity="one"> ఫైల్ విజయవంతంగా భద్రపరచింది.</item>
+    <item quantity="other">పత్రాలు విజయవంతంగా భధ్రపరచబడినవి.</item>
+  </plurals>
+  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">నిల్వ వ్రాయలేకపోయింది!!</string>
+  <plurals name="ConversationFragment_saving_n_attachments">
+    <item quantity="one">జత పరిచినది దాచిపెడుతున్నాము</item>
+    <item quantity="other">%1$d జత పరిచినది దాచిపెడుతున్నాము</item>
+  </plurals>
+  <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+    <item quantity="one">జత పరిచినది నిల్వలొ దాచిపెడుతున్నాము...</item>
+    <item quantity="other">%1$d జత పరిచినది నిల్వలొ దాచిపెడుతున్నాము...</item>
+  </plurals>
+  <string name="ConversationFragment_collecting_attahments">జోడింపుల సేకరణ ...</string>
+  <string name="ConversationFragment_pending">పెండింగ్...</string>
+  <string name="ConversationFragment_push">సమాచారం(సిగ్నల్)</string>
+  <string name="ConversationFragment_mms">ఎమ్మెమ్మెస్</string>
+  <string name="ConversationFragment_sms">ఎస్సెమ్మెస్</string>
+  <string name="ConversationFragment_deleting">తొలగిపోతున్నాయ్</string>
+  <string name="ConversationFragment_deleting_messages">సందేశాలను తొలగిస్తోంది ...</string>
+  <!--ConversationListActivity-->
+  <string name="ConversationListActivity_search">వెతకండి</string>
+  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">మీ పరికరంలో ఎటువంటి బ్రౌజర్ ఇన్స్టాల్ అయి లేదు</string>
+  <!--ConversationListFragment-->
+  <plurals name="ConversationListFragment_delete_selected_conversations">
+    <item quantity="one">ఎంపిక చేసిన సందేశాలను తొలగించాలా?</item>
+    <item quantity="other">ఎంపిక చేసిన సంభాషణలను తొలగించాలా ?</item>
+  </plurals>
+  <string name="ConversationListFragment_deleting">తొలగిపోతున్నాయ్</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">ఎంపిక చేసిన సంభాషణలను తొలగించబడుతున్నాయి...</string>
+  <plurals name="ConversationListFragment_conversations_archived">
+    <item quantity="one">సంభాషణ  భద్రపరచబడినది</item>
+    <item quantity="other">%d సంభాషణలు  భద్రపరచబడినవి</item>
+  </plurals>
+  <string name="ConversationListFragment_undo">దిద్దుబాటు రద్దుచెయ్యి</string>
+  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <item quantity="one">సంభాషణ ఇన్బాక్స్కు తరలించబడినది</item>
+    <item quantity="other">%d సంభాషణలు ఇన్బాక్స్కు తరలించబడినవి</item>
+  </plurals>
+  <!--ConversationListItem-->
+  <string name="ConversationListItem_key_exchange_message">కీ  సందేశం మార్పిడి</string>
+  <!--ConversationListItemAction-->
+  <string name="ConversationListItemAction_archived_conversations_d"> భద్రపరిచిన సంభాషణలు (%d)</string>
+  <!--CustomDefaultPreference-->
+  <string name="CustomDefaultPreference_using_custom">అనుకూలీకరణ ఉపయోగించి: %s</string>
+  <string name="CustomDefaultPreference_using_default">ఉపయోగించి అప్రమేయం: %s</string>
+  <string name="CustomDefaultPreference_none">ఏదీ కాదు</string>
+  <!--DateUtils-->
+  <string name="DateUtils_just_now">ఇప్పుడే</string>
+  <string name="DateUtils_minutes_ago">%d కనీస</string>
+  <string name="DateUtils_today">నేడు</string>
+  <string name="DateUtils_yesterday">నిన్న</string>
+  <!--DeviceListActivity-->
+  <string name="DeviceListActivity_unlink_s">తొలగించరాదనుకుంటే \'%s\'?</string>
+  <string name="DeviceListActivity_network_connection_failed">నెట్వర్క్ సంబంధం విఫలమైంది</string>
+  <string name="DeviceListActivity_try_again">మళ్ళీ ప్రయత్నించండి</string>
+  <string name="DeviceListActivity_unlinking_device">అపరమిత పరికరం</string>
+  <string name="DeviceListActivity_unlinking_device_no_ellipsis">అపరమిత పరికరం</string>
+  <string name="DeviceListActivity_network_failed">నెట్వర్క్ విఫలమైంది!</string>
+  <!--DeviceListItem-->
+  <string name="DeviceListItem_unnamed_device">పేరు పెట్టబడని పరికరము</string>
+  <string name="DeviceListItem_linked_s">బంధించిన %s</string>
+  <string name="DeviceListItem_last_active_s">చివరి క్రియాశీల %s</string>
+  <string name="DeviceListItem_today">నేడు</string>
+  <!--DozeReminder-->
+  <!--ShareActivity-->
+  <string name="ShareActivity_share_with">తో పంచు</string>
+  <!--ExperienceUpgradeActivity-->
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">సిగ్నల్‌కి స్వాగతం.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">సిగ్నల్ కి స్వాగతం!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure ఇప్పుడు Signal.</string>
+  <!--ExportFragment-->
+  <string name="ExportFragment_export">ఎగుమతి</string>
+  <string name="ExportFragment_export_plaintext_to_storage">సహజమైన వాక్యాలను నిల్వచేయుటకు ఎగుమతి చేయాలా?</string>
+  <string name="ExportFragment_cancel">రద్దు</string>
+  <string name="ExportFragment_exporting">ఎగుమతి అవుతోంది</string>
+  <string name="ExportFragment_exporting_plaintext_to_storage">సహజమైన వాక్యాలు నిల్వచేయుటకు ఎగుమతి చేయబడుతున్నవి...</string>
+  <string name="ExportFragment_error_unable_to_write_to_storage">లోపం, నిలవచేసే చోటుకు వ్రాయలేరు.</string>
+  <string name="ExportFragment_error_while_writing_to_storage">నిల్వ చేసే చోటుకు  వ్రాసేటపుడు లోపం.</string>
+  <string name="ExportFragment_export_successful">ఎగుమతి విజయవంతమైనది.</string>
+  <!--GcmRefreshJob-->
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">సిగ్నల్ లో శాశ్వత సమాచార వైఫల్యం!</string>
+  <!--GiphyActivity-->
+  <!--GiphyFragmentPageAdapter-->
+  <string name="GiphyFragmentPagerAdapter_gifs">గిఫ్ లు</string>
+  <string name="GiphyFragmentPagerAdapter_stickers">స్టిక్కర్లు</string>
+  <!--GroupCreateActivity-->
+  <string name="GroupCreateActivity_actionbar_title">కొత్త సమూహం</string>
+  <string name="GroupCreateActivity_actionbar_edit_title">సమూహాన్ని మార్చు</string>
+  <string name="GroupCreateActivity_group_name_hint">సమూహం పేరు</string>
+  <string name="GroupCreateActivity_actionbar_mms_title">కొత్త ఎమ్మెమ్మెస్ సమూహం</string>
+  <string name="GroupCreateActivity_contacts_no_members">మీకు మీ సమూహంలొ కనీసం ఒక వ్యక్తి అవసరం!</string>
+  <string name="GroupCreateActivity_avatar_content_description">గ్రూప్ అవతార్</string>
+  <string name="GroupCreateActivity_menu_apply_button">అనువర్తించు</string>
+  <string name="GroupCreateActivity_creating_group">%1$s సృష్టించబడుతుంది</string>
+  <string name="GroupCreateActivity_updating_group"> నవీకరిస్తోంది %1$s ...</string>
+  <string name="GroupCreateActivity_loading_group_details">లోడ్ సమూహం వివరాలు ...</string>
+  <string name="GroupCreateActivity_youre_already_in_the_group">మీరు ఇప్పటికే సమూహంలో ఉన్నారు.</string>
+  <!--GroupMembersDialog-->
+  <string name="GroupMembersDialog_me">నేను</string>
+  <!--ImportExportActivity-->
+  <string name="ImportExportActivity_import">దిగుమతి</string>
+  <string name="ImportExportActivity_export">ఎగుమతి</string>
+  <!--ImportFragment-->
+  <string name="ImportFragment_import_system_sms_database">దిగుమతి వ్యవస్థ ఎస్సెమ్మెస్ డేటాబేస్?</string>
+  <string name="ImportFragment_import">దిగుమతి</string>
+  <string name="ImportFragment_cancel">రద్దు</string>
+  <string name="ImportFragment_restore_encrypted_backup">ఎన్క్రిప్టెడ్ బ్యాకప్ పునరుద్ధరించు?</string>
+  <string name="ImportFragment_restore">పునరుద్ధరించు</string>
+  <string name="ImportFragment_import_plaintext_backup">సాదా బ్యాకప్ దిగుమతి చేయాలనుకుంటున్నారా?</string>
+  <string name="ImportFragment_importing">దిగుమతి అవుతోంది</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">సాదా బ్యాకప్ దిగుమతి అవుతోంది ...</string>
+  <string name="ImportFragment_no_plaintext_backup_found">సాదా బ్యాకప్ దొరకలేదు!</string>
+  <string name="ImportFragment_error_importing_backup">బ్యాకప్ దిగుమతి లోపం!</string>
+  <string name="ImportFragment_import_complete">దిగుమతి పూర్తయింది!</string>
+  <string name="ImportFragment_restoring">పునరుద్ధరించడం జరుగుతుంది</string>
+  <string name="ImportFragment_restoring_encrypted_backup">ఎన్క్రిప్టెడ్ బ్యాకప్ పునరుద్ధరిస్తుంది ...</string>
+  <string name="ImportFragment_no_encrypted_backup_found">ఏ రకమైన ఎన్క్రిప్టెడ్ బ్యాకప్ దొరకలేదు!</string>
+  <string name="ImportFragment_restore_complete">పునరుద్ధరణ పూర్తి!</string>
+  <!--InputPanel-->
+  <!--InviteActivity-->
+  <string name="InviteActivity_share">పంచుకోండి</string>
+  <string name="InviteActivity_choose_contacts">పరిచయాలను ఎంచుకోండి</string>
+  <string name="InviteActivity_cancel">రద్దు</string>
+  <string name="InviteActivity_sending">పంపుతోంది ...</string>
+  <string name="InviteActivity_heart_content_description">హృదయం</string>
+  <string name="InviteActivity_invitations_sent">ఆహ్వనం పంపబడింది!</string>
+  <string name="InviteActivity_invite_to_signal">సిగ్నల్ కు  ఆహ్వానించండి</string>
+  <plurals name="InviteActivity_send_sms_to_friends">
+    <item quantity="one">1 నేస్తానికి ఎస్సెమ్మెస్ పంపించు</item>
+    <item quantity="other">%d నేస్తానికి ఎస్సెమ్మెస్ పంపించు</item>
+  </plurals>
+  <plurals name="InviteActivity_send_sms_invites">
+    <item quantity="one">1 ఎస్సెమ్మెస్ ఆహ్వానం పంపు?</item>
+    <item quantity="other">%d ఎస్సెమ్మెస్ ఆహ్వానాలను పంపు?</item>
+  </plurals>
+  <string name="InviteActivity_lets_switch_to_signal">మనం సిగ్నల్ కు మారుదాం: %1$s</string>
+  <!--KeyScanningActivity-->
+  <!--MessageDetailsRecipient-->
+  <string name="MessageDetailsRecipient_failed_to_send">పంపించడం విఫలమైనది</string>
+  <string name="MessageDetailsRecipient_new_safety_number">నూతన భద్రతా సంఖ్య</string>
+  <!--MessageRetrievalService-->
+  <string name="MessageRetrievalService_signal">సిగ్నల్</string>
+  <!--MmsDownloader-->
+  <string name="MmsDownloader_error_storing_mms">ఎమ్మెమ్మెస్ నిల్వ చేయటంలొ లోపం!</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">ఎమ్మెమ్మెస్ ప్రొవైడర్ కి కలిపినపుడు లోపం</string>
+  <!--- NotificationBarManager-->
+  <string name="NotificationBarManager_signal_call_in_progress">పురోగతి లో సిగ్నల్ కాల్</string>
+  <string name="NotificationBarManager_missed_call_from_s">%s నుండి తప్పిన కాల్</string>
+  <string name="NotificationBarManager_missed_signal_call">తప్పిన సిగ్నల్ కాల్</string>
+  <string name="NotificationBarManager__establishing_signal_call">స్థాపించబడుతున్న సిగ్నల్ కాల్</string>
+  <string name="NotificationBarManager__incoming_signal_call">కొత్తగా వచ్చిన సిగ్నల్ కాల్</string>
+  <string name="NotificationBarManager__deny_call">కాల్ నిరాకరించండి</string>
+  <string name="NotificationBarManager__answer_call">కాల్ ఆన్సర్ చేయండి</string>
+  <string name="NotificationBarManager__end_call">కాల్ ముగించండి</string>
+  <string name="NotificationBarManager__cancel_call">కాల్ రద్దుచేయండి</string>
+  <!--NotificationMmsMessageRecord-->
+  <string name="NotificationMmsMessageRecord_multimedia_message">మల్టీమీడియా సందేశం</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">ఎమ్మెమ్మెస్ సందేశం దిగుమతి </string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">ఎమ్మెమ్మెస్ సందేశం దిగుమతిలో లోపం, తట్టి మళ్ళీ ప్రయత్నించండి</string>
+  <!--MessageRecord-->
+  <string name="MessageRecord_left_group">మీరు సమూహం నుండి వైదొలిగారు</string>
+  <string name="MessageRecord_updated_group">సమూహాన్ని ఆధునీకరించు</string>
+  <string name="MessageRecord_s_called_you">%s మీకు కాల్ చెసారు</string>
+  <string name="MessageRecord_called_s">కాల్డ్ %s</string>
+  <string name="MessageRecord_missed_call_from">%s నుండి తప్పిన కాల్</string>
+  <string name="MessageRecord_s_is_on_signal_say_hey">%s యొక్క సిగ్నల్ మీద, హే చెప్పటానికి!</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">మీరు సందేశం అదృశ్యమవటానికి %1$s సమయం వెచ్చించారు.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s సందేశం అదృశ్యమవటానికి %2$s సమయం వెచ్చించారు.</string>
+  <string name="MessageRecord_your_safety_number_with_s_has_changed">%s తో మీ భద్రత సంఖ్య మార్చబడింది.</string>
+  <!--PassphraseChangeActivity-->
+  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">సంకేతపదములను సరిపోలడం లేదు!</string>
+  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">సరికాని పాత సంకేతపదము!</string>
+  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">కొత్త సంకేతపదం వ్రాయండి!</string>
+  <!--DeviceProvisioningActivity-->
+  <string name="DeviceProvisioningActivity_link_this_device">ఈ పరికరం బంధము చేయాలా?</string>
+  <string name="DeviceProvisioningActivity_cancel">రద్దు</string>
+  <string name="DeviceProvisioningActivity_continue">కొనసాగించు</string>
+  <string name="DeviceProvisioningActivity_title">ఈ పరికరం బంధము చేయాలా?</string>
+  <string name="DeviceProvisioningActivity_content_intro">ఇది చెయ్యగలరు</string>
+  <string name="DeviceProvisioningActivity_content_bullets">
+•మీ సందేశాలన్ని చదవండి
+\n• మీ పేరులో సందేశాలను పంపండి</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">బంధించిన పరికరం</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">బంధించిన కొత్త పరికరం</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">పరికరం ఆమోదించబడింది!</string>
+  <string name="DeviceProvisioningActivity_content_progress_no_device">పరికరం కనుగొనబడలేదు.</string>
+  <string name="DeviceProvisioningActivity_content_progress_network_error">నెట్వర్క్ లోపం.</string>
+  <string name="DeviceProvisioningActivity_content_progress_key_error">చెల్లని QR కోడ్.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">క్షమించండి,మీరు చాల పరికరాలను అనుసంధానం చేసారు, కొన్ని తొలగించడానికి ప్రయత్నించండి.</string>
+  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">క్షమించండి,ఇది ఒక చెల్లని అనుసంధానం చేసిన పరికరం యొక్క QR కోడ్.</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">ఒక సిగ్నల్ పరికరం లింక్ చేయాలా?</string>
+  <!--ExpirationDialog-->
+  <string name="ExpirationDialog_disappearing_messages">అదృశ్యమవుతున్న  సందేశాలు</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">మీ సందేశాలకు గడువు ఉండదు.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">వారు చూసిన తరువాత ఈ సంభాషణ లో పంపిన మరియు అందుకున్న సందేశాలు %s కనిపించదు.</string>
+  <!--PassphrasePromptActivity-->
+  <string name="PassphrasePromptActivity_enter_passphrase">సంకేతపదమును ప్రవేశపెట్టుము</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">సిగ్నల్ చిహ్నం</string>
+  <string name="PassphrasePromptActivity_ok_button_content_description">సంకేతపదమును సమర్పించండి</string>
+  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">చెల్లని సంకేతపదము!</string>
+  <!--PlayServicesProblemFragment-->
+  <!--RatingManager-->
+  <string name="RatingManager_rate_this_app">ఈ అప్లికేషన్ ని రేట్ చెయ్యండి</string>
+  <string name="RatingManager_rate_now">ఇప్పుడు రేటు!</string>
+  <string name="RatingManager_no_thanks">వద్దు ధన్యవాదాలు</string>
+  <string name="RatingManager_later">తర్వాత</string>
+  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">అయ్యో, </string>
+  <!--RecipientPreferencesActivity-->
+  <string name="RecipientPreferenceActivity_block_this_contact_question">ఈ పరిచయం నిరోధించాలా?</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">మీరు ఇకపై ఈ వ్యక్తి నుండి ఏటువంతి సందేశాలను మరియు కాల్స్ అందుకోరు.</string>
+  <string name="RecipientPreferenceActivity_block">నిరోధించు</string>
+  <string name="RecipientPreferenceActivity_unblock_this_contact_question">ఈ పరిచయం అన్బ్లాక్ చేయాలా?</string>
+  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">మీరు మరోసారి ఈ పరిచయం నుండి సందేశాలను మరియు కాల్స్ అందుకోగలరు.</string>
+  <string name="RecipientPreferenceActivity_unblock">అనుమతించు</string>
+  <string name="RecipientPreferenceActivity_enabled">చేతనం అయింది</string>
+  <string name="RecipientPreferenceActivity_disabled">అచేతనం అయింది</string>
+  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">ఒక సందేశాన్ని ఒకసారి అందుకున్న లేక పంపినా మీరు అందుబాటులో ఉంటారు.</string>
+  <!--RecipientProvider-->
+  <string name="RecipientProvider_unnamed_group">పేరులేని సమూహం</string>
+  <!--RedPhone-->
+  <string name="RedPhone_answering">స్పందిస్తున్న </string>
+  <string name="RedPhone_ending_call"> కాల్ ముగుస్తుంది</string>
+  <string name="RedPhone_dialing">డయలింగ్</string>
+  <string name="RedPhone_canceling_call">రద్దు చేయబడుతుంది</string>
+  <string name="RedPhone_call_rejected">కాల్ తిరస్కరించబడింది</string>
+  <string name="RedPhone_ringing">మోగుతున్నది</string>
+  <string name="RedPhone_busy">పనిలో ఉన్నారు </string>
+  <string name="RedPhone_connected">కలిసింది</string>
+  <string name="RedPhone_connecting">కలుస్తుంది   </string>
+  <string name="RedPhone_handshake_failed">సంప్రదించడం విఫలమైంది!</string>
+  <string name="RedPhone_recipient_unavailable">గ్రహీత అందుబాటులోలేరు</string>
+  <string name="RedPhone_performing_handshake">సంప్రదించడం </string>
+  <string name="RedPhone_network_failed">నెట్వర్క్ విఫలమైంది</string>
+  <string name="RedPhone_client_failed">క్లయింట్ విఫలమైంది</string>
+  <string name="RedPhone_fatal_error">తీవ్రమైన లోపం</string>
+  <string name="RedPhone_login_failed">లాగిన్ విఫలమైంది!</string>
+  <string name="RedPhone_message_from_the_server">సర్వర్ నుండి సందేశం</string>
+  <string name="RedPhone_number_not_registered"> నమోదు చేయని సంఖ్య!</string>
+  <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">మీరు డయల్ సంఖ్య సురక్షిత గాత్రం మద్దతు లేదు!</string>
+  <string name="RedPhone_got_it">దొరికింది</string>
+  <!--RegistrationActivity-->
+  <string name="RegistrationActivity_connect_with_signal">సిగ్నల్ తో కలవడానికి</string>
+  <string name="RegistrationActivity_select_your_country">మీ దేశాన్ని ఎంచుకోండి</string>
+  <string name="RegistrationActivity_you_must_specify_your_country_code">మీరు మీ దేశం కోడ్
+తప్పకుండా పేర్కొనాలి</string>
+  <string name="RegistrationActivity_you_must_specify_your_phone_number">మీరు మీ ఫోను నంబరు
+తప్పకుండా పేర్కొనాలి</string>
+  <string name="RegistrationActivity_invalid_number">చెల్లని సంఖ్య</string>
+  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">  
+మీరు పేర్కొన్న
+సంఖ్య (%s) చెల్లదు.</string>
+  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
+రెండు రకాలుగా సరి చూడండి ఇది మీ సంఖ్యేనా అని! మేము ఒక ఎస్సెమ్మెస్ తో ధృవీకరించబోతున్నాము.</string>
+  <string name="RegistrationActivity_continue">కొనసాగించు</string>
+  <string name="RegistrationActivity_edit">సరిచేయు</string>
+  <!--RegistrationProblemsActivity-->
+  <string name="RegistrationProblemsActivity_possible_problems">సాధ్యమైన సమస్యలు</string>
+  <!--RegistrationProgressActivity-->
+  <string name="RegistrationProgressActivity_verifying_number">సంఖ్యను ధృవీకరిస్తోంది</string>
+  <string name="RegistrationProgressActivity_edit_s">%s సరిచేయు</string>
+  <string name="RegistrationProgressActivity_registration_complete">నమోదు పూర్తయింది!</string>
+  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">మీకు మొదట వచ్చిన కోడ్ను నమోదు చేయండి</string>
+  <string name="RegistrationProgressActivity_connecting">కలుస్తుంది   </string>
+  <string name="RegistrationProgressActivity_connecting_for_verification">ధృవీకరణకోసం కలుస్తుంది...</string>
+  <string name="RegistrationProgressActivity_network_error">నెట్వర్క్ లోపం!</string>
+  <string name="RegistrationProgressActivity_unable_to_connect">మిమ్మల్ని అందుకోలేక పోతున్నాము. మీ నెట్వర్క్ కనెక్షన్ను తనిఖీ చేసి, మళ్ళీ ప్రయత్నించండి.</string>
+  <string name="RegistrationProgressActivity_verification_failed">ధృవీకరణ విఫలమైంది!</string>
+  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">మీరు సమర్పించిన ధృవీకరణ కోడ్ చెల్లదు. మళ్ళి ప్రయత్నించండి.</string>
+  <string name="RegistrationProgressActivity_too_many_attempts">మితిమీరిన ప్రయత్నాలు</string>
+  <string name="RegistrationProgressActivity_requesting_call">కాల్ అభ్యర్థిస్తోంది </string>
+  <string name="RegistrationProgressActivity_requesting_incoming_call">వస్తున్న ధృవీకరణ కాల్ అభ్యర్థిస్తోంది ..</string>
+  <string name="RegistrationProgressActivity_server_error">సర్వర్ లోపం.</string>
+  <string name="RegistrationProgressActivity_the_server_encountered_an_error">సర్వర్ లోపం ఎదుర్కొంది. మళ్ళి ప్రయత్నించండి.</string>
+  <string name="RegistrationProgressActivity_too_many_requests">చాలా ఎక్కువైన అభ్యర్థనలు!</string>
+  <string name="RegistrationProgressActivity_registration_conflict">నమోదు సంఘర్షణ</string>
+  <!--RegistrationService-->
+  <string name="RegistrationService_registration_complete">నమోదు పూర్తయింది </string>
+  <string name="RegistrationService_signal_registration_has_successfully_completed">సిగ్నల్ నమోదు విజయవంతంగా పూర్తి చేయబడింది.</string>
+  <string name="RegistrationService_registration_error">నమోదు లోపం</string>
+  <string name="RegistrationService_signal_registration_has_encountered_a_problem">సిగ్నల్ నమోదు సమస్యను ఎదుర్కొంది.</string>
+  <!--Slide-->
+  <string name="Slide_image">చిత్రం</string>
+  <string name="Slide_audio">ఆడియో</string>
+  <string name="Slide_video">వీడియో</string>
+  <!--SmsMessageRecord-->
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">నూతన భద్రతా సంఖ్యను సందేశంలో అందుకునాం . ప్రాసెస్ మరియు ప్రదర్శనకు నొక్కండి.</string>
+  <string name="SmsMessageRecord_secure_session_reset">మీ సెషన్ సురక్షిత ంగ పునరుద్ధరించు.</string>
+  <string name="SmsMessageRecord_secure_session_reset_s">%s సురక్షిత భాగాన్ని మరలా మార్చు</string>
+  <string name="SmsMessageRecord_duplicate_message">నకిలీ సందేశాం.</string>
+  <!--ThreadRecord-->
+  <string name="ThreadRecord_left_the_group">సమూహన్ని వదిలివేయుట</string>
+  <string name="ThreadRecord_secure_session_reset">సురక్షిత సెషన్ పునరుద్ధరించు.</string>
+  <string name="ThreadRecord_draft">చిత్తు పత్రం:</string>
+  <string name="ThreadRecord_called">మీరు కాల్ చెసారు</string>
+  <string name="ThreadRecord_called_you">మీకు కాల్ చెసారు</string>
+  <string name="ThreadRecord_missed_call">తప్పిన కాల్</string>
+  <string name="ThreadRecord_media_message">మీడియ సందేశం</string>
+  <string name="ThreadRecord_s_is_on_signal_say_hey">%s యొక్క సిగ్నల్ మీద, హే చెప్పటానికి!</string>
+  <string name="ThreadRecord_your_safety_number_with_s_has_changed">%s తో మీ భద్రత సంఖ్య మార్చబడింది.</string>
+  <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_share_safety_number_via">భద్రతా సంఖ్యను... ద్వారా పంచు</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">మన సిగ్నల్ భద్రత సంఖ్య:</string>
+  <!--KeyExchangeInitiator-->
+  <string name="KeyExchangeInitiator_send">పంపించు</string>
+  <!--MessageDisplayHelper-->
+  <string name="MessageDisplayHelper_bad_encrypted_message">సరికాని గుప్తీకరించిన సందేశం</string>
+  <!--EncryptingSmsDatabase-->
+  <string name="EncryptingSmsDatabase_error_decrypting_message">సందేశం మార్చడంలో లోపం.</string>
+  <!--ThreadDatabase-->
+  <string name="ThreadDatabase_error_decrypting_message">సందేశం మార్చడంలో లోపం.</string>
+  <!--MmsDatabase-->
+  <string name="MmsDatabase_connecting_to_mms_server">ఎమ్మెమ్మెస్ సర్వర్ కి కలుస్తుంది...</string>
+  <string name="MmsDatabase_downloading_mms">ఎమ్మెమ్మెస్ దిగుమతి చేస్తోంది ...</string>
+  <string name="MmsDatabase_mms_download_failed">ఎమ్మెమ్మెస్ దిగుమతి విఫలమైంది!</string>
+  <string name="MmsDatabase_downloading">దిగుమతి అవుతోంది...</string>
+  <string name="MmsDatabase_error_decrypting_message">సందేశం మార్చడంలో లోపం.</string>
+  <!--MmsMessageRecord-->
+  <!--MuteDialog-->
+  <string name="MuteDialog_mute_notifications">  ప్రకటనలను మ్యూట్లో ఉంచు</string>
+  <!--ApplicationMigrationService-->
+  <string name="ApplicationMigrationService_import_in_progress">దిగుమతి పురోగతిలో ఉంది</string>
+  <string name="ApplicationMigrationService_importing_text_messages">సాధా సందేశాలు దిగుమతి అవుతున్నాయి </string>
+  <string name="ApplicationMigrationService_import_complete">దిగుమతి పూర్తయింది</string>
+  <!--KeyCachingService-->
+  <string name="KeyCachingService_signal_passphrase_cached">తెరవడానికి తాకు</string>
+  <string name="KeyCachingService_signal_passphrase_cached_with_lock">తెరవడానికి నొక్కండి,  లేదా మూయడానికి తాళంని నొక్కండి.</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">మీరు</string>
+  <string name="MediaPreviewActivity_cant_display"> ఈ   చిత్రాన్ని సమీక్షార్థంగా చూడటానికి  లేదు</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">మద్ధతు  లేనటువంటి ప్రసార మాధ్యమం</string>
+  <string name="MediaPreviewActivity_draft">చిత్తు పత్రం</string>
+  <!--MessageNotifier-->
+  <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d సంభాషణలొ కొత్త %1$d సందేశాలు</string>
+  <string name="MessageNotifier_most_recent_from_s">ఇటీవల నుండి: %1$s</string>
+  <string name="MessageNotifier_locked_message">బంధించబడిన సందేశం</string>
+  <string name="MessageNotifier_media_message_with_text">మీడియా సందేశం: %s</string>
+  <string name="MessageNotifier_no_subject">(విషయం లేదు)</string>
+  <string name="MessageNotifier_message_delivery_failed">సందేశం పంపుట విఫలమైనది.</string>
+  <string name="MessageNotifier_failed_to_deliver_message">సందేషాన్ని చెర్చడం విఫలమైనది.</string>
+  <string name="MessageNotifier_error_delivering_message">సందేశం పంపడంలో లోపం</string>
+  <string name="MessageNotifier_mark_all_as_read">అన్నీ చదివినట్టు గుర్తుపెట్టు</string>
+  <string name="MessageNotifier_mark_read">చదివినట్టు గుర్తుపెట్టు</string>
+  <string name="MessageNotifier_media_message">మీడియ సందేశం</string>
+  <string name="MessageNotifier_reply">స్పంధించు</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__enabled">చేతనం అయింది</string>
+  <string name="MmsPreferencesFragment__disabled">అచేతనం అయింది</string>
+  <string name="MmsPreferencesFragment__not_set">సరి పోలేదు</string>
+  <string name="MmsPreferencesFragment__invalid_uri">నమోదు చేసిన URI చెల్లుబాటులో  లేదు</string>
+  <string name="MmsPreferencesFragment__invalid_host">నమోదు చేసిన వచనం సక్రమమైన దాత కాదు</string>
+  <!--QuickResponseService-->
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">సిగ్నల్ బంధించినపుడు తక్షణ స్పందన అందుబాటులొ లేదు!</string>
+  <string name="QuickResponseService_problem_sending_message">సందేశాన్ని పంపడంలొ సమస్య!</string>
+  <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_signal">సిగ్నల్</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">కొత్త సందేశం</string>
+  <!--VideoPlayer-->
+  <string name="VideoPlayer_error_playing_video">వీడియో ప్రదర్శనా లోపం</string>
+  <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">ఈ పరిచయంతో మీ భద్రత సంఖ్య ధ్రువీకరించాలనుకోవొచ్చు.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers_title">నూతన భద్రతా సంఖ్యలు</string>
+  <!--WebRtcCallControls-->
+  <string name="WebRtcCallControls_tap_to_enable_your_video">మీ వీడియో ప్రారంభించడానికి నొక్కండి</string>
+  <!--attachment_type_selector-->
+  <string name="attachment_type_selector__image">చిత్రం</string>
+  <string name="attachment_type_selector__image_description">చిత్రం</string>
+  <string name="attachment_type_selector__audio">ఆడియో</string>
+  <string name="attachment_type_selector__audio_description">ఆడియో</string>
+  <string name="attachment_type_selector__video">వీడియో</string>
+  <string name="attachment_type_selector__video_description">వీడియో</string>
+  <string name="attachment_type_selector__contact">పరిచయం</string>
+  <string name="attachment_type_selector__contact_description">పరిచయం</string>
+  <string name="attachment_type_selector__camera">కెమెరా</string>
+  <string name="attachment_type_selector__camera_description">కెమెరా</string>
+  <string name="attachment_type_selector__location">స్థానం</string>
+  <string name="attachment_type_selector__location_description">స్థానం</string>
+  <string name="attachment_type_selector__gif">గిఫ్</string>
+  <string name="attachment_type_selector__gif_description">గిఫ్</string>
+  <!--change_passphrase_activity-->
+  <string name="change_passphrase_activity__old_passphrase">పాత సంకేతపదము</string>
+  <string name="change_passphrase_activity__new_passphrase">కొత్త సంకేతపదము</string>
+  <string name="change_passphrase_activity__repeat_new_passphrase">కొత్త సంకేతపదమును తిరిగి చెప్పు</string>
+  <!--contact_selection_activity-->
+  <string name="contact_selection_activity__enter_name_or_number">పేరు లేదా నంబరు ఎంటర్ చేయండి</string>
+  <!--contact_selection_group_activity-->
+  <string name="contact_selection_group_activity__no_contacts">పరిచయాలు లేవు</string>
+  <string name="contact_selection_group_activity__finding_contacts">పరిచయాలు లోడ్ అవుతున్నాయి ...</string>
+  <!--single_contact_selection_activity-->
+  <string name="SingleContactSelectionActivity_contact_photo">పరిచయస్థుల ఫొటో</string>
+  <!--ContactSelectionListFragment-->
+  <string name="ContactSelectionlistFragment_select_for">కోసం ఎంచుకోండి</string>
+  <!--blocked_contacts_fragment-->
+  <string name="blocked_contacts_fragment__no_blocked_contacts">నిరోధించిన పరిచయాలు లేవు</string>
+  <!--contact_selection_recent_activity-->
+  <string name="contact_selection_recent_activity__no_recent_calls">ఇటీవలి కాల్స్  లేవు</string>
+  <!--conversation_title_view-->
+  <string name="conversation_title_view__conversation_muted">సంభాషణ నిషబ్దమైనది</string>
+  <!--conversation_activity-->
+  <string name="conversation_activity__type_message_push">సిగ్నల్ సందేశం పంపించు</string>
+  <string name="conversation_activity__type_message_sms_insecure">అసురక్షిత ఎస్సెమ్మెస్ పంపు</string>
+  <string name="conversation_activity__type_message_mms_insecure">అసురక్షిత ఎమ్మెమ్మెస్ పంపించు</string>
+  <string name="conversation_activity__from_sim_name">%1$s నుండి</string>
+  <string name="conversation_activity__send">పంపించు</string>
+  <string name="conversation_activity__remove">తొలగించు</string>
+  <string name="conversation_activity__window_description">%1$s తో సంభాషణ  </string>
+  <string name="conversation_activity__compose_description">సందేశాన్ని కూర్పుము</string>
+  <string name="conversation_activity__attachment_thumbnail">జోడింపు సూక్ష్మచిత్రం</string>
+  <string name="conversation_activity__enable_signal_for_sms">ఎస్సెమ్మెస్ చేతనం</string>
+  <!--conversation_input_panel-->
+  <string name="conversation_input_panel__slide_to_cancel">జారు</string>
+  <!--conversation_item-->
+  <string name="conversation_item__mms_downloading_description">మీడియ సందేశం దిగుమతి అవుతోంది</string>
+  <string name="conversation_item__mms_image_description">మీడియ సందేశం</string>
+  <string name="conversation_item__secure_message_description">సురక్షిత సందేశం</string>
+  <!--conversation_item_sent-->
+  <string name="conversation_item_sent__download">దిగుమతి</string>
+  <string name="conversation_item_sent__downloading">దిగుమతి అవుతోంది</string>
+  <string name="conversation_item_sent__send_failed_indicator_description">పంపడం విఫలమైంది</string>
+  <string name="conversation_item_sent__pending_approval_description">మిగిలి ఉన్న ఆమోదం</string>
+  <string name="conversation_item_sent__delivered_description">పంపిణి ఐనది</string>
+  <!--conversation_item_received-->
+  <string name="conversation_item_received__download">దిగుమతి</string>
+  <string name="conversation_item_received__contact_photo_description">పరిచయ ఫొటో</string>
+  <string name="conversation_item_received__downloading">దిగుమతి అవుతోంది </string>
+  <!--audio_view-->
+  <string name="audio_view__play_accessibility_description">నడుపు</string>
+  <string name="audio_view__pause_accessibility_description">నిలుపు</string>
+  <string name="audio_view__download_accessibility_description">దిగుమతి</string>
+  <!--conversation_fragment_cab-->
+  <string name="conversation_fragment_cab__batch_selection_mode">గుంపు ఎంపిక  చేయబడిన విధానము</string>
+  <string name="conversation_fragment_cab__batch_selection_amount">ఎంపిక చేసిన %s</string>
+  <!--conversation_fragment-->
+  <string name="conversation_fragment__scroll_to_the_bottom_content_description">దిగువకు స్క్రోల్ చెయ్యి</string>
+  <!--country_selection_fragment-->
+  <string name="country_selection_fragment__loading_countries">దేశాలు లోడ్ అవుతున్నాయి...</string>
+  <string name="country_selection_fragment__search">వెతకండి</string>
+  <!--device_add_fragment-->
+  <!--device_link_fragment-->
+  <string name="device_link_fragment__link_device">పరికరాన్ని అనుసంధానించు </string>
+  <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_linked">ఎ పరికరాన్ని అనుసంధానించలెదు</string>
+  <string name="device_list_fragment__link_new_device">కొత్త పరికరాన్ని అనుసంధానించు</string>
+  <!--experience_upgrade_activity-->
+  <string name="experience_upgrade_activity__continue">కొనసాగించు</string>
+  <!--expiration-->
+  <string name="expiration_off">ఆఫ్</string>
+  <plurals name="expiration_seconds">
+    <item quantity="one">1 సెకన్</item>
+    <item quantity="other">%d సెకన్లు</item>
+  </plurals>
+  <string name="expiration_seconds_abbreviated">%ds</string>
+  <plurals name="expiration_minutes">
+    <item quantity="one">1 నిమిషం</item>
+    <item quantity="other">%d నిమిషాలు</item>
+  </plurals>
+  <string name="expiration_minutes_abbreviated">%dm</string>
+  <plurals name="expiration_hours">
+    <item quantity="one">1 గంట</item>
+    <item quantity="other">%d గంటలు</item>
+  </plurals>
+  <string name="expiration_hours_abbreviated">%dh</string>
+  <plurals name="expiration_days">
+    <item quantity="one">1 రోజు</item>
+    <item quantity="other">%d రోజులు</item>
+  </plurals>
+  <string name="expiration_days_abbreviated">%dd</string>
+  <plurals name="expiration_weeks">
+    <item quantity="one">1 వారం</item>
+    <item quantity="other">%d వారాలు</item>
+  </plurals>
+  <string name="expiration_weeks_abbreviated">%dw</string>
+  <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs_and_stickers">జిఫ్‌లు మరియు స్టిక్కర్లు వెతుకు</string>
+  <!--giphy_fragment-->
+  <string name="giphy_fragment__nothing_found">ఏమీ దొరకలేదు</string>
+  <!--log_submit_activity-->
+  <string name="log_submit_activity__thanks">మీ సహాయానికి ధన్యవాదాలు!</string>
+  <string name="log_submit_activity__submitting">సమర్పిస్తోంది</string>
+  <string name="log_submit_activity__posting_logs">చిట్టాలు ను  సూక్ష్మముకు నియామకం చెయ్యి</string>
+  <string name="log_submit_activity__no_browser_installed">బ్రౌజర్ వ్యవస్థాపన లేదు</string>
+  <!--database_migration_activity-->
+  <string name="database_migration_activity__skip">వదిలివేయి</string>
+  <string name="database_migration_activity__import">దిగుమతి</string>
+  <string name="database_migration_activity__importing">దిగుమతి</string>
+  <!--database_upgrade_activity-->
+  <string name="database_upgrade_activity__updating_database">డేటాబేస్ని నవీకరిస్తోంది/ ప్రస్తుత పరిస్థితికి అనుగుణంగా సవరిస్తోంది</string>
+  <string name="export_fragment__export_plaintext_backup">సాధారణ అక్షరాల బ్యాకప్ ఎగుమతి </string>
+  <string name="import_fragment__import_system_sms_database">వ్యవస్థ ఎస్సెమ్మెస్ డేటాబేస్ దిగుమతి</string>
+  <string name="import_fragment__restore_encrypted_backup"> పూర్వస్థితికి తెచ్చుటకు  నిక్షిప్త  ప్రత్యామ్నాయ ప్రణాళిక</string>
+  <string name="import_fragment__import_plaintext_backup">సాధారణ అక్షరాల బ్యాకప్ దిగుమతి </string>
+  <!--load_more_header-->
+  <string name="load_more_header__see_full_conversation">పూర్తి సంభాషణ చూడండి</string>
+  <!--media_overview_activity-->
+  <string name="media_overview_activity__no_media">మీడియా లేదు</string>
+  <!--message_recipients_list_item-->
+  <string name="message_recipients_list_item__verify">నిర్ధారించు</string>
+  <string name="message_recipients_list_item__resend">మళ్ళీ పంపు</string>
+  <!--GroupUtil-->
+  <plurals name="GroupUtil_joined_the_group">
+    <item quantity="one">%1$s సమూహంలొ చేరారు.</item>
+    <item quantity="other">%1$s సమూహంలొ చేరారు.</item>
+  </plurals>
+  <string name="GroupUtil_group_updated">సమూహం నవీకరించబడింది</string>
+  <string name="GroupUtil_group_name_is_now">ఇప్పుడు సమూహం పేరు \'%1$s\' ఉంది.</string>
+  <!--prompt_passphrase_activity-->
+  <!--prompt_mms_activity-->
+  <!--recipient_preferences_activity-->
+  <string name="recipient_preference_activity__blocked">నిరోధించబడిన</string>
+  <!--recipient_preferences-->
+  <string name="recipient_preferences__mute_conversation">నిశబ్ధ సంభాషణలు</string>
+  <string name="recipient_preferences__disable_notifications_for_this_conversation">ఈ సంభాషణకు  ప్రకటనలను నిలిపివేయి</string>
+  <string name="recipient_preferences__notification_sound">ప్రకటనల ధ్వని</string>
+  <string name="recipient_preferences__vibrate">ప్రకంపన</string>
+  <string name="recipient_preferences__block">నిరోధించు</string>
+  <string name="recipient_preferences__color">రంగు </string>
+  <string name="recipient_preferences__color_for_this_contact">ఈ వ్యక్తి కోసం రంగు</string>
+  <string name="recipient_preferences__verify_safety_number">భద్రత సంఖ్యను ధృవీకరించండి</string>
+  <!--- redphone_call_controls-->
+  <string name="redphone_call_card__signal_call">సిగ్నల్ కాల్ </string>
+  <string name="redphone_call_controls__end_call">కాల్ ముగింపు</string>
+  <string name="redphone_call_controls__audio">ఆడియో</string>
+  <string name="redphone_call_controls__mute">నిశబ్ధం</string>
+  <string name="redphone_call_controls__signal_call">సిగ్నల్ కాల్ </string>
+  <!--registration_activity-->
+  <string name="registration_activity__verify_your_number_to_connect_with_signal">
+సిగ్నల్‌తొ కలవటనికి మీ ఫోన్ నంబర్ని ధృవీకరించండి.</string>
+  <string name="registration_activity__your_country">మీ దేశం</string>
+  <string name="registration_activity__phone_number">ఫోన్ నంబరు</string>
+  <string name="registration_activity__register">నమోదు చేసుకో</string>
+  <string name="registration_activity__powered_by_twilio">ట్విల్లొ ద్వారా ఆధారితం</string>
+  <!--registration_problems-->
+  <string name="registration_problems__some_possible_problems_include">ఈ సమస్యలు సాధ్యమై 
+ఉండవొచ్చు:</string>
+  <string name="registration_problems__sms_interceptors"> స్సెమ్మెస్ అవరోధాలు.</string>
+  <string name="registration_problems__incorrect_number">సంఖ్య సరికానిది</string>
+  <string name="registration_problems__google_voice">గూగుల్ మాట.</string>
+  <!--registration_progress_activity-->
+  <string name="registration_progress_activity__voice_verification">మాట ధృవీకరణ</string>
+  <string name="registration_progress_activity__verify">నిర్ధారించబడిన</string>
+  <string name="registration_progress_activity__call_me">నాకు కాల్ చెయ్</string>
+  <string name="registration_progress_activity__edit_number">సంఖ్య మార్చు</string>
+  <string name="registration_progress_activity__connectivity_error">కలువటంలొ  లొపం</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">సిగ్నల్ సర్వర్కు కలువటం లెదు</string>
+  <string name="registration_progress_activity__some_possible_problems_include">ఇవ్వి సాధ్యమై కొన్ని
+సమస్యలు:</string>
+  <string name="registration_progress_activity__no_network_connectivity">నెట్వర్క్  సంబంధం 
+లేదు.</string>
+  <string name="registration_progress_activity__restrictive_firewall">మితమైన ఫైర్వాల్.</string>
+  <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
+సిగ్నల్ యిప్పుడు స్వయంచాలకంగా నిర్ధారణ ఎస్సెమ్మస్ సందేశంతో మీ నంబర్ను ధృవీకరిస్తుంది.</string>
+  <string name="registration_progress_activity__connecting">కలుస్తుంది...</string>
+  <string name="registration_progress_activity__waiting_for_sms_verification">ఎస్సెమ్మెస్ ధృవీకరణ కోసం వేచి ఉంది</string>
+  <string name="registration_progress_activity__registering_with_server">సర్వర్ నమోదుచేసుకకుంటుంది.....</string>
+  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">దీనికి
+ఒక క్షణం పడుతుంది. దయచేసి వేచి ఉండండి, మేము ధృవీకరణ పూర్తి అయినప్పుడు మీకు తెలియజేస్తాము.</string>
+  <string name="registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message">
+సిగ్నల్ ధృవీకరణ ఎస్సెమ్మస్ సందేశం కోసం వేచివుండే సమయం ముగిసింది.</string>
+  <string name="registration_progress_activity__sms_verification_failed">ఎస్సెమ్మెస్ ధృవీకరణ 
+విఫలమైంది.</string>
+  <string name="registration_progress_activity__alert">హెచ్చరిక</string>
+  <string name="registration_progress_activity__telephone">టెలిఫోన్</string>
+  <string name="registration_progress_activity__check">తనిఖీ</string>
+  <!--recipients_panel-->
+  <string name="recipients_panel__to"><small>పేరు లేదా సంఖ్యను రాయండి</small></string>
+  <string name="recipients_panel__add_members">సభ్యులు జోడించు</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment__tap_to_scan">స్కాన్ నొక్కండి</string>
+  <!--verify_identity-->
+  <string name="verify_identity__share_safety_number">భద్రతా సంఖ్యను పంచు</string>
+  <!--message_details_header-->
+  <string name="message_details_header__issues_need_your_attention">కొన్ని సమస్యలకు మీ శ్రద్ధ అవసరం.</string>
+  <string name="message_details_header__sent">పంపిన</string>
+  <string name="message_details_header__received">అందుకున్న</string>
+  <string name="message_details_header__disappears">అదృశ్యమవుతుంది</string>
+  <string name="message_details_header__via">ద్వారా</string>
+  <string name="message_details_header__to">ఎవరికి:</string>
+  <string name="message_details_header__from">ఎవరి నుండి:</string>
+  <string name="message_details_header__with">ఎవరితో:</string>
+  <!--AndroidManifest.xml-->
+  <string name="AndroidManifest__create_passphrase">సంకేతపదమును తయారు చేయు</string>
+  <string name="AndroidManifest__enter_passphrase">సంకేతపదమును ప్రవేశపెట్టుము</string>
+  <string name="AndroidManifest__select_contacts">పరిచయాలను ఎంచుకోండి</string>
+  <string name="AndroidManifest__signal_detected">సిగ్నల్ కనుగొనబడింది</string>
+  <string name="AndroidManifest__change_passphrase">సంకేతపదమును మార్చు</string>
+  <string name="AndroidManifest__verify_safety_number">భద్రత సంఖ్యను ధృవీకరించండి</string>
+  <string name="AndroidManifest__log_submit">డీబగ్ లాగ్ను సమర్పించండి</string>
+  <string name="AndroidManifest__media_preview">మీడియా ప్రివ్యూ</string>
+  <string name="AndroidManifest__all_media">అన్ని మీడియా</string>
+  <string name="AndroidManifest__all_media_named">అన్ని మీడియా %1$s తొ</string>
+  <string name="AndroidManifest__message_details">సందేశం వివరాలు</string>
+  <string name="AndroidManifest__linked_devices">బంధించిన పరికరాలు</string>
+  <string name="AndroidManifest__invite_friends">స్నేహితులను ఆహ్వానించండి</string>
+  <string name="AndroidManifest_archived_conversations">భద్రపరిచిన సంభాషణలు</string>
+  <!--arrays.xml-->
+  <string name="arrays__import_export">దిగుమతి /ఎగుమతి</string>
+  <string name="arrays__use_default"> అప్రమేయం ఉపయోగించు</string>
+  <string name="arrays__use_custom"> నియమము ఉపయోగించు</string>
+  <string name="arrays__mute_for_one_hour">1 గంట నిశబ్దంగా ఉంచు</string>
+  <string name="arrays__mute_for_two_hours">2 గంటలు నిశబ్దంగా ఉంచు</string>
+  <string name="arrays__mute_for_one_day">1 రోజు నిశబ్దంగా ఉంచు</string>
+  <string name="arrays__mute_for_seven_days">7 రోజులు నిశబ్దంగా ఉంచు</string>
+  <string name="arrays__mute_for_one_year">1 సంవత్సరం నిశబ్దంగా ఉంచు</string>
+  <string name="arrays__settings_default">అప్రమేయ అమరికలు</string>
+  <string name="arrays__enabled">చేతనం అయింది</string>
+  <string name="arrays__disabled">అచేతనం అయింది</string>
+  <string name="arrays__name_and_message">పేరు మరియు సందేశం</string>
+  <string name="arrays__name_only">పేరు మాత్రమే </string>
+  <string name="arrays__no_name_or_message">పేరు లేదా సందేశం</string>
+  <string name="arrays__images">చిత్రాలు</string>
+  <string name="arrays__audio">ఆడియో</string>
+  <string name="arrays__video">వీడియో</string>
+  <!--plurals.xml-->
+  <plurals name="hours_ago">
+    <item quantity="one">%d గంట</item>
+    <item quantity="other">%d గంటలు</item>
+  </plurals>
+  <!--preferences.xml-->
+  <string name="preferences__general">సాధారణం</string>
+  <string name="preferences__sms_mms">ఎస్సెమ్మెస్ మరియు ఎమ్మెమ్మెస్</string>
+  <string name="preferences__pref_all_sms_title">అన్ని ఎస్సెమ్మెస్ లను స్వీకరించండి</string>
+  <string name="preferences__pref_all_mms_title">అన్ని ఎమ్మెమ్మెస్‌లను స్వీకరించండి </string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">వచ్చే టెక్స్ట్ సందేశాలను సిగ్నల్ ఉపయోగించండి</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">వచ్చే మల్టీమీడియా సందేశాల కోసం సిగ్నల్ ఉపయోగించండి</string>
+  <string name="preferences__input_settings">ఇన్పుట్ సెట్టింగ్లు</string>
+  <string name="preferences__enable_enter_key_title">మౌలిక ప్రవేశానికి సమర్థత కలిగించు</string>
+  <string name="preferences__pref_enter_sends_title">ఎంటర్ కీ పంపుతుంది </string>
+  <string name="preferences__pressing_the_enter_key_will_send_text_messages"> ప్రారంబించే కీ ని నొక్కడం ద్వారా సందేశాలను పంపుతోంది</string>
+  <string name="preferences__display_settings">అమరికలు  చూపించండి</string>
+  <string name="preferences__choose_identity">గుర్తింపును ఎంచుకోండి</string>
+  <string name="preferences__choose_your_contact_entry_from_the_contacts_list">కాంటాక్ట్స్ జాబితా నుండి మీ పరిచయం ఎంట్రీ ఎంచుకోండి.</string>
+  <string name="preferences__change_passphrase">సంకేతపదమును మార్చు</string>
+  <string name="preferences__change_your_passphrase">మీ సంకేతపదమును మార్చండి </string>
+  <string name="preferences__enable_passphrase">సంకేతపదముకు  సమర్థత కలిగించు</string>
+  <string name="preferences__screen_security">స్క్రీన్ భద్రత</string>
+  <string name="preferences__inactivity_timeout_passphrase">క్రియాశూన్యత సంకేతపదముకు  విరామసమయము</string>
+  <string name="preferences__inactivity_timeout_interval">క్రియాశూన్యత మధ్యకాలము విరామసమయము</string>
+  <string name="preferences__notifications">ప్రకటనలు</string>
+  <string name="preferences__enable_message_notifications">సందేశ ప్రకటనలను ప్రారంభించు</string>
+  <string name="preferences__new_contacts_notifications">కొత్త పరిచయాలు ప్రకటనలను</string>
+  <string name="preferences__show_a_notification_for_new_signal_contacts">క్రొత్త సిగ్నల్ పరిచయాల కోసం ప్రకటనను చూపించు</string>
+  <string name="preferences__led_color">ఎల్ఈడి రంగు</string>
+  <string name="preferences__led_color_unknown">తెలియని</string>
+  <string name="preferences__pref_led_blink_title">ఎల్ఇడి రెప్పపాటు నమూనా</string>
+  <string name="preferences__pref_led_blink_custom_pattern_title">
+</string>
+  <string name="preferences__pref_led_blink_custom_pattern_on_for">ఆన్ కోసం: </string>
+  <string name="preferences__sound">శబ్దము</string>
+  <string name="preferences__change_notification_sound">ప్రకటనల శబ్దాన్ని మార్చు</string>
+  <string name="preferences__silent">మౌనం</string>
+  <string name="preferences__in_conversation_notifications">సంభాషణలో  ప్రకటనలు</string>
+  <string name="preferences__play_inthread_notifications">క్రియాశీల సంభాషణ చూసినప్పుడు ప్రకటన ద్వనించేటట్టు చెయ్యి</string>
+  <string name="preferences__repeat_alerts">రిపీట్ హెచ్చరికలు</string>
+  <string name="preferences__never">ఎప్పుడూ</string>
+  <string name="preferences__one_time">ఒక్కసారి</string>
+  <string name="preferences__two_times">రెండు సార్లు</string>
+  <string name="preferences__three_times">మూడు సార్లు</string>
+  <string name="preferences__five_times">ఐదు సార్లు</string>
+  <string name="preferences__ten_times">పది సార్లు</string>
+  <string name="preferences__vibrate">ప్రకంపన</string>
+  <string name="preferences__also_vibrate_when_notified">ప్రకటించినపుడు కూడా కంపించు</string>
+  <string name="preferences__minutes">నిముషాలు </string>
+  <string name="preferences__hours">గంటలు</string>
+  <string name="preferences__green">ఆకు పచ్చ</string>
+  <string name="preferences__red">ఎరుపు</string>
+  <string name="preferences__blue">నీలం</string>
+  <string name="preferences__orange">నారింజ</string>
+  <string name="preferences__cyan">సియన్</string>
+  <string name="preferences__magenta">మజెంటా</string>
+  <string name="preferences__white">తెలుపు</string>
+  <string name="preferences__none">ఏదీ కాదు</string>
+  <string name="preferences__fast">త్వరగా</string>
+  <string name="preferences__normal">సాధారణంగా</string>
+  <string name="preferences__slow">మెల్లిగా</string>
+  <string name="preferences__custom">అనుకూలికరన</string>
+  <string name="preferences__advanced">ఆధునిక</string>
+  <string name="preferences__privacy">గోప్యత</string>
+  <string name="preferences__mms_user_agent">ఎమ్మెమ్మెస్  వినియోగ ప్రతినిధి</string>
+  <string name="preferences__advanced_mms_access_point_names"> కరదీపిక తో ఎమ్మెమ్మెస్ సర్దుబాటు చేయి</string>
+  <string name="preferences__enable_manual_mms">చేతితో చేసిన ఎమ్మెమ్మెస్  సెట్టింగులను ఉపయోగించండి</string>
+  <string name="preferences__mmsc_url">ఎమ్మెమ్మెస్సి యు.అర్.ల్ </string>
+  <string name="preferences__mms_proxy_host">ఎమ్మెమ్మెస్  ప్రాక్సీ దాత</string>
+  <string name="preferences__mms_proxy_port">ఎమ్మెమ్మెస్  ప్రాక్సీ మార్గము</string>
+  <string name="preferences__mmsc_username">ఎమ్మెమ్మెస్సి వినియోగదారుపేరు</string>
+  <string name="preferences__mmsc_password">ఎమ్మెమ్మెస్సి సాంకేతిక పదము</string>
+  <string name="preferences__sms_delivery_reports">చేరిన ఎస్సెమ్మెస్ నివేదికలు</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">ఒక సంభాషణ ఒక పేర్కొన్న పొడవు మించితె స్వయంచాలకంగా పాత సందేశాలను తొలగించు</string>
+  <string name="preferences__delete_old_messages">పాత సందేశాలను తొలగించు</string>
+  <string name="preferences__chats">ముచ్చట్లు మరియు ప్రసార మాధ్యమం</string>
+  <string name="preferences__conversation_length_limit">సంభాషణ విస్తృతికి పరిమితి</string>
+  <string name="preferences__trim_all_conversations_now">ఇప్పుడు అన్ని సంభాషణలు  కత్తిరించి సరి చేయుట </string>
+  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">అన్ని సంభాషణలు స్కాన్ చేసి తద్వారా సంభాషణ పొడవు పరిమితులు అమలుపరచు</string>
+  <string name="preferences__linked_devices">పరికరాలు అనుసంధానించు </string>
+  <string name="preferences__light_theme">లైటు</string>
+  <string name="preferences__dark_theme">గుప్తమైన</string>
+  <string name="preferences__appearance">స్వరూపం</string>
+  <string name="preferences__theme">థీమ్</string>
+  <string name="preferences__default">అప్రమేయ</string>
+  <string name="preferences__language">భాష</string>
+  <string name="preferences__signal_messages_and_calls">సిగ్నల్ సందేశాలు మరియు కాల్స్</string>
+  <string name="preferences__free_private_messages_and_calls">  సిగ్నల్ వినుయోగదారులకు ఉచిత వ్యక్తిగత సందేశాలు మరియు కాల్స్</string>
+  <string name="preferences__submit_debug_log">డీబగ్ లాగ్ను సమర్పించండి</string>
+  <string name="preferences__support_wifi_calling">\'వైఫై కాలింగ్\' కి అనుకూలమైన పద్ధతి</string>
+  <string name="preferences_app_protection__blocked_contacts">నిరోధించిన పరిచయాలు</string>
+  <string name="preferences_app_protection__safety_numbers_approval">భద్రత సంఖ్యల అనుమతి</string>
+  <string name="preferences_notifications__display_in_notifications">ప్రకటనలను ప్రదర్శించు</string>
+  <string name="preferences_chats__when_using_mobile_data">మొబైల్ సమాచారం ఉపయోగిస్తున్నప్పుడు</string>
+  <string name="preferences_chats__when_using_wifi">వైఫై ఉపయోగించి చేసినప్పుడు</string>
+  <string name="preferences_chats__when_roaming">రోమింగ్లో ఉన్నప్పుడు</string>
+  <string name="preferences_chats__media_auto_download">ప్రసార మాధ్యమం దానంతట అదే దిగుమతి</string>
+  <string name="preferences_chats__message_trimming">సందేశం కత్తిరించి సరి చేయుట </string>
+  <string name="preferences_advanced__use_system_emoji">యంత్రము యొక్క  ఎమొజిలను  ఉపయొగించు</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">సిగ్నల్ యొక్క అంతర్నిర్మిత ఎమోజి మద్దతును నిలిపివేయి  </string>
+  <string name="preferences_advanced__video_calling_beta">వీడియో కాలింగ్ అబ్బాయ్</string>
+  <!--****************************************-->
+  <!--menus-->
+  <!--****************************************-->
+  <!--contact_selection_list-->
+  <string name="contact_selection_list__menu_select_all">అన్ని ఎంచుకొ</string>
+  <string name="contact_selection_list__menu_unselect_all">ఎంపిక రద్దు చేయండి</string>
+  <string name="contact_selection_list__header_signal_users">సిగ్నల్వ వనరులు  </string>
+  <string name="contact_selection_list__header_other">అన్ని పరిచయాలు</string>
+  <string name="contact_selection_list__unknown_contact">....కు కొత్త సందేశం</string>
+  <!--contact_selection-->
+  <string name="contact_selection__menu_finished">పూర్తయ్యింది</string>
+  <!--refreshing push directory from menu-->
+  <string name="push_directory__menu_refresh">సంప్రదింపు జాబితా తాజాకరించు</string>
+  <!--conversation_callable_insecure-->
+  <string name="conversation_callable_insecure__menu_call">కాల్</string>
+  <!--conversation_callable_secure-->
+  <string name="conversation_callable_secure__menu_call">సిగ్నల్ కాల్</string>
+  <!--conversation_context-->
+  <string name="conversation_context__menu_message_details">సందేశం వివరాలు</string>
+  <string name="conversation_context__menu_copy_text">మూల గ్రంథము అనుకరణ</string>
+  <string name="conversation_context__menu_delete_message">సందేశాన్ని తొలగించు</string>
+  <string name="conversation_context__menu_forward_message">సందేశాన్ని బదలాయించు</string>
+  <string name="conversation_context__menu_resend_message">సందేశాన్ని తిరిగి పంపు</string>
+  <!--conversation_context_image-->
+  <string name="conversation_context_image__save_attachment">జత పరిచినది దాచి పెట్టు </string>
+  <!--conversation_expiring_off-->
+  <string name="conversation_expiring_off__disappearing_messages">అదృశ్యమవుతున్న  సందేశాలు</string>
+  <!--conversation_expiring_on-->
+  <string name="menu_conversation_expiring_on__messages_expiring"> సమయ పరిమితి లేని సందేశాలు </string>
+  <!--conversation_insecure-->
+  <string name="conversation_insecure__invite">ఆహ్వానించండి</string>
+  <!--conversation_insecure_no_push-->
+  <string name="conversation_insecure__security">భద్రతా</string>
+  <!--conversation_list_batch-->
+  <string name="conversation_list_batch__menu_delete_selected">ఎంపిక తొలగించు</string>
+  <string name="conversation_list_batch__menu_select_all">అన్నీ ఎంచుకో</string>
+  <string name="conversation_list_batch_archive__menu_archive_selected">ఎంపిక చేసినది భద్రపరుచు</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">ఎంపిక చేసినది బయటపెట్టు</string>
+  <!--conversation_list-->
+  <string name="conversation_list__menu_search">వెతకండి</string>
+  <!--conversation_list_item_view-->
+  <string name="conversation_list_item_view__contact_photo_image">పరిచయ ఫొటొ చిత్రం</string>
+  <string name="conversation_list_item_view__error_alert">లోపం వల్ల హెచ్చరిక</string>
+  <string name="conversation_list_item_view__archived">భద్రపరచబడినది</string>
+  <!--conversation_list_fragment-->
+  <string name="conversation_list_fragment__fab_content_description">కొత్త సంభాషణ</string>
+  <!--conversation_secure_verified-->
+  <string name="conversation_secure_verified__menu_reset_secure_session">సురక్షిత  భాగాన్ని మరలా మార్చు</string>
+  <!--conversation_muted-->
+  <string name="conversation_muted__unmute">మ్యూట్ తీసివేయి</string>
+  <!--conversation_unmuted-->
+  <string name="conversation_unmuted__mute_notifications">  ప్రకటనలను మ్యూట్లో ఉంచు</string>
+  <!--conversation-->
+  <string name="conversation__menu_add_attachment">అటాచ్మెంట్ జోడించండి</string>
+  <string name="conversation__menu_edit_group">సమూహాన్ని మార్చు</string>
+  <string name="conversation__menu_leave_group">సమూహాన్ని వదులు</string>
+  <string name="conversation__menu_delete_thread">సంభాషణను తొలగించు</string>
+  <string name="conversation__menu_view_all_media">అన్ని మీడియా</string>
+  <string name="conversation__menu_conversation_settings"> సంభాషణ అమరికలు </string>
+  <!--conversation_popup-->
+  <string name="conversation_popup__menu_expand_popup">పాపప్ విస్తరించు </string>
+  <!--conversation_callable_insecure-->
+  <string name="conversation_add_to_contacts__menu_add_to_contacts">పరిచయాలకు జోడించండి</string>
+  <!--conversation_group_options-->
+  <string name="convesation_group_options__recipients_list">గ్రహీతల జాబితా</string>
+  <string name="conversation_group_options__delivery">చేర్చుట</string>
+  <string name="conversation_group_options__conversation">సంభాషణ</string>
+  <string name="conversation_group_options__broadcast">ప్రసారం </string>
+  <!--key_scanning-->
+  <string name="key_scanning__menu_compare">సరిపోల్చండి</string>
+  <string name="key_scanning__menu_display_your_qr_code">మీ QR కోడ్ ప్రదర్శించు</string>
+  <string name="key_scanning__menu_scan_contacts_qr_code">సంభాషించు వారి QR సంకేత భాషని అన్వేషించు </string>
+  <!--text_secure_normal-->
+  <string name="text_secure_normal__menu_new_message">కొత్త సందేశం</string>
+  <string name="text_secure_normal__menu_new_group">కొత్త సమూహం</string>
+  <string name="text_secure_normal__menu_settings">అమరికలు</string>
+  <string name="text_secure_normal__menu_clear_passphrase">బందించు</string>
+  <string name="text_secure_normal__mark_all_as_read">మార్క్ చేసినవన్నీ చదవండి </string>
+  <string name="text_secure_normal__invite_friends">స్నేహితులను ఆహ్వానించండి</string>
+  <string name="text_secure_normal__help">సహాయం</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">తాత్కాలికంగా  భద్రపరుచు  ప్రదేశముకు నకలు చెయ్యి</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard"> తాత్కాలికంగా  భద్రపరుచు ప్రదేశముతో పోల్చడం</string>
+  <!--reminder_header-->
+  <string name="reminder_header_outdated_build">మీ సిగ్నల్ అనువాదముకు కాలం చెల్లినది</string>
+  <plurals name="reminder_header_outdated_build_details">
+    <item quantity="one">మీ సిగ్నల్ వెర్షన్ను యొక్క  గడువు 1 రోజులో తీరిపోతోంది. ఇటీవల వెర్షన్ కు  నవీకరించడానికి నొక్కండి.</item>
+    <item quantity="other">మీ సిగ్నల్ వెర్షన్ను యొక్క  గడువు %d రోజులలో తీరిపోతోంది. ఇటీవల వెర్షన్ కు  నవీకరించడానికి నొక్కండి.</item>
+  </plurals>
+  <string name="reminder_header_outdated_build_details_today">మీ సిగ్నల్ వెర్షన్ను యొక్క  గడువు నేటితో తీరిపోయింది. ఇటీవల వెర్షన్ కు  నవీకరించడానికి నొక్కండి.</string>
+  <string name="reminder_header_expired_build">మీ సిగ్నల్ అనువాదము గడువు ముగిసింది!</string>
+  <string name="reminder_header_expired_build_button">నవీకరించు</string>
+  <string name="reminder_header_sms_default_title">డిఫాల్ట్ ఎస్ఎంఎస్ అప్లికేషన్ ని  ఉపయోగించండి</string>
+  <string name="reminder_header_sms_default_text">సిగ్నల్ ను  మీ వైఫల్య  యస్  యం యస్ అనువర్తనంగా చేయడానికి నొక్కండి.</string>
+  <string name="reminder_header_sms_default_button">సెట్</string>
+  <string name="reminder_header_sms_import_title">వ్యవస్థ ఎస్సెమ్మెస్ దిగుమతి</string>
+  <string name="reminder_header_sms_import_button">దిగుమతి</string>
+  <string name="reminder_header_push_title">  సిగ్నల్ సందేశాలు మరియు కాల్స్ ని   ప్రారంభించు</string>
+  <string name="reminder_header_push_button">చెతనం</string>
+  <string name="reminder_header_invite_title">సిగ్నల్‌కు  ఆహ్వానించండి</string>
+  <string name="reminder_header_invite_text">  మీ సంభాషణను %1$s తో  తదుపరి స్థాయికి  తీసికొనివెళ్లు</string>
+  <string name="reminder_header_invite_button">ఆహ్వానించండి</string>
+  <string name="reminder_header_share_title">మీ స్నేహితులను ఆహ్వానించండి!</string>
+  <string name="reminder_header_share_text"> ఎక్కువ మంది స్నేహితులు సిగ్నల్ ఉపయోగిస్తె అది   మరింత మెరుగుపడుతుంది</string>
+  <string name="reminder_header_share_button">పంచు</string>
+  <string name="reminder_header_close_button">మూసివెయ్యి</string>
+  <!--media_preview-->
+  <string name="media_preview__save_title">భద్రపరుచు</string>
+  <string name="media_preview__forward_title">బదలాయించు</string>
+  <string name="media_preview__all_media_title">అన్ని మీడియా</string>
+  <!--media_overview-->
+  <string name="media_overview__save_all">అన్నిటిని భధ్రపరచు</string>
+  <!--media_preview_activity-->
+  <string name="media_preview_activity__media_content_description">మీడియా ప్రివ్యూ</string>
+  <!--new_conversation_activity-->
+  <string name="new_conversation_activity__refresh">తాజాకరించు</string>
+  <!--redphone_audio_popup_menu-->
+  <string name="redphone_audio_popup_menu__handset">హ్యాండ్సెట్</string>
+  <string name="redphone_audio_popup_menu__headset">హెడ్సెట్</string>
+  <string name="redphone_audio_popup_menu__speaker">స్పీకర్</string>
+  <!--Trimmer-->
+  <string name="trimmer__deleting">తొలగిపోతున్నాయ్</string>
+  <string name="trimmer__deleting_old_messages">పాత సందేశాలను తొలగిస్తోంది ...</string>
+  <string name="trimmer__old_messages_successfully_deleted">పాత సందేశాలు విజయవంతంగా తొలగించబడ్డాయి </string>
+  <!--transport_selection_list_item-->
+  <string name="transport_selection_list_item__transport_icon">రవాణా చిహ్నం</string>
+  <!--EOF-->
+</resources>

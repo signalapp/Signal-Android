@@ -61,6 +61,23 @@ public class ContactAccessor {
     return instance;
   }
 
+  public boolean isSystemContact(Context context, String number) {
+    Uri      uri        = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(number));
+    String[] projection = new String[]{PhoneLookup.DISPLAY_NAME, PhoneLookup.LOOKUP_KEY,
+                                       PhoneLookup._ID, PhoneLookup.NUMBER};
+    Cursor   cursor     = context.getContentResolver().query(uri, projection, null, null, null);
+
+    try {
+      if (cursor != null && cursor.moveToFirst()) {
+        return true;
+      }
+    } finally {
+      if (cursor != null) cursor.close();
+    }
+
+    return false;
+  }
+
   public Collection<ContactData> getContactsWithPush(Context context) {
     final ContentResolver resolver = context.getContentResolver();
     final String[] inProjection    = new String[]{PhoneLookup._ID, PhoneLookup.DISPLAY_NAME};

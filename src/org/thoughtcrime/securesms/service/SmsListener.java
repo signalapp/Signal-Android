@@ -154,6 +154,7 @@ public class SmsListener extends BroadcastReceiver {
     } else if ((intent.getAction().equals(SMS_DELIVERED_ACTION)) ||
                (intent.getAction().equals(SMS_RECEIVED_ACTION)) && isRelevant(context, intent))
     {
+      Log.w("SmsListener", "Constructing SmsReceiveJob...");
       Object[] pdus           = (Object[]) intent.getExtras().get("pdus");
       int      subscriptionId = intent.getExtras().getInt("subscription", -1);
 

@@ -133,6 +133,7 @@
   <string name="ConversationActivity_quick_camera_unavailable">Камера недоступна</string>
   <string name="ConversationActivity_unable_to_record_audio">Не вдалося записати аудіо!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Немає програми на вашому пристрої, що може відкрити це посилання.</string>
+  <!--ConversationAdapter-->
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Деталі повідомлення</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Тип зв\'язку: %1$s\nНадіслано/Одержано: %2$s</string>
@@ -226,6 +227,7 @@
   <string name="DeviceListItem_linked_s">Приєднано %s</string>
   <string name="DeviceListItem_last_active_s">Останній активний %s</string>
   <string name="DeviceListItem_today">Сьогодні</string>
+  <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Поділитися із</string>
   <!--ExperienceUpgradeActivity-->
@@ -253,7 +255,6 @@
   <string name="GiphyFragmentPagerAdapter_stickers">Наліпки</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Нова група</string>
-  <string name="GroupCreateActivity_actionbar_update_title">Оновити групу</string>
   <string name="GroupCreateActivity_group_name_hint">Назва групи</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Нова MMS група</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Ви обрали контакт, який не підтримує групи Signal, тому це буде MMS група.</string>
@@ -262,7 +263,6 @@
   <string name="GroupCreateActivity_contacts_no_members">Для вашої групи потрібна щонайменше одна особа!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Один із учасників групи має номер, що не може бути прочитаний належним чином. Будь ласка, виправте або вилучіть той контакт і спробуйте ще раз.</string>
   <string name="GroupCreateActivity_avatar_content_description">Зображення групи</string>
-  <string name="GroupCreateActivity_menu_create_title">Створити групу</string>
   <string name="GroupCreateActivity_creating_group">Створення %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Оновлення %1$s...</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Не вдалося додати %1$s, тому що вони не є користувачами Signal.</string>
@@ -331,6 +331,8 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Не вдалося надіслати</string>
   <string name="MessageDetailsRecipient_new_safety_number">Новий номер безпеки</string>
+  <!--MessageRetrievalService-->
+  <string name="MessageRetrievalService_signal">Signal</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Помилка при збереженні MMS!</string>
   <!--- NotificationBarManager-->
@@ -441,12 +443,6 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Номер, що ви
 ввели (%s) хибний.
  </string>
-  <string name="RegistrationActivity_unsupported">Не підтримується</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Вибачте, 
-на вашому пристрої неможливий обмін даними через інтернет. Пристрої з версією Android до 
-4.0 повинні мати зареєстрований акаунт Google. Для пристроїв із версією Android 4.0 і вище 
-акаунт Google необов\'язковий, проте необхідна наявність Play Store.
- </string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
 Переконайтеся, що це ваш номер! На цей номер буде відправлено перевірочне SMS.
  </string>
@@ -540,6 +536,10 @@
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Торкніться, щоб відкрити, чи торкніться замка, щоб закрити.</string>
   <string name="KeyCachingService_passphrase_cached">Signal розблоковано</string>
   <string name="KeyCachingService_lock">Заблокувати фразою-паролем</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">Ви</string>
+  <string name="MediaPreviewActivity_cant_display">Не вдалося показати це зображення для попереднього перегляду</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Непідтримуваний тип медіа</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d нових повідомлень у %2$d розмовах</string>
   <string name="MessageNotifier_most_recent_from_s">Останнє від: %1$s</string>
@@ -552,12 +552,23 @@
   <string name="MessageNotifier_mark_read">Позначити як прочитане</string>
   <string name="MessageNotifier_media_message">Медіа повідомлення</string>
   <string name="MessageNotifier_reply">Відповісти</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Параметри MMS для вашого телефону потрібно вказати вручну.</string>
+  <string name="MmsPreferencesFragment__enabled">Увімкнено </string>
+  <string name="MmsPreferencesFragment__disabled">Вимкнено</string>
+  <string name="MmsPreferencesFragment__not_set">Не встановлено</string>
+  <string name="MmsPreferencesFragment__invalid_uri">Введений текст не є дійсним URI</string>
+  <string name="MmsPreferencesFragment__invalid_host">Введений текст не є дійсною адресою сервера</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Швидка відповідь неможлива, коли Signal заблоковано!</string>
   <string name="QuickResponseService_problem_sending_message">Проблема під час надсилання повідомлення!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Нове повідомлення</string>
+  <!--VideoPlayer-->
+  <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Можливо, ви хочете перевірити ваш номер безпеки із цим контактом.</string>
+  <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Зображення</string>
   <string name="attachment_type_selector__image_description">Зображення</string>
@@ -703,17 +714,9 @@
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Переглянути всю розмову</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_images">Немає зображень</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">ПІДТВЕРДИТИ</string>
   <string name="message_recipients_list_item__resend">НАДІСЛАТИ ЗНОВУ</string>
-  <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Параметри MMS для вашого телефону потрібно вказати вручну.</string>
-  <string name="MmsPreferencesFragment__enabled">Увімкнено </string>
-  <string name="MmsPreferencesFragment__disabled">Вимкнено</string>
-  <string name="MmsPreferencesFragment__not_set">Не встановлено</string>
-  <string name="MmsPreferencesFragment__invalid_uri">Введений текст не є дійсним URI</string>
-  <string name="MmsPreferencesFragment__invalid_host">Введений текст не є дійсною адресою сервера</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s приєднується до групи.</item>
@@ -823,7 +826,7 @@ Signal не дочекався перевірочного SMS.
   <string name="recipients_panel__to"><small>Введіть ім\'я або номер</small></string>
   <string name="recipients_panel__add_members">Додати учасників</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Якщо ви хочете перевірити безпеку вашого наскрізного шифрування із %s, порівняйте номер вище із номером на його/її пристрої. Інший спосіб, ви можете сканувати код на його/її телефоні, або попростити його/її сканувати ваш код. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Дізнатися більше про перевірку номерів безпеки</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Якщо ви хочете перевірити безпеку вашого наскрізного шифрування із %s, порівняйте номер вище із номером на його/її пристрої. Інший спосіб, ви можете сканувати код на його/її телефоні, або попростити його/її сканувати ваш код. <a href="https://whispersystems.org/redirect/safety-numbers">Дізнатися більше про перевірку номерів безпеки</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Натисніть, щоб сканувати</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Поділитися номером безпеки</string>
@@ -845,8 +848,6 @@ Signal не дочекався перевірочного SMS.
   <string name="AndroidManifest__verify_safety_number">Перевірити номер безпеки</string>
   <string name="AndroidManifest__log_submit">Відіслати журнал відлагодження</string>
   <string name="AndroidManifest__media_preview">Попередній перегляд медіа</string>
-  <string name="AndroidManifest__media_overview">Всі зображення</string>
-  <string name="AndroidManifest__media_overview_named">Усі зображення із %1$s</string>
   <string name="AndroidManifest__message_details">Деталі повідомлення</string>
   <string name="AndroidManifest__linked_devices">Прив\'язані пристрої</string>
   <string name="AndroidManifest__invite_friends">Запросити друзів</string>
@@ -1034,10 +1035,8 @@ Signal не дочекався перевірочного SMS.
   <string name="conversation_unmuted__mute_notifications">Вимкнути звук сповіщень</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Додати вкладення</string>
-  <string name="conversation__menu_update_group">Оновити групу</string>
   <string name="conversation__menu_leave_group">Вийти з групи</string>
   <string name="conversation__menu_delete_thread">Видалити розмову</string>
-  <string name="conversation__menu_view_media">Всі зображення</string>
   <string name="conversation__menu_conversation_settings">Налаштування розмови</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Розгорнути спливаюче вікно</string>
@@ -1090,18 +1089,13 @@ Signal не дочекався перевірочного SMS.
   <string name="reminder_header_share_text">Що більше друзів використовують Signal, то кращим він стає.</string>
   <string name="reminder_header_share_button">ПОДІЛИТИСЯ</string>
   <string name="reminder_header_close_button">ЗАКРИТИ</string>
-  <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">Ви</string>
-  <string name="MediaPreviewActivity_cant_display">Не вдалося показати це зображення для попереднього перегляду</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Непідтримуваний тип медіа</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Зберегти</string>
   <string name="media_preview__forward_title">Переслати</string>
-  <string name="media_preview__overview_title">Всі зображення</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Зберегти все</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">Попередній перегляд зображення</string>
+  <string name="media_preview_activity__media_content_description">Попередній перегляд медіа</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Оновити</string>
   <!--redphone_audio_popup_menu-->

@@ -34,6 +34,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.WeakHashMap;
+import java.util.concurrent.ExecutionException;
 
 public class Recipient {
 
@@ -89,7 +90,7 @@ public class Recipient {
       }
 
       @Override
-      public void onFailure(Throwable error) {
+      public void onFailure(ExecutionException error) {
         Log.w(TAG, error);
       }
     });

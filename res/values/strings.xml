@@ -146,6 +146,12 @@
     <string name="ConversationActivity_error_sending_voice_message">Error sending voice message</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">There is no app available to handle this link on your device.</string>
 
+    <!-- ConversationAdapter -->
+    <plurals name="ConversationAdapter_n_unread_messages">
+        <item quantity="one">%d unread message</item>
+        <item quantity="other">%d unread messages</item>
+    </plurals>
+
     <!-- ConversationFragment -->
     <string name="ConversationFragment_message_details">Message details</string>
     <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nSent/Received: %2$s</string>
@@ -245,6 +251,10 @@
     <string name="DeviceListItem_last_active_s">Last active %s</string>
     <string name="DeviceListItem_today">Today</string>
 
+    <!-- DozeReminder -->
+    <string name="DozeReminder_optimize_for_missing_play_services">Optimize for missing Play Services</string>
+    <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">This device does not support Play Services. Tap to disable system battery optimizations that prevent Signal from retrieving messages while inactive.</string>
+
     <!-- ShareActivity -->
     <string name="ShareActivity_share_with">Share with</string>
 
@@ -279,7 +289,7 @@
     
     <!-- GroupCreateActivity -->
     <string name="GroupCreateActivity_actionbar_title">New group</string>
-    <string name="GroupCreateActivity_actionbar_update_title">Update group</string>
+    <string name="GroupCreateActivity_actionbar_edit_title">Edit group</string>
     <string name="GroupCreateActivity_group_name_hint">Group name</string>
     <string name="GroupCreateActivity_actionbar_mms_title">New MMS group</string>
     <string name="GroupCreateActivity_contacts_dont_support_push">You have selected a contact that doesn\'t support Signal groups, so this group will be MMS.</string>
@@ -288,7 +298,7 @@
     <string name="GroupCreateActivity_contacts_no_members">You need at least one person in your group!</string>
     <string name="GroupCreateActivity_contacts_invalid_number">One of the members of your group has a number that can\'t be read correctly. Please fix or remove that contact and try again.</string>
     <string name="GroupCreateActivity_avatar_content_description">Group avatar</string>
-    <string name="GroupCreateActivity_menu_create_title">Create group</string>
+    <string name="GroupCreateActivity_menu_apply_button">Apply</string>
     <string name="GroupCreateActivity_creating_group">Creating %1$s&#8230;</string>
     <string name="GroupCreateActivity_updating_group">Updating %1$s...</string>
     <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Couldn\'t add %1$s because they\'re not a Signal user.</string>
@@ -363,6 +373,10 @@
     <!-- MessageDetailsRecipient -->
     <string name="MessageDetailsRecipient_failed_to_send">Failed to send</string>
     <string name="MessageDetailsRecipient_new_safety_number">New safety number</string>
+
+    <!-- MessageRetrievalService -->
+    <string name="MessageRetrievalService_signal">Signal</string>
+    <string name="MessageRetrievalService_background_connection_enabled">Background connection enabled</string>
 
     <!-- MmsDownloader -->
     <string name="MmsDownloader_error_storing_mms">Error storing MMS!</string>
@@ -495,17 +509,16 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">The number you
         specified (%s) is invalid.
     </string>
-    <string name="RegistrationActivity_unsupported">Unsupported</string>
-    <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Sorry,
-        this device is not supported for data messaging. Devices running versions of Android older
-        than 4.0 must have a registered Google Account. Devices running Android 4.0 or newer do not
-        require a Google account, but must have the Play Store app installed.
-    </string>
     <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
         Double-check that this is your number! We\'re about to verify it with an SMS.
     </string>
     <string name="RegistrationActivity_continue">Continue</string>
     <string name="RegistrationActivity_edit">Edit</string>
+    <string name="RegistrationActivity_missing_google_play_services">Missing Google Play Services</string>
+    <string name="RegistrationActivity_this_device_is_missing_google_play_services">This device is missing Google Play Services. You can still use Signal, but this configuration may result in reduced reliability or performance.\n\nIf you are not an advanced user, are not running an aftermarket Android ROM, or believe that you are seeing this in error, please contact support@whispersystems.org for help trouble shooting.</string>
+    <string name="RegistrationActivity_i_understand">I understand</string>
+    <string name="RegistrationActivity_play_services_error">Play Services Error</string>
+    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services is updating or temporarily unavailable. Please try again.</string>
 
     <!-- RegistrationProblemsActivity -->
     <string name="RegistrationProblemsActivity_possible_problems">Possible problems</string>
@@ -619,6 +632,12 @@
     <string name="KeyCachingService_passphrase_cached">Signal is unlocked</string>
     <string name="KeyCachingService_lock">Lock with passphrase</string>
 
+    <!-- MediaPreviewActivity -->
+    <string name="MediaPreviewActivity_you">You</string>
+    <string name="MediaPreviewActivity_cant_display">Failed to preview this image</string>
+    <string name="MediaPreviewActivity_unssuported_media_type">Unsupported media type</string>
+    <string name="MediaPreviewActivity_draft">Draft</string>
+
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages in %2$d conversations</string>
     <string name="MessageNotifier_most_recent_from_s">Most recent from: %1$s</string>
@@ -633,6 +652,14 @@
     <string name="MessageNotifier_media_message">Media message</string>
     <string name="MessageNotifier_reply">Reply</string>
 
+    <!-- MmsPreferencesFragment -->
+    <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Manual MMS settings are required for your phone.</string>
+    <string name="MmsPreferencesFragment__enabled">Enabled</string>
+    <string name="MmsPreferencesFragment__disabled">Disabled</string>
+    <string name="MmsPreferencesFragment__not_set">Not set</string>
+    <string name="MmsPreferencesFragment__invalid_uri">The text entered was not a valid URI</string>
+    <string name="MmsPreferencesFragment__invalid_host">The text entered was not a valid host</string>
+
     <!-- QuickResponseService -->
     <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Quick response unavailable when Signal is locked!</string>
     <string name="QuickResponseService_problem_sending_message">Problem sending message!</string>
@@ -640,6 +667,18 @@
     <!-- SingleRecipientNotificationBuilder -->
     <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
     <string name="SingleRecipientNotificationBuilder_new_message">New message</string>
+
+    <!-- VideoPlayer -->
+    <string name="VideoPlayer_error_playing_video">Error playing video</string>
+
+    <!-- WebRtcCallScreen -->
+    <string name="WebRtcCallScreen_new_safety_numbers">The safety number for your conversation with %1$s has changed. This could either mean that someone is trying to intercept your communication, or that %2$s simply re-installed Signal.</string>
+    <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">You may wish to verify your safety number with this contact.</string>
+    <string name="WebRtcCallScreen_new_safety_numbers_title">New safety numbers</string>
+
+    <!-- WebRtcCallControls -->
+    <string name="WebRtcCallControls_tap_to_enable_your_video">Tap to enable your video</string>
+
 
     <!-- attachment_type_selector -->
     <string name="attachment_type_selector__image">Image</string>
@@ -826,19 +865,11 @@
     <string name="load_more_header__see_full_conversation">See full conversation</string>
 
     <!-- media_overview_activity -->
-    <string name="media_overview_activity__no_images">No images</string>
+    <string name="media_overview_activity__no_media">No media</string>
 
     <!-- message_recipients_list_item -->
     <string name="message_recipients_list_item__verify">VERIFY</string>
     <string name="message_recipients_list_item__resend">RESEND</string>
-
-    <!-- MmsPreferencesFragment -->
-    <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Manual MMS settings are required for your phone.</string>
-    <string name="MmsPreferencesFragment__enabled">Enabled</string>
-    <string name="MmsPreferencesFragment__disabled">Disabled</string>
-    <string name="MmsPreferencesFragment__not_set">Not set</string>
-    <string name="MmsPreferencesFragment__invalid_uri">The text entered was not a valid URI</string>
-    <string name="MmsPreferencesFragment__invalid_host">The text entered was not a valid host</string>
 
     <!-- GroupUtil -->
     <plurals name="GroupUtil_joined_the_group">
@@ -988,8 +1019,8 @@
     <string name="AndroidManifest__verify_safety_number">Verify safety number</string>
     <string name="AndroidManifest__log_submit">Submit debug log</string>
     <string name="AndroidManifest__media_preview">Media preview</string>
-    <string name="AndroidManifest__media_overview">All images</string>
-    <string name="AndroidManifest__media_overview_named">All images with %1$s</string>
+    <string name="AndroidManifest__all_media">All media</string>
+    <string name="AndroidManifest__all_media_named">All media with %1$s</string>
     <string name="AndroidManifest__message_details">Message details</string>
     <string name="AndroidManifest__linked_devices">Linked devices</string>
     <string name="AndroidManifest__invite_friends">Invite friends</string>
@@ -1129,6 +1160,12 @@
     <string name="preferences_chats__message_trimming">Message trimming</string>
     <string name="preferences_advanced__use_system_emoji">Use system emoji</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Disable Signal\'s built-in emoji support</string>
+    <string name="preferences_advanced__video_calling_beta">Video calling beta</string>
+    <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Support for next-generation video and voice calls when enabled by both parties. This feature is in beta.</string>
+    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Relay all calls through the Signal server to avoid revealing your IP address to your contact. Enabling will reduce call quality.</string>
+    <string name="preferences_advanced__always_relay_calls">Always relay calls</string>
+
+
 
     <!-- **************************************** -->
     <!-- menus -->
@@ -1203,10 +1240,10 @@
 
     <!-- conversation -->
     <string name="conversation__menu_add_attachment">Add attachment</string>
-    <string name="conversation__menu_update_group">Update group</string>
+    <string name="conversation__menu_edit_group">Edit group</string>
     <string name="conversation__menu_leave_group">Leave group</string>
     <string name="conversation__menu_delete_thread">Delete conversation</string>
-    <string name="conversation__menu_view_media">All images</string>
+    <string name="conversation__menu_view_all_media">All media</string>
     <string name="conversation__menu_conversation_settings">Conversation settings</string>
 
     <!-- conversation_popup -->
@@ -1266,21 +1303,16 @@
     <string name="reminder_header_share_button">SHARE</string>
     <string name="reminder_header_close_button">CLOSE</string>
 
-    <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">You</string>
-    <string name="MediaPreviewActivity_cant_display">Failed to preview this image</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">Unsupported media type</string>
-
     <!-- media_preview -->
     <string name="media_preview__save_title">Save</string>
     <string name="media_preview__forward_title">Forward</string>
-    <string name="media_preview__overview_title">All images</string>
+    <string name="media_preview__all_media_title">All media</string>
 
     <!-- media_overview -->
     <string name="media_overview__save_all">Save all</string>
 
     <!-- media_preview_activity -->
-    <string name="media_preview_activity__image_content_description">Image preview</string>
+    <string name="media_preview_activity__media_content_description">Media preview</string>
 
     <!-- new_conversation_activity -->
     <string name="new_conversation_activity__refresh">Refresh</string>
@@ -1296,7 +1328,6 @@
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
-
 
     <!-- EOF -->
 

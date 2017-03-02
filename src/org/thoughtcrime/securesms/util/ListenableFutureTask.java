@@ -22,6 +22,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executor;
 import java.util.concurrent.FutureTask;
 
 public class ListenableFutureTask<V> extends FutureTask<V> {
@@ -31,14 +32,23 @@ public class ListenableFutureTask<V> extends FutureTask<V> {
   @Nullable
   private final Object identifier;
 
+  @Nullable
+  private final Executor callbackExecutor;
+
   public ListenableFutureTask(Callable<V> callable) {
     this(callable, null);
   }
 
   public ListenableFutureTask(Callable<V> callable, @Nullable Object identifier) {
-    super(callable);
-    this.identifier = identifier;
+    this(callable, identifier, null);
   }
+
+  public ListenableFutureTask(Callable<V> callable, @Nullable Object identifier, @Nullable Executor callbackExecutor) {
+    super(callable);
+    this.identifier       = identifier;
+    this.callbackExecutor = callbackExecutor;
+  }
+
 
   public ListenableFutureTask(final V result) {
     this(result, null);
@@ -51,7 +61,8 @@ public class ListenableFutureTask<V> extends FutureTask<V> {
         return result;
       }
     });
-    this.identifier = identifier;
+    this.identifier       = identifier;
+    this.callbackExecutor = null;
     this.run();
   }
 
@@ -73,9 +84,17 @@ public class ListenableFutureTask<V> extends FutureTask<V> {
   }
 
   private void callback() {
-    for (FutureTaskListener<V> listener : listeners) {
-      callback(listener);
-    }
+    Runnable callbackRunnable = new Runnable() {
+      @Override
+      public void run() {
+        for (FutureTaskListener<V> listener : listeners) {
+          callback(listener);
+        }
+      }
+    };
+
+    if (callbackExecutor == null) callbackRunnable.run();
+    else                          callbackExecutor.execute(callbackRunnable);
   }
 
   private void callback(FutureTaskListener<V> listener) {

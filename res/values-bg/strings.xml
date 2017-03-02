@@ -131,6 +131,11 @@
   <string name="ConversationActivity_unable_to_record_audio">Не може да бъде записано аудио!</string>
   <string name="ConversationActivity_error_sending_voice_message">Грешка при изпращането на гласово съобщение</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Нямате инсталирано приложение, което да може да използва тази препратка.</string>
+  <!--ConversationAdapter-->
+  <plurals name="ConversationAdapter_n_unread_messages">
+    <item quantity="one">%d непрочетено съобщение</item>
+    <item quantity="other">%d непрочетени съобщения</item>
+  </plurals>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Информация за съобщението</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Транспорт: %1$s\nИзпратени/Получени: %2$s</string>
@@ -221,6 +226,7 @@
   <string name="DeviceListItem_linked_s">Свързан с %s</string>
   <string name="DeviceListItem_last_active_s">Последна активност %s</string>
   <string name="DeviceListItem_today">Днес</string>
+  <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Споделяне с</string>
   <!--ExperienceUpgradeActivity-->
@@ -249,7 +255,7 @@
   <string name="GiphyFragmentPagerAdapter_stickers">Стикери</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Нова група</string>
-  <string name="GroupCreateActivity_actionbar_update_title">Промени група</string>
+  <string name="GroupCreateActivity_actionbar_edit_title">Промяна на групата</string>
   <string name="GroupCreateActivity_group_name_hint">Име на групата</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Нова MMS група</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Избрахте контакт, който не поддържа Сигнал групи, така че групата ще бъде MMS.</string>
@@ -258,7 +264,7 @@
   <string name="GroupCreateActivity_contacts_no_members">Трябва да добавите поне един човек в групата си!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Един от членовете на групата има номер, който не може да бъде разпознат правилно. Моля, оправи номера на контакта или го премахни.</string>
   <string name="GroupCreateActivity_avatar_content_description">Аватар за групата</string>
-  <string name="GroupCreateActivity_menu_create_title">Създай група</string>
+  <string name="GroupCreateActivity_menu_apply_button">Изпълни</string>
   <string name="GroupCreateActivity_creating_group">Създаване на %1$s...</string>
   <string name="GroupCreateActivity_updating_group">Обновяване %1$s...</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Неуспешно добавяне на %1$s, защото те не са потребители на Сигнал.</string>
@@ -322,6 +328,8 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Неуспешно изпращане</string>
   <string name="MessageDetailsRecipient_new_safety_number">Нови числа за сигурност</string>
+  <!--MessageRetrievalService-->
+  <string name="MessageRetrievalService_signal">Сигнал</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Грешка при съхраняване на MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Грешка при свързването с MMS доставчика</string>
@@ -436,10 +444,6 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="RegistrationActivity_invalid_number">Невалиден номер</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Избраният номер
 (%s) е невалиден.</string>
-  <string name="RegistrationActivity_unsupported">Тази функция не се поддържа</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">За съжаление,
-това устройство не поддържа съобщения през интернет. Устройства използващи Android по-ранна версия от 4.0 трябва да са регистрирани с Google. Устройства използващи Android 4.0 или по-нова версия не е нужно
-да са регистрирани с Google, но трябва да имат Play Store инсталиран.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
 Проверете, че това е Вашия номер! Следва да го проверим чрез SMS.</string>
   <string name="RegistrationActivity_continue">Продължи</string>
@@ -539,6 +543,11 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Натиснете, за да отворите или натиснете катинара, за да затворите.</string>
   <string name="KeyCachingService_passphrase_cached">Сигнал е отключен</string>
   <string name="KeyCachingService_lock">Заключи паролата</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">Ти</string>
+  <string name="MediaPreviewActivity_cant_display">Неуспешен преглед на това изображение</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Неподдържан медиен формат.</string>
+  <string name="MediaPreviewActivity_draft">Чернова</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d нови съобщения в %2$d чата</string>
   <string name="MessageNotifier_most_recent_from_s">Най-скорошно от: %1$s</string>
@@ -552,12 +561,27 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="MessageNotifier_mark_read">Прочетено</string>
   <string name="MessageNotifier_media_message">Медийно съобщение</string>
   <string name="MessageNotifier_reply">Отговори</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Налагат се ръчни MMS настройки за твоя телефон.</string>
+  <string name="MmsPreferencesFragment__enabled">Разрешени</string>
+  <string name="MmsPreferencesFragment__disabled">Спрени</string>
+  <string name="MmsPreferencesFragment__not_set">Не е избрано</string>
+  <string name="MmsPreferencesFragment__invalid_uri">Въведеният текст не е валиден адрес</string>
+  <string name="MmsPreferencesFragment__invalid_host">Въведеният текст не валиден host</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Бърз отговор не е възможен, когато Сигнал е заключен!</string>
   <string name="QuickResponseService_problem_sending_message">Проблем при изпрашане на съобщение!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Сигнал</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ново съобщение</string>
+  <!--VideoPlayer-->
+  <string name="VideoPlayer_error_playing_video">Грешка при пускане на видео</string>
+  <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_new_safety_numbers">Числата за сигурност за разговора с %1$s са променени. Това означава, че или някой се опитва да прехване куминикацията Ви, или че %2$s е преинсталирал Signal.</string>
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Може да желаете да проверите числата за сигурност с този контакт.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers_title">Нови числа за сигурност</string>
+  <!--WebRtcCallControls-->
+  <string name="WebRtcCallControls_tap_to_enable_your_video">Натиснете, за да активирате видео</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Изображение</string>
   <string name="attachment_type_selector__image_description">Изображение</string>
@@ -701,17 +725,10 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Разгледай целия разговор</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_images">Няма изображения</string>
+  <string name="media_overview_activity__no_media">Без медия</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">ПОТВЪРДИ</string>
   <string name="message_recipients_list_item__resend">ИЗПРАТИ ПОВТОРНО</string>
-  <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Налагат се ръчни MMS настройки за твоя телефон.</string>
-  <string name="MmsPreferencesFragment__enabled">Разрешени</string>
-  <string name="MmsPreferencesFragment__disabled">Спрени</string>
-  <string name="MmsPreferencesFragment__not_set">Не е избрано</string>
-  <string name="MmsPreferencesFragment__invalid_uri">Въведеният текст не е валиден адрес</string>
-  <string name="MmsPreferencesFragment__invalid_host">Въведеният текст не валиден host</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s се присъедини към групата.</item>
@@ -807,7 +824,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="recipients_panel__to"><small>Въведи име или номер</small></string>
   <string name="recipients_panel__add_members">Добавяне на членове</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ако желаете да проверите сигурността на вашта комуникация с %s, сравнете числата изписани по-горе с числата на тяхното устройство. Или, можете да сканирате техния код или те да сканират Вашия. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Научете повече за проверката за сигурност с числа</a>.]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ако желаете да проверите сигурността на вашта комуникация с %s, сравнете числата изписани по-горе с числата на тяхното устройство. Или, можете да сканирате техния код или те да сканират Вашия. <a href="https://whispersystems.org/redirect/safety-numbers">Научете повече за проверката за сигурност с числа</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Натисните за сканиране</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Споделяне на числа за сигурност</string>
@@ -829,8 +846,8 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="AndroidManifest__verify_safety_number">Проверка на числата за сигурност</string>
   <string name="AndroidManifest__log_submit">Изпрати доклад</string>
   <string name="AndroidManifest__media_preview">Преглед на медията</string>
-  <string name="AndroidManifest__media_overview">Всички изображения</string>
-  <string name="AndroidManifest__media_overview_named">Всички изображения с %1$s</string>
+  <string name="AndroidManifest__all_media">Всяка медия</string>
+  <string name="AndroidManifest__all_media_named">Всяка медия с %1$s</string>
   <string name="AndroidManifest__message_details">Информация за съобщението</string>
   <string name="AndroidManifest__linked_devices">Свързани устройства</string>
   <string name="AndroidManifest__invite_friends">Поканете приятели</string>
@@ -963,6 +980,10 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="preferences_chats__message_trimming">Съкращаване на съобщенията</string>
   <string name="preferences_advanced__use_system_emoji">Използвай вградените emoji-та</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Деактивирай вградена в Сигнал подръжка на emoji-та</string>
+  <string name="preferences_advanced__video_calling_beta">Видео обаждане бета</string>
+  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Поддръжка за следващото поколение видео и аудио обаждания, когато е активирано и от двете страни. Тази функционалонст е в бета режим.</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Прехвърляне на всички обаждания през Signal сървърва, за да се прикрие IP адресът Ви от контатктът Ви. Активирането ще намали качеството на връзката.</string>
+  <string name="preferences_advanced__always_relay_calls">Винаги да се използва прехвърляне на обажданията</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1017,10 +1038,10 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="conversation_unmuted__mute_notifications">Тих режим за известия</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Прикачи файл</string>
-  <string name="conversation__menu_update_group">Промени група</string>
+  <string name="conversation__menu_edit_group">Промяна на групата</string>
   <string name="conversation__menu_leave_group">Напусни група</string>
   <string name="conversation__menu_delete_thread">Изтрий разговор</string>
-  <string name="conversation__menu_view_media">Всички изображения</string>
+  <string name="conversation__menu_view_all_media">Всяка медия</string>
   <string name="conversation__menu_conversation_settings">Настройки на разговора</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Разшири диалога</string>
@@ -1072,18 +1093,14 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="reminder_header_share_text">Колкото повече приятели използват Сигнал, толкова по-добър става той.</string>
   <string name="reminder_header_share_button">СПОДЕЛЯНЕ</string>
   <string name="reminder_header_close_button">ЗАТВОРИ</string>
-  <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">Ти</string>
-  <string name="MediaPreviewActivity_cant_display">Неуспешен преглед на това изображение</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Неподдържан медиен формат.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Запази</string>
   <string name="media_preview__forward_title">Препращане</string>
-  <string name="media_preview__overview_title">Всички изображения</string>
+  <string name="media_preview__all_media_title">Всяка медия</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Запази всички</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">Преглед на изображението</string>
+  <string name="media_preview_activity__media_content_description">Преглед на медията</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Освежи</string>
   <!--redphone_audio_popup_menu-->

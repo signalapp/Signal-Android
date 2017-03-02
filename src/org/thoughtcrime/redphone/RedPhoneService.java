@@ -18,20 +18,26 @@
 package org.thoughtcrime.redphone;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
+import android.os.Bundle;
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.IBinder;
+import android.os.ResultReceiver;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.WorkerThread;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
 
+import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.redphone.audio.IncomingRinger;
 import org.thoughtcrime.redphone.audio.OutgoingRinger;
 import org.thoughtcrime.redphone.call.CallManager;
@@ -40,8 +46,7 @@ import org.thoughtcrime.redphone.call.InitiatingCallManager;
 import org.thoughtcrime.redphone.call.LockManager;
 import org.thoughtcrime.redphone.call.ResponderCallManager;
 import org.thoughtcrime.redphone.crypto.zrtp.SASInfo;
-import org.thoughtcrime.redphone.pstn.CallStateView;
-import org.thoughtcrime.redphone.pstn.IncomingPstnCallListener;
+import org.thoughtcrime.redphone.pstn.IncomingPstnCallReceiver;
 import org.thoughtcrime.redphone.signaling.OtpCounterProvider;
 import org.thoughtcrime.redphone.signaling.SessionDescriptor;
 import org.thoughtcrime.redphone.signaling.SignalingException;
@@ -56,15 +61,17 @@ import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.signalservice.internal.util.concurrent.SettableFuture;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.concurrent.ExecutionException;
 
-import de.greenrobot.event.EventBus;
 
 /**
  * The major entry point for all of the heavy lifting associated with
@@ -75,7 +82,7 @@ import de.greenrobot.event.EventBus;
  * @author Moxie Marlinspike
  *
  */
-public class RedPhoneService extends Service implements CallStateListener, CallStateView {
+public class RedPhoneService extends Service implements CallStateListener {
 
   private static final String TAG = RedPhoneService.class.getSimpleName();
 
@@ -88,6 +95,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   public static final String EXTRA_REMOTE_NUMBER      = "remote_number";
   public static final String EXTRA_SESSION_DESCRIPTOR = "session_descriptor";
   public static final String EXTRA_MUTE               = "mute_value";
+  public static final String EXTRA_RESULT_RECEIVER    = "result_receiver";
 
   public static final String ACTION_INCOMING_CALL = "org.thoughtcrime.redphone.RedPhoneService.INCOMING_CALL";
   public static final String ACTION_OUTGOING_CALL = "org.thoughtcrime.redphone.RedPhoneService.OUTGOING_CALL";
@@ -95,6 +103,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   public static final String ACTION_DENY_CALL     = "org.thoughtcrime.redphone.RedPhoneService.DENY_CALL";
   public static final String ACTION_HANGUP_CALL   = "org.thoughtcrime.redphone.RedPhoneService.HANGUP";
   public static final String ACTION_SET_MUTE      = "org.thoughtcrime.redphone.RedPhoneService.SET_MUTE";
+  public static final String ACTION_IS_IN_CALL_QUERY = "org.thoughtcrime.redphone.RedPhoneService.IS_IN_CALL";
 
   private final Handler serviceHandler       = new Handler();
 
@@ -108,7 +117,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   private LockManager                     lockManager;
   private UncaughtExceptionHandlerManager uncaughtExceptionHandlerManager;
 
-  private IncomingPstnCallListener pstnCallListener;
+  private IncomingPstnCallReceiver pstnCallListener;
 
   @Override
   public void onCreate() {
@@ -150,6 +159,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
     else if (intent.getAction().equals(ACTION_DENY_CALL))                 handleDenyCall(intent);
     else if (intent.getAction().equals(ACTION_HANGUP_CALL))               handleHangupCall(intent);
     else if (intent.getAction().equals(ACTION_SET_MUTE))                  handleSetMute(intent);
+    else if (intent.getAction().equals(ACTION_IS_IN_CALL_QUERY))          handleIsInCallQuery(intent);
     else Log.w(TAG, "Unhandled intent: " + intent.getAction() + ", state: " + state);
   }
 
@@ -161,7 +171,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   }
 
   private void initializePstnCallListener() {
-    pstnCallListener = new IncomingPstnCallListener(this);
+    pstnCallListener = new IncomingPstnCallReceiver();
     registerReceiver(pstnCallListener, new IntentFilter("android.intent.action.PHONE_STATE"));
   }
 
@@ -279,12 +289,22 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
     }
   }
 
+  private void handleIsInCallQuery(Intent intent) {
+    ResultReceiver resultReceiver = intent.getParcelableExtra(EXTRA_RESULT_RECEIVER);
+
+    if (resultReceiver != null) {
+      resultReceiver.send(state != STATE_IDLE ? 1 : 0, null);
+    }
+  }
+
   /// Helper Methods
 
   private boolean isBusy() {
     TelephonyManager telephonyManager = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
-    return ((currentCallManager != null && state != STATE_IDLE) ||
-             telephonyManager.getCallState() != TelephonyManager.CALL_STATE_IDLE);
+
+    return ((currentCallManager != null && state != STATE_IDLE)                 ||
+           telephonyManager.getCallState() != TelephonyManager.CALL_STATE_IDLE) ||
+           WebRtcCallService.isCallActive(this);
   }
 
   private boolean isIdle() {
@@ -528,22 +548,6 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
     }
   }
 
-  @Override
-  public boolean isInCall() {
-    switch(state) {
-      case STATE_IDLE:
-        return false;
-      case STATE_DIALING:
-      case STATE_RINGING:
-      case STATE_ANSWERING:
-      case STATE_CONNECTED:
-        return true;
-      default:
-        Log.e(TAG, "Unhandled call state: " + state);
-        return false;
-    }
-  }
-
   private static class ProximityLockRelease implements Thread.UncaughtExceptionHandler {
     private final LockManager lockManager;
 
@@ -556,5 +560,48 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
       Log.d(TAG, "Uncaught exception - releasing proximity lock", throwable);
       lockManager.updatePhoneState(LockManager.PhoneState.IDLE);
     }
+  }
+
+  @WorkerThread
+  public static boolean isCallActive(Context context) {
+    Log.w(TAG, "isCallActive()");
+
+    HandlerThread handlerThread = null;
+
+    try {
+      handlerThread = new HandlerThread("webrtc-callback");
+      handlerThread.start();
+
+      final SettableFuture<Boolean> future = new SettableFuture<>();
+
+      ResultReceiver resultReceiver = new ResultReceiver(new Handler(handlerThread.getLooper())) {
+        protected void onReceiveResult(int resultCode, Bundle resultData) {
+          Log.w(TAG, "onReceiveResult");
+          future.set(resultCode == 1);
+        }
+      };
+
+      Intent intent = new Intent(context, RedPhoneService.class);
+      intent.setAction(ACTION_IS_IN_CALL_QUERY);
+      intent.putExtra(EXTRA_RESULT_RECEIVER, resultReceiver);
+
+      context.startService(intent);
+
+      Log.w(TAG, "Blocking on result...");
+      return future.get();
+    } catch (InterruptedException | ExecutionException e) {
+      Log.w(TAG, e);
+      return false;
+    } finally {
+      if (handlerThread != null) handlerThread.quit();
+    }
+  }
+
+  public static void isCallActive(Context context, ResultReceiver resultReceiver) {
+    Intent intent = new Intent(context, RedPhoneService.class);
+    intent.setAction(ACTION_IS_IN_CALL_QUERY);
+    intent.putExtra(EXTRA_RESULT_RECEIVER, resultReceiver);
+
+    context.startService(intent);
   }
 }

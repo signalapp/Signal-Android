@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.StrictMode;
 import android.os.StrictMode.ThreadPolicy;
 import android.os.StrictMode.VmPolicy;
@@ -42,6 +43,7 @@ import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.webrtc.PeerConnectionFactory;
 import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.jobqueue.dependencies.DependencyInjector;
 import org.whispersystems.jobqueue.requirements.NetworkRequirementProvider;
@@ -85,6 +87,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     initializeSignedPreKeyCheck();
     initializePeriodicTasks();
     initializeCircumvention();
+
+    if (Build.VERSION.SDK_INT >= 11) {
+      PeerConnectionFactory.initializeAndroidGlobals(this, true, true, true);
+    }
   }
 
   @Override

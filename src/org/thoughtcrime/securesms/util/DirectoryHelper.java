@@ -40,8 +40,8 @@ public class DirectoryHelper {
 
   public static class UserCapabilities {
 
-    public static final UserCapabilities UNKNOWN     = new UserCapabilities(Capability.UNKNOWN, Capability.UNKNOWN);
-    public static final UserCapabilities UNSUPPORTED = new UserCapabilities(Capability.UNSUPPORTED, Capability.UNSUPPORTED);
+    public static final UserCapabilities UNKNOWN     = new UserCapabilities(Capability.UNKNOWN, Capability.UNKNOWN, Capability.UNKNOWN);
+    public static final UserCapabilities UNSUPPORTED = new UserCapabilities(Capability.UNSUPPORTED, Capability.UNSUPPORTED, Capability.UNSUPPORTED);
 
     public enum Capability {
       UNKNOWN, SUPPORTED, UNSUPPORTED
@@ -49,10 +49,12 @@ public class DirectoryHelper {
 
     private final Capability text;
     private final Capability voice;
+    private final Capability video;
 
-    public UserCapabilities(Capability text, Capability voice) {
+    public UserCapabilities(Capability text, Capability voice, Capability video) {
       this.text  = text;
       this.voice = voice;
+      this.video = video;
     }
 
     public Capability getTextCapability() {
@@ -61,6 +63,10 @@ public class DirectoryHelper {
 
     public Capability getVoiceCapability() {
       return voice;
+    }
+
+    public Capability getVideoCapability() {
+      return video;
     }
   }
 
@@ -131,7 +137,9 @@ public class DirectoryHelper {
           notifyNewUsers(context, masterSecret, result.getNewUsers());
         }
 
-        return new UserCapabilities(Capability.SUPPORTED, details.get().isVoice() ? Capability.SUPPORTED : Capability.UNSUPPORTED);
+        return new UserCapabilities(Capability.SUPPORTED,
+                                    details.get().isVoice() ? Capability.SUPPORTED : Capability.UNSUPPORTED,
+                                    details.get().isVideo() ? Capability.SUPPORTED : Capability.UNSUPPORTED);
       } else {
         ContactTokenDetails absent = new ContactTokenDetails();
         absent.setNumber(number);
@@ -161,7 +169,7 @@ public class DirectoryHelper {
       }
 
       if (recipients.isGroupRecipient()) {
-        return new UserCapabilities(Capability.SUPPORTED, Capability.UNSUPPORTED);
+        return new UserCapabilities(Capability.SUPPORTED, Capability.UNSUPPORTED, Capability.UNSUPPORTED);
       }
 
       final String number = recipients.getPrimaryRecipient().getNumber();
@@ -173,9 +181,11 @@ public class DirectoryHelper {
       String  e164number  = Util.canonicalizeNumber(context, number);
       boolean secureText  = TextSecureDirectory.getInstance(context).isSecureTextSupported(e164number);
       boolean secureVoice = TextSecureDirectory.getInstance(context).isSecureVoiceSupported(e164number);
+      boolean secureVideo = TextSecureDirectory.getInstance(context).isSecureVideoSupported(e164number);
 
       return new UserCapabilities(secureText  ? Capability.SUPPORTED : Capability.UNSUPPORTED,
-                                  secureVoice ? Capability.SUPPORTED : Capability.UNSUPPORTED);
+                                  secureVoice ? Capability.SUPPORTED : Capability.UNSUPPORTED,
+                                  secureVideo ? Capability.SUPPORTED : Capability.UNSUPPORTED);
 
     } catch (InvalidNumberException e) {
       Log.w(TAG, e);

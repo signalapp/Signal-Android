@@ -233,6 +233,10 @@ public class SmsDatabase extends MessagingDatabase {
     updateTypeBitmask(id, Types.BASE_TYPE_MASK, Types.BASE_SENT_TYPE | (isSecure ? Types.PUSH_MESSAGE_BIT | Types.SECURE_MESSAGE_BIT : 0));
   }
 
+  public void markAsMissedCall(long id) {
+    updateTypeBitmask(id, Types.TOTAL_MASK, Types.MISSED_CALL_TYPE);
+  }
+
   public void markExpireStarted(long id) {
     markExpireStarted(id, System.currentTimeMillis());
   }
@@ -379,6 +383,7 @@ public class SmsDatabase extends MessagingDatabase {
             database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {cursor.getLong(cursor.getColumnIndexOrThrow(ID)) + ""});
 
             DatabaseFactory.getThreadDatabase(context).updateReadState(threadId);
+            DatabaseFactory.getThreadDatabase(context).setLastSeen(threadId);
             notifyConversationListeners(threadId);
           }
         } catch (InvalidNumberException e) {
@@ -499,8 +504,9 @@ public class SmsDatabase extends MessagingDatabase {
       type |= Types.END_SESSION_BIT;
     }
 
-    if (message.isPush())           type |= Types.PUSH_MESSAGE_BIT;
-    if (message.isIdentityUpdate()) type |= Types.KEY_EXCHANGE_IDENTITY_UPDATE_BIT;
+    if (message.isPush())                type |= Types.PUSH_MESSAGE_BIT;
+    if (message.isIdentityUpdate())      type |= Types.KEY_EXCHANGE_IDENTITY_UPDATE_BIT;
+    if (message.isContentPreKeyBundle()) type |= Types.KEY_EXCHANGE_CONTENT_FORMAT;
 
     Recipients recipients;
 
@@ -562,6 +568,10 @@ public class SmsDatabase extends MessagingDatabase {
         DatabaseFactory.getThreadDatabase(context).update(threadId, true);
       }
 
+      if (message.getSubscriptionId() != -1) {
+        DatabaseFactory.getRecipientPreferenceDatabase(context).setDefaultSubscriptionId(recipients, message.getSubscriptionId());
+      }
+
       notifyConversationListeners(threadId);
       jobManager.add(new TrimThreadJob(context, threadId));
 
@@ -604,6 +614,7 @@ public class SmsDatabase extends MessagingDatabase {
     long           messageId = db.insert(TABLE_NAME, ADDRESS, contentValues);
 
     DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+    DatabaseFactory.getThreadDatabase(context).setLastSeen(threadId);
     notifyConversationListeners(threadId);
     jobManager.add(new TrimThreadJob(context, threadId));
 

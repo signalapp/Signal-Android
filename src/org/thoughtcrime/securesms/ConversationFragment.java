@@ -87,16 +87,19 @@ public class ConversationFragment extends Fragment
 
   private ConversationFragmentListener listener;
 
-  private MasterSecret masterSecret;
-  private Recipients   recipients;
-  private long         threadId;
-  private ActionMode   actionMode;
-  private Locale       locale;
-  private RecyclerView list;
-  private View         loadMoreView;
-  private View         composeDivider;
-  private View         scrollToBottomButton;
-  private TextView     scrollDateHeader;
+  private MasterSecret                masterSecret;
+  private Recipients                  recipients;
+  private long                        threadId;
+  private long                        lastSeen;
+  private boolean                     firstLoad;
+  private ActionMode                  actionMode;
+  private Locale                      locale;
+  private RecyclerView                list;
+  private RecyclerView.ItemDecoration lastSeenDecoration;
+  private View                        loadMoreView;
+  private View                        composeDivider;
+  private View                        scrollToBottomButton;
+  private TextView                    scrollDateHeader;
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -180,6 +183,8 @@ public class ConversationFragment extends Fragment
   private void initializeResources() {
     this.recipients     = RecipientFactory.getRecipientsForIds(getActivity(), getActivity().getIntent().getLongArrayExtra("recipients"), true);
     this.threadId       = this.getActivity().getIntent().getLongExtra("thread_id", -1);
+    this.lastSeen       = this.getActivity().getIntent().getLongExtra(ConversationActivity.LAST_SEEN_EXTRA, -1);
+    this.firstLoad      = true;
 
     OnScrollListener scrollListener = new ConversationScrollListener(getActivity());
     list.addOnScrollListener(scrollListener);
@@ -191,6 +196,7 @@ public class ConversationFragment extends Fragment
       list.setAdapter(adapter);
       list.addItemDecoration(new StickyHeaderDecoration(adapter, false, false));
 
+      setLastSeen(lastSeen);
       getLoaderManager().restartLoader(0, Bundle.EMPTY, this);
     }
   }
@@ -257,6 +263,16 @@ public class ConversationFragment extends Fragment
 
   public void scrollToBottom() {
     list.smoothScrollToPosition(0);
+  }
+
+  public void setLastSeen(long lastSeen) {
+    this.lastSeen = lastSeen;
+    if (lastSeenDecoration != null) {
+      list.removeItemDecoration(lastSeenDecoration);
+    }
+
+    lastSeenDecoration = new ConversationAdapter.LastSeenHeader(getListAdapter(), lastSeen);
+    list.addItemDecoration(lastSeenDecoration);
   }
 
   private void handleCopyMessage(final Set<MessageRecord> messageRecords) {
@@ -340,6 +356,7 @@ public class ConversationFragment extends Fragment
     intent.putExtra(MessageDetailsActivity.THREAD_ID_EXTRA, threadId);
     intent.putExtra(MessageDetailsActivity.TYPE_EXTRA, message.isMms() ? MmsSmsDatabase.MMS_TRANSPORT : MmsSmsDatabase.SMS_TRANSPORT);
     intent.putExtra(MessageDetailsActivity.RECIPIENTS_IDS_EXTRA, recipients.getIds());
+    intent.putExtra(MessageDetailsActivity.IS_PUSH_GROUP_EXTRA, (!recipients.isSingleRecipient() || recipients.isGroupRecipient()) && message.isPush());
     startActivity(intent);
   }
 
@@ -389,18 +406,38 @@ public class ConversationFragment extends Fragment
 
   @Override
   public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-    return new ConversationLoader(getActivity(), threadId, args.getLong("limit", PARTIAL_CONVERSATION_LIMIT));
+    return new ConversationLoader(getActivity(), threadId, args.getLong("limit", PARTIAL_CONVERSATION_LIMIT), lastSeen);
   }
 
+
   @Override
-  public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+  public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
+    Log.w(TAG, "onLoadFinished");
+    ConversationLoader loader = (ConversationLoader)cursorLoader;
+
     if (list.getAdapter() != null) {
-      if (cursor.getCount() >= PARTIAL_CONVERSATION_LIMIT && ((ConversationLoader)loader).hasLimit()) {
+      if (cursor.getCount() >= PARTIAL_CONVERSATION_LIMIT && loader.hasLimit()) {
         getListAdapter().setFooterView(loadMoreView);
       } else {
         getListAdapter().setFooterView(null);
       }
+
+      if (lastSeen == -1) {
+        setLastSeen(loader.getLastSeen());
+      }
+
       getListAdapter().changeCursor(cursor);
+
+      int lastSeenPosition = getListAdapter().findLastSeenPosition(lastSeen);
+
+      if (firstLoad) {
+        scrollToLastSeenPosition(lastSeenPosition);
+        firstLoad = false;
+      }
+
+      if (lastSeenPosition <= 0) {
+        setLastSeen(0);
+      }
     }
   }
 
@@ -408,6 +445,17 @@ public class ConversationFragment extends Fragment
   public void onLoaderReset(Loader<Cursor> arg0) {
     if (list.getAdapter() != null) {
       getListAdapter().changeCursor(null);
+    }
+  }
+
+  private void scrollToLastSeenPosition(final int lastSeenPosition) {
+    if (lastSeenPosition > 0) {
+      list.post(new Runnable() {
+        @Override
+        public void run() {
+          ((LinearLayoutManager)list.getLayoutManager()).scrollToPositionWithOffset(lastSeenPosition, list.getHeight());
+        }
+      });
     }
   }
 

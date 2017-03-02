@@ -27,7 +27,7 @@
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Απεγγραφή από τα μηνύματα και τις κλήσεις Signal...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Απενεργοποίηση των μηνυμάτων και των κλήσεων Signal;</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Απενεργοποίηση μηνυμάτων και κλήσεων του Signal με απεγγραφή από τον διακομιστή. Θα χρειαστεί να επανεγγράψεις τον αριθμό τηλεφώνου σου για να τα ξαναχρησιμοποιήσεις στο μέλλον.</string>
-  <string name="ApplicationPreferencesActivity_error_connecting_to_server">Σφάλμα κατά τη σύνδεση με τον διακομιστή!</string>
+  <string name="ApplicationPreferencesActivity_error_connecting_to_server">Πρόβλημα με τη σύνδεση με τον διακομιστή!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">Ενεργοποίηση SMS</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Πάτησε για αλλαγή της προεπιλεγμένης εφαρμογής για SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Απενεργοποίηση SMS</string>
@@ -58,7 +58,7 @@
   <string name="AttachmentTypeSelectorAdapter_audio">Ήχος</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Επαφή</string>
   <!--AudioSlidePlayer-->
-  <string name="AudioSlidePlayer_error_playing_audio">Σφάλμα κατά την αναπαραγωγή ήχου!</string>
+  <string name="AudioSlidePlayer_error_playing_audio">Πρόβλημα με την αναπαραγωγή ήχου!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Μπλοκαρισμένες επαφές</string>
   <!--CallScreen-->
@@ -76,7 +76,7 @@
   <string name="ConversationItem_error_not_delivered">Δεν παραδόθηκε</string>
   <string name="ConversationItem_view_secure_media_question">Προβολή ασφαλών πολυμέσων;</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Αυτό το πολυμέσω έχει αποθηκευτεί σε μια κρυπτογραφημένη βάση δεδομένων. Δυστυχώς, για να το δεις με ένα εξωτερικό πρόγραμμα προϋποθέτει να αποκρυπτογραφηθεί προσωρινά και να γραφτεί στην μνήμη. Είσαι σίγουρος/η πως θέλεις να το κάνεις αυτό;</string>
-  <string name="ConversationItem_error_received_stale_key_exchange_message">Σφάλμα, λάβαμε παλιό μήνυμα ανταλλαγής κλειδιών.</string>
+  <string name="ConversationItem_error_received_stale_key_exchange_message">Πρόβλημα, λάβαμε παλιό μήνυμα ανταλλαγής κλειδιών.</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Ελήφθη μήνυμα ανταλλαγής κλειδιών. πάτα για να επεξεργαστεί.</string>
   <string name="ConversationItem_group_action_left">Ο/Η %1$s έφυγε απο την ομάδα.</string>
   <string name="ConversationItem_click_for_details">Πάτησε για λεπτομέρειες</string>
@@ -96,7 +96,7 @@
   <string name="ConversationActivity_add_attachment">Προσθήκη συνημμένου</string>
   <string name="ConversationActivity_select_contact_info">Επιλογή πληροφοριών επαφής</string>
   <string name="ConversationActivity_compose_message">Νέο μήνυμα</string>
-  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Συγγνώμη, υπήρξε σφάλμα κατά τη σύναψη αρχείου.</string>
+  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Συγγνώμη, υπήρξε πρόβλημα με τη σύναψη αρχείου.</string>
   <string name="ConversationActivity_the_gif_you_selected_was_too_big">Το gif που επέλεξες ήταν πολύ μεγάλο!</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Συγγνώμη, το επιλεγμένο βίντεο υπερβαίνει το μέγιστο μέγεθος μηνύματος  (%1$skB).</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Συγγνώμη, το επιλεγμένο αρχείο ήχου υπερβαίνει το μέγιστο μέγεθος μηνύματος (%1$skB).</string>
@@ -119,6 +119,7 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Ας χρησιμοποιήσουμε το Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Ας χρησιμοποιήσουμε αυτό για να συνομιλήσουμε: %1$s</string>
+  <string name="ConversationActivity_error_leaving_group">Πρόβλημα με την αποχώρηση από την ομάδα</string>
   <string name="ConversationActivity_mms_not_supported_title">Τα MMS δεν υποστηρίζονται</string>
   <string name="ConversationActivity_mms_not_supported_message">Αυτό το μήνυμα δεν μπορεί να αποσταλεί δεδομένου ότι φορέας σου δεν υποστηρίζει MMS.</string>
   <string name="ConversationActivity_specify_recipient">Παρακαλώ επιλέξτε μια επαφή</string>
@@ -130,6 +131,7 @@
   <string name="ConversationActivity_unable_to_record_audio">Η ηχογράφηση απέτυχε!</string>
   <string name="ConversationActivity_error_sending_voice_message">Πρόβλημα με την αποστολή φωνητικού μηνύματος</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Δεν υπάρχει διαθέσιμη εφαρμογή στην συσκευή σου που να μπορεί να διαχειριστεί αυτό τον σύνδεσμο.</string>
+  <!--ConversationAdapter-->
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Στοιχεία μηνύματος</string>
   <string name="ConversationFragment_transport_s_sent_received_s"> Μέσο μεταφοράς:  %1$s
@@ -152,8 +154,8 @@
     <item quantity="other">Αποθηκεύοντας τα %1$d πολυμέσα στην μνήμη θα επιτρέψει σε άλλες εφαρμογές στην συσκευή σου να έχουν πρόσβαση σε αυτά. \n\nΣυνέχεια;</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
-    <item quantity="one">Σφάλμα κατά την αποθήκευση του συνημμένου στην μνήμη!</item>
-    <item quantity="other">Σφάλμα κατά την αποθήκευση των συνημμένων στην μνήμη!</item>
+    <item quantity="one">Πρόβλημα με την αποθήκευση του συνημμένου στην μνήμη!</item>
+    <item quantity="other">Πρόβλημα με την αποθήκευση των συνημμένων στην μνήμη!</item>
   </plurals>
   <plurals name="ConversationFragment_files_saved_successfully">
     <item quantity="one">Το αρχείο αποθηκεύτηκε με επιτυχία.</item>
@@ -210,6 +212,7 @@
   <string name="DateUtils_just_now">Μόλις τώρα</string>
   <string name="DateUtils_minutes_ago">%d λεπ</string>
   <string name="DateUtils_today">Σήμερα</string>
+  <string name="DateUtils_yesterday">Χθες</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Αποσύνδεση του \'%s\';</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Αποσυνδέοντας αυτή την συσκευή, αυτή δεν θα μπορεί να λάβει ή να στείλει μηνύματα πια.</string>
@@ -223,6 +226,7 @@
   <string name="DeviceListItem_linked_s">Συνδεδεμένο %s</string>
   <string name="DeviceListItem_last_active_s">Τελευταία ενεργός/η %s</string>
   <string name="DeviceListItem_today">Σήμερα</string>
+  <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Διαμοιρασμός με</string>
   <!--ExperienceUpgradeActivity-->
@@ -238,8 +242,8 @@
   <string name="ExportFragment_cancel">Ακύρωση</string>
   <string name="ExportFragment_exporting">Εξαγωγή</string>
   <string name="ExportFragment_exporting_plaintext_to_storage">Εξαγωγή των αποκρυπτογραφημένων δεδομένων στον αποθηκευτικό χώρο...</string>
-  <string name="ExportFragment_error_unable_to_write_to_storage">Σφάλμα, δεν μπόρεσε να γίνει εγγραφή στον αποθηκευτικό χώρο.</string>
-  <string name="ExportFragment_error_while_writing_to_storage">Σφάλμα κατά την εγγραφή στον αποθηκευτικό χώρο.</string>
+  <string name="ExportFragment_error_unable_to_write_to_storage">Πρόβλημα, δεν μπόρεσε να γίνει εγγραφή στον αποθηκευτικό χώρο.</string>
+  <string name="ExportFragment_error_while_writing_to_storage">Πρόβλημα με την εγγραφή στον αποθηκευτικό χώρο.</string>
   <string name="ExportFragment_export_successful">Επιτυχία εξαγωγής.</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Μόνιμη αποτυχία επικοινωνίας του Signal!</string>
@@ -251,17 +255,15 @@
   <string name="GiphyFragmentPagerAdapter_stickers">Αυτοκόλλητα</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Νέα ομάδα</string>
-  <string name="GroupCreateActivity_actionbar_update_title">Ενημέρωση ομάδας</string>
   <string name="GroupCreateActivity_group_name_hint">Όνομα ομάδας</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Νέα ομάδα MMS</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Επέλεξες μια επαφή που δεν υποστηρίζει ομάδες Signal, οπότε αυτή η ομάδα θα είναι MMS.</string>
   <string name="GroupCreateActivity_youre_not_registered_for_signal">Δεν έχεις εγγραφτεί για μηνύματα και κλήσεις του Signal, οπότε οι ομάδες του Signal έχουν απενεργοποιηθεί. Παρακαλώ προσπάθησε να εγγραφτείς στις Ρυθμίσεις &gt; Προχωρημένες Ρυθμίσεις.</string>
-  <string name="GroupCreateActivity_contacts_mms_exception">Προέκυψε ένα απρόσμενο σφάλμα και η δημιουργία ομάδας απέτυχε.</string>
+  <string name="GroupCreateActivity_contacts_mms_exception">Προέκυψε ένα απρόσμενο πρόβλημα και η δημιουργία ομάδας απέτυχε.</string>
   <string name="GroupCreateActivity_contacts_no_members">Χρειάζεται τουλάχιστον ένα άτομο στην ομάδα σου
 !</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Υπάρχει ένα μέλος στην ομάδα, του οποίου ο αριθμός δεν μπορεί να διαβαστεί σωστά. Παρακαλώ διόρθωσέ το ή αφαίρεσε την επαφή και δοκίμασε ξανά. </string>
   <string name="GroupCreateActivity_avatar_content_description">Εικόνα ομάδας</string>
-  <string name="GroupCreateActivity_menu_create_title">Δημιουργία ομάδα</string>
   <string name="GroupCreateActivity_creating_group">Δημιουργία %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Ενημέρωση %1$s...</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Δεν μπορέσαμε να προσθέσουμε τον/την %1$s επειδή δεν είναι χρήστης του Signal.</string>
@@ -292,7 +294,7 @@
   <string name="ImportFragment_importing">Γίνεται εισαγωγή</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">Το κρυπτογραφημένο αντίγραφο ασφαλείας εισάγεται...</string>
   <string name="ImportFragment_no_plaintext_backup_found">Δε βρέθηκε μη κρυπτογραφημένο αντίγραφο ασφαλείας!</string>
-  <string name="ImportFragment_error_importing_backup">Σφάλμα κατά την εισαγωγή αντιγράφων ασφαλείας!</string>
+  <string name="ImportFragment_error_importing_backup">Πρόβλημα με την εισαγωγή αντιγράφων ασφαλείας!</string>
   <string name="ImportFragment_import_complete">Η εισαγωγή ολοκληρώθηκε!</string>
   <string name="ImportFragment_restoring">Επαναφορά</string>
   <string name="ImportFragment_restoring_encrypted_backup">Επαναφορά κρυπτογραφημένου αντίγραφου ασφαλείας...</string>
@@ -326,8 +328,10 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Αποτυχία αποστολής</string>
   <string name="MessageDetailsRecipient_new_safety_number">Νέος κωδικός ασφαλείας</string>
+  <!--MessageRetrievalService-->
+  <string name="MessageRetrievalService_signal">Signal</string>
   <!--MmsDownloader-->
-  <string name="MmsDownloader_error_storing_mms">Σφάλμα κατά την αποθήκευση MMS! </string>
+  <string name="MmsDownloader_error_storing_mms">Πρόβλημα με την αποθήκευση MMS! </string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Πρόβλημα σύνδεσης στον πάροχο για τα MMS</string>
   <string name="MmsDownloader_error_reading_mms_settings">Πρόβλημα στην ανάκτηση ρυθμίσεων από τον πάροχο για τα MMS </string>
   <!--- NotificationBarManager-->
@@ -342,6 +346,8 @@
   <string name="NotificationBarManager__cancel_call">Ακύρωση κλήσης</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Μήνυμα Πολυμέσων</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">Λήψη του μηνύματος MMS</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Πρόβλημα με τη λήψη μηνύματος MMS, πάτα για να ξαναδοκιμάσουμε</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Λήφθηκε ένα μήνυμα που είναι κρυπτογραφημένο με μια παλιά έκδοση του Signal που δεν υποστηρίζεται πια. Παρακαλώ ζήτησε από τον αποστολέα να αναβαθμίσει στην πιο πρόσφατη έκδοση και να ξαναστείλει το μήνυμα.</string>
   <string name="MessageRecord_left_group">Αποχωρήσατε από την ομάδα.</string>
@@ -405,6 +411,7 @@
   <string name="RecipientPreferenceActivity_disabled">Απενεργοποιημένο</string>
   <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Διαθέσιμο, εφόσον ένα μήνυμα έχει αποσταλεί ή παραληφθεί</string>
   <!--RecipientProvider-->
+  <string name="RecipientProvider_unnamed_group">Ανώνυμη ομάδα</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">Απάντηση</string>
   <string name="RedPhone_ending_call">Τερματισμός κλήσης</string>
@@ -436,9 +443,6 @@
   <string name="RegistrationActivity_invalid_number">Άκυρος αριθμός</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Ο αριθμός που καθορίσατε (%s)
 δεν είναι έγκυρος.</string>
-  <string name="RegistrationActivity_unsupported">Δεν υποστηρίζεται</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Συγγνώμη,
-αυτή η συσκευή δεν υποστηρίζεται για μηνύματα δεδομένων. Οι συσκευές που τρέχουν εκδόσεις Android παλαιότερες από 4.0 πρέπει να έχουν λογαριασμό Google. Συσκευές που τρέχουν Android 4.0 ή νεότερο δε χρειάζονται λογαριασμό Google, αλλά θα πρέπει να έχουν εγκατεστημένο το Play Store.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
 Έλεγξε ξανά ότι αυτός είναι ο αριθμός σου! Είμαστε έτοιμοι να τον επιβεβαιώσουμε με SMS.</string>
   <string name="RegistrationActivity_continue">Συνέχεια</string>
@@ -512,16 +516,16 @@
   <string name="MessageDisplayHelper_decrypting_please_wait">Αποκρυπτογράφηση, παρακαλώ περίμενε...</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Το μήνυμα κρυπτογραφήθηκε για μη υπάρχον session</string>
   <!--EncryptingSmsDatabase-->
-  <string name="EncryptingSmsDatabase_error_decrypting_message">Σφάλμα αποκρυπτογράφησης του μηνύματος.</string>
+  <string name="EncryptingSmsDatabase_error_decrypting_message">Πρόβλημα αποκρυπτογράφησης του μηνύματος.</string>
   <!--ThreadDatabase-->
-  <string name="ThreadDatabase_error_decrypting_message">Σφάλμα αποκρυπτογράφησης του μηνύματος.</string>
+  <string name="ThreadDatabase_error_decrypting_message">Πρόβλημα αποκρυπτογράφησης του μηνύματος.</string>
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server">Σύνδεση στο διακομιστή MMS...</string>
   <string name="MmsDatabase_downloading_mms">Γίνεται λήψη MMS...</string>
   <string name="MmsDatabase_mms_download_failed">Η λήψη MMS απέτυχε!</string>
   <string name="MmsDatabase_downloading">Γίνεται λήψη...</string>
   <string name="MmsDatabase_mms_pending_download">Πάτησε και ρύθμισε τα MMS για να συνεχιστεί η λήψη.</string>
-  <string name="MmsDatabase_error_decrypting_message">Σφάλμα αποκρυπτογράφησης του μηνύματος.</string>
+  <string name="MmsDatabase_error_decrypting_message">Πρόβλημα αποκρυπτογράφησης του μηνύματος.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Γίνεται αποκρυπτογράφηση MMS, παρακαλώ περίμενε...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">MMS μήνυμα με πρόβλημα στην κρυπτογράφησή του</string>
@@ -538,6 +542,10 @@
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Πάτησε για άνοιγμα, ή πάτησε την κλειδαριά για κλείσιμο.</string>
   <string name="KeyCachingService_passphrase_cached">Το Signal ξεκλειδώθηκε</string>
   <string name="KeyCachingService_lock">Κλείδωμα με συνθηματικό</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">Εσύ</string>
+  <string name="MediaPreviewActivity_cant_display">Αποτυχία προβολής αυτής της εικόνας</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Μη υποστηριζόμενος τύπος μέσων ενημέρωσης</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d νέα μηνύματα σε %2$d συζητήσεις</string>
   <string name="MessageNotifier_most_recent_from_s">Τελευταίο μήνυμα από: %1$s</string>
@@ -546,17 +554,29 @@
   <string name="MessageNotifier_no_subject">(Χωρίς θέμα)</string>
   <string name="MessageNotifier_message_delivery_failed">Η παράδοση μηνύματος απέτυχε.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Αποτυχία παράδοσης του μήνυματος.</string>
-  <string name="MessageNotifier_error_delivering_message">Σφάλμα κατά την παράδοση του μηνύματος.</string>
+  <string name="MessageNotifier_error_delivering_message">Πρόβλημα κατά την παράδοση του μηνύματος.</string>
   <string name="MessageNotifier_mark_all_as_read">Σημείωση όλων ως αναγνωσμένα</string>
   <string name="MessageNotifier_mark_read">Σημείωση ως αναγνωσμένο</string>
   <string name="MessageNotifier_media_message">Μήνυμα πολυμέσων</string>
   <string name="MessageNotifier_reply">Απάντηση</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Απαιτούνται χειροκίνητες ρυθμίσεις MMS για το κινητό σου.</string>
+  <string name="MmsPreferencesFragment__enabled">Ενεργοποιημένο</string>
+  <string name="MmsPreferencesFragment__disabled">Απενεργοποιημένο</string>
+  <string name="MmsPreferencesFragment__not_set">Δεν έχει οριστεί</string>
+  <string name="MmsPreferencesFragment__invalid_uri">Το κείμενο που εισάχθηκε δεν ήταν έγκυρο URI</string>
+  <string name="MmsPreferencesFragment__invalid_host">Το κείμενο που εισάχθηκε δεν ήταν έγκυρο υποδοχής</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Η γρήγορη απάντηση δεν είναι διαθέσιμη όταν το Signal είναι κλειδωμένο!</string>
   <string name="QuickResponseService_problem_sending_message">Πρόβλημα με την αποστολή μηνύματος!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Νέο Μήνυμα</string>
+  <!--VideoPlayer-->
+  <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Μήπως θα ήθελες να επιβεβαιώσεις τον κωδικό ασφαλείας σου για αυτή την επαφή;</string>
+  <string name="WebRtcCallScreen_new_safety_numbers_title">Νέος κωδικός ασφαλείας</string>
+  <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Εικόνα</string>
   <string name="attachment_type_selector__image_description">Εικόνα</string>
@@ -630,6 +650,7 @@
   <string name="conversation_fragment_cab__batch_selection_mode">Λειτουργία μαζικής επιλογής</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s επιλέχτηκαν</string>
   <!--conversation_fragment-->
+  <string name="conversation_fragment__scroll_to_the_bottom_content_description">Πήγαινε προς τα κάτω</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Γίνεται φόρτωση χωρών...</string>
   <string name="country_selection_fragment__search">Αναζήτηση</string>
@@ -699,17 +720,9 @@
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Προβολή ολόκληρης της συνομιλίας</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_images">Δεν υπάρχουν εικόνες</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">ΕΠΑΛΗΘΕΥΣΗ</string>
   <string name="message_recipients_list_item__resend">ΑΠΟΣΤΟΛΗ ΞΑΝΑ</string>
-  <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Απαιτούνται χειροκίνητες ρυθμίσεις MMS για το κινητό σου.</string>
-  <string name="MmsPreferencesFragment__enabled">Ενεργοποιημένο</string>
-  <string name="MmsPreferencesFragment__disabled">Απενεργοποιημένο</string>
-  <string name="MmsPreferencesFragment__not_set">Δεν έχει οριστεί</string>
-  <string name="MmsPreferencesFragment__invalid_uri">Το κείμενο που εισάχθηκε δεν ήταν έγκυρο URI</string>
-  <string name="MmsPreferencesFragment__invalid_host">Το κείμενο που εισάχθηκε δεν ήταν έγκυρο υποδοχής</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">Ο/Η %1$s μπήκε στην ομάδα.</item>
@@ -775,7 +788,7 @@
   <string name="registration_progress_activity__verify">Επιβεβαίωση</string>
   <string name="registration_progress_activity__call_me">Κάλεσέ με</string>
   <string name="registration_progress_activity__edit_number">Επεξεργασία αριθμού</string>
-  <string name="registration_progress_activity__connectivity_error">Σφάλμα συνδεσιμότητας.</string>
+  <string name="registration_progress_activity__connectivity_error">Πρόβλημα συνδεσιμότητας.</string>
   <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Το Signal δεν μπόρεσε να συνδεθεί στον διακομιστή.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Πιθανά
         προβλήματα:
@@ -812,7 +825,7 @@
   <string name="recipients_panel__to"><small>Εισαγωγή ονόματος ή αριθμού</small></string>
   <string name="recipients_panel__add_members">Προσθήκη μελών</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Αν θέλεις να επιβεβαιώσεις την ασφάλεια της κρυπτογράφισης από άκρο σε άκρο %s, σύγκρινε τον παρακάτω αριθμό με τον αριθμό στην συσκευή. Εναλλακτικά, μπορείς να σκανάρεις τον κωδικό στην οθόνη του κινητού τους, ή να τους ζητήσεις να σκανάρουν τον δικό σου κωδικό. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Μάθε περισσότερα για την επιβεβαίωση του κωδικού ασφαλείας</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Αν θέλεις να επιβεβαιώσεις την ασφάλεια της κρυπτογράφισης από άκρο σε άκρο %s, σύγκρινε τον παρακάτω αριθμό με τον αριθμό στην συσκευή. Εναλλακτικά, μπορείς να σκανάρεις τον κωδικό στην οθόνη του κινητού τους, ή να τους ζητήσεις να σκανάρουν τον δικό σου κωδικό. <a href="https://whispersystems.org/redirect/safety-numbers">Μάθε περισσότερα για την επιβεβαίωση του κωδικού ασφαλείας</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Πάτα για σκανάρισμα</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Μοιράσου τον κωδικό ασφαλείας</string>
@@ -834,8 +847,6 @@
   <string name="AndroidManifest__verify_safety_number">Επαλήθευση κωδικού ασφαλείας</string>
   <string name="AndroidManifest__log_submit">Αποστολή αρχείου συμβάντων αποσφαλμάτωσης</string>
   <string name="AndroidManifest__media_preview">Προεπισκόπιση</string>
-  <string name="AndroidManifest__media_overview">Όλες οι εικόνες</string>
-  <string name="AndroidManifest__media_overview_named">Όλες οι εικόνες με τον/την %1$s</string>
   <string name="AndroidManifest__message_details">Λεπτομέρειες μηνύματος</string>
   <string name="AndroidManifest__linked_devices">Συνδεμένες συσκευές</string>
   <string name="AndroidManifest__invite_friends">Πρόσκληση φίλων</string>
@@ -968,6 +979,7 @@
   <string name="preferences_chats__message_trimming">Περικοπή μηνυμάτων</string>
   <string name="preferences_advanced__use_system_emoji">Χρήση emoji συστήματος</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Απενεργοποίηση την ενσωματωμένη υποστήριξη για emoji του Signal</string>
+  <string name="preferences_advanced__video_calling_beta">Κλήση βίντεο beta</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1022,10 +1034,8 @@
   <string name="conversation_unmuted__mute_notifications">Σίγαση ειδοποιήσεων</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Προσθήκη συνημμένου</string>
-  <string name="conversation__menu_update_group">Ενημέρωση ομάδας</string>
   <string name="conversation__menu_leave_group">Αποχώρηση από την ομάδα</string>
   <string name="conversation__menu_delete_thread">Διαγραφή συζήτησης</string>
-  <string name="conversation__menu_view_media">Όλες οι εικόνες</string>
   <string name="conversation__menu_conversation_settings">Επιλογές συζήτησης</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Επέκταση popup</string>
@@ -1077,18 +1087,13 @@
   <string name="reminder_header_share_text">Όσο περισσότεροι φίλοι σου χρησιμοποιούν το Signal, τόσο καλύτερο γίνεται.</string>
   <string name="reminder_header_share_button">ΜΟΙΡΑΣΟΥ</string>
   <string name="reminder_header_close_button">ΚΛΕΙΣΙΜΟ</string>
-  <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">Εσύ</string>
-  <string name="MediaPreviewActivity_cant_display">Αποτυχία προβολής αυτής της εικόνας</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Μη υποστηριζόμενος τύπος μέσων ενημέρωσης</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Αποθήκευση</string>
   <string name="media_preview__forward_title">Προώθηση</string>
-  <string name="media_preview__overview_title">Όλες οι εικόνες</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Αποθήκευση όλων</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">Προεπισκόπηση εικόνας</string>
+  <string name="media_preview_activity__media_content_description">Προεπισκόπιση</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Ανανέωση</string>
   <!--redphone_audio_popup_menu-->
