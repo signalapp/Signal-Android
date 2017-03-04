@@ -18,12 +18,9 @@
 package org.thoughtcrime.securesms;
 
 import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.media.AudioManager;
 import android.os.Build;
@@ -38,7 +35,6 @@ import android.view.WindowManager;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import org.thoughtcrime.redphone.util.AudioUtils;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallControls;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallScreen;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcIncomingCallOverlay;
@@ -66,8 +62,6 @@ public class WebRtcCallActivity extends Activity {
   public static final String END_CALL_ACTION = WebRtcCallActivity.class.getCanonicalName() + ".END_CALL_ACTION";
 
   private WebRtcCallScreen           callScreen;
-  private BroadcastReceiver          bluetoothStateReceiver;
-  private BroadcastReceiver          wiredHeadsetStateReceiver;
   private SignalServiceNetworkAccess networkAccess;
 
   @Override
@@ -93,9 +87,6 @@ public class WebRtcCallActivity extends Activity {
     if (!networkAccess.isCensored(this)) MessageRetrievalService.registerActivityStarted(this);
     initializeScreenshotSecurity();
     EventBus.getDefault().register(this);
-
-    registerBluetoothReceiver();
-    registerWiredHeadsetReceiver();
   }
 
   @Override
@@ -116,8 +107,6 @@ public class WebRtcCallActivity extends Activity {
     super.onPause();
     if (!networkAccess.isCensored(this)) MessageRetrievalService.registerActivityStopped(this);
     EventBus.getDefault().unregister(this);
-    unregisterReceiver(bluetoothStateReceiver);
-    unregisterReceiver(wiredHeadsetStateReceiver);
   }
 
   @Override
@@ -141,7 +130,8 @@ public class WebRtcCallActivity extends Activity {
     callScreen.setIncomingCallActionListener(new IncomingCallActionListener());
     callScreen.setAudioMuteButtonListener(new AudioMuteButtonListener());
     callScreen.setVideoMuteButtonListener(new VideoMuteButtonListener());
-    callScreen.setAudioButtonListener(new AudioButtonListener());
+    callScreen.setSpeakerButtonListener(new SpeakerButtonListener());
+    callScreen.setBluetoothButtonListener(new BluetoothButtonListener());
 
     networkAccess = new SignalServiceNetworkAccess(this);
   }
@@ -154,13 +144,6 @@ public class WebRtcCallActivity extends Activity {
   }
 
   private void handleSetMuteVideo(boolean muted) {
-    AudioManager audioManager = ServiceUtil.getAudioManager(this);
-
-    if (!muted && !audioManager.isWiredHeadsetOn() && !audioManager.isBluetoothScoOn()) {
-      AudioUtils.enableSpeakerphoneRouting(WebRtcCallActivity.this);
-      callScreen.notifyAudioRoutingChange();
-    }
-
     Intent intent = new Intent(this, WebRtcCallService.class);
     intent.setAction(WebRtcCallService.ACTION_SET_MUTE_VIDEO);
     intent.putExtra(WebRtcCallService.EXTRA_MUTE, muted);
@@ -197,12 +180,6 @@ public class WebRtcCallActivity extends Activity {
     Intent intent = new Intent(WebRtcCallActivity.this, WebRtcCallService.class);
     intent.setAction(WebRtcCallService.ACTION_LOCAL_HANGUP);
     startService(intent);
-
-//    WebRtcViewModel event = EventBus.getDefault().getStickyEvent(WebRtcViewModel.class);
-//
-//    if (event != null) {
-//      WebRtcCallActivity.this.handleTerminate(event.getRecipient());
-//    }
   }
 
   private void handleIncomingCall(@NonNull WebRtcViewModel event) {
@@ -326,6 +303,8 @@ public class WebRtcCallActivity extends Activity {
 
     callScreen.setLocalVideoEnabled(event.isLocalVideoEnabled());
     callScreen.setRemoteVideoEnabled(event.isRemoteVideoEnabled());
+    callScreen.updateAudioState(event.isBluetoothAvailable(), event.isMicrophoneEnabled());
+    callScreen.setControlsEnabled(event.getState() != WebRtcViewModel.State.CALL_INCOMING);
   }
 
   private class HangupButtonListener implements WebRtcCallScreen.HangupButtonListener {
@@ -348,56 +327,30 @@ public class WebRtcCallActivity extends Activity {
     }
   }
 
-  private void registerBluetoothReceiver() {
-    IntentFilter filter = new IntentFilter();
-    filter.addAction(AudioUtils.getScoUpdateAction());
-    bluetoothStateReceiver = new BroadcastReceiver() {
-      @Override
-      public void onReceive(Context context, Intent intent) {
-        callScreen.notifyBluetoothChange();
-      }
-    };
-
-    registerReceiver(bluetoothStateReceiver, filter);
-    callScreen.notifyBluetoothChange();
-  }
-
-  private void registerWiredHeadsetReceiver() {
-    IntentFilter filter = new IntentFilter();
-    filter.addAction(AudioUtils.getWiredHeadsetUpdateAction());
-    wiredHeadsetStateReceiver = new BroadcastReceiver() {
-      @Override
-      public void onReceive(Context context, Intent intent) {
-        int state = intent.getIntExtra("state", -1);
-
-        if (state == 0 && callScreen.isVideoEnabled()) {
-          AudioUtils.enableSpeakerphoneRouting(WebRtcCallActivity.this);
-          callScreen.notifyAudioRoutingChange();
-        } else if (state == 1) {
-          AudioUtils.enableDefaultRouting(WebRtcCallActivity.this);
-          callScreen.notifyAudioRoutingChange();
-        }
-
-      }
-    };
-    registerReceiver(wiredHeadsetStateReceiver, filter);
-  }
-
-  private class AudioButtonListener implements WebRtcCallControls.AudioButtonListener {
+  private class SpeakerButtonListener implements WebRtcCallControls.SpeakerButtonListener {
     @Override
-    public void onAudioChange(AudioUtils.AudioMode mode) {
-      switch(mode) {
-        case DEFAULT:
-          AudioUtils.enableDefaultRouting(WebRtcCallActivity.this);
-          break;
-        case SPEAKER:
-          AudioUtils.enableSpeakerphoneRouting(WebRtcCallActivity.this);
-          break;
-        case HEADSET:
-          AudioUtils.enableBluetoothRouting(WebRtcCallActivity.this);
-          break;
-        default:
-          throw new IllegalStateException("Audio mode " + mode + " is not supported.");
+    public void onSpeakerChange(boolean isSpeaker) {
+      AudioManager audioManager = ServiceUtil.getAudioManager(WebRtcCallActivity.this);
+      audioManager.setSpeakerphoneOn(isSpeaker);
+
+      if (isSpeaker && audioManager.isBluetoothScoOn()) {
+        audioManager.stopBluetoothSco();
+        audioManager.setBluetoothScoOn(false);
+      }
+    }
+  }
+
+  private class BluetoothButtonListener implements WebRtcCallControls.BluetoothButtonListener {
+    @Override
+    public void onBluetoothChange(boolean isBluetooth) {
+      AudioManager audioManager = ServiceUtil.getAudioManager(WebRtcCallActivity.this);
+
+      if (isBluetooth) {
+        audioManager.startBluetoothSco();
+        audioManager.setBluetoothScoOn(true);
+      } else {
+        audioManager.stopBluetoothSco();
+        audioManager.setBluetoothScoOn(false);
       }
     }
   }

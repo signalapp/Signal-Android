@@ -32,19 +32,30 @@ public class WebRtcViewModel {
   private final boolean remoteVideoEnabled;
   private final boolean localVideoEnabled;
 
-  public WebRtcViewModel(@NonNull State state, @NonNull Recipient recipient, boolean localVideoEnabled, boolean remoteVideoEnabled) {
-    this(state, recipient, null, localVideoEnabled, remoteVideoEnabled);
+  private final boolean isBluetoothAvailable;
+  private final boolean isMicrophoneEnabled;
+
+  public WebRtcViewModel(@NonNull State state, @NonNull Recipient recipient,
+                         boolean localVideoEnabled, boolean remoteVideoEnabled,
+                         boolean isBluetoothAvailable, boolean isMicrophoneEnabled)
+  {
+    this(state, recipient, null,
+         localVideoEnabled, remoteVideoEnabled,
+         isBluetoothAvailable, isMicrophoneEnabled);
   }
 
   public WebRtcViewModel(@NonNull State state, @NonNull Recipient recipient,
                          @Nullable IdentityKey identityKey,
-                         boolean localVideoEnabled, boolean remoteVideoEnabled)
+                         boolean localVideoEnabled, boolean remoteVideoEnabled,
+                         boolean isBluetoothAvailable, boolean isMicrophoneEnabled)
   {
-    this.state              = state;
-    this.recipient          = recipient;
-    this.identityKey        = identityKey;
-    this.localVideoEnabled  = localVideoEnabled;
-    this.remoteVideoEnabled = remoteVideoEnabled;
+    this.state                = state;
+    this.recipient            = recipient;
+    this.identityKey          = identityKey;
+    this.localVideoEnabled    = localVideoEnabled;
+    this.remoteVideoEnabled   = remoteVideoEnabled;
+    this.isBluetoothAvailable = isBluetoothAvailable;
+    this.isMicrophoneEnabled  = isMicrophoneEnabled;
   }
 
   public @NonNull State getState() {
@@ -66,6 +77,14 @@ public class WebRtcViewModel {
 
   public boolean isLocalVideoEnabled() {
     return localVideoEnabled;
+  }
+
+  public boolean isBluetoothAvailable() {
+    return isBluetoothAvailable;
+  }
+
+  public boolean isMicrophoneEnabled() {
+    return isMicrophoneEnabled;
   }
 
   public String toString() {
