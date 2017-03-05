@@ -133,6 +133,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
   public static final String ACTION_SET_MUTE_VIDEO       = "SET_MUTE_VIDEO";
   public static final String ACTION_BLUETOOTH_CHANGE     = "BLUETOOTH_CHANGE";
   public static final String ACTION_WIRED_HEADSET_CHANGE = "WIRED_HEADSET_CHANGE";
+  public static final String ACTION_SCREEN_OFF           = "SCREEN_OFF";
   public static final String ACTION_CHECK_TIMEOUT        = "CHECK_TIMEOUT";
   public static final String ACTION_IS_IN_CALL_QUERY     = "IS_IN_CALL";
 
@@ -160,6 +161,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
   private SignalAudioManager         audioManager;
   private BluetoothStateManager      bluetoothStateManager;
   private WiredHeadsetStateReceiver  wiredHeadsetStateReceiver;
+  private PowerButtonReceiver        powerButtonReceiver;
   private LockManager                lockManager;
 
   private IncomingPstnCallReceiver        callReceiver;
@@ -210,6 +212,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
         else if (intent.getAction().equals(ACTION_SET_MUTE_VIDEO))            handleSetMuteVideo(intent);
         else if (intent.getAction().equals(ACTION_BLUETOOTH_CHANGE))          handleBluetoothChange(intent);
         else if (intent.getAction().equals(ACTION_WIRED_HEADSET_CHANGE))      handleWiredHeadsetChange(intent);
+        else if (intent.getAction().equals((ACTION_SCREEN_OFF)))              handleScreenOffChange(intent);
         else if (intent.getAction().equals(ACTION_REMOTE_VIDEO_MUTE))         handleRemoteVideoMute(intent);
         else if (intent.getAction().equals(ACTION_RESPONSE_MESSAGE))          handleResponseMessage(intent);
         else if (intent.getAction().equals(ACTION_ICE_MESSAGE))               handleRemoteIceCandidate(intent);
@@ -242,6 +245,12 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
 
     if (wiredHeadsetStateReceiver != null) {
       unregisterReceiver(wiredHeadsetStateReceiver);
+      wiredHeadsetStateReceiver = null;
+    }
+
+    if (powerButtonReceiver != null) {
+      unregisterReceiver(powerButtonReceiver);
+      powerButtonReceiver = null;
     }
   }
 
@@ -293,6 +302,22 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
     }
 
     registerReceiver(wiredHeadsetStateReceiver, new IntentFilter(action));
+  }
+
+  private void registerPowerButtonReceiver() {
+    if (powerButtonReceiver == null) {
+      powerButtonReceiver = new PowerButtonReceiver();
+
+      registerReceiver(powerButtonReceiver, new IntentFilter(Intent.ACTION_SCREEN_OFF));
+    }
+  }
+
+  private void unregisterPowerButtonReceiver() {
+    if (powerButtonReceiver != null) {
+      unregisterReceiver(powerButtonReceiver);
+
+      powerButtonReceiver = null;
+    }
   }
 
   // Handlers
@@ -505,6 +530,8 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
       audioManager.initializeAudioForCall();
       audioManager.startIncomingRinger();
 
+      registerPowerButtonReceiver();
+
       setCallInProgressNotification(TYPE_INCOMING_RINGING, recipient);
     } else if (callState == CallState.STATE_DIALING) {
       if (this.recipient == null) throw new AssertionError("assert");
@@ -540,6 +567,8 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
     else                   lockManager.updatePhoneState(LockManager.PhoneState.IN_CALL);
 
     sendMessage(WebRtcViewModel.State.CALL_CONNECTED, recipient, localVideoEnabled, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
+
+    unregisterPowerButtonReceiver();
 
     setCallInProgressNotification(TYPE_ESTABLISHED, recipient);
 
@@ -724,7 +753,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
 
   private void handleBluetoothChange(Intent intent) {
     this.bluetoothAvailable = intent.getBooleanExtra(EXTRA_AVAILABLE, false);
-    
+
     if (recipient != null) {
       sendMessage(viewModelStateFor(callState), recipient, localVideoEnabled, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
     }
@@ -750,6 +779,15 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
       if (recipient != null) {
         sendMessage(viewModelStateFor(callState), recipient, localVideoEnabled, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
       }
+    }
+  }
+
+  private void handleScreenOffChange(Intent intent) {
+    if (callState == CallState.STATE_ANSWERING ||
+        callState == CallState.STATE_LOCAL_RINGING)
+    {
+      Log.w(TAG, "Silencing incoming ringer...");
+      audioManager.silenceIncomingRinger();
     }
   }
 
@@ -1107,6 +1145,17 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
       serviceIntent.setAction(WebRtcCallService.ACTION_WIRED_HEADSET_CHANGE);
       serviceIntent.putExtra(WebRtcCallService.EXTRA_AVAILABLE, state != 0);
       context.startService(serviceIntent);
+    }
+  }
+
+  private static class PowerButtonReceiver extends BroadcastReceiver {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+      if (Intent.ACTION_SCREEN_OFF.equals(intent.getAction())) {
+        Intent serviceIntent = new Intent(context, WebRtcCallService.class);
+        serviceIntent.setAction(WebRtcCallService.ACTION_SCREEN_OFF);
+        context.startService(serviceIntent);
+      }
     }
   }
 

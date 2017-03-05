@@ -75,6 +75,10 @@ public class SignalAudioManager {
     outgoingRinger.start(type);
   }
 
+  public void silenceIncomingRinger() {
+    incomingRinger.stop();
+  }
+
   public void startCommunication(boolean preserveSpeakerphone) {
     AudioManager audioManager = ServiceUtil.getAudioManager(context);
 
