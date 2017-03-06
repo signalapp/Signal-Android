@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.dependencies.RedPhoneCommunicationModule;
 import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
+import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.persistence.EncryptingJobSerializer;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirementProvider;
 import org.thoughtcrime.securesms.jobs.requirements.MediaNetworkRequirementProvider;
@@ -87,6 +88,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     initializeSignedPreKeyCheck();
     initializePeriodicTasks();
     initializeCircumvention();
+    initializeSetVideoCapable();
 
     if (Build.VERSION.SDK_INT >= 11) {
       PeerConnectionFactory.initializeAndroidGlobals(this, true, true, true);
@@ -161,6 +163,13 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
     if (BuildConfig.PLAY_STORE_DISABLED) {
       UpdateApkRefreshListener.schedule(this);
+    }
+  }
+
+  private void initializeSetVideoCapable() {
+    if (!TextSecurePreferences.isWebrtcCallingEnabled(this)) {
+      TextSecurePreferences.setWebrtcCallingEnabled(this, true);
+      jobManager.add(new RefreshAttributesJob(this));
     }
   }
 
