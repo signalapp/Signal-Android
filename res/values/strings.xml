@@ -264,6 +264,12 @@
     <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Welcome to Signal!</string>
     <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure is now Signal.</string>
     <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure and RedPhone are now one app: Signal. Tap to explore.</string>
+
+    <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Say hello to secure video calls.</string>
+    <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal now supports secure video calling. Just start a Signal call like normal, tap the video button, and wave hello.</string>
+    <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal now supports secure video calling.</string>
+    <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal now supports secure video calling. Tap to explore.</string>
+
     <!-- ExportFragment -->
     <string name="ExportFragment_export">Export</string>
     <string name="ExportFragment_export_plaintext_to_storage">Export plaintext to storage?</string>
