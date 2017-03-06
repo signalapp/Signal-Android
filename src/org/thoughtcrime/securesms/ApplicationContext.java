@@ -78,7 +78,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   @Override
   public void onCreate() {
     super.onCreate();
-    initializeDeveloperBuild();
     initializeRandomNumberFix();
     initializeLogging();
     initializeDependencyInjection();
@@ -107,15 +106,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   public ExpiringMessageManager getExpiringMessageManager() {
     return expiringMessageManager;
-  }
-
-  private void initializeDeveloperBuild() {
-    if (BuildConfig.DEV_BUILD) {
-      StrictMode.setThreadPolicy(new ThreadPolicy.Builder().detectAll()
-                                                           .penaltyLog()
-                                                           .build());
-      StrictMode.setVmPolicy(new VmPolicy.Builder().detectAll().penaltyLog().build());
-    }
   }
 
   private void initializeRandomNumberFix() {
@@ -150,9 +140,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   private void initializeGcmCheck() {
-    if (TextSecurePreferences.isPushRegistered(this) &&
-        TextSecurePreferences.getGcmRegistrationId(this) == null)
-    {
+    if (TextSecurePreferences.isPushRegistered(this)) {
       this.jobManager.add(new GcmRefreshJob(this));
     }
   }
