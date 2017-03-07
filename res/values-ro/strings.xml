@@ -136,6 +136,11 @@
   <string name="ConversationActivity_error_sending_voice_message">Eroare la trimiterea mesajului vocal</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nu există nici o aplicație disponibilă pe dispozitivul tău care să poată deschide acest link.</string>
   <!--ConversationAdapter-->
+  <plurals name="ConversationAdapter_n_unread_messages">
+    <item quantity="one">%d mesaj necitit</item>
+    <item quantity="few">%d mesaje necitite</item>
+    <item quantity="other">%d mesaje necitite</item>
+  </plurals>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalii mesaj</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nTrimis/Primit: %2$s</string>
@@ -238,6 +243,8 @@
   <string name="DeviceListItem_last_active_s">Ultima oară activ %s</string>
   <string name="DeviceListItem_today">Azi</string>
   <!--DozeReminder-->
+  <string name="DozeReminder_optimize_for_missing_play_services">Optimizează pentru lipsa serviciilor Play</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Acest dispozitiv nu suportă serviciile Play. Apasă pentru a dezactiva optimizarea de sistem a bateriei care împiedică Signal să preia mesajele cât timp este inactivă.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Partajează cu</string>
   <!--ExperienceUpgradeActivity-->
@@ -266,6 +273,7 @@
   <string name="GiphyFragmentPagerAdapter_stickers">Autocolante</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Grup nou</string>
+  <string name="GroupCreateActivity_actionbar_edit_title">Editează grupul</string>
   <string name="GroupCreateActivity_group_name_hint">Nume grup</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Grup MMS nou</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Ai selectat un contact care nu suportă grupuri Signal, astfel acest grup va fi de tip MMS.</string>
@@ -274,6 +282,7 @@
   <string name="GroupCreateActivity_contacts_no_members">Ai nevoie de cel puțin o persoană în grupul tău!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Unul dintre membrii grupului tău are un număr de telefon ce nu poate fi citit corect. Te rog să remediezi problema sau să elimini acel contact şi să încerci din nou.</string>
   <string name="GroupCreateActivity_avatar_content_description">Avatar de grup</string>
+  <string name="GroupCreateActivity_menu_apply_button">Aplică</string>
   <string name="GroupCreateActivity_creating_group">Se creează %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Se actualizează %1$s...</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s nu a putut fi adăugat deoarece nu este un utlizator Signal.</string>
@@ -339,6 +348,7 @@ Vei pierde orice informație care se află în instalarea curentă de Signal și
   <string name="MessageDetailsRecipient_new_safety_number">Număr nou de siguranță</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_background_connection_enabled">Conexiune în fundal activată</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Eroare la stocarea MMS-ului!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Eroare de conectare la furnizorul MMS</string>
@@ -364,7 +374,7 @@ Vei pierde orice informație care se află în instalarea curentă de Signal și
   <string name="MessageRecord_s_called_you">%s te-a apelat</string>
   <string name="MessageRecord_called_s">Apel %s</string>
   <string name="MessageRecord_missed_call_from">Apel ratat de la %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s este pe Signal, salută-l!</string>
+  <string name="MessageRecord_s_is_on_signal_say_hey">%s este pe Signal, spune-i hey!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Tu ai setat timpul pentru dispariția mesajelor la %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a setat timpul pentru dispariția mesajelor la %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Numărul tău de siguranță pentru %s s-a schimbat.</string>
@@ -457,6 +467,11 @@ furnizat (%s) este invalid.</string>
 Verifică din nou dacă acesta este numărul tău! Suntem pe cale să-l verificăm printr-un SMS.</string>
   <string name="RegistrationActivity_continue">Continuă</string>
   <string name="RegistrationActivity_edit">Editează</string>
+  <string name="RegistrationActivity_missing_google_play_services">Serviciile Google Play lipsesc</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Acestui dispozitiv îi lipsesc serviciile Google Play. Poți utiliza în continuare Signal, însă această configurație poate duce la fiabilitate și performanță redusă.\n\nDacă nu ești un utilizator avansat, nu rulezi un ROM Android aftermarket,  sau crezi că vezi asta în erori, te tog contactează support@whispersystems.org pentru ajutor la depanare.</string>
+  <string name="RegistrationActivity_i_understand">Am înțeles</string>
+  <string name="RegistrationActivity_play_services_error">Eroare servicii Play</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Serviciile Google Play se actualizează sau sunt temporar indisponibile. Te rog încearcă din nou.</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Probleme posibile.</string>
   <!--RegistrationProgressActivity-->
@@ -509,6 +524,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s este pe Signal, spune-i hey!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Timpul setat pentru mesajele care dispar este %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Numărul tău de siguranță pentru %s s-a schimbat.</string>
+  <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Contactul tău folosește o versiune mai veche de Signal. Roagă-l să-și actualizeze versiunea înainte de a verifica numărul tău de siguranță.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Contactul tău folosește o versiune mai nouă de Signal cu un format de cod QR incompatibil. Te rog actualizează-ți aplicația pentru a putea compara.</string>
@@ -555,6 +571,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MediaPreviewActivity_you">Tu</string>
   <string name="MediaPreviewActivity_cant_display">Previzualizarea imaginii a eșuat</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Tip media nesuportat</string>
+  <string name="MediaPreviewActivity_draft">Ciornă</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d mesaje noi în %2$d conversaţii</string>
   <string name="MessageNotifier_most_recent_from_s">Cel mai recent de la: %1$s</string>
@@ -582,7 +599,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mesaj nou</string>
   <!--VideoPlayer-->
+  <string name="VideoPlayer_error_playing_video">Eroare la redarea video!</string>
   <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_new_safety_numbers">Numărul de siguranță pentru conversația ta cu %1$s s-a schimbat.  Asta poate însemna că cineva încearcă să intercepteze comunicația sau că %2$s a reinstalat Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Probabil că dorești să verifici numărul de siguranță pentru acest contact.</string>
   <string name="WebRtcCallScreen_new_safety_numbers_title">Numere noi de siguranță</string>
   <!--WebRtcCallControls-->
@@ -735,6 +754,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Vezi conversația completă.</string>
   <!--media_overview_activity-->
+  <string name="media_overview_activity__no_media">Nu există fișiere media</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">VERIFICĂ</string>
   <string name="message_recipients_list_item__resend">RETRIMITE</string>
@@ -865,6 +885,8 @@ SMS a eșuat.</string>
   <string name="AndroidManifest__verify_safety_number">Verifică numărul de siguranță</string>
   <string name="AndroidManifest__log_submit">Trimite jurnalul de depanare</string>
   <string name="AndroidManifest__media_preview">Previzualizare media</string>
+  <string name="AndroidManifest__all_media">Toate fișierele media</string>
+  <string name="AndroidManifest__all_media_named">Toate fișierele media cu %1$s</string>
   <string name="AndroidManifest__message_details">Detalii mesaj</string>
   <string name="AndroidManifest__linked_devices">Dispozitive conectate</string>
   <string name="AndroidManifest__invite_friends">Invită prieteni</string>
@@ -1001,6 +1023,8 @@ SMS a eșuat.</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Dezactivează icoanele emoji oferite de Signal </string>
   <string name="preferences_advanced__video_calling_beta">Apelare video beta</string>
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Suport pentru următoarea generație de apeluri video și voce când este activată de ambele părți. Această funcționalitate este în beta.</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Redirecționează toate apelurile către serverul Signal pentru a evita aflarea adresei IP de către contact tău. Activarea va reduce calitatea apelului.</string>
+  <string name="preferences_advanced__always_relay_calls">Redirecționează întotdeauna apelurile</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1055,8 +1079,10 @@ SMS a eșuat.</string>
   <string name="conversation_unmuted__mute_notifications">Notificări silenţioase</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Adaugă atașament</string>
+  <string name="conversation__menu_edit_group">Editează grupul</string>
   <string name="conversation__menu_leave_group">Părăseşte grupul</string>
   <string name="conversation__menu_delete_thread">Șterge conversația</string>
+  <string name="conversation__menu_view_all_media">Toate fișierele media</string>
   <string name="conversation__menu_conversation_settings">Setări conversaţie</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Extinde popup-ul</string>
@@ -1112,6 +1138,7 @@ SMS a eșuat.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Salvează</string>
   <string name="media_preview__forward_title">Expediază</string>
+  <string name="media_preview__all_media_title">Toate fișierele media</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Salvează tot</string>
   <!--media_preview_activity-->

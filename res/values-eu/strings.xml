@@ -64,6 +64,7 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Sarrerako dei</string>
   <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Agian zure segurasun zenbakia kontatu honekin baieztatu nahi duzu.</string>
   <string name="ConfirmIdentityDialog_accept">Onartu</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mezu %s</string>
@@ -117,6 +118,7 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Signalera aldatu dezagun %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Erabili dezagun hau txatarako: %1$s</string>
+  <string name="ConversationActivity_error_leaving_group">Taldetik irteterakoan huts egin du</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS ez daude onartuta</string>
   <string name="ConversationActivity_mms_not_supported_message">Mezu hau ezin da bidali zure hornitzaileak MMS onartzen ez duelako.</string>
   <string name="ConversationActivity_specify_recipient">Kontaktu bat aukeratu, mesedez</string>
@@ -126,8 +128,13 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Eranskina handiegia da bidaltzen ari zaren mezu motarako.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera ez dago eskuragarri</string>
   <string name="ConversationActivity_unable_to_record_audio">Ezgai audioa grabatzeko!</string>
+  <string name="ConversationActivity_error_sending_voice_message">Ahots mezua bidaltzerakoan huts egin du</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Ez dago erabil daitekeen aplikaziorik lotura hau tratatzeko zure gailuan.</string>
   <!--ConversationAdapter-->
+  <plurals name="ConversationAdapter_n_unread_messages">
+    <item quantity="one">%d mezu irakurri gabe</item>
+    <item quantity="other">%d mezuak irakurri gabe</item>
+  </plurals>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Mezuaren detaileak</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Garraioa: %1$s\nBidalita/Jasota: %2$s</string>
@@ -149,6 +156,10 @@
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">Errorea eranskina biltegian gordetzerakoan!</item>
     <item quantity="other">Errorea eranskinak biltegian gordetzerakoan!</item>
+  </plurals>
+  <plurals name="ConversationFragment_files_saved_successfully">
+    <item quantity="one">Fitxategia ondo gorde da.</item>
+    <item quantity="other">Fitxategiak ondo gorde dira.</item>
   </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Ezgai biltegian idazteko!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
@@ -240,6 +251,7 @@
   <string name="GiphyFragmentPagerAdapter_stickers">Eranskailuak</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Talde berria</string>
+  <string name="GroupCreateActivity_actionbar_edit_title">Taldea editatu</string>
   <string name="GroupCreateActivity_group_name_hint">Taldearen izena</string>
   <string name="GroupCreateActivity_actionbar_mms_title">MMS talde berria</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Signal taldeak onartzen ez duen kontaktu bat aukeratu duzu; beraz, talde hau MMS izango da.</string>
@@ -248,6 +260,7 @@
   <string name="GroupCreateActivity_contacts_no_members">Gutxienez pertsona bat behar duzu zure taldean!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Zure taldeko partaide batek ondo irakurri ezin daitekeen zenbaki bat dauka. Konpondu edo ezabatu kontaktua eta saiatu berriro mesedez.</string>
   <string name="GroupCreateActivity_avatar_content_description">Taldearen abatarra</string>
+  <string name="GroupCreateActivity_menu_apply_button">Aplikatu</string>
   <string name="GroupCreateActivity_creating_group">Sortzen %1$s...</string>
   <string name="GroupCreateActivity_updating_group">Eguneratzen: %1$s...</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Ezin izan da %1$s gehitu Signal erabiltzailea ez delako.</string>
@@ -311,6 +324,7 @@ Babeskopia hau lehenago inportatu baduzu, mezu bikoiztuak sor daitezke.
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signalek Barcode Scanner aplikazioa behar du QR kodeak irakurtzeko.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Bidalketak huts egin du</string>
+  <string name="MessageDetailsRecipient_new_safety_number">Segurtasun zenbaki berria</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <!--MmsDownloader-->
@@ -327,6 +341,7 @@ Babeskopia hau lehenago inportatu baduzu, mezu bikoiztuak sor daitezke.
   <string name="NotificationBarManager__cancel_call">Deia utzi</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimedia mezua</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">MMS mezu berria deskargatzen</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Signal bertsio zaharregitik jaso da mezu zifratua.  Eskatu igorleari birbidaltzeko mesedez bere Signal egiaztatu ondoren.</string>
   <string name="MessageRecord_left_group">Taldea utzi duzu.</string>
@@ -388,6 +403,7 @@ Babeskopia hau lehenago inportatu baduzu, mezu bikoiztuak sor daitezke.
   <string name="RecipientPreferenceActivity_enabled">Aktibatuta</string>
   <string name="RecipientPreferenceActivity_disabled">Desaktibatuta</string>
   <!--RecipientProvider-->
+  <string name="RecipientProvider_unnamed_group">Izenik gabeko taldea</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">Deia erantzuten</string>
   <string name="RedPhone_ending_call">Deia amaitzen</string>
@@ -425,6 +441,7 @@ zenbakia (%s) baliogabea da.
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">Egiaztatu hau dela zure zenbakia!  SMS bidez egiaztatzear gaude.</string>
   <string name="RegistrationActivity_continue">Jarraitu</string>
   <string name="RegistrationActivity_edit">Editatu</string>
+  <string name="RegistrationActivity_i_understand">Ulertzen dut</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Aurreikusi daitezkeen arazoak</string>
   <!--RegistrationProgressActivity-->
@@ -475,6 +492,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ThreadRecord_media_message">Multimedia mezua</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s-(e)k Signal dauka, agur egin!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Desagertzen diren mezuen debora %s-tan ezarrita</string>
+  <!--UpdateApkReadyListener-->
+  <string name="UpdateApkReadyListener_Signal_update">Signal eguneratu</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Zure kontaktua Signal aplikazioaren bertsio berriago bat erabiltzen ari da eta horrek QR kode formatua eguneratu du. Eguneratu konparazioa egiteko.</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Dirudienez ez duzu partekatzeko aplikazio bakar bat ere.</string>
@@ -539,6 +558,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="SingleRecipientNotificationBuilder_new_message">Mezu berria</string>
   <!--VideoPlayer-->
   <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Agian zure segurasun zenbakia kontatu honekin baieztatu nahi duzu.</string>
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Irudia</string>
@@ -971,6 +991,7 @@ huts egin du.
   <string name="conversation_unmuted__mute_notifications">Desaktibatu jakinarazpenak</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Eranskina gehitu</string>
+  <string name="conversation__menu_edit_group">Taldea editatu</string>
   <string name="conversation__menu_leave_group">Taldea utzi</string>
   <string name="conversation__menu_delete_thread">Ezabatu solasaldia</string>
   <string name="conversation__menu_conversation_settings">Solasaldiaren ezarpenak</string>

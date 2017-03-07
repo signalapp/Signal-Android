@@ -504,6 +504,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s gebruikt nu Signal, zeg hallo!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Berichten zullen verdwijnen na %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Je veiligheidsnummer met %s is veranderd.</string>
+  <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Dit contact gebruikt een oude versie van Signal. Vraag hen om Signal bij te werken vooraleer je het veiligheidsnummer verifieert.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Je contact gebruikt een nieuwere versie van Signal met een incompatibel QR-codeformaat. Werk Signal bij om te vergelijken.</string>

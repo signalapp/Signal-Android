@@ -460,6 +460,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="ThreadRecord_media_message">Media melding</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s er på Signal, si hei!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tiden før meldingene utløper er satt til %s</string>
+  <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_no_app_to_share_to">Det ser ut som du ikke har noen apper å dele til.</string>
   <!--KeyExchangeInitiator-->

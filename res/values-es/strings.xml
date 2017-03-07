@@ -199,7 +199,7 @@ Recibido:%4$s</string>
     <item quantity="one">Conversación archivada</item>
     <item quantity="other">%d conversaciones archivadas</item>
   </plurals>
-  <string name="ConversationListFragment_undo">Atrás</string>
+  <string name="ConversationListFragment_undo">DESHACER</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">Conversacion movida a la bandeja de entrada</item>
     <item quantity="other">%d Conversaciones movidas a la bandeja de entrada</item>
@@ -231,6 +231,8 @@ Recibido:%4$s</string>
   <string name="DeviceListItem_last_active_s">Activo por última vez el %s</string>
   <string name="DeviceListItem_today">Hoy</string>
   <!--DozeReminder-->
+  <string name="DozeReminder_optimize_for_missing_play_services">Optimizar por la ausencia de \"Play Services\"</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Este dispositivo no soporta \"Play Services\". Pulsa para inhabilitar las optimizaciones de batería del sistema que le impiden a Signal obtener mensajes mientras está inactivo.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Compartir con</string>
   <!--ExperienceUpgradeActivity-->
@@ -335,6 +337,7 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nuevo número de seguridad</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_background_connection_enabled">Conexión en segundo plano habilitada</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">¡Error guardando MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Error al conectar al proveedor de MMS</string>
@@ -457,6 +460,11 @@ número de teléfono
     </string>
   <string name="RegistrationActivity_continue">Continuar</string>
   <string name="RegistrationActivity_edit">Editar</string>
+  <string name="RegistrationActivity_missing_google_play_services">Servicios de Google Play ausentes</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Este dispositivo no encuentra los Servicios de Google Play. Todavía puede usar Signal, pero esta configuración puede resultar en una fiabilidad y rendimiento reducidos.\n\nSi no es un usuario avanzado, no está ejecutando una ROM modificada de Android, o cree que está viendo esto indebidamente por favor, contacte con support@whispersystems.org para obtener ayuda para la resolución de problemas.</string>
+  <string name="RegistrationActivity_i_understand">Entiendo</string>
+  <string name="RegistrationActivity_play_services_error">Error en \"Play Services\"</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services se está actualizando o está temporalmente suspendido. Por favor intente de nuevo.</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Posibles problemas</string>
   <!--RegistrationProgressActivity-->
@@ -511,6 +519,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ThreadRecord_s_is_on_signal_say_hey">¡%s está en Signal, salúdele!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">El plazo del mensaje desvanecente se estableció a %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Su número de seguridad con %s ha cambiado.</string>
+  <!--UpdateApkReadyListener-->
+  <string name="UpdateApkReadyListener_Signal_update">Actualización de Signal</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Está disponible una nueva versión de Signal, toca para actualizar.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Su contacto está ejecutando una versión antigua de Signal. Por favor, pídale que actualice antes de que verifique el número de seguridad de usted.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Su contacto está ejecutando una versión de Signal con un formato de código QR incompatible. Por favor, actualice para comparar.</string>

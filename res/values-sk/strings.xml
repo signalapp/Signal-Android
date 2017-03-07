@@ -104,6 +104,8 @@
   <string name="ConversationActivity_transport_insecure_sms">Nezašifrovaná SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nezašifrovaná MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Prejdite na Signal %1$s</string>
+  <string name="ConversationActivity_error_leaving_group">Chyba pri opustení skupiny</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS nie sú podporované</string>
   <string name="ConversationActivity_mms_not_supported_message">Táto správa nemohla byť odoslaná keďže váš operátor nepodporuje MMS.</string>
   <string name="ConversationActivity_specify_recipient">Prosím vyberte kontakt</string>
@@ -113,6 +115,11 @@
   <string name="ConversationActivity_quick_camera_unavailable">Kamera je momentálne neprístupná</string>
   <string name="ConversationActivity_unable_to_record_audio">Nemôžem zaznamenať zvuk!</string>
   <!--ConversationAdapter-->
+  <plurals name="ConversationAdapter_n_unread_messages">
+    <item quantity="one">%d neprečítaná správa</item>
+    <item quantity="few">%d neprečítané správy</item>
+    <item quantity="other">%d neprečítaných správ</item>
+  </plurals>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detaily správy</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Prenos: %1$s\nodoslané/prijaté: %2$s</string>
@@ -128,7 +135,17 @@
     <item quantity="few">Nastala chyba pri ukladaní príloh na dátové úložisko zariadenia!</item>
     <item quantity="other">Nastala chyba pri ukladaní príloh na dátové úložisko zariadenia!</item>
   </plurals>
+  <plurals name="ConversationFragment_files_saved_successfully">
+    <item quantity="one">Súbor úspešne uložený.</item>
+    <item quantity="few">Súbory úspešne uložené.</item>
+    <item quantity="other">Súbory úspešne uložené.</item>
+  </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Aplikácia nedokázala zapísať informácie na dátové úložisko zariadenia!</string>
+  <plurals name="ConversationFragment_saving_n_attachments">
+    <item quantity="one">Ukladám prílohu</item>
+    <item quantity="few">Ukladám %1$d prílohy</item>
+    <item quantity="other">Ukladám %1$d príloh</item>
+  </plurals>
   <string name="ConversationFragment_collecting_attahments">Ukladám prílohy...</string>
   <string name="ConversationFragment_pending">Čaká na spracovanie...</string>
   <string name="ConversationFragment_push">Data (Signal)</string>
@@ -138,8 +155,15 @@
   <string name="ConversationFragment_deleting_messages">Mažú sa správy...</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Hľadaj</string>
+  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nemáte nainštalovaný žiadny prehliadač.</string>
   <!--ConversationListFragment-->
+  <plurals name="ConversationListFragment_delete_selected_conversations">
+    <item quantity="one">Zmazať označenú konverzáciu?</item>
+    <item quantity="few">Zmazať označené konverzácie?</item>
+    <item quantity="other">Zmazať označené konverzácie?</item>
+  </plurals>
   <string name="ConversationListFragment_deleting">Vymazanie</string>
+  <string name="ConversationListFragment_undo">Vrátiť späť</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Správa vzájomnej výmeny kľúčov</string>
   <!--ConversationListItemAction-->
@@ -151,12 +175,16 @@
   <!--DateUtils-->
   <string name="DateUtils_just_now">Práve teraz</string>
   <string name="DateUtils_minutes_ago">%d min</string>
+  <string name="DateUtils_today">Dnes</string>
+  <string name="DateUtils_yesterday">Včera</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Odobrať \'%s\'?</string>
   <string name="DeviceListActivity_try_again">Skúsiť znova</string>
   <string name="DeviceListActivity_unlinking_device">Odoberám zariadenie...</string>
   <string name="DeviceListActivity_network_failed">Chyba siete! </string>
   <!--DeviceListItem-->
+  <string name="DeviceListItem_unnamed_device">Nepomenované zariadenie</string>
+  <string name="DeviceListItem_today">Dnes</string>
   <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Zdieľaj s</string>
@@ -165,11 +193,13 @@
   <string name="ExportFragment_export">Export</string>
   <string name="ExportFragment_cancel">Zrušiť</string>
   <string name="ExportFragment_exporting">Export</string>
+  <string name="ExportFragment_export_successful">Export úspešný.</string>
   <!--GcmRefreshJob-->
   <!--GiphyActivity-->
   <!--GiphyFragmentPageAdapter-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nová skupina</string>
+  <string name="GroupCreateActivity_actionbar_edit_title">Upraviť skupinu</string>
   <string name="GroupCreateActivity_group_name_hint">Názov skupiny</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nová MMS skupina</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Vytvorenie skupiny zlyhalo pre nečakanú chybu.</string>
@@ -205,6 +235,8 @@ opätovným importom zduplikujete správy.
   <string name="ImportFragment_restore_complete">Obnova dokončená!</string>
   <!--InputPanel-->
   <!--InviteActivity-->
+  <string name="InviteActivity_cancel">Zrušiť</string>
+  <string name="InviteActivity_sending">Odosielam...</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Nenašiel som skenovaný kľúč!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Nainštalovať čítačku čiarových kódov?</string>
@@ -215,6 +247,11 @@ opätovným importom zduplikujete správy.
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Chyba pri ukladaní MMS!</string>
   <!--- NotificationBarManager-->
+  <string name="NotificationBarManager_missed_signal_call">Zmeškaný Signal hovor</string>
+  <string name="NotificationBarManager__deny_call">Zamietnuť hovor</string>
+  <string name="NotificationBarManager__answer_call">Zdvihnúť hovor</string>
+  <string name="NotificationBarManager__end_call">Ukončiť hovor</string>
+  <string name="NotificationBarManager__cancel_call">Zrušiť hovor</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediálna správa</string>
   <!--MessageRecord-->
@@ -265,6 +302,7 @@ opätovným importom zduplikujete správy.
   <string name="RecipientPreferenceActivity_enabled">Povolené</string>
   <string name="RecipientPreferenceActivity_disabled">Zakázané</string>
   <!--RecipientProvider-->
+  <string name="RecipientProvider_unnamed_group">Nepomenovaná skupina</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">Zodvíham</string>
   <string name="RedPhone_ending_call">Končím hovor</string>
@@ -301,6 +339,7 @@ telefónne číslo</string>
 Skontrolujte pre istotu znovu, že ste správne zadali Vaše telefónne číslo! Prebehne overenie pomocou SMS.</string>
   <string name="RegistrationActivity_continue">Pokračovať</string>
   <string name="RegistrationActivity_edit">Upraviť </string>
+  <string name="RegistrationActivity_i_understand">Rozumiem</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Možné problémy</string>
   <!--RegistrationProgressActivity-->
@@ -346,6 +385,7 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <string name="ThreadRecord_media_message">Multimediálna správa</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s už má tiež Signal, pozdravte ho!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas na zmiznutie správy nastavený na %s</string>
+  <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_our_signal_safety_number">Naše bezpečnostné Signal číslo:</string>
   <!--KeyExchangeInitiator-->
@@ -481,7 +521,9 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Pridať zariadenie</string>
   <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_linked">Žiadne spárované zariadenia</string>
   <!--experience_upgrade_activity-->
+  <string name="experience_upgrade_activity__continue">pokračovať</string>
   <!--expiration-->
   <string name="expiration_off">Vypnuté</string>
   <!--giphy_activity-->
@@ -502,6 +544,7 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <string name="import_fragment__import_system_sms_database">Importovať systémovú databázu SMS</string>
   <string name="import_fragment__import_plaintext_backup">Importovať nezakryptovanú zálohu</string>
   <!--load_more_header-->
+  <string name="load_more_header__see_full_conversation">Zobraziť celú konverzáciu</string>
   <!--media_overview_activity-->
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">OVERIŤ</string>
@@ -578,12 +621,20 @@ zlyhalo.
   <string name="AndroidManifest__enter_passphrase">Zadaj heslo</string>
   <string name="AndroidManifest__select_contacts">Vyber kontakty</string>
   <string name="AndroidManifest__change_passphrase">Zmeň heslo</string>
+  <string name="AndroidManifest__all_media">Všetky médiá</string>
+  <string name="AndroidManifest__invite_friends">Pozvať priateľov</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Import / export</string>
   <string name="arrays__use_default">Použiť predvolené</string>
   <string name="arrays__use_custom">Použiť vlastné</string>
+  <string name="arrays__mute_for_one_hour">Stlmiť na 1 hodinu</string>
+  <string name="arrays__mute_for_two_hours">Stlmiť na 2 hodiny</string>
+  <string name="arrays__mute_for_one_day">Stlmiť na 1 deň</string>
+  <string name="arrays__mute_for_seven_days">Stlmiť na 7 dní</string>
+  <string name="arrays__mute_for_one_year">Stlmiť na 1 rok</string>
   <string name="arrays__enabled">Povolené</string>
   <string name="arrays__disabled">Zakázané</string>
+  <string name="arrays__images">Obrázky</string>
   <string name="arrays__audio">Zvuk</string>
   <string name="arrays__video">Video</string>
   <!--plurals.xml-->
@@ -643,6 +694,7 @@ zlyhalo.
   <string name="preferences__slow">Pomaly</string>
   <string name="preferences__custom">Vlastné</string>
   <string name="preferences__advanced">Rozšírené</string>
+  <string name="preferences__privacy">Súkromie</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuálne MMS nastavenia</string>
   <string name="preferences__enable_manual_mms">Použť manuálne MMS nastavenia</string>
@@ -665,6 +717,7 @@ zlyhalo.
   <string name="preferences__submit_debug_log">Odošli ladiaci log</string>
   <string name="preferences__support_wifi_calling">Režim kompatibility \'WiFi volania\'</string>
   <string name="preferences_app_protection__blocked_contacts">Blokované kontakty</string>
+  <string name="preferences_advanced__video_calling_beta">Videohovor beta</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -681,6 +734,7 @@ zlyhalo.
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Volaj</string>
   <!--conversation_callable_secure-->
+  <string name="conversation_callable_secure__menu_call">Volanie Signal</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Podrobnosti správy</string>
   <string name="conversation_context__menu_copy_text">Kopíruj text</string>
@@ -704,6 +758,7 @@ zlyhalo.
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Avatar kontaktu</string>
   <string name="conversation_list_item_view__error_alert">Chybová hláška</string>
+  <string name="conversation_list_item_view__archived">Archivované</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nová konverzácia</string>
   <!--conversation_secure_verified-->
@@ -714,7 +769,10 @@ zlyhalo.
   <string name="conversation_unmuted__mute_notifications">Vypnúť upozornenia</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Pridaj prílohu</string>
+  <string name="conversation__menu_edit_group">Upraviť skupinu</string>
   <string name="conversation__menu_leave_group">Opusti skupinu</string>
+  <string name="conversation__menu_delete_thread">Zmazať konverzáciu</string>
+  <string name="conversation__menu_view_all_media">Všetky médiá</string>
   <string name="conversation__menu_conversation_settings">Nastavenia konverzácií</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Rozšíriť okno</string>
@@ -733,14 +791,23 @@ zlyhalo.
   <string name="text_secure_normal__menu_settings">Nastavenia</string>
   <string name="text_secure_normal__menu_clear_passphrase">Zamkni</string>
   <string name="text_secure_normal__mark_all_as_read">Označ všetky prečítané</string>
+  <string name="text_secure_normal__invite_friends">Pozvať priateľov</string>
+  <string name="text_secure_normal__help">Pomocník</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Skopírovať</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">Porovnať</string>
   <!--reminder_header-->
+  <string name="reminder_header_sms_default_title">Použiť ako predvolenú SMS aplikáciu</string>
   <string name="reminder_header_sms_default_text">Ťuknutím nastavte Signal ako Vašu predvolenú SMS aplikáciu.</string>
+  <string name="reminder_header_sms_import_title">Importovať SMS databázu</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Uložiť</string>
+  <string name="media_preview__all_media_title">Všetky médiá</string>
   <!--media_overview-->
+  <string name="media_overview__save_all">Uložiť všetko</string>
   <!--media_preview_activity-->
   <!--new_conversation_activity-->
+  <string name="new_conversation_activity__refresh">Obnoviť</string>
   <!--redphone_audio_popup_menu-->
   <string name="redphone_audio_popup_menu__handset">Slúchadlo</string>
   <string name="redphone_audio_popup_menu__headset">Slúchadlo</string>

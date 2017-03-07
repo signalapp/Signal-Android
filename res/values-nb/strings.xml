@@ -204,6 +204,7 @@
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Vil du koble fra «%s»?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Hvis du kobler denne enheten fra tjenesten, kan den ikke lenger sende eller motta meldinger.</string>
+  <string name="DeviceListActivity_network_connection_failed">Nettverkstilkoblingen mislyktes</string>
   <string name="DeviceListActivity_try_again">Prøv igjen</string>
   <string name="DeviceListActivity_unlinking_device">Kobler fra enhet …</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Kobler fra enhet</string>
@@ -241,6 +242,7 @@
   <string name="GiphyFragmentPagerAdapter_stickers">Klistremerker</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Ny gruppe</string>
+  <string name="GroupCreateActivity_actionbar_edit_title">Rediger gruppe</string>
   <string name="GroupCreateActivity_group_name_hint">Gruppenavn</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Ny MMS-gruppe</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Du har valgt en kontakt som ikke støtter Signal-grupper. Denne gruppa blir derfor en MMS-gruppe.</string>
@@ -427,6 +429,9 @@ skrev inn (%s) er ugyldig.</string>
 Dobbeltsjekk at dette er ditt nummer. Vi er i ferd med å bekrefte det ved å sende deg SMS.</string>
   <string name="RegistrationActivity_continue">Fortsett</string>
   <string name="RegistrationActivity_edit">Rediger</string>
+  <string name="RegistrationActivity_missing_google_play_services">Mangler Google Play tjenester</string>
+  <string name="RegistrationActivity_i_understand">Jeg forstår</string>
+  <string name="RegistrationActivity_play_services_error">Play Tjenester Feil</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Mulige problemer</string>
   <!--RegistrationProgressActivity-->
@@ -478,6 +483,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s er på Signal. Si hei!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Utløpstid for meldinger endret til %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Din sikkerhets nummer med %s har endret seg.</string>
+  <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Din kontakt kjører en gammel versjon av Signal. Vennligst be dem om å oppdatere før verifisere din sikkerhets nummer.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Din kontakt kjører en nyere versjon av Signal med en inkompatibel QR-kode format. Vennligst oppdater for å sammenligne.</string>
@@ -520,9 +526,11 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MediaPreviewActivity_you">Deg</string>
   <string name="MediaPreviewActivity_cant_display">Klarte ikke å forhåndsvise bilde</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Ustøttet medietype</string>
+  <string name="MediaPreviewActivity_draft">Utkast</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nye meldinger i %2$d samtaler</string>
   <string name="MessageNotifier_most_recent_from_s">Nyeste fra: %1$s</string>
+  <string name="MessageNotifier_locked_message">Låst melding</string>
   <string name="MessageNotifier_media_message_with_text">Mediemelding: %s</string>
   <string name="MessageNotifier_no_subject">(Uten emne)</string>
   <string name="MessageNotifier_message_delivery_failed">Levering av melding mislyktes.</string>
@@ -689,6 +697,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Vis hele samtalen</string>
   <!--media_overview_activity-->
+  <string name="media_overview_activity__no_media">Ingen medier</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">BEKREFT</string>
   <string name="message_recipients_list_item__resend">SEND PÅ NYTT</string>
@@ -813,6 +822,7 @@ Signal fikk tidsavbrudd under venting på bekreftelsesmelding.</string>
   <string name="AndroidManifest__verify_safety_number">Bekreft sikkerhets nummer</string>
   <string name="AndroidManifest__log_submit">Send debug logg</string>
   <string name="AndroidManifest__media_preview">Forhåndsvisning av medier</string>
+  <string name="AndroidManifest__all_media">Alle medier</string>
   <string name="AndroidManifest__message_details">Meldingsdetaljer</string>
   <string name="AndroidManifest__linked_devices">Koblede enheter</string>
   <string name="AndroidManifest__invite_friends">Inviter venner</string>
@@ -945,6 +955,7 @@ Signal fikk tidsavbrudd under venting på bekreftelsesmelding.</string>
   <string name="preferences_chats__message_trimming">Meldingsforkortelse</string>
   <string name="preferences_advanced__use_system_emoji">Bruk emoji på systemet</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Slå av innebygd emoji-støtte i Signal</string>
+  <string name="preferences_advanced__video_calling_beta">Videosamtaler beta</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1000,8 +1011,10 @@ Signal fikk tidsavbrudd under venting på bekreftelsesmelding.</string>
   <string name="conversation_unmuted__mute_notifications">Ikke vis varsler</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Legg til vedlegg</string>
+  <string name="conversation__menu_edit_group">Rediger gruppe</string>
   <string name="conversation__menu_leave_group">Forlat gruppe</string>
   <string name="conversation__menu_delete_thread">Slett samtale</string>
+  <string name="conversation__menu_view_all_media">Alle medier</string>
   <string name="conversation__menu_conversation_settings">Samtaleinnstillinger</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Utvid sprettoppvindu</string>
@@ -1056,6 +1069,7 @@ Signal fikk tidsavbrudd under venting på bekreftelsesmelding.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Lagre</string>
   <string name="media_preview__forward_title">Videresend</string>
+  <string name="media_preview__all_media_title">Alle medier</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Lagre alle</string>
   <!--media_preview_activity-->

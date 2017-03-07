@@ -434,6 +434,7 @@
   <string name="ThreadRecord_missed_call">تماس از دست رفته</string>
   <string name="ThreadRecord_media_message">پیام رسانه</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s در سیگنال است،به او سلام کنید!</string>
+  <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_no_app_to_share_to">به نظر می رسد شما هیچ برنامه ای برای اشتراک گذاری در آن ندارید.</string>
   <!--KeyExchangeInitiator-->

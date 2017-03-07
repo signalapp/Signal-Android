@@ -128,6 +128,9 @@
   <string name="ConversationActivity_error_sending_voice_message">音声メッセージの送信エラー</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">このリンクを扱えるアプリがインストールされていません</string>
   <!--ConversationAdapter-->
+  <plurals name="ConversationAdapter_n_unread_messages">
+    <item quantity="other">%d通の未読メッセージ</item>
+  </plurals>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">メッセージの詳細</string>
   <string name="ConversationFragment_transport_s_sent_received_s">送信方法: %1$s\n送信/受信: %2$s</string>
@@ -208,6 +211,8 @@
   <string name="DeviceListItem_last_active_s">最終活動 %s</string>
   <string name="DeviceListItem_today">今日</string>
   <!--DozeReminder-->
+  <string name="DozeReminder_optimize_for_missing_play_services">欠けているGoogle Play開発者サービスに最適化する</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">この端末はGoogle Play開発者サービスをサポートしていません。タップして，休眠中の通信を止めるバッテリー最適化機能を切ってください。</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">共有</string>
   <!--ExperienceUpgradeActivity-->
@@ -216,6 +221,10 @@
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Signalにようこそ！</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecureはSignalに生まれ変わりました</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecureとRedPhoneは１つのアプリ「Signal」になりました。タップすると詳細が分かります。</string>
+  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">安全なビデオ通話に挨拶する</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">安全なビデオ通話が可能になりました。通常通りに通話を開始してから，動画ボタンを押してください。</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">安全なビデオ通話が可能になりました</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">安全なビデオ通話が可能になりました。試すにはタップしてください。</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">エクスポート</string>
   <string name="ExportFragment_export_plaintext_to_storage">テキストを外部メディアにエクスポートしますか？</string>
@@ -236,6 +245,7 @@
   <string name="GiphyFragmentPagerAdapter_stickers">ステッカー</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">新規グループ</string>
+  <string name="GroupCreateActivity_actionbar_edit_title">グループを編集する</string>
   <string name="GroupCreateActivity_group_name_hint">グループ名</string>
   <string name="GroupCreateActivity_actionbar_mms_title">新規MMSグループ</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Signalユーザーでない人がいるため、このグループはMMSとなります。</string>
@@ -244,6 +254,7 @@
   <string name="GroupCreateActivity_contacts_no_members">グループには誰か１人は必要です！</string>
   <string name="GroupCreateActivity_contacts_invalid_number">グループのメンバーで電話番号が正しくない人がいます。番号を修正するか、そのメンバーを削除してからやり直してください。</string>
   <string name="GroupCreateActivity_avatar_content_description">グループアバター</string>
+  <string name="GroupCreateActivity_menu_apply_button">適用する</string>
   <string name="GroupCreateActivity_creating_group">%1$sを作成中...</string>
   <string name="GroupCreateActivity_updating_group">%1$sを更新...</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Signalユーザーでないので%1$sを加えることはできません</string>
@@ -301,6 +312,7 @@
   <string name="MessageDetailsRecipient_new_safety_number">新しい安全番号</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_background_connection_enabled">バックグラウンド通信が有効</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">MMS保存中にエラーがありました。</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">MMSプロバイダへの接続でエラー</string>
@@ -414,6 +426,11 @@
     </string>
   <string name="RegistrationActivity_continue">続行</string>
   <string name="RegistrationActivity_edit">編集</string>
+  <string name="RegistrationActivity_missing_google_play_services">Google Play開発者サービスがありません</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">この端末にはGoogle Play開発者サービスがありません。Signalは使用できますが，信頼性や性能は下がる可能性があります。\n\n 上級者でない人や，メーカー公式のAndroidを使っている人，何かの間違いだと思う人などはsupport@whispersystems.orgまで連絡してください。</string>
+  <string name="RegistrationActivity_i_understand">分かりました</string>
+  <string name="RegistrationActivity_play_services_error">Google Play開発者サービスのエラー</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play開発者サービスは更新中か一時的に使用不能です。再度試してください。</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">可能性のある原因</string>
   <!--RegistrationProgressActivity-->
@@ -464,6 +481,9 @@
   <string name="ThreadRecord_s_is_on_signal_say_hey">%sがSignalにいるので声を掛ける</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">メッセージの消去時間が%sに設定されました</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">%sとの安全番号が変わりました</string>
+  <!--UpdateApkReadyListener-->
+  <string name="UpdateApkReadyListener_Signal_update">Signalを更新する</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signalの最新版が出ました。タップして更新してください。</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">相手は古いSignalを使っています。Signalを更新してから安全番号の確認を行うようお願いしてください。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">相手が使っているSignalのバージョンが新しいため，QRコードの形式が異なります。Signalを更新してから改めて比較してください。</string>
@@ -510,6 +530,7 @@
   <string name="MediaPreviewActivity_you">あなた</string>
   <string name="MediaPreviewActivity_cant_display">この画像のプレビューに失敗</string>
   <string name="MediaPreviewActivity_unssuported_media_type">サポートされないメディア種別</string>
+  <string name="MediaPreviewActivity_draft">下書き</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d個の会話に%1$d個の新着メッセージ</string>
   <string name="MessageNotifier_most_recent_from_s">最新の受信: %1$s</string>
@@ -537,9 +558,13 @@
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">新規メッセージ</string>
   <!--VideoPlayer-->
+  <string name="VideoPlayer_error_playing_video">動画再生にエラー</string>
   <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_new_safety_numbers">%1$sとの会話の安全番号に変更があります。誰かが通信を傍受している可能性もありますし，%2$sがSignalを再インストールしただけかも知れません。</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">この連絡先との安全番号を確認しておいた方がいいかも知れません。</string>
+  <string name="WebRtcCallScreen_new_safety_numbers_title">新しい安全番号</string>
   <!--WebRtcCallControls-->
+  <string name="WebRtcCallControls_tap_to_enable_your_video">タップして動画を有効する</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">画像</string>
   <string name="attachment_type_selector__image_description">画像</string>
@@ -678,6 +703,7 @@
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">会話全体を見る</string>
   <!--media_overview_activity-->
+  <string name="media_overview_activity__no_media">メディアがありません</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">確認</string>
   <string name="message_recipients_list_item__resend">再送</string>
@@ -776,6 +802,8 @@
   <string name="AndroidManifest__verify_safety_number">安全番号を確認する</string>
   <string name="AndroidManifest__log_submit">デバッグログを提出</string>
   <string name="AndroidManifest__media_preview">メディアのプレビュー</string>
+  <string name="AndroidManifest__all_media">すべてのメディア</string>
+  <string name="AndroidManifest__all_media_named">%1$sとのメディア</string>
   <string name="AndroidManifest__message_details">メッセージ詳細</string>
   <string name="AndroidManifest__linked_devices">結び付いているデバイス</string>
   <string name="AndroidManifest__invite_friends">友達にオススメする</string>
@@ -907,6 +935,10 @@
   <string name="preferences_chats__message_trimming">メッセージの整理</string>
   <string name="preferences_advanced__use_system_emoji">システムの絵文字を使う</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal独自の絵文字機能を無効にする</string>
+  <string name="preferences_advanced__video_calling_beta">テレビ電話（β版）</string>
+  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">次世代のビデオ音声通話を有効にする（相手も有効にした場合）。この機能はβ版です。</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">すべての通話をSignalサーバーに中継して，IPアドレスが相手に漏れることを防ぐ。ただし通話の質は下がります。</string>
+  <string name="preferences_advanced__always_relay_calls">いつも中継する</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -961,8 +993,10 @@
   <string name="conversation_unmuted__mute_notifications">無音通知</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">添付</string>
+  <string name="conversation__menu_edit_group">グループを編集する</string>
   <string name="conversation__menu_leave_group">グループを抜ける</string>
   <string name="conversation__menu_delete_thread">会話を削除</string>
+  <string name="conversation__menu_view_all_media">すべてのメディア</string>
   <string name="conversation__menu_conversation_settings">会話の設定</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">ポップアップを拡大</string>
@@ -1016,6 +1050,7 @@
   <!--media_preview-->
   <string name="media_preview__save_title">保存</string>
   <string name="media_preview__forward_title">早送り</string>
+  <string name="media_preview__all_media_title">すべてのメディア</string>
   <!--media_overview-->
   <string name="media_overview__save_all">すべて保存</string>
   <!--media_preview_activity-->
