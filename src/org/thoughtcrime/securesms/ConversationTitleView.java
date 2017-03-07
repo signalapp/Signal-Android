@@ -68,7 +68,7 @@ public class ConversationTitleView extends LinearLayout {
       } else {
         this.title.setText(recipient.getName());
 
-        if(recipient.getCustomLabel() != null) {
+        if (recipient.getCustomLabel() != null) {
           this.subtitle.setText(recipient.getCustomLabel());
         }
         else {
