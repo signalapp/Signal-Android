@@ -619,6 +619,11 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
     {
       Log.w(TAG, "Timing out call: " + this.callId);
       sendMessage(WebRtcViewModel.State.CALL_DISCONNECTED, this.recipient, localVideoEnabled, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
+
+      if (this.callState == CallState.STATE_ANSWERING || this.callState == CallState.STATE_LOCAL_RINGING) {
+        insertMissedCall(this.recipient, true);
+      }
+
       terminate();
     }
   }
