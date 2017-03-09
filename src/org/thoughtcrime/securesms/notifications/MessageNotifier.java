@@ -34,10 +34,7 @@ import android.service.notification.StatusBarNotification;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationManagerCompat;
-import android.text.Spannable;
-import android.text.SpannableString;
 import android.text.TextUtils;
-import android.text.style.StyleSpan;
 import android.util.Log;
 
 import org.thoughtcrime.redphone.ui.NotificationBarManager;
@@ -48,14 +45,12 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
-import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.MessageRetrievalService;
@@ -63,7 +58,6 @@ import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder;
-import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 
 import java.util.HashSet;
 import java.util.List;
@@ -187,7 +181,7 @@ public class MessageNotifier {
       return;
     }
 
-    updateNotification(context, masterSecret, false, false, 0);
+    updateNotification(context, masterSecret, false, 0);
   }
 
   public static void updateNotification(@NonNull  Context context,
@@ -198,21 +192,12 @@ public class MessageNotifier {
       Log.w(TAG, "Scheduling delayed notification...");
       executor.execute(new DelayedNotification(context, masterSecret, threadId));
     } else {
-      updateNotification(context, masterSecret, false, threadId, true);
+      updateNotification(context, masterSecret, threadId, true);
     }
   }
 
   public static void updateNotification(@NonNull  Context context,
                                         @Nullable MasterSecret masterSecret,
-                                        boolean   includePushDatabase,
-                                        long      threadId)
-  {
-    updateNotification(context, masterSecret, includePushDatabase, threadId, true);
-  }
-
-  public static void updateNotification(@NonNull  Context context,
-                                        @Nullable MasterSecret masterSecret,
-                                        boolean   includePushDatabase,
                                         long      threadId,
                                         boolean   signal)
   {
@@ -236,14 +221,13 @@ public class MessageNotifier {
     if (isVisible) {
       sendInThreadNotification(context, threads.getRecipientsForThreadId(threadId));
     } else {
-      updateNotification(context, masterSecret, signal, includePushDatabase, 0);
+      updateNotification(context, masterSecret, signal, 0);
     }
   }
 
   private static void updateNotification(@NonNull  Context context,
                                          @Nullable MasterSecret masterSecret,
                                          boolean signal,
-                                         boolean includePushDatabase,
                                          int     reminderCount)
   {
     Cursor telcoCursor = null;
@@ -263,10 +247,6 @@ public class MessageNotifier {
       }
 
       NotificationState notificationState = constructNotificationState(context, masterSecret, telcoCursor);
-
-      if (includePushDatabase) {
-        appendPushNotificationState(context, notificationState, pushCursor);
-      }
 
       if (signal && (System.currentTimeMillis() - lastAudibleNotification) < MIN_AUDIBLE_PERIOD_MILLIS) {
         signal = false;
@@ -320,6 +300,7 @@ public class MessageNotifier {
                                   notifications.get(0).getText(), notifications.get(0).getSlideDeck());
     builder.setContentIntent(notifications.get(0).getPendingIntent(context));
     builder.setGroup(NOTIFICATION_GROUP);
+    builder.setDeleteIntent(notificationState.getDeleteIntent(context));
 
     long timestamp = notifications.get(0).getTimestamp();
     if (timestamp != 0) builder.setWhen(timestamp);
@@ -362,6 +343,7 @@ public class MessageNotifier {
     builder.setMessageCount(notificationState.getMessageCount(), notificationState.getThreadCount());
     builder.setMostRecentSender(notifications.get(0).getIndividualRecipient());
     builder.setGroup(NOTIFICATION_GROUP);
+    builder.setDeleteIntent(notificationState.getDeleteIntent(context));
 
     long timestamp = notifications.get(0).getTimestamp();
     if (timestamp != 0) builder.setWhen(timestamp);
@@ -432,33 +414,6 @@ public class MessageNotifier {
     ringtone.play();
   }
 
-  private static void appendPushNotificationState(@NonNull Context context,
-                                                  @NonNull NotificationState notificationState,
-                                                  @NonNull Cursor cursor)
-  {
-    PushDatabase.Reader reader = null;
-    SignalServiceEnvelope envelope;
-
-    try {
-      reader = DatabaseFactory.getPushDatabase(context).readerFor(cursor);
-
-      while ((envelope = reader.getNext()) != null) {
-        Recipients      recipients = RecipientFactory.getRecipientsFromString(context, envelope.getSource(), false);
-        Recipient       recipient  = recipients.getPrimaryRecipient();
-        long            threadId   = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
-        SpannableString body       = new SpannableString(context.getString(R.string.MessageNotifier_locked_message));
-        body.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 0, body.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-        if (!recipients.isMuted()) {
-          notificationState.addNotification(new NotificationItem(recipient, recipients, null, threadId, body, 0, null));
-        }
-      }
-    } finally {
-      if (reader != null)
-        reader.close();
-    }
-  }
-
   private static NotificationState constructNotificationState(@NonNull  Context context,
                                                               @Nullable MasterSecret masterSecret,
                                                               @NonNull  Cursor cursor)
@@ -471,6 +426,8 @@ public class MessageNotifier {
     else                      reader = DatabaseFactory.getMmsSmsDatabase(context).readerFor(cursor, masterSecret);
 
     while ((record = reader.getNext()) != null) {
+      long         id               = record.getId();
+      boolean      mms              = record.isMms() || record.isMmsNotification();
       Recipient    recipient        = record.getIndividualRecipient();
       Recipients   recipients       = record.getRecipients();
       long         threadId         = record.getThreadId();
@@ -478,7 +435,7 @@ public class MessageNotifier {
       Recipients   threadRecipients = null;
       SlideDeck    slideDeck        = null;
       long         timestamp        = record.getTimestamp();
-      
+
 
       if (threadId != -1) {
         threadRecipients = DatabaseFactory.getThreadDatabase(context).getRecipientsForThreadId(threadId);
@@ -497,7 +454,7 @@ public class MessageNotifier {
       }
 
       if (threadRecipients == null || !threadRecipients.isMuted()) {
-        notificationState.addNotification(new NotificationItem(recipient, recipients, threadRecipients, threadId, body, timestamp, slideDeck));
+        notificationState.addNotification(new NotificationItem(id, mms, recipient, recipients, threadRecipients, threadId, body, timestamp, slideDeck));
       }
     }
 
@@ -531,7 +488,7 @@ public class MessageNotifier {
     alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + timeout, pendingIntent);
   }
 
-  private static void clearReminder(Context context) {
+  public static void clearReminder(Context context) {
     Intent        alarmIntent   = new Intent(ReminderReceiver.REMINDER_ACTION);
     PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, PendingIntent.FLAG_CANCEL_CURRENT);
     AlarmManager  alarmManager  = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
@@ -549,21 +506,11 @@ public class MessageNotifier {
         protected Void doInBackground(Void... params) {
           MasterSecret masterSecret  = KeyCachingService.getMasterSecret(context);
           int          reminderCount = intent.getIntExtra("reminder_count", 0);
-          MessageNotifier.updateNotification(context, masterSecret, true, false, reminderCount + 1);
+          MessageNotifier.updateNotification(context, masterSecret, true, reminderCount + 1);
 
           return null;
         }
       }.execute();
-    }
-  }
-
-  public static class DeleteReceiver extends BroadcastReceiver {
-
-    public static final String DELETE_REMINDER_ACTION = "org.thoughtcrime.securesms.MessageNotifier.DELETE_REMINDER_ACTION";
-
-    @Override
-    public void onReceive(Context context, Intent intent) {
-      clearReminder(context);
     }
   }
 
@@ -599,7 +546,7 @@ public class MessageNotifier {
 
       if (!canceled.get()) {
         Log.w(TAG, "Not canceled, notifying...");
-        MessageNotifier.updateNotification(context, masterSecret, false, threadId, true);
+        MessageNotifier.updateNotification(context, masterSecret, threadId, true);
         MessageNotifier.cancelDelayedNotifications();
       } else {
         Log.w(TAG, "Canceled, not notifying...");

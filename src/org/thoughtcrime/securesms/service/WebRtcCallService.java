@@ -639,7 +639,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
   private void insertMissedCall(@NonNull Recipient recipient, boolean signal) {
     Pair<Long, Long> messageAndThreadId = DatabaseFactory.getSmsDatabase(this).insertMissedCall(recipient.getNumber());
     MessageNotifier.updateNotification(this, KeyCachingService.getMasterSecret(this),
-                                       false, messageAndThreadId.second, signal);
+                                       messageAndThreadId.second, signal);
   }
 
   private void handleAnswerCall(Intent intent) {

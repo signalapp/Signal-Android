@@ -75,7 +75,8 @@ public class DatabaseFactory {
   private static final int INTRODUCED_EXPIRE_MESSAGES_VERSION              = 28;
   private static final int INTRODUCED_LAST_SEEN                            = 29;
   private static final int INTRODUCED_DIGEST                               = 30;
-  private static final int DATABASE_VERSION                                = 30;
+  private static final int INTRODUCED_NOTIFIED                             = 31;
+  private static final int DATABASE_VERSION                                = 31;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -839,6 +840,17 @@ public class DatabaseFactory {
       if (oldVersion < INTRODUCED_DIGEST) {
         db.execSQL("ALTER TABLE part ADD COLUMN digest BLOB");
         db.execSQL("ALTER TABLE groups ADD COLUMN avatar_digest BLOB");
+      }
+
+      if (oldVersion < INTRODUCED_NOTIFIED) {
+        db.execSQL("ALTER TABLE sms ADD COLUMN notified INTEGER DEFAULT 0");
+        db.execSQL("ALTER TABLE mms ADD COLUMN notified INTEGER DEFAULT 0");
+
+        db.execSQL("DROP INDEX sms_read_and_thread_id_index");
+        db.execSQL("CREATE INDEX IF NOT EXISTS sms_read_and_notified_and_thread_id_index ON sms(read,notified,thread_id)");
+
+        db.execSQL("DROP INDEX mms_read_and_thread_id_index");
+        db.execSQL("CREATE INDEX IF NOT EXISTS mms_read_and_notified_and_thread_id_index ON mms(read,notified,thread_id)");
       }
 
       db.setTransactionSuccessful();
