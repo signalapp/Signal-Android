@@ -501,6 +501,7 @@ Mensagem de troca de chave inválida para esta versão do protocolo.
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s está a usar Signal, diga olá!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tempo de mensagens a desaparecer definido para %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">O seu número de segurança com %s mudou.</string>
+  <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">O seu contacto está a utilizar uma versão anterior de Signal. Por favor peça-lhe para actualizar antes de verificar o seu número de segurança.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">O seu contacto está a utilizar uma versão mais recente de Signal, com um novo formato de QR-Code. Por favor actualize para comparar.</string>

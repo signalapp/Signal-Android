@@ -1,14 +1,11 @@
 package org.thoughtcrime.securesms;
 
-import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
-import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
@@ -43,7 +40,15 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity {
                                                                    R.string.ExperienceUpgradeActivity_textsecure_is_now_called_signal)),
                       R.string.ExperienceUpgradeActivity_welcome_to_signal_excited,
                       R.string.ExperienceUpgradeActivity_textsecure_is_now_signal,
-                      R.string.ExperienceUpgradeActivity_textsecure_is_now_signal_long);
+                      R.string.ExperienceUpgradeActivity_textsecure_is_now_signal_long),
+    VIDEO_CALLS(245,
+                      new IntroPage(0xFF2090EA,
+                                    BasicIntroFragment.newInstance(R.drawable.video_splash,
+                                                                   R.string.ExperienceUpgradeActivity_say_hello_to_video_calls,
+                                                                   R.string.ExperienceUpgradeActivity_signal_now_supports_secure_video_calls)),
+                      R.string.ExperienceUpgradeActivity_say_hello_to_video_calls,
+                      R.string.ExperienceUpgradeActivity_signal_now_supports_secure_video_calling,
+                      R.string.ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long);
 
     private            int             version;
     private            List<IntroPage> pages;

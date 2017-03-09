@@ -229,6 +229,8 @@
   <string name="DeviceListItem_last_active_s">Utoljára aktív %s</string>
   <string name="DeviceListItem_today">Ma</string>
   <!--DozeReminder-->
+  <string name="DozeReminder_optimize_for_missing_play_services">Optimalizálás hiányzó Play Szolgáltatásokra</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Ez a készülék nem támogat Play Szolgáltatásokat. Érints a rendszer akkumulátor optimalizációk letiltásához, ami megakadályozza a Signal-t az üzenetek visszakeresésében, amikor inaktív.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Megosztás vele:</string>
   <!--ExperienceUpgradeActivity-->
@@ -237,6 +239,10 @@
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Üdvözöl a Signal!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">A TextSecure mostantól Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">A TextSecure és a RedPhone most egy alkalmazás: Signal. Érints a felfedezéshez.</string>
+  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Köszönj a biztonságos videóhívásoknak.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">A Signal már támogatja a biztonságos videóhívást. Csak indíts egy Signal hívást mint normálisan, érints a videó gombra és integess.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">A Signal már támogatja a biztonságos videóhívást.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">A Signal már támogatja a biztonságos videóhívást. Érints a felfedezéshez.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exportálás</string>
   <string name="ExportFragment_export_plaintext_to_storage">Nyílt szöveg exportálása tárolóra?</string>
@@ -335,6 +341,7 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <string name="MessageDetailsRecipient_new_safety_number">Új biztonsági szám</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_background_connection_enabled">Háttérkapcsolat engedélyezve</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">MMS tárolása sikertelen!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Hiba az MMS szolgáltatóhoz kapcsolódáskor</string>
@@ -457,6 +464,11 @@ szám (%s) érvénytelen.
 Ellenőrizd újra, hogy ez a te számod! Hamarosan egy SMS-ben fogjuk ellenőrizni azt. </string>
   <string name="RegistrationActivity_continue">Folytatás</string>
   <string name="RegistrationActivity_edit">Szerkesztés</string>
+  <string name="RegistrationActivity_missing_google_play_services">Hiányzó Google Play Szolgáltatások</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Ezen a készüléken hiányzik a Google Play Szolgáltatások. Továbbra is használhatod a Signal-t, de ez a konfiguráció csökkent megbízhatóságot vagy teljesítményt eredményezhet.\n\nHa nem egy hozzáértő felhasználó vagy, aki egy utángyártott Android ROM-ot futtat, vagy úgy gondolod, hogy ezt hibaként látod, kérlek vedd fel a kapcsolatot a problémamegoldásért a support@whispersystems.org -gal.</string>
+  <string name="RegistrationActivity_i_understand">Megértettem</string>
+  <string name="RegistrationActivity_play_services_error">Play Szolgáltatások hiba</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">A Google Play Szolgáltatások frissít, vagy átmenetileg nem elérhető. Kérlek próbáld újra.</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Lehetséges problémák</string>
   <!--RegistrationProgressActivity-->
@@ -511,6 +523,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s fent van a Signal-on, köszönj be!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Eltűnő üzenet ideje beállítva erre: %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Megváltozott a biztonsági számod vele: %s.</string>
+  <!--UpdateApkReadyListener-->
+  <string name="UpdateApkReadyListener_Signal_update">Signal frissítés</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">A Signal egy új verziója érhető el, érints a frissítéshez</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">A kontaktod a Signal egy régebbi verzióját futtatja. Kérd meg, hogy frissítsen a biztonsági szám ellenőrzése előtt.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">A kontaktod a Signal egy újabb verzióját futtatja egy inkompatibilis QR kód formátummal. Kérlek frissíts az összehasonlításhoz.</string>
@@ -926,9 +941,9 @@ sikertelen.
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Signal és üzenet értesítések zárolása jelmondattal</string>
   <string name="preferences__screen_security">Képernyő biztonság</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Képernyőfelvételek blokkolása a legutóbbiak listában és az alkalmazáson belül</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Signal automatikus zárolása egy meghatározott inaktivitási időintervallum után</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Signal automatikus zárolása egy meghatározott inaktivitási időköz után</string>
   <string name="preferences__inactivity_timeout_passphrase">Inaktivitási időtúllépés jelmondat</string>
-  <string name="preferences__inactivity_timeout_interval">Inaktivitási időtúllépés intervallum</string>
+  <string name="preferences__inactivity_timeout_interval">Inaktivitási időtúllépés időköz</string>
   <string name="preferences__notifications">Értesítések</string>
   <string name="preferences__enable_message_notifications">Üzenet értesítések engedélyezése</string>
   <string name="preferences__new_contacts_notifications">Új kontakt értesítések</string>

@@ -419,6 +419,7 @@
   <string name="ThreadRecord_missed_call">Chamada perdida</string>
   <string name="ThreadRecord_media_message">Mensaxe multimedia</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s está en Signal; dille ola!</string>
+  <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_no_app_to_share_to">Semella que non hai ningunha que permita compartir.</string>
   <!--KeyExchangeInitiator-->

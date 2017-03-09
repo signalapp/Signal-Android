@@ -513,6 +513,7 @@
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s је на Сигналу, пошаљите поздрав!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Време нестајања поруке постављено на %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Ваш безбедносни број са %s је промењен.</string>
+  <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Ваш контакт има старије издање Сигнала. Замолите их да ажурирају пре потврде ваших безбедносних бројева.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Ваш контакт има новије издање Сигнала са некомпатибилним форматом  бар-кôда. Ажурирајте Сигнал да бисте могли да упоређујете.</string>

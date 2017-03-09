@@ -163,8 +163,12 @@ public class WebRtcCallScreen extends FrameLayout implements Recipient.Recipient
     this.controls.setVideoMuteButtonListener(listener);
   }
 
-  public void setAudioButtonListener(WebRtcCallControls.AudioButtonListener listener) {
-    this.controls.setAudioButtonListener(listener);
+  public void setSpeakerButtonListener(WebRtcCallControls.SpeakerButtonListener listener) {
+    this.controls.setSpeakerButtonListener(listener);
+  }
+
+  public void setBluetoothButtonListener(WebRtcCallControls.BluetoothButtonListener listener) {
+    this.controls.setBluetoothButtonListener(listener);
   }
 
   public void setHangupButtonListener(final HangupButtonListener listener) {
@@ -184,12 +188,13 @@ public class WebRtcCallScreen extends FrameLayout implements Recipient.Recipient
     this.cancelIdentityButton.setOnClickListener(listener);
   }
 
-  public void notifyBluetoothChange() {
-    this.controls.updateAudioButton();
+  public void updateAudioState(boolean isBluetoothAvailable, boolean isMicrophoneEnabled) {
+    this.controls.updateAudioState(isBluetoothAvailable);
+    this.controls.setMicrophoneEnabled(isMicrophoneEnabled);
   }
 
-  public void notifyAudioRoutingChange() {
-    this.controls.updateAudioButton();
+  public void setControlsEnabled(boolean enabled) {
+    this.controls.setControlsEnabled(enabled);
   }
 
   public void setLocalVideoEnabled(boolean enabled) {

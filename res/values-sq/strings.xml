@@ -482,6 +482,7 @@ U pranua mesazh për shkembim çelsash për një verzion të protokolli jo valid
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s është në Signal, thuaj tung!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Koha për zhdukje të mesazheve rregulluar në %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Numri juaj sigurie me %s është ndryshuar.</string>
+  <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontakti i juaj është duke perdorur një version të vjetër të Signal. Ju lutem kërkoni atij/asaj të përditësojë para se të verifikoni numrin e juaj sigurie.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontakti juaj ka një version më të ri të Siganl-it me një format QR Kodi që nuk përputhet. Ju lutem shkarkoni versionin e ri për të krahasuar.</string>

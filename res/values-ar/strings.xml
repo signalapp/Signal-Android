@@ -531,6 +531,7 @@
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s إنضم إلى سيجنال.. ألقي التحية!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">ضبط توقيت إخفاء الرسائل إلى %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">تم تغيير رقم الأمان الخاص بك وبـ%s.</string>
+  <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">متصلك يستعمل نسخة قديمة من تطبيق سيقنال. من فضلك اطلب منه تحديث التطبيق ليتسنى لك التحقق من رقم الأمان.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">إن متصلك هذا يستعمل نسخة تطبيق سيقنـال أحدث ورمز QR فيها لا يتوافق مع نسختك.

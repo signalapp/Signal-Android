@@ -211,6 +211,8 @@
   <string name="DeviceListItem_last_active_s">最後活躍 %s</string>
   <string name="DeviceListItem_today">今天</string>
   <!--DozeReminder-->
+  <string name="DozeReminder_optimize_for_missing_play_services">為缺少的 Play 服務優化</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">這個裝置不支援 Play 服務。輕觸關閉，因為系統電池效能最佳化會防止 Signal 在閒置時取得訊息。</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">分享給</string>
   <!--ExperienceUpgradeActivity-->
@@ -314,6 +316,7 @@
   <string name="MessageDetailsRecipient_new_safety_number">新的安全碼</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_background_connection_enabled">背景連線已經啟用</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">儲存多媒體訊息時有誤！</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">連線到MMS供應商時發生錯誤</string>
@@ -432,6 +435,11 @@
 請仔細檢查您的號碼！我們將透過簡訊進行驗證。</string>
   <string name="RegistrationActivity_continue">繼續</string>
   <string name="RegistrationActivity_edit">編輯</string>
+  <string name="RegistrationActivity_missing_google_play_services">找不到 Google Play 服務</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">這個裝置找不到 Google Play 服務。你仍然可以使用 Signal，但是這個設定也許會造成降低可靠性或效能。\n\n如果你不是進階使用者，沒有執行非原廠的 Android ROM，或相信你正看到錯誤，請聯絡 support@whispersystems.org 來協助你排除故障。</string>
+  <string name="RegistrationActivity_i_understand">我了解</string>
+  <string name="RegistrationActivity_play_services_error">Play 服務錯誤</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play 服務正在更新或暫時無法使用。請再重試。</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">可能的問題</string>
   <!--RegistrationProgressActivity-->
@@ -485,6 +493,7 @@
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s 正在 Signal 線上，打個招呼吧！</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">訊息銷毀時間設置爲 %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">您與 %s 的安全碼已改變。</string>
+  <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">您的聯絡人使用的是舊版本的 Signal。在驗證您的安全碼前請尋求對方先進行更新。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">您的聯絡人使用的是新版本的 Signal，程式無法識別這個聯絡人的二維碼。

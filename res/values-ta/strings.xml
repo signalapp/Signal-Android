@@ -356,6 +356,7 @@
   <string name="ThreadRecord_called_you">உங்களை அழைத்தார்</string>
   <string name="ThreadRecord_missed_call">தவறிய அழைப்பு</string>
   <string name="ThreadRecord_media_message">பல்லூடகச் செய்தி</string>
+  <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">பழைய கோரிக்கை இருப்பினும் தொடங்கலாமா?</string>

@@ -302,6 +302,7 @@
   <!--ThreadRecord-->
   <string name="ThreadRecord_draft">Скица:</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s има инсталирано Signal, кажи му здраво! </string>
+  <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Иницирај и покрај постоечкото барање?</string>

@@ -227,6 +227,8 @@
   <string name="DeviceListItem_last_active_s">Последна активност %s</string>
   <string name="DeviceListItem_today">Днес</string>
   <!--DozeReminder-->
+  <string name="DozeReminder_optimize_for_missing_play_services">Оптимизиране за липсващи Play услуги</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Това устройство не поддържа Play услуги. Натиснете, за да изключите оптимизациите на батерият, за да преустановите опитите на Сигнал да изтегля съобщения, когато не е активен.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Споделяне с</string>
   <!--ExperienceUpgradeActivity-->
@@ -235,6 +237,10 @@
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Добре дошли в Сигнал!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure вече е Сигнал.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure и Redphone вече са една програма: Сигнал. Натисни за да разгледаш.</string>
+  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Кажете здравей на криптирани видео разговори.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Сигнал вече подддържа криптирани видео разговори. Просто започнете обаждане, както обикновено и натиснете бутонът за видео.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Сигнал вече поддържа криптирано видео обаждане.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Сигнал вече поддържа криптирано видео обаждане. Натиснете, за да научите повече.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Изнасяне</string>
   <string name="ExportFragment_export_plaintext_to_storage">Изнасяне в некриптирано състояние на диска?</string>
@@ -330,6 +336,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="MessageDetailsRecipient_new_safety_number">Нови числа за сигурност</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Сигнал</string>
+  <string name="MessageRetrievalService_background_connection_enabled">Връзката във фонов режим е активирана</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Грешка при съхраняване на MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Грешка при свързването с MMS доставчика</string>
@@ -427,7 +434,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="RedPhone_recipient_unavailable">Приемащия повикването не е на линия</string>
   <string name="RedPhone_performing_handshake">Установяване на връзка</string>
   <string name="RedPhone_network_failed">Грешка в мрежата!</string>
-  <string name="RedPhone_client_failed">Грешка в Signal!</string>
+  <string name="RedPhone_client_failed">Грешка в Сигнал!</string>
   <string name="RedPhone_fatal_error">Фатална грешка</string>
   <string name="RedPhone_login_failed">Неуспешно вписване!</string>
   <string name="RedPhone_message_from_the_server">Съобщение от сървъра</string>
@@ -448,6 +455,11 @@ SMS-те от системния архив в Сигнал. Ако вече с�
 Проверете, че това е Вашия номер! Следва да го проверим чрез SMS.</string>
   <string name="RegistrationActivity_continue">Продължи</string>
   <string name="RegistrationActivity_edit">Промени</string>
+  <string name="RegistrationActivity_missing_google_play_services">Липсват Google Play услуги</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">На това устройство липсват Google Play услуги. Може да продължите да използвате Сигнал, но тази конфигурация може да доведе до намалена надежност.\n\nАко не сте напреднал потребител или не използвате специализиран Android ROM, или смятате, че виждате това съобщение по погрешка, моля свържете се със support@whispersystems.org за помощ и напътствия за решаване на проблема.</string>
+  <string name="RegistrationActivity_i_understand">Разбирам</string>
+  <string name="RegistrationActivity_play_services_error">Грешка с Play услуги</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play услуги се обновява или временно не е на разположение. Моля, опитайте отново.</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Възможни проблеми</string>
   <!--RegistrationProgressActivity-->
@@ -501,6 +513,9 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s е в Сигнал, кажи му здрасти!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Времето за изчезване на съобщенията е %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Числата Ви за сигурност с %s са променени.</string>
+  <!--UpdateApkReadyListener-->
+  <string name="UpdateApkReadyListener_Signal_update">Обновление на Сигнал</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Има нова версия на Сигнал, натиснете, за да обновите.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Вашият контакт използва стара версия на Сигна. Помолети го да я обнови преди да сравните числата за сигурност.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Вашият контакт използва по-нова версия на Сигнал с несъвместим QR формат. Моля, обновете версията си, за да можете да сравните.</string>
@@ -577,7 +592,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Грешка при пускане на видео</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">Числата за сигурност за разговора с %1$s са променени. Това означава, че или някой се опитва да прехване куминикацията Ви, или че %2$s е преинсталирал Signal.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers">Числата за сигурност за разговора с %1$s са променени. Това означава, че или някой се опитва да прехване куминикацията Ви, или че %2$s е преинсталирал Сигнал.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Може да желаете да проверите числата за сигурност с този контакт.</string>
   <string name="WebRtcCallScreen_new_safety_numbers_title">Нови числа за сигурност</string>
   <!--WebRtcCallControls-->
@@ -982,7 +997,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Деактивирай вградена в Сигнал подръжка на emoji-та</string>
   <string name="preferences_advanced__video_calling_beta">Видео обаждане бета</string>
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Поддръжка за следващото поколение видео и аудио обаждания, когато е активирано и от двете страни. Тази функционалонст е в бета режим.</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Прехвърляне на всички обаждания през Signal сървърва, за да се прикрие IP адресът Ви от контатктът Ви. Активирането ще намали качеството на връзката.</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Прехвърляне на всички обаждания през Сигнал сървърва, за да се прикрие IP адресът Ви от контатктът Ви. Активирането ще намали качеството на връзката.</string>
   <string name="preferences_advanced__always_relay_calls">Винаги да се използва прехвърляне на обажданията</string>
   <!--****************************************-->
   <!--menus-->

@@ -37,7 +37,7 @@
   <string name="ApplicationPreferencesActivity_off">väljas</string>
   <string name="ApplicationPreferencesActivity_Off">Väljas</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Salaväljend %1$s, kuva turvalisus %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Salaväljend %1$s, kuva turvamine %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">%1$s teema, %2$s keel</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -132,6 +132,10 @@
   <string name="ConversationActivity_error_sending_voice_message">Viga helisõnumi saatmisel</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Sinu seadmes pole rakendust, mis oleks võimeline seda linki käsitlema.</string>
   <!--ConversationAdapter-->
+  <plurals name="ConversationAdapter_n_unread_messages">
+    <item quantity="one">%d lugemata sõnum</item>
+    <item quantity="other">%d lugemata sõnumit</item>
+  </plurals>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Sõnumi andmed</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nSaadetud/vastuvõetud: %2$s</string>
@@ -223,6 +227,8 @@
   <string name="DeviceListItem_last_active_s">%s viimati aktiivne</string>
   <string name="DeviceListItem_today">Täna</string>
   <!--DozeReminder-->
+  <string name="DozeReminder_optimize_for_missing_play_services">Optimeeri puuduvate Play teenuste jaoks</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">See seade ei toeta Play teenuseid. Koputa, et keelata süsteemi aku optimeerimine, kuna see ei lase Signalil sõnumeid hankida, kui seade on ebaaktiivne.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Jaga inimesega</string>
   <!--ExperienceUpgradeActivity-->
@@ -251,6 +257,7 @@
   <string name="GiphyFragmentPagerAdapter_stickers">Kleepsud</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Uus grupp</string>
+  <string name="GroupCreateActivity_actionbar_edit_title">Muuda gruppi</string>
   <string name="GroupCreateActivity_group_name_hint">Grupi nimi</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Uus MMS grupp</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Sa valisid kontakti, kes ei toeta Signali gruppe, seega see grupp hakkab kasutama MMSi.</string>
@@ -259,6 +266,7 @@
   <string name="GroupCreateActivity_contacts_no_members">Sinu grupis peab olema vähemalt üks isik!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Üks grupiliige omab numbrit, mida ei saa lugeda korrektselt. Palun paranda või eemalda see kontakt ja proovi uuesti.</string>
   <string name="GroupCreateActivity_avatar_content_description">Grupi avatar</string>
+  <string name="GroupCreateActivity_menu_apply_button">Rakenda</string>
   <string name="GroupCreateActivity_creating_group">Loon %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Uuendan %1$s...</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s ei saanud lisada kuna ta pole Signali kasutaja.</string>
@@ -328,6 +336,7 @@
   <string name="MessageDetailsRecipient_new_safety_number">Uus turvanumber</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_background_connection_enabled">Taustaühendus lubatud</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">MMSi salvestamisel tekkis viga!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">MMS-pakkujaga ühendamisel esines viga</string>
@@ -450,6 +459,11 @@
     </string>
   <string name="RegistrationActivity_continue">Jätka</string>
   <string name="RegistrationActivity_edit">Muuda</string>
+  <string name="RegistrationActivity_missing_google_play_services">Puuduvad Google Play teenused</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Sellel seadel puuduvad Google Play teenused. Sa võid siiski kasutada SIgnalit, aga see konfigruatsioon võib vähendada töökindlust või jõudlust.\n\nKui sa pole edasijõudnud kasutaja, ei kasuta järelturu Androidi ROMi, või arvad et näed seda teadet ekslikult, palun kontakteeru support@whispersystems.org, et aidata viga parandada.</string>
+  <string name="RegistrationActivity_i_understand">Saan aru</string>
+  <string name="RegistrationActivity_play_services_error">Play teenuste viga</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play teenused uuenevad või pole hetkel saadaval. Palun proovi uuesti.</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Võimalikud probleemid</string>
   <!--RegistrationProgressActivity-->
@@ -504,6 +518,7 @@
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s on Signalis, ütle tere!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Hävineva sõnumi ajaks on seatud %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Sinu turvanumber kontaktiga %s on muutunud.</string>
+  <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Sinu kontakt kasutab vana Signali versiooni. Palun palu neil uuendada, enne kui kinnitad oma turvanumbrit.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Sinu kontakt kasutab uuemat Signali versiooni ühildumatu QR-koodi vorminguga. Võrdlemiseks palun uuenda.</string>
@@ -550,6 +565,7 @@
   <string name="MediaPreviewActivity_you">Sina</string>
   <string name="MediaPreviewActivity_cant_display">Selle pildi eelvaatamine ebaõnnestus</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Mittetoetatud meediatüüp</string>
+  <string name="MediaPreviewActivity_draft">Mustand</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d uut sõnumit %2$d vestluses</string>
   <string name="MessageNotifier_most_recent_from_s">Viimatine kontaktilt %1$s</string>
@@ -577,7 +593,9 @@
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Uus sõnum</string>
   <!--VideoPlayer-->
+  <string name="VideoPlayer_error_playing_video">Video esitamisel tekkis viga</string>
   <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_new_safety_numbers">Turvanumber sinu vestluses kontaktiga %1$s on muutunud. See võib tähendada, et keegi üritab su vestlusesse sekkuda või et %2$s lihtsalt taasinstallis Signali.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Sa võid tahta kinnitada oma turvanumbrit selle kontaktiga.</string>
   <string name="WebRtcCallScreen_new_safety_numbers_title">Uued turvanumbrid</string>
   <!--WebRtcCallControls-->
@@ -725,6 +743,7 @@
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Näe tervet vestlust</string>
   <!--media_overview_activity-->
+  <string name="media_overview_activity__no_media">Meedia puudub</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">KINNITA</string>
   <string name="message_recipients_list_item__resend">SAADA UUESTI</string>
@@ -862,6 +881,8 @@
   <string name="AndroidManifest__verify_safety_number">Kinnita turvanumbrit</string>
   <string name="AndroidManifest__log_submit">Saada silumislogi</string>
   <string name="AndroidManifest__media_preview">Meedia eelvaade</string>
+  <string name="AndroidManifest__all_media">Kogu meedia</string>
+  <string name="AndroidManifest__all_media_named">Kogu meedia kontaktiga %1$s</string>
   <string name="AndroidManifest__message_details">Sõnumi andmed</string>
   <string name="AndroidManifest__linked_devices">Lingitud seadmed</string>
   <string name="AndroidManifest__invite_friends">Kutsu sõpru</string>
@@ -996,6 +1017,8 @@
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Keela Signali sisseehitatud emoji-tugi</string>
   <string name="preferences_advanced__video_calling_beta">Videokõned - beeta</string>
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Tugi järgmise generatsiooni video- ja häälkõnedele, kui mõlemad osapooled lubavad selle. See funktsioon on beetastaatuses.</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Vahenda kõik kõned Signali serveri kaudu, et vältida oma IP-aadressi levitamist oma kontaktile. Lubamine vähendab kõnekvaliteeti.</string>
+  <string name="preferences_advanced__always_relay_calls">Alati vahenda kõned</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1050,8 +1073,10 @@
   <string name="conversation_unmuted__mute_notifications">Vaigista teated</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Lisa manus</string>
+  <string name="conversation__menu_edit_group">Muuda gruppi</string>
   <string name="conversation__menu_leave_group">Lahku grupist</string>
   <string name="conversation__menu_delete_thread">Kustuta vestlus</string>
+  <string name="conversation__menu_view_all_media">Kogu meedia</string>
   <string name="conversation__menu_conversation_settings">Vestluse seaded</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Laienda hüpikut</string>
@@ -1106,6 +1131,7 @@
   <!--media_preview-->
   <string name="media_preview__save_title">Salvesta</string>
   <string name="media_preview__forward_title">Edasta</string>
+  <string name="media_preview__all_media_title">Kogu meedia</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Salvesta kõik</string>
   <!--media_preview_activity-->

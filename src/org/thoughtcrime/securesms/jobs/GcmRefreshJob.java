@@ -62,27 +62,23 @@ public class GcmRefreshJob extends ContextJob implements InjectableType {
   public void onRun() throws Exception {
     if (TextSecurePreferences.isGcmDisabled(context)) return;
 
-    String registrationId = TextSecurePreferences.getGcmRegistrationId(context);
+    Log.w(TAG, "Reregistering GCM...");
+    int result = GooglePlayServicesUtil.isGooglePlayServicesAvailable(context);
 
-    if (registrationId == null) {
-      Log.w(TAG, "GCM registrationId expired, reregistering...");
-      int result = GooglePlayServicesUtil.isGooglePlayServicesAvailable(context);
+    if (result != ConnectionResult.SUCCESS) {
+      notifyGcmFailure();
+    } else {
+      String gcmId = GoogleCloudMessaging.getInstance(context).register(REGISTRATION_ID);
+      textSecureAccountManager.setGcmId(Optional.of(gcmId));
 
-      if (result != ConnectionResult.SUCCESS) {
-        notifyGcmFailure();
-      } else {
-        String gcmId = GoogleCloudMessaging.getInstance(context).register(REGISTRATION_ID);
-        textSecureAccountManager.setGcmId(Optional.of(gcmId));
-
-        try {
-          redPhoneAccountManager.setGcmId(Optional.of(gcmId));
-        } catch (UnauthorizedException e) {
-          Log.w(TAG, e);
-        }
-
-        TextSecurePreferences.setGcmRegistrationId(context, gcmId);
-        TextSecurePreferences.setWebsocketRegistered(context, true);
+      try {
+        redPhoneAccountManager.setGcmId(Optional.of(gcmId));
+      } catch (UnauthorizedException e) {
+        Log.w(TAG, e);
       }
+
+      TextSecurePreferences.setGcmRegistrationId(context, gcmId);
+      TextSecurePreferences.setWebsocketRegistered(context, true);
     }
   }
 

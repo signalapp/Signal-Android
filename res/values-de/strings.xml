@@ -16,12 +16,12 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Alle alten Nachrichten löschen?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
-    <item quantity="one">Jetzt alle Unterhaltungen bis auf die letzte Nachricht kürzen.</item>
-    <item quantity="other">Jetzt alle Unterhaltungen bis auf die %d letzten Nachrichten kürzen.</item>
+    <item quantity="one">Kürzt sofort alle Unterhaltungen bis auf die letzte Nachricht.</item>
+    <item quantity="other">Kürzt sofort alle Unterhaltungen bis auf die %d letzten Nachrichten.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Löschen</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Passwort deaktivieren?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Signal und Benachrichtigungen dauerhaft entsperren.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Entsperrt Signal und Benachrichtigungen dauerhaft.</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivieren</string>
   <string name="ApplicationPreferencesActivity_unregistering">Registrierung löschen</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Registrierung für Signal-Nachrichten und -Anrufe wird gelöscht …</string>
@@ -92,7 +92,7 @@
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Hilfreich bei Problemen mit der Verschlüsselung in dieser Unterhaltung. Deine Nachrichten bleiben erhalten.</string>
   <string name="ConversationActivity_reset">Neu starten</string>
   <string name="ConversationActivity_delete_thread_question">Unterhaltung löschen?</string>
-  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">Alle Nachrichten dieser Unterhaltung unwiderruflich löschen.</string>
+  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">Löscht unwiderruflich alle Nachrichten dieser Unterhaltung.</string>
   <string name="ConversationActivity_add_attachment">Anhang hinzufügen</string>
   <string name="ConversationActivity_select_contact_info">Kontaktinfo wählen</string>
   <string name="ConversationActivity_compose_message">Nachricht verfassen</string>
@@ -145,8 +145,8 @@
     <item quantity="other">Ausgewählte Nachrichten löschen?</item>
   </plurals>
   <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
-    <item quantity="one">Unwiderruflich die ausgewählte Nachricht löschen.</item>
-    <item quantity="other">Unwiderruflich alle %1$d ausgewählten Nachrichten löschen.</item>
+    <item quantity="one">Löscht unwiderruflich die ausgewählte Nachricht.</item>
+    <item quantity="other">Löscht unwiderruflich alle %1$d ausgewählten Nachrichten.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Im Gerätespeicher speichern?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
@@ -186,8 +186,8 @@
     <item quantity="other">Ausgewählte Unterhaltungen löschen?</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-    <item quantity="one">Unwiderruflich die ausgewählte Unterhaltung löschen.</item>
-    <item quantity="other">Unwiderruflich alle %1$d ausgewählten Unterhaltungen löschen.</item>
+    <item quantity="one">Löscht unwiderruflich die ausgewählte Unterhaltung.</item>
+    <item quantity="other">Löscht unwiderruflich alle %1$d ausgewählten Unterhaltungen.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Löschen</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Ausgewählte Unterhaltungen werden gelöscht …</string>
@@ -227,6 +227,8 @@
   <string name="DeviceListItem_last_active_s">Zuletzt aktiv %s</string>
   <string name="DeviceListItem_today">Heute</string>
   <!--DozeReminder-->
+  <string name="DozeReminder_optimize_for_missing_play_services">Für fehlende Play-Dienste optimieren</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dieses Gerät unterstützt keine Play-Dienste. Antippen, um Akkuoptimierungsdienste des Systems zu deaktivieren, die Signal bei Inaktivität daran hindern, Nachrichten zu empfangen.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Teilen mit</string>
   <!--ExperienceUpgradeActivity-->
@@ -235,6 +237,10 @@
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Willkommen bei Signal!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure heißt jetzt Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure und RedPhone sind jetzt eine gemeinsame App: Signal. Antippen, um mehr zu erfahren.</string>
+  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Sag Hallo zu sicheren Videoanrufen.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal unterstützt jetzt sichere Videoanrufe. Beginne einfach einen Signal-Anruf wie sonst auch, tippe die Kameraschaltfläche an und winke deinem Kontakt zu.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal unterstützt jetzt sichere Videoanrufe.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal unterstützt jetzt sichere Videoanrufe. Zum Erkunden antippen.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exportieren</string>
   <string name="ExportFragment_export_plaintext_to_storage">Klartextsicherung exportieren?</string>
@@ -277,7 +283,7 @@
   <string name="ImportExportActivity_export">Exportieren</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">System-SMS-Datenbank importieren?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Nachrichten aus der Standard-SMS-Datenbank in Signal importieren. Falls du dies schon einmal gemacht hast, wird es zu doppelten Nachrichten kommen.</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Importiert Nachrichten aus der Standard-SMS-Datenbank in Signal. Falls du dies schon einmal gemacht hast, wird es zu doppelten Nachrichten kommen.</string>
   <string name="ImportFragment_import">Importieren</string>
   <string name="ImportFragment_cancel">Abbruch</string>
   <string name="ImportFragment_restore_encrypted_backup">Verschlüsselte Sicherung wiederherstellen?</string>
@@ -285,7 +291,7 @@
 Das Wiederherstellen einer verschlüsselten Datensicherung ersetzt deine bestehenden Schlüssel, Einstellungen und Nachrichten. Du wirst jegliche Informationen deiner jetzigen Signal-Installation verlieren, die nicht in dieser Datensicherung enthalten sind.</string>
   <string name="ImportFragment_restore">Wiederherstellen</string>
   <string name="ImportFragment_import_plaintext_backup">Klartextsicherung importieren?</string>
-  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Nachrichten aus einer Klartext-Datensicherung in Signal importieren. Falls du bereits zuvor diese Datensicherung importiert hast, wird es zu doppelten Nachrichten kommen.</string>
+  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Importiert Nachrichten aus einer Klartext-Datensicherung in Signal. Falls du bereits zuvor diese Datensicherung importiert hast, wird es zu doppelten Nachrichten kommen.</string>
   <string name="ImportFragment_importing">Importieren</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">Klartextsicherung wird importiert …</string>
   <string name="ImportFragment_no_plaintext_backup_found">Keine Klartextsicherung gefunden!</string>
@@ -325,6 +331,7 @@ Das Wiederherstellen einer verschlüsselten Datensicherung ersetzt deine bestehe
   <string name="MessageDetailsRecipient_new_safety_number">Neue Sicherheitsnummer</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_background_connection_enabled">Hintergrundverbindung aktiviert</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Fehler beim Speichern der MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Verbindung zum MMS-Anbieter fehlgeschlagen</string>
@@ -438,6 +445,11 @@ Das Wiederherstellen einer verschlüsselten Datensicherung ersetzt deine bestehe
 Bitte kontrolliere noch einmal deine Rufnummer. Diese wird anschließend durch eine SMS überprüft.</string>
   <string name="RegistrationActivity_continue">Weiter</string>
   <string name="RegistrationActivity_edit">Bearbeiten</string>
+  <string name="RegistrationActivity_missing_google_play_services">Fehlende Google Play-Dienste</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Auf diesem Gerät fehlen die Google Play-Dienste. Signal kann immer noch verwendet werden, allerdings führt diese Konfiguration eventuell zu verringerter Zuverlässigkeit oder Leistung.\n\nFalls du kein erfahrener Benutzer bist, kein Custom-ROM verwendest oder glaubst, diese Meldung irrtümlich angezeigt zu bekommen, kontaktiere bitte support@whispersystems.org für Hilfe bei der Problembehandlung.</string>
+  <string name="RegistrationActivity_i_understand">Verstanden</string>
+  <string name="RegistrationActivity_play_services_error">Play-Dienste-Fehler</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play-Dienste werden aktualisiert oder sind vorübergehend nicht erreichbar. Bitte erneut versuchen.</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Mögliche Probleme</string>
   <!--RegistrationProgressActivity-->
@@ -489,6 +501,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s ist bei Signal. Zeit, Hallo zu sagen!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Zeit für verschwindende Nachrichten auf %s festgelegt</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Deine Sicherheitsnummer mit %s hat sich geändert</string>
+  <!--UpdateApkReadyListener-->
+  <string name="UpdateApkReadyListener_Signal_update">Signal-Aktualisierung</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Eine neue Version von Signal ist verfügbar. Zum Aktualisieren antippen.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Dein Kontakt verwendet eine alte Version von Signal. Bitte ihn Signal zu aktualisieren, bevor ihr eure Sicherheitsnummer überprüft.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Dein Kontakt verwendet eine neuere Version von Signal mit einem inkompatiblen QR-Code-Format. Zum Vergleichen bitte aktualisieren.</string>
@@ -553,7 +568,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Für dein Telefon werden manuelle MMS-Einstellungen benötigt.</string>
   <string name="MmsPreferencesFragment__enabled">Aktiviert</string>
   <string name="MmsPreferencesFragment__disabled">Deaktiviert</string>
-  <string name="MmsPreferencesFragment__not_set">Nicht gesetzt</string>
+  <string name="MmsPreferencesFragment__not_set">Nicht festgelegt</string>
   <string name="MmsPreferencesFragment__invalid_uri">Der eingegebene Text ist kein gültiger URI</string>
   <string name="MmsPreferencesFragment__invalid_host">Der eingegebene Text ist kein gültiger Host</string>
   <!--QuickResponseService-->
@@ -563,7 +578,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Neue Nachricht</string>
   <!--VideoPlayer-->
-  <string name="VideoPlayer_error_playing_video">Fehler bei der Videowiedergabe</string>
+  <string name="VideoPlayer_error_playing_video">Fehler bei Videowiedergabe</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Die Sicherheitsnummer für deine Unterhaltung mit %1$s hat sich geändert. Dies könnte bedeuten, dass jemand versucht, eure Kommunikation abzuhören. Oder %2$s hat Signal einfach erneut installiert.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Vielleicht möchtest du deine Sicherheitsnummer mit diesem Kontakt überprüfen.</string>
@@ -821,7 +836,7 @@ Das Warten auf eine Bestätigungs-SMS hat zu lange gedauert.</string>
   <string name="AndroidManifest__log_submit">Diagnoseprotokoll übermitteln</string>
   <string name="AndroidManifest__media_preview">Medieninhaltevorschau</string>
   <string name="AndroidManifest__all_media">Alle Medieninhalte</string>
-  <string name="AndroidManifest__all_media_named">Alle Medieninhalte mit %1$s</string>
+  <string name="AndroidManifest__all_media_named">Medieninhalte mit %1$s</string>
   <string name="AndroidManifest__message_details">Nachrichtendetails</string>
   <string name="AndroidManifest__linked_devices">Verknüpfte Geräte</string>
   <string name="AndroidManifest__invite_friends">Freunde einladen</string>
@@ -956,7 +971,7 @@ Das Warten auf eine Bestätigungs-SMS hat zu lange gedauert.</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Integrierte Emojis deaktivieren und stattdessen System-Emojis verwenden</string>
   <string name="preferences_advanced__video_calling_beta">Videoanrufe beta</string>
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Unterstützung für Video- und Sprachanrufe der nächsten Generation, falls bei beiden Beteiligten aktiviert. Diese Funktion befindet sich im Beta-Test.</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Alle Anrufe über den Signal-Server leiten, um deine IP-Adresse gegenüber deinem Kontakt nicht offenzulegen. Ein Aktivieren wird die Anrufqualität verringern.</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Alle Anrufe über den Signal-Server leiten, um die eigene IP-Adresse gegenüber Kontakten nicht offenzulegen. Bei Aktivierung wird sich die Anrufqualität verringern.</string>
   <string name="preferences_advanced__always_relay_calls">Anrufe immer indirekt</string>
   <!--****************************************-->
   <!--menus-->

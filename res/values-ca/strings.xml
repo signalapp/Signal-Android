@@ -440,6 +440,7 @@ Comprova que aquest és el teu número! Anem a verificar-ho amb un SMS.</string>
   <string name="ThreadRecord_missed_call">Trucada perduda</string>
   <string name="ThreadRecord_media_message">Missatge multimèdia</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s és a Signal, diga-li hola!</string>
+  <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_no_app_to_share_to">Sembla que no tens apps a on compartir-ho.</string>
   <!--KeyExchangeInitiator-->

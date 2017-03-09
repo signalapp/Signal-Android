@@ -19,9 +19,11 @@ import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.jobs.requirements.MediaNetworkRequirement;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.util.Hex;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libsignal.InvalidMessageException;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
@@ -149,7 +151,13 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
         relay = attachment.getRelay();
       }
 
-      return new SignalServiceAttachmentPointer(id, null, key, relay);
+      if (attachment.getDigest() != null) {
+        Log.w(TAG, "Downloading attachment with digest: " + Hex.toString(attachment.getDigest()));
+      } else {
+        Log.w(TAG, "Downloading attachment with no digest...");
+      }
+
+      return new SignalServiceAttachmentPointer(id, null, key, relay, Optional.fromNullable(attachment.getDigest()));
     } catch (InvalidMessageException | IOException e) {
       Log.w(TAG, e);
       throw new InvalidPartException(e);

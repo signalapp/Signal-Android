@@ -227,6 +227,8 @@
   <string name="DeviceListItem_last_active_s">Último ativo %s</string>
   <string name="DeviceListItem_today">Hoje</string>
   <!--DozeReminder-->
+  <string name="DozeReminder_optimize_for_missing_play_services">Otimizar para ausência do Serviços Play</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Este dispositivo não tem suporte para o Serviços Play. Clique para desabilitar as otimizações sistêmicas de bateria que impedem o Signal de receber mensagens enquanto está inativo.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Compartilhar com</string>
   <!--ExperienceUpgradeActivity-->
@@ -235,6 +237,10 @@
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Boas-vindas ao Signal!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure agora é Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure e RedPhone agora são um aplicativo: Signal. Clique para explorar.</string>
+  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Diga oi para chamadas de vídeo seguras</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">O Signal agora tem suporte para chamadas de vídeo seguras. Apenas inicie uma chamada Signal normalmente, clique no botão de vídeo, e diga \"Oi\".</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">O Signal agora tem suporte para chamadas de vídeo seguras.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">O Signal agora tem suporte para chamadas de vídeo seguras. Clique para explorar.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exportar</string>
   <string name="ExportFragment_export_plaintext_to_storage">Exportar texto para a memória?</string>
@@ -247,7 +253,7 @@
   <string name="ExportFragment_export_successful">Exportação realizada com sucesso.</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Falha permanente de comunicação do Signal!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">O Signal não pôde cadastrar-se no Google Play Services. Mensagens e chamadas Signal foram desabilitadas; tente recadastrar em Configurações &gt; Avançado.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">O Signal não pôde cadastrar-se no Serviços Google Play. Mensagens e chamadas Signal foram desabilitadas; tente recadastrar em Configurações &gt; Avançado.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Erro ao restaurar GIF com resolução total</string>
   <!--GiphyFragmentPageAdapter-->
@@ -334,6 +340,7 @@
   <string name="MessageDetailsRecipient_new_safety_number">Novo número de segurança</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_background_connection_enabled">Conexão em segundo plano habilitada</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Erro ao armazenar MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Erro de conexão com provedor de MMS</string>
@@ -456,6 +463,11 @@
     </string>
   <string name="RegistrationActivity_continue">Continuar</string>
   <string name="RegistrationActivity_edit">Editar</string>
+  <string name="RegistrationActivity_missing_google_play_services">Ausência do Serviços Google Play</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">O Serviços Google Play está ausente neste dispositivo. Você ainda pode usar o Signal, mas esta configuração pode resultar em menor confiabilidade ou performance.\n\nSe você não é um usuário avançado, não está usando uma ROM Android customizada, ou acredita que isto é um erro, favor contatar support@whispersystems.org para ajudar na solução do problema.</string>
+  <string name="RegistrationActivity_i_understand">Entendi</string>
+  <string name="RegistrationActivity_play_services_error">Erro Serviços Play</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Serviços Google Play está sendo atualizado ou temporariamente indisponível. Favor tentar novamente.</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Possíveis problemas</string>
   <!--RegistrationProgressActivity-->
@@ -510,6 +522,9 @@
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s está no Signal, diga oi!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Expiração da mensagem temporária definida para %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Seu número de segurança com %s mudou.</string>
+  <!--UpdateApkReadyListener-->
+  <string name="UpdateApkReadyListener_Signal_update">Atualização do Signal</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Uma nova versão do Signal está disponível, clique para atualizar.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Seu contato está usando uma versão antiga do Signal. Peça a ele para atualizá-la antes de verificar o seu número de segurança.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Seu contato está usando uma versão mais nova do Signal com um formato de código QR incompatível. Atualize para poder comparar.</string>

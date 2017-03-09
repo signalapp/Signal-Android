@@ -227,6 +227,8 @@
   <string name="DeviceListItem_last_active_s">Vu pour la dernière fois %s</string>
   <string name="DeviceListItem_today">Aujourd\'hui</string>
   <!--DozeReminder-->
+  <string name="DozeReminder_optimize_for_missing_play_services">Optimiser les services Play manquant</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Cet appareil ne prend pas en charge le Play Services. Appuyez sur cette touche pour désactiver les optimisations de la batterie du système qui empêchent le signal de récupérer les messages lorsqu\'ils sont inactifs.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Partager avec</string>
   <!--ExperienceUpgradeActivity-->
@@ -326,6 +328,7 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nouveau numéro de sécurité</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_background_connection_enabled">Connexion en arrière-plan activée</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Erreur d’enregistrement du MMS !</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Erreur lors de la connexion au fournisseur MMS</string>
@@ -443,6 +446,11 @@ introduit (%s) n\'est pas valide.</string>
     </string>
   <string name="RegistrationActivity_continue">Continuer</string>
   <string name="RegistrationActivity_edit">Modifier</string>
+  <string name="RegistrationActivity_missing_google_play_services">Services Google Play manquants</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Google Play Services manque dans ce périphérique. Si vous n\'êtes pas un utilisateur avancé, n\'utilisez pas une ROM Android de rechange ou ne croyez pas que vous voyez cela par erreur, veuillez contacter support@whispersystems.org pour aider à résoudre les problèmes.</string>
+  <string name="RegistrationActivity_i_understand">Je comprends</string>
+  <string name="RegistrationActivity_play_services_error">Erreur Service Play</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services est en cours de mise à jour ou est temporairement indisponible. Veuillez réessayer.</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Problèmes possibles</string>
   <!--RegistrationProgressActivity-->
@@ -495,6 +503,7 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s est sur Signal, dites-lui bonjour !</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Le temps de disparition des messages a été réglé à %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Votre numéro de sécurité avec %s a changé</string>
+  <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Votre contact exécute une ancienne version de Signal. Veuillez lui demander de mettre à jour Signal avant de vérifier le numéro de sécurité.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Votre contact utilise une version plus récente de Signal, avec un format de QR code incompatible. Mettez votre application à jour pour comparer.</string>

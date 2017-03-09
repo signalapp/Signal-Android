@@ -74,7 +74,8 @@ public class DatabaseFactory {
   private static final int INTRODUCED_SUBSCRIPTION_ID_VERSION              = 27;
   private static final int INTRODUCED_EXPIRE_MESSAGES_VERSION              = 28;
   private static final int INTRODUCED_LAST_SEEN                            = 29;
-  private static final int DATABASE_VERSION                                = 29;
+  private static final int INTRODUCED_DIGEST                               = 30;
+  private static final int DATABASE_VERSION                                = 30;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -833,6 +834,11 @@ public class DatabaseFactory {
 
       if (oldVersion < INTRODUCED_LAST_SEEN) {
         db.execSQL("ALTER TABLE thread ADD COLUMN last_seen INTEGER DEFAULT 0");
+      }
+
+      if (oldVersion < INTRODUCED_DIGEST) {
+        db.execSQL("ALTER TABLE part ADD COLUMN digest BLOB");
+        db.execSQL("ALTER TABLE groups ADD COLUMN avatar_digest BLOB");
       }
 
       db.setTransactionSuccessful();

@@ -7,12 +7,18 @@
               android:orientation="horizontal"
               tools:background="@color/textsecure_primary">
 
-        <ToggleButton android:id="@+id/audioButton"
+        <ToggleButton android:id="@+id/speakerButton"
                       style="@style/WebRtcCallCompoundButton"
-                      android:background="@drawable/webrtc_audio_button"
+                      android:background="@drawable/webrtc_speaker_button"
                       tools:checked="true"
                       android:layout_marginRight="15dp"/>
 
+        <ToggleButton android:id="@+id/bluetoothButton"
+                      style="@style/WebRtcCallCompoundButton"
+                      android:background="@drawable/webrtc_bluetooth_button"
+                      tools:checked="true"
+                      android:layout_marginRight="15dp"
+                      android:visibility="gone"/>
 
         <ToggleButton android:id="@+id/muteButton"
                       style="@style/WebRtcCallCompoundButton"
