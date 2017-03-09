@@ -39,8 +39,9 @@ import javax.inject.Inject;
 import ws.com.google.android.mms.MmsException;
 
 public class AttachmentDownloadJob extends MasterSecretJob implements InjectableType {
-  private static final long   serialVersionUID = 1L;
-  private static final String TAG              = AttachmentDownloadJob.class.getSimpleName();
+  private static final long   serialVersionUID    = 1L;
+  private static final int    MAX_ATTACHMENT_SIZE = 150 * 1024  * 1024;
+  private static final String TAG                  = AttachmentDownloadJob.class.getSimpleName();
 
   @Inject transient SignalServiceMessageReceiver messageReceiver;
 
@@ -112,7 +113,7 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
       attachmentFile = createTempFile();
 
       SignalServiceAttachmentPointer pointer = createAttachmentPointer(masterSecret, attachment);
-      InputStream                    stream  = messageReceiver.retrieveAttachment(pointer, attachmentFile, new ProgressListener() {
+      InputStream                    stream  = messageReceiver.retrieveAttachment(pointer, attachmentFile, MAX_ATTACHMENT_SIZE, new ProgressListener() {
         @Override
         public void onAttachmentProgress(long total, long progress) {
           EventBus.getDefault().postSticky(new PartProgressEvent(attachment, total, progress));

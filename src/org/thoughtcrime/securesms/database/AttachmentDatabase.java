@@ -158,7 +158,6 @@ public class AttachmentDatabase extends Database {
     notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(mmsId));
   }
 
-  @VisibleForTesting
   public @Nullable DatabaseAttachment getAttachment(AttachmentId attachmentId) {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
     Cursor cursor           = null;
