@@ -67,6 +67,11 @@ int AudioCodec::init() {
   __android_log_print(ANDROID_LOG_WARN, TAG, "Encoding frame size: %d", enc_frame_size);
   __android_log_print(ANDROID_LOG_WARN, TAG, "Decoding frame size: %d", dec_frame_size);
 
+  if (dec_frame_size != SPEEX_FRAME_SIZE) {
+    __android_log_print(ANDROID_LOG_ERROR, TAG, "Decoded frame size does not match speex frame size\n");
+    return -1;
+  }
+
   speex_bits_init(&enc_bits);
   speex_bits_init(&dec_bits);
 
@@ -103,16 +108,16 @@ int AudioCodec::encode(short *rawData, char* encodedData, int maxEncodedDataLen)
 }
 
 int AudioCodec::decode(char* encodedData, int encodedDataLen, short *rawData) {
-  int rawDataOffset = 0;
-
   speex_bits_read_from(&dec_bits, encodedData, encodedDataLen);
 
-  while (speex_decode_int(dec, &dec_bits, rawData + rawDataOffset) == 0) { // TODO bounds?
-    WebRtcAecm_BufferFarend(aecm, rawData + rawDataOffset, dec_frame_size);
-    rawDataOffset += dec_frame_size;
+  // Output at most a single frame
+  // XXX: This assumes that dec_frame_size <= webrtc::NetEqImpl::kMaxFrameSize
+  if (speex_decode_int(dec, &dec_bits, rawData) == 0) {
+    WebRtcAecm_BufferFarend(aecm, rawData, dec_frame_size);
+    return dec_frame_size;
   }
 
-  return rawDataOffset;
+  return 0;
 }
 
 int AudioCodec::conceal(int frames, short *rawData) {
