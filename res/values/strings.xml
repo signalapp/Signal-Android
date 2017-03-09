@@ -880,6 +880,7 @@
     <!-- message_recipients_list_item -->
     <string name="message_recipients_list_item__verify">VERIFY</string>
     <string name="message_recipients_list_item__resend">RESEND</string>
+    <string name="message_recipients_list_item__resending">Resending&#8230;</string>
 
     <!-- GroupUtil -->
     <plurals name="GroupUtil_joined_the_group">
