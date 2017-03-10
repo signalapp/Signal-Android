@@ -17,10 +17,11 @@ public:
   {}
 
   int Decode(const uint8_t* encoded, size_t encoded_len,
-             int16_t* decoded, SpeechType* speech_type)
+             int16_t* decoded, size_t decodedMaxSize,
+             SpeechType* speech_type)
   {
     *speech_type = kSpeech;
-    return codec.decode((char*)encoded, encoded_len, decoded);
+    return codec.decode((char*)encoded, encoded_len, decoded, decodedMaxSize);
   }
 
   bool HasDecodePlc() const {

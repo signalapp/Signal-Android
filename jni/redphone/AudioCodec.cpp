@@ -102,12 +102,14 @@ int AudioCodec::encode(short *rawData, char* encodedData, int maxEncodedDataLen)
   return speex_bits_write(&enc_bits, encodedData, maxEncodedDataLen);
 }
 
-int AudioCodec::decode(char* encodedData, int encodedDataLen, short *rawData) {
-  int rawDataOffset = 0;
+int AudioCodec::decode(char* encodedData, int encodedDataLen, short *rawData, size_t decodeMaxSize) {
+  uint32_t rawDataOffset = 0;
 
   speex_bits_read_from(&dec_bits, encodedData, encodedDataLen);
 
-  while (speex_decode_int(dec, &dec_bits, rawData + rawDataOffset) == 0) { // TODO bounds?
+  while ((rawDataOffset + dec_frame_size <= decodeMaxSize) &&
+         (speex_decode_int(dec, &dec_bits, rawData + rawDataOffset) == 0))
+  {
     WebRtcAecm_BufferFarend(aecm, rawData + rawDataOffset, dec_frame_size);
     rawDataOffset += dec_frame_size;
   }

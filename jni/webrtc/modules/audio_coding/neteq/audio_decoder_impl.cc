@@ -41,7 +41,8 @@ namespace webrtc {
 
 // PCMu
 int AudioDecoderPcmU::Decode(const uint8_t* encoded, size_t encoded_len,
-                              int16_t* decoded, SpeechType* speech_type) {
+                              int16_t* decoded, size_t decodedSize,
+                              SpeechType* speech_type) {
   int16_t temp_type = 1;  // Default is speech.
   int16_t ret = WebRtcG711_DecodeU(
       state_, reinterpret_cast<int16_t*>(const_cast<uint8_t*>(encoded)),
