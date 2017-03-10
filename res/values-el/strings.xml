@@ -6,7 +6,7 @@
   <string name="delete">Διαγραφή</string>
   <string name="please_wait">Παρακαλώ περίμενε...</string>
   <!--AbstractNotificationBuilder-->
-  <string name="AbstractNotificationBuilder_new_message">Νέο Μήνυμα</string>
+  <string name="AbstractNotificationBuilder_new_message">Νέο μήνυμα</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Αυτή τη στιγμή: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Δεν έχεις ορίσει συνθηματικό!</string>
@@ -224,7 +224,7 @@
   <string name="DeviceListActivity_try_again">Ξαναπροσπάθησε</string>
   <string name="DeviceListActivity_unlinking_device">Η συσκευή αποσυνδέεται...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Η συσκευή αποσυνδέεται</string>
-  <string name="DeviceListActivity_network_failed">Αποτυχία Δικτύου!</string>
+  <string name="DeviceListActivity_network_failed">Αποτυχία δικτύου!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Ανώνυμη συσκευή</string>
   <string name="DeviceListItem_linked_s">Συνδεδεμένο %s</string>
@@ -241,6 +241,10 @@
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Καλωσήλθες στο Signal!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">Το TextSecure είναι πλέον Signal</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">Το Textsecure και το Redphone είναι πλέον μία εφαρμογή: Signal. Πάτησε για να την εξερευνήσεις.</string>
+  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Πες γεια στις ασφαλείς βιντεοκλήσεις.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Το Signal πλέον υποστηρίζει ασφαλείς βιντεοκλήσεις. Απλά κάνε μια κλήση Signal όπως συνήθως, πάτα το κουμπί για το βίντεο, και χαμογέλα.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Το Signal πλέον υποστηρίζει ασφαλείς βιντεοκλήσεις.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Το Signal πλέον υποστηρίζει ασφαλείς βιντεοκλήσεις. Πάτα για να εξερευνήσεις.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Εξαγωγή</string>
   <string name="ExportFragment_export_plaintext_to_storage">Εξαγωγή αποκρυπτογραφημένου κειμένου στον αποθηκευτικό χώρο;</string>
@@ -261,7 +265,7 @@
   <string name="GiphyFragmentPagerAdapter_stickers">Αυτοκόλλητα</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Νέα ομάδα</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">Επεξεργασία Ομάδας</string>
+  <string name="GroupCreateActivity_actionbar_edit_title">Επεξεργασία ομάδας</string>
   <string name="GroupCreateActivity_group_name_hint">Όνομα ομάδας</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Νέα ομάδα MMS</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Επέλεξες μια επαφή που δεν υποστηρίζει ομάδες Signal, οπότε αυτή η ομάδα θα είναι MMS.</string>
@@ -354,7 +358,7 @@
   <string name="NotificationBarManager__end_call">Τερματισμός κλήσης</string>
   <string name="NotificationBarManager__cancel_call">Ακύρωση κλήσης</string>
   <!--NotificationMmsMessageRecord-->
-  <string name="NotificationMmsMessageRecord_multimedia_message">Μήνυμα Πολυμέσων</string>
+  <string name="NotificationMmsMessageRecord_multimedia_message">Μήνυμα πολυμέσων</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Λήψη του μηνύματος MMS</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Πρόβλημα με τη λήψη μηνύματος MMS, πάτα για να ξαναδοκιμάσουμε</string>
   <!--MessageRecord-->
@@ -425,7 +429,7 @@
   <string name="RedPhone_answering">Απάντηση</string>
   <string name="RedPhone_ending_call">Τερματισμός κλήσης</string>
   <string name="RedPhone_dialing">Κλήση</string>
-  <string name="RedPhone_canceling_call">Ακύρωση Κλήσης</string>
+  <string name="RedPhone_canceling_call">Ακύρωση κλήσης</string>
   <string name="RedPhone_call_rejected">Η κλήση απορρίφθηκε</string>
   <string name="RedPhone_ringing">Χτυπάει...</string>
   <string name="RedPhone_busy">Απασχολημένος/η</string>
@@ -434,7 +438,7 @@
   <string name="RedPhone_handshake_failed">Αποτυχία χειραψίας!</string>
   <string name="RedPhone_recipient_unavailable">Μη διαθέσιμος αποδέκτης</string>
   <string name="RedPhone_performing_handshake">Εκτέλεση χειραψίας</string>
-  <string name="RedPhone_network_failed">Αποτυχία Δικτύου!</string>
+  <string name="RedPhone_network_failed">Αποτυχία δικτύου!</string>
   <string name="RedPhone_client_failed">Αποτυχία πελάτη</string>
   <string name="RedPhone_fatal_error">Ανεπανόρθωτο σφάλμα</string>
   <string name="RedPhone_login_failed">Αποτυχία σύνδεσης!</string>
@@ -444,7 +448,7 @@
   <string name="RedPhone_got_it">Εντάξει</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_signal">Σύνδεση με Signal</string>
-  <string name="RegistrationActivity_select_your_country">Επιλέξτε χώρα</string>
+  <string name="RegistrationActivity_select_your_country">Επέλεξε χώρα</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Πρέπει να καθορίσεις τον
 κώδικα της χώρας σου</string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">Πρέπει να ορίσεις τον
@@ -511,10 +515,12 @@
   <string name="ThreadRecord_called_you">Σε κάλεσε</string>
   <string name="ThreadRecord_missed_call">Αναπάντητη κλήση</string>
   <string name="ThreadRecord_media_message">Μήνυμα πολυμέσων</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">Ο/Η %s είναι στο Signal, πές ένα γεια!</string>
+  <string name="ThreadRecord_s_is_on_signal_say_hey">Ο/Η %s είναι στο Signal, πες ένα γεια!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Ο χρόνος εξαφάνισης μηνυμάτων ρυθμίστηκε σε %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Ο αριθμός ασφαλείας με τον/την %s έχει αλλάξει.</string>
   <!--UpdateApkReadyListener-->
+  <string name="UpdateApkReadyListener_Signal_update">Αναβάθμιση Signal</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Μια νέα έκδοση του Signal είναι διαθέσιμη, πάτα για αναβάθμιση</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Η επαφή σου χρησιμοποιεί παλιά έκδοση του Signal. Παρακαλούμε ζήτα του να ανανεώσει την εφαρμογή πριν επιβεβαιώσεις το αριθμό ασφαλείας.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Η επαφή σου χρησιμοποιεί μια νεότερη έκδοση του Signal και ο κώδικας QR δεν έχει συμβατή μορφοποίηση. Παρακαλώ ενημέρωσε την εφαρμογή.</string>
@@ -560,7 +566,7 @@
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Εσύ</string>
   <string name="MediaPreviewActivity_cant_display">Αποτυχία προβολής αυτής της εικόνας</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Μη υποστηριζόμενος τύπος μέσων ενημέρωσης</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Μη υποστηριζόμενος τύπος πολυμέσων</string>
   <string name="MediaPreviewActivity_draft">Πρόχειρο</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d νέα μηνύματα σε %2$d συζητήσεις</string>
@@ -587,7 +593,7 @@
   <string name="QuickResponseService_problem_sending_message">Πρόβλημα με την αποστολή μηνύματος!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
-  <string name="SingleRecipientNotificationBuilder_new_message">Νέο Μήνυμα</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Νέο μήνυμα</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Πρόβλημα με την απαπαραγωγή του βίντεο</string>
   <!--WebRtcCallScreen-->
@@ -859,7 +865,7 @@
   <string name="message_details_header__from">Από:</string>
   <string name="message_details_header__with">Με:</string>
   <!--AndroidManifest.xml-->
-  <string name="AndroidManifest__create_passphrase">Δημιουργία Συνθηματικού</string>
+  <string name="AndroidManifest__create_passphrase">Δημιουργία συνθηματικού</string>
   <string name="AndroidManifest__enter_passphrase">Εισαγωγή συνθηματικού</string>
   <string name="AndroidManifest__select_contacts">Επιλογή επαφών</string>
   <string name="AndroidManifest__signal_detected">Το Signal εντοπίστηκε</string>
@@ -870,7 +876,7 @@
   <string name="AndroidManifest__all_media">Όλα τα πολυμέσα</string>
   <string name="AndroidManifest__all_media_named">Όλα τα πολυμέσα με τον/την %1$s</string>
   <string name="AndroidManifest__message_details">Λεπτομέρειες μηνύματος</string>
-  <string name="AndroidManifest__linked_devices">Συνδεμένες συσκευές</string>
+  <string name="AndroidManifest__linked_devices">Συνδεδεμένες συσκευές</string>
   <string name="AndroidManifest__invite_friends">Πρόσκληση φίλων</string>
   <string name="AndroidManifest_archived_conversations">Αρχειοθετημένες συζητήσεις</string>
   <!--arrays.xml-->
@@ -925,7 +931,7 @@
   <string name="preferences__new_contacts_notifications">Ειδοποιήσεις νέων επαφών</string>
   <string name="preferences__show_a_notification_for_new_signal_contacts">Εμφάνιση ειδοποίησης για νέες επαφές Signal</string>
   <string name="preferences__led_color">Χρώμα LED</string>
-  <string name="preferences__led_color_unknown">Αγνωστο</string>
+  <string name="preferences__led_color_unknown">Άγνωστο</string>
   <string name="preferences__pref_led_blink_title">Μοτίβο αναβοσβησίματος του LED</string>
   <string name="preferences__pref_led_blink_custom_pattern_title">Ορισμός προσαρμοσμένου μοτίβου αναβοσβησίματος του LED</string>
   <string name="preferences__pref_led_blink_custom_pattern_on_for">Αναμμένο για:</string>
@@ -978,9 +984,9 @@
   <string name="preferences__conversation_length_limit">Όριο μεγέθους συζήτησης</string>
   <string name="preferences__trim_all_conversations_now">Κούρεμα όλων των συζητήσεων τώρα</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Σκανάρισμα όλων των συζητήσεων και επιβολή του ορίου μήκους των συζητήσεων</string>
-  <string name="preferences__linked_devices">Συνδεμένες συσκευές</string>
-  <string name="preferences__light_theme">Φως</string>
-  <string name="preferences__dark_theme">Σκοτάδι</string>
+  <string name="preferences__linked_devices">Συνδεδεμένες συσκευές</string>
+  <string name="preferences__light_theme">Φωτεινό</string>
+  <string name="preferences__dark_theme">Σκοτεινό</string>
   <string name="preferences__appearance">Εμφάνιση</string>
   <string name="preferences__theme">Θέμα</string>
   <string name="preferences__default">Προκαθορισμένη</string>
@@ -1040,7 +1046,7 @@
   <string name="conversation_insecure__security">Ασφάλεια</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Διαγραφή επιλεγμένων</string>
-  <string name="conversation_list_batch__menu_select_all">Επιλογή Όλων</string>
+  <string name="conversation_list_batch__menu_select_all">Επιλογή όλων</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Επιλεγμένο αρχείο</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Απαρχειοθέτηση επιλέχθηκε</string>
   <!--conversation_list-->
@@ -1050,7 +1056,7 @@
   <string name="conversation_list_item_view__error_alert">Ειδοποίηση σφάλματος</string>
   <string name="conversation_list_item_view__archived">Αρχειοθετημένα</string>
   <!--conversation_list_fragment-->
-  <string name="conversation_list_fragment__fab_content_description">Νεα Συζήτηση</string>
+  <string name="conversation_list_fragment__fab_content_description">Νεα συζήτηση</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Επαναφορά ασφαλούς συνεδρίας</string>
   <!--conversation_muted-->
@@ -1059,7 +1065,7 @@
   <string name="conversation_unmuted__mute_notifications">Σίγαση ειδοποιήσεων</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Προσθήκη συνημμένου</string>
-  <string name="conversation__menu_edit_group">Επεξεργασία Ομάδας</string>
+  <string name="conversation__menu_edit_group">Επεξεργασία ομάδας</string>
   <string name="conversation__menu_leave_group">Αποχώρηση από την ομάδα</string>
   <string name="conversation__menu_delete_thread">Διαγραφή συζήτησης</string>
   <string name="conversation__menu_view_all_media">Όλα τα πολυμέσα</string>
@@ -1072,13 +1078,13 @@
   <string name="convesation_group_options__recipients_list">Λίστα παραλήπτων</string>
   <string name="conversation_group_options__delivery">Παράδοση</string>
   <string name="conversation_group_options__conversation">Συζήτηση</string>
-  <string name="conversation_group_options__broadcast">Αποστολή σε Όλους</string>
+  <string name="conversation_group_options__broadcast">Αποστολή σε όλους/ες</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Σύγκριση</string>
   <string name="key_scanning__menu_display_your_qr_code">Προβολή του κωδικού QR σου</string>
   <string name="key_scanning__menu_scan_contacts_qr_code">Σκανάρισμα κωδικού QR επαφής</string>
   <!--text_secure_normal-->
-  <string name="text_secure_normal__menu_new_message">Νέο Μήνυμα</string>
+  <string name="text_secure_normal__menu_new_message">Νέο μήνυμα</string>
   <string name="text_secure_normal__menu_new_group">Νέα ομάδα</string>
   <string name="text_secure_normal__menu_settings">Ρυθμίσεις</string>
   <string name="text_secure_normal__menu_clear_passphrase">Κλείδωμα</string>

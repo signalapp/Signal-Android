@@ -253,6 +253,10 @@
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Bine ai venit pe Signal!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure se numește acum Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure și RedPhone sunt acum o singură aplicație: Signal. Apasă pentru a explora.</string>
+  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Bun venit la apeluri video securizate.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal suportă acum apelare video securizată. Pornește un apel Signal ca în mod normal, apasă pe butonul video și fă cu mâna.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal suportă acum apelare video securizată.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal suportă acum apelare video securizată. Apasă pentru a explora.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exportă</string>
   <string name="ExportFragment_export_plaintext_to_storage">Export în format necriptat pe spațiul de stocare?</string>
@@ -525,6 +529,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Timpul setat pentru mesajele care dispar este %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Numărul tău de siguranță pentru %s s-a schimbat.</string>
   <!--UpdateApkReadyListener-->
+  <string name="UpdateApkReadyListener_Signal_update">Actualizare Signal</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">O nouă versiune de Signal este disponibilă, apasă pentru actualizare</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Contactul tău folosește o versiune mai veche de Signal. Roagă-l să-și actualizeze versiunea înainte de a verifica numărul tău de siguranță.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Contactul tău folosește o versiune mai nouă de Signal cu un format de cod QR incompatibil. Te rog actualizează-ți aplicația pentru a putea compara.</string>

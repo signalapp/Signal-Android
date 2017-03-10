@@ -237,6 +237,10 @@
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Welkom bij Signal!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure heet nu Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure en RedPhone zijn nu één app: Signal. Maak snel kennis!</string>
+  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Hallo, beveiligde videogesprekken.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal ondersteunt nu beveiligde videogesprekken. Maak gewoon een Signal-oproep en tik op de videoknop om een videogesprek te beginnen.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal ondersteunt nu beveiligde videogesprekken.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal ondersteunt nu beveiligde videogesprekken. Tik om te verkennen.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exporteren</string>
   <string name="ExportFragment_export_plaintext_to_storage">Tekst exporteren naar opslag?</string>
@@ -505,6 +509,8 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Berichten zullen verdwijnen na %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Je veiligheidsnummer met %s is veranderd.</string>
   <!--UpdateApkReadyListener-->
+  <string name="UpdateApkReadyListener_Signal_update">Signal-update</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Er is een nieuwe versie van Signal beschikbaar, tik om bij te werken</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Dit contact gebruikt een oude versie van Signal. Vraag hen om Signal bij te werken vooraleer je het veiligheidsnummer verifieert.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Je contact gebruikt een nieuwere versie van Signal met een incompatibel QR-codeformaat. Werk Signal bij om te vergelijken.</string>
