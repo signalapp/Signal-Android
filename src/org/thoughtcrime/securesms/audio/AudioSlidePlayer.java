@@ -91,7 +91,9 @@ public class AudioSlidePlayer {
 
         notifyOnStart();
         progressEventHandler.sendEmptyMessage(0);
-        ((Activity) context).getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        if (context instanceof Activity) {
+          ((Activity) context).getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }
       }
     });
 
@@ -110,7 +112,9 @@ public class AudioSlidePlayer {
 
         notifyOnStop();
         progressEventHandler.removeMessages(0);
-        ((Activity) context).getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        if (context instanceof Activity) {
+          ((Activity) context).getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }
       }
     });
 
@@ -132,6 +136,9 @@ public class AudioSlidePlayer {
 
         notifyOnStop();
         progressEventHandler.removeMessages(0);
+        if (context instanceof Activity) {
+          ((Activity) context).getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }
         return true;
       }
     });
