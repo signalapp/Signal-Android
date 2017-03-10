@@ -36,6 +36,7 @@ public:
 
   int init();
   int encode(short *rawData, char* encodedData, int encodedDataLen);
+  // rawData must be able to hold at least SPEEX_FRAME_SIZE samples
   int decode(char* encodedData, int encodedDataLen, short* rawData);
   int conceal(int frames, short *rawData);
 
