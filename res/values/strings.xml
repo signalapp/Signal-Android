@@ -684,7 +684,7 @@
     <!-- WebRtcCallScreen -->
     <string name="WebRtcCallScreen_new_safety_numbers">The safety number for your conversation with %1$s has changed. This could either mean that someone is trying to intercept your communication, or that %2$s simply re-installed Signal.</string>
     <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">You may wish to verify your safety number with this contact.</string>
-    <string name="WebRtcCallScreen_new_safety_numbers_title">New safety numbers</string>
+    <string name="WebRtcCallScreen_new_safety_number_title">New safety number</string>
 
     <!-- WebRtcCallControls -->
     <string name="WebRtcCallControls_tap_to_enable_your_video">Tap to enable your video</string>
