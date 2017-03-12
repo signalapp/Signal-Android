@@ -974,7 +974,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeBetaCalling() {
-    if (!TextSecurePreferences.isWebrtcCallingEnabled(this) || isGroupConversation()) {
+    if (!TextSecurePreferences.isPushRegistered(this)
+        || !TextSecurePreferences.isWebrtcCallingEnabled(this)
+        || isGroupConversation())
+    {
       return;
     }
 
