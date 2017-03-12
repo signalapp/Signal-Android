@@ -49,6 +49,9 @@ public class BluetoothStateManager {
     this.bluetoothConnectionReceiver = new BluetoothConnectionReceiver();
     this.listener                    = listener;
 
+    if (this.bluetoothAdapter == null)
+      return;
+
     requestHeadsetProxyProfile();
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
