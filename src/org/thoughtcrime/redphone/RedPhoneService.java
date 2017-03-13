@@ -226,7 +226,6 @@ public class RedPhoneService extends Service implements CallStateListener {
 
     NotificationBarManager.setCallInProgress(this, NotificationBarManager.TYPE_OUTGOING_RINGING, recipient);
     DatabaseFactory.getSmsDatabase(this).insertOutgoingCall(remoteNumber);
-
   }
 
   private void handleBusyCall(Intent intent) {
@@ -420,7 +419,7 @@ public class RedPhoneService extends Service implements CallStateListener {
   }
 
   public void notifyBusy() {
-    Log.w("RedPhoneService", "Got busy signal from responder!");
+    Log.w(TAG, "Got busy signal from responder!");
     sendMessage(Type.CALL_BUSY, getRecipient(), null);
 
     outgoingRinger.playBusy();
@@ -452,10 +451,13 @@ public class RedPhoneService extends Service implements CallStateListener {
   }
 
   public void notifyCallDisconnected() {
-    if (state == STATE_RINGING)
-      handleMissedCall(remoteNumber, false);
-
     sendMessage(Type.CALL_DISCONNECTED, getRecipient(), null);
+
+    if (state == STATE_RINGING) {
+      handleMissedCall(remoteNumber, false);
+    } else {
+      outgoingRinger.playDisconnected();
+    }
     this.terminate();
   }
 
@@ -509,16 +511,19 @@ public class RedPhoneService extends Service implements CallStateListener {
   }
 
   public void notifyNoSuchUser() {
+    outgoingRinger.playFailure();
     sendMessage(Type.NO_SUCH_USER, getRecipient(), null);
     this.terminate();
   }
 
   public void notifyServerMessage(String message) {
+    outgoingRinger.playFailure();
     sendMessage(Type.SERVER_MESSAGE, getRecipient(), message);
     this.terminate();
   }
 
   public void notifyClientError(String msg) {
+    outgoingRinger.playFailure();
     sendMessage(Type.CLIENT_FAILURE, getRecipient(), msg);
     this.terminate();
   }

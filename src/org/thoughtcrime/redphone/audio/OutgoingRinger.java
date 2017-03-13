@@ -70,6 +70,10 @@ public class OutgoingRinger implements MediaPlayer.OnCompletionListener, MediaPl
     stop(R.raw.redphone_failure);
   }
 
+  public void playDisconnected() {
+    stop(R.raw.redphone_failure);
+  }
+
   public void playBusy() {
     start(R.raw.redphone_busy);
   }
@@ -85,7 +89,7 @@ public class OutgoingRinger implements MediaPlayer.OnCompletionListener, MediaPl
     start();
   }
 
-  private void start() {
+  private synchronized void start() {
     if( mediaPlayer != null ) mediaPlayer.release();
     mediaPlayer = new MediaPlayer();
     mediaPlayer.setAudioStreamType(AudioManager.STREAM_VOICE_CALL);
@@ -106,7 +110,11 @@ public class OutgoingRinger implements MediaPlayer.OnCompletionListener, MediaPl
     }
   }
 
-  public void stop() {
+  public synchronized void stop() {
+    if (mediaPlayer != null && mediaPlayer.isLooping()) release();
+  }
+
+  private synchronized void release() {
     if (mediaPlayer == null) return;
     mediaPlayer.release();
     mediaPlayer = null;
@@ -121,8 +129,9 @@ public class OutgoingRinger implements MediaPlayer.OnCompletionListener, MediaPl
   }
 
   public void onCompletion(MediaPlayer mp) {
-    //mediaPlayer.release();
-    //mediaPlayer = null;
+    if (mp.isLooping()) return;
+
+    release();
   }
 
   public void onPrepared(MediaPlayer mp) {
