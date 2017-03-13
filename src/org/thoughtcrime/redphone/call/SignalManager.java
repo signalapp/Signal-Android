@@ -33,6 +33,10 @@ public class SignalManager {
     this.queue.execute(new SignalListenerTask());
   }
 
+  public SessionDescriptor getSessionDescriptor() {
+    return this.sessionDescriptor;
+  }
+
   public void terminate() {
     Log.w(TAG, "Queuing hangup signal...");
     queue.execute(new Runnable() {

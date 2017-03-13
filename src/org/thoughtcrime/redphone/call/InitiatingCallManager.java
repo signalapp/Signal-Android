@@ -31,6 +31,7 @@ import org.thoughtcrime.redphone.signaling.NetworkConnector;
 import org.thoughtcrime.redphone.signaling.NoSuchUserException;
 import org.thoughtcrime.redphone.signaling.OtpCounterProvider;
 import org.thoughtcrime.redphone.signaling.ServerMessageException;
+import org.thoughtcrime.redphone.signaling.SessionDescriptor;
 import org.thoughtcrime.redphone.signaling.SessionInitiationFailureException;
 import org.thoughtcrime.redphone.signaling.SignalingException;
 import org.thoughtcrime.redphone.signaling.SignalingSocket;
@@ -68,28 +69,33 @@ public class InitiatingCallManager extends CallManager {
   @Override
   public void run() {
     try {
-      callStateListener.notifyCallConnecting();
+      synchronized (this.initLock) {
+        if (this.terminated) return;
+        Log.d(TAG, "run");
 
-      signalingSocket = new SignalingSocket(context, BuildConfig.REDPHONE_RELAY_HOST,
-                                            31337, localNumber, password,
-                                            OtpCounterProvider.getInstance());
+        callStateListener.notifyCallConnecting();
 
-      sessionDescriptor = signalingSocket.initiateConnection(remoteNumber);
+        SignalingSocket signalingSocket = new SignalingSocket(context, BuildConfig.REDPHONE_RELAY_HOST,
+                                                              31337, localNumber, password,
+                                                              OtpCounterProvider.getInstance());
 
-      int localPort = new NetworkConnector(sessionDescriptor.sessionId,
-                                           sessionDescriptor.getFullServerName(),
-                                           sessionDescriptor.relayPort).makeConnection();
+        SessionDescriptor sessionDescriptor = signalingSocket.initiateConnection(remoteNumber);
 
-      InetSocketAddress remoteAddress = new InetSocketAddress(sessionDescriptor.getFullServerName(),
-                                                              sessionDescriptor.relayPort);
+        int localPort = new NetworkConnector(sessionDescriptor.sessionId,
+                                             sessionDescriptor.getFullServerName(),
+                                             sessionDescriptor.relayPort).makeConnection();
 
-      secureSocket  = new SecureRtpSocket(new RtpSocket(localPort, remoteAddress));
+        InetSocketAddress remoteAddress = new InetSocketAddress(sessionDescriptor.getFullServerName(),
+                                                                sessionDescriptor.relayPort);
 
-      zrtpSocket    = new ZRTPInitiatorSocket(context, secureSocket, zid, remoteNumber);
+        SecureRtpSocket secureSocket = new SecureRtpSocket(new RtpSocket(localPort, remoteAddress));
 
-      processSignals();
+        zrtpSocket = new ZRTPInitiatorSocket(context, secureSocket, zid, remoteNumber);
 
-      callStateListener.notifyWaitingForResponder();
+        processSignals(signalingSocket, sessionDescriptor);
+
+        callStateListener.notifyWaitingForResponder();
+      }
 
       super.run();
     } catch (NoSuchUserException nsue) {

@@ -55,6 +55,8 @@ public class ResponderCallManager extends CallManager {
 
   private int answer = 0;
 
+  private SessionDescriptor sessionDescriptor;
+
   public ResponderCallManager(Context context, CallStateListener callStateListener,
                               String remoteNumber, String localNumber,
                               String password, SessionDescriptor sessionDescriptor,
@@ -70,32 +72,41 @@ public class ResponderCallManager extends CallManager {
   @Override
   public void run() {
     try {
-      signalingSocket = new SignalingSocket(context,
-                                            sessionDescriptor.getFullServerName(),
-                                            31337,
-                                            localNumber, password,
-                                            OtpCounterProvider.getInstance());
+      synchronized (this.initLock) {
+        if (this.terminated) return;
+        Log.d(TAG, "run");
 
-      signalingSocket.setRinging(sessionDescriptor.sessionId);
-      callStateListener.notifyCallFresh();
+        SignalingSocket signalingSocket = new SignalingSocket(context,
+                                                              sessionDescriptor.getFullServerName(),
+                                                              31337,
+                                                              localNumber, password,
+                                                              OtpCounterProvider.getInstance());
 
-      processSignals();
+        signalingSocket.setRinging(sessionDescriptor.sessionId);
+        callStateListener.notifyCallFresh();
+
+        processSignals(signalingSocket, sessionDescriptor);
+      }
 
       if (!waitForAnswer()) {
         return;
       }
 
-      int localPort = new NetworkConnector(sessionDescriptor.sessionId,
-                                           sessionDescriptor.getFullServerName(),
-                                           sessionDescriptor.relayPort).makeConnection();
+      synchronized (this.initLock) {
+        if (this.terminated) return;
 
-      InetSocketAddress remoteAddress = new InetSocketAddress(sessionDescriptor.getFullServerName(),
-                                                              sessionDescriptor.relayPort);
+        int localPort = new NetworkConnector(sessionDescriptor.sessionId,
+                                             sessionDescriptor.getFullServerName(),
+                                             sessionDescriptor.relayPort).makeConnection();
 
-      secureSocket  = new SecureRtpSocket(new RtpSocket(localPort, remoteAddress));
-      zrtpSocket    = new ZRTPResponderSocket(context, secureSocket, zid, remoteNumber, sessionDescriptor.version <= 0);
+        InetSocketAddress remoteAddress = new InetSocketAddress(sessionDescriptor.getFullServerName(),
+                                                                sessionDescriptor.relayPort);
 
-      callStateListener.notifyConnectingtoInitiator();
+        SecureRtpSocket secureSocket = new SecureRtpSocket(new RtpSocket(localPort, remoteAddress));
+        zrtpSocket = new ZRTPResponderSocket(context, secureSocket, zid, remoteNumber, sessionDescriptor.version <= 0);
+
+        callStateListener.notifyConnectingtoInitiator();
+      }
 
       super.run();
     } catch (SignalingException | SessionInitiationFailureException se) {
