@@ -17,6 +17,7 @@ import android.widget.Toast;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.database.PlaintextBackupExporter;
+import org.thoughtcrime.securesms.database.EncryptedBackupExporter;
 
 import java.io.IOException;
 
@@ -36,15 +37,15 @@ public class ExportFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
     View layout              = inflater.inflate(R.layout.export_fragment, container, false);
-//    View exportEncryptedView = layout.findViewById(R.id.export_encrypted_backup);
+    View exportEncryptedView = layout.findViewById(R.id.export_encrypted_backup);
     View exportPlaintextView = layout.findViewById(R.id.export_plaintext_backup);
 
-//    exportEncryptedView.setOnClickListener(new View.OnClickListener() {
-//      @Override
-//      public void onClick(View v) {
-//        handleExportEncryptedBackup();
-//      }
-//    });
+    exportEncryptedView.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        handleExportEncryptedBackup();
+      }
+    });
 
     exportPlaintextView.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -56,20 +57,20 @@ public class ExportFragment extends Fragment {
     return layout;
   }
 
-//  private void handleExportEncryptedBackup() {
-//    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//    builder.setIcon(Dialogs.getDrawable(getActivity(), R.attr.dialog_info_icon));
-//    builder.setTitle(getActivity().getString(R.string.ExportFragment_export_to_sd_card));
-//    builder.setMessage(getActivity().getString(R.string.ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages));
-//    builder.setPositiveButton(getActivity().getString(R.string.ExportFragment_export), new Dialog.OnClickListener() {
-//      @Override
-//      public void onClick(DialogInterface dialog, int which) {
-//        new ExportEncryptedTask().execute();
-//      }
-//    });
-//    builder.setNegativeButton(getActivity().getString(R.string.ExportFragment_cancel), null);
-//    builder.show();
-//  }
+  private void handleExportEncryptedBackup() {
+    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+    builder.setIconAttribute(R.attr.dialog_info_icon);
+    builder.setTitle(getActivity().getString(R.string.ExportFragment_export_to_sd_card));
+    builder.setMessage(getActivity().getString(R.string.ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages));
+    builder.setPositiveButton(getActivity().getString(R.string.ExportFragment_export), new Dialog.OnClickListener() {
+      @Override
+      public void onClick(DialogInterface dialog, int which) {
+        new ExportEncryptedTask().execute();
+      }
+    });
+    builder.setNegativeButton(getActivity().getString(R.string.ExportFragment_cancel), null);
+    builder.show();
+  }
 
   private void handleExportPlaintextBackup() {
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -141,56 +142,56 @@ public class ExportFragment extends Fragment {
     }
   }
 
-//  private class ExportEncryptedTask extends AsyncTask<Void, Void, Integer> {
-//    private ProgressDialog dialog;
-//
-//    @Override
-//    protected void onPreExecute() {
-//      dialog = ProgressDialog.show(getActivity(),
-//                                   getActivity().getString(R.string.ExportFragment_exporting),
-//                                   getActivity().getString(R.string.ExportFragment_exporting_keys_settings_and_messages),
-//                                   true, false);
-//    }
-//
-//    @Override
-//    protected void onPostExecute(Integer result) {
-//      Context context = getActivity();
-//
-//      if (dialog != null) dialog.dismiss();
-//
-//      if (context == null) return;
-//
-//      switch (result) {
-//        case NO_SD_CARD:
-//          Toast.makeText(context,
-//                         context.getString(R.string.ExportFragment_error_unable_to_write_to_storage),
-//                         Toast.LENGTH_LONG).show();
-//          break;
-//        case IO_ERROR:
-//          Toast.makeText(context,
-//                         context.getString(R.string.ExportFragment_error_while_writing_to_storage),
-//                         Toast.LENGTH_LONG).show();
-//          break;
-//        case SUCCESS:
-//          Toast.makeText(context,
-//                         context.getString(R.string.ExportFragment_success),
-//                         Toast.LENGTH_LONG).show();
-//          break;
-//      }
-//    }
-//
-//    @Override
-//    protected Integer doInBackground(Void... params) {
-//      try {
-//        EncryptedBackupExporter.exportToSd(getActivity());
-//        return SUCCESS;
-//      } catch (NoExternalStorageException e) {
-//        Log.w("ExportFragment", e);
-//        return NO_SD_CARD;
-//      } catch (IOException e) {
-//        Log.w("ExportFragment", e);
-//        return IO_ERROR;
-//      }
-//    }
-//  }
+private class ExportEncryptedTask extends AsyncTask<Void, Void, Integer> {
+    private ProgressDialog dialog;
+
+    @Override
+    protected void onPreExecute() {
+      dialog = ProgressDialog.show(getActivity(),
+                                   getActivity().getString(R.string.ExportFragment_exporting),
+                                   getActivity().getString(R.string.ExportFragment_exporting_keys_settings_and_messages),
+                                   true, false);
+    }
+
+    @Override
+    protected void onPostExecute(Integer result) {
+      Context context = getActivity();
+
+      if (dialog != null) dialog.dismiss();
+
+      if (context == null) return;
+
+      switch (result) {
+        case NO_SD_CARD:
+          Toast.makeText(context,
+                         context.getString(R.string.ExportFragment_error_unable_to_write_to_storage),
+                         Toast.LENGTH_LONG).show();
+          break;
+        case IO_ERROR:
+          Toast.makeText(context,
+                         context.getString(R.string.ExportFragment_error_while_writing_to_storage),
+                         Toast.LENGTH_LONG).show();
+          break;
+        case SUCCESS:
+          Toast.makeText(context,
+                         context.getString(R.string.ExportFragment_export_successful),
+                         Toast.LENGTH_LONG).show();
+          break;
+      }
+    }
+
+    @Override
+    protected Integer doInBackground(Void... params) {
+      try {
+        EncryptedBackupExporter.exportToSd(getActivity());
+        return SUCCESS;
+      } catch (NoExternalStorageException e) {
+        Log.w("ExportFragment", e);
+        return NO_SD_CARD;
+      } catch (IOException e) {
+        Log.w("ExportFragment", e);
+        return IO_ERROR;
+      }
+    }
+  }
 }

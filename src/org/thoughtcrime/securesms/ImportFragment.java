@@ -217,14 +217,16 @@ public class ImportFragment extends Fragment {
                          Toast.LENGTH_LONG).show();
           break;
         case SUCCESS:
-          DatabaseFactory.getInstance(context).reset(context);
-          Intent intent = new Intent(context, KeyCachingService.class);
-          intent.setAction(KeyCachingService.CLEAR_KEY_ACTION);
-          context.startService(intent);
+          //DatabaseFactory.getInstance(context).reset(context);
+          //Intent intent = new Intent(context, KeyCachingService.class);
+          //intent.setAction(KeyCachingService.CLEAR_KEY_ACTION);
+          //context.startService(intent);
 
-          Toast.makeText(context,
-                         context.getString(R.string.ImportFragment_restore_complete),
-                         Toast.LENGTH_LONG).show();
+          //Toast.makeText(context,
+          //               context.getString(R.string.ImportFragment_restore_complete),
+          //               Toast.LENGTH_LONG).show();
+          // JW: Just restart
+          ExitActivity.exitAndRemoveFromRecentApps(getActivity());
       }
     }
 

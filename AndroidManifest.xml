@@ -389,6 +389,9 @@
 
     <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
 
+    <activity android:name=".ExitActivity"
+              android:theme="@android:style/Theme.NoDisplay" />
+
     <service android:enabled="true" android:name="org.thoughtcrime.redphone.RedPhoneService"/>
     <service android:enabled="true" android:name="org.thoughtcrime.securesms.service.WebRtcCallService"/>
 

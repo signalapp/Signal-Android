@@ -12,14 +12,14 @@
                   android:layout_gravity="center_vertical"
                   android:padding="8dip">
 
-
-        <!--LinearLayout android:id="@+id/export_encrypted_backup"
+        <LinearLayout android:id="@+id/export_encrypted_backup"
                       android:clickable="true"
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:layout_marginTop="10dip"
                       android:background="@drawable/clickable_card_light"
-                      android:orientation="vertical">
+                      android:orientation="vertical"
+					  android:focusable="true">
 
             <LinearLayout android:orientation="horizontal"
                           android:layout_width="wrap_content"
@@ -33,7 +33,7 @@
                 <ImageView android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:layout_marginRight="10dip"
-                           android:src="@drawable/encrypted_backup"/>
+                           android:src="?encrypted_backup"/>
 
                 <LinearLayout android:orientation="vertical"
                               android:layout_width="wrap_content"
@@ -51,8 +51,7 @@
 
                 </LinearLayout>
             </LinearLayout>
-        </LinearLayout-->
-
+        </LinearLayout>
 
         <LinearLayout android:id="@+id/export_plaintext_backup"
                       android:clickable="true"
