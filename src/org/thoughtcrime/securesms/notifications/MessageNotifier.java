@@ -37,8 +37,6 @@ import android.support.v4.app.NotificationManagerCompat;
 import android.text.TextUtils;
 import android.util.Log;
 
-import org.thoughtcrime.redphone.ui.NotificationBarManager;
-import org.thoughtcrime.redphone.util.Util;
 import org.thoughtcrime.securesms.ConversationActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -58,6 +56,7 @@ import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder;
+import org.whispersystems.signalservice.internal.util.Util;
 
 import java.util.HashSet;
 import java.util.List;
@@ -130,7 +129,7 @@ public class MessageNotifier {
         StatusBarNotification[] activeNotifications = notifications.getActiveNotifications();
 
         for (StatusBarNotification activeNotification : activeNotifications) {
-          if (activeNotification.getId() != NotificationBarManager.RED_PHONE_NOTIFICATION) {
+          if (activeNotification.getId() != CallNotificationBuilder.WEBRTC_NOTIFICATION) {
             notifications.cancel(activeNotification.getId());
           }
         }
@@ -152,7 +151,6 @@ public class MessageNotifier {
           boolean validNotification = false;
 
           if (notification.getId() != SUMMARY_NOTIFICATION_ID &&
-              notification.getId() != NotificationBarManager.RED_PHONE_NOTIFICATION &&
               notification.getId() != CallNotificationBuilder.WEBRTC_NOTIFICATION   &&
               notification.getId() != KeyCachingService.SERVICE_RUNNING_ID          &&
               notification.getId() != MessageRetrievalService.FOREGROUND_ID)

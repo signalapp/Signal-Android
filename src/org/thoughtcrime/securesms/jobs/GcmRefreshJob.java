@@ -28,8 +28,6 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
-import org.thoughtcrime.redphone.signaling.RedPhoneAccountManager;
-import org.thoughtcrime.redphone.signaling.UnauthorizedException;
 import org.thoughtcrime.securesms.PlayServicesProblemActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
@@ -49,7 +47,6 @@ public class GcmRefreshJob extends ContextJob implements InjectableType {
   public static final String REGISTRATION_ID = "312334754206";
 
   @Inject transient SignalServiceAccountManager textSecureAccountManager;
-  @Inject transient RedPhoneAccountManager      redPhoneAccountManager;
 
   public GcmRefreshJob(Context context) {
     super(context, JobParameters.newBuilder().withRequirement(new NetworkRequirement(context)).create());
@@ -70,12 +67,6 @@ public class GcmRefreshJob extends ContextJob implements InjectableType {
     } else {
       String gcmId = GoogleCloudMessaging.getInstance(context).register(REGISTRATION_ID);
       textSecureAccountManager.setGcmId(Optional.of(gcmId));
-
-      try {
-        redPhoneAccountManager.setGcmId(Optional.of(gcmId));
-      } catch (UnauthorizedException e) {
-        Log.w(TAG, e);
-      }
 
       TextSecurePreferences.setGcmRegistrationId(context, gcmId);
       TextSecurePreferences.setWebsocketRegistered(context, true);
