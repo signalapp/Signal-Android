@@ -79,7 +79,7 @@ public class GroupManager {
     memberE164Numbers.add(TextSecurePreferences.getLocalNumber(context));
     groupDatabase.updateMembers(groupId, new LinkedList<>(memberE164Numbers));
     groupDatabase.updateTitle(groupId, name);
-    groupDatabase.updateAvatar(groupId, avatarBytes);
+    if (avatarBytes != null) groupDatabase.updateAvatar(groupId, avatarBytes);
 
     return sendGroupUpdate(context, masterSecret, groupId, memberE164Numbers, name, avatarBytes);
   }

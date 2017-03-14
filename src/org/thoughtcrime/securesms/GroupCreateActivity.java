@@ -66,12 +66,12 @@ import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.thoughtcrime.securesms.util.SelectedRecipientsAdapter;
 import org.thoughtcrime.securesms.util.SelectedRecipientsAdapter.OnRecipientDeletedListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
@@ -278,7 +278,9 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleGroupUpdate() {
-    new UpdateSignalGroupTask(this, masterSecret, groupToUpdate.get().id, avatarBmp,
+    final Bitmap currentAvatar = groupToUpdate.get().avatarBmp;
+    final Bitmap newAvatar = (currentAvatar != null && currentAvatar.equals(avatarBmp)) ? null : avatarBmp;
+    new UpdateSignalGroupTask(this, masterSecret, groupToUpdate.get().id, newAvatar,
                               getGroupName(), getAdapter().getRecipients()).execute();
   }
 
