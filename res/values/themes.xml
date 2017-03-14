@@ -180,8 +180,6 @@
         <item name="import_export_item_background_color">@color/import_export_item_background_light</item>
         <item name="import_export_item_background_shadow_color">@color/import_export_item_background_shadow_light</item>
         <item name="import_export_item_card_background">@drawable/clickable_card_light</item>
-        <item name="import_export_tab_background_color">@color/signal_primary</item>
-        <item name="import_export_tab_indicator_color">@color/white</item>
         <item name="import_sms">@drawable/ic_message_black</item>
         <item name="encrypted_backup">@drawable/ic_lock_light</item>
         <item name="plaintext_backup">@drawable/ic_content_copy_light</item>
@@ -227,6 +225,7 @@
         <item name="attachment_type_selector_background">@color/gray95</item>
         <item name="actionBarStyle">@style/TextSecure.DarkActionBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
+        <item name="colorPrimary">@color/gray95</item>
         <item name="android:textColor">@color/text_color_dark_theme</item>
         <item name="android:textColorSecondary">@color/text_color_secondary_dark_theme</item>
         <item name="colorAccent">@color/textsecure_primary_dark</item>
@@ -267,8 +266,6 @@
         <item name="import_export_item_background_color">@color/import_export_item_background_dark</item>
         <item name="import_export_item_background_shadow_color">@color/import_export_item_background_shadow_dark</item>
         <item name="import_export_item_card_background">@drawable/clickable_card_dark</item>
-        <item name="import_export_tab_background_color">@color/gray95</item>
-        <item name="import_export_tab_indicator_color">@color/signal_primary_dark</item>
         <item name="import_sms">@drawable/ic_message_white</item>
         <item name="encrypted_backup">@drawable/ic_lock_dark</item>
         <item name="plaintext_backup">@drawable/ic_content_copy_dark</item>
