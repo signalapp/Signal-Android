@@ -5,7 +5,7 @@ RUN dpkg --add-architecture i386 && \
     apt-get install -y software-properties-common && \
     add-apt-repository -y ppa:openjdk-r/ppa && \
     apt-get update -y && \
-    apt-get install -y libc6:i386=2.19-0ubuntu6.7 libncurses5:i386=5.9+20140118-1ubuntu1 libstdc++6:i386=4.8.4-2ubuntu1~14.04.1 lib32z1=1:1.2.8.dfsg-1ubuntu1 wget openjdk-8-jdk=8u72-b15-1~trusty1 git unzip && \
+    apt-get install -y libc6:i386=2.19-0ubuntu6.7 libncurses5:i386=5.9+20140118-1ubuntu1 libstdc++6:i386=4.8.4-2ubuntu1~14.04.1 lib32z1=1:1.2.8.dfsg-1ubuntu1 wget openjdk-8-jdk git unzip && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get autoremove -y && \
     apt-get clean
@@ -23,4 +23,4 @@ RUN cd /usr/local/ && \
 RUN echo y | android update sdk --no-ui -a --filter ${ANDROID_API_LEVELS}
 RUN echo y | android update sdk --no-ui -a --filter extra-android-m2repository,extra-android-support,extra-google-google_play_services,extra-google-m2repository
 RUN echo y | android update sdk --no-ui -a --filter tools,platform-tools,build-tools-${ANDROID_BUILD_TOOLS_VERSION}
-RUN rm -rf ${ANDROID_HOME}/tools && unzip ${ANDROID_HOME}/temp/*.zip -d ${ANDROID_HOME}
+RUN rm -rf ${ANDROID_HOME}/tools
