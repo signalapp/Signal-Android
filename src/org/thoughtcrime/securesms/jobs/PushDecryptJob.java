@@ -307,8 +307,7 @@ public class PushDecryptJob extends ContextJob {
   {
     EncryptingSmsDatabase     database                  = DatabaseFactory.getEncryptingSmsDatabase(context);
     Recipients                recipients                = getSyncMessageDestination(message);
-    String                    body                      = message.getMessage().getBody().or("");
-    OutgoingTextMessage       outgoingTextMessage       = new OutgoingTextMessage(recipients, body);
+    OutgoingTextMessage       outgoingTextMessage       = new OutgoingTextMessage(recipients, "", -1);
     OutgoingEndSessionMessage outgoingEndSessionMessage = new OutgoingEndSessionMessage(outgoingTextMessage);
 
     long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
@@ -321,9 +320,7 @@ public class PushDecryptJob extends ContextJob {
 
       long messageId = database.insertMessageOutbox(masterSecret, threadId, outgoingEndSessionMessage,
                                                     false, message.getTimestamp());
-      database.markAsSent(messageId);
-      database.markAsPush(messageId);
-      database.markAsSecure(messageId);
+      database.markAsSent(messageId, true);
     }
 
     if (smsMessageId.isPresent()) {
