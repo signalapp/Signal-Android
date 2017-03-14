@@ -159,6 +159,10 @@ public class AudioSlidePlayer {
       this.audioAttachmentServer.stop();
     }
 
+    if (context instanceof Activity) {
+      ((Activity) context).getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    }
+
     this.mediaPlayer           = null;
     this.audioAttachmentServer = null;
   }
