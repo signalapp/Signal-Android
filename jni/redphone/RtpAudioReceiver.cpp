@@ -27,7 +27,7 @@ RtpPacket* RtpAudioReceiver::receive(char* encodedData, int encodedDataLen) {
   }
 
   if (received < RtpPacket::getMinimumSize()) {
-    __android_log_print(ANDROID_LOG_WARN, TAG, "recveived malformed packet!");
+    __android_log_print(ANDROID_LOG_WARN, TAG, "received malformed packet!");
     return NULL;
   }
 
