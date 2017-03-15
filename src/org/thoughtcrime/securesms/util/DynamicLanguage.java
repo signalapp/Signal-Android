@@ -59,6 +59,9 @@ public class DynamicLanguage {
       context.getResources().updateConfiguration(configuration,
                                                  context.getResources().getDisplayMetrics());
     }
+    if (!Locale.getDefault().equals(selectedLocale)) {
+      Locale.setDefault(selectedLocale);
+    }
   }
 
   private static Locale getActivityLocale(Activity activity) {
@@ -69,7 +72,11 @@ public class DynamicLanguage {
     String language[] = TextUtils.split(TextSecurePreferences.getLanguage(context), "_");
 
     if (language[0].equals(DEFAULT)) {
-      return Locale.getDefault();
+      String sysLanguage = System.getProperty("user.language", "en");
+      String sysRegion   = System.getProperty("user.region",   "US");
+      String sysVariant  = System.getProperty("user.variant",  "");
+
+      return new Locale(sysLanguage, sysRegion, sysVariant);
     } else if (language.length == 2) {
       return new Locale(language[0], language[1]);
     } else {
