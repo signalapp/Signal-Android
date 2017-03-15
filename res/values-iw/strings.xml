@@ -247,6 +247,7 @@
   <string name="GiphyFragmentPagerAdapter_stickers">מדבקות</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">קבוצה חדשה</string>
+  <string name="GroupCreateActivity_actionbar_edit_title">ערוך קבוצה</string>
   <string name="GroupCreateActivity_group_name_hint">שם הקבוצה</string>
   <string name="GroupCreateActivity_actionbar_mms_title">קבוצת MMS חדשה</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">בחרת איש קשר שאינו תומך בקבוצות סיגנל, אז הקבוצה הזאת תהיה מסוג MMS.</string>
@@ -483,6 +484,7 @@
   <string name="ThreadRecord_s_is_on_signal_say_hey">עכשיו %s בסיגנל, וזה הזמן לשאול „מה שלומך”!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">זמן העלמת המסר הוגדר ל־%s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">מספר הבטיחות שלך עם  %s השתנה.</string>
+  <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">איש הקשר שלך מריץ גרסה חדשה יותר של סיגנל עם תסדיר בלתי־תואם של קוד QR. נא לעדכן בשביל להשוות.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">קוד ה־QR שנסרק הוא מספר וידוא בתסדיר נכון. נא לנסות לסרוק שוב.</string>
@@ -989,6 +991,7 @@
   <string name="conversation_unmuted__mute_notifications">השתקת התראות</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">צירוף קובץ</string>
+  <string name="conversation__menu_edit_group">ערוך קבוצה</string>
   <string name="conversation__menu_leave_group">לעזוב את הקבוצה</string>
   <string name="conversation__menu_delete_thread">למחוק את השיחה</string>
   <string name="conversation__menu_conversation_settings">הגדרות שיחה</string>

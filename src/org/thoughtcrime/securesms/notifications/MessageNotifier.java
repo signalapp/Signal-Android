@@ -62,7 +62,7 @@ import org.thoughtcrime.securesms.service.MessageRetrievalService;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.webrtc.CallNotificationManager;
+import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 
 import java.util.HashSet;
@@ -159,7 +159,7 @@ public class MessageNotifier {
 
           if (notification.getId() != SUMMARY_NOTIFICATION_ID &&
               notification.getId() != NotificationBarManager.RED_PHONE_NOTIFICATION &&
-              notification.getId() != CallNotificationManager.WEBRTC_NOTIFICATION   &&
+              notification.getId() != CallNotificationBuilder.WEBRTC_NOTIFICATION   &&
               notification.getId() != KeyCachingService.SERVICE_RUNNING_ID          &&
               notification.getId() != MessageRetrievalService.FOREGROUND_ID)
           {
@@ -223,7 +223,7 @@ public class MessageNotifier {
                                                .getRecipientsForThreadId(threadId);
 
     if (isVisible) {
-      List<MarkedMessageInfo> messageIds = threads.setRead(threadId);
+      List<MarkedMessageInfo> messageIds = threads.setRead(threadId, false);
       MarkReadReceiver.process(context, messageIds);
     }
 

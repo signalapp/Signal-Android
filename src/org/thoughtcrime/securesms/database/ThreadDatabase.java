@@ -264,9 +264,13 @@ public class ThreadDatabase extends Database {
     notifyConversationListListeners();
   }
 
-  public List<MarkedMessageInfo> setRead(long threadId) {
+  public List<MarkedMessageInfo> setRead(long threadId, boolean lastSeen) {
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(READ, 1);
+
+    if (lastSeen) {
+      contentValues.put(LAST_SEEN, System.currentTimeMillis());
+    }
 
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {threadId+""});

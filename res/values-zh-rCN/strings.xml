@@ -475,6 +475,7 @@
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s 正在暗号中，打个招呼吧！</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">信息销毁时间设置为 %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">您与 %s 的安全码已经改变</string>
+  <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">您的联系人使用的是旧版本的暗号，在请求对方验证安全码前，请先让对方升级暗号客户端。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">您的联系人使用的是新版本的暗号，程序无法识别这个联系人的二维码。

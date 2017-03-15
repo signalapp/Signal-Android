@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.dependencies.RedPhoneCommunicationModule;
 import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
+import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.persistence.EncryptingJobSerializer;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirementProvider;
 import org.thoughtcrime.securesms.jobs.requirements.MediaNetworkRequirementProvider;
@@ -42,6 +43,7 @@ import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
+import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.webrtc.PeerConnectionFactory;
 import org.whispersystems.jobqueue.JobManager;
@@ -77,7 +79,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   @Override
   public void onCreate() {
     super.onCreate();
-    initializeDeveloperBuild();
     initializeRandomNumberFix();
     initializeLogging();
     initializeDependencyInjection();
@@ -87,6 +88,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     initializeSignedPreKeyCheck();
     initializePeriodicTasks();
     initializeCircumvention();
+    initializeSetVideoCapable();
 
     if (Build.VERSION.SDK_INT >= 11) {
       PeerConnectionFactory.initializeAndroidGlobals(this, true, true, true);
@@ -106,15 +108,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   public ExpiringMessageManager getExpiringMessageManager() {
     return expiringMessageManager;
-  }
-
-  private void initializeDeveloperBuild() {
-    if (BuildConfig.DEV_BUILD) {
-      StrictMode.setThreadPolicy(new ThreadPolicy.Builder().detectAll()
-                                                           .penaltyLog()
-                                                           .build());
-      StrictMode.setVmPolicy(new VmPolicy.Builder().detectAll().penaltyLog().build());
-    }
   }
 
   private void initializeRandomNumberFix() {
@@ -149,9 +142,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   private void initializeGcmCheck() {
-    if (TextSecurePreferences.isPushRegistered(this) &&
-        TextSecurePreferences.getGcmRegistrationId(this) == null)
-    {
+    if (TextSecurePreferences.isPushRegistered(this)) {
       this.jobManager.add(new GcmRefreshJob(this));
     }
   }
@@ -169,6 +160,17 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   private void initializePeriodicTasks() {
     RotateSignedPreKeyListener.schedule(this);
     DirectoryRefreshListener.schedule(this);
+
+    if (BuildConfig.PLAY_STORE_DISABLED) {
+      UpdateApkRefreshListener.schedule(this);
+    }
+  }
+
+  private void initializeSetVideoCapable() {
+    if (!TextSecurePreferences.isWebrtcCallingEnabled(this)) {
+      TextSecurePreferences.setWebrtcCallingEnabled(this, true);
+      jobManager.add(new RefreshAttributesJob(this));
+    }
   }
 
   private void initializeCircumvention() {

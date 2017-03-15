@@ -227,7 +227,7 @@ public class RegistrationActivity extends BaseActionBarActivity {
       } else if (gcmStatus == PlayServicesStatus.MISSING) {
         promptForNoPlayServices(self, e164number);
       } else if (gcmStatus == PlayServicesStatus.NEEDS_UPDATE) {
-        GoogleApiAvailability.getInstance().getErrorDialog(self, ConnectionResult.SERVICE_VERSION_UPDATE_REQUIRED, 0);
+        GoogleApiAvailability.getInstance().getErrorDialog(self, ConnectionResult.SERVICE_VERSION_UPDATE_REQUIRED, 0).show();
       } else {
         Dialogs.showAlertDialog(self, getString(R.string.RegistrationActivity_play_services_error),
                                 getString(R.string.RegistrationActivity_google_play_services_is_updating_or_unavailable));

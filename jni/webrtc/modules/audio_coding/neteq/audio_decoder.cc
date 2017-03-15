@@ -19,8 +19,9 @@ namespace webrtc {
 int AudioDecoder::DecodeRedundant(const uint8_t* encoded,
                                   size_t encoded_len,
                                   int16_t* decoded,
+                                  size_t maxDecodedSize,
                                   SpeechType* speech_type) {
-  return Decode(encoded, encoded_len, decoded, speech_type);
+  return Decode(encoded, encoded_len, decoded, maxDecodedSize, speech_type);
 }
 
 bool AudioDecoder::HasDecodePlc() const { return false; }
@@ -56,48 +57,6 @@ NetEqDecoder AudioDecoder::codec_type() const { return codec_type_; }
 bool AudioDecoder::CodecSupported(NetEqDecoder codec_type) {
   switch (codec_type) {
     case kDecoderPCMu:
-    case kDecoderPCMa:
-    case kDecoderPCMu_2ch:
-    case kDecoderPCMa_2ch:
-#ifdef WEBRTC_CODEC_ILBC
-    case kDecoderILBC:
-#endif
-#if defined(WEBRTC_CODEC_ISACFX) || defined(WEBRTC_CODEC_ISAC)
-    case kDecoderISAC:
-#endif
-#ifdef WEBRTC_CODEC_ISAC
-    case kDecoderISACswb:
-    case kDecoderISACfb:
-#endif
-#ifdef WEBRTC_CODEC_PCM16
-    case kDecoderPCM16B:
-    case kDecoderPCM16Bwb:
-    case kDecoderPCM16Bswb32kHz:
-    case kDecoderPCM16Bswb48kHz:
-    case kDecoderPCM16B_2ch:
-    case kDecoderPCM16Bwb_2ch:
-    case kDecoderPCM16Bswb32kHz_2ch:
-    case kDecoderPCM16Bswb48kHz_2ch:
-    case kDecoderPCM16B_5ch:
-#endif
-#ifdef WEBRTC_CODEC_G722
-    case kDecoderG722:
-    case kDecoderG722_2ch:
-#endif
-#ifdef WEBRTC_CODEC_CELT
-    case kDecoderCELT_32:
-    case kDecoderCELT_32_2ch:
-#endif
-#ifdef WEBRTC_CODEC_OPUS
-    case kDecoderOpus:
-    case kDecoderOpus_2ch:
-#endif
-    case kDecoderRED:
-    case kDecoderAVT:
-    case kDecoderCNGnb:
-    case kDecoderCNGwb:
-    case kDecoderCNGswb32kHz:
-    case kDecoderCNGswb48kHz:
     case kDecoderArbitrary: {
       return true;
     }
@@ -182,65 +141,6 @@ AudioDecoder* AudioDecoder::CreateAudioDecoder(NetEqDecoder codec_type) {
   switch (codec_type) {
     case kDecoderPCMu:
       return new AudioDecoderPcmU;
-    case kDecoderPCMa:
-      return new AudioDecoderPcmA;
-    case kDecoderPCMu_2ch:
-      return new AudioDecoderPcmUMultiCh(2);
-    case kDecoderPCMa_2ch:
-      return new AudioDecoderPcmAMultiCh(2);
-#ifdef WEBRTC_CODEC_ILBC
-    case kDecoderILBC:
-      return new AudioDecoderIlbc;
-#endif
-#if defined(WEBRTC_CODEC_ISACFX)
-    case kDecoderISAC:
-      return new AudioDecoderIsacFix;
-#elif defined(WEBRTC_CODEC_ISAC)
-    case kDecoderISAC:
-      return new AudioDecoderIsac;
-#endif
-#ifdef WEBRTC_CODEC_ISAC
-    case kDecoderISACswb:
-      return new AudioDecoderIsacSwb;
-    case kDecoderISACfb:
-      return new AudioDecoderIsacFb;
-#endif
-#ifdef WEBRTC_CODEC_PCM16
-    case kDecoderPCM16B:
-    case kDecoderPCM16Bwb:
-    case kDecoderPCM16Bswb32kHz:
-    case kDecoderPCM16Bswb48kHz:
-      return new AudioDecoderPcm16B(codec_type);
-    case kDecoderPCM16B_2ch:
-    case kDecoderPCM16Bwb_2ch:
-    case kDecoderPCM16Bswb32kHz_2ch:
-    case kDecoderPCM16Bswb48kHz_2ch:
-    case kDecoderPCM16B_5ch:
-      return new AudioDecoderPcm16BMultiCh(codec_type);
-#endif
-#ifdef WEBRTC_CODEC_G722
-    case kDecoderG722:
-      return new AudioDecoderG722;
-    case kDecoderG722_2ch:
-      return new AudioDecoderG722Stereo;
-#endif
-#ifdef WEBRTC_CODEC_CELT
-    case kDecoderCELT_32:
-    case kDecoderCELT_32_2ch:
-      return new AudioDecoderCelt(codec_type);
-#endif
-#ifdef WEBRTC_CODEC_OPUS
-    case kDecoderOpus:
-    case kDecoderOpus_2ch:
-      return new AudioDecoderOpus(codec_type);
-#endif
-    case kDecoderCNGnb:
-    case kDecoderCNGwb:
-    case kDecoderCNGswb32kHz:
-    case kDecoderCNGswb48kHz:
-      return new AudioDecoderCng(codec_type);
-    case kDecoderRED:
-    case kDecoderAVT:
     case kDecoderArbitrary:
     default: {
       return NULL;

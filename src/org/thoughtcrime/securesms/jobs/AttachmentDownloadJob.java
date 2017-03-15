@@ -19,9 +19,11 @@ import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.jobs.requirements.MediaNetworkRequirement;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.util.Hex;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libsignal.InvalidMessageException;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
@@ -37,8 +39,9 @@ import javax.inject.Inject;
 import ws.com.google.android.mms.MmsException;
 
 public class AttachmentDownloadJob extends MasterSecretJob implements InjectableType {
-  private static final long   serialVersionUID = 1L;
-  private static final String TAG              = AttachmentDownloadJob.class.getSimpleName();
+  private static final long   serialVersionUID    = 1L;
+  private static final int    MAX_ATTACHMENT_SIZE = 150 * 1024  * 1024;
+  private static final String TAG                  = AttachmentDownloadJob.class.getSimpleName();
 
   @Inject transient SignalServiceMessageReceiver messageReceiver;
 
@@ -110,7 +113,7 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
       attachmentFile = createTempFile();
 
       SignalServiceAttachmentPointer pointer = createAttachmentPointer(masterSecret, attachment);
-      InputStream                    stream  = messageReceiver.retrieveAttachment(pointer, attachmentFile, new ProgressListener() {
+      InputStream                    stream  = messageReceiver.retrieveAttachment(pointer, attachmentFile, MAX_ATTACHMENT_SIZE, new ProgressListener() {
         @Override
         public void onAttachmentProgress(long total, long progress) {
           EventBus.getDefault().postSticky(new PartProgressEvent(attachment, total, progress));
@@ -149,7 +152,13 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
         relay = attachment.getRelay();
       }
 
-      return new SignalServiceAttachmentPointer(id, null, key, relay);
+      if (attachment.getDigest() != null) {
+        Log.w(TAG, "Downloading attachment with digest: " + Hex.toString(attachment.getDigest()));
+      } else {
+        Log.w(TAG, "Downloading attachment with no digest...");
+      }
+
+      return new SignalServiceAttachmentPointer(id, null, key, relay, Optional.fromNullable(attachment.getDigest()));
     } catch (InvalidMessageException | IOException e) {
       Log.w(TAG, e);
       throw new InvalidPartException(e);

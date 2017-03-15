@@ -158,7 +158,7 @@
         <item name="conversation_item_received_text_secondary_color">#BFffffff</item>
         <item name="conversation_item_header_background">@drawable/conversation_item_header_background</item>
         <item name="conversation_item_last_seen_background">@drawable/last_seen_background</item>
-        <item name="conversation_item_last_seen_text_background">@color/white</item>
+        <item name="conversation_item_last_seen_text_background">@drawable/last_seen_divider_text_background_light</item>
 
         <item name="quick_camera_icon">@drawable/quick_camera_light</item>
         <item name="quick_mic_icon">@drawable/ic_mic_grey600_24dp</item>
@@ -247,7 +247,7 @@
         <item name="conversation_item_sent_indicator_text_background">@drawable/conversation_item_sent_indicator_text_shape_dark</item>
         <item name="conversation_item_header_background">@drawable/conversation_item_header_background_dark</item>
         <item name="conversation_item_last_seen_background">#66333333</item>
-        <item name="conversation_item_last_seen_text_background">#ff333333</item>
+        <item name="conversation_item_last_seen_text_background">@drawable/last_seen_divider_text_background_dark</item>
 
         <item name="verification_background">#ff333333</item>
 

@@ -243,6 +243,8 @@
   <string name="DeviceListItem_last_active_s">Naposled aktivní %s</string>
   <string name="DeviceListItem_today">Dnes</string>
   <!--DozeReminder-->
+  <string name="DozeReminder_optimize_for_missing_play_services">Optimlizovat pro chybějící Google Play službu</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Toto zařízení nepodporuje službu Google Play. Kliknutím zakážete optimalizaci výdrže baterie systémem která způsobuje nemožnost Signulu přijímat zpravy v době nečinnosti.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Sdílet s</string>
   <!--ExperienceUpgradeActivity-->
@@ -251,6 +253,10 @@
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Vítejte v systému Signal!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure je nyní Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure a RedPhone jsou nyní jednou aplikací: Signal. Dotkněte se a prozkoumejte.</string>
+  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Přivítejte šifrované video hovory.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signál nyní podporuje šifrované video hovory. Začněte volat přes Signál jako obvykle, klikněte na video tlačítko a zamávejte na pozdrav.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signál nyní podporuje šifrované video hovory.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signál nyní podporuje šifrované video hovory. Klikněte pro prozkoumání.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Export</string>
   <string name="ExportFragment_export_plaintext_to_storage">Exportovat nešifrovaný text do úložiště?</string>
@@ -345,6 +351,7 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="MessageDetailsRecipient_new_safety_number">Nové bezpečnostní kódy</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_background_connection_enabled">Komunikace na pozadí povolena</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Chyba při ukládání MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Chyba při připojování k poskytovateli MMS</string>
@@ -460,6 +467,11 @@ telefonní číslo</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">Znovu zkontrolujte Vaše číslo! Nyní bude ověřeno pomocí SMS.</string>
   <string name="RegistrationActivity_continue">Pokračovat</string>
   <string name="RegistrationActivity_edit">Upravit</string>
+  <string name="RegistrationActivity_missing_google_play_services">Chybí Google Play služba</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Toto zařízení nepodporuje službu Google Play. Můžete stále používat Signal, ale tato konfigurace může mít za náísledek snížení spolehlivosti nebo výkonu.\n\n Jestli nejste zkušený uživatel, nepoužíváte alternativní Android ROM nebo si myslíte, že je to chyba, kontaktujte support@whispersystems.org aby vám pohmoli vyřešit tento problém.</string>
+  <string name="RegistrationActivity_i_understand">Rozumím</string>
+  <string name="RegistrationActivity_play_services_error">Chyba Google Play </string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Služba Google Play se aktulizuje nebo je dočasně nedostupná. Zkuste to prosím znovu.</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Možné problémy</string>
   <!--RegistrationProgressActivity-->
@@ -511,6 +523,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s zapnul Signal, řekni ahoj!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas zmizení zprávy nastaven na %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Váš bezpečnostní kód s %s se změnil</string>
+  <!--UpdateApkReadyListener-->
+  <string name="UpdateApkReadyListener_Signal_update">Aktualizace Signal</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Je k dispozici nová verze Signal, klikněte pro aktualizaci</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Váš kontakt používá starou verzi aplikace Singál. Před kontrolou bezpečnostních kódů je porím požádejte aby si aplikaci aktualizoval.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Váš kontakt používá novější verzi Signal s nekompatibilním formátem QR kódu. Prosím aktualizujte svou verzi abyste mohli QR kódy porovnat.</string>

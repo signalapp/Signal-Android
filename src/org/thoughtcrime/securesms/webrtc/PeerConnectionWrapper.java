@@ -79,7 +79,6 @@ public class PeerConnectionWrapper {
 
     if (videoCapturer != null) {
       this.videoSource = factory.createVideoSource(videoCapturer);
-      this.videoCapturer.startCapture(1280, 720, 30);
       this.videoTrack = factory.createVideoTrack("ARDAMSv0", videoSource);
 
       this.videoTrack.addRenderer(new VideoRenderer(localRenderer));
@@ -96,6 +95,15 @@ public class PeerConnectionWrapper {
   public void setVideoEnabled(boolean enabled) {
     if (this.videoTrack != null) {
       this.videoTrack.setEnabled(enabled);
+    }
+
+    if (this.videoCapturer != null) {
+      try {
+        if (enabled) this.videoCapturer.startCapture(1280, 720, 30);
+        else         this.videoCapturer.stopCapture();
+      } catch (InterruptedException e) {
+        Log.w(TAG, e);
+      }
     }
   }
 

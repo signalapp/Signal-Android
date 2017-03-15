@@ -231,6 +231,8 @@ Vastaanotettu: %4$s</string>
   <string name="DeviceListItem_last_active_s">Viimeksi käytetty %s</string>
   <string name="DeviceListItem_today">tänään</string>
   <!--DozeReminder-->
+  <string name="DozeReminder_optimize_for_missing_play_services">Optimoi Play Servicesin puuttumista</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Tämä laite ei tue Play Servicesiä. Napsauta tästä ottaaksesi pois päältä virransäästöominaisuudet, jotka estävät Signalia hakemasta viestejä taustalla.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Jaa</string>
   <!--ExperienceUpgradeActivity-->
@@ -239,6 +241,10 @@ Vastaanotettu: %4$s</string>
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Tervetuloa Signaliin!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure on nyt Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure ja RedPhone ovat nyt yksi ja sama sovellus: Signal. Napsauta tutustuaksesi.</string>
+  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Sano hei turvallisille videopuheluille.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal tukee nyt turvallisia videopuheluita. Aloita puhelu kuten ennenkin, sitten vain napsauta kamerakuvaketta ja vilkuta hei.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal tukee nyt turvallisia videopuheluita.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal tukee nyt turvallisia videopuheluita. Jatka napsauttamalla.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Vie</string>
   <string name="ExportFragment_export_plaintext_to_storage">Viedäänkö salaamattomana tallennustilaan?</string>
@@ -332,6 +338,7 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="MessageDetailsRecipient_new_safety_number">Uusi turvanumero</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_background_connection_enabled">Taustayhteys päällä</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Virhe multimediaviestin tallentamisessa!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Virhe yhdistettäessä MMS-palveluntarjoajaan</string>
@@ -449,6 +456,11 @@ puhelinnumero</string>
 Tarkista vielä, että tämä on varmasti numerosi! Aiomme seuraavaksi vahvistaa sen lähettämällä siihen tekstiviestin.</string>
   <string name="RegistrationActivity_continue">Jatka</string>
   <string name="RegistrationActivity_edit">Muokkaa</string>
+  <string name="RegistrationActivity_missing_google_play_services">Google Play Services puuttuu</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Tästä laitteesta puuttuu Google Play Services. Signal toimii myös ilman sitä, mutta viestien ja ilmoitusten välityksen laatu saattaa kärsiä.\n\nJos et ole edistyneempi käyttäjä, et käytä kolmannen osapuolen Android ROM:ia tai uskot, että näet tämän ilmoituksen virheellisesti, ota yhteyttä support@whispersystems.org saadaksesi apua.</string>
+  <string name="RegistrationActivity_i_understand">Ymmärrän</string>
+  <string name="RegistrationActivity_play_services_error">Play Services -virhe</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Servicesiä päivitetään tai se ei ole juuri nyt saavutettavissa. Yritä myöhemmin uudelleen.</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Mahdollisia ongelmia</string>
   <!--RegistrationProgressActivity-->
@@ -501,6 +513,9 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s käyttää myös Signalia. Sano hei!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Katoavien viestien ajaksi asetettu %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Sinun ja yhteystiedon %s turvanumero on vaihtunut.</string>
+  <!--UpdateApkReadyListener-->
+  <string name="UpdateApkReadyListener_Signal_update">Signal-päivitys</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Uusi versio Signalista on saatavilla. Päivitä napsauttamalla.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Yhteystietosi käyttää vanhaa versiota Signalista. Pyydä häntä päivittämään, jotta voit varmentaa turvanumeron.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Yhteystietosi käyttää uudempaa versiota Signalista, jonka QR-koodi ei toimi oman versiosi kanssa. Päivitä Signalisi uusimpaan versioon.</string>

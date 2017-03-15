@@ -76,12 +76,14 @@ class AudioDecoder {
   // the return value. If the decoder produced comfort noise, |speech_type|
   // is set to kComfortNoise, otherwise it is kSpeech.
   virtual int Decode(const uint8_t* encoded, size_t encoded_len,
-                     int16_t* decoded, SpeechType* speech_type) = 0;
+                     int16_t* decoded, size_t decoded_size,
+                     SpeechType* speech_type) = 0;
 
   // Same as Decode(), but interfaces to the decoders redundant decode function.
   // The default implementation simply calls the regular Decode() method.
   virtual int DecodeRedundant(const uint8_t* encoded, size_t encoded_len,
-                              int16_t* decoded, SpeechType* speech_type);
+                              int16_t* decoded, size_t decoded_size,
+                               SpeechType* speech_type);
 
   // Indicates if the decoder implements the DecodePlc method.
   virtual bool HasDecodePlc() const;

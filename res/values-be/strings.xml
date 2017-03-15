@@ -219,6 +219,7 @@
   <string name="SmsMessageRecord_duplicate_message">Дублікат паведамлення.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_draft">Чарнавік:</string>
+  <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Ініцыяваць нягледзячы на існуючы запыт?</string>

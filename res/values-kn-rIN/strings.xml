@@ -350,6 +350,7 @@
   <string name="SmsMessageRecord_duplicate_message">ನಕಲಿ ಸಂದೇಶ.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_draft">ಕರಡು</string>
+  <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_no_app_to_share_to">ಹಂಚಿಕೊಳ್ಳಲು ತಾವು ಯಾವುದೇ ಅಪ್ಲಿಕೇಶನ್ಗಳು ಹೊಂದಿಲ್ಲ ಎಂದಣಿಸುತ್ತದೆ.</string>
   <!--KeyExchangeInitiator-->
