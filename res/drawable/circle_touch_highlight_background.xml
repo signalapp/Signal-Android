@@ -2,7 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true">
         <shape android:shape="oval">
-            <solid android:color="@color/touch_highlight" />
+            <solid android:color="?conversation_list_item_contact_color" />
         </shape>
     </item>
 </selector>
