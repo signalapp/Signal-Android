@@ -275,17 +275,20 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     switch (type) {
       case MmsSmsDatabase.SMS_TRANSPORT:
         EncryptingSmsDatabase smsDatabase = DatabaseFactory.getEncryptingSmsDatabase(context);
-        SmsDatabase.Reader    reader      = smsDatabase.readerFor(masterSecret, cursor);
-        return reader.getNext();
+        SmsDatabase.Reader    smsReader   = smsDatabase.readerFor(masterSecret, cursor);
+        MessageRecord         smsRecord   = smsReader.getNext();
+        smsReader.close();
+        return smsRecord;
       case MmsSmsDatabase.MMS_TRANSPORT:
         MmsDatabase        mmsDatabase = DatabaseFactory.getMmsDatabase(context);
         MmsDatabase.Reader mmsReader   = mmsDatabase.readerFor(masterSecret, cursor);
-        return mmsReader.getNext();
+        MessageRecord      mmsRecord   = mmsReader.getNext();
+        mmsReader.close();
+        return mmsRecord;
       default:
         throw new AssertionError("no valid message type specified");
     }
   }
-
 
   @Override
   public Loader<Cursor> onCreateLoader(int id, Bundle args) {
