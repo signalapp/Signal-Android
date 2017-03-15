@@ -5,7 +5,6 @@
     <style name="TextSecure.LightNoActionBar" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <item name="theme_type">light</item>
         <item name="actionBarStyle">@style/TextSecure.LightActionBar</item>
-        <item name="actionBarTabBarStyle">@style/TextSecure.LightActionBar.TabBar</item>
         <item name="colorPrimary">@color/textsecure_primary</item>
         <item name="colorPrimaryDark">@color/textsecure_primary_dark</item>
         <item name="colorAccent">@color/textsecure_primary_dark</item>
@@ -20,7 +19,6 @@
     <style name="TextSecure.DarkNoActionBar" parent="@style/Theme.AppCompat.NoActionBar">
         <item name="theme_type">dark</item>
         <item name="actionBarStyle">@style/TextSecure.DarkActionBar</item>
-        <item name="actionBarTabBarStyle">@style/TextSecure.DarkActionBar.TabBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
 
         <item name="recipient_preference_blocked">#d00000</item>
@@ -28,6 +26,16 @@
         <item name="contact_selection_push_user">#ffeeeeee</item>
         <item name="contact_selection_lay_user">#afeeeeee</item>
         <item name="contact_selection_header_text">#66eeeeee</item>
+    </style>
+
+    <style name="TextSecure.LightFlatActionBarTheme" parent="@style/TextSecure.LightTheme">
+        <item name="actionBarStyle">@style/TextSecure.FlatLightActionBar</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="TextSecure.DarkFlatActionBarTheme" parent="@style/TextSecure.DarkTheme">
+        <item name="actionBarStyle">@style/TextSecure.FlatDarkActionBar</item>
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <style name="TextSecure.HighlightTheme" parent="@style/TextSecure.LightTheme">
@@ -87,7 +95,6 @@
     <style name="TextSecure.LightTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="theme_type">light</item>
         <item name="actionBarStyle">@style/TextSecure.LightActionBar</item>
-        <item name="actionBarTabBarStyle">@style/TextSecure.LightActionBar.TabBar</item>
         <item name="colorPrimary">@color/textsecure_primary</item>
         <item name="colorPrimaryDark">@color/textsecure_primary_dark</item>
         <item name="colorAccent">@color/textsecure_primary_dark</item>
@@ -217,8 +224,8 @@
         <item name="theme_type">dark</item>
         <item name="attachment_type_selector_background">@color/gray95</item>
         <item name="actionBarStyle">@style/TextSecure.DarkActionBar</item>
-        <item name="actionBarTabBarStyle">@style/TextSecure.DarkActionBar.TabBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
+        <item name="colorPrimary">@color/gray95</item>
         <item name="android:textColor">@color/text_color_dark_theme</item>
         <item name="android:textColorSecondary">@color/text_color_secondary_dark_theme</item>
         <item name="colorAccent">@color/textsecure_primary_dark</item>
