@@ -31,6 +31,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -63,7 +64,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
     super.onCreate(savedInstanceState);
-
+    getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,WindowManager.LayoutParams.FLAG_SECURE);
     setContentView(R.layout.prompt_passphrase_activity);
     initializeResources();
   }
