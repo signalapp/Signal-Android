@@ -1144,6 +1144,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     composeText.setOnClickListener(composeKeyPressedListener);
     composeText.setOnFocusChangeListener(composeKeyPressedListener);
 
+    composeText.requestFocus();
+
     if (QuickAttachmentDrawer.isDeviceSupported(this)) {
       quickAttachmentDrawer.setListener(this);
       quickCameraToggle.setOnClickListener(new QuickCameraToggleListener());
