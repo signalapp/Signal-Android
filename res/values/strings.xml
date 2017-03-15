@@ -845,6 +845,9 @@
     <!-- giphy_fragment -->
     <string name="giphy_fragment__nothing_found">Nothing found</string>
 
+    <!-- import_export_fragment -->
+    <string name="import_export_fragment__export">Export</string>
+    <string name="import_export_fragment__import">Import</string>
 
     <!-- log_submit_activity -->
     <string name="log_submit_activity__log_fetch_failed">Could not read the log on your device. You can still use ADB to get a debug log instead.</string>
