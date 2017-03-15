@@ -24,6 +24,7 @@
 
     <style name="AppCompatAlertDialogStyleDark" parent="Theme.AppCompat.Dialog.Alert">
         <item name="colorAccent">@color/signal_primary</item>
+        <item name="android:textColor">@null</item>
     </style>
 
     <style name="AppCompatDialogStyleLight" parent="Theme.AppCompat.Light.Dialog">
@@ -34,6 +35,7 @@
     <style name="AppCompatDialogStyleDark" parent="Theme.AppCompat.Dialog">
         <item name="colorAccent">@color/signal_primary</item>
         <item name="android:windowBackground">@drawable/dialog_background</item>
+        <item name="android:textColor">@null</item>
     </style>
 
     <!-- ActionBar styles -->
