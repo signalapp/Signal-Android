@@ -1,3 +1,5 @@
+import java.security.MessageDigest
+
 buildscript {
     repositories {
         maven {
@@ -57,8 +59,8 @@ dependencies {
 
     compile 'org.whispersystems:jobmanager:1.0.2'
     compile 'org.whispersystems:libpastelog:1.0.7'
-    compile 'org.whispersystems:signal-service-android:2.5.1'
-    compile 'org.whispersystems:webrtc-android:M56-S1'
+    compile 'org.whispersystems:signal-service-android:2.5.3'
+    compile 'org.whispersystems:webrtc-android:M57'
 
     compile "me.leolin:ShortcutBadger:1.10-WS1"
     compile 'se.emilsjolander:stickylistheaders:2.7.0'
@@ -127,8 +129,8 @@ dependencyVerification {
         'com.google.android.gms:play-services-places:abf3a4a3b146ec7e6e753be62775e512868cf37d6f88ffe2d81167b33b57132b',
         'org.whispersystems:jobmanager:506f679fc2fcf7bb6d10f00f41d6f6ea0abf75c70dc95b913398661ad538a181',
         'org.whispersystems:libpastelog:bb331d9a98240fc139101128ba836c1edec3c40e000597cdbb29ebf4cbf34d88',
-        'org.whispersystems:signal-service-android:b0329b155cc9ad5e7fc08e4660538df1827c6d9485b05cab41946f36ad7ee0ab',
-        'org.whispersystems:webrtc-android:776a2769348f62aec28b9be6e97dcfea9c07b472ddbe24ac1ca1c46567cf8a8e',
+        'org.whispersystems:signal-service-android:28a5368cb1336106ba7732aeaf0c5a33ef8fb22500c41f38ad8147375f59073b',
+        'org.whispersystems:webrtc-android:acf78f6148c2e946b846cc5395887079ba37ddb892bf0d993fed18f1b9f521f8',
         'me.leolin:ShortcutBadger:e8e39df8a59d8211a30f40b1eeab21b3fa57b3f3e0f03abb995f82d66588778c',
         'se.emilsjolander:stickylistheaders:a08ca948aa6b220f09d82f16bbbac395f6b78897e9eeac6a9f0b0ba755928eeb',
         'com.jpardogo.materialtabstrip:library:c6ef812fba4f74be7dc4a905faa4c2908cba261a94c13d4f96d5e67e4aad4aaa',
@@ -162,27 +164,28 @@ dependencyVerification {
         'com.google.android.gms:play-services-base:0ca636a8fc9a5af45e607cdcd61783bf5d561cbbb0f862021ce69606eee5ad49',
         'com.google.android.gms:play-services-basement:95dd882c5ffba15b9a99de3fefb05d3a01946623af67454ca00055d222f85a8d',
         'com.google.android.gms:play-services-iid:54e919f9957b8b7820da7ee9b83471d00d0cac1cf08ddea8b5b41aea80bb1a70',
-        'org.whispersystems:signal-service-java:e0b9c41fcf614d58a71afcbb290d1864275b65364ca8fafeb5fbcbdc2d59a57a',
         'org.whispersystems:signal-protocol-android:1b4b9d557c8eaf861797ff683990d482d4aa8e9f23d9b17ff0cc67a02f38cb19',
+        'org.whispersystems:signal-service-java:969b4e1fb0b87e553d8b231a090002a03748e0444fa23afa1bc6f7065e8039ff',
         'com.nineoldandroids:library:68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a',
         'javax.inject:javax.inject:91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff',
         'com.madgag.spongycastle:core:8d6240b974b0aca4d3da9c7dd44d42339d8a374358aca5fc98e50a995764511f',
         'com.google.android.gms:play-services-tasks:69ec265168e601d0203d04cd42e34bb019b2f029aa1e16fabd38a5153eea2086',
+        'org.whispersystems:curve25519-android:bf6c34223d45d2f2813a8efcab9923caf99115115c760c9acea680bcb42d23c0',
+        'org.whispersystems:signal-protocol-java:a835cd0609cf116a74651bd0aa748db9392bba48c2d2af787757b8a1b50d131c',
         'com.google.protobuf:protobuf-java:e0c1c64575c005601725e7c6a02cebf9e1285e888f756b2a1d73ffa8d725cc74',
         'com.googlecode.libphonenumber:libphonenumber:141ebcafba7070a13d879c44e7648ddbe10beab665cb64d7b0c1bea93afb8dc2',
         'com.fasterxml.jackson.core:jackson-databind:835097bcdd11f5bc8a08378c70d4c8054dfa4b911691cc2752063c75534d198d',
         'com.squareup.okhttp3:okhttp:a992938d7203ca557cd7a116f002e8c427ec9cdae7ea852441abb8aec891f948',
-        'org.whispersystems:curve25519-android:bf6c34223d45d2f2813a8efcab9923caf99115115c760c9acea680bcb42d23c0',
-        'org.whispersystems:signal-protocol-java:a835cd0609cf116a74651bd0aa748db9392bba48c2d2af787757b8a1b50d131c',
+        'org.whispersystems:curve25519-java:00f1d4919f759055f41f7853a3d475dc7c8decf0dbf045ae93414f8f23b066cc',
         'com.fasterxml.jackson.core:jackson-annotations:0ca408c24202a7626ec8b861e99d85eca5e38b73311dd6dd12e3e9deecc3fe94',
         'com.fasterxml.jackson.core:jackson-core:cbf4604784b4de226262845447a1ad3bb38a6728cebe86562e2c5afada8be2c0',
         'com.squareup.okio:okio:8c5436cadfab36bbd97db5f5c43b7bfdb5bf2f5f894ec8709b1929f14bdd010c',
-        'org.whispersystems:curve25519-java:00f1d4919f759055f41f7853a3d475dc7c8decf0dbf045ae93414f8f23b066cc',
         'com.android.support:support-media-compat:8d6a1a5ba3d9eb1a25cb8f21bb312ac6280202e3d2900cb0b447d065d0d8a125',
         'com.android.support:support-core-utils:a7649e18c04143dde40c218c5ce9a030e7ae674089cd7b18c6cf8ed2a22cf01a',
         'com.android.support:support-fragment:1294500b357f52cf3779e2521c79f54ae7844f3b9a5f6727495dbbda7f231377',
     ]
 }
+
 
 android {
     compileSdkVersion 25
@@ -194,11 +197,15 @@ android {
     }
 
     defaultConfig {
+        versionCode 249
+        versionName "3.31.4"
+
         minSdkVersion 9
         targetSdkVersion 22
         multiDexEnabled true
 
         vectorDrawables.useSupportLibrary = true
+        project.ext.set("archivesBaseName", "Signal");
 
         buildConfigField "long", "BUILD_TIMESTAMP", getLastCommitTimestamp() + "L"
         buildConfigField "String", "SIGNAL_URL", "\"https://textsecure-service.whispersystems.org\""
@@ -257,6 +264,28 @@ android {
         }
     }
 
+    productFlavors {
+        play {
+            ext.websiteUpdateUrl = "null"
+            buildConfigField "boolean", "PLAY_STORE_DISABLED", "false"
+            buildConfigField "String", "NOPLAY_UPDATE_URL", "$ext.websiteUpdateUrl"
+        }
+
+        website {
+            ext.websiteUpdateUrl = "https://updates.signal.org/android"
+            buildConfigField "boolean", "PLAY_STORE_DISABLED", "true"
+            buildConfigField "String", "NOPLAY_UPDATE_URL", "\"$ext.websiteUpdateUrl\""
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            output.outputFile = new File(
+                    output.outputFile.parent,
+                    output.outputFile.name.replace(".apk", "-${variant.versionName}.apk"))
+        }
+    }
+
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
@@ -274,6 +303,8 @@ android {
         test {
             java.srcDirs = ['test/unitTest/java']
         }
+
+        website.manifest.srcFile 'website/AndroidManifest.xml'
     }
 
      lintOptions {
@@ -281,9 +312,47 @@ android {
     }
 }
 
+task assembleWebsiteDescriptor << {
+    android.applicationVariants.all { variant ->
+        if (variant.name.equals("websiteDebug") ||
+            variant.name.equals("websiteRelease"))
+        {
+            File file = new File(variant.outputs[0].outputFile.path)
+
+            if (file.exists()) {
+                MessageDigest md = MessageDigest.getInstance("SHA-256");
+                file.eachByte 4096, {bytes, size ->
+                    md.update(bytes, 0, size);
+                }
+
+                String digest = md.digest().collect {String.format "%02x", it}.join();
+                String url = variant.productFlavors.get(0).ext.websiteUpdateUrl
+                String apkName = variant.outputs[0].outputFile.name
+
+                String descriptor = "{" +
+                        "\"versionCode\" : $project.android.defaultConfig.versionCode," +
+                        "\"versionName\" : \"$project.android.defaultConfig.versionName\"," +
+                        "\"sha256sum\" : \"$digest\"," +
+                        "\"url\" : \"$url/$apkName\"" +
+                        "}"
+
+                File descriptorFile = new File(variant.outputs[0].outputFile.parent, apkName.replace(".apk", ".json"))
+
+                descriptorFile.write(descriptor)
+            }
+        }
+    }
+}
+
 tasks.whenTaskAdded { task ->
     if (task.name.equals("lint")) {
         task.enabled = false
+    }
+
+    if (task.name.equals("assembleWebsiteDebug") ||
+        task.name.equals("assembleWebsiteRelease"))
+    {
+         task.finalizedBy assembleWebsiteDescriptor
     }
 }
 

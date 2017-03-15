@@ -412,6 +412,7 @@ public class ConversationFragment extends Fragment
 
   @Override
   public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
+    Log.w(TAG, "onLoadFinished");
     ConversationLoader loader = (ConversationLoader)cursorLoader;
 
     if (list.getAdapter() != null) {
@@ -427,9 +428,15 @@ public class ConversationFragment extends Fragment
 
       getListAdapter().changeCursor(cursor);
 
+      int lastSeenPosition = getListAdapter().findLastSeenPosition(lastSeen);
+
       if (firstLoad) {
-        scrollToLastSeenPosition(lastSeen);
+        scrollToLastSeenPosition(lastSeenPosition);
         firstLoad = false;
+      }
+
+      if (lastSeenPosition <= 0) {
+        setLastSeen(0);
       }
     }
   }
@@ -441,9 +448,7 @@ public class ConversationFragment extends Fragment
     }
   }
 
-  private void scrollToLastSeenPosition(long lastSeen) {
-    final int lastSeenPosition = getListAdapter().findLastSeenPosition(lastSeen);
-
+  private void scrollToLastSeenPosition(final int lastSeenPosition) {
     if (lastSeenPosition > 0) {
       list.post(new Runnable() {
         @Override
@@ -451,8 +456,6 @@ public class ConversationFragment extends Fragment
           ((LinearLayoutManager)list.getLayoutManager()).scrollToPositionWithOffset(lastSeenPosition, list.getHeight());
         }
       });
-    } else {
-      setLastSeen(0);
     }
   }
 

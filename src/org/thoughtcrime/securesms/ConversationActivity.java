@@ -55,6 +55,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.View.OnKeyListener;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -776,7 +777,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void handleDial(final Recipient recipient) {
     if (recipient == null) return;
 
-    if (isSecureVideo && TextSecurePreferences.isWebrtcCallingEnabled(this)) {
+    if ((isSecureVideo && TextSecurePreferences.isWebrtcCallingEnabled(this)) ||
+        (isSecureText && TextSecurePreferences.isGcmDisabled(this)))
+    {
       Intent intent = new Intent(this, WebRtcCallService.class);
       intent.setAction(WebRtcCallService.ACTION_OUTGOING_CALL);
       intent.putExtra(WebRtcCallService.EXTRA_REMOTE_NUMBER, recipient.getNumber());
@@ -971,7 +974,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeBetaCalling() {
-    if (!TextSecurePreferences.isWebrtcCallingEnabled(this) || isGroupConversation()) {
+    if (!TextSecurePreferences.isPushRegistered(this)       ||
+        !TextSecurePreferences.isWebrtcCallingEnabled(this) ||
+        isGroupConversation())
+    {
       return;
     }
 
@@ -1443,7 +1449,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       @Override
       protected Void doInBackground(Long... params) {
         Context                 context    = ConversationActivity.this;
-        List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(params[0]);
+        List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(params[0], false);
 
         MessageNotifier.updateNotification(context, masterSecret);
         MarkReadReceiver.process(context, messageIds);
@@ -1644,6 +1650,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   public void onRecorderStarted() {
     Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
     vibrator.vibrate(20);
+    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
     audioRecorder.startRecording();
   }
@@ -1652,6 +1659,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   public void onRecorderFinished() {
     Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
     vibrator.vibrate(20);
+    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
     ListenableFuture<Pair<Uri, Long>> future = audioRecorder.stopRecording();
     future.addListener(new ListenableFuture.Listener<Pair<Uri, Long>>() {
@@ -1694,6 +1702,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   public void onRecorderCanceled() {
     Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
     vibrator.vibrate(50);
+    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
     ListenableFuture<Pair<Uri, Long>> future = audioRecorder.stopRecording();
     future.addListener(new ListenableFuture.Listener<Pair<Uri, Long>>() {

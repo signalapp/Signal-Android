@@ -227,6 +227,8 @@
   <string name="DeviceListItem_last_active_s">Sist aktiv %s</string>
   <string name="DeviceListItem_today">I dag</string>
   <!--DozeReminder-->
+  <string name="DozeReminder_optimize_for_missing_play_services">Optimaliser for manglande Play-tenester</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Denne eininga støttar ikkje Play-tenester. Trykk for å skru av batterioptimaliseringane i systemet som hindrar Signal frå å henta meldingar når programmet ikkje er aktivt. </string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Del med</string>
   <!--ExperienceUpgradeActivity-->
@@ -235,6 +237,10 @@
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Velkomen til Signal!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure er no Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure og RedPhone er no eitt program: Signal. Trykk for å utforska.</string>
+  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Sei hallo til trygge videosamtaler.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal støttar no trygge videosamtaler. Berre ring som normalt med Signal, trykk video-knappen og gje eit vink.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal støttar no trygge videosamtaler.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal støttar no trygge videosamtaler. Trykk for å utforska.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Eksporter</string>
   <string name="ExportFragment_export_plaintext_to_storage">Vil du eksportera klartekst som vanleg fil?</string>
@@ -331,6 +337,7 @@ fører dette til dupliserte meldingar.</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nytt tryggleiksnummer</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_background_connection_enabled">Bakgrunnstilkopling på</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Feil under lagring av MMS.</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Klarte ikkje kopla til MMS-tilbydaren</string>
@@ -448,6 +455,13 @@ skreiv inn (%s) er ugyldig.</string>
 Dobbeltsjekk at dette er nummeret ditt. Vi er i ferd med å stadfesta det ved å senda deg SMS.</string>
   <string name="RegistrationActivity_continue">Hald fram</string>
   <string name="RegistrationActivity_edit">Endra</string>
+  <string name="RegistrationActivity_missing_google_play_services">Manglar Google Play-tenester</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Denne eininga manglar Google Play-tenester. Du kan bruka Signal likevel, men dette oppsettet kan gjera appen mindre påliteleg og gi dårlegare yting.
+
+Viss du ikkje er ein erfaren brukar, ikkje køyrer ein tredjeparts Android-ROM, eller meiner at du ser denne meldinga på grunn av ein feil, kan du ta kontakt med support@whispersystems.org for å få hjelp med å løysa problemet.</string>
+  <string name="RegistrationActivity_i_understand">Eg forstår</string>
+  <string name="RegistrationActivity_play_services_error">Feil med Play-tenester</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play-tenester oppdaterer seg eller er mellombels utilgjengeleg. Prøv igjen seinare.</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Moglege problem</string>
   <!--RegistrationProgressActivity-->
@@ -500,6 +514,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s er på Signal. Sei hei!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Utløpstid for melding endra til %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Tryggleiksnummeret ditt med %s har endra seg.</string>
+  <!--UpdateApkReadyListener-->
+  <string name="UpdateApkReadyListener_Signal_update">Signal-oppdatering</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Det finst ei ny utgåve av Signal; trykk for å oppdatera</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontakten din køyrer ein gammal versjon av Signal. Ver venleg og be dei om å oppdatera før du stadfestar tryggleiksnummeret ditt.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontakten din køyrer ein nyare versjon av Signal med eit inkompatibelt QR-kodeformat. Ver venleg og oppdater for å samanlikna.</string>

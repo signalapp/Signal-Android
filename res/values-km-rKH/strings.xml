@@ -481,6 +481,7 @@
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s ប្រើស៊ីកណលដែរ និយាយសួស្តី!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">កំណត់រយៈពេលសារមិនបង្ហាញ %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">លេខសុវត្ថិភាពអ្នកជាមួយ %s បានផ្លាស់ប្តូរ។</string>
+  <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">លេខទំនាក់ទំនងអ្នក កំពុងប្រើប្រាស់ស៊ីកណលជំនាន់ចាស់។ សូមប្រាក់គេអោយធ្វើបច្ចុប្បន្នភាពកម្មវិធី មុនពេលផ្ទៀងផ្ទាត់លេខសុវត្ថិភាព។ </string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">លេខទំនាក់ទំនងអ្នក កំពុងប្រើប្រាស់ស៊ីកណលជំនាន់ថ្មី ជាមួយទម្រង់កូដQR ដែលមិនគាំទ្រ។ សូមកែថ្មី ដើម្បីប្រៀបធៀប។ </string>

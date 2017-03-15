@@ -43,6 +43,7 @@ public class GroupDatabase extends Database {
   private static final String AVATAR_KEY          = "avatar_key";
   private static final String AVATAR_CONTENT_TYPE = "avatar_content_type";
   private static final String AVATAR_RELAY        = "avatar_relay";
+  private static final String AVATAR_DIGEST       = "avatar_digest";
   private static final String TIMESTAMP           = "timestamp";
   private static final String ACTIVE              = "active";
 
@@ -58,7 +59,8 @@ public class GroupDatabase extends Database {
           AVATAR_CONTENT_TYPE + " TEXT, " +
           AVATAR_RELAY + " TEXT, " +
           TIMESTAMP + " INTEGER, " +
-          ACTIVE + " INTEGER DEFAULT 1);";
+          ACTIVE + " INTEGER DEFAULT 1, " +
+          AVATAR_DIGEST + " BLOB);";
 
   public static final String[] CREATE_INDEXS = {
       "CREATE UNIQUE INDEX IF NOT EXISTS group_id_index ON " + TABLE_NAME + " (" + GROUP_ID + ");",
@@ -126,6 +128,7 @@ public class GroupDatabase extends Database {
       contentValues.put(AVATAR_ID, avatar.getId());
       contentValues.put(AVATAR_KEY, avatar.getKey());
       contentValues.put(AVATAR_CONTENT_TYPE, avatar.getContentType());
+      contentValues.put(AVATAR_DIGEST, avatar.getDigest().orNull());
     }
 
     contentValues.put(AVATAR_RELAY, relay);
@@ -144,6 +147,7 @@ public class GroupDatabase extends Database {
       contentValues.put(AVATAR_ID, avatar.getId());
       contentValues.put(AVATAR_CONTENT_TYPE, avatar.getContentType());
       contentValues.put(AVATAR_KEY, avatar.getKey());
+      contentValues.put(AVATAR_DIGEST, avatar.getDigest().orNull());
     }
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues,
@@ -269,7 +273,8 @@ public class GroupDatabase extends Database {
                              cursor.getBlob(cursor.getColumnIndexOrThrow(AVATAR_KEY)),
                              cursor.getString(cursor.getColumnIndexOrThrow(AVATAR_CONTENT_TYPE)),
                              cursor.getString(cursor.getColumnIndexOrThrow(AVATAR_RELAY)),
-                             cursor.getInt(cursor.getColumnIndexOrThrow(ACTIVE)) == 1);
+                             cursor.getInt(cursor.getColumnIndexOrThrow(ACTIVE)) == 1,
+                             cursor.getBlob(cursor.getColumnIndexOrThrow(AVATAR_DIGEST)));
     }
 
     public void close() {
@@ -286,13 +291,14 @@ public class GroupDatabase extends Database {
     private final byte[]       avatar;
     private final long         avatarId;
     private final byte[]       avatarKey;
+    private final byte[]       avatarDigest;
     private final String       avatarContentType;
     private final String       relay;
     private final boolean      active;
 
     public GroupRecord(String id, String title, String members, byte[] avatar,
                        long avatarId, byte[] avatarKey, String avatarContentType,
-                       String relay, boolean active)
+                       String relay, boolean active, byte[] avatarDigest)
     {
       this.id                = id;
       this.title             = title;
@@ -300,6 +306,7 @@ public class GroupDatabase extends Database {
       this.avatar            = avatar;
       this.avatarId          = avatarId;
       this.avatarKey         = avatarKey;
+      this.avatarDigest      = avatarDigest;
       this.avatarContentType = avatarContentType;
       this.relay             = relay;
       this.active            = active;
@@ -335,6 +342,10 @@ public class GroupDatabase extends Database {
 
     public byte[] getAvatarKey() {
       return avatarKey;
+    }
+
+    public byte[] getAvatarDigest() {
+      return avatarDigest;
     }
 
     public String getAvatarContentType() {

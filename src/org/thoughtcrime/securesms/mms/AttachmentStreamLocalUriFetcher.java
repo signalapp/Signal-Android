@@ -10,6 +10,7 @@ import com.bumptech.glide.load.data.DataFetcher;
 import com.bumptech.glide.load.data.StreamLocalUriFetcher;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream;
 
 import java.io.File;
@@ -29,7 +30,7 @@ public class AttachmentStreamLocalUriFetcher implements DataFetcher<InputStream>
   }
 
   @Override public InputStream loadData(Priority priority) throws Exception {
-    is = new AttachmentCipherInputStream(attachment, key);
+    is = new AttachmentCipherInputStream(attachment, key, Optional.<byte[]>absent());
     return is;
   }
 

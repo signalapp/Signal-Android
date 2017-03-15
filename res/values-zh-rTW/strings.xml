@@ -22,9 +22,9 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">這將會永久性地解鎖 Signal 與訊息通知。</string>
   <string name="ApplicationPreferencesActivity_disable">停用</string>
   <string name="ApplicationPreferencesActivity_unregistering">取消註冊</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">取消註冊Signal訊息與通話...</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">停用Signal訊息與通話?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">這將會從伺服器上登出您的Signal並停用。 未來如果還想使用該功能，則需要再次註冊。</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">取消註冊 Signal 訊息與通話...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">停用 Signal 訊息與通話?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">這將會從伺服器上登出您的 Signal 並停用。 未來如果還想使用該功能，則需要再次註冊。</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">與伺服器的連線發生錯誤！</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">簡訊功能已啟動</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">按此以變更您預設的簡訊應用</string>
@@ -211,6 +211,8 @@
   <string name="DeviceListItem_last_active_s">最後活躍 %s</string>
   <string name="DeviceListItem_today">今天</string>
   <!--DozeReminder-->
+  <string name="DozeReminder_optimize_for_missing_play_services">為缺少的 Play 服務優化</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">這個裝置不支援 Play 服務。輕觸關閉，因為系統電池效能最佳化會防止 Signal 在閒置時取得訊息。</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">分享給</string>
   <!--ExperienceUpgradeActivity-->
@@ -219,6 +221,10 @@
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">歡迎來到 Signal！</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure 已命名為 Signal。</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">從現在起 TextSecure 與 RedPhone 將會是同一個應用程式：Signal。輕觸以開始探索。</string>
+  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">向安全的視訊通話打聲招呼，說聲嗨。</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">現在 Signal 支援了安全的視訊通話。就如同開始 Signal 通話一樣，輕觸視訊按鈕，接著揮手打聲招呼。</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">現在 Signal 支援安全的視訊通話。</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">現在 Signal 支援安全的視訊通話。輕觸探索。</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">匯出</string>
   <string name="ExportFragment_export_plaintext_to_storage">匯出純文字格式至儲存裝置？</string>
@@ -314,6 +320,7 @@
   <string name="MessageDetailsRecipient_new_safety_number">新的安全碼</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_background_connection_enabled">背景連線已經啟用</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">儲存多媒體訊息時有誤！</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">連線到MMS供應商時發生錯誤</string>
@@ -432,6 +439,11 @@
 請仔細檢查您的號碼！我們將透過簡訊進行驗證。</string>
   <string name="RegistrationActivity_continue">繼續</string>
   <string name="RegistrationActivity_edit">編輯</string>
+  <string name="RegistrationActivity_missing_google_play_services">找不到 Google Play 服務</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">這個裝置找不到 Google Play 服務。你仍然可以使用 Signal，但是這個設定也許會造成降低可靠性或效能。\n\n如果你不是進階使用者，沒有執行非原廠的 Android ROM，或相信你正看到錯誤，請聯絡 support@whispersystems.org 來協助你排除故障。</string>
+  <string name="RegistrationActivity_i_understand">我了解</string>
+  <string name="RegistrationActivity_play_services_error">Play 服務錯誤</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play 服務正在更新或暫時無法使用。請再重試。</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">可能的問題</string>
   <!--RegistrationProgressActivity-->
@@ -485,6 +497,9 @@
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s 正在 Signal 線上，打個招呼吧！</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">訊息銷毀時間設置爲 %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">您與 %s 的安全碼已改變。</string>
+  <!--UpdateApkReadyListener-->
+  <string name="UpdateApkReadyListener_Signal_update">Signal 更新</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">有新版本的 Signal，輕觸更新</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">您的聯絡人使用的是舊版本的 Signal。在驗證您的安全碼前請尋求對方先進行更新。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">您的聯絡人使用的是新版本的 Signal，程式無法識別這個聯絡人的二維碼。
@@ -566,7 +581,7 @@
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">您可能希望驗證這名聯絡人的安全碼。</string>
   <string name="WebRtcCallScreen_new_safety_numbers_title">新的安全碼</string>
   <!--WebRtcCallControls-->
-  <string name="WebRtcCallControls_tap_to_enable_your_video">輕觸開啟你的語音</string>
+  <string name="WebRtcCallControls_tap_to_enable_your_video">輕觸開啟你的視訊</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">圖片</string>
   <string name="attachment_type_selector__image_description">圖片</string>
@@ -942,7 +957,7 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="preferences__theme">主題</string>
   <string name="preferences__default">預設</string>
   <string name="preferences__language">語言選項</string>
-  <string name="preferences__signal_messages_and_calls">Signal訊息與通話</string>
+  <string name="preferences__signal_messages_and_calls">Signal 訊息與通話</string>
   <string name="preferences__free_private_messages_and_calls">免費加密訊息與通話至 Signal 使用者</string>
   <string name="preferences__submit_debug_log">送出偵錯紀錄</string>
   <string name="preferences__support_wifi_calling">\"WiFi 呼叫\"相容模式</string>
@@ -958,8 +973,8 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="preferences_chats__message_trimming">訊息整理</string>
   <string name="preferences_advanced__use_system_emoji">使用系統表情符號</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">停用 Signal 內建的表情支援</string>
-  <string name="preferences_advanced__video_calling_beta">語音通話測試版本</string>
-  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">當雙方啟動時，會支援下一代語音通話。此功能是測試版本。</string>
+  <string name="preferences_advanced__video_calling_beta">視訊通話測試版本</string>
+  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">當雙方啟動時，會支援下一代視訊、語音通話。此功能是測試版本。</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">透過 Signal 伺服器轉發通話，來避免透露你的 IP 位址給你的聯絡人。啟用時，會降低通話品質。</string>
   <string name="preferences_advanced__always_relay_calls">永遠轉發通話</string>
   <!--****************************************-->

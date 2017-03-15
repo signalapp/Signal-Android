@@ -65,7 +65,7 @@
   <string name="CallScreen_Incoming_call">Chiamata in arrivo</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Il numero sicuro con %1$s è cambiato. Questo può voler dire che qualcuno sta cercando d\'intercettare la tua comunicazione, oppure che %2$s ha semplicemente reinstallato Signal.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Dovresti verificare il numero sicuro con questo contatto.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Dovresti verificare il tuo codice di sicurezza con questo contatto.</string>
   <string name="ConfirmIdentityDialog_accept">Accetta</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Messaggio %s</string>
@@ -227,6 +227,8 @@
   <string name="DeviceListItem_last_active_s">Ultima attività %s</string>
   <string name="DeviceListItem_today">Oggi</string>
   <!--DozeReminder-->
+  <string name="DozeReminder_optimize_for_missing_play_services">Ottimizza per la mancanza di Google Play Services</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Questo dispositivo non supporta Google Play Services. Premi per disabilitare l\'ottimizzazione di sistema del consumo della batteria che impedisce a Signal di ricevere messaggi quando è inattivo</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Condividi con</string>
   <!--ExperienceUpgradeActivity-->
@@ -328,6 +330,7 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nuovo numero sicuro.</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_background_connection_enabled">Connessione in background attivata</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Errore nel salvare l\'MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Errore durante la connessione al provider MMS...</string>
@@ -432,7 +435,7 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Il numero che hai composto non supporta le chiamate sicure!</string>
   <string name="RedPhone_got_it">Capito</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_signal">Connetti con Signal</string>
+  <string name="RegistrationActivity_connect_with_signal">Connettiti a Signal</string>
   <string name="RegistrationActivity_select_your_country">Seleziona il tuo paese</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">È necessario specificare il
 codice del proprio paese</string>
@@ -445,6 +448,11 @@ proprio numero di telefono</string>
 Assicurati che questo sia il tuo numero! Stiamo per verificarlo con un SMS.</string>
   <string name="RegistrationActivity_continue">Continua</string>
   <string name="RegistrationActivity_edit">Modifica</string>
+  <string name="RegistrationActivity_missing_google_play_services">Google Play Services mancanti</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Su questo dispositivo mancano i Google Play Services. Puoi comunque utilizzare Signal, ma in questa configurazione può risultare meno affidabile e performante.\n\nSe non sei un utente esperto, utilizzi il Firmware Android di fabbrica, o credi che sia un errore, contatta support@whispersystems.org per ricevere aiuto nella risoluzione del problema.</string>
+  <string name="RegistrationActivity_i_understand">Accetto</string>
+  <string name="RegistrationActivity_play_services_error">Errore di Google Play Services</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services si sta aggiornando o non è al momento disponibile. Per favore riprovare</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Possibili problemi</string>
   <!--RegistrationProgressActivity-->
@@ -498,6 +506,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s è su Signal, di\' ciao!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">La scomparsa dei messaggi è settata a %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Il tuo numero sicuro con %s è cambiato.</string>
+  <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Il tuo contatto sta usando una vecchia versione di Signal. Chiedigli cortesemente di aggiornarla prima di verificare il tuo numero sicuro.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Il tuo contatto sta eseguendo una versione più aggiornata di Signal con un formato di codice QR non compatibile. Per effettuare il confronto aggiorna la tua versione.</string>
@@ -574,6 +583,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Errore riproduzione video</string>
   <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_new_safety_numbers">Il codice di sicurezza per le tue conversazioni con %1$s è cambiato. Questo può significare che qualcuno sta provando ad intercettare la tua comunicazione, oppure che %2$s ha semplicemente reinstallato Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Dovresti verificare il numero sicuro con questo contatto.</string>
   <string name="WebRtcCallScreen_new_safety_numbers_title">Numeri sicuri nuovi</string>
   <!--WebRtcCallControls-->
@@ -756,13 +766,14 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="redphone_call_controls__signal_call">Chiamata Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__verify_your_number_to_connect_with_signal">
-Verifica il tuo numero di telefono per connetterti a Signal</string>
+Verifica il tuo numero di telefono per connetterti a Signal.
+</string>
   <string name="registration_activity__your_country">PAESE</string>
   <string name="registration_activity__your_country_code_and_phone_number">CODICE DEL PAESE E
 NUMERO DI TELEFONO</string>
   <string name="registration_activity__phone_number">NUMERO DI TELEFONO</string>
-  <string name="registration_activity__register">Registro</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">La registrazione trasmette delle informazioni sui contatti al server. Non vengono conservate.</string>
+  <string name="registration_activity__register">Registrati</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">La registrazione trasmette alcune informazioni sui contatti al server. Queste non verranno conservate.</string>
   <string name="registration_activity__powered_by_twilio">Powered by twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Alcuni possibili problemi
@@ -808,9 +819,7 @@ Signal verificherà automaticamente il tuo numero con un SMS di conferma.</strin
         verifica SMS...
     </string>
   <string name="registration_progress_activity__registering_with_server">Registrazione con il server...</string>
-  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Questo
-        potrebbe richiedere del tempo. Attendere, una notifica verrà mostrata quando la verifica sarà completata.
-    </string>
+  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Potrebbe volerci un po\'. Attendi per favore, verrai notificato appena l\'importazione sarà completata.</string>
   <string name="registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message">
 Signal non ha ricevuto in tempo l\'SMS di verifica.</string>
   <string name="registration_progress_activity__sms_verification_failed">Verifica SMS
@@ -982,6 +991,8 @@ non riuscita.
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Disattiva le emoji di Signal</string>
   <string name="preferences_advanced__video_calling_beta">Videochiamata versione beta</string>
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Supporta le telefonate e videochiamate di ultimissima generazione quando abilitata da entrambi le parti. Questa funzionalità è in versione beta.</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Ritrasmetti le chiamate attraverso i server di Signal per non rivelare il tuo indirizzo IP ai tuoi contatti. Abilitandolo verrà ridotta la qualità della chiamata.</string>
+  <string name="preferences_advanced__always_relay_calls">Ritrasmetti sempre le chiamate</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

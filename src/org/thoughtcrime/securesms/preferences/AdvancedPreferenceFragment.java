@@ -71,7 +71,6 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
     ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.preferences__advanced);
 
     initializePushMessagingToggle();
-    initializeWebrtcCallingToggle();
   }
 
   @Override
@@ -96,18 +95,6 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
     }
 
     preference.setOnPreferenceChangeListener(new PushMessagingClickListener());
-  }
-
-  private void initializeWebrtcCallingToggle() {
-    if (TextSecurePreferences.isGcmDisabled(getContext())) {
-      getPreferenceScreen().removePreference(findPreference(TextSecurePreferences.WEBRTC_CALLING_PREF));
-    } else if (Build.VERSION.SDK_INT >= 11) {
-      this.findPreference(TextSecurePreferences.WEBRTC_CALLING_PREF)
-          .setOnPreferenceChangeListener(new WebRtcClickListener());
-    } else {
-      this.findPreference(TextSecurePreferences.WEBRTC_CALLING_PREF)
-          .setEnabled(false);
-    }
   }
 
   private void initializeIdentitySelection() {
@@ -172,18 +159,6 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
     }
   }
 
-  private class WebRtcClickListener implements Preference.OnPreferenceChangeListener {
-
-    @Override
-    public boolean onPreferenceChange(Preference preference, Object newValue) {
-      TextSecurePreferences.setWebrtcCallingEnabled(getContext(), (Boolean)newValue);
-      ApplicationContext.getInstance(getContext())
-                        .getJobManager()
-                        .add(new RefreshAttributesJob(getContext()));
-      return true;
-    }
-  }
-
   private class PushMessagingClickListener implements Preference.OnPreferenceChangeListener {
     private static final int SUCCESS       = 0;
     private static final int NETWORK_ERROR = 1;
@@ -234,7 +209,9 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
             Log.w(TAG, e);
           }
 
-          GoogleCloudMessaging.getInstance(context).unregister();
+          if (!TextSecurePreferences.isGcmDisabled(context)) {
+            GoogleCloudMessaging.getInstance(context).unregister();
+          }
 
           return SUCCESS;
         } catch (IOException ioe) {

@@ -22,8 +22,12 @@ public abstract class Attachment {
   @Nullable
   private final String relay;
 
+  @Nullable
+  private final byte[] digest;
+
   public Attachment(@NonNull String contentType, int transferState, long size,
-                    @Nullable String location, @Nullable String key, @Nullable String relay)
+                    @Nullable String location, @Nullable String key, @Nullable String relay,
+                    @Nullable byte[] digest)
   {
     this.contentType   = contentType;
     this.transferState = transferState;
@@ -31,6 +35,7 @@ public abstract class Attachment {
     this.location      = location;
     this.key           = key;
     this.relay         = relay;
+    this.digest        = digest;
   }
 
   @Nullable
@@ -70,5 +75,10 @@ public abstract class Attachment {
   @Nullable
   public String getRelay() {
     return relay;
+  }
+
+  @Nullable
+  public byte[] getDigest() {
+    return digest;
   }
 }

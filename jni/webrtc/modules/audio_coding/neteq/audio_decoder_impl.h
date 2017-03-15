@@ -28,7 +28,8 @@ class AudioDecoderPcmU : public AudioDecoder {
  public:
   AudioDecoderPcmU() : AudioDecoder(kDecoderPCMu) {}
   virtual int Decode(const uint8_t* encoded, size_t encoded_len,
-                     int16_t* decoded, SpeechType* speech_type);
+                     int16_t* decoded, size_t decodedSize,
+                     SpeechType* speech_type);
   virtual int Init() { return 0; }
   virtual int PacketDuration(const uint8_t* encoded, size_t encoded_len);
 

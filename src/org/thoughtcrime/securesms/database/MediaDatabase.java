@@ -96,7 +96,7 @@ public class MediaDatabase extends Database {
     }
 
     public Attachment getAttachment() {
-      return new DatabaseAttachment(attachmentId, mmsId, hasData, hasThumbnail, contentType, transferState, size, null, null, null);
+      return new DatabaseAttachment(attachmentId, mmsId, hasData, hasThumbnail, contentType, transferState, size, null, null, null, null);
     }
 
     public String getContentType() {

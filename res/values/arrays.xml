@@ -11,7 +11,9 @@
       <item>Chinese (Traditional) 中文 (繁體)</item>
       <item>Dansk</item>
       <item>Deutsch</item>
+      <item>Eesti</item>
       <item>Español</item>
+      <item>Euskara</item>
       <item>Français</item>
       <item>Greek ελληνικά</item>
       <item>Hebrew עברית</item>
@@ -21,16 +23,20 @@
       <item>Japanese 日本語</item>
       <item>Kannada ಕನ್ನಡ</item>
       <item>Korean 한국어</item>
+      <item>Luganda</item>
       <item>Magyar</item>
       <item>Macedonian македонски јазик</item>
       <item>Nederlands</item>
-      <item>Norsk</item>
+      <item>Norsk (bokmål)</item>
+      <item>Norsk (nynorsk)</item>
+      <item>Persian فارسی</item>
       <item>Polski</item>
       <item>Português</item>
       <item>Português do Brasil</item>
       <item>Română</item>
       <item>Russian Pусский</item>
       <item>Serbian српски</item>
+      <item>Shqip</item>
       <item>Slovenščina</item>
       <item>Slovenský</item>
       <item>Suomi</item>
@@ -49,7 +55,9 @@
       <item>zh_TW</item>
       <item>da</item>
       <item>de</item>
+      <item>et</item>
       <item>es</item>
+      <item>eu</item>
       <item>fr</item>
       <item>el</item>
       <item>iw</item>
@@ -59,16 +67,20 @@
       <item>ja</item>
       <item>kn_IN</item>
       <item>ko</item>
+      <item>lg</item>
       <item>hu</item>
       <item>mk</item>
       <item>nl</item>
-      <item>no</item>
+      <item>nb</item>
+      <item>nn</item>
+      <item>fa</item>
       <item>pl</item>
       <item>pt</item>
       <item>pt_BR</item>
       <item>ro</item>
       <item>ru</item>
       <item>sr</item>
+      <item>sq</item>
       <item>sl</item>
       <item>sk</item>
       <item>fi</item>

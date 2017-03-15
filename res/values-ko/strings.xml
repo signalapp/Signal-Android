@@ -438,6 +438,7 @@
   <string name="ThreadRecord_missed_call">부재중 통화</string>
   <string name="ThreadRecord_media_message">미디어 메시지</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s님이 Signal에 참여했습니다. 인사하실래요?</string>
+  <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_no_app_to_share_to">친구 초대 위해 공유할 수 있는 앱 없음</string>
   <!--KeyExchangeInitiator-->

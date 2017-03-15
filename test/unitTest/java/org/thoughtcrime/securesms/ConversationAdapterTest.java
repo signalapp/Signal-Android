@@ -24,11 +24,14 @@ public class ConversationAdapterTest extends BaseUnitTest {
   }
 
   @Test
-  public void testGetItemIdEquals() {
-    when(cursor.getLong(anyInt())).thenReturn(1234L);
+  public void testGetItemIdEquals() throws Exception {
+    when(cursor.getString(anyInt())).thenReturn("SMS::1::1");
     long firstId = adapter.getItemId(cursor);
-    when(cursor.getLong(anyInt())).thenReturn(4321L);
+    when(cursor.getString(anyInt())).thenReturn("MMS::1::1");
     long secondId = adapter.getItemId(cursor);
     assertNotEquals(firstId, secondId);
+    when(cursor.getString(anyInt())).thenReturn("MMS::2::1");
+    long thirdId = adapter.getItemId(cursor);
+    assertNotEquals(secondId, thirdId);
   }
 }

@@ -15,6 +15,6 @@
                   android:textSize="12sp"
                   android:textAllCaps="true"
                   android:textStyle="bold"
-                  android:background="@drawable/last_seen_divider_text_background"
+                  android:background="?conversation_item_last_seen_text_background"
                   tools:text="3 unread messages" />
 </FrameLayout>

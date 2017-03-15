@@ -127,7 +127,7 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Давайте перейдём на Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Давайте общаться через Signal: %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Ошибка выхода из группы</string>
+  <string name="ConversationActivity_error_leaving_group">Ошибка при выходе из группы</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS не поддерживаются</string>
   <string name="ConversationActivity_mms_not_supported_message">Сообщение не может быть отправлено, так как ваш оператор не поддерживает MMS.</string>
   <string name="ConversationActivity_specify_recipient">Выберите контакт</string>
@@ -259,6 +259,8 @@
   <string name="DeviceListItem_last_active_s">Было онлайн %s</string>
   <string name="DeviceListItem_today">Сегодня</string>
   <!--DozeReminder-->
+  <string name="DozeReminder_optimize_for_missing_play_services">Режим без Служб Google Play</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Это устройство не поддерживает Службы Google Play. Нажмите для отключения оптимизации энергопотребления, которая не позволяет Signal получать сообщения, когда он неактивен.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Поделиться с</string>
   <!--ExperienceUpgradeActivity-->
@@ -361,6 +363,7 @@
   <string name="MessageDetailsRecipient_new_safety_number">Новый код безопасности</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_background_connection_enabled">Фоновое соединение включено</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Ошибка при сохранении MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Ошибка при подключении к провайдеру MMS</string>
@@ -377,8 +380,8 @@
   <string name="NotificationBarManager__cancel_call">Отменить</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">MMS-сообщение</string>
-  <string name="NotificationMmsMessageRecord_downloading_mms_message">Скачивание MMS-сообщения</string>
-  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Ошибка скачивания MMS-сообщения, нажмите для повтора попытки</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">Скачиваем MMS-сообщение</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Ошибка при скачивании MMS-сообщения; нажмите, чтобы повторить</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Полученное сообщение зашифровано в старой версии Signal, которая больше не поддерживается. Пожалуйста, попросите отправителя обновиться до последней версии и заново отправить сообщение.</string>
   <string name="MessageRecord_left_group">Вы покинули группу.</string>
@@ -476,6 +479,11 @@
 Перепроверьте, что это ваш номер! На него будет отправлено SMS для подтверждения.</string>
   <string name="RegistrationActivity_continue">Продолжить</string>
   <string name="RegistrationActivity_edit">Изменить</string>
+  <string name="RegistrationActivity_missing_google_play_services">Отсутствуют Службы Google Play</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">На устройстве отсутствуют Службы Google Play. Вы всё равно можете пользоваться Signal, но надёжность и производительногсть могут снизиться.\n\nЕсли вы не продвинутый пользователь, не используете стороннюю прошивку Android, либо считаете, что видите это сообщение по ошибке, обратитесь за поддержкой по адресу support@whispersystems.org.</string>
+  <string name="RegistrationActivity_i_understand">Я понимаю</string>
+  <string name="RegistrationActivity_play_services_error">Ошибка Служб Google Play</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Службы Google Play обновляются или временно недоступны. Пожалуйста, попробуйте ещё раз.</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Возможные проблемы</string>
   <!--RegistrationProgressActivity-->
@@ -530,6 +538,7 @@
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s теперь в Signal — скажите «Привет»!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Время исчезновения сообщений – %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Ваш с %s код безопасности изменился.</string>
+  <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">У вашего контакта старая версия Signal. Попросите его обновиться, чтобы подтвердить код безопасности.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">У вашего контакта более новая версию Signal с несовместимым форматом QR-кода. Пожалуйста, обновитесь, чтобы сверить код.</string>
@@ -604,9 +613,9 @@
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Новое сообщение</string>
   <!--VideoPlayer-->
-  <string name="VideoPlayer_error_playing_video">Ошибка воспроизведения видео</string>
+  <string name="VideoPlayer_error_playing_video">Ошибка при воспроизведении видео</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">Ваш с %1$s код безопасности изменился. Это может означать, что кто-то пытается перехватить вашу переписку и звонки, или что %2$s просто переустановил(а) Signal.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers">Код безопасности вашего разговора с %1$s изменился. Это может означать, что кто-то пытается перехватить вашу переписку и звонки, или что %2$s просто переустановил(а) Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Возможно, вам стоит подтвердить код безопасности с этим контактом.</string>
   <string name="WebRtcCallScreen_new_safety_numbers_title">Новый код безопасности</string>
   <!--WebRtcCallControls-->
@@ -764,7 +773,7 @@
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Посмотреть весь разговор</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_media">Нет вложений</string>
+  <string name="media_overview_activity__no_media">Нет медиа-файлов</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">ПОДТВЕРДИТЬ</string>
   <string name="message_recipients_list_item__resend">ОТПРАВИТЬ ЕЩЁ РАЗ</string>
@@ -886,8 +895,8 @@ SMS-подтверждения...
   <string name="AndroidManifest__verify_safety_number">Подтвердить код безопасности</string>
   <string name="AndroidManifest__log_submit">Отправить журнал отладки</string>
   <string name="AndroidManifest__media_preview">Предпросмотр</string>
-  <string name="AndroidManifest__all_media">Все вложения</string>
-  <string name="AndroidManifest__all_media_named">Общие вложения с пользователем %1$s</string>
+  <string name="AndroidManifest__all_media">Все медиа-файлы</string>
+  <string name="AndroidManifest__all_media_named">Все медиа-файлы с %1$s</string>
   <string name="AndroidManifest__message_details">Подробности сообщения</string>
   <string name="AndroidManifest__linked_devices">Привязанные устройства</string>
   <string name="AndroidManifest__invite_friends">Пригласить друзей в Signal</string>
@@ -1023,9 +1032,9 @@ SMS-подтверждения...
   <string name="preferences_advanced__use_system_emoji">Использовать системные эмодзи</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Отключить встроенные эмодзи Signal</string>
   <string name="preferences_advanced__video_calling_beta">Видео-звонки (beta)</string>
-  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Поддержка видео- и голосовых звонков нового поколения, при условии подключения обоих собеседников. Этот функционал находится в фазе beta-тестирования.</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Пропускать все звонки через Signal-сервер для предотвращения раскрытия вашего IP-адреса собеседнику. Качество звонка может ухудшиться. </string>
-  <string name="preferences_advanced__always_relay_calls">Всегда использовать Signal-сервер</string>
+  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Поддержка видео- и голосовых звонков нового поколения, если оба собеседника её включили. Этот функционал находится в фазе бета-тестирования.</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Пропускать все звонки через сервер Signal, чтобы не раскрывать ваш IP-адреса собеседнику. Качество звонка ухудшится.</string>
+  <string name="preferences_advanced__always_relay_calls">Всегда использовать сервер</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1083,7 +1092,7 @@ SMS-подтверждения...
   <string name="conversation__menu_edit_group">Редактировать группу</string>
   <string name="conversation__menu_leave_group">Покинуть группу</string>
   <string name="conversation__menu_delete_thread">Удалить разговор</string>
-  <string name="conversation__menu_view_all_media">Все вложения</string>
+  <string name="conversation__menu_view_all_media">Все медиа-файлы</string>
   <string name="conversation__menu_conversation_settings">Настройки разговора</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Расширить</string>
@@ -1140,7 +1149,7 @@ SMS-подтверждения...
   <!--media_preview-->
   <string name="media_preview__save_title">Сохранить</string>
   <string name="media_preview__forward_title">Переслать</string>
-  <string name="media_preview__all_media_title">Все вложения</string>
+  <string name="media_preview__all_media_title">Все медиа-файлы</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Сохранить всё</string>
   <!--media_preview_activity-->
