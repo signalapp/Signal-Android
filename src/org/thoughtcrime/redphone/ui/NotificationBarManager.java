@@ -42,6 +42,10 @@ public class NotificationBarManager {
   public static final int TYPE_OUTGOING_RINGING = 2;
   public static final int TYPE_ESTABLISHED      = 3;
 
+  public static final int TYPE_INCOMING_RINGING = 1;
+  public static final int TYPE_OUTGOING_RINGING = 2;
+  public static final int TYPE_ESTABLISHED      = 3;
+
   public static void setCallEnded(Context context) {
     NotificationManager notificationManager = (NotificationManager)context
         .getSystemService(Context.NOTIFICATION_SERVICE);
