@@ -195,6 +195,7 @@
         <item name="android:maxLines">4</item>
         <item name="android:maxLength">2000</item>
         <item name="android:textColor">?conversation_item_sent_text_primary_color</item>
+        <item name="android:textCursorDrawable">@null</item>
         <item name="android:capitalize">sentences</item>
         <item name="android:autoText">true</item>
         <item name="android:gravity">center_vertical</item>
