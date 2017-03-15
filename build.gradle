@@ -212,9 +212,6 @@ android {
         buildConfigField "String", "GIPHY_PROXY_HOST", "\"giphy-proxy-production.whispersystems.org\""
         buildConfigField "int", "GIPHY_PROXY_PORT", "80"
         buildConfigField "String", "USER_AGENT", "\"OWA\""
-        buildConfigField "String", "REDPHONE_MASTER_URL", "\"https://redphone-master.whispersystems.org\""
-        buildConfigField "String", "REDPHONE_RELAY_HOST", "\"relay.whispersystems.org\""
-        buildConfigField "String", "REDPHONE_PREFIX_NAME", "\".whispersystems.org\""
         buildConfigField "boolean", "DEV_BUILD", "false"
     }
 
