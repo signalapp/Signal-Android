@@ -138,7 +138,7 @@
 
                 <TextView android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
-                          android:text="@string/export"
+                          android:text="@string/import_export_fragment__export"
                           android:textSize="20sp"/>
 
             </FrameLayout>
