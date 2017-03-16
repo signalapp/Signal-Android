@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
+import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
@@ -52,10 +53,10 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
   @Inject transient SignalMessageSenderFactory messageSenderFactory;
 
-  private final long messageId;
-  private final long filterRecipientId;
+  private final long   messageId;
+  private final long[] filterRecipientIds;
 
-  public PushGroupSendJob(Context context, long messageId, String destination, long filterRecipientId) {
+  public PushGroupSendJob(Context context, long messageId, String destination, List<Long> filterRecipientIds) {
     super(context, JobParameters.newBuilder()
                                 .withPersistence()
                                 .withGroupId(destination)
@@ -64,8 +65,11 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
                                 .withRetryCount(5)
                                 .create());
 
-    this.messageId         = messageId;
-    this.filterRecipientId = filterRecipientId;
+    this.messageId          = messageId;
+    this.filterRecipientIds = new long[filterRecipientIds.size()];
+    for (int i = 0; i < this.filterRecipientIds.length; i++) {
+      this.filterRecipientIds[i] = filterRecipientIds.get(i);
+    }
   }
 
   @Override
@@ -78,11 +82,12 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
   {
     MmsDatabase          database = DatabaseFactory.getMmsDatabase(context);
     OutgoingMediaMessage message  = database.getOutgoingMessage(masterSecret, messageId);
+    MmsDatabase.Reader   reader   = database.readerFor(masterSecret, database.getMessage(messageId));
+    MessageRecord        record   = reader.getNext();
 
     try {
-      deliver(masterSecret, message, filterRecipientId);
+      deliver(masterSecret, message, filterRecipientIds);
 
-      database.markAsSent(messageId, true);
       markAttachmentsUploaded(messageId, message.getAttachments());
 
       if (message.getExpiresIn() > 0 && !message.isExpirationUpdate()) {
@@ -90,6 +95,12 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
         ApplicationContext.getInstance(context)
                           .getExpiringMessageManager()
                           .scheduleDeletion(messageId, true, message.getExpiresIn());
+      }
+
+      if (record.hasNetworkFailures() || record.isIdentityMismatchFailure()) {
+        database.markAsSentFailed(messageId);
+      } else {
+        database.markAsSent(messageId, true);
       }
     } catch (InvalidNumberException | RecipientFormattingException | UndeliverableMessageException e) {
       Log.w(TAG, e);
@@ -132,7 +143,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageId);
   }
 
-  private void deliver(MasterSecret masterSecret, OutgoingMediaMessage message, long filterRecipientId)
+  private void deliver(MasterSecret masterSecret, OutgoingMediaMessage message, long[] filterRecipientIds)
       throws IOException, RecipientFormattingException, InvalidNumberException,
       EncapsulatedExceptions, UndeliverableMessageException
   {
@@ -143,8 +154,8 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     List<SignalServiceAttachment> attachmentStreams = getAttachmentsFor(masterSecret, scaledAttachments);
     List<SignalServiceAddress>    addresses;
 
-    if (filterRecipientId >= 0) addresses = getPushAddresses(filterRecipientId);
-    else                        addresses = getPushAddresses(recipients);
+    if (filterRecipientIds.length > 0) addresses = getPushAddresses(filterRecipientIds);
+    else                               addresses = getPushAddresses(recipients);
 
     if (message.isGroup()) {
       OutgoingGroupMediaMessage groupMessage     = (OutgoingGroupMediaMessage) message;
@@ -176,10 +187,8 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     return addresses;
   }
 
-  private List<SignalServiceAddress> getPushAddresses(long filterRecipientId) throws InvalidNumberException {
-    List<SignalServiceAddress> addresses = new LinkedList<>();
-    addresses.add(getPushAddress(RecipientFactory.getRecipientForId(context, filterRecipientId, false).getNumber()));
-    return addresses;
+  private List<SignalServiceAddress> getPushAddresses(long[] filterRecipientIds) throws InvalidNumberException {
+    return getPushAddresses(RecipientFactory.getRecipientsForIds(context, filterRecipientIds, false));
   }
 
 }

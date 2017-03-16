@@ -71,22 +71,23 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
     }
   }
 
-  protected <D extends Document<I>, I> void removeFromDocument(long messageId, String column, I object, Class<D> clazz) throws IOException {
+  protected <D extends Document<I>, I> void removeFromDocument(long messageId, String column, final I object, Class<D> clazz) throws IOException {
+    List<I> list = new ArrayList<I>() {{
+      add(object);
+    }};
+
+    removeFromDocument(messageId, column, list, clazz);
+  }
+
+  protected <D extends Document<I>, I> void removeFromDocument(long messageId, String column, List<I> objects, Class<D> clazz) throws IOException {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     database.beginTransaction();
 
     try {
-      D           document = getDocument(database, messageId, column, clazz);
-      Iterator<I> iterator = document.getList().iterator();
+      D       document = getDocument(database, messageId, column, clazz);
+      List<I> list     = document.getList();
 
-      while (iterator.hasNext()) {
-        I item = iterator.next();
-
-        if (item.equals(object)) {
-          iterator.remove();
-          break;
-        }
-      }
+      list.removeAll(objects);
 
       setDocument(database, messageId, column, document);
       database.setTransactionSuccessful();

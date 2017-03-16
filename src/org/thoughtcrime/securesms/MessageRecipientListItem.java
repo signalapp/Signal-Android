@@ -17,7 +17,6 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -29,13 +28,10 @@ import android.widget.TextView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.FromTextView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.sms.MessageSender;
 
 /**
  * A simple view to show the recipients of a message
@@ -51,7 +47,6 @@ public class MessageRecipientListItem extends RelativeLayout
   private FromTextView    fromView;
   private TextView        errorDescription;
   private Button          conflictButton;
-  private Button          resendButton;
   private AvatarImageView contactPhotoImage;
 
   private final Handler handler = new Handler();
@@ -70,7 +65,6 @@ public class MessageRecipientListItem extends RelativeLayout
     this.errorDescription  = (TextView)        findViewById(R.id.error_description);
     this.contactPhotoImage = (AvatarImageView) findViewById(R.id.contact_photo_image);
     this.conflictButton    = (Button)          findViewById(R.id.conflict_button);
-    this.resendButton      = (Button)          findViewById(R.id.resend_button);
   }
 
   public void set(final MasterSecret masterSecret,
@@ -96,7 +90,6 @@ public class MessageRecipientListItem extends RelativeLayout
     String errorText = "";
 
     if (keyMismatch != null) {
-      resendButton.setVisibility(View.GONE);
       conflictButton.setVisibility(View.VISIBLE);
 
       errorText = getContext().getString(R.string.MessageDetailsRecipient_new_safety_number);
@@ -107,21 +100,10 @@ public class MessageRecipientListItem extends RelativeLayout
         }
       });
     } else if (networkFailure != null || (!isPushGroup && record.isFailed())) {
-      resendButton.setVisibility(View.VISIBLE);
-      resendButton.setEnabled(true);
-      resendButton.requestFocus();
       conflictButton.setVisibility(View.GONE);
 
       errorText = getContext().getString(R.string.MessageDetailsRecipient_failed_to_send);
-      resendButton.setOnClickListener(new OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          resendButton.setEnabled(false);
-          new ResendAsyncTask(masterSecret, record, networkFailure).execute();
-        }
-      });
     } else {
-      resendButton.setVisibility(View.GONE);
       conflictButton.setVisibility(View.GONE);
     }
 
@@ -165,30 +147,4 @@ public class MessageRecipientListItem extends RelativeLayout
       }
     });
   }
-
-  private class ResendAsyncTask extends AsyncTask<Void,Void,Void> {
-    private final MasterSecret   masterSecret;
-    private final MessageRecord  record;
-    private final NetworkFailure failure;
-
-    public ResendAsyncTask(MasterSecret masterSecret, MessageRecord record, NetworkFailure failure) {
-      this.masterSecret = masterSecret;
-      this.record       = record;
-      this.failure      = failure;
-    }
-
-    @Override
-    protected Void doInBackground(Void... params) {
-      MmsDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(getContext());
-      mmsDatabase.removeFailure(record.getId(), failure);
-
-      if (record.getRecipients().isGroupRecipient()) {
-        MessageSender.resendGroupMessage(getContext(), masterSecret, record, failure.getRecipientId());
-      } else {
-        MessageSender.resend(getContext(), masterSecret, record);
-      }
-      return null;
-    }
-  }
-
 }

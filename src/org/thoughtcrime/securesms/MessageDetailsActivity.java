@@ -31,6 +31,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -41,12 +42,14 @@ import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.loaders.MessageDetailsLoader;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -58,8 +61,10 @@ import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -90,6 +95,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   private TextView         transport;
   private TextView         toFrom;
   private ListView         recipientsList;
+  private Button           resendAllButton;
   private LayoutInflater   inflater;
 
   private DynamicTheme     dynamicTheme    = new DynamicTheme();
@@ -165,12 +171,14 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   private void initializeResources() {
     inflater       = LayoutInflater.from(this);
     View header = inflater.inflate(R.layout.message_details_header, recipientsList, false);
+    View footer = inflater.inflate(R.layout.message_details_footer, recipientsList, false);
 
     masterSecret      = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
     threadId          = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
     isPushGroup       = getIntent().getBooleanExtra(IS_PUSH_GROUP_EXTRA, false);
     itemParent        = (ViewGroup) header.findViewById(R.id.item_container);
     recipientsList    = (ListView ) findViewById(R.id.recipients_list);
+    resendAllButton   = (Button   ) footer.findViewById(R.id.resend_all_button);
     metadataContainer =             header.findViewById(R.id.metadata_container);
     errorText         = (TextView ) header.findViewById(R.id.error_text);
     sentDate          = (TextView ) header.findViewById(R.id.sent_time);
@@ -182,6 +190,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     expiresInText     = (TextView)  header.findViewById(R.id.expires_in);
     recipientsList.setHeaderDividersEnabled(false);
     recipientsList.addHeaderView(header, null, false);
+    recipientsList.addFooterView(footer, null, false);
   }
 
   private void updateTransport(MessageRecord messageRecord) {
@@ -380,13 +389,67 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
       if (messageRecord.isFailed()) {
         errorText.setVisibility(View.VISIBLE);
         metadataContainer.setVisibility(View.GONE);
+
+        if (messageRecord.hasNetworkFailures() ||
+            (!isPushGroup && !messageRecord.isIdentityMismatchFailure()))
+        {
+          resendAllButton.setVisibility(View.VISIBLE);
+          resendAllButton.setEnabled(true);
+
+          resendAllButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              resendAllButton.setEnabled(false);
+              new ResendAsyncTask(getContext(), masterSecret, messageRecord, messageRecord.getNetworkFailures()).execute();
+            }
+          });
+        }
       } else {
         updateTransport(messageRecord);
         updateTime(messageRecord);
         updateExpirationTime(messageRecord);
         errorText.setVisibility(View.GONE);
         metadataContainer.setVisibility(View.VISIBLE);
+        resendAllButton.setVisibility(View.GONE);
       }
+    }
+  }
+
+  private class ResendAsyncTask extends AsyncTask<Void, Void, Void> {
+    private WeakReference<Context>     weakContext;
+    private final MasterSecret         masterSecret;
+    private final MessageRecord        record;
+    private final List<NetworkFailure> failures;
+
+    public ResendAsyncTask(Context context, MasterSecret masterSecret, MessageRecord record,
+                           List<NetworkFailure> failures)
+    {
+      this.weakContext  = new WeakReference<>(context);
+      this.masterSecret = masterSecret;
+      this.record       = record;
+      this.failures     = failures;
+    }
+
+    protected Context getContext() {
+      return weakContext.get();
+    }
+
+    @Override
+    protected Void doInBackground(Void... params) {
+      MmsDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(getContext());
+      mmsDatabase.removeFailures(record.getId(), failures);
+
+      if (record.getRecipients().isGroupRecipient()) {
+        List<Long> filterRecipientIds = new ArrayList<>(failures.size());
+        for (final NetworkFailure networkFailure : failures) {
+          filterRecipientIds.add(networkFailure.getRecipientId());
+        }
+
+        MessageSender.resendGroupMessage(getContext(), record, filterRecipientIds);
+      } else {
+        MessageSender.resend(getContext(), masterSecret, record);
+      }
+      return null;
     }
   }
 }
