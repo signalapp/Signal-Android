@@ -575,7 +575,7 @@ public class ThreadDatabase extends Database {
   }
 
   public static class DistributionTypes {
-    public static final int DEFAULT      = 2;
+    public static final int DEFAULT      = 1;
     public static final int BROADCAST    = 1;
     public static final int CONVERSATION = 2;
     public static final int ARCHIVE      = 3;
