@@ -84,6 +84,7 @@ public class LedBlinkPatternListPreference extends ListPreference implements OnS
     builder.setOnCancelListener(new CustomDialogCancelListener());
     builder.setNegativeButton(android.R.string.cancel, new CustomDialogCancelListener());
     builder.setPositiveButton(android.R.string.ok, new CustomDialogClickListener());
+    builder.setInverseBackgroundForced(true);
     builder.show();
   }
 
