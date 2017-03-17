@@ -9,12 +9,15 @@
         <item name="colorPrimary">@color/textsecure_primary</item>
         <item name="colorPrimaryDark">@color/textsecure_primary_dark</item>
         <item name="colorAccent">@color/textsecure_primary_dark</item>
+        <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleLight</item>
+        <item name="android:alertDialogTheme">@style/AppCompatDialogStyleLight</item>
 
         <item name="recipient_preference_blocked">#d00000</item>
         <item name="contact_selection_label_text">#66000000</item>
         <item name="contact_selection_push_user">#ff000000</item>
         <item name="contact_selection_lay_user">#a0000000</item>
         <item name="contact_selection_header_text">@color/textsecure_primary_dark</item>
+        <item name="dialog_background_color">@color/background_material_light</item>
     </style>
 
     <style name="TextSecure.DarkNoActionBar" parent="@style/Theme.AppCompat.NoActionBar">
@@ -22,12 +25,15 @@
         <item name="actionBarStyle">@style/TextSecure.DarkActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.DarkActionBar.TabBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
+        <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleDark</item>
+        <item name="android:alertDialogTheme">@style/AppCompatDialogStyleDark</item>
 
         <item name="recipient_preference_blocked">#d00000</item>
         <item name="contact_selection_label_text">#66eeeeee</item>
         <item name="contact_selection_push_user">#ffeeeeee</item>
         <item name="contact_selection_lay_user">#afeeeeee</item>
         <item name="contact_selection_header_text">#66eeeeee</item>
+        <item name="dialog_background_color">@color/background_material_dark</item>
     </style>
 
     <style name="TextSecure.HighlightTheme" parent="@style/TextSecure.LightTheme">
@@ -94,7 +100,8 @@
         <item name="colorControlActivated">@color/signal_primary</item>
         <item name="colorControlHighlight">@color/signal_primary</item>
         <item name="android:windowBackground">@color/gray5</item>
-        <item name="alertDialogTheme">@style/AppCompatAlertDialogStyle</item>
+        <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleLight</item>
+        <item name="android:alertDialogTheme">@style/AppCompatDialogStyleLight</item>
         <!--<item name="android:windowContentOverlay">@drawable/compat_actionbar_shadow_background</item>-->
         <item name="attachment_type_selector_background">@color/white</item>
         <item name="conversation_list_item_background_selected">@drawable/list_selected_holo_light</item>
@@ -167,6 +174,7 @@
 
         <item name="dialog_info_icon">@drawable/ic_info_outline_light</item>
         <item name="dialog_alert_icon">@drawable/ic_warning_light</item>
+        <item name="dialog_background_color">@color/background_material_light</item>
 
         <item name="device_link_item_card_background">@color/device_link_item_background_light</item>
 
@@ -225,6 +233,8 @@
         <item name="colorControlActivated">@color/signal_primary_dark</item>
         <item name="colorControlHighlight">@color/signal_primary_dark</item>
         <item name="android:windowBackground">@color/black</item>
+        <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleDark</item>
+        <item name="android:alertDialogTheme">@style/AppCompatDialogStyleDark</item>
         <item name="conversation_list_item_background_selected">@drawable/list_selected_holo_dark</item>
         <item name="conversation_list_item_background_unread">@drawable/conversation_list_item_unread_background_dark</item>
         <item name="conversation_list_item_background_read">@drawable/conversation_list_item_read_background_dark</item>
@@ -253,6 +263,7 @@
 
         <item name="dialog_info_icon">@drawable/ic_info_outline_dark</item>
         <item name="dialog_alert_icon">@drawable/ic_warning_dark</item>
+        <item name="dialog_background_color">@color/background_material_dark</item>
 
         <item name="device_link_item_card_background">@color/device_link_item_background_dark</item>
 

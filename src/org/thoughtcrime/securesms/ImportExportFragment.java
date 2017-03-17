@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -15,35 +16,35 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.EncryptedBackupExporter;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
+import org.thoughtcrime.securesms.database.PlaintextBackupExporter;
 import org.thoughtcrime.securesms.database.PlaintextBackupImporter;
 import org.thoughtcrime.securesms.service.ApplicationMigrationService;
-import org.thoughtcrime.securesms.service.KeyCachingService;
 
 import java.io.IOException;
 
 
-public class ImportFragment extends Fragment {
+public class ImportExportFragment extends Fragment {
 
   private static final int SUCCESS    = 0;
   private static final int NO_SD_CARD = 1;
   private static final int ERROR_IO   = 2;
 
-  private MasterSecret masterSecret;
+  private MasterSecret   masterSecret;
   private ProgressDialog progressDialog;
 
-  public void setMasterSecret(MasterSecret masterSecret) {
-    this.masterSecret = masterSecret;
+  @Override
+  public void onCreate(Bundle bundle) {
+    super.onCreate(bundle);
+    this.masterSecret = getArguments().getParcelable("master_secret");
   }
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
-    View layout              = inflater.inflate(R.layout.import_fragment, container, false);
+    View layout              = inflater.inflate(R.layout.import_export_fragment, container, false);
     View importSmsView       = layout.findViewById(R.id.import_sms             );
-    View importEncryptedView = layout.findViewById(R.id.import_encrypted_backup);
     View importPlaintextView = layout.findViewById(R.id.import_plaintext_backup);
+    View exportPlaintextView = layout.findViewById(R.id.export_plaintext_backup);
 
     importSmsView.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -52,17 +53,17 @@ public class ImportFragment extends Fragment {
       }
     });
 
-    importEncryptedView.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        handleImportEncryptedBackup();
-      }
-    });
-
     importPlaintextView.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         handleImportPlaintextBackup();
+      }
+    });
+
+    exportPlaintextView.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        handleExportPlaintextBackup();
       }
     });
 
@@ -103,21 +104,6 @@ public class ImportFragment extends Fragment {
     builder.show();
   }
 
-  private void handleImportEncryptedBackup() {
-    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-    builder.setIconAttribute(R.attr.dialog_alert_icon);
-    builder.setTitle(getActivity().getString(R.string.ImportFragment_restore_encrypted_backup));
-    builder.setMessage(getActivity().getString(R.string.ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys));
-    builder.setPositiveButton(getActivity().getString(R.string.ImportFragment_restore), new AlertDialog.OnClickListener() {
-      @Override
-      public void onClick(DialogInterface dialog, int which) {
-        new ImportEncryptedBackupTask().execute();
-      }
-    });
-    builder.setNegativeButton(getActivity().getString(R.string.ImportFragment_cancel), null);
-    builder.show();
-  }
-
   private void handleImportPlaintextBackup() {
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setIconAttribute(R.attr.dialog_alert_icon);
@@ -130,6 +116,21 @@ public class ImportFragment extends Fragment {
       }
     });
     builder.setNegativeButton(getActivity().getString(R.string.ImportFragment_cancel), null);
+    builder.show();
+  }
+
+  private void handleExportPlaintextBackup() {
+    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+    builder.setIconAttribute(R.attr.dialog_alert_icon);
+    builder.setTitle(getActivity().getString(R.string.ExportFragment_export_plaintext_to_storage));
+    builder.setMessage(getActivity().getString(R.string.ExportFragment_warning_this_will_export_the_plaintext_contents));
+    builder.setPositiveButton(getActivity().getString(R.string.ExportFragment_export), new Dialog.OnClickListener() {
+      @Override
+      public void onClick(DialogInterface dialog, int which) {
+        new ExportPlaintextTask().execute();
+      }
+    });
+    builder.setNegativeButton(getActivity().getString(R.string.ExportFragment_cancel), null);
     builder.show();
   }
 
@@ -184,23 +185,39 @@ public class ImportFragment extends Fragment {
         return ERROR_IO;
       }
     }
-}
+  }
 
-  private class ImportEncryptedBackupTask extends AsyncTask<Void, Void, Integer> {
+  private class ExportPlaintextTask extends AsyncTask<Void, Void, Integer> {
+    private ProgressDialog dialog;
 
     @Override
     protected void onPreExecute() {
-      progressDialog = ProgressDialog.show(getActivity(),
-                                           getActivity().getString(R.string.ImportFragment_restoring),
-                                           getActivity().getString(R.string.ImportFragment_restoring_encrypted_backup),
-                                           true, false);
+      dialog = ProgressDialog.show(getActivity(),
+                                   getActivity().getString(R.string.ExportFragment_exporting),
+                                   getActivity().getString(R.string.ExportFragment_exporting_plaintext_to_storage),
+                                   true, false);
     }
 
+    @Override
+    protected Integer doInBackground(Void... params) {
+      try {
+        PlaintextBackupExporter.exportPlaintextToSd(getActivity(), masterSecret);
+        return SUCCESS;
+      } catch (NoExternalStorageException e) {
+        Log.w("ExportFragment", e);
+        return NO_SD_CARD;
+      } catch (IOException e) {
+        Log.w("ExportFragment", e);
+        return ERROR_IO;
+      }
+    }
+
+    @Override
     protected void onPostExecute(Integer result) {
       Context context = getActivity();
 
-      if (progressDialog != null)
-        progressDialog.dismiss();
+      if (dialog != null)
+        dialog.dismiss();
 
       if (context == null)
         return;
@@ -208,39 +225,22 @@ public class ImportFragment extends Fragment {
       switch (result) {
         case NO_SD_CARD:
           Toast.makeText(context,
-                         context.getString(R.string.ImportFragment_no_encrypted_backup_found),
+                         context.getString(R.string.ExportFragment_error_unable_to_write_to_storage),
                          Toast.LENGTH_LONG).show();
           break;
         case ERROR_IO:
           Toast.makeText(context,
-                         context.getString(R.string.ImportFragment_error_importing_backup),
+                         context.getString(R.string.ExportFragment_error_while_writing_to_storage),
                          Toast.LENGTH_LONG).show();
           break;
         case SUCCESS:
-          DatabaseFactory.getInstance(context).reset(context);
-          Intent intent = new Intent(context, KeyCachingService.class);
-          intent.setAction(KeyCachingService.CLEAR_KEY_ACTION);
-          context.startService(intent);
-
           Toast.makeText(context,
-                         context.getString(R.string.ImportFragment_restore_complete),
+                         context.getString(R.string.ExportFragment_export_successful),
                          Toast.LENGTH_LONG).show();
-      }
-    }
-
-    @Override
-    protected Integer doInBackground(Void... params) {
-      try {
-        EncryptedBackupExporter.importFromSd(getActivity());
-        return SUCCESS;
-      } catch (NoExternalStorageException e) {
-        Log.w("ImportFragment", e);
-        return NO_SD_CARD;
-      } catch (IOException e) {
-        Log.w("ImportFragment", e);
-        return ERROR_IO;
+          break;
       }
     }
   }
+
 
 }

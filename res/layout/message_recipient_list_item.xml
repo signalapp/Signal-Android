@@ -56,6 +56,13 @@
                       tools:visibility="visible"
                       tools:text="New identity" />
 
+            <TextView android:id="@+id/action_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                tools:visibility="visible"
+                tools:text="action" />
+
         </LinearLayout>
 
         <Button android:id="@+id/conflict_button"
