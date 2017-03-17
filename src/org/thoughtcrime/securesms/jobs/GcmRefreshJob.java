@@ -49,7 +49,10 @@ public class GcmRefreshJob extends ContextJob implements InjectableType {
   @Inject transient SignalServiceAccountManager textSecureAccountManager;
 
   public GcmRefreshJob(Context context) {
-    super(context, JobParameters.newBuilder().withRequirement(new NetworkRequirement(context)).create());
+    super(context, JobParameters.newBuilder()
+                                .withRequirement(new NetworkRequirement(context))
+                                .withRetryCount(1)
+                                .create());
   }
 
   @Override
@@ -69,6 +72,7 @@ public class GcmRefreshJob extends ContextJob implements InjectableType {
       textSecureAccountManager.setGcmId(Optional.of(gcmId));
 
       TextSecurePreferences.setGcmRegistrationId(context, gcmId);
+      TextSecurePreferences.setGcmRegistrationIdLastSetTime(context, System.currentTimeMillis());
       TextSecurePreferences.setWebsocketRegistered(context, true);
     }
   }

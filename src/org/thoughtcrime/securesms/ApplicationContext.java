@@ -48,6 +48,8 @@ import org.whispersystems.jobqueue.requirements.NetworkRequirementProvider;
 import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
 import org.whispersystems.libsignal.util.AndroidSignalProtocolLogger;
 
+import java.util.concurrent.TimeUnit;
+
 import dagger.ObjectGraph;
 
 /**
@@ -138,7 +140,11 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   private void initializeGcmCheck() {
     if (TextSecurePreferences.isPushRegistered(this)) {
-      this.jobManager.add(new GcmRefreshJob(this));
+      long nextSetTime = TextSecurePreferences.getGcmRegistrationIdLastSetTime(this) + TimeUnit.HOURS.toMillis(6);
+
+      if (TextSecurePreferences.getGcmRegistrationId(this) == null || nextSetTime <= System.currentTimeMillis()) {
+        this.jobManager.add(new GcmRefreshJob(this));
+      }
     }
   }
 
