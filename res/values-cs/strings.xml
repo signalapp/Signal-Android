@@ -373,7 +373,8 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Přijata zpráva šifrovaná starou a verzí Signal, který již není podporována. Prosím požádejte odesílatele, aby si zaktualizoval aplikaci na nejnovější verzi a poté poslal zprávu znovu.</string>
   <string name="MessageRecord_left_group">Opustil(a) jste skupinu</string>
-  <string name="MessageRecord_updated_group">Upravena skupina</string>
+  <string name="MessageRecord_you_updated_group">Upravil(a) jset skupinu.</string>
+  <string name="MessageRecord_s_updated_group">%s upravil(a) skupinu.</string>
   <string name="MessageRecord_s_called_you">%s vám volal</string>
   <string name="MessageRecord_called_s">Volán %s</string>
   <string name="MessageRecord_missed_call_from">Zmeškaný hovor od %s</string>
@@ -513,6 +514,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s resetuje zabezpečenou konverzaci</string>
   <string name="SmsMessageRecord_duplicate_message">Duplicitní zpráva</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_group_updated">Skupina upravena</string>
   <string name="ThreadRecord_left_the_group">Opustil skupinu.</string>
   <string name="ThreadRecord_secure_session_reset">Reset zabezpečené konverzace.</string>
   <string name="ThreadRecord_draft">Koncept:</string>
@@ -604,7 +606,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Bezpečnostní kódy pro konverzaci s %1$s se změnily. To může znamenat, že se někdo pokouší zachytit vaši konverzaci, nebo jen že si  %2$s jednoduše jen přeinstaloval Signal </string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Možná budete chtít zkontrolovat vaše bezpečnostní kódy pro tento kontakt.</string>
-  <string name="WebRtcCallScreen_new_safety_numbers_title">Nové bezpečnostní kódy</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Nové bezpečnostní kódy</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Ťuknutím povolíte video</string>
   <!--attachment_type_selector-->
@@ -729,6 +731,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Hledat GIFy an nálepky</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nenalezeno</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Export</string>
+  <string name="import_export_fragment__import">Import</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Na vašem zařízení nelze číst log. Můžete místo toho použít pro získání logu ADB.</string>
   <string name="log_submit_activity__thanks">Díky za Vaši pomoc!</string>
@@ -759,13 +764,13 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">ZKONTROLOVAT</string>
   <string name="message_recipients_list_item__resend">ZNOVU POSLAT</string>
+  <string name="message_recipients_list_item__resending">Posílám znovu...</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s se připojil ke skupině.</item>
     <item quantity="few">%1$s se připojili ke skupině.</item>
     <item quantity="other">%1$s se připojili ke skupině.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Skupina upravena</string>
   <string name="GroupUtil_group_name_is_now">Jméno skupiny je nyní \'%1$s\'</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Odemknout</string>

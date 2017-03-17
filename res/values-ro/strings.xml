@@ -374,7 +374,6 @@ Vei pierde orice informație care se află în instalarea curentă de Signal și
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Ai primit un mesaj care a fost criptat cu o versiune mai veche de Signal care nu mai este suportată. Roagă-l pe expeditor să-și actualizeze aplicația la ultima versiune și să retrimită mesajul.</string>
   <string name="MessageRecord_left_group">Ai parăsit grupul.</string>
-  <string name="MessageRecord_updated_group">Grupul a fost actualizat.</string>
   <string name="MessageRecord_s_called_you">%s te-a apelat</string>
   <string name="MessageRecord_called_s">Apel %s</string>
   <string name="MessageRecord_missed_call_from">Apel ratat de la %s</string>
@@ -609,7 +608,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Numărul de siguranță pentru conversația ta cu %1$s s-a schimbat.  Asta poate însemna că cineva încearcă să intercepteze comunicația sau că %2$s a reinstalat Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Probabil că dorești să verifici numărul de siguranță pentru acest contact.</string>
-  <string name="WebRtcCallScreen_new_safety_numbers_title">Numere noi de siguranță</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Număr nou de siguranță</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Apasă pentru a activa video-ul tău</string>
   <!--attachment_type_selector-->
@@ -734,6 +733,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Caută GIF-uri și autocolante</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nu s-a găsit nimic</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Exportă</string>
+  <string name="import_export_fragment__import">Importă</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Fișierul jurnal nu a putut fi citit de pe dispozitivul tău. Poţi folosi în schimb ADB pentru a obţine jurnalul de depanare.</string>
   <string name="log_submit_activity__thanks">Vă mulțumim pentru ajutor!</string>
@@ -770,7 +772,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
     <item quantity="few">%1$s s-au alăturat grupului.</item>
     <item quantity="other">%1$s s-au alăturat grupului.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Grupul a fost actualizat.</string>
   <string name="GroupUtil_group_name_is_now">Numele grupului este acum \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Deblochează</string>

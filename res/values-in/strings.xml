@@ -318,7 +318,6 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Menerima pesan terenkripsi menggunakan Signal versi lama tidak lagi didukung, Harap beri tahu pengirim untuk memutakhirkan ke versi terbaru dan kirim ulang pesannya.</string>
   <string name="MessageRecord_left_group">Anda telah keluar dari grup.</string>
-  <string name="MessageRecord_updated_group">Grup diperbarui.</string>
   <string name="MessageRecord_s_called_you">%s menelpon Anda.</string>
   <string name="MessageRecord_called_s">Memanggil %s</string>
   <string name="MessageRecord_missed_call_from">Panggilan tak terjawab dari %s</string>
@@ -528,6 +527,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--VideoPlayer-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Mungkin sebaiknya anda memastikan angka keamanan dengan kontak ini.</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Angka keamanan baru</string>
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Gambar</string>
@@ -601,6 +601,9 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="expiration_off">Mati</string>
   <!--giphy_activity-->
   <!--giphy_fragment-->
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Eksport</string>
+  <string name="import_export_fragment__import">Import</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Tidak bisa membaca catatan log pada perangkat Anda. Anda masih bisa menggunakan ADB untuk mengambil log awakutu.</string>
   <string name="log_submit_activity__thanks">Terima kasih atas bantuan Anda!</string>
@@ -633,7 +636,6 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">%1$s bergabung dengan grup</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Grup diperbarui.</string>
   <string name="GroupUtil_group_name_is_now">Nama grup sekarang \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Buka Kunci</string>

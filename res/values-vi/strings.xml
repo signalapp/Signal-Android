@@ -302,7 +302,6 @@ sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Đã nhận một tin nhắn được mã khoá bởi phiên bản Signal cũ và không còn được hỗ trợ. Hãy yêu cầu người gửi cập nhật phiên bản mới nhất và gửi lại tin nhắn.</string>
   <string name="MessageRecord_left_group">Bạn đã rời nhóm.</string>
-  <string name="MessageRecord_updated_group">Cập nhật nhóm.</string>
   <string name="MessageRecord_s_called_you">%s đã gọi cho bạn</string>
   <string name="MessageRecord_called_s">Đã gọi cho %s</string>
   <string name="MessageRecord_missed_call_from">Cuộc gọi nhỡ từ %s</string>
@@ -571,6 +570,9 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="expiration_off">Tắt</string>
   <!--giphy_activity-->
   <!--giphy_fragment-->
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Xuất</string>
+  <string name="import_export_fragment__import">Nhập</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__thanks">Cám ơn sự trợ giúp của bạn!</string>
   <string name="log_submit_activity__submitting">Đang nộp</string>
@@ -603,7 +605,6 @@ Phục hồi sao lưu Signal đã mã khóa từng xuất ra trước đó</stri
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">%1$s đã tham gia nhóm.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Nhóm được cập nhật.</string>
   <string name="GroupUtil_group_name_is_now">Tên nhóm hiện giờ là \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Mở khóa</string>

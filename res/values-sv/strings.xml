@@ -357,7 +357,8 @@ som inte finns i säkerhetskopian.</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Tog emot ett meddelande som krypterats med en tidigare version av Signal so inte längre stöds. Be avsändaren uppdatera till den senaste versionen och skicka om meddelandet.</string>
   <string name="MessageRecord_left_group">Du har lämnat gruppen.</string>
-  <string name="MessageRecord_updated_group">Uppdaterade gruppen.</string>
+  <string name="MessageRecord_you_updated_group">Du uppdaterade gruppen.</string>
+  <string name="MessageRecord_s_updated_group">%s uppdaterade gruppen.</string>
   <string name="MessageRecord_s_called_you">%s ringde dig</string>
   <string name="MessageRecord_called_s">Ringde %s</string>
   <string name="MessageRecord_missed_call_from">Missat samtal från %s</string>
@@ -500,6 +501,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s startar om den säkra sessionen.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplicerat meddelande.</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_group_updated">Grupp uppdaterad</string>
   <string name="ThreadRecord_left_the_group">Lämnade gruppen</string>
   <string name="ThreadRecord_secure_session_reset">Säker session nollställd.</string>
   <string name="ThreadRecord_draft">Utkast:</string>
@@ -591,7 +593,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Säkerhetsnumret för din konversation med %1$s har ändrats. Detta kan antingen betyda att någon försöker avlyssna er kommunikation, eller att %2$s helt enkelt har installerat om Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Du kan vilja verifiera ditt säkerhetsnummer med denna kontakt.</string>
-  <string name="WebRtcCallScreen_new_safety_numbers_title">Nya säkerhetsnummer</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Nytt säkerhetsnummer</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Tryck för att aktivera video</string>
   <!--attachment_type_selector-->
@@ -711,6 +713,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Sök GIF-bilder och stickers</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Inget hittat</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Exportera</string>
+  <string name="import_export_fragment__import">Importera</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Kunde inte läsa loggen från din enhet. Du kan fortfarande använda ADB för att få en logg.</string>
   <string name="log_submit_activity__thanks">Tack för din hjälp!</string>
@@ -741,12 +746,12 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">VERIFIERA</string>
   <string name="message_recipients_list_item__resend">SKICKA OM</string>
+  <string name="message_recipients_list_item__resending">Skickar om...</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s gick med i gruppen.</item>
     <item quantity="other">%1$s gick med i gruppen.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Grupp uppdaterad.</string>
   <string name="GroupUtil_group_name_is_now">Gruppnamnet är nu \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Lås upp</string>

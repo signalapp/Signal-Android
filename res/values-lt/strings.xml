@@ -35,7 +35,7 @@
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">1 minutė</item>
     <item quantity="few">%d minutės</item>
-    <item quantity="other">%d minutės</item>
+    <item quantity="other">%d minučių</item>
   </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(paveikslas)</string>
@@ -73,8 +73,8 @@
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Gauta šifro apsikeitimo žinutė, bakstelėkite norėdami tęsti.</string>
   <string name="ConversationItem_group_action_left">%1$s išėjo iš grupės.</string>
   <string name="ConversationItem_click_for_details">Bakstelėkite išsamesnei informacijai</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Siųsti nešifruotą SMS?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Siųsti nešifruotą MMS?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Sugrįžti prie nešifruotų SMS naudojimo?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Sugrįžti prie nešifruotų MMS naudojimo?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ši žinutė <b>nebus</b> užšifruota, nes gavėjas daugiau nebėra Signal naudotojas.\n\nSiųsti neapsaugotą žinutę?</string>
   <string name="ConversationItem_unable_to_open_media">Nepavyksta rasti programėlės, galinčios atverti šią mediją.</string>
   <string name="ConversationItem_from_s">nuo %s</string>
@@ -123,7 +123,7 @@
   <string name="ConversationFragment_message_details">Žinutės informacija</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Ištrinti pažymėtą žinutę?</item>
-    <item quantity="few">Ištrinti pažymėtą žinutę?</item>
+    <item quantity="few">Ištrinti pažymėtas žinutes?</item>
     <item quantity="other">Ištrinti pažymėtas žinutes?</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Įrašyti į atmintį?</string>
@@ -299,7 +299,6 @@
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Gauta žinutė buvo užšifruota, naudojant seną Signal versiją, kuri daugiau nebepalaikoma. Paprašykite siuntėjo atnaujinti savo programėlę į naujausią versiją ir iš naujo išsiųsti žinutę.</string>
   <string name="MessageRecord_left_group">Jūs išėjote iš grupės.</string>
-  <string name="MessageRecord_updated_group">Atnaujinta grupė.</string>
   <string name="MessageRecord_s_called_you">%s tau paskambino.</string>
   <string name="MessageRecord_called_s">Paskambino %s</string>
   <string name="MessageRecord_missed_call_from">Praleistas skambutis nuo %s</string>
@@ -380,7 +379,7 @@
   <string name="RedPhone_login_failed">Prisijungimas nepavyko!</string>
   <string name="RedPhone_message_from_the_server">Žinutė iš serverio</string>
   <string name="RedPhone_number_not_registered">Numeris nėra registruotas!</string>
-  <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Adresatas nepalaiko saugaus skambučio funkcijos!</string>
+  <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Numeris, kurį rinkote nepalaiko saugaus balso funkcijos!</string>
   <string name="RedPhone_got_it">Supratau</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_signal">Prisijunkite su Signal</string>
@@ -459,7 +458,7 @@
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Jūsų kontaktas naudoja seną Signal versiją. Prieš patvirtindami savo saugumo numerį, paprašykite, kad jis atnaujintų programėlę.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Jūsų kontaktas naudoja naujesnę Signal versiją su nesuderinamu QR kodo formatu. Norint palyginti, prašome atnaujinti programėlę.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Nuskenuotas QR kodas nėra teisingai formatuotas saugumo numerio patvirtinimo kodas. Prašome bandyti skenuoti dar kartą.</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">Pasidalinti saugumo numeriu naudojant...</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Dalintis saugumo numeriu per...</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Mūsų Signal saugumo numeris:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Nėra programos, kuri galėtų būti naudojama dalijinimuosi.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Iškarpinėje palyginimui nebuvo rasta jokio saugumo numerio</string>
@@ -501,7 +500,7 @@
   <string name="MediaPreviewActivity_cant_display">Nepavyko peržiūrėti šio paveikslo</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Nepalaikomas medijos tipas</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_most_recent_from_s">Paskutinė nuo: %1$s</string>
+  <string name="MessageNotifier_most_recent_from_s">Paskiausia nuo: %1$s</string>
   <string name="MessageNotifier_locked_message">Užrakinta žinutė</string>
   <string name="MessageNotifier_media_message_with_text">Medijos žinutė: %s</string>
   <string name="MessageNotifier_no_subject">(Jokios temos)</string>
@@ -526,6 +525,7 @@
   <!--VideoPlayer-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Jūs, tikriausiai, norėtumėte patvirtinti savo saugumo numerį su šiuo kontaktu.</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Naujas saugumo numeris</string>
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Paveikslas</string>
@@ -621,6 +621,9 @@
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Ieškoti GIF ir paveikslėlių</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nieko nerasta</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Eksportuoti</string>
+  <string name="import_export_fragment__import">Importuoti</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Nepavyko perskaityti žurnalo jūsų įrenginyje. Jūs vis dar galite naudoti ADB, kad vietoj to, gautumėte derinimo žurnalą.</string>
   <string name="log_submit_activity__thanks">Ačiū už jūsų pagalbą!</string>
@@ -656,7 +659,6 @@
     <item quantity="few">%1$s prisijungė prie grupės.</item>
     <item quantity="other">%1$s prisijungė prie grupės.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Grupė atnaujinta.</string>
   <string name="GroupUtil_group_name_is_now">Dabar, grupės pavadinimas yra \"%1$s\".</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Atrakinti</string>
@@ -727,8 +729,12 @@
   <string name="registration_progress_activity__no_network_connectivity">Nėra tinklo
         ryšio.
     </string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Šiai Signal funkcijai reikalingas tinklo ryšys. Prašome patikrinti ar jūsų įrenginys prisijungęs prie WiFi arba duomenų perdavimo tinklo.</string>
-  <string name="registration_progress_activity__restrictive_firewall">Aptikta blokuojanti ugniasienė.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Norint
+naudoti šią Signal ypatybę, jūsų įrenginiui reikia tinklo ryšio. Įsitikinkite, kad šis įrenginys
+yra prisijungęs prie belaidžio (Wi-Fi) arba duomenų perdavimo tinklo.
+</string>
+  <string name="registration_progress_activity__restrictive_firewall">Aptikta ribojanti užkarda.
+</string>
   <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
         Dabar, Signal automatiškai patvirtins jūsų numerį, naudojant patvirtinimo SMS žinutę.
     </string>

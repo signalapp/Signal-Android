@@ -360,7 +360,8 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Vastaanotettiin viesti, joka on salattu Signalin vanhalla versiolla, jota ei enää tueta. Pyydä lähettäjää päivittämään uusimpaan versioon ja lähettämään viesti uudelleen.</string>
   <string name="MessageRecord_left_group">Olet lähtenyt ryhmästä.</string>
-  <string name="MessageRecord_updated_group">Ryhmä päivitetty.</string>
+  <string name="MessageRecord_you_updated_group">Sinä päivitit ryhmää.</string>
+  <string name="MessageRecord_s_updated_group">%s päivitti ryhmää.</string>
   <string name="MessageRecord_s_called_you">%s soitti sinulle</string>
   <string name="MessageRecord_called_s">Soitit puhelun: %s</string>
   <string name="MessageRecord_missed_call_from">Vastaamatta jäänyt puhelu: %s</string>
@@ -503,6 +504,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="SmsMessageRecord_secure_session_reset_s">%s alusti suojatun istunnon.</string>
   <string name="SmsMessageRecord_duplicate_message">Viestin kaksoiskappale.</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_group_updated">Ryhmä päivitetty</string>
   <string name="ThreadRecord_left_the_group">Poistui ryhmästä</string>
   <string name="ThreadRecord_secure_session_reset">Suojattu istunto alustettu</string>
   <string name="ThreadRecord_draft">Luonnos:</string>
@@ -594,7 +596,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Turvanumerosi yhteystiedon %1$s kanssa on vaihtunut. Tämä voi tarkoittaa joko sitä, että joku yrittää kaapata viestiliikennettänne, tai sitä, että %2$s on vain yksinkertaisesti asentanut Signalin uudelleen.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Saatat haluta varmentaa turvanumerosi tämän yhteystiedon kanssa.</string>
-  <string name="WebRtcCallScreen_new_safety_numbers_title">Uusi turvanumero</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Uusi turvanumero</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Käytä video-tilaa napsauttamalla</string>
   <!--attachment_type_selector-->
@@ -714,6 +716,9 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Etsi GIFejä ja tarroja</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Mitään ei löytynyt</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Vie</string>
+  <string name="import_export_fragment__import">Tuo</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Lokin lukeminen laitteestasi epäonnistui. Voit sen sijaan käyttää ADB-työkalua virheenkorjauslokin noutamiseen.</string>
   <string name="log_submit_activity__thanks">Kiitos avustasi!</string>
@@ -744,12 +749,12 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">VARMENNA</string>
   <string name="message_recipients_list_item__resend">LÄHETÄ UUDELLEEN</string>
+  <string name="message_recipients_list_item__resending">Uudelleenlähetetään...</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s liittyi ryhmään</item>
     <item quantity="other">%1$s liittyivät ryhmään</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Ryhmä päivitetty.</string>
   <string name="GroupUtil_group_name_is_now">Ryhmän nimi on nyt \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Avaa</string>

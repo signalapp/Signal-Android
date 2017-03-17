@@ -316,7 +316,6 @@ a la còpia de seguretat.</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Has rebut un missatge encriptat que fa servir una versió vella de Signal, que no està suportada. Diga-li a l\'emissor que l\'actualitzi a la versió més recent i torni a enviar el missatge.</string>
   <string name="MessageRecord_left_group">Has sortit del grup.</string>
-  <string name="MessageRecord_updated_group">Grup actualitzat.</string>
   <string name="MessageRecord_s_called_you">%s t\'ha trucat</string>
   <string name="MessageRecord_called_s">Has trucat a %s</string>
   <string name="MessageRecord_missed_call_from">Trucada perduda de %s</string>
@@ -577,6 +576,9 @@ Comprova que aquest és el teu número! Anem a verificar-ho amb un SMS.</string>
   <string name="expiration_off">Inactiu</string>
   <!--giphy_activity-->
   <!--giphy_fragment-->
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Exporta</string>
+  <string name="import_export_fragment__import">Importa</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">No es pot llegir el registre del teu dispositiu. Pots fer servir ADB per debugar el registre.</string>
   <string name="log_submit_activity__thanks">Gràcies per la teva ajuda!</string>
@@ -610,7 +612,6 @@ Comprova que aquest és el teu número! Anem a verificar-ho amb un SMS.</string>
     <item quantity="one">%1$s s\'ha afegit al grup.</item>
     <item quantity="other">%1$s s\'ha afegit al grup.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Grup actualitzat</string>
   <string name="GroupUtil_group_name_is_now">El nom del grup ha canviat a \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Desbloqueja</string>

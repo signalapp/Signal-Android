@@ -256,7 +256,6 @@ opätovným importom zduplikujete správy.
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediálna správa</string>
   <!--MessageRecord-->
   <string name="MessageRecord_left_group">Opustili ste skupinu.</string>
-  <string name="MessageRecord_updated_group">Skupina bola aktualizovaná.</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s už má tiež Signal, pozdravte ho!</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Heslá sa nezhodujú!</string>
@@ -528,6 +527,9 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <string name="expiration_off">Vypnuté</string>
   <!--giphy_activity-->
   <!--giphy_fragment-->
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Export</string>
+  <string name="import_export_fragment__import">Import</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__thanks">Ďakujem za tvoju pomoc!</string>
   <string name="log_submit_activity__submitting">Posielanie</string>
@@ -550,7 +552,6 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <string name="message_recipients_list_item__verify">OVERIŤ</string>
   <string name="message_recipients_list_item__resend">POSLAŤ ZNOVU</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_group_updated">Skupina aktualizovaná.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Odomkni</string>
   <!--prompt_mms_activity-->

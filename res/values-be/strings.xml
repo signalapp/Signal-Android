@@ -154,7 +154,6 @@
   <string name="NotificationMmsMessageRecord_multimedia_message">Мультымедыя паведамленне</string>
   <!--MessageRecord-->
   <string name="MessageRecord_left_group">Вы пакінулі групу</string>
-  <string name="MessageRecord_updated_group">Абноўленая група.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Паролі не супадаюць!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Няправільны стары пароль!</string>
@@ -324,6 +323,9 @@
   <string name="expiration_off">Выкл</string>
   <!--giphy_activity-->
   <!--giphy_fragment-->
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Экспарт</string>
+  <string name="import_export_fragment__import">Імпарт</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__thanks">Дзякуй за вашу дапамогу!</string>
   <string name="log_submit_activity__submitting">Падпіска</string>
@@ -345,7 +347,6 @@
   <string name="message_recipients_list_item__verify">ВЕРЫФІКАВАЦЬ</string>
   <string name="message_recipients_list_item__resend">ДАСЛАЦЬ ПАЎТОРНА</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_group_updated">Група абноўлена.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Разблакіраваць</string>
   <!--prompt_mms_activity-->

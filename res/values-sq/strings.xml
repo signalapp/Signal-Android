@@ -365,7 +365,6 @@ importimi i sërishëm do të rezultojë ne mesazhe duplikate.</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Keni pranuar mesazh që është enkriptuar me verzion të vjetër të Signal-it që nuk mirëmbahet më. Ju lutemi që të lusni dërguesin që të instalojë verzionin e ri dhe ta ridërgojë mesazhin.</string>
   <string name="MessageRecord_left_group">Keni lënë grupin.</string>
-  <string name="MessageRecord_updated_group">U freskua grupi.</string>
   <string name="MessageRecord_s_called_you">ju thirri %s</string>
   <string name="MessageRecord_called_s">Thirrët %s</string>
   <string name="MessageRecord_missed_call_from">Thirrje e humbur nga %s</string>
@@ -601,7 +600,7 @@ U pranua mesazh për shkembim çelsash për një verzion të protokolli jo valid
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Numri i sigurisë për bisedën tuaj me %1$s ka ndryshuar. Kjo mund të sepse dikush është duke u përpjekur për të kapur komunikimin tuaj, ose se %2$s thjesht ka ri-instaluar Signal-in.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Ndoshta deshironi të verifikoni numrin e juaj sigurie me këtë kontakt.</string>
-  <string name="WebRtcCallScreen_new_safety_numbers_title">Numra të ri sigurie</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Numër sigurie i ri</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Prek për të aktivizuar videon tënd</string>
   <!--attachment_type_selector-->
@@ -721,6 +720,9 @@ U pranua mesazh për shkembim çelsash për një verzion të protokolli jo valid
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Kërko GIFe dhe afishe</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Asgjë nuk u gjetë</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Eksporto</string>
+  <string name="import_export_fragment__import">Importo</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Historia në pajisjen tuaj nuk mund të lexohet. Mund të përdorni ADB për ta lexuar historinë e gabimeve të përmirsuara.</string>
   <string name="log_submit_activity__thanks">Faleminderit për ndihmën!</string>
@@ -756,7 +758,6 @@ U pranua mesazh për shkembim çelsash për një verzion të protokolli jo valid
     <item quantity="one">%1$s u bashkangjit në grup.</item>
     <item quantity="other">%1$s u bashkangjitën në grup.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Grupi i freskua.</string>
   <string name="GroupUtil_group_name_is_now">Emri i grupit tani është \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Zhblloko</string>

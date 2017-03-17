@@ -545,6 +545,9 @@
   <string name="expiration_off">Off</string>
   <!--giphy_activity-->
   <!--giphy_fragment-->
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Exportar</string>
+  <string name="import_export_fragment__import">Importar</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__thanks">Grazas pola túa axuda!</string>
   <string name="log_submit_activity__submitting">Enviando</string>
@@ -576,7 +579,6 @@
     <item quantity="one">%1$s uniuse ao grupo.</item>
     <item quantity="other">%1$s uníronse ao grupo.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Grupo actualizado.</string>
   <string name="GroupUtil_group_name_is_now">Agora o nome do grupo é \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Desbloquear</string>

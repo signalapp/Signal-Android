@@ -373,7 +373,6 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Primljena je poruka kriptirana starom inačicom Signal aplikacije koja više nije podržana. Molimo zapitajte pošiljatelja da ažurira na najnoviju inačicu aplikacije i ponovno pošalje poruku.</string>
   <string name="MessageRecord_left_group">Napustili ste grupu.</string>
-  <string name="MessageRecord_updated_group">Grupa je ažurirana.</string>
   <string name="MessageRecord_s_called_you">%s vas je zvao</string>
   <string name="MessageRecord_called_s">Nazvao %s</string>
   <string name="MessageRecord_missed_call_from">Propušteni poziv od %s</string>
@@ -606,7 +605,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Sigurnosni broj za vaš razgovor s %1$s je izmjenjen. Ovo može značiti da netko pokušava presresti vašu komunikaciju ili da je %2$s jednostavno ponovno instalirao Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Možda biste trebali provjeriti sigurnosni broj za ovaj kontakt.</string>
-  <string name="WebRtcCallScreen_new_safety_numbers_title">Novi sigurnosni brojevi</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Novi sigurnosni broj</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Pritisnite da omogućite svoj video</string>
   <!--attachment_type_selector-->
@@ -731,6 +730,9 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Pretraži GIFove i naljepnice</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Ništa nije pronađeno.</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Izvoz</string>
+  <string name="import_export_fragment__import">Uvoz</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Čitanje zapisa na Vašem uređaju nije moguće. Još uvijek možete koristiti ADB za pristup debug zapisu.</string>
   <string name="log_submit_activity__thanks">Hvala na pomoći!</string>
@@ -768,7 +770,6 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
     <item quantity="few">%1$s se pridružilo grupi.</item>
     <item quantity="other">%1$s se pridružilo grupi.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Grupa je ažurirana.</string>
   <string name="GroupUtil_group_name_is_now">Ime grupe sada je \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Otključaj</string>

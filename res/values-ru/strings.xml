@@ -269,6 +269,10 @@
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Добро пожаловать в Signal!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">Теперь TextSecure — это Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure и RedPhone объединились в одно приложение: Signal. Нажмите, чтобы узнать больше.</string>
+  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Знакомьтесь — защищённые видео-звонки.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Теперь через Signal можно совершать защищённые видео-звонки. Начните звонок как обычно, нажмите кнопку с камерой и помашите собеседнику.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Теперь Signal поддерживает защищённые видео-звонки.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Теперь Signal поддерживает защищённые видео-звонки. Нажмите, чтобы узнать больше.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Экспорт</string>
   <string name="ExportFragment_export_plaintext_to_storage">Экспортировать открытым текстом?</string>
@@ -385,7 +389,6 @@
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Полученное сообщение зашифровано в старой версии Signal, которая больше не поддерживается. Пожалуйста, попросите отправителя обновиться до последней версии и заново отправить сообщение.</string>
   <string name="MessageRecord_left_group">Вы покинули группу.</string>
-  <string name="MessageRecord_updated_group">Группа обновлена.</string>
   <string name="MessageRecord_s_called_you">%s звонил(а) вам</string>
   <string name="MessageRecord_called_s">Вы звонили %s</string>
   <string name="MessageRecord_missed_call_from">Пропущен звонок от %s</string>
@@ -539,6 +542,8 @@
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Время исчезновения сообщений – %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Ваш с %s код безопасности изменился.</string>
   <!--UpdateApkReadyListener-->
+  <string name="UpdateApkReadyListener_Signal_update">Обновление Signal</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Доступна новая версия Signal. Нажмите, чтобы обновиться</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">У вашего контакта старая версия Signal. Попросите его обновиться, чтобы подтвердить код безопасности.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">У вашего контакта более новая версию Signal с несовместимым форматом QR-кода. Пожалуйста, обновитесь, чтобы сверить код.</string>
@@ -617,7 +622,7 @@
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Код безопасности вашего разговора с %1$s изменился. Это может означать, что кто-то пытается перехватить вашу переписку и звонки, или что %2$s просто переустановил(а) Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Возможно, вам стоит подтвердить код безопасности с этим контактом.</string>
-  <string name="WebRtcCallScreen_new_safety_numbers_title">Новый код безопасности</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Новый код безопасности</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Нажмите для активации видео</string>
   <!--attachment_type_selector-->
@@ -747,6 +752,9 @@
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Найти GIF-анимации и стикеры</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Ничего не найдено</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Экспорт</string>
+  <string name="import_export_fragment__import">Импорт</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Не удается прочитать журнал отладки вашего устройства. Тем не менее, вы можете получить его при помощи ADB.</string>
   <string name="log_submit_activity__thanks">Спасибо за помощь!</string>
@@ -784,7 +792,6 @@
     <item quantity="many">%1$s присоединились к группе.</item>
     <item quantity="other">%1$s присоединились к группе.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Группа обновлена.</string>
   <string name="GroupUtil_group_name_is_now">Группа теперь называется «%1$s».</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Открыть</string>

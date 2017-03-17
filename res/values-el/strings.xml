@@ -364,7 +364,6 @@
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Λήφθηκε ένα μήνυμα που είναι κρυπτογραφημένο με μια παλιά έκδοση του Signal που δεν υποστηρίζεται πια. Παρακαλώ ζήτησε από τον αποστολέα να αναβαθμίσει στην πιο πρόσφατη έκδοση και να ξαναστείλει το μήνυμα.</string>
   <string name="MessageRecord_left_group">Αποχωρήσατε από την ομάδα.</string>
-  <string name="MessageRecord_updated_group">Η ομάδα ενημερώθηκε.</string>
   <string name="MessageRecord_s_called_you">O/H %s σε κάλεσε</string>
   <string name="MessageRecord_called_s">Κλήση προς τον/την %s</string>
   <string name="MessageRecord_missed_call_from">Αναπάντητη κλήση από τον/την %s</string>
@@ -599,7 +598,7 @@
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Ο αριθμός ασφαλείας για την συζήτησή σου με τον/την %1$s έχει αλλάξει. Αυτό μπορεί να σημαίνει πως κάποιος προσπαθεί να υποκλέψει τις επικοινωνίες σου, ή πως απλά ο/η %2$s επανεγκατέστησε το Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Μήπως θα ήθελες να επιβεβαιώσεις τον αριθμό ασφαλείας σου για αυτή την επαφή;</string>
-  <string name="WebRtcCallScreen_new_safety_numbers_title">Νέοι αριθμοί ασφαλείας</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Νέος αριθμός ασφαλείας</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Πάτα για να ενεργοποιήσεις το βίντεό σου</string>
   <!--attachment_type_selector-->
@@ -719,6 +718,9 @@
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Αναζήτηση GIFs και αυτοκολλήτων</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Δεν βρέθηκε τίποτα</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Εξαγωγή</string>
+  <string name="import_export_fragment__import">Εισαγωγή</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Αποτυχία ανάγνωσης αρχείου συμβάντων για τη συσκευή σου. Μπορείς να χρησιμοποιήσεις το ADB για να πάρεις ένα αρχείο συμβάντων αποσφαλμάτωσης.</string>
   <string name="log_submit_activity__thanks">Ευχαριστούμε για τη βοήθειά σου!</string>
@@ -754,7 +756,6 @@
     <item quantity="one">Ο/Η %1$s μπήκε στην ομάδα.</item>
     <item quantity="other">Οι %1$s μπήκαν στην ομάδα.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Η Ομάδα ενημερώθηκε.</string>
   <string name="GroupUtil_group_name_is_now">Η ομάδα λέγεται πλέον \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Ξεκλείδωμα</string>

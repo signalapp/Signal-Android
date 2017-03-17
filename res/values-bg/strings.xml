@@ -358,7 +358,6 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Получихте съобщение криптирано със стара версия на Сигнал, която вече не се поддържа. Моля помолете изпращача да обнови версията си и да препрати съобщението.</string>
   <string name="MessageRecord_left_group">Напуснахте групата.</string>
-  <string name="MessageRecord_updated_group">Групата е обновена.</string>
   <string name="MessageRecord_s_called_you">%s ти се обади</string>
   <string name="MessageRecord_called_s">Обаждане до %s</string>
   <string name="MessageRecord_missed_call_from">Пропуснато обаждане от %s</string>
@@ -594,7 +593,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Числата за сигурност за разговора с %1$s са променени. Това означава, че или някой се опитва да прехване куминикацията Ви, или че %2$s е преинсталирал Сигнал.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Може да желаете да проверите числата за сигурност с този контакт.</string>
-  <string name="WebRtcCallScreen_new_safety_numbers_title">Нови числа за сигурност</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Нови числа за сигурност</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Натиснете, за да активирате видео</string>
   <!--attachment_type_selector-->
@@ -714,6 +713,9 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Търси сред GIF-ове и стикери</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Няма нищо открито</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Изнесяне</string>
+  <string name="import_export_fragment__import">Внасяне</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Неуспешно прочитане на доклада на Вашето устройство. Все пак може да използвате ADB, за да получте доклада.</string>
   <string name="log_submit_activity__thanks">Благодаря за помоща!</string>
@@ -749,7 +751,6 @@ SMS-те от системния архив в Сигнал. Ако вече с�
     <item quantity="one">%1$s се присъедини към групата.</item>
     <item quantity="other">%1$s се присъединиха към групата.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Групата е обновена.</string>
   <string name="GroupUtil_group_name_is_now">Името на групата вече е \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Отключи</string>
