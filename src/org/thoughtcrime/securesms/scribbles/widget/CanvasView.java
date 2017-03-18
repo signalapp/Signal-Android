@@ -293,7 +293,7 @@ public class CanvasView extends View {
       case DRAW   :
       case ERASER :
         if ((this.drawer != Drawer.QUADRATIC_BEZIER) && (this.drawer != Drawer.QUBIC_BEZIER)) {
-          // Oherwise
+          // Otherwise
           this.updateHistory(this.createPath(event));
           this.isDown = true;
         } else {

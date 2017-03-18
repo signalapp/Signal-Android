@@ -250,7 +250,7 @@ public class PduParser {
                         headers.setOctet(messageType, headerField);
                     } catch(InvalidHeaderValueException e) {
                         log("Set invalid Octet value: " + messageType +
-                                " into the header filed: " + headerField);
+                                " into the header field: " + headerField);
                         return null;
                     } catch(RuntimeException e) {
                         log(headerField + "is not Octet header field!");
@@ -293,7 +293,7 @@ public class PduParser {
                         headers.setOctet(value, headerField);
                     } catch(InvalidHeaderValueException e) {
                         log("Set invalid Octet value: " + value +
-                                " into the header filed: " + headerField);
+                                " into the header field: " + headerField);
                         return null;
                     } catch(RuntimeException e) {
                         log(headerField + "is not Octet header field!");
@@ -570,7 +570,7 @@ public class PduParser {
                         headers.setOctet(version, PduHeaders.MMS_VERSION);
                     } catch(InvalidHeaderValueException e) {
                         log("Set invalid Octet value: " + version +
-                                " into the header filed: " + headerField);
+                                " into the header field: " + headerField);
                         return null;
                     } catch(RuntimeException e) {
                         log(headerField + "is not Octet header field!");

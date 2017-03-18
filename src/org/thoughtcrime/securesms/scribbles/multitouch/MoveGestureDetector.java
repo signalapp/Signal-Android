@@ -86,7 +86,7 @@ public class MoveGestureDetector extends BaseGestureDetector {
 
         final MotionEvent prev = mPrevEvent;
 
-        // Focus intenal
+        // Focus internal
         mCurrFocusInternal = determineFocalPoint(curr);
         mPrevFocusInternal = determineFocalPoint(prev);
 

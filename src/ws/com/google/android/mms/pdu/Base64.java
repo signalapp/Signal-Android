@@ -124,7 +124,7 @@ public class Base64 {
     }
 
     /**
-     * Check octect wheter it is a base64 encoding.
+     * Check octect whether it is a base64 encoding.
      *
      * @param octect to be checked byte
      * @return ture if it is base64 encoding, false otherwise.
