@@ -111,13 +111,6 @@
     <meta-data android:name="com.google.android.gms.car.application"
                android:resource="@xml/automotive_app_desc" />
 
-    <activity android:name="org.thoughtcrime.redphone.RedPhone"
-              android:excludeFromRecents="true"
-              android:screenOrientation="portrait"
-              android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|fontScale"
-              android:launchMode="singleTask">
-    </activity>
-
     <activity android:name="org.thoughtcrime.securesms.WebRtcCallActivity"
               android:excludeFromRecents="true"
               android:screenOrientation="portrait"
@@ -357,7 +350,7 @@
         </intent-filter>
     </activity>
 
-    <activity android:name="org.thoughtcrime.redphone.VoiceCallShare"
+    <activity android:name="org.thoughtcrime.securesms.webrtc.VoiceCallShare"
               android:excludeFromRecents="true"
               android:theme="@style/NoAnimation.Theme.BlackScreen"
               android:launchMode="singleTask"
@@ -390,7 +383,6 @@
 
     <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
 
-    <service android:enabled="true" android:name="org.thoughtcrime.redphone.RedPhoneService"/>
     <service android:enabled="true" android:name="org.thoughtcrime.securesms.service.WebRtcCallService"/>
 
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>
