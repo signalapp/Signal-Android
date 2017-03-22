@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.audio;
 
+import android.app.Activity;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -9,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.util.Pair;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
@@ -89,6 +91,9 @@ public class AudioSlidePlayer {
 
         notifyOnStart();
         progressEventHandler.sendEmptyMessage(0);
+        if (context instanceof Activity) {
+          ((Activity) context).getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }
       }
     });
 
@@ -107,6 +112,9 @@ public class AudioSlidePlayer {
 
         notifyOnStop();
         progressEventHandler.removeMessages(0);
+        if (context instanceof Activity) {
+          ((Activity) context).getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }
       }
     });
 
@@ -128,6 +136,9 @@ public class AudioSlidePlayer {
 
         notifyOnStop();
         progressEventHandler.removeMessages(0);
+        if (context instanceof Activity) {
+          ((Activity) context).getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }
         return true;
       }
     });
@@ -146,6 +157,10 @@ public class AudioSlidePlayer {
 
     if (this.audioAttachmentServer != null) {
       this.audioAttachmentServer.stop();
+    }
+
+    if (context instanceof Activity) {
+      ((Activity) context).getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     this.mediaPlayer           = null;
