@@ -132,6 +132,10 @@
   <string name="ConversationActivity_error_sending_voice_message">שגיאה בשליחת הודעה קולית</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">אין אפליקציה זמינה לטיפול בקישור כזה במכשיר שלך.</string>
   <!--ConversationAdapter-->
+  <plurals name="ConversationAdapter_n_unread_messages">
+    <item quantity="one">מסר %d לא נקרא</item>
+    <item quantity="other">%d מסרים לא נקראו</item>
+  </plurals>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">פרטי מסר</string>
   <string name="ConversationFragment_transport_s_sent_received_s">תעבורה: %1$s\nנשלח/התקבל: %2$s</string>
@@ -334,8 +338,11 @@
   <string name="MessageDetailsRecipient_new_safety_number">מספר בטיחות חדש</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">סיגנל</string>
+  <string name="MessageRetrievalService_background_connection_enabled">חיבור רקע מופעל</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">שגיאה באחסון ה־MMS!</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">שגיאה בהתחברות לספק MMS</string>
+  <string name="MmsDownloader_error_reading_mms_settings">שגיאה בקריאת הגדרות MMS של ספק התקשורת האלחוטית</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">שיחת סיגנל נערכת עכשיו</string>
   <string name="NotificationBarManager_missed_call_from_s">שיחה שלא נענתה מאת %s</string>
@@ -348,9 +355,13 @@
   <string name="NotificationBarManager__cancel_call">לבטל את השיחה</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">מסר מולטימדיה</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">הורדת מסר MMS</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">שגיאה בהורדת מסר MMS, נא ללחוץ לניסיון חוזר</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">לא ניתן יותר לקבל מסר שהוצפן בגרסה ישנה של סיגנל. נא לבקש ממי ששלח אותו לשדרג לגרסה החדשה ביותר של סיגנל ולשלוח את המסר שוב.</string>
   <string name="MessageRecord_left_group">עזבת את הקבוצה.</string>
+  <string name="MessageRecord_you_updated_group">עדכנת את הקבוצה.</string>
+  <string name="MessageRecord_s_updated_group">%s עדכן את הקבוצה</string>
   <string name="MessageRecord_s_called_you">הייתה לך שיחה מאת %s</string>
   <string name="MessageRecord_called_s">התקשרת אל %s</string>
   <string name="MessageRecord_missed_call_from">שיחה שלא נענתה מאת %s</string>
@@ -377,6 +388,7 @@
   <string name="DeviceProvisioningActivity_content_progress_no_device">לא נמצא מכשיר.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">שגיאת רשת.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">קוד QR בלתי־תקין.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">סליחה, חיברת יותר מדי מכשירים, נא לנסות להסיר כמה.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">סליחה, זה לא קוד QR תקין לקישור מכשיר.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">לקשר מכשיר סיגנל?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">נראה שניסית לקשר מכשיר סיגנל באמצעות סורק מצד שלישי. למען בטיחותך, נא לסרוק את הקוד שוב באמצעות סיגנל.</string>
@@ -407,7 +419,9 @@
   <string name="RecipientPreferenceActivity_unblock">הסרת חסימה</string>
   <string name="RecipientPreferenceActivity_enabled">מופעל</string>
   <string name="RecipientPreferenceActivity_disabled">כבוי</string>
+  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">זמין אחרי שמסר נשלח או התקבל.</string>
   <!--RecipientProvider-->
+  <string name="RecipientProvider_unnamed_group">קבוצה ללא שם</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">עונה</string>
   <string name="RedPhone_ending_call">מסיים את השיחה</string>

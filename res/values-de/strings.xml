@@ -353,8 +353,8 @@ Das Wiederherstellen einer verschlüsselten Datensicherung ersetzt deine bestehe
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Die empfangene Nachricht wurde mit einer veralteten Version von Signal verschlüsselt, die nicht mehr unterstützt wird. Bitte den Absender, Signal zu aktualisieren und die Nachricht erneut zu senden.</string>
   <string name="MessageRecord_left_group">Du hast die Gruppe verlassen</string>
-  <string name="MessageRecord_you_updated_group">Du hast die Gruppe aktualisiert.</string>
-  <string name="MessageRecord_s_updated_group">%s hat die Gruppe aktualisiert.</string>
+  <string name="MessageRecord_you_updated_group">Du hast die Gruppe aktualisiert</string>
+  <string name="MessageRecord_s_updated_group">%s hat die Gruppe aktualisiert</string>
   <string name="MessageRecord_s_called_you">Eingegangener Anruf von %s</string>
   <string name="MessageRecord_called_s">Ausgegangener Anruf an %s</string>
   <string name="MessageRecord_missed_call_from">Entgangener Anruf von %s</string>
@@ -484,16 +484,16 @@ Bitte kontrolliere noch einmal deine Rufnummer. Diese wird anschließend durch e
   <string name="Slide_audio">Audio</string>
   <string name="Slide_video">Video</string>
   <!--SmsMessageRecord-->
-  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Fehlerhafte Schlüsselaustausch-Nachricht empfangen!</string>
+  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Fehlerhafte Schlüsselaustausch-Nachricht empfangen</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
-Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</string>
+Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</string>
   <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Nachricht mit neuer Sicherheitsnummer empfangen. Zum Verarbeiten und Anzeigen antippen.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Du hast die Verschlüsselung neu gestartet.</string>
-  <string name="SmsMessageRecord_secure_session_reset_s">%s hat die Verschlüsselung neu gestartet.</string>
-  <string name="SmsMessageRecord_duplicate_message">Doppelte Nachricht.</string>
+  <string name="SmsMessageRecord_secure_session_reset">Du hast die Verschlüsselung neu gestartet</string>
+  <string name="SmsMessageRecord_secure_session_reset_s">%s hat die Verschlüsselung neu gestartet</string>
+  <string name="SmsMessageRecord_duplicate_message">Doppelte Nachricht</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Gruppe aktualisiert</string>
-  <string name="ThreadRecord_left_the_group">Gruppe wurde verlassen</string>
+  <string name="ThreadRecord_left_the_group">Gruppe verlassen</string>
   <string name="ThreadRecord_secure_session_reset">Verschlüsselung neu gestartet</string>
   <string name="ThreadRecord_draft">Entwurf:</string>
   <string name="ThreadRecord_called">Ausgegangener Anruf</string>

@@ -363,6 +363,8 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Egy üzenet érkezett a Signal egy régebbi verziójával titkosítva, ami már nem támogatott. Kérlek kérd meg a küldőt, hogy frissítsen a legfrissebb verzióra és küldje újra az üzenetet.</string>
   <string name="MessageRecord_left_group">Elhagytad a csoportot.</string>
+  <string name="MessageRecord_you_updated_group">Frissítetted a csoportot.</string>
+  <string name="MessageRecord_s_updated_group">%s frissítette a csoportot.</string>
   <string name="MessageRecord_s_called_you">%s hívott téged</string>
   <string name="MessageRecord_called_s">Hívtad: %s</string>
   <string name="MessageRecord_missed_call_from">Nem fogadott hívás tőle: %s</string>
@@ -512,6 +514,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="SmsMessageRecord_secure_session_reset_s">%s alaphelyzetbe állította a biztonságos munkamenetet.</string>
   <string name="SmsMessageRecord_duplicate_message">Üzenet duplikálása.</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_group_updated">Csoport frissítve</string>
   <string name="ThreadRecord_left_the_group">Elhagyta a csoportot</string>
   <string name="ThreadRecord_secure_session_reset">Biztonságos munkamenet alaphelyzetbe állítása.</string>
   <string name="ThreadRecord_draft">Piszkozat:</string>
@@ -758,6 +761,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">ELLENŐRZÉS</string>
   <string name="message_recipients_list_item__resend">ÚJRAKÜLDÉS</string>
+  <string name="message_recipients_list_item__resending">Újraküldés...</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s csatlakozott a csoporthoz.</item>
