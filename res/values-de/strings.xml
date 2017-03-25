@@ -353,7 +353,8 @@ Das Wiederherstellen einer verschlüsselten Datensicherung ersetzt deine bestehe
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Die empfangene Nachricht wurde mit einer veralteten Version von Signal verschlüsselt, die nicht mehr unterstützt wird. Bitte den Absender, Signal zu aktualisieren und die Nachricht erneut zu senden.</string>
   <string name="MessageRecord_left_group">Du hast die Gruppe verlassen</string>
-  <string name="MessageRecord_updated_group">Gruppe wurde aktualisiert</string>
+  <string name="MessageRecord_you_updated_group">Du hast die Gruppe aktualisiert</string>
+  <string name="MessageRecord_s_updated_group">%s hat die Gruppe aktualisiert</string>
   <string name="MessageRecord_s_called_you">Eingegangener Anruf von %s</string>
   <string name="MessageRecord_called_s">Ausgegangener Anruf an %s</string>
   <string name="MessageRecord_missed_call_from">Entgangener Anruf von %s</string>
@@ -483,15 +484,16 @@ Bitte kontrolliere noch einmal deine Rufnummer. Diese wird anschließend durch e
   <string name="Slide_audio">Audio</string>
   <string name="Slide_video">Video</string>
   <!--SmsMessageRecord-->
-  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Fehlerhafte Schlüsselaustausch-Nachricht empfangen!</string>
+  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Fehlerhafte Schlüsselaustausch-Nachricht empfangen</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
-Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</string>
+Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</string>
   <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Nachricht mit neuer Sicherheitsnummer empfangen. Zum Verarbeiten und Anzeigen antippen.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Du hast die Verschlüsselung neu gestartet.</string>
-  <string name="SmsMessageRecord_secure_session_reset_s">%s hat die Verschlüsselung neu gestartet.</string>
-  <string name="SmsMessageRecord_duplicate_message">Doppelte Nachricht.</string>
+  <string name="SmsMessageRecord_secure_session_reset">Du hast die Verschlüsselung neu gestartet</string>
+  <string name="SmsMessageRecord_secure_session_reset_s">%s hat die Verschlüsselung neu gestartet</string>
+  <string name="SmsMessageRecord_duplicate_message">Doppelte Nachricht</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">Gruppe wurde verlassen</string>
+  <string name="ThreadRecord_group_updated">Gruppe aktualisiert</string>
+  <string name="ThreadRecord_left_the_group">Gruppe verlassen</string>
   <string name="ThreadRecord_secure_session_reset">Verschlüsselung neu gestartet</string>
   <string name="ThreadRecord_draft">Entwurf:</string>
   <string name="ThreadRecord_called">Ausgegangener Anruf</string>
@@ -582,7 +584,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Die Sicherheitsnummer für deine Unterhaltung mit %1$s hat sich geändert. Dies könnte bedeuten, dass jemand versucht, eure Kommunikation abzuhören. Oder %2$s hat Signal einfach erneut installiert.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Vielleicht möchtest du deine Sicherheitsnummer mit diesem Kontakt überprüfen.</string>
-  <string name="WebRtcCallScreen_new_safety_numbers_title">Neue Sicherheitsnummer</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Neue Sicherheitsnummer</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Zum Aktivieren deiner Videoübertragung antippen</string>
   <!--attachment_type_selector-->
@@ -702,6 +704,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFs und Sticker suchen</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nichts gefunden</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Exportieren</string>
+  <string name="import_export_fragment__import">Importieren</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Das Diagnoseprotokoll auf deinem Gerät konnte nicht gelesen werden. Du kannst allerdings immer noch ADB verwenden, um ein Diagnoseprotokoll zu erhalten.</string>
   <string name="log_submit_activity__thanks">Danke für deine Hilfe!</string>
@@ -732,12 +737,12 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">ÜBERPRÜFEN</string>
   <string name="message_recipients_list_item__resend">ERNEUT SENDEN</string>
+  <string name="message_recipients_list_item__resending">Wird erneut gesendet …</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s ist der Gruppe beigetreten.</item>
     <item quantity="other">%1$s sind der Gruppe beigetreten.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Gruppe aktualisiert.</string>
   <string name="GroupUtil_group_name_is_now">Gruppenname lautet jetzt »%1$s«.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Entsperren</string>

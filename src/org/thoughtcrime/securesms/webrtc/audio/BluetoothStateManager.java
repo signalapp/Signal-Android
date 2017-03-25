@@ -49,13 +49,16 @@ public class BluetoothStateManager {
     this.bluetoothConnectionReceiver = new BluetoothConnectionReceiver();
     this.listener                    = listener;
 
+    if (this.bluetoothAdapter == null)
+      return;
+
     requestHeadsetProxyProfile();
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
       context.registerReceiver(bluetoothConnectionReceiver, new IntentFilter(BluetoothHeadset.ACTION_CONNECTION_STATE_CHANGED));
     }
 
-    Intent sticky = context.registerReceiver(bluetoothScoReceiver, new IntentFilter(AudioManager.ACTION_SCO_AUDIO_STATE_CHANGED));
+    Intent sticky = context.registerReceiver(bluetoothScoReceiver, new IntentFilter(getScoChangeIntent()));
 
     if (sticky != null) {
       bluetoothScoReceiver.onReceive(context, sticky);

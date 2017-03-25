@@ -237,10 +237,10 @@
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Velkomen til Signal!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure er no Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure og RedPhone er no eitt program: Signal. Trykk for å utforska.</string>
-  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Sei hallo til trygge videosamtaler.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal støttar no trygge videosamtaler. Berre ring som normalt med Signal, trykk video-knappen og gje eit vink.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal støttar no trygge videosamtaler.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal støttar no trygge videosamtaler. Trykk for å utforska.</string>
+  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Sei hallo til trygge videosamtalar.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal støttar no trygge videosamtalar. Berre ring som normalt med Signal, trykk video-knappen og gje eit vink.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal støttar no trygge videosamtalar.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal støttar no trygge videosamtalar. Trykk for å utforska.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Eksporter</string>
   <string name="ExportFragment_export_plaintext_to_storage">Vil du eksportera klartekst som vanleg fil?</string>
@@ -359,7 +359,8 @@ fører dette til dupliserte meldingar.</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Mottok ei melding som er kryptert med ein gammal versjon av Signal som ikkje lenger vert støtta. Be avsendaren om å oppdatera til nyaste versjon og senda meldinga på nytt.</string>
   <string name="MessageRecord_left_group">Du har forlate gruppa.</string>
-  <string name="MessageRecord_updated_group">Oppdatert gruppe.</string>
+  <string name="MessageRecord_you_updated_group">Du oppdaterte gruppa.</string>
+  <string name="MessageRecord_s_updated_group">%s oppdaterte gruppa.</string>
   <string name="MessageRecord_s_called_you">%s ringte deg</string>
   <string name="MessageRecord_called_s">Ringte %s</string>
   <string name="MessageRecord_missed_call_from">Tapt anrop frå %s</string>
@@ -504,6 +505,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s tilbakestilte sikker økt.</string>
   <string name="SmsMessageRecord_duplicate_message">Dupliser melding.</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_group_updated">Grupper oppdatert</string>
   <string name="ThreadRecord_left_the_group">Forlét gruppa</string>
   <string name="ThreadRecord_secure_session_reset">Sikker økt tilbakestilt.</string>
   <string name="ThreadRecord_draft">Utkast:</string>
@@ -595,7 +597,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Tryggleiksnummeret for samtalen din med %1$s har endra seg. Dette kan tyda på at nokon prøver å overvaka kommunikasjonen, eller at %2$s berre har installert Signal på nytt.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Du ynskjer kanskje å stadfesta tryggleiksnummeret ditt med denne kontakten.</string>
-  <string name="WebRtcCallScreen_new_safety_numbers_title">Nye tryggleiksnummer</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Nytt tryggleiksnummer</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Trykk for å skru på videoen din</string>
   <!--attachment_type_selector-->
@@ -715,6 +717,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Søk Gif-ar og klistremerke</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Ikkje noko funne</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Eksporter</string>
+  <string name="import_export_fragment__import">Importer</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Klarte ikkje å lesa einingsloggen. Du kan enno bruka ADB for å få ein feilsøkingslogg i staden.</string>
   <string name="log_submit_activity__thanks">Takk for hjelpa!</string>
@@ -745,12 +750,12 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">STADFEST</string>
   <string name="message_recipients_list_item__resend">SEND PÅ NYTT</string>
+  <string name="message_recipients_list_item__resending">Sender på nytt …</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s vart med i gruppa.</item>
     <item quantity="other">%1$s vart med i gruppa.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Gruppe oppdatert.</string>
   <string name="GroupUtil_group_name_is_now">Gruppenamnet er no «%1$s».</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Lås opp</string>
@@ -997,10 +1002,10 @@ Signal fekk tidsavbrot ved venting på stadfestingsmeldinga.</string>
   <string name="preferences_chats__message_trimming">Meldingsforkorting</string>
   <string name="preferences_advanced__use_system_emoji">Bruk emoji på systemet</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Slå av innebygd emoji-støtte i Signal</string>
-  <string name="preferences_advanced__video_calling_beta">Videosamtaler – beta</string>
+  <string name="preferences_advanced__video_calling_beta">Videosamtalar – beta</string>
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Støtte for neste-generasjons video- og taleringing, når begge partane har skrudd det på. Denne funksjonen er i beta.</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Vidaresend alle samtaler gjennom Signal-tenaren for å unngå å visa IP-adressa di til kontakten din. Dette vil gi dårlegare samtalekvalitet.</string>
-  <string name="preferences_advanced__always_relay_calls">Alltid vidaresend samtaler</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Vidaresend alle samtalar gjennom Signal-tenaren for å unngå å visa IP-adressa di til kontakten din. Dette vil gi dårlegare samtalekvalitet.</string>
+  <string name="preferences_advanced__always_relay_calls">Alltid vidaresend samtalar</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

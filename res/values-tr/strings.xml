@@ -328,7 +328,6 @@
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Artık desteklenmeyen eski bir Signal sürümü kullanılarak şifrelenmiş bir mesaj alındı. Gönderen kişiden Signal\'i en son sürüme güncellemesini ve iletiyi yeniden göndermesini isteyin.</string>
   <string name="MessageRecord_left_group">Gruptan ayrıldınız.</string>
-  <string name="MessageRecord_updated_group">Grup güncellendi.</string>
   <string name="MessageRecord_s_called_you">%s sizi aradı</string>
   <string name="MessageRecord_called_s">%s arandı</string>
   <string name="MessageRecord_missed_call_from">%s tarafından cevapsız çağrı</string>
@@ -558,7 +557,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">%1$s ile sohbetinizin güvenlik numarası değişti. Bu, birisinin sizin iletişiminizi araya girerek yakalayıp dinlemeye çalıştığı veya %2$s \'in yalnızca Signal\'i yeniden yüklediği anlamına gelebilir. </string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Bu kişiyle güvenlik numaranızı doğrulamak isteyebilirsiniz.</string>
-  <string name="WebRtcCallScreen_new_safety_numbers_title">Yeni güvenlik numaraları</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Yeni güvenlik numarası</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Videonuzu etkinleştirmek için dokunun</string>
   <!--attachment_type_selector-->
@@ -673,6 +672,9 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFleri ve çıkartmaları ara</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Hiçbir şey bulunamadı</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Dışa Aktar</string>
+  <string name="import_export_fragment__import">İçe Aktar</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Cihazınızda bulunan log kayıtları okunamadı. ADB kullanarak log kayıtlarına erişim sağlayabilirsiniz.</string>
   <string name="log_submit_activity__thanks">Yardımınız için teşekkürler!</string>
@@ -707,7 +709,6 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">%1$s gruba katıldı.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Grup güncellendi.</string>
   <string name="GroupUtil_group_name_is_now">Grup adı artık \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Kilidi aç</string>

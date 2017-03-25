@@ -352,7 +352,6 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Hai ricevuto un messaggio cifrato usando una vecchia versione di Signal che non è più supportata. Ti preghiamo di chiedere al mittente di aggiornare l\'app e rimandare il messaggio.</string>
   <string name="MessageRecord_left_group">Hai lasciato il gruppo.</string>
-  <string name="MessageRecord_updated_group">Gruppo aggiornato.</string>
   <string name="MessageRecord_s_called_you">%s ti ha chiamato</string>
   <string name="MessageRecord_called_s">Hai chiamato %s</string>
   <string name="MessageRecord_missed_call_from">Chiamata persa da %s</string>
@@ -585,7 +584,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Il codice di sicurezza per le tue conversazioni con %1$s è cambiato. Questo può significare che qualcuno sta provando ad intercettare la tua comunicazione, oppure che %2$s ha semplicemente reinstallato Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Dovresti verificare il numero sicuro con questo contatto.</string>
-  <string name="WebRtcCallScreen_new_safety_numbers_title">Numeri sicuri nuovi</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Nuovo numero sicuro.</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Tocca per abilitare il tuo video</string>
   <!--attachment_type_selector-->
@@ -705,6 +704,9 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Cerca GIF ed adesivi</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Non trovato</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Esporta</string>
+  <string name="import_export_fragment__import">Importa</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Non è possibile leggere i log dal tuo dispositivo. Puoi provare ad usare ADB per ottenere i log di debug</string>
   <string name="log_submit_activity__thanks">Grazie dell\'aiuto!</string>
@@ -740,7 +742,6 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
     <item quantity="one">%1$s fa ora parte del gruppo.</item>
     <item quantity="other">%1$s fanno ora parte del gruppo.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Gruppo aggiornato.</string>
   <string name="GroupUtil_group_name_is_now">Il nome del gruppo è ora \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Sblocca</string>

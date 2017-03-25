@@ -363,7 +363,8 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Egy üzenet érkezett a Signal egy régebbi verziójával titkosítva, ami már nem támogatott. Kérlek kérd meg a küldőt, hogy frissítsen a legfrissebb verzióra és küldje újra az üzenetet.</string>
   <string name="MessageRecord_left_group">Elhagytad a csoportot.</string>
-  <string name="MessageRecord_updated_group">A csoport frissítése megtörtént.</string>
+  <string name="MessageRecord_you_updated_group">Frissítetted a csoportot.</string>
+  <string name="MessageRecord_s_updated_group">%s frissítette a csoportot.</string>
   <string name="MessageRecord_s_called_you">%s hívott téged</string>
   <string name="MessageRecord_called_s">Hívtad: %s</string>
   <string name="MessageRecord_missed_call_from">Nem fogadott hívás tőle: %s</string>
@@ -513,6 +514,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="SmsMessageRecord_secure_session_reset_s">%s alaphelyzetbe állította a biztonságos munkamenetet.</string>
   <string name="SmsMessageRecord_duplicate_message">Üzenet duplikálása.</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_group_updated">Csoport frissítve</string>
   <string name="ThreadRecord_left_the_group">Elhagyta a csoportot</string>
   <string name="ThreadRecord_secure_session_reset">Biztonságos munkamenet alaphelyzetbe állítása.</string>
   <string name="ThreadRecord_draft">Piszkozat:</string>
@@ -606,7 +608,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
     </string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Érdemes lenne ellenőrizned a biztonsági számodat ezzel a kontakttal.
     </string>
-  <string name="WebRtcCallScreen_new_safety_numbers_title">Új biztonsági számok</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Új biztonsági szám</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Érints a videód engedélyezéséhez</string>
   <!--attachment_type_selector-->
@@ -726,6 +728,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFek és matricák keresése</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nincs találat</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Exportálás</string>
+  <string name="import_export_fragment__import">Importálás</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Nem lehet olvasni a naplót a készülékeden. Ehelyett még mindig használhatsz ADB-t, hogy kapj hibakeresési naplót.</string>
   <string name="log_submit_activity__thanks">Köszönjük a segítségedet!</string>
@@ -756,12 +761,12 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">ELLENŐRZÉS</string>
   <string name="message_recipients_list_item__resend">ÚJRAKÜLDÉS</string>
+  <string name="message_recipients_list_item__resending">Újraküldés...</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s csatlakozott a csoporthoz.</item>
     <item quantity="other">%1$s csatlakozott a csoporthoz.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Csoport frissítve.</string>
   <string name="GroupUtil_group_name_is_now">A csoport neve most \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Feloldás</string>

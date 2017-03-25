@@ -239,9 +239,9 @@ public class DirectoryHelper {
         if (insertResult.isPresent()) {
           int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
           if (hour >= 9 && hour < 23) {
-            MessageNotifier.updateNotification(context, masterSecret, false, insertResult.get().getThreadId(), true);
+            MessageNotifier.updateNotification(context, masterSecret, insertResult.get().getThreadId(), true);
           } else {
-            MessageNotifier.updateNotification(context, masterSecret, false, insertResult.get().getThreadId(), false);
+            MessageNotifier.updateNotification(context, masterSecret, insertResult.get().getThreadId(), false);
           }
         }
       }

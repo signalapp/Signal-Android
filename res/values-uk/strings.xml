@@ -350,7 +350,6 @@
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Отримано повідомлення, яке зашифроване старою версією Signal, яка вже не підтримується. Попросіть друга оновитися до останньої версії та надіслати повідомлення знову.</string>
   <string name="MessageRecord_left_group">Ви покинули групу.</string>
-  <string name="MessageRecord_updated_group">Групу оновлено.</string>
   <string name="MessageRecord_s_called_you">%s вам телефонував/-ла</string>
   <string name="MessageRecord_called_s">Телефонували %s</string>
   <string name="MessageRecord_missed_call_from">Пропущено виклик від %s</string>
@@ -569,6 +568,7 @@
   <!--VideoPlayer-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Можливо, ви хочете перевірити ваш номер безпеки із цим контактом.</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Новий номер безпеки</string>
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Зображення</string>
@@ -689,6 +689,9 @@
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Пошук GIF та наліпок</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Нічого не знайдено</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Експорт</string>
+  <string name="import_export_fragment__import">Імпорт</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Помилка читання журналу відлагодження з вашого пристрою. Ви також можете використати ADB для отримання журналу.</string>
   <string name="log_submit_activity__thanks">Дякуємо за вашу допомогу!</string>
@@ -724,7 +727,6 @@
     <item quantity="few">%1$s приєдналися до групи.</item>
     <item quantity="other">%1$s приєдналися до групи.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Групу оновлено.</string>
   <string name="GroupUtil_group_name_is_now">Назва групи тепер \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Розблокувати</string>

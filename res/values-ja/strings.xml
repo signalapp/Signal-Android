@@ -334,7 +334,6 @@
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">受信したメッセージは古いSignalで暗号化されているので解読不能です。Signalを最新版にして再送するよう送信者にお願いしてください。</string>
   <string name="MessageRecord_left_group">グループを抜けました</string>
-  <string name="MessageRecord_updated_group">グループを更新しました</string>
   <string name="MessageRecord_s_called_you">%sから着信</string>
   <string name="MessageRecord_called_s">%sに発信</string>
   <string name="MessageRecord_missed_call_from">%sから不在着信</string>
@@ -562,7 +561,7 @@
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">%1$sとの会話の安全番号に変更があります。誰かが通信を傍受している可能性もありますし，%2$sがSignalを再インストールしただけかも知れません。</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">この連絡先との安全番号を確認しておいた方がいいかも知れません。</string>
-  <string name="WebRtcCallScreen_new_safety_numbers_title">新しい安全番号</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">新しい安全番号</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">タップして動画を有効する</string>
   <!--attachment_type_selector-->
@@ -677,6 +676,9 @@
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFやステッカーを検索</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">何も見つかりませんでした</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">エクスポート</string>
+  <string name="import_export_fragment__import">インポート</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">デバイス上のログを読めません。ただしADBを使ってデバッグログを読むことはできます。</string>
   <string name="log_submit_activity__thanks">提出どうもありがとうございます！</string>
@@ -711,7 +713,6 @@
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">%1$sがグループに加わりました</item>
   </plurals>
-  <string name="GroupUtil_group_updated">グループ更新</string>
   <string name="GroupUtil_group_name_is_now">グループ名が「%1$s」になりました</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">ロック解除</string>

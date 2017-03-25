@@ -70,7 +70,7 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Przychodzące połączenie</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Numer bezpieczeństwa z %1$s zmienił się. To może oznaczać, że ktoś próbuje przechwycić Twoją komunikację lub że po prostu %2$s przeinstalował Signal. </string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Numer bezpieczeństwa z %1$s zmienił się. To może oznaczać, że ktoś próbuje przechwycić Twoją komunikację, lub że po prostu %2$s przeinstalował Signal. </string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Możesz zweryfikować numer bezpieczeństwa z tym kontaktem.</string>
   <string name="ConfirmIdentityDialog_accept">Akceptuj</string>
   <!--ContactsDatabase-->
@@ -269,6 +269,10 @@
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Witamy w Signal!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure nazywa się teraz Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure i RedPhone są teraz jedną aplikacją: Signal. Dotknij, aby dowiedzieć się więcej.</string>
+  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Powitaj bezpieczne rozmowy wideo.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal wspiera teraz bezpieczne rozmowy wideo. Rozpocznij połączenie tak jak zawsze, dotknij przycisk wideo i pomachaj na powitanie.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal wspiera teraz bezpieczne rozmowy wideo.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal wspiera teraz bezpieczne rozmowy wideo. Dotknij, aby dowiedzieć się więcej.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Eksport</string>
   <string name="ExportFragment_export_plaintext_to_storage">Wyeksportować nieszyfrowaną kopię na dysk?</string>
@@ -365,7 +369,7 @@ Stracisz wszystkie informacje obecnie zawarte w aplikacji Signal z wyjątkiem ty
   <string name="MessageDetailsRecipient_new_safety_number">Nowy numer bezpieczeństwa</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
-  <string name="MessageRetrievalService_background_connection_enabled">Włączone połączenie w tle</string>
+  <string name="MessageRetrievalService_background_connection_enabled">Połączenie w tle jest włączone</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Błąd przechowywania MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Błąd połączenia z dostawcą usług MMS</string>
@@ -383,11 +387,12 @@ Stracisz wszystkie informacje obecnie zawarte w aplikacji Signal z wyjątkiem ty
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Wiadomość multimedialna</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Pobieranie wiadomości MMS</string>
-  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Błąd podczas pobierania wiadomości  MMS. Dotknij, aby ponowić.</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Błąd podczas pobierania wiadomości MMS. Dotknij, aby spróbować ponownie.</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Otrzymano wiadomość szyfrowaną. Wiadomość ta została wysłana przy użyciu starej wersji Signal, która nie jest już wspierana. Poproś nadawcę tej wiadomości o aktualizacje aplikacji do najnowszej wersji i przesłanie wiadomości ponownie.</string>
   <string name="MessageRecord_left_group">Opuściłeś grupę.</string>
-  <string name="MessageRecord_updated_group">Zaktualizowano grupę.</string>
+  <string name="MessageRecord_you_updated_group">Zaktualizowałeś grupę.</string>
+  <string name="MessageRecord_s_updated_group">%s zaktualizował grupę.</string>
   <string name="MessageRecord_s_called_you">%s dzwonił do Ciebie</string>
   <string name="MessageRecord_called_s">Zadzwoniono do %s</string>
   <string name="MessageRecord_missed_call_from">Nieodebrane połączenie od %s</string>
@@ -414,13 +419,13 @@ Stracisz wszystkie informacje obecnie zawarte w aplikacji Signal z wyjątkiem ty
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nie znaleziono żadnych urządzeń.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Błąd sieci.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Niepoprawny kod QR.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Masz zbyt dużo powiązanych urządzeń, spróbuj usunąć któreś z nich</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Masz zbyt dużo powiązanych urządzeń, spróbuj usunąć któreś z nich zanim spróbujesz ponownie</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Przepraszamy, ale to nie jest prawidłowy link QR.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Dodać nowe urządzenie Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Wygląda na to, że próbujesz dodać urządzenie Signal używając nieznanego skanera 3ciej partii. Dla Twojego bezpieczeństwa, prosimy abyś zeskanował kod używając Signal.</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Znikające wiadomości</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Twoje wiadomości nie wygasają.</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">Twoje wiadomości nie wygasną.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Wiadomości wysłane i odebrane w tej konwersacji znikną %s po odczytaniu.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Podaj hasło</string>
@@ -445,7 +450,7 @@ Stracisz wszystkie informacje obecnie zawarte w aplikacji Signal z wyjątkiem ty
   <string name="RecipientPreferenceActivity_unblock">Odblokuj</string>
   <string name="RecipientPreferenceActivity_enabled">Włączone</string>
   <string name="RecipientPreferenceActivity_disabled">Wyłączone</string>
-  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Dostępne po wysłaniu lub odebraniu wiadomości</string>
+  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Dostępne po wysłaniu lub odebraniu wiadomości.</string>
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Grupa bez nazwy</string>
   <!--RedPhone-->
@@ -483,10 +488,10 @@ Upewnij się, że to jest Twój numer! Zamierzamy zweryfikować go SMSem.
   <string name="RegistrationActivity_continue">Kontynuuj</string>
   <string name="RegistrationActivity_edit">Edytuj</string>
   <string name="RegistrationActivity_missing_google_play_services">Brak Usług Google Play</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Brak Usług Google Play. Nadal możesz używać Signal, lecz ta konfiguracja może skutkować mniejszą niezawodnością i wydajnością.\n\nJeśli nie jesteś zaawansowanym użytkownikiem, nie korzystasz ze zmodyfikowanego Androida, lub jeśli sądzisz, że to błąd, wyślij email na support@whispersystems.org, aby otrzymać pomoc.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Brak Usług Google Play na tym urządzeniu. Nadal możesz używać Signal, lecz ta konfiguracja może skutkować mniejszą niezawodnością i wydajnością.\n\nJeśli nie jesteś zaawansowanym użytkownikiem, nie korzystasz ze zmodyfikowanego Androida, lub jeśli sądzisz, że to błąd, wyślij email na support@whispersystems.org, aby otrzymać pomoc.</string>
   <string name="RegistrationActivity_i_understand">Rozumiem</string>
   <string name="RegistrationActivity_play_services_error">Błąd Usług Play</string>
-  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Trwa aktualizacja Usług Sklepu Play lub są one niedostępne. Spróbuj ponownie.</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Trwa aktualizacja Usług Sklepu Google Play lub są one niedostępne. Spróbuj ponownie.</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Możliwe problemy</string>
   <!--RegistrationProgressActivity-->
@@ -528,6 +533,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s zresetował bezpieczną sesję.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplikuj wiadomość.</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_group_updated">Grupa zaktualizowana</string>
   <string name="ThreadRecord_left_the_group">Opuścił grupę</string>
   <string name="ThreadRecord_secure_session_reset">Reset bezpiecznej sesji.</string>
   <string name="ThreadRecord_draft">Szkic:</string>
@@ -539,6 +545,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Czas znikania wiadomości ustawiony na %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Twój numer bezpieczeństwa z %s zmienił się.</string>
   <!--UpdateApkReadyListener-->
+  <string name="UpdateApkReadyListener_Signal_update">Aktualizacja Signal</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Dostępna jest nowa wersja Signal. Dotknij, aby zaktualizować</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Twój kontakt używa starej wersji Signal. Poproś go o aktualizację przed weryfikacją twojego bezpiecznego numeru.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Twój kontakt używa nowszej wersji Signal z niekompatybilnym formatem kodu QR. Zaktualizuj, by porównać.</string>
@@ -589,7 +597,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nowych wiadomości w %2$d rozmowach</string>
   <string name="MessageNotifier_most_recent_from_s">Najnowsza z: %1$s</string>
-  <string name="MessageNotifier_locked_message">Wiadomość zablokowana</string>
+  <string name="MessageNotifier_locked_message">Wiadomość zamknięta</string>
   <string name="MessageNotifier_media_message_with_text">Wiadomość multimedialna: %s</string>
   <string name="MessageNotifier_no_subject">(Brak tematu)</string>
   <string name="MessageNotifier_message_delivery_failed">Nie udało się dostarczyć wiadomości.</string>
@@ -615,9 +623,9 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Błąd przy odtwarzaniu filmu</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">Numer bezpieczeństwa dla konwersacji z %1$s zmienił się. To może oznaczać, że ktoś próbuje przechwycić Twoją komunikację lub że po prostu %2$s przeinstalował Signal.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers">Numer bezpieczeństwa dla konwersacji z %1$s zmienił się. To może oznaczać, że ktoś próbuje przechwycić Twoją komunikację, lub po prostu %2$s przeinstalował Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Możesz zweryfikować numer bezpieczeństwa z tym kontaktem.</string>
-  <string name="WebRtcCallScreen_new_safety_numbers_title">Nowy numer bezpieczeństwa</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Nowy numer bezpieczeństwa</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Dotnij, aby włączyć wideo</string>
   <!--attachment_type_selector-->
@@ -687,7 +695,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="conversation_item_received__downloading">Pobieranie</string>
   <!--audio_view-->
   <string name="audio_view__play_accessibility_description">Odtwórz</string>
-  <string name="audio_view__pause_accessibility_description">Zatrzymaj</string>
+  <string name="audio_view__pause_accessibility_description">Pauza</string>
   <string name="audio_view__download_accessibility_description">Pobierz</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Tryb wyboru grupy</string>
@@ -747,6 +755,9 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Szukaj gifów i naklejek</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nic nie znaleziono</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Eksport</string>
+  <string name="import_export_fragment__import">Import</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Nie udało się otworzyć dziennika na tym urządzeniu. Mimo tego, nadal możesz używać ADB aby wyświetlić dziennik debugowania.</string>
   <string name="log_submit_activity__thanks">Dziękujemy za Twoją pomoc!</string>
@@ -777,6 +788,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">WERYFIKUJ</string>
   <string name="message_recipients_list_item__resend">WYŚLIJ PONOWNIE</string>
+  <string name="message_recipients_list_item__resending">Ponowne wysyłanie...</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s dołączył do grupy.</item>
@@ -784,7 +796,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
     <item quantity="many">%1$s dołączył do grupy.</item>
     <item quantity="other">%1$s dołączył do grupy.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Grupa została zaktualizowana.</string>
   <string name="GroupUtil_group_name_is_now">Aktualna nazwa grupy to \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Odblokuj</string>
@@ -861,7 +872,7 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="recipients_panel__to">Wprowadź nazwę lub numer kontaktu</string>
   <string name="recipients_panel__add_members">Dodaj uczestników</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Jeśli chcesz zweryfikować bezpieczeństwo szyfrowania end-to-end z %s, porównaj numer powyżej z numerem na jego urządzeniu. Możesz również zeskanować kod na jego telefonie lub poprosić o zeskanowanie twojego kodu. <a href="https://whispersystems.org/redirect/safety-numbers">Dowiedz się więcej o weryfikacji numeru bezpieczeństwa</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Jeśli chcesz zweryfikować bezpieczeństwo szyfrowania end-to-end z %s, porównaj numer powyżej z numerem na jego urządzeniu. Możesz również zeskanować kod na jego telefonie lub, poprosić o zeskanowanie twojego kodu. <a href="https://whispersystems.org/redirect/safety-numbers">Dowiedz się więcej o weryfikacji numeru bezpieczeństwa</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Dotknij aby zeskanować</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Podziel się numerem bezpieczeństwa</string>
@@ -1020,8 +1031,8 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="preferences_advanced__use_system_emoji">Używaj emoji systemu</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Wyłącz wbudowane wspomaganie emoji Signal</string>
   <string name="preferences_advanced__video_calling_beta">Rozmowy wideo beta</string>
-  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Wsparcie dla rozmów wideo i audio następnej generacji, gdy aktywowane przez obu rozmówców. Funkcja w fazie testów.</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Przekazuj połączenia do serwerów Signal, aby uniknąć ujawnienia IP swoim kontaktom. Włączenie tej opcji pogorszy jakość połączenia.</string>
+  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Wsparcie dla rozmów wideo i audio następnej generacji, gdy jest aktywowane przez obu rozmówców. Funkcja jest w fazie testów.</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Przekazuj połączenia do serwerów Signal, aby uniknąć ujawnienia swojego IP swoim kontaktom. Włączenie tej opcji pogorszy jakość połączenia.</string>
   <string name="preferences_advanced__always_relay_calls">Zawsze przekazuj połączenia</string>
   <!--****************************************-->
   <!--menus-->
@@ -1049,9 +1060,9 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Zapisz załącznik</string>
   <!--conversation_expiring_off-->
-  <string name="conversation_expiring_off__disappearing_messages">Wygasające wiadomości</string>
+  <string name="conversation_expiring_off__disappearing_messages">Znikające wiadomości</string>
   <!--conversation_expiring_on-->
-  <string name="menu_conversation_expiring_on__messages_expiring">Wiadomości wygasają</string>
+  <string name="menu_conversation_expiring_on__messages_expiring">Wiadomości wygasające</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Zaproś</string>
   <!--conversation_insecure_no_push-->

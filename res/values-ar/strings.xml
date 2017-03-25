@@ -388,7 +388,6 @@
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">لقد استلمت رسالة مشفرة من إصدارة سيجنال قديمة وتوقف دعمها. من فضلك اطلب من الراسل الترقية إلي أحدث إصدار وإعادة إرسال الرسالة.</string>
   <string name="MessageRecord_left_group">لقد تركت المجموعة.</string>
-  <string name="MessageRecord_updated_group">تم تحديث المجموعة.</string>
   <string name="MessageRecord_s_called_you">%s قام بالاتصال</string>
   <string name="MessageRecord_called_s">%s قام بالاتصال</string>
   <string name="MessageRecord_missed_call_from">مكالمة فائتة من %s</string>
@@ -603,6 +602,7 @@
   <!--VideoPlayer-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">لربما ترغب بالتحقق من رقم الأمان مع هذا المتصل.</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">رقم أمان جديد</string>
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">صورة</string>
@@ -730,6 +730,9 @@
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">ابحث في صور GIF واللصاقات</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">لا يوجد شيء</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">تصدير</string>
+  <string name="import_export_fragment__import">استيراد</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">تعذر التقاط السجلات من هاتفك. يمكنك استخدام ADB للحصول على سجل التشغيل  بدلا من ذلك.</string>
   <string name="log_submit_activity__thanks">شكرا للمساعدة!</string>
@@ -768,7 +771,6 @@
     <item quantity="many">%1$s انضموا إلى المجموعة.</item>
     <item quantity="other">%1$s انضموا إلى المجموعة.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">تم تحديث المجموعة.</string>
   <string name="GroupUtil_group_name_is_now">أسم المجموعة الآن \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">فتح القفل</string>

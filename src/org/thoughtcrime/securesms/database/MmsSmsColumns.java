@@ -17,6 +17,7 @@ public interface MmsSmsColumns {
   public static final String SUBSCRIPTION_ID          = "subscription_id";
   public static final String EXPIRES_IN               = "expires_in";
   public static final String EXPIRE_STARTED           = "expire_started";
+  public static final String NOTIFIED                 = "notified";
 
   public static class Types {
     protected static final long TOTAL_MASK = 0xFFFFFFFF;
@@ -41,7 +42,8 @@ public interface MmsSmsColumns {
     protected static final long[] OUTGOING_MESSAGE_TYPES = {BASE_OUTBOX_TYPE, BASE_SENT_TYPE,
                                                             BASE_SENDING_TYPE, BASE_SENT_FAILED_TYPE,
                                                             BASE_PENDING_SECURE_SMS_FALLBACK,
-                                                            BASE_PENDING_INSECURE_SMS_FALLBACK};
+                                                            BASE_PENDING_INSECURE_SMS_FALLBACK,
+                                                            OUTGOING_CALL_TYPE};
 
     // Message attributes
     protected static final long MESSAGE_ATTRIBUTE_MASK = 0xE0;

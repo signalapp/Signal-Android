@@ -335,7 +335,6 @@ fører dette til dupliserte meldinger.</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Mottatt en melding som er kryptert med en gammel versjon av Signal som ikke lenger støttes. Be avsenderen om å oppdatere til nyeste versjon og sende meldinga på nytt.</string>
   <string name="MessageRecord_left_group">Du har forlatt gruppa.</string>
-  <string name="MessageRecord_updated_group">Oppdatert gruppe.</string>
   <string name="MessageRecord_s_called_you">%s ringte deg</string>
   <string name="MessageRecord_called_s">Ringte %s</string>
   <string name="MessageRecord_missed_call_from">Tapt anrop fra %s</string>
@@ -556,6 +555,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--VideoPlayer-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Du ønsker kanskje å bekrefte din sikkerhets nummer med denne kontakten.</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Ny sikkerhets nummer</string>
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Bilde</string>
@@ -671,6 +671,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Søk GIFs og klistremerker</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Ingenting funnet</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Eksportr</string>
+  <string name="import_export_fragment__import">Importer</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Klarte ikke å lese enhetslogg. Du kan fortsatt bruke ADB for å få en feilsøkingslogg i stedet.</string>
   <string name="log_submit_activity__thanks">Takk for hjelpen!</string>
@@ -706,7 +709,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
     <item quantity="one">%1$s ble med i gruppa.</item>
     <item quantity="other">%1$s ble med i gruppa.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Gruppe oppdatert.</string>
   <string name="GroupUtil_group_name_is_now">Gruppenavnet er nå «%1$s».</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Lås opp</string>

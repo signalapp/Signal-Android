@@ -90,6 +90,7 @@
 
     <application android:name=".ApplicationContext"
                  android:icon="@drawable/icon"
+                 android:roundIcon="@drawable/icon_circle"
                  android:label="@string/app_name"
                  android:supportsRtl="true"
                  tools:replace="android:allowBackup"
@@ -109,13 +110,6 @@
 
     <meta-data android:name="com.google.android.gms.car.application"
                android:resource="@xml/automotive_app_desc" />
-
-    <activity android:name="org.thoughtcrime.redphone.RedPhone"
-              android:excludeFromRecents="true"
-              android:screenOrientation="portrait"
-              android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|fontScale"
-              android:launchMode="singleTask">
-    </activity>
 
     <activity android:name="org.thoughtcrime.securesms.WebRtcCallActivity"
               android:excludeFromRecents="true"
@@ -260,7 +254,7 @@
     <activity android:name=".PassphraseCreateActivity"
               android:label="@string/AndroidManifest__create_passphrase"
               android:windowSoftInputMode="stateUnchanged"
-              android:theme="@style/TextSecure.LightIntroTheme"
+              android:theme="@style/TextSecure.LightNoActionBar"
               android:launchMode="singleTask"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
@@ -356,7 +350,7 @@
         </intent-filter>
     </activity>
 
-    <activity android:name="org.thoughtcrime.redphone.VoiceCallShare"
+    <activity android:name="org.thoughtcrime.securesms.webrtc.VoiceCallShare"
               android:excludeFromRecents="true"
               android:theme="@style/NoAnimation.Theme.BlackScreen"
               android:launchMode="singleTask"
@@ -389,7 +383,6 @@
 
     <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
 
-    <service android:enabled="true" android:name="org.thoughtcrime.redphone.RedPhoneService"/>
     <service android:enabled="true" android:name="org.thoughtcrime.securesms.service.WebRtcCallService"/>
 
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>
@@ -544,9 +537,9 @@
         </intent-filter>
     </receiver>
 
-    <receiver android:name=".notifications.MessageNotifier$DeleteReceiver">
+    <receiver android:name=".notifications.DeleteNotificationReceiver">
         <intent-filter>
-            <action android:name="org.thoughtcrime.securesms.MessageNotifier.DELETE_REMINDER_ACTION"/>
+            <action android:name="org.thoughtcrime.securesms.DELETE_NOTIFICATION"/>
         </intent-filter>
     </receiver>
 

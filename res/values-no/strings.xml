@@ -322,7 +322,6 @@ Innlasting av en kryptert backup vil erstatte dine eksisterende nøkler, prefera
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Mottatt en melding kryptert med en gammel versjon av Signal som ikke lenger støttes. Vennligst be avsenderen om å oppdatere til den nyeste versjonen og sende meldingen på nytt.</string>
   <string name="MessageRecord_left_group">Du har forlatt gruppen.</string>
-  <string name="MessageRecord_updated_group">Gruppen er oppdatert.</string>
   <string name="MessageRecord_s_called_you">%s ringte deg</string>
   <string name="MessageRecord_called_s">Ringte %s</string>
   <string name="MessageRecord_missed_call_from">Ubesvart anrop fra %s</string>
@@ -622,6 +621,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="expiration_weeks_abbreviated">%du</string>
   <!--giphy_activity-->
   <!--giphy_fragment-->
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Eksportere</string>
+  <string name="import_export_fragment__import">Importere</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Kunne ikke lese loggen fra din enhet. Du kan fremdeles bruke ADB for å hente ut en debug logg.</string>
   <string name="log_submit_activity__thanks">Takk for hjelpen!</string>
@@ -656,7 +658,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
     <item quantity="one">%1$s ble med i gruppen.</item>
     <item quantity="other">%1$s ble med i gruppen.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Gruppen er oppdatert.</string>
   <string name="GroupUtil_group_name_is_now">Gruppenavnet er nå \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Lås opp</string>

@@ -22,9 +22,9 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">這將會永久性地解鎖 Signal 與訊息通知。</string>
   <string name="ApplicationPreferencesActivity_disable">停用</string>
   <string name="ApplicationPreferencesActivity_unregistering">取消註冊</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">取消註冊Signal訊息與通話...</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">停用Signal訊息與通話?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">這將會從伺服器上登出您的Signal並停用。 未來如果還想使用該功能，則需要再次註冊。</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">取消註冊 Signal 訊息與通話...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">停用 Signal 訊息與通話?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">這將會從伺服器上登出您的 Signal 並停用。 未來如果還想使用該功能，則需要再次註冊。</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">與伺服器的連線發生錯誤！</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">簡訊功能已啟動</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">按此以變更您預設的簡訊應用</string>
@@ -221,6 +221,10 @@
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">歡迎來到 Signal！</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure 已命名為 Signal。</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">從現在起 TextSecure 與 RedPhone 將會是同一個應用程式：Signal。輕觸以開始探索。</string>
+  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">向安全的視訊通話打聲招呼，說聲嗨。</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">現在 Signal 支援了安全的視訊通話。就如同開始 Signal 通話一樣，輕觸視訊按鈕，接著揮手打聲招呼。</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">現在 Signal 支援安全的視訊通話。</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">現在 Signal 支援安全的視訊通話。輕觸探索。</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">匯出</string>
   <string name="ExportFragment_export_plaintext_to_storage">匯出純文字格式至儲存裝置？</string>
@@ -338,7 +342,8 @@
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">收到一則使用舊版本並已經不再支援的 Signal 加密訊息。請尋求傳送人將 Signal 升級到最新的版本並再次傳送該訊息。</string>
   <string name="MessageRecord_left_group">您已經離開了此群組。</string>
-  <string name="MessageRecord_updated_group">已更新群組。</string>
+  <string name="MessageRecord_you_updated_group">你已更新群組。</string>
+  <string name="MessageRecord_s_updated_group">%s 更新了群組。</string>
   <string name="MessageRecord_s_called_you">%s 呼叫您</string>
   <string name="MessageRecord_called_s">已呼叫 %s</string>
   <string name="MessageRecord_missed_call_from">來自 %s 的未接來電</string>
@@ -483,6 +488,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%s 重設安全對話。</string>
   <string name="SmsMessageRecord_duplicate_message">複製訊息。</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_group_updated">群組已更新</string>
   <string name="ThreadRecord_left_the_group">已離開群組</string>
   <string name="ThreadRecord_secure_session_reset">安全對話已重設。</string>
   <string name="ThreadRecord_draft">草稿：</string>
@@ -494,6 +500,8 @@
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">訊息銷毀時間設置爲 %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">您與 %s 的安全碼已改變。</string>
   <!--UpdateApkReadyListener-->
+  <string name="UpdateApkReadyListener_Signal_update">Signal 更新</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">有新版本的 Signal，輕觸更新</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">您的聯絡人使用的是舊版本的 Signal。在驗證您的安全碼前請尋求對方先進行更新。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">您的聯絡人使用的是新版本的 Signal，程式無法識別這個聯絡人的二維碼。
@@ -573,9 +581,9 @@
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">%1$s 的安全碼產生變動。這有可能是有不明人士試圖攔截您的通訊／對話內容，或是因為 %2$s 重新安裝 Signal。</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">您可能希望驗證這名聯絡人的安全碼。</string>
-  <string name="WebRtcCallScreen_new_safety_numbers_title">新的安全碼</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">新的安全碼</string>
   <!--WebRtcCallControls-->
-  <string name="WebRtcCallControls_tap_to_enable_your_video">輕觸開啟你的語音</string>
+  <string name="WebRtcCallControls_tap_to_enable_your_video">輕觸開啟你的視訊</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">圖片</string>
   <string name="attachment_type_selector__image_description">圖片</string>
@@ -688,6 +696,9 @@
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">搜尋動態圖檔與貼圖</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">未找到任何東西</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">匯出</string>
+  <string name="import_export_fragment__import">匯入</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">無法在您的設備上讀取日誌。您仍然可以使用 ADB 來獲得偵錯紀錄。</string>
   <string name="log_submit_activity__thanks">感謝您的協助！</string>
@@ -718,11 +729,11 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">驗證</string>
   <string name="message_recipients_list_item__resend">重新傳送</string>
+  <string name="message_recipients_list_item__resending">重送中...</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">%1$s 加入了群組。</item>
   </plurals>
-  <string name="GroupUtil_group_updated">群組已更新。</string>
   <string name="GroupUtil_group_name_is_now">群組現在名為 \'%1$s\'。</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">解鎖</string>
@@ -951,7 +962,7 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="preferences__theme">主題</string>
   <string name="preferences__default">預設</string>
   <string name="preferences__language">語言選項</string>
-  <string name="preferences__signal_messages_and_calls">Signal訊息與通話</string>
+  <string name="preferences__signal_messages_and_calls">Signal 訊息與通話</string>
   <string name="preferences__free_private_messages_and_calls">免費加密訊息與通話至 Signal 使用者</string>
   <string name="preferences__submit_debug_log">送出偵錯紀錄</string>
   <string name="preferences__support_wifi_calling">\"WiFi 呼叫\"相容模式</string>
@@ -967,8 +978,8 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="preferences_chats__message_trimming">訊息整理</string>
   <string name="preferences_advanced__use_system_emoji">使用系統表情符號</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">停用 Signal 內建的表情支援</string>
-  <string name="preferences_advanced__video_calling_beta">語音通話測試版本</string>
-  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">當雙方啟動時，會支援下一代語音通話。此功能是測試版本。</string>
+  <string name="preferences_advanced__video_calling_beta">視訊通話測試版本</string>
+  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">當雙方啟動時，會支援下一代視訊、語音通話。此功能是測試版本。</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">透過 Signal 伺服器轉發通話，來避免透露你的 IP 位址給你的聯絡人。啟用時，會降低通話品質。</string>
   <string name="preferences_advanced__always_relay_calls">永遠轉發通話</string>
   <!--****************************************-->

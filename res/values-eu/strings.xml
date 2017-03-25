@@ -208,12 +208,14 @@
   <string name="CustomDefaultPreference_using_default">Lehenetsia: %s</string>
   <string name="CustomDefaultPreference_none">Bat ere ez</string>
   <!--DateUtils-->
+  <string name="DateUtils_just_now">Momentu honetan</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <string name="DateUtils_today">Gaur</string>
   <string name="DateUtils_yesterday">Atzo</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">\'%s\'-rekin lotura ezabatu?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Gailu hau desparekatu ondoren ezin ditzakezu mezuak bidal eta jaso.</string>
+  <string name="DeviceListActivity_network_connection_failed">Internetera konektatzen huts egin du</string>
   <string name="DeviceListActivity_try_again">Saiatu berriro</string>
   <string name="DeviceListActivity_unlinking_device">Gailuarekin lotura ezabatzen...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Gailuarekin lotura ezabatzen</string>
@@ -345,7 +347,6 @@ Babeskopia hau lehenago inportatu baduzu, mezu bikoiztuak sor daitezke.
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Signal bertsio zaharregitik jaso da mezu zifratua.  Eskatu igorleari birbidaltzeko mesedez bere Signal egiaztatu ondoren.</string>
   <string name="MessageRecord_left_group">Taldea utzi duzu.</string>
-  <string name="MessageRecord_updated_group">Taldea eguneratuta.</string>
   <string name="MessageRecord_s_called_you">%s-(e)k deitu dizu</string>
   <string name="MessageRecord_called_s">%s-(e)ri deitu duzu</string>
   <string name="MessageRecord_missed_call_from">%s-en erantzun gabeko deia</string>
@@ -484,6 +485,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="SmsMessageRecord_secure_session_reset_s">%s berrezarri saio segurua.</string>
   <string name="SmsMessageRecord_duplicate_message">Mezu bikoiztua.</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_left_the_group">Taldea utzi duzu</string>
   <string name="ThreadRecord_secure_session_reset">Saio segurua berrezarri da.</string>
   <string name="ThreadRecord_draft">Zirriborroa:</string>
   <string name="ThreadRecord_called">Deitu duzu</string>
@@ -531,9 +533,11 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="MediaPreviewActivity_you">Zu</string>
   <string name="MediaPreviewActivity_cant_display">Ezgai irudi honen aurrebista sortzeko</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Euskarri mota ez-onartua</string>
+  <string name="MediaPreviewActivity_draft">Zirriborroa</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d mezu berri %2$d solasalditan</string>
   <string name="MessageNotifier_most_recent_from_s">Berriena %1$s-(e)tik</string>
+  <string name="MessageNotifier_locked_message">Mezua blokeatuta</string>
   <string name="MessageNotifier_media_message_with_text">Multimedia mezua: %s</string>
   <string name="MessageNotifier_no_subject">(Ez dago gairik)</string>
   <string name="MessageNotifier_message_delivery_failed">Mezuaren banaketak huts egin du.</string>
@@ -559,15 +563,23 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--VideoPlayer-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Agian zure segurasun zenbakia kontatu honekin baieztatu nahi duzu.</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Segurtasun zenbaki berria</string>
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Irudia</string>
+  <string name="attachment_type_selector__image_description">Irudia</string>
   <string name="attachment_type_selector__audio">Audioa</string>
+  <string name="attachment_type_selector__audio_description">Audioa</string>
   <string name="attachment_type_selector__video">Bideoa</string>
   <string name="attachment_type_selector__video_description">Bideoa</string>
   <string name="attachment_type_selector__contact">Kontaktua</string>
+  <string name="attachment_type_selector__contact_description">Kontaktua</string>
   <string name="attachment_type_selector__camera">Kamera</string>
+  <string name="attachment_type_selector__camera_description">Kamera</string>
   <string name="attachment_type_selector__location">Kokalekua</string>
+  <string name="attachment_type_selector__location_description">Kokalekua</string>
+  <string name="attachment_type_selector__gif">GIF</string>
+  <string name="attachment_type_selector__gif_description">Gif</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Aurreko pasahitza</string>
   <string name="change_passphrase_activity__new_passphrase">Pasahitz berria</string>
@@ -615,6 +627,9 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="conversation_item_received__contact_photo_description">Kontaktuaren argazkia</string>
   <string name="conversation_item_received__downloading">Behera kargatzen</string>
   <!--audio_view-->
+  <string name="audio_view__play_accessibility_description">Play</string>
+  <string name="audio_view__pause_accessibility_description">Pausatu</string>
+  <string name="audio_view__download_accessibility_description">Deskargatu</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Batch hautatzeko modua</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s hautatua</string>
@@ -661,6 +676,9 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIF eta eranskailuak bilatu</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Ez da ezer aurkitu</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Esportatu</string>
+  <string name="import_export_fragment__import">Inportatu</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Ezin izan da gailuko erregistroa irakurri.  Dena den, ordenagailuko ADB programa erabil dezakezu arazketa-erregistroa eskuratzeko.</string>
   <string name="log_submit_activity__thanks">Eskerrik asko zure laguntzagatik!</string>
@@ -697,7 +715,6 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
     <item quantity="one">%1$s taldean sartu da.</item>
     <item quantity="other">%1$s taldean sartu dira.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Taldea eguneratuta.</string>
   <string name="GroupUtil_group_name_is_now">Taldeak \'%1$s\' izena du orain.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Desblokeatu</string>

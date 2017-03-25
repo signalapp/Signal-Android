@@ -44,7 +44,7 @@
               don't have an icon in the downward direction so the whole
               bottom area of this widget is just wasted space.
     -->
-    <org.thoughtcrime.redphone.util.multiwaveview.MultiWaveView
+    <org.thoughtcrime.securesms.components.multiwaveview.MultiWaveView
         android:id="@+id/incomingCallWidget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

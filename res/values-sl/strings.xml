@@ -36,9 +36,9 @@
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Dotaknite se za spremembo privzete aplikacije za sporočila SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Sporočila SMS izklopljena</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Z dotikom nastavite Signal za privzeto aplikacijo SMS</string>
-  <string name="ApplicationPreferencesActivity_on">Vklopljena</string>
+  <string name="ApplicationPreferencesActivity_on">vklopljena</string>
   <string name="ApplicationPreferencesActivity_On">Vklopljena</string>
-  <string name="ApplicationPreferencesActivity_off">Izklopljena</string>
+  <string name="ApplicationPreferencesActivity_off">izklopljena</string>
   <string name="ApplicationPreferencesActivity_Off">Izklopljena</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Zaščita z geslom: %1$s, Zaščita zaslona: %2$s</string>
@@ -389,7 +389,8 @@ Uvoz iz šifrirane varnostne kopije bo popolnoma nadomestil obstoječe ključe, 
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Prejeli ste sporočilo, šifrirano z različico aplikacije Signal, ki ni več podprta. Prosite pošiljatelja, naj posodobi Signal na najnovejšo različico.</string>
   <string name="MessageRecord_left_group">Zapustili ste skupino.</string>
-  <string name="MessageRecord_updated_group">Skupina je bila posodobljena.</string>
+  <string name="MessageRecord_you_updated_group">Posodobili ste skupino.</string>
+  <string name="MessageRecord_s_updated_group">Oseba %s je posodobila skupino.</string>
   <string name="MessageRecord_s_called_you">Oseba %s vas je klicala</string>
   <string name="MessageRecord_called_s">Klicali ste: %s</string>
   <string name="MessageRecord_missed_call_from">Neodgovorjen klic: %s</string>
@@ -529,6 +530,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="SmsMessageRecord_secure_session_reset_s">Oseba %s je ponastavila varno sejo.</string>
   <string name="SmsMessageRecord_duplicate_message">Podvojeno sporočilo.</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_group_updated">Skupina je posodobljena</string>
   <string name="ThreadRecord_left_the_group">Zapustili ste skupino.</string>
   <string name="ThreadRecord_secure_session_reset">Varna seja ponastavljena.</string>
   <string name="ThreadRecord_draft">Osnutek:</string>
@@ -620,7 +622,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Vaše varnostno število z uporabnikom %1$s je bilo spremenjeno. To lahko pomeni, da poskuša nekdo prestrezati vajino komunikacijo ali pa je %2$s zgolj ponovno namestil aplikacijo Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Morda bi želeli preveriti vajino skupno varnostno število.</string>
-  <string name="WebRtcCallScreen_new_safety_numbers_title">Nova varnostna števila</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Novo varnostno število</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Tapnite za vklop videa</string>
   <!--attachment_type_selector-->
@@ -750,6 +752,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Iskanje po GIF-ih in nalepkah</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nič ni bilo najdeno</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Izvoz</string>
+  <string name="import_export_fragment__import">Uvozi</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Sistemski dnevnik vaše naprave ni dostopen. Za oddajo sistemske zabeležbe lahko uporabite ADB.</string>
   <string name="log_submit_activity__thanks">Hvala za pomoč!</string>
@@ -780,6 +785,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">POTRDI</string>
   <string name="message_recipients_list_item__resend">PONOVNO POŠLJI</string>
+  <string name="message_recipients_list_item__resending">Ponovno pošiljam...</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s stik se je priključil skupini.</item>
@@ -787,7 +793,6 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
     <item quantity="few">%1$s stiki so se priključili skupini.</item>
     <item quantity="other">%1$s stikov se je priključilo skupini.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Skupina je bila posodobljena.</string>
   <string name="GroupUtil_group_name_is_now">Ime skupine je zdaj \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Odkleni</string>
@@ -1006,7 +1011,7 @@ bila uspešna.</string>
   <string name="preferences__trim_all_conversations_now">Obreži vse pogovore zdaj</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Preišči vse pogovore in uveljavi omejitve njihove dolžine</string>
   <string name="preferences__linked_devices">Povezane naprave</string>
-  <string name="preferences__light_theme">Svetla</string>
+  <string name="preferences__light_theme">svetla</string>
   <string name="preferences__dark_theme">Temna</string>
   <string name="preferences__appearance">Izgled</string>
   <string name="preferences__theme">Tema</string>

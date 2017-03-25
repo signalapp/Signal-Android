@@ -30,6 +30,7 @@ import javax.inject.Inject;
 
 public class AvatarDownloadJob extends MasterSecretJob implements InjectableType {
 
+  private static final int MAX_AVATAR_SIZE = 20 * 1024 * 1024;
   private static final long serialVersionUID = 1L;
 
   private static final String TAG = AvatarDownloadJob.class.getSimpleName();
@@ -77,7 +78,7 @@ public class AvatarDownloadJob extends MasterSecretJob implements InjectableType
         attachment.deleteOnExit();
 
         SignalServiceAttachmentPointer pointer     = new SignalServiceAttachmentPointer(avatarId, contentType, key, relay, digest);
-        InputStream                    inputStream = receiver.retrieveAttachment(pointer, attachment);
+        InputStream                    inputStream = receiver.retrieveAttachment(pointer, attachment, MAX_AVATAR_SIZE);
         Bitmap                         avatar      = BitmapUtil.createScaledBitmap(context, new AttachmentModel(attachment, key), 500, 500);
 
         database.updateAvatar(groupId, avatar);

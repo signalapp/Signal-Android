@@ -268,7 +268,6 @@
   <string name="NotificationMmsMessageRecord_multimedia_message">ಬಹುಮಾಧ್ಯಮ ಸಂದೇಶ</string>
   <!--MessageRecord-->
   <string name="MessageRecord_left_group">ನೀವು ಗುಂಪನ್ನು ಬಿಟ್ಟಿದ್ದೀರ.</string>
-  <string name="MessageRecord_updated_group">ಸಮೂಹವನ್ನು ನವೀಕರಿಸಿ</string>
   <string name="MessageRecord_missed_call_from">%s ನಿಂದ ತಪ್ಪಿದ ಕರೆ</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">ಗುಪ್ತಪದಗಳು ಹೊಂದಿಕೆಯಾಗುವುದಿಲ್ಲ</string>
@@ -459,6 +458,9 @@
   <string name="expiration_off">ಆಫ಼್</string>
   <!--giphy_activity-->
   <!--giphy_fragment-->
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">ರಫ್ತು ಮಾಡಿ</string>
+  <string name="import_export_fragment__import">ಆಯಾತ</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__thanks">ನಿಮ್ಮ ಸಹಾಯಕ್ಕೆ ಧನ್ಯವಾದಗಳು!</string>
   <string name="log_submit_activity__submitting">ಸಲ್ಲಿಸಲಾಗುತ್ತಿದೆ</string>
@@ -480,7 +482,6 @@
   <string name="message_recipients_list_item__verify">ಪರಿಶೀಲಿಸಿ</string>
   <string name="message_recipients_list_item__resend">ಪುನಃ ಕಳುಹಿಸಿ</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_group_updated">ಗುಂಪನ್ನು ನವೀಕರಿಸಿ</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">ಅನ್ಲಾಕ್</string>
   <!--prompt_mms_activity-->

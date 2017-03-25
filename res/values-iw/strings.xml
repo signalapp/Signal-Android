@@ -119,6 +119,7 @@
   <string name="ConversationActivity_transport_signal">סיגנל</string>
   <string name="ConversationActivity_lets_switch_to_signal">הבה נעבור להשתמש בסיגנל %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">הבה נשתמש בזה בשביל התכתבות: %1$s</string>
+  <string name="ConversationActivity_error_leaving_group">שגיאה בעזיבת קבוצה</string>
   <string name="ConversationActivity_mms_not_supported_title">אין תמיכה ב־MMS</string>
   <string name="ConversationActivity_mms_not_supported_message">אי־אפשר לשלוח את המסר הזה כי הספק שלך אינו תומך ב־MMS.</string>
   <string name="ConversationActivity_specify_recipient">נא לבחור איש קשר</string>
@@ -131,6 +132,10 @@
   <string name="ConversationActivity_error_sending_voice_message">שגיאה בשליחת הודעה קולית</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">אין אפליקציה זמינה לטיפול בקישור כזה במכשיר שלך.</string>
   <!--ConversationAdapter-->
+  <plurals name="ConversationAdapter_n_unread_messages">
+    <item quantity="one">מסר %d לא נקרא</item>
+    <item quantity="other">%d מסרים לא נקראו</item>
+  </plurals>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">פרטי מסר</string>
   <string name="ConversationFragment_transport_s_sent_received_s">תעבורה: %1$s\nנשלח/התקבל: %2$s</string>
@@ -207,9 +212,11 @@
   <string name="DateUtils_just_now">זה עתה</string>
   <string name="DateUtils_minutes_ago">%d דק׳</string>
   <string name="DateUtils_today">היום</string>
+  <string name="DateUtils_yesterday">אתמול</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">לבטל את הקישור אל \"%s\"?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">ביטול הקישור של המכשיר הזה ימנע ממנו שליחה וקבלה של מסרים.</string>
+  <string name="DeviceListActivity_network_connection_failed">שגיאה בהתחברות לרשת</string>
   <string name="DeviceListActivity_try_again">לנסות שוב</string>
   <string name="DeviceListActivity_unlinking_device">מבטל קישור מכשיר...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">מבטל קישור מכשיר</string>
@@ -220,6 +227,8 @@
   <string name="DeviceListItem_last_active_s">פעל לאחרונה %s</string>
   <string name="DeviceListItem_today">היום</string>
   <!--DozeReminder-->
+  <string name="DozeReminder_optimize_for_missing_play_services">מיטוב למצב של שירותי Play לא זמינים</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">המכשיר הזה לא תומך בשירותי Play. יש ללחוץ כדי לכבות מיטוב סוללה שמונע מסיגנל אחזור מסרים בזמן חוסר־פעילות.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">לשתף עם</string>
   <!--ExperienceUpgradeActivity-->
@@ -228,6 +237,10 @@
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">ברוך בואך לסיגנל!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">אפליקציית TextSecure נקראת עכשיו סיגנל.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">מעכשיו TextSecure ו־RedPhone הן אפליקציה אחת: סיגנל. נא להקיש כדי ללמוד עליה.</string>
+  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">תגידו שלום לשיחות וידאו.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">סיגנל תומך עכשיו בשיחות וידאו מאובטחות. פשוט תתחיל שיחת סיגנל כרגיל, לחץ על כפתור וידאו, ותעשה שלום.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">סיגנל תומך עכשיו בשיחות וידאו מאובטחות.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">סיגנל תומך עכשיו בשיחות וידאו מאובטחות. לחץ למידע נוסף.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">ייצוא</string>
   <string name="ExportFragment_export_plaintext_to_storage">לייצא טקסט רגיל לאחסון?</string>
@@ -242,6 +255,7 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">כישלון קבוע בתקשורת סיגנל!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">סיגנל לא הצליח להירשם בשירותי גוגל Play. מסרים ושיחות של סיגנל כובו, נא לנסות להירשם שוב בהגדרות &lt; מתקדם.</string>
   <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">שגיאה באחזור GIF ברזולוציה מלאה</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">קובצי GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">מדבקות</string>
@@ -256,6 +270,7 @@
   <string name="GroupCreateActivity_contacts_no_members">צריך להיות לפחות אדם אחד בקבוצה הזאת!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">לאחד החברים בקבוצה שלך יש מספר שאי־אפשר לקרוא נכון. נא לתקן את זה או להסיר את איש הקשר הזה ולנסות שוב.</string>
   <string name="GroupCreateActivity_avatar_content_description">תמונת קבוצה</string>
+  <string name="GroupCreateActivity_menu_apply_button">החלה</string>
   <string name="GroupCreateActivity_creating_group">יוצר את %1$s…</string>
   <string name="GroupCreateActivity_updating_group">מעדכן את %1$s…</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">לא הצלחתי להוסיף את %1$s כי זה לא משתמש סיגנל.</string>
@@ -323,8 +338,11 @@
   <string name="MessageDetailsRecipient_new_safety_number">מספר בטיחות חדש</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">סיגנל</string>
+  <string name="MessageRetrievalService_background_connection_enabled">חיבור רקע מופעל</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">שגיאה באחסון ה־MMS!</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">שגיאה בהתחברות לספק MMS</string>
+  <string name="MmsDownloader_error_reading_mms_settings">שגיאה בקריאת הגדרות MMS של ספק התקשורת האלחוטית</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">שיחת סיגנל נערכת עכשיו</string>
   <string name="NotificationBarManager_missed_call_from_s">שיחה שלא נענתה מאת %s</string>
@@ -337,10 +355,13 @@
   <string name="NotificationBarManager__cancel_call">לבטל את השיחה</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">מסר מולטימדיה</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">הורדת מסר MMS</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">שגיאה בהורדת מסר MMS, נא ללחוץ לניסיון חוזר</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">לא ניתן יותר לקבל מסר שהוצפן בגרסה ישנה של סיגנל. נא לבקש ממי ששלח אותו לשדרג לגרסה החדשה ביותר של סיגנל ולשלוח את המסר שוב.</string>
   <string name="MessageRecord_left_group">עזבת את הקבוצה.</string>
-  <string name="MessageRecord_updated_group">עדכנתי את הקבוצה.</string>
+  <string name="MessageRecord_you_updated_group">עדכנת את הקבוצה.</string>
+  <string name="MessageRecord_s_updated_group">%s עדכן את הקבוצה</string>
   <string name="MessageRecord_s_called_you">הייתה לך שיחה מאת %s</string>
   <string name="MessageRecord_called_s">התקשרת אל %s</string>
   <string name="MessageRecord_missed_call_from">שיחה שלא נענתה מאת %s</string>
@@ -367,6 +388,7 @@
   <string name="DeviceProvisioningActivity_content_progress_no_device">לא נמצא מכשיר.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">שגיאת רשת.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">קוד QR בלתי־תקין.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">סליחה, חיברת יותר מדי מכשירים, נא לנסות להסיר כמה.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">סליחה, זה לא קוד QR תקין לקישור מכשיר.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">לקשר מכשיר סיגנל?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">נראה שניסית לקשר מכשיר סיגנל באמצעות סורק מצד שלישי. למען בטיחותך, נא לסרוק את הקוד שוב באמצעות סיגנל.</string>
@@ -397,7 +419,9 @@
   <string name="RecipientPreferenceActivity_unblock">הסרת חסימה</string>
   <string name="RecipientPreferenceActivity_enabled">מופעל</string>
   <string name="RecipientPreferenceActivity_disabled">כבוי</string>
+  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">זמין אחרי שמסר נשלח או התקבל.</string>
   <!--RecipientProvider-->
+  <string name="RecipientProvider_unnamed_group">קבוצה ללא שם</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">עונה</string>
   <string name="RedPhone_ending_call">מסיים את השיחה</string>
@@ -553,6 +577,7 @@
   <!--VideoPlayer-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">אולי תרצה לוודא את מספרי הבטיחות שלך עם איש הקשר הזה.</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">מספר בטיחות חדש</string>
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">תמונה</string>
@@ -664,6 +689,9 @@
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">חיפוש קובצי GIF ומדבקות</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">לא נמצא דבר</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">ייצוא</string>
+  <string name="import_export_fragment__import">ייבוא</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">לא ניתן לקרוא את היומן במכשיר שלך. עדיין אפשר להשתמש ב־ADB כדי לקבל יומן תיקון שגיאות.</string>
   <string name="log_submit_activity__thanks">תודה על העזרה שלך!</string>
@@ -698,7 +726,6 @@
     <item quantity="one">%1$s הצטרף לקבוצה.</item>
     <item quantity="other">%1$s הצטרפו לקבוצה.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">הקבוצה עודכנה</string>
   <string name="GroupUtil_group_name_is_now">שם הקבוצה עכשיו הוא „%1$s”.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">ביטול נעילה</string>

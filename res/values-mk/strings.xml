@@ -193,7 +193,6 @@
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Добивте порака која е енкриптирана користејќи стара верзија на Signal која веќе не е поддржана. Ве молиме побајте од праќачот пораката да ја апдејтира апликацијата на најновата верзија и пак да ја препрати пораката.</string>
   <string name="MessageRecord_left_group">Ја напуштивте групата.</string>
-  <string name="MessageRecord_updated_group">Групата е ажурирана.</string>
   <string name="MessageRecord_s_called_you">%s ве повика</string>
   <string name="MessageRecord_called_s">Повикан %s</string>
   <string name="MessageRecord_missed_call_from">Пропуштен повик од %s</string>
@@ -413,6 +412,9 @@
   <string name="expiration_off">Исклучи</string>
   <!--giphy_activity-->
   <!--giphy_fragment-->
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Експортирај</string>
+  <string name="import_export_fragment__import">Импортирај</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__thanks">Ви благодариме за вашата помош!</string>
   <string name="log_submit_activity__submitting">Испраќање</string>
@@ -434,7 +436,6 @@
   <string name="message_recipients_list_item__verify">ВЕРИФИКУВАЈ</string>
   <string name="message_recipients_list_item__resend">ПРЕПРАТИ</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_group_updated">Групата е ажурирана.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Отклучи</string>
   <!--prompt_mms_activity-->

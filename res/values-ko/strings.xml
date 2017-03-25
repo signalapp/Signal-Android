@@ -316,7 +316,6 @@
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">지원하지 않는 Signal 버전으로 부터 암호화된 메시지를 받았습니다. 상대방에게 최신 버전으로 업데이트 하고 다시 보내기를 요청해 주세요.</string>
   <string name="MessageRecord_left_group">그룹에서 퇴장했습니다.</string>
-  <string name="MessageRecord_updated_group">그룹이 업데이트되었습니다.</string>
   <string name="MessageRecord_s_called_you">%s님으로 부터의 수신통화</string>
   <string name="MessageRecord_called_s">%s님에게 발신통화</string>
   <string name="MessageRecord_missed_call_from">%s님의 부재중 통화</string>
@@ -609,6 +608,9 @@
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIF 파일과 스티커 검색</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">찾지 못하였습니다.</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">내보내기</string>
+  <string name="import_export_fragment__import">가져오기</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">기기에서 로그 가져올 수 없지만 ADB로 수동 가져올 수 있음</string>
   <string name="log_submit_activity__thanks">도와주셔서 감사합니다.</string>
@@ -642,7 +644,6 @@
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">%1$s님께서 그룹에 참여했습니다.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">그룹이 업데이트되었습니다.</string>
   <string name="GroupUtil_group_name_is_now">그룹 이름이 \'%1$s\'로 변경되었습니다.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">잠금 해제</string>
