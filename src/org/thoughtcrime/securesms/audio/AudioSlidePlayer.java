@@ -7,8 +7,11 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -19,6 +22,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.AttachmentServer;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.AudioSlide;
+import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -31,13 +35,14 @@ public class AudioSlidePlayer implements SensorEventListener {
 
   private static @NonNull Optional<AudioSlidePlayer> playing = Optional.absent();
 
-  private final @NonNull Context           context;
-  private final @NonNull MasterSecret      masterSecret;
-  private final @NonNull AudioSlide        slide;
-  private final @NonNull Handler           progressEventHandler;
-  private final @NonNull AudioManager      audioManager;
-  private final @NonNull SensorManager     sensorManager;
-  private final @NonNull Sensor            proximitySensor;
+  private final @NonNull  Context           context;
+  private final @NonNull  MasterSecret      masterSecret;
+  private final @NonNull  AudioSlide        slide;
+  private final @NonNull  Handler           progressEventHandler;
+  private final @NonNull  AudioManager      audioManager;
+  private final @NonNull  SensorManager     sensorManager;
+  private final @NonNull  Sensor            proximitySensor;
+  private final @Nullable WakeLock          wakeLock;
 
   private @NonNull  WeakReference<Listener> listener;
   private @Nullable MediaPlayerWrapper      mediaPlayer;
@@ -70,6 +75,12 @@ public class AudioSlidePlayer implements SensorEventListener {
     this.audioManager         = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
     this.sensorManager        = (SensorManager)context.getSystemService(Context.SENSOR_SERVICE);
     this.proximitySensor      = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+
+    if (Build.VERSION.SDK_INT >= 21) {
+      this.wakeLock = ServiceUtil.getPowerManager(context).newWakeLock(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK, TAG);
+    } else {
+      this.wakeLock = null;
+    }
   }
 
   public void play(final double progress) throws IOException {
@@ -122,6 +133,7 @@ public class AudioSlidePlayer implements SensorEventListener {
           }
 
           sensorManager.unregisterListener(AudioSlidePlayer.this);
+          if (wakeLock != null && wakeLock.isHeld()) wakeLock.release();
         }
 
         notifyOnStop();
@@ -145,6 +157,7 @@ public class AudioSlidePlayer implements SensorEventListener {
           }
 
           sensorManager.unregisterListener(AudioSlidePlayer.this);
+          if (wakeLock != null && wakeLock.isHeld()) wakeLock.release();
         }
 
         notifyOnStop();
@@ -281,6 +294,7 @@ public class AudioSlidePlayer implements SensorEventListener {
       double duration = mediaPlayer.getDuration();
       double progress = position / duration;
 
+      if (wakeLock != null) wakeLock.acquire();
       stop();
       try {
         play(progress, true);
@@ -291,6 +305,7 @@ public class AudioSlidePlayer implements SensorEventListener {
                mediaPlayer.getAudioStreamType() != streamType &&
                System.currentTimeMillis() - startTime > 500)
     {
+      if (wakeLock != null) wakeLock.release();
       stop();
       notifyOnStop();
     }
