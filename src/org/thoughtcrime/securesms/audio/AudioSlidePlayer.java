@@ -9,6 +9,8 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.Message;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -38,6 +40,7 @@ public class AudioSlidePlayer implements SensorEventListener {
   private final @NonNull AudioManager      audioManager;
   private final @NonNull SensorManager     sensorManager;
   private final @NonNull Sensor            proximitySensor;
+  private final @NonNull WakeLock          wakeLock;
 
   private @NonNull  WeakReference<Listener> listener;
   private @Nullable MediaPlayerWrapper      mediaPlayer;
@@ -70,6 +73,8 @@ public class AudioSlidePlayer implements SensorEventListener {
     this.audioManager         = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
     this.sensorManager        = (SensorManager)context.getSystemService(Context.SENSOR_SERVICE);
     this.proximitySensor      = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+    this.wakeLock             = ((PowerManager) context.getSystemService(Context.POWER_SERVICE))
+                                .newWakeLock(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK, TAG);
   }
 
   public void play(final double progress) throws IOException {
@@ -122,6 +127,7 @@ public class AudioSlidePlayer implements SensorEventListener {
           }
 
           sensorManager.unregisterListener(AudioSlidePlayer.this);
+          if (wakeLock.isHeld()) wakeLock.release();
         }
 
         notifyOnStop();
@@ -145,6 +151,7 @@ public class AudioSlidePlayer implements SensorEventListener {
           }
 
           sensorManager.unregisterListener(AudioSlidePlayer.this);
+          if (wakeLock.isHeld()) wakeLock.release();
         }
 
         notifyOnStop();
@@ -281,6 +288,7 @@ public class AudioSlidePlayer implements SensorEventListener {
       double duration = mediaPlayer.getDuration();
       double progress = position / duration;
 
+      wakeLock.acquire();
       stop();
       try {
         play(progress, true);
@@ -291,6 +299,7 @@ public class AudioSlidePlayer implements SensorEventListener {
                mediaPlayer.getAudioStreamType() != streamType &&
                System.currentTimeMillis() - startTime > 500)
     {
+      wakeLock.release();
       stop();
       notifyOnStop();
     }
