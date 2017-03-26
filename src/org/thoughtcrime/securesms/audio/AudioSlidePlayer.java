@@ -197,8 +197,13 @@ public class AudioSlidePlayer implements SensorEventListener {
     }
   }
 
-  public static boolean isPlaying(@Nullable AudioSlide slide) {
-    return playing.isPresent() && playing.get().getAudioSlide().equals(slide);
+  public static boolean stopIfIsPlaying(@Nullable AudioSlide slide) {
+    if (playing.isPresent() && playing.get().getAudioSlide().equals(slide)) {
+      playing.get().stop();
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public void setListener(@NonNull Listener listener) {

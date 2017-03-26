@@ -326,12 +326,11 @@ public class ConversationFragment extends Fragment
             for (MessageRecord messageRecord : messageRecords) {
               boolean threadDeleted;
 
-              if (messageRecord.isMms()                                       &&
-                  !messageRecord.isMmsNotification()                          &&
-                  ((MediaMmsMessageRecord)messageRecord).containsMediaSlide() &&
-                  AudioSlidePlayer.isPlaying(((MediaMmsMessageRecord) messageRecord).getSlideDeck()
-                                                                                    .getAudioSlide())) {
-                AudioSlidePlayer.stopAll();
+              if (messageRecord.isMms()              &&
+                  !messageRecord.isMmsNotification() &&
+                  ((MediaMmsMessageRecord)messageRecord).containsMediaSlide()) {
+                AudioSlidePlayer.stopIfIsPlaying(((MediaMmsMessageRecord) messageRecord).getSlideDeck()
+                                                                                        .getAudioSlide());
               }
               if (messageRecord.isMms()) {
                 threadDeleted = DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
