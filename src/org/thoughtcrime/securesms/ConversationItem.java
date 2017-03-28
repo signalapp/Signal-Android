@@ -69,8 +69,8 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.LongClickCopySpan;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
-import org.thoughtcrime.securesms.util.LongClickSpan;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.dualsim.SubscriptionInfoCompat;
@@ -164,6 +164,8 @@ public class ConversationItem extends LinearLayout
 
     bodyText.setOnLongClickListener(passthroughClickListener);
     bodyText.setOnClickListener(passthroughClickListener);
+
+    bodyText.setMovementMethod(LongClickMovementMethod.getInstance(getContext()));
   }
 
   @Override
@@ -283,10 +285,9 @@ public class ConversationItem extends LinearLayout
     if (isCaptionlessMms(messageRecord)) {
       bodyText.setVisibility(View.GONE);
     } else {
-      bodyText.setText(linkifyMessageBody(messageRecord, batchSelected.isEmpty()));
+      bodyText.setText(linkifyMessageBody(messageRecord.getDisplayBody(), batchSelected.isEmpty()));
       bodyText.setVisibility(View.VISIBLE);
     }
-    bodyText.setMovementMethod(LongClickMovementMethod.getInstance(getContext()));
   }
 
   private void setMediaAttributes(MessageRecord messageRecord) {
@@ -329,19 +330,18 @@ public class ConversationItem extends LinearLayout
     }
   }
 
-  private SpannableString linkifyMessageBody(MessageRecord messageRecord, boolean isBatchEmpty) {
-    SpannableString spannableString = messageRecord.getDisplayBody();
-    boolean hasLinks = Linkify.addLinks(spannableString, isBatchEmpty ? Linkify.ALL : 0);
+  private SpannableString linkifyMessageBody(SpannableString messageBody, boolean shouldLinkifyAllLinks) {
+    boolean hasLinks = Linkify.addLinks(messageBody, shouldLinkifyAllLinks ? Linkify.ALL : 0);
 
     if (hasLinks) {
-      URLSpan[] urlSpans = spannableString.getSpans(0, spannableString.length(), URLSpan.class);
+      URLSpan[] urlSpans = messageBody.getSpans(0, messageBody.length(), URLSpan.class);
       for (URLSpan urlSpan : urlSpans) {
-        int start = spannableString.getSpanStart(urlSpan);
-        int end = spannableString.getSpanEnd(urlSpan);
-        spannableString.setSpan(new LongClickSpan(urlSpan.getURL()), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        int start = messageBody.getSpanStart(urlSpan);
+        int end = messageBody.getSpanEnd(urlSpan);
+        messageBody.setSpan(new LongClickCopySpan(urlSpan.getURL()), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
       }
     }
-    return spannableString;
+    return messageBody;
   }
 
   private void setStatusIcons(MessageRecord messageRecord) {
