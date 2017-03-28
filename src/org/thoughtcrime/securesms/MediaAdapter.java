@@ -67,7 +67,7 @@ public class MediaAdapter extends CursorRecyclerViewAdapter<ViewHolder> {
   @Override
   public void onBindItemViewHolder(final ViewHolder viewHolder, final @NonNull Cursor cursor) {
     final ThumbnailView imageView   = viewHolder.imageView;
-    final MediaRecord   mediaRecord = MediaRecord.from(cursor);
+    final MediaRecord   mediaRecord = MediaRecord.from(getContext(), masterSecret, cursor);
 
     Slide slide = MediaUtil.getSlideForAttachment(getContext(), mediaRecord.getAttachment());
 

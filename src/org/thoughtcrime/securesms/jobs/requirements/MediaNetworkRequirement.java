@@ -19,6 +19,8 @@ import org.whispersystems.jobqueue.requirements.Requirement;
 import java.util.Collections;
 import java.util.Set;
 
+import ws.com.google.android.mms.ContentType;
+
 public class MediaNetworkRequirement implements Requirement, ContextDependent {
   private static final long   serialVersionUID = 0L;
   private static final String TAG              = MediaNetworkRequirement.class.getSimpleName();
@@ -76,7 +78,7 @@ public class MediaNetworkRequirement implements Requirement, ContextDependent {
   public boolean isPresent() {
     final AttachmentId       attachmentId = new AttachmentId(partRowId, partUniqueId);
     final AttachmentDatabase db           = DatabaseFactory.getAttachmentDatabase(context);
-    final Attachment         attachment   = db.getAttachment(attachmentId);
+    final Attachment         attachment   = db.getAttachment(null, attachmentId);
 
     if (attachment == null) {
       Log.w(TAG, "attachment was null, returning vacuous true");
@@ -89,7 +91,15 @@ public class MediaNetworkRequirement implements Requirement, ContextDependent {
       return true;
     case AttachmentDatabase.TRANSFER_PROGRESS_AUTO_PENDING:
       final Set<String> allowedTypes = getAllowedAutoDownloadTypes();
-      final boolean     isAllowed    = allowedTypes.contains(MediaUtil.getDiscreteMimeType(attachment.getContentType()));
+      final String      contentType  = attachment.getContentType();
+
+      boolean isAllowed;
+
+      if (isNonDocumentType(contentType)) {
+        isAllowed = allowedTypes.contains(MediaUtil.getDiscreteMimeType(contentType));
+      } else {
+        isAllowed = allowedTypes.contains("documents");
+      }
 
       /// XXX WTF -- This is *hella* gross. A requirement shouldn't have the side effect of
       // *modifying the database* just by calling isPresent().
@@ -98,5 +108,12 @@ public class MediaNetworkRequirement implements Requirement, ContextDependent {
     default:
       return false;
     }
+  }
+
+  private boolean isNonDocumentType(String contentType) {
+    return
+        ContentType.isImageType(contentType) ||
+        ContentType.isVideoType(contentType) ||
+        ContentType.isAudioType(contentType);
   }
 }

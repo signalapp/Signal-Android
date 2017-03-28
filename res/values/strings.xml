@@ -1063,6 +1063,7 @@
     <string name="arrays__images">Images</string>
     <string name="arrays__audio">Audio</string>
     <string name="arrays__video">Video</string>
+    <string name="arrays__documents">Documents</string>
 
     <!-- plurals.xml -->
     <plurals name="hours_ago">
@@ -1343,6 +1344,8 @@
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
+    <string name="SaveAttachmentTask_open_directory">Open Directory</string>
+    <string name="DocumentView_unknown_file">unknown file</string>
 
     <!-- EOF -->
 

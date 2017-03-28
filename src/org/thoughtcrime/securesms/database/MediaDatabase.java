@@ -4,22 +4,30 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 
 public class MediaDatabase extends Database {
 
-    private final static String MEDIA_QUERY = "SELECT " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + ", "
+    private final static String MEDIA_QUERY = "SELECT " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " AS " + AttachmentDatabase.ATTACHMENT_ID_ALIAS + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_TYPE + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.THUMBNAIL_ASPECT_RATIO + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.UNIQUE_ID + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.TRANSFER_STATE + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.SIZE + ", "
+        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.FILE_NAME + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DATA + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.THUMBNAIL + ", "
+        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.FILE_NAME + ", "
+        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_LOCATION + ", "
+        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_DISPOSITION + ", "
+        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DIGEST + ", "
+        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.NAME + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.MESSAGE_BOX + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.DATE_SENT + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.DATE_RECEIVED + ", "
@@ -46,35 +54,21 @@ public class MediaDatabase extends Database {
   }
 
   public static class MediaRecord {
-    private final AttachmentId attachmentId;
-    private final long         mmsId;
-    private final boolean      hasData;
-    private final boolean      hasThumbnail;
-    private final String       contentType;
-    private final String       address;
-    private final long         date;
-    private final int          transferState;
-    private final long         size;
 
-    private MediaRecord(AttachmentId attachmentId, long mmsId,
-                        boolean hasData, boolean hasThumbnail,
-                        String contentType, String address, long date,
-                        int transferState, long size)
-    {
-      this.attachmentId  = attachmentId;
-      this.mmsId         = mmsId;
-      this.hasData       = hasData;
-      this.hasThumbnail  = hasThumbnail;
-      this.contentType   = contentType;
-      this.address       = address;
-      this.date          = date;
-      this.transferState = transferState;
-      this.size          = size;
+    private final DatabaseAttachment attachment;
+    private final String             address;
+    private final long               date;
+
+    private MediaRecord(DatabaseAttachment attachment, String address, long date) {
+      this.attachment = attachment;
+      this.address    = address;
+      this.date       = date;
     }
 
-    public static MediaRecord from(Cursor cursor) {
-      AttachmentId attachmentId = new AttachmentId(cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.ROW_ID)),
-                                                   cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.UNIQUE_ID)));
+    public static MediaRecord from(@NonNull Context context, @NonNull MasterSecret masterSecret, @NonNull Cursor cursor) {
+      AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
+      DatabaseAttachment attachment         = attachmentDatabase.getAttachment(masterSecret, cursor);
+      String             address            = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS));
 
       long date;
 
@@ -84,23 +78,15 @@ public class MediaDatabase extends Database {
         date = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.DATE_RECEIVED));
       }
 
-      return new MediaRecord(attachmentId,
-                             cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.MMS_ID)),
-                             !cursor.isNull(cursor.getColumnIndexOrThrow(AttachmentDatabase.DATA)),
-                             !cursor.isNull(cursor.getColumnIndexOrThrow(AttachmentDatabase.THUMBNAIL)),
-                             cursor.getString(cursor.getColumnIndexOrThrow(AttachmentDatabase.CONTENT_TYPE)),
-                             cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS)),
-                             date,
-                             cursor.getInt(cursor.getColumnIndexOrThrow(AttachmentDatabase.TRANSFER_STATE)),
-                             cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.SIZE)));
+      return new MediaRecord(attachment, address, date);
     }
 
     public Attachment getAttachment() {
-      return new DatabaseAttachment(attachmentId, mmsId, hasData, hasThumbnail, contentType, transferState, size, null, null, null, null);
+      return attachment;
     }
 
     public String getContentType() {
-      return contentType;
+      return attachment.getContentType();
     }
 
     public String getAddress() {

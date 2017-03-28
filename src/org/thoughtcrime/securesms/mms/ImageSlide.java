@@ -36,7 +36,7 @@ public class ImageSlide extends Slide {
   }
 
   public ImageSlide(Context context, Uri uri, long size) {
-    super(context, constructAttachmentFromUri(context, uri, ContentType.IMAGE_JPEG, size, true));
+    super(context, constructAttachmentFromUri(context, uri, ContentType.IMAGE_JPEG, size, true, null));
   }
 
   @Override

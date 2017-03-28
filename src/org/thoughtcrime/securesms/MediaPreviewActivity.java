@@ -207,9 +207,9 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     SaveAttachmentTask.showWarningDialog(this, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialogInterface, int i) {
-        SaveAttachmentTask saveTask = new SaveAttachmentTask(MediaPreviewActivity.this, masterSecret);
+        SaveAttachmentTask saveTask = new SaveAttachmentTask(MediaPreviewActivity.this, masterSecret, image);
         long saveDate = (date > 0) ? date : System.currentTimeMillis();
-        saveTask.execute(new Attachment(mediaUri, mediaType, saveDate));
+        saveTask.execute(new Attachment(mediaUri, mediaType, saveDate, null));
       }
     });
   }

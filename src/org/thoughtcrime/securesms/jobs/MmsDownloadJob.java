@@ -185,10 +185,14 @@ public class MmsDownloadJob extends MasterSecretJob {
         PduPart part = media.getPart(i);
 
         if (part.getData() != null) {
-          Uri uri = provider.createUri(part.getData());
+          Uri    uri  = provider.createUri(part.getData());
+          String name = null;
+
+          if (part.getName() != null) name = Util.toIsoString(part.getName());
+
           attachments.add(new UriAttachment(uri, Util.toIsoString(part.getContentType()),
                                             AttachmentDatabase.TRANSFER_PROGRESS_DONE,
-                                            part.getData().length));
+                                            part.getData().length, name));
         }
       }
     }

@@ -76,7 +76,8 @@ public class DatabaseFactory {
   private static final int INTRODUCED_LAST_SEEN                            = 29;
   private static final int INTRODUCED_DIGEST                               = 30;
   private static final int INTRODUCED_NOTIFIED                             = 31;
-  private static final int DATABASE_VERSION                                = 31;
+  private static final int INTRODUCED_DOCUMENTS                            = 32;
+  private static final int DATABASE_VERSION                                = 32;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -388,7 +389,7 @@ public class DatabaseFactory {
 
               InputStream is;
 
-              if (encrypted) is = new DecryptingPartInputStream(dataFile, masterSecret);
+              if (encrypted) is = DecryptingPartInputStream.createFor(masterSecret, dataFile);
               else           is = new FileInputStream(dataFile);
 
               body = (body == null) ? Util.readFullyAsString(is) : body + " " + Util.readFullyAsString(is);
@@ -851,6 +852,10 @@ public class DatabaseFactory {
 
         db.execSQL("DROP INDEX mms_read_and_thread_id_index");
         db.execSQL("CREATE INDEX IF NOT EXISTS mms_read_and_notified_and_thread_id_index ON mms(read,notified,thread_id)");
+      }
+
+      if (oldVersion < INTRODUCED_DOCUMENTS) {
+        db.execSQL("ALTER TABLE part ADD COLUMN file_name TEXT");
       }
 
       db.setTransactionSuccessful();

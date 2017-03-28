@@ -25,6 +25,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -63,6 +64,7 @@ public class MmsSmsDatabase extends Database {
                                               AttachmentDatabase.UNIQUE_ID,
                                               AttachmentDatabase.MMS_ID,
                                               AttachmentDatabase.SIZE,
+                                              AttachmentDatabase.FILE_NAME,
                                               AttachmentDatabase.DATA,
                                               AttachmentDatabase.THUMBNAIL,
                                               AttachmentDatabase.CONTENT_TYPE,
@@ -157,6 +159,7 @@ public class MmsSmsDatabase extends Database {
                               AttachmentDatabase.UNIQUE_ID,
                               AttachmentDatabase.MMS_ID,
                               AttachmentDatabase.SIZE,
+                              AttachmentDatabase.FILE_NAME,
                               AttachmentDatabase.DATA,
                               AttachmentDatabase.THUMBNAIL,
                               AttachmentDatabase.CONTENT_TYPE,
@@ -185,6 +188,7 @@ public class MmsSmsDatabase extends Database {
                               AttachmentDatabase.UNIQUE_ID,
                               AttachmentDatabase.MMS_ID,
                               AttachmentDatabase.SIZE,
+                              AttachmentDatabase.FILE_NAME,
                               AttachmentDatabase.DATA,
                               AttachmentDatabase.THUMBNAIL,
                               AttachmentDatabase.CONTENT_TYPE,
@@ -239,6 +243,7 @@ public class MmsSmsDatabase extends Database {
     mmsColumnsPresent.add(AttachmentDatabase.UNIQUE_ID);
     mmsColumnsPresent.add(AttachmentDatabase.MMS_ID);
     mmsColumnsPresent.add(AttachmentDatabase.SIZE);
+    mmsColumnsPresent.add(AttachmentDatabase.FILE_NAME);
     mmsColumnsPresent.add(AttachmentDatabase.DATA);
     mmsColumnsPresent.add(AttachmentDatabase.THUMBNAIL);
     mmsColumnsPresent.add(AttachmentDatabase.CONTENT_TYPE);

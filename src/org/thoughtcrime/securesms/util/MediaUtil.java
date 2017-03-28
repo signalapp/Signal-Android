@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
+import org.thoughtcrime.securesms.mms.DocumentSlide;
 import org.thoughtcrime.securesms.mms.GifSlide;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.MmsSlide;
@@ -82,6 +83,8 @@ public class MediaUtil {
       slide = new AudioSlide(context, attachment);
     } else if (isMms(attachment.getContentType())) {
       slide = new MmsSlide(context, attachment);
+    } else {
+      slide = new DocumentSlide(context, attachment);
     }
 
     return slide;

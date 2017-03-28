@@ -16,213 +16,100 @@
  */
 package org.thoughtcrime.securesms.crypto;
 
+import org.thoughtcrime.securesms.util.LimitedInputStream;
+
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
-import java.lang.System;
 
-import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.CipherInputStream;
 import javax.crypto.Mac;
 import javax.crypto.NoSuchPaddingException;
-import javax.crypto.ShortBufferException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import android.util.Log;
-
-/**
- * Class for streaming an encrypted MMS "part" off the disk.
- * 
- * @author Moxie Marlinspike
- */
-
-public class DecryptingPartInputStream extends FileInputStream {
+public class DecryptingPartInputStream {
 
   private static final String TAG = DecryptingPartInputStream.class.getSimpleName();
 
   private static final int IV_LENGTH  = 16;
   private static final int MAC_LENGTH = 20;
 
-  private Cipher cipher;
-  private Mac mac;
-
-  private boolean done;
-  private long totalDataSize;
-  private long totalRead;
-  private byte[] overflowBuffer;
-
-  public DecryptingPartInputStream(File file, MasterSecret masterSecret) throws FileNotFoundException {
-    super(file);
-    try {
-      if (file.length() <= IV_LENGTH + MAC_LENGTH)
-        throw new FileNotFoundException("Part shorter than crypto overhead!");
-
-      done          = false;
-      mac           = initializeMac(masterSecret.getMacKey());
-      cipher        = initializeCipher(masterSecret.getEncryptionKey());
-      totalDataSize = file.length() - cipher.getBlockSize() - mac.getMacLength();
-      totalRead     = 0;
-    } catch (InvalidKeyException ike) {
-      Log.w(TAG, ike);
-      throw new FileNotFoundException("Invalid key!");
-    } catch (NoSuchAlgorithmException | InvalidAlgorithmParameterException | NoSuchPaddingException e) {
-      throw new AssertionError(e);
-    } catch (IOException e) {
-      Log.w(TAG, e);
-      throw new FileNotFoundException("IOException while reading IV!");
-    }
-  }
-
-  @Override
-  public int read(byte[] buffer) throws IOException {
-    return read(buffer, 0, buffer.length);
-  }
-
-  @Override
-  public int read(byte[] buffer, int offset, int length) throws IOException {
-    if (totalRead != totalDataSize)
-      return readIncremental(buffer, offset, length);
-    else if (!done)
-      return readFinal(buffer, offset, length);
-    else 
-      return -1;
-  }
-
-  @Override
-  public boolean markSupported() {
-    return false;
-  }
-
-  @Override
-  public long skip(long byteCount) throws IOException {
-    long skipped = 0L;
-    while (skipped < byteCount) {
-      byte[] buf  = new byte[Math.min(4096, (int)(byteCount-skipped))];
-      int    read = read(buf);
-
-      skipped += read;
-    }
-
-    return skipped;
-  }
-	
-  private int readFinal(byte[] buffer, int offset, int length) throws IOException {
-    try {
-      int flourish = cipher.doFinal(buffer, offset);
-      //mac.update(buffer, offset, flourish);
-
-      byte[] ourMac   = mac.doFinal();
-      byte[] theirMac = new byte[mac.getMacLength()];
-      readFully(theirMac);
-
-      if (!Arrays.equals(ourMac, theirMac))
-        throw new IOException("MAC doesn't match! Potential tampering?");
-
-      done = true;
-      return flourish;
-    } catch (IllegalBlockSizeException e) {
-      Log.w(TAG, e);
-      throw new IOException("Illegal block size exception!");
-    } catch (ShortBufferException e) {
-      Log.w(TAG, e);
-      throw new IOException("Short buffer exception!");
-    } catch (BadPaddingException e) {
-      Log.w(TAG, e);
-      throw new IOException("Bad padding exception!");
-    }
-  }
-
-  private int readIncremental(byte[] buffer, int offset, int length) throws IOException {
-    int readLength = 0;
-    if (null != overflowBuffer) {
-      if (overflowBuffer.length > length) {
-        System.arraycopy(overflowBuffer, 0, buffer, offset, length);
-        overflowBuffer = Arrays.copyOfRange(overflowBuffer, length, overflowBuffer.length);
-        return length;
-      } else if (overflowBuffer.length == length) {
-        System.arraycopy(overflowBuffer, 0, buffer, offset, length);
-        overflowBuffer = null;
-        return length;
-      } else {
-        System.arraycopy(overflowBuffer, 0, buffer, offset, overflowBuffer.length);
-        readLength += overflowBuffer.length;
-        offset += readLength;
-        length -= readLength;
-        overflowBuffer = null;
-      }
-    }
-
-    if (length + totalRead > totalDataSize)
-      length = (int)(totalDataSize - totalRead);
-
-    byte[] internalBuffer = new byte[length];
-    int read              = super.read(internalBuffer, 0, internalBuffer.length <= cipher.getBlockSize() ? internalBuffer.length : internalBuffer.length - cipher.getBlockSize());
-    totalRead            += read;
-
-    try {
-      mac.update(internalBuffer, 0, read);
-
-      int outputLen = cipher.getOutputSize(read);
-
-      if (outputLen <= length) {
-        readLength += cipher.update(internalBuffer, 0, read, buffer, offset);
-        return readLength;
-      }
-
-      byte[] transientBuffer = new byte[outputLen];
-      outputLen = cipher.update(internalBuffer, 0, read, transientBuffer, 0);
-      if (outputLen <= length) {
-        System.arraycopy(transientBuffer, 0, buffer, offset, outputLen);
-        readLength += outputLen;
-      } else {
-        System.arraycopy(transientBuffer, 0, buffer, offset, length);
-        overflowBuffer = Arrays.copyOfRange(transientBuffer, length, outputLen);
-        readLength += length;
-      }
-      return readLength;
-    } catch (ShortBufferException e) {
-      throw new AssertionError(e);
-    }
-  }
-
-  private Mac initializeMac(SecretKeySpec key) throws NoSuchAlgorithmException, InvalidKeyException {
-    Mac hmac = Mac.getInstance("HmacSHA1");
-    hmac.init(key);
-
-    return hmac;
-  }
-
-  private Cipher initializeCipher(SecretKeySpec key) 
-    throws InvalidKeyException, InvalidAlgorithmParameterException, 
-           NoSuchAlgorithmException, NoSuchPaddingException, IOException 
+  public static InputStream createFor(MasterSecret masterSecret, File file)
+      throws IOException
   {
-    Cipher cipher      = Cipher.getInstance("AES/CBC/PKCS5Padding");
-    IvParameterSpec iv = readIv(cipher.getBlockSize());
-    cipher.init(Cipher.DECRYPT_MODE, key, iv);
+    try {
+      if (file.length() <= IV_LENGTH + MAC_LENGTH) {
+        throw new IOException("File too short");
+      }
 
-    return cipher;
+      verifyMac(masterSecret, file);
+
+      FileInputStream fileStream = new FileInputStream(file);
+      byte[]          ivBytes    = new byte[IV_LENGTH];
+      readFully(fileStream, ivBytes);
+
+      Cipher cipher      = Cipher.getInstance("AES/CBC/PKCS5Padding");
+      IvParameterSpec iv = new IvParameterSpec(ivBytes);
+      cipher.init(Cipher.DECRYPT_MODE, masterSecret.getEncryptionKey(), iv);
+
+      return new CipherInputStream(new LimitedInputStream(fileStream, file.length() - MAC_LENGTH - IV_LENGTH), cipher);
+    } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | InvalidAlgorithmParameterException e) {
+      throw new AssertionError(e);
+    }
   }
 
-  private IvParameterSpec readIv(int size) throws IOException {
-    byte[] iv = new byte[size];
-    readFully(iv);
+  private static void verifyMac(MasterSecret masterSecret, File file) throws IOException {
+    Mac             mac        = initializeMac(masterSecret.getMacKey());
+    FileInputStream macStream  = new FileInputStream(file);
+    InputStream     dataStream = new LimitedInputStream(new FileInputStream(file), file.length() - MAC_LENGTH);
+    byte[]          theirMac   = new byte[MAC_LENGTH];
 
-    mac.update(iv);
-    return new IvParameterSpec(iv);
+    if (macStream.skip(file.length() - MAC_LENGTH) != file.length() - MAC_LENGTH) {
+      throw new IOException("Unable to seek");
+    }
+
+    readFully(macStream, theirMac);
+
+    byte[] buffer = new byte[4096];
+    int    read;
+
+    while ((read = dataStream.read(buffer)) != -1) {
+      mac.update(buffer, 0, read);
+    }
+
+    byte[] ourMac = mac.doFinal();
+
+    if (!MessageDigest.isEqual(ourMac, theirMac)) {
+      throw new IOException("Bad MAC");
+    }
+
+    macStream.close();
+    dataStream.close();
   }
 
-  private void readFully(byte[] buffer) throws IOException {
+  private static Mac initializeMac(SecretKeySpec key) {
+    try {
+      Mac hmac = Mac.getInstance("HmacSHA1");
+      hmac.init(key);
+
+      return hmac;
+    } catch (NoSuchAlgorithmException | InvalidKeyException e) {
+      throw new AssertionError(e);
+    }
+  }
+
+  private static void readFully(InputStream in, byte[] buffer) throws IOException {
     int offset = 0;
 
     for (;;) {
-      int read = super.read(buffer, offset, buffer.length-offset);
+      int read = in.read(buffer, offset, buffer.length-offset);
 
       if (read + offset < buffer.length) offset += read;
       else                               return;

@@ -138,6 +138,7 @@ public class MmsDatabase extends MessagingDatabase {
       AttachmentDatabase.UNIQUE_ID,
       AttachmentDatabase.MMS_ID,
       AttachmentDatabase.SIZE,
+      AttachmentDatabase.FILE_NAME,
       AttachmentDatabase.DATA,
       AttachmentDatabase.THUMBNAIL,
       AttachmentDatabase.CONTENT_TYPE,
@@ -630,7 +631,7 @@ public class MmsDatabase extends MessagingDatabase {
         long             timestamp      = cursor.getLong(cursor.getColumnIndexOrThrow(NORMALIZED_DATE_SENT));
         int              subscriptionId = cursor.getInt(cursor.getColumnIndexOrThrow(SUBSCRIPTION_ID));
         long             expiresIn      = cursor.getLong(cursor.getColumnIndexOrThrow(EXPIRES_IN));
-        List<Attachment> attachments    = new LinkedList<Attachment>(attachmentDatabase.getAttachmentsForMessage(messageId));
+        List<Attachment> attachments    = new LinkedList<Attachment>(attachmentDatabase.getAttachmentsForMessage(masterSecret, messageId));
         MmsAddresses     addresses      = addr.getAddressesForId(messageId);
         List<String>     destinations   = new LinkedList<>();
         String           body           = getDecryptedBody(masterSecret, messageText, outboxType);
@@ -689,6 +690,7 @@ public class MmsDatabase extends MessagingDatabase {
                                                databaseAttachment.getContentType(),
                                                AttachmentDatabase.TRANSFER_PROGRESS_DONE,
                                                databaseAttachment.getSize(),
+                                               databaseAttachment.getFileName(),
                                                databaseAttachment.getLocation(),
                                                databaseAttachment.getKey(),
                                                databaseAttachment.getRelay(),
@@ -1267,7 +1269,7 @@ public class MmsDatabase extends MessagingDatabase {
     }
 
     private SlideDeck getSlideDeck(@NonNull Cursor cursor) {
-      Attachment attachment = DatabaseFactory.getAttachmentDatabase(context).getAttachment(cursor);
+      Attachment attachment = DatabaseFactory.getAttachmentDatabase(context).getAttachment(masterSecret, cursor);
       return new SlideDeck(context, attachment);
     }
 

@@ -389,9 +389,9 @@ public class ConversationFragment extends Fragment
     SaveAttachmentTask.showWarningDialog(getActivity(), new DialogInterface.OnClickListener() {
       public void onClick(DialogInterface dialog, int which) {
         for (Slide slide : message.getSlideDeck().getSlides()) {
-          if ((slide.hasImage() || slide.hasVideo() || slide.hasAudio()) && slide.getUri() != null) {
-            SaveAttachmentTask saveTask = new SaveAttachmentTask(getActivity(), masterSecret);
-            saveTask.execute(new Attachment(slide.getUri(), slide.getContentType(), message.getDateReceived()));
+          if ((slide.hasImage() || slide.hasVideo() || slide.hasAudio() || slide.hasDocument()) && slide.getUri() != null) {
+            SaveAttachmentTask saveTask = new SaveAttachmentTask(getActivity(), masterSecret, list);
+            saveTask.execute(new Attachment(slide.getUri(), slide.getContentType(), message.getDateReceived(), slide.getFileName().orNull()));
             return;
           }
         }

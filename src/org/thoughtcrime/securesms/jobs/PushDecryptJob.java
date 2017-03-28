@@ -7,6 +7,7 @@ import android.util.Log;
 import android.util.Pair;
 
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.attachments.PointerAttachment;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
@@ -76,6 +77,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.SentTranscriptM
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -483,13 +485,19 @@ public class PushDecryptJob extends ContextJob {
     Optional<InsertResult> insertResult = database.insertSecureDecryptedMessageInbox(masterSecret, mediaMessage, -1);
 
     if (insertResult.isPresent()) {
-      List<DatabaseAttachment> attachments = DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(insertResult.get().getMessageId());
+      List<DatabaseAttachment> attachments = DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(null, insertResult.get().getMessageId());
 
       for (DatabaseAttachment attachment : attachments) {
         ApplicationContext.getInstance(context)
                           .getJobManager()
                           .add(new AttachmentDownloadJob(context, insertResult.get().getMessageId(),
                                                          attachment.getAttachmentId()));
+
+        if (!masterSecret.getMasterSecret().isPresent()) {
+          ApplicationContext.getInstance(context)
+                            .getJobManager()
+                            .add(new AttachmentFileNameJob(context, masterSecret.getAsymmetricMasterSecret().get(), attachment, mediaMessage));
+        }
       }
 
       if (smsMessageId.isPresent()) {
@@ -550,7 +558,7 @@ public class PushDecryptJob extends ContextJob {
 
     database.markAsSent(messageId, true);
 
-    for (DatabaseAttachment attachment : DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(messageId)) {
+    for (DatabaseAttachment attachment : DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(null, messageId)) {
       ApplicationContext.getInstance(context)
                         .getJobManager()
                         .add(new AttachmentDownloadJob(context, messageId, attachment.getAttachmentId()));
