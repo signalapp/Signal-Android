@@ -27,7 +27,10 @@ import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.style.URLSpan;
 import android.text.util.Linkify;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -66,6 +69,8 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.LongClickMovementMethod;
+import org.thoughtcrime.securesms.util.LongClickSpan;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.dualsim.SubscriptionInfoCompat;
@@ -245,7 +250,6 @@ public class ConversationItem extends LinearLayout
 
   private void setInteractionState(MessageRecord messageRecord) {
     setSelected(batchSelected.contains(messageRecord));
-    bodyText.setAutoLinkMask(batchSelected.isEmpty() ? Linkify.ALL : 0);
 
     if (mediaThumbnailStub.resolved()) {
       mediaThumbnailStub.get().setFocusable(!shouldInterceptClicks(messageRecord) && batchSelected.isEmpty());
@@ -279,9 +283,10 @@ public class ConversationItem extends LinearLayout
     if (isCaptionlessMms(messageRecord)) {
       bodyText.setVisibility(View.GONE);
     } else {
-      bodyText.setText(messageRecord.getDisplayBody());
+      bodyText.setText(linkifyMessageBody(messageRecord, batchSelected.isEmpty()));
       bodyText.setVisibility(View.VISIBLE);
     }
+    bodyText.setMovementMethod(LongClickMovementMethod.getInstance(getContext()));
   }
 
   private void setMediaAttributes(MessageRecord messageRecord) {
@@ -322,6 +327,21 @@ public class ConversationItem extends LinearLayout
     if (! messageRecord.isOutgoing()) {
       setContactPhotoForRecipient(recipient);
     }
+  }
+
+  private SpannableString linkifyMessageBody(MessageRecord messageRecord, boolean isBatchEmpty) {
+    SpannableString spannableString = messageRecord.getDisplayBody();
+    boolean hasLinks = Linkify.addLinks(spannableString, isBatchEmpty ? Linkify.ALL : 0);
+
+    if (hasLinks) {
+      URLSpan[] urlSpans = spannableString.getSpans(0, spannableString.length(), URLSpan.class);
+      for (URLSpan urlSpan : urlSpans) {
+        int start = spannableString.getSpanStart(urlSpan);
+        int end = spannableString.getSpanEnd(urlSpan);
+        spannableString.setSpan(new LongClickSpan(urlSpan.getURL()), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+      }
+    }
+    return spannableString;
   }
 
   private void setStatusIcons(MessageRecord messageRecord) {
@@ -545,6 +565,9 @@ public class ConversationItem extends LinearLayout
 
     @Override
     public boolean onLongClick(View v) {
+      if (bodyText.hasSelection()) {
+        return false;
+      }
       performLongClick();
       return true;
     }

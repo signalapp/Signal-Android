@@ -97,6 +97,7 @@
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Fallback to unencrypted MMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">This message will <b>not</b> be encrypted because the recipient is no longer a Signal user.\n\nSend unsecured message?</string>
     <string name="ConversationItem_unable_to_open_media">Can\'t find an app able to open this media.</string>
+    <string name="ConversationItem_copied_text">Copied %s</string>
     <string name="ConversationItem_from_s">from %s</string>
     <string name="ConversationItem_to_s">to %s</string>
 
