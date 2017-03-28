@@ -5,7 +5,6 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
-import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -17,6 +16,7 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.whispersystems.libsignal.util.Pair;
@@ -32,9 +32,9 @@ import java.text.SimpleDateFormat;
 public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTask.Attachment, Void, Pair<Integer, File>> {
   private static final String TAG = SaveAttachmentTask.class.getSimpleName();
 
-  private static final int SUCCESS              = 0;
-  private static final int FAILURE              = 1;
-  private static final int WRITE_ACCESS_FAILURE = 2;
+  protected static final int SUCCESS              = 0;
+  protected static final int FAILURE              = 1;
+  protected static final int WRITE_ACCESS_FAILURE = 2;
 
   private final WeakReference<Context>      contextReference;
   private final WeakReference<MasterSecret> masterSecretReference;
@@ -67,7 +67,7 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
       MasterSecret masterSecret = masterSecretReference.get();
       File         directory    = null;
 
-      if (!Environment.getExternalStorageDirectory().canWrite()) {
+      if (!StorageUtil.canWriteInSignalStorageDir()) {
         return new Pair<>(WRITE_ACCESS_FAILURE, null);
       }
 
@@ -84,17 +84,23 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
 
       if (attachments.length > 1) return new Pair<>(SUCCESS, null);
       else                        return new Pair<>(SUCCESS, directory);
-    } catch (IOException ioe) {
+    } catch (NoExternalStorageException|IOException ioe) {
       Log.w(TAG, ioe);
       return new Pair<>(FAILURE, null);
     }
   }
 
   private @Nullable File saveAttachment(Context context, MasterSecret masterSecret, Attachment attachment)
-      throws IOException
+      throws NoExternalStorageException, IOException
   {
     String      contentType = MediaUtil.getCorrectedMimeType(attachment.contentType);
-    File        mediaFile   = constructOutputFile(attachment.fileName, contentType, attachment.date);
+    String         fileName = attachment.fileName;
+
+    if (fileName == null) fileName = generateOutputFileName(contentType, attachment.date);
+    fileName = sanitizeOutputFileName(fileName);
+
+    File    outputDirectory = createOutputDirectoryFromContentType(contentType);
+    File          mediaFile = createOutputFile(outputDirectory, fileName);
     InputStream inputStream = PartAuthority.getAttachmentStream(context, masterSecret, attachment.uri);
 
     if (inputStream == null) {
@@ -108,6 +114,73 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
                                     new String[]{contentType}, null);
 
     return mediaFile.getParentFile();
+  }
+
+  private File createOutputDirectoryFromContentType(@NonNull String contentType)
+      throws NoExternalStorageException
+  {
+    File outputDirectory;
+
+    if (contentType.startsWith("video/")) {
+      outputDirectory = StorageUtil.getVideoDir();
+    } else if (contentType.startsWith("audio/")) {
+      outputDirectory = StorageUtil.getAudioDir();
+    } else if (contentType.startsWith("image/")) {
+      outputDirectory = StorageUtil.getImageDir();
+    } else {
+      outputDirectory = StorageUtil.getDownloadDir();
+    }
+
+    if (!outputDirectory.mkdirs()) Log.w(TAG, "mkdirs() returned false, attempting to continue");
+    return outputDirectory;
+  }
+
+  private String generateOutputFileName(@NonNull String contentType, long timestamp) {
+    MimeTypeMap      mimeTypeMap   = MimeTypeMap.getSingleton();
+    String           extension     = mimeTypeMap.getExtensionFromMimeType(contentType);
+    SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd-HHmmss");
+    String           base          = "signal-" + dateFormatter.format(timestamp);
+
+    if (extension == null) extension = "attach";
+
+    return base + "." + extension;
+  }
+
+  private String sanitizeOutputFileName(@NonNull String fileName) {
+    return new File(fileName).getName();
+  }
+
+  private File createOutputFile(@NonNull File outputDirectory, @NonNull String fileName)
+      throws IOException
+  {
+    String[] fileParts = getFileNameParts(fileName);
+    String base = fileParts[0];
+    String extension = fileParts[1];
+
+    File outputFile = new File(outputDirectory, base + "." + extension);
+
+    int i = 0;
+    while (outputFile.exists()) {
+      outputFile = new File(outputDirectory, base + "-" + (++i) + "." + extension);
+    }
+
+    if (outputFile.isHidden()) {
+      throw new IOException("Specified name would not be visible");
+    }
+
+    return outputFile;
+  }
+
+  private String[] getFileNameParts(String fileName) {
+    String[] result = new String[2];
+    String[] tokens = fileName.split("\\.(?=[^\\.]+$)");
+
+    result[0] = tokens[0];
+
+    if (tokens.length > 1) result[1] = tokens[1];
+    else                   result[1] = "";
+
+    return result;
   }
 
   @Override
@@ -150,64 +223,6 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
             Toast.LENGTH_LONG).show();
         break;
     }
-  }
-
-  private File constructOutputFile(@Nullable String fileName, String contentType, long timestamp)
-      throws IOException
-  {
-    File sdCard = Environment.getExternalStorageDirectory();
-    File outputDirectory;
-
-    if (contentType.startsWith("video/")) {
-      outputDirectory = new File(sdCard.getAbsoluteFile() + File.separator + Environment.DIRECTORY_MOVIES);
-    } else if (contentType.startsWith("audio/")) {
-      outputDirectory = new File(sdCard.getAbsolutePath() + File.separator + Environment.DIRECTORY_MUSIC);
-    } else if (contentType.startsWith("image/")) {
-      outputDirectory = new File(sdCard.getAbsolutePath() + File.separator + Environment.DIRECTORY_PICTURES);
-    } else {
-      outputDirectory = new File(sdCard.getAbsolutePath() + File.separator + Environment.DIRECTORY_DOWNLOADS);
-    }
-
-    if (!outputDirectory.mkdirs()) Log.w(TAG, "mkdirs() returned false, attempting to continue");
-
-    if (fileName == null) {
-      MimeTypeMap      mimeTypeMap   = MimeTypeMap.getSingleton();
-      String           extension     = mimeTypeMap.getExtensionFromMimeType(contentType);
-      SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd-HHmmss");
-      String           base          = "signal-" + dateFormatter.format(timestamp);
-
-      if (extension == null) extension = "attach";
-
-      fileName = base + "." + extension;
-    }
-
-    fileName = new File(fileName).getName();
-
-    int  i    = 0;
-    File file = new File(outputDirectory, fileName);
-
-    while (file.exists()) {
-      String[] fileParts = getFileNameParts(fileName);
-      file = new File(outputDirectory, fileParts[0] + "-" + (++i) + "." + fileParts[1]);
-    }
-
-    if (file.isHidden()) {
-      throw new IOException("Specified name would not be visible");
-    }
-
-    return file;
-  }
-
-  private String[] getFileNameParts(String fileName) {
-    String[] result = new String[2];
-    String[] tokens = fileName.split("\\.(?=[^\\.]+$)");
-
-    result[0] = tokens[0];
-
-    if (tokens.length > 1) result[1] = tokens[1];
-    else                   result[1] = "";
-
-    return result;
   }
 
   public static class Attachment {
