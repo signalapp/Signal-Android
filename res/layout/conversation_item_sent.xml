@@ -57,12 +57,10 @@
 
             <org.thoughtcrime.securesms.components.emoji.EmojiTextView
                     android:id="@+id/conversation_item_body"
-                    android:autoLink="all"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="4dp"
                     android:paddingRight="4dp"
-                    android:linksClickable="true"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="?conversation_item_sent_text_primary_color"
                     android:textColorLink="?conversation_item_sent_text_primary_color"
