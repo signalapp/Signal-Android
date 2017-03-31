@@ -107,7 +107,7 @@ public abstract class MessageRecord extends DisplayRecord {
     } else if (isMissedCall()) {
       return emphasisAdded(context.getString(R.string.MessageRecord_missed_call_from, getIndividualRecipient().toShortString()));
     } else if (isJoined()) {
-      return emphasisAdded(context.getString(R.string.MessageRecord_s_is_on_signal_say_hey, getIndividualRecipient().toShortString()));
+      return emphasisAdded(context.getString(R.string.MessageRecord_s_joined_signal, getIndividualRecipient().toShortString()));
     } else if (isExpirationTimerUpdate()) {
       String time = ExpirationUtil.getExpirationDisplayValue(context, (int)(getExpiresIn() / 1000));
       return isOutgoing() ? emphasisAdded(context.getString(R.string.MessageRecord_you_set_disappearing_message_time_to_s, time))
