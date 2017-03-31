@@ -227,6 +227,7 @@
   <string name="DeviceListItem_linked_s">U lidh %s</string>
   <string name="DeviceListItem_last_active_s">Aktiv së ovni %s</string>
   <string name="DeviceListItem_today">Sot</string>
+  <!--DocumentView-->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizo për Shërbimet Play që mungojnë</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Kjo pajisje nuk i mbështetë Shërbimet Play. Prek për të ç\'aktivizuar optimizimet e sistemit për bateri që pengojnë Signal-in në marrjen e porosive gjatë joaktivitetit.</string>
@@ -368,7 +369,6 @@ importimi i sërishëm do të rezultojë ne mesazhe duplikate.</string>
   <string name="MessageRecord_s_called_you">ju thirri %s</string>
   <string name="MessageRecord_called_s">Thirrët %s</string>
   <string name="MessageRecord_missed_call_from">Thirrje e humbur nga %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s është në Signal, thuaj tung!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Ju rregulluar kohën për zhduken mesazhit në %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s vendosi kohën e zhdukjes së mesazhit në %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Numri juaj sigurie me %s është ndryshuar.</string>
@@ -489,7 +489,6 @@ Kontrolloni/sigurohuni nëse ky është numri juaj! Do ta verifikojmë me një S
   <string name="RegistrationProgressActivity_too_many_requests">Përpjekje të tepruara!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Veç më keni kërkuar një thirje. Mund të kërkoni një tjetër pas 20 minutash.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Konflikt regjistrimi</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Ky numër është veç më i regjistruar në një server tjetër të Signal-it (CyanogenMod?). Duhet të çregjistroheni nga ai server para se të regjistroheni këtu.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">U përfundua regjistrimi</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Signal regjistrimi u kompletua me sukses.</string>
@@ -516,7 +515,6 @@ U pranua mesazh për shkembim çelsash për një verzion të protokolli jo valid
   <string name="ThreadRecord_called_you">Të thirri</string>
   <string name="ThreadRecord_missed_call">Thirrje e humbur</string>
   <string name="ThreadRecord_media_message">Mesazh medial</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s është në Signal, thuaj tung!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Koha për zhdukje të mesazheve rregulluar në %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Numri juaj sigurie me %s është ndryshuar.</string>
   <!--UpdateApkReadyListener-->
@@ -592,6 +590,7 @@ U pranua mesazh për shkembim çelsash për një verzion të protokolli jo valid
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Përgjigja e shpejtë nuk është në dispozicion kur Signal është i mbyllur!</string>
   <string name="QuickResponseService_problem_sending_message">Problem në dërgimin e porosisë!</string>
+  <!--SaveAttachmentTask-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mesazh i ri</string>
@@ -790,7 +789,6 @@ U pranua mesazh për shkembim çelsash për një verzion të protokolli jo valid
 NUMRI I TELEFONIT</string>
   <string name="registration_activity__phone_number">NUMRI I TELEFONIT</string>
   <string name="registration_activity__register">Regjistrohu</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Regjistrimi transmeton të dhëna për kontaktin tuaj serverit.  Këto të dhëna nuk ruhen.</string>
   <string name="registration_activity__powered_by_twilio">Fuqizuar nga twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Disa probleme

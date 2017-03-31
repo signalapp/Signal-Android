@@ -180,6 +180,7 @@
   <string name="DeviceListItem_unnamed_device">ಅನಾಮಧೇಯ ಸಾಧನ</string>
   <string name="DeviceListItem_last_active_s">ಕೊನೆಯದಾಗಿ ಸಕ್ರಿಯವಾಗಿದದ್ದು  %s</string>
   <string name="DeviceListItem_today">ಇಂದು</string>
+  <!--DocumentView-->
   <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">ಜೊತೆ ಹಂಚಿಕೊಳ್ಳಿ </string>
@@ -398,6 +399,7 @@
   <string name="MmsPreferencesFragment__invalid_uri">ನಮೂದಿಸಿದ ಪಠ್ಯ ಮಾನ್ಯ URI ಅಲ್ಲ</string>
   <string name="MmsPreferencesFragment__invalid_host">ನಮೂದಿಸಿದ ಪಠ್ಯ ಮಾನ್ಯ ಹೋಸ್ಟ್ ಅಲ್ಲ</string>
   <!--QuickResponseService-->
+  <!--SaveAttachmentTask-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">ಸಿಗ್ನಲ್</string>
   <string name="SingleRecipientNotificationBuilder_new_message">ಹೊಸ ಸಂದೇಶ</string>
@@ -494,7 +496,6 @@
 ದೂರವಾಣಿ ಸಂಖ್ಯೆ</string>
   <string name="registration_activity__phone_number">ದೂರವಾಣಿ ಸಂಖ್ಯೆ</string>
   <string name="registration_activity__register">ನೋಂದಾಯಿಸು</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">ನೋಂದಣಿ ಸರ್ವರ್ ಗೆ ಕೆಲ ಸಂಪರ್ಕದ ಮಾಹಿತಿಯನ್ನು ರವಾನಿಸುತ್ತದೆ. ಅದನ್ನು ಸಂಗ್ರಹಿಸುವುದಿಲ್ಲ.</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">ಕೆಲವು ಸಂಭಾವ್ಯ ಸಮಸ್ಯೆಗಳಲ್ಲಿ 
 ಇವು ಸೇರಿವೆ: </string>

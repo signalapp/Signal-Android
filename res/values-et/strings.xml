@@ -226,6 +226,7 @@
   <string name="DeviceListItem_linked_s">%s lingitud</string>
   <string name="DeviceListItem_last_active_s">%s viimati aktiivne</string>
   <string name="DeviceListItem_today">Täna</string>
+  <!--DocumentView-->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimeeri puuduvate Play teenuste jaoks</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">See seade ei toeta Play teenuseid. Koputa, et keelata süsteemi aku optimeerimine, kuna see ei lase Signalil sõnumeid hankida, kui seade on ebaaktiivne.</string>
@@ -367,7 +368,6 @@
   <string name="MessageRecord_s_called_you">%s helistas sulle</string>
   <string name="MessageRecord_called_s">Helistasid kontaktile %s</string>
   <string name="MessageRecord_missed_call_from">Vastamata kõne kontaktilt %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s on Signalis, ütle tere!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Sa määrasid hävineva sõnumi ajaks %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s määras hävineva sõnumi ajaks %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Sinu turvanumber kontaktiga %s on muutunud.</string>
@@ -491,7 +491,6 @@
   <string name="RegistrationProgressActivity_too_many_requests">Liiga palju taotlusi!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Sa juba taotlesid hiljuti häälkõnet. Sa saad järgmist taotleda 20 minuti pärast.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Registreerimiskonflikt</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">See number on juba registreeritud teises Signali serveris (CyanogenMod?). Sa pead enne seal registreerimise tühistama, kui saad siin registreerida.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registreerimine õnnestus</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Signali registreerimine on edukalt lõpetatud.</string>
@@ -521,7 +520,6 @@
   <string name="ThreadRecord_called_you">Helistas sulle</string>
   <string name="ThreadRecord_missed_call">Vastamata kõne</string>
   <string name="ThreadRecord_media_message">Meediasõnum</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s on Signalis, ütle tere!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Hävineva sõnumi ajaks on seatud %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Sinu turvanumber kontaktiga %s on muutunud.</string>
   <!--UpdateApkReadyListener-->
@@ -597,6 +595,7 @@
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Kiirvastus pole saadaval, kui Signal on lukustatud!</string>
   <string name="QuickResponseService_problem_sending_message">Sõnumi saatmisel esines probleem!</string>
+  <!--SaveAttachmentTask-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Uus sõnum</string>
@@ -797,7 +796,6 @@
     </string>
   <string name="registration_activity__phone_number">TELEFONINUMBER</string>
   <string name="registration_activity__register">Registreeri</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registeerimine edastab osa kontaktinfot serverile. Seda ei hoita alles.</string>
   <string name="registration_activity__powered_by_twilio">Põhineb twiliol</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Võimalike probleemide

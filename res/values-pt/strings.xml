@@ -224,6 +224,7 @@ que %2$s reinstalou o Signal.</string>
   <string name="DeviceListItem_linked_s">Interligado %s</string>
   <string name="DeviceListItem_last_active_s">Activo pela última vez %s</string>
   <string name="DeviceListItem_today">Hoje</string>
+  <!--DocumentView-->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Otimiza para os Play Services em falta.</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Este dispositivo não suporta os Play Services. Clica para desativar o sistema que otimização de bateria que previne o Signal de recolher mensagens quando inativo.</string>
@@ -364,7 +365,6 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="MessageRecord_s_called_you">%s ligou-lhe</string>
   <string name="MessageRecord_called_s">Ligou para %s</string>
   <string name="MessageRecord_missed_call_from">Chamada perdida de %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s está a usar Signal, diga olá!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Definiu o tempo de mensagens a desaparecer em %1$s</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s definiu o tempo de mensagens a desaparecer em %2$s</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">O seu número de segurança com %s mudou.</string>
@@ -484,7 +484,6 @@ Verifique que este é o seu número! Estamos prestes a confirmá-lo com uma SMS.
   <string name="RegistrationProgressActivity_too_many_requests">Demasiados pedidos!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Já requereu uma chamada recentemente. Pode pedir outra dentro de 20 minutos.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Conflito de registo</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Este número já se encontra registado num servidor Signal diferente (CyanogenMod?). Tem de eliminar o registo lá antes de se registar connosco.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registo completo!</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">O registo Signal foi completado com sucesso.</string>
@@ -514,7 +513,6 @@ Mensagem de troca de chave inválida para esta versão do protocolo.
   <string name="ThreadRecord_called_you">Ligou-lhe</string>
   <string name="ThreadRecord_missed_call">Chamada perdida</string>
   <string name="ThreadRecord_media_message">Mensagem media</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s está a usar Signal, diga olá!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tempo de mensagens a desaparecer definido para %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">O seu número de segurança com %s mudou.</string>
   <!--UpdateApkReadyListener-->
@@ -590,6 +588,7 @@ Mensagem de troca de chave inválida para esta versão do protocolo.
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">A resposta rápida encontra-se indisponível quando o Signal está bloqueado!</string>
   <string name="QuickResponseService_problem_sending_message">Problema no envio da mensagem!</string>
+  <!--SaveAttachmentTask-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mensagem nova</string>
@@ -789,7 +788,6 @@ Verifique o seu número de telefone para contactar com Signal
 NÚMERO DE TELEFONE</string>
   <string name="registration_activity__phone_number">TELEFONE</string>
   <string name="registration_activity__register">Registar</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">O registo irá transmitir alguma informação de contacto para o servidor. Esta não é armazenada.</string>
   <string name="registration_activity__powered_by_twilio">Providenciado por twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Alguns possíveis problemas

@@ -185,6 +185,7 @@
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Nepomenované zariadenie</string>
   <string name="DeviceListItem_today">Dnes</string>
+  <!--DocumentView-->
   <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Zdieľaj s</string>
@@ -256,7 +257,6 @@ opätovným importom zduplikujete správy.
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediálna správa</string>
   <!--MessageRecord-->
   <string name="MessageRecord_left_group">Opustili ste skupinu.</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s už má tiež Signal, pozdravte ho!</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Heslá sa nezhodujú!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Nesprávne staré heslo!</string>
@@ -382,7 +382,6 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <string name="ThreadRecord_called_you">Volal Vám</string>
   <string name="ThreadRecord_missed_call">Zmeškaný hovor</string>
   <string name="ThreadRecord_media_message">Multimediálna správa</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s už má tiež Signal, pozdravte ho!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas na zmiznutie správy nastavený na %s</string>
   <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
@@ -440,6 +439,7 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <string name="MmsPreferencesFragment__invalid_uri">Vložený text nie je platná adresa URL</string>
   <string name="MmsPreferencesFragment__invalid_host">Vložený text nie je platná adresa počítača</string>
   <!--QuickResponseService-->
+  <!--SaveAttachmentTask-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nová správa</string>
@@ -566,7 +566,6 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
 telefónne číslo</string>
   <string name="registration_activity__phone_number">TELEFÓNNE ČÍSLO </string>
   <string name="registration_activity__register">Registrovať</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Pri registrácii budú odoslané niektoré Vaše kontakné údaje na vzdialený server. Tieto údaje nebudú trvalo uložené.</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Niektoré možné problémy
 zahŕňajú:

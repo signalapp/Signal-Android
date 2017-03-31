@@ -210,6 +210,7 @@
   <string name="DeviceListItem_linked_s">%sを結び付けました</string>
   <string name="DeviceListItem_last_active_s">最終活動 %s</string>
   <string name="DeviceListItem_today">今日</string>
+  <!--DocumentView-->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">欠けているGoogle Play開発者サービスに最適化する</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">この端末はGoogle Play開発者サービスをサポートしていません。タップして，休眠中の通信を止めるバッテリー最適化機能を切ってください。</string>
@@ -337,7 +338,6 @@
   <string name="MessageRecord_s_called_you">%sから着信</string>
   <string name="MessageRecord_called_s">%sに発信</string>
   <string name="MessageRecord_missed_call_from">%sから不在着信</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%sがSignalにいるので声を掛ける</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">メッセージの消去時間を%1$sに設定しました</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$sがメッセージの消去時間を%2$sに設定しました</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">%sとの安全番号が変わりました</string>
@@ -452,7 +452,6 @@
   <string name="RegistrationProgressActivity_too_many_requests">リクエストが多すぎます</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">検証用の通話はすでに申請済みです。再申請は20分待たなければ出来ません。</string>
   <string name="RegistrationProgressActivity_registration_conflict">登録不一致</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">この番号は既にSignalの別のサーバーに登録されています。そこでの登録を解除してから再度試してください。</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">登録完了</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">登録が完了しました</string>
@@ -477,7 +476,6 @@
   <string name="ThreadRecord_called_you">着信がありました</string>
   <string name="ThreadRecord_missed_call">不在着信がありました</string>
   <string name="ThreadRecord_media_message">メディアでのメッセージ</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%sがSignalにいるので声を掛ける</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">メッセージの消去時間が%sに設定されました</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">%sとの安全番号が変わりました</string>
   <!--UpdateApkReadyListener-->
@@ -553,6 +551,7 @@
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signalのロック中はクイック・レスポンスは使えません</string>
   <string name="QuickResponseService_problem_sending_message">メッセージ送信で問題発生</string>
+  <!--SaveAttachmentTask-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">新規メッセージ</string>
@@ -742,7 +741,6 @@
   <string name="registration_activity__your_country_code_and_phone_number">あなたの国番号と電話番号</string>
   <string name="registration_activity__phone_number">電話番号</string>
   <string name="registration_activity__register">登録</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">登録すると連絡先情報の一部がサーバーに送られますが、保存はしません。</string>
   <string name="registration_activity__powered_by_twilio">Powered by twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">いくつかの問題の可能性があります

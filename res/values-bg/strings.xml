@@ -226,6 +226,8 @@
   <string name="DeviceListItem_linked_s">Свързан с %s</string>
   <string name="DeviceListItem_last_active_s">Последна активност %s</string>
   <string name="DeviceListItem_today">Днес</string>
+  <!--DocumentView-->
+  <string name="DocumentView_unknown_file">непознат файл</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Оптимизиране за липсващи Play услуги</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Това устройство не поддържа Play услуги. Натиснете, за да изключите оптимизациите на батерият, за да преустановите опитите на Сигнал да изтегля съобщения, когато не е активен.</string>
@@ -363,7 +365,6 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="MessageRecord_s_called_you">%s ти се обади</string>
   <string name="MessageRecord_called_s">Обаждане до %s</string>
   <string name="MessageRecord_missed_call_from">Пропуснато обаждане от %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s е в Сигнал, кажи им здрасти!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Заложихте време за изчезване на съобщения на %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s заложи време за изчезване на съобщения на %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Числата Ви за сигурност с %s са променени</string>
@@ -461,6 +462,8 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="RegistrationActivity_i_understand">Разбирам</string>
   <string name="RegistrationActivity_play_services_error">Грешка с Play услуги</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play услуги се обновява или временно не е на разположение. Моля, опитайте отново.</string>
+  <string name="RegistrationActivity_more_information">Повече информация</string>
+  <string name="RegistrationActivity_less_information">По-малко информация</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Възможни проблеми</string>
   <!--RegistrationProgressActivity-->
@@ -483,7 +486,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="RegistrationProgressActivity_too_many_requests">Твърде много опити!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Наскоро вече поиска обаждане. Може да поискаш повторно след 20 минути.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Конфликт при регистрацията</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Този номер е вече регистриран с друг Сигнал сървър (CyanogenMod?). Трябва да се дерегистрирате от него преди да се регистрирате тук.</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Този номер е вече регистриран на различен Сигналски сървър. Трябва да се дерегстрирате там преди да се регистрирате тук.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Регистрацията завършена...</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Сигнал регистрацията е успешно завършена.</string>
@@ -512,7 +515,6 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="ThreadRecord_called_you">Ви се обади</string>
   <string name="ThreadRecord_missed_call">Пропуснато обаждане</string>
   <string name="ThreadRecord_media_message">Медийно съобщение</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s е в Сигнал, кажи му здрасти!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Времето за изчезване на съобщенията е %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Числата Ви за сигурност с %s са променени.</string>
   <!--UpdateApkReadyListener-->
@@ -588,6 +590,8 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Бърз отговор не е възможен, когато Сигнал е заключен!</string>
   <string name="QuickResponseService_problem_sending_message">Проблем при изпрашане на съобщение!</string>
+  <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_open_directory">Отворяне на папка</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Сигнал</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ново съобщение</string>
@@ -786,7 +790,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
 ТЕЛЕФОНЕН НОМЕР</string>
   <string name="registration_activity__phone_number">ТЕЛЕФОНЕН НОМЕР</string>
   <string name="registration_activity__register">Регистрирай</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Регистрацията ще прехвърли временно малко информация, относно контактите ти, на сървъра.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Сигнал улеснява комуникирането като използва вече съществущ телефонен номер и адресна книга. Прителите и контакти, които вече знаят как да се свържат по телефона ще могат да се свържат лесно и през Сигнал.\n\nРегистрацията изпраща информация за контактите до сървъра. Тази информация не се пази.</string>
   <string name="registration_activity__powered_by_twilio">С помоща на twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Няколко вероятни
@@ -890,6 +894,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="arrays__images">Изображения</string>
   <string name="arrays__audio">Аудио</string>
   <string name="arrays__video">Видео</string>
+  <string name="arrays__documents">Документи</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d час</item>

@@ -210,6 +210,7 @@
   <string name="DeviceListItem_linked_s">已连接 %s</string>
   <string name="DeviceListItem_last_active_s">最后活动  %s</string>
   <string name="DeviceListItem_today">今天</string>
+  <!--DocumentView-->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">对缺失的 Google Play 服务进行优化</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">此设备不支持 Google Play 服务。点击以禁用系统电池优化以避免暗号无法收到新消息。</string>
@@ -340,10 +341,11 @@
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">已收到的信息使用了旧版本的暗号进行加密，并且已经不再被支持。请联系发送者升级暗号到最新版本然后再次发送该信息。</string>
   <string name="MessageRecord_left_group">您已经离开了此群组。</string>
+  <string name="MessageRecord_you_updated_group">您更新了此群组</string>
+  <string name="MessageRecord_s_updated_group">%s 更新了此群组。</string>
   <string name="MessageRecord_s_called_you">%s 呼叫过您</string>
   <string name="MessageRecord_called_s">已呼叫 %s</string>
   <string name="MessageRecord_missed_call_from">来自 %s 的未接来电</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s 正在暗号中，打个招呼吧！</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">您将信息销毁时间设置为 %1$s</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s 将消息销毁时间设置为 %2$s</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">您与 %s 的安全码已经改变</string>
@@ -464,7 +466,6 @@
   <string name="RegistrationProgressActivity_too_many_requests">太多请求！</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">近期您已经请求了一个语音呼叫，等待20分钟后才能再次请求。</string>
   <string name="RegistrationProgressActivity_registration_conflict">注册冲突</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">当前号码已经在另一个不同的暗号服务器上注册了（CyanogenMod？）。您需要先反注册（注销）才能在这儿注册。</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">注册已完成</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">已经成功的完成了暗号的注册。</string>
@@ -483,6 +484,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%s 重置了安全会话</string>
   <string name="SmsMessageRecord_duplicate_message">重复的信息。</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_group_updated">群组已更新</string>
   <string name="ThreadRecord_left_the_group">离开此群组</string>
   <string name="ThreadRecord_secure_session_reset">安全会话已重设。</string>
   <string name="ThreadRecord_draft">草稿：</string>
@@ -490,7 +492,6 @@
   <string name="ThreadRecord_called_you">呼叫您的</string>
   <string name="ThreadRecord_missed_call">未接来电</string>
   <string name="ThreadRecord_media_message">多媒体信息</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s 正在暗号中，打个招呼吧！</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">信息销毁时间设置为 %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">您与 %s 的安全码已经改变</string>
   <!--UpdateApkReadyListener-->
@@ -567,6 +568,7 @@
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">当暗号处于锁定状态时，快速回复不可用！</string>
   <string name="QuickResponseService_problem_sending_message">发送信息时遇到问题！</string>
+  <!--SaveAttachmentTask-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">暗号</string>
   <string name="SingleRecipientNotificationBuilder_new_message">新信息</string>
@@ -723,6 +725,7 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">验证</string>
   <string name="message_recipients_list_item__resend">重新发送</string>
+  <string name="message_recipients_list_item__resending">正在重新发送…</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">%1$s 加入了群组。</item>
@@ -758,7 +761,6 @@
 电话号码</string>
   <string name="registration_activity__phone_number">电话号码</string>
   <string name="registration_activity__register">注册人</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">注册将会传输一些联系人信息到服务器。这些信息不会被存储。</string>
   <string name="registration_activity__powered_by_twilio">由 twilio 强力驱动</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">可能的问题

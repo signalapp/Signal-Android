@@ -226,6 +226,8 @@
   <string name="DeviceListItem_linked_s">Gekoppeld %s</string>
   <string name="DeviceListItem_last_active_s">Laatst actief %s</string>
   <string name="DeviceListItem_today">Vandaag</string>
+  <!--DocumentView-->
+  <string name="DocumentView_unknown_file">onbekend bestand</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Achtergrond verbinding geactiveerd</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dit apparaat ondersteund de Play Services niet. Tik om de optimalisaties m.b.t. stroomverbruik uit te schakelen die Signal momenteel verhinderen om berichten te ontvangen op de achtergrond.</string>
@@ -358,7 +360,6 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="MessageRecord_s_called_you">%s heeft je gebeld</string>
   <string name="MessageRecord_called_s">%s gebeld</string>
   <string name="MessageRecord_missed_call_from">Gemiste oproep van %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s gebruikt nu Signal, zeg hoi!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Je hebt de timer voor verdwijnende berichten ingesteld op %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s heeft de timer voor verdwijnende berichten ingesteld op %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Je veiligheidsnummer met %s is veranderd.</string>
@@ -457,6 +458,8 @@ ingevoerd (%s) is ongeldig.</string>
   <string name="RegistrationActivity_i_understand">I begrijp het</string>
   <string name="RegistrationActivity_play_services_error">Play services fout</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">De Google Play Services zijn momenteel aan het updaten of zijn tijdelijk niet beschikbaar. Probeer het nog eens.</string>
+  <string name="RegistrationActivity_more_information">Meer informatie</string>
+  <string name="RegistrationActivity_less_information">Minder informatie</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Mogelijke problemen</string>
   <!--RegistrationProgressActivity-->
@@ -479,7 +482,7 @@ ingevoerd (%s) is ongeldig.</string>
   <string name="RegistrationProgressActivity_too_many_requests">Te veel verzoeken!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Je hebt al een spraakoproep aangevraagd. Je kan dit opnieuw doen binnen 20 minuten.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Registratieconflict</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Dit nummer bestaat al op een andere Signal-server (CyanogenMod?). Maak daar eerst je registratie ongedaan voordat je je hier registreert.</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Dit nummer bestaat al op een andere Signal-server. Maak daar eerst je registratie ongedaan voordat je je hier registreert.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registratie voltooid</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Registratie bij Signal is succesvol afgerond.</string>
@@ -507,7 +510,6 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="ThreadRecord_called_you">Heeft je gebeld</string>
   <string name="ThreadRecord_missed_call">Gemiste oproep</string>
   <string name="ThreadRecord_media_message">Mediabericht</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s gebruikt nu Signal, zeg hallo!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Berichten zullen verdwijnen na %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Je veiligheidsnummer met %s is veranderd.</string>
   <!--UpdateApkReadyListener-->
@@ -583,6 +585,8 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Snel reageren niet beschikbaar wanneer Signal vergrendeld is!</string>
   <string name="QuickResponseService_problem_sending_message">Fout bij verzenden van bericht!</string>
+  <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_open_directory">Map openen</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nieuw bericht</string>
@@ -782,7 +786,7 @@ Verifieer je telefoonnummer om met Signal verbinding te maken.
 TELEFOONNUMMER</string>
   <string name="registration_activity__phone_number">TELEFOONNUMMER</string>
   <string name="registration_activity__register">Registreren</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registreren deelt tijdelijk enige informatie met de server. Het wordt niet bewaard.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal maakt het eenvoudig om met je bestaande telefoonnummer en adresboek te communiceren. Vrienden en contacten die jou al via je telefoon kunnen contacteren zullen eenvoudig met je contact kunnen opnemen via Signal.\n\nRegistreren deelt tijdelijk enige informatie met de server. Het wordt niet bewaard.</string>
   <string name="registration_activity__powered_by_twilio">Mogelijk gemaakt door twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Mogelijke problemen
@@ -879,6 +883,7 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="arrays__images">Afbeeldingen</string>
   <string name="arrays__audio">Geluid</string>
   <string name="arrays__video">Video</string>
+  <string name="arrays__documents">Documenten</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d uur</item>

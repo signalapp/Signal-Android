@@ -210,6 +210,8 @@
   <string name="DeviceListItem_linked_s">已連結 %s</string>
   <string name="DeviceListItem_last_active_s">最後活躍 %s</string>
   <string name="DeviceListItem_today">今天</string>
+  <!--DocumentView-->
+  <string name="DocumentView_unknown_file">未知的檔案</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">為缺少的 Play 服務優化</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">這個裝置不支援 Play 服務。輕觸關閉，因為系統電池效能最佳化會防止 Signal 在閒置時取得訊息。</string>
@@ -347,7 +349,6 @@
   <string name="MessageRecord_s_called_you">%s 呼叫您</string>
   <string name="MessageRecord_called_s">已呼叫 %s</string>
   <string name="MessageRecord_missed_call_from">來自 %s 的未接來電</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s 正在 Signal 線上，打個招呼吧！</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">您將訊息銷毀時間設置爲 %1$s。</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s 將訊息銷毀時間設置爲 %2$s。</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">您與 %s 的安全碼已改變。</string>
@@ -445,6 +446,8 @@
   <string name="RegistrationActivity_i_understand">我了解</string>
   <string name="RegistrationActivity_play_services_error">Play 服務錯誤</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play 服務正在更新或暫時無法使用。請再重試。</string>
+  <string name="RegistrationActivity_more_information">更多資訊</string>
+  <string name="RegistrationActivity_less_information">較少資訊</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">可能的問題</string>
   <!--RegistrationProgressActivity-->
@@ -467,7 +470,7 @@
   <string name="RegistrationProgressActivity_too_many_requests">送出太多次要求！</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">您剛已接到一通語音驗證碼提示通話。須於20分鐘後再提出下一次通話需求。</string>
   <string name="RegistrationProgressActivity_registration_conflict">註冊發生衝突</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">此號碼已經在另一個 Signal 伺服器 (CyanogenMod?) 註冊過了。您必需先將其取消才能在此進行註冊。</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">這個號碼已在不同的 Signal 伺服器註冊。在這裡註冊前，你必須先在那取消註冊。</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">註冊完成</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">已成功註冊 Signal。</string>
@@ -496,7 +499,6 @@
   <string name="ThreadRecord_called_you">呼叫您</string>
   <string name="ThreadRecord_missed_call">未接來電</string>
   <string name="ThreadRecord_media_message">媒體訊息</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s 正在 Signal 線上，打個招呼吧！</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">訊息銷毀時間設置爲 %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">您與 %s 的安全碼已改變。</string>
   <!--UpdateApkReadyListener-->
@@ -573,6 +575,8 @@
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">當 Signal 鎖定時無法使用快速回覆！</string>
   <string name="QuickResponseService_problem_sending_message">傳送訊息出現問題！</string>
+  <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_open_directory">打開目錄</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">新訊息</string>
@@ -765,7 +769,7 @@
 手機號碼</string>
   <string name="registration_activity__phone_number">手機號碼</string>
   <string name="registration_activity__register">註冊</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">註冊過程中將會傳送某些您手機上的聯絡人資訊至我們的伺服器上。不過它們不會被儲存。</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal 使用你現在的手機號碼和通訊簿，讓通訊變得簡單。知道如何用手機聯繫你的朋友與聯絡人們，他們會更容易的透過 Signal 與你保持聯絡。\n\n註冊時，會傳輸一些聯絡資訊到伺服器，這些聯絡資訊並不會被儲存。</string>
   <string name="registration_activity__powered_by_twilio">來自 twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">某些可能的問題
@@ -869,6 +873,7 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="arrays__images">圖片</string>
   <string name="arrays__audio">音訊</string>
   <string name="arrays__video">影片</string>
+  <string name="arrays__documents">文件</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="other">%d 小時</item>
