@@ -83,7 +83,7 @@ public class MediaUtil {
       slide = new AudioSlide(context, attachment);
     } else if (isMms(attachment.getContentType())) {
       slide = new MmsSlide(context, attachment);
-    } else {
+    } else if (attachment.getContentType() != null) {
       slide = new DocumentSlide(context, attachment);
     }
 
