@@ -251,6 +251,9 @@
     <string name="DeviceListItem_last_active_s">Last active %s</string>
     <string name="DeviceListItem_today">Today</string>
 
+    <!-- DocumentView -->
+    <string name="DocumentView_unknown_file">unknown file</string>
+
     <!-- DozeReminder -->
     <string name="DozeReminder_optimize_for_missing_play_services">Optimize for missing Play Services</string>
     <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">This device does not support Play Services. Tap to disable system battery optimizations that prevent Signal from retrieving messages while inactive.</string>
@@ -526,6 +529,8 @@
     <string name="RegistrationActivity_i_understand">I understand</string>
     <string name="RegistrationActivity_play_services_error">Play Services Error</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services is updating or temporarily unavailable. Please try again.</string>
+    <string name="RegistrationActivity_more_information">More information</string>
+    <string name="RegistrationActivity_less_information">Less information</string>
 
     <!-- RegistrationProblemsActivity -->
     <string name="RegistrationProblemsActivity_possible_problems">Possible problems</string>
@@ -675,6 +680,9 @@
     <!-- QuickResponseService -->
     <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Quick response unavailable when Signal is locked!</string>
     <string name="QuickResponseService_problem_sending_message">Problem sending message!</string>
+
+    <!-- SaveAttachmentTask -->
+    <string name="SaveAttachmentTask_open_directory">Open Directory</string>
 
     <!-- SingleRecipientNotificationBuilder -->
     <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
@@ -931,7 +939,7 @@
     </string>
     <string name="registration_activity__phone_number">PHONE NUMBER</string>
     <string name="registration_activity__register">Register</string>
-    <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registration transmits some contact information to the server. It is not stored.</string>
+    <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal makes it easy to communicate by using your existing phone number and address book. Friends and contacts who already know how to contact you by phone will be able to easily get in touch by Signal.\n\nRegistration transmits some contact information to the server. It is not stored.</string>
     <string name="registration_activity__powered_by_twilio">Powered by twilio</string>
 
     <!-- registration_problems -->
@@ -1344,8 +1352,6 @@
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
-    <string name="SaveAttachmentTask_open_directory">Open Directory</string>
-    <string name="DocumentView_unknown_file">unknown file</string>
 
     <!-- EOF -->
 
