@@ -192,6 +192,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       add("SM-G930F"); // Samsung Galaxy S7 #6241
       add("Xperia SP"); // Sony Xperia SP #6241
       add("Nexus 6"); // Nexus 6
+      add("ONE E1003"); // OnePlus X
     }};
 
     Set<String> OPEN_SL_ES_BLACKLIST = new HashSet<String>() {{
