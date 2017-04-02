@@ -196,11 +196,10 @@ public class AttachmentManager {
   public void setMedia(@NonNull final MasterSecret masterSecret,
                        @NonNull final Uri uri,
                        @NonNull final MediaType mediaType,
-                       @NonNull final MediaConstraints constraints)
-  {
+                       @NonNull final MediaConstraints constraints) {
     inflateStub();
 
-            new AsyncTask<Void, Void, Slide>() {
+    new AsyncTask<Void, Void, Slide>() {
       @Override
       protected void onPreExecute() {
         thumbnail.clear();
@@ -210,33 +209,19 @@ public class AttachmentManager {
 
       @Override
       protected @Nullable Slide doInBackground(Void... params) {
-        long   start  = System.currentTimeMillis();
-        Cursor cursor = null;
-
         try {
           if (PartAuthority.isLocalUri(uri)) {
-            long  mediaSize = MediaUtil.getMediaSize(context, masterSecret, uri);
-            Log.w(TAG, "local slide with size " + mediaSize + " took " + (System.currentTimeMillis() - start) + "ms");
-            return mediaType.createSlide(context, uri, null, null, mediaSize);
+            return getManuallyCalculatedSlideInfo(uri);
           } else {
-            cursor = context.getContentResolver().query(uri, null, null, null, null);
+            Slide result = getContentResolverSlideInfo(uri);
 
-            if (cursor != null && cursor.moveToFirst()) {
-              String fileName = cursor.getString(cursor.getColumnIndexOrThrow(OpenableColumns.DISPLAY_NAME));
-              long   fileSize = cursor.getLong(cursor.getColumnIndexOrThrow(OpenableColumns.SIZE));
-              String mimeType = context.getContentResolver().getType(uri);
-
-              Log.w(TAG, "remote slide with size " + fileSize + " took " + (System.currentTimeMillis() - start) + "ms");
-              return mediaType.createSlide(context, uri, fileName, mimeType, fileSize);
-            }
+            if (result == null) return getManuallyCalculatedSlideInfo(uri);
+            else                return result;
           }
         } catch (IOException e) {
           Log.w(TAG, e);
-        } finally {
-          if (cursor != null) cursor.close();
+          return null;
         }
-
-        return null;
       }
 
       @Override
@@ -259,7 +244,7 @@ public class AttachmentManager {
             audioView.setAudio(masterSecret, (AudioSlide) slide, false);
             removableMediaView.display(audioView, false);
           } else if (slide.hasDocument()) {
-            documentView.setDocument((DocumentSlide)slide, false);
+            documentView.setDocument((DocumentSlide) slide, false);
             removableMediaView.display(documentView, false);
           } else {
             thumbnail.setImageResource(masterSecret, slide, false);
@@ -268,6 +253,36 @@ public class AttachmentManager {
 
           attachmentListener.onAttachmentChanged();
         }
+      }
+
+      private @Nullable Slide getContentResolverSlideInfo(Uri uri) {
+        Cursor cursor = null;
+        long   start  = System.currentTimeMillis();
+
+        try {
+          cursor = context.getContentResolver().query(uri, null, null, null, null);
+
+          if (cursor != null && cursor.moveToFirst()) {
+            String fileName = cursor.getString(cursor.getColumnIndexOrThrow(OpenableColumns.DISPLAY_NAME));
+            long   fileSize = cursor.getLong(cursor.getColumnIndexOrThrow(OpenableColumns.SIZE));
+            String mimeType = context.getContentResolver().getType(uri);
+
+            Log.w(TAG, "remote slide with size " + fileSize + " took " + (System.currentTimeMillis() - start) + "ms");
+            return mediaType.createSlide(context, uri, fileName, mimeType, fileSize);
+          }
+        } finally {
+          if (cursor != null) cursor.close();
+        }
+
+        return null;
+      }
+
+      private @NonNull Slide getManuallyCalculatedSlideInfo(Uri uri) throws IOException {
+        long start     = System.currentTimeMillis();
+        long mediaSize = MediaUtil.getMediaSize(context, masterSecret, uri);
+
+        Log.w(TAG, "local slide with size " + mediaSize + " took " + (System.currentTimeMillis() - start) + "ms");
+        return mediaType.createSlide(context, uri, null, null, mediaSize);
       }
     }.execute();
   }
