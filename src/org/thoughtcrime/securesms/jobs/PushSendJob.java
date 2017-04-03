@@ -74,27 +74,23 @@ public abstract class PushSendJob extends SendJob {
     List<SignalServiceAttachment> attachments = new LinkedList<>();
 
     for (final Attachment attachment : parts) {
-      if (ContentType.isImageType(attachment.getContentType()) ||
-          ContentType.isAudioType(attachment.getContentType()) ||
-          ContentType.isVideoType(attachment.getContentType()))
-      {
-        try {
-          if (attachment.getDataUri() == null || attachment.getSize() == 0) throw new IOException("Assertion failed, outgoing attachment has no data!");
-          InputStream is = PartAuthority.getAttachmentStream(context, masterSecret, attachment.getDataUri());
-          attachments.add(SignalServiceAttachment.newStreamBuilder()
-                                                 .withStream(is)
-                                                 .withContentType(attachment.getContentType())
-                                                 .withLength(attachment.getSize())
-                                                 .withListener(new ProgressListener() {
-                                                   @Override
-                                                   public void onAttachmentProgress(long total, long progress) {
-                                                     EventBus.getDefault().postSticky(new PartProgressEvent(attachment, total, progress));
-                                                   }
-                                                 })
-                                                 .build());
-        } catch (IOException ioe) {
-          Log.w(TAG, "Couldn't open attachment", ioe);
-        }
+      try {
+        if (attachment.getDataUri() == null || attachment.getSize() == 0) throw new IOException("Assertion failed, outgoing attachment has no data!");
+        InputStream is = PartAuthority.getAttachmentStream(context, masterSecret, attachment.getDataUri());
+        attachments.add(SignalServiceAttachment.newStreamBuilder()
+                                               .withStream(is)
+                                               .withContentType(attachment.getContentType())
+                                               .withLength(attachment.getSize())
+                                               .withFileName(attachment.getFileName())
+                                               .withListener(new ProgressListener() {
+                                                 @Override
+                                                 public void onAttachmentProgress(long total, long progress) {
+                                                   EventBus.getDefault().postSticky(new PartProgressEvent(attachment, total, progress));
+                                                 }
+                                               })
+                                               .build());
+      } catch (IOException ioe) {
+        Log.w(TAG, "Couldn't open attachment", ioe);
       }
     }
 

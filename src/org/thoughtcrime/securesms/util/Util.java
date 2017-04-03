@@ -54,6 +54,7 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -164,12 +165,33 @@ public class Util {
     }
   }
 
+  public static void close(InputStream in) {
+    try {
+      in.close();
+    } catch (IOException e) {
+      Log.w(TAG, e);
+    }
+  }
+
   public static void close(OutputStream out) {
     try {
       out.close();
     } catch (IOException e) {
       Log.w(TAG, e);
     }
+  }
+
+  public static long getStreamLength(InputStream in) throws IOException {
+    byte[] buffer    = new byte[4096];
+    int    totalSize = 0;
+
+    int read;
+
+    while ((read = in.read(buffer)) != -1) {
+      totalSize += read;
+    }
+
+    return totalSize;
   }
 
   public static String canonicalizeNumber(Context context, String number)
@@ -462,5 +484,14 @@ public class Util {
 
   public static boolean isEquals(@Nullable Long first, long second) {
     return first != null && first == second;
+  }
+
+  public static String getPrettyFileSize(long sizeBytes) {
+    if (sizeBytes <= 0) return "0";
+
+    String[] units       = new String[]{"B", "kB", "MB", "GB", "TB"};
+    int      digitGroups = (int) (Math.log10(sizeBytes) / Math.log10(1024));
+
+    return new DecimalFormat("#,##0.#").format(sizeBytes/Math.pow(1024, digitGroups)) + " " + units[digitGroups];
   }
 }

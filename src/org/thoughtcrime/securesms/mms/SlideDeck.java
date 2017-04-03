@@ -86,7 +86,7 @@ public class SlideDeck {
 
   public boolean containsMediaSlide() {
     for (Slide slide : slides) {
-      if (slide.hasImage() || slide.hasVideo() || slide.hasAudio()) {
+      if (slide.hasImage() || slide.hasVideo() || slide.hasAudio() || slide.hasDocument()) {
         return true;
       }
     }
@@ -107,6 +107,16 @@ public class SlideDeck {
     for (Slide slide : slides) {
       if (slide.hasAudio()) {
         return (AudioSlide)slide;
+      }
+    }
+
+    return null;
+  }
+
+  public @Nullable DocumentSlide getDocumentSlide() {
+    for (Slide slide: slides) {
+      if (slide.hasDocument()) {
+        return (DocumentSlide)slide;
       }
     }
 

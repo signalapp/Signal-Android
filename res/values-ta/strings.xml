@@ -173,6 +173,7 @@
   <string name="DeviceListItem_linked_s">%s இணைக்கப்பட்டது.</string>
   <string name="DeviceListItem_last_active_s">கடைசியாக செயலில் %s</string>
   <string name="DeviceListItem_today">இன்று</string>
+  <!--DocumentView-->
   <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">பகிர்</string>
@@ -335,7 +336,6 @@
   <string name="RegistrationProgressActivity_too_many_requests">மிக அதிக கோரிக்கைகள்!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">நீங்கள் ஏற்கனவே ஒரு அழைப்பை அண்மையில் கோரிதீர்கள். நீங்கள் 20 நிமிடங்களுக்கு பின் மற்றொன்றை கோரலாம்.</string>
   <string name="RegistrationProgressActivity_registration_conflict">பதிசெய்வதில் முரண்பாடு</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different"> இந்த எண் ஏற்கனவே வேறு ஒரு TextSecure வலைதளத்தில் (CyanogenMod?) பதிவாகியுள்ளது . நீங்கள் இங்கே பதிவு செய்யும்முன் அங்கே பதிவுநீக்கம் செய்யவேண்டும்.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">பதிவு முழுமையுற்றது</string>
   <string name="RegistrationService_registration_error">பதிவுசெய்தலில்  பிழை</string>
@@ -406,6 +406,7 @@
   <string name="MmsPreferencesFragment__invalid_host">உள்ளிட்ட உரை ஒரு செல்லுபடியாகும் Host அல்ல</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_problem_sending_message">செய்தி அனுப்புவதில் பிரச்சணை!</string>
+  <!--SaveAttachmentTask-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">சமிக்ஞை</string>
   <string name="SingleRecipientNotificationBuilder_new_message">புதிய செய்தி</string>
@@ -525,7 +526,6 @@
 உங்கள் தொலைபேசி எண்</string>
   <string name="registration_activity__phone_number">தொலைபேசி எண்</string>
   <string name="registration_activity__register">பதிவு செய்</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">பதிவுசெய்வது சர்வருக்கு சில தொடர்புத்தகவல்களை அனுப்புகிறது. இது சேமிக்கப்படாது.</string>
   <string name="registration_activity__powered_by_twilio">Twilio மூலம் இயக்கப்படுகிறது</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">சில நிகழக்கூடிய பிரச்சினைகள் இவை:</string>

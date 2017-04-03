@@ -41,6 +41,18 @@
                 app:foregroundTintColor="@color/grey_500"
                 app:backgroundTintColor="?conversation_item_bubble_background"/>
 
+        <org.thoughtcrime.securesms.components.DocumentView
+                android:id="@+id/attachment_document"
+                android:layout_width="210dp"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                app:documentWidgetBackground="?conversation_item_bubble_background"
+                app:documentForegroundTintColor="@color/grey_500"
+                app:documentBackgroundTintColor="?conversation_item_bubble_background"/>
+
+
     </org.thoughtcrime.securesms.components.RemovableEditableMediaView>
 
 </FrameLayout>

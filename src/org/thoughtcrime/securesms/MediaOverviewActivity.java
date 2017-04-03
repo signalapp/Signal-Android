@@ -166,10 +166,11 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
             List<SaveAttachmentTask.Attachment> attachments = new ArrayList<>(cursor.getCount());
 
             while (cursor != null && cursor.moveToNext()) {
-              MediaRecord record = MediaRecord.from(cursor);
+              MediaRecord record = MediaRecord.from(c, masterSecret, cursor);
               attachments.add(new SaveAttachmentTask.Attachment(record.getAttachment().getDataUri(),
                                                                 record.getContentType(),
-                                                                record.getDate()));
+                                                                record.getDate(),
+                                                                null));
             }
 
             return attachments;
@@ -179,7 +180,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
           protected void onPostExecute(List<SaveAttachmentTask.Attachment> attachments) {
             super.onPostExecute(attachments);
 
-            SaveAttachmentTask saveTask = new SaveAttachmentTask(c, masterSecret, attachments.size());
+            SaveAttachmentTask saveTask = new SaveAttachmentTask(c, masterSecret, gridView, attachments.size());
             saveTask.execute(attachments.toArray(new SaveAttachmentTask.Attachment[attachments.size()]));
           }
         }.execute();

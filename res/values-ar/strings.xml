@@ -273,6 +273,7 @@
   <string name="DeviceListItem_linked_s">مقترن %s</string>
   <string name="DeviceListItem_last_active_s">آخر مرة %s</string>
   <string name="DeviceListItem_today">اليوم</string>
+  <!--DocumentView-->
   <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">شارك مع</string>
@@ -391,7 +392,6 @@
   <string name="MessageRecord_s_called_you">%s قام بالاتصال</string>
   <string name="MessageRecord_called_s">%s قام بالاتصال</string>
   <string name="MessageRecord_missed_call_from">مكالمة فائتة من %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s إنضم إلى سيجنال.. ألقي التحية!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">لقد قمت بتحديد توقيت اختفاء الرسالة ليكون %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">حدد %1$s توقيت اختفاء الرسالة ليكون %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">تم تغيير رقم الأمان الخاص بك وبـ%s.</string>
@@ -501,7 +501,6 @@
   <string name="RegistrationProgressActivity_too_many_requests">طلبات متعددة جدا!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">لقد قمت بطلب مكالمة صوتية مؤخرا. يمكنك طلب مكالمة آخرى بعد 20 دقيقة. </string>
   <string name="RegistrationProgressActivity_registration_conflict">تعارض في التسجيل</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">الرقم مسجل بالفعل مع سيجنال (ربما سيانوجين مود؟). يجب إلغاء التسجيل هناك قبل التسجيل هنا.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">انتهى التسجيل</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">عملية التسجيل في سيجنال تمت بنجاح.</string>
@@ -527,7 +526,6 @@
   <string name="ThreadRecord_called_you">مكالمات واردة</string>
   <string name="ThreadRecord_missed_call">مكالمة فائتة</string>
   <string name="ThreadRecord_media_message">رسالة وسائط متعددة</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s إنضم إلى سيجنال.. ألقي التحية!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">ضبط توقيت إخفاء الرسائل إلى %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">تم تغيير رقم الأمان الخاص بك وبـ%s.</string>
   <!--UpdateApkReadyListener-->
@@ -596,6 +594,7 @@
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">الردود السريعة غير متاحة عند قفل سيجنال!</string>
   <string name="QuickResponseService_problem_sending_message">مشكلة في الإرسال!</string>
+  <!--SaveAttachmentTask-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">سيجنال</string>
   <string name="SingleRecipientNotificationBuilder_new_message">رسالة جديدة</string>
@@ -801,7 +800,6 @@
   <string name="registration_activity__your_country_code_and_phone_number">رمز دولتك ورقم هاتفك</string>
   <string name="registration_activity__phone_number">رقم الهاتف</string>
   <string name="registration_activity__register">سجل</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">يتم نقل بعض بيانات الاتصال إلى الخادم أثناء التسجيل، ولا يتم حفظها.</string>
   <string name="registration_activity__powered_by_twilio">مدعم بواسطة Twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">بعض المشاكل المحتملة

@@ -200,6 +200,7 @@
   <string name="DeviceListItem_linked_s">Terkait %s</string>
   <string name="DeviceListItem_last_active_s">Terakhir aktif %s</string>
   <string name="DeviceListItem_today">Hari ini</string>
+  <!--DocumentView-->
   <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Berbagi dengan</string>
@@ -321,7 +322,6 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <string name="MessageRecord_s_called_you">%s menelpon Anda.</string>
   <string name="MessageRecord_called_s">Memanggil %s</string>
   <string name="MessageRecord_missed_call_from">Panggilan tak terjawab dari %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s ada di Signal, katakan halo!</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Angka keamanan anda dengan %s telah berubah.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Frasa sandi tidak cocok!</string>
@@ -435,7 +435,6 @@ isikan (%s) tidak tepat.
   <string name="RegistrationProgressActivity_too_many_requests">Terlalu banyak permintaan!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Anda telah meminta panggilan suara. Anda dapat meminta lagi dalam 20 menit kemudian.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Konflik pendaftaran</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Nomor ini telah terdaftar pada server Signal yang berbeda (CyanogenMod?). Anda harus membatalkan pendaftaran tersebut sebelum mendaftar di sini.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Pendaftaran selesai</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Pendaftaran Signal telah lengkap dan berhasil.</string>
@@ -460,7 +459,6 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ThreadRecord_called_you">Memanggil Anda</string>
   <string name="ThreadRecord_missed_call">Panggilan tak terjawab</string>
   <string name="ThreadRecord_media_message">Pesan media</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s ada di Signal, katakan halo!</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Angka keamanan anda dengan %s telah berubah.</string>
   <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
@@ -521,6 +519,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Tanggapan cepat tidak tersedia ketika Signal sedang dikunci!</string>
   <string name="QuickResponseService_problem_sending_message">Terjadi masalah saat mengirim pesan!</string>
+  <!--SaveAttachmentTask-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Pesan baru</string>
@@ -668,7 +667,6 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
 NOMOR TELEPON</string>
   <string name="registration_activity__phone_number">NOMOR TELEPON</string>
   <string name="registration_activity__register">Daftar</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Pendaftaran mengirimkan beberapa informasi kontak ke server. Tetapi tidak disimpan.</string>
   <string name="registration_activity__powered_by_twilio">Didukung oleh twillio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Beberapa masalah yang mungkin

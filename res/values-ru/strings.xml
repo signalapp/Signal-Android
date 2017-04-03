@@ -258,6 +258,7 @@
   <string name="DeviceListItem_linked_s">Привязано %s</string>
   <string name="DeviceListItem_last_active_s">Было онлайн %s</string>
   <string name="DeviceListItem_today">Сегодня</string>
+  <!--DocumentView-->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Режим без Служб Google Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Это устройство не поддерживает Службы Google Play. Нажмите для отключения оптимизации энергопотребления, которая не позволяет Signal получать сообщения, когда он неактивен.</string>
@@ -392,7 +393,6 @@
   <string name="MessageRecord_s_called_you">%s звонил(а) вам</string>
   <string name="MessageRecord_called_s">Вы звонили %s</string>
   <string name="MessageRecord_missed_call_from">Пропущен звонок от %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s теперь в Signal — скажите «Привет»!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Вы установили время исчезновения сообщений в %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s установил(а) время исчезновения сообщений в %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Ваш с %s код безопасности изменился.</string>
@@ -509,7 +509,6 @@
   <string name="RegistrationProgressActivity_too_many_requests">Слишком много запросов!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Вы недавно уже запрашивали голосовой звонок. Запросить ещё один вы сможете через 20 минут.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Конфликт регистрации</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Этот номер уже зарегистрирован на другом сервере Signal (CyanogenMod?). Вам нужно удалить регистрацию там, чтобы зарегистрироваться здесь.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Регистрация завершена</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Регистрация в Signal успешно завершена.</string>
@@ -538,7 +537,6 @@
   <string name="ThreadRecord_called_you">Звонили вам</string>
   <string name="ThreadRecord_missed_call">Пропущен звонок</string>
   <string name="ThreadRecord_media_message">Медиа-сообщение</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s теперь в Signal — скажите «Привет»!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Время исчезновения сообщений – %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Ваш с %s код безопасности изменился.</string>
   <!--UpdateApkReadyListener-->
@@ -614,6 +612,7 @@
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Быстрые ответы недоступны, когда Signal заблокирован!</string>
   <string name="QuickResponseService_problem_sending_message">Проблема при отправке сообщения!</string>
+  <!--SaveAttachmentTask-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Новое сообщение</string>
@@ -823,7 +822,6 @@
 И НОМЕР ТЕЛЕФОНА</string>
   <string name="registration_activity__phone_number">НОМЕР ТЕЛЕФОНА</string>
   <string name="registration_activity__register">Зарегистрироваться</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">При регистрации на сервер передаётся некоторая контактная информация. Она не будет на нём сохранена.</string>
   <string name="registration_activity__powered_by_twilio">Сервис предоставлен twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Возможные причины:</string>

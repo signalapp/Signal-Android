@@ -60,6 +60,15 @@ public abstract class Slide {
     return Optional.absent();
   }
 
+  @NonNull
+  public Optional<String> getFileName() {
+    return Optional.fromNullable(attachment.getFileName());
+  }
+
+  public long getFileSize() {
+    return attachment.getSize();
+  }
+
   public boolean hasImage() {
     return false;
   }
@@ -69,6 +78,10 @@ public abstract class Slide {
   }
 
   public boolean hasAudio() {
+    return false;
+  }
+
+  public boolean hasDocument() {
     return false;
   }
 
@@ -107,14 +120,15 @@ public abstract class Slide {
     return false;
   }
 
-  protected static Attachment constructAttachmentFromUri(@NonNull Context context,
-                                                         @NonNull Uri     uri,
-                                                         @NonNull String  defaultMime,
-                                                                  long     size,
-                                                                  boolean  hasThumbnail)
+  protected static Attachment constructAttachmentFromUri(@NonNull  Context context,
+                                                         @NonNull  Uri     uri,
+                                                         @NonNull  String  defaultMime,
+                                                                   long     size,
+                                                                   boolean  hasThumbnail,
+                                                         @Nullable String   fileName)
   {
     Optional<String> resolvedType = Optional.fromNullable(MediaUtil.getMimeType(context, uri));
-    return new UriAttachment(uri, hasThumbnail ? uri : null, resolvedType.or(defaultMime), AttachmentDatabase.TRANSFER_PROGRESS_STARTED, size);
+    return new UriAttachment(uri, hasThumbnail ? uri : null, resolvedType.or(defaultMime), AttachmentDatabase.TRANSFER_PROGRESS_STARTED, size, fileName);
   }
 
   @Override

@@ -196,6 +196,7 @@
   <string name="DeviceListItem_linked_s">مرتبط از %s</string>
   <string name="DeviceListItem_last_active_s">آخرین فعالیت %s</string>
   <string name="DeviceListItem_today">امروز</string>
+  <!--DocumentView-->
   <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">به اشتراک گذاشتن با</string>
@@ -304,7 +305,6 @@
   <string name="MessageRecord_s_called_you">%s با شما تماس گرفت</string>
   <string name="MessageRecord_called_s">%s تماس گرفته</string>
   <string name="MessageRecord_missed_call_from">تماس از دست رفته از %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s در سیگنال است،به او سلام کنید!</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">رمزها با هم نمی‌خوانند!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">رمز قبلی نادرست است!</string>
@@ -432,7 +432,6 @@
   <string name="ThreadRecord_called_you">با شما تماس گرفت</string>
   <string name="ThreadRecord_missed_call">تماس از دست رفته</string>
   <string name="ThreadRecord_media_message">پیام رسانه</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s در سیگنال است،به او سلام کنید!</string>
   <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_no_app_to_share_to">به نظر می رسد شما هیچ برنامه ای برای اشتراک گذاری در آن ندارید.</string>
@@ -491,6 +490,7 @@
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">پاسخگوی سریع هنگامی که نرم‌افزار سیگنال قفل باشد غیرفعال می‌شود.</string>
   <string name="QuickResponseService_problem_sending_message">بروز خطا در ارسال پیام!</string>
+  <!--SaveAttachmentTask-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">سیگنال</string>
   <string name="SingleRecipientNotificationBuilder_new_message">پیام جدید</string>
@@ -653,7 +653,6 @@
 شماره تلفن</string>
   <string name="registration_activity__phone_number">شماره تلفن</string>
   <string name="registration_activity__register">ثبت نام</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">هنگام ثبت‌نام بعضی از اطلاعات مخاطبین به سرور فرستاده می‌شود. ذخیره نخواهد شد. </string>
   <string name="registration_activity__powered_by_twilio">طراحی شده توسط twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">برخی از مشکلات احتمالی

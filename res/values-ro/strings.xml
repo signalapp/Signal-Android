@@ -242,6 +242,7 @@
   <string name="DeviceListItem_linked_s">Conectat %s</string>
   <string name="DeviceListItem_last_active_s">Ultima oară activ %s</string>
   <string name="DeviceListItem_today">Azi</string>
+  <!--DocumentView-->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizează pentru lipsa serviciilor Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Acest dispozitiv nu suportă serviciile Play. Apasă pentru a dezactiva optimizarea de sistem a bateriei care împiedică Signal să preia mesajele cât timp este inactivă.</string>
@@ -379,7 +380,6 @@ Vei pierde orice informație care se află în instalarea curentă de Signal și
   <string name="MessageRecord_s_called_you">%s te-a apelat</string>
   <string name="MessageRecord_called_s">Apel %s</string>
   <string name="MessageRecord_missed_call_from">Apel ratat de la %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s este pe Signal, spune-i hey!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Tu ai setat timpul pentru dispariția mesajelor la %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a setat timpul pentru dispariția mesajelor la %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Numărul tău de siguranță pentru %s s-a schimbat.</string>
@@ -499,7 +499,6 @@ Verifică din nou dacă acesta este numărul tău! Suntem pe cale să-l verific�
   <string name="RegistrationProgressActivity_too_many_requests">Prea multe cereri!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Ai solicitat deja un apel vocal. Vei putea solicita altul după 20 de minute.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Conflict înregistrare</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Acest număr este deja înregistrat pe un alt server Signal (CyanogenMod?). Mai întâi trebuie să te dezabonezi acolo ca să te înregistrezi aici.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Înregistrarea este completă</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Înregistrarea la Signal s-a finalizat cu succes.</string>
@@ -527,7 +526,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ThreadRecord_called_you">Te-a apelat</string>
   <string name="ThreadRecord_missed_call">Apel ratat</string>
   <string name="ThreadRecord_media_message">Mesaj media</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s este pe Signal, spune-i hey!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Timpul setat pentru mesajele care dispar este %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Numărul tău de siguranță pentru %s s-a schimbat.</string>
   <!--UpdateApkReadyListener-->
@@ -603,6 +601,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Răspunsul rapid nu este disponibil cât timp Signal este blocat!</string>
   <string name="QuickResponseService_problem_sending_message">Problemă la trimiterea mesajului!</string>
+  <!--SaveAttachmentTask-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mesaj nou</string>
@@ -808,7 +807,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
 NUMĂRUL DE TELEFON</string>
   <string name="registration_activity__phone_number">NUMĂRUL DE TELEFON</string>
   <string name="registration_activity__register">Înregistrare</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Înregistrarea transmite unele informații despre contact către server. Acestea nu sunt stocate.</string>
   <string name="registration_activity__powered_by_twilio">Cu sprijinul twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Unele probleme posibile

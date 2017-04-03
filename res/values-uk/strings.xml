@@ -227,6 +227,7 @@
   <string name="DeviceListItem_linked_s">Приєднано %s</string>
   <string name="DeviceListItem_last_active_s">Останній активний %s</string>
   <string name="DeviceListItem_today">Сьогодні</string>
+  <!--DocumentView-->
   <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Поділитися із</string>
@@ -353,7 +354,6 @@
   <string name="MessageRecord_s_called_you">%s вам телефонував/-ла</string>
   <string name="MessageRecord_called_s">Телефонували %s</string>
   <string name="MessageRecord_missed_call_from">Пропущено виклик від %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s в Signal, привітайтеся!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Ви встановили час зникнення повідомлень на %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s встановлює час зникнення повідомлень на %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Ваш номер безпеки із %s змінився.</string>
@@ -468,7 +468,6 @@
   <string name="RegistrationProgressActivity_too_many_requests">Забагато запитів!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Ви вже запросили виклик. Запросити ще один можна тільки через 20 хвилин.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Конфлікт регістрації</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Цей номер вже зареєстровано на іншому сервері Signal (CyanogenMod?). Перш ніж зареєструватися на новому сервері, відмініть реєстрацію на попередньому.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Реєстрацію завершено</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Реєстрація в службі Signal успішно виконана.</string>
@@ -494,7 +493,6 @@
   <string name="ThreadRecord_called_you">Вам телефонували</string>
   <string name="ThreadRecord_missed_call">Пропущений виклик</string>
   <string name="ThreadRecord_media_message">Медіа повідомлення</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s зараз в Signal, привітайтеся!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Час зникнення повідомлень встановлено на %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Ваш номер безпеки із %s змінився.</string>
   <!--UpdateApkReadyListener-->
@@ -562,6 +560,7 @@
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Швидка відповідь неможлива, коли Signal заблоковано!</string>
   <string name="QuickResponseService_problem_sending_message">Проблема під час надсилання повідомлення!</string>
+  <!--SaveAttachmentTask-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Нове повідомлення</string>
@@ -759,7 +758,6 @@
     </string>
   <string name="registration_activity__phone_number">НОМЕР ТЕЛЕФОНУ</string>
   <string name="registration_activity__register">Реєстрація</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Реєстрація передає деяку контактну інформація на сервер. Вона не зберігається.</string>
   <string name="registration_activity__powered_by_twilio">За підтримки twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Можливі проблеми

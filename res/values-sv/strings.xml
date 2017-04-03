@@ -226,6 +226,8 @@
   <string name="DeviceListItem_linked_s">Länkade %s</string>
   <string name="DeviceListItem_last_active_s">Senast aktiv %s</string>
   <string name="DeviceListItem_today">Idag</string>
+  <!--DocumentView-->
+  <string name="DocumentView_unknown_file">okänd fil</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimera för avsaknad av Play-tjänster</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Denna enhet stödjer inte Play-tjänster. Tryck för att slå av systemets batterioptimeringar som förhindrar Signal från att ta emot meddelanden medan den är inaktiv.</string>
@@ -362,7 +364,6 @@ som inte finns i säkerhetskopian.</string>
   <string name="MessageRecord_s_called_you">%s ringde dig</string>
   <string name="MessageRecord_called_s">Ringde %s</string>
   <string name="MessageRecord_missed_call_from">Missat samtal från %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s finns på Signal, skriv hej!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du ställde in tiden för försvinnande meddelanden till %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ställde in tiden för försvinnande meddelanden till %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Ditt säkerhetsnummer med %s har ändrats.</string>
@@ -459,6 +460,8 @@ Dubbelkolla att det här är ditt nummer! Vi ska nu verifiera det med ett SMS.</
   <string name="RegistrationActivity_i_understand">Jag förstår</string>
   <string name="RegistrationActivity_play_services_error">Play-tjänstfel</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play-tjänster uppdateras eller är tillfälligt inte tillgängligt. Försök igen senare.</string>
+  <string name="RegistrationActivity_more_information">Mer information</string>
+  <string name="RegistrationActivity_less_information">Mindre information</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Potentiella problem</string>
   <!--RegistrationProgressActivity-->
@@ -481,7 +484,7 @@ Dubbelkolla att det här är ditt nummer! Vi ska nu verifiera det med ett SMS.</
   <string name="RegistrationProgressActivity_too_many_requests">För många förfrågningar!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Du har redan begärt ett röstsamtal. Du kan begära ett nytt om 20 minuter.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Registreringskonflikt</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Detta nummer är redan registrerat på en annan Signalserver (CyanogenMod?). Du måste avregistrera ditt nummer därifrån innan du registrerar dig här.</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Detta nummer är redan registrerat på en annan Signalserver. Du måste avregistrera ditt nummer därifrån innan du registrerar dig här.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registrering klar</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Signal-registrering har lyckats.</string>
@@ -509,7 +512,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ThreadRecord_called_you">Ringde dig</string>
   <string name="ThreadRecord_missed_call">Missat samtal</string>
   <string name="ThreadRecord_media_message">Mediameddelande</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s finns på Signal, skriv hej!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tiden för försvinnande meddelanden inställd till %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Ditt säkerhetsnummer med %s har ändrats.</string>
   <!--UpdateApkReadyListener-->
@@ -585,6 +587,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Snabbsvar är ej tillgängligt när Signal är låst!</string>
   <string name="QuickResponseService_problem_sending_message">Problem med att skicka meddelandet!</string>
+  <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_open_directory">Öppna mapp</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nytt meddelande</string>
@@ -783,7 +787,7 @@ Verifiera ditt telefonnummer för att ansluta till Signal.</string>
 TELEFONNUMMER</string>
   <string name="registration_activity__phone_number">TELEFONNUMMER</string>
   <string name="registration_activity__register">Registrera</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registrering kommer att temporärt överföra viss kontaktinformation till servern.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal gör det lätt att kommunicera genom att använda ditt mobilnummer och din kontaktbok. Vänner och kontakter som redan har ditt nummer kommer lätt kunna kontakta dig med Signal.\n\nRegistreringen skickar viss kontaktinformation till servern. Informationen lagras ej.</string>
   <string name="registration_activity__powered_by_twilio">Powered by twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Några möjliga orsaker:</string>
@@ -880,6 +884,7 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="arrays__images">Bilder</string>
   <string name="arrays__audio">Ljud</string>
   <string name="arrays__video">Video</string>
+  <string name="arrays__documents">Dokument</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d timme</item>

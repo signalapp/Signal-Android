@@ -242,6 +242,7 @@
   <string name="DeviceListItem_linked_s">Susietas %s</string>
   <string name="DeviceListItem_last_active_s">Paskutinį kartą aktyvus %s</string>
   <string name="DeviceListItem_today">Šiandien</string>
+  <!--DocumentView-->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizuoti trūkstamoms „Play“ paslaugoms</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Šis įrenginys nepalaiko „Play“ paslaugų. Bakstelėkite, norėdami išjungti sistemos baterijos optimizavimus, kurie neleidžia Signal gauti žinučių tol, kol įrenginys yra neaktyvus.</string>
@@ -385,7 +386,6 @@
   <string name="MessageRecord_s_called_you">Jums skambino %s</string>
   <string name="MessageRecord_called_s">Skambino %s</string>
   <string name="MessageRecord_missed_call_from">Praleistas skambutis nuo %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s naudoja Signal, pasisveikinkite!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Jūs nustatėte išnykstančių žinučių laiką į %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s nustatė išnykstančių žinučių laiką į %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Jūsų saugumo numeris su %s pasikeitė.</string>
@@ -509,7 +509,6 @@
   <string name="RegistrationProgressActivity_too_many_requests">Per daug užklausų!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Jūs neseniai jau užklausėte balso skambutį. Jūs galite užklausti kitą skambutį po 20 minučių. </string>
   <string name="RegistrationProgressActivity_registration_conflict">Registracijos konfliktas</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Šis numeris jau yra registruotas kitame Signal serveryje (CyanogenMod?). Prieš registruojant jį čia, privalote jį ten išregistruoti.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registracija užbaigta</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Signal registracija sėkmingai užbaigta.</string>
@@ -539,7 +538,6 @@
   <string name="ThreadRecord_called_you">Jums skambino</string>
   <string name="ThreadRecord_missed_call">Praleistas skambutis</string>
   <string name="ThreadRecord_media_message">Medijos žinutė</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s naudoja Signal, pasisveikinkite!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Išnykstančių žinučių laikas nustatytas į %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Jūsų saugumo numeris su %s pasikeitė.</string>
   <!--UpdateApkReadyListener-->
@@ -615,6 +613,7 @@
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Spartusis atsakymas neprieinamas, kai Signal yra užrakinta!</string>
   <string name="QuickResponseService_problem_sending_message">Problemos siunčiant žinutę!</string>
+  <!--SaveAttachmentTask-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nauja žinutė</string>
@@ -821,7 +820,6 @@
     </string>
   <string name="registration_activity__phone_number">TELEFONO NUMERIS</string>
   <string name="registration_activity__register">Registruoti</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registracija persiunčia tam tikrą kontaktinę informaciją į serverį. Ji nėra kaupiama.</string>
   <string name="registration_activity__powered_by_twilio">Veikia su twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Į galimų problemų sąrašą

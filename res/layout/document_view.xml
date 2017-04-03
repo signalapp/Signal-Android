@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:tools="http://schemas.android.com/tools"
+       xmlns:app="http://schemas.android.com/apk/res-auto"
+       tools:context="org.thoughtcrime.securesms.components.DocumentView">
+
+        <LinearLayout android:id="@+id/document_container"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:clickable="false"
+                      android:focusable="false"
+                      android:orientation="horizontal">
+
+            <org.thoughtcrime.securesms.components.AnimatingToggle
+                    android:id="@+id/control_toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:gravity="center">
+
+                <com.pnikosis.materialishprogress.ProgressWheel
+                        android:id="@+id/download_progress"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:visibility="gone"
+                        android:clickable="false"
+                        android:layout_gravity="center"
+                        app:matProg_barColor="@color/white"
+                        app:matProg_linearProgress="true"
+                        app:matProg_spinSpeed="0.333"
+                        tools:visibility="gone"/>
+
+                <FrameLayout android:id="@+id/document_background"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:layout_gravity="center_vertical"
+                             android:gravity="center_vertical"
+                             android:background="@drawable/ic_circle_fill_white_48dp"
+                             android:visibility="visible"
+                             android:clickable="false"
+                             android:focusable="false"
+                             tools:backgroundTint="@color/blue_400">
+
+                    <TextView android:id="@+id/document"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_gravity="center"
+                              android:gravity="center"
+                              android:clickable="false"
+                              android:visibility="visible"
+                              android:background="@drawable/ic_insert_drive_file_white_24dp"
+                              android:textAlignment="center"
+                              android:scaleType="centerInside"
+                              android:textAllCaps="true"
+                              android:textSize="8sp"
+                              android:paddingTop="8dp"
+                              android:typeface="monospace"
+                              tools:visibility="visible"
+                              tools:text="PDF"
+                              tools:textColor="@color/blue_400"/>
+
+                </FrameLayout>
+
+                <ImageView android:id="@+id/download"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_gravity="center_vertical"
+                           android:clickable="true"
+                           android:visibility="gone"
+                           android:background="@drawable/circle_touch_highlight_background"
+                           android:src="@drawable/ic_download_circle_fill_white_48dp"
+                           android:contentDescription="@string/audio_view__download_accessibility_description"/>
+
+            </org.thoughtcrime.securesms.components.AnimatingToggle>
+
+            <LinearLayout android:orientation="vertical"
+                          android:layout_marginLeft="7dp"
+                          android:layout_gravity="center_vertical"
+                          android:layout_width="match_parent"
+                          android:focusable="false"
+                          android:clickable="false"
+                          android:layout_height="wrap_content">
+
+                <TextView android:id="@+id/file_name"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:textStyle="bold"
+                          android:singleLine="true"
+                          android:maxLines="1"
+                          android:clickable="false"
+                          android:ellipsize="end"
+                          tools:text="The-Anarchist-Tension-by-Alfredo-Bonanno.pdf"/>
+
+                <TextView android:id="@+id/file_size"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginTop="5dp"
+                          android:textSize="12sp"
+                          android:clickable="false"
+                          tools:text="24kb"/>
+            </LinearLayout>
+        </LinearLayout>
+</merge>

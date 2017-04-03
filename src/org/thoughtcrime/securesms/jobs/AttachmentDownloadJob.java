@@ -70,7 +70,7 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
   @Override
   public void onRun(MasterSecret masterSecret) throws IOException {
     final AttachmentId attachmentId = new AttachmentId(partRowId, partUniqueId);
-    final Attachment   attachment   = DatabaseFactory.getAttachmentDatabase(context).getAttachment(attachmentId);
+    final Attachment   attachment   = DatabaseFactory.getAttachmentDatabase(context).getAttachment(masterSecret, attachmentId);
 
     if (attachment == null) {
       Log.w(TAG, "attachment no longer exists.");
@@ -158,7 +158,7 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
         Log.w(TAG, "Downloading attachment with no digest...");
       }
 
-      return new SignalServiceAttachmentPointer(id, null, key, relay, Optional.fromNullable(attachment.getDigest()));
+      return new SignalServiceAttachmentPointer(id, null, key, relay, Optional.fromNullable(attachment.getDigest()), Optional.fromNullable(attachment.getFileName()));
     } catch (InvalidMessageException | IOException e) {
       Log.w(TAG, e);
       throw new InvalidPartException(e);

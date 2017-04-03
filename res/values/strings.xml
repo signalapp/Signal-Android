@@ -251,6 +251,9 @@
     <string name="DeviceListItem_last_active_s">Last active %s</string>
     <string name="DeviceListItem_today">Today</string>
 
+    <!-- DocumentView -->
+    <string name="DocumentView_unknown_file">Unknown file</string>
+
     <!-- DozeReminder -->
     <string name="DozeReminder_optimize_for_missing_play_services">Optimize for missing Play Services</string>
     <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">This device does not support Play Services. Tap to disable system battery optimizations that prevent Signal from retrieving messages while inactive.</string>
@@ -413,7 +416,7 @@
     <string name="MessageRecord_s_called_you">%s called you</string>
     <string name="MessageRecord_called_s">Called %s</string>
     <string name="MessageRecord_missed_call_from">Missed call from %s</string>
-    <string name="MessageRecord_s_is_on_signal_say_hey">%s is on Signal, say hey!</string>
+    <string name="MessageRecord_s_joined_signal">%s joined Signal!</string>
     <string name="MessageRecord_you_set_disappearing_message_time_to_s">You set disappearing message time to %1$s.</string>
     <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s set disappearing message time to %2$s.</string>
     <string name="MessageRecord_your_safety_number_with_s_has_changed">Your safety number with %s has changed.</string>
@@ -526,6 +529,8 @@
     <string name="RegistrationActivity_i_understand">I understand</string>
     <string name="RegistrationActivity_play_services_error">Play Services Error</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services is updating or temporarily unavailable. Please try again.</string>
+    <string name="RegistrationActivity_more_information">More information</string>
+    <string name="RegistrationActivity_less_information">Less information</string>
 
     <!-- RegistrationProblemsActivity -->
     <string name="RegistrationProblemsActivity_possible_problems">Possible problems</string>
@@ -550,7 +555,7 @@
     <string name="RegistrationProgressActivity_too_many_requests">Too many requests!</string>
     <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">You\'ve already recently requested a voice call. You can request another in 20 minutes.</string>
     <string name="RegistrationProgressActivity_registration_conflict">Registration conflict</string>
-    <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">This number is already registered on a different Signal server (CyanogenMod?). You must unregister there before registering here.</string>
+    <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">This number is already registered on a different Signal server. You must unregister there before registering here.</string>
 
     <!-- RegistrationService -->
     <string name="RegistrationService_registration_complete">Registration complete</string>
@@ -584,7 +589,7 @@
     <string name="ThreadRecord_called_you">Called you</string>
     <string name="ThreadRecord_missed_call">Missed call</string>
     <string name="ThreadRecord_media_message">Media message</string>
-    <string name="ThreadRecord_s_is_on_signal_say_hey">%s is on Signal, say hey!</string>
+    <string name="ThreadRecord_s_joined_signal">%s joined Signal!</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Disappearing message time set to %s</string>
     <string name="ThreadRecord_your_safety_number_with_s_has_changed">Your safety number with %s has changed.</string>
 
@@ -675,6 +680,9 @@
     <!-- QuickResponseService -->
     <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Quick response unavailable when Signal is locked!</string>
     <string name="QuickResponseService_problem_sending_message">Problem sending message!</string>
+
+    <!-- SaveAttachmentTask -->
+    <string name="SaveAttachmentTask_open_directory">Open directory</string>
 
     <!-- SingleRecipientNotificationBuilder -->
     <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
@@ -931,7 +939,7 @@
     </string>
     <string name="registration_activity__phone_number">PHONE NUMBER</string>
     <string name="registration_activity__register">Register</string>
-    <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registration transmits some contact information to the server. It is not stored.</string>
+    <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal makes it easy to communicate by using your existing phone number and address book. Friends and contacts who already know how to contact you by phone will be able to easily get in touch by Signal.\n\nRegistration transmits some contact information to the server. It is not stored.</string>
     <string name="registration_activity__powered_by_twilio">Powered by twilio</string>
 
     <!-- registration_problems -->
@@ -1063,6 +1071,7 @@
     <string name="arrays__images">Images</string>
     <string name="arrays__audio">Audio</string>
     <string name="arrays__video">Video</string>
+    <string name="arrays__documents">Documents</string>
 
     <!-- plurals.xml -->
     <plurals name="hours_ago">

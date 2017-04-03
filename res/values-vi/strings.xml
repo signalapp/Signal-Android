@@ -191,6 +191,7 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <string name="DeviceListItem_linked_s">Liênt kết %s</string>
   <string name="DeviceListItem_last_active_s">Lần chót hoạt động %s</string>
   <string name="DeviceListItem_today">Hôm nay</string>
+  <!--DocumentView-->
   <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Chia sẻ với</string>
@@ -305,7 +306,6 @@ sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin
   <string name="MessageRecord_s_called_you">%s đã gọi cho bạn</string>
   <string name="MessageRecord_called_s">Đã gọi cho %s</string>
   <string name="MessageRecord_missed_call_from">Cuộc gọi nhỡ từ %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s đang dùng Signal, hãy chào hỏi một tiếng!</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Cụm từ mật khẩu không khớp nhau!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Cụm từ mật khẩu cũ không đúng!</string>
@@ -408,7 +408,6 @@ mã số quốc gia bạn</string>
   <string name="RegistrationProgressActivity_too_many_requests">Quá nhiều yêu cầu!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Bạn đã yêu cầu cú gọi gần đây. Bạn có thể yêu cầu lần nữa trong vòng 20 phút.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Đăng ký gặp va chạm</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Số điện thoại này đã đăng ký trên máy chủ Signal khác rồi (CyanogenMod?). Bạn phải huỷ đăng ký đó trước khi đăng ký tại đây.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Đăng ký hoàn tất</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Đăng ký Signal thành công.</string>
@@ -431,7 +430,6 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="ThreadRecord_called_you">Đã gọi cho bạn</string>
   <string name="ThreadRecord_missed_call">Cuộc gọi nhỡ</string>
   <string name="ThreadRecord_media_message">Tin nhắn đa phương tiện</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s đang dùng Signal, hãy chào hỏi một tiếng!</string>
   <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_no_app_to_share_to">Có vẻ như bạn không có bất kỳ ứng dụng chia sẻ nào.</string>
@@ -491,6 +489,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Trả lời nhanh không khả thi khi Signal bị khoá!</string>
   <string name="QuickResponseService_problem_sending_message">Có vấn đề khi gửi tin nhắn!</string>
+  <!--SaveAttachmentTask-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Tin nhắn mới</string>
@@ -635,7 +634,6 @@ Xác minh số điện thoại của bạn để kết nối với Signal.
 SỐ ĐIỆN THOẠI BẠN</string>
   <string name="registration_activity__phone_number">SỐ ĐIỆN THOẠI</string>
   <string name="registration_activity__register">Đăng ký</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Thủ tục đăng ký sẽ gửi một số chi tiết liên lạc đến máy chủ. Chúng không được lưu trữ lại.</string>
   <string name="registration_activity__powered_by_twilio">Cung cấp nguồn lực bởi twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Một số vấn đề có thể gặp

@@ -258,6 +258,7 @@
   <string name="DeviceListItem_linked_s">Zarejestrowano %s</string>
   <string name="DeviceListItem_last_active_s">Ostatnio aktywny %s</string>
   <string name="DeviceListItem_today">Dziś</string>
+  <!--DocumentView-->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optymalizacja dla brakujących Usług Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Urządzenie nie wspiera Usług Play. Dotknij, aby wyłączyć systemową optymalizację baterii uniemożliwiającą odbieranie wiadomości w czasie braku aktywności.</string>
@@ -396,7 +397,6 @@ Stracisz wszystkie informacje obecnie zawarte w aplikacji Signal z wyjątkiem ty
   <string name="MessageRecord_s_called_you">%s dzwonił do Ciebie</string>
   <string name="MessageRecord_called_s">Zadzwoniono do %s</string>
   <string name="MessageRecord_missed_call_from">Nieodebrane połączenie od %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s używa Signal, przywitaj się!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Ustawiłeś zniknięcie wiadomości po: %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ustawił zniknięcie wiadomości po: %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Twój numer bezpieczeństwa z %s zmienił się.</string>
@@ -514,7 +514,6 @@ Upewnij się, że to jest Twój numer! Zamierzamy zweryfikować go SMSem.
   <string name="RegistrationProgressActivity_too_many_requests">Zbyt wiele zapytań!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Już zażądałeś połączenia głosowego. Możesz ponownie zażądać innego połączenia w ciągu następnych 20 minut.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Konflikt rejestracji</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Ten numer jest już zarejestrowany na innym serwerze Signal (CyanogenMod?). Musisz się wpierw wyrejestrować zanim będziesz mógł się tutaj zarejestrować.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Rejestracja zakończona!</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Rejestracja w Signal zakończona pomyślnie.</string>
@@ -541,7 +540,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ThreadRecord_called_you">Oni zadzwonili</string>
   <string name="ThreadRecord_missed_call">Nieodebrane połączenie</string>
   <string name="ThreadRecord_media_message">Wiadomość multimedialna</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s używa Signal, przywitaj się!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Czas znikania wiadomości ustawiony na %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Twój numer bezpieczeństwa z %s zmienił się.</string>
   <!--UpdateApkReadyListener-->
@@ -617,6 +615,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Szybka odpowiedź jest niedostępna kiedy Signal jest zablokowany!</string>
   <string name="QuickResponseService_problem_sending_message">Wystąpił błąd przy wysyłaniu wiadomości!</string>
+  <!--SaveAttachmentTask-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nowa wiadomość</string>
@@ -827,7 +826,6 @@ Weryfikuj swój numer telefonu, aby połączyć się z Signal.</string>
 NUMER TELEFONU</string>
   <string name="registration_activity__phone_number">NUMER TELEFONU</string>
   <string name="registration_activity__register">Rejestracja</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Podczas rejestracji, niektóre informacje o kontakcie zostaną przesłane tymczasowo na serwer. Nie będą one zapisane.</string>
   <string name="registration_activity__powered_by_twilio">Wspierane przez twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Niektóre możliwe problemy:</string>

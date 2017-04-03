@@ -8,27 +8,16 @@
 
     <LinearLayout android:padding="16dp"
                   android:paddingBottom="0dp"
+                  android:layout_marginTop="20dp"
                   android:layout_width="fill_parent"
                   android:layout_height="wrap_content"
-                  android:gravity="center_vertical"
+                  android:animateLayoutChanges="true"
                   android:orientation="vertical">
-
-        <TextView style="@style/Registration.Label"
-                  android:layout_width="fill_parent"
-                  android:gravity="start"
-                  android:textAllCaps="true"
-                  android:text="@string/registration_activity__your_country" />
 
         <Spinner android:id="@+id/country_spinner"
                  android:layout_width="fill_parent"
                  android:layout_height="wrap_content"
                  android:layout_marginBottom="16dip" />
-
-        <TextView style="@style/Registration.Label"
-                  android:layout_width="fill_parent"
-                  android:gravity="start"
-                  android:textAllCaps="true"
-                  android:text="@string/registration_activity__your_country_code_and_phone_number" />
 
         <LinearLayout android:orientation="horizontal"
                       android:layoutDirection="ltr"
@@ -69,10 +58,36 @@
                   android:text="@string/registration_activity__verify_your_number_to_connect_with_signal"/>
 
         <TextView style="@style/Registration.Description"
+                  android:id="@+id/registration_information"
                   android:layout_width="fill_parent"
-                  android:layout_marginBottom="16dip"
                   android:gravity="start"
+                  android:visibility="gone"
+                  android:layout_marginBottom="16dp"
                   android:text="@string/registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy"/>
+
+        <LinearLayout android:id="@+id/information_link_container"
+                      android:clickable="true"
+                      android:orientation="horizontal"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginBottom="16dip">
+
+            <ImageView android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:clickable="false"
+                       android:src="@drawable/ic_info_white_18dp"
+                       android:tint="#73B7F0"/>
+
+            <TextView style="@style/Registration.Description"
+                      android:id="@+id/information_label"
+                      android:clickable="false"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginLeft="3dp"
+                      android:layout_gravity="center_vertical"
+                      android:textColor="#73B7F0"
+                      android:text="@string/RegistrationActivity_more_information"/>
+        </LinearLayout>
 
         <LinearLayout android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
@@ -81,21 +96,35 @@
                       android:layout_gravity="right"
                       android:orientation="horizontal">
 
-            <Button android:id="@+id/skipButton"
-                    android:visibility="gone"
+            <TextView android:id="@+id/skipButton"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
                     android:text="@android:string/cancel"
+                    android:textColor="@color/white"
+                    android:background="@drawable/pill_button"
+                    android:backgroundTint="@color/grey_400"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:layout_marginRight="5dip"
-                    android:layout_weight="1"
-                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+                    android:layout_height="wrap_content"/>
 
-            <Button android:id="@+id/registerButton"
+            <TextView android:id="@+id/registerButton"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
                     android:text="@string/registration_activity__register"
+                    android:textColor="@color/white"
+                    android:background="@drawable/pill_button"
+                    android:backgroundTint="@color/signal_primary"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+                    android:layout_height="wrap_content"/>
+
         </LinearLayout>
 
         <ImageView android:id="@+id/twilio_shoutout"

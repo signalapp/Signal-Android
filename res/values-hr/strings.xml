@@ -242,6 +242,7 @@
   <string name="DeviceListItem_linked_s">Povezan %s</string>
   <string name="DeviceListItem_last_active_s">Zadnje aktivno %s</string>
   <string name="DeviceListItem_today">Danas</string>
+  <!--DocumentView-->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimiziraj za nedostatak Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Ovaj uređaj ne podržava Play Services. Pritisnite kako biste onemogućili sistemsku optimizaciju baterije koja spriječava Signal da dohvaća poruke dok je uređaj neaktivan.</string>
@@ -382,7 +383,6 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="MessageRecord_s_called_you">%s vas je zvao</string>
   <string name="MessageRecord_called_s">Nazvao %s</string>
   <string name="MessageRecord_missed_call_from">Propušteni poziv od %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s koristi Signal, reci bok!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Postavili ste nestajanje poruka na %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s je postavio/la vrijeme nestajanja poruke na %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Vaš sigurnosni broj s %s je izmjenjen.</string>
@@ -502,7 +502,6 @@ Provjerite da li je ovo vaš broj telefona! Uskoro ćemo poslati SMS poruku na n
   <string name="RegistrationProgressActivity_too_many_requests">Previše zahtjeva!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Već ste nedavno poslali zahtjev za poziv. Možete ponovno poslati zahtjev za 20 minuta.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Konflikt prilikom registracije</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Ovaj broj je već registriran na drugom Signal poslužitelju (CyanogenMod?). Morate tamo ukloniti registraciju prije nego li se registrirate ovdje.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registracija završena</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Signal registracija je uspješno završena.</string>
@@ -530,7 +529,6 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="ThreadRecord_called_you">Zvali su vas</string>
   <string name="ThreadRecord_missed_call">Propušteni poziv</string>
   <string name="ThreadRecord_media_message">Multimedijalna poruka</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s koristi Signal, reci bok!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Vrijeme nestajanja poruke postavljeno na %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Vaš sigurnosni broj s %s je izmjenjen.</string>
   <!--UpdateApkReadyListener-->
@@ -606,6 +604,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Brzi odgovor nije dostupan kada je Signal zaključan!</string>
   <string name="QuickResponseService_problem_sending_message">Greška prilikom slanja poruke!</string>
+  <!--SaveAttachmentTask-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nova poruka</string>
@@ -811,7 +810,6 @@ Potvrdite svoj broj telefona kako biste se povezali sa Signal.</string>
 TELEFONSKI BROJ</string>
   <string name="registration_activity__phone_number">TELEFONSKI BROJ</string>
   <string name="registration_activity__register">Registriraj</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registracija šalje neke informacije o kontaktima na poslužitelj. Podaci se ne pohranjuju trajno.</string>
   <string name="registration_activity__powered_by_twilio">Pokreće twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Neki mogući problemi

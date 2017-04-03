@@ -27,7 +27,7 @@ public class PushMediaConstraints extends MediaConstraints {
 
   @Override
   public int getGifMaxSize() {
-    return 6 * MB;
+    return 25 * MB;
   }
 
   @Override

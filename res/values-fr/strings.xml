@@ -226,6 +226,7 @@
   <string name="DeviceListItem_linked_s">%s associé</string>
   <string name="DeviceListItem_last_active_s">Vu pour la dernière fois %s</string>
   <string name="DeviceListItem_today">Aujourd\'hui</string>
+  <!--DocumentView-->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimiser les services Play manquant</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Cet appareil ne prend pas en charge le Play Services. Appuyez sur cette touche pour désactiver les optimisations de la batterie du système qui empêchent le signal de récupérer les messages lorsqu\'ils sont inactifs.</string>
@@ -359,7 +360,6 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="MessageRecord_s_called_you">%s vous a appelé</string>
   <string name="MessageRecord_called_s">Appelé %s</string>
   <string name="MessageRecord_missed_call_from">Appel manqué de %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s est sur Signal, dites-lui bonjour !</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Vous avez choisi %1$s comme heure de disparition du message.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a choisi %2$s comme heure de disparition du message.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Votre numéro de sécurité avec %s a changé</string>
@@ -478,7 +478,6 @@ introduit (%s) n\'est pas valide.</string>
   <string name="RegistrationProgressActivity_too_many_requests">Trop de requêtes !</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Vous avez déjà demandé récemment un appel vocal. Vous pouvez en demander un autre dans 20 minutes.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Conflit d’inscription</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Ce numéro est déjà enregistré sur un serveur Signal différent (CyanogenMod ?). Vous devez vous désenregistrer là-bas avant de vous enregistrer ici.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Enregistrement complet</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">L\'enregistrement sur Signal a bien réussi.</string>
@@ -506,7 +505,6 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="ThreadRecord_called_you">Vous a appelé</string>
   <string name="ThreadRecord_missed_call">Appel manqué</string>
   <string name="ThreadRecord_media_message">Message média</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s est sur Signal, dites-lui bonjour !</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Le temps de disparition des messages a été réglé à %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Votre numéro de sécurité avec %s a changé</string>
   <!--UpdateApkReadyListener-->
@@ -582,6 +580,7 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">La réponse rapide n\'est pas disponible lorsque Signal est verrouillé !</string>
   <string name="QuickResponseService_problem_sending_message">Erreur lors de l\'envoi du message !</string>
+  <!--SaveAttachmentTask-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nouveau message</string>
@@ -781,7 +780,6 @@ Vérifier votre numéro de téléphone pour vous connecter avec Signal</string>
 VOTRE NUMÉRO DE TÉLÉPHONE</string>
   <string name="registration_activity__phone_number">NUMÉRO DE TÉLÉPHONE</string>
   <string name="registration_activity__register">S\'enregistrer</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">L\'enregistrement transmettra des informations de contact au serveur. Il n\'est pas stocké.</string>
   <string name="registration_activity__powered_by_twilio">Fourni par twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Certains des problèmes possibles

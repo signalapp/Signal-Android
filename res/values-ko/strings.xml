@@ -202,6 +202,7 @@
   <string name="DeviceListItem_linked_s">연결: %s</string>
   <string name="DeviceListItem_last_active_s">최근 사용: %s</string>
   <string name="DeviceListItem_today">오늘</string>
+  <!--DocumentView-->
   <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">공유 대상</string>
@@ -319,7 +320,6 @@
   <string name="MessageRecord_s_called_you">%s님으로 부터의 수신통화</string>
   <string name="MessageRecord_called_s">%s님에게 발신통화</string>
   <string name="MessageRecord_missed_call_from">%s님의 부재중 통화</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s님이 Signal에 참여했습니다. 인사하실래요?</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">암호가 일치하지 않음</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">기존 암호가 잘못됨</string>
@@ -415,7 +415,6 @@
   <string name="RegistrationProgressActivity_too_many_requests">요청이 너무 많음</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">이미 최근에 전화로 인증번호 받기를 요청했습니다. 20분 후에 다시 시도해 주세요.</string>
   <string name="RegistrationProgressActivity_registration_conflict">가입 충돌</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">이미 전화번호가 CyanogenMod이나 다른 Signal 서버에 등록되었습니다. 그 서버에 탈퇴한 다음 다시 가입해 주세요.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">가입 완료</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Signal 가입이 완료되었습니다.</string>
@@ -436,7 +435,6 @@
   <string name="ThreadRecord_called_you">수신통화</string>
   <string name="ThreadRecord_missed_call">부재중 통화</string>
   <string name="ThreadRecord_media_message">미디어 메시지</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s님이 Signal에 참여했습니다. 인사하실래요?</string>
   <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_no_app_to_share_to">친구 초대 위해 공유할 수 있는 앱 없음</string>
@@ -496,6 +494,7 @@
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal 잠겨 있는 경우 빠른 응답 사용할 수 없음</string>
   <string name="QuickResponseService_problem_sending_message">메시지 보내지 못함</string>
+  <!--SaveAttachmentTask-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">새 메시지</string>
@@ -672,7 +671,6 @@
   <string name="registration_activity__your_country_code_and_phone_number">국제전화 나라 번호 및 전화번호</string>
   <string name="registration_activity__phone_number">전화번호</string>
   <string name="registration_activity__register">가입</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">가입할 때 일부 연락처 정보 서버에 전송되지만 저장되지 않습니다.</string>
   <string name="registration_activity__powered_by_twilio">Powered by twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">잠재적인 문제</string>

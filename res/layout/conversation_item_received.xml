@@ -61,6 +61,11 @@
                     android:layout_width="210dp"
                     android:layout_height="wrap_content"/>
 
+            <ViewStub android:id="@+id/document_view_stub"
+                      android:layout="@layout/conversation_item_received_document"
+                      android:layout_width="210dp"
+                      android:layout_height="wrap_content"/>
+
             <org.thoughtcrime.securesms.components.emoji.EmojiTextView
                     android:id="@+id/conversation_item_body"
                     android:layout_width="wrap_content"

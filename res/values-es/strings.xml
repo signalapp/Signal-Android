@@ -230,6 +230,8 @@ Recibido:%4$s</string>
   <string name="DeviceListItem_linked_s">Se vinculó %s</string>
   <string name="DeviceListItem_last_active_s">Activo por última vez el %s</string>
   <string name="DeviceListItem_today">Hoy</string>
+  <!--DocumentView-->
+  <string name="DocumentView_unknown_file">fichero desconocido</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizar por la ausencia de \"Play Services\"</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Este dispositivo no soporta \"Play Services\". Pulsa para inhabilitar las optimizaciones de batería del sistema que le impiden a Signal obtener mensajes mientras está inactivo.</string>
@@ -368,7 +370,6 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="MessageRecord_s_called_you">%s le llamó</string>
   <string name="MessageRecord_called_s">Llamó a %s</string>
   <string name="MessageRecord_missed_call_from">Llamada perdida de %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">¡%s esta en Signal, salúdele!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Ha establecido la hora desaparición del mensaje a las %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s estableció la hora de desaparición del mensaje a las %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Su número de seguridad con %s ha cambiado.</string>
@@ -470,6 +471,8 @@ número de teléfono
   <string name="RegistrationActivity_i_understand">Entiendo</string>
   <string name="RegistrationActivity_play_services_error">Error en \"Play Services\"</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services se está actualizando o está temporalmente suspendido. Por favor intente de nuevo.</string>
+  <string name="RegistrationActivity_more_information">Más información</string>
+  <string name="RegistrationActivity_less_information">Menos información</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Posibles problemas</string>
   <!--RegistrationProgressActivity-->
@@ -492,7 +495,7 @@ número de teléfono
   <string name="RegistrationProgressActivity_too_many_requests">¡Demasiadas peticiones!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Usted ya ha solicitado recientemente una llamada de voz. Puede pedir otra en 20 minutos.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Confilicto al registrarse</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Este número ya está registrado en un servidor Signal distinto (¿CyanogenMod?). Tiene que desregistrarse allí antes de registrarse aquí.</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Este número ya está registrado en un servidor de Signal distinto. Tiene que desregistrarse allí antes de registrarse aquí.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registro completado</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">El registro en Signal se ha completado con éxito.</string>
@@ -522,7 +525,6 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ThreadRecord_called_you">Le llamaron</string>
   <string name="ThreadRecord_missed_call">Llamada perdida</string>
   <string name="ThreadRecord_media_message">Mensaje multimedia</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">¡%s está en Signal, salúdele!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">El plazo del mensaje desvanecente se estableció a %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Su número de seguridad con %s ha cambiado.</string>
   <!--UpdateApkReadyListener-->
@@ -598,6 +600,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">¡La respuesta rápida no está disponible cuando Signal está bloqueado!</string>
   <string name="QuickResponseService_problem_sending_message">¡Hubo un problema al enviar el mensaje!</string>
+  <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_open_directory">Directorio abierto</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nuevo mensaje</string>
@@ -797,7 +801,7 @@ NÚMERO DE TELÉFONO
 </string>
   <string name="registration_activity__phone_number">NÚMERO DE TELÉFONO</string>
   <string name="registration_activity__register">Registro</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Al registrarse se transmitirá cierta información de contacto al servidor pero esta no será guardada.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal facilita comunicarse usando su número de teléfono y libreta de direcciones existentes. Los amigos y contactos que ya saben como contactar con usted por teléfono podrán acceder a usted por Signal.\n\nEl proceso de registro transmite cierta información de contacto al servidor que no se almacena.</string>
   <string name="registration_activity__powered_by_twilio">Impulsado por twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Algunos posibles problemas
@@ -911,6 +915,7 @@ por SMS.
   <string name="arrays__images">Imágenes</string>
   <string name="arrays__audio">Audio</string>
   <string name="arrays__video">Vídeo</string>
+  <string name="arrays__documents">Documentos</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d hora</item>
