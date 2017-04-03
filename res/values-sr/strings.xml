@@ -244,7 +244,6 @@
   <string name="DeviceListItem_last_active_s">Последња активност %s</string>
   <string name="DeviceListItem_today">Данас</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">непознат фајл</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Оптимизуј за недостајуће Плеј сервисе</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Овај уређај не подржава Плеј сервисе. Тапните да искључите системску оптимизацију потрошње батерије која спречава добављање порука док је Сигнал неактиван.</string>
@@ -385,6 +384,7 @@
   <string name="MessageRecord_s_called_you">%s вас је позвао/ла</string>
   <string name="MessageRecord_called_s">Позвали сте %s</string>
   <string name="MessageRecord_missed_call_from">Пропуштен позив од %s</string>
+  <string name="MessageRecord_s_joined_signal">%s је на Сигналу!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Поставили сте време нестајања поруке на %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s постави време нестајања поруке на %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Ваш безбедносни број са %s је промењен.</string>
@@ -534,6 +534,7 @@
   <string name="ThreadRecord_called_you">Позвали вас</string>
   <string name="ThreadRecord_missed_call">Пропуштен позив</string>
   <string name="ThreadRecord_media_message">Мултимедијална порука</string>
+  <string name="ThreadRecord_s_joined_signal">%s је на Сигналу!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Време нестајања поруке постављено на %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Ваш безбедносни број са %s је промењен.</string>
   <!--UpdateApkReadyListener-->
@@ -610,7 +611,6 @@
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Брзи одговор није доступан ако је Сигнал закључан!</string>
   <string name="QuickResponseService_problem_sending_message">Проблем са слањем поруке!</string>
   <!--SaveAttachmentTask-->
-  <string name="SaveAttachmentTask_open_directory">Отвори регистар</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Сигнал</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Нова порука</string>

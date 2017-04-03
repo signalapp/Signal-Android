@@ -368,6 +368,7 @@
   <string name="MessageRecord_s_called_you">%s helistas sulle</string>
   <string name="MessageRecord_called_s">Helistasid kontaktile %s</string>
   <string name="MessageRecord_missed_call_from">Vastamata kõne kontaktilt %s</string>
+  <string name="MessageRecord_s_joined_signal">%s liitus Signaliga!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Sa määrasid hävineva sõnumi ajaks %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s määras hävineva sõnumi ajaks %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Sinu turvanumber kontaktiga %s on muutunud.</string>
@@ -469,6 +470,8 @@
   <string name="RegistrationActivity_i_understand">Saan aru</string>
   <string name="RegistrationActivity_play_services_error">Play teenuste viga</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play teenused uuenevad või pole hetkel saadaval. Palun proovi uuesti.</string>
+  <string name="RegistrationActivity_more_information">Rohkem infot</string>
+  <string name="RegistrationActivity_less_information">Vähem infot</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Võimalikud probleemid</string>
   <!--RegistrationProgressActivity-->
@@ -491,6 +494,7 @@
   <string name="RegistrationProgressActivity_too_many_requests">Liiga palju taotlusi!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Sa juba taotlesid hiljuti häälkõnet. Sa saad järgmist taotleda 20 minuti pärast.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Registreerimiskonflikt</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">See number on juba registreeritud teises Signali serveris. Sa pead enne seal registreerimise tühistama, kui saad siin registreerida.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registreerimine õnnestus</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Signali registreerimine on edukalt lõpetatud.</string>
@@ -520,6 +524,7 @@
   <string name="ThreadRecord_called_you">Helistas sulle</string>
   <string name="ThreadRecord_missed_call">Vastamata kõne</string>
   <string name="ThreadRecord_media_message">Meediasõnum</string>
+  <string name="ThreadRecord_s_joined_signal">%s liitus Signaliga!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Hävineva sõnumi ajaks on seatud %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Sinu turvanumber kontaktiga %s on muutunud.</string>
   <!--UpdateApkReadyListener-->
@@ -796,6 +801,7 @@
     </string>
   <string name="registration_activity__phone_number">TELEFONINUMBER</string>
   <string name="registration_activity__register">Registreeri</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal teeb suhtlemise lihtsaks, kasutades olemasolevat telefoninumbrit ja aadressiraamatut. Sõbrad ja kontaktid, kes juba saavad sinuga telefoni teel ühendust, saavad ka Signali kaudu seda teha.\n\nRegistreerimine saadab osalist kontaktinfot serverile, seda ei salvestata.</string>
   <string name="registration_activity__powered_by_twilio">Põhineb twiliol</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Võimalike probleemide
@@ -914,6 +920,7 @@
   <string name="arrays__images">Pildid</string>
   <string name="arrays__audio">Heli</string>
   <string name="arrays__video">Video</string>
+  <string name="arrays__documents">Dokumendid</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d tund</item>

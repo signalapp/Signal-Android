@@ -75,7 +75,7 @@
   <string name="ConversationItem_expires_s">Λήγει: %s</string>
   <string name="ConversationItem_error_not_delivered">Δεν παραδόθηκε</string>
   <string name="ConversationItem_view_secure_media_question">Προβολή ασφαλών πολυμέσων;</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Αυτό το πολυμέσον έχει αποθηκευτεί σε μια κρυπτογραφημένη βάση δεδομένων. Δυστυχώς, για να το δείτε με εξωτερικό πρόγραμμα πρέπει να αποκρυπτογραφηθεί προσωρινά και να γραφτεί στην μνήμη. Είστε σίγουρος/η πως θέλετε να το κάνετε αυτό;</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Αυτό το πολυμέσο έχει αποθηκευτεί σε μια κρυπτογραφημένη βάση δεδομένων. Δυστυχώς, για να το δείτε με εξωτερικό πρόγραμμα, θα πρέπει να αποκρυπτογραφηθεί προσωρινά και να γραφτεί στην μνήμη. Είστε σίγουρος/η πως θέλετε να το κάνετε αυτό;</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Πρόβλημα, λάβαμε ληγμένο μήνυμα ανταλλαγής κλειδιών.</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Ελήφθη μήνυμα ανταλλαγής κλειδιών, πατήστε για να επεξεργαστεί.</string>
   <string name="ConversationItem_group_action_left">Ο/Η %1$s έφυγε απο την ομάδα.</string>
@@ -85,7 +85,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Να σταλεί ΜΗ κρυπτογραφημένο μήνυμα πολυμέσων?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Αυτό το μήνυμα <b>δεν</b> θα κρυπτογραφηθεί, επειδή ο παραλήπτης δεν είναι πλέον χρήστης του Signal.\n\nΝα σταλεί το μήνυμα μη κρυπτογραφημένο;</string>
   <string name="ConversationItem_unable_to_open_media">Δεν μπορεί να βρεθεί κατάλληλη εφαρμογή για το άνοιγμα αυτού του πολυμέσου.</string>
-  <string name="ConversationItem_from_s">απο %s</string>
+  <string name="ConversationItem_from_s">από %s</string>
   <string name="ConversationItem_to_s">προς %s</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Επαναφορά ασφαλούς συνεδρίας;</string>
@@ -114,14 +114,14 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Αυτή η συσκευή δε φαίνεται να υποστηρίζει ενέργειες κλήσης.</string>
   <string name="ConversationActivity_leave_group">Αποχώρηση από την ομάδα;</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Είστε σίγουρος/η πως θέλετε να αποχωρήσετε από την ομάδα;</string>
-  <string name="ConversationActivity_transport_insecure_sms">Ανασφαλές μήνυμα</string>
-  <string name="ConversationActivity_transport_insecure_mms">Ανασφαλές μήμυμα πολυμέσων</string>
+  <string name="ConversationActivity_transport_insecure_sms">Μη ασφαλές μήνυμα (SMS)</string>
+  <string name="ConversationActivity_transport_insecure_mms">Μη ασφαλές μήνυμα πολυμέσων (MMS)</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Ας χρησιμοποιήσουμε το Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Ας χρησιμοποιήσουμε αυτό για να συνομιλήσουμε: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Πρόβλημα με την αποχώρηση από την ομάδα</string>
-  <string name="ConversationActivity_mms_not_supported_title">Τα μηνύματα πολυμέσων δεν υποστηρίζονται</string>
-  <string name="ConversationActivity_mms_not_supported_message">Αυτό το μήνυμα δεν μπορεί να σταλεί, γιατι ο φορέας σας δεν υποστηρίζει τα μηνύματα πολυμέσων.</string>
+  <string name="ConversationActivity_mms_not_supported_title">Τα μηνύματα πολυμέσων (MMS) δεν υποστηρίζονται</string>
+  <string name="ConversationActivity_mms_not_supported_message">Αυτό το μήνυμα δεν μπορεί να σταλεί, γιατι ο φορέας σας δεν υποστηρίζει τα μηνύματα πολυμέσων (MMS).</string>
   <string name="ConversationActivity_specify_recipient">Παρακαλώ επιλέξτε μια επαφή</string>
   <string name="ConversationActivity_unblock_this_contact_question">Ξεμπλοκάρισμα αυτής της επαφής;</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Θα μπορείτε και πάλι να λάβετε μηνύματα και κλήσεις από αυτή την επαφή.</string>
@@ -138,7 +138,7 @@
   </plurals>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Στοιχεία μηνύματος</string>
-  <string name="ConversationFragment_transport_s_sent_received_s">Μέσο μεταφοράς:  %1$s\nΑπεστάλησαν/Παραλήφθηκαν:%2$s</string>
+  <string name="ConversationFragment_transport_s_sent_received_s">Μέσο μεταφοράς: %1$s\nΑπεστάλησαν/Παραλήφθηκαν:%2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Αποστολέας: %1$s\nΜέσο μεταφοράς: %2$s\nΑπεστάλησαν: %3$s\nΠαραλήφθηκαν: %4$s</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Διαγραφή επιλεγμένου μηνύματος;</item>
@@ -175,11 +175,11 @@
   <string name="ConversationFragment_push">Δεδομένα (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
-  <string name="ConversationFragment_deleting">Εν διαγραφή</string>
+  <string name="ConversationFragment_deleting">Γίνεται διαγραφή</string>
   <string name="ConversationFragment_deleting_messages">Διαγραφή μηνυμάτων...</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Αναζήτηση</string>
-  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Δεν υπάρχει πρόγραμμα περιήγησης στην συσκευή σας.</string>
+  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Δεν υπάρχει εγκατεστημένο πρόγραμμα περιήγησης στην συσκευή σας.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Διαγραφή επιλεγμένης συζήτησης;</item>
@@ -189,7 +189,7 @@
     <item quantity="one">Αυτό θα διαγράψει οριστικά την επιλεγμένη συζήτηση.</item>
     <item quantity="other">Αυτό θα διαγράψει οριστικά όλες τις %1$d επιλεγμένες συζητήσεις.</item>
   </plurals>
-  <string name="ConversationListFragment_deleting">Εν διαγραφή</string>
+  <string name="ConversationListFragment_deleting">Γίνεται διαγραφή</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Διαγραφή επιλεγμένων συζητήσεων...</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one">Η συζήτηση αρχειοθετήθηκε</item>
@@ -227,7 +227,7 @@
   <string name="DeviceListItem_last_active_s">Τελευταία ενεργή: %s</string>
   <string name="DeviceListItem_today">Σήμερα</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">άγνωστο αρχείο</string>
+  <string name="DocumentView_unknown_file">Άγνωστο αρχείο</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Βελτιστοποίηση για τις υπηρεσίες Play που λείπουν</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Αυτή η συσκευή δεν υποστηρίζει τις υπηρεσίες Play. Πατήστε για απενεργοποίηση των βελτιστοποιήσεων μπαταρίας του συστήματος που εμποδίζουν το Signal από το να λαμβάνει μηνύματα όταν είναι ανενεργό.</string>
@@ -235,7 +235,7 @@
   <string name="ShareActivity_share_with">Διαμοιρασμός με</string>
   <!--ExperienceUpgradeActivity-->
   <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Καλωσήλθατε στο Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">Το Textsecure και το Redphone έγιναν πλέον μία εφαρμογή ιδιοτικών μυνημάτων, για κάθε περίπτωση: το Signal.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">Το Textsecure και το Redphone έγιναν πλέον μία εφαρμογή ιδιωτικής επικοινωνίας για κάθε περίπτωση: το Signal.</string>
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Καλωσήλθατε στο Signal!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">Το TextSecure είναι πλέον Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">Το Textsecure και το Redphone είναι πλέον μία εφαρμογή: Signal. Πατήστε για να την εξερευνήσετε.</string>
@@ -266,7 +266,7 @@
   <string name="GroupCreateActivity_actionbar_edit_title">Επεξεργασία ομάδας</string>
   <string name="GroupCreateActivity_group_name_hint">Όνομα ομάδας</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Νέα ομάδα MMS</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Επελέξατε μια επαφή που δεν υποστηρίζει ομάδες Signal, οπότε αυτή η ομάδα θα είναι MMS.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Επιλέξατε μια επαφή που δεν υποστηρίζει ομάδες Signal, οπότε αυτή η ομάδα θα είναι MMS.</string>
   <string name="GroupCreateActivity_youre_not_registered_for_signal">Δεν έχετε εγγραφεί για μηνύματα και κλήσεις του Signal, οπότε οι ομάδες του Signal έχουν απενεργοποιηθεί. Παρακαλώ προσπαθήστε να εγγραφτείτε στις Ρυθμίσεις &gt; Προχωρημένες Ρυθμίσεις.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Προέκυψε ένα απρόσμενο πρόβλημα και η δημιουργία ομάδας απέτυχε.</string>
   <string name="GroupCreateActivity_contacts_no_members">Χρειάζεται τουλάχιστον ένα άτομο στην ομάδα σου
@@ -366,6 +366,7 @@
   <string name="MessageRecord_s_called_you">O/H %s σε κάλεσε</string>
   <string name="MessageRecord_called_s">Κάλεσες τον/την %s</string>
   <string name="MessageRecord_missed_call_from">Αναπάντητη κλήση από τον/την %s</string>
+  <string name="MessageRecord_s_joined_signal">Ο/Η %s εγκατέστησε το Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Όρισες το χρόνο εξαφάνισης των μηνυμάτων σε: %1$s</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">Ο/Η %1$s όρισε το χρόνο εξαφάνισης των μηνυμάτων σε: %2$s</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Ο αριθμός ασφαλείας με τον/την %s έχει αλλάξει.</string>
@@ -462,8 +463,8 @@
   <string name="RegistrationActivity_i_understand">Καταλαβαίνω</string>
   <string name="RegistrationActivity_play_services_error">Πρόβλημα υπηρεσιών Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Οι υπηρεσίες Google Play αναβαθμίζονται ή είναι προσωρινά μη διαθέσιμες. Παρακαλώ προσπάθησε ξανά.</string>
-  <string name="RegistrationActivity_more_information">Περισσότερες Πληροφορίες</string>
-  <string name="RegistrationActivity_less_information">Λιγότερες Πληροφορίες</string>
+  <string name="RegistrationActivity_more_information">Περισσότερες πληροφορίες</string>
+  <string name="RegistrationActivity_less_information">Λιγότερες πληροφορίες</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Πιθανά προβλήματα</string>
   <!--RegistrationProgressActivity-->
@@ -515,6 +516,7 @@
   <string name="ThreadRecord_called_you">Σε κάλεσε</string>
   <string name="ThreadRecord_missed_call">Αναπάντητη κλήση</string>
   <string name="ThreadRecord_media_message">Μήνυμα πολυμέσων</string>
+  <string name="ThreadRecord_s_joined_signal">Ο/Η %s εγκατέστησε το Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Ο χρόνος εξαφάνισης των μηνυμάτων ρυθμίστηκε σε %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Ο αριθμός ασφαλείας με τον/την %s έχει αλλάξει.</string>
   <!--UpdateApkReadyListener-->
@@ -791,7 +793,7 @@
 ΚΑΙ ΑΡΙΘΜΟΣ ΚΙΝΗΤΟΥ ΤΗΛΕΦΩΝΟΥ</string>
   <string name="registration_activity__phone_number">ΑΡΙΘΜΟΣ ΚΙΝΗΤΟΥ</string>
   <string name="registration_activity__register">Εγγραφή</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Το Signal κάνει την επικοινωνία εύκολη χρησιμοποιόντας τον αριθμό σας και τη λίστα επαφών σας. Φίλοι και επαφές που έχουν κιόλας τον αριθμό σας θα μπορούν να σας μιλήσουν εύκολα μέσω του Signal.\n\nΗ εγγραφή μεταδίδει προσωρινά μερικά δεδομένα στον διακομιστή. Δεν θα αποθηκευτούν.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Το Signal κάνει την επικοινωνία εύκολη χρησιμοποιόντας τον αριθμό σας και τη λίστα επαφών σας. Φίλοι και επαφές που έχουν ήδη τον αριθμό σας θα μπορούν να σας μιλήσουν εύκολα μέσω του Signal.\n\nΗ εγγραφή μεταδίδει προσωρινά μερικά στοιχεία επικοινωνίας στον διακομιστή. Δεν θα αποθηκευτούν.</string>
   <string name="registration_activity__powered_by_twilio">Με την υποστήριξη του twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Μερικά ενδεχόμενα προβλήματα

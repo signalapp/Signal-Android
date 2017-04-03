@@ -227,7 +227,7 @@
   <string name="DeviceListItem_last_active_s">Último ativo %s</string>
   <string name="DeviceListItem_today">Hoje</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">arquivo desconhecido</string>
+  <string name="DocumentView_unknown_file">Arquivo desconhecido</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Otimizar para ausência do Serviços Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Este dispositivo não tem suporte para o Serviços Play. Clique para desabilitar as otimizações sistêmicas de bateria que impedem o Signal de receber mensagens enquanto está inativo.</string>
@@ -369,6 +369,7 @@
   <string name="MessageRecord_s_called_you">%s fez uma chamada para você.</string>
   <string name="MessageRecord_called_s">Chamou %s</string>
   <string name="MessageRecord_missed_call_from">Chamada perdida de %s</string>
+  <string name="MessageRecord_s_joined_signal">%s entrou no Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Você definiu a expiração da mensagem temporária para %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s definiu a expiração da mensagem temporária para %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Seu número de segurança com %s mudou.</string>
@@ -524,6 +525,7 @@
   <string name="ThreadRecord_called_you">Ligação recebida</string>
   <string name="ThreadRecord_missed_call">Ligação perdida</string>
   <string name="ThreadRecord_media_message">MMS</string>
+  <string name="ThreadRecord_s_joined_signal">%s entrou no Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Expiração da mensagem temporária definida para %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Seu número de segurança com %s mudou.</string>
   <!--UpdateApkReadyListener-->
