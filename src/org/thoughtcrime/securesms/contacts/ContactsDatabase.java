@@ -179,35 +179,29 @@ public class ContactsDatabase {
     cursor = getFilteredSystemContacts(cursor, projection);
 
     return new ProjectionMappingCursor(cursor, projectionMap,
-            new Pair<String, Object>(CONTACT_TYPE_COLUMN, NORMAL_TYPE));
+                                    new Pair<String, Object>(CONTACT_TYPE_COLUMN, NORMAL_TYPE));
   }
 
   private Cursor getFilteredSystemContacts(Cursor cursor, String[] projection) {
-    MatrixCursor filterCursor = new MatrixCursor(projection);
+    MatrixCursor filteredCursor = new MatrixCursor(projection);
 
-    List<SystemContactInfo> nums = new ArrayList<SystemContactInfo>();
+    List<SystemContactInfo> contacts = new ArrayList<SystemContactInfo>();
 
     while (cursor != null && cursor.moveToNext()) {
-      String shortNumber = cursor.getString(2).replaceAll("[^\\d+*#]", "");
+      String formatedNumber = cursor.getString(2).replaceAll("[^\\d+*#]", "");
+      SystemContactInfo contact = new SystemContactInfo(cursor.getString(1), formatedNumber, -1);
 
-      boolean isInList = false;
-      for (SystemContactInfo num : nums ) {
-        if(num.name.equals(cursor.getString(1)) && num.number.equals(shortNumber)) {
-          isInList = true;
-          break;
-        }
-      }
-      if (!isInList) {
-        SystemContactInfo contact = new SystemContactInfo(cursor.getString(1), shortNumber, -1);
-        nums.add(contact);
+      if (contacts.contains(contact))
+       continue;
 
-        Object[] test = new Object[]{cursor.getLong(0), cursor.getString(1),
-                shortNumber, cursor.getString(3), cursor.getString(4)};
-        filterCursor.addRow(test);
-      }
+      contacts.add(contact);
+
+      filteredCursor.addRow(new Object[]{cursor.getLong(0), cursor.getString(1),
+                    cursor.getString(2), cursor.getString(3), cursor.getString(4)});
     }
-    return filterCursor;
+    return filteredCursor;
   }
+
 
   @NonNull Cursor queryTextSecureContacts(String filter) {
     String[] projection = new String[] {ContactsContract.Data._ID,
@@ -596,6 +590,16 @@ public class ContactsDatabase {
       this.name   = name;
       this.number = number;
       this.id     = id;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+      if (obj == null)
+        return  false;
+      if (!(obj instanceof SystemContactInfo))
+        return  false;
+      SystemContactInfo contact = (SystemContactInfo) obj;
+      return (this.name.equals(contact.name) && this.number.equals(contact.number) && this.id == contact.id);
     }
   }
 
