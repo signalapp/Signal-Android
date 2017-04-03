@@ -17,10 +17,12 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.preference.PreferenceFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -44,6 +46,7 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.IdentityUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -266,7 +269,12 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       final Uri toneUri = recipients.getRingtone();
 
       if (toneUri == null) {
-        ringtonePreference.setSummary(R.string.preferences__default);
+        String summary = getString(R.string.preferences__default);
+        String friendlyName = getNotificationRingtoneFriendlyName();
+        if (friendlyName != null) {
+          summary += " (" + friendlyName + ")";
+        }
+        ringtonePreference.setSummary(summary);
         ringtonePreference.setCurrentRingtone(Settings.System.DEFAULT_NOTIFICATION_URI);
       } else if (toneUri.toString().isEmpty()) {
         ringtonePreference.setSummary(R.string.preferences__silent);
@@ -281,7 +289,14 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       }
 
       if (recipients.getVibrate() == VibrateState.DEFAULT) {
-        vibratePreference.setSummary(R.string.preferences__default);
+        String summary = getString(R.string.preferences__default);
+        boolean globalVibrate = TextSecurePreferences.isNotificationVibrateEnabled(getActivity());
+        if (globalVibrate) {
+          summary += " (" + getString(R.string.RecipientPreferenceActivity_enabled) + ")";
+        } else {
+          summary += " (" + getString(R.string.RecipientPreferenceActivity_disabled) + ")";
+        }
+        vibratePreference.setSummary(summary);
         vibratePreference.setValueIndex(0);
       } else if (recipients.getVibrate() == VibrateState.ENABLED) {
         vibratePreference.setSummary(R.string.RecipientPreferenceActivity_enabled);
@@ -322,6 +337,28 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
           }
         });
       }
+    }
+
+    @Nullable
+    private String getNotificationRingtoneFriendlyName() {
+      Context context = getActivity();
+      String signalToneUriString = TextSecurePreferences.getNotificationRingtone(context);
+      if (TextUtils.isEmpty(signalToneUriString)) {
+        return context.getString(R.string.preferences__silent);
+      } else {
+        Ringtone signalTone = RingtoneManager.getRingtone(context, Uri.parse(signalToneUriString));
+        if (signalTone != null) {
+          String toneName = signalTone.getTitle(context);
+          if (toneName.endsWith(")")) {
+            //Strip $RINGTONE_NAME from "Default ringtone ($RINGTONE_NAME)"
+            String[] split = toneName.split("\\(");
+            toneName = split[split.length - 1];
+            toneName = toneName.substring(0, toneName.length() - 1);
+          }
+          return toneName;
+        }
+      }
+      return null;
     }
 
     @Override
