@@ -252,7 +252,7 @@
     <string name="DeviceListItem_today">Today</string>
 
     <!-- DocumentView -->
-    <string name="DocumentView_unknown_file">unknown file</string>
+    <string name="DocumentView_unknown_file">Unknown file</string>
 
     <!-- DozeReminder -->
     <string name="DozeReminder_optimize_for_missing_play_services">Optimize for missing Play Services</string>
@@ -682,7 +682,7 @@
     <string name="QuickResponseService_problem_sending_message">Problem sending message!</string>
 
     <!-- SaveAttachmentTask -->
-    <string name="SaveAttachmentTask_open_directory">Open Directory</string>
+    <string name="SaveAttachmentTask_open_directory">Open directory</string>
 
     <!-- SingleRecipientNotificationBuilder -->
     <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
