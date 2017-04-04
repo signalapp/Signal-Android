@@ -88,8 +88,6 @@ dependencies {
     compile project(':LibTextsecure')
     compile project(':IsfaServerDefinitions')
     compile 'com.adjust.sdk:adjust-android:3.6.1'
-
-    compile 'org.bouncycastle:bcprov-jdk16:1.46'
 }
 dependencyVerification {
     verify = [
@@ -106,7 +104,6 @@ dependencyVerification {
             'com.madgag.spongycastle:prov:b8c3fec3a59aac1aa04ccf4dad7179351e54ef7672f53f508151b614c131398a',
             'me.dm7.barcodescanner:zxing:0d6dbf8182bbe4ab7984a743b5318c40c205374294738ec1fc9d0f2cad6692e9',
             'com.android.support:cardview-v7:45c48c2ab056bc7a8573970b10f8902742c5d443f180dae43c56557397ac39af',
-            'org.bouncycastle:bcprov-jdk16::10ef7403392d4cda22b200a7a9a620dc258b5aa6a56d24a2fea468e324dab2c9',
             //'com.afollestad:material-dialogs:c17205f0d300baa307599c428a5473a6659684c94a5f68ae3c2b84b5e4741172',
             'com.github.bumptech.glide:glide:adf657e6bddccb168a29e18ab0954043af46a9b5c736d8c3193c9783fd83d69e',
             'com.makeramen:roundedimageview:7dda2e78c406760e5c356ccce59b0df46b5b171cf18abb891998594405021548',
