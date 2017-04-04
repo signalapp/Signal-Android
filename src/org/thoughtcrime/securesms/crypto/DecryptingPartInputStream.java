@@ -16,6 +16,8 @@
  */
 package org.thoughtcrime.securesms.crypto;
 
+import android.util.Log;
+
 import org.thoughtcrime.securesms.util.LimitedInputStream;
 
 import java.io.File;
@@ -55,11 +57,11 @@ public class DecryptingPartInputStream {
       byte[]          ivBytes    = new byte[IV_LENGTH];
       readFully(fileStream, ivBytes);
 
-      Cipher cipher      = Cipher.getInstance("AES/CBC/PKCS5Padding");
-      IvParameterSpec iv = new IvParameterSpec(ivBytes);
+      Cipher          cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+      IvParameterSpec iv     = new IvParameterSpec(ivBytes);
       cipher.init(Cipher.DECRYPT_MODE, masterSecret.getEncryptionKey(), iv);
 
-      return new CipherInputStream(new LimitedInputStream(fileStream, file.length() - MAC_LENGTH - IV_LENGTH), cipher);
+      return new CipherInputStreamWrapper(new LimitedInputStream(fileStream, file.length() - MAC_LENGTH - IV_LENGTH), cipher);
     } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | InvalidAlgorithmParameterException e) {
       throw new AssertionError(e);
     }
@@ -113,6 +115,29 @@ public class DecryptingPartInputStream {
 
       if (read + offset < buffer.length) offset += read;
       else                               return;
+    }
+  }
+
+  // Note (4/3/17) -- Older versions of Android have a busted OpenSSL provider that
+  // throws a RuntimeException on a BadPaddingException, so we have to catch
+  // that here in case someone calls close() before reaching the end of the
+  // stream (since close() implicitly calls doFinal())
+  //
+  // See Signal-Android Issue #6477
+  // Android: https://android-review.googlesource.com/#/c/65321/
+  private static class CipherInputStreamWrapper extends CipherInputStream {
+
+    CipherInputStreamWrapper(InputStream is, Cipher c) {
+      super(is, c);
+    }
+
+    @Override
+    public void close() throws IOException {
+      try {
+        super.close();
+      } catch (Throwable t) {
+        Log.w(TAG, t);
+      }
     }
   }
 }
