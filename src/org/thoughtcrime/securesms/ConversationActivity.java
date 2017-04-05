@@ -1940,5 +1940,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     @Override
     public void onAttachmentChanged() {
         initializeSecurity();
+        initializeEnabledCheck();
     }
 }
