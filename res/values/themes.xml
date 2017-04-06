@@ -2,6 +2,10 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+    <style name="TextSecure.BrandedLaunch" parent="@style/Theme.AppCompat">
+        <item name="android:windowBackground">@drawable/launch_screen</item>
+    </style>
+
     <style name="TextSecure.LightNoActionBar" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <item name="theme_type">light</item>
         <item name="actionBarStyle">@style/TextSecure.LightActionBar</item>
