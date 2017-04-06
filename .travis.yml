@@ -1,0 +1,29 @@
+language: android
+jdk: oraclejdk8
+env:
+    global:
+        - ADB_INSTALL_TIMEOUT = 10
+android:
+    components:
+        - tools
+        - platform-tools
+        - build-tools-25.0.0
+        - android-25
+
+        - extra-google-m2repository
+        - extra-android-m2repository
+
+        # System image for emulation
+        - sys-img-armeabi-v7a-android-21
+    licenses:
+        - 'android-sdk-license-.+'
+script:
+    - set -e # enable fast finish
+    - ./gradlew -PjavaMaxHeapSize=1g assemble lint
+    - android list targets
+    - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
+    - emulator -avd test -no-audio -no-window &
+    - android-wait-for-emulator
+    - adb shell input keyevent 82 &
+    - ./gradlew -PjavaMaxHeapSize=1g connectedCheck
+    - set +e
