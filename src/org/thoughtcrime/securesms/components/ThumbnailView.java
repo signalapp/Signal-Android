@@ -97,7 +97,9 @@ public class ThumbnailView extends ForegroundImageView {
 
   public void setImageResource(@NonNull Slide slide, @Nullable MasterSecret masterSecret) {
     if (isContextValid()) {
-      if (!Util.equals(slide, this.slide)) buildGlideRequest(slide, masterSecret).into(this);
+      if (!Util.equals(slide, this.slide) || android.os.Build.VERSION.SDK_INT >= 23){
+        buildGlideRequest(slide, masterSecret).into(this);
+      }
       this.slide = slide;
       setOnClickListener(new ThumbnailClickDispatcher(thumbnailClickListener, slide));
     } else {
