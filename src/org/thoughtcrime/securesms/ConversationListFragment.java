@@ -126,6 +126,18 @@ public class ConversationListFragment extends Fragment
     list.setLayoutManager(new LinearLayoutManager(getActivity()));
     list.setItemAnimator(new DeleteItemAnimator());
 
+    // show / hide Floating Action Button depending on scroll direction
+    list.addOnScrollListener(new RecyclerView.OnScrollListener() {
+      @Override
+      public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+        if(dy > 0){
+          fab.hide();
+        } else {
+          fab.show();
+        }
+      }
+    });
+
     new ItemTouchHelper(new ArchiveListenerCallback()).attachToRecyclerView(list);
 
     return view;
