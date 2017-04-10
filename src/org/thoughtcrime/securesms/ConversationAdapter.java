@@ -97,6 +97,8 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   private final @NonNull  Calendar          calendar;
   private final @NonNull  MessageDigest     digest;
 
+  private float textSize = 0.0f;
+
   protected static class ViewHolder extends RecyclerView.ViewHolder {
     public <V extends View & BindableConversationItem> ViewHolder(final @NonNull V itemView) {
       super(itemView);
@@ -182,12 +184,21 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     super.changeCursor(cursor);
   }
 
+  public void setTextSize(float size) {
+    textSize = size;
+    notifyDataSetChanged();
+  }
+
   @Override
   public void onBindItemViewHolder(ViewHolder viewHolder, @NonNull Cursor cursor) {
     long          start         = System.currentTimeMillis();
     MessageRecord messageRecord = getMessageRecord(cursor);
 
     viewHolder.getView().bind(masterSecret, messageRecord, locale, batchSelected, recipients);
+    TextView t = (TextView) viewHolder.getView().findViewById(R.id.conversation_item_body);
+    if (t != null && textSize > 0.0f) {
+      t.setTextSize(android.util.TypedValue.COMPLEX_UNIT_SP, textSize);
+    }
     Log.w(TAG, "Bind time: " + (System.currentTimeMillis() - start));
   }
 

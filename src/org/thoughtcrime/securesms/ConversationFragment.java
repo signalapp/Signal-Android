@@ -41,6 +41,8 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -101,6 +103,15 @@ public class ConversationFragment extends Fragment
   private View                        scrollToBottomButton;
   private TextView                    scrollDateHeader;
 
+  private ScaleGestureDetector scaleGestureDetector;
+
+  public void setTextSize(float size) {
+    if (list == null) return;
+    ConversationAdapter a = (ConversationAdapter) list.getAdapter();
+    if (a == null) return;
+    a.setTextSize(size);
+  }
+
   @Override
   public void onCreate(Bundle icicle) {
     super.onCreate(icicle);
@@ -123,6 +134,9 @@ public class ConversationFragment extends Fragment
       }
     });
 
+    list.setOnTouchListener(onTouchListener);
+    scaleGestureDetector = new ScaleGestureDetector(getContext(), new ScaleListener());
+
     final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, true);
     list.setHasFixedSize(false);
     list.setLayoutManager(layoutManager);
@@ -139,6 +153,16 @@ public class ConversationFragment extends Fragment
     });
     return view;
   }
+
+  private final View.OnTouchListener onTouchListener = new View.OnTouchListener() {
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+      if (scaleGestureDetector != null) {
+        scaleGestureDetector.onTouchEvent(event);
+      }
+      return scaleGestureDetector.isInProgress();
+    }
+  };
 
   @Override
   public void onActivityCreated(Bundle bundle) {
@@ -461,6 +485,20 @@ public class ConversationFragment extends Fragment
 
   public interface ConversationFragmentListener {
     void setThreadId(long threadId);
+  }
+
+  private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+    @Override
+    public boolean onScale(ScaleGestureDetector detector) {
+      float f = detector.getScaleFactor();
+      if (f > 1.0f) {
+        ((ConversationActivity) getActivity()).textSizeUp();
+      }
+      else if (f < 1.0f) {
+        ((ConversationActivity) getActivity()).textSizeDown();
+      }
+      return true;
+    }
   }
 
   private class ConversationScrollListener extends OnScrollListener {

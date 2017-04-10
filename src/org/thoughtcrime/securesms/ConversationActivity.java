@@ -297,6 +297,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   protected void onStart() {
     super.onStart();
     EventBus.getDefault().register(this);
+    applyTextSize();
   }
 
   @Override
@@ -533,6 +534,20 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   public void onKeyboardShown() {
     inputPanel.onKeyboardShown();
+  }
+
+  @Override
+  public boolean dispatchKeyEvent(KeyEvent event) {
+    switch(event.getKeyCode()) {
+      case KeyEvent.KEYCODE_VOLUME_UP:
+        textSizeUp();
+        return true;
+      case KeyEvent.KEYCODE_VOLUME_DOWN:
+        textSizeDown();
+        return true;
+      default:
+        return super.dispatchKeyEvent(event);
+    }
   }
 
   //////// Event Handlers
@@ -1110,6 +1125,30 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       quickCameraToggle.setVisibility(View.GONE);
       quickCameraToggle.setEnabled(false);
     }
+  }
+
+  public void textSizeUp() {
+    float size = TextSecurePreferences.getConversationTextSize(this);
+    if (size < 80.0f) {
+      size += 2.0f;
+    }
+    TextSecurePreferences.setConversationTextSize(this, size);
+    applyTextSize();
+  }
+
+  public void textSizeDown() {
+    float size = TextSecurePreferences.getConversationTextSize(this);
+    if (size > 10.0f) {
+      size -= 2.0f;
+    }
+    TextSecurePreferences.setConversationTextSize(this, size);
+    applyTextSize();
+  }
+
+  private void applyTextSize() {
+    float size = TextSecurePreferences.getConversationTextSize(this);
+    fragment.setTextSize(size);
+    composeText.setTextSize(android.util.TypedValue.COMPLEX_UNIT_SP, size + 2.0f);
   }
 
   protected void initializeActionBar() {
