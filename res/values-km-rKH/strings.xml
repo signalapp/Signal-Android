@@ -211,6 +211,7 @@
   <string name="DeviceListItem_last_active_s">សកម្មក្រោយគេ​ %s</string>
   <string name="DeviceListItem_today">ថ្ងៃនេះ</string>
   <!--DocumentView-->
+  <string name="DocumentView_unknown_file">ឯកសារមិនស្គាល់</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">បង្កើនប្រសិទ្ធភាពសម្រាប់ការបាត់ Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">ឧបករណ៍នេះ មិនគាំទ្រ Play Services។ ចុច ដើម្បីបិទការបង្កើនប្រសិទ្ធិភាពប្រព័ន្ធថ្ម ដែលរារាំង Signal ពីទាញយកសារនានា ពេលទុកឧបករណ៍ចោល។</string>
@@ -346,6 +347,7 @@
   <string name="MessageRecord_s_called_you">%s ហៅមកអ្នក</string>
   <string name="MessageRecord_called_s">ហៅទៅកាន់ %s</string>
   <string name="MessageRecord_missed_call_from">ការហៅមិនបានទទួលពី %s</string>
+  <string name="MessageRecord_s_joined_signal">%s បានចូលរួម Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">អ្នកកំណត់រយៈពេលសារមិនបង្ហាញ %1$s។</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s កំណត់រយៈពេលសារមិនបង្ហាញ %2$s។</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">លេខសុវត្ថិភាពអ្នកជាមួយ %s បានផ្លាស់ប្តូរ។</string>
@@ -442,6 +444,8 @@
   <string name="RegistrationActivity_i_understand">ខ្ញុំយល់</string>
   <string name="RegistrationActivity_play_services_error">បញ្ហា Play Services </string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services កំពុងធ្វើបច្ចុប្បន្នភាព ឬមិនអាចប្រើបានជាបណ្តោះអាសន្ន។ សូមព្យាយាមម្តងទៀត។</string>
+  <string name="RegistrationActivity_more_information">ព័ត៌មានបន្ថែម</string>
+  <string name="RegistrationActivity_less_information">ព័ត៌មានបន្តិច</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">បញ្ហាដែលអាចមាន</string>
   <!--RegistrationProgressActivity-->
@@ -464,6 +468,7 @@
   <string name="RegistrationProgressActivity_too_many_requests">មានការស្នើសុំច្រើនពេក!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">អ្នកបានស្នើសុំការហៅចូលម្តងហើយ។ អ្នកអាចស្នើសុំម្តងទៀត ក្នុងពេល20នាទី។ </string>
   <string name="RegistrationProgressActivity_registration_conflict">ការចុះឈ្មោះស្ទួន</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">លេខនេះបានចុះឈ្មោះលើម៉ាស៊ីនមេផ្សេងរួចហើយ។ អ្នកត្រូវលុបឈ្មោះ នៅទីនោះសិន មុនពេលចុះឈ្មោះនៅទីនេះ។</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">ការចុះឈ្មោះជោគជ័យ</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">ការចុះឈ្មោះ Signal ជោគជ័យ។</string>
@@ -491,6 +496,7 @@
   <string name="ThreadRecord_called_you">ហៅមកអ្នក</string>
   <string name="ThreadRecord_missed_call">ការហៅមិនបានទទួល</string>
   <string name="ThreadRecord_media_message">សារមេឌា</string>
+  <string name="ThreadRecord_s_joined_signal">%s បានចូលរួម Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">កំណត់រយៈពេលសារមិនបង្ហាញ %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">លេខសុវត្ថិភាពអ្នកជាមួយ %s បានផ្លាស់ប្តូរ។</string>
   <!--UpdateApkReadyListener-->
@@ -567,6 +573,7 @@
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">មិនមានការឆ្លើយតបភ្លាមៗ នៅពេល Signal ត្រូវបានចាក់សោរ!</string>
   <string name="QuickResponseService_problem_sending_message">សារដែលមានបញ្ហាបញ្ជូន!</string>
   <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_open_directory">បើកថត</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal"> Signal </string>
   <string name="SingleRecipientNotificationBuilder_new_message">សារថ្មី</string>
@@ -759,6 +766,7 @@
 លេខទូរស័ព្ទ</string>
   <string name="registration_activity__phone_number">លេខទូរស័ព្ទ</string>
   <string name="registration_activity__register">ចុះឈ្មោះ</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal ធ្វើឲ្យការទំនាក់ទំនងងាយស្រួល ដោយប្រើប្រាស់លេខទូរស័ព្ទ និងបញ្ជីដែលមានស្រាប់។ មិត្តភក្តិ និងលេខទំនាក់ទំនង ដែលដឹងពីរបៀបទាក់ទងអ្នកតាមលេខទូរស័ព្ទ នឹងអាចទាក់ទងអ្នក យ៉ាងងាយស្រួលតាម Signal.\n\nការចុះឈ្មោះ បញ្ជូនព័ត៌មានទំនាក់ទំនងមួយចំនួនទៅកាន់ម៉ាស៊ីនមេ។ វាមិនរក្សាទុកអ្វីឡើយ។</string>
   <string name="registration_activity__powered_by_twilio">ឧបត្ថម្ភដោយ twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">បញ្ហាដែលអាចកើតឡើង
@@ -861,6 +869,7 @@
   <string name="arrays__images">រូបភាព</string>
   <string name="arrays__audio">សំឡេង</string>
   <string name="arrays__video">វីដេអូ</string>
+  <string name="arrays__documents">ឯកសារ</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="other">%d ម៉ោង</item>

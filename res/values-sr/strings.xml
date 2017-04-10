@@ -244,6 +244,7 @@
   <string name="DeviceListItem_last_active_s">Последња активност %s</string>
   <string name="DeviceListItem_today">Данас</string>
   <!--DocumentView-->
+  <string name="DocumentView_unknown_file">Непознат фајл</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Оптимизуј за недостајуће Плеј сервисе</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Овај уређај не подржава Плеј сервисе. Тапните да искључите системску оптимизацију потрошње батерије која спречава добављање порука док је Сигнал неактиван.</string>
@@ -611,6 +612,7 @@
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Брзи одговор није доступан ако је Сигнал закључан!</string>
   <string name="QuickResponseService_problem_sending_message">Проблем са слањем поруке!</string>
   <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_open_directory">Отвори директоријум</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Сигнал</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Нова порука</string>

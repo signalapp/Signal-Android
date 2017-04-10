@@ -123,9 +123,9 @@
   <string name="ConversationActivity_mms_not_supported_title">MMS nicht unterstützt</string>
   <string name="ConversationActivity_mms_not_supported_message">Diese Nachricht kann nicht gesendet werden, da dein Mobilfunkanbieter MMS nicht unterstützt.</string>
   <string name="ConversationActivity_specify_recipient">Bitte einen Kontakt auswählen</string>
-  <string name="ConversationActivity_unblock_this_contact_question">Nicht mehr blockieren?</string>
+  <string name="ConversationActivity_unblock_this_contact_question">Diesen Kontakt freigeben?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Du wirst wieder Nachrichten und Anrufe von diesem Kontakt erhalten können.</string>
-  <string name="ConversationActivity_unblock">Nicht mehr blockieren</string>
+  <string name="ConversationActivity_unblock">Freigeben</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Anhang ist für diese Nachrichtenart zu groß.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera nicht verfügbar</string>
   <string name="ConversationActivity_unable_to_record_audio">Audioaufnahme nicht möglich!</string>
@@ -408,9 +408,9 @@ Das Wiederherstellen einer verschlüsselten Datensicherung ersetzt deine bestehe
   <string name="RecipientPreferenceActivity_block_this_contact_question">Kontakt blockieren?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Du wirst keine Nachrichten und Anrufe mehr von diesem Kontakt erhalten können.</string>
   <string name="RecipientPreferenceActivity_block">Blockieren</string>
-  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Nicht mehr blockieren?</string>
+  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Diesen Kontakt freigeben?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Du wirst wieder Nachrichten und Anrufe von diesem Kontakt erhalten können.</string>
-  <string name="RecipientPreferenceActivity_unblock">Nicht mehr blockieren</string>
+  <string name="RecipientPreferenceActivity_unblock">Freigeben</string>
   <string name="RecipientPreferenceActivity_enabled">Aktiviert</string>
   <string name="RecipientPreferenceActivity_disabled">Deaktiviert</string>
   <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Verfügbar, sobald eine Nachricht gesendet oder empfangen wurde</string>

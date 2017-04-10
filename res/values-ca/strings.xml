@@ -1,35 +1,35 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Signal</string>
-  <string name="yes">Si</string>
+  <string name="yes">Sí</string>
   <string name="no">No</string>
-  <string name="delete">Esborra</string>
+  <string name="delete">Elimina</string>
   <string name="please_wait">Espereu...</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Missatge nou</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Actualment: %s</string>
-  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Encara no has establert cap frase contrasenya!</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Encara no heu definit cap contrasenya.</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">1 missatge per xat</item>
-    <item quantity="other">%d missatges per xat</item>
+    <item quantity="one">1 missatge per conversa</item>
+    <item quantity="other">%d missatges per conversa</item>
   </plurals>
-  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Esborrar ara els missatges antics?</string>
+  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Voleu eliminar ara els missatges antics?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">Això reduirà immediatament tots els xats al missatge més recent.</item>
     <item quantity="other">Això reduirà immediatament tots els xats als %d missatges més recents.</item>
   </plurals>
-  <string name="ApplicationPreferencesActivity_delete">Esborra</string>
+  <string name="ApplicationPreferencesActivity_delete">Elimina</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Voleu desactivar la contrasenya?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">El Signal i les notificacions dels missatges es desbloquejaran de forma permanent.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">El Signal i les notificacions es desblocaran de forma permanent.</string>
   <string name="ApplicationPreferencesActivity_disable">Desactiva</string>
   <string name="ApplicationPreferencesActivity_unregistering">Cancel·lació del registre</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">S\'està cancel·lant el registre per als missatges i trucades del Signal...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Voleu desactivar els missatges i trucades del Signal?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Desactiveu els missatges i trucades del Signal cancel·lant el registre del servidor. Haureu de tornar a registrar el número de telèfon si voleu utilitzar-los de nou.</string>
-  <string name="ApplicationPreferencesActivity_error_connecting_to_server">Error connectant amb el servidor!</string>
+  <string name="ApplicationPreferencesActivity_error_connecting_to_server">Error en connectar amb el servidor.</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS activats</string>
-  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Toca per canviar la teva app d\'SMS predeterminada</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Toqueu per a canviar l\'aplicació d\'SMS predeterminada</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS desactivats</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Toqueu per a fer del Signal l\'aplicació de SMS per defecte</string>
   <string name="ApplicationPreferencesActivity_on">actiu</string>
@@ -53,14 +53,14 @@
   <string name="AttachmentManager_cant_open_media_selection">No s\'ha trobat cap aplicació compatible.</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_camera">Càmera</string>
-  <string name="AttachmentTypeSelectorAdapter_picture">Fotografia</string>
+  <string name="AttachmentTypeSelectorAdapter_picture">Imatge</string>
   <string name="AttachmentTypeSelectorAdapter_video">Vídeo</string>
-  <string name="AttachmentTypeSelectorAdapter_audio">So</string>
+  <string name="AttachmentTypeSelectorAdapter_audio">Àudio</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Informació del contacte</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">S\'ha produït un error en reproduir l\'àudio!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">Contactes bloquejats</string>
+  <string name="BlockedContactsActivity_blocked_contacts">Contactes blocats</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Trucada rebuda</string>
   <!--ConfirmIdentityDialog-->
@@ -74,11 +74,11 @@
   <string name="ConversationItem_message_size_d_kb">Mida del missatge: %d KB</string>
   <string name="ConversationItem_expires_s">Expira: %s</string>
   <string name="ConversationItem_error_not_delivered">No s\'ha enviat</string>
-  <string name="ConversationItem_view_secure_media_question">Vols veure continguts segurs?</string>
+  <string name="ConversationItem_view_secure_media_question">Voleu veure el contingut segur?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Aquest fitxer s\'ha desat en una base de dades xifrada. Malauradament, per a veure\'l en un visualitzador extern cal que les dades es desxifrin temporalment i s\'emmagatzemin. Segur que voleu fer-ho?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Error, s\'ha rebut un missatge d\'intercanvi de clau viciat.</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">S\'ha rebut el missatge de l\'intercanvi de la clau, toqueu per a processar-lo.</string>
-  <string name="ConversationItem_group_action_left">%1$s ha deixat el grup.</string>
+  <string name="ConversationItem_group_action_left">%1$s ha abandonat el grup.</string>
   <string name="ConversationItem_click_for_details">Toqueu per a saber més</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Toqueu per a mode no segur</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Voleu canviar a SMS sense xifrar?</string>
@@ -94,14 +94,14 @@
   <string name="ConversationActivity_delete_thread_question">Voleu eliminar la conversa?</string>
   <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">S\'eliminaran de manera permanent tots els missatges d\'aquesta conversa.</string>
   <string name="ConversationActivity_add_attachment">Afegeix un adjunt</string>
-  <string name="ConversationActivity_select_contact_info">Selecciona info del contacte</string>
+  <string name="ConversationActivity_select_contact_info">Seleccioneu informació del contacte</string>
   <string name="ConversationActivity_compose_message">Escriviu un missatge</string>
-  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Ho sento, hi ha hagut un error establint el teu adjunt.</string>
+  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">S\'ha produït un error en afegir el fitxer adjunt.</string>
   <string name="ConversationActivity_the_gif_you_selected_was_too_big">El GIF seleccionat és massa gran.</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">El vídeo seleccionat excedeix les restriccions de mida (%1$skB).</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">L\'àudio seleccionat excedeix les restriccions de mida (%1$skB).</string>
-  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">El recipient no és una adreça de correu electrònic o SMS vàlid!</string>
-  <string name="ConversationActivity_message_is_empty_exclamation">El missatge és buit!</string>
+  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">El destinatari no és una adreça electrònica o SMS vàlid!</string>
+  <string name="ConversationActivity_message_is_empty_exclamation">El missatge és buit.</string>
   <string name="ConversationActivity_group_members">Membres del grup</string>
   <string name="ConversationActivity_group_conversation">Conversa en grup</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
@@ -109,11 +109,11 @@
     <item quantity="other">%d membres</item>
   </plurals>
   <string name="ConversationActivity_saved_draft">S\'ha desat l\'esborrany</string>
-  <string name="ConversationActivity_invalid_recipient">Destinatari invàlid!</string>
+  <string name="ConversationActivity_invalid_recipient">Destinatari no vàlid.</string>
   <string name="ConversationActivity_calls_not_supported">Trucades no compatibles</string>
-  <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Aquest dispositiu no sembla suportar accions de trucada.</string>
-  <string name="ConversationActivity_leave_group">Deixar el grup?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Estàs segur que vols deixar aquest grup?</string>
+  <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Aquest dispositiu sembla no suportar accions de trucada.</string>
+  <string name="ConversationActivity_leave_group">Voleu abandonar el grup?</string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Segur que voleu abandonar aquest grup?</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS no segur</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS no segur</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -186,27 +186,28 @@
     <item quantity="other">Voleu eliminar les converses seleccionades?</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-    <item quantity="one">S\'esborrarà permanentment la conversa seleccionada.</item>
-    <item quantity="other">S\'esborraran permanentment totes les %1$d converses seleccionades.</item>
+    <item quantity="one">S\'eliminarà permanentment la conversa seleccionada.</item>
+    <item quantity="other">S\'eliminaran permanentment les %1$d converses seleccionades.</item>
   </plurals>
-  <string name="ConversationListFragment_deleting">Esborrant</string>
-  <string name="ConversationListFragment_deleting_selected_conversations">Esborrant converses seleccionades...</string>
+  <string name="ConversationListFragment_deleting">S\'està eliminant</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">S\'estan eliminant les converses...</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one">Conversa arxivada</item>
     <item quantity="other">%d converses arxivades</item>
   </plurals>
-  <string name="ConversationListFragment_undo">DESFER</string>
+  <string name="ConversationListFragment_undo">DESFÉS</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">S\'ha mogut la conversa a la safata d\'entrada</item>
-    <item quantity="other">S\'han mogut %d converses a la safat d\'entrada</item>
+    <item quantity="other">S\'han mogut %d converses a la safata d\'entrada</item>
   </plurals>
   <!--ConversationListItem-->
+  <string name="ConversationListItem_key_exchange_message">Missatge d\'intercanvi de clau</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Converses arxivades (%d)</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usant personalitzat: %s</string>
   <string name="CustomDefaultPreference_using_default">Usant predeterminat: %s</string>
-  <string name="CustomDefaultPreference_none">No n\'hi ha</string>
+  <string name="CustomDefaultPreference_none">Cap</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Ara mateix</string>
   <string name="DateUtils_minutes_ago">%d min</string>
@@ -214,11 +215,11 @@
   <string name="DateUtils_yesterday">Ahir</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Voleu desenllaçar «%s»?</string>
-  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Si desenllaceu aquest dispositiu, no es podran rebre ni enviar missatges.</string>
+  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">En desenllaçar aquest dispositiu, no es podran rebre ni enviar missatges.</string>
   <string name="DeviceListActivity_network_connection_failed">La connexió de xarxa ha fallat</string>
-  <string name="DeviceListActivity_try_again">Torna-ho a provar</string>
-  <string name="DeviceListActivity_unlinking_device">S\'està desenllaçant dispositiu...</string>
-  <string name="DeviceListActivity_unlinking_device_no_ellipsis">S\'està desenllaçant dispositiu</string>
+  <string name="DeviceListActivity_try_again">Torna a provar-ho</string>
+  <string name="DeviceListActivity_unlinking_device">S\'està desenllaçant el dispositiu...</string>
+  <string name="DeviceListActivity_unlinking_device_no_ellipsis">S\'està desenllaçant el dispositiu</string>
   <string name="DeviceListActivity_network_failed">La xarxa ha fallat!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Dispositiu sense nom</string>
@@ -228,29 +229,35 @@
   <!--DocumentView-->
   <string name="DocumentView_unknown_file">Fitxer desconegut</string>
   <!--DozeReminder-->
+  <string name="DozeReminder_optimize_for_missing_play_services">Optimitza quan no hi ha els Play Services</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">El dispositiu no és compatible amb els Play Services. Toqueu per a desactivar les optimitzacions de la bateria que impedeixen que el Signal rebi missatges quan està inactiu.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Comparteix amb</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Benvingut al Signal</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure i RedPhone ara són un servei de missatgeria privat, per qualsevol situació: Signal.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Benvingut al Signal.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure i RedPhone ara són un únic servei de missatgeria privada, per a qualsevol situació: Signal.</string>
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Benvingut al Signal!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure ara és Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure i RedPhone són ara una app: Signal. Premeu per a més informació.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure i RedPhone són ara una única aplicació: Signal. Premeu per a més informació.</string>
   <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Digueu hola a les videotrucades segures.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">El Signal és compatible amb les trucades de vídeo segures. Inicieu una trucada Signal, toqueu el botó de vídeo i saludeu.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">El Signal ara permet trucades de vídeo segures.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">El Signal ara permet trucades de vídeo segures. Toqueu per a explorar.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exporta</string>
   <string name="ExportFragment_export_plaintext_to_storage">Voleu exportar el text pla a l\'emmagatzematge?</string>
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Alerta, s\'exportarà el contingut del text pla del vostres missatges de Signal a emmagatzematge. </string>
   <string name="ExportFragment_cancel">Cancel·la</string>
-  <string name="ExportFragment_exporting">Exportant</string>
+  <string name="ExportFragment_exporting">S\'està exportant</string>
   <string name="ExportFragment_exporting_plaintext_to_storage">S\'està exportant text pla a emmagatzematge...</string>
   <string name="ExportFragment_error_unable_to_write_to_storage">Error, no es pot escriure a emmagatzematge.</string>
-  <string name="ExportFragment_error_while_writing_to_storage">Error a l\'escriure a emmagatzematge.</string>
+  <string name="ExportFragment_error_while_writing_to_storage">Error en escriure a l\'emmagatzematge.</string>
   <string name="ExportFragment_export_successful">S\'ha exportat correctament.</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">La comunicació de Signal falla contínuament!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal no s\'ha pogut registrar a Google Play Services. Els missatges i trucades Signal han estat desactivats, re-registra\'t a Ajustaments &gt; Avançats.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">El Signal no s\'ha pogut registrar al Google Play Services. Els missatges i trucades Signal s\'han desactivat, registreu-vos de nou a Configuració &gt; Avançada.</string>
   <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">S\'ha produït un error en recuperar el GIF a resolució completa</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Adhesius</string>
@@ -259,51 +266,53 @@
   <string name="GroupCreateActivity_actionbar_edit_title">Edita el grup</string>
   <string name="GroupCreateActivity_group_name_hint">Nom del grup</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Grup de MMS nou</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Heu seleccionat un contact que no pot gestionar els grups de Signal, per tant aquest grup serà per MMS.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">No esteu registrat per a fer missatges i trucades Signal, per tant els grups de Signal estan desactivats. Torneu a registrar-vos a Ajustaments &gt; Avançat.</string>
-  <string name="GroupCreateActivity_contacts_mms_exception">Ha passat un error inesperat que ha fet que la creació del grup hagi fallat.</string>
-  <string name="GroupCreateActivity_contacts_no_members">Necessites almenys una persona dins el teu grup!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">Un dels membres del teu grup té un número que no pot ser llegit correctament. Si us plau corregeix o treu aquest contacte i intenta-ho de nou.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Heu seleccionat un contacte que no pot gestionar els grups de Signal, per tant aquest grup serà per MMS.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">No esteu registrat per a fer missatges i trucades Signal, per tant els grups de Signal estan desactivats. Torneu a registrar-vos a Configuració &gt; Avançada.</string>
+  <string name="GroupCreateActivity_contacts_mms_exception">S\'ha produït un error inesperat que ha fet que falli la creació del grup.</string>
+  <string name="GroupCreateActivity_contacts_no_members">Cal almenys una persona al grup.</string>
+  <string name="GroupCreateActivity_contacts_invalid_number">Un dels membres del grup té un número que no es pot llegir correctament. Corregiu-ho o traieu aquest contacte i torneu a provar-ho.</string>
   <string name="GroupCreateActivity_avatar_content_description">Avatar del grup</string>
   <string name="GroupCreateActivity_menu_apply_button">Aplica</string>
-  <string name="GroupCreateActivity_creating_group">Creant %1$s…</string>
-  <string name="GroupCreateActivity_updating_group">Actualitzant %1$s...</string>
+  <string name="GroupCreateActivity_creating_group">S\'està creant %1$s…</string>
+  <string name="GroupCreateActivity_updating_group">S\'està actualitzant %1$s...</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">No s\'ha pogut afegir %1$s perquè no és un usuari de Signal.</string>
-  <string name="GroupCreateActivity_loading_group_details">Carregant informació del grup...</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">Ja estàs dins del grup.</string>
+  <string name="GroupCreateActivity_loading_group_details">S\'està carregant la informació del grup...</string>
+  <string name="GroupCreateActivity_youre_already_in_the_group">Ja esteu dins del grup.</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Jo</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Importa</string>
   <string name="ImportExportActivity_export">Exporta</string>
   <!--ImportFragment-->
-  <string name="ImportFragment_import_system_sms_database">Importar base de dades de SMS del sistema?</string>
+  <string name="ImportFragment_import_system_sms_database">Voleu importar la base de dades de SMS del sistema?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Això importarà
-missatges de la base de dades d\'SMS del sistema a Signal. Si prèviament
-has importat la base de dades d\'SMS del sistema, important-la una altra vegada es duplicaran missatges.</string>
+els missatges de la base de dades d\'SMS del sistema al Signal. Si ja l\'heu importada
+prèviament, en importar-la una altra vegada es duplicaran el missatges.</string>
   <string name="ImportFragment_import">Importa</string>
   <string name="ImportFragment_cancel">Cancel·la</string>
-  <string name="ImportFragment_restore_encrypted_backup">Restablir còpia de seguretat encriptada?</string>
+  <string name="ImportFragment_restore_encrypted_backup">Voleu restablir la còpia de seguretat xifrada?</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
-Restablint una còpia de seguretat encriptada reemplaçarà totes les claus existents, ajustaments i
-missatges. Perdràs tota la informació que estigui al Signal però no
-a la còpia de seguretat.</string>
+En restablir una còpia de seguretat xifrada, es reemplaçaran totes les claus, preferències i
+missatges. Perdreu qualsevol informació que estigui al Signal però no a la còpia
+de seguretat.</string>
   <string name="ImportFragment_restore">Restaura</string>
-  <string name="ImportFragment_import_plaintext_backup">Importar còpia de seguretat en text pla?</string>
-  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Això importarà els missatges des d\'una còpia de seguretat en text pla. Si has importat prèviament la base de dades SMS del sistema, importar-la de nou provocarà la generació de missatges duplicats.</string>
-  <string name="ImportFragment_importing">Important</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">Important cópia de seguretat en text pla...</string>
-  <string name="ImportFragment_no_plaintext_backup_found">No s\'ha trobat la còpia de seguretat en text pla!</string>
-  <string name="ImportFragment_error_importing_backup">Error important la còpia de seguretat!</string>
+  <string name="ImportFragment_import_plaintext_backup">Voleu importar la còpia de seguretat en text pla?</string>
+  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Això importarà
+els missatges des d\'una còpia de seguretat en text pla. Si ja els heu importat abans,
+tornar a fer-ho provocarà la generació de missatges duplicats.</string>
+  <string name="ImportFragment_importing">S\'està important</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">S\'està important la còpia de seguretat en text pla...</string>
+  <string name="ImportFragment_no_plaintext_backup_found">No s\'ha trobat cap còpia de seguretat en text pla.</string>
+  <string name="ImportFragment_error_importing_backup">Error en importar la còpia de seguretat.</string>
   <string name="ImportFragment_import_complete">Importació completada!</string>
-  <string name="ImportFragment_restoring">Restaurant</string>
-  <string name="ImportFragment_restoring_encrypted_backup">Restaurant còpia de seguretat encriptada...</string>
-  <string name="ImportFragment_no_encrypted_backup_found">No s\'ha trobat cap còpia de seguretat encriptada!</string>
+  <string name="ImportFragment_restoring">S\'està restaurant</string>
+  <string name="ImportFragment_restoring_encrypted_backup">S\'està restaurant la còpia de seguretat xifrada...</string>
+  <string name="ImportFragment_no_encrypted_backup_found">No s\'ha trobat cap còpia de seguretat xifrada.</string>
   <string name="ImportFragment_restore_complete">Restauració completa!</string>
   <!--InputPanel-->
-  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Prem i manté per gravar un missatge de veu, deixa anar per enviar-lo</string>
+  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Manteniu premut per a enregistrar un missatge de veu, deixeu anar per enviar-lo</string>
   <!--InviteActivity-->
-  <string name="InviteActivity_share">Compartir</string>
+  <string name="InviteActivity_share">Comparteix</string>
   <string name="InviteActivity_choose_contacts">Trieu contactes</string>
   <string name="InviteActivity_cancel">Cancel·la</string>
   <string name="InviteActivity_sending">S\'està enviant...</string>
@@ -322,22 +331,25 @@ a la còpia de seguretat.</string>
   <string name="InviteActivity_no_app_to_share_to">Sembla que no teniu cap aplicació on compartir-ho.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Els amics no deixen que els seus amics xerrin sense xifrar.</string>
   <!--KeyScanningActivity-->
-  <string name="KeyScanningActivity_no_scanned_key_found_exclamation">No s\'ha trobat cap clau escanejada!</string>
+  <string name="KeyScanningActivity_no_scanned_key_found_exclamation">No s\'ha trobat cap clau escanejada.</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Voleu instal·lar el Barcode Scanner?</string>
-  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal necessita Barcode Scanner pels codis QR.</string>
+  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">El Signal necessita el Barcode Scanner per als codis QR.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">No s\'ha pogut enviar</string>
   <string name="MessageDetailsRecipient_new_safety_number">Número de seguretat nou</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_background_connection_enabled">S\'ha habilitat la connexió en segon pla</string>
   <!--MmsDownloader-->
-  <string name="MmsDownloader_error_storing_mms">Error emmagatzemant MMS!</string>
+  <string name="MmsDownloader_error_storing_mms">Error en emmagatzemar MMS.</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">S\'ha produït un error en connectar a l\'operador MMS</string>
+  <string name="MmsDownloader_error_reading_mms_settings">S\'ha produït un error en llegir la configuració de l\'operador MMS</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Trucada Signal en procés</string>
   <string name="NotificationBarManager_missed_call_from_s">Trucada perduda de %s</string>
   <string name="NotificationBarManager_missed_signal_call">Trucada Signal perduda</string>
-  <string name="NotificationBarManager__establishing_signal_call">Començant trucada Signal</string>
-  <string name="NotificationBarManager__incoming_signal_call">Trucada Signal entrant</string>
+  <string name="NotificationBarManager__establishing_signal_call">S\'està establint la trucada Signal</string>
+  <string name="NotificationBarManager__incoming_signal_call">Trucada Signal rebuda</string>
   <string name="NotificationBarManager__deny_call">Rebutja la trucada</string>
   <string name="NotificationBarManager__answer_call">Respon la trucada</string>
   <string name="NotificationBarManager__end_call">Finalitza la trucada</string>
@@ -345,26 +357,29 @@ a la còpia de seguretat.</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Missatge multimèdia</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">S\'està baixant el missatge MMS</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">S\'ha produït un error en baixar el missatge MMS, toqueu per a tornar a intentar-ho</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Has rebut un missatge encriptat que fa servir una versió vella de Signal, que no està suportada. Diga-li a l\'emissor que l\'actualitzi a la versió més recent i torni a enviar el missatge.</string>
-  <string name="MessageRecord_left_group">Has sortit del grup.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">S\'ha rebut un missatge xifrat amb una versió antiga del Signal que no està suportada. Digueu-li a l\'emissor que l\'actualitzi a la versió més recent i torni a enviar el missatge.</string>
+  <string name="MessageRecord_left_group">Heu abandonat el grup.</string>
   <string name="MessageRecord_you_updated_group">Heu actualitzat el grup.</string>
   <string name="MessageRecord_s_updated_group">%s ha actualitzat el grup.</string>
   <string name="MessageRecord_s_called_you">%s us ha trucat</string>
   <string name="MessageRecord_called_s">Heu trucat a %s</string>
   <string name="MessageRecord_missed_call_from">Trucada perduda de %s</string>
   <string name="MessageRecord_s_joined_signal">%s s\'ha unit al Signal!</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Heu establit el temps del missatge efímer en %1$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ha establit el temps del missatge efímer en %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">El número de seguretat amb %s ha canviat.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Les contrasenyes no coincideixen!</string>
-  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Frase contrasenya antiga incorrecta!</string>
-  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Escriviu la contrasenya nova!</string>
+  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Contrasenya antiga incorrecta.</string>
+  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Escriviu la contrasenya nova.</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Voleu enllaçar aquest dispositiu?</string>
   <string name="DeviceProvisioningActivity_cancel">CANCEL·LA</string>
   <string name="DeviceProvisioningActivity_continue">CONTINUA</string>
   <string name="DeviceProvisioningActivity_title">Voleu enllaçar aquest dispositiu?</string>
-  <string name="DeviceProvisioningActivity_content_intro">Es podrà</string>
+  <string name="DeviceProvisioningActivity_content_intro">Podrà</string>
   <string name="DeviceProvisioningActivity_content_bullets">
 • Llegir tots els vostres missatges
 \n• Enviar missatges al nom vostre</string>
@@ -374,92 +389,105 @@ a la còpia de seguretat.</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">No es troba cap dispositiu.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Error de xarxa.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Codi QR no vàlid.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Teniu massa dispositius enllaçats, proveu d\'eliminar-ne algun</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Això no és un codi QR amb enllaç vàlid.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Voleu enllaçar un dispositiu Signal?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Sembla que estàs intentant enllaçar un dispositiu Signal usant un escannejador extern, 3rd party. Per la teva protecció, escanneja el codi una altra vegada dins de Signal.</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Sembla que esteu provant d\'enllaçar un dispositiu Signal amb un escàner extern. Per seguretat, torneu a escanejar el codi dins del Signal.</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Missatges que desapareixen</string>
+  <string name="ExpirationDialog_disappearing_messages">Missatges efímers</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">El missatges no expiraran.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Els missatges enviats i rebuts a aquesta conversa desapareixeran %s després que s\'hagin llegit.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Introduïu la contrasenya</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icona del Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Envia contrasenya</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Contrasenya incorrecta!</string>
   <!--PlayServicesProblemFragment-->
-  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">La versió de Google Play Services que tens instal·lada no funciona correctament. Reinstal·la Google Play Service i tornar-ho a provar.</string>
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">La versió del Google Play Services que hi ha instal·lada no funciona correctament. Reinstal·leu-lo i tornar a provar-ho.</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Valoreu l\'aplicació</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Si gaudiu usant aquesta aplicació, podeu ajudar-nos valorant-la.</string>
   <string name="RatingManager_rate_now">Valora-la!</string>
   <string name="RatingManager_no_thanks">No, gràcies</string>
   <string name="RatingManager_later">Després</string>
+  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Sembla que no heu instal·lat la Play Store al vostre dispositiu.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Voleu blocar aquest contacte?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">No rebràs missatges ni trucades d\'aquest conacte.</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">No rebreu missatges ni trucades d\'aquest contacte.</string>
   <string name="RecipientPreferenceActivity_block">Bloca</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Voleu desblocar aquest contacte?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Podreu tornar a rebre missatges i trucades d\'aquest contacte.</string>
   <string name="RecipientPreferenceActivity_unblock">Desbloca</string>
-  <string name="RecipientPreferenceActivity_enabled">Habilitat</string>
-  <string name="RecipientPreferenceActivity_disabled">Inhabilitat</string>
+  <string name="RecipientPreferenceActivity_enabled">Activat</string>
+  <string name="RecipientPreferenceActivity_disabled">Desactivat</string>
+  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Disponible una vegada s\'ha enviat o rebut un missatge.</string>
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Grup sense nom</string>
   <!--RedPhone-->
-  <string name="RedPhone_answering">Contestant</string>
-  <string name="RedPhone_ending_call">Penjant la trucada</string>
-  <string name="RedPhone_dialing">Marcant el número</string>
-  <string name="RedPhone_canceling_call">Cancel·lant la trucada</string>
+  <string name="RedPhone_answering">S\'està responent</string>
+  <string name="RedPhone_ending_call">S\'està finalitzant la trucada</string>
+  <string name="RedPhone_dialing">S\'està marcant el número</string>
+  <string name="RedPhone_canceling_call">S\'està cancel·lant la trucada</string>
   <string name="RedPhone_call_rejected">Trucada rebutjada</string>
   <string name="RedPhone_ringing">Està sonant</string>
   <string name="RedPhone_busy">Ocupat</string>
-  <string name="RedPhone_connected">Està connectat</string>
+  <string name="RedPhone_connected">Connectat</string>
   <string name="RedPhone_connecting">S\'està connectant</string>
-  <string name="RedPhone_handshake_failed">L\'encaixada de mans ha fallat!</string>
-  <string name="RedPhone_recipient_unavailable">Recipient no disponible</string>
-  <string name="RedPhone_performing_handshake">Fent una encaixada de mans</string>
+  <string name="RedPhone_handshake_failed">Ha fallat la negociació.</string>
+  <string name="RedPhone_recipient_unavailable">Destinatari no disponible</string>
+  <string name="RedPhone_performing_handshake">S\'està fent la negociació</string>
   <string name="RedPhone_network_failed">La xarxa ha fallat! </string>
   <string name="RedPhone_client_failed">El client ha fallat</string>
   <string name="RedPhone_fatal_error">Error fatal</string>
-  <string name="RedPhone_login_failed">No s\'ha pogut fer login!</string>
+  <string name="RedPhone_login_failed">No s\'ha pogut iniciar sessió!</string>
   <string name="RedPhone_message_from_the_server">Missatge del servidor</string>
   <string name="RedPhone_number_not_registered">Número no registrat!</string>
-  <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">El número que heu marcat no pot fer trucades de veu segures!</string>
+  <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">El número que heu marcat no pot rebre trucades de veu segures!</string>
   <string name="RedPhone_got_it">Entesos</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_signal">Connectar amb Signal</string>
-  <string name="RegistrationActivity_select_your_country">Selecciona el teu país/estat</string>
-  <string name="RegistrationActivity_you_must_specify_your_country_code">Has d\'especificar el teu codi de país</string>
-  <string name="RegistrationActivity_you_must_specify_your_phone_number">Has d\'especificar el teu número de telèfon</string>
-  <string name="RegistrationActivity_invalid_number">Número invàlid</string>
-  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">El número que has especificat (%s) és invàlid.</string>
+  <string name="RegistrationActivity_connect_with_signal">Connecta amb el Signal</string>
+  <string name="RegistrationActivity_select_your_country">Seleccioneu el país</string>
+  <string name="RegistrationActivity_you_must_specify_your_country_code">Heu d\'especificar el
+codi de país</string>
+  <string name="RegistrationActivity_you_must_specify_your_phone_number">Heu d\'especificar el
+número de telèfon</string>
+  <string name="RegistrationActivity_invalid_number">Número no vàlid</string>
+  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">El número que heu
+especificat (%s) no és vàlid.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
-Comprova que aquest és el teu número! Anem a verificar-ho amb un SMS.</string>
+Comproveu que aquest és el vostre número. Anem a verificar-ho amb un SMS.</string>
   <string name="RegistrationActivity_continue">Continua</string>
   <string name="RegistrationActivity_edit">Edita</string>
+  <string name="RegistrationActivity_missing_google_play_services">No hi ha el Google Play Services</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">El Google Play Services no és instal·lat. Encara podeu utilitzar el Signal, però la fiabilitat i el rendiment pot ser menor.\n\nSi no sou un usuari avançat, no esteu utilitzant una ROM modificada d\'Android o creieu que esteu patint aquest problema, contacteu support@whispersystems.org per rebre ajuda i solucionar-lo.</string>
   <string name="RegistrationActivity_i_understand">Ho entenc</string>
+  <string name="RegistrationActivity_play_services_error">Error amb el Play Services</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">El Google Play Services s\'està actualitzant o no és disponible. Torneu a provar-ho.</string>
   <string name="RegistrationActivity_more_information">Més informació</string>
   <string name="RegistrationActivity_less_information">Menys informació</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Problemes possibles</string>
   <!--RegistrationProgressActivity-->
-  <string name="RegistrationProgressActivity_verifying_number">Verificant número</string>
+  <string name="RegistrationProgressActivity_verifying_number">S\'està verificant el número</string>
   <string name="RegistrationProgressActivity_edit_s">Edita %s</string>
-  <string name="RegistrationProgressActivity_registration_complete">Registre complet!</string>
-  <string name="RegistrationProgressActivity_connecting">Connectant</string>
-  <string name="RegistrationProgressActivity_connecting_for_verification">Connectant per verificar...</string>
-  <string name="RegistrationProgressActivity_network_error">La xarxa ha fallat! </string>
-  <string name="RegistrationProgressActivity_unable_to_connect">No s\'ha pogut connectar. Si us plau verifica la teva connexió de xarxa i intenta-ho de nou.</string>
-  <string name="RegistrationProgressActivity_verification_failed">La verificació ha fallat!</string>
-  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">El codi de verificació que has enviat és incorrecte. Si us plau intenta-ho de nou.</string>
+  <string name="RegistrationProgressActivity_registration_complete">Registre complet.</string>
+  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Primer heu d\'introduir el codi que heu rebut</string>
+  <string name="RegistrationProgressActivity_connecting">S\'està connectant</string>
+  <string name="RegistrationProgressActivity_connecting_for_verification">S\'està connectant per a verificar...</string>
+  <string name="RegistrationProgressActivity_network_error">Error de la xarxa.</string>
+  <string name="RegistrationProgressActivity_unable_to_connect">No s\'ha pogut connectar. Verifiqueu la connexió de xarxa i torneu a provar-ho.</string>
+  <string name="RegistrationProgressActivity_verification_failed">La verificació ha fallat.</string>
+  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">El codi de verificació que heu enviat no és correcte. Torneu a provar-ho.</string>
   <string name="RegistrationProgressActivity_too_many_attempts">Massa intents</string>
-  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Has enviat un codi de verificació incorrecte massa vegades. Si us plau espera un minut abans d\'intentar-ho de nou.</string>
-  <string name="RegistrationProgressActivity_requesting_call">Sol·licitant trucada</string>
-  <string name="RegistrationProgressActivity_requesting_incoming_call">Demanant una trucada de verificació...</string>
+  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Heu enviat un codi de verificació incorrecte massa vegades. Espereu un minut abans de tornar a provar-ho.</string>
+  <string name="RegistrationProgressActivity_requesting_call">S\'està sol·licitant una trucada</string>
+  <string name="RegistrationProgressActivity_requesting_incoming_call">S\'està sol·licitant una trucada de verificació...</string>
   <string name="RegistrationProgressActivity_server_error">Error de servidor</string>
-  <string name="RegistrationProgressActivity_the_server_encountered_an_error">El servidor ha trobat un error. Si us plau intenta-ho de nou.</string>
-  <string name="RegistrationProgressActivity_too_many_requests">Masses peticions!</string>
-  <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Ja has demanat recentment una trucada de veu. Pots tornar-la a demanar d\'aquí 20 minuts.</string>
+  <string name="RegistrationProgressActivity_the_server_encountered_an_error">El servidor ha trobat un error. Torneu a provar-ho.</string>
+  <string name="RegistrationProgressActivity_too_many_requests">Massa peticions.</string>
+  <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Ja heu demanat una trucada de veu fa poc. Podreu tornar a demanar-ne una d\'aquí 20 minuts.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Conflicte de registre</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Aquest número ja és registrat a un altre servidor del Signal. Haureu d\'eliminar el registre abans de registrar-lo aquí.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">S\'ha completat el registre</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">S\'ha completat el registre de Signal correctament</string>
@@ -472,27 +500,40 @@ Comprova que aquest és el teu número! Anem a verificar-ho amb un SMS.</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">S\'ha rebut un missatge d\'intercanvi de claus corromput!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">S\'ha rebut un missatge d\'intercanvi de claus per una versió del protocol invàlida.</string>
-  <string name="SmsMessageRecord_duplicate_message">Duplicar missatge.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">S\'ha rebut un missatge amb un número de seguretat nou. Toqueu per processar-lo i mostrar-lo.</string>
+  <string name="SmsMessageRecord_secure_session_reset">Heu restablit la sessió segura.</string>
+  <string name="SmsMessageRecord_secure_session_reset_s">%s ha restablit la sessió segura.</string>
+  <string name="SmsMessageRecord_duplicate_message">Missatge duplicat.</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_secure_session_reset">Resseteja la sessió segura.</string>
-  <string name="ThreadRecord_draft">Esborranys:</string>
-  <string name="ThreadRecord_called">Has trucat</string>
-  <string name="ThreadRecord_called_you">T\'han trucat</string>
+  <string name="ThreadRecord_group_updated">S\'ha actualitzat el grup</string>
+  <string name="ThreadRecord_left_the_group">Ha abandonat el grup</string>
+  <string name="ThreadRecord_secure_session_reset">Restabliment de la sessió segura.</string>
+  <string name="ThreadRecord_draft">Esborrany:</string>
+  <string name="ThreadRecord_called">Heu trucat</string>
+  <string name="ThreadRecord_called_you">Us ha trucat</string>
   <string name="ThreadRecord_missed_call">Trucada perduda</string>
   <string name="ThreadRecord_media_message">Missatge multimèdia</string>
   <string name="ThreadRecord_s_joined_signal">%s s\'ha unit al Signal!</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">El temps del missatge efímer s\'ha establit a %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">El número de seguretat amb %s ha canviat.</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Actualització del Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Hi ha disponible una versió nova del Signal, toqueu per a actualitzar</string>
   <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">El vostre contacte està fent servir una versió antiga del Signal. Demaneu-li que l\'actualitzi abans de verificar el número de seguretat.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">El vostre contacte està fent servir una versió nova del Signal amb un format del codi QR incompatible. Actualitzeu-la per a comparar-lo.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">El codi QR escanejat no és un codi de verificació de seguretat correctament formatat. Torneu a escanejar-lo.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Comparteix el número de seguretat via...</string>
-  <string name="VerifyIdentityActivity_no_app_to_share_to">Sembla que no tens apps a on compartir-ho.</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">El nostre número de seguretat:</string>
+  <string name="VerifyIdentityActivity_no_app_to_share_to">Sembla que no teniu cap aplicació on compartir-ho.</string>
+  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">No s\'ha trobat cap número de seguretat al porta-retalls</string>
   <!--KeyExchangeInitiator-->
-  <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Iniciar encara que hi hagi una petició de tancament?</string>
+  <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Voleu iniciar-ho malgrat la petició existent?</string>
   <string name="KeyExchangeInitiator_send">Envia</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_decrypting_please_wait">Desencriptant, si us plau espera...</string>
+  <string name="MessageDisplayHelper_bad_encrypted_message">Missatge mal xifrat</string>
+  <string name="MessageDisplayHelper_decrypting_please_wait">S\'està desxifrant, espereu...</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Missatge xifrat per a una sessió que no existeix</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">Error desencriptant el missatge.</string>
   <!--ThreadDatabase-->
@@ -507,6 +548,7 @@ Comprova que aquest és el teu número! Anem a verificar-ho amb un SMS.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Desencriptant MMS, si us plau espera...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Missatge MMS xifrat malament</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Missatge MMS xifrat per a una sessió que no existeix</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Silencia les notificacions</string>
   <!--ApplicationMigrationService-->
@@ -548,15 +590,18 @@ Comprova que aquest és el teu número! Anem a verificar-ho amb un SMS.</string>
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Resposta ràpida no disponible quan Signal està bloquejat!</string>
   <string name="QuickResponseService_problem_sending_message">Hi ha hagut un problema enviant el missatge!</string>
   <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_open_directory">Obre el directori</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Missatge nou</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">S\'ha produït un error en reproduir el vídeo</string>
   <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_new_safety_numbers">El número de seguretat de la conversa amb %1$s ha canviat. Això pot significar o bé que algú està provant d\'interceptar la comunicació, o bé que %2$s ha reinstal·lat el Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Potser voleu verificar el número de seguretat amb aquest contacte.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Número de seguretat nou</string>
   <!--WebRtcCallControls-->
+  <string name="WebRtcCallControls_tap_to_enable_your_video">Toqueu per activar el vídeo</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Imatge</string>
   <string name="attachment_type_selector__image_description">Imatge</string>
@@ -602,6 +647,8 @@ Comprova que aquest és el teu número! Anem a verificar-ho amb un SMS.</string>
   <string name="conversation_activity__compose_description">Cos del missatge</string>
   <string name="conversation_activity__emoji_toggle_description">Canvia al teclat d\'emojis</string>
   <string name="conversation_activity__attachment_thumbnail">Miniatura de l\'adjunt</string>
+  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Enregistra i envia un àudio adjunt</string>
+  <string name="conversation_activity__enable_signal_for_sms">Habilita el Signal per als SMS</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">LLISCA PER CANCEL·LAR</string>
   <!--conversation_item-->
@@ -626,6 +673,7 @@ Comprova que aquest és el teu número! Anem a verificar-ho amb un SMS.</string>
   <string name="conversation_fragment_cab__batch_selection_mode">Mode de selecció per lots</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s seleccionats</string>
   <!--conversation_fragment-->
+  <string name="conversation_fragment__scroll_to_the_bottom_content_description">Desplaça al final</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Carregant països...</string>
   <string name="country_selection_fragment__search">Cerca</string>
@@ -634,6 +682,7 @@ Comprova que aquest és el teu número! Anem a verificar-ho amb un SMS.</string>
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Enllaça un dispositiu</string>
   <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_linked">No hi ha cap dispositiu enllaçat</string>
   <string name="device_list_fragment__link_new_device">Enllaça un nou dispositiu</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">continua</string>
@@ -667,6 +716,7 @@ Comprova que aquest és el teu número! Anem a verificar-ho amb un SMS.</string>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Cerca GIF i adhesius</string>
   <!--giphy_fragment-->
+  <string name="giphy_fragment__nothing_found">No s\'ha trobat res</string>
   <!--import_export_fragment-->
   <string name="import_export_fragment__export">Exporta</string>
   <string name="import_export_fragment__import">Importa</string>
@@ -675,6 +725,7 @@ Comprova que aquest és el teu número! Anem a verificar-ho amb un SMS.</string>
   <string name="log_submit_activity__thanks">Gràcies per la teva ajuda!</string>
   <string name="log_submit_activity__submitting">Enviant</string>
   <string name="log_submit_activity__posting_logs">Escrivint els registres a gist...</string>
+  <string name="log_submit_activity__no_browser_installed">No hi ha cap navegador instal·lat</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vols que importi els missatges de text existents a la base de dades encriptada de Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">La base de dades predeterminada del sistema no serà modificada o alterada de cap manera.</string>
@@ -691,13 +742,15 @@ Comprova que aquest és el teu número! Anem a verificar-ho amb un SMS.</string>
   <string name="import_fragment__restore_encrypted_backup">Recupera la còpia de seguretat encriptada</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">Recupera una còpia de seguretat encriptada exportada de Signal prèvia</string>
   <string name="import_fragment__import_plaintext_backup">Importa la còpia de seguretat en text pla</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">Importa un arxiu de còpia de seguretat en text pla. Compatible amb \'SMS Backup &amp; Restore.\' </string>
+  <string name="import_fragment__import_a_plaintext_backup_file">Importa un fitxer de còpia de seguretat en text pla. Compatible amb l\'«SMS Backup &amp; Restore.»</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Veure tota la conversa</string>
   <!--media_overview_activity-->
+  <string name="media_overview_activity__no_media">Cap contingut</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">VERIFICA</string>
   <string name="message_recipients_list_item__resend">TORNA A ENVIAR</string>
+  <string name="message_recipients_list_item__resending">S\'està tornant a enviar...</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s s\'ha unit al grup.</item>
@@ -733,6 +786,7 @@ Verifica el teu número de telèfon per a connectar amb Signal.</string>
   <string name="registration_activity__your_country_code_and_phone_number">EL TEU CODI DE PAÍS I NÚMERO DE TELÈFON</string>
   <string name="registration_activity__phone_number">NÚMERO DE TELÈFON</string>
   <string name="registration_activity__register">Registra</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">El Signal fa que comunicar-se sigui fàcil utilitzant el vostre número de telèfon i llibre d\'adreces. Els amics i contactes que ja saben com contactar-vos pel número de telèfon us podran trobar fàcilment al Signal.\n\nEl registre tramet certa informació de contacte al servidor. No s\'emmagatzemarà.</string>
   <string name="registration_activity__powered_by_twilio">Usant tecnologia de twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Alguns possibles problemes inclouen:</string>
@@ -764,8 +818,8 @@ dispositiu necessita accés a la xarxa per poder fer servir aquesta característ
 està connectat a dades mòbils o Wi-Fi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Tallafocs restrictiu.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
-Si estàs connectat/da al Wi-Fi, és possible que hi hagi un tallafocs bloquejant l\'accés al
-servidor de Signal. Prova una altra xarxa o per dades mòbils.</string>
+Si esteu connectat al Wi-Fi, és possible que hi hagi un tallafocs blocant l\'accés al
+servidor del Signal. Proveu una altra xarxa o per dades mòbils.</string>
   <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
 Signal seguidament verificarà el teu número de telèfon amb un SMS de confirmació.</string>
   <string name="registration_progress_activity__connecting">Connectant...</string>
@@ -783,8 +837,10 @@ La verificació per SMS ha tardat massa temps, s\'ha superat el temps màxim d\'
   <string name="recipients_panel__to"><small>Introdueix un nom o número</small></string>
   <string name="recipients_panel__add_members">Afegeix-ne membres</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Si voleu verificar la seguretat del xifratge extrem a extrem amb %s, compareu el número de sobre amb el del seu dispositiu. Altrament, podeu escanejar el codi al seu telèfon, o demanar-li que escanege el vostre. <a href="https://whispersystems.org/redirect/safety-numbers">Més informació sobre la verificació dels números de seguretat</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Toca per a escanejar</string>
   <!--verify_identity-->
+  <string name="verify_identity__share_safety_number">Comparteix el número de seguretat</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Alguns problemes necessiten la teva atenció</string>
   <string name="message_details_header__sent">Enviat</string>
@@ -803,6 +859,8 @@ La verificació per SMS ha tardat massa temps, s\'ha superat el temps màxim d\'
   <string name="AndroidManifest__verify_safety_number">Verifica el número de seguretat</string>
   <string name="AndroidManifest__log_submit">Envia registre de debug</string>
   <string name="AndroidManifest__media_preview">Previsualització multimèdia</string>
+  <string name="AndroidManifest__all_media">Tot el contingut</string>
+  <string name="AndroidManifest__all_media_named">Tot el contingut amb %1$s</string>
   <string name="AndroidManifest__message_details">Informació del missatge</string>
   <string name="AndroidManifest__linked_devices">Dispositiu enllaçats</string>
   <string name="AndroidManifest__invite_friends">Convida amics</string>
@@ -851,7 +909,7 @@ La verificació per SMS ha tardat massa temps, s\'ha superat el temps màxim d\'
   <string name="preferences__enable_passphrase">Activa la contrasenya</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Protegeix Signal i les notificacions del missatge amb una contrasenya</string>
   <string name="preferences__screen_security">Seguretat de pantalla</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">Bloqueja les captures de pantalla a les llistes de recents i dins de l\'app</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Bloca les captures de pantalla a les llistes de recents i dins de l\'aplicació</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Bloqueja Signal per inactivitat després d\'un interval de temps</string>
   <string name="preferences__inactivity_timeout_passphrase">Paraula de pas per inactivitat</string>
   <string name="preferences__inactivity_timeout_interval">Interval per inactivitat</string>
@@ -925,7 +983,9 @@ La verificació per SMS ha tardat massa temps, s\'ha superat el temps màxim d\'
   <string name="preferences__submit_debug_log">Envia un registre de depuració</string>
   <string name="preferences__support_wifi_calling">Mode de compatibilitat \'Trucada WiFi\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Activa si el teu dispositiu fa servir SMS/MMS per WiFi (només activa quan \'Trucada WiFi\' està activat al teu dispositiu)</string>
-  <string name="preferences_app_protection__blocked_contacts">Contactes bloquejats</string>
+  <string name="preferences_app_protection__blocked_contacts">Contactes blocats</string>
+  <string name="preferences_app_protection__safety_numbers_approval">Aprovació dels números de seguretat</string>
+  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Requereix aprovació per a números de seguretat nous si canvien</string>
   <string name="preferences_notifications__display_in_notifications">Mostra-ho a notificacions</string>
   <string name="preferences_chats__when_using_mobile_data">Quan facis servir dades mòbils</string>
   <string name="preferences_chats__when_using_wifi">Quan facis servir Wi-Fi</string>
@@ -934,6 +994,8 @@ La verificació per SMS ha tardat massa temps, s\'ha superat el temps màxim d\'
   <string name="preferences_chats__message_trimming">Retall de missatges</string>
   <string name="preferences_advanced__use_system_emoji">Usa emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Desactiva els emojis inclosos a Signal</string>
+  <string name="preferences_advanced__video_calling_beta">Videotrucada beta</string>
+  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Compatible amb les trucades de veu i vídeo més modernes quan ambdós participants les activen. Encara en fase beta.</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -962,6 +1024,7 @@ La verificació per SMS ha tardat massa temps, s\'ha superat el temps màxim d\'
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Missatges que desapareixen</string>
   <!--conversation_expiring_on-->
+  <string name="menu_conversation_expiring_on__messages_expiring">Missatges que expiren</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Convida</string>
   <!--conversation_insecure_no_push-->
@@ -990,6 +1053,7 @@ La verificació per SMS ha tardat massa temps, s\'ha superat el temps màxim d\'
   <string name="conversation__menu_edit_group">Edita el grup</string>
   <string name="conversation__menu_leave_group">Deixa el grup</string>
   <string name="conversation__menu_delete_thread">Suprimeix la conversa</string>
+  <string name="conversation__menu_view_all_media">Tot el contingut</string>
   <string name="conversation__menu_conversation_settings">Ajustaments de conversa</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Expandeix el popup</string>
@@ -1044,6 +1108,7 @@ La verificació per SMS ha tardat massa temps, s\'ha superat el temps màxim d\'
   <!--media_preview-->
   <string name="media_preview__save_title">Desa</string>
   <string name="media_preview__forward_title">Reenvia</string>
+  <string name="media_preview__all_media_title">Tot el contingut</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Desa-ho tot</string>
   <!--media_preview_activity-->

@@ -227,6 +227,7 @@
   <string name="DeviceListItem_last_active_s">%s viimati aktiivne</string>
   <string name="DeviceListItem_today">Täna</string>
   <!--DocumentView-->
+  <string name="DocumentView_unknown_file">Tundmatu fail</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimeeri puuduvate Play teenuste jaoks</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">See seade ei toeta Play teenuseid. Koputa, et keelata süsteemi aku optimeerimine, kuna see ei lase Signalil sõnumeid hankida, kui seade on ebaaktiivne.</string>
@@ -601,6 +602,7 @@
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Kiirvastus pole saadaval, kui Signal on lukustatud!</string>
   <string name="QuickResponseService_problem_sending_message">Sõnumi saatmisel esines probleem!</string>
   <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_open_directory">Ava faili asukoht</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Uus sõnum</string>

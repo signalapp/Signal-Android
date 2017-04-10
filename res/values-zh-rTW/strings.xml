@@ -211,6 +211,7 @@
   <string name="DeviceListItem_last_active_s">最後活躍 %s</string>
   <string name="DeviceListItem_today">今天</string>
   <!--DocumentView-->
+  <string name="DocumentView_unknown_file">未知的檔案</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">為缺少的 Play 服務優化</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">這個裝置不支援 Play 服務。輕觸關閉，因為系統電池效能最佳化會防止 Signal 在閒置時取得訊息。</string>
@@ -348,6 +349,7 @@
   <string name="MessageRecord_s_called_you">%s 呼叫您</string>
   <string name="MessageRecord_called_s">已呼叫 %s</string>
   <string name="MessageRecord_missed_call_from">來自 %s 的未接來電</string>
+  <string name="MessageRecord_s_joined_signal">%s 已加入 Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">您將訊息銷毀時間設置爲 %1$s。</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s 將訊息銷毀時間設置爲 %2$s。</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">您與 %s 的安全碼已改變。</string>
@@ -498,6 +500,7 @@
   <string name="ThreadRecord_called_you">呼叫您</string>
   <string name="ThreadRecord_missed_call">未接來電</string>
   <string name="ThreadRecord_media_message">媒體訊息</string>
+  <string name="ThreadRecord_s_joined_signal">%s 已加入 Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">訊息銷毀時間設置爲 %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">您與 %s 的安全碼已改變。</string>
   <!--UpdateApkReadyListener-->
@@ -575,6 +578,7 @@
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">當 Signal 鎖定時無法使用快速回覆！</string>
   <string name="QuickResponseService_problem_sending_message">傳送訊息出現問題！</string>
   <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_open_directory">開啟目錄</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">新訊息</string>

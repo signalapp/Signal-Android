@@ -227,6 +227,7 @@
   <string name="DeviceListItem_last_active_s">Senast aktiv %s</string>
   <string name="DeviceListItem_today">Idag</string>
   <!--DocumentView-->
+  <string name="DocumentView_unknown_file">Okänd fil</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimera för avsaknad av Play-tjänster</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Denna enhet stödjer inte Play-tjänster. Tryck för att slå av systemets batterioptimeringar som förhindrar Signal från att ta emot meddelanden medan den är inaktiv.</string>
@@ -589,6 +590,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Snabbsvar är ej tillgängligt när Signal är låst!</string>
   <string name="QuickResponseService_problem_sending_message">Problem med att skicka meddelandet!</string>
   <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_open_directory">Öppna mapp</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nytt meddelande</string>

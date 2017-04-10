@@ -229,6 +229,7 @@
   <string name="DeviceListItem_last_active_s">Utoljára aktív %s</string>
   <string name="DeviceListItem_today">Ma</string>
   <!--DocumentView-->
+  <string name="DocumentView_unknown_file">ismeretlen fájl</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimalizálás hiányzó Play Szolgáltatásokra</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Ez a készülék nem támogat Play Szolgáltatásokat. Érints a rendszer akkumulátor optimalizációk letiltásához, ami megakadályozza a Signal-t az üzenetek visszakeresésében, amikor inaktív.</string>
@@ -602,6 +603,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Gyors válasz nem elérhető, amikor a Signal zárolva van!</string>
   <string name="QuickResponseService_problem_sending_message">Probléma az üzenetküldéskor!</string>
   <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_open_directory">Könyvtár megnyitása</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Új üzenet</string>

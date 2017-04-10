@@ -259,6 +259,7 @@
   <string name="DeviceListItem_last_active_s">Было онлайн %s</string>
   <string name="DeviceListItem_today">Сегодня</string>
   <!--DocumentView-->
+  <string name="DocumentView_unknown_file">Неизвестный файл</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Режим без Служб Google Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Это устройство не поддерживает Службы Google Play. Нажмите для отключения оптимизации энергопотребления, которая не позволяет Signal получать сообщения, когда он неактивен.</string>
@@ -390,9 +391,12 @@
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Полученное сообщение зашифровано в старой версии Signal, которая больше не поддерживается. Пожалуйста, попросите отправителя обновиться до последней версии и заново отправить сообщение.</string>
   <string name="MessageRecord_left_group">Вы покинули группу.</string>
+  <string name="MessageRecord_you_updated_group">Вы обновили группу.</string>
+  <string name="MessageRecord_s_updated_group">%s обновил группу.</string>
   <string name="MessageRecord_s_called_you">%s звонил(а) вам</string>
   <string name="MessageRecord_called_s">Вы звонили %s</string>
   <string name="MessageRecord_missed_call_from">Пропущен звонок от %s</string>
+  <string name="MessageRecord_s_joined_signal">%s присоединился к Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Вы установили время исчезновения сообщений в %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s установил(а) время исчезновения сообщений в %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Ваш с %s код безопасности изменился.</string>
@@ -487,6 +491,8 @@
   <string name="RegistrationActivity_i_understand">Я понимаю</string>
   <string name="RegistrationActivity_play_services_error">Ошибка Служб Google Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Службы Google Play обновляются или временно недоступны. Пожалуйста, попробуйте ещё раз.</string>
+  <string name="RegistrationActivity_more_information">Больше информации</string>
+  <string name="RegistrationActivity_less_information">Меньше информации</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Возможные проблемы</string>
   <!--RegistrationProgressActivity-->
@@ -509,6 +515,7 @@
   <string name="RegistrationProgressActivity_too_many_requests">Слишком много запросов!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Вы недавно уже запрашивали голосовой звонок. Запросить ещё один вы сможете через 20 минут.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Конфликт регистрации</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Этот номер уже зарегистрирован на другом сервере Signal. Вам нужно прекратить регистрацию там для регистрации здесь.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Регистрация завершена</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Регистрация в Signal успешно завершена.</string>
@@ -530,6 +537,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%s сбросил(а) защищенный сеанс.</string>
   <string name="SmsMessageRecord_duplicate_message">Дубликат сообщения.</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_group_updated">Группа обновлена</string>
   <string name="ThreadRecord_left_the_group">Вы покинули группу</string>
   <string name="ThreadRecord_secure_session_reset">Защищённый сеанс сброшен.</string>
   <string name="ThreadRecord_draft">Черновик:</string>
@@ -537,6 +545,7 @@
   <string name="ThreadRecord_called_you">Звонили вам</string>
   <string name="ThreadRecord_missed_call">Пропущен звонок</string>
   <string name="ThreadRecord_media_message">Медиа-сообщение</string>
+  <string name="ThreadRecord_s_joined_signal">%s присоединился к Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Время исчезновения сообщений – %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Ваш с %s код безопасности изменился.</string>
   <!--UpdateApkReadyListener-->
@@ -613,6 +622,7 @@
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Быстрые ответы недоступны, когда Signal заблокирован!</string>
   <string name="QuickResponseService_problem_sending_message">Проблема при отправке сообщения!</string>
   <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_open_directory">Открыть директорию</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Новое сообщение</string>
@@ -784,6 +794,7 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">ПОДТВЕРДИТЬ</string>
   <string name="message_recipients_list_item__resend">ОТПРАВИТЬ ЕЩЁ РАЗ</string>
+  <string name="message_recipients_list_item__resending">Пересылка...</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s присоединился к группе.</item>
@@ -822,6 +833,7 @@
 И НОМЕР ТЕЛЕФОНА</string>
   <string name="registration_activity__phone_number">НОМЕР ТЕЛЕФОНА</string>
   <string name="registration_activity__register">Зарегистрироваться</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal упрощает связь, используя номер телефона и адресную книгу. Ваши друзья с легкостью смогут связаться с вам, зная ваш номер.\n\nПри регистрации на сервер передается некоторая информация о контактах, но не сохраняется там.</string>
   <string name="registration_activity__powered_by_twilio">Сервис предоставлен twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Возможные причины:</string>
@@ -924,6 +936,7 @@ SMS-подтверждения...
   <string name="arrays__images">Изображения</string>
   <string name="arrays__audio">Аудио</string>
   <string name="arrays__video">Видео</string>
+  <string name="arrays__documents">Документы</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d час</item>

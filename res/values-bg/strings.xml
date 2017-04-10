@@ -227,6 +227,7 @@
   <string name="DeviceListItem_last_active_s">Последна активност %s</string>
   <string name="DeviceListItem_today">Днес</string>
   <!--DocumentView-->
+  <string name="DocumentView_unknown_file">Непознат файл</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Оптимизиране за липсващи Play услуги</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Това устройство не поддържа Play услуги. Натиснете, за да изключите оптимизациите на батерият, за да преустановите опитите на Сигнал да изтегля съобщения, когато не е активен.</string>
@@ -364,6 +365,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="MessageRecord_s_called_you">%s ти се обади</string>
   <string name="MessageRecord_called_s">Обаждане до %s</string>
   <string name="MessageRecord_missed_call_from">Пропуснато обаждане от %s</string>
+  <string name="MessageRecord_s_joined_signal">%s се присъедини към Сигнал!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Заложихте време за изчезване на съобщения на %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s заложи време за изчезване на съобщения на %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Числата Ви за сигурност с %s са променени</string>
@@ -514,6 +516,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="ThreadRecord_called_you">Ви се обади</string>
   <string name="ThreadRecord_missed_call">Пропуснато обаждане</string>
   <string name="ThreadRecord_media_message">Медийно съобщение</string>
+  <string name="ThreadRecord_s_joined_signal">%s се присъедини към Сигнал!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Времето за изчезване на съобщенията е %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Числата Ви за сигурност с %s са променени.</string>
   <!--UpdateApkReadyListener-->
@@ -590,6 +593,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Бърз отговор не е възможен, когато Сигнал е заключен!</string>
   <string name="QuickResponseService_problem_sending_message">Проблем при изпрашане на съобщение!</string>
   <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_open_directory">Отваряне на папка</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Сигнал</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ново съобщение</string>
@@ -775,11 +779,11 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="recipient_preferences__color_for_this_contact">Цвят за този контакт</string>
   <string name="recipient_preferences__verify_safety_number">Проверка на числата за сигурност</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Сигнал-ско обаждане</string>
+  <string name="redphone_call_card__signal_call">Обаждане през Сигнал</string>
   <string name="redphone_call_controls__end_call">прекрати обаждането</string>
   <string name="redphone_call_controls__audio">Аудио</string>
   <string name="redphone_call_controls__mute">Заглуши</string>
-  <string name="redphone_call_controls__signal_call">Сигнал-ско обаждане</string>
+  <string name="redphone_call_controls__signal_call">Обаждане през Сигнал</string>
   <!--registration_activity-->
   <string name="registration_activity__verify_your_number_to_connect_with_signal">
 Потвърди своя телфонен номер, за да се свържеш с Сигнал</string>
