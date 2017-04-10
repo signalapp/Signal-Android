@@ -1115,7 +1115,6 @@
     <string name="preferences__pref_led_blink_custom_pattern_off_for">Off for:</string>
     <string name="preferences__pref_led_blink_custom_pattern_set">Custom LED blink pattern set!</string>
     <string name="preferences__sound">Sound</string>
-    <string name="preferences__change_notification_sound">Change notification sound</string>
     <string name="preferences__silent">Silent</string>
     <string name="preferences__in_conversation_notifications">In-conversation notifications</string>
     <string name="preferences__play_inthread_notifications">Play notification sound when viewing an active conversation</string>
