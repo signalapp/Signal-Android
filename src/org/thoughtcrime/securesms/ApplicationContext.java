@@ -187,6 +187,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       add("Pixel XL"); // Pixel XL #6241
       add("MI 4LTE"); // Xiami Mi4 #6241
       add("Redmi Note 3"); // Redmi Note 3 #6241
+      add("Redmi Note 4"); // Redmi Note 4
       add("SM-G900F"); // Samsung Galaxy S5 #6241
       add("g3_kt_kr"); // LG G3 #6241
       add("SM-G930F"); // Samsung Galaxy S7 #6241
