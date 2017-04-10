@@ -181,12 +181,18 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
       fileName = base + "." + extension;
     }
 
+    fileName = new File(fileName).getName();
+
     int  i    = 0;
     File file = new File(outputDirectory, fileName);
 
     while (file.exists()) {
       String[] fileParts = getFileNameParts(fileName);
       file = new File(outputDirectory, fileParts[0] + "-" + (++i) + "." + fileParts[1]);
+    }
+
+    if (file.isHidden()) {
+      throw new IOException("Specified name would not be visible");
     }
 
     return file;
