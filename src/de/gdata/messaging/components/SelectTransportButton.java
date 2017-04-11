@@ -1,6 +1,7 @@
 package de.gdata.messaging.components;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -25,6 +26,7 @@ import java.security.SecureRandom;
 
 import de.gdata.messaging.util.GUtil;
 
+@SuppressLint("AppCompatCustomView")
 public class SelectTransportButton extends ImageButton {
     private TransportOptions transportOptions;
     private EditText composeText;
@@ -77,7 +79,7 @@ public class SelectTransportButton extends ImageButton {
                     destroyButtonReference.setEnabled(true);
                 }
                 if(newTransport.key.contains("invite")) {
-                    setComposeTextHint(handleInviteLink());
+                    setComposeText(handleInviteLink());
                 }
                 if (newTransport.isForcedSms()) {
                     if (newTransport.isForcedPlaintext()) {
@@ -133,6 +135,16 @@ public class SelectTransportButton extends ImageButton {
             this.composeText.setHint(span);
         }
     }
+    private void setComposeText(String text) {
+        if (text == null) {
+            this.composeText.setText(null);
+        } else {
+            SpannableString span = new SpannableString(text);
+            span.setSpan(new RelativeSizeSpan(GUtil.ALPHA_80_PERCENT), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+            this.composeText.setText(span);
+        }
+    }
+
     public void setDestroyButtonReference(SelfDestructionButton pDestroyButtonReference) {
         destroyButtonReference = pDestroyButtonReference;
     }

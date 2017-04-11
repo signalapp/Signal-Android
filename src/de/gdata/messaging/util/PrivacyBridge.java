@@ -391,7 +391,9 @@ public class PrivacyBridge {
   }
   public static void reloadAdapter() {
     Intent intent = new Intent(ACTION_RELOAD_ADAPTER);
-    LocalBroadcastManager.getInstance(GService.appContext).sendBroadcast(intent);
+    if(GService.appContext != null){
+      LocalBroadcastManager.getInstance(GService.appContext).sendBroadcast(intent);
+    }
   }
 }
 

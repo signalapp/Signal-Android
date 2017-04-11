@@ -1830,9 +1830,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     private class SelectTransportListener implements OnClickListener, TextView.OnEditorActionListener {
         @Override
         public void onClick(View v) {
-            transportButton.performLongClick();
-            attachmentManager.clear();
-
+            if(!attachmentManager.isAttachmentPresent()){
+                transportButton.performLongClick();
+            }
         }
 
         @Override
@@ -1940,5 +1940,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     @Override
     public void onAttachmentChanged() {
         initializeSecurity();
+        initializeEnabledCheck();
     }
 }

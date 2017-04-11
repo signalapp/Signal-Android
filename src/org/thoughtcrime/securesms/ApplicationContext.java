@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDex;
 
 import org.thoughtcrime.securesms.crypto.PRNGFixes;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
@@ -58,10 +59,17 @@ public class ApplicationContext extends Application implements DependencyInjecto
 
   @Override
   public void onCreate() {
+    super.onCreate();
     initializeRandomNumberFix();
     initializeDependencyInjection();
     initializeJobManager();
     initializeGcmCheck();
+  }
+
+  @Override
+  protected void attachBaseContext(Context base) {
+    super.attachBaseContext(base);
+    MultiDex.install(this);
   }
 
   @Override
