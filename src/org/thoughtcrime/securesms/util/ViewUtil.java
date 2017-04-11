@@ -16,8 +16,11 @@
  */
 package org.thoughtcrime.securesms.util;
 
+import android.app.Activity;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
 import android.view.View;
 
 public class ViewUtil {
@@ -37,5 +40,15 @@ public class ViewUtil {
     final int paddingTop = v.getPaddingTop();
     v.setBackgroundResource(resId);
     v.setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom);
+  }
+
+  @SuppressWarnings("unchecked")
+  public static <T extends View> T findById(@NonNull View parent, @IdRes int resId) {
+    return (T) parent.findViewById(resId);
+  }
+
+  @SuppressWarnings("unchecked")
+  public static <T extends View> T findById(@NonNull Activity parent, @IdRes int resId) {
+    return (T) parent.findViewById(resId);
   }
 }

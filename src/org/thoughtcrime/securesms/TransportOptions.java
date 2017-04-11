@@ -110,6 +110,7 @@ public class TransportOptions {
     }
     iconArray.recycle();
     icons.recycle();
+    setTransport(context.getResources().getStringArray(R.array.transport_selection_values)[0]);
     updateViews();
   }
 

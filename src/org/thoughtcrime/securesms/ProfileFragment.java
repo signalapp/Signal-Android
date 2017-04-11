@@ -832,6 +832,7 @@ public class ProfileFragment extends Fragment {
 
         if (!selectedContacts.contains(contact) && (existingContacts == null || !existingContacts.contains(contact)))
             selectedContacts.add(contact);
+            contactsHaveChanged = true;
     }
     private static boolean isActiveInDirectory(Context context, Recipient recipient) {
         try {

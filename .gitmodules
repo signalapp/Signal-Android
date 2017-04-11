@@ -1,6 +1,6 @@
 [submodule "IsfaServerDefinitions"]
 	path = IsfaServerDefinitions
-	url = git@gitlab.gdatasoftware.com:mobile/isfaserverdefinitions.git
+	url = ssh://git@bitbucket.gdata.de:7999/mob/isfaserverdefinitions.git
 [submodule "libtextsecure-java"]
 	path = libtextsecure-java
-	url = git@gitlab.gdatasoftware.com:mobile/libtextsecure-java.git
+	url = ssh://git@bitbucket.gdata.de:7999/mob/libtextsecure-java.git

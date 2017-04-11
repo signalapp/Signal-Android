@@ -70,6 +70,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.location.places.ui.PlacePicker;
+import org.thoughtcrime.securesms.components.location.SignalPlace;
 import com.google.protobuf.ByteString;
 
 import org.thoughtcrime.securesms.components.CircledImageView;
@@ -188,6 +190,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     private static final int GROUP_EDIT = 5;
     private static final int SET_CALLFILTER = 10;
     public static int currentConversationType = ConversationItem.SINGLE_CONVERSATION;
+
+    private static final int PICK_LOCATION     = 8;
 
     private MasterSecret masterSecret;
     private EditText composeText;
@@ -362,6 +366,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 break;
             case PICK_CONTACT_INFO:
                 addAttachmentContactInfo(data.getData());
+                break;
+            case PICK_LOCATION:
+                SignalPlace place = new SignalPlace(PlacePicker.getPlace(data, this));
+                attachmentManager.setLocation(masterSecret, place);
                 break;
             case GROUP_EDIT:
                 this.recipients = RecipientFactory.getRecipientsForIds(this, data.getLongArrayExtra(GroupCreateActivity.GROUP_RECIPIENT_EXTRA), true);
@@ -1063,6 +1071,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         }.execute();
     }
 
+
     private void initializeSecurity() {
         updateSendBarViews();
         SessionStore sessionStore = new TextSecureSessionStore(this, masterSecret);
@@ -1383,6 +1392,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             case AttachmentTypeSelectorAdapter.ADD_CONTACT_INFO:
                 AttachmentManager.selectContactInfo(this, PICK_CONTACT_INFO);
                 break;
+            case PICK_LOCATION:
+                AttachmentManager.selectLocation(this, PICK_LOCATION);
+                break;
         }
     }
 
@@ -1501,8 +1513,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     private Drafts getDraftsForCurrentState() {
         Drafts drafts = new Drafts();
 
-        if (!Util.isEmpty(composeText)) {
-            drafts.add(new Draft(Draft.TEXT, composeText.getText().toString()));
+        if (!Util.isEmpty(composeText) || !attachmentManager.getLocationURL().isEmpty()) {
+            drafts.add(new Draft(Draft.TEXT, composeText.getText().toString() + "\n" + attachmentManager.getLocationURL()));
         }
 
         for (Slide slide : attachmentManager.getSlideDeck().getSlides()) {
@@ -1590,6 +1602,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     private String getMessage() throws InvalidMessageException {
         String rawText = composeText.getText().toString();
+        if(!attachmentManager.getLocationURL().isEmpty()) {
+            rawText += "\n" + attachmentManager.getLocationURL();
+        }
         String destroyTime = "";
         if (bombTransportButton.getSelectedSelfDestTime() != null && bombTransportButton.isEnabled()) {
             destroyTime = bombTransportButton.getSelectedSelfDestTime().key;
@@ -1622,6 +1637,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     private void sendComplete(long threadId) {
         boolean refreshFragment = (threadId != this.threadId);
         this.threadId = threadId;
+        attachmentManager.clear();
 
         ConversationFragment fragment = getFragment();
 
@@ -1814,9 +1830,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     private class SelectTransportListener implements OnClickListener, TextView.OnEditorActionListener {
         @Override
         public void onClick(View v) {
-            transportButton.performLongClick();
-            attachmentManager.clear();
-
+            if(!attachmentManager.isAttachmentPresent()){
+                transportButton.performLongClick();
+            }
         }
 
         @Override
@@ -1924,5 +1940,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     @Override
     public void onAttachmentChanged() {
         initializeSecurity();
+        initializeEnabledCheck();
     }
 }

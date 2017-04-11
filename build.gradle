@@ -1,5 +1,5 @@
-def verName = "1.0.5.2."
-def verNumber = 14
+def verName = "1.0.6."
+def verNumber = 15
 
 def gitRevision = (System.env['GIT_COMMIT'] ? System.env['GIT_COMMIT'] : "MASTER  ").toString()
 def gitBranch = (System.env['GIT_BRANCH'] ? System.env['GIT_BRANCH'].toString().substring(7) : "develop")
@@ -44,7 +44,9 @@ dependencies {
 
     compile 'me.leolin:ShortcutBadger:1.0.2-WS2'
     compile 'se.emilsjolander:stickylistheaders:2.2.0'
-    compile 'com.google.android.gms:play-services-base:6.5.87'
+    compile 'com.google.android.gms:play-services-gcm:8.1.0'
+    compile 'com.google.android.gms:play-services-maps:8.1.0'
+    compile 'com.google.android.gms:play-services-location:8.1.0'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
     compile 'org.w3c:smil:1.0.0'
     compile 'org.apache.httpcomponents:httpclient-android:4.3.5'
@@ -91,7 +93,8 @@ dependencyVerification {
     verify = [
             'me.leolin:ShortcutBadger:027977c718035e5997035e04e05152d6c72d94df645e8b7099a274ada722bd14',
             'se.emilsjolander:stickylistheaders:89146b46c96fea0e40200474a2625cda10fe94891e4128f53cdb42375091b9b6',
-            'com.google.android.gms:play-services-base:832cb6b3130e871db6a412c4ab585656dbcc5e7948101f190186757785703f75',
+            'com.google.android.gms:play-services-base:ef36e50fa5c0415ed41f74dd399a889efd2fa327c449036e140c7c3786aa0e1f',
+            'com.google.android.gms:play-services-base:ef36e50fa5c0415ed41f74dd399a889efd2fa327c449036e140c7c3786aa0e1f',
             'com.astuetz:pagerslidingtabstrip:f1641396732c7132a7abb837e482e5ee2b0ebb8d10813fc52bbaec2c15c184c2',
             'org.w3c:smil:085dc40f2bb249651578bfa07499fd08b16ad0886dbe2c4078586a408da62f9b',
             'org.apache.httpcomponents:httpclient-android:6f56466a9bd0d42934b90bfbfe9977a8b654c058bf44a12bdc2877c4e1f033f1',
@@ -139,6 +142,7 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 22
+        multiDexEnabled true
 
         buildConfigField "long", "BUILD_TIMESTAMP", System.currentTimeMillis() + "L"
         buildConfigField "String", "USER_AGENT", "\"GDATA SecureChat " + verName + "\""
@@ -150,6 +154,8 @@ android {
 
         resConfigs "en", "de", "fr", "it", "es", "pt", "pt-rBR", "nl", "ja", "tr", "ru", "pl", "zh-rCN", "zh-rTW"
     }
+
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
@@ -245,4 +251,3 @@ tasks.whenTaskAdded { task ->
         task.enabled = false
     }
 }
-
