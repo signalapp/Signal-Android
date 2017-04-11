@@ -22,7 +22,6 @@ import android.content.Context;
 import android.content.OperationApplicationException;
 import android.database.Cursor;
 import android.database.CursorWrapper;
-import android.database.MatrixCursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.RemoteException;
@@ -176,37 +175,9 @@ public class ContactsDatabase {
       Log.w(TAG, e);
       cursor = context.getContentResolver().query(uri, projection, fallbackSelection, null, sort);
     }
-    cursor = getFilteredSystemContacts(cursor, projection);
 
     return new ProjectionMappingCursor(cursor, projectionMap,
-            new Pair<String, Object>(CONTACT_TYPE_COLUMN, NORMAL_TYPE));
-  }
-
-  private Cursor getFilteredSystemContacts(Cursor cursor, String[] projection) {
-    MatrixCursor filterCursor = new MatrixCursor(projection);
-
-    List<SystemContactInfo> nums = new ArrayList<SystemContactInfo>();
-
-    while (cursor != null && cursor.moveToNext()) {
-      String shortNumber = cursor.getString(2).replaceAll("[^\\d+*#]", "");
-
-      boolean isInList = false;
-      for (SystemContactInfo num : nums ) {
-        if(num.name.equals(cursor.getString(1)) && num.number.equals(shortNumber)) {
-          isInList = true;
-          break;
-        }
-      }
-      if (!isInList) {
-        SystemContactInfo contact = new SystemContactInfo(cursor.getString(1), shortNumber, -1);
-        nums.add(contact);
-
-        Object[] test = new Object[]{cursor.getLong(0), cursor.getString(1),
-                shortNumber, cursor.getString(3), cursor.getString(4)};
-        filterCursor.addRow(test);
-      }
-    }
-    return filterCursor;
+                                       new Pair<String, Object>(CONTACT_TYPE_COLUMN, NORMAL_TYPE));
   }
 
   @NonNull Cursor queryTextSecureContacts(String filter) {
