@@ -161,6 +161,11 @@ public class ContactsDatabase {
       put(LABEL_COLUMN, ContactsContract.CommonDataKinds.Phone.LABEL);
     }};
 
+    String formattedNumber = "REPLACE(REPLACE(REPLACE(REPLACE(data1,' ',''),'-',''),'(',''),')','')";
+    String excludeSelection = "(" + formattedNumber +" NOT IN " +
+            "(SELECT data1 FROM view_data WHERE "+formattedNumber+" = data1) " +
+            "OR "+formattedNumber+" = data1)" +
+            "AND " + formattedNumber + "NOT IN (SELECT "+formattedNumber+" FROM view_data where mimetype = '"+CONTACT_MIMETYPE+"')" ;
 
     String fallbackSelection = ContactsContract.Data.SYNC2 + " IS NULL OR " + ContactsContract.Data.SYNC2 + " != '" + SYNC + "'";
 
