@@ -12,12 +12,9 @@ import android.support.v13.view.inputmethod.InputConnectionCompat;
 import android.support.v13.view.inputmethod.InputContentInfoCompat;
 import android.support.v4.os.BuildCompat;
 import android.text.InputType;
-import android.text.Spannable;
-import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
-import android.text.style.RelativeSizeSpan;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.inputmethod.EditorInfo;
@@ -30,8 +27,8 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class ComposeText extends EmojiEditText {
 
-  private SpannableString hint;
-  private SpannableString subHint;
+  private CharSequence hint;
+  private CharSequence subHint;
 
   @Nullable private InputPanel.MediaListener mediaListener;
 
@@ -70,15 +67,8 @@ public class ComposeText extends EmojiEditText {
   }
 
   public void setHint(@NonNull String hint, @Nullable CharSequence subHint) {
-    this.hint = new SpannableString(hint);
-    this.hint.setSpan(new RelativeSizeSpan(0.8f), 0, hint.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-
-    if (subHint != null) {
-      this.subHint = new SpannableString(subHint);
-      this.subHint.setSpan(new RelativeSizeSpan(0.8f), 0, subHint.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-    } else {
-      this.subHint = null;
-    }
+    this.hint = hint;
+    this.subHint = subHint;
 
     if (this.subHint != null) {
       super.setHint(new SpannableStringBuilder().append(ellipsizeToWidth(this.hint))
