@@ -178,23 +178,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   private void initializeWebRtc() {
-    Set<String> HARDWARE_AEC_BLACKLIST = new HashSet<String>() {{
-      add("D6503"); // Sony Xperia Z2 D6503
-      add("ONE A2005"); // OnePlus 2
-      add("MotoG3"); // Moto G (3rd Generation)
-      add("Nexus 6P"); // Nexus 6p
-      add("Pixel"); // Pixel #6241
-      add("Pixel XL"); // Pixel XL #6241
-      add("MI 4LTE"); // Xiami Mi4 #6241
-      add("Redmi Note 3"); // Redmi Note 3 #6241
-      add("Redmi Note 4"); // Redmi Note 4
-      add("SM-G900F"); // Samsung Galaxy S5 #6241
-      add("g3_kt_kr"); // LG G3 #6241
-      add("SM-G930F"); // Samsung Galaxy S7 #6241
-      add("Xperia SP"); // Sony Xperia SP #6241
-      add("Nexus 6"); // Nexus 6
-      add("ONE E1003"); // OnePlus X
-      add("One"); // OnePlus One
+    Set<String> HARDWARE_AEC_WHITELIST = new HashSet<String>() {{
     }};
 
     Set<String> OPEN_SL_ES_BLACKLIST = new HashSet<String>() {{
@@ -202,7 +186,9 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     }};
 
     if (Build.VERSION.SDK_INT >= 11) {
-      if (HARDWARE_AEC_BLACKLIST.contains(Build.MODEL)) {
+      if (HARDWARE_AEC_WHITELIST.contains(Build.MODEL)) {
+        WebRtcAudioUtils.setWebRtcBasedAcousticEchoCanceler(false);
+      } else {
         WebRtcAudioUtils.setWebRtcBasedAcousticEchoCanceler(true);
       }
 
