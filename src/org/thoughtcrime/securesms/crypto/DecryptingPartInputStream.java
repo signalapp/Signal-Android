@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.crypto;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.util.LimitedInputStream;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -138,6 +139,31 @@ public class DecryptingPartInputStream {
       } catch (Throwable t) {
         Log.w(TAG, t);
       }
+    }
+
+    @Override
+    public long skip(long skipAmount)
+        throws IOException
+    {
+      long remaining = skipAmount;
+
+      if (skipAmount <= 0) {
+        return 0;
+      }
+
+      byte[] skipBuffer = new byte[4092];
+
+      while (remaining > 0) {
+        int read = super.read(skipBuffer, 0, Util.toIntExact(Math.min(skipBuffer.length, remaining)));
+
+        if (read < 0) {
+          break;
+        }
+
+        remaining -= read;
+      }
+
+      return skipAmount - remaining;
     }
   }
 }
