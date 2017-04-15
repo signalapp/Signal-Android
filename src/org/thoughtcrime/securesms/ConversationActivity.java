@@ -978,11 +978,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   protected void updateInviteReminder(boolean seenInvite) {
     Log.w(TAG, "updateInviteReminder(" + seenInvite+")");
-    if (TextSecurePreferences.isPushRegistered(this) &&
-        !isSecureText                                &&
-        !seenInvite                                  &&
-        recipients.isSingleRecipient()               &&
-        recipients.getPrimaryRecipient() != null     &&
+    if (TextSecurePreferences.isPushRegistered(this)      &&
+        TextSecurePreferences.isShowInviteReminders(this) &&
+        !isSecureText                                     &&
+        !seenInvite                                       &&
+        recipients.isSingleRecipient()                    &&
+        recipients.getPrimaryRecipient() != null          &&
         recipients.getPrimaryRecipient().getContactUri() != null)
     {
       InviteReminder reminder = new InviteReminder(this, recipients);

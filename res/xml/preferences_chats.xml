@@ -31,6 +31,12 @@
 
     <PreferenceCategory android:title="@string/preferences_chats__chats">
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+                android:defaultValue="true"
+                android:key="pref_show_invite_reminder"
+                android:title="@string/preferences_chats__show_invitation_prompts"
+                android:summary="@string/preferences_chats__display_invitation_prompts_for_contacts_without_signal" />
+
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
                 android:defaultValue="false"
                 android:key="pref_system_emoji"
                 android:title="@string/preferences_advanced__use_system_emoji"
