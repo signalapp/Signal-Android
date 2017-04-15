@@ -31,6 +31,8 @@ public class SmsMmsPreferenceFragment extends PreferenceFragment {
 
     this.findPreference(MMS_PREF)
       .setOnPreferenceClickListener(new ApnPreferencesClickListener());
+
+    initializePlatformSpecificOptions();
   }
 
   @Override
@@ -38,7 +40,7 @@ public class SmsMmsPreferenceFragment extends PreferenceFragment {
     super.onResume();
     ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.preferences__sms_mms);
 
-    initializePlatformSpecificOptions();
+    initializeDefaultPreference();
   }
 
   private void initializePlatformSpecificOptions() {
@@ -51,24 +53,29 @@ public class SmsMmsPreferenceFragment extends PreferenceFragment {
     if (VERSION.SDK_INT >= VERSION_CODES.KITKAT) {
       if (allSmsPreference != null) preferenceScreen.removePreference(allSmsPreference);
       if (allMmsPreference != null) preferenceScreen.removePreference(allMmsPreference);
-
-      if (Util.isDefaultSmsProvider(getActivity())) {
-        defaultPreference.setIntent(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
-        defaultPreference.setTitle(getString(R.string.ApplicationPreferencesActivity_sms_enabled));
-        defaultPreference.setSummary(getString(R.string.ApplicationPreferencesActivity_touch_to_change_your_default_sms_app));
-      } else {
-        Intent intent = new Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT);
-        intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, getActivity().getPackageName());
-        defaultPreference.setIntent(intent);
-        defaultPreference.setTitle(getString(R.string.ApplicationPreferencesActivity_sms_disabled));
-        defaultPreference.setSummary(getString(R.string.ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app));
-      }
     } else if (defaultPreference != null) {
       preferenceScreen.removePreference(defaultPreference);
     }
 
     if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP && manualMmsPreference != null) {
       preferenceScreen.removePreference(manualMmsPreference);
+    }
+  }
+
+  private void initializeDefaultPreference() {
+    if (VERSION.SDK_INT < VERSION_CODES.KITKAT) return;
+
+    Preference defaultPreference = findPreference(KITKAT_DEFAULT_PREF);
+    if (Util.isDefaultSmsProvider(getActivity())) {
+      defaultPreference.setIntent(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
+      defaultPreference.setTitle(getString(R.string.ApplicationPreferencesActivity_sms_enabled));
+      defaultPreference.setSummary(getString(R.string.ApplicationPreferencesActivity_touch_to_change_your_default_sms_app));
+    } else {
+      Intent intent = new Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT);
+      intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, getActivity().getPackageName());
+      defaultPreference.setIntent(intent);
+      defaultPreference.setTitle(getString(R.string.ApplicationPreferencesActivity_sms_disabled));
+      defaultPreference.setSummary(getString(R.string.ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app));
     }
   }
 
