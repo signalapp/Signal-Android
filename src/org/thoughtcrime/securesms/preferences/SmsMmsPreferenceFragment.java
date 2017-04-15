@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
-public class SmsMmsPreferenceFragment extends PreferenceFragment {
+public class SmsMmsPreferenceFragment extends CorrectedPreferenceFragment {
   private static final String KITKAT_DEFAULT_PREF = "pref_set_default";
   private static final String MMS_PREF            = "pref_mms_preferences";
 

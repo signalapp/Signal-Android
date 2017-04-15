@@ -10,6 +10,7 @@ import android.support.v4.preference.PreferenceFragment;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class ChatsPreferenceFragment extends PreferenceFragment {
+public class ChatsPreferenceFragment extends CorrectedPreferenceFragment {
   private static final String TAG = ChatsPreferenceFragment.class.getSimpleName();
 
   @Override

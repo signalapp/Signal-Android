@@ -1187,6 +1187,11 @@
     <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Support for next-generation video and voice calls when enabled by both parties. This feature is in beta.</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Relay all calls through the Signal server to avoid revealing your IP address to your contact. Enabling will reduce call quality.</string>
     <string name="preferences_advanced__always_relay_calls">Always relay calls</string>
+    <string name="preferences_app_protection__app_access">App access</string>
+    <string name="preferences_app_protection__communication">Communication</string>
+    <string name="preferences_chats__chats">Chats</string>
+    <string name="preferences_notifications__message_notifications">Message notifications</string>
+    <string name="preferences_notifications__events">Events</string>
 
 
 

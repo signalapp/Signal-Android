@@ -1,65 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
-                        android:key="pref_key_enable_notifications"
-                        android:title="@string/preferences__notifications"
-                        android:summary="@string/preferences__enable_message_notifications"
-                        android:defaultValue="true" />
 
-    <RingtonePreference android:dependency="pref_key_enable_notifications"
-                        android:key="pref_key_ringtone"
-                        android:title="@string/preferences__sound"
-                        android:ringtoneType="notification"
-                        android:defaultValue="content://settings/system/notification_sound" />
+    <PreferenceCategory android:title="@string/preferences_notifications__message_notifications">
 
-    <CheckBoxPreference android:dependency="pref_key_enable_notifications"
-                        android:key="pref_key_vibrate"
-                        android:defaultValue="true"
-                        android:title="@string/preferences__vibrate"
-                        android:summary="@string/preferences__also_vibrate_when_notified" />
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+                            android:key="pref_key_enable_notifications"
+                            android:title="@string/preferences__notifications"
+                            android:summary="@string/preferences__enable_message_notifications"
+                            android:defaultValue="true" />
 
-    <org.thoughtcrime.securesms.preferences.BooleanListPreference
-        android:key="pref_led_color"
-        android:defaultValue="blue"
-        android:title="@string/preferences__led_color"
-        android:dependency="pref_key_enable_notifications"
-        android:entries="@array/pref_led_color_entries"
-        android:entryValues="@array/pref_led_color_values" />
+        <RingtonePreference android:dependency="pref_key_enable_notifications"
+                            android:key="pref_key_ringtone"
+                            android:title="@string/preferences__sound"
+                            android:ringtoneType="notification"
+                            android:defaultValue="content://settings/system/notification_sound" />
 
-    <org.thoughtcrime.securesms.preferences.LedBlinkPatternListPreference
-        android:key="pref_led_blink"
-        android:defaultValue="500,2000"
-        android:title="@string/preferences__pref_led_blink_title"
-        android:dependency="pref_led_color"
-        android:entries="@array/pref_led_blink_pattern_entries"
-        android:entryValues="@array/pref_led_blink_pattern_values" />
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+                            android:dependency="pref_key_enable_notifications"
+                            android:key="pref_key_vibrate"
+                            android:defaultValue="true"
+                            android:title="@string/preferences__vibrate"
+                            android:summary="@string/preferences__also_vibrate_when_notified" />
 
-    <CheckBoxPreference android:key="pref_key_inthread_notifications"
-                        android:title="@string/preferences__in_conversation_notifications"
-                        android:summary="@string/preferences__play_inthread_notifications"
-                        android:dependency="pref_key_enable_notifications"
-                        android:defaultValue="true" />
-
-    <ListPreference
-            android:key="pref_repeat_alerts"
-            android:defaultValue="0"
-            android:title="@string/preferences__repeat_alerts"
+        <org.thoughtcrime.securesms.preferences.LEDColorListPreference
+            android:key="pref_led_color"
+            android:defaultValue="blue"
+            android:title="@string/preferences__led_color"
             android:dependency="pref_key_enable_notifications"
-            android:entries="@array/pref_repeat_alerts_entries"
-            android:entryValues="@array/pref_repeat_alerts_values" />
+            android:entries="@array/pref_led_color_entries"
+            android:entryValues="@array/pref_led_color_values" />
 
-    <ListPreference android:key="pref_notification_privacy"
-                    android:title="@string/preferences_notifications__display_in_notifications"
-                    android:dependency="pref_key_enable_notifications"
-                    android:defaultValue="all"
-                    android:entries="@array/pref_notification_privacy_entries"
-                    android:entryValues="@array/pref_notification_privacy_values"/>
+        <org.thoughtcrime.securesms.preferences.LedBlinkPatternListPreference
+            android:key="pref_led_blink"
+            android:defaultValue="500,2000"
+            android:title="@string/preferences__pref_led_blink_title"
+            android:dependency="pref_led_color"
+            android:entries="@array/pref_led_blink_pattern_entries"
+            android:entryValues="@array/pref_led_blink_pattern_values" />
 
-    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
-        android:key="pref_enable_new_contacts_notifications"
-        android:title="@string/preferences__new_contacts_notifications"
-        android:summary="@string/preferences__show_a_notification_for_new_signal_contacts"
-        android:defaultValue="true" />
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+                            android:key="pref_key_inthread_notifications"
+                            android:title="@string/preferences__in_conversation_notifications"
+                            android:summary="@string/preferences__play_inthread_notifications"
+                            android:dependency="pref_key_enable_notifications"
+                            android:defaultValue="true" />
+
+        <ListPreference
+                android:key="pref_repeat_alerts"
+                android:defaultValue="0"
+                android:title="@string/preferences__repeat_alerts"
+                android:dependency="pref_key_enable_notifications"
+                android:entries="@array/pref_repeat_alerts_entries"
+                android:entryValues="@array/pref_repeat_alerts_values" />
+
+        <ListPreference android:key="pref_notification_privacy"
+                        android:title="@string/preferences_notifications__display_in_notifications"
+                        android:dependency="pref_key_enable_notifications"
+                        android:defaultValue="all"
+                        android:entries="@array/pref_notification_privacy_entries"
+                        android:entryValues="@array/pref_notification_privacy_values"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:layout="@layout/preference_divider"/>
+
+    <PreferenceCategory android:title="@string/preferences_notifications__events">
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+            android:key="pref_enable_new_contacts_notifications"
+            android:title="Contact joined Signal"
+            android:summary="@string/preferences__show_a_notification_for_new_signal_contacts"
+            android:defaultValue="true" />
+    </PreferenceCategory>
 
 </PreferenceScreen>
