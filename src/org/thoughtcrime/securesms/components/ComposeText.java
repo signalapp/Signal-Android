@@ -30,7 +30,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class ComposeText extends EmojiEditText {
 
-  private SpannableString hint;
+  private CharSequence    hint;
   private SpannableString subHint;
 
   @Nullable private InputPanel.MediaListener mediaListener;
@@ -70,12 +70,11 @@ public class ComposeText extends EmojiEditText {
   }
 
   public void setHint(@NonNull String hint, @Nullable CharSequence subHint) {
-    this.hint = new SpannableString(hint);
-    this.hint.setSpan(new RelativeSizeSpan(0.8f), 0, hint.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+    this.hint = hint;
 
     if (subHint != null) {
       this.subHint = new SpannableString(subHint);
-      this.subHint.setSpan(new RelativeSizeSpan(0.8f), 0, subHint.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+      this.subHint.setSpan(new RelativeSizeSpan(0.5f), 0, subHint.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
     } else {
       this.subHint = null;
     }
