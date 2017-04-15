@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.support.v4.preference.PreferenceFragment;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class ChatsPreferenceFragment extends CorrectedPreferenceFragment {
+public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
   private static final String TAG = ChatsPreferenceFragment.class.getSimpleName();
 
   @Override
@@ -35,12 +36,15 @@ public class ChatsPreferenceFragment extends CorrectedPreferenceFragment {
         .setOnPreferenceChangeListener(new MediaDownloadChangeListener());
     findPreference(TextSecurePreferences.MEDIA_DOWNLOAD_ROAMING_PREF)
         .setOnPreferenceChangeListener(new MediaDownloadChangeListener());
+    findPreference(TextSecurePreferences.MESSAGE_BODY_TEXT_SIZE_PREF)
+        .setOnPreferenceChangeListener(new ListSummaryListener());
 
     findPreference(TextSecurePreferences.THREAD_TRIM_NOW)
         .setOnPreferenceClickListener(new TrimNowClickListener());
     findPreference(TextSecurePreferences.THREAD_TRIM_LENGTH)
         .setOnPreferenceChangeListener(new TrimLengthValidationListener());
 
+    initializeListSummary((ListPreference) findPreference(TextSecurePreferences.MESSAGE_BODY_TEXT_SIZE_PREF));
   }
 
   @Override

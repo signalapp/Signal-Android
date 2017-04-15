@@ -1073,6 +1073,11 @@
     <string name="arrays__video">Video</string>
     <string name="arrays__documents">Documents</string>
 
+    <string name="arrays__small">Small</string>
+    <string name="arrays__normal">Normal</string>
+    <string name="arrays__large">Large</string>
+    <string name="arrays__extra_large">Extra large</string>
+
     <!-- plurals.xml -->
     <plurals name="hours_ago">
         <item quantity="one">%d hour</item>
@@ -1194,7 +1199,7 @@
     <string name="preferences_notifications__events">Events</string>
     <string name="preferences_chats__show_invitation_prompts">Show invitation prompts</string>
     <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Display invitation prompts for contacts without Signal</string>
-
+    <string name="preferences_chats__message_text_size">Message text size</string>
 
     <!-- **************************************** -->
     <!-- menus -->
@@ -1357,6 +1362,7 @@
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
+
 
     <!-- EOF -->
 
