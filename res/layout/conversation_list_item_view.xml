@@ -7,13 +7,13 @@
         android:focusable="true"
         android:nextFocusRight="@+id/fab"
         android:nextFocusLeft="@+id/container"
-        android:layout_height="70dp">
+        android:layout_height="75dp">
 
     <org.thoughtcrime.securesms.components.AvatarImageView
         android:id="@+id/contact_photo_image"
         android:foreground="@drawable/contact_photo_background"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
@@ -23,7 +23,7 @@
         tools:src="@drawable/ic_contact_picture"
         android:contentDescription="@string/conversation_list_item_view__contact_photo_image"
         android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp" />
+        android:layout_marginLeft="14dp" />
 
     <RelativeLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"
@@ -51,6 +51,7 @@
                   android:singleLine="true"
                   tools:text="Jules Bonnot"
                   android:ellipsize="end"
+                  android:layout_marginBottom="2dp"
                   android:drawablePadding="5dp"/>
 
         <org.thoughtcrime.securesms.components.AlertView
