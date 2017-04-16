@@ -607,9 +607,6 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">会話を消音</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">プッシュ送信</string>
-  <string name="conversation_activity__type_message_sms_insecure">SMSを送信（通信安全性は確保されません）</string>
-  <string name="conversation_activity__type_message_mms_insecure">MMSを送信（通信安全性は確保されません）</string>
   <string name="conversation_activity__from_sim_name">%1$sから</string>
   <string name="conversation_activity__send">送信</string>
   <string name="conversation_activity__remove">削除</string>
@@ -836,6 +833,7 @@
   <string name="arrays__audio">音声</string>
   <string name="arrays__video">動画</string>
   <string name="arrays__documents">文書</string>
+  <string name="arrays__normal">普通</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="other">%d時間前</item>
@@ -876,7 +874,6 @@
   <string name="preferences__pref_led_blink_custom_pattern_off_for">消灯時間:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">オリジナルのLED点滅パターンが設定されました！</string>
   <string name="preferences__sound">着信音</string>
-  <string name="preferences__change_notification_sound">通知音を変更</string>
   <string name="preferences__silent">無音</string>
   <string name="preferences__in_conversation_notifications">チャット中の通知</string>
   <string name="preferences__play_inthread_notifications">チャットを表示している間も通知音を出す</string>

@@ -636,9 +636,6 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Conversation mise en silencieux</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Envoyer un message Signal</string>
-  <string name="conversation_activity__type_message_sms_insecure">Envoyer un SMS non-sécurisé</string>
-  <string name="conversation_activity__type_message_mms_insecure">Envoyer un MMS non-sécurisé</string>
   <string name="conversation_activity__from_sim_name">De %1$s</string>
   <string name="conversation_activity__send">Envoyer</string>
   <string name="conversation_activity__remove">Supprimer</string>
@@ -891,6 +888,7 @@ par SMS.</string>
   <string name="arrays__audio">Audio</string>
   <string name="arrays__video">Vidéo</string>
   <string name="arrays__documents">Documents</string>
+  <string name="arrays__normal">Normal</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d heure</item>
@@ -932,7 +930,6 @@ par SMS.</string>
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Éteinte pour :</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Rythme de clignotement de la LED personnalisée défini !</string>
   <string name="preferences__sound">Son</string>
-  <string name="preferences__change_notification_sound">Modifier le son de notification</string>
   <string name="preferences__silent">Silencieux</string>
   <string name="preferences__in_conversation_notifications">Notifications dans les conversations</string>
   <string name="preferences__play_inthread_notifications">Émettre une notification sonore lors de la lecture d\'une discussion active.</string>

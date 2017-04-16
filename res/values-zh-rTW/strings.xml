@@ -626,9 +626,6 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">對話已靜音</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">傳送 Signal 加密訊息</string>
-  <string name="conversation_activity__type_message_sms_insecure">傳送未加密的手機簡訊</string>
-  <string name="conversation_activity__type_message_mms_insecure">傳送未加密的多媒體訊息</string>
   <string name="conversation_activity__from_sim_name">來自 %1$s</string>
   <string name="conversation_activity__send">送出</string>
   <string name="conversation_activity__remove">移除</string>
@@ -876,6 +873,7 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="arrays__audio">音訊</string>
   <string name="arrays__video">影片</string>
   <string name="arrays__documents">文件</string>
+  <string name="arrays__normal">正常</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="other">%d 小時</item>
@@ -916,7 +914,6 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="preferences__pref_led_blink_custom_pattern_off_for">關閉，當:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">自訂 LED 閃爍模式設定完成！</string>
   <string name="preferences__sound">提示音效</string>
-  <string name="preferences__change_notification_sound">變更通知音效</string>
   <string name="preferences__silent">靜音</string>
   <string name="preferences__in_conversation_notifications">對話中的提示音效</string>
   <string name="preferences__play_inthread_notifications">檢視對話時播放提示音</string>

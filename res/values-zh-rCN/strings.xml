@@ -616,9 +616,6 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">会话已静音</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">发送暗号信息</string>
-  <string name="conversation_activity__type_message_sms_insecure">发送未加密的短信</string>
-  <string name="conversation_activity__type_message_mms_insecure">发送未加密的彩信</string>
   <string name="conversation_activity__from_sim_name">来自 %1$s</string>
   <string name="conversation_activity__send">发送</string>
   <string name="conversation_activity__remove">删除</string>
@@ -865,6 +862,7 @@
   <string name="arrays__images">图片</string>
   <string name="arrays__audio">音频</string>
   <string name="arrays__video">视频</string>
+  <string name="arrays__normal">正常</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="other">%d 小时</item>
@@ -905,7 +903,6 @@
   <string name="preferences__pref_led_blink_custom_pattern_off_for">此情况下关闭：</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">自定义LED闪烁模式已设定！</string>
   <string name="preferences__sound">声音</string>
-  <string name="preferences__change_notification_sound">改变提示音</string>
   <string name="preferences__silent">静音</string>
   <string name="preferences__in_conversation_notifications">会话内通知</string>
   <string name="preferences__play_inthread_notifications">在查看活动的会话时播放提示音</string>

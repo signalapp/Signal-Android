@@ -638,9 +638,6 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">إخطارات المحادثة مكتومة</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">أرسل رسالة سيجنال.</string>
-  <string name="conversation_activity__type_message_sms_insecure">أرسل رسالة نصية غير آمنة</string>
-  <string name="conversation_activity__type_message_mms_insecure">أرسل رسالة وسائط متعددة غير آمنة</string>
   <string name="conversation_activity__from_sim_name">من %1$s</string>
   <string name="conversation_activity__send">أرسل</string>
   <string name="conversation_activity__remove">إزالة</string>
@@ -889,6 +886,7 @@
   <string name="arrays__images">صور</string>
   <string name="arrays__audio">صوت</string>
   <string name="arrays__video">فيديو</string>
+  <string name="arrays__normal">طبيعي</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="zero">%d ساعة</item>
@@ -934,7 +932,6 @@
   <string name="preferences__pref_led_blink_custom_pattern_off_for">مطفأة:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">تم إعداد أسولب وميض LED!</string>
   <string name="preferences__sound">صوت</string>
-  <string name="preferences__change_notification_sound">تغيير صوت التنبيه</string>
   <string name="preferences__silent">صامت</string>
   <string name="preferences__in_conversation_notifications">تنويهات أثناء المحادثة</string>
   <string name="preferences__play_inthread_notifications">تفعيل تنبيه صوتي أثناء مطالعة محادثة نشطة</string>

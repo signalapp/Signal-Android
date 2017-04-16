@@ -523,9 +523,6 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Chuyện trò tạm im</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Gửi thông điệp Signal</string>
-  <string name="conversation_activity__type_message_sms_insecure">Gửi SMS không mã hóa</string>
-  <string name="conversation_activity__type_message_mms_insecure">Gửi MMS không mã hóa</string>
   <string name="conversation_activity__from_sim_name">Từ %1$s</string>
   <string name="conversation_activity__send">Gửi</string>
   <string name="conversation_activity__remove">Bỏ</string>
@@ -736,6 +733,7 @@ SMS thất bại.
   <string name="arrays__images">Hình ảnh</string>
   <string name="arrays__audio">Nhạc</string>
   <string name="arrays__video">Đoạn phim</string>
+  <string name="arrays__normal">Bình thường</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="other">%d tiếng</item>
@@ -776,7 +774,6 @@ SMS thất bại.
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Tắt trong vòng:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Mô hình chớp nháy LED tùy chỉnh thiết lập xong!</string>
   <string name="preferences__sound">Âm thanh</string>
-  <string name="preferences__change_notification_sound">Đổi âm thanh thông báo</string>
   <string name="preferences__silent">Yên lặng</string>
   <string name="preferences__in_conversation_notifications">Thông báo ngay trong hội thoại</string>
   <string name="preferences__play_inthread_notifications">Phát âm thanh thông báo khi xem một chuyện trò đang diễn ra</string>

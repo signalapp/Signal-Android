@@ -591,9 +591,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Samtale dempet</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Send Signal-melding</string>
-  <string name="conversation_activity__type_message_sms_insecure">Send usikker SMS</string>
-  <string name="conversation_activity__type_message_mms_insecure">Send usikker MMS</string>
   <string name="conversation_activity__from_sim_name">Fra %1$s</string>
   <string name="conversation_activity__send">Send</string>
   <string name="conversation_activity__remove">Fjern</string>
@@ -845,6 +842,7 @@ Signal fikk tidsavbrudd under venting på bekreftelsesmelding.</string>
   <string name="arrays__images">Bilder</string>
   <string name="arrays__audio">Lyd</string>
   <string name="arrays__video">Video</string>
+  <string name="arrays__normal">Normal</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d time</item>
@@ -886,7 +884,6 @@ Signal fikk tidsavbrudd under venting på bekreftelsesmelding.</string>
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Av for:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">LED-blinkemønster er endret.</string>
   <string name="preferences__sound">Lyd</string>
-  <string name="preferences__change_notification_sound">Endre varslingslyd</string>
   <string name="preferences__silent">Stille</string>
   <string name="preferences__in_conversation_notifications">Varsling under samtaler</string>
   <string name="preferences__play_inthread_notifications">Spill av varslingslyd når du ser på en aktiv samtale</string>

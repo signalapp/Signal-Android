@@ -638,9 +638,6 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Conversazione mutata</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Invia messaggio Signal</string>
-  <string name="conversation_activity__type_message_sms_insecure">Invia SMS non cifrato</string>
-  <string name="conversation_activity__type_message_mms_insecure">Invia MMS non cifrato</string>
   <string name="conversation_activity__from_sim_name">Da %1$s</string>
   <string name="conversation_activity__send">Invia</string>
   <string name="conversation_activity__remove">Elimina</string>
@@ -897,6 +894,7 @@ non riuscita.
   <string name="arrays__audio">Audio</string>
   <string name="arrays__video">Video</string>
   <string name="arrays__documents">Documenti</string>
+  <string name="arrays__normal">Normale</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d ora</item>
@@ -938,7 +936,6 @@ non riuscita.
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Spento per:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Lampeggiamento personalizzato impostato!</string>
   <string name="preferences__sound">Suono</string>
-  <string name="preferences__change_notification_sound">Cambia il suono di notifica</string>
   <string name="preferences__silent">Silenzioso</string>
   <string name="preferences__in_conversation_notifications">Notifiche nelle conversazioni</string>
   <string name="preferences__play_inthread_notifications">Riproduci il suono di notifica anche all\'interno di una conversazione</string>

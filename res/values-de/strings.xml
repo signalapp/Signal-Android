@@ -21,7 +21,7 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Löschen</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Passwort deaktivieren?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Entsperrt Signal und Benachrichtigungen dauerhaft.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Entsperrt Signal und Benachrichtigungen über Nachrichten dauerhaft</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivieren</string>
   <string name="ApplicationPreferencesActivity_unregistering">Registrierung löschen</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Registrierung für Signal-Nachrichten und -Anrufe wird gelöscht …</string>
@@ -117,7 +117,7 @@
   <string name="ConversationActivity_transport_insecure_sms">Unsichere SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Unsichere MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
-  <string name="ConversationActivity_lets_switch_to_signal">Wechseln wir zu Signal %1$s</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Lass uns zu »Signal« wechseln: %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Unterhalten wir uns hiermit: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Fehler beim Verlassen der Gruppe</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS nicht unterstützt</string>
@@ -126,7 +126,7 @@
   <string name="ConversationActivity_unblock_this_contact_question">Diesen Kontakt freigeben?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Du wirst wieder Nachrichten und Anrufe von diesem Kontakt erhalten können.</string>
   <string name="ConversationActivity_unblock">Freigeben</string>
-  <string name="ConversationActivity_attachment_exceeds_size_limits">Anhang ist für diese Nachrichtenart zu groß.</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">Anhang zu groß für die gesendete Nachtrichtenart.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera nicht verfügbar</string>
   <string name="ConversationActivity_unable_to_record_audio">Audioaufnahme nicht möglich!</string>
   <string name="ConversationActivity_error_sending_voice_message">Fehler beim Senden der Sprachnachricht</string>
@@ -321,7 +321,7 @@ Das Wiederherstellen einer verschlüsselten Datensicherung ersetzt deine bestehe
     <item quantity="one">1 SMS-Einladung senden?</item>
     <item quantity="other">%d SMS-Einladungen senden?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Wechseln wir zu »Signal«: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Lass uns zu »Signal« wechseln: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Es sieht so aus, als hättest du keine zum Teilen geeignete Apps installiert.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Freunde lassen Freunde nicht unverschlüsselt kommunizieren.</string>
   <!--KeyScanningActivity-->
@@ -629,9 +629,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Unterhaltung stummgeschaltet</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Signal-Nachricht senden</string>
-  <string name="conversation_activity__type_message_sms_insecure">Unsichere SMS senden</string>
-  <string name="conversation_activity__type_message_mms_insecure">Unsichere MMS senden</string>
+  <string name="conversation_activity__type_message_push">Signal-Nachricht</string>
+  <string name="conversation_activity__type_message_sms_insecure">Unsichere SMS</string>
+  <string name="conversation_activity__type_message_mms_insecure">Unsichere MMS</string>
   <string name="conversation_activity__from_sim_name">Von %1$s</string>
   <string name="conversation_activity__send">Senden</string>
   <string name="conversation_activity__remove">Entfernen</string>
@@ -824,7 +824,7 @@ Das Warten auf eine Bestätigungs-SMS hat zu lange gedauert.</string>
   <string name="recipients_panel__to"><small>Name/Rufnummer eingeben</small></string>
   <string name="recipients_panel__add_members">Mitglieder hinzufügen</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Falls du die Sicherheit deiner Ende-zu-Ende-Verschlüsselung mit %s überprüfen möchtest, vergleiche bitte die oben dargestellte Nummer mit der Nummer auf dem Gerät deines Kontakts. Alternativ kannst du den Code deines Kontakts einscannen oder ihn deinen eigenen Code einscannen lassen. <a href="https://whispersystems.org/redirect/safety-numbers">Mehr über das Überprüfen von Sicherheitsnummern erfahren</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Falls du die Sicherheit deiner Ende-zu-Ende-Verschlüsselung mit %s überprüfen möchtest, vergleiche bitte die oben dargestellte Nummer mit der Nummer auf dem Gerät deines Kontakts. Alternativ kannst du den Code deines Kontakts einscannen oder ihn deinen eigenen Code einscannen lassen. <a href="https://whispersystems.org/redirect/safety-numbers">Erfahre mehr über das Überprüfen von Sicherheitsnummern</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Zum Scannen antippen</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Sicherheitsnummer teilen</string>
@@ -871,6 +871,10 @@ Das Warten auf eine Bestätigungs-SMS hat zu lange gedauert.</string>
   <string name="arrays__audio">Audio</string>
   <string name="arrays__video">Video</string>
   <string name="arrays__documents">Dokumente</string>
+  <string name="arrays__small">Klein</string>
+  <string name="arrays__normal">Normal</string>
+  <string name="arrays__large">Groß</string>
+  <string name="arrays__extra_large">Extragroß</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d Stunde</item>
@@ -894,14 +898,14 @@ Das Warten auf eine Bestätigungs-SMS hat zu lange gedauert.</string>
   <string name="preferences__change_passphrase">Passwort ändern</string>
   <string name="preferences__change_your_passphrase">Dein Passwort ändern</string>
   <string name="preferences__enable_passphrase">Passwort aktivieren</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Signal und Benachrichtungen mit einem Passwort sperren</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Signal und Benachrichtungen über Nachrichten mit einem Passwort sperren</string>
   <string name="preferences__screen_security">Bildschirmschutz</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Bildschirmfotos in der Anwendung und der Liste der letzten Anwendungen blockieren</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Signal bei Inaktivität nach einer festgelegten Verzögerungszeit automatisch sperren</string>
   <string name="preferences__inactivity_timeout_passphrase">Passwort bei Inaktivität</string>
   <string name="preferences__inactivity_timeout_interval">Verzögerungszeit</string>
   <string name="preferences__notifications">Benachrichtigungen</string>
-  <string name="preferences__enable_message_notifications">Benachrichtigungen über Nachrichtenempfang aktivieren</string>
+  <string name="preferences__enable_message_notifications">Benachrichtigungen über Nachrichten aktivieren</string>
   <string name="preferences__new_contacts_notifications">Über neue Kontakte benachrichtigen</string>
   <string name="preferences__show_a_notification_for_new_signal_contacts">Benachrichtigungen über neue Signal-Kontakte anzeigen</string>
   <string name="preferences__led_color">LED-Farbe</string>
@@ -912,7 +916,6 @@ Das Warten auf eine Bestätigungs-SMS hat zu lange gedauert.</string>
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Deaktiviert für:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">LED-Blinkmuster eingestellt</string>
   <string name="preferences__sound">Ton</string>
-  <string name="preferences__change_notification_sound">Benachrichtigungston ändern</string>
   <string name="preferences__silent">Lautlos</string>
   <string name="preferences__in_conversation_notifications">Immer benachrichtigen</string>
   <string name="preferences__play_inthread_notifications">Benachrichtigungston während aktiver Unterhaltungen wiedergeben</string>
@@ -985,6 +988,14 @@ Das Warten auf eine Bestätigungs-SMS hat zu lange gedauert.</string>
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Unterstützung für Video- und Sprachanrufe der nächsten Generation, falls bei beiden Beteiligten aktiviert. Diese Funktion befindet sich im Beta-Test.</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Alle Anrufe über den Signal-Server leiten, um die eigene IP-Adresse gegenüber Kontakten nicht offenzulegen. Bei Aktivierung wird sich die Anrufqualität verringern.</string>
   <string name="preferences_advanced__always_relay_calls">Anrufe immer indirekt</string>
+  <string name="preferences_app_protection__app_access">App-Zugriff</string>
+  <string name="preferences_app_protection__communication">Kommunikation</string>
+  <string name="preferences_chats__chats">Unterhaltungen</string>
+  <string name="preferences_notifications__message_notifications">Benachrichtigungen über Nachrichten</string>
+  <string name="preferences_notifications__events">Ereignisse</string>
+  <string name="preferences_chats__show_invitation_prompts">Einladungshinweise anzeigen</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Einladungshinweise für Kontakte ohne Signal anzeigen</string>
+  <string name="preferences_chats__message_text_size">Schriftgröße für Nachrichten</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

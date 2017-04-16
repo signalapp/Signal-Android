@@ -536,9 +536,6 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">대화 알림 꺼짐</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Signal 메시지 보내기</string>
-  <string name="conversation_activity__type_message_sms_insecure">보안 해제된 SMS 보내기</string>
-  <string name="conversation_activity__type_message_mms_insecure">보안 해제된 MMS 보내기</string>
   <string name="conversation_activity__from_sim_name">%1$s(으)로</string>
   <string name="conversation_activity__send">보내기</string>
   <string name="conversation_activity__remove">삭제</string>
@@ -746,6 +743,7 @@
   <string name="arrays__images">이미지</string>
   <string name="arrays__audio">오디오</string>
   <string name="arrays__video">동영상</string>
+  <string name="arrays__normal">보통</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="other">%d시간 전</item>
@@ -786,7 +784,6 @@
   <string name="preferences__pref_led_blink_custom_pattern_off_for">꺼진 시간</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">알림등 반복 패턴 맞춤 설정됨</string>
   <string name="preferences__sound">소리</string>
-  <string name="preferences__change_notification_sound">알림 벨소리 변경</string>
   <string name="preferences__silent">무음</string>
   <string name="preferences__in_conversation_notifications">대화 중 알림</string>
   <string name="preferences__play_inthread_notifications">대화 중에 알림 벨소리 재생</string>

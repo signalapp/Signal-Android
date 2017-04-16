@@ -668,9 +668,6 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Pokalbis nutildytas</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Siųsti Signal žinutę</string>
-  <string name="conversation_activity__type_message_sms_insecure">Siųsti nesaugią SMS žinutę</string>
-  <string name="conversation_activity__type_message_mms_insecure">Siųsti nesaugią MMS žinutę</string>
   <string name="conversation_activity__from_sim_name">Nuo %1$s</string>
   <string name="conversation_activity__send">Siųsti</string>
   <string name="conversation_activity__remove">Šalinti</string>
@@ -948,6 +945,7 @@ yra prisijungęs prie belaidžio (Wi-Fi) arba duomenų perdavimo tinklo.
   <string name="arrays__audio">Garso įrašai</string>
   <string name="arrays__video">Vaizdo įrašai</string>
   <string name="arrays__documents">Dokumentai</string>
+  <string name="arrays__normal">Normalus</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d valanda</item>
@@ -990,7 +988,6 @@ yra prisijungęs prie belaidžio (Wi-Fi) arba duomenų perdavimo tinklo.
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Išjungtas:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Tinkintas šviesos diodo šablonas nustatytas!</string>
   <string name="preferences__sound">Garsas</string>
-  <string name="preferences__change_notification_sound">Pakeisti pranešimų garsą</string>
   <string name="preferences__silent">Tyliai</string>
   <string name="preferences__in_conversation_notifications">Pranešimai pokalbyje</string>
   <string name="preferences__play_inthread_notifications">Groti pranešimų garsą, kuomet rodomas aktyvus pokalbis</string>

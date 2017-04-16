@@ -634,9 +634,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Keskustelu mykistetty</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Lähetä Signal-viesti</string>
-  <string name="conversation_activity__type_message_sms_insecure">Lähetä salaamaton SMS </string>
-  <string name="conversation_activity__type_message_mms_insecure">Lähetä salaamaton MMS-viesti</string>
   <string name="conversation_activity__from_sim_name">SIM-kortilta %1$s</string>
   <string name="conversation_activity__send">Lähetä</string>
   <string name="conversation_activity__remove">Poista</string>
@@ -879,6 +876,7 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="arrays__images">Kuvat</string>
   <string name="arrays__audio">Äänitallenteet</string>
   <string name="arrays__video">Videot</string>
+  <string name="arrays__normal">Normaali</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d tunti</item>
@@ -920,7 +918,6 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Pois päältä:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Mukautettu LED:in vilkkumistahti asetettu!</string>
   <string name="preferences__sound">Ääni</string>
-  <string name="preferences__change_notification_sound">Vaihda ilmoitusääni</string>
   <string name="preferences__silent">Ei ääntä</string>
   <string name="preferences__in_conversation_notifications">Keskustelun sisäiset ilmoitukset</string>
   <string name="preferences__play_inthread_notifications">Käytä ilmoitusääniä myös silloin, kun olen keskustelussa.</string>

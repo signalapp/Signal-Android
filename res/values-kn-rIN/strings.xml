@@ -421,8 +421,6 @@
   <string name="contact_selection_recent_activity__no_recent_calls">ಯಾವುದೇ ಇತ್ತೀಚಿನ ಕರೆಗಳಿಲ್ಲ.</string>
   <!--conversation_title_view-->
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_sms_insecure">ಅಸುರಕ್ಷಿತ ಎಸ್ಎಂಎಸ್ ಕಳುಹಿಸಿ</string>
-  <string name="conversation_activity__type_message_mms_insecure">ಅಸುರಕ್ಷಿತ ಎಂಎಂಎಸ್ ಕಳುಹಿಸಿ</string>
   <string name="conversation_activity__send">ಕಳುಹಿಸು</string>
   <string name="conversation_activity__remove">ತೆಗೆದುಹಾಕಿ</string>
   <string name="conversation_activity__window_description">%1$s ಅವರೊಂದಿಗೆ ಸಂವಾದ</string>
@@ -548,6 +546,7 @@
   <string name="arrays__import_export">ಆಮದು / ರಫ್ತು</string>
   <string name="arrays__enabled">ಸಕ್ರಿಯಗೊಳಿಸು</string>
   <string name="arrays__disabled">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸು</string>
+  <string name="arrays__normal">ಸಾಧಾರಣ</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="other">%d ಗಂಟೆಗಳು</item>
@@ -578,7 +577,6 @@
   <string name="preferences__pref_led_blink_custom_pattern_off_for">ಆಫ್:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">ಇಚ್ಛೆಯ ಎಲ್. ಇ. ಡಿ ಮಿಣುಕುವ ಮಾದರಿಯನ್ನು ಹೊಂದಿಸಲಾಗಿದೆ!</string>
   <string name="preferences__sound">ಶಬ್ದ</string>
-  <string name="preferences__change_notification_sound">ಸೂಚನೆಯ ಶಬ್ದ ಬದಲಾಯಿಸಿ</string>
   <string name="preferences__one_time">ಒಮ್ಮೆ</string>
   <string name="preferences__two_times">ಎರಡು ಬಾರಿ</string>
   <string name="preferences__three_times">ಮೂರು ಬಾರಿ</string>

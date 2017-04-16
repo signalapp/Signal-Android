@@ -650,9 +650,6 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Vestlus vaigistatud</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Saada Signali sõnum</string>
-  <string name="conversation_activity__type_message_sms_insecure">Saada turvamata SMS</string>
-  <string name="conversation_activity__type_message_mms_insecure">Saada turvamata MMS</string>
   <string name="conversation_activity__from_sim_name">Kontaktilt %1$s</string>
   <string name="conversation_activity__send">Saada</string>
   <string name="conversation_activity__remove">Eemalda</string>
@@ -923,6 +920,7 @@
   <string name="arrays__audio">Heli</string>
   <string name="arrays__video">Video</string>
   <string name="arrays__documents">Dokumendid</string>
+  <string name="arrays__normal">Keskmine</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d tund</item>
@@ -964,7 +962,6 @@
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Keelamisaeg:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Kohandatud LEDi välkumismuster on seatud!</string>
   <string name="preferences__sound">Heli</string>
-  <string name="preferences__change_notification_sound">Muuda teate heli</string>
   <string name="preferences__silent">Vaikne</string>
   <string name="preferences__in_conversation_notifications">Vestlusesisesed teated</string>
   <string name="preferences__play_inthread_notifications">Mängi teateheli, kui vaatad aktiivset vestlust</string>

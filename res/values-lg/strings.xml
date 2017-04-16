@@ -523,9 +523,6 @@ Dammu okebere e namba yo.  Tugenda kugikakasa no bubaka ku simu</string>
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">emboozi esilisidwa</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">welezza obubaka bwamayengo</string>
-  <string name="conversation_activity__type_message_sms_insecure">sindika obubaka obwekusifu</string>
-  <string name="conversation_activity__type_message_mms_insecure">sindika  MMS obutakumidwa</string>
   <string name="conversation_activity__from_sim_name">kuva %1$s</string>
   <string name="conversation_activity__send">Sindika</string>
   <string name="conversation_activity__remove">Gyawo</string>
@@ -766,6 +763,7 @@ Signal evudeko bwebadde erinda obubaka okukakasa.</string>
   <string name="arrays__images">Ebifaananyi</string>
   <string name="arrays__audio">Doboozi</string>
   <string name="arrays__video">Vidiyo</string>
+  <string name="arrays__normal">Kyabulijjo</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d saawa</item>
@@ -811,7 +809,6 @@ Signal evudeko bwebadde erinda obubaka okukakasa.</string>
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Okuvako paka: </string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Custom LED blink pattern esetingidwa!</string>
   <string name="preferences__sound">Doboozi</string>
-  <string name="preferences__change_notification_sound">Kyusa doboozi lyo\' kutemezebwako. </string>
   <string name="preferences__silent">Kusirika</string>
   <string name="preferences__in_conversation_notifications">Mu mboozi zo\'kutemezebwako.</string>
   <string name="preferences__play_inthread_notifications">

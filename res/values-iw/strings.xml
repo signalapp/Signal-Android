@@ -635,9 +635,6 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">שיחה מושתקת</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">שליחת מסר בסיגנל</string>
-  <string name="conversation_activity__type_message_sms_insecure">שליחת SMS לא מאובטח</string>
-  <string name="conversation_activity__type_message_mms_insecure">שליחת MMS לא מאובטח</string>
   <string name="conversation_activity__from_sim_name">מ־%1$s</string>
   <string name="conversation_activity__send">שליחה</string>
   <string name="conversation_activity__remove">הסרה</string>
@@ -887,6 +884,7 @@
   <string name="arrays__images">תמונות</string>
   <string name="arrays__audio">קול</string>
   <string name="arrays__video">סרט</string>
+  <string name="arrays__normal">רגיל</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">שעה %d</item>
@@ -928,7 +926,6 @@
   <string name="preferences__pref_led_blink_custom_pattern_off_for">כבויה כאשר:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">תבנית הבהוב נורית אישית הוגדרה!</string>
   <string name="preferences__sound">קול</string>
-  <string name="preferences__change_notification_sound">שינוי צליל ההתראה</string>
   <string name="preferences__silent">שקט</string>
   <string name="preferences__in_conversation_notifications">התראות בתוך השיחה</string>
   <string name="preferences__play_inthread_notifications">לנגן צליל התראה רק בזמן הצגת שיחה פעילה</string>

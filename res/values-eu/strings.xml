@@ -445,6 +445,7 @@ zenbakia (%s) baliogabea da.
   <string name="RegistrationActivity_edit">Editatu</string>
   <string name="RegistrationActivity_missing_google_play_services">Ez dira topatzen Google Play-ren zerbitzuak </string>
   <string name="RegistrationActivity_i_understand">Ulertzen dut</string>
+  <string name="RegistrationActivity_more_information">Informazio gehiago</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Aurreikusi daitezkeen arazoak</string>
   <!--RegistrationProgressActivity-->
@@ -604,9 +605,6 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Solasaldi isildua</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Bidali Signal mezua</string>
-  <string name="conversation_activity__type_message_sms_insecure">SMS ez segurua bidali</string>
-  <string name="conversation_activity__type_message_mms_insecure">MMS ez segurua bidali</string>
   <string name="conversation_activity__from_sim_name">%1$s-(e)tik</string>
   <string name="conversation_activity__send">Bidali</string>
   <string name="conversation_activity__remove">Ezabatu</string>
@@ -851,6 +849,7 @@ huts egin du.
   <string name="arrays__images">Irudiak</string>
   <string name="arrays__audio">Audioa</string>
   <string name="arrays__video">Bideoa</string>
+  <string name="arrays__normal">Normala</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">ordu %d</item>
@@ -892,7 +891,6 @@ huts egin du.
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Zenbat denbora itzalita:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Personalizatutako LED keinu eredua ezarrita!</string>
   <string name="preferences__sound">Soinua</string>
-  <string name="preferences__change_notification_sound">Aldatu jakinarazpenaren soinua</string>
   <string name="preferences__silent">Isildu</string>
   <string name="preferences__in_conversation_notifications">Solasaldi barruko jakinarazpenak</string>
   <string name="preferences__play_inthread_notifications">Erreproduzitu jakinarazpena solasaldi aktibo bat ikusterakoan.</string>

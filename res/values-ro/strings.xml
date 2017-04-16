@@ -243,6 +243,7 @@
   <string name="DeviceListItem_last_active_s">Ultima oară activ %s</string>
   <string name="DeviceListItem_today">Azi</string>
   <!--DocumentView-->
+  <string name="DocumentView_unknown_file">Fișier necunoscut</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizează pentru lipsa serviciilor Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Acest dispozitiv nu suportă serviciile Play. Apasă pentru a dezactiva optimizarea de sistem a bateriei care împiedică Signal să preia mesajele cât timp este inactivă.</string>
@@ -607,6 +608,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Răspunsul rapid nu este disponibil cât timp Signal este blocat!</string>
   <string name="QuickResponseService_problem_sending_message">Problemă la trimiterea mesajului!</string>
   <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_open_directory">Deschide directorul</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mesaj nou</string>
@@ -654,9 +656,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Conversaţia este acum silenţiosă</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Trimite mesaj Signal</string>
-  <string name="conversation_activity__type_message_sms_insecure">Trimite SMS nesecurizat</string>
-  <string name="conversation_activity__type_message_mms_insecure">Trimite MMS nesecurizat</string>
   <string name="conversation_activity__from_sim_name">De la %1$s</string>
   <string name="conversation_activity__send">Trimite</string>
   <string name="conversation_activity__remove">Șterge</string>
@@ -925,6 +924,7 @@ SMS a eșuat.</string>
   <string name="arrays__audio">Audio</string>
   <string name="arrays__video">Video</string>
   <string name="arrays__documents">Documente</string>
+  <string name="arrays__normal">Normal</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d oră</item>
@@ -967,7 +967,6 @@ SMS a eșuat.</string>
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Dezactivat pentru:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Şablonul personalizat de clipire a LED-ului a fost setat!</string>
   <string name="preferences__sound">Sunet</string>
-  <string name="preferences__change_notification_sound">Schimbă sunetul de notificare</string>
   <string name="preferences__silent">Silențios</string>
   <string name="preferences__in_conversation_notifications">Notificări în conversație</string>
   <string name="preferences__play_inthread_notifications">Redare sunet de notificare în timp ce vizualizați o conversație activă</string>

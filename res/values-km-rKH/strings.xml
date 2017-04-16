@@ -621,9 +621,6 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">បិទសំឡេងការសន្ទនា</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">ផ្ញើសារ Signal </string>
-  <string name="conversation_activity__type_message_sms_insecure">ផ្ញើ SMS គ្មានសុវត្ថិភាព</string>
-  <string name="conversation_activity__type_message_mms_insecure">ផ្ញើ MMS គ្មានសុវត្ថិភាព</string>
   <string name="conversation_activity__from_sim_name">ពី %1$s</string>
   <string name="conversation_activity__send">ផ្ញើ</string>
   <string name="conversation_activity__remove">លុប</string>
@@ -870,6 +867,7 @@
   <string name="arrays__audio">សំឡេង</string>
   <string name="arrays__video">វីដេអូ</string>
   <string name="arrays__documents">ឯកសារ</string>
+  <string name="arrays__normal">ធម្មតា</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="other">%d ម៉ោង</item>
@@ -910,7 +908,6 @@
   <string name="preferences__pref_led_blink_custom_pattern_off_for">បិទសម្រាប់៖</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">លំនាំលោតភ្លើង LED ផ្សេងត្រូវបានកំណត់!</string>
   <string name="preferences__sound">សំឡេង</string>
-  <string name="preferences__change_notification_sound">ផ្លាស់ប្តូរសំឡេងដំណឹង</string>
   <string name="preferences__silent">ស្ងាត់</string>
   <string name="preferences__in_conversation_notifications">សារដំណឹងក្នុងការសន្ទនា</string>
   <string name="preferences__play_inthread_notifications">ដាក់សំឡេងដំណឹងពេលបើកមើលការសន្ទនា</string>

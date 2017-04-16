@@ -670,9 +670,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Rozmowa jest wyciszona</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Wyślij wiadomość Signal</string>
-  <string name="conversation_activity__type_message_sms_insecure">Wyślij nieszyfrowany SMS</string>
-  <string name="conversation_activity__type_message_mms_insecure">Wyślij nieszyfrowany MMS</string>
   <string name="conversation_activity__from_sim_name">Od %1$s</string>
   <string name="conversation_activity__send">Wyślij</string>
   <string name="conversation_activity__remove">Usuń</string>
@@ -925,6 +922,7 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="arrays__audio">Audio</string>
   <string name="arrays__video">Wideo</string>
   <string name="arrays__documents">Dokumenty</string>
+  <string name="arrays__normal">Normalnie</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d godzina</item>
@@ -968,7 +966,6 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Wyłączony dla:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Ustawiono niestandardowy wzór migających świateł LED!</string>
   <string name="preferences__sound">Dźwięk</string>
-  <string name="preferences__change_notification_sound">Zmień dźwięk powiadomienia</string>
   <string name="preferences__silent">Wycisz</string>
   <string name="preferences__in_conversation_notifications">Powiadomienia \"w konwersacji\"</string>
   <string name="preferences__play_inthread_notifications">Włącz dźwięk powiadomienia w aktywnej rozmowie</string>

@@ -651,9 +651,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Konverzace ztišena</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Poslat Signal zprávu</string>
-  <string name="conversation_activity__type_message_sms_insecure">Poslat nezabezpečenou SMS</string>
-  <string name="conversation_activity__type_message_mms_insecure">Poslat nezabezpečenou MMS</string>
   <string name="conversation_activity__from_sim_name">Od %1$s</string>
   <string name="conversation_activity__send">Odeslat</string>
   <string name="conversation_activity__remove">Odebrat</string>
@@ -912,6 +909,7 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="arrays__audio">Audio</string>
   <string name="arrays__video">Video</string>
   <string name="arrays__documents">Dokumenty</string>
+  <string name="arrays__normal">Normálně</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d hodina</item>
@@ -954,7 +952,6 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Vypnout po:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Způsob blikání LED byl nastaven!</string>
   <string name="preferences__sound">Zvuk</string>
-  <string name="preferences__change_notification_sound">Změnit zvuk upozornění</string>
   <string name="preferences__silent">Ticho</string>
   <string name="preferences__in_conversation_notifications">Upozornění během konverzace</string>
   <string name="preferences__play_inthread_notifications">Přehrát zvuk oznámení při prohlížení aktivní konverzace</string>

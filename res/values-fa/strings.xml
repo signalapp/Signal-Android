@@ -523,9 +523,6 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">مکالمه خاموش</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">ارسال پیام سیگنال</string>
-  <string name="conversation_activity__type_message_sms_insecure">ارسال نا امن SMS</string>
-  <string name="conversation_activity__type_message_mms_insecure">ارسال نا امن MMS</string>
   <string name="conversation_activity__from_sim_name">از %1$s</string>
   <string name="conversation_activity__send">ارسال</string>
   <string name="conversation_activity__remove">حذف</string>
@@ -742,6 +739,7 @@
   <string name="arrays__images">تصویر</string>
   <string name="arrays__audio">صدا</string>
   <string name="arrays__video">ویدئو</string>
+  <string name="arrays__normal">عادی</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="other">%d ساعت</item>
@@ -782,7 +780,6 @@
   <string name="preferences__pref_led_blink_custom_pattern_off_for">خاموش به مدت:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">الگوی چشمک زدن چراغ ال‌ای‌دی تنظیم شد</string>
   <string name="preferences__sound">زنگ</string>
-  <string name="preferences__change_notification_sound">تغییر زنگ اطلاعیه‌ها</string>
   <string name="preferences__silent">بی صدا</string>
   <string name="preferences__in_conversation_notifications">اطلاعیه‌های داخل گفتگو</string>
   <string name="preferences__play_inthread_notifications">پخش کردن اطلاعیه‌ در حال خاندن گفتگو باز شده </string>

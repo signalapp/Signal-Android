@@ -638,9 +638,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Konversation tystad</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Skicka Signalmeddelande</string>
-  <string name="conversation_activity__type_message_sms_insecure">Skicka okrypterat SMS</string>
-  <string name="conversation_activity__type_message_mms_insecure">Skicka okrypterat MMS</string>
   <string name="conversation_activity__from_sim_name">Från %1$s</string>
   <string name="conversation_activity__send">Skicka</string>
   <string name="conversation_activity__remove">Ta bort</string>
@@ -887,6 +884,7 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="arrays__audio">Ljud</string>
   <string name="arrays__video">Video</string>
   <string name="arrays__documents">Dokument</string>
+  <string name="arrays__normal">Normal</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d timme</item>
@@ -928,7 +926,6 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Av under:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Specialanpassat LED-blinkningsmönster valt!</string>
   <string name="preferences__sound">Ljud</string>
-  <string name="preferences__change_notification_sound">Ändra aviseringsljud</string>
   <string name="preferences__silent">Tyst</string>
   <string name="preferences__in_conversation_notifications">Inom-konversationsaviseringar</string>
   <string name="preferences__play_inthread_notifications">Spela aviseringsljud när du tittar på en aktiv konversation</string>

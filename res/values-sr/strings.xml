@@ -660,9 +660,6 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Преписка утишана</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Пошаљи Сигнал поруку</string>
-  <string name="conversation_activity__type_message_sms_insecure">Пошаљи необезбеђени СМС</string>
-  <string name="conversation_activity__type_message_mms_insecure">Пошаљи необезбеђени ММС</string>
   <string name="conversation_activity__from_sim_name">Од %1$s</string>
   <string name="conversation_activity__send">Пошаљи</string>
   <string name="conversation_activity__remove">Уклони</string>
@@ -920,6 +917,7 @@
   <string name="arrays__audio">Звук</string>
   <string name="arrays__video">Видео</string>
   <string name="arrays__documents">Документи</string>
+  <string name="arrays__normal">Нормално</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d сат</item>
@@ -962,7 +960,6 @@
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Искључено:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Посебни шаблон трептања ЛЕД светла постављен!</string>
   <string name="preferences__sound">Звук</string>
-  <string name="preferences__change_notification_sound">Промени звук обавештења</string>
   <string name="preferences__silent">Без звука</string>
   <string name="preferences__in_conversation_notifications">Обавештења унутар преписки</string>
   <string name="preferences__play_inthread_notifications">Звук обавештења на приказу активне преписке</string>

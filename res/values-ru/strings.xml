@@ -670,9 +670,6 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Звуки разговора выключены</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Отправить через Signal</string>
-  <string name="conversation_activity__type_message_sms_insecure">Отправить незащищённое SMS</string>
-  <string name="conversation_activity__type_message_mms_insecure">Отправить незащищённое MMS</string>
   <string name="conversation_activity__from_sim_name">Через %1$s</string>
   <string name="conversation_activity__send">Отправить</string>
   <string name="conversation_activity__remove">Удалить</string>
@@ -937,6 +934,7 @@ SMS-подтверждения...
   <string name="arrays__audio">Аудио</string>
   <string name="arrays__video">Видео</string>
   <string name="arrays__documents">Документы</string>
+  <string name="arrays__normal">Среднее</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d час</item>
@@ -980,7 +978,6 @@ SMS-подтверждения...
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Выключить на:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Мигание светодиода настроено!</string>
   <string name="preferences__sound">Мелодия</string>
-  <string name="preferences__change_notification_sound">Изменить мелодию уведомления</string>
   <string name="preferences__silent">Без звука</string>
   <string name="preferences__in_conversation_notifications">Уведомления при разговоре</string>
   <string name="preferences__play_inthread_notifications">Проигрывать звук уведомления, даже когда открыт текущий разговор</string>

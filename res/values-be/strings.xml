@@ -286,8 +286,6 @@
   <string name="contact_selection_recent_activity__no_recent_calls">Няма новых выклікаў.</string>
   <!--conversation_title_view-->
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_sms_insecure">Даслаць неабароненую SMS</string>
-  <string name="conversation_activity__type_message_mms_insecure">Даслаць неабароненую MMS</string>
   <string name="conversation_activity__send">Даслаць</string>
   <string name="conversation_activity__remove">Выдаліць</string>
   <string name="conversation_activity__window_description">Размова з %1$s</string>
@@ -408,6 +406,7 @@
   <string name="arrays__import_export">Імпарт / экспарт</string>
   <string name="arrays__use_default">Выкарыстоўваць стандартны</string>
   <string name="arrays__use_custom">Выкарыстоўваць кастамны</string>
+  <string name="arrays__normal">Нармальна</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d гадзіна</item>
@@ -441,7 +440,6 @@
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Выключаны для:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Пэўны ўзор міргацення светладыёда усталяваны!</string>
   <string name="preferences__sound">Гук</string>
-  <string name="preferences__change_notification_sound">Змяніць гук апавяшчэння</string>
   <string name="preferences__repeat_alerts">Паўтарыць папярэджанні</string>
   <string name="preferences__never">Ніколі</string>
   <string name="preferences__one_time">Адзін раз</string>

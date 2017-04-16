@@ -667,9 +667,6 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Pogovor je bil utišan</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Pošlji sporočilo Signal</string>
-  <string name="conversation_activity__type_message_sms_insecure">Pošlji nezavarovan SMS</string>
-  <string name="conversation_activity__type_message_mms_insecure">Pošlji nezavarovan MMS</string>
   <string name="conversation_activity__from_sim_name">Od %1$s</string>
   <string name="conversation_activity__send">Pošlji</string>
   <string name="conversation_activity__remove">Odstrani</string>
@@ -928,6 +925,7 @@ bila uspešna.</string>
   <string name="arrays__audio">Zvok</string>
   <string name="arrays__video">Video</string>
   <string name="arrays__documents">Dokumenti</string>
+  <string name="arrays__normal">Normalno</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d ura</item>
@@ -971,7 +969,6 @@ bila uspešna.</string>
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Izklopljeno za:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Utripenje LED je nastavljeno!</string>
   <string name="preferences__sound">Zvok</string>
-  <string name="preferences__change_notification_sound">Spremeni zvok za obvestila</string>
   <string name="preferences__silent">Tiho</string>
   <string name="preferences__in_conversation_notifications">Obvestila znotraj pogovora</string>
   <string name="preferences__play_inthread_notifications">Ob ogledu aktivnega pogovora predvajaj zvok za obvestila</string>

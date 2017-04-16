@@ -641,9 +641,6 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Η συζήτηση έχει σιγαθεί</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Αποστολή μηνύματος Signal</string>
-  <string name="conversation_activity__type_message_sms_insecure">Αποστολή μη ασφαλούς SMS</string>
-  <string name="conversation_activity__type_message_mms_insecure">Αποστολή μη ασφαλούς MMS</string>
   <string name="conversation_activity__from_sim_name">Από τον/την %1$s</string>
   <string name="conversation_activity__send">Αποστολή</string>
   <string name="conversation_activity__remove">Αφαίρεση</string>
@@ -904,6 +901,7 @@
   <string name="arrays__audio">Ήχοι</string>
   <string name="arrays__video">Βίντεο</string>
   <string name="arrays__documents">Αρχεία</string>
+  <string name="arrays__normal">Κανονικό</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d ώρα</item>
@@ -945,7 +943,6 @@
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Σβηστό για:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Ορίστηκε το προσαρμοσμένο μοτίβο αναβοσβησίματος του LED!</string>
   <string name="preferences__sound">Ήχος</string>
-  <string name="preferences__change_notification_sound">Αλλαγή ήχου ειδοποίησης</string>
   <string name="preferences__silent">Σε σίγαση</string>
   <string name="preferences__in_conversation_notifications">Ειδοποιήσεις εντός της συζήτησης</string>
   <string name="preferences__play_inthread_notifications">Αναπαραγωγή ήχου ειδοποίησης όταν βλέπεις μια ενεργή συνομιλία</string>

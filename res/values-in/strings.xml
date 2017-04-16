@@ -554,9 +554,6 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Percakapan dibisukan</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Kirim pesan Signal</string>
-  <string name="conversation_activity__type_message_sms_insecure">Kirim SMS tidak aman</string>
-  <string name="conversation_activity__type_message_mms_insecure">Kirim MMS tidak aman</string>
   <string name="conversation_activity__from_sim_name">Dari %1$s</string>
   <string name="conversation_activity__send">Kirim</string>
   <string name="conversation_activity__remove">Hapus</string>
@@ -778,6 +775,7 @@ gagal
   <string name="arrays__images">Gambar</string>
   <string name="arrays__audio">Audio</string>
   <string name="arrays__video">Video</string>
+  <string name="arrays__normal">Normal</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="other">%d jam</item>
@@ -818,7 +816,6 @@ gagal
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Mati selama:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Set pola kedip LED!</string>
   <string name="preferences__sound">Bunyi</string>
-  <string name="preferences__change_notification_sound">Ganti suara notofikasi</string>
   <string name="preferences__silent">Diam</string>
   <string name="preferences__in_conversation_notifications">Pemberitahuan percakapan</string>
   <string name="preferences__play_inthread_notifications">Putar suara pemberitahuan ketika berada pada percakapan aktif</string>

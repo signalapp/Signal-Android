@@ -638,9 +638,6 @@ U pranua mesazh për shkembim çelsash për një verzion të protokolli jo valid
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Biseda u hesht</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Dërgo porosi përmes Signal-it</string>
-  <string name="conversation_activity__type_message_sms_insecure">Dërgo SMS të pasigurt</string>
-  <string name="conversation_activity__type_message_mms_insecure">Dërgo MMS të pasigurtë</string>
   <string name="conversation_activity__from_sim_name">Nga %1$s</string>
   <string name="conversation_activity__send">Dërgo</string>
   <string name="conversation_activity__remove">Hiç</string>
@@ -892,6 +889,7 @@ Signal u ndal derisa pritej SMSi për verifikim.</string>
   <string name="arrays__images">Imazhet</string>
   <string name="arrays__audio">Audio</string>
   <string name="arrays__video">Video</string>
+  <string name="arrays__normal">Normal</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d orë</item>
@@ -933,7 +931,6 @@ Signal u ndal derisa pritej SMSi për verifikim.</string>
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Ndalur për:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Lloji i vezullimit lend u vendos!</string>
   <string name="preferences__sound">Zë</string>
-  <string name="preferences__change_notification_sound">Ndrysho zërin e lajmërimit</string>
   <string name="preferences__silent">Heshtur</string>
   <string name="preferences__in_conversation_notifications">Njoftimet gjatë bisedës</string>
   <string name="preferences__play_inthread_notifications">Luaj zërin e njoftimit gjatë shikimit të një bisede aktive</string>

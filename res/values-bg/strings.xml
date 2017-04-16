@@ -641,9 +641,6 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Чатът е в тих режим</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Изпрати Сигнал съобщение</string>
-  <string name="conversation_activity__type_message_sms_insecure">Изпрати некриптиран SMS</string>
-  <string name="conversation_activity__type_message_mms_insecure">Изпрати некриптиран MMS</string>
   <string name="conversation_activity__from_sim_name">От %1$s</string>
   <string name="conversation_activity__send">Изпрати</string>
   <string name="conversation_activity__remove">Премахни</string>
@@ -897,6 +894,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="arrays__audio">Аудио</string>
   <string name="arrays__video">Видео</string>
   <string name="arrays__documents">Документи</string>
+  <string name="arrays__normal">Нормално</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d час</item>
@@ -938,7 +936,6 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Спрени за:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Новият начин за LED известяване зададен!</string>
   <string name="preferences__sound">Мелодия</string>
-  <string name="preferences__change_notification_sound">Промени звуков сигнал за известие</string>
   <string name="preferences__silent">Тих</string>
   <string name="preferences__in_conversation_notifications">Известия по време на разговор</string>
   <string name="preferences__play_inthread_notifications">Пускай звук за известие докато гледаш активен чат</string>

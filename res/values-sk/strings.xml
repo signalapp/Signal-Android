@@ -480,9 +480,6 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Konverzácia umlčaná.</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Poslať Signal správu</string>
-  <string name="conversation_activity__type_message_sms_insecure">Poslať nezašifrovanú SMS</string>
-  <string name="conversation_activity__type_message_mms_insecure">Poslať nezašifrovanú MMS</string>
   <string name="conversation_activity__from_sim_name">Od %1$s</string>
   <string name="conversation_activity__send">Odoslať</string>
   <string name="conversation_activity__remove">Odstrániť</string>
@@ -637,6 +634,7 @@ zlyhalo.
   <string name="arrays__images">Obrázky</string>
   <string name="arrays__audio">Zvuk</string>
   <string name="arrays__video">Video</string>
+  <string name="arrays__normal">Normálne</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d hodina</item>
@@ -669,7 +667,6 @@ zlyhalo.
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Vypnuté pre:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Vlastná sekvencia blikania nastavená!</string>
   <string name="preferences__sound">Zvuk</string>
-  <string name="preferences__change_notification_sound">Zmeňiť zvuk notifikácie</string>
   <string name="preferences__repeat_alerts">Opakovať hlášky</string>
   <string name="preferences__never">Nikdy</string>
   <string name="preferences__one_time">Raz</string>

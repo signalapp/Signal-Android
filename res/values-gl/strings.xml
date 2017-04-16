@@ -501,9 +501,6 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Conversa silenciada</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Enviar mensaxe Signal</string>
-  <string name="conversation_activity__type_message_sms_insecure">Enviar SMS insegura</string>
-  <string name="conversation_activity__type_message_mms_insecure">Enviar MMS insegura</string>
   <string name="conversation_activity__from_sim_name">De %1$s</string>
   <string name="conversation_activity__send">Enviar</string>
   <string name="conversation_activity__remove">Eliminar</string>
@@ -671,6 +668,7 @@
   <string name="arrays__images">Imaxes</string>
   <string name="arrays__audio">Audio</string>
   <string name="arrays__video">Vídeo</string>
+  <string name="arrays__normal">Normal</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d hora</item>
@@ -702,7 +700,6 @@
   <string name="preferences__led_color_unknown">Descoñecido</string>
   <string name="preferences__pref_led_blink_title">Intermitencia do LED</string>
   <string name="preferences__sound">Son</string>
-  <string name="preferences__change_notification_sound">Cambiar o son das notificacións</string>
   <string name="preferences__silent">En silencio</string>
   <string name="preferences__in_conversation_notifications">Notificacións durante a conversa</string>
   <string name="preferences__play_inthread_notifications">Reproduce un son mentres se está a ver unha conversa activa</string>

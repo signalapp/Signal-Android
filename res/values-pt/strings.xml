@@ -636,9 +636,6 @@ Mensagem de troca de chave inválida para esta versão do protocolo.
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Conversa silenciada</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Enviar mensagem Signal</string>
-  <string name="conversation_activity__type_message_sms_insecure">Enviar SMS insegura</string>
-  <string name="conversation_activity__type_message_mms_insecure">Enviar MMS insegura</string>
   <string name="conversation_activity__from_sim_name">De %1$s</string>
   <string name="conversation_activity__send">Enviar</string>
   <string name="conversation_activity__remove">Remover</string>
@@ -901,6 +898,7 @@ falhou.
   <string name="arrays__images">Imagens</string>
   <string name="arrays__audio">Áudio</string>
   <string name="arrays__video">Vídeo</string>
+  <string name="arrays__normal">Normal</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d hora</item>
@@ -942,7 +940,6 @@ falhou.
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Inactivo durante:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Padrão de intermitência LED definido!</string>
   <string name="preferences__sound">Som</string>
-  <string name="preferences__change_notification_sound">Alterar som de notificação</string>
   <string name="preferences__silent">Silencioso</string>
   <string name="preferences__in_conversation_notifications">Notificações nas conversas</string>
   <string name="preferences__play_inthread_notifications">Activar notificações enquanto segue uma conversa activa</string>

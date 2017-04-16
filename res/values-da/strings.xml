@@ -628,9 +628,6 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Samtale dæmpet</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Send Signalbesked</string>
-  <string name="conversation_activity__type_message_sms_insecure">Send usikker (ukrypteret) SMS</string>
-  <string name="conversation_activity__type_message_mms_insecure">Send usikker (ukrypteret) MMS</string>
   <string name="conversation_activity__from_sim_name">Fra %1$s</string>
   <string name="conversation_activity__send">Send</string>
   <string name="conversation_activity__remove">Fjern</string>
@@ -869,6 +866,7 @@ mislykkedes.</string>
   <string name="arrays__images">Billeder</string>
   <string name="arrays__audio">Lyd</string>
   <string name="arrays__video">Video</string>
+  <string name="arrays__normal">Normal</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d time</item>
@@ -910,7 +908,6 @@ mislykkedes.</string>
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Slukket i:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">LED-blinkemønster er tilpasset!</string>
   <string name="preferences__sound">Lyd</string>
-  <string name="preferences__change_notification_sound">Ændr notifikationslyd</string>
   <string name="preferences__silent">Ingen lyd</string>
   <string name="preferences__in_conversation_notifications">Notifikationer under samtalevisning</string>
   <string name="preferences__play_inthread_notifications">Afspil notifikationslyd, når en aktiv samtale vises</string>

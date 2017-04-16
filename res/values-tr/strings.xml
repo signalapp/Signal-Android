@@ -613,9 +613,6 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Sohbet sessize alındı</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Signal mesajı gönder</string>
-  <string name="conversation_activity__type_message_sms_insecure">Güvensiz SMS gönder</string>
-  <string name="conversation_activity__type_message_mms_insecure">Güvensiz MMS gönder</string>
   <string name="conversation_activity__from_sim_name">Gönderen %1$s</string>
   <string name="conversation_activity__send">Gönder</string>
   <string name="conversation_activity__remove">Kaldır</string>
@@ -859,6 +856,7 @@ başarısız.</string>
   <string name="arrays__audio">Ses</string>
   <string name="arrays__video">Video</string>
   <string name="arrays__documents">Belgeler</string>
+  <string name="arrays__normal">Normal</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="other">%d saat</item>
@@ -899,7 +897,6 @@ başarısız.</string>
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Süresince kapalı:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Özel LED yanıp sönme şekli belirlendi!</string>
   <string name="preferences__sound">Zil Sesi</string>
-  <string name="preferences__change_notification_sound">Bildirim sesini değiştir</string>
   <string name="preferences__silent">Sessiz</string>
   <string name="preferences__in_conversation_notifications">Sohbet içi bildirimler</string>
   <string name="preferences__play_inthread_notifications">Etkin bir sohbet görüntülenirken bildirim sesi çal</string>

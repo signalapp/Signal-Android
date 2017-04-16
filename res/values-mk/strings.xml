@@ -373,8 +373,6 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Разговорот сега е безгласен</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_sms_insecure">Пратете нешифрирана SMS порака</string>
-  <string name="conversation_activity__type_message_mms_insecure">Пратете нешифрирана MMS порака</string>
   <string name="conversation_activity__send">Испрати</string>
   <string name="conversation_activity__remove">Отстрани</string>
   <string name="conversation_activity__window_description">Разговор со %1$s</string>
@@ -518,6 +516,7 @@
   <string name="arrays__enabled">Овозможено</string>
   <string name="arrays__disabled">Оневозможено</string>
   <string name="arrays__audio">Звук</string>
+  <string name="arrays__normal">Нормално</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d час</item>
@@ -549,7 +548,6 @@
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Исклучено за:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Поставен е прилагодениот LED примерок за трепкање</string>
   <string name="preferences__sound">Звук</string>
-  <string name="preferences__change_notification_sound">Променете го звукот за известување</string>
   <string name="preferences__play_inthread_notifications">Свири звук за известување за време на активен разговор</string>
   <string name="preferences__repeat_alerts">Повтори известувања</string>
   <string name="preferences__never">Никогаш</string>

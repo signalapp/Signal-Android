@@ -653,9 +653,6 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Beszélgetés némítva</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Signal üzenet küldése</string>
-  <string name="conversation_activity__type_message_sms_insecure">Védtelen SMS küldése</string>
-  <string name="conversation_activity__type_message_mms_insecure">Védtelen MMS küldése</string>
   <string name="conversation_activity__from_sim_name">%1$s hálózaton</string>
   <string name="conversation_activity__send">Küldés</string>
   <string name="conversation_activity__remove">Eltávolítás</string>
@@ -927,6 +924,7 @@ sikertelen.
   <string name="arrays__audio">Hang</string>
   <string name="arrays__video">Videó</string>
   <string name="arrays__documents">Dokumentumok</string>
+  <string name="arrays__normal">Normál</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d óra</item>
@@ -968,7 +966,6 @@ sikertelen.
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Ki ehhez:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Egyéni LED villogási mintázat beállítva!</string>
   <string name="preferences__sound">Hang</string>
-  <string name="preferences__change_notification_sound">Értesítési hang megváltoztatása</string>
   <string name="preferences__silent">Csendes</string>
   <string name="preferences__in_conversation_notifications">Beszélgetésen belüli értesítések</string>
   <string name="preferences__play_inthread_notifications">Értesítési hang lejátszása aktív beszélgetés nézésekor</string>

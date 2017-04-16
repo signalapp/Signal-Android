@@ -657,9 +657,6 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Razgovor utišan</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Pošalji Signal poruku</string>
-  <string name="conversation_activity__type_message_sms_insecure">Pošalji nesigurni SMS</string>
-  <string name="conversation_activity__type_message_mms_insecure">Pošalji nesigurni MMS</string>
   <string name="conversation_activity__from_sim_name">Od %1$s</string>
   <string name="conversation_activity__send">Pošalji</string>
   <string name="conversation_activity__remove">Ukloni</string>
@@ -919,6 +916,7 @@ neuspješno.</string>
   <string name="arrays__audio">Audio</string>
   <string name="arrays__video">Video</string>
   <string name="arrays__documents">Dokumenti</string>
+  <string name="arrays__normal">Normalno</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d sat</item>
@@ -961,7 +959,6 @@ neuspješno.</string>
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Isključi za:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Prilagođeni LED uzorak treptanja postavljen!</string>
   <string name="preferences__sound">Zvuk</string>
-  <string name="preferences__change_notification_sound">Izmjenite zvuk obavijesti</string>
   <string name="preferences__silent">Bezvučno</string>
   <string name="preferences__in_conversation_notifications">Obavijesti unutar razgovora</string>
   <string name="preferences__play_inthread_notifications">Reproduciraj zvukove obavijesti prilikom pregleda aktivnog razgovora</string>
