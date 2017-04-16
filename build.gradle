@@ -199,8 +199,8 @@ android {
     }
 
     defaultConfig {
-        versionCode 258
-        versionName "4.2.5"
+        versionCode 259
+        versionName "4.3.0"
 
         minSdkVersion 9
         targetSdkVersion 22
