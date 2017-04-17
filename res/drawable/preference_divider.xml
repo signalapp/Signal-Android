@@ -4,14 +4,14 @@
     <item>
         <shape>
             <padding android:top="1dp" android:right="0dp" android:bottom="0dp" android:left="0dp" />
-            <solid android:color="#d4d4d4" />
+            <solid android:color="?preference_divider_background_dark" />
         </shape>
     </item>
 
     <item>
         <shape>
             <padding android:top="1dp" android:right="0dp" android:bottom="0dp" android:left="0dp" />
-            <solid android:color="#dddddd" />
+            <solid android:color="?preference_divider_background_light" />
             <size android:height="20dp"/>
         </shape>
     </item>

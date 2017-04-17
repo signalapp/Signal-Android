@@ -216,6 +216,9 @@
         <item name="pref_ic_devices">@drawable/ic_laptop_black_24dp</item>
         <item name="pref_ic_advanced">@drawable/ic_advanced_black_24dp</item>
 
+        <item name="preference_divider_background_light">#dddddd</item>
+        <item name="preference_divider_background_dark">#d4d4d4</item>
+
         <item name="app_protect_timeout_picker_color">@style/BetterPickersDialogFragment.Light</item>
 
         <item name="group_members_dialog_icon">@drawable/ic_group_grey600_24dp</item>
@@ -345,6 +348,9 @@
         <item name="pref_ic_chats">@drawable/ic_forum_white_24dp</item>
         <item name="pref_ic_devices">@drawable/ic_laptop_white_24dp</item>
         <item name="pref_ic_advanced">@drawable/ic_advanced_white_24dp</item>
+
+        <item name="preference_divider_background_light">#222222</item>
+        <item name="preference_divider_background_dark">#101010</item>
 
         <item name="app_protect_timeout_picker_color">@style/BetterPickersDialogFragment</item>
 

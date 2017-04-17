@@ -125,6 +125,9 @@
     <attr name="pref_ic_devices" format="reference" />
     <attr name="pref_ic_advanced" format="reference" />
 
+    <attr name="preference_divider_background_light" format="color" />
+    <attr name="preference_divider_background_dark" format="color"/>
+
     <attr name="app_protect_timeout_picker_color" format="reference"/>
 
     <declare-styleable name="CustomDefaultPreference">
