@@ -116,14 +116,7 @@
     <attr name="menu_forward_icon" format="reference" />
     <attr name="menu_save_icon" format="reference" />
 
-    <attr name="pref_ic_sms_mms" format="reference" />
-    <attr name="pref_ic_notifications" format="reference" />
-    <attr name="pref_ic_app_protection" format="reference" />
-    <attr name="pref_ic_appearance" format="reference" />
-    <attr name="pref_ic_storage" format="reference" />
-    <attr name="pref_ic_chats" format="reference" />
-    <attr name="pref_ic_devices" format="reference" />
-    <attr name="pref_ic_advanced" format="reference" />
+    <attr name="pref_icon_tint" format="color"/>
 
     <attr name="app_protect_timeout_picker_color" format="reference"/>
 
