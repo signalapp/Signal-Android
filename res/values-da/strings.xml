@@ -227,6 +227,7 @@
   <string name="DeviceListItem_linked_s">Tilkoblede %s</string>
   <string name="DeviceListItem_last_active_s">Sidste aktive %s</string>
   <string name="DeviceListItem_today">I dag</string>
+  <!--DocumentView-->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimer for manglende Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Denne enhed understøtter ikke Play Services. Tryk for at slå batterioptimeringer fra, som forhindrer Signal i at modtage beskeder i baggrunden.</string>
@@ -352,11 +353,9 @@ vil det resultere i dupletter.</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Modtog en besked krypteret med en ældre version af Signal, der ikke længere understøttes. Bed venligst afsenderen om at opgradere til den nyeste version og sende beskeden igen.</string>
   <string name="MessageRecord_left_group">Du har forladt gruppen.</string>
-  <string name="MessageRecord_updated_group">Opdaterede gruppen.</string>
   <string name="MessageRecord_s_called_you">%s har ringet til dig</string>
   <string name="MessageRecord_called_s">Ringede til %s</string>
   <string name="MessageRecord_missed_call_from">Mistet opkald fra %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s er på Signal, sig hej!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Beskeder sat til at forsvinde efter %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s har sat beskeder til at forsvinde efter %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Dit sikkerhedsnummer med %s er ændret</string>
@@ -480,7 +479,6 @@ Dobbelttjek, at dette er dit nummer! Vi er ved at verificere det med en SMS.
   <string name="RegistrationProgressActivity_too_many_requests">For mange anmodninger!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Du har allerede anmodet om et opkald. Du kan anmode om et nyt om 20 minutter.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Registreringskonflikt</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Dette telefonnummer er allerede registreret på en anden Signal-server (CyanogenMod?). Du er nødt til at afregistrere der, før du kan registrere her.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registrering fuldført</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Signal-registrering lykkedes.</string>
@@ -509,7 +507,6 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="ThreadRecord_called_you">Ringede til dig</string>
   <string name="ThreadRecord_missed_call">Mistet opkald</string>
   <string name="ThreadRecord_media_message">Mediebesked</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s er på Signal, sig hej!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Beskeder sat til at forsvinde efter %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Dit identitestsnøgle med %s er ændret</string>
   <!--UpdateApkReadyListener-->
@@ -583,6 +580,7 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Hurtig-svar utilgængelig når Signal er låst!</string>
   <string name="QuickResponseService_problem_sending_message">Problem med at sende besked!</string>
+  <!--SaveAttachmentTask-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ny besked</string>
@@ -591,7 +589,7 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Sikkerhedsnummeret for samtalen med %1$s er ændret. Dette kan enten betyde at nogen prøver at opfange jeres kommunikation, eller at %2$s blot har geninstalleret Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Du bør verificere din sikkerhedsnøgle med denne kontakt</string>
-  <string name="WebRtcCallScreen_new_safety_numbers_title">Nye sikkerhedsnumre</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Nyt sikkerhedsnummer</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Tryk for at aktivere video</string>
   <!--attachment_type_selector-->
@@ -630,9 +628,6 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Samtale dæmpet</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Send Signalbesked</string>
-  <string name="conversation_activity__type_message_sms_insecure">Send usikker (ukrypteret) SMS</string>
-  <string name="conversation_activity__type_message_mms_insecure">Send usikker (ukrypteret) MMS</string>
   <string name="conversation_activity__from_sim_name">Fra %1$s</string>
   <string name="conversation_activity__send">Send</string>
   <string name="conversation_activity__remove">Fjern</string>
@@ -711,6 +706,9 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Søg i GIFs og klistermærker</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Fandt ingenting</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Eksportér</string>
+  <string name="import_export_fragment__import">Importér</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Kunne ikke tilgå loggen på din enhed. Du kan alternativt benytte ADB for at få en debug log.</string>
   <string name="log_submit_activity__thanks">Tak for hjælpen!</string>
@@ -746,7 +744,6 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
     <item quantity="one">%1$s tilsluttede sig gruppen.</item>
     <item quantity="other">%1$s tilsluttede sig gruppen.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Gruppe opdateret.</string>
   <string name="GroupUtil_group_name_is_now">Gruppennavnet er nu \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Lås op</string>
@@ -778,7 +775,6 @@ Bekræft at dit telefonnummer er forbundet til Signal.</string>
 TELEFONNUMMER</string>
   <string name="registration_activity__phone_number">TELEFONNUMMER</string>
   <string name="registration_activity__register">Registrér</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registrering sender nogle kontaktinformationer til serveren. De bliver ikke gemt.</string>
   <string name="registration_activity__powered_by_twilio">Drevet af twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Mulige problemer:</string>
@@ -870,6 +866,7 @@ mislykkedes.</string>
   <string name="arrays__images">Billeder</string>
   <string name="arrays__audio">Lyd</string>
   <string name="arrays__video">Video</string>
+  <string name="arrays__normal">Normal</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d time</item>
@@ -911,7 +908,6 @@ mislykkedes.</string>
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Slukket i:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">LED-blinkemønster er tilpasset!</string>
   <string name="preferences__sound">Lyd</string>
-  <string name="preferences__change_notification_sound">Ændr notifikationslyd</string>
   <string name="preferences__silent">Ingen lyd</string>
   <string name="preferences__in_conversation_notifications">Notifikationer under samtalevisning</string>
   <string name="preferences__play_inthread_notifications">Afspil notifikationslyd, når en aktiv samtale vises</string>

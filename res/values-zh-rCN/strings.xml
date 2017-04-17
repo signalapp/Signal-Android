@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">暗号</string>
+  <string name="app_name">Signal</string>
   <string name="yes">是</string>
   <string name="no">否</string>
   <string name="delete">删除</string>
@@ -128,6 +128,9 @@
   <string name="ConversationActivity_error_sending_voice_message">在发送语音信息的过程中遇到错误</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">您的设备上没有应用程序能处理这个链接。</string>
   <!--ConversationAdapter-->
+  <plurals name="ConversationAdapter_n_unread_messages">
+    <item quantity="other">%d 条未读信息</item>
+  </plurals>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">信息详情</string>
   <string name="ConversationFragment_transport_s_sent_received_s">传输：%1$s\n 发送/接收：%2$s</string>
@@ -207,7 +210,10 @@
   <string name="DeviceListItem_linked_s">已连接 %s</string>
   <string name="DeviceListItem_last_active_s">最后活动  %s</string>
   <string name="DeviceListItem_today">今天</string>
+  <!--DocumentView-->
   <!--DozeReminder-->
+  <string name="DozeReminder_optimize_for_missing_play_services">对缺失的 Google Play 服务进行优化</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">此设备不支持 Google Play 服务。点击以禁用系统电池优化以避免暗号无法收到新消息。</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">共享给</string>
   <!--ExperienceUpgradeActivity-->
@@ -216,6 +222,10 @@
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">欢迎来到暗号。</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure 已命名为 暗号 。</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">从现在起， TextSecure 和 RedPhone 将是同一个信息平台：暗号。点击以开始探索。</string>
+  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">迎接我们的安全视频通话吧</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">暗号现在支持视频通话了。同往常一样开始一个暗号通话，然后点击启用视频按钮，同您的联系人问好吧。</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">暗号现在支持视频通话了</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">暗号现在支持视频通话了。点击以探索此新功能。</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">导出</string>
   <string name="ExportFragment_export_plaintext_to_storage">导出明文到存储？</string>
@@ -236,6 +246,7 @@
   <string name="GiphyFragmentPagerAdapter_stickers">贴纸</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">新群组</string>
+  <string name="GroupCreateActivity_actionbar_edit_title">编辑群组</string>
   <string name="GroupCreateActivity_group_name_hint">群组名称</string>
   <string name="GroupCreateActivity_actionbar_mms_title">新彩信群组</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">您所选择的联系人并不支持暗号群组，所以此组将以彩信形式存在。</string>
@@ -244,6 +255,7 @@
   <string name="GroupCreateActivity_contacts_no_members">群组中至少要有一个人！</string>
   <string name="GroupCreateActivity_contacts_invalid_number">目前无法正确获取您组内一名成员的信息，请尝试修复或移除这名联系人以重试。</string>
   <string name="GroupCreateActivity_avatar_content_description">群组头像</string>
+  <string name="GroupCreateActivity_menu_apply_button">应用</string>
   <string name="GroupCreateActivity_creating_group">正在创建群组 %1$s…</string>
   <string name="GroupCreateActivity_updating_group">更新中… %1$s</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">无法添加 %1$s，因为他们不是“暗号”用户。</string>
@@ -307,6 +319,7 @@
   <string name="MessageDetailsRecipient_new_safety_number">新的安全码</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">暗号</string>
+  <string name="MessageRetrievalService_background_connection_enabled">后台数据已启用</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">存储彩信错误！</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">连接到 MMS 提供商出错</string>
@@ -328,11 +341,11 @@
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">已收到的信息使用了旧版本的暗号进行加密，并且已经不再被支持。请联系发送者升级暗号到最新版本然后再次发送该信息。</string>
   <string name="MessageRecord_left_group">您已经离开了此群组。</string>
-  <string name="MessageRecord_updated_group">已更新群组。</string>
+  <string name="MessageRecord_you_updated_group">您更新了此群组</string>
+  <string name="MessageRecord_s_updated_group">%s 更新了此群组。</string>
   <string name="MessageRecord_s_called_you">%s 呼叫过您</string>
   <string name="MessageRecord_called_s">已呼叫 %s</string>
   <string name="MessageRecord_missed_call_from">来自 %s 的未接来电</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s 正在暗号中，打个招呼吧！</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">您将信息销毁时间设置为 %1$s</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s 将消息销毁时间设置为 %2$s</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">您与 %s 的安全码已经改变</string>
@@ -424,6 +437,13 @@
 请仔细复查您的号码，我们将通过短信进行验证。</string>
   <string name="RegistrationActivity_continue">继续</string>
   <string name="RegistrationActivity_edit">编辑</string>
+  <string name="RegistrationActivity_missing_google_play_services">缺失 Google Play 服务</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">此设备缺少 Google Play 服务框架。您仍能使用暗号，但是暗号的功能与稳定性会因此受到很大影响。
+
+如果您不是高级用户，并且运行的是原厂安卓手机操作系统，或者您觉得此错误信息不正确，请使用英文联系 support@whispersystems.org 我们会尝试帮助您解决此问题。</string>
+  <string name="RegistrationActivity_i_understand">我理解</string>
+  <string name="RegistrationActivity_play_services_error">Google Play 服务错误</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play 服务正在更新或者暂时不可用。请稍后再试。</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">可能的问题</string>
   <!--RegistrationProgressActivity-->
@@ -446,7 +466,6 @@
   <string name="RegistrationProgressActivity_too_many_requests">太多请求！</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">近期您已经请求了一个语音呼叫，等待20分钟后才能再次请求。</string>
   <string name="RegistrationProgressActivity_registration_conflict">注册冲突</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">当前号码已经在另一个不同的暗号服务器上注册了（CyanogenMod？）。您需要先反注册（注销）才能在这儿注册。</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">注册已完成</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">已经成功的完成了暗号的注册。</string>
@@ -465,6 +484,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%s 重置了安全会话</string>
   <string name="SmsMessageRecord_duplicate_message">重复的信息。</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_group_updated">群组已更新</string>
   <string name="ThreadRecord_left_the_group">离开此群组</string>
   <string name="ThreadRecord_secure_session_reset">安全会话已重设。</string>
   <string name="ThreadRecord_draft">草稿：</string>
@@ -472,10 +492,11 @@
   <string name="ThreadRecord_called_you">呼叫您的</string>
   <string name="ThreadRecord_missed_call">未接来电</string>
   <string name="ThreadRecord_media_message">多媒体信息</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s 正在暗号中，打个招呼吧！</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">信息销毁时间设置为 %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">您与 %s 的安全码已经改变</string>
   <!--UpdateApkReadyListener-->
+  <string name="UpdateApkReadyListener_Signal_update">暗号更新</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">检测到有新版本的暗号，点击升级</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">您的联系人使用的是旧版本的暗号，在请求对方验证安全码前，请先让对方升级暗号客户端。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">您的联系人使用的是新版本的暗号，程序无法识别这个联系人的二维码。
@@ -523,6 +544,7 @@
   <string name="MediaPreviewActivity_you">您</string>
   <string name="MediaPreviewActivity_cant_display">预览图片失败</string>
   <string name="MediaPreviewActivity_unssuported_media_type">不支持的媒体类型。</string>
+  <string name="MediaPreviewActivity_draft">草稿</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d 新信息是在 %2$d 中的会话</string>
   <string name="MessageNotifier_most_recent_from_s">最新的邮件来自：%1$s</string>
@@ -546,13 +568,16 @@
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">当暗号处于锁定状态时，快速回复不可用！</string>
   <string name="QuickResponseService_problem_sending_message">发送信息时遇到问题！</string>
+  <!--SaveAttachmentTask-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">暗号</string>
   <string name="SingleRecipientNotificationBuilder_new_message">新信息</string>
   <!--VideoPlayer-->
+  <string name="VideoPlayer_error_playing_video">播放视频时出现错误！</string>
   <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_new_safety_numbers">%1$s 的安全码发生了改变。这可能是因为有人正在尝试截获你们的通讯，或者 %2$s 只是重新安装了暗号。</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">您可能希望验证这个联系人的安全码。</string>
-  <string name="WebRtcCallScreen_new_safety_numbers_title">新的安全码</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">新的安全码</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">点击以启用你的视频</string>
   <!--attachment_type_selector-->
@@ -591,9 +616,6 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">会话已静音</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">发送暗号信息</string>
-  <string name="conversation_activity__type_message_sms_insecure">发送未加密的短信</string>
-  <string name="conversation_activity__type_message_mms_insecure">发送未加密的彩信</string>
   <string name="conversation_activity__from_sim_name">来自 %1$s</string>
   <string name="conversation_activity__send">发送</string>
   <string name="conversation_activity__remove">删除</string>
@@ -667,6 +689,9 @@
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">搜索 GIF 与贴纸</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">什么也没找到</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">导出</string>
+  <string name="import_export_fragment__import">导入</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">无法在您的设备上读取日志。您仍然可以使用 ADB 来获得调试日志。</string>
   <string name="log_submit_activity__thanks">感谢！</string>
@@ -693,14 +718,15 @@
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">查看完整会话</string>
   <!--media_overview_activity-->
+  <string name="media_overview_activity__no_media">无媒体</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">验证</string>
   <string name="message_recipients_list_item__resend">重新发送</string>
+  <string name="message_recipients_list_item__resending">正在重新发送…</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">%1$s 加入了群组。</item>
   </plurals>
-  <string name="GroupUtil_group_updated">群组已更新。</string>
   <string name="GroupUtil_group_name_is_now">群组现在名为 \'%1$s\' 。</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">解锁</string>
@@ -732,7 +758,6 @@
 电话号码</string>
   <string name="registration_activity__phone_number">电话号码</string>
   <string name="registration_activity__register">注册人</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">注册将会传输一些联系人信息到服务器。这些信息不会被存储。</string>
   <string name="registration_activity__powered_by_twilio">由 twilio 强力驱动</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">可能的问题
@@ -813,6 +838,8 @@
   <string name="AndroidManifest__verify_safety_number">验证安全码</string>
   <string name="AndroidManifest__log_submit">发送调试日志</string>
   <string name="AndroidManifest__media_preview">媒体预览</string>
+  <string name="AndroidManifest__all_media">所有媒体</string>
+  <string name="AndroidManifest__all_media_named">与 %1$s 的所有媒体</string>
   <string name="AndroidManifest__message_details">信息详情</string>
   <string name="AndroidManifest__linked_devices">已连接的设备</string>
   <string name="AndroidManifest__invite_friends">邀请好友</string>
@@ -835,6 +862,7 @@
   <string name="arrays__images">图片</string>
   <string name="arrays__audio">音频</string>
   <string name="arrays__video">视频</string>
+  <string name="arrays__normal">正常</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="other">%d 小时</item>
@@ -875,7 +903,6 @@
   <string name="preferences__pref_led_blink_custom_pattern_off_for">此情况下关闭：</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">自定义LED闪烁模式已设定！</string>
   <string name="preferences__sound">声音</string>
-  <string name="preferences__change_notification_sound">改变提示音</string>
   <string name="preferences__silent">静音</string>
   <string name="preferences__in_conversation_notifications">会话内通知</string>
   <string name="preferences__play_inthread_notifications">在查看活动的会话时播放提示音</string>
@@ -946,6 +973,8 @@
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">禁用暗号内置的表情支持</string>
   <string name="preferences_advanced__video_calling_beta">视频通话测试版</string>
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">当双方启用时，支持下一代视频和语音通话。此功能处于测试阶段。</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">使所有通话通过暗号服务器中转，这样可以避免你的联系人知道你的 IP 地址。然而启用此功能会降低通话质量。</string>
+  <string name="preferences_advanced__always_relay_calls">总是中继通话</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1000,8 +1029,10 @@
   <string name="conversation_unmuted__mute_notifications">静音通知</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">添加附件</string>
+  <string name="conversation__menu_edit_group">编辑群组</string>
   <string name="conversation__menu_leave_group">离开群组</string>
   <string name="conversation__menu_delete_thread">删除会话线程</string>
+  <string name="conversation__menu_view_all_media">所有媒体</string>
   <string name="conversation__menu_conversation_settings">会话设置</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">展开弹窗</string>
@@ -1055,6 +1086,7 @@
   <!--media_preview-->
   <string name="media_preview__save_title">保存</string>
   <string name="media_preview__forward_title">转发</string>
+  <string name="media_preview__all_media_title">所有媒体</string>
   <!--media_overview-->
   <string name="media_overview__save_all">保存全部</string>
   <!--media_preview_activity-->

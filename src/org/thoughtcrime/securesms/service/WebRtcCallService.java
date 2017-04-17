@@ -24,10 +24,6 @@ import android.util.Pair;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.greenrobot.eventbus.EventBus;
-import org.thoughtcrime.redphone.RedPhoneService;
-import org.thoughtcrime.redphone.call.LockManager;
-import org.thoughtcrime.redphone.pstn.IncomingPstnCallReceiver;
-import org.thoughtcrime.redphone.util.UncaughtExceptionHandlerManager;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
@@ -45,9 +41,11 @@ import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder;
+import org.thoughtcrime.securesms.webrtc.IncomingPstnCallReceiver;
 import org.thoughtcrime.securesms.webrtc.PeerConnectionFactoryOptions;
 import org.thoughtcrime.securesms.webrtc.PeerConnectionWrapper;
 import org.thoughtcrime.securesms.webrtc.PeerConnectionWrapper.PeerConnectionException;
+import org.thoughtcrime.securesms.webrtc.UncaughtExceptionHandlerManager;
 import org.thoughtcrime.securesms.webrtc.WebRtcDataProtos;
 import org.thoughtcrime.securesms.webrtc.WebRtcDataProtos.Connected;
 import org.thoughtcrime.securesms.webrtc.WebRtcDataProtos.Data;
@@ -55,6 +53,7 @@ import org.thoughtcrime.securesms.webrtc.WebRtcDataProtos.Hangup;
 import org.thoughtcrime.securesms.webrtc.audio.BluetoothStateManager;
 import org.thoughtcrime.securesms.webrtc.audio.OutgoingRinger;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
+import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 import org.webrtc.AudioTrack;
 import org.webrtc.DataChannel;
 import org.webrtc.EglBase;
@@ -639,7 +638,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
   private void insertMissedCall(@NonNull Recipient recipient, boolean signal) {
     Pair<Long, Long> messageAndThreadId = DatabaseFactory.getSmsDatabase(this).insertMissedCall(recipient.getNumber());
     MessageNotifier.updateNotification(this, KeyCachingService.getMasterSecret(this),
-                                       false, messageAndThreadId.second, signal);
+                                       messageAndThreadId.second, signal);
   }
 
   private void handleAnswerCall(Intent intent) {
@@ -749,7 +748,11 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
       else                   this.lockManager.updatePhoneState(LockManager.PhoneState.IN_CALL);
     }
 
-    if (localVideoEnabled && !audioManager.isSpeakerphoneOn() && !audioManager.isBluetoothScoOn()) {
+    if (localVideoEnabled &&
+        !audioManager.isSpeakerphoneOn() &&
+        !audioManager.isBluetoothScoOn() &&
+        !audioManager.isWiredHeadsetOn())
+    {
       audioManager.setSpeakerphoneOn(true);
     }
 
@@ -814,9 +817,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
   private boolean isBusy() {
     TelephonyManager telephonyManager = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
 
-    return callState != CallState.STATE_IDLE                                   ||
-           telephonyManager.getCallState() != TelephonyManager.CALL_STATE_IDLE ||
-           RedPhoneService.isCallActive(this);
+    return callState != CallState.STATE_IDLE || telephonyManager.getCallState() != TelephonyManager.CALL_STATE_IDLE;
   }
 
   private boolean isIdle() {

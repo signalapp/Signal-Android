@@ -25,8 +25,8 @@ import android.text.style.StyleSpan;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
+import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
@@ -93,9 +93,9 @@ public abstract class MessageRecord extends DisplayRecord {
   @Override
   public SpannableString getDisplayBody() {
     if (isGroupUpdate() && isOutgoing()) {
-      return emphasisAdded(context.getString(R.string.MessageRecord_updated_group));
+      return emphasisAdded(context.getString(R.string.MessageRecord_you_updated_group));
     } else if (isGroupUpdate()) {
-      return emphasisAdded(GroupUtil.getDescription(context, getBody().getBody()).toString());
+      return emphasisAdded(GroupUtil.getDescription(context, getBody().getBody()).toString(getIndividualRecipient()));
     } else if (isGroupQuit() && isOutgoing()) {
       return emphasisAdded(context.getString(R.string.MessageRecord_left_group));
     } else if (isGroupQuit()) {
@@ -107,7 +107,7 @@ public abstract class MessageRecord extends DisplayRecord {
     } else if (isMissedCall()) {
       return emphasisAdded(context.getString(R.string.MessageRecord_missed_call_from, getIndividualRecipient().toShortString()));
     } else if (isJoined()) {
-      return emphasisAdded(context.getString(R.string.MessageRecord_s_is_on_signal_say_hey, getIndividualRecipient().toShortString()));
+      return emphasisAdded(context.getString(R.string.MessageRecord_s_joined_signal, getIndividualRecipient().toShortString()));
     } else if (isExpirationTimerUpdate()) {
       String time = ExpirationUtil.getExpirationDisplayValue(context, (int)(getExpiresIn() / 1000));
       return isOutgoing() ? emphasisAdded(context.getString(R.string.MessageRecord_you_set_disappearing_message_time_to_s, time))

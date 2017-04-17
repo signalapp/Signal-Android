@@ -226,6 +226,8 @@
   <string name="DeviceListItem_linked_s">Länkade %s</string>
   <string name="DeviceListItem_last_active_s">Senast aktiv %s</string>
   <string name="DeviceListItem_today">Idag</string>
+  <!--DocumentView-->
+  <string name="DocumentView_unknown_file">Okänd fil</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimera för avsaknad av Play-tjänster</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Denna enhet stödjer inte Play-tjänster. Tryck för att slå av systemets batterioptimeringar som förhindrar Signal från att ta emot meddelanden medan den är inaktiv.</string>
@@ -357,11 +359,12 @@ som inte finns i säkerhetskopian.</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Tog emot ett meddelande som krypterats med en tidigare version av Signal so inte längre stöds. Be avsändaren uppdatera till den senaste versionen och skicka om meddelandet.</string>
   <string name="MessageRecord_left_group">Du har lämnat gruppen.</string>
-  <string name="MessageRecord_updated_group">Uppdaterade gruppen.</string>
+  <string name="MessageRecord_you_updated_group">Du uppdaterade gruppen.</string>
+  <string name="MessageRecord_s_updated_group">%s uppdaterade gruppen.</string>
   <string name="MessageRecord_s_called_you">%s ringde dig</string>
   <string name="MessageRecord_called_s">Ringde %s</string>
   <string name="MessageRecord_missed_call_from">Missat samtal från %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s finns på Signal, skriv hej!</string>
+  <string name="MessageRecord_s_joined_signal">%s har anslutit sig till Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du ställde in tiden för försvinnande meddelanden till %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ställde in tiden för försvinnande meddelanden till %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Ditt säkerhetsnummer med %s har ändrats.</string>
@@ -458,6 +461,8 @@ Dubbelkolla att det här är ditt nummer! Vi ska nu verifiera det med ett SMS.</
   <string name="RegistrationActivity_i_understand">Jag förstår</string>
   <string name="RegistrationActivity_play_services_error">Play-tjänstfel</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play-tjänster uppdateras eller är tillfälligt inte tillgängligt. Försök igen senare.</string>
+  <string name="RegistrationActivity_more_information">Mer information</string>
+  <string name="RegistrationActivity_less_information">Mindre information</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Potentiella problem</string>
   <!--RegistrationProgressActivity-->
@@ -480,7 +485,7 @@ Dubbelkolla att det här är ditt nummer! Vi ska nu verifiera det med ett SMS.</
   <string name="RegistrationProgressActivity_too_many_requests">För många förfrågningar!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Du har redan begärt ett röstsamtal. Du kan begära ett nytt om 20 minuter.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Registreringskonflikt</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Detta nummer är redan registrerat på en annan Signalserver (CyanogenMod?). Du måste avregistrera ditt nummer därifrån innan du registrerar dig här.</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Detta nummer är redan registrerat på en annan Signalserver. Du måste avregistrera ditt nummer därifrån innan du registrerar dig här.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registrering klar</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Signal-registrering har lyckats.</string>
@@ -500,6 +505,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s startar om den säkra sessionen.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplicerat meddelande.</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_group_updated">Grupp uppdaterad</string>
   <string name="ThreadRecord_left_the_group">Lämnade gruppen</string>
   <string name="ThreadRecord_secure_session_reset">Säker session nollställd.</string>
   <string name="ThreadRecord_draft">Utkast:</string>
@@ -507,7 +513,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ThreadRecord_called_you">Ringde dig</string>
   <string name="ThreadRecord_missed_call">Missat samtal</string>
   <string name="ThreadRecord_media_message">Mediameddelande</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s finns på Signal, skriv hej!</string>
+  <string name="ThreadRecord_s_joined_signal">%s har anslutit sig till Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tiden för försvinnande meddelanden inställd till %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Ditt säkerhetsnummer med %s har ändrats.</string>
   <!--UpdateApkReadyListener-->
@@ -583,6 +589,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Snabbsvar är ej tillgängligt när Signal är låst!</string>
   <string name="QuickResponseService_problem_sending_message">Problem med att skicka meddelandet!</string>
+  <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_open_directory">Öppna mapp</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nytt meddelande</string>
@@ -591,7 +599,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Säkerhetsnumret för din konversation med %1$s har ändrats. Detta kan antingen betyda att någon försöker avlyssna er kommunikation, eller att %2$s helt enkelt har installerat om Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Du kan vilja verifiera ditt säkerhetsnummer med denna kontakt.</string>
-  <string name="WebRtcCallScreen_new_safety_numbers_title">Nya säkerhetsnummer</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Nytt säkerhetsnummer</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Tryck för att aktivera video</string>
   <!--attachment_type_selector-->
@@ -630,9 +638,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Konversation tystad</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Skicka Signalmeddelande</string>
-  <string name="conversation_activity__type_message_sms_insecure">Skicka okrypterat SMS</string>
-  <string name="conversation_activity__type_message_mms_insecure">Skicka okrypterat MMS</string>
   <string name="conversation_activity__from_sim_name">Från %1$s</string>
   <string name="conversation_activity__send">Skicka</string>
   <string name="conversation_activity__remove">Ta bort</string>
@@ -711,6 +716,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Sök GIF-bilder och stickers</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Inget hittat</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Exportera</string>
+  <string name="import_export_fragment__import">Importera</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Kunde inte läsa loggen från din enhet. Du kan fortfarande använda ADB för att få en logg.</string>
   <string name="log_submit_activity__thanks">Tack för din hjälp!</string>
@@ -741,12 +749,12 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">VERIFIERA</string>
   <string name="message_recipients_list_item__resend">SKICKA OM</string>
+  <string name="message_recipients_list_item__resending">Skickar om...</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s gick med i gruppen.</item>
     <item quantity="other">%1$s gick med i gruppen.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Grupp uppdaterad.</string>
   <string name="GroupUtil_group_name_is_now">Gruppnamnet är nu \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Lås upp</string>
@@ -778,7 +786,7 @@ Verifiera ditt telefonnummer för att ansluta till Signal.</string>
 TELEFONNUMMER</string>
   <string name="registration_activity__phone_number">TELEFONNUMMER</string>
   <string name="registration_activity__register">Registrera</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registrering kommer att temporärt överföra viss kontaktinformation till servern.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal gör det lätt att kommunicera genom att använda ditt mobilnummer och din kontaktbok. Vänner och kontakter som redan har ditt nummer kommer lätt kunna kontakta dig med Signal.\n\nRegistreringen skickar viss kontaktinformation till servern. Informationen lagras ej.</string>
   <string name="registration_activity__powered_by_twilio">Powered by twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Några möjliga orsaker:</string>
@@ -875,6 +883,8 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="arrays__images">Bilder</string>
   <string name="arrays__audio">Ljud</string>
   <string name="arrays__video">Video</string>
+  <string name="arrays__documents">Dokument</string>
+  <string name="arrays__normal">Normal</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d timme</item>
@@ -916,7 +926,6 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Av under:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Specialanpassat LED-blinkningsmönster valt!</string>
   <string name="preferences__sound">Ljud</string>
-  <string name="preferences__change_notification_sound">Ändra aviseringsljud</string>
   <string name="preferences__silent">Tyst</string>
   <string name="preferences__in_conversation_notifications">Inom-konversationsaviseringar</string>
   <string name="preferences__play_inthread_notifications">Spela aviseringsljud när du tittar på en aktiv konversation</string>

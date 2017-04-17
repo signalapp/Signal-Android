@@ -242,6 +242,8 @@
   <string name="DeviceListItem_linked_s">Conectat %s</string>
   <string name="DeviceListItem_last_active_s">Ultima oară activ %s</string>
   <string name="DeviceListItem_today">Azi</string>
+  <!--DocumentView-->
+  <string name="DocumentView_unknown_file">Fișier necunoscut</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizează pentru lipsa serviciilor Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Acest dispozitiv nu suportă serviciile Play. Apasă pentru a dezactiva optimizarea de sistem a bateriei care împiedică Signal să preia mesajele cât timp este inactivă.</string>
@@ -374,11 +376,12 @@ Vei pierde orice informație care se află în instalarea curentă de Signal și
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Ai primit un mesaj care a fost criptat cu o versiune mai veche de Signal care nu mai este suportată. Roagă-l pe expeditor să-și actualizeze aplicația la ultima versiune și să retrimită mesajul.</string>
   <string name="MessageRecord_left_group">Ai parăsit grupul.</string>
-  <string name="MessageRecord_updated_group">Grupul a fost actualizat.</string>
+  <string name="MessageRecord_you_updated_group">Ai actualizat grupul.</string>
+  <string name="MessageRecord_s_updated_group">%s a actualizat grupul.</string>
   <string name="MessageRecord_s_called_you">%s te-a apelat</string>
   <string name="MessageRecord_called_s">Apel %s</string>
   <string name="MessageRecord_missed_call_from">Apel ratat de la %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s este pe Signal, spune-i hey!</string>
+  <string name="MessageRecord_s_joined_signal">%s a venit pe Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Tu ai setat timpul pentru dispariția mesajelor la %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a setat timpul pentru dispariția mesajelor la %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Numărul tău de siguranță pentru %s s-a schimbat.</string>
@@ -476,6 +479,8 @@ Verifică din nou dacă acesta este numărul tău! Suntem pe cale să-l verific�
   <string name="RegistrationActivity_i_understand">Am înțeles</string>
   <string name="RegistrationActivity_play_services_error">Eroare servicii Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Serviciile Google Play se actualizează sau sunt temporar indisponibile. Te rog încearcă din nou.</string>
+  <string name="RegistrationActivity_more_information">Mai multe informații</string>
+  <string name="RegistrationActivity_less_information">Mai puține informații</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Probleme posibile.</string>
   <!--RegistrationProgressActivity-->
@@ -498,7 +503,7 @@ Verifică din nou dacă acesta este numărul tău! Suntem pe cale să-l verific�
   <string name="RegistrationProgressActivity_too_many_requests">Prea multe cereri!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Ai solicitat deja un apel vocal. Vei putea solicita altul după 20 de minute.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Conflict înregistrare</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Acest număr este deja înregistrat pe un alt server Signal (CyanogenMod?). Mai întâi trebuie să te dezabonezi acolo ca să te înregistrezi aici.</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Acest număr este deja înregistrat pe un server Signal diferit. Mai întâi trebuie să te dezabonezi acolo ca să te înregistrezi aici.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Înregistrarea este completă</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Înregistrarea la Signal s-a finalizat cu succes.</string>
@@ -518,6 +523,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="SmsMessageRecord_secure_session_reset_s">%s a resetat sesiunea securizată.</string>
   <string name="SmsMessageRecord_duplicate_message">Mesaj duplicat.</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_group_updated">Grupul a fost actualizat</string>
   <string name="ThreadRecord_left_the_group">A ieșit din grup</string>
   <string name="ThreadRecord_secure_session_reset">Sesiune securizată resetată.</string>
   <string name="ThreadRecord_draft">Ciornă:</string>
@@ -525,7 +531,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ThreadRecord_called_you">Te-a apelat</string>
   <string name="ThreadRecord_missed_call">Apel ratat</string>
   <string name="ThreadRecord_media_message">Mesaj media</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s este pe Signal, spune-i hey!</string>
+  <string name="ThreadRecord_s_joined_signal">%s a venit pe Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Timpul setat pentru mesajele care dispar este %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Numărul tău de siguranță pentru %s s-a schimbat.</string>
   <!--UpdateApkReadyListener-->
@@ -601,6 +607,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Răspunsul rapid nu este disponibil cât timp Signal este blocat!</string>
   <string name="QuickResponseService_problem_sending_message">Problemă la trimiterea mesajului!</string>
+  <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_open_directory">Deschide directorul</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mesaj nou</string>
@@ -609,7 +617,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Numărul de siguranță pentru conversația ta cu %1$s s-a schimbat.  Asta poate însemna că cineva încearcă să intercepteze comunicația sau că %2$s a reinstalat Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Probabil că dorești să verifici numărul de siguranță pentru acest contact.</string>
-  <string name="WebRtcCallScreen_new_safety_numbers_title">Numere noi de siguranță</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Număr nou de siguranță</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Apasă pentru a activa video-ul tău</string>
   <!--attachment_type_selector-->
@@ -648,9 +656,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Conversaţia este acum silenţiosă</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Trimite mesaj Signal</string>
-  <string name="conversation_activity__type_message_sms_insecure">Trimite SMS nesecurizat</string>
-  <string name="conversation_activity__type_message_mms_insecure">Trimite MMS nesecurizat</string>
   <string name="conversation_activity__from_sim_name">De la %1$s</string>
   <string name="conversation_activity__send">Trimite</string>
   <string name="conversation_activity__remove">Șterge</string>
@@ -734,6 +739,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Caută GIF-uri și autocolante</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nu s-a găsit nimic</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Exportă</string>
+  <string name="import_export_fragment__import">Importă</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Fișierul jurnal nu a putut fi citit de pe dispozitivul tău. Poţi folosi în schimb ADB pentru a obţine jurnalul de depanare.</string>
   <string name="log_submit_activity__thanks">Vă mulțumim pentru ajutor!</string>
@@ -764,13 +772,13 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">VERIFICĂ</string>
   <string name="message_recipients_list_item__resend">RETRIMITE</string>
+  <string name="message_recipients_list_item__resending">Se trimite din nou...</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s s-a alăturat grupului.</item>
     <item quantity="few">%1$s s-au alăturat grupului.</item>
     <item quantity="other">%1$s s-au alăturat grupului.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Grupul a fost actualizat.</string>
   <string name="GroupUtil_group_name_is_now">Numele grupului este acum \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Deblochează</string>
@@ -803,7 +811,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
 NUMĂRUL DE TELEFON</string>
   <string name="registration_activity__phone_number">NUMĂRUL DE TELEFON</string>
   <string name="registration_activity__register">Înregistrare</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Înregistrarea transmite unele informații despre contact către server. Acestea nu sunt stocate.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal facilitează comunicarea folosind numărul tău existent de telefon și agenda telefonului. Prietenii și contactele care știu deja cum să te contacteze prin telefon vor putea să te contacteze ușor prin Signal.\n\nÎnregistrarea trimite anumite informații ale contactelor la server. Acestea nu sunt stocate.</string>
   <string name="registration_activity__powered_by_twilio">Cu sprijinul twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Unele probleme posibile
@@ -915,6 +923,8 @@ SMS a eșuat.</string>
   <string name="arrays__images">Imagini</string>
   <string name="arrays__audio">Audio</string>
   <string name="arrays__video">Video</string>
+  <string name="arrays__documents">Documente</string>
+  <string name="arrays__normal">Normal</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d oră</item>
@@ -957,7 +967,6 @@ SMS a eșuat.</string>
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Dezactivat pentru:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Şablonul personalizat de clipire a LED-ului a fost setat!</string>
   <string name="preferences__sound">Sunet</string>
-  <string name="preferences__change_notification_sound">Schimbă sunetul de notificare</string>
   <string name="preferences__silent">Silențios</string>
   <string name="preferences__in_conversation_notifications">Notificări în conversație</string>
   <string name="preferences__play_inthread_notifications">Redare sunet de notificare în timp ce vizualizați o conversație activă</string>

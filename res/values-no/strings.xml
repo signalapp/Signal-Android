@@ -212,6 +212,7 @@ Om du vil benytte Signal for meldinger og anrop igjen i fremtiden må du registr
   <string name="DeviceListItem_linked_s">%s tilkoblet</string>
   <string name="DeviceListItem_last_active_s">Sist aktiv %s</string>
   <string name="DeviceListItem_today">I dag</string>
+  <!--DocumentView-->
   <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Del med</string>
@@ -322,11 +323,9 @@ Innlasting av en kryptert backup vil erstatte dine eksisterende nøkler, prefera
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Mottatt en melding kryptert med en gammel versjon av Signal som ikke lenger støttes. Vennligst be avsenderen om å oppdatere til den nyeste versjonen og sende meldingen på nytt.</string>
   <string name="MessageRecord_left_group">Du har forlatt gruppen.</string>
-  <string name="MessageRecord_updated_group">Gruppen er oppdatert.</string>
   <string name="MessageRecord_s_called_you">%s ringte deg</string>
   <string name="MessageRecord_called_s">Ringte %s</string>
   <string name="MessageRecord_missed_call_from">Ubesvart anrop fra %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s er på Signal, si hei!</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passordene er ikke like!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Gammelt passord er feil!</string>
@@ -434,7 +433,6 @@ Dobbelsjekk at dette er nummeret ditt! Vi er i ferd med å verifisere det med en
   <string name="RegistrationProgressActivity_too_many_requests">For mange forespørsler!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Du har forespurt om et taleanrop allerede. Du kan be om et nytt anrop om 20 minutter.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Registreringskonflikt</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Dette nummeret er allerede registrert på en annen Signal server (CyanogenMod?). Du må avregistrere der før du kan registrere her.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registrering fullført</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Signal registreringen er fullført.</string>
@@ -458,7 +456,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="ThreadRecord_called_you">Ringte deg</string>
   <string name="ThreadRecord_missed_call">Ubesvart anrop</string>
   <string name="ThreadRecord_media_message">Media melding</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s er på Signal, si hei!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tiden før meldingene utløper er satt til %s</string>
   <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
@@ -519,6 +516,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Rask tilbakemelding ikke tilgjengelig når Signal er låst!</string>
   <string name="QuickResponseService_problem_sending_message">Kunne ikke sende melding!</string>
+  <!--SaveAttachmentTask-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ny melding</string>
@@ -551,9 +549,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Samtale mutet</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Send Signal melding</string>
-  <string name="conversation_activity__type_message_sms_insecure">Send usikret SMS</string>
-  <string name="conversation_activity__type_message_mms_insecure">Send usikret MMS</string>
   <string name="conversation_activity__from_sim_name">Fra %1$s</string>
   <string name="conversation_activity__send">Send</string>
   <string name="conversation_activity__remove">Slett</string>
@@ -622,6 +617,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="expiration_weeks_abbreviated">%du</string>
   <!--giphy_activity-->
   <!--giphy_fragment-->
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Eksportere</string>
+  <string name="import_export_fragment__import">Importere</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Kunne ikke lese loggen fra din enhet. Du kan fremdeles bruke ADB for å hente ut en debug logg.</string>
   <string name="log_submit_activity__thanks">Takk for hjelpen!</string>
@@ -656,7 +654,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
     <item quantity="one">%1$s ble med i gruppen.</item>
     <item quantity="other">%1$s ble med i gruppen.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Gruppen er oppdatert.</string>
   <string name="GroupUtil_group_name_is_now">Gruppenavnet er nå \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Lås opp</string>
@@ -688,7 +685,6 @@ Verifiser telefonnummeret dit for å koble til Signal.
 TELEFONNUMMER</string>
   <string name="registration_activity__phone_number">TELEFONNUMMER</string>
   <string name="registration_activity__register">Registrer</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registrering sender noe kontaktinformasjon til serveren. Det blir ikke lagret.</string>
   <string name="registration_activity__powered_by_twilio">Drevet av twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Noen mulige problemer
@@ -777,6 +773,7 @@ feilet.</string>
   <string name="arrays__images">Bilder</string>
   <string name="arrays__audio">Lyd</string>
   <string name="arrays__video">Video</string>
+  <string name="arrays__normal">Normal</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d time</item>
@@ -818,7 +815,6 @@ feilet.</string>
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Av for:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Tilpasset LED blinkemønster satt!</string>
   <string name="preferences__sound">Lyd</string>
-  <string name="preferences__change_notification_sound">Endre lyd på meldingsvarsling</string>
   <string name="preferences__silent">Stille</string>
   <string name="preferences__in_conversation_notifications">Varsling i aktiv samtale</string>
   <string name="preferences__play_inthread_notifications">Spill av varlingslyd når du ser på en aktiv samtale</string>

@@ -12,10 +12,6 @@ import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
-import org.thoughtcrime.redphone.signaling.RedPhoneAccountAttributes;
-import org.thoughtcrime.redphone.signaling.RedPhoneAccountManager;
-import org.thoughtcrime.redphone.signaling.RedPhoneTrustStore;
-import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
@@ -266,15 +262,6 @@ public class RegistrationService extends Service {
 
     DatabaseFactory.getIdentityDatabase(this).saveIdentity(self.getRecipientId(), identityKey.getPublicKey());
     DirectoryHelper.refreshDirectory(this, accountManager, number);
-
-    if (supportsGcm) {
-      RedPhoneAccountManager redPhoneAccountManager = new RedPhoneAccountManager(BuildConfig.REDPHONE_MASTER_URL,
-                                                                                 new RedPhoneTrustStore(this),
-                                                                                 number, password);
-
-      String verificationToken = accountManager.getAccountVerificationToken();
-      redPhoneAccountManager.createAccount(verificationToken, new RedPhoneAccountAttributes(signalingKey, TextSecurePreferences.getGcmRegistrationId(this)));
-    }
 
     DirectoryRefreshListener.schedule(this);
     RotateSignedPreKeyListener.schedule(this);

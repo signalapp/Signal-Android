@@ -226,6 +226,8 @@
   <string name="DeviceListItem_linked_s">%s associé</string>
   <string name="DeviceListItem_last_active_s">Vu pour la dernière fois %s</string>
   <string name="DeviceListItem_today">Aujourd\'hui</string>
+  <!--DocumentView-->
+  <string name="DocumentView_unknown_file">Fichier inconnu</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimiser les services Play manquant</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Cet appareil ne prend pas en charge le Play Services. Appuyez sur cette touche pour désactiver les optimisations de la batterie du système qui empêchent le signal de récupérer les messages lorsqu\'ils sont inactifs.</string>
@@ -237,6 +239,10 @@
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Bienvenue sur Signal !</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure devient Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure et RedPhone forment maintenant une seule application : Signal. Appuyez pour découvrir.</string>
+  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Dites bonjour pour sécuriser les appels vidéo.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal prend désormais en charge les appels vidéo sécurisés. Il suffit de démarrer un appel de signal comme normal, appuyez sur le bouton vidéo, et vague salut.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Le signal prend désormais en charge les appels vidéo sécurisés.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal prend désormais en charge les appels vidéo sécurisés. Appuyez pour explorer.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exporter</string>
   <string name="ExportFragment_export_plaintext_to_storage">Exporter en clair dans l\'espace de stockage ?</string>
@@ -350,11 +356,12 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Le message reçu est chiffré avec une ancienne version de Signal qui n\'est plus prise en charge. Veuillez demander à l’expéditeur de mettre à jour Signal et de renvoyer son message.</string>
   <string name="MessageRecord_left_group">Vous avez quitté le groupe.</string>
-  <string name="MessageRecord_updated_group">Groupe mis à jour.</string>
+  <string name="MessageRecord_you_updated_group">Vous avez mis à jour le groupe.</string>
+  <string name="MessageRecord_s_updated_group">%s a mis à jour le groupe.</string>
   <string name="MessageRecord_s_called_you">%s vous a appelé</string>
   <string name="MessageRecord_called_s">Appelé %s</string>
   <string name="MessageRecord_missed_call_from">Appel manqué de %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s est sur Signal, dites-lui bonjour !</string>
+  <string name="MessageRecord_s_joined_signal">%s a rejoint Signal !</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Vous avez choisi %1$s comme heure de disparition du message.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a choisi %2$s comme heure de disparition du message.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Votre numéro de sécurité avec %s a changé</string>
@@ -451,6 +458,8 @@ introduit (%s) n\'est pas valide.</string>
   <string name="RegistrationActivity_i_understand">Je comprends</string>
   <string name="RegistrationActivity_play_services_error">Erreur Service Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services est en cours de mise à jour ou est temporairement indisponible. Veuillez réessayer.</string>
+  <string name="RegistrationActivity_more_information">Plus d\'informations</string>
+  <string name="RegistrationActivity_less_information">Moins d\'informations</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Problèmes possibles</string>
   <!--RegistrationProgressActivity-->
@@ -473,7 +482,8 @@ introduit (%s) n\'est pas valide.</string>
   <string name="RegistrationProgressActivity_too_many_requests">Trop de requêtes !</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Vous avez déjà demandé récemment un appel vocal. Vous pouvez en demander un autre dans 20 minutes.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Conflit d’inscription</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Ce numéro est déjà enregistré sur un serveur Signal différent (CyanogenMod ?). Vous devez vous désenregistrer là-bas avant de vous enregistrer ici.</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Ce numéro est déjà enregistré sur un serveur Signal différent.
+Vous devez vous désinscrire sur l\'autre serveur avant de vous enregistrer ici.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Enregistrement complet</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">L\'enregistrement sur Signal a bien réussi.</string>
@@ -493,6 +503,7 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="SmsMessageRecord_secure_session_reset_s">%s a réinitialisé la session sécurisée.</string>
   <string name="SmsMessageRecord_duplicate_message">Message doublon.</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_group_updated">Groupe mis à jour</string>
   <string name="ThreadRecord_left_the_group">A quitté le groupe</string>
   <string name="ThreadRecord_secure_session_reset">Session sécurisée réinitialisée.</string>
   <string name="ThreadRecord_draft">Brouillon:</string>
@@ -500,10 +511,12 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="ThreadRecord_called_you">Vous a appelé</string>
   <string name="ThreadRecord_missed_call">Appel manqué</string>
   <string name="ThreadRecord_media_message">Message média</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s est sur Signal, dites-lui bonjour !</string>
+  <string name="ThreadRecord_s_joined_signal">%s a rejoint Signal !</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Le temps de disparition des messages a été réglé à %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Votre numéro de sécurité avec %s a changé</string>
   <!--UpdateApkReadyListener-->
+  <string name="UpdateApkReadyListener_Signal_update">Mise à jour de Signal</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Une nouvelle version de Signal est disponible, appuyez pour mettre à jour</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Votre contact exécute une ancienne version de Signal. Veuillez lui demander de mettre à jour Signal avant de vérifier le numéro de sécurité.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Votre contact utilise une version plus récente de Signal, avec un format de QR code incompatible. Mettez votre application à jour pour comparer.</string>
@@ -574,6 +587,8 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">La réponse rapide n\'est pas disponible lorsque Signal est verrouillé !</string>
   <string name="QuickResponseService_problem_sending_message">Erreur lors de l\'envoi du message !</string>
+  <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_open_directory">Ouvrir le répertoire</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nouveau message</string>
@@ -582,7 +597,7 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Le numéro de sécurité pour votre conversation avec %1$s a changé. Cela peut soit dire que quelqu\'un tente d\'intercepter votre communication, soit que %2$s a simplement réinstallé Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Vous pouvez vérifier vos numéros de sécurité avec ce contact.</string>
-  <string name="WebRtcCallScreen_new_safety_numbers_title">Nouveaux numéros de sécurité</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Nouveau numéro de sécurité</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Appuyez pour activer votre vidéo</string>
   <!--attachment_type_selector-->
@@ -621,9 +636,6 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Conversation mise en silencieux</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Envoyer un message Signal</string>
-  <string name="conversation_activity__type_message_sms_insecure">Envoyer un SMS non-sécurisé</string>
-  <string name="conversation_activity__type_message_mms_insecure">Envoyer un MMS non-sécurisé</string>
   <string name="conversation_activity__from_sim_name">De %1$s</string>
   <string name="conversation_activity__send">Envoyer</string>
   <string name="conversation_activity__remove">Supprimer</string>
@@ -702,6 +714,9 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Rechercher GIFs et autocollants</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Pas de résultat</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Exporter</string>
+  <string name="import_export_fragment__import">Importer</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Impossible d\'accéder aux journaux de votre appareil. Utilisez ADB pour obtenir un rapport de débogage.</string>
   <string name="log_submit_activity__thanks">Merci pour votre aide !</string>
@@ -732,12 +747,12 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">VÉRIFIER</string>
   <string name="message_recipients_list_item__resend">RÉENVOYER</string>
+  <string name="message_recipients_list_item__resending">Renvoyer...</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s a rejoint le groupe.</item>
     <item quantity="other">%1$s ont rejoint le groupe.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Groupe mis à jour.</string>
   <string name="GroupUtil_group_name_is_now">Le nom du groupe est maintenant \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Déverrouiller</string>
@@ -770,7 +785,7 @@ Vérifier votre numéro de téléphone pour vous connecter avec Signal</string>
 VOTRE NUMÉRO DE TÉLÉPHONE</string>
   <string name="registration_activity__phone_number">NUMÉRO DE TÉLÉPHONE</string>
   <string name="registration_activity__register">S\'enregistrer</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">L\'enregistrement transmettra des informations de contact au serveur. Il n\'est pas stocké.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal facilite la communication en utilisant votre numéro de téléphone et votre carnet d\'adresses. Les amis et les contacts qui savent déjà comment vous contacter par téléphone pourront facilement entrer en contact avec vous via Signal.\n\L\'inscription transmet certaines informations de contact au serveur. Ces informations ne sont pas enregistrées.</string>
   <string name="registration_activity__powered_by_twilio">Fourni par twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Certains des problèmes possibles
@@ -872,6 +887,8 @@ par SMS.</string>
   <string name="arrays__images">Images</string>
   <string name="arrays__audio">Audio</string>
   <string name="arrays__video">Vidéo</string>
+  <string name="arrays__documents">Documents</string>
+  <string name="arrays__normal">Normal</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d heure</item>
@@ -913,7 +930,6 @@ par SMS.</string>
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Éteinte pour :</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Rythme de clignotement de la LED personnalisée défini !</string>
   <string name="preferences__sound">Son</string>
-  <string name="preferences__change_notification_sound">Modifier le son de notification</string>
   <string name="preferences__silent">Silencieux</string>
   <string name="preferences__in_conversation_notifications">Notifications dans les conversations</string>
   <string name="preferences__play_inthread_notifications">Émettre une notification sonore lors de la lecture d\'une discussion active.</string>

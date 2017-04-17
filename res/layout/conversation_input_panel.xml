@@ -24,6 +24,8 @@
         <LinearLayout android:id="@+id/compose_bubble"
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
+                      android:paddingTop="8dp"
+                      android:paddingBottom="8dp"
                       android:background="@drawable/sent_bubble"
                       android:clipChildren="false"
                       android:clipToPadding="false">
@@ -103,7 +105,8 @@
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:layout_gravity="center_vertical"
-                      android:orientation="horizontal">
+                      android:orientation="horizontal"
+                      tools:visibility="gone">
 
             <TextView android:id="@+id/record_time"
                       android:layout_width="wrap_content"
@@ -148,6 +151,7 @@
             android:id="@+id/button_toggle"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_marginBottom="1dp"
             android:background="@drawable/circle_tintable"
             android:layout_gravity="bottom">
 

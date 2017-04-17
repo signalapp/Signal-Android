@@ -7,24 +7,6 @@
                         android:title="@string/preferences__signal_messages_and_calls"
                         android:summary="@string/preferences__free_private_messages_and_calls"/>
 
-    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
-                        android:defaultValue="false"
-                        android:key="pref_enter_sends"
-                        android:summary="@string/preferences__pressing_the_enter_key_will_send_text_messages"
-                        android:title="@string/preferences__pref_enter_sends_title"/>
-
-    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
-                        android:defaultValue="false"
-                        android:key="pref_system_emoji"
-                        android:title="@string/preferences_advanced__use_system_emoji"
-                        android:summary="@string/preferences_advanced__disable_signal_built_in_emoji_support" />
-
-    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
-            android:defaultValue="false"
-            android:key="pref_turn_only"
-            android:title="@string/preferences_advanced__always_relay_calls"
-            android:summary="@string/preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address"/>
-
     <Preference android:key="pref_choose_identity"
                 android:title="@string/preferences__choose_identity"
                 android:summary="@string/preferences__choose_your_contact_entry_from_the_contacts_list"/>

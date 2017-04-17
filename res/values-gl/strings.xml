@@ -194,6 +194,7 @@
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Dispositivo sen nome</string>
   <string name="DeviceListItem_today">Hoxe</string>
+  <!--DocumentView-->
   <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Compartir con</string>
@@ -298,7 +299,6 @@
   <string name="MessageRecord_left_group">Abandonaches o grupo.</string>
   <string name="MessageRecord_s_called_you">%s chamoute</string>
   <string name="MessageRecord_missed_call_from">Chamada perdida de %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s está en Signal; dille ola!</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">As frases de acceso non coinciden!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Frase de acceso antiga incorrecta!</string>
@@ -393,7 +393,6 @@
   <string name="RegistrationProgressActivity_the_server_encountered_an_error">O servidor atopou un erro. Téntao de novo, por favor.</string>
   <string name="RegistrationProgressActivity_too_many_requests">Demasiadas solicitudes!</string>
   <string name="RegistrationProgressActivity_registration_conflict">Conflito no rexistro</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Este número xa está rexistrado nun servidor Signal diferente (CyanogenMod?). Debes dalo de baixa antes de facer o rexistro aquí.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Rexistro completo</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">O rexistro de Signal completouse satisfactoriamente.</string>
@@ -418,7 +417,6 @@
   <string name="ThreadRecord_called_you">Chamoute</string>
   <string name="ThreadRecord_missed_call">Chamada perdida</string>
   <string name="ThreadRecord_media_message">Mensaxe multimedia</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s está en Signal; dille ola!</string>
   <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_no_app_to_share_to">Semella que non hai ningunha que permita compartir.</string>
@@ -471,6 +469,7 @@
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">A resposta rápida non está dispoñible cando Signal está bloqueado!</string>
   <string name="QuickResponseService_problem_sending_message">Problema ao enviar a mensaxe!</string>
+  <!--SaveAttachmentTask-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nova mensaxe</string>
@@ -502,9 +501,6 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Conversa silenciada</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Enviar mensaxe Signal</string>
-  <string name="conversation_activity__type_message_sms_insecure">Enviar SMS insegura</string>
-  <string name="conversation_activity__type_message_mms_insecure">Enviar MMS insegura</string>
   <string name="conversation_activity__from_sim_name">De %1$s</string>
   <string name="conversation_activity__send">Enviar</string>
   <string name="conversation_activity__remove">Eliminar</string>
@@ -545,6 +541,9 @@
   <string name="expiration_off">Off</string>
   <!--giphy_activity-->
   <!--giphy_fragment-->
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Exportar</string>
+  <string name="import_export_fragment__import">Importar</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__thanks">Grazas pola túa axuda!</string>
   <string name="log_submit_activity__submitting">Enviando</string>
@@ -576,7 +575,6 @@
     <item quantity="one">%1$s uniuse ao grupo.</item>
     <item quantity="other">%1$s uníronse ao grupo.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Grupo actualizado.</string>
   <string name="GroupUtil_group_name_is_now">Agora o nome do grupo é \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Desbloquear</string>
@@ -606,7 +604,6 @@
     </string>
   <string name="registration_activity__phone_number">NÚMERO DE TELÉFONO</string>
   <string name="registration_activity__register">Rexistro</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">O rexistro transmite algunha información de contacto ao servidor. Non se almacena.</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Algúns posibles problemas,
         incluído:
@@ -671,6 +668,7 @@
   <string name="arrays__images">Imaxes</string>
   <string name="arrays__audio">Audio</string>
   <string name="arrays__video">Vídeo</string>
+  <string name="arrays__normal">Normal</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d hora</item>
@@ -702,7 +700,6 @@
   <string name="preferences__led_color_unknown">Descoñecido</string>
   <string name="preferences__pref_led_blink_title">Intermitencia do LED</string>
   <string name="preferences__sound">Son</string>
-  <string name="preferences__change_notification_sound">Cambiar o son das notificacións</string>
   <string name="preferences__silent">En silencio</string>
   <string name="preferences__in_conversation_notifications">Notificacións durante a conversa</string>
   <string name="preferences__play_inthread_notifications">Reproduce un son mentres se está a ver unha conversa activa</string>

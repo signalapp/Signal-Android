@@ -31,7 +31,6 @@ import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.thoughtcrime.redphone.util.Conversions;
 import org.thoughtcrime.securesms.ConversationAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
@@ -41,6 +40,7 @@ import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.Conversions;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
@@ -83,6 +83,8 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   private static final int MESSAGE_TYPE_AUDIO_INCOMING     = 4;
   private static final int MESSAGE_TYPE_THUMBNAIL_OUTGOING = 5;
   private static final int MESSAGE_TYPE_THUMBNAIL_INCOMING = 6;
+  private static final int MESSAGE_TYPE_DOCUMENT_OUTGOING  = 7;
+  private static final int MESSAGE_TYPE_DOCUMENT_INCOMING  = 8;
 
   private final Set<MessageRecord> batchSelected = Collections.synchronizedSet(new HashSet<MessageRecord>());
 
@@ -223,9 +225,11 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     switch (viewType) {
       case MESSAGE_TYPE_AUDIO_OUTGOING:
       case MESSAGE_TYPE_THUMBNAIL_OUTGOING:
+      case MESSAGE_TYPE_DOCUMENT_OUTGOING:
       case MESSAGE_TYPE_OUTGOING:        return R.layout.conversation_item_sent;
       case MESSAGE_TYPE_AUDIO_INCOMING:
       case MESSAGE_TYPE_THUMBNAIL_INCOMING:
+      case MESSAGE_TYPE_DOCUMENT_INCOMING:
       case MESSAGE_TYPE_INCOMING:        return R.layout.conversation_item_received;
       case MESSAGE_TYPE_UPDATE:          return R.layout.conversation_item_update;
       default: throw new IllegalArgumentException("unsupported item view type given to ConversationAdapter");
@@ -242,6 +246,9 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     } else if (hasAudio(messageRecord)) {
       if (messageRecord.isOutgoing()) return MESSAGE_TYPE_AUDIO_OUTGOING;
       else                            return MESSAGE_TYPE_AUDIO_INCOMING;
+    } else if (hasDocument(messageRecord)) {
+      if (messageRecord.isOutgoing()) return MESSAGE_TYPE_DOCUMENT_OUTGOING;
+      else                            return MESSAGE_TYPE_DOCUMENT_INCOMING;
     } else if (hasThumbnail(messageRecord)) {
       if (messageRecord.isOutgoing()) return MESSAGE_TYPE_THUMBNAIL_OUTGOING;
       else                            return MESSAGE_TYPE_THUMBNAIL_INCOMING;
@@ -313,6 +320,10 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
 
   private boolean hasAudio(MessageRecord messageRecord) {
     return messageRecord.isMms() && ((MmsMessageRecord)messageRecord).getSlideDeck().getAudioSlide() != null;
+  }
+
+  private boolean hasDocument(MessageRecord messageRecord) {
+    return messageRecord.isMms() && ((MmsMessageRecord)messageRecord).getSlideDeck().getDocumentSlide() != null;
   }
 
   private boolean hasThumbnail(MessageRecord messageRecord) {

@@ -21,24 +21,30 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
+import android.database.MatrixCursor;
 import android.net.Uri;
+import android.os.MemoryFile;
 import android.os.ParcelFileDescriptor;
+import android.provider.OpenableColumns;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.attachments.AttachmentId;
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.mms.PartUriParser;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.util.MemoryFileUtil;
+import org.thoughtcrime.securesms.util.Util;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 public class PartProvider extends ContentProvider {
+
   private static final String TAG = PartProvider.class.getSimpleName();
 
   private static final String CONTENT_URI_STRING = "content://org.thoughtcrime.provider.securesms/part";
@@ -63,27 +69,9 @@ public class PartProvider extends ContentProvider {
     return ContentUris.withAppendedId(uri, attachmentId.getRowId());
   }
 
-  @SuppressWarnings("ConstantConditions")
-  private File copyPartToTemporaryFile(MasterSecret masterSecret, AttachmentId attachmentId) throws IOException {
-    InputStream in        = DatabaseFactory.getAttachmentDatabase(getContext()).getAttachmentStream(masterSecret, attachmentId);
-    File tmpDir           = getContext().getDir("tmp", 0);
-    File tmpFile          = File.createTempFile("test", ".jpg", tmpDir);
-    FileOutputStream fout = new FileOutputStream(tmpFile);
-
-    byte[] buffer         = new byte[512];
-    int read;
-
-    while ((read = in.read(buffer)) != -1)
-      fout.write(buffer, 0, read);
-
-    in.close();
-
-    return tmpFile;
-  }
-
   @Override
   public ParcelFileDescriptor openFile(@NonNull Uri uri, @NonNull String mode) throws FileNotFoundException {
-    MasterSecret masterSecret = KeyCachingService.getMasterSecret(getContext());
+    final MasterSecret masterSecret = KeyCachingService.getMasterSecret(getContext());
     Log.w(TAG, "openFile() called!");
 
     if (masterSecret == null) {
@@ -95,15 +83,8 @@ public class PartProvider extends ContentProvider {
     case SINGLE_ROW:
       Log.w(TAG, "Parting out a single row...");
       try {
-        PartUriParser        partUri = new PartUriParser(uri);
-        File                 tmpFile = copyPartToTemporaryFile(masterSecret, partUri.getPartId());
-        ParcelFileDescriptor pdf     = ParcelFileDescriptor.open(tmpFile, ParcelFileDescriptor.MODE_READ_ONLY);
-
-        if (!tmpFile.delete()) {
-          Log.w(TAG, "Failed to delete temp file.");
-        }
-
-        return pdf;
+        final PartUriParser partUri = new PartUriParser(uri);
+        return getParcelStreamForAttachment(masterSecret, partUri.getPartId());
       } catch (IOException ioe) {
         Log.w(TAG, ioe);
         throw new FileNotFoundException("Error opening file");
@@ -115,26 +96,81 @@ public class PartProvider extends ContentProvider {
 
   @Override
   public int delete(@NonNull Uri arg0, String arg1, String[] arg2) {
+    Log.w(TAG, "delete() called");
     return 0;
   }
 
   @Override
-  public String getType(@NonNull Uri arg0) {
+  public String getType(@NonNull Uri uri) {
+    Log.w(TAG, "getType() called: " + uri);
+
+    switch (uriMatcher.match(uri)) {
+      case SINGLE_ROW:
+        PartUriParser      partUriParser = new PartUriParser(uri);
+        DatabaseAttachment attachment    = DatabaseFactory.getAttachmentDatabase(getContext())
+                                                          .getAttachment(null, partUriParser.getPartId());
+
+        if (attachment != null) {
+          return attachment.getContentType();
+        }
+    }
+
     return null;
   }
 
   @Override
   public Uri insert(@NonNull Uri arg0, ContentValues arg1) {
+    Log.w(TAG, "insert() called");
     return null;
   }
 
   @Override
-  public Cursor query(@NonNull Uri arg0, String[] arg1, String arg2, String[] arg3, String arg4) {
+  public Cursor query(@NonNull Uri url, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
+    Log.w(TAG, "query() called: " + url);
+    MasterSecret masterSecret = KeyCachingService.getMasterSecret(getContext());
+
+    if (projection == null || projection.length <= 0) return null;
+
+    switch (uriMatcher.match(url)) {
+      case SINGLE_ROW:
+        PartUriParser      partUri      = new PartUriParser(url);
+        DatabaseAttachment attachment   = DatabaseFactory.getAttachmentDatabase(getContext()).getAttachment(masterSecret, partUri.getPartId());
+
+        if (attachment == null) return null;
+
+        MatrixCursor       matrixCursor = new MatrixCursor(projection, 1);
+        Object[]           resultRow    = new Object[projection.length];
+
+        for (int i=0;i<projection.length;i++) {
+          if (OpenableColumns.DISPLAY_NAME.equals(projection[i])) {
+            resultRow[i] = attachment.getFileName();
+          }
+        }
+
+        matrixCursor.addRow(resultRow);
+        return matrixCursor;
+    }
+
     return null;
   }
 
   @Override
   public int update(@NonNull Uri arg0, ContentValues arg1, String arg2, String[] arg3) {
+    Log.w(TAG, "update() called");
     return 0;
+  }
+
+  private ParcelFileDescriptor getParcelStreamForAttachment(MasterSecret masterSecret, AttachmentId attachmentId) throws IOException {
+    long       plaintextLength = Util.getStreamLength(DatabaseFactory.getAttachmentDatabase(getContext()).getAttachmentStream(masterSecret, attachmentId));
+    MemoryFile memoryFile      = new MemoryFile(attachmentId.toString(), Util.toIntExact(plaintextLength));
+
+    InputStream  in  = DatabaseFactory.getAttachmentDatabase(getContext()).getAttachmentStream(masterSecret, attachmentId);
+    OutputStream out = memoryFile.getOutputStream();
+
+    Util.copy(in, out);
+    Util.close(out);
+    Util.close(in);
+
+    return MemoryFileUtil.getParcelFileDescriptor(memoryFile);
   }
 }

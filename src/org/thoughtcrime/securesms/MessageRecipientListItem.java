@@ -50,6 +50,7 @@ public class MessageRecipientListItem extends RelativeLayout
   private Recipient       recipient;
   private FromTextView    fromView;
   private TextView        errorDescription;
+  private TextView        actionDescription;
   private Button          conflictButton;
   private Button          resendButton;
   private AvatarImageView contactPhotoImage;
@@ -68,6 +69,7 @@ public class MessageRecipientListItem extends RelativeLayout
   protected void onFinishInflate() {
     this.fromView          = (FromTextView)    findViewById(R.id.from);
     this.errorDescription  = (TextView)        findViewById(R.id.error_description);
+    this.actionDescription = (TextView)        findViewById(R.id.action_description);
     this.contactPhotoImage = (AvatarImageView) findViewById(R.id.contact_photo_image);
     this.conflictButton    = (Button)          findViewById(R.id.conflict_button);
     this.resendButton      = (Button)          findViewById(R.id.resend_button);
@@ -116,7 +118,10 @@ public class MessageRecipientListItem extends RelativeLayout
       resendButton.setOnClickListener(new OnClickListener() {
         @Override
         public void onClick(View v) {
-          resendButton.setEnabled(false);
+          resendButton.setVisibility(View.GONE);
+          errorDescription.setVisibility(View.GONE);
+          actionDescription.setVisibility(View.VISIBLE);
+          actionDescription.setText(R.string.message_recipients_list_item__resending);
           new ResendAsyncTask(masterSecret, record, networkFailure).execute();
         }
       });

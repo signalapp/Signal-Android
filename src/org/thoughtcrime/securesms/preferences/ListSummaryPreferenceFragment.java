@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.R;
 
 import java.util.Arrays;
 
-public abstract class ListSummaryPreferenceFragment extends PreferenceFragment {
+public abstract class ListSummaryPreferenceFragment extends CorrectedPreferenceFragment {
 
   protected class ListSummaryListener implements Preference.OnPreferenceChangeListener {
     @Override

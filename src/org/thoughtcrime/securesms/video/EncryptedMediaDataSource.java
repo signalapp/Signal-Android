@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.util.Util;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 @TargetApi(Build.VERSION_CODES.M)
 public class EncryptedMediaDataSource extends MediaDataSource {
@@ -25,9 +26,9 @@ public class EncryptedMediaDataSource extends MediaDataSource {
 
   @Override
   public int readAt(long position, byte[] bytes, int offset, int length) throws IOException {
-    DecryptingPartInputStream inputStream     = new DecryptingPartInputStream(mediaFile, masterSecret);
-    byte[]                    buffer          = new byte[4096];
-    long                      headerRemaining = position;
+    InputStream inputStream     = DecryptingPartInputStream.createFor(masterSecret, mediaFile);
+    byte[]      buffer          = new byte[4096];
+    long        headerRemaining = position;
 
     while (headerRemaining > 0) {
       int read = inputStream.read(buffer, 0, Util.toIntExact(Math.min((long)buffer.length, headerRemaining)));
@@ -44,9 +45,9 @@ public class EncryptedMediaDataSource extends MediaDataSource {
 
   @Override
   public long getSize() throws IOException {
-    DecryptingPartInputStream inputStream = new DecryptingPartInputStream(mediaFile, masterSecret);
-    byte[]                    buffer      = new byte[4096];
-    long                      size        = 0;
+    InputStream inputStream = DecryptingPartInputStream.createFor(masterSecret, mediaFile);
+    byte[]      buffer      = new byte[4096];
+    long        size        = 0;
 
     int read;
 

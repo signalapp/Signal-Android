@@ -26,6 +26,7 @@ import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.MessageDigest;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -39,7 +40,7 @@ public class UpdateApkJob extends ContextJob {
     super(context, JobParameters.newBuilder()
                                 .withGroupId(UpdateApkJob.class.getSimpleName())
                                 .withRequirement(new NetworkRequirement(context))
-                                .withWakeLock(true)
+                                .withWakeLock(true, 30, TimeUnit.SECONDS)
                                 .withRetryCount(2)
                                 .create());
   }

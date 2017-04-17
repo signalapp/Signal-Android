@@ -194,6 +194,7 @@ a</string>
   <string name="DeviceListItem_linked_s">Kigatiddwa %s</string>
   <string name="DeviceListItem_last_active_s">ebyasembayo okuba ebilamu %s</string>
   <string name="DeviceListItem_today">Leero</string>
+  <!--DocumentView-->
   <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Gabana ne</string>
@@ -294,11 +295,9 @@ a</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Ofuny obubaka obubuabuzidwa nga bakozesa vazoni ya signal etakyaakola. wattu saba asindise okuza obujja  signal ye  era addemu asindike obubaka</string>
   <string name="MessageRecord_left_group">Ovudemu mu kibinja.</string>
-  <string name="MessageRecord_updated_group">Ekibinja kyazidwa kumulembe.</string>
   <string name="MessageRecord_s_called_you">%s yakkubiddeko</string>
   <string name="MessageRecord_called_s">Wakubidde %s</string>
   <string name="MessageRecord_missed_call_from">Wasubiddwa essimu okuva %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s ali ku Signal. mugambe hi!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Wateseteese obudde bwobubaka okuvaamu ku %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s tekateeka obudde bwobubaka ku %2$s.</string>
   <!--PassphraseChangeActivity-->
@@ -404,7 +403,6 @@ Dammu okebere e namba yo.  Tugenda kugikakasa no bubaka ku simu</string>
   <string name="RegistrationProgressActivity_too_many_requests">osabye emirundi mingi!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">wasabye dda okuba a essimu. lindamu edakiika 20</string>
   <string name="RegistrationProgressActivity_registration_conflict">okuwandisa kukontanye</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">enamba eno yawandisiibwa dda ku saava ya Signal endala (cyanogenMOD). sooka ogyisanguleyo nga tonaba gyiwandiisa wano.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Okwewandiisa kuwedde</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Okuwandisa ku Signal kuwedde bulungi</string>
@@ -427,7 +425,6 @@ Dammu okebere e namba yo.  Tugenda kugikakasa no bubaka ku simu</string>
   <string name="ThreadRecord_called_you">yakubidde</string>
   <string name="ThreadRecord_missed_call">missed call</string>
   <string name="ThreadRecord_media_message">obubaka bwemikutu</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%sAli ku Signal. mugambe hi!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Message yakusanguka mu dakiika %s</string>
   <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
@@ -492,6 +489,7 @@ Dammu okebere e namba yo.  Tugenda kugikakasa no bubaka ku simu</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">okudamu okwangu tekubawo nga amayengo gasibidwa</string>
   <string name="QuickResponseService_problem_sending_message">obuzibu mukusindika obubaka</string>
+  <!--SaveAttachmentTask-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">mayengo</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Obubaka obupya</string>
@@ -525,9 +523,6 @@ Dammu okebere e namba yo.  Tugenda kugikakasa no bubaka ku simu</string>
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">emboozi esilisidwa</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">welezza obubaka bwamayengo</string>
-  <string name="conversation_activity__type_message_sms_insecure">sindika obubaka obwekusifu</string>
-  <string name="conversation_activity__type_message_mms_insecure">sindika  MMS obutakumidwa</string>
   <string name="conversation_activity__from_sim_name">kuva %1$s</string>
   <string name="conversation_activity__send">Sindika</string>
   <string name="conversation_activity__remove">Gyawo</string>
@@ -597,6 +592,9 @@ Dammu okebere e namba yo.  Tugenda kugikakasa no bubaka ku simu</string>
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Noonya GIFs ne sticka</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Tewali kisangidwa</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Fulumya</string>
+  <string name="import_export_fragment__import">Okuyingiza</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Tesobodde ku soma kabonero ku kyuma kyo. Okyasobola okukozesa ABD okufuna akaboneero ka debug.</string>
   <string name="log_submit_activity__thanks">Webale obuyambi bwo</string>
@@ -633,7 +631,6 @@ Dammu okebere e namba yo.  Tugenda kugikakasa no bubaka ku simu</string>
     <item quantity="one">%1$s yeegasse mu group</item>
     <item quantity="other">%1$s beegasse mu group!</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Group elikumutindo</string>
   <string name="GroupUtil_group_name_is_now">Group kati eyitibwa \'%1$s\'</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Gulawo</string>
@@ -666,7 +663,6 @@ NAMBA YESSIMU
 </string>
   <string name="registration_activity__phone_number">Enamba yesimu</string>
   <string name="registration_activity__register">Wewandiise</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Okwewandiisa kugaba ebikukwatako. Naye tebiterekebwa.</string>
   <string name="registration_activity__powered_by_twilio">Bikutusidwaako twilo</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Ebizibu ebisubirwa
@@ -767,6 +763,7 @@ Signal evudeko bwebadde erinda obubaka okukakasa.</string>
   <string name="arrays__images">Ebifaananyi</string>
   <string name="arrays__audio">Doboozi</string>
   <string name="arrays__video">Vidiyo</string>
+  <string name="arrays__normal">Kyabulijjo</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d saawa</item>
@@ -812,7 +809,6 @@ Signal evudeko bwebadde erinda obubaka okukakasa.</string>
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Okuvako paka: </string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Custom LED blink pattern esetingidwa!</string>
   <string name="preferences__sound">Doboozi</string>
-  <string name="preferences__change_notification_sound">Kyusa doboozi lyo\' kutemezebwako. </string>
   <string name="preferences__silent">Kusirika</string>
   <string name="preferences__in_conversation_notifications">Mu mboozi zo\'kutemezebwako.</string>
   <string name="preferences__play_inthread_notifications">
