@@ -667,6 +667,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Pogovor je bil utišan</string>
   <!--conversation_activity-->
+  <string name="conversation_activity__type_message_push">Sporočilo Signal</string>
+  <string name="conversation_activity__type_message_sms_insecure">Nezavarovan SMS</string>
+  <string name="conversation_activity__type_message_mms_insecure">Nezavarovan MMS</string>
   <string name="conversation_activity__from_sim_name">Od %1$s</string>
   <string name="conversation_activity__send">Pošlji</string>
   <string name="conversation_activity__remove">Odstrani</string>
@@ -925,7 +928,10 @@ bila uspešna.</string>
   <string name="arrays__audio">Zvok</string>
   <string name="arrays__video">Video</string>
   <string name="arrays__documents">Dokumenti</string>
-  <string name="arrays__normal">Normalno</string>
+  <string name="arrays__small">Majhne</string>
+  <string name="arrays__normal">Običajne</string>
+  <string name="arrays__large">Velike</string>
+  <string name="arrays__extra_large">Zelo velike</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d ura</item>
@@ -957,7 +963,7 @@ bila uspešna.</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Samodejno zakleni Signal po nastavljenem času neaktivnosti</string>
   <string name="preferences__inactivity_timeout_passphrase">Geslo za zaklep aplikacije</string>
   <string name="preferences__inactivity_timeout_interval">Časovni interval za zaklep aplikacije</string>
-  <string name="preferences__notifications">Obvestila</string>
+  <string name="preferences__notifications">Vklop/izklop</string>
   <string name="preferences__enable_message_notifications">Vklopi obvestila o novih sporočilih</string>
   <string name="preferences__new_contacts_notifications">Obvestilo o novih uporabnikih</string>
   <string name="preferences__show_a_notification_for_new_signal_contacts">Prikaži obvestilo o novih uporabnikih aplikacije Signal</string>
@@ -1041,6 +1047,14 @@ bila uspešna.</string>
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Podpora za video in glasovne klice naslednje generacije. Gre za preizkusno storitev, ki deluje le, če je vključena pri klicatelju in klicanemu.</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Vsi klici bodo posredovani preko strežnika Signal. S tem boste  klicani strani onemogočili, da bi izvedela za vaš naslov IP. Kvaliteta klica bo zaradi tega slabša.</string>
   <string name="preferences_advanced__always_relay_calls">Vedno posreduj klice</string>
+  <string name="preferences_app_protection__app_access">Dostop</string>
+  <string name="preferences_app_protection__communication">Komunikacija</string>
+  <string name="preferences_chats__chats">Pogovori</string>
+  <string name="preferences_notifications__message_notifications">Obvestila o sporočilih</string>
+  <string name="preferences_notifications__events">Dogodki</string>
+  <string name="preferences_chats__show_invitation_prompts">Prikazuj obvestila o povabilih</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Prikazuj obvestila o povabilih za stike, ki nimajo nameščene aplikacije Signal.</string>
+  <string name="preferences_chats__message_text_size">Velikost črk v sporočilu</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

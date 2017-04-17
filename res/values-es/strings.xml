@@ -651,6 +651,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Conversación silenciada</string>
   <!--conversation_activity-->
+  <string name="conversation_activity__type_message_push">Mensaje de Signal</string>
+  <string name="conversation_activity__type_message_sms_insecure">SMS sin seguridad</string>
+  <string name="conversation_activity__type_message_mms_insecure">MMS sin seguridad</string>
   <string name="conversation_activity__from_sim_name">De %1$s</string>
   <string name="conversation_activity__send">Enviar</string>
   <string name="conversation_activity__remove">Eliminar</string>
@@ -915,7 +918,10 @@ por SMS.
   <string name="arrays__audio">Audio</string>
   <string name="arrays__video">Vídeo</string>
   <string name="arrays__documents">Documentos</string>
+  <string name="arrays__small">Pequeña</string>
   <string name="arrays__normal">Normal</string>
+  <string name="arrays__large">Grande</string>
+  <string name="arrays__extra_large">Extra grande</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d hora</item>
@@ -1029,6 +1035,14 @@ por SMS.
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Soporte para la nueva generación de llamadas de vídeo y voz cuando estén habilitadas por ambas partes. Esta característica está en fase beta.</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Hacer que el servidor de Signal repita todas las llamadas para evitar revelar su dirección IP a su contacto. Habilitando esto reducirá la calidad de la llamada.</string>
   <string name="preferences_advanced__always_relay_calls">Pasar siempre las llamadas por repetidor</string>
+  <string name="preferences_app_protection__app_access">Acceso a la aplicación</string>
+  <string name="preferences_app_protection__communication">Comunicación</string>
+  <string name="preferences_chats__chats">Chats</string>
+  <string name="preferences_notifications__message_notifications">Notificaciones de mensaje</string>
+  <string name="preferences_notifications__events">Eventos</string>
+  <string name="preferences_chats__show_invitation_prompts">Mostrar ofrecimientos de invitación</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Muestra ofrecimientos de invitación para contactos sin Signal</string>
+  <string name="preferences_chats__message_text_size">Tamaño de fuente del mensaje</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

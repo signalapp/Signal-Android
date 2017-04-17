@@ -638,6 +638,9 @@ Comproveu que aquest és el vostre número. Anem a verificar-ho amb un SMS.</str
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Conversa silenciada</string>
   <!--conversation_activity-->
+  <string name="conversation_activity__type_message_push">Missatge de Signal</string>
+  <string name="conversation_activity__type_message_sms_insecure">SMS no segur</string>
+  <string name="conversation_activity__type_message_mms_insecure">MMS no segur</string>
   <string name="conversation_activity__from_sim_name">Des de %1$s</string>
   <string name="conversation_activity__send">Envia</string>
   <string name="conversation_activity__remove">Treu</string>
@@ -899,7 +902,10 @@ ha fallat.
   <string name="arrays__audio">Àudio</string>
   <string name="arrays__video">Vídeo</string>
   <string name="arrays__documents">Documents</string>
+  <string name="arrays__small">Petita</string>
   <string name="arrays__normal">Normal</string>
+  <string name="arrays__large">Gran</string>
+  <string name="arrays__extra_large">Molt gran</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d hora</item>
@@ -1013,6 +1019,14 @@ ha fallat.
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Compatibilitat amb les trucades de veu i vídeo més modernes si ambdós participants les activen. Aquesta funcionalitat és en fase beta.</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Redirigeix totes les trucades a través del servidor de Signal per a evitar revelar l\'adreça IP al vostre contacte. Si ho activeu es reduirà la qualitat de la trucada.</string>
   <string name="preferences_advanced__always_relay_calls">Redirigeix sempre les trucades per repetidor</string>
+  <string name="preferences_app_protection__app_access">Accés de l\'aplicació</string>
+  <string name="preferences_app_protection__communication">Comunicació</string>
+  <string name="preferences_chats__chats">Xats</string>
+  <string name="preferences_notifications__message_notifications">Notificacions de missatge</string>
+  <string name="preferences_notifications__events">Esdeveniments</string>
+  <string name="preferences_chats__show_invitation_prompts">Mostra els avisos d\'invitacions</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Mostra els avisos d\'invitacions per als contactes sense Signal</string>
+  <string name="preferences_chats__message_text_size">Mida de la lletra dels missatges</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
