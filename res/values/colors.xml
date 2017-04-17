@@ -55,4 +55,6 @@
 
     <color name="sticker_selected_color">#8cf437</color>
     <color name="transparent">#00FFFFFF</color>
+
+    <color name="thumbnail_play_overlay_tint">#77ffffff</color>
 </resources>

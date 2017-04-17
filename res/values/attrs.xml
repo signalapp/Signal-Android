@@ -148,6 +148,7 @@
 
     <declare-styleable name="ThumbnailView">
         <attr name="backgroundColorHint" format="color" />
+        <attr name="thumbnail_play_overlay_tint" format="color" />
     </declare-styleable>
 
     <declare-styleable name="DeliveryStatusView">
