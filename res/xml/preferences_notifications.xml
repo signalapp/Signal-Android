@@ -67,7 +67,7 @@
     <PreferenceCategory android:title="@string/preferences_notifications__events">
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
             android:key="pref_enable_new_contacts_notifications"
-            android:title="Contact joined Signal"
+            android:title="@string/preferences_events__contact_joined_signal"
             android:summary="@string/preferences__show_a_notification_for_new_signal_contacts"
             android:defaultValue="true" />
     </PreferenceCategory>

@@ -1200,6 +1200,7 @@
     <string name="preferences_chats__show_invitation_prompts">Show invitation prompts</string>
     <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Display invitation prompts for contacts without Signal</string>
     <string name="preferences_chats__message_text_size">Message font size</string>
+    <string name="preferences_events__contact_joined_signal">Contact joined Signal</string>
 
     <!-- **************************************** -->
     <!-- menus -->
