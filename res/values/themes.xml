@@ -208,13 +208,13 @@
 
         <item name="reminder_header_background">#ff1d85d7</item>
 
-        <item name="pref_ic_sms_mms">@drawable/ic_textsms_black_32dp</item>
-        <item name="pref_ic_notifications">@drawable/ic_notifications_black</item>
-        <item name="pref_ic_app_protection">@drawable/ic_app_protection_black</item>
-        <item name="pref_ic_appearance">@drawable/ic_brightness_6_black</item>
-        <item name="pref_ic_chats">@drawable/ic_forum_black_32dp</item>
-        <item name="pref_ic_devices">@drawable/ic_laptop_black_32dp</item>
-        <item name="pref_ic_advanced">@drawable/ic_advanced_black</item>
+        <item name="pref_ic_sms_mms">@drawable/ic_textsms_black_24dp</item>
+        <item name="pref_ic_notifications">@drawable/ic_notifications_black_24dp</item>
+        <item name="pref_ic_app_protection">@drawable/ic_security_black_24dp</item>
+        <item name="pref_ic_appearance">@drawable/ic_brightness_6_black_24dp</item>
+        <item name="pref_ic_chats">@drawable/ic_forum_black_24dp</item>
+        <item name="pref_ic_devices">@drawable/ic_laptop_black_24dp</item>
+        <item name="pref_ic_advanced">@drawable/ic_advanced_black_24dp</item>
 
         <item name="app_protect_timeout_picker_color">@style/BetterPickersDialogFragment.Light</item>
 
@@ -338,13 +338,13 @@
 
         <item name="reminder_header_background">@color/textsecure_primary_dark</item>
 
-        <item name="pref_ic_sms_mms">@drawable/ic_textsms_grey_32dp</item>
-        <item name="pref_ic_notifications">@drawable/ic_notifications_gray</item>
-        <item name="pref_ic_app_protection">@drawable/ic_app_protection_gray</item>
-        <item name="pref_ic_appearance">@drawable/ic_brightness_6_gray</item>
-        <item name="pref_ic_chats">@drawable/ic_forum_grey_32dp</item>
-        <item name="pref_ic_devices">@drawable/ic_laptop_light_32dp</item>
-        <item name="pref_ic_advanced">@drawable/ic_advanced_gray</item>
+        <item name="pref_ic_sms_mms">@drawable/ic_textsms_white_24dp</item>
+        <item name="pref_ic_notifications">@drawable/ic_notifications_white_24dp</item>
+        <item name="pref_ic_app_protection">@drawable/ic_security_white_24dp</item>
+        <item name="pref_ic_appearance">@drawable/ic_brightness_6_white_24dp</item>
+        <item name="pref_ic_chats">@drawable/ic_forum_white_24dp</item>
+        <item name="pref_ic_devices">@drawable/ic_laptop_white_24dp</item>
+        <item name="pref_ic_advanced">@drawable/ic_advanced_white_24dp</item>
 
         <item name="app_protect_timeout_picker_color">@style/BetterPickersDialogFragment</item>
 
