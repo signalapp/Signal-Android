@@ -21,7 +21,7 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Löschen</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Passwort deaktivieren?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Entsperrt Signal und Benachrichtigungen dauerhaft.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Entsperrt Signal und Benachrichtigungen über Nachrichten dauerhaft</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivieren</string>
   <string name="ApplicationPreferencesActivity_unregistering">Registrierung löschen</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Registrierung für Signal-Nachrichten und -Anrufe wird gelöscht …</string>
@@ -58,7 +58,7 @@
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Kontaktinfos</string>
   <!--AudioSlidePlayer-->
-  <string name="AudioSlidePlayer_error_playing_audio">Fehler bei der Audiowiedergabe!</string>
+  <string name="AudioSlidePlayer_error_playing_audio">Fehler bei der Audiowiedergabe</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Blockierte Kontakte</string>
   <!--CallScreen-->
@@ -76,9 +76,9 @@
   <string name="ConversationItem_error_not_delivered">Nicht zugestellt</string>
   <string name="ConversationItem_view_secure_media_question">Sichere Medieninhalte anzeigen?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Diese Medieninhalte sind in einer verschlüsselten Datenbank gespeichert. Zum Anzeigen müssen sie vorübergehend entschlüsselt im Gerätespeicher abgespeichert werden. Möchtest du dennoch fortfahren?</string>
-  <string name="ConversationItem_error_received_stale_key_exchange_message">Fehler: Abgelaufene Schlüsselaustausch-Nachricht empfangen.</string>
+  <string name="ConversationItem_error_received_stale_key_exchange_message">Fehler: Abgelaufene Schlüsselaustausch-Nachricht empfangen</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Schlüsselaustausch-Nachricht empfangen. Zum Fortfahren antippen.</string>
-  <string name="ConversationItem_group_action_left">%1$s hat die Gruppe verlassen.</string>
+  <string name="ConversationItem_group_action_left">%1$s hat die Gruppe verlassen</string>
   <string name="ConversationItem_click_for_details">Für Details antippen</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Für Rückgriff auf unsicheren Versand antippen</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Rückgriff auf unverschlüsselte SMS?</string>
@@ -117,16 +117,16 @@
   <string name="ConversationActivity_transport_insecure_sms">Unsichere SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Unsichere MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
-  <string name="ConversationActivity_lets_switch_to_signal">Wechseln wir zu Signal %1$s</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Lass uns zu »Signal« wechseln: %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Unterhalten wir uns hiermit: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Fehler beim Verlassen der Gruppe</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS nicht unterstützt</string>
   <string name="ConversationActivity_mms_not_supported_message">Diese Nachricht kann nicht gesendet werden, da dein Mobilfunkanbieter MMS nicht unterstützt.</string>
   <string name="ConversationActivity_specify_recipient">Bitte einen Kontakt auswählen</string>
-  <string name="ConversationActivity_unblock_this_contact_question">Nicht mehr blockieren?</string>
+  <string name="ConversationActivity_unblock_this_contact_question">Diesen Kontakt freigeben?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Du wirst wieder Nachrichten und Anrufe von diesem Kontakt erhalten können.</string>
-  <string name="ConversationActivity_unblock">Nicht mehr blockieren</string>
-  <string name="ConversationActivity_attachment_exceeds_size_limits">Anhang ist für diese Nachrichtenart zu groß.</string>
+  <string name="ConversationActivity_unblock">Freigeben</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">Anhang zu groß für die gesendete Nachtrichtenart.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera nicht verfügbar</string>
   <string name="ConversationActivity_unable_to_record_audio">Audioaufnahme nicht möglich!</string>
   <string name="ConversationActivity_error_sending_voice_message">Fehler beim Senden der Sprachnachricht</string>
@@ -226,6 +226,8 @@
   <string name="DeviceListItem_linked_s">%s verknüpft</string>
   <string name="DeviceListItem_last_active_s">Zuletzt aktiv %s</string>
   <string name="DeviceListItem_today">Heute</string>
+  <!--DocumentView-->
+  <string name="DocumentView_unknown_file">Unbekannte Datei</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Für fehlende Play-Dienste optimieren</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dieses Gerät unterstützt keine Play-Dienste. Antippen, um Akkuoptimierungsdienste des Systems zu deaktivieren, die Signal bei Inaktivität daran hindern, Nachrichten zu empfangen.</string>
@@ -319,7 +321,7 @@ Das Wiederherstellen einer verschlüsselten Datensicherung ersetzt deine bestehe
     <item quantity="one">1 SMS-Einladung senden?</item>
     <item quantity="other">%d SMS-Einladungen senden?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Wechseln wir zu »Signal«: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Lass uns zu »Signal« wechseln: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Es sieht so aus, als hättest du keine zum Teilen geeignete Apps installiert.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Freunde lassen Freunde nicht unverschlüsselt kommunizieren.</string>
   <!--KeyScanningActivity-->
@@ -334,7 +336,7 @@ Das Wiederherstellen einer verschlüsselten Datensicherung ersetzt deine bestehe
   <string name="MessageRetrievalService_background_connection_enabled">Hintergrundverbindung aktiviert</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Fehler beim Speichern der MMS!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Verbindung zum MMS-Anbieter fehlgeschlagen</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Verbindung zum MMS-Anbieter gescheitert</string>
   <string name="MmsDownloader_error_reading_mms_settings">MMS-Einstellungen des Mobilfunkanbieters konnten nicht gelesen werden</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-Anruf läuft</string>
@@ -353,11 +355,12 @@ Das Wiederherstellen einer verschlüsselten Datensicherung ersetzt deine bestehe
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Die empfangene Nachricht wurde mit einer veralteten Version von Signal verschlüsselt, die nicht mehr unterstützt wird. Bitte den Absender, Signal zu aktualisieren und die Nachricht erneut zu senden.</string>
   <string name="MessageRecord_left_group">Du hast die Gruppe verlassen</string>
-  <string name="MessageRecord_updated_group">Gruppe wurde aktualisiert</string>
+  <string name="MessageRecord_you_updated_group">Du hast die Gruppe aktualisiert</string>
+  <string name="MessageRecord_s_updated_group">%s hat die Gruppe aktualisiert</string>
   <string name="MessageRecord_s_called_you">Eingegangener Anruf von %s</string>
   <string name="MessageRecord_called_s">Ausgegangener Anruf an %s</string>
   <string name="MessageRecord_missed_call_from">Entgangener Anruf von %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s ist bei Signal. Zeit, Hallo zu sagen! </string>
+  <string name="MessageRecord_s_joined_signal">%s ist jetzt bei Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du hast die Zeit für verschwindende Nachrichten auf %1$s festgelegt</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s hat die Zeit für verschwindende Nachrichten auf %2$s festgelegt</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Deine Sicherheitsnummer mit %s hat sich geändert</string>
@@ -405,12 +408,12 @@ Das Wiederherstellen einer verschlüsselten Datensicherung ersetzt deine bestehe
   <string name="RecipientPreferenceActivity_block_this_contact_question">Kontakt blockieren?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Du wirst keine Nachrichten und Anrufe mehr von diesem Kontakt erhalten können.</string>
   <string name="RecipientPreferenceActivity_block">Blockieren</string>
-  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Nicht mehr blockieren?</string>
+  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Diesen Kontakt freigeben?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Du wirst wieder Nachrichten und Anrufe von diesem Kontakt erhalten können.</string>
-  <string name="RecipientPreferenceActivity_unblock">Nicht mehr blockieren</string>
+  <string name="RecipientPreferenceActivity_unblock">Freigeben</string>
   <string name="RecipientPreferenceActivity_enabled">Aktiviert</string>
   <string name="RecipientPreferenceActivity_disabled">Deaktiviert</string>
-  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Verfügbar, sobald eine Nachricht gesendet oder empfangen wurde.</string>
+  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Verfügbar, sobald eine Nachricht gesendet oder empfangen wurde</string>
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Unbenannte Gruppe</string>
   <!--RedPhone-->
@@ -450,6 +453,8 @@ Bitte kontrolliere noch einmal deine Rufnummer. Diese wird anschließend durch e
   <string name="RegistrationActivity_i_understand">Verstanden</string>
   <string name="RegistrationActivity_play_services_error">Play-Dienste-Fehler</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play-Dienste werden aktualisiert oder sind vorübergehend nicht erreichbar. Bitte erneut versuchen.</string>
+  <string name="RegistrationActivity_more_information">Mehr Informationen</string>
+  <string name="RegistrationActivity_less_information">Weniger Informationen</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Mögliche Probleme</string>
   <!--RegistrationProgressActivity-->
@@ -472,7 +477,7 @@ Bitte kontrolliere noch einmal deine Rufnummer. Diese wird anschließend durch e
   <string name="RegistrationProgressActivity_too_many_requests">Zu viele Anfragen!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Du hast vor Kurzem schon einen Anruf angefordert. Du kannst in 20 Minuten einen weiteren anfordern.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Konflikt bei der Registrierung</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Diese Rufnummer wurde bereits bei einem anderen Signal-Server (CyanogenMod?) registriert. Du musst zuerst deine Registrierung dort löschen, bevor du dich hier registrieren kannst.</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Diese Rufnummer wurde bereits bei einem anderen Signal-Server registriert. Du musst zuerst dort deine Registrierung löschen, bevor du dich hier registrieren kannst.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registrierung abgeschlossen</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Signal-Registrierung erfolgreich abgeschlossen.</string>
@@ -483,22 +488,23 @@ Bitte kontrolliere noch einmal deine Rufnummer. Diese wird anschließend durch e
   <string name="Slide_audio">Audio</string>
   <string name="Slide_video">Video</string>
   <!--SmsMessageRecord-->
-  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Fehlerhafte Schlüsselaustausch-Nachricht empfangen!</string>
+  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Fehlerhafte Schlüsselaustausch-Nachricht empfangen</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
-Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</string>
+Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</string>
   <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Nachricht mit neuer Sicherheitsnummer empfangen. Zum Verarbeiten und Anzeigen antippen.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Du hast die Verschlüsselung neu gestartet.</string>
-  <string name="SmsMessageRecord_secure_session_reset_s">%s hat die Verschlüsselung neu gestartet.</string>
-  <string name="SmsMessageRecord_duplicate_message">Doppelte Nachricht.</string>
+  <string name="SmsMessageRecord_secure_session_reset">Du hast die Verschlüsselung neu gestartet</string>
+  <string name="SmsMessageRecord_secure_session_reset_s">%s hat die Verschlüsselung neu gestartet</string>
+  <string name="SmsMessageRecord_duplicate_message">Doppelte Nachricht</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">Gruppe wurde verlassen</string>
+  <string name="ThreadRecord_group_updated">Gruppe aktualisiert</string>
+  <string name="ThreadRecord_left_the_group">Gruppe verlassen</string>
   <string name="ThreadRecord_secure_session_reset">Verschlüsselung neu gestartet</string>
   <string name="ThreadRecord_draft">Entwurf:</string>
   <string name="ThreadRecord_called">Ausgegangener Anruf</string>
   <string name="ThreadRecord_called_you">Eingegangener Anruf</string>
   <string name="ThreadRecord_missed_call">Entgangener Anruf</string>
   <string name="ThreadRecord_media_message">Nachricht mit Medieninhalten</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s ist bei Signal. Zeit, Hallo zu sagen!</string>
+  <string name="ThreadRecord_s_joined_signal">%s ist jetzt bei Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Zeit für verschwindende Nachrichten auf %s festgelegt</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Deine Sicherheitsnummer mit %s hat sich geändert</string>
   <!--UpdateApkReadyListener-->
@@ -559,7 +565,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <string name="MessageNotifier_no_subject">(ohne Text)</string>
   <string name="MessageNotifier_message_delivery_failed">Nachrichtenübermittlung gescheitert.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Nachrichtenübermittlung gescheitert.</string>
-  <string name="MessageNotifier_error_delivering_message">Nachrichtenübermittlung fehlgeschlagen.</string>
+  <string name="MessageNotifier_error_delivering_message">Fehler beim Zustellen der Nachricht</string>
   <string name="MessageNotifier_mark_all_as_read">Alle gelesen</string>
   <string name="MessageNotifier_mark_read">Gelesen</string>
   <string name="MessageNotifier_media_message">Nachricht mit Medieninhalten</string>
@@ -574,6 +580,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Schnellantwort nicht verfügbar, solange Signal gesperrt ist!</string>
   <string name="QuickResponseService_problem_sending_message">Problem beim Senden der Nachricht!</string>
+  <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_open_directory">Verzeichnis öffnen</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Neue Nachricht</string>
@@ -582,7 +590,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Die Sicherheitsnummer für deine Unterhaltung mit %1$s hat sich geändert. Dies könnte bedeuten, dass jemand versucht, eure Kommunikation abzuhören. Oder %2$s hat Signal einfach erneut installiert.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Vielleicht möchtest du deine Sicherheitsnummer mit diesem Kontakt überprüfen.</string>
-  <string name="WebRtcCallScreen_new_safety_numbers_title">Neue Sicherheitsnummer</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Neue Sicherheitsnummer</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Zum Aktivieren deiner Videoübertragung antippen</string>
   <!--attachment_type_selector-->
@@ -621,9 +629,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Unterhaltung stummgeschaltet</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Signal-Nachricht senden</string>
-  <string name="conversation_activity__type_message_sms_insecure">Unsichere SMS senden</string>
-  <string name="conversation_activity__type_message_mms_insecure">Unsichere MMS senden</string>
+  <string name="conversation_activity__type_message_push">Signal-Nachricht</string>
+  <string name="conversation_activity__type_message_sms_insecure">Unsichere SMS</string>
+  <string name="conversation_activity__type_message_mms_insecure">Unsichere MMS</string>
   <string name="conversation_activity__from_sim_name">Von %1$s</string>
   <string name="conversation_activity__send">Senden</string>
   <string name="conversation_activity__remove">Entfernen</string>
@@ -702,6 +710,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFs und Sticker suchen</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nichts gefunden</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Exportieren</string>
+  <string name="import_export_fragment__import">Importieren</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Das Diagnoseprotokoll auf deinem Gerät konnte nicht gelesen werden. Du kannst allerdings immer noch ADB verwenden, um ein Diagnoseprotokoll zu erhalten.</string>
   <string name="log_submit_activity__thanks">Danke für deine Hilfe!</string>
@@ -732,12 +743,12 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">ÜBERPRÜFEN</string>
   <string name="message_recipients_list_item__resend">ERNEUT SENDEN</string>
+  <string name="message_recipients_list_item__resending">Wird erneut gesendet …</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s ist der Gruppe beigetreten.</item>
     <item quantity="other">%1$s sind der Gruppe beigetreten.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Gruppe aktualisiert.</string>
   <string name="GroupUtil_group_name_is_now">Gruppenname lautet jetzt »%1$s«.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Entsperren</string>
@@ -768,7 +779,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <string name="registration_activity__your_country_code_and_phone_number">DEINE LANDESVORWAHL UND RUFNUMMER</string>
   <string name="registration_activity__phone_number">RUFNUMMER</string>
   <string name="registration_activity__register">Registrieren</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Während der Registrierung werden einige Kontaktinformationen an den Server übermittelt. Diese werden jedoch nicht gespeichert.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal macht das Kommunizieren leicht, indem es deine bereits bestehende Rufnummer und dein Adressbuch verwendet. Freunde und Kontakte, die bereits deine Rufnummer kennen, können so über Signal einfach mit dir Kontakt aufnehmen.\n\nBeim Registrieren werden einige Kontaktinformationen an den Server übermittelt. Diese werden nicht gespeichert.</string>
   <string name="registration_activity__powered_by_twilio">Powered by twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Einige mögliche Probleme beinhalten:</string>
@@ -813,7 +824,7 @@ Das Warten auf eine Bestätigungs-SMS hat zu lange gedauert.</string>
   <string name="recipients_panel__to"><small>Name/Rufnummer eingeben</small></string>
   <string name="recipients_panel__add_members">Mitglieder hinzufügen</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Falls du die Sicherheit deiner Ende-zu-Ende-Verschlüsselung mit %s überprüfen möchtest, vergleiche bitte die oben dargestellte Nummer mit der Nummer auf dem Gerät deines Kontakts. Alternativ kannst du den Code deines Kontakts einscannen oder ihn deinen eigenen Code einscannen lassen. <a href="https://whispersystems.org/redirect/safety-numbers">Mehr über das Überprüfen von Sicherheitsnummern erfahren</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Falls du die Sicherheit deiner Ende-zu-Ende-Verschlüsselung mit %s überprüfen möchtest, vergleiche bitte die oben dargestellte Nummer mit der Nummer auf dem Gerät deines Kontakts. Alternativ kannst du den Code deines Kontakts einscannen oder ihn deinen eigenen Code einscannen lassen. <a href="https://whispersystems.org/redirect/safety-numbers">Erfahre mehr über das Überprüfen von Sicherheitsnummern</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Zum Scannen antippen</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Sicherheitsnummer teilen</string>
@@ -859,6 +870,11 @@ Das Warten auf eine Bestätigungs-SMS hat zu lange gedauert.</string>
   <string name="arrays__images">Bilder</string>
   <string name="arrays__audio">Audio</string>
   <string name="arrays__video">Video</string>
+  <string name="arrays__documents">Dokumente</string>
+  <string name="arrays__small">Klein</string>
+  <string name="arrays__normal">Normal</string>
+  <string name="arrays__large">Groß</string>
+  <string name="arrays__extra_large">Extragroß</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d Stunde</item>
@@ -882,14 +898,14 @@ Das Warten auf eine Bestätigungs-SMS hat zu lange gedauert.</string>
   <string name="preferences__change_passphrase">Passwort ändern</string>
   <string name="preferences__change_your_passphrase">Dein Passwort ändern</string>
   <string name="preferences__enable_passphrase">Passwort aktivieren</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Signal und Benachrichtungen mit einem Passwort sperren</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Signal und Benachrichtungen über Nachrichten mit einem Passwort sperren</string>
   <string name="preferences__screen_security">Bildschirmschutz</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Bildschirmfotos in der Anwendung und der Liste der letzten Anwendungen blockieren</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Signal bei Inaktivität nach einer festgelegten Verzögerungszeit automatisch sperren</string>
   <string name="preferences__inactivity_timeout_passphrase">Passwort bei Inaktivität</string>
   <string name="preferences__inactivity_timeout_interval">Verzögerungszeit</string>
   <string name="preferences__notifications">Benachrichtigungen</string>
-  <string name="preferences__enable_message_notifications">Benachrichtigungen über Nachrichtenempfang aktivieren</string>
+  <string name="preferences__enable_message_notifications">Benachrichtigungen über Nachrichten aktivieren</string>
   <string name="preferences__new_contacts_notifications">Über neue Kontakte benachrichtigen</string>
   <string name="preferences__show_a_notification_for_new_signal_contacts">Benachrichtigungen über neue Signal-Kontakte anzeigen</string>
   <string name="preferences__led_color">LED-Farbe</string>
@@ -900,7 +916,6 @@ Das Warten auf eine Bestätigungs-SMS hat zu lange gedauert.</string>
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Deaktiviert für:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">LED-Blinkmuster eingestellt</string>
   <string name="preferences__sound">Ton</string>
-  <string name="preferences__change_notification_sound">Benachrichtigungston ändern</string>
   <string name="preferences__silent">Lautlos</string>
   <string name="preferences__in_conversation_notifications">Immer benachrichtigen</string>
   <string name="preferences__play_inthread_notifications">Benachrichtigungston während aktiver Unterhaltungen wiedergeben</string>
@@ -973,6 +988,14 @@ Das Warten auf eine Bestätigungs-SMS hat zu lange gedauert.</string>
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Unterstützung für Video- und Sprachanrufe der nächsten Generation, falls bei beiden Beteiligten aktiviert. Diese Funktion befindet sich im Beta-Test.</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Alle Anrufe über den Signal-Server leiten, um die eigene IP-Adresse gegenüber Kontakten nicht offenzulegen. Bei Aktivierung wird sich die Anrufqualität verringern.</string>
   <string name="preferences_advanced__always_relay_calls">Anrufe immer indirekt</string>
+  <string name="preferences_app_protection__app_access">App-Zugriff</string>
+  <string name="preferences_app_protection__communication">Kommunikation</string>
+  <string name="preferences_chats__chats">Unterhaltungen</string>
+  <string name="preferences_notifications__message_notifications">Benachrichtigungen über Nachrichten</string>
+  <string name="preferences_notifications__events">Ereignisse</string>
+  <string name="preferences_chats__show_invitation_prompts">Einladungshinweise anzeigen</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Einladungshinweise für Kontakte ohne Signal anzeigen</string>
+  <string name="preferences_chats__message_text_size">Schriftgröße für Nachrichten</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

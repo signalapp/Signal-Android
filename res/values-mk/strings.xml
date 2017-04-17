@@ -121,6 +121,7 @@
   <string name="DateUtils_minutes_ago">%d минути</string>
   <!--DeviceListActivity-->
   <!--DeviceListItem-->
+  <!--DocumentView-->
   <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Сподели со</string>
@@ -193,11 +194,9 @@
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Добивте порака која е енкриптирана користејќи стара верзија на Signal која веќе не е поддржана. Ве молиме побајте од праќачот пораката да ја апдејтира апликацијата на најновата верзија и пак да ја препрати пораката.</string>
   <string name="MessageRecord_left_group">Ја напуштивте групата.</string>
-  <string name="MessageRecord_updated_group">Групата е ажурирана.</string>
   <string name="MessageRecord_s_called_you">%s ве повика</string>
   <string name="MessageRecord_called_s">Повикан %s</string>
   <string name="MessageRecord_missed_call_from">Пропуштен повик од %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s има инсталирано Signal, кажи му здраво! </string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Тајните фрази не се идентични!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Погрешна стара лозинка!</string>
@@ -301,7 +300,6 @@
   <string name="SmsMessageRecord_duplicate_message">Дупла порака.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_draft">Скица:</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s има инсталирано Signal, кажи му здраво! </string>
   <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
   <!--KeyExchangeInitiator-->
@@ -350,6 +348,7 @@
   <string name="MmsPreferencesFragment__invalid_uri">Внесениот текст не е валиден URI</string>
   <string name="MmsPreferencesFragment__invalid_host">Внесениот текст не е валиден хост</string>
   <!--QuickResponseService-->
+  <!--SaveAttachmentTask-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Нова порака</string>
@@ -374,8 +373,6 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Разговорот сега е безгласен</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_sms_insecure">Пратете нешифрирана SMS порака</string>
-  <string name="conversation_activity__type_message_mms_insecure">Пратете нешифрирана MMS порака</string>
   <string name="conversation_activity__send">Испрати</string>
   <string name="conversation_activity__remove">Отстрани</string>
   <string name="conversation_activity__window_description">Разговор со %1$s</string>
@@ -413,6 +410,9 @@
   <string name="expiration_off">Исклучи</string>
   <!--giphy_activity-->
   <!--giphy_fragment-->
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Експортирај</string>
+  <string name="import_export_fragment__import">Импортирај</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__thanks">Ви благодариме за вашата помош!</string>
   <string name="log_submit_activity__submitting">Испраќање</string>
@@ -434,7 +434,6 @@
   <string name="message_recipients_list_item__verify">ВЕРИФИКУВАЈ</string>
   <string name="message_recipients_list_item__resend">ПРЕПРАТИ</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_group_updated">Групата е ажурирана.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Отклучи</string>
   <!--prompt_mms_activity-->
@@ -455,7 +454,6 @@
 ТЕЛЕФОНСКИ БРОЈ</string>
   <string name="registration_activity__phone_number">ТЕЛЕФОНСКИ БРОЈ</string>
   <string name="registration_activity__register">Регистрирајте се</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Регистрацијата испраќа некои ваши контакт информации на серверот. Овие информации нема да трајно да се зачуваат.</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Некои можни проблеми
 вклучуваат:
@@ -518,6 +516,7 @@
   <string name="arrays__enabled">Овозможено</string>
   <string name="arrays__disabled">Оневозможено</string>
   <string name="arrays__audio">Звук</string>
+  <string name="arrays__normal">Нормално</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d час</item>
@@ -549,7 +548,6 @@
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Исклучено за:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Поставен е прилагодениот LED примерок за трепкање</string>
   <string name="preferences__sound">Звук</string>
-  <string name="preferences__change_notification_sound">Променете го звукот за известување</string>
   <string name="preferences__play_inthread_notifications">Свири звук за известување за време на активен разговор</string>
   <string name="preferences__repeat_alerts">Повтори известувања</string>
   <string name="preferences__never">Никогаш</string>

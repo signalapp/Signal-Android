@@ -28,10 +28,8 @@ import android.text.style.StyleSpan;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
-import org.thoughtcrime.securesms.util.GroupUtil;
 
 /**
  * The message record model which represents thread heading messages.
@@ -75,7 +73,7 @@ public class ThreadRecord extends DisplayRecord {
     if (SmsDatabase.Types.isDecryptInProgressType(type)) {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_decrypting_please_wait));
     } else if (isGroupUpdate()) {
-      return emphasisAdded(GroupUtil.getDescription(context, getBody().getBody()).toString());
+      return emphasisAdded(context.getString(R.string.ThreadRecord_group_updated));
     } else if (isGroupQuit()) {
       return emphasisAdded(context.getString(R.string.ThreadRecord_left_the_group));
     } else if (isKeyExchange()) {
@@ -100,7 +98,7 @@ public class ThreadRecord extends DisplayRecord {
     } else if (SmsDatabase.Types.isMissedCall(type)) {
       return emphasisAdded(context.getString(org.thoughtcrime.securesms.R.string.ThreadRecord_missed_call));
     } else if (SmsDatabase.Types.isJoinedType(type)) {
-      return emphasisAdded(context.getString(R.string.ThreadRecord_s_is_on_signal_say_hey, getRecipients().getPrimaryRecipient().toShortString()));
+      return emphasisAdded(context.getString(R.string.ThreadRecord_s_joined_signal, getRecipients().getPrimaryRecipient().toShortString()));
     } else if (SmsDatabase.Types.isExpirationTimerUpdate(type)) {
       String time = ExpirationUtil.getExpirationDisplayValue(context, (int) (getExpiresIn() / 1000));
       return emphasisAdded(context.getString(R.string.ThreadRecord_disappearing_message_time_updated_to_s, time));

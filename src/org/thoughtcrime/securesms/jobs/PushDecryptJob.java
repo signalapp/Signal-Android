@@ -7,6 +7,7 @@ import android.util.Log;
 import android.util.Pair;
 
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.attachments.PointerAttachment;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
@@ -40,6 +41,7 @@ import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.IncomingPreKeyBundleMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
+import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.GroupUtil;
@@ -75,6 +77,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.SentTranscriptM
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -111,7 +114,6 @@ public class PushDecryptJob extends ContextJob {
 
     if (!IdentityKeyUtil.hasIdentityKey(context)) {
       Log.w(TAG, "Skipping job, waiting for migration...");
-      MessageNotifier.updateNotification(context, null, true, -2);
       return;
     }
 
@@ -301,6 +303,35 @@ public class PushDecryptJob extends ContextJob {
     }
   }
 
+  private long handleSynchronizeSentEndSessionMessage(@NonNull MasterSecretUnion     masterSecret,
+                                                      @NonNull SentTranscriptMessage message,
+                                                      @NonNull Optional<Long>        smsMessageId)
+  {
+    EncryptingSmsDatabase     database                  = DatabaseFactory.getEncryptingSmsDatabase(context);
+    Recipients                recipients                = getSyncMessageDestination(message);
+    OutgoingTextMessage       outgoingTextMessage       = new OutgoingTextMessage(recipients, "", -1);
+    OutgoingEndSessionMessage outgoingEndSessionMessage = new OutgoingEndSessionMessage(outgoingTextMessage);
+
+    long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
+
+    if (recipients.isSingleRecipient() && !recipients.isGroupRecipient()) {
+      SessionStore sessionStore = new TextSecureSessionStore(context);
+      sessionStore.deleteAllSessions(recipients.getPrimaryRecipient().getNumber());
+
+      SecurityEvent.broadcastSecurityUpdateEvent(context);
+
+      long messageId = database.insertMessageOutbox(masterSecret, threadId, outgoingEndSessionMessage,
+                                                    false, message.getTimestamp());
+      database.markAsSent(messageId, true);
+    }
+
+    if (smsMessageId.isPresent()) {
+      database.deleteMessage(smsMessageId.get());
+    }
+
+    return threadId;
+  }
+
   private void handleGroupMessage(@NonNull MasterSecretUnion masterSecret,
                                   @NonNull SignalServiceEnvelope envelope,
                                   @NonNull SignalServiceDataMessage message,
@@ -358,7 +389,9 @@ public class PushDecryptJob extends ContextJob {
 
     Long threadId;
 
-    if (message.getMessage().isGroupUpdate()) {
+    if (message.getMessage().isEndSession()) {
+      threadId = handleSynchronizeSentEndSessionMessage(masterSecret, message, smsMessageId);
+    } else if (message.getMessage().isGroupUpdate()) {
       threadId = GroupMessageProcessor.process(context, masterSecret, envelope, message.getMessage(), true);
     } else if (message.getMessage().isExpirationUpdate()) {
       threadId = handleSynchronizeSentExpirationUpdate(masterSecret, message, smsMessageId);
@@ -452,13 +485,19 @@ public class PushDecryptJob extends ContextJob {
     Optional<InsertResult> insertResult = database.insertSecureDecryptedMessageInbox(masterSecret, mediaMessage, -1);
 
     if (insertResult.isPresent()) {
-      List<DatabaseAttachment> attachments = DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(insertResult.get().getMessageId());
+      List<DatabaseAttachment> attachments = DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(null, insertResult.get().getMessageId());
 
       for (DatabaseAttachment attachment : attachments) {
         ApplicationContext.getInstance(context)
                           .getJobManager()
                           .add(new AttachmentDownloadJob(context, insertResult.get().getMessageId(),
                                                          attachment.getAttachmentId()));
+
+        if (!masterSecret.getMasterSecret().isPresent()) {
+          ApplicationContext.getInstance(context)
+                            .getJobManager()
+                            .add(new AttachmentFileNameJob(context, masterSecret.getAsymmetricMasterSecret().get(), attachment, mediaMessage));
+        }
       }
 
       if (smsMessageId.isPresent()) {
@@ -519,7 +558,7 @@ public class PushDecryptJob extends ContextJob {
 
     database.markAsSent(messageId, true);
 
-    for (DatabaseAttachment attachment : DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(messageId)) {
+    for (DatabaseAttachment attachment : DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(null, messageId)) {
       ApplicationContext.getInstance(context)
                         .getJobManager()
                         .add(new AttachmentDownloadJob(context, messageId, attachment.getAttachmentId()));

@@ -37,11 +37,11 @@ import ws.com.google.android.mms.pdu.PduPart;
 public class AudioSlide extends Slide {
 
   public AudioSlide(Context context, Uri uri, long dataSize) {
-    super(context, constructAttachmentFromUri(context, uri, ContentType.AUDIO_UNSPECIFIED, dataSize, false));
+    super(context, constructAttachmentFromUri(context, uri, ContentType.AUDIO_UNSPECIFIED, dataSize, false, null));
   }
 
   public AudioSlide(Context context, Uri uri, long dataSize, String contentType) {
-    super(context,  new UriAttachment(uri, null, contentType, AttachmentDatabase.TRANSFER_PROGRESS_STARTED, dataSize));
+    super(context,  new UriAttachment(uri, null, contentType, AttachmentDatabase.TRANSFER_PROGRESS_STARTED, dataSize, null));
   }
 
   public AudioSlide(Context context, Attachment attachment) {

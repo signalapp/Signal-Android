@@ -42,7 +42,7 @@ public class GeneratedContactPhoto implements ContactPhoto {
     if (cleanedName.isEmpty()) {
       return "#";
     } else {
-      return String.valueOf(cleanedName.charAt(0));
+      return new StringBuilder().appendCodePoint(cleanedName.codePointAt(0)).toString();
     }
   }
 

@@ -200,6 +200,7 @@
   <string name="DeviceListItem_linked_s">Terkait %s</string>
   <string name="DeviceListItem_last_active_s">Terakhir aktif %s</string>
   <string name="DeviceListItem_today">Hari ini</string>
+  <!--DocumentView-->
   <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Berbagi dengan</string>
@@ -318,11 +319,9 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Menerima pesan terenkripsi menggunakan Signal versi lama tidak lagi didukung, Harap beri tahu pengirim untuk memutakhirkan ke versi terbaru dan kirim ulang pesannya.</string>
   <string name="MessageRecord_left_group">Anda telah keluar dari grup.</string>
-  <string name="MessageRecord_updated_group">Grup diperbarui.</string>
   <string name="MessageRecord_s_called_you">%s menelpon Anda.</string>
   <string name="MessageRecord_called_s">Memanggil %s</string>
   <string name="MessageRecord_missed_call_from">Panggilan tak terjawab dari %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s ada di Signal, katakan halo!</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Angka keamanan anda dengan %s telah berubah.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Frasa sandi tidak cocok!</string>
@@ -436,7 +435,6 @@ isikan (%s) tidak tepat.
   <string name="RegistrationProgressActivity_too_many_requests">Terlalu banyak permintaan!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Anda telah meminta panggilan suara. Anda dapat meminta lagi dalam 20 menit kemudian.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Konflik pendaftaran</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Nomor ini telah terdaftar pada server Signal yang berbeda (CyanogenMod?). Anda harus membatalkan pendaftaran tersebut sebelum mendaftar di sini.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Pendaftaran selesai</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Pendaftaran Signal telah lengkap dan berhasil.</string>
@@ -461,7 +459,6 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ThreadRecord_called_you">Memanggil Anda</string>
   <string name="ThreadRecord_missed_call">Panggilan tak terjawab</string>
   <string name="ThreadRecord_media_message">Pesan media</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s ada di Signal, katakan halo!</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Angka keamanan anda dengan %s telah berubah.</string>
   <!--UpdateApkReadyListener-->
   <!--VerifyIdentityActivity-->
@@ -522,12 +519,14 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Tanggapan cepat tidak tersedia ketika Signal sedang dikunci!</string>
   <string name="QuickResponseService_problem_sending_message">Terjadi masalah saat mengirim pesan!</string>
+  <!--SaveAttachmentTask-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Pesan baru</string>
   <!--VideoPlayer-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Mungkin sebaiknya anda memastikan angka keamanan dengan kontak ini.</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Angka keamanan baru</string>
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Gambar</string>
@@ -555,9 +554,6 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Percakapan dibisukan</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Kirim pesan Signal</string>
-  <string name="conversation_activity__type_message_sms_insecure">Kirim SMS tidak aman</string>
-  <string name="conversation_activity__type_message_mms_insecure">Kirim MMS tidak aman</string>
   <string name="conversation_activity__from_sim_name">Dari %1$s</string>
   <string name="conversation_activity__send">Kirim</string>
   <string name="conversation_activity__remove">Hapus</string>
@@ -601,6 +597,9 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="expiration_off">Mati</string>
   <!--giphy_activity-->
   <!--giphy_fragment-->
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Eksport</string>
+  <string name="import_export_fragment__import">Import</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Tidak bisa membaca catatan log pada perangkat Anda. Anda masih bisa menggunakan ADB untuk mengambil log awakutu.</string>
   <string name="log_submit_activity__thanks">Terima kasih atas bantuan Anda!</string>
@@ -633,7 +632,6 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">%1$s bergabung dengan grup</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Grup diperbarui.</string>
   <string name="GroupUtil_group_name_is_now">Nama grup sekarang \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Buka Kunci</string>
@@ -666,7 +664,6 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
 NOMOR TELEPON</string>
   <string name="registration_activity__phone_number">NOMOR TELEPON</string>
   <string name="registration_activity__register">Daftar</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Pendaftaran mengirimkan beberapa informasi kontak ke server. Tetapi tidak disimpan.</string>
   <string name="registration_activity__powered_by_twilio">Didukung oleh twillio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Beberapa masalah yang mungkin
@@ -778,6 +775,7 @@ gagal
   <string name="arrays__images">Gambar</string>
   <string name="arrays__audio">Audio</string>
   <string name="arrays__video">Video</string>
+  <string name="arrays__normal">Normal</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="other">%d jam</item>
@@ -818,7 +816,6 @@ gagal
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Mati selama:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Set pola kedip LED!</string>
   <string name="preferences__sound">Bunyi</string>
-  <string name="preferences__change_notification_sound">Ganti suara notofikasi</string>
   <string name="preferences__silent">Diam</string>
   <string name="preferences__in_conversation_notifications">Pemberitahuan percakapan</string>
   <string name="preferences__play_inthread_notifications">Putar suara pemberitahuan ketika berada pada percakapan aktif</string>

@@ -251,6 +251,9 @@
     <string name="DeviceListItem_last_active_s">Last active %s</string>
     <string name="DeviceListItem_today">Today</string>
 
+    <!-- DocumentView -->
+    <string name="DocumentView_unknown_file">Unknown file</string>
+
     <!-- DozeReminder -->
     <string name="DozeReminder_optimize_for_missing_play_services">Optimize for missing Play Services</string>
     <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">This device does not support Play Services. Tap to disable system battery optimizations that prevent Signal from retrieving messages while inactive.</string>
@@ -408,11 +411,12 @@
     <!-- MessageRecord -->
     <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Received a message encrypted using an old version of Signal that is no longer supported. Please ask the sender to update to the most recent version and resend the message.</string>
     <string name="MessageRecord_left_group">You have left the group.</string>
-    <string name="MessageRecord_updated_group">Updated the group.</string>
+    <string name="MessageRecord_you_updated_group">You updated the group.</string>
+    <string name="MessageRecord_s_updated_group">%s updated the group.</string>
     <string name="MessageRecord_s_called_you">%s called you</string>
     <string name="MessageRecord_called_s">Called %s</string>
     <string name="MessageRecord_missed_call_from">Missed call from %s</string>
-    <string name="MessageRecord_s_is_on_signal_say_hey">%s is on Signal, say hey!</string>
+    <string name="MessageRecord_s_joined_signal">%s joined Signal!</string>
     <string name="MessageRecord_you_set_disappearing_message_time_to_s">You set disappearing message time to %1$s.</string>
     <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s set disappearing message time to %2$s.</string>
     <string name="MessageRecord_your_safety_number_with_s_has_changed">Your safety number with %s has changed.</string>
@@ -525,6 +529,8 @@
     <string name="RegistrationActivity_i_understand">I understand</string>
     <string name="RegistrationActivity_play_services_error">Play Services Error</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services is updating or temporarily unavailable. Please try again.</string>
+    <string name="RegistrationActivity_more_information">More information</string>
+    <string name="RegistrationActivity_less_information">Less information</string>
 
     <!-- RegistrationProblemsActivity -->
     <string name="RegistrationProblemsActivity_possible_problems">Possible problems</string>
@@ -549,7 +555,7 @@
     <string name="RegistrationProgressActivity_too_many_requests">Too many requests!</string>
     <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">You\'ve already recently requested a voice call. You can request another in 20 minutes.</string>
     <string name="RegistrationProgressActivity_registration_conflict">Registration conflict</string>
-    <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">This number is already registered on a different Signal server (CyanogenMod?). You must unregister there before registering here.</string>
+    <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">This number is already registered on a different Signal server. You must unregister there before registering here.</string>
 
     <!-- RegistrationService -->
     <string name="RegistrationService_registration_complete">Registration complete</string>
@@ -575,6 +581,7 @@
     <string name="SmsMessageRecord_duplicate_message">Duplicate message.</string>
 
     <!-- ThreadRecord -->
+    <string name="ThreadRecord_group_updated">Group updated</string>
     <string name="ThreadRecord_left_the_group">Left the group</string>
     <string name="ThreadRecord_secure_session_reset">Secure session reset.</string>
     <string name="ThreadRecord_draft">Draft:</string>
@@ -582,7 +589,7 @@
     <string name="ThreadRecord_called_you">Called you</string>
     <string name="ThreadRecord_missed_call">Missed call</string>
     <string name="ThreadRecord_media_message">Media message</string>
-    <string name="ThreadRecord_s_is_on_signal_say_hey">%s is on Signal, say hey!</string>
+    <string name="ThreadRecord_s_joined_signal">%s joined Signal!</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Disappearing message time set to %s</string>
     <string name="ThreadRecord_your_safety_number_with_s_has_changed">Your safety number with %s has changed.</string>
 
@@ -674,6 +681,9 @@
     <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Quick response unavailable when Signal is locked!</string>
     <string name="QuickResponseService_problem_sending_message">Problem sending message!</string>
 
+    <!-- SaveAttachmentTask -->
+    <string name="SaveAttachmentTask_open_directory">Open directory</string>
+
     <!-- SingleRecipientNotificationBuilder -->
     <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
     <string name="SingleRecipientNotificationBuilder_new_message">New message</string>
@@ -684,7 +694,7 @@
     <!-- WebRtcCallScreen -->
     <string name="WebRtcCallScreen_new_safety_numbers">The safety number for your conversation with %1$s has changed. This could either mean that someone is trying to intercept your communication, or that %2$s simply re-installed Signal.</string>
     <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">You may wish to verify your safety number with this contact.</string>
-    <string name="WebRtcCallScreen_new_safety_numbers_title">New safety numbers</string>
+    <string name="WebRtcCallScreen_new_safety_number_title">New safety number</string>
 
     <!-- WebRtcCallControls -->
     <string name="WebRtcCallControls_tap_to_enable_your_video">Tap to enable your video</string>
@@ -735,9 +745,9 @@
     <string name="conversation_title_view__conversation_muted">Conversation muted</string>
 
     <!-- conversation_activity -->
-    <string name="conversation_activity__type_message_push">Send Signal message</string>
-    <string name="conversation_activity__type_message_sms_insecure">Send unsecured SMS</string>
-    <string name="conversation_activity__type_message_mms_insecure">Send unsecured MMS</string>
+    <string name="conversation_activity__type_message_push">Signal message</string>
+    <string name="conversation_activity__type_message_sms_insecure">Unsecured SMS</string>
+    <string name="conversation_activity__type_message_mms_insecure">Unsecured MMS</string>
     <string name="conversation_activity__from_sim_name">From %1$s</string>
     <string name="conversation_activity__send">Send</string>
     <string name="conversation_activity__remove">Remove</string>
@@ -843,6 +853,9 @@
     <!-- giphy_fragment -->
     <string name="giphy_fragment__nothing_found">Nothing found</string>
 
+    <!-- import_export_fragment -->
+    <string name="import_export_fragment__export">Export</string>
+    <string name="import_export_fragment__import">Import</string>
 
     <!-- log_submit_activity -->
     <string name="log_submit_activity__log_fetch_failed">Could not read the log on your device. You can still use ADB to get a debug log instead.</string>
@@ -880,13 +893,13 @@
     <!-- message_recipients_list_item -->
     <string name="message_recipients_list_item__verify">VERIFY</string>
     <string name="message_recipients_list_item__resend">RESEND</string>
+    <string name="message_recipients_list_item__resending">Resending...</string>
 
     <!-- GroupUtil -->
     <plurals name="GroupUtil_joined_the_group">
         <item quantity="one">%1$s joined the group.</item>
         <item quantity="other">%1$s joined the group.</item>
     </plurals>
-    <string name="GroupUtil_group_updated">Group updated.</string>
     <string name="GroupUtil_group_name_is_now">Group name is now \'%1$s\'.</string>
 
     <!-- prompt_passphrase_activity -->
@@ -926,7 +939,7 @@
     </string>
     <string name="registration_activity__phone_number">PHONE NUMBER</string>
     <string name="registration_activity__register">Register</string>
-    <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registration transmits some contact information to the server. It is not stored.</string>
+    <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal makes it easy to communicate by using your existing phone number and address book. Friends and contacts who already know how to contact you by phone will be able to easily get in touch by Signal.\n\nRegistration transmits some contact information to the server. It is not stored.</string>
     <string name="registration_activity__powered_by_twilio">Powered by twilio</string>
 
     <!-- registration_problems -->
@@ -1058,6 +1071,12 @@
     <string name="arrays__images">Images</string>
     <string name="arrays__audio">Audio</string>
     <string name="arrays__video">Video</string>
+    <string name="arrays__documents">Documents</string>
+
+    <string name="arrays__small">Small</string>
+    <string name="arrays__normal">Normal</string>
+    <string name="arrays__large">Large</string>
+    <string name="arrays__extra_large">Extra large</string>
 
     <!-- plurals.xml -->
     <plurals name="hours_ago">
@@ -1101,7 +1120,6 @@
     <string name="preferences__pref_led_blink_custom_pattern_off_for">Off for:</string>
     <string name="preferences__pref_led_blink_custom_pattern_set">Custom LED blink pattern set!</string>
     <string name="preferences__sound">Sound</string>
-    <string name="preferences__change_notification_sound">Change notification sound</string>
     <string name="preferences__silent">Silent</string>
     <string name="preferences__in_conversation_notifications">In-conversation notifications</string>
     <string name="preferences__play_inthread_notifications">Play notification sound when viewing an active conversation</string>
@@ -1174,8 +1192,14 @@
     <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Support for next-generation video and voice calls when enabled by both parties. This feature is in beta.</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Relay all calls through the Signal server to avoid revealing your IP address to your contact. Enabling will reduce call quality.</string>
     <string name="preferences_advanced__always_relay_calls">Always relay calls</string>
-
-
+    <string name="preferences_app_protection__app_access">App access</string>
+    <string name="preferences_app_protection__communication">Communication</string>
+    <string name="preferences_chats__chats">Chats</string>
+    <string name="preferences_notifications__message_notifications">Message notifications</string>
+    <string name="preferences_notifications__events">Events</string>
+    <string name="preferences_chats__show_invitation_prompts">Show invitation prompts</string>
+    <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Display invitation prompts for contacts without Signal</string>
+    <string name="preferences_chats__message_text_size">Message font size</string>
 
     <!-- **************************************** -->
     <!-- menus -->
@@ -1338,6 +1362,7 @@
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
+
 
     <!-- EOF -->
 

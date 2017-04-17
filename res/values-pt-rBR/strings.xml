@@ -226,6 +226,8 @@
   <string name="DeviceListItem_linked_s">%s vinculado</string>
   <string name="DeviceListItem_last_active_s">Último ativo %s</string>
   <string name="DeviceListItem_today">Hoje</string>
+  <!--DocumentView-->
+  <string name="DocumentView_unknown_file">Arquivo desconhecido</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Otimizar para ausência do Serviços Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Este dispositivo não tem suporte para o Serviços Play. Clique para desabilitar as otimizações sistêmicas de bateria que impedem o Signal de receber mensagens enquanto está inativo.</string>
@@ -362,11 +364,12 @@
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Foi recebida uma mensagem que foi criptografada usando uma versão antiga do Signal que não é mais suportada. Favor pedir ao remetente que atualize para a versão mais recente e reenvie a mensagem.</string>
   <string name="MessageRecord_left_group">Você saiu do grupo.</string>
-  <string name="MessageRecord_updated_group">Atualizou o grupo.</string>
+  <string name="MessageRecord_you_updated_group">Você atualizou o grupo.</string>
+  <string name="MessageRecord_s_updated_group">%s atualizou o grupo.</string>
   <string name="MessageRecord_s_called_you">%s fez uma chamada para você.</string>
   <string name="MessageRecord_called_s">Chamou %s</string>
   <string name="MessageRecord_missed_call_from">Chamada perdida de %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s está no Signal, diga oi!</string>
+  <string name="MessageRecord_s_joined_signal">%s entrou no Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Você definiu a expiração da mensagem temporária para %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s definiu a expiração da mensagem temporária para %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Seu número de segurança com %s mudou.</string>
@@ -390,7 +393,7 @@
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nenhum dispositivo encontrado.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Erro de rede.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Código QR inválido.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Desculpe, você já possui muitos aparelhos religados. Tente remover alguns</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Desculpe, você já possui muitos dispositivos vinculados. Tente remover alguns.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Desculpe, este não é um código QR de dispositivo válido.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Vincular um dispositivo Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Parece que você está tentando vincular um dispositivo Signal usando um outro scanner. Para sua proteção, favor escanear novamente o código usando o Signal.</string>
@@ -468,6 +471,8 @@
   <string name="RegistrationActivity_i_understand">Entendi</string>
   <string name="RegistrationActivity_play_services_error">Erro Serviços Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Serviços Google Play está sendo atualizado ou temporariamente indisponível. Favor tentar novamente.</string>
+  <string name="RegistrationActivity_more_information">Mais informações</string>
+  <string name="RegistrationActivity_less_information">Menos informações</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Possíveis problemas</string>
   <!--RegistrationProgressActivity-->
@@ -490,7 +495,7 @@
   <string name="RegistrationProgressActivity_too_many_requests">Muitas solicitações!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Você já solicitou recentemente um chamada de voz. Você pode solicitar outra em 20 minutos.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Conflito ao registrar</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Este número já está registrado em outro servidor Signal (CyanogenMod?). Você deve descadastrá-lo antes para poder registrar aqui.</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Este número já está cadastrado em um outro servidor Signal. Você deve descadastrá-lo lá antes de cadastrá-lo aqui.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Cadastro completo</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Cadastro no Signal efetuado com sucesso.</string>
@@ -512,6 +517,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%s reiniciou a sessão segura.</string>
   <string name="SmsMessageRecord_duplicate_message">Mensagem duplicada.</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_group_updated">Grupo atualizado</string>
   <string name="ThreadRecord_left_the_group">Sair do grupo</string>
   <string name="ThreadRecord_secure_session_reset">Sessão segura reiniciada.</string>
   <string name="ThreadRecord_draft">Rascunho:</string>
@@ -519,7 +525,7 @@
   <string name="ThreadRecord_called_you">Ligação recebida</string>
   <string name="ThreadRecord_missed_call">Ligação perdida</string>
   <string name="ThreadRecord_media_message">MMS</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s está no Signal, diga oi!</string>
+  <string name="ThreadRecord_s_joined_signal">%s entrou no Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Expiração da mensagem temporária definida para %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Seu número de segurança com %s mudou.</string>
   <!--UpdateApkReadyListener-->
@@ -595,6 +601,8 @@
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Resposta rápida não disponível quando o Signal está bloqueado!</string>
   <string name="QuickResponseService_problem_sending_message">Problema ao enviar mensagem!</string>
+  <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_open_directory">Abrir pasta</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nova mensagem</string>
@@ -603,7 +611,7 @@
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">O número de segurança da sua conversa com %1$s mudou. Isto pode significar que alguém está tentando interceptar sua comunicação, ou que %2$s simplesmente reinstalou o Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Talvez você queira verificar seu número de segurança com esse contato.</string>
-  <string name="WebRtcCallScreen_new_safety_numbers_title">Novos números de segurança</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Novo número de segurança</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Clique para habilitar seu vídeo</string>
   <!--attachment_type_selector-->
@@ -642,9 +650,6 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Conversa silenciada</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Enviar mensagem via Signal</string>
-  <string name="conversation_activity__type_message_sms_insecure">Enviar SMS inseguro</string>
-  <string name="conversation_activity__type_message_mms_insecure">Enviar MMS inseguro</string>
   <string name="conversation_activity__from_sim_name">De %1$s</string>
   <string name="conversation_activity__send">Enviar</string>
   <string name="conversation_activity__remove">Remover</string>
@@ -688,7 +693,7 @@
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Vincular dispositivo</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">Nenhum aparelho religado</string>
+  <string name="device_list_fragment__no_devices_linked">Nenhum dispositivo vinculado</string>
   <string name="device_list_fragment__link_new_device">Vincular novo dispositivo</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">continuar</string>
@@ -723,6 +728,9 @@
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Procurar GIFs e stickers</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nada encontrado</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Exportar</string>
+  <string name="import_export_fragment__import">Importar</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Não foi possível ler o log no seu dispositivo. Você pode usar o ADB para obter um log de depuração.</string>
   <string name="log_submit_activity__thanks">Obrigado por sua ajuda!</string>
@@ -753,12 +761,12 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">VERIFICAR</string>
   <string name="message_recipients_list_item__resend">REENVIAR</string>
+  <string name="message_recipients_list_item__resending">Reenviando...</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s entrou no  grupo.</item>
     <item quantity="other">%1$s entraram no  grupo.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Grupo atualizado.</string>
   <string name="GroupUtil_group_name_is_now">O nome do grupo agora é \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Destrancar</string>
@@ -792,7 +800,7 @@
     </string>
   <string name="registration_activity__phone_number">NÚMERO TELEFÔNICO</string>
   <string name="registration_activity__register">Cadastrar</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">O registro irá transmitir algumas informações de contato para o servidor. Elas não serão armazenadas.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">O Signal torna fácil a comunicação ao utilizar seu número telefônico e lista de contatos. Amigos e contatos que já sabem como entrar em contato com você por telefone serão capazes de entrar em contato com você pelo Signal.\n\nO cadastramento transmite algumas informações de contato para o servidor. Elas não são armazenadas.</string>
   <string name="registration_activity__powered_by_twilio">Fornecido por twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Alguns problemas possíveis
@@ -897,6 +905,8 @@ falhou.</string>
   <string name="arrays__images">Imagens</string>
   <string name="arrays__audio">Áudio</string>
   <string name="arrays__video">Vídeo</string>
+  <string name="arrays__documents">Documentos</string>
+  <string name="arrays__normal">Normal</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d hora</item>
@@ -938,7 +948,6 @@ falhou.</string>
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Desligado por:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Padrão de pisca do LED definido!</string>
   <string name="preferences__sound">Som</string>
-  <string name="preferences__change_notification_sound">Mudar som de notificação</string>
   <string name="preferences__silent">Silencioso</string>
   <string name="preferences__in_conversation_notifications">Notificações na conversa</string>
   <string name="preferences__play_inthread_notifications">Tocar som de notificação quando vendo uma conversa ativa</string>

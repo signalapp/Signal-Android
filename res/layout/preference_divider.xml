@@ -1,0 +1,14 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:layout_margin="0dp"
+              android:background="@color/amber_50"
+              android:padding="0dp">
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@drawable/preference_divider"/>
+
+</LinearLayout>

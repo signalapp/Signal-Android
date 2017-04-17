@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.media.AudioManager;
 import android.net.ConnectivityManager;
+import android.os.PowerManager;
 import android.telephony.TelephonyManager;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -32,5 +33,9 @@ public class ServiceUtil {
 
   public static AudioManager getAudioManager(Context context) {
     return (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
+  }
+
+  public static PowerManager getPowerManager(Context context) {
+    return (PowerManager)context.getSystemService(Context.POWER_SERVICE);
   }
 }

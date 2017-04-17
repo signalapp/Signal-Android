@@ -226,6 +226,8 @@
   <string name="DeviceListItem_linked_s">%s lingitud</string>
   <string name="DeviceListItem_last_active_s">%s viimati aktiivne</string>
   <string name="DeviceListItem_today">Täna</string>
+  <!--DocumentView-->
+  <string name="DocumentView_unknown_file">Tundmatu fail</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimeeri puuduvate Play teenuste jaoks</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">See seade ei toeta Play teenuseid. Koputa, et keelata süsteemi aku optimeerimine, kuna see ei lase Signalil sõnumeid hankida, kui seade on ebaaktiivne.</string>
@@ -237,6 +239,10 @@
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Tere tulemast Signalisse!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure on nüüd Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure ja RedPhone on nüüd ühe rakenduse all: Signal. Koputa avastamiseks.</string>
+  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Tervita turvalisi videokõnesid.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal toetab nüüd turvalisi videokõnesid. Lihtsalt alusta Signali kõnet nagu tavaliselt, koputa videonuppu ja lehvita kontaktile.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal toetab nüüd turvalisi videokõnesid.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal toetab nüüd turvalisi videokõnesid. Koputa avastamiseks.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Ekspordi</string>
   <string name="ExportFragment_export_plaintext_to_storage">Ekspordid lihtteksti sisemällu?</string>
@@ -358,11 +364,12 @@
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Vastuvõetud sõnum, mis on krüptitud kasutades vana, mittetoetatud Signali versiooni. Palun palu saatjal uuendada uusimale versioonile ja siis sõnum uuesti saata.</string>
   <string name="MessageRecord_left_group">Sa lahkusid grupist.</string>
-  <string name="MessageRecord_updated_group">Grupp uuendatud.</string>
+  <string name="MessageRecord_you_updated_group">Sa uuendasid gruppi.</string>
+  <string name="MessageRecord_s_updated_group">%s uuendas gruppi.</string>
   <string name="MessageRecord_s_called_you">%s helistas sulle</string>
   <string name="MessageRecord_called_s">Helistasid kontaktile %s</string>
   <string name="MessageRecord_missed_call_from">Vastamata kõne kontaktilt %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s on Signalis, ütle tere!</string>
+  <string name="MessageRecord_s_joined_signal">%s liitus Signaliga!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Sa määrasid hävineva sõnumi ajaks %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s määras hävineva sõnumi ajaks %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Sinu turvanumber kontaktiga %s on muutunud.</string>
@@ -464,6 +471,8 @@
   <string name="RegistrationActivity_i_understand">Saan aru</string>
   <string name="RegistrationActivity_play_services_error">Play teenuste viga</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play teenused uuenevad või pole hetkel saadaval. Palun proovi uuesti.</string>
+  <string name="RegistrationActivity_more_information">Rohkem infot</string>
+  <string name="RegistrationActivity_less_information">Vähem infot</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Võimalikud probleemid</string>
   <!--RegistrationProgressActivity-->
@@ -486,7 +495,7 @@
   <string name="RegistrationProgressActivity_too_many_requests">Liiga palju taotlusi!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Sa juba taotlesid hiljuti häälkõnet. Sa saad järgmist taotleda 20 minuti pärast.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Registreerimiskonflikt</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">See number on juba registreeritud teises Signali serveris (CyanogenMod?). Sa pead enne seal registreerimise tühistama, kui saad siin registreerida.</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">See number on juba registreeritud teises Signali serveris. Sa pead enne seal registreerimise tühistama, kui saad siin registreerida.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registreerimine õnnestus</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Signali registreerimine on edukalt lõpetatud.</string>
@@ -508,6 +517,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%s lähtestas turvalise sessiooni.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplikaatsõnum.</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_group_updated">Grupp uuendatud</string>
   <string name="ThreadRecord_left_the_group">Lahkus grupist</string>
   <string name="ThreadRecord_secure_session_reset">Turvaline sessioon lähtestatud.</string>
   <string name="ThreadRecord_draft">Mustand:</string>
@@ -515,10 +525,12 @@
   <string name="ThreadRecord_called_you">Helistas sulle</string>
   <string name="ThreadRecord_missed_call">Vastamata kõne</string>
   <string name="ThreadRecord_media_message">Meediasõnum</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s on Signalis, ütle tere!</string>
+  <string name="ThreadRecord_s_joined_signal">%s liitus Signaliga!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Hävineva sõnumi ajaks on seatud %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Sinu turvanumber kontaktiga %s on muutunud.</string>
   <!--UpdateApkReadyListener-->
+  <string name="UpdateApkReadyListener_Signal_update">Signali uuendus</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Uus Signali versioon on saadaval, koputa uuendamiseks</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Sinu kontakt kasutab vana Signali versiooni. Palun palu neil uuendada, enne kui kinnitad oma turvanumbrit.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Sinu kontakt kasutab uuemat Signali versiooni ühildumatu QR-koodi vorminguga. Võrdlemiseks palun uuenda.</string>
@@ -589,6 +601,8 @@
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Kiirvastus pole saadaval, kui Signal on lukustatud!</string>
   <string name="QuickResponseService_problem_sending_message">Sõnumi saatmisel esines probleem!</string>
+  <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_open_directory">Ava faili asukoht</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Uus sõnum</string>
@@ -597,7 +611,7 @@
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Turvanumber sinu vestluses kontaktiga %1$s on muutunud. See võib tähendada, et keegi üritab su vestlusesse sekkuda või et %2$s lihtsalt taasinstallis Signali.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Sa võid tahta kinnitada oma turvanumbrit selle kontaktiga.</string>
-  <string name="WebRtcCallScreen_new_safety_numbers_title">Uued turvanumbrid</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Uus turvanumber</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Koputa, et lubada oma video</string>
   <!--attachment_type_selector-->
@@ -636,9 +650,6 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Vestlus vaigistatud</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Saada Signali sõnum</string>
-  <string name="conversation_activity__type_message_sms_insecure">Saada turvamata SMS</string>
-  <string name="conversation_activity__type_message_mms_insecure">Saada turvamata MMS</string>
   <string name="conversation_activity__from_sim_name">Kontaktilt %1$s</string>
   <string name="conversation_activity__send">Saada</string>
   <string name="conversation_activity__remove">Eemalda</string>
@@ -717,6 +728,9 @@
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Otsi GIFe ja kleepse</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Midagi ei leitud</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">Ekspordi</string>
+  <string name="import_export_fragment__import">Impordi</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Ei saanud sinu seadmes lugeda logi. Sa võid siiski kasutada ADB-d, et saada selle asemel silumislogi.</string>
   <string name="log_submit_activity__thanks">Täname abi eest!</string>
@@ -747,12 +761,12 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">KINNITA</string>
   <string name="message_recipients_list_item__resend">SAADA UUESTI</string>
+  <string name="message_recipients_list_item__resending">Taassaatmine...</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s liitus grupiga.</item>
     <item quantity="other">%1$s liitusid grupiga.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">Grupp uuendatud.</string>
   <string name="GroupUtil_group_name_is_now">Grupi nimi on nüüd \"%1$s\".</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Eemalda blokeering</string>
@@ -786,7 +800,7 @@
     </string>
   <string name="registration_activity__phone_number">TELEFONINUMBER</string>
   <string name="registration_activity__register">Registreeri</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registeerimine edastab osa kontaktinfot serverile. Seda ei hoita alles.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal teeb suhtlemise lihtsaks, kasutades olemasolevat telefoninumbrit ja aadressiraamatut. Sõbrad ja kontaktid, kes juba saavad sinuga telefoni teel ühendust, saavad ka Signali kaudu seda teha.\n\nRegistreerimine saadab osalist kontaktinfot serverile, seda ei salvestata.</string>
   <string name="registration_activity__powered_by_twilio">Põhineb twiliol</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Võimalike probleemide
@@ -905,6 +919,8 @@
   <string name="arrays__images">Pildid</string>
   <string name="arrays__audio">Heli</string>
   <string name="arrays__video">Video</string>
+  <string name="arrays__documents">Dokumendid</string>
+  <string name="arrays__normal">Keskmine</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d tund</item>
@@ -946,7 +962,6 @@
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Keelamisaeg:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Kohandatud LEDi välkumismuster on seatud!</string>
   <string name="preferences__sound">Heli</string>
-  <string name="preferences__change_notification_sound">Muuda teate heli</string>
   <string name="preferences__silent">Vaikne</string>
   <string name="preferences__in_conversation_notifications">Vestlusesisesed teated</string>
   <string name="preferences__play_inthread_notifications">Mängi teateheli, kui vaatad aktiivset vestlust</string>

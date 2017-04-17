@@ -273,6 +273,7 @@
   <string name="DeviceListItem_linked_s">مقترن %s</string>
   <string name="DeviceListItem_last_active_s">آخر مرة %s</string>
   <string name="DeviceListItem_today">اليوم</string>
+  <!--DocumentView-->
   <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">شارك مع</string>
@@ -388,11 +389,9 @@
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">لقد استلمت رسالة مشفرة من إصدارة سيجنال قديمة وتوقف دعمها. من فضلك اطلب من الراسل الترقية إلي أحدث إصدار وإعادة إرسال الرسالة.</string>
   <string name="MessageRecord_left_group">لقد تركت المجموعة.</string>
-  <string name="MessageRecord_updated_group">تم تحديث المجموعة.</string>
   <string name="MessageRecord_s_called_you">%s قام بالاتصال</string>
   <string name="MessageRecord_called_s">%s قام بالاتصال</string>
   <string name="MessageRecord_missed_call_from">مكالمة فائتة من %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s إنضم إلى سيجنال.. ألقي التحية!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">لقد قمت بتحديد توقيت اختفاء الرسالة ليكون %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">حدد %1$s توقيت اختفاء الرسالة ليكون %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">تم تغيير رقم الأمان الخاص بك وبـ%s.</string>
@@ -502,7 +501,6 @@
   <string name="RegistrationProgressActivity_too_many_requests">طلبات متعددة جدا!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">لقد قمت بطلب مكالمة صوتية مؤخرا. يمكنك طلب مكالمة آخرى بعد 20 دقيقة. </string>
   <string name="RegistrationProgressActivity_registration_conflict">تعارض في التسجيل</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">الرقم مسجل بالفعل مع سيجنال (ربما سيانوجين مود؟). يجب إلغاء التسجيل هناك قبل التسجيل هنا.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">انتهى التسجيل</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">عملية التسجيل في سيجنال تمت بنجاح.</string>
@@ -528,7 +526,6 @@
   <string name="ThreadRecord_called_you">مكالمات واردة</string>
   <string name="ThreadRecord_missed_call">مكالمة فائتة</string>
   <string name="ThreadRecord_media_message">رسالة وسائط متعددة</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s إنضم إلى سيجنال.. ألقي التحية!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">ضبط توقيت إخفاء الرسائل إلى %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">تم تغيير رقم الأمان الخاص بك وبـ%s.</string>
   <!--UpdateApkReadyListener-->
@@ -597,12 +594,14 @@
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">الردود السريعة غير متاحة عند قفل سيجنال!</string>
   <string name="QuickResponseService_problem_sending_message">مشكلة في الإرسال!</string>
+  <!--SaveAttachmentTask-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">سيجنال</string>
   <string name="SingleRecipientNotificationBuilder_new_message">رسالة جديدة</string>
   <!--VideoPlayer-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">لربما ترغب بالتحقق من رقم الأمان مع هذا المتصل.</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">رقم أمان جديد</string>
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">صورة</string>
@@ -639,9 +638,6 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">إخطارات المحادثة مكتومة</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">أرسل رسالة سيجنال.</string>
-  <string name="conversation_activity__type_message_sms_insecure">أرسل رسالة نصية غير آمنة</string>
-  <string name="conversation_activity__type_message_mms_insecure">أرسل رسالة وسائط متعددة غير آمنة</string>
   <string name="conversation_activity__from_sim_name">من %1$s</string>
   <string name="conversation_activity__send">أرسل</string>
   <string name="conversation_activity__remove">إزالة</string>
@@ -730,6 +726,9 @@
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">ابحث في صور GIF واللصاقات</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">لا يوجد شيء</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">تصدير</string>
+  <string name="import_export_fragment__import">استيراد</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">تعذر التقاط السجلات من هاتفك. يمكنك استخدام ADB للحصول على سجل التشغيل  بدلا من ذلك.</string>
   <string name="log_submit_activity__thanks">شكرا للمساعدة!</string>
@@ -768,7 +767,6 @@
     <item quantity="many">%1$s انضموا إلى المجموعة.</item>
     <item quantity="other">%1$s انضموا إلى المجموعة.</item>
   </plurals>
-  <string name="GroupUtil_group_updated">تم تحديث المجموعة.</string>
   <string name="GroupUtil_group_name_is_now">أسم المجموعة الآن \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">فتح القفل</string>
@@ -799,7 +797,6 @@
   <string name="registration_activity__your_country_code_and_phone_number">رمز دولتك ورقم هاتفك</string>
   <string name="registration_activity__phone_number">رقم الهاتف</string>
   <string name="registration_activity__register">سجل</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">يتم نقل بعض بيانات الاتصال إلى الخادم أثناء التسجيل، ولا يتم حفظها.</string>
   <string name="registration_activity__powered_by_twilio">مدعم بواسطة Twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">بعض المشاكل المحتملة
@@ -889,6 +886,7 @@
   <string name="arrays__images">صور</string>
   <string name="arrays__audio">صوت</string>
   <string name="arrays__video">فيديو</string>
+  <string name="arrays__normal">طبيعي</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="zero">%d ساعة</item>
@@ -934,7 +932,6 @@
   <string name="preferences__pref_led_blink_custom_pattern_off_for">مطفأة:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">تم إعداد أسولب وميض LED!</string>
   <string name="preferences__sound">صوت</string>
-  <string name="preferences__change_notification_sound">تغيير صوت التنبيه</string>
   <string name="preferences__silent">صامت</string>
   <string name="preferences__in_conversation_notifications">تنويهات أثناء المحادثة</string>
   <string name="preferences__play_inthread_notifications">تفعيل تنبيه صوتي أثناء مطالعة محادثة نشطة</string>

@@ -171,5 +171,24 @@ public class NotificationState {
     return PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
   }
 
+  public PendingIntent getDeleteIntent(Context context) {
+    int       index = 0;
+    long[]    ids   = new long[notifications.size()];
+    boolean[] mms   = new boolean[ids.length];
+
+    for (NotificationItem notificationItem : notifications) {
+      ids[index] = notificationItem.getId();
+      mms[index++]   = notificationItem.isMms();
+    }
+
+    Intent intent = new Intent(context, DeleteNotificationReceiver.class);
+    intent.setAction(DeleteNotificationReceiver.DELETE_NOTIFICATION_ACTION);
+    intent.putExtra(DeleteNotificationReceiver.EXTRA_IDS, ids);
+    intent.putExtra(DeleteNotificationReceiver.EXTRA_MMS, mms);
+    intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
+
+    return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+  }
+
 
 }

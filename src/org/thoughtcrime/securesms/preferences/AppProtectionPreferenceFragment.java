@@ -27,7 +27,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.concurrent.TimeUnit;
 
-public class AppProtectionPreferenceFragment extends PreferenceFragment {
+public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment {
 
   private static final String PREFERENCE_CATEGORY_BLOCKED = "preference_category_blocked";
 

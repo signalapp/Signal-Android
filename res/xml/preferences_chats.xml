@@ -27,6 +27,37 @@
                 android:entryValues="@array/pref_media_download_entries" />
     </PreferenceCategory>
 
+    <PreferenceCategory android:layout="@layout/preference_divider"/>
+
+    <PreferenceCategory android:title="@string/preferences_chats__chats">
+        <ListPreference android:key="pref_message_body_text_size"
+                        android:title="@string/preferences_chats__message_text_size"
+                        android:entries="@array/pref_message_font_size_entries"
+                        android:entryValues="@array/pref_message_font_size_values"
+                        android:defaultValue="16">
+        </ListPreference>
+
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+                android:defaultValue="true"
+                android:key="pref_show_invite_reminder"
+                android:title="@string/preferences_chats__show_invitation_prompts"
+                android:summary="@string/preferences_chats__display_invitation_prompts_for_contacts_without_signal" />
+
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+                android:defaultValue="false"
+                android:key="pref_system_emoji"
+                android:title="@string/preferences_advanced__use_system_emoji"
+                android:summary="@string/preferences_advanced__disable_signal_built_in_emoji_support" />
+
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+                android:defaultValue="false"
+                android:key="pref_enter_sends"
+                android:summary="@string/preferences__pressing_the_enter_key_will_send_text_messages"
+                android:title="@string/preferences__pref_enter_sends_title"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:layout="@layout/preference_divider"/>
+
     <PreferenceCategory android:key="message_trimming" android:title="@string/preferences_chats__message_trimming">
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
             android:defaultValue="false"

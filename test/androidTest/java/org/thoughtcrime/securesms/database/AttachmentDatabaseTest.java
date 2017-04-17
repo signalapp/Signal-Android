@@ -38,7 +38,7 @@ public class AttachmentDatabaseTest extends TextSecureTestCase {
     final AttachmentId attachmentId = new AttachmentId(ROW_ID, UNIQUE_ID);
 
     DatabaseAttachment mockAttachment = getMockAttachment("x/x");
-    when(database.getAttachment(attachmentId)).thenReturn(mockAttachment);
+    when(database.getAttachment(null, attachmentId)).thenReturn(mockAttachment);
 
     InputStream mockInputStream = mock(InputStream.class);
     doReturn(mockInputStream).when(database).getDataStream(any(MasterSecret.class), any(AttachmentId.class), eq("thumbnail"));
@@ -52,7 +52,7 @@ public class AttachmentDatabaseTest extends TextSecureTestCase {
     final AttachmentId attachmentId = new AttachmentId(ROW_ID, UNIQUE_ID);
 
     DatabaseAttachment mockAttachment = getMockAttachment("image/png");
-    when(database.getAttachment(attachmentId)).thenReturn(mockAttachment);
+    when(database.getAttachment(null, attachmentId)).thenReturn(mockAttachment);
 
     doReturn(null).when(database).getDataStream(any(MasterSecret.class), any(AttachmentId.class), eq("thumbnail"));
     doNothing().when(database).updateAttachmentThumbnail(any(MasterSecret.class), any(AttachmentId.class), any(InputStream.class), anyFloat());

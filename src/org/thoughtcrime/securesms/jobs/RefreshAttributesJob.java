@@ -21,7 +21,6 @@ public class RefreshAttributesJob extends ContextJob implements InjectableType {
   private static final String TAG = RefreshAttributesJob.class.getSimpleName();
 
   @Inject transient SignalServiceAccountManager signalAccountManager;
-//  @Inject transient RedPhoneAccountManager      redPhoneAccountManager;
 
   public RefreshAttributesJob(Context context) {
     super(context, JobParameters.newBuilder()
@@ -38,14 +37,10 @@ public class RefreshAttributesJob extends ContextJob implements InjectableType {
   @Override
   public void onRun() throws IOException {
     String  signalingKey      = TextSecurePreferences.getSignalingKey(context);
-//    String  gcmRegistrationId = TextSecurePreferences.getGcmRegistrationId(context);
     int     registrationId    = TextSecurePreferences.getLocalRegistrationId(context);
     boolean video             = TextSecurePreferences.isWebrtcCallingEnabled(context);
     boolean fetchesMessages   = TextSecurePreferences.isGcmDisabled(context);
 
-//    String token = signalAccountManager.getAccountVerificationToken();
-
-//    redPhoneAccountManager.createAccount(token, new RedPhoneAccountAttributes(signalingKey, gcmRegistrationId));
     signalAccountManager.setAccountAttributes(signalingKey, registrationId, true, video || fetchesMessages, fetchesMessages);
   }
 

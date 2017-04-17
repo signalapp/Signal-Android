@@ -173,6 +173,7 @@
   <string name="DeviceListItem_linked_s">%s இணைக்கப்பட்டது.</string>
   <string name="DeviceListItem_last_active_s">கடைசியாக செயலில் %s</string>
   <string name="DeviceListItem_today">இன்று</string>
+  <!--DocumentView-->
   <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">பகிர்</string>
@@ -255,7 +256,6 @@
   <string name="NotificationMmsMessageRecord_multimedia_message">மல்டிமீடியா செய்தி</string>
   <!--MessageRecord-->
   <string name="MessageRecord_left_group">நீங்கள் குழுவை விட்டு விலகினீர்கள்.</string>
-  <string name="MessageRecord_updated_group">குழு மேம்படுத்தப்பட்டது.</string>
   <string name="MessageRecord_s_called_you">%s உங்களை அழைத்தார்</string>
   <string name="MessageRecord_called_s">%sயை அழைத்தீர்கள்</string>
   <string name="MessageRecord_missed_call_from"> %s யடமிருந்து தவறிய அழைப்பு</string>
@@ -336,7 +336,6 @@
   <string name="RegistrationProgressActivity_too_many_requests">மிக அதிக கோரிக்கைகள்!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">நீங்கள் ஏற்கனவே ஒரு அழைப்பை அண்மையில் கோரிதீர்கள். நீங்கள் 20 நிமிடங்களுக்கு பின் மற்றொன்றை கோரலாம்.</string>
   <string name="RegistrationProgressActivity_registration_conflict">பதிசெய்வதில் முரண்பாடு</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different"> இந்த எண் ஏற்கனவே வேறு ஒரு TextSecure வலைதளத்தில் (CyanogenMod?) பதிவாகியுள்ளது . நீங்கள் இங்கே பதிவு செய்யும்முன் அங்கே பதிவுநீக்கம் செய்யவேண்டும்.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">பதிவு முழுமையுற்றது</string>
   <string name="RegistrationService_registration_error">பதிவுசெய்தலில்  பிழை</string>
@@ -407,6 +406,7 @@
   <string name="MmsPreferencesFragment__invalid_host">உள்ளிட்ட உரை ஒரு செல்லுபடியாகும் Host அல்ல</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_problem_sending_message">செய்தி அனுப்புவதில் பிரச்சணை!</string>
+  <!--SaveAttachmentTask-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">சமிக்ஞை</string>
   <string name="SingleRecipientNotificationBuilder_new_message">புதிய செய்தி</string>
@@ -438,9 +438,6 @@
   <string name="contact_selection_recent_activity__no_recent_calls">சமீபத்திய அழைப்புகள் இல்லை.</string>
   <!--conversation_title_view-->
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">சிக்னல் தகவல் அனுப்புக </string>
-  <string name="conversation_activity__type_message_sms_insecure">பாதுகாப்பில்லாத SMS அனுப்பு </string>
-  <string name="conversation_activity__type_message_mms_insecure">பாதுகாப்பில்லாத MMS அனுப்பு </string>
   <string name="conversation_activity__send">அனுப்பு</string>
   <string name="conversation_activity__remove">நீக்கு</string>
   <string name="conversation_activity__window_description">%1$s உடன் உரையாடல்</string>
@@ -481,6 +478,9 @@
   <string name="expiration_off">அணை</string>
   <!--giphy_activity-->
   <!--giphy_fragment-->
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">ஏற்றுமதி செய்</string>
+  <string name="import_export_fragment__import">இறக்குமதி செய்</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__thanks">உங்கள் உதவிக்கு நன்றி!</string>
   <string name="log_submit_activity__submitting">சமர்பிப்பிக்கப்படுகிறது</string>
@@ -504,7 +504,6 @@
   <string name="message_recipients_list_item__verify">சரிபார்க்கவும்</string>
   <string name="message_recipients_list_item__resend">மீண்டும் அனுப்பு</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_group_updated">குழு மேம்படுத்தப்பட்டது.</string>
   <string name="GroupUtil_group_name_is_now">இக்குழுவின் பெயர் \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">திற</string>
@@ -524,7 +523,6 @@
 உங்கள் தொலைபேசி எண்</string>
   <string name="registration_activity__phone_number">தொலைபேசி எண்</string>
   <string name="registration_activity__register">பதிவு செய்</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">பதிவுசெய்வது சர்வருக்கு சில தொடர்புத்தகவல்களை அனுப்புகிறது. இது சேமிக்கப்படாது.</string>
   <string name="registration_activity__powered_by_twilio">Twilio மூலம் இயக்கப்படுகிறது</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">சில நிகழக்கூடிய பிரச்சினைகள் இவை:</string>
@@ -589,6 +587,7 @@
   <string name="arrays__images">புகைப்படங்கள்</string>
   <string name="arrays__audio">ஒலி</string>
   <string name="arrays__video">காணொளி</string>
+  <string name="arrays__normal">சாதாரணமாக</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d மணிநேரம்</item>
@@ -622,7 +621,6 @@
   <string name="preferences__pref_led_blink_custom_pattern_off_for">இவைக்கு இயற்றாதே:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">LED மிளிரும் முறையை சுய விருப்பம் போல் அமைக்கப்பட்டது!</string>
   <string name="preferences__sound">ஒலி</string>
-  <string name="preferences__change_notification_sound">அறிவிப்பு ஒலியை மாற்று</string>
   <string name="preferences__silent">அமைதி</string>
   <string name="preferences__repeat_alerts">பலமுறை எச்சரிக்கைகள்</string>
   <string name="preferences__never">ஒருபோதுமில்லை</string>

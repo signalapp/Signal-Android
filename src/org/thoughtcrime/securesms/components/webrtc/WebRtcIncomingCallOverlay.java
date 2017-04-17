@@ -11,7 +11,7 @@ import android.view.animation.Animation;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.thoughtcrime.redphone.util.multiwaveview.MultiWaveView;
+import org.thoughtcrime.securesms.components.multiwaveview.MultiWaveView;
 import org.thoughtcrime.securesms.R;
 
 /**

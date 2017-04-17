@@ -79,6 +79,8 @@ public class TextSecurePreferences {
   private static final String SIGNED_PREKEY_ROTATION_TIME_PREF = "pref_signed_pre_key_rotation_time";
   private static final String IN_THREAD_NOTIFICATION_PREF      = "pref_key_inthread_notifications";
   private static final String BLOCKING_IDENTITY_CHANGES_PREF   = "pref_blocking_identity_changes";
+  private static final String SHOW_INVITE_REMINDER_PREF        = "pref_show_invite_reminder";
+  public  static final String MESSAGE_BODY_TEXT_SIZE_PREF      = "pref_message_body_text_size";
 
   private static final String LOCAL_REGISTRATION_ID_PREF       = "pref_local_registration_id";
   private static final String SIGNED_PREKEY_REGISTERED_PREF    = "pref_signed_prekey_registered";
@@ -87,6 +89,7 @@ public class TextSecurePreferences {
   private static final String GCM_DISABLED_PREF                = "pref_gcm_disabled";
   private static final String GCM_REGISTRATION_ID_PREF         = "pref_gcm_registration_id";
   private static final String GCM_REGISTRATION_ID_VERSION_PREF = "pref_gcm_registration_id_version";
+  private static final String GCM_REGISTRATION_ID_TIME_PREF    = "pref_gcm_registration_id_last_set_time";
   private static final String WEBSOCKET_REGISTERED_PREF        = "pref_websocket_registered";
   private static final String RATING_LATER_PREF                = "pref_rating_later";
   private static final String RATING_ENABLED_PREF              = "pref_rating_enabled";
@@ -105,6 +108,10 @@ public class TextSecurePreferences {
   private static final String MULTI_DEVICE_PROVISIONED_PREF    = "pref_multi_device";
   public  static final String DIRECT_CAPTURE_CAMERA_ID         = "pref_direct_capture_camera_id";
   private static final String ALWAYS_RELAY_CALLS_PREF          = "pref_turn_only";
+
+  public static int getMessageBodyTextSize(Context context) {
+    return Integer.valueOf(getStringPreference(context, MESSAGE_BODY_TEXT_SIZE_PREF, "16"));
+  }
 
   public static boolean isTurnOnly(Context context) {
     return getBooleanPreference(context, ALWAYS_RELAY_CALLS_PREF, false);
@@ -229,6 +236,14 @@ public class TextSecurePreferences {
     } else {
       return getStringPreference(context, GCM_REGISTRATION_ID_PREF, null);
     }
+  }
+
+  public static long getGcmRegistrationIdLastSetTime(Context context) {
+    return getLongPreference(context, GCM_REGISTRATION_ID_TIME_PREF, 0);
+  }
+
+  public static void setGcmRegistrationIdLastSetTime(Context context, long timestamp) {
+    setLongPreference(context, GCM_REGISTRATION_ID_TIME_PREF, timestamp);
   }
 
   public static boolean isSmsEnabled(Context context) {
@@ -476,6 +491,10 @@ public class TextSecurePreferences {
   public static void setPushRegistered(Context context, boolean registered) {
     Log.w("TextSecurePreferences", "Setting push registered: " + registered);
     setBooleanPreference(context, REGISTERED_GCM_PREF, registered);
+  }
+
+  public static boolean isShowInviteReminders(Context context) {
+    return getBooleanPreference(context, SHOW_INVITE_REMINDER_PREF, true);
   }
 
   public static boolean isPassphraseTimeoutEnabled(Context context) {

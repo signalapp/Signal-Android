@@ -127,7 +127,7 @@ public class WebRtcCallScreen extends FrameLayout implements Recipient.Recipient
     setPersonInfo(personInfo);
 
     this.incomingCallOverlay.setActiveCall();
-    this.status.setText(R.string.WebRtcCallScreen_new_safety_numbers_title);
+    this.status.setText(R.string.WebRtcCallScreen_new_safety_number_title);
     this.untrustedIdentityContainer.setVisibility(View.VISIBLE);
     this.untrustedIdentityExplanation.setText(spannableString);
     this.untrustedIdentityExplanation.setMovementMethod(LinkMovementMethod.getInstance());

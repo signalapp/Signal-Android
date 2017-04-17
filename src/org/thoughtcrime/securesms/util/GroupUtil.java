@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
@@ -61,33 +62,33 @@ public class GroupUtil {
       if (groupContext == null || groupContext.getMembersList().isEmpty()) {
         this.members = null;
       } else {
-        this.members = RecipientFactory.getRecipientsFromString(context, Util.join(groupContext.getMembersList(), ", "), true);
+        this.members = RecipientFactory.getRecipientsFromStrings(context, groupContext.getMembersList(), true);
       }
     }
 
-    public String toString() {
+    public String toString(Recipient sender) {
+      StringBuilder description = new StringBuilder();
+      description.append(context.getString(R.string.MessageRecord_s_updated_group, sender.toShortString()));
+
       if (groupContext == null) {
-        return context.getString(R.string.GroupUtil_group_updated);
+        return description.toString();
       }
 
-      StringBuilder description = new StringBuilder();
-      String        title       = groupContext.getName();
+      String title = groupContext.getName();
 
       if (members != null) {
+        description.append("\n");
         description.append(context.getResources().getQuantityString(R.plurals.GroupUtil_joined_the_group,
                 members.getRecipientsList().size(), members.toShortString()));
       }
 
       if (title != null && !title.trim().isEmpty()) {
-        if (description.length() > 0) description.append(" ");
+        if (members != null) description.append(" ");
+        else                 description.append("\n");
         description.append(context.getString(R.string.GroupUtil_group_name_is_now, title));
       }
 
-      if (description.length() > 0) {
-        return description.toString();
-      } else {
-        return context.getString(R.string.GroupUtil_group_updated);
-      }
+      return description.toString();
     }
 
     public void addListener(Recipients.RecipientsModifiedListener listener) {
