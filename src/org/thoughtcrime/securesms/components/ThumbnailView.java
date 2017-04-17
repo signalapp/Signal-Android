@@ -107,9 +107,9 @@ public class ThumbnailView extends FrameLayout {
       getTransferControls().setVisibility(View.GONE);
     }
 
-    if (slide.getThumbnailUri() != null && slide.hasPlayOverlay() &&
-        (slide.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_DONE || isPreview))
-    {
+    if ((slide.getThumbnailUri() != null || slide.hasPlaceholder()) &&
+        slide.hasPlayOverlay()                                      &&
+        (slide.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_DONE || isPreview)) {
       this.playOverlay.setVisibility(View.VISIBLE);
     } else {
       this.playOverlay.setVisibility(View.GONE);
