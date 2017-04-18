@@ -1230,7 +1230,7 @@
     <string name="preferences_app_protection__app_access">App access</string>
     <string name="preferences_app_protection__communication">Communication</string>
     <string name="preferences_chats__chats">Chats</string>
-    <string name="preferences_notifications__message_notifications">Message notifications</string>
+    <string name="preferences_notifications__messages">Messages</string>
     <string name="preferences_notifications__events">Events</string>
     <string name="preferences_notifications__in_chat_sounds">In-chat sounds</string>
     <string name="preferences_notifications__show">Show</string>

@@ -2,7 +2,7 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="@string/preferences_notifications__message_notifications">
+    <PreferenceCategory android:title="@string/preferences_notifications__messages">
 
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
                             android:key="pref_key_enable_notifications"
