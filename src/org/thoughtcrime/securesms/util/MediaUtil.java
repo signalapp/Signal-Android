@@ -158,6 +158,10 @@ public class MediaUtil {
     return ContentType.isVideoType(attachment.getContentType());
   }
 
+  public static boolean isVideo(String contentType) {
+    return !TextUtils.isEmpty(contentType) && contentType.trim().startsWith("video/");
+  }
+
   public static @Nullable String getDiscreteMimeType(@NonNull String mimeType) {
     final String[] sections = mimeType.split("/", 2);
     return sections.length > 1 ? sections[0] : null;

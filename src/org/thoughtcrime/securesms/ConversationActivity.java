@@ -106,7 +106,6 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.AttachmentManager.MediaType;
-import org.thoughtcrime.securesms.mms.AttachmentTypeSelectorAdapter;
 import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.LocationSlide;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
@@ -189,8 +188,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   public static final String TIMING_EXTRA            = "timing";
   public static final String LAST_SEEN_EXTRA         = "last_seen";
 
-  private static final int PICK_IMAGE        = 1;
-  private static final int PICK_VIDEO        = 2;
+  private static final int PICK_GALLERY      = 1;
+  private static final int PICK_DOCUMENT     = 2;
   private static final int PICK_AUDIO        = 3;
   private static final int PICK_CONTACT_INFO = 4;
   private static final int GROUP_EDIT        = 5;
@@ -374,12 +373,19 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     switch (reqCode) {
-    case PICK_IMAGE:
-      boolean isGif = MediaUtil.isGif(MediaUtil.getMimeType(this, data.getData()));
-      setMedia(data.getData(), isGif ? MediaType.GIF : MediaType.IMAGE);
+    case PICK_GALLERY:
+      MediaType mediaType;
+
+      String mimeType = MediaUtil.getMimeType(this, data.getData());
+
+      if      (MediaUtil.isGif(mimeType))   mediaType = MediaType.GIF;
+      else if (MediaUtil.isVideo(mimeType)) mediaType = MediaType.VIDEO;
+      else                                  mediaType = MediaType.IMAGE;
+
+      setMedia(data.getData(), mediaType);
       break;
-    case PICK_VIDEO:
-      setMedia(data.getData(), MediaType.VIDEO);
+    case PICK_DOCUMENT:
+      setMedia(data.getData(), MediaType.DOCUMENT);
       break;
     case PICK_AUDIO:
       setMedia(data.getData(), MediaType.AUDIO);
@@ -1198,17 +1204,17 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void addAttachment(int type) {
     Log.w("ComposeMessageActivity", "Selected: " + type);
     switch (type) {
-    case AttachmentTypeSelectorAdapter.ADD_IMAGE:
-      AttachmentManager.selectImage(this, PICK_IMAGE); break;
-    case AttachmentTypeSelectorAdapter.ADD_VIDEO:
-      AttachmentManager.selectVideo(this, PICK_VIDEO); break;
-    case AttachmentTypeSelectorAdapter.ADD_SOUND:
+    case AttachmentTypeSelector.ADD_GALLERY:
+      AttachmentManager.selectGallery(this, PICK_GALLERY); break;
+    case AttachmentTypeSelector.ADD_DOCUMENT:
+      AttachmentManager.selectDocument(this, PICK_DOCUMENT); break;
+    case AttachmentTypeSelector.ADD_SOUND:
       AttachmentManager.selectAudio(this, PICK_AUDIO); break;
-    case AttachmentTypeSelectorAdapter.ADD_CONTACT_INFO:
+    case AttachmentTypeSelector.ADD_CONTACT_INFO:
       AttachmentManager.selectContactInfo(this, PICK_CONTACT_INFO); break;
     case AttachmentTypeSelector.ADD_LOCATION:
       AttachmentManager.selectLocation(this, PICK_LOCATION); break;
-    case AttachmentTypeSelectorAdapter.TAKE_PHOTO:
+    case AttachmentTypeSelector.TAKE_PHOTO:
       attachmentManager.capturePhoto(this, TAKE_PHOTO); break;
     case AttachmentTypeSelector.ADD_GIF:
       AttachmentManager.selectGif(this, PICK_GIF, !isSecureText); break;
@@ -1723,7 +1729,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       Intent intent = new Intent();
       intent.setData(uri);
 
-      onActivityResult(PICK_IMAGE, RESULT_OK, intent);
+      onActivityResult(PICK_GALLERY, RESULT_OK, intent);
     }
   }
 

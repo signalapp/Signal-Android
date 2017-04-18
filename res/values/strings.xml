@@ -702,12 +702,8 @@
 
 
     <!-- attachment_type_selector -->
-    <string name="attachment_type_selector__image">Image</string>
-    <string name="attachment_type_selector__image_description">Image</string>
     <string name="attachment_type_selector__audio">Audio</string>
     <string name="attachment_type_selector__audio_description">Audio</string>
-    <string name="attachment_type_selector__video">Video</string>
-    <string name="attachment_type_selector__video_description">Video</string>
     <string name="attachment_type_selector__contact">Contact</string>
     <string name="attachment_type_selector__contact_description">Contact</string>
     <string name="attachment_type_selector__camera">Camera</string>
@@ -716,6 +712,11 @@
     <string name="attachment_type_selector__location_description">Location</string>
     <string name="attachment_type_selector__gif">GIF</string>
     <string name="attachment_type_selector__gif_description">Gif</string>
+    <string name="attachment_type_selector__gallery_description">Image or video</string>
+    <string name="attachment_type_selector__document_description">Document</string>
+    <string name="attachment_type_selector__gallery">Gallery</string>
+    <string name="attachment_type_selector__document">Document</string>
+
     <string name="attachment_type_selector__drawer_description">Toggle attachment drawer</string>
 
     <!-- change_passphrase_activity -->

@@ -297,12 +297,12 @@ public class AttachmentManager {
     return deck;
   }
 
-  public static void selectVideo(Activity activity, int requestCode) {
-    selectMediaType(activity, "video/*", requestCode);
+  public static void selectDocument(Activity activity, int requestCode) {
+    selectMediaType(activity, "*/*", requestCode);
   }
 
-  public static void selectImage(Activity activity, int requestCode) {
-    selectMediaType(activity, "image/*", requestCode);
+  public static void selectGallery(Activity activity, int requestCode) {
+    selectMediaType(activity, "image/* video/*", requestCode);
   }
 
   public static void selectAudio(Activity activity, int requestCode) {
