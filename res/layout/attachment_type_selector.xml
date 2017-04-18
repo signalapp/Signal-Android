@@ -29,11 +29,10 @@
 
             <org.thoughtcrime.securesms.components.CircleColorImageView
                     android:id="@+id/gallery_button"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_image_white_36dp"
+                    android:layout_width="53dp"
+                    android:layout_height="53dp"
+                    android:src="@drawable/ic_image_white_24dp"
                     android:scaleType="center"
-                    android:elevation="4dp"
                     android:contentDescription="@string/attachment_type_selector__gallery_description"
                     app:circleColor="@color/purple_400"/>
 
@@ -53,11 +52,10 @@
 
             <org.thoughtcrime.securesms.components.CircleColorImageView
                     android:id="@+id/audio_button"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_headset_white_36dp"
+                    android:layout_width="53dp"
+                    android:layout_height="53dp"
+                    android:src="@drawable/ic_headset_white_24dp"
                     android:scaleType="center"
-                    android:elevation="4dp"
                     android:contentDescription="@string/attachment_type_selector__audio_description"
                     app:circleColor="@color/orange_400"/>
 
@@ -77,11 +75,10 @@
 
             <org.thoughtcrime.securesms.components.CircleColorImageView
                     android:id="@+id/document_button"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_insert_drive_file_white_36dp"
+                    android:layout_width="53dp"
+                    android:layout_height="53dp"
+                    android:src="@drawable/ic_insert_drive_file_white_24dp"
                     android:scaleType="center"
-                    android:elevation="4dp"
                     android:contentDescription="@string/attachment_type_selector__document_description"
                     app:circleColor="@color/red_400"/>
 
@@ -101,11 +98,10 @@
 
             <org.thoughtcrime.securesms.components.CircleColorImageView
                     android:id="@+id/contact_button"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_person_white_36dp"
+                    android:layout_width="53dp"
+                    android:layout_height="53dp"
+                    android:src="@drawable/ic_person_white_24dp"
                     android:scaleType="center"
-                    android:elevation="4dp"
                     android:contentDescription="@string/attachment_type_selector__contact_description"
                     app:circleColor="@color/blue_400"/>
 
@@ -136,11 +132,10 @@
 
             <org.thoughtcrime.securesms.components.CircleColorImageView
                     android:id="@+id/camera_button"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_camera_white_36dp"
+                    android:layout_width="53dp"
+                    android:layout_height="53dp"
+                    android:src="@drawable/ic_camera_white_24dp"
                     android:scaleType="center"
-                    android:elevation="4dp"
                     android:contentDescription="@string/attachment_type_selector__camera_description"
                     app:circleColor="@color/green_400"/>
 
@@ -162,11 +157,10 @@
 
             <org.thoughtcrime.securesms.components.CircleColorImageView
                     android:id="@+id/location_button"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_location_on_white_36dp"
+                    android:layout_width="53dp"
+                    android:layout_height="53dp"
+                    android:src="@drawable/ic_location_on_white_24dp"
                     android:scaleType="center"
-                    android:elevation="4dp"
                     android:contentDescription="@string/attachment_type_selector__location_description"
                     app:circleColor="@color/blue_grey_400"/>
 
@@ -187,11 +181,10 @@
 
             <org.thoughtcrime.securesms.components.CircleColorImageView
                     android:id="@+id/giphy_button"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_gif_white_36dp"
+                    android:layout_width="53dp"
+                    android:layout_height="53dp"
+                    android:src="@drawable/ic_gif_white_24dp"
                     android:scaleType="center"
-                    android:elevation="4dp"
                     android:contentDescription="@string/attachment_type_selector__gif_description"
                     app:circleColor="@color/cyan_400"/>
 
@@ -211,11 +204,10 @@
 
             <org.thoughtcrime.securesms.components.CircleColorImageView
                     android:id="@+id/close_button"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_keyboard_arrow_down_white_36dp"
+                    android:layout_width="53dp"
+                    android:layout_height="53dp"
+                    android:src="@drawable/ic_keyboard_arrow_down_white_24dp"
                     android:scaleType="center"
-                    android:elevation="4dp"
                     android:contentDescription="@string/attachment_type_selector__drawer_description"
                     app:circleColor="@color/gray50"/>
 
