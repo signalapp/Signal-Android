@@ -3,30 +3,30 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <Preference android:key="preference_category_sms_mms"
                 android:title="@string/preferences__sms_mms"
-                android:icon="?pref_ic_sms_mms"/>
+                android:icon="@drawable/ic_textsms_24dp"/>
 
     <Preference android:key="preference_category_notifications"
                 android:title="@string/preferences__notifications"
-                android:icon="?pref_ic_notifications"/>
+                android:icon="@drawable/ic_notifications_24dp"/>
 
     <Preference android:key="preference_category_app_protection"
                 android:title="@string/preferences__privacy"
-                android:icon="?pref_ic_app_protection"/>
+                android:icon="@drawable/ic_security_24dp"/>
 
     <Preference android:key="preference_category_appearance"
                 android:title="@string/preferences__appearance"
-                android:icon="?pref_ic_appearance"/>
+                android:icon="@drawable/ic_brightness_6_24dp"/>
 
     <Preference android:key="preference_category_chats"
                 android:title="@string/preferences__chats"
-                android:icon="?pref_ic_chats"/>
+                android:icon="@drawable/ic_forum_24dp"/>
 
     <Preference android:key="preference_category_devices"
                 android:title="@string/preferences__linked_devices"
-                android:icon="?pref_ic_devices"/>
+                android:icon="@drawable/ic_laptop_24dp"/>
 
     <Preference android:key="preference_category_advanced"
                 android:title="@string/preferences__advanced"
-                android:icon="?pref_ic_advanced"/>
+                android:icon="@drawable/ic_advanced_24dp"/>
 
 </PreferenceScreen>
