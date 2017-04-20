@@ -50,6 +50,8 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.video.EncryptedMediaDataSource;
 import org.whispersystems.libsignal.InvalidMessageException;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -527,8 +529,20 @@ public class AttachmentDatabase extends Database {
     AttachmentId attachmentId = new AttachmentId(rowId, uniqueId);
 
     if (partData != null) {
-      Log.w(TAG, "Submitting thumbnail generation job...");
-      thumbnailExecutor.submit(new ThumbnailFetchCallable(masterSecret.getMasterSecret().get(), attachmentId));
+      if (MediaUtil.hasVideoThumbnail(attachment.getDataUri())) {
+        Bitmap bitmap = MediaUtil.getVideoThumbnail(context, attachment.getDataUri());
+
+        if (bitmap != null) {
+          ThumbnailData thumbnailData = new ThumbnailData(bitmap);
+          updateAttachmentThumbnail(masterSecret.getMasterSecret().get(), attachmentId, thumbnailData.toDataStream(), thumbnailData.getAspectRatio());
+        } else {
+          Log.w(TAG, "Retrieving video thumbnail failed, submitting thumbnail generation job...");
+          thumbnailExecutor.submit(new ThumbnailFetchCallable(masterSecret.getMasterSecret().get(), attachmentId));
+        }
+      } else {
+        Log.w(TAG, "Submitting thumbnail generation job...");
+        thumbnailExecutor.submit(new ThumbnailFetchCallable(masterSecret.getMasterSecret().get(), attachmentId));
+      }
     }
 
     return attachmentId;

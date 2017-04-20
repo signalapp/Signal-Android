@@ -247,7 +247,7 @@ public class AttachmentManager {
             documentView.setDocument((DocumentSlide) slide, false);
             removableMediaView.display(documentView, false);
           } else {
-            thumbnail.setImageResource(masterSecret, slide, false);
+            thumbnail.setImageResource(masterSecret, slide, false, true);
             removableMediaView.display(thumbnail, mediaType == MediaType.IMAGE);
           }
 

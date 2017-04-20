@@ -355,7 +355,7 @@ public class ConversationItem extends LinearLayout
       //noinspection ConstantConditions
       mediaThumbnailStub.get().setImageResource(masterSecret,
                                                 ((MmsMessageRecord)messageRecord).getSlideDeck().getThumbnailSlide(),
-                                                showControls);
+                                                showControls, false);
       mediaThumbnailStub.get().setThumbnailClickListener(new ThumbnailClickListener());
       mediaThumbnailStub.get().setDownloadClickListener(downloadClickListener);
       mediaThumbnailStub.get().setOnLongClickListener(passthroughClickListener);

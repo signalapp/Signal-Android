@@ -99,7 +99,7 @@ public class ThumbnailView extends FrameLayout {
     this.backgroundColorHint = color;
   }
 
-  public void setImageResource(@NonNull MasterSecret masterSecret, @NonNull Slide slide, boolean showControls) {
+  public void setImageResource(@NonNull MasterSecret masterSecret, @NonNull Slide slide, boolean showControls, boolean isPreview) {
     if (showControls) {
       getTransferControls().setSlide(slide);
       getTransferControls().setDownloadClickListener(new DownloadClickDispatcher());
@@ -107,7 +107,9 @@ public class ThumbnailView extends FrameLayout {
       getTransferControls().setVisibility(View.GONE);
     }
 
-    if (slide.getThumbnailUri() != null && slide.hasPlayOverlay() && slide.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_DONE) {
+    if (slide.getThumbnailUri() != null && slide.hasPlayOverlay() &&
+        (slide.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_DONE || isPreview))
+    {
       this.playOverlay.setVisibility(View.VISIBLE);
     } else {
       this.playOverlay.setVisibility(View.GONE);
