@@ -30,18 +30,21 @@
                       android:layout_width="wrap_content"
                       android:layout_height="76dp"
                       android:gravity="center_vertical"
-                      android:layout_marginLeft="16dip"
-                      android:layout_marginRight="16dip">
+                      android:background="?selectableItemBackground">
 
             <ImageView android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
+                       android:layout_marginLeft="16dp"
+                       android:layout_marginStart="16dp"
                        android:layout_marginRight="32dp"
                        android:layout_marginEnd="32dp"
                        android:src="?import_sms"/>
 
             <LinearLayout android:orientation="vertical"
                           android:layout_width="wrap_content"
-                          android:layout_height="wrap_content">
+                          android:layout_height="wrap_content"
+                          android:layout_marginRight="16dp"
+                          android:layout_marginEnd="16dp">
 
                 <TextView android:layout_width="match_parent"
                           android:layout_height="wrap_content"
@@ -69,18 +72,21 @@
                       android:layout_width="wrap_content"
                       android:layout_height="76dp"
                       android:gravity="center_vertical"
-                      android:layout_marginLeft="16dip"
-                      android:layout_marginRight="16dip">
+                      android:background="?selectableItemBackground">
 
             <ImageView android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
+                       android:layout_marginLeft="16dp"
+                       android:layout_marginStart="16dp"
                        android:layout_marginRight="32dip"
                        android:layout_marginEnd="32dip"
                        android:src="?plaintext_backup"/>
 
             <LinearLayout android:orientation="vertical"
                           android:layout_width="wrap_content"
-                          android:layout_height="wrap_content">
+                          android:layout_height="wrap_content"
+                          android:layout_marginRight="16dp"
+                          android:layout_marginEnd="16dp">
 
                 <TextView android:layout_width="match_parent"
                           android:layout_height="wrap_content"
@@ -121,18 +127,21 @@
                       android:layout_width="wrap_content"
                       android:layout_height="76dp"
                       android:gravity="center_vertical"
-                      android:layout_marginLeft="16dip"
-                      android:layout_marginRight="16dip">
+                      android:background="?selectableItemBackground">
 
             <ImageView android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
+                       android:layout_marginLeft="16dp"
+                       android:layout_marginStart="16dp"
                        android:layout_marginRight="32dp"
                        android:layout_marginEnd="32dp"
                        android:src="?plaintext_backup"/>
 
             <LinearLayout android:orientation="vertical"
                           android:layout_width="wrap_content"
-                          android:layout_height="wrap_content">
+                          android:layout_height="wrap_content"
+                          android:layout_marginRight="16dp"
+                          android:layout_marginEnd="16dp">
 
                 <TextView android:layout_width="match_parent"
                           android:layout_height="wrap_content"
