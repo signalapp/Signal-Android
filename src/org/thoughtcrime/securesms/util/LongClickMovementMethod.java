@@ -90,6 +90,7 @@ public class LongClickMovementMethod extends LinkMovementMethod {
         aSpan.setHighlighted(false, Color.TRANSPARENT);
       }
       Selection.removeSelection(buffer);
+      return gestureDetector.onTouchEvent(event);
     }
     return super.onTouchEvent(widget, buffer, event);
   }
