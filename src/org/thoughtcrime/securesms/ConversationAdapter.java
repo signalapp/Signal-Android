@@ -33,12 +33,14 @@ import android.widget.TextView;
 
 import org.thoughtcrime.securesms.ConversationAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.FastCursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.Conversions;
 import org.thoughtcrime.securesms.util.DateUtils;
@@ -67,7 +69,7 @@ import java.util.Set;
  *
  */
 public class ConversationAdapter <V extends View & BindableConversationItem>
-    extends CursorRecyclerViewAdapter<ConversationAdapter.ViewHolder>
+    extends FastCursorRecyclerViewAdapter<ConversationAdapter.ViewHolder, MessageRecord>
   implements StickyHeaderDecoration.StickyHeaderAdapter<HeaderViewHolder>
 {
 
@@ -179,14 +181,13 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   @Override
   public void changeCursor(Cursor cursor) {
     messageRecordCache.clear();
+    super.cleanFastRecords();
     super.changeCursor(cursor);
   }
 
   @Override
-  public void onBindItemViewHolder(ViewHolder viewHolder, @NonNull Cursor cursor) {
-    long          start         = System.currentTimeMillis();
-    MessageRecord messageRecord = getMessageRecord(cursor);
-
+  protected void onBindItemViewHolder(ViewHolder viewHolder, @NonNull MessageRecord messageRecord) {
+    long start = System.currentTimeMillis();
     viewHolder.getView().bind(masterSecret, messageRecord, locale, batchSelected, recipients);
     Log.w(TAG, "Bind time: " + (System.currentTimeMillis() - start));
   }
@@ -237,9 +238,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   }
 
   @Override
-  public int getItemViewType(@NonNull Cursor cursor) {
-    MessageRecord messageRecord = getMessageRecord(cursor);
-
+  public int getItemViewType(@NonNull MessageRecord messageRecord) {
     if (messageRecord.isGroupAction() || messageRecord.isCallLog() || messageRecord.isJoined() ||
         messageRecord.isExpirationTimerUpdate() || messageRecord.isEndSession() || messageRecord.isIdentityUpdate()) {
       return MESSAGE_TYPE_UPDATE;
@@ -260,13 +259,38 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   }
 
   @Override
+  protected boolean isRecordForId(@NonNull MessageRecord record, long id) {
+    return record.getId() == id;
+  }
+
+  @Override
   public long getItemId(@NonNull Cursor cursor) {
+    String fastPreflightId = cursor.getString(cursor.getColumnIndexOrThrow(AttachmentDatabase.FAST_PREFLIGHT_ID));
+
+    if (fastPreflightId != null) {
+      return Long.valueOf(fastPreflightId);
+    }
+
     final String unique = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsColumns.UNIQUE_ROW_ID));
     final byte[] bytes  = digest.digest(unique.getBytes());
     return Conversions.byteArrayToLong(bytes);
   }
 
-  private MessageRecord getMessageRecord(Cursor cursor) {
+  @Override
+  protected long getItemId(@NonNull MessageRecord record) {
+    if (record.isOutgoing() && record.isMms()) {
+      SlideDeck slideDeck = ((MmsMessageRecord)record).getSlideDeck();
+
+      if (slideDeck.getThumbnailSlide() != null && slideDeck.getThumbnailSlide().getFastPreflightId() != null) {
+        return Long.valueOf(slideDeck.getThumbnailSlide().getFastPreflightId());
+      }
+    }
+
+    return record.getId();
+  }
+
+  @Override
+  protected MessageRecord getRecordFromCursor(@NonNull Cursor cursor) {
     long   messageId = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.ID));
     String type      = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
 
@@ -293,8 +317,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     int count = getItemCount();
 
     for (int i=0;i<count;i++) {
-      Cursor        cursor        = getCursorAtPositionOrThrow(i);
-      MessageRecord messageRecord = getMessageRecord(cursor);
+      MessageRecord messageRecord = getRecordForPositionOrThrow(i);
 
       if (messageRecord.isOutgoing() || messageRecord.getDateReceived() <= lastSeen) {
         return i;
@@ -339,8 +362,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     if (position >= getItemCount()) return -1;
     if (position < 0)               return -1;
 
-    Cursor        cursor = getCursorAtPositionOrThrow(position);
-    MessageRecord record = getMessageRecord(cursor);
+    MessageRecord record = getRecordForPositionOrThrow(position);
 
     calendar.setTime(new Date(record.getDateSent()));
     return Util.hashCode(calendar.get(Calendar.YEAR), calendar.get(Calendar.DAY_OF_YEAR));
@@ -353,8 +375,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     if (position >= getItemCount()) return 0;
     if (position < 0)               return 0;
 
-    Cursor        cursor        = getCursorAtPositionOrThrow(position);
-    MessageRecord messageRecord = getMessageRecord(cursor);
+    MessageRecord messageRecord = getRecordForPositionOrThrow(position);
 
     if (messageRecord.isOutgoing()) return 0;
     else                            return messageRecord.getDateReceived();
@@ -371,8 +392,8 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
 
   @Override
   public void onBindHeaderViewHolder(HeaderViewHolder viewHolder, int position) {
-    Cursor cursor = getCursorAtPositionOrThrow(position);
-    viewHolder.setText(DateUtils.getRelativeDate(getContext(), locale, getMessageRecord(cursor).getDateReceived()));
+    MessageRecord messageRecord = getRecordForPositionOrThrow(position);
+    viewHolder.setText(DateUtils.getRelativeDate(getContext(), locale, messageRecord.getDateReceived()));
   }
 
   public void onBindLastSeenViewHolder(HeaderViewHolder viewHolder, int position) {

@@ -205,7 +205,7 @@ public class GroupMessageProcessor {
         Recipients                recipients      = RecipientFactory.getRecipientsFromString(context, GroupUtil.getEncodedId(group.getGroupId()), false);
         OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(recipients, storage, null, envelope.getTimestamp(), 0);
         long                      threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
-        long                      messageId       = mmsDatabase.insertMessageOutbox(masterSecret, outgoingMessage, threadId, false);
+        long                      messageId       = mmsDatabase.insertMessageOutbox(masterSecret, outgoingMessage, threadId, false, null);
 
         mmsDatabase.markAsSent(messageId, true);
 

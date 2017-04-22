@@ -74,10 +74,10 @@ public class RemoteReplyReceiver extends MasterSecretBroadcastReceiver {
           Recipients recipients = RecipientFactory.getRecipientsForIds(context, recipientIds, false);
           if (recipients.isGroupRecipient()) {
             OutgoingMediaMessage reply = new OutgoingMediaMessage(recipients, responseText.toString(), new LinkedList<Attachment>(), System.currentTimeMillis(), subscriptionId, expiresIn, 0);
-            threadId = MessageSender.send(context, masterSecret, reply, -1, false);
+            threadId = MessageSender.send(context, masterSecret, reply, -1, false, null);
           } else {
             OutgoingTextMessage reply = new OutgoingTextMessage(recipients, responseText.toString(), expiresIn, subscriptionId);
-            threadId = MessageSender.send(context, masterSecret, reply, -1, false);
+            threadId = MessageSender.send(context, masterSecret, reply, -1, false, null);
           }
 
           List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(threadId, true);

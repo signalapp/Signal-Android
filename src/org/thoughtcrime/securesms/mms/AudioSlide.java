@@ -41,7 +41,7 @@ public class AudioSlide extends Slide {
   }
 
   public AudioSlide(Context context, Uri uri, long dataSize, String contentType) {
-    super(context,  new UriAttachment(uri, null, contentType, AttachmentDatabase.TRANSFER_PROGRESS_STARTED, dataSize, null));
+    super(context,  new UriAttachment(uri, null, contentType, AttachmentDatabase.TRANSFER_PROGRESS_STARTED, dataSize, null, null));
   }
 
   public AudioSlide(Context context, Attachment attachment) {
