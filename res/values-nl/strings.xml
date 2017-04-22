@@ -601,12 +601,8 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Tik om je video in te schakelen</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">Afbeelding</string>
-  <string name="attachment_type_selector__image_description">Afbeelding</string>
   <string name="attachment_type_selector__audio">Audio</string>
   <string name="attachment_type_selector__audio_description">Audio</string>
-  <string name="attachment_type_selector__video">Video</string>
-  <string name="attachment_type_selector__video_description">Video</string>
   <string name="attachment_type_selector__contact">Contactpersoon</string>
   <string name="attachment_type_selector__contact_description">Contactpersoon</string>
   <string name="attachment_type_selector__camera">Camera</string>
@@ -1011,6 +1007,7 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="preferences_chats__show_invitation_prompts">Uitnodigings vragen tonen</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Toon een vraag of contacten zonder Signal uitgenodigd moeten worden</string>
   <string name="preferences_chats__message_text_size">Tekstgrootte voor berichten</string>
+  <string name="preferences_events__contact_joined_signal">Contact gebruikt nu Signal</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

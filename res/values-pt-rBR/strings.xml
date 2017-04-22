@@ -615,12 +615,8 @@
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Clique para habilitar seu vídeo</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">Imagem</string>
-  <string name="attachment_type_selector__image_description">Imagem</string>
   <string name="attachment_type_selector__audio">Áudio</string>
   <string name="attachment_type_selector__audio_description">Áudio</string>
-  <string name="attachment_type_selector__video">Vídeo</string>
-  <string name="attachment_type_selector__video_description">Vídeo</string>
   <string name="attachment_type_selector__contact">Contato</string>
   <string name="attachment_type_selector__contact_description">Contato</string>
   <string name="attachment_type_selector__camera">Câmera</string>

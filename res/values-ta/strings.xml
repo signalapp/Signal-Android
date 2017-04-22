@@ -414,9 +414,7 @@
   <!--WebRtcCallScreen-->
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">படம்</string>
   <string name="attachment_type_selector__audio">கேள்</string>
-  <string name="attachment_type_selector__video">காணொளி</string>
   <string name="attachment_type_selector__contact">தொடர்பு</string>
   <string name="attachment_type_selector__camera">நிழற்படக்கருவி</string>
   <string name="attachment_type_selector__location">இடம்</string>

@@ -632,12 +632,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Tapnite za vklop videa</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">Slika</string>
-  <string name="attachment_type_selector__image_description">Slika</string>
   <string name="attachment_type_selector__audio">Zvok</string>
   <string name="attachment_type_selector__audio_description">Zvok</string>
-  <string name="attachment_type_selector__video">Video</string>
-  <string name="attachment_type_selector__video_description">Video</string>
   <string name="attachment_type_selector__contact">Stik</string>
   <string name="attachment_type_selector__contact_description">Stik</string>
   <string name="attachment_type_selector__camera">Kamera</string>
@@ -963,7 +959,7 @@ bila uspešna.</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Samodejno zakleni Signal po nastavljenem času neaktivnosti</string>
   <string name="preferences__inactivity_timeout_passphrase">Geslo za zaklep aplikacije</string>
   <string name="preferences__inactivity_timeout_interval">Časovni interval za zaklep aplikacije</string>
-  <string name="preferences__notifications">Vklop/izklop</string>
+  <string name="preferences__notifications">Obvestila</string>
   <string name="preferences__enable_message_notifications">Vklopi obvestila o novih sporočilih</string>
   <string name="preferences__new_contacts_notifications">Obvestilo o novih uporabnikih</string>
   <string name="preferences__show_a_notification_for_new_signal_contacts">Prikaži obvestilo o novih uporabnikih aplikacije Signal</string>
@@ -1055,6 +1051,7 @@ bila uspešna.</string>
   <string name="preferences_chats__show_invitation_prompts">Prikazuj obvestila o povabilih</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Prikazuj obvestila o povabilih za stike, ki nimajo nameščene aplikacije Signal.</string>
   <string name="preferences_chats__message_text_size">Velikost črk v sporočilu</string>
+  <string name="preferences_events__contact_joined_signal">Oseba iz imenika se je pridružila Signalu</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

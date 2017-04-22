@@ -607,12 +607,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Trykk for å skru på videoen din</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">Bilete</string>
-  <string name="attachment_type_selector__image_description">Bilete</string>
   <string name="attachment_type_selector__audio">Lyd</string>
   <string name="attachment_type_selector__audio_description">Lyd</string>
-  <string name="attachment_type_selector__video">Video</string>
-  <string name="attachment_type_selector__video_description">Video</string>
   <string name="attachment_type_selector__contact">Kontakt</string>
   <string name="attachment_type_selector__contact_description">Kontakt</string>
   <string name="attachment_type_selector__camera">Kamera</string>
@@ -1026,6 +1022,7 @@ Signal fekk tidsavbrot ved venting på stadfestingsmeldinga.</string>
   <string name="preferences_chats__show_invitation_prompts">Oppfordring om invitering</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Vis oppfordring om å invitera kontaktar som ikkje har Signal</string>
   <string name="preferences_chats__message_text_size">Skriftstorleik i meldingar</string>
+  <string name="preferences_events__contact_joined_signal">Ein kontakt tok i bruk Signal!</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1129,7 +1126,7 @@ Signal fekk tidsavbrot ved venting på stadfestingsmeldinga.</string>
   <string name="reminder_header_push_text">Oppgrader kommunikasjonsopplevinga.</string>
   <string name="reminder_header_push_button">SLÅ PÅ</string>
   <string name="reminder_header_invite_title">Inviter til Signal</string>
-  <string name="reminder_header_invite_text">Ta samtalen med %1$sjå til neste nivå.</string>
+  <string name="reminder_header_invite_text">Ta samtalen med %1$s til neste nivå.</string>
   <string name="reminder_header_invite_button">INVITER</string>
   <string name="reminder_header_share_title">Inviter vennane dine!</string>
   <string name="reminder_header_share_text">Jo fleire vennar som brukar Signal, desto betre vert det.</string>

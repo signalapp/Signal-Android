@@ -502,12 +502,8 @@
   <!--WebRtcCallScreen-->
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">이미지</string>
-  <string name="attachment_type_selector__image_description">이미지</string>
   <string name="attachment_type_selector__audio">오디오</string>
   <string name="attachment_type_selector__audio_description">오디오</string>
-  <string name="attachment_type_selector__video">동영상</string>
-  <string name="attachment_type_selector__video_description">동영상</string>
   <string name="attachment_type_selector__contact">연락처</string>
   <string name="attachment_type_selector__contact_description">연락처</string>
   <string name="attachment_type_selector__camera">카메라</string>

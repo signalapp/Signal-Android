@@ -633,12 +633,8 @@
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Bakstelėkite, norėdami įjungti savo vaizdą</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">Paveikslas</string>
-  <string name="attachment_type_selector__image_description">Paveikslas</string>
   <string name="attachment_type_selector__audio">Garsas</string>
   <string name="attachment_type_selector__audio_description">Garso įrašai</string>
-  <string name="attachment_type_selector__video">Vaizdas</string>
-  <string name="attachment_type_selector__video_description">Vaizdo įrašai</string>
   <string name="attachment_type_selector__contact">Kontaktas</string>
   <string name="attachment_type_selector__contact_description">Kontaktas</string>
   <string name="attachment_type_selector__camera">Kamera</string>
@@ -647,6 +643,10 @@
   <string name="attachment_type_selector__location_description">Vieta</string>
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__gallery_description">Paveikslas ar vaizdo įrašas</string>
+  <string name="attachment_type_selector__document_description">Dokumentas</string>
+  <string name="attachment_type_selector__gallery">Galerija</string>
+  <string name="attachment_type_selector__document">Dokumentas</string>
   <string name="attachment_type_selector__drawer_description">Perjungti priedų stalčių</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Sena slaptafrazė</string>
@@ -1071,9 +1071,12 @@ yra prisijungęs prie belaidžio (Wi-Fi) arba duomenų perdavimo tinklo.
   <string name="preferences_chats__chats">Pokalbiai</string>
   <string name="preferences_notifications__message_notifications">Žinučių pranešimai</string>
   <string name="preferences_notifications__events">Įvykiai</string>
+  <string name="preferences_notifications__in_chat_sounds">Garsai pokalbiuose</string>
+  <string name="preferences_notifications__show">Rodyti</string>
   <string name="preferences_chats__show_invitation_prompts">Rodyti pakvietimų užklausas</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Rodyti pakvietimų užklausas kontaktams, kurie neturi Signal</string>
   <string name="preferences_chats__message_text_size">Žinučių šrifto dydis</string>
+  <string name="preferences_events__contact_joined_signal">Kontaktas prisijungė prie Signal</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

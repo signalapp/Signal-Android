@@ -624,12 +624,8 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Pritisnite da omogućite svoj video</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">Slika</string>
-  <string name="attachment_type_selector__image_description">Slika</string>
   <string name="attachment_type_selector__audio">Zvuk</string>
   <string name="attachment_type_selector__audio_description">Zvuk</string>
-  <string name="attachment_type_selector__video">Video</string>
-  <string name="attachment_type_selector__video_description">Video</string>
   <string name="attachment_type_selector__contact">Kontakt</string>
   <string name="attachment_type_selector__contact_description">Kontakt</string>
   <string name="attachment_type_selector__camera">Kamera</string>
@@ -1047,6 +1043,7 @@ neuspješno.</string>
   <string name="preferences_chats__show_invitation_prompts">Prikaži upite za pozivnice</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Prikaži upite za pozivnice za kontakte koji ne koriste Signal</string>
   <string name="preferences_chats__message_text_size">Veličina fonta poruke</string>
+  <string name="preferences_events__contact_joined_signal">Kontakt se prijavio/la u Signal</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

@@ -591,12 +591,8 @@
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">輕觸開啟你的視訊</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">圖片</string>
-  <string name="attachment_type_selector__image_description">圖片</string>
   <string name="attachment_type_selector__audio">音訊</string>
   <string name="attachment_type_selector__audio_description">音訊</string>
-  <string name="attachment_type_selector__video">影片</string>
-  <string name="attachment_type_selector__video_description">影片</string>
   <string name="attachment_type_selector__contact">聯絡人</string>
   <string name="attachment_type_selector__contact_description">聯絡人</string>
   <string name="attachment_type_selector__camera">相機</string>
@@ -1000,6 +996,7 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="preferences_chats__show_invitation_prompts">顯示邀請提示</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">不用 Signal 來顯示給聯絡人的邀請提示</string>
   <string name="preferences_chats__message_text_size">訊息字體大小</string>
+  <string name="preferences_events__contact_joined_signal">聯絡人已加入 Signal</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

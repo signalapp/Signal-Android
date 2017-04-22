@@ -313,7 +313,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <!--InviteActivity-->
   <string name="InviteActivity_share">Споделяне</string>
   <string name="InviteActivity_choose_contacts">Избор на контакти</string>
-  <string name="InviteActivity_cancel">Откажи</string>
+  <string name="InviteActivity_cancel">Отказване</string>
   <string name="InviteActivity_sending">Изпращане...</string>
   <string name="InviteActivity_heart_content_description">Сърце</string>
   <string name="InviteActivity_invitations_sent">Поканите изпратени!</string>
@@ -352,7 +352,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="NotificationBarManager__deny_call">Отхвърляне на обаждането</string>
   <string name="NotificationBarManager__answer_call">Приеми обаждането</string>
   <string name="NotificationBarManager__end_call">Прекрати обаждането</string>
-  <string name="NotificationBarManager__cancel_call">Откажи обаждането</string>
+  <string name="NotificationBarManager__cancel_call">Прекратяване на обаждането</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Мултимедийно съобщение</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Изтегляне на MMS съобщение</string>
@@ -375,7 +375,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Въведете нова парола!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Свържи това устройство?</string>
-  <string name="DeviceProvisioningActivity_cancel">ОТКАЖИ</string>
+  <string name="DeviceProvisioningActivity_cancel">ОТКАЗВАНЕ</string>
   <string name="DeviceProvisioningActivity_continue">ПРОДЪЛЖИ</string>
   <string name="DeviceProvisioningActivity_title">Свържи това устройство?</string>
   <string name="DeviceProvisioningActivity_content_intro">Ще може да</string>
@@ -606,12 +606,8 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Натиснете, за да активирате видео</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">Изображение</string>
-  <string name="attachment_type_selector__image_description">Изображение</string>
   <string name="attachment_type_selector__audio">Аудио</string>
   <string name="attachment_type_selector__audio_description">Аудио</string>
-  <string name="attachment_type_selector__video">Видео</string>
-  <string name="attachment_type_selector__video_description">Видео</string>
   <string name="attachment_type_selector__contact">Контакт</string>
   <string name="attachment_type_selector__contact_description">Контакт</string>
   <string name="attachment_type_selector__camera">Камера</string>
@@ -1022,6 +1018,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="preferences_chats__show_invitation_prompts">Показване на покани</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Показване на покани за контакти без Сигнал</string>
   <string name="preferences_chats__message_text_size">Размер на текста</string>
+  <string name="preferences_events__contact_joined_signal">Един от контактите Ви се присъедини към Сигнал!</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

@@ -38,7 +38,7 @@
   <string name="ApplicationPreferencesActivity_Off">Inactiu</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Contrasenya %1$s, Seguretat de pantalla %2$s</string>
-  <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Llengua %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Tema: %1$s, Llengua: %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">1 minut</item>
@@ -206,7 +206,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">Converses arxivades (%d)</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usant personalitzat: %s</string>
-  <string name="CustomDefaultPreference_using_default">Usant predeterminat: %s</string>
+  <string name="CustomDefaultPreference_using_default">Per defecte: %s</string>
   <string name="CustomDefaultPreference_none">Cap</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Ara mateix</string>
@@ -603,12 +603,8 @@ Comproveu que aquest és el vostre número. Anem a verificar-ho amb un SMS.</str
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Toqueu per a activar el vídeo</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">Imatge</string>
-  <string name="attachment_type_selector__image_description">Imatge</string>
   <string name="attachment_type_selector__audio">Àudio</string>
   <string name="attachment_type_selector__audio_description">Àudio</string>
-  <string name="attachment_type_selector__video">Vídeo</string>
-  <string name="attachment_type_selector__video_description">Vídeo</string>
   <string name="attachment_type_selector__contact">Contacte</string>
   <string name="attachment_type_selector__contact_description">Contacte</string>
   <string name="attachment_type_selector__camera">Càmera</string>
@@ -885,7 +881,7 @@ ha fallat.
   <string name="AndroidManifest_archived_conversations">Converses arxivades</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importació i exportació</string>
-  <string name="arrays__use_default">Predeterminat</string>
+  <string name="arrays__use_default">Per defecte</string>
   <string name="arrays__use_custom">Personalitzat</string>
   <string name="arrays__mute_for_one_hour">Silencia-ho 1 hora</string>
   <string name="arrays__mute_for_two_hours">Silencia-ho 2 hores</string>
@@ -997,7 +993,7 @@ ha fallat.
   <string name="preferences__dark_theme">Fosc</string>
   <string name="preferences__appearance">Aparença</string>
   <string name="preferences__theme">Tema</string>
-  <string name="preferences__default">Predeterminat</string>
+  <string name="preferences__default">Per defecte</string>
   <string name="preferences__language">Llengua</string>
   <string name="preferences__signal_messages_and_calls">Missatges i trucades Signal</string>
   <string name="preferences__free_private_messages_and_calls">Missatges i trucades privades gratuïtes per als usuaris del Signal </string>

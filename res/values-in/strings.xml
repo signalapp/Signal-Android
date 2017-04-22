@@ -529,9 +529,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="WebRtcCallScreen_new_safety_number_title">Angka keamanan baru</string>
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">Gambar</string>
   <string name="attachment_type_selector__audio">Audio</string>
-  <string name="attachment_type_selector__video">Video</string>
   <string name="attachment_type_selector__contact">Kontak</string>
   <string name="attachment_type_selector__camera">Kamera</string>
   <string name="attachment_type_selector__location">Lokasi</string>

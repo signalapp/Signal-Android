@@ -616,12 +616,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Ťuknutím povolíte video</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">Obrázek</string>
-  <string name="attachment_type_selector__image_description">Obrázek</string>
   <string name="attachment_type_selector__audio">Audio</string>
   <string name="attachment_type_selector__audio_description">Audio</string>
-  <string name="attachment_type_selector__video">Video</string>
-  <string name="attachment_type_selector__video_description">Video</string>
   <string name="attachment_type_selector__contact">Kontakt</string>
   <string name="attachment_type_selector__contact_description">Kontakt</string>
   <string name="attachment_type_selector__camera">Kamera</string>
@@ -1038,6 +1034,7 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="preferences_chats__show_invitation_prompts">Zobrazovat pozvánky</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Zobrazovat pozvánky prokontakty které nemají Signal</string>
   <string name="preferences_chats__message_text_size">Velikost písma zprávy</string>
+  <string name="preferences_events__contact_joined_signal">Kontakt se připojil k Signalu</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

@@ -616,12 +616,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Pulse para habilitar su vídeo</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">Imagen</string>
-  <string name="attachment_type_selector__image_description">Imagen</string>
   <string name="attachment_type_selector__audio">Audio</string>
   <string name="attachment_type_selector__audio_description">Audio</string>
-  <string name="attachment_type_selector__video">Vídeo</string>
-  <string name="attachment_type_selector__video_description">Vídeo</string>
   <string name="attachment_type_selector__contact">Contacto</string>
   <string name="attachment_type_selector__contact_description">Contacto</string>
   <string name="attachment_type_selector__camera">Cámara</string>
@@ -1043,6 +1039,7 @@ por SMS.
   <string name="preferences_chats__show_invitation_prompts">Mostrar ofrecimientos de invitación</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Muestra ofrecimientos de invitación para contactos sin Signal</string>
   <string name="preferences_chats__message_text_size">Tamaño de fuente del mensaje</string>
+  <string name="preferences_events__contact_joined_signal">Un contacto se ha unido a Signal</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

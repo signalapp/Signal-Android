@@ -477,9 +477,7 @@
   <!--WebRtcCallScreen-->
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">Imaxe</string>
   <string name="attachment_type_selector__audio">Audio</string>
-  <string name="attachment_type_selector__video">Vídeo</string>
   <string name="attachment_type_selector__contact">Contacto</string>
   <string name="attachment_type_selector__camera">Cámara</string>
   <string name="attachment_type_selector__location">Localización</string>

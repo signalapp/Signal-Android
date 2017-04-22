@@ -601,12 +601,8 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Appuyez pour activer votre vidéo</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">Image</string>
-  <string name="attachment_type_selector__image_description">Image</string>
   <string name="attachment_type_selector__audio">Audio</string>
   <string name="attachment_type_selector__audio_description">Audio</string>
-  <string name="attachment_type_selector__video">Vidéo</string>
-  <string name="attachment_type_selector__video_description">Vidéo</string>
   <string name="attachment_type_selector__contact">Contact</string>
   <string name="attachment_type_selector__contact_description">Contact</string>
   <string name="attachment_type_selector__camera">Appareil photo</string>
@@ -1016,6 +1012,7 @@ par SMS.</string>
   <string name="preferences_chats__show_invitation_prompts">Afficher les invitations</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Afficher les invitations pour les contacts sans Signal</string>
   <string name="preferences_chats__message_text_size">Taille de la police du message</string>
+  <string name="preferences_events__contact_joined_signal">Votre contact a rejoint Signal</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
