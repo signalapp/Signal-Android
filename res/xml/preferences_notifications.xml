@@ -59,6 +59,14 @@
                 android:defaultValue="all"
                 android:entries="@array/pref_notification_privacy_entries"
                 android:entryValues="@array/pref_notification_privacy_values"/>
+
+        <org.thoughtcrime.securesms.preferences.SignalListPreference
+                android:key="pref_notification_priority"
+                android:title="@string/preferences_notifications__priority"
+                android:dependency="pref_key_enable_notifications"
+                android:defaultValue="1"
+                android:entries="@array/pref_notification_priority_entries"
+                android:entryValues="@array/pref_notification_priority_values"/>
     </PreferenceCategory>
 
     <PreferenceCategory android:layout="@layout/preference_divider"/>
