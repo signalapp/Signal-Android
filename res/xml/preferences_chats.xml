@@ -30,12 +30,13 @@
     <PreferenceCategory android:layout="@layout/preference_divider"/>
 
     <PreferenceCategory android:title="@string/preferences_chats__chats">
-        <ListPreference android:key="pref_message_body_text_size"
-                        android:title="@string/preferences_chats__message_text_size"
-                        android:entries="@array/pref_message_font_size_entries"
-                        android:entryValues="@array/pref_message_font_size_values"
-                        android:defaultValue="16">
-        </ListPreference>
+        <org.thoughtcrime.securesms.preferences.SignalListPreference
+                android:key="pref_message_body_text_size"
+                android:title="@string/preferences_chats__message_text_size"
+                android:entries="@array/pref_message_font_size_entries"
+                android:entryValues="@array/pref_message_font_size_values"
+                android:defaultValue="16">
+        </org.thoughtcrime.securesms.preferences.SignalListPreference>
 
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
                 android:defaultValue="true"

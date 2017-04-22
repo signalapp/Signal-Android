@@ -38,7 +38,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
  * @author Moxie Marlinspike
  */
 
-public class LedBlinkPatternListPreference extends ListPreference implements OnSeekBarChangeListener {
+public class LedBlinkPatternListPreference extends SignalListPreference implements OnSeekBarChangeListener {
 
   private Context context;
   private SeekBar seekBarOn;

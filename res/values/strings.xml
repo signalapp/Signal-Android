@@ -1199,6 +1199,8 @@
     <string name="preferences_chats__chats">Chats</string>
     <string name="preferences_notifications__message_notifications">Message notifications</string>
     <string name="preferences_notifications__events">Events</string>
+    <string name="preferences_notifications__in_chat_sounds">In-chat sounds</string>
+    <string name="preferences_notifications__show">Show</string>
     <string name="preferences_chats__show_invitation_prompts">Show invitation prompts</string>
     <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Display invitation prompts for contacts without Signal</string>
     <string name="preferences_chats__message_text_size">Message font size</string>

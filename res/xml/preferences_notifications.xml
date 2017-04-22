@@ -7,21 +7,20 @@
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
                             android:key="pref_key_enable_notifications"
                             android:title="@string/preferences__notifications"
-                            android:summary="@string/preferences__enable_message_notifications"
                             android:defaultValue="true" />
 
-        <RingtonePreference android:dependency="pref_key_enable_notifications"
-                            android:key="pref_key_ringtone"
-                            android:title="@string/preferences__sound"
-                            android:ringtoneType="notification"
-                            android:defaultValue="content://settings/system/notification_sound" />
+        <org.thoughtcrime.securesms.preferences.SignalRingtonePreference
+                android:dependency="pref_key_enable_notifications"
+                android:key="pref_key_ringtone"
+                android:title="@string/preferences__sound"
+                android:ringtoneType="notification"
+                android:defaultValue="content://settings/system/notification_sound" />
 
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
                             android:dependency="pref_key_enable_notifications"
                             android:key="pref_key_vibrate"
                             android:defaultValue="true"
-                            android:title="@string/preferences__vibrate"
-                            android:summary="@string/preferences__also_vibrate_when_notified" />
+                            android:title="@string/preferences__vibrate"/>
 
         <org.thoughtcrime.securesms.preferences.LEDColorListPreference
             android:key="pref_led_color"
@@ -41,12 +40,11 @@
 
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
                             android:key="pref_key_inthread_notifications"
-                            android:title="@string/preferences__in_conversation_notifications"
-                            android:summary="@string/preferences__play_inthread_notifications"
+                            android:title="@string/preferences_notifications__in_chat_sounds"
                             android:dependency="pref_key_enable_notifications"
                             android:defaultValue="true" />
 
-        <ListPreference
+        <org.thoughtcrime.securesms.preferences.SignalListPreference
                 android:key="pref_repeat_alerts"
                 android:defaultValue="0"
                 android:title="@string/preferences__repeat_alerts"
@@ -54,12 +52,13 @@
                 android:entries="@array/pref_repeat_alerts_entries"
                 android:entryValues="@array/pref_repeat_alerts_values" />
 
-        <ListPreference android:key="pref_notification_privacy"
-                        android:title="@string/preferences_notifications__display_in_notifications"
-                        android:dependency="pref_key_enable_notifications"
-                        android:defaultValue="all"
-                        android:entries="@array/pref_notification_privacy_entries"
-                        android:entryValues="@array/pref_notification_privacy_values"/>
+        <org.thoughtcrime.securesms.preferences.SignalListPreference
+                android:key="pref_notification_privacy"
+                android:title="@string/preferences_notifications__show"
+                android:dependency="pref_key_enable_notifications"
+                android:defaultValue="all"
+                android:entries="@array/pref_notification_privacy_entries"
+                android:entryValues="@array/pref_notification_privacy_values"/>
     </PreferenceCategory>
 
     <PreferenceCategory android:layout="@layout/preference_divider"/>
@@ -68,7 +67,6 @@
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
             android:key="pref_enable_new_contacts_notifications"
             android:title="@string/preferences_events__contact_joined_signal"
-            android:summary="@string/preferences__show_a_notification_for_new_signal_contacts"
             android:defaultValue="true" />
     </PreferenceCategory>
 
