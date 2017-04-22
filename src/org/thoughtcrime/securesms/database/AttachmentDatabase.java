@@ -86,6 +86,7 @@ public class AttachmentDatabase extends Database {
           static final String THUMBNAIL_ASPECT_RATIO = "aspect_ratio";
           static final String UNIQUE_ID              = "unique_id";
           static final String DIGEST                 = "digest";
+  public  static final String FAST_PREFLIGHT_ID      = "fast_preflight_id";
 
   public static final int TRANSFER_PROGRESS_DONE         = 0;
   public static final int TRANSFER_PROGRESS_STARTED      = 1;
@@ -98,7 +99,7 @@ public class AttachmentDatabase extends Database {
                                                            MMS_ID, CONTENT_TYPE, NAME, CONTENT_DISPOSITION,
                                                            CONTENT_LOCATION, DATA, THUMBNAIL, TRANSFER_STATE,
                                                            SIZE, FILE_NAME, THUMBNAIL, THUMBNAIL_ASPECT_RATIO,
-                                                           UNIQUE_ID, DIGEST};
+                                                           UNIQUE_ID, DIGEST, FAST_PREFLIGHT_ID};
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ROW_ID + " INTEGER PRIMARY KEY, " +
     MMS_ID + " INTEGER, " + "seq" + " INTEGER DEFAULT 0, "                        +
@@ -108,7 +109,7 @@ public class AttachmentDatabase extends Database {
     "ctt_t" + " TEXT, " + "encrypted" + " INTEGER, "                         +
     TRANSFER_STATE + " INTEGER, "+ DATA + " TEXT, " + SIZE + " INTEGER, "   +
     FILE_NAME + " TEXT, " + THUMBNAIL + " TEXT, " + THUMBNAIL_ASPECT_RATIO + " REAL, " +
-    UNIQUE_ID + " INTEGER NOT NULL, " + DIGEST + " BLOB);";
+    UNIQUE_ID + " INTEGER NOT NULL, " + DIGEST + " BLOB, " + FAST_PREFLIGHT_ID + " TEXT);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS part_mms_id_index ON " + TABLE_NAME + " (" + MMS_ID + ");",
@@ -276,6 +277,7 @@ public class AttachmentDatabase extends Database {
     values.put(CONTENT_DISPOSITION, (String)null);
     values.put(DIGEST, (byte[])null);
     values.put(NAME, (String) null);
+    values.put(FAST_PREFLIGHT_ID, (String)null);
 
     if (database.update(TABLE_NAME, values, PART_ID_WHERE, attachmentId.toStrings()) == 0) {
       //noinspection ResultOfMethodCallIgnored
@@ -334,7 +336,8 @@ public class AttachmentDatabase extends Database {
                                   databaseAttachment.getLocation(),
                                   databaseAttachment.getKey(),
                                   databaseAttachment.getRelay(),
-                                  databaseAttachment.getDigest());
+                                  databaseAttachment.getDigest(),
+                                  databaseAttachment.getFastPreflightId());
   }
 
 
@@ -485,7 +488,8 @@ public class AttachmentDatabase extends Database {
                                   cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_LOCATION)),
                                   cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_DISPOSITION)),
                                   cursor.getString(cursor.getColumnIndexOrThrow(NAME)),
-                                  cursor.getBlob(cursor.getColumnIndexOrThrow(DIGEST)));
+                                  cursor.getBlob(cursor.getColumnIndexOrThrow(DIGEST)),
+                                  cursor.getString(cursor.getColumnIndexOrThrow(FAST_PREFLIGHT_ID)));
   }
 
 
@@ -519,6 +523,7 @@ public class AttachmentDatabase extends Database {
     contentValues.put(NAME, attachment.getRelay());
     contentValues.put(FILE_NAME, fileName);
     contentValues.put(SIZE, attachment.getSize());
+    contentValues.put(FAST_PREFLIGHT_ID, attachment.getFastPreflightId());
 
     if (partData != null) {
       contentValues.put(DATA, partData.first.getAbsolutePath());

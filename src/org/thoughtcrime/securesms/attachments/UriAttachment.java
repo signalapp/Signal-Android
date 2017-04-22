@@ -12,14 +12,14 @@ public class UriAttachment extends Attachment {
   public UriAttachment(@NonNull Uri uri, @NonNull String contentType, int transferState, long size,
                        @Nullable String fileName)
   {
-    this(uri, uri, contentType, transferState, size, fileName);
+    this(uri, uri, contentType, transferState, size, fileName, null);
   }
 
   public UriAttachment(@NonNull Uri dataUri, @Nullable Uri thumbnailUri,
                        @NonNull String contentType, int transferState, long size,
-                       @Nullable String fileName)
+                       @Nullable String fileName, @Nullable String fastPreflightId)
   {
-    super(contentType, transferState, size, fileName, null, null, null, null);
+    super(contentType, transferState, size, fileName, null, null, null, null, fastPreflightId);
     this.dataUri      = dataUri;
     this.thumbnailUri = thumbnailUri;
   }

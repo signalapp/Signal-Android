@@ -35,6 +35,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.ui.PlacePicker;
@@ -109,20 +110,27 @@ public class AttachmentManager {
 
   }
 
-  public void clear() {
+  public void clear(boolean animate) {
     if (attachmentViewStub.resolved()) {
-      ViewUtil.fadeOut(attachmentViewStub.get(), 200).addListener(new Listener<Boolean>() {
-        @Override
-        public void onSuccess(Boolean result) {
-          thumbnail.clear();
-          attachmentViewStub.get().setVisibility(View.GONE);
-          attachmentListener.onAttachmentChanged();
-        }
 
-        @Override
-        public void onFailure(ExecutionException e) {
-        }
-      });
+      if (animate) {
+        ViewUtil.fadeOut(attachmentViewStub.get(), 200).addListener(new Listener<Boolean>() {
+          @Override
+          public void onSuccess(Boolean result) {
+            thumbnail.clear();
+            attachmentViewStub.get().setVisibility(View.GONE);
+            attachmentListener.onAttachmentChanged();
+          }
+
+          @Override
+          public void onFailure(ExecutionException e) {
+          }
+        });
+      } else {
+        thumbnail.clear();
+        attachmentViewStub.get().setVisibility(View.GONE);
+        attachmentListener.onAttachmentChanged();
+      }
 
       markGarbage(getSlideUri());
       slide = Optional.absent();
@@ -413,7 +421,7 @@ public class AttachmentManager {
     @Override
     public void onClick(View v) {
       cleanup();
-      clear();
+      clear(true);
     }
   }
 
