@@ -713,9 +713,9 @@
     <string name="attachment_type_selector__gif">GIF</string>
     <string name="attachment_type_selector__gif_description">Gif</string>
     <string name="attachment_type_selector__gallery_description">Image or video</string>
-    <string name="attachment_type_selector__document_description">Document</string>
+    <string name="attachment_type_selector__file_description">File</string>
     <string name="attachment_type_selector__gallery">Gallery</string>
-    <string name="attachment_type_selector__document">Document</string>
+    <string name="attachment_type_selector__file">File</string>
 
     <string name="attachment_type_selector__drawer_description">Toggle attachment drawer</string>
 

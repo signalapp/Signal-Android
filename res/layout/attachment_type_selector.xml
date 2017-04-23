@@ -79,14 +79,14 @@
                     android:layout_height="53dp"
                     android:src="@drawable/ic_insert_drive_file_white_24dp"
                     android:scaleType="center"
-                    android:contentDescription="@string/attachment_type_selector__document_description"
+                    android:contentDescription="@string/attachment_type_selector__file_description"
                     app:circleColor="@color/red_400"/>
 
             <TextView android:layout_marginTop="10dp"
                       style="@style/AttachmentTypeLabel"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:text="@string/attachment_type_selector__document"/>
+                      android:text="@string/attachment_type_selector__file"/>
 
         </LinearLayout>
 
