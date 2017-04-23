@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/redphone_black_rectangle"/>
-    <item android:drawable="@drawable/redphone_dialpad_background"/>
-</layer-list>

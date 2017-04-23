@@ -557,12 +557,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Ny sikkerhets nummer</string>
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">Bilde</string>
-  <string name="attachment_type_selector__image_description">Bilde</string>
   <string name="attachment_type_selector__audio">Lyd</string>
   <string name="attachment_type_selector__audio_description">Lyd</string>
-  <string name="attachment_type_selector__video">Video</string>
-  <string name="attachment_type_selector__video_description">Video</string>
   <string name="attachment_type_selector__contact">Kontakt</string>
   <string name="attachment_type_selector__contact_description">Kontakt</string>
   <string name="attachment_type_selector__camera">Kamera</string>

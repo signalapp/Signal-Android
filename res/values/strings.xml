@@ -97,6 +97,7 @@
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Fallback to unencrypted MMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">This message will <b>not</b> be encrypted because the recipient is no longer a Signal user.\n\nSend unsecured message?</string>
     <string name="ConversationItem_unable_to_open_media">Can\'t find an app able to open this media.</string>
+    <string name="ConversationItem_copied_text">Copied %s</string>
     <string name="ConversationItem_from_s">from %s</string>
     <string name="ConversationItem_to_s">to %s</string>
 
@@ -701,12 +702,8 @@
 
 
     <!-- attachment_type_selector -->
-    <string name="attachment_type_selector__image">Image</string>
-    <string name="attachment_type_selector__image_description">Image</string>
     <string name="attachment_type_selector__audio">Audio</string>
     <string name="attachment_type_selector__audio_description">Audio</string>
-    <string name="attachment_type_selector__video">Video</string>
-    <string name="attachment_type_selector__video_description">Video</string>
     <string name="attachment_type_selector__contact">Contact</string>
     <string name="attachment_type_selector__contact_description">Contact</string>
     <string name="attachment_type_selector__camera">Camera</string>
@@ -715,6 +712,11 @@
     <string name="attachment_type_selector__location_description">Location</string>
     <string name="attachment_type_selector__gif">GIF</string>
     <string name="attachment_type_selector__gif_description">Gif</string>
+    <string name="attachment_type_selector__gallery_description">Image or video</string>
+    <string name="attachment_type_selector__document_description">Document</string>
+    <string name="attachment_type_selector__gallery">Gallery</string>
+    <string name="attachment_type_selector__document">Document</string>
+
     <string name="attachment_type_selector__drawer_description">Toggle attachment drawer</string>
 
     <!-- change_passphrase_activity -->
@@ -1078,6 +1080,10 @@
     <string name="arrays__large">Large</string>
     <string name="arrays__extra_large">Extra large</string>
 
+    <string name="arrays__default">Default</string>
+    <string name="arrays__high">High</string>
+    <string name="arrays__max">Max</string>
+
     <!-- plurals.xml -->
     <plurals name="hours_ago">
         <item quantity="one">%d hour</item>
@@ -1197,10 +1203,14 @@
     <string name="preferences_chats__chats">Chats</string>
     <string name="preferences_notifications__message_notifications">Message notifications</string>
     <string name="preferences_notifications__events">Events</string>
+    <string name="preferences_notifications__in_chat_sounds">In-chat sounds</string>
+    <string name="preferences_notifications__show">Show</string>
     <string name="preferences_chats__show_invitation_prompts">Show invitation prompts</string>
     <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Display invitation prompts for contacts without Signal</string>
     <string name="preferences_chats__message_text_size">Message font size</string>
-
+    <string name="preferences_events__contact_joined_signal">Contact joined Signal</string>
+    <string name="preferences_notifications__priority">Priority</string>
+    
     <!-- **************************************** -->
     <!-- menus -->
     <!-- **************************************** -->

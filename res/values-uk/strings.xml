@@ -607,12 +607,8 @@
   <string name="WebRtcCallScreen_new_safety_number_title">Новий номер безпеки</string>
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">Зображення</string>
-  <string name="attachment_type_selector__image_description">Зображення</string>
   <string name="attachment_type_selector__audio">Аудіо</string>
   <string name="attachment_type_selector__audio_description">Аудіо</string>
-  <string name="attachment_type_selector__video">Відео</string>
-  <string name="attachment_type_selector__video_description">Відео</string>
   <string name="attachment_type_selector__contact">Контакт</string>
   <string name="attachment_type_selector__contact_description">Контакт</string>
   <string name="attachment_type_selector__camera">Камера</string>

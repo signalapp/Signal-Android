@@ -85,6 +85,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Använd okrypterat MMS istället?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Detta meddelande kommer <b>inte</b> krypteras eftersom mottagaren inte längre är en Signal-användare. \n\nSkicka osäkert meddelande?</string>
   <string name="ConversationItem_unable_to_open_media">Kan ej hitta app som kan öppna denna fil.</string>
+  <string name="ConversationItem_copied_text">Kopierade %s</string>
   <string name="ConversationItem_from_s">från %s</string>
   <string name="ConversationItem_to_s">till %s</string>
   <!--ConversationActivity-->
@@ -603,12 +604,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Tryck för att aktivera video</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">Bild</string>
-  <string name="attachment_type_selector__image_description">Bild</string>
   <string name="attachment_type_selector__audio">Ljud</string>
   <string name="attachment_type_selector__audio_description">Ljud</string>
-  <string name="attachment_type_selector__video">Video</string>
-  <string name="attachment_type_selector__video_description">Video</string>
   <string name="attachment_type_selector__contact">Kontakt</string>
   <string name="attachment_type_selector__contact_description">Kontakt</string>
   <string name="attachment_type_selector__camera">Kamera</string>
@@ -617,6 +614,10 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="attachment_type_selector__location_description">Plats</string>
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__gallery_description">Bild eller video</string>
+  <string name="attachment_type_selector__document_description">Dokument</string>
+  <string name="attachment_type_selector__gallery">Galleri</string>
+  <string name="attachment_type_selector__document">Dokument</string>
   <string name="attachment_type_selector__drawer_description">Dölj/visa bilagor</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Gammal lösenfras</string>
@@ -638,6 +639,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Konversation tystad</string>
   <!--conversation_activity-->
+  <string name="conversation_activity__type_message_push">Signalmeddelande</string>
+  <string name="conversation_activity__type_message_sms_insecure">Osäkert SMS</string>
+  <string name="conversation_activity__type_message_mms_insecure">Osäkert MMS</string>
   <string name="conversation_activity__from_sim_name">Från %1$s</string>
   <string name="conversation_activity__send">Skicka</string>
   <string name="conversation_activity__remove">Ta bort</string>
@@ -884,7 +888,13 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="arrays__audio">Ljud</string>
   <string name="arrays__video">Video</string>
   <string name="arrays__documents">Dokument</string>
+  <string name="arrays__small">Liten</string>
   <string name="arrays__normal">Normal</string>
+  <string name="arrays__large">Stor</string>
+  <string name="arrays__extra_large">Extra stor</string>
+  <string name="arrays__default">Standard</string>
+  <string name="arrays__high">Hög</string>
+  <string name="arrays__max">Max</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d timme</item>
@@ -998,6 +1008,18 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Stöd för nästa generations video- och röstsamtal om det aktiverats av båda parter. Denna funktion är i beta.</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Slussa alla samtal via Signal-servern för att unvika att avslöja din IP-adress för din kontakt. Aktivering innebär försämrad samtalskvalité.</string>
   <string name="preferences_advanced__always_relay_calls">Slussa alltid samtal</string>
+  <string name="preferences_app_protection__app_access">App åtkomst</string>
+  <string name="preferences_app_protection__communication">Kommunikation</string>
+  <string name="preferences_chats__chats">Chatt</string>
+  <string name="preferences_notifications__message_notifications">Meddelandenotifieringar</string>
+  <string name="preferences_notifications__events">Händelser</string>
+  <string name="preferences_notifications__in_chat_sounds">Ljud i chatter</string>
+  <string name="preferences_notifications__show">Visa</string>
+  <string name="preferences_chats__show_invitation_prompts">Visa inbjudningsmeddelande</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Visa inbjudningsmeddelande för kontakter utan Signal</string>
+  <string name="preferences_chats__message_text_size">Teckenstorlek för meddelande</string>
+  <string name="preferences_events__contact_joined_signal">Kontakt anslöt sig till Signal</string>
+  <string name="preferences_notifications__priority">Prioritet</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

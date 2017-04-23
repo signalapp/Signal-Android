@@ -603,12 +603,8 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Tocca per abilitare il tuo video</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">Immagine</string>
-  <string name="attachment_type_selector__image_description">Immagine</string>
   <string name="attachment_type_selector__audio">Audio</string>
   <string name="attachment_type_selector__audio_description">Audio</string>
-  <string name="attachment_type_selector__video">Video</string>
-  <string name="attachment_type_selector__video_description">Video</string>
   <string name="attachment_type_selector__contact">Contatto</string>
   <string name="attachment_type_selector__contact_description">Contatto</string>
   <string name="attachment_type_selector__camera">Fotocamera</string>
@@ -638,6 +634,9 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Conversazione mutata</string>
   <!--conversation_activity-->
+  <string name="conversation_activity__type_message_push">Messaggio Signal</string>
+  <string name="conversation_activity__type_message_sms_insecure">SMS non sicuro</string>
+  <string name="conversation_activity__type_message_mms_insecure">MMS non sicuro</string>
   <string name="conversation_activity__from_sim_name">Da %1$s</string>
   <string name="conversation_activity__send">Invia</string>
   <string name="conversation_activity__remove">Elimina</string>
@@ -894,7 +893,10 @@ non riuscita.
   <string name="arrays__audio">Audio</string>
   <string name="arrays__video">Video</string>
   <string name="arrays__documents">Documenti</string>
+  <string name="arrays__small">Piccolo</string>
   <string name="arrays__normal">Normale</string>
+  <string name="arrays__large">Grande</string>
+  <string name="arrays__extra_large">Enorme</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d ora</item>
@@ -1008,6 +1010,15 @@ non riuscita.
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Supporta le telefonate e videochiamate di ultimissima generazione quando abilitata da entrambi le parti. Questa funzionalità è in versione beta.</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Ritrasmetti le chiamate attraverso i server di Signal per non rivelare il tuo indirizzo IP ai tuoi contatti. Abilitandolo verrà ridotta la qualità della chiamata.</string>
   <string name="preferences_advanced__always_relay_calls">Ritrasmetti sempre le chiamate</string>
+  <string name="preferences_app_protection__app_access">Accesso app</string>
+  <string name="preferences_app_protection__communication">Comunicazione</string>
+  <string name="preferences_chats__chats">Conversazioni</string>
+  <string name="preferences_notifications__message_notifications">Notifiche messaggi</string>
+  <string name="preferences_notifications__events">Eventi</string>
+  <string name="preferences_chats__show_invitation_prompts">Mostra i messaggi di invito</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Visualizza messaggio di invito per i contatti senza Signal</string>
+  <string name="preferences_chats__message_text_size">Dimensione carattere messaggio</string>
+  <string name="preferences_events__contact_joined_signal">Un nuovo contatto si è unito a Signal!</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

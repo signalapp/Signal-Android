@@ -615,12 +615,8 @@
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Clique para habilitar seu vídeo</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">Imagem</string>
-  <string name="attachment_type_selector__image_description">Imagem</string>
   <string name="attachment_type_selector__audio">Áudio</string>
   <string name="attachment_type_selector__audio_description">Áudio</string>
-  <string name="attachment_type_selector__video">Vídeo</string>
-  <string name="attachment_type_selector__video_description">Vídeo</string>
   <string name="attachment_type_selector__contact">Contato</string>
   <string name="attachment_type_selector__contact_description">Contato</string>
   <string name="attachment_type_selector__camera">Câmera</string>
@@ -650,6 +646,9 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Conversa silenciada</string>
   <!--conversation_activity-->
+  <string name="conversation_activity__type_message_push">Mensagem Signal</string>
+  <string name="conversation_activity__type_message_sms_insecure">SMS inseguro</string>
+  <string name="conversation_activity__type_message_mms_insecure">MMS inseguro</string>
   <string name="conversation_activity__from_sim_name">De %1$s</string>
   <string name="conversation_activity__send">Enviar</string>
   <string name="conversation_activity__remove">Remover</string>
@@ -906,7 +905,10 @@ falhou.</string>
   <string name="arrays__audio">Áudio</string>
   <string name="arrays__video">Vídeo</string>
   <string name="arrays__documents">Documentos</string>
+  <string name="arrays__small">Pequeno</string>
   <string name="arrays__normal">Normal</string>
+  <string name="arrays__large">Grande</string>
+  <string name="arrays__extra_large">Extra grande</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d hora</item>
@@ -1020,6 +1022,14 @@ falhou.</string>
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Suporte para chamadas de voz e vídeo de última geração quando habilitado por ambas as partes. Esta funcionalidade está em fase beta.</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Encaminhar todas as chamadas através do servidor Signal para evitar revelar seu endereço IP para seu contato. Habilitar reduzirá a qualidade da chamada.</string>
   <string name="preferences_advanced__always_relay_calls">Sempre reencaminhar chamadas</string>
+  <string name="preferences_app_protection__app_access">Acesso do aplicativo</string>
+  <string name="preferences_app_protection__communication">Comunicação</string>
+  <string name="preferences_chats__chats">Chats</string>
+  <string name="preferences_notifications__message_notifications">Notificações de mensagem</string>
+  <string name="preferences_notifications__events">Eventos</string>
+  <string name="preferences_chats__show_invitation_prompts">Mostrar avisos de convite</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Mostrar avisos de convite para contatos sem Signal</string>
+  <string name="preferences_chats__message_text_size">Tamanho da fonte da mensagem</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

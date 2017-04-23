@@ -604,12 +604,8 @@
   <string name="WebRtcCallScreen_new_safety_number_title">رقم أمان جديد</string>
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">صورة</string>
-  <string name="attachment_type_selector__image_description">صورة</string>
   <string name="attachment_type_selector__audio">صوت</string>
   <string name="attachment_type_selector__audio_description">صوت</string>
-  <string name="attachment_type_selector__video">فيديو</string>
-  <string name="attachment_type_selector__video_description">فيديو</string>
   <string name="attachment_type_selector__contact">جهة اتصال</string>
   <string name="attachment_type_selector__contact_description">متصل</string>
   <string name="attachment_type_selector__camera">كاميرا</string>

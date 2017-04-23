@@ -72,7 +72,7 @@ public class MediaAdapter extends CursorRecyclerViewAdapter<ViewHolder> {
     Slide slide = MediaUtil.getSlideForAttachment(getContext(), mediaRecord.getAttachment());
 
     if (slide != null) {
-      imageView.setImageResource(masterSecret, slide, false);
+      imageView.setImageResource(masterSecret, slide, false, false);
     }
 
     imageView.setOnClickListener(new OnMediaClickListener(mediaRecord));

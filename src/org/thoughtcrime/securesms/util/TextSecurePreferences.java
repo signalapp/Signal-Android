@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.ArrayRes;
 import android.support.annotation.NonNull;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.h6ah4i.android.compat.content.SharedPreferenceCompat;
@@ -97,6 +98,7 @@ public class TextSecurePreferences {
 
   public  static final String REPEAT_ALERTS_PREF               = "pref_repeat_alerts";
   public  static final String NOTIFICATION_PRIVACY_PREF        = "pref_notification_privacy";
+  public  static final String NOTIFICATION_PRIORITY_PREF       = "pref_notification_priority";
   public  static final String NEW_CONTACTS_NOTIFICATIONS       = "pref_enable_new_contacts_notifications";
   public  static final String WEBRTC_CALLING_PREF              = "pref_webrtc_calling";
 
@@ -108,6 +110,10 @@ public class TextSecurePreferences {
   private static final String MULTI_DEVICE_PROVISIONED_PREF    = "pref_multi_device";
   public  static final String DIRECT_CAPTURE_CAMERA_ID         = "pref_direct_capture_camera_id";
   private static final String ALWAYS_RELAY_CALLS_PREF          = "pref_turn_only";
+
+  public static int getNotificationPriority(Context context) {
+    return Integer.valueOf(getStringPreference(context, NOTIFICATION_PRIORITY_PREF, String.valueOf(NotificationCompat.PRIORITY_HIGH)));
+  }
 
   public static int getMessageBodyTextSize(Context context) {
     return Integer.valueOf(getStringPreference(context, MESSAGE_BODY_TEXT_SIZE_PREF, "16"));

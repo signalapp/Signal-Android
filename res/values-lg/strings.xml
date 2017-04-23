@@ -497,9 +497,7 @@ Dammu okebere e namba yo.  Tugenda kugikakasa no bubaka ku simu</string>
   <!--WebRtcCallScreen-->
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">kifananyi</string>
   <string name="attachment_type_selector__audio">doboozi</string>
-  <string name="attachment_type_selector__video">Akatambi</string>
   <string name="attachment_type_selector__contact">Contact</string>
   <string name="attachment_type_selector__camera">Camera</string>
   <string name="attachment_type_selector__location">wosangibwa</string>

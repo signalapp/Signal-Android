@@ -633,12 +633,8 @@
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Bakstelėkite, norėdami įjungti savo vaizdą</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">Paveikslas</string>
-  <string name="attachment_type_selector__image_description">Paveikslas</string>
   <string name="attachment_type_selector__audio">Garsas</string>
   <string name="attachment_type_selector__audio_description">Garso įrašai</string>
-  <string name="attachment_type_selector__video">Vaizdas</string>
-  <string name="attachment_type_selector__video_description">Vaizdo įrašai</string>
   <string name="attachment_type_selector__contact">Kontaktas</string>
   <string name="attachment_type_selector__contact_description">Kontaktas</string>
   <string name="attachment_type_selector__camera">Kamera</string>
@@ -647,6 +643,10 @@
   <string name="attachment_type_selector__location_description">Vieta</string>
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__gallery_description">Paveikslas ar vaizdo įrašas</string>
+  <string name="attachment_type_selector__document_description">Dokumentas</string>
+  <string name="attachment_type_selector__gallery">Galerija</string>
+  <string name="attachment_type_selector__document">Dokumentas</string>
   <string name="attachment_type_selector__drawer_description">Perjungti priedų stalčių</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Sena slaptafrazė</string>
@@ -668,6 +668,9 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Pokalbis nutildytas</string>
   <!--conversation_activity-->
+  <string name="conversation_activity__type_message_push">Signal žinutė</string>
+  <string name="conversation_activity__type_message_sms_insecure">Neapsaugota SMS</string>
+  <string name="conversation_activity__type_message_mms_insecure">Neapsaugota MMS</string>
   <string name="conversation_activity__from_sim_name">Nuo %1$s</string>
   <string name="conversation_activity__send">Siųsti</string>
   <string name="conversation_activity__remove">Šalinti</string>
@@ -945,7 +948,10 @@ yra prisijungęs prie belaidžio (Wi-Fi) arba duomenų perdavimo tinklo.
   <string name="arrays__audio">Garso įrašai</string>
   <string name="arrays__video">Vaizdo įrašai</string>
   <string name="arrays__documents">Dokumentai</string>
+  <string name="arrays__small">Mažas</string>
   <string name="arrays__normal">Normalus</string>
+  <string name="arrays__large">Didelis</string>
+  <string name="arrays__extra_large">Labai didelis</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d valanda</item>
@@ -1060,6 +1066,17 @@ yra prisijungęs prie belaidžio (Wi-Fi) arba duomenų perdavimo tinklo.
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Sekančios kartos vaizdo ir balso skambučių palaikymas, kuomet abi pusės turi šią ypatybę įjungtą. Ši ypatybė yra beta stadijoje.</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Retransliuoti visus skambučius per Signal serverį, kad būtų išvengta jūsų IP adreso atskleidimo jūsų kontaktui. Įjungus, pablogės skambučių kokybė.</string>
   <string name="preferences_advanced__always_relay_calls">Visada retransliuoti skambučius</string>
+  <string name="preferences_app_protection__app_access">Programėlės prieiga</string>
+  <string name="preferences_app_protection__communication">Susisiekimas</string>
+  <string name="preferences_chats__chats">Pokalbiai</string>
+  <string name="preferences_notifications__message_notifications">Žinučių pranešimai</string>
+  <string name="preferences_notifications__events">Įvykiai</string>
+  <string name="preferences_notifications__in_chat_sounds">Garsai pokalbiuose</string>
+  <string name="preferences_notifications__show">Rodyti</string>
+  <string name="preferences_chats__show_invitation_prompts">Rodyti pakvietimų užklausas</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Rodyti pakvietimų užklausas kontaktams, kurie neturi Signal</string>
+  <string name="preferences_chats__message_text_size">Žinučių šrifto dydis</string>
+  <string name="preferences_events__contact_joined_signal">Kontaktas prisijungė prie Signal</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

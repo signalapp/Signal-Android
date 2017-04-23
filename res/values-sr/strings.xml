@@ -625,12 +625,8 @@
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Тапните да укључите ваш видео</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">Слика</string>
-  <string name="attachment_type_selector__image_description">Слика</string>
   <string name="attachment_type_selector__audio">Звук</string>
   <string name="attachment_type_selector__audio_description">Звук</string>
-  <string name="attachment_type_selector__video">Видео</string>
-  <string name="attachment_type_selector__video_description">Видео</string>
   <string name="attachment_type_selector__contact">Контакт</string>
   <string name="attachment_type_selector__contact_description">Контакт</string>
   <string name="attachment_type_selector__camera">Камера</string>
@@ -1032,6 +1028,10 @@
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Подршка за видео и гласовне позиве следеће генерације ако су укључени за обе стране. Ова функционалност је у пробној фази.</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Преусмеравање свих позива преко Сигналовог сервера да би се избегло откривање ваше ИП адресе вашем контакту.  Умањује квалитет позива.</string>
   <string name="preferences_advanced__always_relay_calls">Увек преусмеравај позиве</string>
+  <string name="preferences_chats__chats">Ћаскања</string>
+  <string name="preferences_notifications__events">Догађаји</string>
+  <string name="preferences_chats__message_text_size">Величина фонта поруке</string>
+  <string name="preferences_events__contact_joined_signal">Контакт се придружио Сигналу</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

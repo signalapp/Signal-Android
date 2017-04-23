@@ -447,12 +447,8 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <!--WebRtcCallScreen-->
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">Obrázok</string>
-  <string name="attachment_type_selector__image_description">Obrázok</string>
   <string name="attachment_type_selector__audio">Zvuk</string>
   <string name="attachment_type_selector__audio_description">Zvuk</string>
-  <string name="attachment_type_selector__video">Video</string>
-  <string name="attachment_type_selector__video_description">Video</string>
   <string name="attachment_type_selector__contact">Kontakt</string>
   <string name="attachment_type_selector__contact_description">Kontak</string>
   <string name="attachment_type_selector__camera">Kamera</string>

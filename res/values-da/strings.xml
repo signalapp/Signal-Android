@@ -593,12 +593,8 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Tryk for at aktivere video</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">Billede</string>
-  <string name="attachment_type_selector__image_description">Billede</string>
   <string name="attachment_type_selector__audio">Lyd</string>
   <string name="attachment_type_selector__audio_description">Lyd</string>
-  <string name="attachment_type_selector__video">Video</string>
-  <string name="attachment_type_selector__video_description">Video</string>
   <string name="attachment_type_selector__contact">Kontaktperson</string>
   <string name="attachment_type_selector__contact_description">Kontakt</string>
   <string name="attachment_type_selector__camera">Kamera</string>
