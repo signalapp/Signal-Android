@@ -92,9 +92,6 @@
     <attr name="import_export_item_background_color" format="reference|color" />
     <attr name="import_export_item_background_shadow_color" format="reference|color" />
     <attr name="import_export_item_card_background" format="reference" />
-    <attr name="import_sms" format="reference" />
-    <attr name="encrypted_backup" format="reference" />
-    <attr name="plaintext_backup" format="reference" />
 
     <attr name="reminder_header_background" format="color"/>
 

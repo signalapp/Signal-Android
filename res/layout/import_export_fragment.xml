@@ -38,7 +38,8 @@
                        android:layout_marginStart="16dp"
                        android:layout_marginRight="32dp"
                        android:layout_marginEnd="32dp"
-                       android:src="?import_sms"/>
+                       android:src="@drawable/ic_message_white_24dp"
+                       android:tint="?attr/pref_icon_tint"/>
 
             <LinearLayout android:orientation="vertical"
                           android:layout_width="wrap_content"
@@ -80,7 +81,8 @@
                        android:layout_marginStart="16dp"
                        android:layout_marginRight="32dip"
                        android:layout_marginEnd="32dip"
-                       android:src="?plaintext_backup"/>
+                       android:src="@drawable/ic_content_copy_white_24dp"
+                       android:tint="?attr/pref_icon_tint"/>
 
             <LinearLayout android:orientation="vertical"
                           android:layout_width="wrap_content"
@@ -135,7 +137,8 @@
                        android:layout_marginStart="16dp"
                        android:layout_marginRight="32dp"
                        android:layout_marginEnd="32dp"
-                       android:src="?plaintext_backup"/>
+                       android:src="@drawable/ic_content_copy_white_24dp"
+                       android:tint="?attr/pref_icon_tint"/>
 
             <LinearLayout android:orientation="vertical"
                           android:layout_width="wrap_content"
