@@ -615,9 +615,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
   <string name="attachment_type_selector__gallery_description">Bild eller video</string>
-  <string name="attachment_type_selector__document_description">Dokument</string>
+  <string name="attachment_type_selector__file_description">Fil</string>
   <string name="attachment_type_selector__gallery">Galleri</string>
-  <string name="attachment_type_selector__document">Dokument</string>
+  <string name="attachment_type_selector__file">Fil</string>
   <string name="attachment_type_selector__drawer_description">Dölj/visa bilagor</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Gammal lösenfras</string>
@@ -937,7 +937,7 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Specialanpassat LED-blinkningsmönster valt!</string>
   <string name="preferences__sound">Ljud</string>
   <string name="preferences__silent">Tyst</string>
-  <string name="preferences__in_conversation_notifications">Inom-konversationsaviseringar</string>
+  <string name="preferences__in_conversation_notifications">Aviseringar inom konversationer</string>
   <string name="preferences__play_inthread_notifications">Spela aviseringsljud när du tittar på en aktiv konversation</string>
   <string name="preferences__repeat_alerts">Upprepa aviseringar</string>
   <string name="preferences__never">Aldrig</string>
@@ -1011,7 +1011,7 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="preferences_app_protection__app_access">App åtkomst</string>
   <string name="preferences_app_protection__communication">Kommunikation</string>
   <string name="preferences_chats__chats">Chatt</string>
-  <string name="preferences_notifications__message_notifications">Meddelandenotifieringar</string>
+  <string name="preferences_notifications__message_notifications">Meddelandeaviseringar</string>
   <string name="preferences_notifications__events">Händelser</string>
   <string name="preferences_notifications__in_chat_sounds">Ljud i chatter</string>
   <string name="preferences_notifications__show">Visa</string>

@@ -91,6 +91,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Preklopim na nešifriran MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">To sporočilo <b>ne bo</b> šifrirano, ker prejemnik ni več uporabnik aplikacije Signal.\n\nPošljem nešifrirano?</string>
   <string name="ConversationItem_unable_to_open_media">Ne najdem aplikacije za odpiranje te vrste datotek.</string>
+  <string name="ConversationItem_copied_text">Prekopirano %s</string>
   <string name="ConversationItem_from_s">od %s</string>
   <string name="ConversationItem_to_s">za %s</string>
   <!--ConversationActivity-->
@@ -642,6 +643,10 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="attachment_type_selector__location_description">Lokacija</string>
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__gallery_description">Slika ali video</string>
+  <string name="attachment_type_selector__file_description">Datoteka</string>
+  <string name="attachment_type_selector__gallery">Galerija</string>
+  <string name="attachment_type_selector__file">Datoteka</string>
   <string name="attachment_type_selector__drawer_description">Vklopi poteznik za priponke</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Staro geslo</string>
@@ -928,6 +933,9 @@ bila uspešna.</string>
   <string name="arrays__normal">Običajne</string>
   <string name="arrays__large">Velike</string>
   <string name="arrays__extra_large">Zelo velike</string>
+  <string name="arrays__default">Privzeto</string>
+  <string name="arrays__high">Visoka</string>
+  <string name="arrays__max">Najvišja</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d ura</item>
@@ -1048,10 +1056,13 @@ bila uspešna.</string>
   <string name="preferences_chats__chats">Pogovori</string>
   <string name="preferences_notifications__message_notifications">Obvestila o sporočilih</string>
   <string name="preferences_notifications__events">Dogodki</string>
+  <string name="preferences_notifications__in_chat_sounds">Zvoki znotraj pogovora</string>
+  <string name="preferences_notifications__show">Prikaži</string>
   <string name="preferences_chats__show_invitation_prompts">Prikazuj obvestila o povabilih</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Prikazuj obvestila o povabilih za stike, ki nimajo nameščene aplikacije Signal.</string>
   <string name="preferences_chats__message_text_size">Velikost črk v sporočilu</string>
   <string name="preferences_events__contact_joined_signal">Oseba iz imenika se je pridružila Signalu</string>
+  <string name="preferences_notifications__priority">Pomembnost</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

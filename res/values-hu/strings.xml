@@ -87,6 +87,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Visszaállás titkosítatlan MMS-re?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ez az üzenet <b>nem</b> lesz titkosítva, mert a címzett már nem Signal felhasználó.\n\nVédtelen üzenet küldése?</string>
   <string name="ConversationItem_unable_to_open_media">Nem található alkalmazás ez a média megnyitásához.</string>
+  <string name="ConversationItem_copied_text">%s másolva</string>
   <string name="ConversationItem_from_s">tőle: %s</string>
   <string name="ConversationItem_to_s">neki: %s</string>
   <!--ConversationActivity-->
@@ -628,6 +629,10 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="attachment_type_selector__location_description">Hely</string>
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__gallery_description">Kép vagy videó</string>
+  <string name="attachment_type_selector__file_description">Fájl</string>
+  <string name="attachment_type_selector__gallery">Galéria</string>
+  <string name="attachment_type_selector__file">Fájl</string>
   <string name="attachment_type_selector__drawer_description">Mellékletfelvétel kapcsoló</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Régi jelmondat</string>
@@ -927,6 +932,9 @@ sikertelen.
   <string name="arrays__normal">Normál</string>
   <string name="arrays__large">Nagy</string>
   <string name="arrays__extra_large">Extra nagy</string>
+  <string name="arrays__default">Alapértelmezett</string>
+  <string name="arrays__high">Magas</string>
+  <string name="arrays__max">Maximum</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d óra</item>
@@ -1045,10 +1053,13 @@ sikertelen.
   <string name="preferences_chats__chats">Csevegések</string>
   <string name="preferences_notifications__message_notifications">Üzenet értesítések</string>
   <string name="preferences_notifications__events">Események</string>
+  <string name="preferences_notifications__in_chat_sounds">Csevegésen belüli hangok</string>
+  <string name="preferences_notifications__show">Mutat</string>
   <string name="preferences_chats__show_invitation_prompts">Meghívó mutatása</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Meghívók megjelenítése a Signal nélküli kontaktokhoz</string>
   <string name="preferences_chats__message_text_size">Üzenet betűméret</string>
   <string name="preferences_events__contact_joined_signal">Kontakt csatlakozott a Signal-hoz</string>
+  <string name="preferences_notifications__priority">Prioritás</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

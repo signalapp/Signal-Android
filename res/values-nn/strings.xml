@@ -85,6 +85,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Vil du bruka ukryptert MMS som reserveløysing?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Denne meldinga vert <b>ikkje</b> kryptert, fordi mottakaren ikkje brukar Signal lenger.\n\nVil du senda ho ukryptert?</string>
   <string name="ConversationItem_unable_to_open_media">Fann inga program som kan opna dette innhaldet.</string>
+  <string name="ConversationItem_copied_text">Kopierte %s</string>
   <string name="ConversationItem_from_s">frå %s</string>
   <string name="ConversationItem_to_s">til %s</string>
   <!--ConversationActivity-->
@@ -617,6 +618,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="attachment_type_selector__location_description">Plassering</string>
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__gallery_description">Bilete eller video</string>
+  <string name="attachment_type_selector__file_description">Fil</string>
+  <string name="attachment_type_selector__gallery">Galleri</string>
+  <string name="attachment_type_selector__file">Fil</string>
   <string name="attachment_type_selector__drawer_description">Vis/skjul vedleggspanel</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Gammal passordfrase</string>
@@ -901,6 +906,9 @@ Signal fekk tidsavbrot ved venting på stadfestingsmeldinga.</string>
   <string name="arrays__normal">Normal</string>
   <string name="arrays__large">Stor</string>
   <string name="arrays__extra_large">Veldig stor</string>
+  <string name="arrays__default">Forvald</string>
+  <string name="arrays__high">Høg</string>
+  <string name="arrays__max">Maks</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d time</item>
@@ -1019,10 +1027,13 @@ Signal fekk tidsavbrot ved venting på stadfestingsmeldinga.</string>
   <string name="preferences_chats__chats">Samtalar</string>
   <string name="preferences_notifications__message_notifications">Meldingsvarsel</string>
   <string name="preferences_notifications__events">Hendingar</string>
+  <string name="preferences_notifications__in_chat_sounds">Lydar i chat</string>
+  <string name="preferences_notifications__show">Vis</string>
   <string name="preferences_chats__show_invitation_prompts">Oppfordring om invitering</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Vis oppfordring om å invitera kontaktar som ikkje har Signal</string>
   <string name="preferences_chats__message_text_size">Skriftstorleik i meldingar</string>
   <string name="preferences_events__contact_joined_signal">Ein kontakt tok i bruk Signal!</string>
+  <string name="preferences_notifications__priority">Prioritet</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

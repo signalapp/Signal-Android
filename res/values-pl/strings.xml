@@ -91,6 +91,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Fallback do nieszyfrowanych wiadomości MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ta wiadomość <b>nie</b> będzie zaszyfrowana, ponieważ odbiorca nie jest już użytkownikiem Signal.\n\nWysłać wiadomość nieszyfrowaną?</string>
   <string name="ConversationItem_unable_to_open_media">Nie można znaleźć aplikacji, aby otworzyć tę zawartość.</string>
+  <string name="ConversationItem_copied_text">Skopiowano %s</string>
   <string name="ConversationItem_from_s">od %s</string>
   <string name="ConversationItem_to_s">do %s</string>
   <!--ConversationActivity-->
@@ -645,6 +646,10 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="attachment_type_selector__location_description">Lokalizacja</string>
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__gallery_description">Obraz lub film</string>
+  <string name="attachment_type_selector__file_description">Plik</string>
+  <string name="attachment_type_selector__gallery">Galeria</string>
+  <string name="attachment_type_selector__file">Plik</string>
   <string name="attachment_type_selector__drawer_description">Ukryj ekran załączników</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Stare hasło</string>
@@ -925,6 +930,9 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="arrays__normal">Normalnie</string>
   <string name="arrays__large">Duży</string>
   <string name="arrays__extra_large">Bardzo duży</string>
+  <string name="arrays__default">Domyślne</string>
+  <string name="arrays__high">Wysoki</string>
+  <string name="arrays__max">Maksymalny</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d godzina</item>
@@ -1040,10 +1048,17 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Wsparcie dla rozmów wideo i audio następnej generacji, gdy jest aktywowane przez obu rozmówców. Funkcja jest w fazie testów.</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Przekazuj połączenia do serwerów Signal, aby uniknąć ujawnienia swojego IP swoim kontaktom. Włączenie tej opcji pogorszy jakość połączenia.</string>
   <string name="preferences_advanced__always_relay_calls">Zawsze przekazuj połączenia</string>
+  <string name="preferences_app_protection__communication">Komunikacja</string>
+  <string name="preferences_chats__chats">Rozmowy</string>
+  <string name="preferences_notifications__message_notifications">Powiadomienia o wiadomościach</string>
+  <string name="preferences_notifications__events">Zdarzenia</string>
+  <string name="preferences_notifications__in_chat_sounds">Dźwięki podczas rozmowy</string>
+  <string name="preferences_notifications__show">Pokaż</string>
   <string name="preferences_chats__show_invitation_prompts">Pokazuj zachętę do zaproszenia</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Pokazuj zachętę do zaproszenia kontaktów bez Signal</string>
   <string name="preferences_chats__message_text_size">Rozmiar czcionki dla wiadomości</string>
   <string name="preferences_events__contact_joined_signal">Kontakt dołączył do Signal</string>
+  <string name="preferences_notifications__priority">Priorytet</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

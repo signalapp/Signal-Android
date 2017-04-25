@@ -85,6 +85,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Разреши преминавене към не шифровани MMS-и?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Това съобщение <b>НЯМА</b> да бъде криптирано, защото получтеля вече не е потребител на Сигнал.\n\nИзпращане на незащитено съобщение?</string>
   <string name="ConversationItem_unable_to_open_media">Неуспешно откриване на приложение за отваряне на този файл.</string>
+  <string name="ConversationItem_copied_text">%s e копирано</string>
   <string name="ConversationItem_from_s">от %s</string>
   <string name="ConversationItem_to_s">do %s</string>
   <!--ConversationActivity-->
@@ -616,6 +617,10 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="attachment_type_selector__location_description">Местоположение</string>
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__gallery_description">Изображение или видео</string>
+  <string name="attachment_type_selector__file_description">Файл</string>
+  <string name="attachment_type_selector__gallery">Галерия</string>
+  <string name="attachment_type_selector__file">Файл</string>
   <string name="attachment_type_selector__drawer_description">Затворяне/отворяне на чекмеджето с прикачени файлове</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Стара парола</string>
@@ -897,6 +902,9 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="arrays__normal">Нормално</string>
   <string name="arrays__large">Голям</string>
   <string name="arrays__extra_large">Много голям</string>
+  <string name="arrays__default">По подразбиране</string>
+  <string name="arrays__high">Високо</string>
+  <string name="arrays__max">Максимално</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d час</item>
@@ -1015,10 +1023,13 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="preferences_chats__chats">Чатове</string>
   <string name="preferences_notifications__message_notifications">Известия за съобщения</string>
   <string name="preferences_notifications__events">Събития</string>
+  <string name="preferences_notifications__in_chat_sounds">Звуци в чатове</string>
+  <string name="preferences_notifications__show">Показване</string>
   <string name="preferences_chats__show_invitation_prompts">Показване на покани</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Показване на покани за контакти без Сигнал</string>
   <string name="preferences_chats__message_text_size">Размер на текста</string>
   <string name="preferences_events__contact_joined_signal">Един от контактите Ви се присъедини към Сигнал!</string>
+  <string name="preferences_notifications__priority">Пиоритет</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

@@ -88,6 +88,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Sugrįžti prie nešifruotų MMS naudojimo?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ši žinutė <b>nebus</b> užšifruota, nes gavėjas daugiau nebėra Signal naudotojas.\n\nSiųsti neapsaugotą žinutę?</string>
   <string name="ConversationItem_unable_to_open_media">Nepavyksta rasti programėlės, galinčios atverti šią mediją.</string>
+  <string name="ConversationItem_copied_text">%s nukopijuota</string>
   <string name="ConversationItem_from_s">nuo %s</string>
   <string name="ConversationItem_to_s">iki %s</string>
   <!--ConversationActivity-->
@@ -644,9 +645,9 @@
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
   <string name="attachment_type_selector__gallery_description">Paveikslas ar vaizdo įrašas</string>
-  <string name="attachment_type_selector__document_description">Dokumentas</string>
+  <string name="attachment_type_selector__file_description">Failas</string>
   <string name="attachment_type_selector__gallery">Galerija</string>
-  <string name="attachment_type_selector__document">Dokumentas</string>
+  <string name="attachment_type_selector__file">Failas</string>
   <string name="attachment_type_selector__drawer_description">Perjungti priedų stalčių</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Sena slaptafrazė</string>
@@ -1077,6 +1078,7 @@ yra prisijungęs prie belaidžio (Wi-Fi) arba duomenų perdavimo tinklo.
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Rodyti pakvietimų užklausas kontaktams, kurie neturi Signal</string>
   <string name="preferences_chats__message_text_size">Žinučių šrifto dydis</string>
   <string name="preferences_events__contact_joined_signal">Kontaktas prisijungė prie Signal</string>
+  <string name="preferences_notifications__priority">Pirmenybė</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

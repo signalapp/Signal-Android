@@ -82,6 +82,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">回收未加密的多媒體訊息？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">由於對方已經不再是 Signal 的使用者，當前訊息<b>不會</b>被加密。\n\n傳送不加密的訊息？</string>
   <string name="ConversationItem_unable_to_open_media">找不到合適的應用程式來開啟媒體檔案。</string>
+  <string name="ConversationItem_copied_text">複製 %s</string>
   <string name="ConversationItem_from_s">來自 %s</string>
   <string name="ConversationItem_to_s">至 %s</string>
   <!--ConversationActivity-->
@@ -601,6 +602,10 @@
   <string name="attachment_type_selector__location_description">位置</string>
   <string name="attachment_type_selector__gif">動態圖檔</string>
   <string name="attachment_type_selector__gif_description">動態圖檔</string>
+  <string name="attachment_type_selector__gallery_description">圖片或影片</string>
+  <string name="attachment_type_selector__file_description">檔案</string>
+  <string name="attachment_type_selector__gallery">圖片庫</string>
+  <string name="attachment_type_selector__file">檔案</string>
   <string name="attachment_type_selector__drawer_description">切換附件抽屜</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">舊的自訂密碼</string>
@@ -876,6 +881,9 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="arrays__normal">正常</string>
   <string name="arrays__large">大的</string>
   <string name="arrays__extra_large">特大的</string>
+  <string name="arrays__default">預設</string>
+  <string name="arrays__high">高的</string>
+  <string name="arrays__max">最大的</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="other">%d 小時</item>
@@ -993,10 +1001,13 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="preferences_chats__chats">聊天</string>
   <string name="preferences_notifications__message_notifications">訊息通知</string>
   <string name="preferences_notifications__events">事件</string>
+  <string name="preferences_notifications__in_chat_sounds">聊天音效</string>
+  <string name="preferences_notifications__show">顯示</string>
   <string name="preferences_chats__show_invitation_prompts">顯示邀請提示</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">不用 Signal 來顯示給聯絡人的邀請提示</string>
   <string name="preferences_chats__message_text_size">訊息字體大小</string>
   <string name="preferences_events__contact_joined_signal">聯絡人已加入 Signal</string>
+  <string name="preferences_notifications__priority">優先順序</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
