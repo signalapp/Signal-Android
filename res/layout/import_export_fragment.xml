@@ -53,9 +53,10 @@
 
                 <ImageView android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
-                           android:layout_marginRight="10dip"
-                           android:layout_marginEnd="10dip"
-                           android:src="?import_sms"/>
+                           android:layout_marginRight="16dp"
+                           android:layout_marginEnd="16dp"
+                           android:src="@drawable/ic_message_white_24dp"
+                           android:tint="?attr/pref_icon_tint"/>
 
                 <LinearLayout android:orientation="vertical"
                               android:layout_width="wrap_content"
@@ -94,9 +95,10 @@
 
                 <ImageView android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
-                           android:layout_marginRight="10dip"
-                           android:layout_marginEnd="10dip"
-                           android:src="?plaintext_backup"/>
+                           android:layout_marginRight="16dp"
+                           android:layout_marginEnd="16dp"
+                           android:src="@drawable/ic_content_copy_white_24dp"
+                           android:tint="?attr/pref_icon_tint"/>
 
                 <LinearLayout android:orientation="vertical"
                               android:layout_width="wrap_content"
@@ -161,9 +163,10 @@
 
                 <ImageView android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
-                           android:layout_marginRight="10dip"
-                           android:layout_marginEnd="10dip"
-                           android:src="?plaintext_backup"/>
+                           android:layout_marginRight="16dp"
+                           android:layout_marginEnd="16dp"
+                           android:src="@drawable/ic_content_copy_white_24dp"
+                           android:tint="?attr/pref_icon_tint"/>
 
                 <LinearLayout android:orientation="vertical"
                               android:layout_width="wrap_content"
