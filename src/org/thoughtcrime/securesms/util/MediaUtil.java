@@ -165,7 +165,7 @@ public class MediaUtil {
   }
 
   public static boolean isFile(Attachment attachment) {
-    return !isImage(attachment) && !isAudio(attachment) && !isVideo(attachment);
+    return !isGif(attachment) && !isImage(attachment) && !isAudio(attachment) && !isVideo(attachment);
   }
 
   public static boolean hasVideoThumbnail(Uri uri) {
