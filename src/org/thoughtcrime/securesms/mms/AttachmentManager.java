@@ -109,26 +109,33 @@ public class AttachmentManager {
 
   }
 
-  public void clear() {
+  public void clear(boolean asynchronous) {
     if (attachmentViewStub.resolved()) {
-      ViewUtil.fadeOut(attachmentViewStub.get(), 200).addListener(new Listener<Boolean>() {
-        @Override
-        public void onSuccess(Boolean result) {
-          thumbnail.clear();
-          attachmentViewStub.get().setVisibility(View.GONE);
-          attachmentListener.onAttachmentChanged();
-        }
+      if (asynchronous) {
+        ViewUtil.fadeOut(attachmentViewStub.get(), 200).addListener(new Listener<Boolean>() {
+          @Override
+          public void onSuccess(Boolean result) {
+            clearThumbnail();
+          }
 
-        @Override
-        public void onFailure(ExecutionException e) {
-        }
-      });
+          @Override
+          public void onFailure(ExecutionException e) {
+          }
+        });
+      }
 
       markGarbage(getSlideUri());
       slide = Optional.absent();
-
       audioView.cleanup();
+
+      if (!asynchronous) clearThumbnail();
     }
+  }
+
+  private void clearThumbnail() {
+    thumbnail.clear();
+    attachmentViewStub.get().setVisibility(View.GONE);
+    attachmentListener.onAttachmentChanged();
   }
 
   public void cleanup() {
@@ -413,7 +420,7 @@ public class AttachmentManager {
     @Override
     public void onClick(View v) {
       cleanup();
-      clear();
+      clear(true);
     }
   }
 

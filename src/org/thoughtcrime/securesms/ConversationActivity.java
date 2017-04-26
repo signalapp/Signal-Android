@@ -274,7 +274,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (!Util.isEmpty(composeText) || attachmentManager.isAttachmentPresent()) {
       saveDraft();
-      attachmentManager.clear();
+      attachmentManager.clear(false);
       composeText.setText("");
     }
 
@@ -1511,7 +1511,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       outgoingMessage = new OutgoingSecureMediaMessage(outgoingMessage);
     }
 
-    attachmentManager.clear();
+    attachmentManager.clear(true);
     composeText.setText("");
 
     new AsyncTask<OutgoingMediaMessage, Void, Long>() {
