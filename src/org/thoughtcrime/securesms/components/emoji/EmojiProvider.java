@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.components.emoji.parsing.EmojiTree;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.Util;
 
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 class EmojiProvider {
@@ -71,10 +70,19 @@ class EmojiProvider {
     }
   }
 
-  @Nullable Spannable emojify(@Nullable CharSequence text, @NonNull TextView tv) {
+  @Nullable EmojiParser.CandidateList getCandidates(@Nullable CharSequence text) {
     if (text == null) return null;
+    return new EmojiParser(emojiTree).findCandidates(text);
+  }
 
-    List<EmojiParser.Candidate> matches = new EmojiParser(emojiTree).findCandidates(text);
+  @Nullable Spannable emojify(@Nullable CharSequence text, @NonNull TextView tv) {
+    return emojify(getCandidates(text), text, tv);
+  }
+
+  @Nullable Spannable emojify(@Nullable EmojiParser.CandidateList matches,
+                              @Nullable CharSequence text,
+                              @NonNull TextView tv) {
+    if (matches == null || text == null) return null;
     SpannableStringBuilder      builder = new SpannableStringBuilder(text);
 
     for (EmojiParser.Candidate candidate : matches) {
