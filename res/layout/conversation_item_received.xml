@@ -75,7 +75,8 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="?conversation_item_received_text_primary_color"
                     android:textColorLink="?conversation_item_received_text_primary_color"
-                    android:textSize="@dimen/conversation_item_body_text_size" />
+                    android:textSize="@dimen/conversation_item_body_text_size"
+                    app:scaleEmojis="true" />
 
             <LinearLayout android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
