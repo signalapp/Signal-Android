@@ -9,8 +9,9 @@
             android:defaultValue="light">
     </org.thoughtcrime.securesms.preferences.SignalListPreference>
 
-    <CheckBoxPreference android:key="pref_use_theme_colors_for_incomming_messages"
-                        android:title="Received text colors"
+    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+                        android:key="pref_use_theme_colors_for_incomming_messages"
+                        android:title="@string/preferences__use_theme_colors_for_incomming_messages_title"
                         android:defaultValue="false"
                         android:summary="@string/preferences__use_theme_colors_for_incomming_messages"/>
 

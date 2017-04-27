@@ -52,7 +52,7 @@ public class HourglassView extends View {
     this.foregroundPaint = new Paint();
     this.progressPaint   = new Paint();
 
-    setPaintBasedOnTint();
+    setBackgroundAndForegroundPaintColorFilterBasedOnTint();
 
     this.progressPaint.setColor(getResources().getColor(R.color.black));
     this.progressPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
@@ -63,7 +63,7 @@ public class HourglassView extends View {
     }
   }
 
-  private void setPaintBasedOnTint() {
+  private void setBackgroundAndForegroundPaintColorFilterBasedOnTint() {
     this.backgroundPaint.setColorFilter(new PorterDuffColorFilter(tint, PorterDuff.Mode.MULTIPLY));
     this.foregroundPaint.setColorFilter(new PorterDuffColorFilter(tint, PorterDuff.Mode.MULTIPLY));
   }
@@ -85,6 +85,6 @@ public class HourglassView extends View {
   public void setTint(int tint) {
     this.tint = tint;
 
-    setPaintBasedOnTint();
+    setBackgroundAndForegroundPaintColorFilterBasedOnTint();
   }
 }

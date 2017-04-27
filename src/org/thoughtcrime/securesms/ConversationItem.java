@@ -124,7 +124,7 @@ public class ConversationItem extends LinearLayout
   private @NonNull  ExpirationTimerView expirationTimer;
 
   private int defaultBubbleColor;
-  private int sentTextPrimColor;
+  private int sentTextPrimaryColor;
 
   private final PassthroughClickListener        passthroughClickListener    = new PassthroughClickListener();
   private final AttachmentDownloadClickListener downloadClickListener       = new AttachmentDownloadClickListener();
@@ -212,7 +212,7 @@ public class ConversationItem extends LinearLayout
     final TypedArray attrs      = context.obtainStyledAttributes(attributes);
 
     defaultBubbleColor = attrs.getColor(0, Color.WHITE);
-    sentTextPrimColor = attrs.getColor(3, Color.BLACK);
+    sentTextPrimaryColor = attrs.getColor(3, Color.BLACK);
     attrs.recycle();
   }
 
@@ -240,11 +240,11 @@ public class ConversationItem extends LinearLayout
         // Theme the incomming messages according the selected theme.
         bodyBubble.getBackground().setColorFilter(defaultBubbleColor, PorterDuff.Mode.MULTIPLY);
         if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setBackgroundColorHint(defaultBubbleColor);
-        this.secureImage.setColorFilter(sentTextPrimColor);
-        this.expirationTimer.setTint(sentTextPrimColor);
-        this.dateText.setTextColor(sentTextPrimColor);
-        this.simInfoText.setTextColor(sentTextPrimColor);
-        this.bodyText.setTextColor(sentTextPrimColor);
+        this.secureImage.setColorFilter(sentTextPrimaryColor);
+        this.expirationTimer.setTint(sentTextPrimaryColor);
+        this.dateText.setTextColor(sentTextPrimaryColor);
+        this.simInfoText.setTextColor(sentTextPrimaryColor);
+        this.bodyText.setTextColor(sentTextPrimaryColor);
       } else {
         int color = recipient.getColor().toConversationColor(context);
         bodyBubble.getBackground().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
