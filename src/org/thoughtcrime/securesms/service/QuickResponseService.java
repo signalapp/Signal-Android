@@ -60,10 +60,10 @@ public class QuickResponseService extends MasterSecretIntentService {
 
       if (!TextUtils.isEmpty(content)) {
         if (recipients.isSingleRecipient()) {
-          MessageSender.send(this, masterSecret, new OutgoingTextMessage(recipients, content, expiresIn, subscriptionId), -1, false);
+          MessageSender.send(this, masterSecret, new OutgoingTextMessage(recipients, content, expiresIn, subscriptionId), -1, false, null);
         } else {
           MessageSender.send(this, masterSecret, new OutgoingMediaMessage(recipients, new SlideDeck(), content, System.currentTimeMillis(),
-                                                                          subscriptionId, expiresIn, ThreadDatabase.DistributionTypes.DEFAULT), -1, false);
+                                                                          subscriptionId, expiresIn, ThreadDatabase.DistributionTypes.DEFAULT), -1, false, null);
         }
       }
     } catch (URISyntaxException e) {

@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.MatrixCursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
@@ -69,6 +70,8 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -144,6 +147,7 @@ public class MmsDatabase extends MessagingDatabase {
       AttachmentDatabase.CONTENT_TYPE,
       AttachmentDatabase.CONTENT_LOCATION,
       AttachmentDatabase.DIGEST,
+      AttachmentDatabase.FAST_PREFLIGHT_ID,
       AttachmentDatabase.CONTENT_DISPOSITION,
       AttachmentDatabase.NAME,
       AttachmentDatabase.TRANSFER_STATE
@@ -694,7 +698,8 @@ public class MmsDatabase extends MessagingDatabase {
                                                databaseAttachment.getLocation(),
                                                databaseAttachment.getKey(),
                                                databaseAttachment.getRelay(),
-                                               databaseAttachment.getDigest()));
+                                               databaseAttachment.getDigest(),
+                                               databaseAttachment.getFastPreflightId()));
       }
 
       return insertMediaMessage(new MasterSecretUnion(masterSecret),
@@ -867,7 +872,8 @@ public class MmsDatabase extends MessagingDatabase {
 
   public long insertMessageOutbox(@NonNull MasterSecretUnion masterSecret,
                                   @NonNull OutgoingMediaMessage message,
-                                  long threadId, boolean forceSms)
+                                  long threadId, boolean forceSms,
+                                  SmsDatabase.InsertListener insertListener)
       throws MmsException
   {
     long type = Types.BASE_SENDING_TYPE;
@@ -923,6 +929,10 @@ public class MmsDatabase extends MessagingDatabase {
 
     long messageId = insertMediaMessage(masterSecret, addresses, message.getBody(),
                                         message.getAttachments(), contentValues);
+
+    if (insertListener != null) {
+      insertListener.onComplete();
+    }
 
     DatabaseFactory.getThreadDatabase(context).setLastSeen(threadId);
     jobManager.add(new TrimThreadJob(context, threadId));
@@ -1106,6 +1116,10 @@ public class MmsDatabase extends MessagingDatabase {
     return new Reader(masterSecret, cursor);
   }
 
+  public OutgoingMessageReader readerFor(OutgoingMediaMessage message, long threadId) {
+    return new OutgoingMessageReader(message, threadId);
+  }
+
   public static class Status {
     public static final int DOWNLOAD_INITIALIZED     = 1;
     public static final int DOWNLOAD_NO_CONNECTIVITY = 2;
@@ -1113,6 +1127,39 @@ public class MmsDatabase extends MessagingDatabase {
     public static final int DOWNLOAD_SOFT_FAILURE    = 4;
     public static final int DOWNLOAD_HARD_FAILURE    = 5;
     public static final int DOWNLOAD_APN_UNAVAILABLE = 6;
+  }
+
+  public class OutgoingMessageReader {
+
+    private final OutgoingMediaMessage message;
+    private final long                 id;
+    private final long                 threadId;
+
+    public OutgoingMessageReader(OutgoingMediaMessage message, long threadId) {
+      try {
+        this.message = message;
+        this.id = SecureRandom.getInstance("SHA1PRNG").nextLong();
+        this.threadId = threadId;
+      } catch (NoSuchAlgorithmException e) {
+        throw new AssertionError(e);
+      }
+    }
+
+    public MessageRecord getCurrent() {
+      SlideDeck slideDeck = new SlideDeck(context, message.getAttachments());
+
+      return new MediaMmsMessageRecord(context, id, message.getRecipients(),
+                                       message.getRecipients().getPrimaryRecipient(),
+                                       1, System.currentTimeMillis(), System.currentTimeMillis(),
+                                       0, threadId, new DisplayRecord.Body(message.getBody(), true),
+                                       slideDeck, slideDeck.getSlides().size(),
+                                       message.isSecure() ? MmsSmsColumns.Types.getOutgoingEncryptedMessageType() : MmsSmsColumns.Types.getOutgoingSmsMessageType(),
+                                       new LinkedList<IdentityKeyMismatch>(),
+                                       new LinkedList<NetworkFailure>(),
+                                       message.getSubscriptionId(),
+                                       message.getExpiresIn(),
+                                       System.currentTimeMillis());
+    }
   }
 
   public class Reader {

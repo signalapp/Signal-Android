@@ -81,13 +81,13 @@ public class AndroidAutoReplyReceiver extends MasterSecretBroadcastReceiver {
           long expiresIn      = preferences.isPresent() ? preferences.get().getExpireMessages() * 1000 : 0;
 
           if (recipients.isGroupRecipient()) {
-            Log.i("AndroidAutoReplyReceiver", "GroupRecipient, Sending media message");
+            Log.w("AndroidAutoReplyReceiver", "GroupRecipient, Sending media message");
             OutgoingMediaMessage reply = new OutgoingMediaMessage(recipients, responseText.toString(), new LinkedList<Attachment>(), System.currentTimeMillis(), subscriptionId, expiresIn, 0);
-            replyThreadId = MessageSender.send(context, masterSecret, reply, threadId, false);
+            replyThreadId = MessageSender.send(context, masterSecret, reply, threadId, false, null);
           } else {
-              Log.i("AndroidAutoReplyReceiver", "Sending regular message ");
+            Log.w("AndroidAutoReplyReceiver", "Sending regular message ");
             OutgoingTextMessage reply = new OutgoingTextMessage(recipients, responseText.toString(), expiresIn, subscriptionId);
-            replyThreadId = MessageSender.send(context, masterSecret, reply, threadId, false);
+            replyThreadId = MessageSender.send(context, masterSecret, reply, threadId, false, null);
           }
 
           List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(replyThreadId, true);

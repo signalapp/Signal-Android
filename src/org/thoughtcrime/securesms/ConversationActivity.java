@@ -101,6 +101,7 @@ import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MmsSmsColumns.Types;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientPreferenceEvent;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
+import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
@@ -273,7 +274,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (!Util.isEmpty(composeText) || attachmentManager.isAttachmentPresent()) {
       saveDraft();
-      attachmentManager.clear();
+      attachmentManager.clear(false);
       composeText.setText("");
     }
 
@@ -565,7 +566,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             recipients.setExpireMessages(expirationTime);
 
             OutgoingExpirationUpdateMessage outgoingMessage = new OutgoingExpirationUpdateMessage(getRecipients(), System.currentTimeMillis(), expirationTime * 1000);
-            MessageSender.send(ConversationActivity.this, masterSecret, outgoingMessage, threadId, false);
+            MessageSender.send(ConversationActivity.this, masterSecret, outgoingMessage, threadId, false, null);
 
             return null;
           }
@@ -691,7 +692,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           new AsyncTask<OutgoingEndSessionMessage, Void, Long>() {
             @Override
             protected Long doInBackground(OutgoingEndSessionMessage... messages) {
-              return MessageSender.send(context, masterSecret, messages[0], threadId, false);
+              return MessageSender.send(context, masterSecret, messages[0], threadId, false, null);
             }
 
             @Override
@@ -739,7 +740,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                                              .build();
 
           OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(getRecipients(), context, null, System.currentTimeMillis(), 0);
-          MessageSender.send(self, masterSecret, outgoingMessage, threadId, false);
+          MessageSender.send(self, masterSecret, outgoingMessage, threadId, false, null);
           DatabaseFactory.getGroupDatabase(self).remove(groupId, TextSecurePreferences.getLocalNumber(self));
           initializeEnabledCheck();
         } catch (IOException e) {
@@ -1495,13 +1496,19 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       outgoingMessage = new OutgoingSecureMediaMessage(outgoingMessage);
     }
 
-    attachmentManager.clear();
+    attachmentManager.clear(false);
     composeText.setText("");
+    final long id = fragment.stageOutgoingMessage(outgoingMessage);
 
     new AsyncTask<OutgoingMediaMessage, Void, Long>() {
       @Override
       protected Long doInBackground(OutgoingMediaMessage... messages) {
-        return MessageSender.send(context, masterSecret, messages[0], threadId, forceSms);
+        return MessageSender.send(context, masterSecret, messages[0], threadId, forceSms, new SmsDatabase.InsertListener() {
+          @Override
+          public void onComplete() {
+            fragment.releaseOutgoingMessage(id);
+          }
+        });
       }
 
       @Override
@@ -1527,11 +1534,17 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     this.composeText.setText("");
+    final long id = fragment.stageOutgoingMessage(message);
 
     new AsyncTask<OutgoingTextMessage, Void, Long>() {
       @Override
       protected Long doInBackground(OutgoingTextMessage... messages) {
-        return MessageSender.send(context, masterSecret, messages[0], threadId, forceSms);
+        return MessageSender.send(context, masterSecret, messages[0], threadId, forceSms, new SmsDatabase.InsertListener() {
+          @Override
+          public void onComplete() {
+            fragment.releaseOutgoingMessage(id);
+          }
+        });
       }
 
       @Override

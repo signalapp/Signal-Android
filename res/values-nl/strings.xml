@@ -85,6 +85,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Terugvallen naar onversleutelde MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Dit bericht zal <b>niet</b> versleuteld worden omdat de ontvanger geen Signal meer gebruikt.\n\nOnbeveiligd bericht verzenden?</string>
   <string name="ConversationItem_unable_to_open_media">Geen app gevonden om dit bestand te openen.</string>
+  <string name="ConversationItem_copied_text">%s gekopieerd</string>
   <string name="ConversationItem_from_s">van %s</string>
   <string name="ConversationItem_to_s">naar %s</string>
   <!--ConversationActivity-->
@@ -611,6 +612,10 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="attachment_type_selector__location_description">Locatie</string>
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__gallery_description">Afbeelding of video</string>
+  <string name="attachment_type_selector__file_description">Bestand</string>
+  <string name="attachment_type_selector__gallery">Galerij</string>
+  <string name="attachment_type_selector__file">Bestand</string>
   <string name="attachment_type_selector__drawer_description">Bijlageoverzicht tonen/verbergen</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Oud wachtwoord</string>
@@ -886,6 +891,9 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="arrays__normal">Normaal</string>
   <string name="arrays__large">Groot</string>
   <string name="arrays__extra_large">Extra groot</string>
+  <string name="arrays__default">Standaard</string>
+  <string name="arrays__high">Hoog</string>
+  <string name="arrays__max">Max</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d uur</item>
@@ -1004,10 +1012,13 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="preferences_chats__chats">Gesprekken</string>
   <string name="preferences_notifications__message_notifications">Gespreks notificaties</string>
   <string name="preferences_notifications__events">Gebeurtenissen</string>
-  <string name="preferences_chats__show_invitation_prompts">Uitnodigings vragen tonen</string>
+  <string name="preferences_notifications__in_chat_sounds">Geluiden in gesprek</string>
+  <string name="preferences_notifications__show">Tonen</string>
+  <string name="preferences_chats__show_invitation_prompts">Uitnodigingsvragen tonen</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Toon een vraag of contacten zonder Signal uitgenodigd moeten worden</string>
   <string name="preferences_chats__message_text_size">Tekstgrootte voor berichten</string>
   <string name="preferences_events__contact_joined_signal">Contact gebruikt nu Signal</string>
+  <string name="preferences_notifications__priority">Prioriteit</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

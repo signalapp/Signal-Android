@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.database.MmsDatabase;
 public class MmsNotificationAttachment extends Attachment {
 
   public MmsNotificationAttachment(int status, long size) {
-    super("application/mms", getTransferStateFromStatus(status), size, null, null, null, null, null);
+    super("application/mms", getTransferStateFromStatus(status), size, null, null, null, null, null, null);
   }
 
   @Nullable

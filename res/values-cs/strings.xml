@@ -88,6 +88,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Použít záložní způsob přes nešifrovanou MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Tato zpráva <b>není</b> šifrována, protože příjemce již není uživatelem Signal.\n\nOdeslat nešifrovanou zprávu?</string>
   <string name="ConversationItem_unable_to_open_media">Nemohu nalézt aplikaci pro otevření tohoto typu dat.</string>
+  <string name="ConversationItem_copied_text">Zkopírováno %s</string>
   <string name="ConversationItem_from_s">od %s</string>
   <string name="ConversationItem_to_s">%s</string>
   <!--ConversationActivity-->
@@ -626,6 +627,10 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="attachment_type_selector__location_description">Poloha</string>
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__gallery_description">Obrázek nebo video</string>
+  <string name="attachment_type_selector__file_description">Soubor</string>
+  <string name="attachment_type_selector__gallery">Galerie</string>
+  <string name="attachment_type_selector__file">Soubor</string>
   <string name="attachment_type_selector__drawer_description">Vybrat úložiště pro přílohy</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Původní heslo</string>
@@ -912,6 +917,9 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="arrays__normal">Normálně</string>
   <string name="arrays__large">Velké</string>
   <string name="arrays__extra_large">Extra velké</string>
+  <string name="arrays__default">Výchozí</string>
+  <string name="arrays__high">Vysoká</string>
+  <string name="arrays__max">Max</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d hodina</item>
@@ -1031,10 +1039,13 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="preferences_chats__chats">Konverzace</string>
   <string name="preferences_notifications__message_notifications">Upozornění na zprávy</string>
   <string name="preferences_notifications__events">Události</string>
+  <string name="preferences_notifications__in_chat_sounds">Zvuk během konverzace</string>
+  <string name="preferences_notifications__show">Zobrazit</string>
   <string name="preferences_chats__show_invitation_prompts">Zobrazovat pozvánky</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Zobrazovat pozvánky prokontakty které nemají Signal</string>
   <string name="preferences_chats__message_text_size">Velikost písma zprávy</string>
   <string name="preferences_events__contact_joined_signal">Kontakt se připojil k Signalu</string>
+  <string name="preferences_notifications__priority">Priorita</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

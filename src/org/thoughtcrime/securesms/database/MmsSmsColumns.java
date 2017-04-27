@@ -97,6 +97,14 @@ public interface MmsSmsColumns {
       return false;
     }
 
+    public static long getOutgoingEncryptedMessageType() {
+      return Types.BASE_SENDING_TYPE | Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT;
+    }
+
+    public static long getOutgoingSmsMessageType() {
+      return Types.BASE_SENDING_TYPE;
+    }
+
     public static boolean isForcedSms(long type) {
       return (type & MESSAGE_FORCE_SMS_BIT) != 0;
     }

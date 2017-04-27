@@ -20,7 +20,7 @@ public class PointerAttachment extends Attachment {
                            @NonNull String key, @NonNull String relay,
                            @Nullable byte[] digest)
   {
-    super(contentType, transferState, size, fileName, location, key, relay, digest);
+    super(contentType, transferState, size, fileName, location, key, relay, digest, null);
   }
 
   @Nullable

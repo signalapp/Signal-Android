@@ -21,7 +21,7 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Löschen</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Passwort deaktivieren?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Dies entsperrt Signal und Benachrichtigungen über Nachrichten dauerhaft</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Entsperrt Signal und Benachrichtigungen über Nachrichten dauerhaft</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivieren</string>
   <string name="ApplicationPreferencesActivity_unregistering">Registrierung löschen</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Registrierung für Signal-Nachrichten und -Anrufe wird gelöscht …</string>
@@ -85,6 +85,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Rückgriff auf unverschlüsselte MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Diese Nachricht wird <b>nicht</b> verschlüsselt sein, da der Kontakt Signal nicht mehr verwendet.\n\nUnsichere Nachricht senden?</string>
   <string name="ConversationItem_unable_to_open_media">Keine App zum Öffnen dieser Medieninhalte gefunden.</string>
+  <string name="ConversationItem_copied_text">%s kopiert</string>
   <string name="ConversationItem_from_s">von %s</string>
   <string name="ConversationItem_to_s">an %s</string>
   <!--ConversationActivity-->
@@ -604,6 +605,10 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="attachment_type_selector__location_description">Standort</string>
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__gallery_description">Bild oder Video</string>
+  <string name="attachment_type_selector__file_description">Datei</string>
+  <string name="attachment_type_selector__gallery">Galerie</string>
+  <string name="attachment_type_selector__file">Datei</string>
   <string name="attachment_type_selector__drawer_description">Anhänge hinzufügen</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Altes Passwort</string>
@@ -871,6 +876,9 @@ Das Warten auf eine Bestätigungs-SMS hat zu lange gedauert.</string>
   <string name="arrays__normal">Normal</string>
   <string name="arrays__large">Groß</string>
   <string name="arrays__extra_large">Extragroß</string>
+  <string name="arrays__default">Standard</string>
+  <string name="arrays__high">Hoch</string>
+  <string name="arrays__max">Maximal</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d Stunde</item>
@@ -989,10 +997,13 @@ Das Warten auf eine Bestätigungs-SMS hat zu lange gedauert.</string>
   <string name="preferences_chats__chats">Unterhaltungen</string>
   <string name="preferences_notifications__message_notifications">Nachrichten</string>
   <string name="preferences_notifications__events">Ereignisse</string>
+  <string name="preferences_notifications__in_chat_sounds">Töne während Unterhaltung</string>
+  <string name="preferences_notifications__show">Anzeigen</string>
   <string name="preferences_chats__show_invitation_prompts">Einladungshinweise anzeigen</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Einladungshinweise für Kontakte ohne Signal anzeigen</string>
   <string name="preferences_chats__message_text_size">Schriftgröße für Nachrichten</string>
   <string name="preferences_events__contact_joined_signal">Neue Signal-Kontakte</string>
+  <string name="preferences_notifications__priority">Priorität</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

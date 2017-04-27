@@ -85,6 +85,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">¿Recurrir a MMS cifrado?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Este mensaje <b>no</b> se cifrará porque el destinatario ya no es un usuario de Signal.\n\n¿Enviar mensaje no asegurado?</string>
   <string name="ConversationItem_unable_to_open_media">No se pudo encontrar una aplicación capaz de abrir este contenido.</string>
+  <string name="ConversationItem_copied_text">Se copió %s</string>
   <string name="ConversationItem_from_s">de %s</string>
   <string name="ConversationItem_to_s">a %s</string>
   <!--ConversationActivity-->
@@ -626,6 +627,10 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="attachment_type_selector__location_description">Ubicación</string>
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__gallery_description">Imagen o vídeo</string>
+  <string name="attachment_type_selector__file_description">Fichero</string>
+  <string name="attachment_type_selector__gallery">Galería</string>
+  <string name="attachment_type_selector__file">Fichero</string>
   <string name="attachment_type_selector__drawer_description">Accionar el panel de adjuntos</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Clave de acceso antigua</string>
@@ -918,6 +923,9 @@ por SMS.
   <string name="arrays__normal">Normal</string>
   <string name="arrays__large">Grande</string>
   <string name="arrays__extra_large">Extra grande</string>
+  <string name="arrays__default">Por defecto</string>
+  <string name="arrays__high">Alto</string>
+  <string name="arrays__max">Máximo</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d hora</item>
@@ -1036,10 +1044,13 @@ por SMS.
   <string name="preferences_chats__chats">Chats</string>
   <string name="preferences_notifications__message_notifications">Notificaciones de mensaje</string>
   <string name="preferences_notifications__events">Eventos</string>
+  <string name="preferences_notifications__in_chat_sounds">Sonidos en el chat</string>
+  <string name="preferences_notifications__show">Mostrar</string>
   <string name="preferences_chats__show_invitation_prompts">Mostrar ofrecimientos de invitación</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Muestra ofrecimientos de invitación para contactos sin Signal</string>
   <string name="preferences_chats__message_text_size">Tamaño de fuente del mensaje</string>
   <string name="preferences_events__contact_joined_signal">Un contacto se ha unido a Signal</string>
+  <string name="preferences_notifications__priority">Prioridad</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

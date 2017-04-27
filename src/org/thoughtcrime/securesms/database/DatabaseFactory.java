@@ -78,7 +78,8 @@ public class DatabaseFactory {
   private static final int INTRODUCED_DIGEST                               = 31;
   private static final int INTRODUCED_NOTIFIED                             = 32;
   private static final int INTRODUCED_DOCUMENTS                            = 33;
-  private static final int DATABASE_VERSION                                = 33;
+  private static final int INTRODUCED_FAST_PREFLIGHT                       = 34;
+  private static final int DATABASE_VERSION                                = 34;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -861,6 +862,10 @@ public class DatabaseFactory {
 
       if (oldVersion < INTRODUCED_DOCUMENTS) {
         db.execSQL("ALTER TABLE part ADD COLUMN file_name TEXT");
+      }
+
+      if (oldVersion < INTRODUCED_FAST_PREFLIGHT) {
+        db.execSQL("ALTER TABLE part ADD COLUMN fast_preflight_id TEXT");
       }
 
       db.setTransactionSuccessful();

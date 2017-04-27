@@ -2,188 +2,169 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical">
 
 <LinearLayout android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:gravity="center_vertical"
-              android:layout_gravity="center_vertical"
-              android:padding="8dip">
+              android:layout_height="wrap_content">
 
-    <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            card_view:cardElevation="3dp"
-            card_view:cardCornerRadius="3dp"
-            card_view:cardUseCompatPadding="true">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:gravity="center_vertical"
+        android:text="@string/ImportExportActivity_import"
+        android:textSize="14sp"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@color/signal_primary_dark"/>
 
-        <LinearLayout android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:orientation="vertical">
+    <LinearLayout android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical">
 
-            <FrameLayout android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:padding="20dp">
+        <LinearLayout android:id="@+id/import_sms"
+                      android:clickable="true"
+                      android:orientation="horizontal"
+                      android:layout_width="wrap_content"
+                      android:layout_height="76dp"
+                      android:gravity="center_vertical"
+                      android:background="?selectableItemBackground">
 
-                <TextView android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:text="@string/import_export_fragment__import"
-                          android:textSize="20sp"/>
+            <ImageView android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginLeft="16dp"
+                       android:layout_marginStart="16dp"
+                       android:layout_marginRight="32dp"
+                       android:layout_marginEnd="32dp"
+                       android:src="@drawable/ic_message_white_24dp"
+                       android:tint="?attr/pref_icon_tint"/>
 
-            </FrameLayout>
-
-            <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray10"/>
-
-            <LinearLayout android:id="@+id/import_sms"
-                          android:clickable="true"
-                          android:orientation="horizontal"
+            <LinearLayout android:orientation="vertical"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
-                          android:gravity="center_vertical"
-                          android:paddingTop="8dip"
-                          android:paddingBottom="8dip"
-                          android:layout_marginLeft="16dip"
-                          android:layout_marginRight="16dip">
+                          android:layout_marginRight="16dp"
+                          android:layout_marginEnd="16dp">
 
-                <ImageView android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_marginRight="10dip"
-                           android:layout_marginEnd="10dip"
-                           android:src="?import_sms"/>
-
-                <LinearLayout android:orientation="vertical"
-                              android:layout_width="wrap_content"
-                              android:layout_height="wrap_content">
-
-                    <TextView android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
-                              android:gravity="start"
-                              style="@style/Registration.Description"
-                              android:text="@string/import_fragment__import_system_sms_database"/>
-
-                    <TextView android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
-                              android:gravity="start"
-                              android:textAppearance="?android:attr/textAppearanceSmall"
-                              android:text="@string/import_fragment__import_the_database_from_the_default_system"/>
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray10"/>
-
-            <LinearLayout android:id="@+id/import_plaintext_backup"
-                          android:clickable="true"
-                          android:orientation="horizontal"
-                          android:layout_width="wrap_content"
+                <TextView android:layout_width="match_parent"
                           android:layout_height="wrap_content"
-                          android:gravity="center_vertical"
-                          android:paddingTop="8dip"
-                          android:paddingBottom="8dip"
-                          android:layout_marginLeft="16dip"
-                          android:layout_marginRight="16dip">
+                          android:gravity="start"
+                          style="@style/Registration.Description"
+                          android:text="@string/import_fragment__import_system_sms_database"/>
 
-                <ImageView android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_marginRight="10dip"
-                           android:layout_marginEnd="10dip"
-                           android:src="?plaintext_backup"/>
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:gravity="start"
+                          android:textAppearance="?android:attr/textAppearanceSmall"
+                          android:text="@string/import_fragment__import_the_database_from_the_default_system"/>
 
-                <LinearLayout android:orientation="vertical"
-                              android:layout_width="wrap_content"
-                              android:layout_height="wrap_content">
-
-                    <TextView android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
-                              android:gravity="start"
-                              style="@style/Registration.Description"
-                              android:text="@string/import_fragment__import_plaintext_backup"/>
-
-                    <TextView android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
-                              android:gravity="start"
-                              android:textAppearance="?android:attr/textAppearanceSmall"
-                              android:text="@string/import_fragment__import_a_plaintext_backup_file"/>
-                </LinearLayout>
             </LinearLayout>
-
         </LinearLayout>
 
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-            android:layout_marginTop="20dp"
-            card_view:cardElevation="3dp"
-            card_view:cardCornerRadius="2dp"
-            card_view:cardUseCompatPadding="true"
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"/>
 
-        <LinearLayout android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:orientation="vertical">
+        <LinearLayout android:id="@+id/import_plaintext_backup"
+                      android:clickable="true"
+                      android:orientation="horizontal"
+                      android:layout_width="wrap_content"
+                      android:layout_height="76dp"
+                      android:gravity="center_vertical"
+                      android:background="?selectableItemBackground">
 
-            <FrameLayout android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:padding="20dp">
+            <ImageView android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginLeft="16dp"
+                       android:layout_marginStart="16dp"
+                       android:layout_marginRight="32dip"
+                       android:layout_marginEnd="32dip"
+                       android:src="@drawable/ic_content_copy_white_24dp"
+                       android:tint="?attr/pref_icon_tint"/>
 
-                <TextView android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:text="@string/import_export_fragment__export"
-                          android:textSize="20sp"/>
-
-            </FrameLayout>
-
-            <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray10"/>
-
-            <LinearLayout android:id="@+id/export_plaintext_backup"
-                          android:clickable="true"
-                          android:orientation="horizontal"
+            <LinearLayout android:orientation="vertical"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
-                          android:gravity="center_vertical"
-                          android:paddingTop="8dip"
-                          android:paddingBottom="8dip"
-                          android:layout_marginLeft="16dip"
-                          android:layout_marginRight="16dip">
+                          android:layout_marginRight="16dp"
+                          android:layout_marginEnd="16dp">
 
-                <ImageView android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_marginRight="10dip"
-                           android:layout_marginEnd="10dip"
-                           android:src="?plaintext_backup"/>
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:gravity="start"
+                          style="@style/Registration.Description"
+                          android:text="@string/import_fragment__import_plaintext_backup"/>
 
-                <LinearLayout android:orientation="vertical"
-                              android:layout_width="wrap_content"
-                              android:layout_height="wrap_content">
-
-                    <TextView android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
-                              android:gravity="start"
-                              style="@style/Registration.Description"
-                              android:text="@string/export_fragment__export_plaintext_backup"/>
-
-                    <TextView android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
-                              android:gravity="start"
-                              android:textAppearance="?android:attr/textAppearanceSmall"
-                              android:text="@string/export_fragment__export_a_plaintext_backup_compatible_with"/>
-                </LinearLayout>
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:gravity="start"
+                          android:textAppearance="?android:attr/textAppearanceSmall"
+                          android:text="@string/import_fragment__import_a_plaintext_backup_file"/>
             </LinearLayout>
-
         </LinearLayout>
-    </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+    <include layout="@layout/preference_divider"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:gravity="center_vertical"
+        android:text="@string/ImportExportActivity_export"
+        android:textSize="14sp"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@color/signal_primary_dark"/>
+
+    <LinearLayout android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical">
+
+        <LinearLayout android:id="@+id/export_plaintext_backup"
+                      android:clickable="true"
+                      android:orientation="horizontal"
+                      android:layout_width="wrap_content"
+                      android:layout_height="76dp"
+                      android:gravity="center_vertical"
+                      android:background="?selectableItemBackground">
+
+            <ImageView android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginLeft="16dp"
+                       android:layout_marginStart="16dp"
+                       android:layout_marginRight="32dp"
+                       android:layout_marginEnd="32dp"
+                       android:src="@drawable/ic_content_copy_white_24dp"
+                       android:tint="?attr/pref_icon_tint"/>
+
+            <LinearLayout android:orientation="vertical"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginRight="16dp"
+                          android:layout_marginEnd="16dp">
+
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:gravity="start"
+                          style="@style/Registration.Description"
+                          android:text="@string/export_fragment__export_plaintext_backup"/>
+
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:gravity="start"
+                          android:textAppearance="?android:attr/textAppearanceSmall"
+                          android:text="@string/export_fragment__export_a_plaintext_backup_compatible_with"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"/>
+
+    </LinearLayout>
 </LinearLayout>
 </ScrollView>

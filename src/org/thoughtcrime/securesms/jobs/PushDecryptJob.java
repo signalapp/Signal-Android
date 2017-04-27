@@ -321,7 +321,7 @@ public class PushDecryptJob extends ContextJob {
       SecurityEvent.broadcastSecurityUpdateEvent(context);
 
       long messageId = database.insertMessageOutbox(masterSecret, threadId, outgoingEndSessionMessage,
-                                                    false, message.getTimestamp());
+                                                    false, message.getTimestamp(), null);
       database.markAsSent(messageId, true);
     }
 
@@ -521,7 +521,7 @@ public class PushDecryptJob extends ContextJob {
                                                                                                   message.getMessage().getExpiresInSeconds() * 1000);
 
     long threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
-    long messageId = database.insertMessageOutbox(masterSecret, expirationUpdateMessage, threadId, false);
+    long messageId = database.insertMessageOutbox(masterSecret, expirationUpdateMessage, threadId, false, null);
 
     database.markAsSent(messageId, true);
 
@@ -554,7 +554,7 @@ public class PushDecryptJob extends ContextJob {
     }
 
     long threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
-    long messageId = database.insertMessageOutbox(masterSecret, mediaMessage, threadId, false);
+    long messageId = database.insertMessageOutbox(masterSecret, mediaMessage, threadId, false, null);
 
     database.markAsSent(messageId, true);
 
@@ -635,7 +635,7 @@ public class PushDecryptJob extends ContextJob {
     }
 
     long threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
-    long messageId = database.insertMessageOutbox(masterSecret, threadId, outgoingTextMessage, false, message.getTimestamp());
+    long messageId = database.insertMessageOutbox(masterSecret, threadId, outgoingTextMessage, false, message.getTimestamp(), null);
 
     database.markAsSent(messageId, true);
 

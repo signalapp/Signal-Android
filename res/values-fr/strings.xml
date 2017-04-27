@@ -85,6 +85,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Utiliser la solution de repli sur les MMS non chiffrés ?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ce message ne sera <b>pas</b> être chiffré, car le récepteur n\'a plus Signal. \n\nEnvoyer un message non sécurisé?</string>
   <string name="ConversationItem_unable_to_open_media">Impossible de trouver une application pour ouvrir le média.</string>
+  <string name="ConversationItem_copied_text">Copied %s</string>
   <string name="ConversationItem_from_s">de %s</string>
   <string name="ConversationItem_to_s">à %s</string>
   <!--ConversationActivity-->
@@ -611,6 +612,10 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="attachment_type_selector__location_description">Lieu</string>
   <string name="attachment_type_selector__gif">GIFs</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__gallery_description">Image ou vidéo</string>
+  <string name="attachment_type_selector__file_description">Fichier</string>
+  <string name="attachment_type_selector__gallery">Galerie</string>
+  <string name="attachment_type_selector__file">Fichier</string>
   <string name="attachment_type_selector__drawer_description">Afficher l\'accès rapide aux pièces jointes</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Ancienne phrase de passe</string>
@@ -891,6 +896,9 @@ par SMS.</string>
   <string name="arrays__normal">Normal</string>
   <string name="arrays__large">Grand</string>
   <string name="arrays__extra_large">Très Grand</string>
+  <string name="arrays__default">Par défaut</string>
+  <string name="arrays__high">Haut</string>
+  <string name="arrays__max">Max</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d heure</item>
@@ -1009,10 +1017,13 @@ par SMS.</string>
   <string name="preferences_chats__chats">Chats</string>
   <string name="preferences_notifications__message_notifications">Notifications de messages</string>
   <string name="preferences_notifications__events">Evènements</string>
+  <string name="preferences_notifications__in_chat_sounds">Son dans le tchat</string>
+  <string name="preferences_notifications__show">Montrer</string>
   <string name="preferences_chats__show_invitation_prompts">Afficher les invitations</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Afficher les invitations pour les contacts sans Signal</string>
   <string name="preferences_chats__message_text_size">Taille de la police du message</string>
   <string name="preferences_events__contact_joined_signal">Votre contact a rejoint Signal</string>
+  <string name="preferences_notifications__priority">Priorité</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.components.emoji;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Paint.FontMetricsInt;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
@@ -9,12 +10,18 @@ import android.support.v7.widget.AppCompatTextView;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiProvider.EmojiDrawable;
+import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class EmojiTextView extends AppCompatTextView {
+  private final boolean scaleEmojis;
+  private final float   originalFontSize;
+
   private CharSequence source;
   private boolean      needsEllipsizing;
 
@@ -28,15 +35,38 @@ public class EmojiTextView extends AppCompatTextView {
 
   public EmojiTextView(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
+
+    TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.EmojiTextView, 0, 0);
+    scaleEmojis = a.getBoolean(R.styleable.EmojiTextView_scaleEmojis, false);
+    a.recycle();
+
+    a = context.obtainStyledAttributes(attrs, new int[]{android.R.attr.textSize});
+    originalFontSize = a.getDimensionPixelSize(0, 0);
+    a.recycle();
   }
 
   @Override public void setText(@Nullable CharSequence text, BufferType type) {
+    EmojiProvider provider = EmojiProvider.getInstance(getContext());
+    EmojiParser.CandidateList candidates = provider.getCandidates(text);
+
+    if (scaleEmojis && candidates != null && candidates.allEmojis) {
+      int emojis = candidates.size();
+      float scale = 1.0f;
+      if (emojis <= 8) scale += 0.25f;
+      if (emojis <= 6) scale += 0.25f;
+      if (emojis <= 4) scale += 0.25f;
+      if (emojis <= 2) scale += 0.25f;
+      setTextSize(TypedValue.COMPLEX_UNIT_PX, getTextSize() * scale);
+    } else if (scaleEmojis) {
+      setTextSize(TypedValue.COMPLEX_UNIT_PX, originalFontSize);
+    }
+
     if (useSystemEmoji()) {
       super.setText(text, type);
       return;
     }
 
-    source = EmojiProvider.getInstance(getContext()).emojify(text, this);
+    source = EmojiProvider.getInstance(getContext()).emojify(candidates, text, this);
     setTextEllipsized(source);
   }
 

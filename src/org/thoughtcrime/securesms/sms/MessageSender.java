@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NotInDirectoryException;
+import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -61,7 +62,8 @@ public class MessageSender {
                           final MasterSecret masterSecret,
                           final OutgoingTextMessage message,
                           final long threadId,
-                          final boolean forceSms)
+                          final boolean forceSms,
+                          final SmsDatabase.InsertListener insertListener)
   {
     EncryptingSmsDatabase database    = DatabaseFactory.getEncryptingSmsDatabase(context);
     Recipients            recipients  = message.getRecipients();
@@ -76,7 +78,7 @@ public class MessageSender {
     }
 
     long messageId = database.insertMessageOutbox(new MasterSecretUnion(masterSecret), allocatedThreadId,
-                                                  message, forceSms, System.currentTimeMillis());
+                                                  message, forceSms, System.currentTimeMillis(), insertListener);
 
     sendTextMessage(context, recipients, forceSms, keyExchange, messageId, message.getExpiresIn());
 
@@ -87,7 +89,8 @@ public class MessageSender {
                           final MasterSecret masterSecret,
                           final OutgoingMediaMessage message,
                           final long threadId,
-                          final boolean forceSms)
+                          final boolean forceSms,
+                          final SmsDatabase.InsertListener insertListener)
   {
     try {
       ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
@@ -102,7 +105,7 @@ public class MessageSender {
       }
 
       Recipients recipients = message.getRecipients();
-      long       messageId  = database.insertMessageOutbox(new MasterSecretUnion(masterSecret), message, allocatedThreadId, forceSms);
+      long       messageId  = database.insertMessageOutbox(new MasterSecretUnion(masterSecret), message, allocatedThreadId, forceSms, insertListener);
 
       sendMediaMessage(context, masterSecret, recipients, forceSms, messageId, message.getExpiresIn());
 
