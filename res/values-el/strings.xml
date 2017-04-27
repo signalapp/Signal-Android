@@ -85,6 +85,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Να σταλεί ΜΗ κρυπτογραφημένο μήνυμα πολυμέσων MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Αυτό το μήνυμα <b>δεν</b> θα κρυπτογραφηθεί, επειδή ο παραλήπτης δεν είναι πλέον χρήστης του Signal.\n\nΝα σταλεί το μήνυμα μη κρυπτογραφημένο;</string>
   <string name="ConversationItem_unable_to_open_media">Δεν μπορεί να βρεθεί κατάλληλη εφαρμογή για το άνοιγμα αυτού του πολυμέσου.</string>
+  <string name="ConversationItem_copied_text">Αντιγράφτηκε: %s</string>
   <string name="ConversationItem_from_s">από %s</string>
   <string name="ConversationItem_to_s">προς %s</string>
   <!--ConversationActivity-->
@@ -616,6 +617,10 @@
   <string name="attachment_type_selector__location_description">Τοποθεσία</string>
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__gallery_description">Εικόνα ή βίντεο</string>
+  <string name="attachment_type_selector__file_description">Αρχείο</string>
+  <string name="attachment_type_selector__gallery">Πινακοθήκη</string>
+  <string name="attachment_type_selector__file">Αρχείο</string>
   <string name="attachment_type_selector__drawer_description">Εναλλαγή συρταριού επισυνημμένων</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Παλιό συνθηματικό</string>
@@ -904,6 +909,9 @@
   <string name="arrays__normal">Κανονικό</string>
   <string name="arrays__large">Μεγάλο</string>
   <string name="arrays__extra_large">Πολύ μεγάλο</string>
+  <string name="arrays__default">Προκαθορισμένο</string>
+  <string name="arrays__high">Υψηλό</string>
+  <string name="arrays__max">Μέγιστο</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d ώρα</item>
@@ -1022,10 +1030,13 @@
   <string name="preferences_chats__chats">Συνομιλίες</string>
   <string name="preferences_notifications__message_notifications">Ειδοποιήσεις μηνυμάτων</string>
   <string name="preferences_notifications__events">Εκδηλώσεις</string>
+  <string name="preferences_notifications__in_chat_sounds">Ήχοι μέσα στη συνομιλία</string>
+  <string name="preferences_notifications__show">Εμφάνιση</string>
   <string name="preferences_chats__show_invitation_prompts">Εμφάνιση υπενθυμίσεων πρόσκλησης</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Προβολή υπενθυμίσεων πρόσκλησης για επαφές που δεν έχουν Signal</string>
   <string name="preferences_chats__message_text_size">Μέγεθος γραμματοσειράς μηνύματος</string>
   <string name="preferences_events__contact_joined_signal">Η επαφή εγκατέστησε το Signal</string>
+  <string name="preferences_notifications__priority">Προτεραιότητα</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

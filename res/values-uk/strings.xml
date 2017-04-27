@@ -88,6 +88,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Скористатися незашифрованим MMS як запасним варіантом?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Це повідомлення <b>не</b> буде зашифровано, оскільки одержувач більше не користується Signal.\n\nНадіслати незахищене повідомлення?</string>
   <string name="ConversationItem_unable_to_open_media">Неможливо знайти програму для відкриття цього медіа.</string>
+  <string name="ConversationItem_copied_text">Скопійовано %s</string>
   <string name="ConversationItem_from_s">від %s</string>
   <string name="ConversationItem_to_s">до %s</string>
   <!--ConversationActivity-->
@@ -259,6 +260,7 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Постійний збій зв\'язку Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не зміг зареєструватись у сервісах Google Play. Виклики та повідомлення Signal наразі вимкнено, спробуйте перереєструватися у Налаштуваннях &gt; Додатково.</string>
   <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Помилка при отриманні GIF у повному розширенні</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Наліпки</string>
@@ -617,6 +619,9 @@
   <string name="attachment_type_selector__location_description">Розташування</string>
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__file_description">Файл</string>
+  <string name="attachment_type_selector__gallery">Галерея</string>
+  <string name="attachment_type_selector__file">Файл</string>
   <string name="attachment_type_selector__drawer_description">Увімк/вимк скриньку вкладень</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Стара фраза-пароль</string>
@@ -1021,6 +1026,14 @@ Signal не дочекався перевірочного SMS.
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Вимкнути вбудовану в Signal підтримку emoji</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Ретранслювати всі дзвінки через сервер Signal щоб уникнути розкриття вашого IP-адреси контакту. Включення знизить якість дзвінка.</string>
   <string name="preferences_advanced__always_relay_calls">Завжди ретранслювати дзвінки</string>
+  <string name="preferences_chats__chats">Чати</string>
+  <string name="preferences_notifications__message_notifications">Сповіщення про повідомлення</string>
+  <string name="preferences_notifications__events">Події</string>
+  <string name="preferences_notifications__in_chat_sounds">Звуки чату</string>
+  <string name="preferences_notifications__show">Показувати</string>
+  <string name="preferences_chats__message_text_size">Розмір шрифту повідомлень</string>
+  <string name="preferences_events__contact_joined_signal">Контакт приєднався до Signal</string>
+  <string name="preferences_notifications__priority">Пріорітет</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

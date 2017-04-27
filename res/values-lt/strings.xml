@@ -953,6 +953,9 @@ yra prisijungęs prie belaidžio (Wi-Fi) arba duomenų perdavimo tinklo.
   <string name="arrays__normal">Normalus</string>
   <string name="arrays__large">Didelis</string>
   <string name="arrays__extra_large">Labai didelis</string>
+  <string name="arrays__default">Numatytoji</string>
+  <string name="arrays__high">Didžiausia</string>
+  <string name="arrays__max">Maksimali</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d valanda</item>
