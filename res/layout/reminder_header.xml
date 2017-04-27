@@ -1,69 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/reminder_background"
+    android:focusable="true"
+    android:nextFocusRight="@+id/cancel"
+    android:orientation="horizontal"
+    android:visibility="gone"
+    tools:visibility="visible">
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content">
-    <LinearLayout android:id="@+id/container"
-                  android:orientation="horizontal"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:visibility="gone"
-                  tools:visibility="visible"
-                  android:padding="2dp"
-                  android:gravity="center_vertical"
-                  android:focusable="true"
-                  android:nextFocusRight="@+id/cancel"
-                  android:background="@drawable/reminder_background">
+    <LinearLayout
+        android:id="@+id/reminder"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_margin="16dp"
+        android:orientation="vertical">
 
-        <LinearLayout android:id="@+id/reminder"
-                      android:layout_width="0dp"
-                      android:layout_height="wrap_content"
-                      android:layout_weight="1"
-                      android:layout_margin="10dp"
-                      android:orientation="vertical">
+        <TextView
+            android:id="@+id/reminder_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            tools:text="Invite to Signal"/>
 
-            <TextView android:id="@+id/reminder_title"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:layout_marginBottom="5dp"
-                      tools:text="Invite to Signal"
-                      android:textColor="@color/white"
-                      android:textSize="18sp"/>
-
-            <TextView android:id="@+id/reminder_text"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      tools:text="Take your conversation with Jules Bonnot to the next level."
-                      android:fontFamily="sans-serif-light"
-                      android:textColor="@color/white"
-                      android:textSize="16sp"/>
-
-        </LinearLayout>
-
-        <LinearLayout android:layout_width="wrap_content"
-                      android:layout_height="match_parent"
-                      android:gravity="right"
-                      android:layout_marginLeft="15dp"
-                      android:orientation="vertical">
-
-            <LinearLayout android:layout_width="wrap_content"
-                          android:layout_height="0dp"
-                          android:layout_weight="1"
-                          android:gravity="top">
-
-                <ImageButton android:id="@+id/cancel"
-                             android:layout_width="40dp"
-                             android:layout_height="40dp"
-                             android:padding="10dp"
-                             android:focusable="true"
-                             android:nextFocusRight="@+id/container"
-                             android:nextFocusLeft="@+id/container"
-                             android:background="@drawable/touch_highlight_background"
-                             android:src="@drawable/ic_close_white_24dp"/>
-            </LinearLayout>
-          </LinearLayout>
+        <TextView
+            android:id="@+id/reminder_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            tools:text="Take your conversation with Jules Bonnot to the next level."/>
 
     </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/cancel"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="2dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:focusable="true"
+        android:nextFocusLeft="@+id/container"
+        android:nextFocusRight="@+id/container"
+        android:src="@drawable/ic_close_white_24dp"
+        android:contentDescription="@string/InviteActivity_cancel"/>
+
 </LinearLayout>
