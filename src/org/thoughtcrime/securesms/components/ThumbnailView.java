@@ -66,7 +66,7 @@ public class ThumbnailView extends FrameLayout {
 
     if (attrs != null) {
       TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.ThumbnailView, 0, 0);
-      backgroundColorHint = typedArray.getColor(0, Color.BLACK);
+      backgroundColorHint = typedArray.getColor(R.styleable.ThumbnailView_backgroundColorHint, Color.BLACK);
       typedArray.recycle();
     }
   }
@@ -99,7 +99,7 @@ public class ThumbnailView extends FrameLayout {
     this.backgroundColorHint = color;
   }
 
-  public void setImageResource(@NonNull MasterSecret masterSecret, @NonNull Slide slide, boolean showControls) {
+  public void setImageResource(@NonNull MasterSecret masterSecret, @NonNull Slide slide, boolean showControls, boolean isPreview) {
     if (showControls) {
       getTransferControls().setSlide(slide);
       getTransferControls().setDownloadClickListener(new DownloadClickDispatcher());
@@ -107,7 +107,9 @@ public class ThumbnailView extends FrameLayout {
       getTransferControls().setVisibility(View.GONE);
     }
 
-    if (slide.getThumbnailUri() != null && slide.hasPlayOverlay() && slide.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_DONE) {
+    if (slide.getThumbnailUri() != null && slide.hasPlayOverlay() &&
+        (slide.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_DONE || isPreview))
+    {
       this.playOverlay.setVisibility(View.VISIBLE);
     } else {
       this.playOverlay.setVisibility(View.GONE);
@@ -118,13 +120,22 @@ public class ThumbnailView extends FrameLayout {
       return;
     }
 
+    if (this.slide != null && this.slide.getFastPreflightId() != null &&
+        this.slide.getFastPreflightId().equals(slide.getFastPreflightId()))
+    {
+      Log.w(TAG, "Not re-loading slide for fast preflight: " + slide.getFastPreflightId());
+      this.slide = slide;
+      return;
+    }
+
     if (!isContextValid()) {
       Log.w(TAG, "Not loading slide, context is invalid");
       return;
     }
 
     Log.w(TAG, "loading part with id " + slide.asAttachment().getDataUri()
-               + ", progress " + slide.getTransferState());
+               + ", progress " + slide.getTransferState() + ", fast preflight id: " +
+               slide.asAttachment().getFastPreflightId());
 
     this.slide = slide;
 

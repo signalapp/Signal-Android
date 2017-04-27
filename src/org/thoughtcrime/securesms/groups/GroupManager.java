@@ -108,7 +108,7 @@ public class GroupManager {
     }
 
     OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(groupRecipient, groupContext, avatarAttachment, System.currentTimeMillis(), 0);
-    long                      threadId        = MessageSender.send(context, masterSecret, outgoingMessage, -1, false);
+    long                      threadId        = MessageSender.send(context, masterSecret, outgoingMessage, -1, false, null);
 
     return new GroupActionResult(groupRecipient, threadId);
   }

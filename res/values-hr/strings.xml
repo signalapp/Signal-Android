@@ -243,6 +243,7 @@
   <string name="DeviceListItem_last_active_s">Zadnje aktivno %s</string>
   <string name="DeviceListItem_today">Danas</string>
   <!--DocumentView-->
+  <string name="DocumentView_unknown_file">Nepoznata datoteka</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimiziraj za nedostatak Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Ovaj uređaj ne podržava Play Services. Pritisnite kako biste onemogućili sistemsku optimizaciju baterije koja spriječava Signal da dohvaća poruke dok je uređaj neaktivan.</string>
@@ -610,6 +611,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Brzi odgovor nije dostupan kada je Signal zaključan!</string>
   <string name="QuickResponseService_problem_sending_message">Greška prilikom slanja poruke!</string>
   <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_open_directory">Otvori direktorij</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nova poruka</string>
@@ -622,12 +624,8 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Pritisnite da omogućite svoj video</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">Slika</string>
-  <string name="attachment_type_selector__image_description">Slika</string>
   <string name="attachment_type_selector__audio">Zvuk</string>
   <string name="attachment_type_selector__audio_description">Zvuk</string>
-  <string name="attachment_type_selector__video">Video</string>
-  <string name="attachment_type_selector__video_description">Video</string>
   <string name="attachment_type_selector__contact">Kontakt</string>
   <string name="attachment_type_selector__contact_description">Kontakt</string>
   <string name="attachment_type_selector__camera">Kamera</string>
@@ -657,6 +655,9 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Razgovor utišan</string>
   <!--conversation_activity-->
+  <string name="conversation_activity__type_message_push">Signal poruka</string>
+  <string name="conversation_activity__type_message_sms_insecure">Nesigurni SMS</string>
+  <string name="conversation_activity__type_message_mms_insecure">Nesigurni MMS</string>
   <string name="conversation_activity__from_sim_name">Od %1$s</string>
   <string name="conversation_activity__send">Pošalji</string>
   <string name="conversation_activity__remove">Ukloni</string>
@@ -916,7 +917,10 @@ neuspješno.</string>
   <string name="arrays__audio">Audio</string>
   <string name="arrays__video">Video</string>
   <string name="arrays__documents">Dokumenti</string>
-  <string name="arrays__normal">Normalno</string>
+  <string name="arrays__small">Mala</string>
+  <string name="arrays__normal">Normalna</string>
+  <string name="arrays__large">Velika</string>
+  <string name="arrays__extra_large">Ekstra velika</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d sat</item>
@@ -1031,6 +1035,15 @@ neuspješno.</string>
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Podrška za video i glasovne pozive sljedeće generacije, ukoliko je omogućeno od obje strane. Ova mogućnost je u beti.</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Preusmjeri sve pozive kroz Signal poslužitelj kako biste izbjegli otkrivanje svoje IP adrese vašem kontaktu. Ukoliko ovo omogućite smanjit će se kvaliteta poziva.</string>
   <string name="preferences_advanced__always_relay_calls">Uvijek preusmjeri pozive</string>
+  <string name="preferences_app_protection__app_access">Pristup aplikaciji</string>
+  <string name="preferences_app_protection__communication">Komunikacija</string>
+  <string name="preferences_chats__chats">Razgovori</string>
+  <string name="preferences_notifications__message_notifications">Obavijesti o porukama</string>
+  <string name="preferences_notifications__events">Događaji</string>
+  <string name="preferences_chats__show_invitation_prompts">Prikaži upite za pozivnice</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Prikaži upite za pozivnice za kontakte koji ne koriste Signal</string>
+  <string name="preferences_chats__message_text_size">Veličina fonta poruke</string>
+  <string name="preferences_events__contact_joined_signal">Kontakt se prijavio/la u Signal</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

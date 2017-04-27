@@ -11,6 +11,7 @@ import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.exceptions.NetworkFailureException;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
@@ -26,7 +27,7 @@ public class RefreshAttributesJob extends ContextJob implements InjectableType {
     super(context, JobParameters.newBuilder()
                                 .withPersistence()
                                 .withRequirement(new NetworkRequirement(context))
-                                .withWakeLock(true)
+                                .withWakeLock(true, 30, TimeUnit.SECONDS)
                                 .withGroupId(RefreshAttributesJob.class.getName())
                                 .create());
   }

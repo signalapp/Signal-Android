@@ -82,6 +82,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">暗号化されないMMSに切り替えますか？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">相手がSignalを使用していないので、このメッセージは暗号化<b>されません</b>。 通信安全上、問題のある方法でメッセージを送信しますか?</string>
   <string name="ConversationItem_unable_to_open_media">このメディアを開けるアプリが見つかりません。</string>
+  <string name="ConversationItem_copied_text">コピーされた %s</string>
   <string name="ConversationItem_from_s">%sから</string>
   <string name="ConversationItem_to_s">%sへ</string>
   <!--ConversationActivity-->
@@ -211,6 +212,7 @@
   <string name="DeviceListItem_last_active_s">最終活動 %s</string>
   <string name="DeviceListItem_today">今日</string>
   <!--DocumentView-->
+  <string name="DocumentView_unknown_file">不明なファイル</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">欠けているGoogle Play開発者サービスに最適化する</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">この端末はGoogle Play開発者サービスをサポートしていません。タップして，休眠中の通信を止めるバッテリー最適化機能を切ってください。</string>
@@ -560,6 +562,7 @@
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signalのロック中はクイック・レスポンスは使えません</string>
   <string name="QuickResponseService_problem_sending_message">メッセージ送信で問題発生</string>
   <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_open_directory">フォルダを開ける</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">新規メッセージ</string>
@@ -572,12 +575,8 @@
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">タップして動画を有効する</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">画像</string>
-  <string name="attachment_type_selector__image_description">画像</string>
   <string name="attachment_type_selector__audio">音声</string>
   <string name="attachment_type_selector__audio_description">音声</string>
-  <string name="attachment_type_selector__video">動画</string>
-  <string name="attachment_type_selector__video_description">動画</string>
   <string name="attachment_type_selector__contact">連絡先</string>
   <string name="attachment_type_selector__contact_description">連絡先</string>
   <string name="attachment_type_selector__camera">カメラ</string>
@@ -586,6 +585,10 @@
   <string name="attachment_type_selector__location_description">場所</string>
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__gallery_description">画像・動画</string>
+  <string name="attachment_type_selector__file_description">ファイル</string>
+  <string name="attachment_type_selector__gallery">ギャラリー</string>
+  <string name="attachment_type_selector__file">ファイル</string>
   <string name="attachment_type_selector__drawer_description">添付引出しを切り替える</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">既存のパスワード</string>
@@ -607,6 +610,9 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">会話を消音</string>
   <!--conversation_activity-->
+  <string name="conversation_activity__type_message_push">メッセージ</string>
+  <string name="conversation_activity__type_message_sms_insecure">安全でないSMS</string>
+  <string name="conversation_activity__type_message_mms_insecure">安全でないMMS</string>
   <string name="conversation_activity__from_sim_name">%1$sから</string>
   <string name="conversation_activity__send">送信</string>
   <string name="conversation_activity__remove">削除</string>
@@ -833,7 +839,13 @@
   <string name="arrays__audio">音声</string>
   <string name="arrays__video">動画</string>
   <string name="arrays__documents">文書</string>
+  <string name="arrays__small">小さい</string>
   <string name="arrays__normal">普通</string>
+  <string name="arrays__large">大きい</string>
+  <string name="arrays__extra_large">非常に大きい</string>
+  <string name="arrays__default">デフォルト</string>
+  <string name="arrays__high">上に</string>
+  <string name="arrays__max">最大</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="other">%d時間前</item>
@@ -946,6 +958,18 @@
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">次世代のビデオ音声通話を有効にする（相手も有効にした場合）。この機能はβ版です。</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">すべての通話をSignalサーバーに中継して，IPアドレスが相手に漏れることを防ぐ。ただし通話の質は下がります。</string>
   <string name="preferences_advanced__always_relay_calls">いつも中継する</string>
+  <string name="preferences_app_protection__app_access">アプリのアクセス</string>
+  <string name="preferences_app_protection__communication">通信</string>
+  <string name="preferences_chats__chats">チャット</string>
+  <string name="preferences_notifications__message_notifications">メッセージの通知</string>
+  <string name="preferences_notifications__events">イベント</string>
+  <string name="preferences_notifications__in_chat_sounds">チャット着信音</string>
+  <string name="preferences_notifications__show">表示</string>
+  <string name="preferences_chats__show_invitation_prompts">招待状を表示</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Signalを持っていない連絡先に招待状を表示する</string>
+  <string name="preferences_chats__message_text_size">メッセージのフォントの大きさ</string>
+  <string name="preferences_events__contact_joined_signal">連絡先がSignalに参加しました</string>
+  <string name="preferences_notifications__priority">優先度</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

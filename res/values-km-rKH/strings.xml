@@ -586,12 +586,8 @@
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">ចុច ដើម្បីបើកវីដេអូរបស់អ្នក</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">រូបភាព</string>
-  <string name="attachment_type_selector__image_description">រូបភាព</string>
   <string name="attachment_type_selector__audio">សំឡេង</string>
   <string name="attachment_type_selector__audio_description">សំឡេង</string>
-  <string name="attachment_type_selector__video">វីដេអូ</string>
-  <string name="attachment_type_selector__video_description">វីដេអូ</string>
   <string name="attachment_type_selector__contact">ទំនាក់ទំនង</string>
   <string name="attachment_type_selector__contact_description">ទំនាក់ទំនង</string>
   <string name="attachment_type_selector__camera">កាមេរ៉ា</string>
@@ -621,6 +617,9 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">បិទសំឡេងការសន្ទនា</string>
   <!--conversation_activity-->
+  <string name="conversation_activity__type_message_push">សារ Signal</string>
+  <string name="conversation_activity__type_message_sms_insecure">SMS គ្មានសុវត្ថិភាព</string>
+  <string name="conversation_activity__type_message_mms_insecure">MMS គ្មានសុវត្ថិភាព</string>
   <string name="conversation_activity__from_sim_name">ពី %1$s</string>
   <string name="conversation_activity__send">ផ្ញើ</string>
   <string name="conversation_activity__remove">លុប</string>
@@ -867,7 +866,10 @@
   <string name="arrays__audio">សំឡេង</string>
   <string name="arrays__video">វីដេអូ</string>
   <string name="arrays__documents">ឯកសារ</string>
+  <string name="arrays__small">តូច</string>
   <string name="arrays__normal">ធម្មតា</string>
+  <string name="arrays__large">ធំ</string>
+  <string name="arrays__extra_large">ធំបំផុត</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="other">%d ម៉ោង</item>
@@ -980,6 +982,15 @@
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">គាំទ្រការហៅវីដេអូនិងសំឡេង សម្រាប់ជំនាន់ក្រោយ នៅពេលត្រូវបានបើកដោយភាគីទាំងពីរ។ នេះជាមុខងារសាកល្បង។</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">បញ្ជូនការហៅទូរស័ព្ទទាំងអស់តាមរយៈម៉ាស៊ីនមេ Signal ដើម្បីជៀសវាងការបង្ហាញអាសយដ្ឋាន IP របស់អ្នកទៅកាន់លេខទំនាក់ទំនងរបស់អ្នក។ ការអនុញ្ញាតនេះនឹងកាត់បន្ថយគុណភាពការហៅ។</string>
   <string name="preferences_advanced__always_relay_calls">តែងតែបញ្ជូនការហៅ</string>
+  <string name="preferences_app_protection__app_access">ចូលប្រើប្រាស់កម្មវិធី</string>
+  <string name="preferences_app_protection__communication">ការទំនាក់ទំនង</string>
+  <string name="preferences_chats__chats">ការជជែក</string>
+  <string name="preferences_notifications__message_notifications">សារផ្តល់ដំណឹង</string>
+  <string name="preferences_notifications__events">ព្រឹត្តិការណ៍</string>
+  <string name="preferences_chats__show_invitation_prompts">បង្ហាញការណែនាំលិខិតអញ្ជើញ</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">បង្ហាញការណែនាំលិខិតអញ្ជើញ សម្រាប់លេខទំនាក់ទំនង ក្រៅពី Signal</string>
+  <string name="preferences_chats__message_text_size">ទំហំអក្សរសារ</string>
+  <string name="preferences_events__contact_joined_signal">ទាក់ទងចូលរួម Signal</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

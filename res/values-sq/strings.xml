@@ -603,12 +603,8 @@ U pranua mesazh për shkembim çelsash për një verzion të protokolli jo valid
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Prek për të aktivizuar videon tënd</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">Imazh</string>
-  <string name="attachment_type_selector__image_description">Pamje</string>
   <string name="attachment_type_selector__audio">Audio</string>
   <string name="attachment_type_selector__audio_description">Audio</string>
-  <string name="attachment_type_selector__video">Video</string>
-  <string name="attachment_type_selector__video_description">Video</string>
   <string name="attachment_type_selector__contact">Kontakt</string>
   <string name="attachment_type_selector__contact_description">Kontakt</string>
   <string name="attachment_type_selector__camera">Kamera</string>

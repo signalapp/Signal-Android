@@ -24,6 +24,7 @@ package org.thoughtcrime.securesms.components.emoji.parsing;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -38,10 +39,12 @@ public class EmojiParser {
     this.emojiTree = emojiTree;
   }
 
-  public @NonNull List<Candidate> findCandidates(@Nullable CharSequence text) {
+  public @NonNull CandidateList findCandidates(@Nullable CharSequence text) {
     List<Candidate> results = new LinkedList<>();
 
-    if (text == null) return results;
+    if (text == null) return new CandidateList(results, false);
+
+    boolean allEmojis = text.length() > 0;
 
     for (int i = 0; i < text.length(); i++) {
       int emojiEnd = getEmojiEndPos(text, i);
@@ -58,10 +61,12 @@ public class EmojiParser {
         results.add(new Candidate(i, emojiEnd, drawInfo));
 
         i = emojiEnd - 1;
+      } else {
+        allEmojis = false;
       }
     }
 
-    return results;
+    return new CandidateList(results, allEmojis);
   }
 
   private int getEmojiEndPos(CharSequence text, int startPos) {
@@ -102,6 +107,25 @@ public class EmojiParser {
 
     public int getStartIndex() {
       return startIndex;
+    }
+  }
+
+  public class CandidateList implements Iterable<Candidate> {
+    public final List<EmojiParser.Candidate> list;
+    public final boolean                     allEmojis;
+
+    public CandidateList(List<EmojiParser.Candidate> candidates, boolean allEmojis) {
+      this.list = candidates;
+      this.allEmojis = allEmojis;
+    }
+
+    public int size() {
+      return list.size();
+    }
+
+    @Override
+    public Iterator<Candidate> iterator() {
+      return list.iterator();
     }
   }
 

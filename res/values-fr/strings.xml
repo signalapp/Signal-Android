@@ -85,6 +85,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Utiliser la solution de repli sur les MMS non chiffrés ?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ce message ne sera <b>pas</b> être chiffré, car le récepteur n\'a plus Signal. \n\nEnvoyer un message non sécurisé?</string>
   <string name="ConversationItem_unable_to_open_media">Impossible de trouver une application pour ouvrir le média.</string>
+  <string name="ConversationItem_copied_text">Copied %s</string>
   <string name="ConversationItem_from_s">de %s</string>
   <string name="ConversationItem_to_s">à %s</string>
   <!--ConversationActivity-->
@@ -601,12 +602,8 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Appuyez pour activer votre vidéo</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">Image</string>
-  <string name="attachment_type_selector__image_description">Image</string>
   <string name="attachment_type_selector__audio">Audio</string>
   <string name="attachment_type_selector__audio_description">Audio</string>
-  <string name="attachment_type_selector__video">Vidéo</string>
-  <string name="attachment_type_selector__video_description">Vidéo</string>
   <string name="attachment_type_selector__contact">Contact</string>
   <string name="attachment_type_selector__contact_description">Contact</string>
   <string name="attachment_type_selector__camera">Appareil photo</string>
@@ -615,6 +612,10 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="attachment_type_selector__location_description">Lieu</string>
   <string name="attachment_type_selector__gif">GIFs</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__gallery_description">Image ou vidéo</string>
+  <string name="attachment_type_selector__file_description">Fichier</string>
+  <string name="attachment_type_selector__gallery">Galerie</string>
+  <string name="attachment_type_selector__file">Fichier</string>
   <string name="attachment_type_selector__drawer_description">Afficher l\'accès rapide aux pièces jointes</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Ancienne phrase de passe</string>
@@ -636,6 +637,9 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Conversation mise en silencieux</string>
   <!--conversation_activity-->
+  <string name="conversation_activity__type_message_push">Message de Signal</string>
+  <string name="conversation_activity__type_message_sms_insecure">SMS non-sécurisé</string>
+  <string name="conversation_activity__type_message_mms_insecure">MMS non-sécurisé</string>
   <string name="conversation_activity__from_sim_name">De %1$s</string>
   <string name="conversation_activity__send">Envoyer</string>
   <string name="conversation_activity__remove">Supprimer</string>
@@ -888,7 +892,13 @@ par SMS.</string>
   <string name="arrays__audio">Audio</string>
   <string name="arrays__video">Vidéo</string>
   <string name="arrays__documents">Documents</string>
+  <string name="arrays__small">Petit</string>
   <string name="arrays__normal">Normal</string>
+  <string name="arrays__large">Grand</string>
+  <string name="arrays__extra_large">Très Grand</string>
+  <string name="arrays__default">Par défaut</string>
+  <string name="arrays__high">Haut</string>
+  <string name="arrays__max">Max</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d heure</item>
@@ -1002,6 +1012,18 @@ par SMS.</string>
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Prise en charge des appels vidéo et vocaux de prochaine génération lorsque les deux parties le permettent. Cette fonctionnalité est en version bêta.</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Relaie tout les appels via les serveur de Signal pour éviter de révéler votre IP à votre contact. L\'activation va réduire la qualité de l\'appel.</string>
   <string name="preferences_advanced__always_relay_calls">Toujours relayer les appels</string>
+  <string name="preferences_app_protection__app_access">Accès à l\'application</string>
+  <string name="preferences_app_protection__communication">Communication</string>
+  <string name="preferences_chats__chats">Chats</string>
+  <string name="preferences_notifications__message_notifications">Notifications de messages</string>
+  <string name="preferences_notifications__events">Evènements</string>
+  <string name="preferences_notifications__in_chat_sounds">Son dans le tchat</string>
+  <string name="preferences_notifications__show">Montrer</string>
+  <string name="preferences_chats__show_invitation_prompts">Afficher les invitations</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Afficher les invitations pour les contacts sans Signal</string>
+  <string name="preferences_chats__message_text_size">Taille de la police du message</string>
+  <string name="preferences_events__contact_joined_signal">Votre contact a rejoint Signal</string>
+  <string name="preferences_notifications__priority">Priorité</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

@@ -291,4 +291,16 @@
         <item>30</item>
     </string-array>
 
+    <string-array name="pref_notification_priority_entries">
+        <item>@string/arrays__default</item>
+        <item>@string/arrays__high</item>
+        <item>@string/arrays__max</item>
+    </string-array>
+
+    <string-array name="pref_notification_priority_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
 </resources>

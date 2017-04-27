@@ -39,4 +39,9 @@ public class PushMediaConstraints extends MediaConstraints {
   public int getAudioMaxSize() {
     return 100 * MB;
   }
+
+  @Override
+  public int getDocumentMaxSize() {
+    return 100 * MB;
+  }
 }

@@ -35,6 +35,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.ui.PlacePicker;
@@ -109,20 +110,27 @@ public class AttachmentManager {
 
   }
 
-  public void clear() {
+  public void clear(boolean animate) {
     if (attachmentViewStub.resolved()) {
-      ViewUtil.fadeOut(attachmentViewStub.get(), 200).addListener(new Listener<Boolean>() {
-        @Override
-        public void onSuccess(Boolean result) {
-          thumbnail.clear();
-          attachmentViewStub.get().setVisibility(View.GONE);
-          attachmentListener.onAttachmentChanged();
-        }
 
-        @Override
-        public void onFailure(ExecutionException e) {
-        }
-      });
+      if (animate) {
+        ViewUtil.fadeOut(attachmentViewStub.get(), 200).addListener(new Listener<Boolean>() {
+          @Override
+          public void onSuccess(Boolean result) {
+            thumbnail.clear();
+            attachmentViewStub.get().setVisibility(View.GONE);
+            attachmentListener.onAttachmentChanged();
+          }
+
+          @Override
+          public void onFailure(ExecutionException e) {
+          }
+        });
+      } else {
+        thumbnail.clear();
+        attachmentViewStub.get().setVisibility(View.GONE);
+        attachmentListener.onAttachmentChanged();
+      }
 
       markGarbage(getSlideUri());
       slide = Optional.absent();
@@ -247,7 +255,7 @@ public class AttachmentManager {
             documentView.setDocument((DocumentSlide) slide, false);
             removableMediaView.display(documentView, false);
           } else {
-            thumbnail.setImageResource(masterSecret, slide, false);
+            thumbnail.setImageResource(masterSecret, slide, false, true);
             removableMediaView.display(thumbnail, mediaType == MediaType.IMAGE);
           }
 
@@ -297,16 +305,16 @@ public class AttachmentManager {
     return deck;
   }
 
-  public static void selectVideo(Activity activity, int requestCode) {
-    selectMediaType(activity, "video/*", requestCode);
+  public static void selectDocument(Activity activity, int requestCode) {
+    selectMediaType(activity, "*/*", null, requestCode);
   }
 
-  public static void selectImage(Activity activity, int requestCode) {
-    selectMediaType(activity, "image/*", requestCode);
+  public static void selectGallery(Activity activity, int requestCode) {
+    selectMediaType(activity, "image/*", new String[] {"image/*", "video/*"}, requestCode);
   }
 
   public static void selectAudio(Activity activity, int requestCode) {
-    selectMediaType(activity, "audio/*", requestCode);
+    selectMediaType(activity, "audio/*", null, requestCode);
   }
 
   public static void selectContactInfo(Activity activity, int requestCode) {
@@ -353,9 +361,13 @@ public class AttachmentManager {
     }
   }
 
-  private static void selectMediaType(Activity activity, String type, int requestCode) {
+  private static void selectMediaType(Activity activity, @NonNull String type, @Nullable String[] extraMimeType, int requestCode) {
     final Intent intent = new Intent();
     intent.setType(type);
+
+    if (extraMimeType != null && Build.VERSION.SDK_INT >= 19) {
+      intent.putExtra(Intent.EXTRA_MIME_TYPES, extraMimeType);
+    }
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
       intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
@@ -368,6 +380,7 @@ public class AttachmentManager {
     }
 
     intent.setAction(Intent.ACTION_GET_CONTENT);
+
     try {
       activity.startActivityForResult(intent, requestCode);
     } catch (ActivityNotFoundException anfe) {
@@ -408,7 +421,7 @@ public class AttachmentManager {
     @Override
     public void onClick(View v) {
       cleanup();
-      clear();
+      clear(true);
     }
   }
 

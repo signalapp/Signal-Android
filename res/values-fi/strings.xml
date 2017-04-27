@@ -231,6 +231,7 @@ Vastaanotettu: %4$s</string>
   <string name="DeviceListItem_last_active_s">Viimeksi käytetty %s</string>
   <string name="DeviceListItem_today">tänään</string>
   <!--DocumentView-->
+  <string name="DocumentView_unknown_file">Tuntematon tiedosto</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimoi Play Servicesin puuttumista</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Tämä laite ei tue Play Servicesiä. Napsauta tästä ottaaksesi pois päältä virransäästöominaisuudet, jotka estävät Signalia hakemasta viestejä taustalla.</string>
@@ -320,8 +321,8 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="InviteActivity_invitations_sent">Kutsut lähetetty!</string>
   <string name="InviteActivity_invite_to_signal">Kutsu Signaliin</string>
   <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">LÄHETÄ SMS 1 YSTÄVÄLLE</item>
-    <item quantity="other">LÄHETÄ SMS %d YSTÄVÄLLE</item>
+    <item quantity="one">LÄHETÄ TEKSTIVIESTI 1 YSTÄVÄLLE</item>
+    <item quantity="other">LÄHETÄ TEKSTIVIESTI %d YSTÄVÄLLE</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Lähetä 1 SMS-kutsu?</item>
@@ -366,6 +367,7 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="MessageRecord_s_called_you">%s soitti sinulle</string>
   <string name="MessageRecord_called_s">Soitit puhelun: %s</string>
   <string name="MessageRecord_missed_call_from">Vastaamatta jäänyt puhelu: %s</string>
+  <string name="MessageRecord_s_joined_signal">%s liittyi Signaliin</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Sinä asetit viestien katoamisajan: %1$s</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s asetti viestien katoamisajan: %2$s</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Sinun ja yhteystiedon %s turvanumero on vaihtunut.</string>
@@ -484,6 +486,7 @@ Tarkista vielä, että tämä on varmasti numerosi! Aiomme seuraavaksi vahvistaa
   <string name="RegistrationProgressActivity_too_many_requests">Liian monta pyyntöä!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Olet jo äskettäin pyytänyt puhelua. Voit pyytää uutta puhelua 20 minuutin kuluttua.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Rekisteröintiristiriita</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Tämä numero on jo rekisteröity toiselle Signal-palvelimelle. Sinun täytyy  vapauttaa rekisteröinti ennen uudelleenrekisteröitymistä.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Rekisteröinti suoritettu</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Signalin rekisteröityminen onnistui.</string>
@@ -511,6 +514,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ThreadRecord_called_you">Soitti sinulle</string>
   <string name="ThreadRecord_missed_call">Vastaamatta jäänyt puhelu</string>
   <string name="ThreadRecord_media_message">Mediaviesti</string>
+  <string name="ThreadRecord_s_joined_signal">%s liittyi Signaliin</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Katoavien viestien ajaksi asetettu %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Sinun ja yhteystiedon %s turvanumero on vaihtunut.</string>
   <!--UpdateApkReadyListener-->
@@ -587,6 +591,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Pikavastaus ei toimi, kun Signal on lukittu!</string>
   <string name="QuickResponseService_problem_sending_message">Ongelma viestin lähettämisessä!</string>
   <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_open_directory">Avaa hakemisto</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Uusi viesti</string>
@@ -599,12 +604,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Käytä video-tilaa napsauttamalla</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">Kuva</string>
-  <string name="attachment_type_selector__image_description">Kuva</string>
   <string name="attachment_type_selector__audio">Äänitallenne</string>
   <string name="attachment_type_selector__audio_description">Äänitallenne</string>
-  <string name="attachment_type_selector__video">Video</string>
-  <string name="attachment_type_selector__video_description">Video</string>
   <string name="attachment_type_selector__contact">Yhteystieto</string>
   <string name="attachment_type_selector__contact_description">Yhteystieto</string>
   <string name="attachment_type_selector__camera">Kamera</string>
@@ -634,6 +635,9 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Keskustelu mykistetty</string>
   <!--conversation_activity-->
+  <string name="conversation_activity__type_message_push">Signal-viesti</string>
+  <string name="conversation_activity__type_message_sms_insecure">Salaamaton SMS-viesti</string>
+  <string name="conversation_activity__type_message_mms_insecure">Salaamaton MMS-viesti</string>
   <string name="conversation_activity__from_sim_name">SIM-kortilta %1$s</string>
   <string name="conversation_activity__send">Lähetä</string>
   <string name="conversation_activity__remove">Poista</string>
@@ -876,7 +880,11 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="arrays__images">Kuvat</string>
   <string name="arrays__audio">Äänitallenteet</string>
   <string name="arrays__video">Videot</string>
+  <string name="arrays__documents">Dokumentit</string>
+  <string name="arrays__small">Pieni</string>
   <string name="arrays__normal">Normaali</string>
+  <string name="arrays__large">Suuri</string>
+  <string name="arrays__extra_large">Erittäin suuri</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d tunti</item>
@@ -990,6 +998,9 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Tuki seuraavan sukupolven video- ja äänipuheluille, jos asetus on päällä molemmilla osapuolilla. Tämä on vielä beta-vaiheessa.</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Välitä kaikki puhelut Signal-palvelimen kautta välttääksesi IP-osoitteesi paljastumista yhteystiedollesi. Tämä toiminto heikentää puhelun laatua.</string>
   <string name="preferences_advanced__always_relay_calls">Välitä aina kaikki puhelut</string>
+  <string name="preferences_chats__chats">Keskustelut</string>
+  <string name="preferences_notifications__message_notifications">Viesti-ilmoitukset</string>
+  <string name="preferences_events__contact_joined_signal">Yhteistietosi liittyi Signaliin</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

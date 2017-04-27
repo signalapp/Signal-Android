@@ -9,7 +9,7 @@
   <string name="AbstractNotificationBuilder_new_message">Ново съобщение</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">В момента: %s</string>
-  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Все още не си сложил парола!</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Все още не сте заложили парола!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
     <item quantity="one">1 съобщение на разговор</item>
     <item quantity="other">%d съобщения на разговор</item>
@@ -33,9 +33,9 @@
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS забранени</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Натисни, за да направиш Сигнал своята SMS програма по подразбиране</string>
   <string name="ApplicationPreferencesActivity_on">активирана</string>
-  <string name="ApplicationPreferencesActivity_On">Разрешени</string>
+  <string name="ApplicationPreferencesActivity_On">Активирано</string>
   <string name="ApplicationPreferencesActivity_off">деактивирана</string>
-  <string name="ApplicationPreferencesActivity_Off">Спрени</string>
+  <string name="ApplicationPreferencesActivity_Off">Деактивирано</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Парола %1$s, Защита на екрана %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Тема %1$s, Език %2$s</string>
@@ -83,8 +83,9 @@
   <string name="ConversationItem_click_to_approve_unencrypted">Натисни, за да разрешиш преминавене към некриптирани съобщения в краен случай</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Разреши преминавене към не шифровани SMS-и?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Разреши преминавене към не шифровани MMS-и?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Това съобщение <b>НЯМА</b> да бъде криптирано, защото получтеля вече не е потребител на Сигнал.\n\nИзпрати незащитено съобщение?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Това съобщение <b>НЯМА</b> да бъде криптирано, защото получтеля вече не е потребител на Сигнал.\n\nИзпращане на незащитено съобщение?</string>
   <string name="ConversationItem_unable_to_open_media">Неуспешно откриване на приложение за отваряне на този файл.</string>
+  <string name="ConversationItem_copied_text">%s e копирано</string>
   <string name="ConversationItem_from_s">от %s</string>
   <string name="ConversationItem_to_s">do %s</string>
   <!--ConversationActivity-->
@@ -93,7 +94,7 @@
   <string name="ConversationActivity_reset">Рестартирай</string>
   <string name="ConversationActivity_delete_thread_question">Изтрий разговора?</string>
   <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">Това ще изтрие невъзвращаемо всичките съобщения в този разговор.</string>
-  <string name="ConversationActivity_add_attachment">Прикачи файл</string>
+  <string name="ConversationActivity_add_attachment">Прикачване на файл</string>
   <string name="ConversationActivity_select_contact_info">Посочи информация за контакта</string>
   <string name="ConversationActivity_compose_message">Ново съобщение</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">За съжаление, настъпи грешка при прикачването.</string>
@@ -112,7 +113,7 @@
   <string name="ConversationActivity_invalid_recipient">Невалиден получател!</string>
   <string name="ConversationActivity_calls_not_supported">Функцията за разговори не се подържа</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Това устройство не поддържа повиквания.</string>
-  <string name="ConversationActivity_leave_group">Напусни групата?</string>
+  <string name="ConversationActivity_leave_group">Напускане на групата?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Сигурен ли си, че искаш да напуснеш тази група?</string>
   <string name="ConversationActivity_transport_insecure_sms">Некриптиран SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Некриптиран MMS</string>
@@ -123,9 +124,9 @@
   <string name="ConversationActivity_mms_not_supported_title">MMS не се поддържа</string>
   <string name="ConversationActivity_mms_not_supported_message">Това съобщение не може да бъде изпратезо, защото мобилния Ви оператор не поддържа MMS.</string>
   <string name="ConversationActivity_specify_recipient">Моля избери контакт</string>
-  <string name="ConversationActivity_unblock_this_contact_question">Отблокирай този контакт?</string>
+  <string name="ConversationActivity_unblock_this_contact_question">Отблокирване на този контакт?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Отново ще може да получавате съобщения и обаждания от този контакт.</string>
-  <string name="ConversationActivity_unblock">Отблокирай</string>
+  <string name="ConversationActivity_unblock">Отблокирване</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Размерът на прикачения файл надминава допустимия лимит за типа съобщение, който изпращате.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Камерата е недостъпна</string>
   <string name="ConversationActivity_unable_to_record_audio">Не може да бъде записано аудио!</string>
@@ -178,7 +179,7 @@
   <string name="ConversationFragment_deleting">Изтриване</string>
   <string name="ConversationFragment_deleting_messages">Изтриване на съобщения...</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">Търси</string>
+  <string name="ConversationListActivity_search">Търсене</string>
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Нямате инсталиран браузър.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
@@ -249,7 +250,7 @@
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Внимание, това ще изнесе некриптиран архив на Сигнал съобщенията на външната памет.</string>
   <string name="ExportFragment_cancel">Отказ</string>
   <string name="ExportFragment_exporting">Изнасяне</string>
-  <string name="ExportFragment_exporting_plaintext_to_storage">Изнесяне в некриптирано състояние на външната памет...</string>
+  <string name="ExportFragment_exporting_plaintext_to_storage">Изнасяне в некриптирано състояние на външната памет...</string>
   <string name="ExportFragment_error_unable_to_write_to_storage">Грешка, неуспешен опит за запис на външната памет.</string>
   <string name="ExportFragment_error_while_writing_to_storage">Грешка при записване на външната памет.</string>
   <string name="ExportFragment_export_successful">Изнасянето е успешен.</string>
@@ -282,7 +283,7 @@
   <string name="GroupMembersDialog_me">Аз</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Внасяне</string>
-  <string name="ImportExportActivity_export">Изнесяне</string>
+  <string name="ImportExportActivity_export">Изнасяне</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Добавяне на всички съществуващи SMS-и?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Това ще внесе
@@ -309,11 +310,11 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="ImportFragment_no_encrypted_backup_found">Не е намерен шифрован архив!</string>
   <string name="ImportFragment_restore_complete">Възстановяването приключи!</string>
   <!--InputPanel-->
-  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Натиснете и задръжте, за да запишете гласово съобщение, отпуснете, за да изпратите</string>
+  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Натиснете и задръжте, за да запишете гласово съобщение, отпуснете, за да го изпратите</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Споделяне</string>
-  <string name="InviteActivity_choose_contacts">Изберете контакти</string>
-  <string name="InviteActivity_cancel">Откажи</string>
+  <string name="InviteActivity_choose_contacts">Избор на контакти</string>
+  <string name="InviteActivity_cancel">Отказване</string>
   <string name="InviteActivity_sending">Изпращане...</string>
   <string name="InviteActivity_heart_content_description">Сърце</string>
   <string name="InviteActivity_invitations_sent">Поканите изпратени!</string>
@@ -323,10 +324,10 @@ SMS-те от системния архив в Сигнал. Ако вече с�
     <item quantity="other">ИЗПРАТЕТЕ SMS ДО %d ПРИЯТЕЛЯ</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">Изпрати 1 SMS покана?</item>
-    <item quantity="other">Изпрати %d SMS покани?</item>
+    <item quantity="one">Изпращане на 1 SMS покана?</item>
+    <item quantity="other">Изпращане на %d SMS покани?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Да преминем към Сигнал%1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Да преминем към Сигнал %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Изглежда нямате приложения, с които да можете да сподялите.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Приятелите не оставят приятелите си да чатят без криптиране.</string>
   <!--KeyScanningActivity-->
@@ -349,10 +350,10 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="NotificationBarManager_missed_signal_call">Пропуснато Сигнал обаждане</string>
   <string name="NotificationBarManager__establishing_signal_call">Установяване на Сигнал разговор</string>
   <string name="NotificationBarManager__incoming_signal_call">Входящо Сигнал обадждане</string>
-  <string name="NotificationBarManager__deny_call">Забрани обаждането</string>
+  <string name="NotificationBarManager__deny_call">Отхвърляне на обаждането</string>
   <string name="NotificationBarManager__answer_call">Приеми обаждането</string>
   <string name="NotificationBarManager__end_call">Прекрати обаждането</string>
-  <string name="NotificationBarManager__cancel_call">Откажи обаждането</string>
+  <string name="NotificationBarManager__cancel_call">Прекратяване на обаждането</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Мултимедийно съобщение</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Изтегляне на MMS съобщение</string>
@@ -375,7 +376,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Въведете нова парола!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Свържи това устройство?</string>
-  <string name="DeviceProvisioningActivity_cancel">ОТКАЖИ</string>
+  <string name="DeviceProvisioningActivity_cancel">ОТКАЗВАНЕ</string>
   <string name="DeviceProvisioningActivity_continue">ПРОДЪЛЖИ</string>
   <string name="DeviceProvisioningActivity_title">Свържи това устройство?</string>
   <string name="DeviceProvisioningActivity_content_intro">Ще може да</string>
@@ -395,7 +396,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Изглежда се опитвате да свържете Сигнал устройство с външна скенер програма. За Ваша сигурност, моля сканирайте кодът повторно използвайки Сигнал.</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Изчезващи съобщения</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Съобщението Ви няма да изчезне.</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">Съобщенията няма да изчезват.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Изпратени и получени съобщения в този разговор ще изчезнат %s след изпращането им.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Въведете паролата</string>
@@ -412,14 +413,14 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="RatingManager_later">По-късно</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Опа, Play Store приложението не е инсталирано на устройството Ви.</string>
   <!--RecipientPreferencesActivity-->
-  <string name="RecipientPreferenceActivity_block_this_contact_question">Блокирай този контакт?</string>
+  <string name="RecipientPreferenceActivity_block_this_contact_question">Блокирване на този контакт?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Повече няма да получавате съобщения и обаждания от този контакт.</string>
-  <string name="RecipientPreferenceActivity_block">Блокирай</string>
-  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Отблокирай този контакт?</string>
+  <string name="RecipientPreferenceActivity_block">Блокирване</string>
+  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Отблокирване на този контакт?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Отново ще може да получавате съобщения и обаждания от този контакт.</string>
-  <string name="RecipientPreferenceActivity_unblock">Отблокирай</string>
-  <string name="RecipientPreferenceActivity_enabled">Разрешени</string>
-  <string name="RecipientPreferenceActivity_disabled">Спрени</string>
+  <string name="RecipientPreferenceActivity_unblock">Отблокирване</string>
+  <string name="RecipientPreferenceActivity_enabled">Активирано</string>
+  <string name="RecipientPreferenceActivity_disabled">Деактивирано</string>
   <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Активно, когато съобщение е изпратено или получено.</string>
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Безименна група</string>
@@ -532,7 +533,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Не са открити копирани числа за сигурност</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Покани въпреки съществуващата покана?</string>
-  <string name="KeyExchangeInitiator_send">Изпрати</string>
+  <string name="KeyExchangeInitiator_send">Изпращане</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Грешно криптирано съобщение</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Разшифроване, моля изчакайте...</string>
@@ -560,7 +561,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="ApplicationMigrationService_import_complete">Внасянето завършено</string>
   <string name="ApplicationMigrationService_system_database_import_is_complete">Внасянето на системната база данни е завършено.</string>
   <!--KeyCachingService-->
-  <string name="KeyCachingService_signal_passphrase_cached">Натисните, за да отворите.</string>
+  <string name="KeyCachingService_signal_passphrase_cached">Натиснете за отворяне.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Натиснете, за да отворите или натиснете катинара, за да затворите.</string>
   <string name="KeyCachingService_passphrase_cached">Сигнал е отключен</string>
   <string name="KeyCachingService_lock">Заключи паролата</string>
@@ -584,8 +585,8 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="MessageNotifier_reply">Отговори</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Налагат се ръчни MMS настройки за твоя телефон.</string>
-  <string name="MmsPreferencesFragment__enabled">Разрешени</string>
-  <string name="MmsPreferencesFragment__disabled">Спрени</string>
+  <string name="MmsPreferencesFragment__enabled">Разрешено</string>
+  <string name="MmsPreferencesFragment__disabled">Деактивирано</string>
   <string name="MmsPreferencesFragment__not_set">Не е избрано</string>
   <string name="MmsPreferencesFragment__invalid_uri">Въведеният текст не е валиден адрес</string>
   <string name="MmsPreferencesFragment__invalid_host">Въведеният текст не валиден host</string>
@@ -606,12 +607,8 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Натиснете, за да активирате видео</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">Изображение</string>
-  <string name="attachment_type_selector__image_description">Изображение</string>
   <string name="attachment_type_selector__audio">Аудио</string>
   <string name="attachment_type_selector__audio_description">Аудио</string>
-  <string name="attachment_type_selector__video">Видео</string>
-  <string name="attachment_type_selector__video_description">Видео</string>
   <string name="attachment_type_selector__contact">Контакт</string>
   <string name="attachment_type_selector__contact_description">Контакт</string>
   <string name="attachment_type_selector__camera">Камера</string>
@@ -620,6 +617,10 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="attachment_type_selector__location_description">Местоположение</string>
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__gallery_description">Изображение или видео</string>
+  <string name="attachment_type_selector__file_description">Файл</string>
+  <string name="attachment_type_selector__gallery">Галерия</string>
+  <string name="attachment_type_selector__file">Файл</string>
   <string name="attachment_type_selector__drawer_description">Затворяне/отворяне на чекмеджето с прикачени файлове</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Стара парола</string>
@@ -641,8 +642,11 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Чатът е в тих режим</string>
   <!--conversation_activity-->
+  <string name="conversation_activity__type_message_push">Сигнал-ско съобщение</string>
+  <string name="conversation_activity__type_message_sms_insecure">Некриптиран SMS</string>
+  <string name="conversation_activity__type_message_mms_insecure">Некриптиран MMS</string>
   <string name="conversation_activity__from_sim_name">От %1$s</string>
-  <string name="conversation_activity__send">Изпрати</string>
+  <string name="conversation_activity__send">Изпращане</string>
   <string name="conversation_activity__remove">Премахни</string>
   <string name="conversation_activity__window_description">Разговор с %1$s</string>
   <string name="conversation_activity__compose_description">Създаване на съобщение</string>
@@ -678,7 +682,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Превъртане надолу</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Зареждане на държавите...</string>
-  <string name="country_selection_fragment__search">Търси</string>
+  <string name="country_selection_fragment__search">Търсене</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Сканирай QR кодът, показан на устройството, за да се свържете</string>
   <!--device_link_fragment-->
@@ -689,7 +693,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">продължи</string>
   <!--expiration-->
-  <string name="expiration_off">Спрени</string>
+  <string name="expiration_off">Деактивирано</string>
   <plurals name="expiration_seconds">
     <item quantity="one">1 секунда</item>
     <item quantity="other">%d секунди</item>
@@ -716,11 +720,11 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Търси сред GIF-ове и стикери</string>
+  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Търсене сред GIF-ове и стикери</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Няма нищо открито</string>
   <!--import_export_fragment-->
-  <string name="import_export_fragment__export">Изнесяне</string>
+  <string name="import_export_fragment__export">Изнасяне</string>
   <string name="import_export_fragment__import">Внасяне</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Неуспешно прочитане на доклада на Вашето устройство. Все пак може да използвате ADB, за да получте доклада.</string>
@@ -751,7 +755,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="media_overview_activity__no_media">Без медия</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">ПОТВЪРДИ</string>
-  <string name="message_recipients_list_item__resend">ИЗПРАТИ ПОВТОРНО</string>
+  <string name="message_recipients_list_item__resend">ПОВТОРНО ИЗПРАЩАНЕ</string>
   <string name="message_recipients_list_item__resending">Повторно изпращане...</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
@@ -767,11 +771,11 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">БЛОКИРАН</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">Сложи чатът в тих режим</string>
-  <string name="recipient_preferences__disable_notifications_for_this_conversation">Забрани известия за този чат</string>
+  <string name="recipient_preferences__mute_conversation">Слагане на чата в тих режим</string>
+  <string name="recipient_preferences__disable_notifications_for_this_conversation">Деактивиране на известия за този чат</string>
   <string name="recipient_preferences__notification_sound">Мелодия за известия</string>
   <string name="recipient_preferences__vibrate">Вибрирация</string>
-  <string name="recipient_preferences__block">Блокирай</string>
+  <string name="recipient_preferences__block">Блокирване</string>
   <string name="recipient_preferences__color">Цвят</string>
   <string name="recipient_preferences__color_for_this_contact">Цвят за този контакт</string>
   <string name="recipient_preferences__verify_safety_number">Проверка на числата за сигурност</string>
@@ -848,7 +852,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="recipients_panel__add_members">Добавяне на членове</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ако желаете да проверите сигурността на вашта комуникация с %s, сравнете числата изписани по-горе с числата на тяхното устройство. Или, можете да сканирате техния код или те да сканират Вашия. <a href="https://whispersystems.org/redirect/safety-numbers">Научете повече за проверката за сигурност с числа</a>.]]></string>
-  <string name="verify_display_fragment__tap_to_scan">Натисните за сканиране</string>
+  <string name="verify_display_fragment__tap_to_scan">Натиснете за сканиране</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Споделяне на числа за сигурност</string>
   <!--message_details_header-->
@@ -867,13 +871,13 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="AndroidManifest__signal_detected">Открит е Сигнал</string>
   <string name="AndroidManifest__change_passphrase">Смени паролата</string>
   <string name="AndroidManifest__verify_safety_number">Проверка на числата за сигурност</string>
-  <string name="AndroidManifest__log_submit">Изпрати доклад</string>
+  <string name="AndroidManifest__log_submit">Изпращане на доклад</string>
   <string name="AndroidManifest__media_preview">Преглед на медията</string>
-  <string name="AndroidManifest__all_media">Всички медии</string>
-  <string name="AndroidManifest__all_media_named">Всички медии с %1$s</string>
+  <string name="AndroidManifest__all_media">Всички прикачени файлове</string>
+  <string name="AndroidManifest__all_media_named">Всички прикачени файлове с %1$s</string>
   <string name="AndroidManifest__message_details">Информация за съобщението</string>
   <string name="AndroidManifest__linked_devices">Свързани устройства</string>
-  <string name="AndroidManifest__invite_friends">Поканете приятели</string>
+  <string name="AndroidManifest__invite_friends">Поканване на приятели</string>
   <string name="AndroidManifest_archived_conversations">Архивирани разговори</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Внасяне / изнасяне</string>
@@ -885,8 +889,8 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="arrays__mute_for_seven_days">Тих режим за 7 дена</string>
   <string name="arrays__mute_for_one_year">Тих режим за 1 година</string>
   <string name="arrays__settings_default">Настройки по подразбиране</string>
-  <string name="arrays__enabled">Разрешени</string>
-  <string name="arrays__disabled">Спрени</string>
+  <string name="arrays__enabled">Разрешено</string>
+  <string name="arrays__disabled">Деактивирано</string>
   <string name="arrays__name_and_message">Име и съобщение</string>
   <string name="arrays__name_only">Само име</string>
   <string name="arrays__no_name_or_message">Няма име или съобщения</string>
@@ -894,7 +898,13 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="arrays__audio">Аудио</string>
   <string name="arrays__video">Видео</string>
   <string name="arrays__documents">Документи</string>
+  <string name="arrays__small">Малък</string>
   <string name="arrays__normal">Нормално</string>
+  <string name="arrays__large">Голям</string>
+  <string name="arrays__extra_large">Много голям</string>
+  <string name="arrays__default">По подразбиране</string>
+  <string name="arrays__high">Високо</string>
+  <string name="arrays__max">Максимално</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d час</item>
@@ -914,13 +924,13 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Натискане на клавиша Enter ще изпрати текстово съобщене</string>
   <string name="preferences__display_settings">Настройки на дисплея</string>
   <string name="preferences__choose_identity">Избери самоличност</string>
-  <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Избери вашия контакт от списъка с контакти.</string>
+  <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Изберете контакт от списъка с контакти.</string>
   <string name="preferences__change_passphrase">Смени паролата</string>
   <string name="preferences__change_your_passphrase">Сменете паролата си</string>
   <string name="preferences__enable_passphrase">Включи парола</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Заключи Сигнал и всички извесития с парола</string>
   <string name="preferences__screen_security">Сигурност на екрана</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">Забрани автоматично копиране на екрана в списка с често използвани програми и в самата програма.</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Забраняване на автоматично копиране на екрана в списка с често използвани програми и в самата програма.</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Автоматично заключвай Сигнал след зададен период от неактивност</string>
   <string name="preferences__inactivity_timeout_passphrase">Парола за период на неактивност</string>
   <string name="preferences__inactivity_timeout_interval">Продължителност на период за неактивност</string>
@@ -932,8 +942,8 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="preferences__led_color_unknown">Непознат</string>
   <string name="preferences__pref_led_blink_title">LED известяване</string>
   <string name="preferences__pref_led_blink_custom_pattern_title">Промени известяването с LED мигане</string>
-  <string name="preferences__pref_led_blink_custom_pattern_on_for">Разрешени за:</string>
-  <string name="preferences__pref_led_blink_custom_pattern_off_for">Спрени за:</string>
+  <string name="preferences__pref_led_blink_custom_pattern_on_for">Активирано за:</string>
+  <string name="preferences__pref_led_blink_custom_pattern_off_for">Деактивирано за:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Новият начин за LED известяване зададен!</string>
   <string name="preferences__sound">Мелодия</string>
   <string name="preferences__silent">Тих</string>
@@ -990,7 +1000,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="preferences__language">Език</string>
   <string name="preferences__signal_messages_and_calls">Сигнал съобщения и обаждания</string>
   <string name="preferences__free_private_messages_and_calls">Безплатни, лични съобщения и обаждания до Сигнал потребители</string>
-  <string name="preferences__submit_debug_log">Изпрати доклад</string>
+  <string name="preferences__submit_debug_log">Изпращане на доклад</string>
   <string name="preferences__support_wifi_calling">Съвместим режим \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Включи ако устройството ти използва WiFi за SMS/MMS(само ако \'Wifi Calling\' е включен на устройството ти)</string>
   <string name="preferences_app_protection__blocked_contacts">Блокирани контакти</string>
@@ -1008,6 +1018,18 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Поддръжка за следващото поколение видео и аудио обаждания, когато е активирано и от двете страни. Тази функционалонст е в бета режим.</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Прехвърляне на всички обаждания през Сигнал сървърва, за да се прикрие IP адресът Ви от контатктът Ви. Активирането ще намали качеството на връзката.</string>
   <string name="preferences_advanced__always_relay_calls">Винаги да се използва прехвърляне на обажданията</string>
+  <string name="preferences_app_protection__app_access">Достъп до приложението</string>
+  <string name="preferences_app_protection__communication">Комуникация</string>
+  <string name="preferences_chats__chats">Чатове</string>
+  <string name="preferences_notifications__message_notifications">Известия за съобщения</string>
+  <string name="preferences_notifications__events">Събития</string>
+  <string name="preferences_notifications__in_chat_sounds">Звуци в чатове</string>
+  <string name="preferences_notifications__show">Показване</string>
+  <string name="preferences_chats__show_invitation_prompts">Показване на покани</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Показване на покани за контакти без Сигнал</string>
+  <string name="preferences_chats__message_text_size">Размер на текста</string>
+  <string name="preferences_events__contact_joined_signal">Един от контактите Ви се присъедини към Сигнал!</string>
+  <string name="preferences_notifications__priority">Пиоритет</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1020,7 +1042,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Приключен</string>
   <!--refreshing push directory from menu-->
-  <string name="push_directory__menu_refresh">Обнови списъка с контакти</string>
+  <string name="push_directory__menu_refresh">Обновяване на списъка с контакти</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Обаждане</string>
   <!--conversation_callable_secure-->
@@ -1047,7 +1069,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="conversation_list_batch_archive__menu_archive_selected">Архивът е избран</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Деархивирай изрбания</string>
   <!--conversation_list-->
-  <string name="conversation_list__menu_search">Търси</string>
+  <string name="conversation_list__menu_search">Търсене</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Изображение на контакта</string>
   <string name="conversation_list_item_view__error_alert">Известие за грешка</string>
@@ -1055,24 +1077,24 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Нов разговор</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_reset_secure_session">Започни нова сигурна сесия</string>
+  <string name="conversation_secure_verified__menu_reset_secure_session">Започване на нова сигурна сесия</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">Изключи тих режим</string>
   <!--conversation_unmuted-->
   <string name="conversation_unmuted__mute_notifications">Тих режим за известия</string>
   <!--conversation-->
-  <string name="conversation__menu_add_attachment">Прикачи файл</string>
+  <string name="conversation__menu_add_attachment">Прикачване на файл</string>
   <string name="conversation__menu_edit_group">Промяна на групата</string>
-  <string name="conversation__menu_leave_group">Напусни група</string>
+  <string name="conversation__menu_leave_group">Напускане на групата</string>
   <string name="conversation__menu_delete_thread">Изтрий разговор</string>
-  <string name="conversation__menu_view_all_media">Всички медии</string>
+  <string name="conversation__menu_view_all_media">Всички прикачените файлове</string>
   <string name="conversation__menu_conversation_settings">Настройки на разговора</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Разшири диалога</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Добавяне в контакти</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Списък на получатели</string>
+  <string name="convesation_group_options__recipients_list">Участници</string>
   <string name="conversation_group_options__delivery">Доставка</string>
   <string name="conversation_group_options__conversation">Разговор</string>
   <string name="conversation_group_options__broadcast">Предаване</string>
@@ -1085,8 +1107,8 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="text_secure_normal__menu_new_group">Нова група</string>
   <string name="text_secure_normal__menu_settings">Настройки</string>
   <string name="text_secure_normal__menu_clear_passphrase">Заключи</string>
-  <string name="text_secure_normal__mark_all_as_read">Маркирана на всички като прочетени</string>
-  <string name="text_secure_normal__invite_friends">Поканете приятели</string>
+  <string name="text_secure_normal__mark_all_as_read">Маркиране на всички като прочетени</string>
+  <string name="text_secure_normal__invite_friends">Поканване на приятели</string>
   <string name="text_secure_normal__help">Помощ</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Копиране</string>
@@ -1120,13 +1142,13 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <!--media_preview-->
   <string name="media_preview__save_title">Запази</string>
   <string name="media_preview__forward_title">Препращане</string>
-  <string name="media_preview__all_media_title">Всички медии</string>
+  <string name="media_preview__all_media_title">Всички прикачени файлове</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Запази всички</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Преглед на медията</string>
   <!--new_conversation_activity-->
-  <string name="new_conversation_activity__refresh">Освежи</string>
+  <string name="new_conversation_activity__refresh">Опресняване</string>
   <!--redphone_audio_popup_menu-->
   <string name="redphone_audio_popup_menu__handset">Телефон</string>
   <string name="redphone_audio_popup_menu__headset">Слушалки/хендсфри</string>

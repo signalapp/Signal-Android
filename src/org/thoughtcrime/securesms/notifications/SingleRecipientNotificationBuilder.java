@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.preferences.NotificationPrivacyPreference;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.LinkedList;
@@ -51,7 +52,7 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
 
     setSmallIcon(R.drawable.icon_notification);
     setColor(context.getResources().getColor(R.color.textsecure_primary));
-    setPriority(NotificationCompat.PRIORITY_HIGH);
+    setPriority(TextSecurePreferences.getNotificationPriority(context));
     setCategory(NotificationCompat.CATEGORY_MESSAGE);
   }
 

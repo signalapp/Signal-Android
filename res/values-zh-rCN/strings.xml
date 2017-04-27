@@ -581,12 +581,8 @@
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">点击以启用你的视频</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">图片</string>
-  <string name="attachment_type_selector__image_description">图片</string>
   <string name="attachment_type_selector__audio">音频</string>
   <string name="attachment_type_selector__audio_description">音频</string>
-  <string name="attachment_type_selector__video">视频</string>
-  <string name="attachment_type_selector__video_description">视频</string>
   <string name="attachment_type_selector__contact">联系人</string>
   <string name="attachment_type_selector__contact_description">联系人</string>
   <string name="attachment_type_selector__camera">相机</string>

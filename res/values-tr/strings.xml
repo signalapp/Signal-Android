@@ -578,12 +578,8 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Videonuzu etkinleştirmek için dokunun</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">Resim</string>
-  <string name="attachment_type_selector__image_description">Resim</string>
   <string name="attachment_type_selector__audio">Ses</string>
   <string name="attachment_type_selector__audio_description">Ses</string>
-  <string name="attachment_type_selector__video">Video</string>
-  <string name="attachment_type_selector__video_description">Video</string>
   <string name="attachment_type_selector__contact">Kişi</string>
   <string name="attachment_type_selector__contact_description">Kişi</string>
   <string name="attachment_type_selector__camera">Kamera</string>
@@ -613,6 +609,9 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Sohbet sessize alındı</string>
   <!--conversation_activity-->
+  <string name="conversation_activity__type_message_push">Signal mesajı</string>
+  <string name="conversation_activity__type_message_sms_insecure">Güvensiz SMS</string>
+  <string name="conversation_activity__type_message_mms_insecure">Güvensiz MMS</string>
   <string name="conversation_activity__from_sim_name">Gönderen %1$s</string>
   <string name="conversation_activity__send">Gönder</string>
   <string name="conversation_activity__remove">Kaldır</string>
@@ -856,7 +855,10 @@ başarısız.</string>
   <string name="arrays__audio">Ses</string>
   <string name="arrays__video">Video</string>
   <string name="arrays__documents">Belgeler</string>
+  <string name="arrays__small">Küçük</string>
   <string name="arrays__normal">Normal</string>
+  <string name="arrays__large">Büyük</string>
+  <string name="arrays__extra_large">Çok büyük</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="other">%d saat</item>
@@ -969,6 +971,10 @@ başarısız.</string>
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Her iki tarafta etkinleştirildiğinde gelecek nesil görüntü ve sesli aramaları destekle. Bu özellik deneme aşamasındadır.</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Karşımdaki kişiye IP adresimi göstermemek için tüm aramaları Signal sunucuları aracılığı ile ilet. Bunu etkinleştirmek arama kalitesini düşürür.</string>
   <string name="preferences_advanced__always_relay_calls">Tüm aramaları aracı ile ilet</string>
+  <string name="preferences_app_protection__communication">İletişim</string>
+  <string name="preferences_notifications__message_notifications">Mesaj bildirimleri</string>
+  <string name="preferences_chats__message_text_size">Mesaj font boyutu</string>
+  <string name="preferences_events__contact_joined_signal">Kişi Signal\'e katıldı</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

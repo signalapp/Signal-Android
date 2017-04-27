@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchList;
 import org.thoughtcrime.securesms.database.model.DisplayRecord;
+import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -46,6 +47,8 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -594,7 +597,8 @@ public class SmsDatabase extends MessagingDatabase {
   }
 
   protected long insertMessageOutbox(long threadId, OutgoingTextMessage message,
-                                     long type, boolean forceSms, long date)
+                                     long type, boolean forceSms, long date,
+                                     InsertListener insertListener)
   {
     if      (message.isKeyExchange())   type |= Types.KEY_EXCHANGE_BIT;
     else if (message.isSecureMessage()) type |= (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT);
@@ -622,6 +626,10 @@ public class SmsDatabase extends MessagingDatabase {
 
     SQLiteDatabase db        = databaseHelper.getWritableDatabase();
     long           messageId = db.insert(TABLE_NAME, ADDRESS, contentValues);
+
+    if (insertListener != null) {
+      insertListener.onComplete();
+    }
 
     DatabaseFactory.getThreadDatabase(context).update(threadId, true);
     DatabaseFactory.getThreadDatabase(context).setLastSeen(threadId);
@@ -768,6 +776,37 @@ public class SmsDatabase extends MessagingDatabase {
     return new Reader(cursor);
   }
 
+  public OutgoingMessageReader readerFor(OutgoingTextMessage message, long threadId) {
+    return new OutgoingMessageReader(message, threadId);
+  }
+
+  public class OutgoingMessageReader {
+
+    private final OutgoingTextMessage message;
+    private final long                id;
+    private final long                threadId;
+
+    public OutgoingMessageReader(OutgoingTextMessage message, long threadId) {
+      try {
+        this.message  = message;
+        this.threadId = threadId;
+        this.id       = SecureRandom.getInstance("SHA1PRNG").nextLong();
+      } catch (NoSuchAlgorithmException e) {
+        throw new AssertionError(e);
+      }
+    }
+
+    public MessageRecord getCurrent() {
+      return new SmsMessageRecord(context, id, new DisplayRecord.Body(message.getMessageBody(), true),
+                                  message.getRecipients(), message.getRecipients().getPrimaryRecipient(),
+                                  1, System.currentTimeMillis(), System.currentTimeMillis(),
+                                  0, message.isSecureMessage() ? MmsSmsColumns.Types.getOutgoingEncryptedMessageType() : MmsSmsColumns.Types.getOutgoingSmsMessageType(),
+                                  threadId, 0, new LinkedList<IdentityKeyMismatch>(),
+                                  message.getSubscriptionId(), message.getExpiresIn(),
+                                  System.currentTimeMillis());
+    }
+  }
+
   public class Reader {
 
     private final Cursor cursor;
@@ -856,6 +895,10 @@ public class SmsDatabase extends MessagingDatabase {
     public void close() {
       cursor.close();
     }
+  }
+
+  public interface InsertListener {
+    public void onComplete();
   }
 
 }

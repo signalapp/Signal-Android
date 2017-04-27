@@ -218,6 +218,7 @@
 
     <style name="AttachmentTypeLabel">
         <item name="android:textColor">#ff999999</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <!-- RedPhone -->

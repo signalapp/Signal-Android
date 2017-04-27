@@ -600,12 +600,8 @@
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">יש ללחוץ כדי להפעיל את הווידאו שלך</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">תמונה</string>
-  <string name="attachment_type_selector__image_description">תמונה</string>
   <string name="attachment_type_selector__audio">קול</string>
   <string name="attachment_type_selector__audio_description">שמע</string>
-  <string name="attachment_type_selector__video">סרט</string>
-  <string name="attachment_type_selector__video_description">סרטון</string>
   <string name="attachment_type_selector__contact">איש קשר</string>
   <string name="attachment_type_selector__contact_description">איש קשר</string>
   <string name="attachment_type_selector__camera">מצלמה</string>

@@ -77,16 +77,17 @@
   <string name="ConversationItem_expires_s">Lejár: %s</string>
   <string name="ConversationItem_error_not_delivered">Nincs kézbesítve</string>
   <string name="ConversationItem_view_secure_media_question">Megnézed a titkosított médiát?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Ez a média egy titkosított adatbázisban van tárolva. Sajnos, hogy megnézd egy külső tartalommegjelenítőben, jelenleg szükséges, hogy az adat átmenetileg dekódolva és kiírva legyen a tárolóra. Biztosan ezt szeretnéd tenni?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Ez a média egy titkosított adatbázisban van tárolva. Sajnos, hogy megnézd egy külső tartalommegjelenítőben, jelenleg szükséges, hogy az adat átmenetileg visszafejtve és kiírva legyen a tárolóra. Biztosan ezt szeretnéd tenni?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Hiba, elévült kulcs-csere üzenet érkezett.</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Kulcs-csere üzenet érkezett, érints a feldolgozáshoz.</string>
   <string name="ConversationItem_group_action_left">%1$s elhagyta a csoportot.</string>
   <string name="ConversationItem_click_for_details">Érints a részletekért</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Érints a védtelen visszaálláshoz</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Visszaállás védtelen SMS-re?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Visszaállás védtelen MMS-re?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Visszaállás titkosítatlan SMS-re?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Visszaállás titkosítatlan MMS-re?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ez az üzenet <b>nem</b> lesz titkosítva, mert a címzett már nem Signal felhasználó.\n\nVédtelen üzenet küldése?</string>
   <string name="ConversationItem_unable_to_open_media">Nem található alkalmazás ez a média megnyitásához.</string>
+  <string name="ConversationItem_copied_text">%s másolva</string>
   <string name="ConversationItem_from_s">tőle: %s</string>
   <string name="ConversationItem_to_s">neki: %s</string>
   <!--ConversationActivity-->
@@ -545,21 +546,21 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="KeyExchangeInitiator_send">Küldés</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Rossz titkosított üzenet</string>
-  <string name="MessageDisplayHelper_decrypting_please_wait">Dekódolás, kérlek várj...</string>
+  <string name="MessageDisplayHelper_decrypting_please_wait">Visszafejtés, kérlek várj...</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Üzenet titkosítva nem létező munkamenethez</string>
   <!--EncryptingSmsDatabase-->
-  <string name="EncryptingSmsDatabase_error_decrypting_message">Hiba az üzenet dekódolása közben.</string>
+  <string name="EncryptingSmsDatabase_error_decrypting_message">Hiba az üzenet visszafejtése közben.</string>
   <!--ThreadDatabase-->
-  <string name="ThreadDatabase_error_decrypting_message">Hiba az üzenet dekódolása közben.</string>
+  <string name="ThreadDatabase_error_decrypting_message">Hiba az üzenet visszafejtése közben.</string>
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server">Kapcsolódás az MMS kiszolgálóhoz...</string>
   <string name="MmsDatabase_downloading_mms">MMS letöltése...</string>
   <string name="MmsDatabase_mms_download_failed">MMS letöltés sikertelen!</string>
   <string name="MmsDatabase_downloading">Letöltés...</string>
   <string name="MmsDatabase_mms_pending_download">Érints és add meg az MMS beállításokat a letöltés folyatásához.</string>
-  <string name="MmsDatabase_error_decrypting_message">Hiba az üzenet dekódolása közben.</string>
+  <string name="MmsDatabase_error_decrypting_message">Hiba az üzenet visszafejtése közben.</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_decrypting_mms_please_wait">MMS dekódolása, kérlek várj...</string>
+  <string name="MmsMessageRecord_decrypting_mms_please_wait">MMS visszafejtése, kérlek várj...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Rossz titkosított MMS üzenet</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS üzenet titkosítva nem létező munkamenethez</string>
   <!--MuteDialog-->
@@ -618,12 +619,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Érints a videód engedélyezéséhez</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">Kép</string>
-  <string name="attachment_type_selector__image_description">Kép</string>
   <string name="attachment_type_selector__audio">Hang</string>
   <string name="attachment_type_selector__audio_description">Hang</string>
-  <string name="attachment_type_selector__video">Videó</string>
-  <string name="attachment_type_selector__video_description">Videó</string>
   <string name="attachment_type_selector__contact">Kontakt</string>
   <string name="attachment_type_selector__contact_description">Kontakt</string>
   <string name="attachment_type_selector__camera">Kamera</string>
@@ -632,6 +629,10 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="attachment_type_selector__location_description">Hely</string>
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__gallery_description">Kép vagy videó</string>
+  <string name="attachment_type_selector__file_description">Fájl</string>
+  <string name="attachment_type_selector__gallery">Galéria</string>
+  <string name="attachment_type_selector__file">Fájl</string>
   <string name="attachment_type_selector__drawer_description">Mellékletfelvétel kapcsoló</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Régi jelmondat</string>
@@ -653,6 +654,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Beszélgetés némítva</string>
   <!--conversation_activity-->
+  <string name="conversation_activity__type_message_push">Signal üzenet</string>
+  <string name="conversation_activity__type_message_sms_insecure">Nem biztonságos SMS</string>
+  <string name="conversation_activity__type_message_mms_insecure">Nem biztonságos MMS</string>
   <string name="conversation_activity__from_sim_name">%1$s hálózaton</string>
   <string name="conversation_activity__send">Küldés</string>
   <string name="conversation_activity__remove">Eltávolítás</string>
@@ -924,7 +928,13 @@ sikertelen.
   <string name="arrays__audio">Hang</string>
   <string name="arrays__video">Videó</string>
   <string name="arrays__documents">Dokumentumok</string>
+  <string name="arrays__small">Kicsi</string>
   <string name="arrays__normal">Normál</string>
+  <string name="arrays__large">Nagy</string>
+  <string name="arrays__extra_large">Extra nagy</string>
+  <string name="arrays__default">Alapértelmezett</string>
+  <string name="arrays__high">Magas</string>
+  <string name="arrays__max">Maximum</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d óra</item>
@@ -1038,6 +1048,18 @@ sikertelen.
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Támogatás a következő generációs videó- és hanghívásokhoz, amikor mindkét félnél engedélyezve van. Ez a funkció jelenleg beta.</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Összes hívás átjátszása a Signal kiszolgálón, elkerülve az IP címed felfedését a kontaktodnak. Az engedélyezése csökkenteni fogja a hívásminőséget.</string>
   <string name="preferences_advanced__always_relay_calls">Hívások átjátszása mindig</string>
+  <string name="preferences_app_protection__app_access">Alkalmazás hozzáférés</string>
+  <string name="preferences_app_protection__communication">Kommunikáció</string>
+  <string name="preferences_chats__chats">Csevegések</string>
+  <string name="preferences_notifications__message_notifications">Üzenet értesítések</string>
+  <string name="preferences_notifications__events">Események</string>
+  <string name="preferences_notifications__in_chat_sounds">Csevegésen belüli hangok</string>
+  <string name="preferences_notifications__show">Mutat</string>
+  <string name="preferences_chats__show_invitation_prompts">Meghívó mutatása</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Meghívók megjelenítése a Signal nélküli kontaktokhoz</string>
+  <string name="preferences_chats__message_text_size">Üzenet betűméret</string>
+  <string name="preferences_events__contact_joined_signal">Kontakt csatlakozott a Signal-hoz</string>
+  <string name="preferences_notifications__priority">Prioritás</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

@@ -498,9 +498,7 @@
   <!--WebRtcCallScreen-->
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__image">تصویر</string>
   <string name="attachment_type_selector__audio">صدا</string>
-  <string name="attachment_type_selector__video">ویدئو</string>
   <string name="attachment_type_selector__contact">مخاطب</string>
   <string name="attachment_type_selector__camera">دوربین</string>
   <string name="attachment_type_selector__location">موقعیت</string>
