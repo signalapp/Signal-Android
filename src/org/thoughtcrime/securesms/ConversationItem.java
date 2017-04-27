@@ -196,7 +196,7 @@ public class ConversationItem extends LinearLayout
     setBodyText(messageRecord);
     setBubbleState(messageRecord, recipient);
     setStatusIcons(messageRecord);
-    setContactPhoto(recipient);
+    setContactPhoto(recipient, groupThread);
     setGroupMessageStatus(messageRecord, recipient);
     setMinimumWidth();
     setSimInfo(messageRecord);
@@ -370,9 +370,14 @@ public class ConversationItem extends LinearLayout
     }
   }
 
-  private void setContactPhoto(Recipient recipient) {
-    if (! messageRecord.isOutgoing()) {
-      setContactPhotoForRecipient(recipient);
+  private void setContactPhoto(Recipient recipient, boolean groupThread) {
+    if (!messageRecord.isOutgoing()) {
+      if (groupThread) {
+        contactPhoto.setVisibility(View.VISIBLE);
+        setContactPhotoForRecipient(recipient);
+      } else {
+        contactPhoto.setVisibility(View.GONE);
+      }
     }
   }
 
@@ -531,7 +536,7 @@ public class ConversationItem extends LinearLayout
       @Override
       public void run() {
         setBubbleState(messageRecord, recipient);
-        setContactPhoto(recipient);
+        setContactPhoto(recipient, groupThread);
         setGroupMessageStatus(messageRecord, recipient);
       }
     });
