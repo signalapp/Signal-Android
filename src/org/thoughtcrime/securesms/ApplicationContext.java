@@ -184,6 +184,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     Set<String> OPEN_SL_ES_BLACKLIST = new HashSet<String>() {{
       add("MI 4LTE"); // Xiami Mi4 #6241
       add("Nexus 5"); // Nexus 5 #6432
+      add("LG-D852"); // LG G3 #6432
     }};
 
     if (Build.VERSION.SDK_INT >= 11) {
