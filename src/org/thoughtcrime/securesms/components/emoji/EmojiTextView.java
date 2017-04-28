@@ -20,10 +20,10 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class EmojiTextView extends AppCompatTextView {
   private final boolean scaleEmojis;
-  private final float   originalFontSize;
 
   private CharSequence source;
   private boolean      needsEllipsizing;
+  private float        originalFontSize;
 
   public EmojiTextView(Context context) {
     this(context, null);
@@ -56,9 +56,9 @@ public class EmojiTextView extends AppCompatTextView {
       if (emojis <= 6) scale += 0.25f;
       if (emojis <= 4) scale += 0.25f;
       if (emojis <= 2) scale += 0.25f;
-      setTextSize(TypedValue.COMPLEX_UNIT_PX, getTextSize() * scale);
+      super.setTextSize(TypedValue.COMPLEX_UNIT_PX, originalFontSize * scale);
     } else if (scaleEmojis) {
-      setTextSize(TypedValue.COMPLEX_UNIT_PX, originalFontSize);
+      super.setTextSize(TypedValue.COMPLEX_UNIT_PX, originalFontSize);
     }
 
     if (useSystemEmoji()) {
@@ -105,5 +105,16 @@ public class EmojiTextView extends AppCompatTextView {
   @Override protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
     if (changed && !useSystemEmoji()) setTextEllipsized(source);
     super.onLayout(changed, left, top, right, bottom);
+  }
+
+  @Override
+  public void setTextSize(float size) {
+    setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
+  }
+
+  @Override
+  public void setTextSize(int unit, float size) {
+    this.originalFontSize = TypedValue.applyDimension(unit, size, getResources().getDisplayMetrics());
+    super.setTextSize(unit, size);
   }
 }
