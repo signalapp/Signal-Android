@@ -193,6 +193,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       Drawable privacy       = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.ic_security_white_24dp));
       Drawable appearance    = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.ic_brightness_6_white_24dp));
       Drawable chats         = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.ic_forum_white_24dp));
+      Drawable devices       = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.ic_laptop_white_24dp));
       Drawable advanced      = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.ic_advanced_white_24dp));
 
       int[]      tintAttr   = new int[]{R.attr.pref_icon_tint};
@@ -205,6 +206,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       DrawableCompat.setTint(privacy, color);
       DrawableCompat.setTint(appearance, color);
       DrawableCompat.setTint(chats, color);
+      DrawableCompat.setTint(devices, color);
       DrawableCompat.setTint(advanced, color);
 
       this.findPreference(PREFERENCE_CATEGORY_SMS_MMS).setIcon(sms);
@@ -212,6 +214,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       this.findPreference(PREFERENCE_CATEGORY_APP_PROTECTION).setIcon(privacy);
       this.findPreference(PREFERENCE_CATEGORY_APPEARANCE).setIcon(appearance);
       this.findPreference(PREFERENCE_CATEGORY_CHATS).setIcon(chats);
+      this.findPreference(PREFERENCE_CATEGORY_DEVICES).setIcon(devices);
       this.findPreference(PREFERENCE_CATEGORY_ADVANCED).setIcon(appearance);
     }
 
