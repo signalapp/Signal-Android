@@ -89,6 +89,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Да спаднем на нешифровани ММС?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ова порука <b>неће</b> бити шифрована јер корисник више није пријављен на Сигнал.\n\nДа пошаљем необезбеђену поруку?</string>
   <string name="ConversationItem_unable_to_open_media">Нема апликације која може да отвори овај медијум.</string>
+  <string name="ConversationItem_copied_text">Копирана %s</string>
   <string name="ConversationItem_from_s">од %s</string>
   <string name="ConversationItem_to_s">за %s</string>
   <!--ConversationActivity-->
@@ -358,7 +359,7 @@
   <string name="MessageDetailsRecipient_new_safety_number">Нови безбедносни број</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Сигнал</string>
-  <string name="MessageRetrievalService_background_connection_enabled">Позадинска веза укључена</string>
+  <string name="MessageRetrievalService_background_connection_enabled">Позадинска веза активна</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Грешка уписа ММС-а!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Грешка повезивања са ММС послужиоцем</string>
@@ -635,6 +636,10 @@
   <string name="attachment_type_selector__location_description">Локација</string>
   <string name="attachment_type_selector__gif">ГИФ</string>
   <string name="attachment_type_selector__gif_description">Гиф</string>
+  <string name="attachment_type_selector__gallery_description">Слика или видео</string>
+  <string name="attachment_type_selector__file_description">Фајл</string>
+  <string name="attachment_type_selector__gallery">Галерија</string>
+  <string name="attachment_type_selector__file">Фајл</string>
   <string name="attachment_type_selector__drawer_description">Фиока прилога</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Стара лозинка</string>
@@ -656,6 +661,9 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Преписка утишана</string>
   <!--conversation_activity-->
+  <string name="conversation_activity__type_message_push">Сигнал порука</string>
+  <string name="conversation_activity__type_message_sms_insecure">Необезбеђени СМС</string>
+  <string name="conversation_activity__type_message_mms_insecure">Необезбеђени ММС</string>
   <string name="conversation_activity__from_sim_name">Од %1$s</string>
   <string name="conversation_activity__send">Пошаљи</string>
   <string name="conversation_activity__remove">Уклони</string>
@@ -913,7 +921,13 @@
   <string name="arrays__audio">Звук</string>
   <string name="arrays__video">Видео</string>
   <string name="arrays__documents">Документи</string>
-  <string name="arrays__normal">Нормално</string>
+  <string name="arrays__small">Мали</string>
+  <string name="arrays__normal">Нормалан</string>
+  <string name="arrays__large">Велики</string>
+  <string name="arrays__extra_large">Веома велики</string>
+  <string name="arrays__default">Подразумеван</string>
+  <string name="arrays__high">Висок</string>
+  <string name="arrays__max">Највиши</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d сат</item>
@@ -1028,10 +1042,18 @@
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Подршка за видео и гласовне позиве следеће генерације ако су укључени за обе стране. Ова функционалност је у пробној фази.</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Преусмеравање свих позива преко Сигналовог сервера да би се избегло откривање ваше ИП адресе вашем контакту.  Умањује квалитет позива.</string>
   <string name="preferences_advanced__always_relay_calls">Увек преусмеравај позиве</string>
+  <string name="preferences_app_protection__app_access">Приступ апликацији</string>
+  <string name="preferences_app_protection__communication">Комуникација</string>
   <string name="preferences_chats__chats">Ћаскања</string>
+  <string name="preferences_notifications__message_notifications">Обавештења о порукама</string>
   <string name="preferences_notifications__events">Догађаји</string>
+  <string name="preferences_notifications__in_chat_sounds">Звуци ћаскања</string>
+  <string name="preferences_notifications__show">Прикажи</string>
+  <string name="preferences_chats__show_invitation_prompts">Упити за слање позивница</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Приказ упита за слање позивница контактима који нису на Сигналу</string>
   <string name="preferences_chats__message_text_size">Величина фонта поруке</string>
   <string name="preferences_events__contact_joined_signal">Контакт се придружио Сигналу</string>
+  <string name="preferences_notifications__priority">Приоритет</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
