@@ -176,7 +176,29 @@ public class ContactsDatabase {
       cursor = context.getContentResolver().query(uri, projection, fallbackSelection, null, sort);
     }
 
-    return new ProjectionMappingCursor(cursor, projectionMap,
+
+      MatrixCursor finalCursor = new MatrixCursor(new String[] {ContactsContract.CommonDataKinds.Phone._ID,
+              ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
+              ContactsContract.CommonDataKinds.Phone.NUMBER,
+              ContactsContract.CommonDataKinds.Phone.TYPE,
+              ContactsContract.CommonDataKinds.Phone.LABEL}, 0);
+
+      List<String> numberList = new ArrayList<>();
+      while (cursor.moveToNext()) {
+          String number =  cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+
+          if (!numberList.contains(number)) {
+              numberList.add(number);
+              finalCursor.addRow(new Object[]{
+              cursor.getInt(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone._ID)),
+              cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)),
+              number,
+              cursor.getInt(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TYPE)),
+              cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.LABEL))});
+          }
+      }
+
+    return new ProjectionMappingCursor(finalCursor, projectionMap,
                                        new Pair<String, Object>(CONTACT_TYPE_COLUMN, NORMAL_TYPE));
   }
 
