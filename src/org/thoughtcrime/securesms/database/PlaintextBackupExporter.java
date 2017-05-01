@@ -13,11 +13,13 @@ import java.io.IOException;
 public class PlaintextBackupExporter {
 
   private static final String FILENAME = "SignalPlaintextBackup.xml";
+  private static final String BACKUPFOLDERNAME = "SignalBackups";
 
   public static void exportPlaintextToSd(Context context, MasterSecret masterSecret)
       throws NoExternalStorageException, IOException
   {
     verifyExternalStorageForPlaintextExport();
+    moveOldPlaintextExportToDirectory();
     exportPlaintext(context, masterSecret);
   }
 
@@ -26,8 +28,27 @@ public class PlaintextBackupExporter {
       throw new NoExternalStorageException();
   }
 
-  public static File getPlaintextExportFile() {
+  private static void moveOldPlaintextExportToDirectory(){
+    File oldBackup = getOldPlaintextExportFile();
+    File newBackup = getPlaintextExportFile();
+    File newDirectory = new File(Environment.getExternalStorageDirectory() + File.separator + BACKUPFOLDERNAME + File.separator);
+
+    if (!newDirectory.isDirectory())
+      newDirectory.mkdirs();
+
+    if (oldBackup.isFile()) {
+      if (!newBackup.isFile()) oldBackup.renameTo(newBackup);
+    }
+
+  }
+
+  public static File getOldPlaintextExportFile() {
     return new File(Environment.getExternalStorageDirectory(), FILENAME);
+
+  }
+
+  public static File getPlaintextExportFile() {
+    return new File(Environment.getExternalStorageDirectory() + File.separator + BACKUPFOLDERNAME + File.separator, FILENAME);
   }
 
   private static void exportPlaintext(Context context, MasterSecret masterSecret)
