@@ -332,6 +332,38 @@ public class PushDecryptJob extends ContextJob {
     return threadId;
   }
 
+  private long handleSynchronizeSentEndSessionMessage(@NonNull MasterSecretUnion     masterSecret,
+                                                      @NonNull SentTranscriptMessage message,
+                                                      @NonNull Optional<Long>        smsMessageId)
+  {
+    EncryptingSmsDatabase     database                  = DatabaseFactory.getEncryptingSmsDatabase(context);
+    Recipients                recipients                = getSyncMessageDestination(message);
+    String                    body                      = message.getMessage().getBody().or("");
+    OutgoingTextMessage       outgoingTextMessage       = new OutgoingTextMessage(recipients, body);
+    OutgoingEndSessionMessage outgoingEndSessionMessage = new OutgoingEndSessionMessage(outgoingTextMessage);
+
+    long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
+
+    if (recipients.isSingleRecipient() && !recipients.isGroupRecipient()) {
+      SessionStore sessionStore = new TextSecureSessionStore(context);
+      sessionStore.deleteAllSessions(recipients.getPrimaryRecipient().getNumber());
+
+      SecurityEvent.broadcastSecurityUpdateEvent(context);
+
+      long messageId = database.insertMessageOutbox(masterSecret, threadId, outgoingEndSessionMessage,
+                                                    false, message.getTimestamp());
+      database.markAsSent(messageId);
+      database.markAsPush(messageId);
+      database.markAsSecure(messageId);
+    }
+
+    if (smsMessageId.isPresent()) {
+      database.deleteMessage(smsMessageId.get());
+    }
+
+    return threadId;
+  }
+
   private void handleGroupMessage(@NonNull MasterSecretUnion masterSecret,
                                   @NonNull SignalServiceEnvelope envelope,
                                   @NonNull SignalServiceDataMessage message,
