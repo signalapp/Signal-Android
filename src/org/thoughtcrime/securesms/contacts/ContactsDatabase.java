@@ -132,7 +132,7 @@ public class ContactsDatabase {
     return addedNumbers;
   }
 
-  @NonNull Cursor querySystemContacts(String filter) {
+  @NonNull Cursor querySystemContacts(String filter, boolean filterNonPushContacts) {
     Uri uri;
 
     if (!TextUtils.isEmpty(filter)) {
@@ -161,9 +161,17 @@ public class ContactsDatabase {
       put(LABEL_COLUMN, ContactsContract.CommonDataKinds.Phone.LABEL);
     }};
 
-    String excludeSelection = ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " NOT IN (" +
-        "SELECT data.contact_id FROM raw_contacts, view_data data WHERE raw_contacts._id = data.raw_contact_id AND " +
-        "data.mimetype = '" + CONTACT_MIMETYPE + "')";
+    String excludeSelection;
+    if (filterNonPushContacts) {
+      excludeSelection = ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " NOT IN (" +
+                         "SELECT data.contact_id FROM raw_contacts, view_data data WHERE raw_contacts._id = data.raw_contact_id AND " +
+                         "data.mimetype = '" + CONTACT_MIMETYPE + "')";
+    } else {
+      excludeSelection = ContactsContract.CommonDataKinds.Phone.NUMBER + " NOT IN (" +
+                         "SELECT data." + ContactsContract.CommonDataKinds.Phone.NUMBER +
+                         " FROM raw_contacts, view_data data WHERE raw_contacts._id = data.raw_contact_id AND " +
+                         "data.mimetype = '" + CONTACT_MIMETYPE + "')";
+    }
 
     String fallbackSelection = ContactsContract.Data.SYNC2 + " IS NULL OR " + ContactsContract.Data.SYNC2 + " != '" + SYNC + "'";
 
