@@ -633,7 +633,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
   <string name="attachment_type_selector__gallery_description">Imagine sau video</string>
+  <string name="attachment_type_selector__file_description">Fișier</string>
   <string name="attachment_type_selector__gallery">Galerie</string>
+  <string name="attachment_type_selector__file">Fișier</string>
   <string name="attachment_type_selector__drawer_description">Comutare panou atașamente</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Parola veche</string>
