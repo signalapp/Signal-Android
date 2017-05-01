@@ -904,7 +904,7 @@ public class PduComposer {
         appendUintvarInteger(partNum);
         for (int i = 0; i < partNum; i++) {
             part = body.getPart(i);
-            mStack.newbuf();  // Leaving space for header lengh and data length
+            mStack.newbuf();  // Leaving space for header length and data length
             PositionMarker attachment = mStack.mark();
 
             mStack.newbuf();  // Leaving space for Content-Type length

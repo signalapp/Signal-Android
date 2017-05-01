@@ -158,7 +158,7 @@ public class EncodedStringValue implements Cloneable {
      *
      * @param textString the textString to append
      * @throws NullPointerException if the text String is null
-     *                      or an IOException occured.
+     *                      or an IOException occurred.
      */
     public void appendTextString(byte[] textString) {
         if(null == textString) {
