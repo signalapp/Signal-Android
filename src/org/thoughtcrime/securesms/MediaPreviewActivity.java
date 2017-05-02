@@ -25,6 +25,7 @@ import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,11 +34,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.components.ZoomingImageView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
-import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
@@ -46,9 +44,6 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.video.VideoPlayer;
-
-import java.io.IOException;
 
 /**
  * Activity for displaying media attachments in-app
@@ -65,9 +60,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
   private MasterSecret masterSecret;
 
-  private ZoomingImageView image;
-  private VideoPlayer      video;
-
+  private ViewPager viewPager;
   private Uri       mediaUri;
   private String    mediaType;
   private Recipient recipient;
@@ -87,8 +80,8 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     setContentView(R.layout.media_preview_activity);
+    viewPager = (ViewPager) findViewById(R.id.viewPager);
 
-    initializeViews();
     initializeResources();
     initializeActionBar();
   }
@@ -149,11 +142,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     initializeActionBar();
   }
 
-  private void initializeViews() {
-    image = findViewById(R.id.image);
-    video = findViewById(R.id.video_player);
-  }
-
   private void initializeResources() {
     Address address = getIntent().getParcelableExtra(ADDRESS_EXTRA);
 
@@ -178,29 +166,11 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
       finish();
     }
 
-    Log.w(TAG, "Loading Part URI: " + mediaUri);
-
-    try {
-      if (mediaType != null && mediaType.startsWith("image/")) {
-        image.setVisibility(View.VISIBLE);
-        video.setVisibility(View.GONE);
-        image.setImageUri(masterSecret, GlideApp.with(this), mediaUri, mediaType);
-      } else if (mediaType != null && mediaType.startsWith("video/")) {
-        image.setVisibility(View.GONE);
-        video.setVisibility(View.VISIBLE);
-        video.setWindow(getWindow());
-        video.setVideoSource(masterSecret, new VideoSlide(this, mediaUri, size));
-      }
-    } catch (IOException e) {
-      Log.w(TAG, e);
-      Toast.makeText(getApplicationContext(), R.string.MediaPreviewActivity_unssuported_media_type, Toast.LENGTH_LONG).show();
-      finish();
-    }
+    viewPager.setAdapter(new MediaPreviewAdapter(this, getWindow(), masterSecret, mediaUri, mediaType, size));
   }
 
   private void cleanupMedia() {
-    image.cleanup();
-    video.cleanup();
+    viewPager.setAdapter(null);
   }
 
   private void showOverview() {
@@ -224,7 +194,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
                  .withPermanentDenialDialog(getString(R.string.MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))
                  .onAnyDenied(() -> Toast.makeText(this, R.string.MediaPreviewActivity_unable_to_write_to_external_storage_without_permission, Toast.LENGTH_LONG).show())
                  .onAllGranted(() -> {
-                   SaveAttachmentTask saveTask = new SaveAttachmentTask(MediaPreviewActivity.this, masterSecret, image);
+                   SaveAttachmentTask saveTask = new SaveAttachmentTask(MediaPreviewActivity.this, masterSecret, viewPager);
                    long saveDate = (date > 0) ? date : System.currentTimeMillis();
                    saveTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, new Attachment(mediaUri, mediaType, saveDate, null));
                  })
