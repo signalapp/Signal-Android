@@ -798,7 +798,7 @@
     <string name="country_selection_fragment__search">Search</string>
 
     <!-- device_add_fragment -->
-    <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scan the QR code displayed on the device to link</string>
+    <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scan the QR code displayed on Signal Desktop to link</string>
 
     <!-- device_link_fragment -->
     <string name="device_link_fragment__link_device">Link device</string>
