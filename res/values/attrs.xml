@@ -93,6 +93,8 @@
     <attr name="import_export_item_background_shadow_color" format="reference|color" />
     <attr name="import_export_item_card_background" format="reference" />
 
+    <attr name="registration_text_shadow_color" format="color" />
+
     <attr name="reminder_header_background" format="color"/>
 
     <attr name="menu_new_conversation_icon" format="reference" />
