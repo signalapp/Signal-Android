@@ -1204,6 +1204,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void addAttachment(int type) {
     Log.w("ComposeMessageActivity", "Selected: " + type);
+    attachmentManager.clear(); 
     switch (type) {
     case AttachmentTypeSelector.ADD_GALLERY:
       AttachmentManager.selectGallery(this, PICK_GALLERY); break;
