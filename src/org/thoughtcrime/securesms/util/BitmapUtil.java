@@ -119,6 +119,10 @@ public class BitmapUtil {
                                                      DecodeFormat.PREFER_RGB_565);
 
     final Resource<Bitmap> resource = BitmapResource.obtain(rough, Glide.get(context).getBitmapPool());
+    if (resource == null) {
+      throw new BitmapDecodingException("unable to obtain Bitmap");
+    }
+
     final Resource<Bitmap> result   = new FitCenter(context).transform(resource, width, height);
 
     if (result == null) {
