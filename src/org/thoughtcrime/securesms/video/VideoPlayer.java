@@ -133,6 +133,10 @@ public class VideoPlayer extends FrameLayout {
       this.exoPlayer.release();
     }
 
+    if (this.videoView != null) {
+      this.videoView.suspend();
+    }
+
     if (clearPlaceholder) videoPlaceholder.clear(GlideApp.with(getContext()));
   }
 
