@@ -73,12 +73,13 @@ public abstract class CursorPagerAdapter extends PagerAdapter {
     return cursor.getCount();
   }
 
-  protected @NonNull Cursor getCursorAtPositionOrThrow(final int position) {
+  protected @NonNull Cursor getCursorAtReversedPositionOrThrow(final int position) {
     if (!isActiveCursor()) {
       throw new IllegalStateException("this should only be called when the cursor is valid");
     }
-    if (!cursor.moveToPosition(position)) {
-      throw new IllegalStateException("couldn't move cursor to position " + position);
+    final int reversedPosition = getCount()-1-position;
+    if (!cursor.moveToPosition(reversedPosition)) {
+      throw new IllegalStateException("couldn't move cursor to position " + reversedPosition);
     }
     return cursor;
   }

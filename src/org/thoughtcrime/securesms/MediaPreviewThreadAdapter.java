@@ -71,7 +71,7 @@ class MediaPreviewThreadAdapter extends CursorPagerAdapter {
   private void setMedia(ZoomingImageView image, VideoPlayer video, int position) {
     final MediaRecord mediaRecord = MediaRecord.from(context,
                                                      masterSecret,
-                                                     getCursorAtPositionOrThrow(position));
+                                                     getCursorAtReversedPositionOrThrow(position));
     final String      mediaType   = mediaRecord.getContentType();
     final Uri         mediaUri    = mediaRecord.getAttachment().getDataUri();
     final long        size        = mediaRecord.getAttachment().getSize();
@@ -111,16 +111,16 @@ class MediaPreviewThreadAdapter extends CursorPagerAdapter {
   }
 
   MediaRecord getMediaRecord(int position) {
-    return MediaRecord.from(context, masterSecret, getCursorAtPositionOrThrow(position));
+    return MediaRecord.from(context, masterSecret, getCursorAtReversedPositionOrThrow(position));
   }
 
   int getAndSetStartPosition(Uri mediaUri) {
     int startPosition = -1;
-    for (int i = 0; i < getCount(); i++) {
+    for (int i = getCount()-1; i >= 0; i--) {
       Uri dataUri = MediaRecord.from(context,
                                      masterSecret,
-                                     getCursorAtPositionOrThrow(i)).getAttachment()
-                                                                   .getDataUri();
+                                     getCursorAtReversedPositionOrThrow(i)).getAttachment()
+                                                                           .getDataUri();
       if (dataUri != null && dataUri.equals(mediaUri)) {
         startPosition = i;
         break;
