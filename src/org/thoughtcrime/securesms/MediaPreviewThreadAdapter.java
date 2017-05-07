@@ -64,12 +64,15 @@ class MediaPreviewThreadAdapter extends CursorPagerAdapter implements OnPageChan
     final ZoomingImageView image = (ZoomingImageView) view.findViewById(R.id.image);
     final VideoPlayer      video = (VideoPlayer) view.findViewById(R.id.video_player);
 
-    setMedia(image, video, position);
+    boolean startVideo = directPlayPosition == position;
+    if (startVideo) directPlayPosition = -1;
+
+    setMedia(image, video, position, startVideo);
     container.addView(view);
     return view;
   }
 
-  private void setMedia(ZoomingImageView image, VideoPlayer video, int position) {
+  private void setMedia(ZoomingImageView image, VideoPlayer video, int position, boolean setPlay) {
     final MediaRecord mediaRecord = MediaRecord.from(context,
                                                      masterSecret,
                                                      getCursorAtReversedPositionOrThrow(position));
@@ -86,7 +89,9 @@ class MediaPreviewThreadAdapter extends CursorPagerAdapter implements OnPageChan
       image.setVisibility(View.GONE);
       video.setVisibility(View.VISIBLE);
       video.setWindow(window);
-      video.setVideoSource(masterSecret, new VideoSlide(context, mediaRecord.getAttachment()));
+      video.setVideoSource(masterSecret,
+                           new VideoSlide(context, mediaRecord.getAttachment()),
+                           setPlay);
       instantiatedVideos.put(position, video);
     }
   }
@@ -122,7 +127,7 @@ class MediaPreviewThreadAdapter extends CursorPagerAdapter implements OnPageChan
     return MediaRecord.from(context, masterSecret, getCursorAtReversedPositionOrThrow(position));
   }
 
-  int getAndSetStartPosition(Uri mediaUri) {
+  int getAndSetStartPosition(Uri mediaUri, boolean startVideo) {
     int startPosition = -1;
     for (int i = getCount()-1; i >= 0; i--) {
       Uri dataUri = MediaRecord.from(context,
@@ -134,6 +139,7 @@ class MediaPreviewThreadAdapter extends CursorPagerAdapter implements OnPageChan
         break;
       }
     }
+    if (startVideo) directPlayPosition = startPosition;
     return startPosition;
   }
 }

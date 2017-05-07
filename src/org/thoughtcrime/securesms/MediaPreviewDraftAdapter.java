@@ -83,7 +83,7 @@ class MediaPreviewDraftAdapter extends PagerAdapter {
       image.setVisibility(View.GONE);
       video.setVisibility(View.VISIBLE);
       video.setWindow(window);
-      video.setVideoSource(masterSecret, new VideoSlide(context, mediaUri, size));
+      video.setVideoSource(masterSecret, new VideoSlide(context, mediaUri, size), true);
     }
   }
 

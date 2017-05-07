@@ -76,6 +76,7 @@ public class MediaPreviewActivity extends    PassphraseRequiredActionBarActivity
   private long      date;
   private long      size;
   private boolean   outgoing;
+  private boolean   setSelectedVideoPlay = true;
 
   @Override
   protected void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
@@ -147,6 +148,7 @@ public class MediaPreviewActivity extends    PassphraseRequiredActionBarActivity
   @Override
   protected void onNewIntent(Intent intent) {
     super.onNewIntent(intent);
+    setSelectedVideoPlay = true;
     if (recipient != null) recipient.removeListener(this);
     viewPager.clearOnPageChangeListeners();
     setIntent(intent);
@@ -196,9 +198,11 @@ public class MediaPreviewActivity extends    PassphraseRequiredActionBarActivity
                                                                             masterSecret,
                                                                             cursor);
     viewPager.addOnPageChangeListener(adapter);
-    final int startPosition = adapter.getAndSetStartPosition(mediaUri);
+    final int startPosition = adapter.getAndSetStartPosition(mediaUri, setSelectedVideoPlay);
     viewPager.setAdapter(adapter);
     viewPager.setCurrentItem(startPosition);
+
+    setSelectedVideoPlay = false;
   }
 
   private void cleanupMedia() {

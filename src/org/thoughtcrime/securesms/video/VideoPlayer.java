@@ -101,8 +101,8 @@ public class VideoPlayer extends FrameLayout {
   }
 
   public void setVideoSource(@NonNull final MasterSecret masterSecret,
-                             @NonNull final VideoSlide videoSource)
-  {
+                             @NonNull final VideoSlide   videoSource,
+                                            boolean      setPlay) {
     videoPlaceholder.setImageResource(masterSecret, GlideApp.with(getContext()), videoSource, false, false);
     videoPlaceholder.setOnClickListener(new OnClickListener() {
       @Override
@@ -110,6 +110,8 @@ public class VideoPlayer extends FrameLayout {
         showVideo(masterSecret,videoSource);
       }
     });
+
+    if (setPlay) showVideo(masterSecret, videoSource);
   }
 
   private void showVideo(MasterSecret masterSecret, VideoSlide videoSource) {
