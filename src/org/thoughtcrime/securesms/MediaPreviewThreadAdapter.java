@@ -109,4 +109,19 @@ class MediaPreviewThreadAdapter extends CursorPagerAdapter {
   public boolean isViewFromObject(View view, Object object) {
     return view == object;
   }
+
+  int getAndSetStartPosition(Uri mediaUri) {
+    int startPosition = -1;
+    for (int i = 0; i < getCount(); i++) {
+      Uri dataUri = MediaRecord.from(context,
+                                     masterSecret,
+                                     getCursorAtPositionOrThrow(i)).getAttachment()
+                                                                   .getDataUri();
+      if (dataUri != null && dataUri.equals(mediaUri)) {
+        startPosition = i;
+        break;
+      }
+    }
+    return startPosition;
+  }
 }

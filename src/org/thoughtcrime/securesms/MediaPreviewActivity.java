@@ -190,7 +190,9 @@ public class MediaPreviewActivity extends    PassphraseRequiredActionBarActivity
                                                                             getWindow(),
                                                                             masterSecret,
                                                                             cursor);
+    final int startPosition = adapter.getAndSetStartPosition(mediaUri);
     viewPager.setAdapter(adapter);
+    viewPager.setCurrentItem(startPosition);
   }
 
   private void cleanupMedia() {
