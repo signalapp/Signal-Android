@@ -40,6 +40,7 @@ import android.widget.Toast;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.CursorPagerAdapter;
+import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;
 import org.thoughtcrime.securesms.database.loaders.ThreadMediaLoader;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -55,7 +56,8 @@ import org.thoughtcrime.securesms.util.Util;
  */
 public class MediaPreviewActivity extends    PassphraseRequiredActionBarActivity
                                   implements LoaderManager.LoaderCallbacks<Cursor>,
-                                             RecipientModifiedListener {
+                                             RecipientModifiedListener,
+                                             ViewPager.OnPageChangeListener {
   private final static String TAG = MediaPreviewActivity.class.getSimpleName();
 
   public static final String ADDRESS_EXTRA  = "address";
@@ -130,6 +132,7 @@ public class MediaPreviewActivity extends    PassphraseRequiredActionBarActivity
     super.onResume();
     dynamicLanguage.onResume(this);
     if (recipient != null) recipient.addListener(this);
+    viewPager.addOnPageChangeListener(this);
     initializeMedia();
   }
 
@@ -137,6 +140,7 @@ public class MediaPreviewActivity extends    PassphraseRequiredActionBarActivity
   public void onPause() {
     super.onPause();
     if (recipient != null) recipient.removeListener(this);
+    viewPager.clearOnPageChangeListeners();
     cleanupMedia();
   }
 
@@ -144,6 +148,7 @@ public class MediaPreviewActivity extends    PassphraseRequiredActionBarActivity
   protected void onNewIntent(Intent intent) {
     super.onNewIntent(intent);
     if (recipient != null) recipient.removeListener(this);
+    viewPager.clearOnPageChangeListeners();
     setIntent(intent);
     initializeResources();
     initializeActionBar();
@@ -269,6 +274,38 @@ public class MediaPreviewActivity extends    PassphraseRequiredActionBarActivity
   public void onLoaderReset(Loader<Cursor> cursorLoader) {
     CursorPagerAdapter adapter = (CursorPagerAdapter) viewPager.getAdapter();
     if (adapter != null) adapter.changeCursor(null);
+  }
+
+  @Override
+  public void onPageScrollStateChanged(int state) {}
+
+  @Override
+  public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+
+  @Override
+  public void onPageSelected(int position) {
+    if (viewPager.getAdapter().getCount() > 1) {
+      updateResources(position);
+      initializeActionBar();
+    }
+  }
+
+  private void updateResources(int position) {
+    MediaRecord mediaRecord = ((MediaPreviewThreadAdapter) viewPager.getAdapter())
+                                .getMediaRecord(position);
+    mediaUri  = mediaRecord.getAttachment().getDataUri();
+    mediaType = mediaRecord.getContentType();
+    date      = mediaRecord.getDate();
+    size      = mediaRecord.getAttachment().getSize();
+
+    if (recipient != null) recipient.removeListener(this);
+    Address newAddress = mediaRecord.getAddress();
+    if (newAddress != null) {
+      recipient = Recipient.from(this, newAddress, true);
+      recipient.addListener(this);
+    } else {
+      recipient = null;
+    }
   }
 
   public static boolean isContentTypeSupported(final String contentType) {
