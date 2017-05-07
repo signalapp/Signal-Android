@@ -19,7 +19,9 @@ package org.thoughtcrime.securesms;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,12 +38,15 @@ import org.thoughtcrime.securesms.video.VideoPlayer;
 /**
  * Adapter for providing a ViewPager with all media of a thread
  */
-class MediaPreviewThreadAdapter extends CursorPagerAdapter {
+class MediaPreviewThreadAdapter extends CursorPagerAdapter implements OnPageChangeListener {
   private final static String TAG = MediaPreviewThreadAdapter.class.getSimpleName();
 
-  private final Context      context;
-  private final Window       window;
-  private final MasterSecret masterSecret;
+  private final Context                  context;
+  private final Window                   window;
+  private final MasterSecret             masterSecret;
+  private final SparseArray<VideoPlayer> instantiatedVideos = new SparseArray<>();
+  private       int                      activePosition;
+  private       int                      directPlayPosition = -1;
 
   MediaPreviewThreadAdapter(Context context, Window window, MasterSecret masterSecret, Cursor cursor) {
     super(cursor);
@@ -82,19 +87,35 @@ class MediaPreviewThreadAdapter extends CursorPagerAdapter {
       video.setVisibility(View.VISIBLE);
       video.setWindow(window);
       video.setVideoSource(masterSecret, new VideoSlide(context, mediaRecord.getAttachment()));
+      instantiatedVideos.put(position, video);
     }
   }
 
   @Override
   public void destroyItem(ViewGroup container, int position, Object object) {
     ((ZoomingImageView) ((View) object).findViewById(R.id.image)).cleanup();
-    ((VideoPlayer) ((View) object).findViewById(R.id.video_player)).cleanup();
+    ((VideoPlayer) ((View) object).findViewById(R.id.video_player)).cleanup(true);
     container.removeView((View) object);
+    instantiatedVideos.remove(position);
   }
 
   @Override
   public boolean isViewFromObject(View view, Object object) {
     return view == object;
+  }
+
+  @Override
+  public void onPageScrollStateChanged(int state) {}
+
+  @Override
+  public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+
+  @Override
+  public void onPageSelected(int position) {
+    if (activePosition != position && instantiatedVideos.get(activePosition) != null) {
+      instantiatedVideos.get(activePosition).hideVideo();
+    }
+    activePosition = position;
   }
 
   MediaRecord getMediaRecord(int position) {

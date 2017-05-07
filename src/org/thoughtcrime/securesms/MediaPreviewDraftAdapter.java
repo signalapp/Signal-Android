@@ -90,7 +90,7 @@ class MediaPreviewDraftAdapter extends PagerAdapter {
   @Override
   public void destroyItem(ViewGroup container, int position, Object object) {
     ((ZoomingImageView) ((View) object).findViewById(R.id.image)).cleanup();
-    ((VideoPlayer) ((View) object).findViewById(R.id.video_player)).cleanup();
+    ((VideoPlayer) ((View) object).findViewById(R.id.video_player)).cleanup(true);
     container.removeView((View) object);
   }
 

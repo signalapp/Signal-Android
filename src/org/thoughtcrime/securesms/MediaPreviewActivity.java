@@ -195,6 +195,7 @@ public class MediaPreviewActivity extends    PassphraseRequiredActionBarActivity
                                                                             getWindow(),
                                                                             masterSecret,
                                                                             cursor);
+    viewPager.addOnPageChangeListener(adapter);
     final int startPosition = adapter.getAndSetStartPosition(mediaUri);
     viewPager.setAdapter(adapter);
     viewPager.setCurrentItem(startPosition);

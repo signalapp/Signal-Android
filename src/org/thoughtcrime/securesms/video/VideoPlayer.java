@@ -124,7 +124,7 @@ public class VideoPlayer extends FrameLayout {
     }
   }
 
-  public void cleanup() {
+  public void cleanup(boolean clearPlaceholder) {
     if (this.attachmentServer != null) {
       this.attachmentServer.stop();
     }
@@ -133,7 +133,7 @@ public class VideoPlayer extends FrameLayout {
       this.exoPlayer.release();
     }
 
-    videoPlaceholder.clear(GlideApp.with(getContext()));
+    if (clearPlaceholder) videoPlaceholder.clear(GlideApp.with(getContext()));
   }
 
   public void setWindow(Window window) {
@@ -188,6 +188,17 @@ public class VideoPlayer extends FrameLayout {
     this.videoPlaceholder.setVisibility(View.GONE);
     this.videoView.setVisibility(View.VISIBLE);
     this.videoView.start();
+  }
+
+  public void hideVideo() {
+    if (exoPlayer != null) exoPlayer.stop();
+    if (exoView != null)   exoView.setVisibility(View.GONE);
+    if (videoView != null) {
+      videoView.stopPlayback();
+      videoView.setVisibility(View.GONE);
+    }
+    videoPlaceholder.setVisibility(View.VISIBLE);
+    cleanup(false);
   }
 
   private void initializeVideoViewControls(@NonNull VideoView videoView) {
