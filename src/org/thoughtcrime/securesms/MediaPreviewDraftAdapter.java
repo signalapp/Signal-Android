@@ -16,7 +16,6 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.support.v4.view.PagerAdapter;
@@ -25,15 +24,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.Toast;
 
 import org.thoughtcrime.securesms.components.ZoomingImageView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.video.VideoPlayer;
-
-import java.io.IOException;
 
 /**
  * Adapter for providing a ViewPager with a media draft
@@ -79,21 +75,15 @@ class MediaPreviewDraftAdapter extends PagerAdapter {
   private void setMedia(ZoomingImageView image, VideoPlayer video) {
     Log.w(TAG, "Loading Part URI: " + mediaUri);
 
-    try {
-      if (mediaType != null && mediaType.startsWith("image/")) {
-        image.setVisibility(View.VISIBLE);
-        video.setVisibility(View.GONE);
-        image.setImageUri(masterSecret, GlideApp.with(context), mediaUri, mediaType);
-      } else if (mediaType != null && mediaType.startsWith("video/")) {
-        image.setVisibility(View.GONE);
-        video.setVisibility(View.VISIBLE);
-        video.setWindow(window);
-        video.setVideoSource(masterSecret, new VideoSlide(context, mediaUri, size));
-      }
-    } catch (IOException e) {
-      Log.w(TAG, e);
-      Toast.makeText(context, R.string.MediaPreviewActivity_unssuported_media_type, Toast.LENGTH_LONG).show();
-      ((Activity) context).finish();
+    if (mediaType != null && mediaType.startsWith("image/")) {
+      image.setVisibility(View.VISIBLE);
+      video.setVisibility(View.GONE);
+      image.setImageUri(masterSecret, GlideApp.with(context), mediaUri, mediaType);
+    } else if (mediaType != null && mediaType.startsWith("video/")) {
+      image.setVisibility(View.GONE);
+      video.setVisibility(View.VISIBLE);
+      video.setWindow(window);
+      video.setVideoSource(masterSecret, new VideoSlide(context, mediaUri, size));
     }
   }
 
