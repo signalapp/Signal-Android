@@ -19,12 +19,15 @@ package org.thoughtcrime.securesms;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
@@ -36,6 +39,8 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.database.CursorPagerAdapter;
+import org.thoughtcrime.securesms.database.loaders.ThreadMediaLoader;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
@@ -48,7 +53,9 @@ import org.thoughtcrime.securesms.util.Util;
 /**
  * Activity for displaying media attachments in-app
  */
-public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity implements RecipientModifiedListener {
+public class MediaPreviewActivity extends    PassphraseRequiredActionBarActivity
+                                  implements LoaderManager.LoaderCallbacks<Cursor>,
+                                             RecipientModifiedListener {
   private final static String TAG = MediaPreviewActivity.class.getSimpleName();
 
   public static final String ADDRESS_EXTRA  = "address";
@@ -166,7 +173,24 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
       finish();
     }
 
-    viewPager.setAdapter(new MediaPreviewAdapter(this, getWindow(), masterSecret, mediaUri, mediaType, size));
+    if (recipient != null) {
+      getSupportLoaderManager().initLoader(0, null, MediaPreviewActivity.this);
+    } else {
+      viewPager.setAdapter(new MediaPreviewDraftAdapter(this,
+                                                        getWindow(),
+                                                        masterSecret,
+                                                        mediaUri,
+                                                        mediaType,
+                                                        size));
+    }
+  }
+
+  private void initializeViewPagerAdapter(Cursor cursor) {
+    final MediaPreviewThreadAdapter adapter = new MediaPreviewThreadAdapter(this,
+                                                                            getWindow(),
+                                                                            masterSecret,
+                                                                            cursor);
+    viewPager.setAdapter(adapter);
   }
 
   private void cleanupMedia() {
@@ -226,6 +250,23 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     }
 
     return false;
+  }
+
+  @Override
+  public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+    return new ThreadMediaLoader(this, masterSecret, recipient.getAddress(), true);
+  }
+
+  @Override
+  public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
+    Log.w(TAG, "onLoadFinished()");
+    initializeViewPagerAdapter(cursor);
+  }
+
+  @Override
+  public void onLoaderReset(Loader<Cursor> cursorLoader) {
+    CursorPagerAdapter adapter = (CursorPagerAdapter) viewPager.getAdapter();
+    if (adapter != null) adapter.changeCursor(null);
   }
 
   public static boolean isContentTypeSupported(final String contentType) {

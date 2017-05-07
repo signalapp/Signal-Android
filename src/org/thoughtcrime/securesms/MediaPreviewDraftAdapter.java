@@ -36,10 +36,10 @@ import org.thoughtcrime.securesms.video.VideoPlayer;
 import java.io.IOException;
 
 /**
- * Adapter for providing a ViewPager with a single media item
+ * Adapter for providing a ViewPager with a media draft
  */
-class MediaPreviewAdapter extends PagerAdapter {
-  private final static String TAG = MediaPreviewAdapter.class.getSimpleName();
+class MediaPreviewDraftAdapter extends PagerAdapter {
+  private final static String TAG = MediaPreviewDraftAdapter.class.getSimpleName();
 
   private final Context      context;
   private final Window       window;
@@ -48,12 +48,12 @@ class MediaPreviewAdapter extends PagerAdapter {
   private final String       mediaType;
   private final long         size;
 
-  MediaPreviewAdapter(Context      context,
-                      Window       window,
-                      MasterSecret masterSecret,
-                      Uri          mediaUri,
-                      String       mediaType,
-                      long         size) {
+  MediaPreviewDraftAdapter(Context      context,
+                           Window       window,
+                           MasterSecret masterSecret,
+                           Uri          mediaUri,
+                           String       mediaType,
+                           long         size) {
     this.context      = context;
     this.window       = window;
     this.masterSecret = masterSecret;
