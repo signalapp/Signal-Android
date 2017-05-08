@@ -36,7 +36,7 @@ import java.io.InputStream;
 
 import javax.inject.Inject;
 
-import ws.com.google.android.mms.MmsException;
+import org.thoughtcrime.securesms.mms.MmsException;
 
 public class AttachmentDownloadJob extends MasterSecretJob implements InjectableType {
   private static final long   serialVersionUID    = 1L;

@@ -3,7 +3,12 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
-import android.util.Pair;
+
+import com.google.android.mms.pdu_alt.CharacterSets;
+import com.google.android.mms.pdu_alt.EncodedStringValue;
+import com.google.android.mms.pdu_alt.PduBody;
+import com.google.android.mms.pdu_alt.PduPart;
+import com.google.android.mms.pdu_alt.RetrieveConf;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
@@ -32,16 +37,12 @@ import org.whispersystems.libsignal.NoSessionException;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import ws.com.google.android.mms.MmsException;
-import ws.com.google.android.mms.pdu.EncodedStringValue;
-import ws.com.google.android.mms.pdu.NotificationInd;
-import ws.com.google.android.mms.pdu.PduBody;
-import ws.com.google.android.mms.pdu.PduPart;
-import ws.com.google.android.mms.pdu.RetrieveConf;
+import org.thoughtcrime.securesms.mms.MmsException;
 
 public class MmsDownloadJob extends MasterSecretJob {
 
@@ -75,8 +76,8 @@ public class MmsDownloadJob extends MasterSecretJob {
 
   @Override
   public void onRun(MasterSecret masterSecret) {
-    MmsDatabase                              database     = DatabaseFactory.getMmsDatabase(context);
-    Optional<Pair<NotificationInd, Integer>> notification = database.getNotification(messageId);
+    MmsDatabase                               database     = DatabaseFactory.getMmsDatabase(context);
+    Optional<MmsDatabase.MmsNotificationInfo> notification = database.getNotification(messageId);
 
     if (!notification.isPresent()) {
       Log.w(TAG, "No notification for ID: " + messageId);
@@ -84,24 +85,30 @@ public class MmsDownloadJob extends MasterSecretJob {
     }
 
     try {
-      if (notification.get().first.getContentLocation() == null) {
+      if (notification.get().getContentLocation() == null) {
         throw new MmsException("Notification content location was null.");
       }
 
       database.markDownloadState(messageId, MmsDatabase.Status.DOWNLOAD_CONNECTING);
 
-      String contentLocation = new String(notification.get().first.getContentLocation());
-      byte[] transactionId   = notification.get().first.getTransactionId();
+      String contentLocation = notification.get().getContentLocation();
+      byte[] transactionId   = new byte[0];
+
+      try {
+        transactionId = notification.get().getTransactionId().getBytes(CharacterSets.MIMENAME_ISO_8859_1);
+      } catch (UnsupportedEncodingException e) {
+        Log.w(TAG, e);
+      }
 
       Log.w(TAG, "Downloading mms at " + Uri.parse(contentLocation).getHost());
 
-      RetrieveConf retrieveConf = new CompatMmsConnection(context).retrieve(contentLocation, transactionId, notification.get().second);
+      RetrieveConf retrieveConf = new CompatMmsConnection(context).retrieve(contentLocation, transactionId, notification.get().getSubscriptionId());
 
       if (retrieveConf == null) {
         throw new MmsException("RetrieveConf was null");
       }
 
-      storeRetrievedMms(masterSecret, contentLocation, messageId, threadId, retrieveConf, notification.get().second);
+      storeRetrievedMms(masterSecret, contentLocation, messageId, threadId, retrieveConf, notification.get().getSubscriptionId());
     } catch (ApnUnavailableException e) {
       Log.w(TAG, e);
       handleDownloadError(masterSecret, messageId, threadId, MmsDatabase.Status.DOWNLOAD_APN_UNAVAILABLE,

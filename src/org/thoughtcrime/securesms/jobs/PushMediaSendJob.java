@@ -32,7 +32,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import ws.com.google.android.mms.MmsException;
+import org.thoughtcrime.securesms.mms.MmsException;
 
 import static org.thoughtcrime.securesms.dependencies.SignalCommunicationModule.SignalMessageSenderFactory;
 
@@ -119,7 +119,8 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
 
     try {
       SignalServiceAddress          address           = getPushAddress(message.getRecipients().getPrimaryRecipient().getNumber());
-      List<Attachment>              scaledAttachments = scaleAttachments(masterSecret, MediaConstraints.PUSH_CONSTRAINTS, message.getAttachments());
+      MediaConstraints              mediaConstraints  = MediaConstraints.getPushMediaConstraints();
+      List<Attachment>              scaledAttachments = scaleAttachments(masterSecret, mediaConstraints, message.getAttachments());
       List<SignalServiceAttachment> attachmentStreams = getAttachmentsFor(masterSecret, scaledAttachments);
       SignalServiceDataMessage      mediaMessage      = SignalServiceDataMessage.newBuilder()
                                                                                 .withBody(message.getBody())

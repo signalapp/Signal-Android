@@ -27,12 +27,10 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ResUtil;
 
-import ws.com.google.android.mms.ContentType;
-
 public class VideoSlide extends Slide {
 
   public VideoSlide(Context context, Uri uri, long dataSize) {
-    super(context, constructAttachmentFromUri(context, uri, ContentType.VIDEO_UNSPECIFIED, dataSize, MediaUtil.hasVideoThumbnail(uri), null));
+    super(context, constructAttachmentFromUri(context, uri, MediaUtil.VIDEO_UNSPECIFIED, dataSize, MediaUtil.hasVideoThumbnail(uri), null));
   }
 
   public VideoSlide(Context context, Attachment attachment) {

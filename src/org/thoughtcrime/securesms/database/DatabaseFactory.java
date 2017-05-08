@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.InvalidMessageException;
@@ -41,8 +42,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
-import ws.com.google.android.mms.ContentType;
 
 public class DatabaseFactory {
 
@@ -381,7 +380,7 @@ public class DatabaseFactory {
         while (partCursor != null && partCursor.moveToNext()) {
           String contentType = partCursor.getString(partCursor.getColumnIndexOrThrow("ct"));
 
-          if (ContentType.isTextType(contentType)) {
+          if (MediaUtil.isTextType(contentType)) {
             try {
               long partId         = partCursor.getLong(partCursor.getColumnIndexOrThrow("_id"));
               String dataLocation = partCursor.getString(partCursor.getColumnIndexOrThrow("_data"));
@@ -401,9 +400,9 @@ public class DatabaseFactory {
             } catch (IOException e) {
               Log.w("DatabaseFactory", e);
             }
-          } else if (ContentType.isAudioType(contentType) ||
-                     ContentType.isImageType(contentType) ||
-                     ContentType.isVideoType(contentType))
+          } else if (MediaUtil.isAudioType(contentType) ||
+                     MediaUtil.isImageType(contentType) ||
+                     MediaUtil.isVideoType(contentType))
           {
             partCount++;
           }

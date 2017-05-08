@@ -26,17 +26,15 @@ import android.support.annotation.Nullable;
 import android.telephony.SmsManager;
 import android.util.Log;
 
+import com.google.android.mms.pdu_alt.PduParser;
+import com.google.android.mms.pdu_alt.RetrieveConf;
+
 import org.thoughtcrime.securesms.providers.MmsBodyProvider;
-import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
-
-import ws.com.google.android.mms.MmsException;
-import ws.com.google.android.mms.pdu.PduParser;
-import ws.com.google.android.mms.pdu.RetrieveConf;
 
 public class IncomingLollipopMmsConnection extends LollipopMmsConnection implements IncomingMmsConnection {
 
@@ -89,7 +87,7 @@ public class IncomingLollipopMmsConnection extends LollipopMmsConnection impleme
       Util.copy(pointer.getInputStream(), baos);
       pointer.close();
 
-      Log.w(TAG, baos.size() + "-byte response: " + Hex.dump(baos.toByteArray()));
+      Log.w(TAG, baos.size() + "-byte response: ");// + Hex.dump(baos.toByteArray()));
 
       return (RetrieveConf) new PduParser(baos.toByteArray()).parse();
     } catch (IOException | TimeoutException e) {
