@@ -175,6 +175,7 @@ public class AudioSlidePlayer implements SensorEventListener {
     Log.w(TAG, "Stop called!");
 
     removePlaying(this);
+    progressEventHandler.removeMessages(0);
 
     if (this.mediaPlayer != null) {
       this.mediaPlayer.stop();
