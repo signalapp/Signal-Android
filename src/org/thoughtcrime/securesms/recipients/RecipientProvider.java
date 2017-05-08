@@ -150,7 +150,7 @@ class RecipientProvider {
                                                                           Uri.withAppendedPath(Contacts.CONTENT_URI, cursor.getLong(2) + ""),
                                                                           name);
 
-          return new RecipientDetails(cursor.getString(0), resultNumber, contactUri, contactPhoto, color);
+          return new RecipientDetails(cursor.getString(0), number, contactUri, contactPhoto, color);
         } else {
           Log.w(TAG, "resultNumber is null");
         }
