@@ -45,9 +45,9 @@ public class ContactsCursorLoader extends CursorLoader {
 
   private static final String TAG = ContactsCursorLoader.class.getSimpleName();
 
-  public final static int MODE_ALL        = 0;
-  public final static int MODE_PUSH_ONLY  = 1;
-  public final static int MODE_OTHER_ONLY = 2;
+  public final static int MODE_ALL       = 0;
+  public final static int MODE_PUSH_ONLY = 1;
+  public final static int MODE_SMS_ONLY  = 2;
 
   private final String filter;
   private final int    mode;
@@ -64,13 +64,13 @@ public class ContactsCursorLoader extends CursorLoader {
     ContactsDatabase  contactsDatabase = DatabaseFactory.getContactsDatabase(getContext());
     ArrayList<Cursor> cursorList       = new ArrayList<>(3);
 
-    if (mode != MODE_OTHER_ONLY) {
+    if (mode != MODE_SMS_ONLY) {
       cursorList.add(contactsDatabase.queryTextSecureContacts(filter));
     }
 
     if (mode == MODE_ALL) {
       cursorList.add(contactsDatabase.querySystemContacts(filter));
-    } else if (mode == MODE_OTHER_ONLY) {
+    } else if (mode == MODE_SMS_ONLY) {
       cursorList.add(filterNonPushContacts(contactsDatabase.querySystemContacts(filter)));
     }
 
