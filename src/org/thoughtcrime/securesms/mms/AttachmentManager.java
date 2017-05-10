@@ -190,7 +190,7 @@ public class AttachmentManager {
       public void onSuccess(@NonNull Bitmap result) {
         byte[]        blob          = BitmapUtil.toByteArray(result);
         Uri           uri           = PersistentBlobProvider.getInstance(context)
-                                                            .create(masterSecret, blob, MediaUtil.IMAGE_PNG);
+                                                            .create(masterSecret, blob, MediaUtil.IMAGE_PNG, null);
         LocationSlide locationSlide = new LocationSlide(context, uri, blob.length, place);
 
         setSlide(locationSlide);
@@ -206,7 +206,7 @@ public class AttachmentManager {
   {
     inflateStub();
 
-    new AsyncTask<Void, Void, Slide>() {
+            new AsyncTask<Void, Void, Slide>() {
       @Override
       protected void onPreExecute() {
         thumbnail.clear();
@@ -285,11 +285,23 @@ public class AttachmentManager {
       }
 
       private @NonNull Slide getManuallyCalculatedSlideInfo(Uri uri) throws IOException {
-        long start     = System.currentTimeMillis();
-        long mediaSize = MediaUtil.getMediaSize(context, masterSecret, uri);
+        long start      = System.currentTimeMillis();
+        Long mediaSize  = null;
+        String fileName = null;
+        String mimeType = null;
+
+        if (PartAuthority.isLocalUri(uri)) {
+          mediaSize = PartAuthority.getAttachmentSize(context, masterSecret, uri);
+          fileName  = PartAuthority.getAttachmentFileName(context, masterSecret, uri);
+          mimeType  = PartAuthority.getAttachmentContentType(context, masterSecret, uri);
+        }
+
+        if (mediaSize == null) {
+          mediaSize = MediaUtil.getMediaSize(context, masterSecret, uri);
+        }
 
         Log.w(TAG, "local slide with size " + mediaSize + " took " + (System.currentTimeMillis() - start) + "ms");
-        return mediaType.createSlide(context, uri, null, null, mediaSize);
+        return mediaType.createSlide(context, uri, fileName, mimeType, mediaSize);
       }
     }.execute();
   }
@@ -466,7 +478,8 @@ public class AttachmentManager {
       if (MediaUtil.isImageType(mimeType)) return IMAGE;
       if (MediaUtil.isAudioType(mimeType)) return AUDIO;
       if (MediaUtil.isVideoType(mimeType)) return VIDEO;
-      return null;
+
+      return DOCUMENT;
     }
 
   }

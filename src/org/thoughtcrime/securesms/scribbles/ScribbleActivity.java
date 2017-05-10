@@ -229,7 +229,7 @@ public class ScribbleActivity extends PassphraseRequiredActionBarActivity implem
         baos   = null;
         result = null;
 
-        Uri    uri    = provider.create(masterSecret, data, MediaUtil.IMAGE_JPEG);
+        Uri    uri    = provider.create(masterSecret, data, MediaUtil.IMAGE_JPEG, null);
         Intent intent = new Intent();
         intent.setData(uri);
         setResult(RESULT_OK, intent);

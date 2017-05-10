@@ -165,6 +165,9 @@
             <data android:mimeType="image/*" />
             <data android:mimeType="text/plain" />
             <data android:mimeType="video/*" />
+            <data android:mimeType="application/*"/>
+            <data android:mimeType="text/*"/>
+            <data android:mimeType="*/*"/>
         </intent-filter>
 
         <meta-data
