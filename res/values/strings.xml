@@ -979,6 +979,11 @@
     <string name="registration_progress_activity__some_possible_problems_include">Some possible
         problems include:
     </string>
+    <string name="registration_progress_activity__no_google_account">No Google account connected.
+    </string>
+    <string name="registration_progress_activity__your_device_needs_to_be_connected_to_a_google_account">Your
+        device needs to be connected to a Google account.
+    </string>
     <string name="registration_progress_activity__no_network_connectivity">No network
         connectivity.
     </string>
