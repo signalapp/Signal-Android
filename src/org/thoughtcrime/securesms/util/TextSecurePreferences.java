@@ -453,7 +453,7 @@ public class TextSecurePreferences {
   }
 
   public static boolean isScreenSecurityEnabled(Context context) {
-    return getBooleanPreference(context, SCREEN_SECURITY_PREF, true);
+    return getBooleanPreference(context, SCREEN_SECURITY_PREF, false);
   }
 
   public static boolean isLegacyUseLocalApnsEnabled(Context context) {
