@@ -67,7 +67,6 @@ dependencies {
     compile "me.leolin:ShortcutBadger:1.1.16"
     compile 'se.emilsjolander:stickylistheaders:2.7.0'
     compile 'com.jpardogo.materialtabstrip:library:1.0.9'
-    compile 'org.w3c:smil:1.0.0'
     compile 'org.apache.httpcomponents:httpclient-android:4.3.5'
     compile 'com.github.chrisbanes.photoview:library:1.3.1'
     compile 'com.github.bumptech.glide:glide:3.7.0'
@@ -141,7 +140,6 @@ dependencyVerification {
         'me.leolin:ShortcutBadger:e3cb3e7625892129b0c92dd5e4bc649faffdd526d5af26d9c45ee31ff8851774',
         'se.emilsjolander:stickylistheaders:a08ca948aa6b220f09d82f16bbbac395f6b78897e9eeac6a9f0b0ba755928eeb',
         'com.jpardogo.materialtabstrip:library:c6ef812fba4f74be7dc4a905faa4c2908cba261a94c13d4f96d5e67e4aad4aaa',
-        'org.w3c:smil:085dc40f2bb249651578bfa07499fd08b16ad0886dbe2c4078586a408da62f9b',
         'org.apache.httpcomponents:httpclient-android:6f56466a9bd0d42934b90bfbfe9977a8b654c058bf44a12bdc2877c4e1f033f1',
         'com.github.chrisbanes.photoview:library:f152dd0a87aca891aa182e42863fa05e0e8b2842e3b9fc512d7a3a6243c38ac4',
         'com.github.bumptech.glide:glide:76ef123957b5fbaebb05fcbe6606dd58c3bc3fcdadb257f99811d0ac9ea9b88b',
@@ -258,6 +256,7 @@ android {
                           'proguard-shortcutbadger.pro',
                           'proguard-retrofit.pro',
                           'proguard-webrtc.pro',
+                          'proguard-klinker.pro',
                           'proguard.cfg'
             testProguardFiles 'proguard-automation.pro',
                           'proguard.cfg'
