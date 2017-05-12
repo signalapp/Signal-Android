@@ -91,6 +91,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Отправить как незашифрованное MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Данное сообщение <b>не будет</b> зашифровано, поскольку получатель больше не использует Signal.\n\nОтправить незащищённое сообщение?</string>
   <string name="ConversationItem_unable_to_open_media">Не найдено приложение, которое может открыть этот медиа-файл.</string>
+  <string name="ConversationItem_copied_text">Копировать %s</string>
   <string name="ConversationItem_from_s">от %s</string>
   <string name="ConversationItem_to_s">для %s</string>
   <!--ConversationActivity-->
@@ -645,6 +646,10 @@
   <string name="attachment_type_selector__location_description">Место</string>
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__gallery_description">Изображение или видео</string>
+  <string name="attachment_type_selector__file_description">Файл</string>
+  <string name="attachment_type_selector__gallery">Галерея</string>
+  <string name="attachment_type_selector__file">Файл</string>
   <string name="attachment_type_selector__drawer_description">Показать панель вложений</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Старая парольная фраза</string>
@@ -666,6 +671,9 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Звуки разговора выключены</string>
   <!--conversation_activity-->
+  <string name="conversation_activity__type_message_push">Сообщение Signal</string>
+  <string name="conversation_activity__type_message_sms_insecure">Нешифрованное SMS</string>
+  <string name="conversation_activity__type_message_mms_insecure">Нешифрованное MMS</string>
   <string name="conversation_activity__from_sim_name">Через %1$s</string>
   <string name="conversation_activity__send">Отправить</string>
   <string name="conversation_activity__remove">Удалить</string>
@@ -930,7 +938,13 @@ SMS-подтверждения...
   <string name="arrays__audio">Аудио</string>
   <string name="arrays__video">Видео</string>
   <string name="arrays__documents">Документы</string>
-  <string name="arrays__normal">Среднее</string>
+  <string name="arrays__small">Маленький</string>
+  <string name="arrays__normal">Средний</string>
+  <string name="arrays__large">Большой</string>
+  <string name="arrays__extra_large">Очень большой</string>
+  <string name="arrays__default">По умолчанию</string>
+  <string name="arrays__high">Громкий</string>
+  <string name="arrays__max">Максимальный</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d час</item>
@@ -1046,6 +1060,17 @@ SMS-подтверждения...
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Поддержка видео- и голосовых звонков нового поколения, если оба собеседника её включили. Этот функционал находится в фазе бета-тестирования.</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Пропускать все звонки через сервер Signal, чтобы не раскрывать ваш IP-адреса собеседнику. Качество звонка ухудшится.</string>
   <string name="preferences_advanced__always_relay_calls">Всегда использовать сервер</string>
+  <string name="preferences_app_protection__app_access">Доступ приложения</string>
+  <string name="preferences_chats__chats">Чаты</string>
+  <string name="preferences_notifications__message_notifications">Уведомления о сообщениях</string>
+  <string name="preferences_notifications__events">События</string>
+  <string name="preferences_notifications__in_chat_sounds">Звуки чата</string>
+  <string name="preferences_notifications__show">Показать</string>
+  <string name="preferences_chats__show_invitation_prompts">Показать приглашения</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Отображать приглашения для контактов, не пользующихся Signal</string>
+  <string name="preferences_chats__message_text_size">Размер шрифта сообщения</string>
+  <string name="preferences_events__contact_joined_signal">Этот контакт появился в Signal</string>
+  <string name="preferences_notifications__priority">Приоритет</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

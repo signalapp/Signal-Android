@@ -228,6 +228,7 @@
   <string name="DeviceListItem_last_active_s">Sidste aktive %s</string>
   <string name="DeviceListItem_today">I dag</string>
   <!--DocumentView-->
+  <string name="DocumentView_unknown_file">Ukendt fil</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimer for manglende Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Denne enhed understøtter ikke Play Services. Tryk for at slå batterioptimeringer fra, som forhindrer Signal i at modtage beskeder i baggrunden.</string>
@@ -353,6 +354,8 @@ vil det resultere i dupletter.</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Modtog en besked krypteret med en ældre version af Signal, der ikke længere understøttes. Bed venligst afsenderen om at opgradere til den nyeste version og sende beskeden igen.</string>
   <string name="MessageRecord_left_group">Du har forladt gruppen.</string>
+  <string name="MessageRecord_you_updated_group">Du opdaterede gruppen.</string>
+  <string name="MessageRecord_s_updated_group">%s opdaterede gruppen.</string>
   <string name="MessageRecord_s_called_you">%s har ringet til dig</string>
   <string name="MessageRecord_called_s">Ringede til %s</string>
   <string name="MessageRecord_missed_call_from">Mistet opkald fra %s</string>
@@ -457,6 +460,8 @@ Dobbelttjek, at dette er dit nummer! Vi er ved at verificere det med en SMS.
   <string name="RegistrationActivity_i_understand">Jeg forstår</string>
   <string name="RegistrationActivity_play_services_error">Play Services fejl</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services bliver opdateret eller er midlertidigt utilgængelig. Prøv igen.</string>
+  <string name="RegistrationActivity_more_information">Mere information</string>
+  <string name="RegistrationActivity_less_information">Mindre information</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Mulige problemer</string>
   <!--RegistrationProgressActivity-->
@@ -603,6 +608,10 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="attachment_type_selector__location_description">Lokation</string>
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__gallery_description">Billede eller video</string>
+  <string name="attachment_type_selector__file_description">Fil</string>
+  <string name="attachment_type_selector__gallery">Galleri</string>
+  <string name="attachment_type_selector__file">Fil</string>
   <string name="attachment_type_selector__drawer_description">Slå vedhæftet fil-skuffe til/fra</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Gammelt kodeord</string>
@@ -624,6 +633,9 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Samtale dæmpet</string>
   <!--conversation_activity-->
+  <string name="conversation_activity__type_message_push">Signalbesked</string>
+  <string name="conversation_activity__type_message_sms_insecure">Usikret SMS</string>
+  <string name="conversation_activity__type_message_mms_insecure">Usikret MMS</string>
   <string name="conversation_activity__from_sim_name">Fra %1$s</string>
   <string name="conversation_activity__send">Send</string>
   <string name="conversation_activity__remove">Fjern</string>
@@ -735,6 +747,7 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">VERIFICÉR</string>
   <string name="message_recipients_list_item__resend">SEND IGEN</string>
+  <string name="message_recipients_list_item__resending">Gensender...</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s tilsluttede sig gruppen.</item>
@@ -862,7 +875,11 @@ mislykkedes.</string>
   <string name="arrays__images">Billeder</string>
   <string name="arrays__audio">Lyd</string>
   <string name="arrays__video">Video</string>
+  <string name="arrays__documents">Dokumenter</string>
+  <string name="arrays__small">Lille</string>
   <string name="arrays__normal">Normal</string>
+  <string name="arrays__large">Stor</string>
+  <string name="arrays__extra_large">Ekstra stor</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d time</item>
@@ -976,6 +993,16 @@ mislykkedes.</string>
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Understøttelse for forbedrede video- og stemmeopkald hvis aktiveret af begge parter. Denne funktionalitet er i beta.</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Videresend alle opkald gennem Signal-serveren for at undgå at afsløre din IP-adresse for din kontakt. Dette vil give en dårligere signalkvalitet.</string>
   <string name="preferences_advanced__always_relay_calls">Videresend altid opkald</string>
+  <string name="preferences_app_protection__communication">Kommunikation</string>
+  <string name="preferences_notifications__message_notifications">Beskednotifikationer</string>
+  <string name="preferences_notifications__events">Begivenheder</string>
+  <string name="preferences_notifications__in_chat_sounds">Chat-lyde</string>
+  <string name="preferences_notifications__show">Vis</string>
+  <string name="preferences_chats__show_invitation_prompts">Vis invitationsprompt</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Vis invitationsprompt for kontakter uden Signal</string>
+  <string name="preferences_chats__message_text_size">Skriftstørrelse på beskeder</string>
+  <string name="preferences_events__contact_joined_signal">Kontakt har meldt sig til Signal</string>
+  <string name="preferences_notifications__priority">Prioritet</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
