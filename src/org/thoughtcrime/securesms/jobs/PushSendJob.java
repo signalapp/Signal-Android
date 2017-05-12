@@ -80,6 +80,7 @@ public abstract class PushSendJob extends SendJob {
                                                .withContentType(attachment.getContentType())
                                                .withLength(attachment.getSize())
                                                .withFileName(attachment.getFileName())
+                                               .withVoiceNote(attachment.isVoiceNote())
                                                .withListener(new ProgressListener() {
                                                  @Override
                                                  public void onAttachmentProgress(long total, long progress) {

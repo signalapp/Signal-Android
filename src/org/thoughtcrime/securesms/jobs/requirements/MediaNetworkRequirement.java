@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
@@ -93,7 +94,9 @@ public class MediaNetworkRequirement implements Requirement, ContextDependent {
 
       boolean isAllowed;
 
-      if (isNonDocumentType(contentType)) {
+      if (attachment.isVoiceNote() || (MediaUtil.isAudio(attachment) && TextUtils.isEmpty(attachment.getFileName()))) {
+        isAllowed = isConnectedWifi() || isConnectedMobile();
+      } else if (isNonDocumentType(contentType)) {
         isAllowed = allowedTypes.contains(MediaUtil.getDiscreteMimeType(contentType));
       } else {
         isAllowed = allowedTypes.contains("documents");

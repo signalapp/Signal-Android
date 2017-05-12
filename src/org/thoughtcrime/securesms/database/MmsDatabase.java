@@ -147,6 +147,7 @@ public class MmsDatabase extends MessagingDatabase {
       AttachmentDatabase.CONTENT_LOCATION,
       AttachmentDatabase.DIGEST,
       AttachmentDatabase.FAST_PREFLIGHT_ID,
+      AttachmentDatabase.VOICE_NOTE,
       AttachmentDatabase.CONTENT_DISPOSITION,
       AttachmentDatabase.NAME,
       AttachmentDatabase.TRANSFER_STATE
@@ -691,7 +692,8 @@ public class MmsDatabase extends MessagingDatabase {
                                                databaseAttachment.getKey(),
                                                databaseAttachment.getRelay(),
                                                databaseAttachment.getDigest(),
-                                               databaseAttachment.getFastPreflightId()));
+                                               databaseAttachment.getFastPreflightId(),
+                                               databaseAttachment.isVoiceNote()));
       }
 
       return insertMediaMessage(new MasterSecretUnion(masterSecret),

@@ -465,7 +465,7 @@ public class AttachmentManager {
       switch (this) {
       case IMAGE:    return new ImageSlide(context, uri, dataSize);
       case GIF:      return new GifSlide(context, uri, dataSize);
-      case AUDIO:    return new AudioSlide(context, uri, dataSize);
+      case AUDIO:    return new AudioSlide(context, uri, dataSize, false);
       case VIDEO:    return new VideoSlide(context, uri, dataSize);
       case DOCUMENT: return new DocumentSlide(context, uri, mimeType, dataSize, fileName);
       default:       throw  new AssertionError("unrecognized enum");

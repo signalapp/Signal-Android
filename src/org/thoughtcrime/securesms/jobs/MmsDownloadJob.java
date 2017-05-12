@@ -199,7 +199,7 @@ public class MmsDownloadJob extends MasterSecretJob {
 
           attachments.add(new UriAttachment(uri, Util.toIsoString(part.getContentType()),
                                             AttachmentDatabase.TRANSFER_PROGRESS_DONE,
-                                            part.getData().length, name));
+                                            part.getData().length, name, false));
         }
       }
     }

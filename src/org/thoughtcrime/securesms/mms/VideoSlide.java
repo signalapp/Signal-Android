@@ -30,7 +30,7 @@ import org.thoughtcrime.securesms.util.ResUtil;
 public class VideoSlide extends Slide {
 
   public VideoSlide(Context context, Uri uri, long dataSize) {
-    super(context, constructAttachmentFromUri(context, uri, MediaUtil.VIDEO_UNSPECIFIED, dataSize, MediaUtil.hasVideoThumbnail(uri), null));
+    super(context, constructAttachmentFromUri(context, uri, MediaUtil.VIDEO_UNSPECIFIED, dataSize, MediaUtil.hasVideoThumbnail(uri), null, false));
   }
 
   public VideoSlide(Context context, Attachment attachment) {

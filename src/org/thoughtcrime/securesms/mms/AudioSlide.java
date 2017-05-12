@@ -33,12 +33,12 @@ import org.thoughtcrime.securesms.util.ResUtil;
 
 public class AudioSlide extends Slide {
 
-  public AudioSlide(Context context, Uri uri, long dataSize) {
-    super(context, constructAttachmentFromUri(context, uri, MediaUtil.AUDIO_UNSPECIFIED, dataSize, false, null));
+  public AudioSlide(Context context, Uri uri, long dataSize, boolean voiceNote) {
+    super(context, constructAttachmentFromUri(context, uri, MediaUtil.AUDIO_UNSPECIFIED, dataSize, false, null, voiceNote));
   }
 
-  public AudioSlide(Context context, Uri uri, long dataSize, String contentType) {
-    super(context,  new UriAttachment(uri, null, contentType, AttachmentDatabase.TRANSFER_PROGRESS_STARTED, dataSize, null, null));
+  public AudioSlide(Context context, Uri uri, long dataSize, String contentType, boolean voiceNote) {
+    super(context,  new UriAttachment(uri, null, contentType, AttachmentDatabase.TRANSFER_PROGRESS_STARTED, dataSize, null, null, voiceNote));
   }
 
   public AudioSlide(Context context, Attachment attachment) {

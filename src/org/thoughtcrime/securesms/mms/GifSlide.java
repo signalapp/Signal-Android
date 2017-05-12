@@ -14,7 +14,7 @@ public class GifSlide extends ImageSlide {
   }
 
   public GifSlide(Context context, Uri uri, long size) {
-    super(context, constructAttachmentFromUri(context, uri, MediaUtil.IMAGE_GIF, size, true, null));
+    super(context, constructAttachmentFromUri(context, uri, MediaUtil.IMAGE_GIF, size, true, null, false));
   }
 
   @Override

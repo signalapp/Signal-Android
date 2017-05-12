@@ -158,7 +158,7 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
         Log.w(TAG, "Downloading attachment with no digest...");
       }
 
-      return new SignalServiceAttachmentPointer(id, null, key, relay, Optional.fromNullable(attachment.getDigest()), Optional.fromNullable(attachment.getFileName()));
+      return new SignalServiceAttachmentPointer(id, null, key, relay, Optional.fromNullable(attachment.getDigest()), Optional.fromNullable(attachment.getFileName()), attachment.isVoiceNote());
     } catch (InvalidMessageException | IOException e) {
       Log.w(TAG, e);
       throw new InvalidPartException(e);
