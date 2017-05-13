@@ -215,7 +215,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       this.findPreference(PREFERENCE_CATEGORY_APPEARANCE).setIcon(appearance);
       this.findPreference(PREFERENCE_CATEGORY_CHATS).setIcon(chats);
       this.findPreference(PREFERENCE_CATEGORY_DEVICES).setIcon(devices);
-      this.findPreference(PREFERENCE_CATEGORY_ADVANCED).setIcon(appearance);
+      this.findPreference(PREFERENCE_CATEGORY_ADVANCED).setIcon(advanced);
     }
 
     private class CategoryClickListener implements Preference.OnPreferenceClickListener {
