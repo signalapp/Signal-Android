@@ -25,8 +25,6 @@ import org.webrtc.VideoCapturer;
 import org.webrtc.VideoRenderer;
 import org.webrtc.VideoSource;
 import org.webrtc.VideoTrack;
-import org.webrtc.voiceengine.WebRtcAudioManager;
-import org.webrtc.voiceengine.WebRtcAudioUtils;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -114,7 +112,10 @@ public class PeerConnectionWrapper {
   }
 
   public DataChannel createDataChannel(String name) {
-    return this.peerConnection.createDataChannel(name, new DataChannel.Init());
+    DataChannel.Init dataChannelConfiguration = new DataChannel.Init();
+    dataChannelConfiguration.ordered = true;
+
+    return this.peerConnection.createDataChannel(name, dataChannelConfiguration);
   }
 
   public SessionDescription createOffer(MediaConstraints mediaConstraints) throws PeerConnectionException {
@@ -273,11 +274,18 @@ public class PeerConnectionWrapper {
   }
 
   private @Nullable CameraVideoCapturer createVideoCapturer(@NonNull Context context) {
-    Log.w(TAG, "Camera2 enumerator supported: " + Camera2Enumerator.isSupported(context));
+    boolean camera2EnumeratorIsSupported = false;
+    try {
+      camera2EnumeratorIsSupported = Camera2Enumerator.isSupported(context);
+    } catch (final Throwable throwable) {
+      Log.w(TAG, "Camera2Enumator.isSupport() threw.", throwable);
+    }
+
+    Log.w(TAG, "Camera2 enumerator supported: " + camera2EnumeratorIsSupported);
     CameraEnumerator enumerator;
 
-    if (Camera2Enumerator.isSupported(context)) enumerator = new Camera2Enumerator(context);
-    else                                        enumerator = new Camera1Enumerator(true);
+    if (camera2EnumeratorIsSupported) enumerator = new Camera2Enumerator(context);
+    else                              enumerator = new Camera1Enumerator(true);
 
     String[] deviceNames = enumerator.getDeviceNames();
 

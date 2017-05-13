@@ -28,13 +28,12 @@ import org.thoughtcrime.securesms.scribbles.widget.VerticalSlideColorPicker;
 import org.thoughtcrime.securesms.scribbles.widget.entity.ImageEntity;
 import org.thoughtcrime.securesms.scribbles.widget.entity.MotionEntity;
 import org.thoughtcrime.securesms.scribbles.widget.entity.TextEntity;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
-
-import ws.com.google.android.mms.ContentType;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 public class ScribbleActivity extends PassphraseRequiredActionBarActivity implements ScribbleToolbar.ScribbleToolbarListener, VerticalSlideColorPicker.OnColorChangeListener {
@@ -230,7 +229,7 @@ public class ScribbleActivity extends PassphraseRequiredActionBarActivity implem
         baos   = null;
         result = null;
 
-        Uri    uri    = provider.create(masterSecret, data, ContentType.IMAGE_JPEG);
+        Uri    uri    = provider.create(masterSecret, data, MediaUtil.IMAGE_JPEG, null);
         Intent intent = new Intent();
         intent.setData(uri);
         setResult(RESULT_OK, intent);

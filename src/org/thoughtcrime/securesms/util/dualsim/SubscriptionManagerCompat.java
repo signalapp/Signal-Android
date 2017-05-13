@@ -35,7 +35,8 @@ public class SubscriptionManagerCompat {
     SubscriptionInfo subscriptionInfo = SubscriptionManager.from(context).getActiveSubscriptionInfo(subscriptionId);
 
     if (subscriptionInfo != null) {
-      return Optional.of(new SubscriptionInfoCompat(subscriptionId, subscriptionInfo.getDisplayName()));
+      return Optional.of(new SubscriptionInfoCompat(subscriptionId, subscriptionInfo.getDisplayName(),
+                                                    subscriptionInfo.getMcc(), subscriptionInfo.getMnc()));
     } else {
       return Optional.absent();
     }
@@ -56,7 +57,9 @@ public class SubscriptionManagerCompat {
 
     for (SubscriptionInfo subscriptionInfo : subscriptionInfos) {
       compatList.add(new SubscriptionInfoCompat(subscriptionInfo.getSubscriptionId(),
-                                                subscriptionInfo.getDisplayName()));
+                                                subscriptionInfo.getDisplayName(),
+                                                subscriptionInfo.getMcc(),
+                                                subscriptionInfo.getMnc()));
     }
 
     return compatList;

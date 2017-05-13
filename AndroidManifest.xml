@@ -3,7 +3,7 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="org.thoughtcrime.securesms">
 
-    <uses-sdk tools:overrideLibrary="com.amulyakhare.textdrawable,com.astuetz.pagerslidingtabstrip,pl.tajchert.waitingdots,com.h6ah4i.android.multiselectlistpreferencecompat,android.support.v13,com.davemorrissey.labs.subscaleview,com.tomergoldst.tooltips"/>
+    <uses-sdk tools:overrideLibrary="com.amulyakhare.textdrawable,com.astuetz.pagerslidingtabstrip,pl.tajchert.waitingdots,com.h6ah4i.android.multiselectlistpreferencecompat,android.support.v13,com.davemorrissey.labs.subscaleview,com.tomergoldst.tooltips,com.klinker.android.send_message"/>
 
     <permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"
                 android:label="Access to TextSecure Secrets"
@@ -100,7 +100,7 @@
 
     <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCSx9xea86GwDKGznCAULE9Y5a8b-TfN9U"/>
+            android:value="AIzaSyAlVlRzrjMy3naDSVCyS0CxZZ59wRF4CcE"/>
 
     <meta-data android:name="com.google.android.gms.version"
                android:value="@integer/google_play_services_version" />
@@ -165,6 +165,9 @@
             <data android:mimeType="image/*" />
             <data android:mimeType="text/plain" />
             <data android:mimeType="video/*" />
+            <data android:mimeType="application/*"/>
+            <data android:mimeType="text/*"/>
+            <data android:mimeType="*/*"/>
         </intent-filter>
 
         <meta-data

@@ -20,8 +20,6 @@ import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 
-import ws.com.google.android.mms.ContentType;
-
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 public class AudioRecorder {
 
@@ -58,7 +56,7 @@ public class AudioRecorder {
 
           captureUri  = blobProvider.create(masterSecret,
                                             new ParcelFileDescriptor.AutoCloseInputStream(fds[0]),
-                                            ContentType.AUDIO_AAC);
+                                            MediaUtil.AUDIO_AAC, null, null);
           audioCodec  = new AudioCodec();
 
           audioCodec.start(new ParcelFileDescriptor.AutoCloseOutputStream(fds[1]));

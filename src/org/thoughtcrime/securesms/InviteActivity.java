@@ -59,7 +59,7 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
   protected void onCreate(Bundle savedInstanceState, @NonNull MasterSecret masterSecret) {
     this.masterSecret = masterSecret;
 
-    getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE, ContactSelectionListFragment.DISPLAY_MODE_OTHER_ONLY);
+    getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE, ContactSelectionListFragment.DISPLAY_MODE_SMS_ONLY);
     getIntent().putExtra(ContactSelectionListFragment.MULTI_SELECT, true);
     getIntent().putExtra(ContactSelectionListFragment.REFRESHABLE, false);
 

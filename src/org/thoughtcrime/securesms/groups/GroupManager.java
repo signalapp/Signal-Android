@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
@@ -31,8 +32,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Set;
-
-import ws.com.google.android.mms.ContentType;
 
 public class GroupManager {
   public static @NonNull GroupActionResult createGroup(@NonNull  Context        context,
@@ -104,7 +103,7 @@ public class GroupManager {
 
     if (avatar != null) {
       Uri avatarUri = SingleUseBlobProvider.getInstance().createUri(avatar);
-      avatarAttachment = new UriAttachment(avatarUri, ContentType.IMAGE_PNG, AttachmentDatabase.TRANSFER_PROGRESS_DONE, avatar.length, null);
+      avatarAttachment = new UriAttachment(avatarUri, MediaUtil.IMAGE_PNG, AttachmentDatabase.TRANSFER_PROGRESS_DONE, avatar.length, null, false);
     }
 
     OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(groupRecipient, groupContext, avatarAttachment, System.currentTimeMillis(), 0);

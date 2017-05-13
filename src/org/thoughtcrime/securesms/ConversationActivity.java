@@ -25,6 +25,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuff.Mode;
@@ -88,8 +89,6 @@ import org.thoughtcrime.securesms.components.emoji.EmojiDrawer;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.thoughtcrime.securesms.components.reminder.InviteReminder;
 import org.thoughtcrime.securesms.components.reminder.ReminderView;
-import org.thoughtcrime.securesms.contacts.ContactAccessor;
-import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
@@ -156,8 +155,6 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-
-import ws.com.google.android.mms.ContentType;
 
 import static org.thoughtcrime.securesms.TransportOption.Type;
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
@@ -878,7 +875,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     final String    draftText      = getIntent().getStringExtra(TEXT_EXTRA);
     final Uri       draftMedia     = getIntent().getData();
     final MediaType draftMediaType = MediaType.from(getIntent().getType());
-
+    
     if (draftText != null)                            composeText.setText(draftText);
     if (draftMedia != null && draftMediaType != null) setMedia(draftMedia, draftMediaType);
 
@@ -1228,33 +1225,18 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void addAttachmentContactInfo(Uri contactUri) {
-    ContactAccessor contactDataList = ContactAccessor.getInstance();
-    ContactData contactData = contactDataList.getContactData(this, contactUri);
+    Cursor numberCursor = getContentResolver().query(contactUri, new String[]{
+            ContactsContract.CommonDataKinds.Phone.NUMBER,
+            ContactsContract.CommonDataKinds.Phone.LABEL,
+            ContactsContract.CommonDataKinds.Phone.TYPE },
+          null, null, null);
+    if (numberCursor.getCount() != 1 || !numberCursor.moveToFirst()) return;
 
-    if      (contactData.numbers.size() == 1) composeText.append(contactData.numbers.get(0).number);
-    else if (contactData.numbers.size() > 1)  selectContactInfo(contactData);
-  }
-
-  private void selectContactInfo(ContactData contactData) {
-    final CharSequence[] numbers     = new CharSequence[contactData.numbers.size()];
-    final CharSequence[] numberItems = new CharSequence[contactData.numbers.size()];
-
-    for (int i = 0; i < contactData.numbers.size(); i++) {
-      numbers[i]     = contactData.numbers.get(i).number;
-      numberItems[i] = contactData.numbers.get(i).type + ": " + contactData.numbers.get(i).number;
-    }
-
-    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setIconAttribute(R.attr.conversation_attach_contact_info);
-    builder.setTitle(R.string.ConversationActivity_select_contact_info);
-
-    builder.setItems(numberItems, new DialogInterface.OnClickListener() {
-      @Override
-      public void onClick(DialogInterface dialog, int which) {
-        composeText.append(numbers[which]);
-      }
-    });
-    builder.show();
+    int type         = numberCursor.getInt(numberCursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.TYPE));
+    String label     = numberCursor.getString(numberCursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.LABEL));
+    String number    = numberCursor.getString(numberCursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER));
+    String typeLabel = ContactsContract.CommonDataKinds.Phone.getTypeLabel(getResources(), type, label).toString();
+    composeText.append(typeLabel + ": " + number);
   }
 
   private Drafts getDraftsForCurrentState() {
@@ -1407,8 +1389,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private MediaConstraints getCurrentMediaConstraints() {
     return sendButton.getSelectedTransport().getType() == Type.TEXTSECURE
-           ? MediaConstraints.PUSH_CONSTRAINTS
-           : MediaConstraints.MMS_CONSTRAINTS;
+           ? MediaConstraints.getPushMediaConstraints()
+           : MediaConstraints.getMmsMediaConstraints(sendButton.getSelectedTransport().getSimSubscriptionId().or(-1));
   }
 
   private void markThreadAsRead() {
@@ -1607,7 +1589,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   public void onImageCapture(@NonNull final byte[] imageBytes) {
     setMedia(PersistentBlobProvider.getInstance(this)
-                                   .create(masterSecret, imageBytes, ContentType.IMAGE_JPEG),
+                                   .create(masterSecret, imageBytes, MediaUtil.IMAGE_JPEG, null),
              MediaType.IMAGE);
     quickAttachmentDrawer.hide(false);
   }
@@ -1648,7 +1630,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           boolean    forceSms       = sendButton.isManualSelection() && sendButton.getSelectedTransport().isSms();
           int        subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().or(-1);
           long       expiresIn      = recipients.getExpireMessages() * 1000;
-          AudioSlide audioSlide     = new AudioSlide(ConversationActivity.this, result.first, result.second, ContentType.AUDIO_AAC);
+          AudioSlide audioSlide     = new AudioSlide(ConversationActivity.this, result.first, result.second, MediaUtil.AUDIO_AAC, true);
           SlideDeck  slideDeck      = new SlideDeck();
           slideDeck.addSlide(audioSlide);
 
@@ -1719,11 +1701,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   public void onMediaSelected(@NonNull Uri uri, String contentType) {
     if (!TextUtils.isEmpty(contentType) && contentType.trim().equals("image/gif")) {
       setMedia(uri, MediaType.GIF);
-    } else if (ContentType.isImageType(contentType)) {
+    } else if (MediaUtil.isImageType(contentType)) {
       setMedia(uri, MediaType.IMAGE);
-    } else if (ContentType.isVideoType(contentType)) {
+    } else if (MediaUtil.isVideoType(contentType)) {
       setMedia(uri, MediaType.VIDEO);
-    } else if (ContentType.isAudioType(contentType)) {
+    } else if (MediaUtil.isAudioType(contentType)) {
       setMedia(uri, MediaType.AUDIO);
     }
   }

@@ -18,7 +18,7 @@
                 android:summary="@string/ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app" />
 
     <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
-                        android:defaultValue="false"
+                        android:defaultValue="true"
                         android:key="pref_delivery_report_sms"
                         android:summary="@string/preferences__request_a_delivery_report_for_each_sms_message_you_send"
                         android:title="@string/preferences__sms_delivery_reports" />

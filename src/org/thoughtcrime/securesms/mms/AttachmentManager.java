@@ -35,7 +35,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.ui.PlacePicker;
@@ -67,7 +66,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import ws.com.google.android.mms.ContentType;
 
 public class AttachmentManager {
 
@@ -192,7 +190,7 @@ public class AttachmentManager {
       public void onSuccess(@NonNull Bitmap result) {
         byte[]        blob          = BitmapUtil.toByteArray(result);
         Uri           uri           = PersistentBlobProvider.getInstance(context)
-                                                            .create(masterSecret, blob, ContentType.IMAGE_PNG);
+                                                            .create(masterSecret, blob, MediaUtil.IMAGE_PNG, null);
         LocationSlide locationSlide = new LocationSlide(context, uri, blob.length, place);
 
         setSlide(locationSlide);
@@ -204,10 +202,11 @@ public class AttachmentManager {
   public void setMedia(@NonNull final MasterSecret masterSecret,
                        @NonNull final Uri uri,
                        @NonNull final MediaType mediaType,
-                       @NonNull final MediaConstraints constraints) {
+                       @NonNull final MediaConstraints constraints)
+  {
     inflateStub();
 
-    new AsyncTask<Void, Void, Slide>() {
+            new AsyncTask<Void, Void, Slide>() {
       @Override
       protected void onPreExecute() {
         thumbnail.clear();
@@ -286,11 +285,23 @@ public class AttachmentManager {
       }
 
       private @NonNull Slide getManuallyCalculatedSlideInfo(Uri uri) throws IOException {
-        long start     = System.currentTimeMillis();
-        long mediaSize = MediaUtil.getMediaSize(context, masterSecret, uri);
+        long start      = System.currentTimeMillis();
+        Long mediaSize  = null;
+        String fileName = null;
+        String mimeType = null;
+
+        if (PartAuthority.isLocalUri(uri)) {
+          mediaSize = PartAuthority.getAttachmentSize(context, masterSecret, uri);
+          fileName  = PartAuthority.getAttachmentFileName(context, masterSecret, uri);
+          mimeType  = PartAuthority.getAttachmentContentType(context, masterSecret, uri);
+        }
+
+        if (mediaSize == null) {
+          mediaSize = MediaUtil.getMediaSize(context, masterSecret, uri);
+        }
 
         Log.w(TAG, "local slide with size " + mediaSize + " took " + (System.currentTimeMillis() - start) + "ms");
-        return mediaType.createSlide(context, uri, null, null, mediaSize);
+        return mediaType.createSlide(context, uri, fileName, mimeType, mediaSize);
       }
     }.execute();
   }
@@ -319,6 +330,7 @@ public class AttachmentManager {
 
   public static void selectContactInfo(Activity activity, int requestCode) {
     Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+    intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
     activity.startActivityForResult(intent, requestCode);
   }
 
@@ -350,7 +362,7 @@ public class AttachmentManager {
       if (captureIntent.resolveActivity(activity.getPackageManager()) != null) {
         if (captureUri == null) {
           captureUri = PersistentBlobProvider.getInstance(context)
-                                             .createForExternal(ContentType.IMAGE_JPEG);
+                                             .createForExternal(MediaUtil.IMAGE_JPEG);
         }
         Log.w(TAG, "captureUri path is " + captureUri.getPath());
         captureIntent.putExtra(MediaStore.EXTRA_OUTPUT, captureUri);
@@ -454,7 +466,7 @@ public class AttachmentManager {
       switch (this) {
       case IMAGE:    return new ImageSlide(context, uri, dataSize);
       case GIF:      return new GifSlide(context, uri, dataSize);
-      case AUDIO:    return new AudioSlide(context, uri, dataSize);
+      case AUDIO:    return new AudioSlide(context, uri, dataSize, false);
       case VIDEO:    return new VideoSlide(context, uri, dataSize);
       case DOCUMENT: return new DocumentSlide(context, uri, mimeType, dataSize, fileName);
       default:       throw  new AssertionError("unrecognized enum");
@@ -462,12 +474,13 @@ public class AttachmentManager {
     }
 
     public static @Nullable MediaType from(final @Nullable String mimeType) {
-      if (TextUtils.isEmpty(mimeType))       return null;
-      if (MediaUtil.isGif(mimeType))         return GIF;
-      if (ContentType.isImageType(mimeType)) return IMAGE;
-      if (ContentType.isAudioType(mimeType)) return AUDIO;
-      if (ContentType.isVideoType(mimeType)) return VIDEO;
-      return null;
+      if (TextUtils.isEmpty(mimeType))     return null;
+      if (MediaUtil.isGif(mimeType))       return GIF;
+      if (MediaUtil.isImageType(mimeType)) return IMAGE;
+      if (MediaUtil.isAudioType(mimeType)) return AUDIO;
+      if (MediaUtil.isVideoType(mimeType)) return VIDEO;
+
+      return DOCUMENT;
     }
 
   }

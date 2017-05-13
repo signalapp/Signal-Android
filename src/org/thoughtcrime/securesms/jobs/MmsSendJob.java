@@ -3,13 +3,27 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
+import android.webkit.MimeTypeMap;
+
+import com.android.mms.dom.smil.parser.SmilXmlSerializer;
+import com.google.android.mms.ContentType;
+import com.google.android.mms.InvalidHeaderValueException;
+import com.google.android.mms.pdu_alt.CharacterSets;
+import com.google.android.mms.pdu_alt.EncodedStringValue;
+import com.google.android.mms.pdu_alt.PduBody;
+import com.google.android.mms.pdu_alt.PduComposer;
+import com.google.android.mms.pdu_alt.PduHeaders;
+import com.google.android.mms.pdu_alt.PduPart;
+import com.google.android.mms.pdu_alt.SendConf;
+import com.google.android.mms.pdu_alt.SendReq;
+import com.google.android.mms.smil.SmilHelper;
+import com.klinker.android.send_message.Utils;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
-import org.thoughtcrime.securesms.database.ThreadDatabase.DistributionTypes;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.CompatMmsConnection;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
@@ -22,26 +36,16 @@ import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.NumberUtil;
-import org.thoughtcrime.securesms.util.SmilUtil;
-import org.thoughtcrime.securesms.util.TelephonyUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import ws.com.google.android.mms.ContentType;
-import ws.com.google.android.mms.MmsException;
-import ws.com.google.android.mms.pdu.CharacterSets;
-import ws.com.google.android.mms.pdu.EncodedStringValue;
-import ws.com.google.android.mms.pdu.PduBody;
-import ws.com.google.android.mms.pdu.PduComposer;
-import ws.com.google.android.mms.pdu.PduHeaders;
-import ws.com.google.android.mms.pdu.PduPart;
-import ws.com.google.android.mms.pdu.SendConf;
-import ws.com.google.android.mms.pdu.SendReq;
+import org.thoughtcrime.securesms.mms.MmsException;
 
 public class MmsSendJob extends SendJob {
 
@@ -64,8 +68,7 @@ public class MmsSendJob extends SendJob {
 
   @Override
   public void onAdded() {
-//    MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
-//    database.markAsSending(messageId);
+
   }
 
   @Override
@@ -109,14 +112,6 @@ public class MmsSendJob extends SendJob {
   private byte[] getPduBytes(SendReq message)
       throws IOException, UndeliverableMessageException, InsecureFallbackApprovalException
   {
-    String number = TelephonyUtil.getManager(context).getLine1Number();
-
-    message.setBody(SmilUtil.getSmilBody(message.getBody()));
-
-    if (!TextUtils.isEmpty(number)) {
-      message.setFrom(new EncodedStringValue(number));
-    }
-
     byte[] pduBytes = new PduComposer(context, message).make();
 
     if (pduBytes == null) {
@@ -174,51 +169,100 @@ public class MmsSendJob extends SendJob {
   private SendReq constructSendPdu(MasterSecret masterSecret, OutgoingMediaMessage message)
       throws UndeliverableMessageException
   {
-    SendReq      sendReq = new SendReq();
-    PduBody      body    = new PduBody();
-    List<String> numbers = message.getRecipients().toNumberStringList(true);
+    SendReq          req               = new SendReq();
+    String           lineNumber        = Utils.getMyPhoneNumber(context);
+    List<String>     numbers           = message.getRecipients().toNumberStringList(true);
+    MediaConstraints mediaConstraints = MediaConstraints.getMmsMediaConstraints(message.getSubscriptionId());
+    List<Attachment> scaledAttachments = scaleAttachments(masterSecret, mediaConstraints, message.getAttachments());
 
-    for (String number : numbers) {
-      if (message.getDistributionType() == DistributionTypes.CONVERSATION) {
-        sendReq.addTo(new EncodedStringValue(Util.toIsoBytes(number)));
-      } else {
-        sendReq.addBcc(new EncodedStringValue(Util.toIsoBytes(number)));
-      }
+    if (!TextUtils.isEmpty(lineNumber)) {
+      req.setFrom(new EncodedStringValue(lineNumber));
     }
 
-    sendReq.setDate(message.getSentTimeMillis() / 1000L);
+    for (String recipient : numbers) {
+      req.addTo(new EncodedStringValue(recipient));
+    }
+
+    req.setDate(System.currentTimeMillis() / 1000);
+
+    PduBody body = new PduBody();
+    int     size = 0;
 
     if (!TextUtils.isEmpty(message.getBody())) {
       PduPart part = new PduPart();
+      String name = String.valueOf(System.currentTimeMillis());
       part.setData(Util.toUtf8Bytes(message.getBody()));
       part.setCharset(CharacterSets.UTF_8);
       part.setContentType(ContentType.TEXT_PLAIN.getBytes());
-      part.setContentId((System.currentTimeMillis()+"").getBytes());
-      part.setName(("Text"+System.currentTimeMillis()).getBytes());
+      part.setContentId(name.getBytes());
+      part.setContentLocation((name + ".txt").getBytes());
+      part.setName((name + ".txt").getBytes());
 
       body.addPart(part);
+      size += getPartSize(part);
     }
-
-    List<Attachment> scaledAttachments = scaleAttachments(masterSecret, MediaConstraints.MMS_CONSTRAINTS, message.getAttachments());
 
     for (Attachment attachment : scaledAttachments) {
       try {
         if (attachment.getDataUri() == null) throw new IOException("Assertion failed, attachment for outgoing MMS has no data!");
 
-        PduPart part = new PduPart();
+        String  fileName = attachment.getFileName();
+        PduPart part     = new PduPart();
+
+        if (fileName == null) {
+          fileName      = String.valueOf(Math.abs(Util.getSecureRandom().nextLong()));
+          String fileExtension = MimeTypeMap.getSingleton().getExtensionFromMimeType(attachment.getContentType());
+
+          if (fileExtension != null) fileName = fileName + "." + fileExtension;
+        }
+
+        if (attachment.getContentType().startsWith("text")) {
+          part.setCharset(CharacterSets.UTF_8);
+        }
+
+        part.setContentType(attachment.getContentType().getBytes());
+        part.setContentLocation(fileName.getBytes());
+        part.setName(fileName.getBytes());
+
+        int index = fileName.lastIndexOf(".");
+        String contentId = (index == -1) ? fileName : fileName.substring(0, index);
+        part.setContentId(contentId.getBytes());
         part.setData(Util.readFully(PartAuthority.getAttachmentStream(context, masterSecret, attachment.getDataUri())));
-        part.setContentType(Util.toIsoBytes(attachment.getContentType()));
-        part.setContentId((System.currentTimeMillis() + "").getBytes());
-        part.setName((System.currentTimeMillis() + "").getBytes());
 
         body.addPart(part);
+        size += getPartSize(part);
       } catch (IOException e) {
         Log.w(TAG, e);
       }
     }
 
-    sendReq.setBody(body);
-    return sendReq;
+    ByteArrayOutputStream out = new ByteArrayOutputStream();
+    SmilXmlSerializer.serialize(SmilHelper.createSmilDocument(body), out);
+    PduPart smilPart = new PduPart();
+    smilPart.setContentId("smil".getBytes());
+    smilPart.setContentLocation("smil.xml".getBytes());
+    smilPart.setContentType(ContentType.APP_SMIL.getBytes());
+    smilPart.setData(out.toByteArray());
+    body.addPart(0, smilPart);
+
+    req.setBody(body);
+    req.setMessageSize(size);
+    req.setMessageClass(PduHeaders.MESSAGE_CLASS_PERSONAL_STR.getBytes());
+    req.setExpiry(7 * 24 * 60 * 60);
+
+    try {
+      req.setPriority(PduHeaders.PRIORITY_NORMAL);
+      req.setDeliveryReport(PduHeaders.VALUE_NO);
+      req.setReadReport(PduHeaders.VALUE_NO);
+    } catch (InvalidHeaderValueException e) {}
+
+    return req;
+  }
+
+  private long getPartSize(PduPart part) {
+    return part.getName().length + part.getContentLocation().length +
+        part.getContentType().length + part.getData().length +
+        part.getContentId().length;
   }
 
   private void notifyMediaMessageDeliveryFailed(Context context, long messageId) {

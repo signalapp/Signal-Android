@@ -28,6 +28,7 @@ import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream;
+import org.whispersystems.signalservice.api.messages.multidevice.ContactsMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceContact;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceContactsOutputStream;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
@@ -97,7 +98,7 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
                                   Optional.fromNullable(recipient.getColor().serialize())));
 
       out.close();
-      sendUpdate(messageSender, contactDataFile);
+      sendUpdate(messageSender, contactDataFile, false);
 
     } catch(InvalidNumberException e) {
       Log.w(TAG, e);
@@ -126,7 +127,7 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
       }
 
       out.close();
-      sendUpdate(messageSender, contactDataFile);
+      sendUpdate(messageSender, contactDataFile, true);
     } catch(InvalidNumberException e) {
       Log.w(TAG, e);
     } finally {
@@ -159,7 +160,7 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
     }
   }
 
-  private void sendUpdate(SignalServiceMessageSender messageSender, File contactsFile)
+  private void sendUpdate(SignalServiceMessageSender messageSender, File contactsFile, boolean complete)
       throws IOException, UntrustedIdentityException, NetworkException
   {
     if (contactsFile.length() > 0) {
@@ -171,7 +172,7 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
                                                                                 .build();
 
       try {
-        messageSender.sendMessage(SignalServiceSyncMessage.forContacts(attachmentStream));
+        messageSender.sendMessage(SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream, complete)));
       } catch (IOException ioe) {
         throw new NetworkException(ioe);
       }

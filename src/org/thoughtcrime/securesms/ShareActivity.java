@@ -19,10 +19,12 @@ package org.thoughtcrime.securesms;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Process;
+import android.provider.OpenableColumns;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -235,7 +237,24 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
           return null;
         }
 
-        return PersistentBlobProvider.getInstance(context).create(masterSecret, inputStream, mimeType);
+        Cursor cursor   = getContentResolver().query(uris[0], new String[] {OpenableColumns.DISPLAY_NAME, OpenableColumns.SIZE}, null, null, null);
+        String fileName = null;
+        Long   fileSize = null;
+
+        try {
+          if (cursor != null && cursor.moveToFirst()) {
+            try {
+              fileName = cursor.getString(cursor.getColumnIndexOrThrow(OpenableColumns.DISPLAY_NAME));
+              fileSize = cursor.getLong(cursor.getColumnIndexOrThrow(OpenableColumns.SIZE));
+            } catch (IllegalArgumentException e) {
+              Log.w(TAG, e);
+            }
+          }
+        } finally {
+          if (cursor != null) cursor.close();
+        }
+
+        return PersistentBlobProvider.getInstance(context).create(masterSecret, inputStream, mimeType, fileName, fileSize);
       } catch (IOException ioe) {
         Log.w(TAG, ioe);
         return null;

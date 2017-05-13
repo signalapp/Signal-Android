@@ -5,13 +5,7 @@ import android.net.Uri;
 import android.support.annotation.Nullable;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-
-import java.io.IOException;
-import java.io.InputStream;
-
-import ws.com.google.android.mms.ContentType;
-import ws.com.google.android.mms.pdu.PduPart;
+import org.thoughtcrime.securesms.util.MediaUtil;
 
 public class GifSlide extends ImageSlide {
 
@@ -20,7 +14,7 @@ public class GifSlide extends ImageSlide {
   }
 
   public GifSlide(Context context, Uri uri, long size) {
-    super(context, constructAttachmentFromUri(context, uri, ContentType.IMAGE_GIF, size, true, null));
+    super(context, constructAttachmentFromUri(context, uri, MediaUtil.IMAGE_GIF, size, true, null, false));
   }
 
   @Override

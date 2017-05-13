@@ -7,22 +7,18 @@ import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.TextSecureExpiredException;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MediaStream;
+import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
-import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
-
-import ws.com.google.android.mms.ContentType;
-import ws.com.google.android.mms.MmsException;
 
 public abstract class SendJob extends MasterSecretJob {
 

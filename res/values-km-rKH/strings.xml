@@ -82,6 +82,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">ជំនួសទៅMMSគ្មានសុវត្ថិភាព?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">សារនេះនឹង <b>មិន</b> អ៊ិនគ្រីបទេ ព្រោះអ្នកទទួលឈប់ប្រើ Signal ។\n\nផ្ញើសារដោយគ្មានសុវត្ថិភាព?</string>
   <string name="ConversationItem_unable_to_open_media">មិនអាចស្វែករកកម្មវិធី ដើម្បីបើកឯកសារនេះ។</string>
+  <string name="ConversationItem_copied_text">បានចម្លង %s</string>
   <string name="ConversationItem_from_s">ពី %s</string>
   <string name="ConversationItem_to_s">ទៅ %s</string>
   <!--ConversationActivity-->
@@ -596,6 +597,10 @@
   <string name="attachment_type_selector__location_description">ទីតាំង</string>
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__gallery_description">រូបភាព ឬវីដេអូ</string>
+  <string name="attachment_type_selector__file_description">ឯកសារ</string>
+  <string name="attachment_type_selector__gallery">វិចិត្រសាល</string>
+  <string name="attachment_type_selector__file">ឯកសារ</string>
   <string name="attachment_type_selector__drawer_description">បិទបើកថតឯកសារភ្ជាប់</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">ឃ្លាសម្ងាត់ចាស់</string>
@@ -870,6 +875,9 @@
   <string name="arrays__normal">ធម្មតា</string>
   <string name="arrays__large">ធំ</string>
   <string name="arrays__extra_large">ធំបំផុត</string>
+  <string name="arrays__default">លំនាំដើម</string>
+  <string name="arrays__high">ខ្ពស់</string>
+  <string name="arrays__max">អតិបរិមា</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="other">%d ម៉ោង</item>
@@ -987,10 +995,13 @@
   <string name="preferences_chats__chats">ការជជែក</string>
   <string name="preferences_notifications__message_notifications">សារផ្តល់ដំណឹង</string>
   <string name="preferences_notifications__events">ព្រឹត្តិការណ៍</string>
+  <string name="preferences_notifications__in_chat_sounds">សំឡេងក្នុងការជជែក</string>
+  <string name="preferences_notifications__show">បង្ហាញ</string>
   <string name="preferences_chats__show_invitation_prompts">បង្ហាញការណែនាំលិខិតអញ្ជើញ</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">បង្ហាញការណែនាំលិខិតអញ្ជើញ សម្រាប់លេខទំនាក់ទំនង ក្រៅពី Signal</string>
   <string name="preferences_chats__message_text_size">ទំហំអក្សរសារ</string>
   <string name="preferences_events__contact_joined_signal">ទាក់ទងចូលរួម Signal</string>
+  <string name="preferences_notifications__priority">អទិភាព</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

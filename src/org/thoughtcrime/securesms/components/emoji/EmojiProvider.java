@@ -157,9 +157,9 @@ class EmojiProvider {
 
       canvas.drawBitmap(bmp,
                         new Rect((int)(row_index * intrinsicWidth),
-                                 (int)(row * intrinsicHeight + row * verticalPad),
-                                 (int)((row_index + 1) * intrinsicWidth),
-                                 (int)((row + 1) * intrinsicHeight + row * verticalPad)),
+                                 (int)(row * intrinsicHeight + row * verticalPad)+1,
+                                 (int)(((row_index + 1) * intrinsicWidth)-1),
+                                 (int)((row + 1) * intrinsicHeight + row * verticalPad)-1),
                         getBounds(),
                         paint);
     }

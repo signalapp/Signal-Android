@@ -46,6 +46,7 @@ public class Recipient {
 
   private @NonNull  String  number;
   private @Nullable String  name;
+  private @Nullable String  customLabel;
   private boolean stale;
   private boolean resolving;
 
@@ -70,6 +71,7 @@ public class Recipient {
       this.contactUri   = stale.contactUri;
       this.contactPhoto = stale.contactPhoto;
       this.color        = stale.color;
+      this.customLabel  = stale.customLabel;
     }
 
     future.addListener(new FutureTaskListener<RecipientDetails>() {
@@ -82,6 +84,7 @@ public class Recipient {
             Recipient.this.contactUri   = result.contactUri;
             Recipient.this.contactPhoto = result.avatar;
             Recipient.this.color        = result.color;
+            Recipient.this.customLabel  = result.customLabel;
             Recipient.this.resolving    = false;
           }
 
@@ -104,6 +107,7 @@ public class Recipient {
     this.contactPhoto = details.avatar;
     this.color        = details.color;
     this.resolving    = false;
+    this.customLabel  = details.customLabel;
   }
 
   public synchronized @Nullable Uri getContactUri() {
@@ -132,6 +136,10 @@ public class Recipient {
     return number;
   }
 
+  public @Nullable String getCustomLabel() {
+    return customLabel;
+  }
+
   public long getRecipientId() {
     return recipientId;
   }
@@ -157,7 +165,7 @@ public class Recipient {
   }
 
   public static Recipient getUnknownRecipient() {
-    return new Recipient(-1, new RecipientDetails("Unknown", "Unknown", null,
+    return new Recipient(-1, new RecipientDetails("Unknown", "Unknown", null, null,
                                                   ContactPhotoFactory.getDefaultContactPhoto(null), null));
   }
 

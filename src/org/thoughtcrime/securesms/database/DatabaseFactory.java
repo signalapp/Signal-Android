@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.InvalidMessageException;
@@ -41,8 +42,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
-import ws.com.google.android.mms.ContentType;
 
 public class DatabaseFactory {
 
@@ -78,8 +77,9 @@ public class DatabaseFactory {
   private static final int INTRODUCED_NOTIFIED                             = 31;
   private static final int INTRODUCED_DOCUMENTS                            = 32;
   private static final int INTRODUCED_FAST_PREFLIGHT                       = 33;
-  private static final int INTRODUCED_VERIFIED_ID_VERSION                  = 34;
-  private static final int DATABASE_VERSION                                = 34;
+  private static final int INTRODUCED_VOICE_NOTES                          = 34;
+  private static final int INTRODUCED_VERIFIED_ID_VERSION                  = 35;
+  private static final int DATABASE_VERSION                                = 35;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -382,7 +382,7 @@ public class DatabaseFactory {
         while (partCursor != null && partCursor.moveToNext()) {
           String contentType = partCursor.getString(partCursor.getColumnIndexOrThrow("ct"));
 
-          if (ContentType.isTextType(contentType)) {
+          if (MediaUtil.isTextType(contentType)) {
             try {
               long partId         = partCursor.getLong(partCursor.getColumnIndexOrThrow("_id"));
               String dataLocation = partCursor.getString(partCursor.getColumnIndexOrThrow("_data"));
@@ -402,9 +402,9 @@ public class DatabaseFactory {
             } catch (IOException e) {
               Log.w("DatabaseFactory", e);
             }
-          } else if (ContentType.isAudioType(contentType) ||
-                     ContentType.isImageType(contentType) ||
-                     ContentType.isVideoType(contentType))
+          } else if (MediaUtil.isAudioType(contentType) ||
+                     MediaUtil.isImageType(contentType) ||
+                     MediaUtil.isVideoType(contentType))
           {
             partCount++;
           }
@@ -862,6 +862,10 @@ public class DatabaseFactory {
 
       if (oldVersion < INTRODUCED_FAST_PREFLIGHT) {
         db.execSQL("ALTER TABLE part ADD COLUMN fast_preflight_id TEXT");
+      }
+
+      if (oldVersion < INTRODUCED_VOICE_NOTES) {
+        db.execSQL("ALTER TABLE part ADD COLUMN voice_note INTEGER DEFAULT 0");
       }
 
       if (oldVersion < INTRODUCED_VERIFIED_ID_VERSION) {

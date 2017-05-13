@@ -7,7 +7,6 @@ import android.util.Log;
 import android.util.Pair;
 
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.attachments.PointerAttachment;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
@@ -77,11 +76,10 @@ import org.whispersystems.signalservice.api.messages.multidevice.SentTranscriptM
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import ws.com.google.android.mms.MmsException;
+import org.thoughtcrime.securesms.mms.MmsException;
 
 public class PushDecryptJob extends ContextJob {
 

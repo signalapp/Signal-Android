@@ -97,6 +97,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">الاستعاضة برسالة وسائط متعددة غير مشفرة؟</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">هذه الرسالة <b>لن تكون</b> مشفرة لأن المستلم لم يعد مستخدم سيجنال. .\n\nهل ترغب في إرسالها غير مشفرة؟</string>
   <string name="ConversationItem_unable_to_open_media">لم يتم العثور على تطبيق قادر على فتح الملف.</string>
+  <string name="ConversationItem_copied_text">تم نسخ %s</string>
   <string name="ConversationItem_from_s">من %s</string>
   <string name="ConversationItem_to_s">إلى %s</string>
   <!--ConversationActivity-->
@@ -264,6 +265,7 @@
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">إلغاء ربط  \'%s\'؟</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">لن يكون إرسال واستقبال الرسائل ممكنا بمجرد إلغاء ربط الجهاز.</string>
+  <string name="DeviceListActivity_network_connection_failed">فشل في اتصالات الشبكة!</string>
   <string name="DeviceListActivity_try_again">حاول مجددا</string>
   <string name="DeviceListActivity_unlinking_device">جارٍ إلغاء ربط الجهاز...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">جارٍ إلغاء ربط الجهاز</string>
@@ -274,6 +276,7 @@
   <string name="DeviceListItem_last_active_s">آخر مرة %s</string>
   <string name="DeviceListItem_today">اليوم</string>
   <!--DocumentView-->
+  <string name="DocumentView_unknown_file">ملف مجهول</string>
   <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">شارك مع</string>
@@ -283,6 +286,9 @@
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">أهلا في سيجنال!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">تيكست سيكيور أصبح سيجنال الآن.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">تم دمج تيكست سيكيور وريدفون في تطبيق واحد الآن: سيجنال</string>
+  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">أهلاً بالاتصالات الفيديوية الآمنة.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">تدعم Signal حالياً الاتصالات الفيديوية الآمنة.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">تدعم Signal حالياً الاتصالات الفيديوية الآمنة. انقر لمعرفة المزيد.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">تصدير</string>
   <string name="ExportFragment_export_plaintext_to_storage">تصدير نسخة احتياطية غير مشفرة إلى الذاكرة؟</string>
@@ -304,6 +310,7 @@
   <string name="GiphyFragmentPagerAdapter_stickers">لصاقات</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">مجموعة جديدة</string>
+  <string name="GroupCreateActivity_actionbar_edit_title">تدقيق المجموعة</string>
   <string name="GroupCreateActivity_group_name_hint">أسم المجموعة</string>
   <string name="GroupCreateActivity_actionbar_mms_title">مجموعة وسائط متعددة جديدة</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">قمت باختيار شخص لا يدعم مجوعات سيجنال وبالتالي ستكون مجموعة وسائط متعددة.</string>
@@ -312,6 +319,7 @@
   <string name="GroupCreateActivity_contacts_no_members">تحتاج إلى شخص واحد على الأقل في المجموعة!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">لا يمكن قراءة رقم أحد أعضاء المجموعة بشكل صحيح. رجاء تصحيح أو حذف هذا العضو والمحاولة مرة أخرى.</string>
   <string name="GroupCreateActivity_avatar_content_description">الصورة الرمزية للمجموعة</string>
+  <string name="GroupCreateActivity_menu_apply_button">تطبيق</string>
   <string name="GroupCreateActivity_creating_group">الإنشاء جارٍ %1$s…</string>
   <string name="GroupCreateActivity_updating_group">التحديث جارٍ %1$s...</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">لا يمكن إضافة %1$s بسبب عدم استخدام سيجنال.</string>
@@ -372,8 +380,11 @@
   <string name="MessageDetailsRecipient_new_safety_number">رقم أمان جديد</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">سيجنال</string>
+  <string name="MessageRetrievalService_background_connection_enabled">تمكين الاتصالات الخلفية</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">خطأ بتخزين رسالة الوسائط المتعددة!</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">خطأ في الاتصال بمزود خدمة رسالة الوسائط المتعددة</string>
+  <string name="MmsDownloader_error_reading_mms_settings">خطأ في قراءة إعدادات مزود خدمة رسالة الوسائط المتعددة اللاسلكي</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">مكالمة سيجنال</string>
   <string name="NotificationBarManager_missed_call_from_s">مكالمة فائتة من %s</string>
@@ -386,12 +397,17 @@
   <string name="NotificationBarManager__cancel_call">إلغاء المكالمة</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">رسالة وسائط متعددة</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">تنزيل رسالة الوسائط المتعددة</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">خطأ في تنزيل رسالة الوسائط المتعددة، انقر لاعادة المحاولة</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">لقد استلمت رسالة مشفرة من إصدارة سيجنال قديمة وتوقف دعمها. من فضلك اطلب من الراسل الترقية إلي أحدث إصدار وإعادة إرسال الرسالة.</string>
   <string name="MessageRecord_left_group">لقد تركت المجموعة.</string>
+  <string name="MessageRecord_you_updated_group">قمت بتحديث المحموعة.</string>
+  <string name="MessageRecord_s_updated_group">%s قام بتحديث المحموعة.</string>
   <string name="MessageRecord_s_called_you">%s قام بالاتصال</string>
   <string name="MessageRecord_called_s">%s قام بالاتصال</string>
   <string name="MessageRecord_missed_call_from">مكالمة فائتة من %s</string>
+  <string name="MessageRecord_s_joined_signal">%s انضم إلى Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">لقد قمت بتحديد توقيت اختفاء الرسالة ليكون %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">حدد %1$s توقيت اختفاء الرسالة ليكون %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">تم تغيير رقم الأمان الخاص بك وبـ%s.</string>
@@ -414,6 +430,7 @@
   <string name="DeviceProvisioningActivity_content_progress_no_device">لم يتم العثور على جهاز.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">خطأ في الشبكة.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">الرمز غير سليم.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">عذراً، العديد من أجهزتك مسجلة مسبقاً. حاول فصل بعضها</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">عذرا، الرابط غير صحيح.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">ربط سيجنال بجهاز؟</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">يبدو أنك تحاول ربط سيجنال باستخدام ماسح ضوئي خارجي. رجاء مسح الكود مرة أخرى باستخدام الخاصية المدمجة في سيجنال من أجل حمايتك.</string>
@@ -444,6 +461,7 @@
   <string name="RecipientPreferenceActivity_unblock">رفع الحظر</string>
   <string name="RecipientPreferenceActivity_enabled">مفعل</string>
   <string name="RecipientPreferenceActivity_disabled">معطل</string>
+  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">متوفر حالما تبعث رسالة أو تُستلم.</string>
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">مجموعة بلا اسم</string>
   <!--RedPhone-->
@@ -479,6 +497,12 @@
 رجاء التأكد من أنه رقمك! نحن على وشك التحقق بواسطة رسالة نصية.</string>
   <string name="RegistrationActivity_continue">استمر</string>
   <string name="RegistrationActivity_edit">تحرير</string>
+  <string name="RegistrationActivity_missing_google_play_services">خدمات Google Play غير موجودة</string>
+  <string name="RegistrationActivity_i_understand">فهمت</string>
+  <string name="RegistrationActivity_play_services_error">خطأ في خدمات Play </string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">جاري تحديث خدمات Google Play  أو أنها غير موجودة مؤقتاً</string>
+  <string name="RegistrationActivity_more_information">المزيد من المعلومات</string>
+  <string name="RegistrationActivity_less_information">معلومات أقل</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">مشاكل محتملة</string>
   <!--RegistrationProgressActivity-->
@@ -519,6 +543,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%s أعاد ضبط تأمين المحادثة.</string>
   <string name="SmsMessageRecord_duplicate_message">رسالة مكررة.</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_group_updated">تم تحديث المحموعة</string>
   <string name="ThreadRecord_left_the_group">غادر المجموعة</string>
   <string name="ThreadRecord_secure_session_reset">إعادة ضبط جلسة آمنة.</string>
   <string name="ThreadRecord_draft">مسودة:</string>
@@ -526,9 +551,12 @@
   <string name="ThreadRecord_called_you">مكالمات واردة</string>
   <string name="ThreadRecord_missed_call">مكالمة فائتة</string>
   <string name="ThreadRecord_media_message">رسالة وسائط متعددة</string>
+  <string name="ThreadRecord_s_joined_signal">%s انضم إلى Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">ضبط توقيت إخفاء الرسائل إلى %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">تم تغيير رقم الأمان الخاص بك وبـ%s.</string>
   <!--UpdateApkReadyListener-->
+  <string name="UpdateApkReadyListener_Signal_update">تحديث Signal </string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">يتوفر الاصدار الجديد لـ Signal، انقر للتحديث</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">متصلك يستعمل نسخة قديمة من تطبيق سيقنال. من فضلك اطلب منه تحديث التطبيق ليتسنى لك التحقق من رقم الأمان.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">إن متصلك هذا يستعمل نسخة تطبيق سيقنـال أحدث ورمز QR فيها لا يتوافق مع نسختك.
@@ -542,7 +570,9 @@
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">ابدأ على الرغم من الطلب الحالي؟</string>
   <string name="KeyExchangeInitiator_send">أرسل</string>
   <!--MessageDisplayHelper-->
+  <string name="MessageDisplayHelper_bad_encrypted_message">رسالة مشفرة رديئة</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">انتظر، جارٍ فك التشفير..</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">الرسالة مشفرة دون وجود قناة اتصال...</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">خطأ بفك تشفير الرسالة.</string>
   <!--ThreadDatabase-->
@@ -556,6 +586,8 @@
   <string name="MmsDatabase_error_decrypting_message">خطأ بفك شفرة الرسالة.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">انتظر، يتم فك تشفير رسالة الوسائط المتعددة...</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">رسالة مشفرة رديئة</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">الرسالة مشفرة دون وجود قناة اتصال...</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">كتم الإشعارات</string>
   <!--ApplicationMigrationService-->
@@ -572,9 +604,11 @@
   <string name="MediaPreviewActivity_you">أنت</string>
   <string name="MediaPreviewActivity_cant_display">خطأ في معاينة هذه الصورة</string>
   <string name="MediaPreviewActivity_unssuported_media_type">غير مدعوم.</string>
+  <string name="MediaPreviewActivity_draft">مسودة:</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d رسائل جديدة في %2$d محادثات</string>
   <string name="MessageNotifier_most_recent_from_s">الأحدث من: %1$s</string>
+  <string name="MessageNotifier_locked_message">رسالة مؤمنة</string>
   <string name="MessageNotifier_media_message_with_text">رسالة وسائط متعددة: %s</string>
   <string name="MessageNotifier_no_subject">(بلا عنوان)</string>
   <string name="MessageNotifier_message_delivery_failed">فشل توصيل الرسالة.</string>
@@ -595,14 +629,17 @@
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">الردود السريعة غير متاحة عند قفل سيجنال!</string>
   <string name="QuickResponseService_problem_sending_message">مشكلة في الإرسال!</string>
   <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_open_directory">قائمة مفتوحة</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">سيجنال</string>
   <string name="SingleRecipientNotificationBuilder_new_message">رسالة جديدة</string>
   <!--VideoPlayer-->
+  <string name="VideoPlayer_error_playing_video">خطأ في تشغيل الفيديو</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">لربما ترغب بالتحقق من رقم الأمان مع هذا المتصل.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">رقم أمان جديد</string>
   <!--WebRtcCallControls-->
+  <string name="WebRtcCallControls_tap_to_enable_your_video">انقر لدعم الفيديو</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">صوت</string>
   <string name="attachment_type_selector__audio_description">صوت</string>
@@ -614,6 +651,10 @@
   <string name="attachment_type_selector__location_description">موقع جغرافي</string>
   <string name="attachment_type_selector__gif">صورة GIF</string>
   <string name="attachment_type_selector__gif_description">صورة Gif</string>
+  <string name="attachment_type_selector__gallery_description">صورة أو فيديو</string>
+  <string name="attachment_type_selector__file_description">ملف</string>
+  <string name="attachment_type_selector__gallery">عرض الصور</string>
+  <string name="attachment_type_selector__file">ملفملف</string>
   <string name="attachment_type_selector__drawer_description">تفعيل أو تثبيط درج المرفقات</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">العبارة السرية القديمة</string>
@@ -629,11 +670,15 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">اختيار من أجل</string>
   <!--blocked_contacts_fragment-->
+  <string name="blocked_contacts_fragment__no_blocked_contacts">لا توجد جهات اتصال محظورة </string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">لا توجد مكالمات حديثة.</string>
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">إخطارات المحادثة مكتومة</string>
   <!--conversation_activity-->
+  <string name="conversation_activity__type_message_push">رسالة من Signal</string>
+  <string name="conversation_activity__type_message_sms_insecure">رسائل نصية غير آمنة</string>
+  <string name="conversation_activity__type_message_mms_insecure">رسائل وسائط متعددة غير آمنة</string>
   <string name="conversation_activity__from_sim_name">من %1$s</string>
   <string name="conversation_activity__send">أرسل</string>
   <string name="conversation_activity__remove">إزالة</string>
@@ -668,6 +713,7 @@
   <string name="conversation_fragment_cab__batch_selection_mode">وضع اختيار الدفعات</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s اختيار</string>
   <!--conversation_fragment-->
+  <string name="conversation_fragment__scroll_to_the_bottom_content_description">النزول إلى الأسفل</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">تحميل البلدان جارٍ ...</string>
   <string name="country_selection_fragment__search">بحث</string>
@@ -676,6 +722,7 @@
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">ربط الجهاز</string>
   <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_linked">لا توجد أجهزة موصولة</string>
   <string name="device_list_fragment__link_new_device">ربط جهاز جديد</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">استمر</string>
@@ -751,9 +798,11 @@
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">مطالعة المحادثة بالكامل</string>
   <!--media_overview_activity-->
+  <string name="media_overview_activity__no_media">لا يوجد وسيط</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">تحقق</string>
   <string name="message_recipients_list_item__resend">إعادة الإرسال</string>
+  <string name="message_recipients_list_item__resending">إعادة الارسال</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="zero">%1$s انضموا إلى المجموعة.</item>
@@ -860,6 +909,8 @@
   <string name="AndroidManifest__verify_safety_number">تحقق من رقم الأمان</string>
   <string name="AndroidManifest__log_submit">أرسل سجل التشغيل.</string>
   <string name="AndroidManifest__media_preview">معاينة الوسائط</string>
+  <string name="AndroidManifest__all_media">جميع الوسائط</string>
+  <string name="AndroidManifest__all_media_named">جميع الوسائط بـ %1$s</string>
   <string name="AndroidManifest__message_details">تفاصيل الرسالة</string>
   <string name="AndroidManifest__linked_devices">الأجهزة المتصلة</string>
   <string name="AndroidManifest__invite_friends">دعوة الأصدقاء</string>
@@ -882,7 +933,14 @@
   <string name="arrays__images">صور</string>
   <string name="arrays__audio">صوت</string>
   <string name="arrays__video">فيديو</string>
+  <string name="arrays__documents">الوثائق</string>
+  <string name="arrays__small">صغيرة</string>
   <string name="arrays__normal">طبيعي</string>
+  <string name="arrays__large">كبيرة</string>
+  <string name="arrays__extra_large">كبيرة جداً</string>
+  <string name="arrays__default">افتراضي</string>
+  <string name="arrays__high">عالي</string>
+  <string name="arrays__max">الأقصى</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="zero">%d ساعة</item>
@@ -996,6 +1054,20 @@
   <string name="preferences_chats__message_trimming">تقليم الرسالة</string>
   <string name="preferences_advanced__use_system_emoji">استخدام الرموز التعبيرية بالنظام</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">تعطيل الرموز التعبيرية المدمجة في سيجنال</string>
+  <string name="preferences_advanced__video_calling_beta">بيتا الاتصالات الفيديوية</string>
+  <string name="preferences_advanced__always_relay_calls">مناوبة الاتصالات دوماً</string>
+  <string name="preferences_app_protection__app_access">دخول البرنامج</string>
+  <string name="preferences_app_protection__communication">اتصال</string>
+  <string name="preferences_chats__chats">دردشة</string>
+  <string name="preferences_notifications__message_notifications">تنويهات الرسائل</string>
+  <string name="preferences_notifications__events">الأحداث</string>
+  <string name="preferences_notifications__in_chat_sounds">أصوات خلال الدردشة</string>
+  <string name="preferences_notifications__show">اظهار</string>
+  <string name="preferences_chats__show_invitation_prompts">اظهر رسالة الدعوة</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">عرض رسائل الدعوات من جهات الاتصال التي لا تستخدم Signal</string>
+  <string name="preferences_chats__message_text_size">حجم الخط في الرسائل</string>
+  <string name="preferences_events__contact_joined_signal">انضم إلى Signal</string>
+  <string name="preferences_notifications__priority">أولوية</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1050,8 +1122,10 @@
   <string name="conversation_unmuted__mute_notifications">كتم الإشعارات</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">إضافات</string>
+  <string name="conversation__menu_edit_group">تدقيق المجموعة</string>
   <string name="conversation__menu_leave_group">أترك المجموعة</string>
   <string name="conversation__menu_delete_thread">حذف المحادثة</string>
+  <string name="conversation__menu_view_all_media">جميع الوسائط</string>
   <string name="conversation__menu_conversation_settings">إعدادات المحادثة</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">توسيع الإشعار</string>
@@ -1110,6 +1184,7 @@
   <!--media_preview-->
   <string name="media_preview__save_title">أحفظ</string>
   <string name="media_preview__forward_title">إعادة إرسال</string>
+  <string name="media_preview__all_media_title">جميع الوسائط</string>
   <!--media_overview-->
   <string name="media_overview__save_all">حفظ الكل</string>
   <!--media_preview_activity-->

@@ -17,14 +17,10 @@
 package org.thoughtcrime.securesms.database;
 
 import android.content.ContentValues;
-import android.util.Log;
+
+import com.google.android.mms.pdu_alt.EncodedStringValue;
 
 import org.thoughtcrime.securesms.util.Util;
-
-import ws.com.google.android.mms.pdu.CharacterSets;
-import ws.com.google.android.mms.pdu.EncodedStringValue;
-
-import java.io.UnsupportedEncodingException;
 
 public class ContentValuesBuilder {
 

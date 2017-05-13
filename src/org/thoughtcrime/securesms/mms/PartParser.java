@@ -2,14 +2,15 @@ package org.thoughtcrime.securesms.mms;
 
 import android.util.Log;
 
+import com.google.android.mms.ContentType;
+import com.google.android.mms.pdu_alt.CharacterSets;
+import com.google.android.mms.pdu_alt.PduBody;
+import com.google.android.mms.pdu_alt.PduPart;
+
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.UnsupportedEncodingException;
 
-import ws.com.google.android.mms.ContentType;
-import ws.com.google.android.mms.pdu.CharacterSets;
-import ws.com.google.android.mms.pdu.PduBody;
-import ws.com.google.android.mms.pdu.PduPart;
 
 public class PartParser {
   public static String getMessageText(PduBody body) {

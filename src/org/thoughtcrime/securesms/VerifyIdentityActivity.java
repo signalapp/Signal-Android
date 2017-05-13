@@ -125,8 +125,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       extras.putString(VerifyDisplayFragment.LOCAL_NUMBER, TextSecurePreferences.getLocalNumber(this));
 
       RecipientPreferenceDatabase db = DatabaseFactory.getRecipientPreferenceDatabase(this);
-      Optional<RecipientPreferenceDatabase.RecipientsPreferences> preferences =
-               db.getRecipientsPreferences(new long[]{recipient.getRecipientId()});
+      Optional<RecipientPreferenceDatabase.RecipientsPreferences> preferences = db.getRecipientsPreferences(new long[]{recipient.getRecipientId()});
 
       Boolean verified = false;
       if (preferences.isPresent()) {
@@ -253,9 +252,9 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
     private TextView             description;
     private View.OnClickListener clickListener;
 
-    private TextView[] codes                = new TextView[12];
-    private boolean    animateSuccessOnDraw = false;
-    private boolean    animateFailureOnDraw = false;
+    private TextView[]                  codes                = new TextView[12];
+    private boolean                     animateSuccessOnDraw = false;
+    private boolean                     animateFailureOnDraw = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) {

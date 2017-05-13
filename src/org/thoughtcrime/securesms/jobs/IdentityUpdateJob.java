@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -12,12 +13,16 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.IncomingIdentityUpdateMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
+import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 public class IdentityUpdateJob extends MasterSecretJob {
 
+  private static final String TAG = IdentityUpdateJob.class.getSimpleName();
+  
   private final long recipientId;
 
   public IdentityUpdateJob(Context context, long recipientId) {
@@ -29,15 +34,22 @@ public class IdentityUpdateJob extends MasterSecretJob {
   }
 
   @Override
-  public void onRun(MasterSecret masterSecret) throws Exception {
+  public void onRun(MasterSecret masterSecret) {
     Recipient            recipient      = RecipientFactory.getRecipientForId(context, recipientId, true);
     Recipients           recipients     = RecipientFactory.getRecipientsFor(context, recipient, true);
-    String               number         = recipient.getNumber();
     long                 time           = System.currentTimeMillis();
     SmsDatabase          smsDatabase    = DatabaseFactory.getSmsDatabase(context);
     ThreadDatabase       threadDatabase = DatabaseFactory.getThreadDatabase(context);
     GroupDatabase        groupDatabase  = DatabaseFactory.getGroupDatabase(context);
     GroupDatabase.Reader reader         = groupDatabase.getGroups();
+
+    String number = recipient.getNumber();
+
+    try {
+      number = Util.canonicalizeNumber(context, number);
+    } catch (InvalidNumberException e) {
+      Log.w(TAG, e);
+    }
 
     GroupDatabase.GroupRecord groupRecord;
 

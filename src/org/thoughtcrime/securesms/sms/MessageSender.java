@@ -52,7 +52,7 @@ import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.IOException;
 
-import ws.com.google.android.mms.MmsException;
+import org.thoughtcrime.securesms.mms.MmsException;
 
 public class MessageSender {
 

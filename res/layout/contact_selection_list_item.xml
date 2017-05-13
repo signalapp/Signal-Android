@@ -16,8 +16,8 @@
 
     <org.thoughtcrime.securesms.components.AvatarImageView
             android:id="@+id/contact_photo_image"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:foreground="@drawable/contact_photo_background"
             android:cropToPadding="true"
             tools:src="@color/blue_600"

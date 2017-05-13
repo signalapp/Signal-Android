@@ -17,34 +17,10 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-
 public class PlaintextBackupImporter {
 
   public static void importPlaintextFromSd(Context context, MasterSecret masterSecret)
       throws NoExternalStorageException, IOException
-  {
-    Log.w("PlaintextBackupImporter", "Importing plaintext...");
-    verifyExternalStorageForPlaintextImport();
-    importPlaintext(context, masterSecret);
-  }
-
-  private static void verifyExternalStorageForPlaintextImport() throws NoExternalStorageException {
-    if (!Environment.getExternalStorageDirectory().canRead() || !getPlaintextExportFile().exists())
-      throw new NoExternalStorageException();
-  }
-
-  private static File getPlaintextExportFile() {
-    File backup    = PlaintextBackupExporter.getPlaintextExportFile();
-    File oldBackup = new File(Environment.getExternalStorageDirectory(), "TextSecurePlaintextBackup.xml");
-
-    if (!backup.exists() && oldBackup.exists()) {
-      return oldBackup;
-    }
-    return backup;
-  }
-
-  private static void importPlaintext(Context context, MasterSecret masterSecret)
-      throws IOException
   {
     Log.w("PlaintextBackupImporter", "importPlaintext()");
     SmsDatabase    db          = DatabaseFactory.getSmsDatabase(context);
@@ -54,7 +30,7 @@ public class PlaintextBackupImporter {
       ThreadDatabase threads         = DatabaseFactory.getThreadDatabase(context);
       XmlBackup      backup          = new XmlBackup(getPlaintextExportFile().getAbsolutePath());
       MasterCipher   masterCipher    = new MasterCipher(masterSecret);
-      Set<Long>      modifiedThreads = new HashSet<Long>();
+      Set<Long>      modifiedThreads = new HashSet<>();
       XmlBackup.XmlBackupItem item;
 
       while ((item = backup.getNext()) != null) {
@@ -78,7 +54,7 @@ public class PlaintextBackupImporter {
         addTranslatedTypeToStatement(statement, 8, item.getType());
         addNullToStatement(statement, 9);
         addStringToStatement(statement, 10, item.getSubject());
-        addEncryptedStingToStatement(masterCipher, statement, 11, item.getBody());
+        addEncryptedStringToStatement(masterCipher, statement, 11, item.getBody());
         addStringToStatement(statement, 12, item.getServiceCenter());
         addLongToStatement(statement, 13, threadId);
         modifiedThreads.add(threadId);
@@ -98,7 +74,14 @@ public class PlaintextBackupImporter {
     }
   }
 
-  private static void addEncryptedStingToStatement(MasterCipher masterCipher, SQLiteStatement statement, int index, String value) {
+  private static File getPlaintextExportFile() throws NoExternalStorageException {
+    File backup    = PlaintextBackupExporter.getPlaintextExportFile();
+    File oldBackup = new File(Environment.getExternalStorageDirectory(), "TextSecurePlaintextBackup.xml");
+
+    return !backup.exists() && oldBackup.exists() ? oldBackup : backup;
+  }
+
+  private static void addEncryptedStringToStatement(MasterCipher masterCipher, SQLiteStatement statement, int index, String value) {
     if (value == null || value.equals("null")) {
       statement.bindNull(index);
     } else {
@@ -130,6 +113,4 @@ public class PlaintextBackupImporter {
            ourType == MmsSmsColumns.Types.BASE_SENT_TYPE ||
            ourType == MmsSmsColumns.Types.BASE_SENT_FAILED_TYPE;
   }
-
-
 }
