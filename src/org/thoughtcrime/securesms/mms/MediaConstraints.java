@@ -18,33 +18,33 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import ws.com.google.android.mms.ContentType;
-
 public abstract class MediaConstraints {
   private static final String TAG = MediaConstraints.class.getSimpleName();
 
-  public static MediaConstraints MMS_CONSTRAINTS  = new MmsMediaConstraints();
-  public static MediaConstraints PUSH_CONSTRAINTS = new PushMediaConstraints();
+  public static MediaConstraints getPushMediaConstraints() {
+    return new PushMediaConstraints();
+  }
+
+  public static MediaConstraints getMmsMediaConstraints(int subscriptionId) {
+    return new MmsMediaConstraints(subscriptionId);
+  }
 
   public abstract int getImageMaxWidth(Context context);
   public abstract int getImageMaxHeight(Context context);
-  public abstract int getImageMaxSize();
+  public abstract int getImageMaxSize(Context context);
 
-  public abstract int getGifMaxSize();
-
-  public abstract int getVideoMaxSize();
-
-  public abstract int getAudioMaxSize();
-
-  public abstract int getDocumentMaxSize();
+  public abstract int getGifMaxSize(Context context);
+  public abstract int getVideoMaxSize(Context context);
+  public abstract int getAudioMaxSize(Context context);
+  public abstract int getDocumentMaxSize(Context context);
 
   public boolean isSatisfied(@NonNull Context context, @NonNull MasterSecret masterSecret, @NonNull Attachment attachment) {
     try {
-      return (MediaUtil.isGif(attachment)    && attachment.getSize() <= getGifMaxSize()   && isWithinBounds(context, masterSecret, attachment.getDataUri())) ||
-             (MediaUtil.isImage(attachment)  && attachment.getSize() <= getImageMaxSize() && isWithinBounds(context, masterSecret, attachment.getDataUri())) ||
-             (MediaUtil.isAudio(attachment)  && attachment.getSize() <= getAudioMaxSize()) ||
-             (MediaUtil.isVideo(attachment)  && attachment.getSize() <= getVideoMaxSize()) ||
-             (MediaUtil.isFile(attachment) && attachment.getSize() <= getDocumentMaxSize());
+      return (MediaUtil.isGif(attachment)    && attachment.getSize() <= getGifMaxSize(context)   && isWithinBounds(context, masterSecret, attachment.getDataUri())) ||
+             (MediaUtil.isImage(attachment)  && attachment.getSize() <= getImageMaxSize(context) && isWithinBounds(context, masterSecret, attachment.getDataUri())) ||
+             (MediaUtil.isAudio(attachment)  && attachment.getSize() <= getAudioMaxSize(context)) ||
+             (MediaUtil.isVideo(attachment)  && attachment.getSize() <= getVideoMaxSize(context)) ||
+             (MediaUtil.isFile(attachment) && attachment.getSize() <= getDocumentMaxSize(context));
     } catch (IOException ioe) {
       Log.w(TAG, "Failed to determine if media's constraints are satisfied.", ioe);
       return false;
@@ -78,7 +78,7 @@ public abstract class MediaConstraints {
     try {
       // XXX - This is loading everything into memory! We want the send path to be stream-like.
       return new MediaStream(new ByteArrayInputStream(BitmapUtil.createScaledBytes(context, new DecryptableUri(masterSecret, attachment.getDataUri()), this)),
-                             ContentType.IMAGE_JPEG);
+                             MediaUtil.IMAGE_JPEG);
     } catch (BitmapDecodingException e) {
       throw new IOException(e);
     }

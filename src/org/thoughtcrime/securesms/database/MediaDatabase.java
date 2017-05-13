@@ -27,6 +27,7 @@ public class MediaDatabase extends Database {
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_DISPOSITION + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DIGEST + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.FAST_PREFLIGHT_ID + ", "
+        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.VOICE_NOTE + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.NAME + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.MESSAGE_BOX + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.DATE_SENT + ", "

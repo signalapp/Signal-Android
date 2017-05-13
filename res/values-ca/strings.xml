@@ -85,6 +85,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Voleu canviar a MMS sense xifrar?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Aquest missatge <b>no</b> es xifrarà perquè el destinatari ja no és usuari del Signal.\n\nVoleu enviar un missatge no segur?</string>
   <string name="ConversationItem_unable_to_open_media">No s\'ha trobat una aplicació que pugui obrir aquest fitxer.</string>
+  <string name="ConversationItem_copied_text">Ha copiat %s</string>
   <string name="ConversationItem_from_s">de %s</string>
   <string name="ConversationItem_to_s">a %s</string>
   <!--ConversationActivity-->
@@ -613,6 +614,10 @@ Comproveu que aquest és el vostre número. Anem a verificar-ho amb un SMS.</str
   <string name="attachment_type_selector__location_description">Ubicació</string>
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__gallery_description">Imatge o vídeo</string>
+  <string name="attachment_type_selector__file_description">Fitxer</string>
+  <string name="attachment_type_selector__gallery">Galeria</string>
+  <string name="attachment_type_selector__file">Fitxer</string>
   <string name="attachment_type_selector__drawer_description">Commuta la pestanya d\'adjunts</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Contrasenya antiga</string>
@@ -902,6 +907,9 @@ ha fallat.
   <string name="arrays__normal">Normal</string>
   <string name="arrays__large">Gran</string>
   <string name="arrays__extra_large">Molt gran</string>
+  <string name="arrays__default">Per defecte</string>
+  <string name="arrays__high">Alta</string>
+  <string name="arrays__max">Màxima</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d hora</item>
@@ -1020,9 +1028,13 @@ ha fallat.
   <string name="preferences_chats__chats">Xats</string>
   <string name="preferences_notifications__message_notifications">Notificacions de missatge</string>
   <string name="preferences_notifications__events">Esdeveniments</string>
+  <string name="preferences_notifications__in_chat_sounds">Sons al xat</string>
+  <string name="preferences_notifications__show">Mostra</string>
   <string name="preferences_chats__show_invitation_prompts">Mostra els avisos d\'invitacions</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Mostra els avisos d\'invitacions per als contactes sense Signal</string>
   <string name="preferences_chats__message_text_size">Mida de la lletra dels missatges</string>
+  <string name="preferences_events__contact_joined_signal">El contacte s\'ha unit al Signal</string>
+  <string name="preferences_notifications__priority">Prioritat</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

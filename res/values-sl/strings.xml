@@ -973,7 +973,7 @@ bila uspešna.</string>
   <string name="preferences__show_a_notification_for_new_signal_contacts">Prikaži obvestilo o novih uporabnikih aplikacije Signal</string>
   <string name="preferences__led_color">Barva LED</string>
   <string name="preferences__led_color_unknown">Neznano</string>
-  <string name="preferences__pref_led_blink_title">Vzorec utripanja LED</string>
+  <string name="preferences__pref_led_blink_title">Utripanje LED</string>
   <string name="preferences__pref_led_blink_custom_pattern_title">Nastavi utripanje LED po meri</string>
   <string name="preferences__pref_led_blink_custom_pattern_on_for">Prižgano:</string>
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Izklopljeno za:</string>

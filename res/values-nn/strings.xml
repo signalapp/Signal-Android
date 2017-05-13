@@ -151,7 +151,7 @@
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Vil du lagra på eininga?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-    <item quantity="one">Viss du lagrar dette mediet på eininga som vanleg fil, kan andre program få tilgjenge til det.\n\ned du sikker på at du vil halda fram?</item>
+    <item quantity="one">Viss du lagrar dette mediet på eininga som ei vanleg fil, kan andre program få tilgang til det.\n\nEr du sikker på at du vil halda fram?</item>
     <item quantity="other">Viss du lagrar desse %1$d media på eininga som vanlege filer, kan andre program få tilgang til dei.\n\nEr du sikker på at du vil halda fram?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">

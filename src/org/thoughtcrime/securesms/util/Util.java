@@ -40,6 +40,8 @@ import android.text.style.StyleSpan;
 import android.util.Log;
 import android.widget.EditText;
 
+import com.google.android.mms.pdu_alt.CharacterSets;
+import com.google.android.mms.pdu_alt.EncodedStringValue;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
 import org.thoughtcrime.securesms.BuildConfig;
@@ -64,9 +66,6 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-
-import ws.com.google.android.mms.pdu.CharacterSets;
-import ws.com.google.android.mms.pdu.EncodedStringValue;
 
 public class Util {
   private static final String TAG = Util.class.getSimpleName();

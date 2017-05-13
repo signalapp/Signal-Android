@@ -21,10 +21,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.telephony.SmsManager;
 import android.util.Log;
+
+import com.android.mms.service_alt.MmsConfig;
+import com.google.android.mms.pdu_alt.PduParser;
+import com.google.android.mms.pdu_alt.SendConf;
 
 import org.thoughtcrime.securesms.providers.MmsBodyProvider;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
@@ -33,9 +38,6 @@ import org.thoughtcrime.securesms.util.Util;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
-
-import ws.com.google.android.mms.pdu.PduParser;
-import ws.com.google.android.mms.pdu.SendConf;
 
 public class OutgoingLollipopMmsConnection extends LollipopMmsConnection implements OutgoingMmsConnection {
   private static final String TAG    = OutgoingLollipopMmsConnection.class.getSimpleName();
@@ -75,10 +77,21 @@ public class OutgoingLollipopMmsConnection extends LollipopMmsConnection impleme
         smsManager = SmsManager.getDefault();
       }
 
+      Bundle configOverrides = new Bundle();
+      configOverrides.putBoolean(SmsManager.MMS_CONFIG_GROUP_MMS_ENABLED, true);
+
+      MmsConfig mmsConfig = MmsConfigManager.getMmsConfig(getContext(), subscriptionId);
+
+      if (mmsConfig != null) {
+        MmsConfig.Overridden overridden = new MmsConfig.Overridden(mmsConfig, new Bundle());
+        configOverrides.putString(SmsManager.MMS_CONFIG_HTTP_PARAMS, overridden.getHttpParams());
+        configOverrides.putInt(SmsManager.MMS_CONFIG_MAX_MESSAGE_SIZE, overridden.getMaxMessageSize());
+      }
+
       smsManager.sendMultimediaMessage(getContext(),
                                        pointer.getUri(),
                                        null,
-                                       null,
+                                       configOverrides,
                                        getPendingIntent());
 
       waitForResult();

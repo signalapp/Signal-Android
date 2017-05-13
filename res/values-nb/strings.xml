@@ -64,6 +64,7 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Inngående samtale</string>
   <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Ditt sikkerhetsnummer med %1$s er endret. Dette kan enten bety at noen prøver å fange opp kommunikasjonen din, eller at %2$s bare reinstallert Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Du ønsker kanskje å bekrefte din sikkerhets nummer med denne kontakten.</string>
   <string name="ConfirmIdentityDialog_accept">Godta</string>
   <!--ContactsDatabase-->
@@ -84,6 +85,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Vil du bruke ukryptert MMS som reserveløsning?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Denne meldinga blir <b>ikke</b> kryptert, fordi mottakeren ikke bruker Signal lenger.\n\nVil du sende den ukryptert?</string>
   <string name="ConversationItem_unable_to_open_media">Fant ingen programmer som kan åpne dette innholdet.</string>
+  <string name="ConversationItem_copied_text">Kopiert %s</string>
   <string name="ConversationItem_from_s">fra %s</string>
   <string name="ConversationItem_to_s">til %s</string>
   <!--ConversationActivity-->
@@ -129,6 +131,10 @@
   <string name="ConversationActivity_unable_to_record_audio">Klarte ikke å ta opp lyd.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Du har ingen programmer på denne enheten som kan håndtere denne lenka.</string>
   <!--ConversationAdapter-->
+  <plurals name="ConversationAdapter_n_unread_messages">
+    <item quantity="one">%d ulest melding</item>
+    <item quantity="other">%d uleste meldinger</item>
+  </plurals>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Meldingsdetaljer</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nSendt/mottatt: %2$s</string>
@@ -215,7 +221,9 @@
   <string name="DeviceListItem_last_active_s">Sist aktiv %s</string>
   <string name="DeviceListItem_today">I dag</string>
   <!--DocumentView-->
+  <string name="DocumentView_unknown_file">Ukjent fil</string>
   <!--DozeReminder-->
+  <string name="DozeReminder_optimize_for_missing_play_services">Optimaliser for manglende Play Tjenester</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Del med</string>
   <!--ExperienceUpgradeActivity-->
@@ -224,6 +232,10 @@
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Velkommen til Signal!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure er nå Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure og RedPhone er nå ett program: Signal. Trykk for å utforske.</string>
+  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Si hei til sikre videosamtaler.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal støtter nå sikker videosamtaler. Bare start et signalanrop som normalt, trykk på videoknappen og vink hei.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal støtter nå sikker videosamtaler.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal støtter nå sikker videosamtaler. Trykk for å utforske.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Eksporter</string>
   <string name="ExportFragment_export_plaintext_to_storage">Vil du eksporter klartekst som vanlig fil?</string>
@@ -252,6 +264,7 @@
   <string name="GroupCreateActivity_contacts_no_members">Du må ta med minst én person i gruppa.</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Et av gruppemedlemmene har et nummer som ikke ble tolket skikkelig. Rett opp eller fjern aktuell kontakt, og prøv igjen.</string>
   <string name="GroupCreateActivity_avatar_content_description">Gruppe-avatar</string>
+  <string name="GroupCreateActivity_menu_apply_button">Bruk</string>
   <string name="GroupCreateActivity_creating_group">Lager %1$s …</string>
   <string name="GroupCreateActivity_updating_group">Oppdaterer %1$s …</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Klarte ikke å legge til %1$s fordi vedkommende ikke bruker Signal.</string>
@@ -336,9 +349,12 @@ fører dette til dupliserte meldinger.</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Mottatt en melding som er kryptert med en gammel versjon av Signal som ikke lenger støttes. Be avsenderen om å oppdatere til nyeste versjon og sende meldinga på nytt.</string>
   <string name="MessageRecord_left_group">Du har forlatt gruppa.</string>
+  <string name="MessageRecord_you_updated_group">Du har oppdatert gruppen.</string>
+  <string name="MessageRecord_s_updated_group">%s oppdaterte gruppen.</string>
   <string name="MessageRecord_s_called_you">%s ringte deg</string>
   <string name="MessageRecord_called_s">Ringte %s</string>
   <string name="MessageRecord_missed_call_from">Tapt anrop fra %s</string>
+  <string name="MessageRecord_s_joined_signal">%s ble med Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du satt utløpstid for meldinger til %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s satt utløpstid for meldinger til %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Din sikkerhets nummer med %s har endret seg.</string>
@@ -392,6 +408,7 @@ fører dette til dupliserte meldinger.</string>
   <string name="RecipientPreferenceActivity_unblock">Fjern blokkering</string>
   <string name="RecipientPreferenceActivity_enabled">Slått på</string>
   <string name="RecipientPreferenceActivity_disabled">Slått av</string>
+  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Tilgjengelig en gang en melding er sendt eller mottatt.</string>
   <!--RecipientProvider-->
   <!--RedPhone-->
   <string name="RedPhone_answering">Svarer</string>
@@ -429,14 +446,18 @@ Dobbeltsjekk at dette er ditt nummer. Vi er i ferd med å bekrefte det ved å se
   <string name="RegistrationActivity_continue">Fortsett</string>
   <string name="RegistrationActivity_edit">Rediger</string>
   <string name="RegistrationActivity_missing_google_play_services">Mangler Google Play tjenester</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Denne enheten mangler Google Play Tjenester. Du kan fortsatt bruke Signal, men denne konfigurasjonen kan føre til redusert pålitelighet eller ytelse.\n\nHvis du ikke er en avansert bruker, kjører ikke en ettermarked Android ROM, eller tror du ser dette feil, kan du kontakte support@whispersystems.org for å hjelpe med feilsøking.</string>
   <string name="RegistrationActivity_i_understand">Jeg forstår</string>
   <string name="RegistrationActivity_play_services_error">Play Tjenester Feil</string>
+  <string name="RegistrationActivity_more_information">Mer informasjon</string>
+  <string name="RegistrationActivity_less_information">Mindre informasjon</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Mulige problemer</string>
   <!--RegistrationProgressActivity-->
   <string name="RegistrationProgressActivity_verifying_number">Bekrefter nummer</string>
   <string name="RegistrationProgressActivity_edit_s">Rediger %s</string>
   <string name="RegistrationProgressActivity_registration_complete">Registrering utført.</string>
+  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Du må skrive inn koden du mottok først</string>
   <string name="RegistrationProgressActivity_connecting">Kobler til</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Kobler til for bekreftelse …</string>
   <string name="RegistrationProgressActivity_network_error">Nettverksfeil.</string>
@@ -452,6 +473,7 @@ Dobbeltsjekk at dette er ditt nummer. Vi er i ferd med å bekrefte det ved å se
   <string name="RegistrationProgressActivity_too_many_requests">For mange forespørsler.</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Du har allerede bedt om en samtale. Vent 20 minutter før du ber om en ny.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Registreringskonflikt</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Dette nummeret er allerede registrert på en annen Signal server. Du må Avregistrere det før du registrerer deg her.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registrering fullført</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Signal-registrering utført.</string>
@@ -471,6 +493,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s tilbakestilte sikker økt.</string>
   <string name="SmsMessageRecord_duplicate_message">Dupliser melding.</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_group_updated">Gruppe oppdatert</string>
   <string name="ThreadRecord_left_the_group">Forlot gruppen</string>
   <string name="ThreadRecord_secure_session_reset">Sikker økt tilbakestilt.</string>
   <string name="ThreadRecord_draft">Utkast:</string>
@@ -478,9 +501,12 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ThreadRecord_called_you">Ringte deg</string>
   <string name="ThreadRecord_missed_call">Ubesvart anrop</string>
   <string name="ThreadRecord_media_message">Mediemelding</string>
+  <string name="ThreadRecord_s_joined_signal">%s ble med Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Utløpstid for meldinger endret til %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Din sikkerhets nummer med %s har endret seg.</string>
   <!--UpdateApkReadyListener-->
+  <string name="UpdateApkReadyListener_Signal_update">Signal oppdatering</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">En ny versjon av Signal er tilgjengelig, trykk for å oppdatere</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Din kontakt kjører en gammel versjon av Signal. Vennligst be dem om å oppdatere før verifisere din sikkerhets nummer.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Din kontakt kjører en nyere versjon av Signal med en inkompatibel QR-kode format. Vennligst oppdater for å sammenligne.</string>
@@ -548,14 +574,18 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Hurtigsvar er utilgjengelig når Signal er låst.</string>
   <string name="QuickResponseService_problem_sending_message">Det oppstod et problem under sending av melding.</string>
   <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_open_directory">Åpne katalogen</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ny melding</string>
   <!--VideoPlayer-->
+  <string name="VideoPlayer_error_playing_video">Feil ved avspilling av video</string>
   <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_new_safety_numbers">Sikkerhetsnummeret for samtalen din med %1$s er endret. Dette kan enten bety at noen prøver å fange opp kommunikasjonen din, eller at %2$s bare gjeninstalleres Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Du ønsker kanskje å bekrefte din sikkerhets nummer med denne kontakten.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Ny sikkerhets nummer</string>
   <!--WebRtcCallControls-->
+  <string name="WebRtcCallControls_tap_to_enable_your_video">Trykk for å aktivere videoen din</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Lyd</string>
   <string name="attachment_type_selector__audio_description">Lyd</string>
@@ -567,6 +597,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="attachment_type_selector__location_description">Plassering</string>
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__gallery_description">Bilde eller video</string>
+  <string name="attachment_type_selector__file_description">Fil</string>
+  <string name="attachment_type_selector__gallery">Galleri</string>
+  <string name="attachment_type_selector__file">Fil</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Gammel passordfrase</string>
   <string name="change_passphrase_activity__new_passphrase">Ny passordfrase</string>
@@ -587,6 +621,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Samtale dempet</string>
   <!--conversation_activity-->
+  <string name="conversation_activity__type_message_push">Signal melding</string>
+  <string name="conversation_activity__type_message_sms_insecure">Usikret SMS</string>
+  <string name="conversation_activity__type_message_mms_insecure">Usikret MMS</string>
   <string name="conversation_activity__from_sim_name">Fra %1$s</string>
   <string name="conversation_activity__send">Send</string>
   <string name="conversation_activity__remove">Fjern</string>
@@ -620,6 +657,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="conversation_fragment_cab__batch_selection_mode">Buntvalg-modus</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s valgt</string>
   <!--conversation_fragment-->
+  <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rull til bunnen</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Laster inn land …</string>
   <string name="country_selection_fragment__search">Søk</string>
@@ -696,6 +734,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">BEKREFT</string>
   <string name="message_recipients_list_item__resend">SEND PÅ NYTT</string>
+  <string name="message_recipients_list_item__resending">Sender på nytt...</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s ble med i gruppa.</item>
@@ -732,6 +771,7 @@ Bekreft telefonnummeret ditt for koble til Signal.</string>
 TELEFONNUMMER</string>
   <string name="registration_activity__phone_number">TELEFONNUMMER</string>
   <string name="registration_activity__register">Registrer</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal gjør det enkelt å kommunisere ved å bruke ditt eksisterende telefonnummer og adressebok. Venner og kontakter som allerede vet hvordan de kontakter deg via telefon, vil enkelt kunne komme i kontakt med Signal.\n\nRegistrering overfører noen kontaktinformasjon til serveren. Det er ikke lagret.</string>
   <string name="registration_activity__powered_by_twilio">Drevet av twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Følgende problemer
@@ -838,7 +878,12 @@ Signal fikk tidsavbrudd under venting på bekreftelsesmelding.</string>
   <string name="arrays__images">Bilder</string>
   <string name="arrays__audio">Lyd</string>
   <string name="arrays__video">Video</string>
+  <string name="arrays__documents">Dokumenter</string>
+  <string name="arrays__small">Liten</string>
   <string name="arrays__normal">Normal</string>
+  <string name="arrays__large">Stor</string>
+  <string name="arrays__extra_large">Ekstra stor</string>
+  <string name="arrays__default">Standard</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d time</item>
@@ -949,6 +994,17 @@ Signal fikk tidsavbrudd under venting på bekreftelsesmelding.</string>
   <string name="preferences_advanced__use_system_emoji">Bruk emoji på systemet</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Slå av innebygd emoji-støtte i Signal</string>
   <string name="preferences_advanced__video_calling_beta">Videosamtaler beta</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Videresend alle anrop via Signal serveren for å unngå å avsløre din IP-adresse til kontakten. Aktivering vil redusere samtalekvaliteten.</string>
+  <string name="preferences_advanced__always_relay_calls">Videresend alltid anrop</string>
+  <string name="preferences_app_protection__app_access">App tilgang</string>
+  <string name="preferences_app_protection__communication">Kommunikasjon</string>
+  <string name="preferences_chats__chats">Samtaler</string>
+  <string name="preferences_notifications__message_notifications">Meldingsvarsler</string>
+  <string name="preferences_notifications__events">Arrangementer</string>
+  <string name="preferences_notifications__show">Vis</string>
+  <string name="preferences_chats__show_invitation_prompts">Vis invitasjonsmeldinger</string>
+  <string name="preferences_events__contact_joined_signal">Kontakt ble med Signal</string>
+  <string name="preferences_notifications__priority">Prioritet</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

@@ -19,7 +19,6 @@ package org.thoughtcrime.securesms.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.MatrixCursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
@@ -29,6 +28,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
 
+import com.google.android.mms.pdu_alt.NotificationInd;
+import com.google.android.mms.pdu_alt.PduHeaders;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -77,9 +78,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import ws.com.google.android.mms.MmsException;
-import ws.com.google.android.mms.pdu.NotificationInd;
-import ws.com.google.android.mms.pdu.PduHeaders;
+import org.thoughtcrime.securesms.mms.MmsException;
 
 import static org.thoughtcrime.securesms.util.Util.canonicalizeNumber;
 import static org.thoughtcrime.securesms.util.Util.canonicalizeNumberOrGroup;
@@ -148,6 +147,7 @@ public class MmsDatabase extends MessagingDatabase {
       AttachmentDatabase.CONTENT_LOCATION,
       AttachmentDatabase.DIGEST,
       AttachmentDatabase.FAST_PREFLIGHT_ID,
+      AttachmentDatabase.VOICE_NOTE,
       AttachmentDatabase.CONTENT_DISPOSITION,
       AttachmentDatabase.NAME,
       AttachmentDatabase.TRANSFER_STATE
@@ -593,23 +593,16 @@ public class MmsDatabase extends MessagingDatabase {
     return new Pair<>(messageId, threadId);
   }
 
-  public Optional<Pair<NotificationInd, Integer>> getNotification(long messageId) {
+  public Optional<MmsNotificationInfo> getNotification(long messageId) {
     Cursor cursor = null;
 
     try {
       cursor = rawQuery(RAW_ID_WHERE, new String[] {String.valueOf(messageId)});
 
       if (cursor != null && cursor.moveToNext()) {
-        PduHeaders        headers = new PduHeaders();
-        PduHeadersBuilder builder = new PduHeadersBuilder(headers, cursor);
-        builder.addText(CONTENT_LOCATION, PduHeaders.CONTENT_LOCATION);
-        builder.addLong(NORMALIZED_DATE_SENT, PduHeaders.DATE);
-        builder.addLong(EXPIRY, PduHeaders.EXPIRY);
-        builder.addLong(MESSAGE_SIZE, PduHeaders.MESSAGE_SIZE);
-        builder.addText(TRANSACTION_ID, PduHeaders.TRANSACTION_ID);
-
-        return Optional.of(new Pair<>(new NotificationInd(headers),
-                                      cursor.getInt(cursor.getColumnIndexOrThrow(SUBSCRIPTION_ID))));
+        return Optional.of(new MmsNotificationInfo(cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_LOCATION)),
+                                                   cursor.getString(cursor.getColumnIndexOrThrow(TRANSACTION_ID)),
+                                                   cursor.getInt(cursor.getColumnIndexOrThrow(SUBSCRIPTION_ID))));
       } else {
         return Optional.absent();
       }
@@ -699,7 +692,8 @@ public class MmsDatabase extends MessagingDatabase {
                                                databaseAttachment.getKey(),
                                                databaseAttachment.getRelay(),
                                                databaseAttachment.getDigest(),
-                                               databaseAttachment.getFastPreflightId()));
+                                               databaseAttachment.getFastPreflightId(),
+                                               databaseAttachment.isVoiceNote()));
       }
 
       return insertMediaMessage(new MasterSecretUnion(masterSecret),
@@ -820,22 +814,21 @@ public class MmsDatabase extends MessagingDatabase {
     SQLiteDatabase     db              = databaseHelper.getWritableDatabase();
     MmsAddressDatabase addressDatabase = DatabaseFactory.getMmsAddressDatabase(context);
     long                 threadId       = getThreadIdFor(notification);
-    PduHeaders           headers        = notification.getPduHeaders();
     ContentValues        contentValues  = new ContentValues();
     ContentValuesBuilder contentBuilder = new ContentValuesBuilder(contentValues);
 
+    Log.w(TAG, "Message received type: " + notification.getMessageType());
 
-    Log.w(TAG, "Message received type: " + headers.getOctet(PduHeaders.MESSAGE_TYPE));
 
-    contentBuilder.add(CONTENT_LOCATION, headers.getTextString(PduHeaders.CONTENT_LOCATION));
-    contentBuilder.add(DATE_SENT, headers.getLongInteger(PduHeaders.DATE) * 1000L);
-    contentBuilder.add(EXPIRY, headers.getLongInteger(PduHeaders.EXPIRY));
-    contentBuilder.add(MESSAGE_SIZE, headers.getLongInteger(PduHeaders.MESSAGE_SIZE));
-    contentBuilder.add(TRANSACTION_ID, headers.getTextString(PduHeaders.TRANSACTION_ID));
-    contentBuilder.add(MESSAGE_TYPE, headers.getOctet(PduHeaders.MESSAGE_TYPE));
+    contentBuilder.add(CONTENT_LOCATION, notification.getContentLocation());
+    contentBuilder.add(DATE_SENT, System.currentTimeMillis());
+    contentBuilder.add(EXPIRY, notification.getExpiry());
+    contentBuilder.add(MESSAGE_SIZE, notification.getMessageSize());
+    contentBuilder.add(TRANSACTION_ID, notification.getTransactionId());
+    contentBuilder.add(MESSAGE_TYPE, notification.getMessageType());
 
-    if (headers.getEncodedStringValue(PduHeaders.FROM) != null) {
-      contentBuilder.add(ADDRESS, headers.getEncodedStringValue(PduHeaders.FROM).getTextString());
+    if (notification.getFrom() != null) {
+      contentBuilder.add(ADDRESS, notification.getFrom().getTextString());
     } else {
       contentBuilder.add(ADDRESS, null);
     }
@@ -852,7 +845,7 @@ public class MmsDatabase extends MessagingDatabase {
 
     long messageId = db.insert(TABLE_NAME, null, contentValues);
 
-    if (headers.getEncodedStringValue(PduHeaders.FROM) != null) {
+    if (notification.getFrom() != null) {
       addressDatabase.insertAddressesForId(messageId, MmsAddresses.forFrom(Util.toIsoString(notification.getFrom().getTextString())));
     }
 
@@ -1127,6 +1120,30 @@ public class MmsDatabase extends MessagingDatabase {
     public static final int DOWNLOAD_SOFT_FAILURE    = 4;
     public static final int DOWNLOAD_HARD_FAILURE    = 5;
     public static final int DOWNLOAD_APN_UNAVAILABLE = 6;
+  }
+
+  public static class MmsNotificationInfo {
+    private final String contentLocation;
+    private final String transactionId;
+    private final int    subscriptionId;
+
+    public MmsNotificationInfo(String contentLocation, String transactionId, int subscriptionId) {
+      this.contentLocation = contentLocation;
+      this.transactionId   = transactionId;
+      this.subscriptionId  = subscriptionId;
+    }
+
+    public String getContentLocation() {
+      return contentLocation;
+    }
+
+    public String getTransactionId() {
+      return transactionId;
+    }
+
+    public int getSubscriptionId() {
+      return subscriptionId;
+    }
   }
 
   public class OutgoingMessageReader {

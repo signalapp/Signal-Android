@@ -24,6 +24,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.google.android.mms.pdu_alt.PduParser;
+import com.google.android.mms.pdu_alt.SendConf;
+
 import org.apache.http.Header;
 import org.apache.http.HttpHost;
 import org.apache.http.client.config.RequestConfig;
@@ -34,8 +37,6 @@ import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 
 import java.io.IOException;
 
-import ws.com.google.android.mms.pdu.PduParser;
-import ws.com.google.android.mms.pdu.SendConf;
 
 @SuppressWarnings("deprecation")
 public class OutgoingLegacyMmsConnection extends LegacyMmsConnection implements OutgoingMmsConnection {

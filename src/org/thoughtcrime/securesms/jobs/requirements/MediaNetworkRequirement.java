@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
@@ -18,8 +19,6 @@ import org.whispersystems.jobqueue.requirements.Requirement;
 
 import java.util.Collections;
 import java.util.Set;
-
-import ws.com.google.android.mms.ContentType;
 
 public class MediaNetworkRequirement implements Requirement, ContextDependent {
   private static final long   serialVersionUID = 0L;
@@ -95,7 +94,9 @@ public class MediaNetworkRequirement implements Requirement, ContextDependent {
 
       boolean isAllowed;
 
-      if (isNonDocumentType(contentType)) {
+      if (attachment.isVoiceNote() || (MediaUtil.isAudio(attachment) && TextUtils.isEmpty(attachment.getFileName()))) {
+        isAllowed = isConnectedWifi() || isConnectedMobile();
+      } else if (isNonDocumentType(contentType)) {
         isAllowed = allowedTypes.contains(MediaUtil.getDiscreteMimeType(contentType));
       } else {
         isAllowed = allowedTypes.contains("documents");
@@ -112,8 +113,8 @@ public class MediaNetworkRequirement implements Requirement, ContextDependent {
 
   private boolean isNonDocumentType(String contentType) {
     return
-        ContentType.isImageType(contentType) ||
-        ContentType.isVideoType(contentType) ||
-        ContentType.isAudioType(contentType);
+        MediaUtil.isImageType(contentType) ||
+        MediaUtil.isVideoType(contentType) ||
+        MediaUtil.isAudioType(contentType);
   }
 }

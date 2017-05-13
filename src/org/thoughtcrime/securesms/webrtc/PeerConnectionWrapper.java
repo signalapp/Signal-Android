@@ -25,8 +25,6 @@ import org.webrtc.VideoCapturer;
 import org.webrtc.VideoRenderer;
 import org.webrtc.VideoSource;
 import org.webrtc.VideoTrack;
-import org.webrtc.voiceengine.WebRtcAudioManager;
-import org.webrtc.voiceengine.WebRtcAudioUtils;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -114,7 +112,10 @@ public class PeerConnectionWrapper {
   }
 
   public DataChannel createDataChannel(String name) {
-    return this.peerConnection.createDataChannel(name, new DataChannel.Init());
+    DataChannel.Init dataChannelConfiguration = new DataChannel.Init();
+    dataChannelConfiguration.ordered = true;
+
+    return this.peerConnection.createDataChannel(name, dataChannelConfiguration);
   }
 
   public SessionDescription createOffer(MediaConstraints mediaConstraints) throws PeerConnectionException {

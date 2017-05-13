@@ -1,46 +1,78 @@
 package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
+import android.os.Bundle;
 
-import org.thoughtcrime.securesms.util.Util;
+import com.android.mms.service_alt.MmsConfig;
 
-public class MmsMediaConstraints extends MediaConstraints {
-  private static final int MAX_IMAGE_DIMEN_LOWMEM = 768;
-  private static final int MAX_IMAGE_DIMEN        = 1024;
-  public  static final int MAX_MESSAGE_SIZE       = 280 * 1024;
+class MmsMediaConstraints extends MediaConstraints {
+
+  private static final int DEFAULT_MAX_IMAGE_DIMEN  = 1024;
+  private static final int DEFAULT_MAX_MESSAGE_SIZE = 280 * 1024;
+
+  private final int subscriptionId;
+
+  MmsMediaConstraints(int subscriptionId) {
+    this.subscriptionId = subscriptionId;
+  }
 
   @Override
   public int getImageMaxWidth(Context context) {
-    return Util.isLowMemory(context) ? MAX_IMAGE_DIMEN_LOWMEM : MAX_IMAGE_DIMEN;
+    MmsConfig mmsConfig = MmsConfigManager.getMmsConfig(context, subscriptionId);
+
+    if (mmsConfig != null) {
+      MmsConfig.Overridden overridden = new MmsConfig.Overridden(mmsConfig, new Bundle());
+      return overridden.getMaxImageWidth();
+    }
+
+    return DEFAULT_MAX_IMAGE_DIMEN;
   }
 
   @Override
   public int getImageMaxHeight(Context context) {
-    return getImageMaxWidth(context);
+    MmsConfig mmsConfig = MmsConfigManager.getMmsConfig(context, subscriptionId);
+
+    if (mmsConfig != null) {
+      MmsConfig.Overridden overridden = new MmsConfig.Overridden(mmsConfig, new Bundle());
+      return overridden.getMaxImageHeight();
+    }
+
+    return DEFAULT_MAX_IMAGE_DIMEN;
   }
 
   @Override
-  public int getImageMaxSize() {
-    return MAX_MESSAGE_SIZE;
+  public int getImageMaxSize(Context context) {
+    return getMaxMessageSize(context);
   }
 
   @Override
-  public int getGifMaxSize() {
-    return MAX_MESSAGE_SIZE;
+  public int getGifMaxSize(Context context) {
+    return getMaxMessageSize(context);
   }
 
   @Override
-  public int getVideoMaxSize() {
-    return MAX_MESSAGE_SIZE;
+  public int getVideoMaxSize(Context context) {
+    return getMaxMessageSize(context);
   }
 
   @Override
-  public int getAudioMaxSize() {
-    return MAX_MESSAGE_SIZE;
+  public int getAudioMaxSize(Context context) {
+    return getMaxMessageSize(context);
   }
 
   @Override
-  public int getDocumentMaxSize() {
-    return MAX_MESSAGE_SIZE;
+  public int getDocumentMaxSize(Context context) {
+    return getMaxMessageSize(context);
+  }
+
+  private int getMaxMessageSize(Context context) {
+    MmsConfig mmsConfig = MmsConfigManager.getMmsConfig(context, subscriptionId);
+
+    if (mmsConfig != null) {
+      MmsConfig.Overridden overridden = new MmsConfig.Overridden(mmsConfig, new Bundle());
+      return overridden.getMaxMessageSize();
+    }
+
+    return DEFAULT_MAX_MESSAGE_SIZE;
   }
 }
