@@ -22,11 +22,21 @@ public class SmsCharacterCalculator extends CharacterCalculator {
 
   @Override
   public CharacterState calculateCharacters(String messageBody) {
+    int[] length;
+    int messagesSpent;
+    int charactersSpent;
+    int charactersRemaining;
 
-    int[] length            = SmsMessage.calculateLength(messageBody, false);
-    int messagesSpent       = length[0];
-    int charactersSpent     = length[1];
-    int charactersRemaining = length[2];
+    try {
+      length = SmsMessage.calculateLength(messageBody, false);
+      messagesSpent = length[0];
+      charactersSpent = length[1];
+      charactersRemaining = length[2];
+    } catch (NullPointerException e) {
+      messagesSpent = 1;
+      charactersSpent = messageBody.length();
+      charactersRemaining = 1000;
+    }
 
     int maxMessageSize;
 
