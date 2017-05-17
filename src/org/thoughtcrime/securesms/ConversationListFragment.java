@@ -296,6 +296,7 @@ public class ConversationListFragment extends Fragment
             }
           }.execute();
         }
+        MessageNotifier.updateNotification(getActivity(), false);
       }
     });
 
