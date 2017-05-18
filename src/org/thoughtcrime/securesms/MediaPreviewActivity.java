@@ -34,6 +34,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.google.android.exoplayer2.ui.PlaybackControlView.VisibilityListener;
+
 import org.thoughtcrime.securesms.components.ZoomingImageView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
@@ -160,6 +162,17 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
       @Override
       public void onClick(View v) {
         toggleActionBar();
+      }
+    });
+
+    video.setPlaybackControlVisibilityListener(new VisibilityListener() {
+      @Override
+      public void onVisibilityChange(int visibility) {
+        if (visibility == View.VISIBLE) {
+          getSupportActionBar().show();
+        } else {
+          getSupportActionBar().hide();
+        }
       }
     });
   }
