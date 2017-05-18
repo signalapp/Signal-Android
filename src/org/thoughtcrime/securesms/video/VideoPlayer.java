@@ -180,9 +180,15 @@ public class VideoPlayer extends FrameLayout {
 
   private class PlaybackControlViewCompat extends MediaController {
     private VisibilityListener visibilityListener;
+    private static final int DEFAULT_TIMEOUT = 5000;
 
     private PlaybackControlViewCompat(Context context) {
       super(context);
+    }
+
+    @Override
+    public void show() {
+      show(DEFAULT_TIMEOUT);
     }
 
     @Override
