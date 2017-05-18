@@ -24,6 +24,7 @@ import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 import android.view.Menu;
@@ -46,6 +47,8 @@ import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 import org.thoughtcrime.securesms.video.VideoPlayer;
 
 import java.io.IOException;
+
+import uk.co.senab.photoview.PhotoViewAttacher.OnViewTapListener;
 
 /**
  * Activity for displaying media attachments in-app
@@ -87,6 +90,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     setContentView(R.layout.media_preview_activity);
 
     initializeViews();
+    initializeListeners();
     initializeResources();
     initializeActionBar();
   }
@@ -142,6 +146,21 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   private void initializeViews() {
     image = (ZoomingImageView) findViewById(R.id.image);
     video = (VideoPlayer) findViewById(R.id.video_player);
+  }
+
+  private void initializeListeners() {
+    image.setOnViewTapListener(new OnViewTapListener() {
+      @Override
+      public void onViewTap(View view, float v, float v1) {
+        toggleActionBar();
+      }
+    });
+  }
+
+  private void toggleActionBar() {
+    ActionBar actionBar = getSupportActionBar();
+    if (actionBar.isShowing()) actionBar.hide();
+    else                       actionBar.show();
   }
 
   private void initializeResources() {

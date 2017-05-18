@@ -128,4 +128,8 @@ public class ZoomingImageView extends FrameLayout {
     imageView.setImageDrawable(null);
     subsamplingImageView.recycle();
   }
+
+  public void setOnViewTapListener(PhotoViewAttacher.OnViewTapListener listener) {
+    imageViewAttacher.setOnViewTapListener(listener);
+  }
 }
