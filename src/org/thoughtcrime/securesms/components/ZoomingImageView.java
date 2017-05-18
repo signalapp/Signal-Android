@@ -132,4 +132,9 @@ public class ZoomingImageView extends FrameLayout {
   public void setOnViewTapListener(PhotoViewAttacher.OnViewTapListener listener) {
     imageViewAttacher.setOnViewTapListener(listener);
   }
+
+  @Override
+  public void setOnClickListener(OnClickListener listener) {
+    subsamplingImageView.setOnClickListener(listener);
+  }
 }

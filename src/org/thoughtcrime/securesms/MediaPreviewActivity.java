@@ -155,6 +155,13 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
         toggleActionBar();
       }
     });
+
+    image.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        toggleActionBar();
+      }
+    });
   }
 
   private void toggleActionBar() {
