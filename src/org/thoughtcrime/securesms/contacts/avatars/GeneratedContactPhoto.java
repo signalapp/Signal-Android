@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.contacts.avatars;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 
@@ -19,12 +20,12 @@ public class GeneratedContactPhoto implements ContactPhoto {
   }
 
   @Override
-  public Drawable asDrawable(Context context, int color) {
+  public Drawable asDrawable(Context context, @ColorInt int color) {
     return asDrawable(context, color, false);
   }
 
   @Override
-  public Drawable asDrawable(Context context, int color, boolean inverted) {
+  public Drawable asDrawable(Context context, @ColorInt int color, boolean inverted) {
     int targetSize = context.getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size);
 
     return TextDrawable.builder()

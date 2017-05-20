@@ -37,10 +37,10 @@ public class AttachmentId {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
 
-    AttachmentId attachmentId = (AttachmentId)o;
+    AttachmentId attachmentId = (AttachmentId) o;
 
-    if (rowId != attachmentId.rowId) return false;
-    return uniqueId == attachmentId.uniqueId;
+    return rowId == attachmentId.rowId
+        && uniqueId == attachmentId.uniqueId;
   }
 
   @Override

@@ -99,8 +99,8 @@ public class SignalCommunicationModule {
                                             BuildConfig.USER_AGENT);
   }
 
-  public static interface SignalMessageSenderFactory {
-    public SignalServiceMessageSender create();
+  public interface SignalMessageSenderFactory {
+    SignalServiceMessageSender create();
   }
 
   private static class DynamicCredentialsProvider implements CredentialsProvider {

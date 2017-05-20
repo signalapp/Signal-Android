@@ -100,7 +100,7 @@ public class MasterSecret implements Parcelable {
   public MasterSecret parcelClone() {
     Parcel thisParcel = Parcel.obtain();
     Parcel thatParcel = Parcel.obtain();
-    byte[] bytes      = null;
+    byte[] bytes;
 
     thisParcel.writeValue(this);
     bytes = thisParcel.marshall();

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.preferences;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.ListPreference;
 
@@ -42,10 +43,11 @@ public class AppearancePreferenceFragment extends ListSummaryPreferenceFragment 
   }
 
   public static CharSequence getSummary(Context context) {
-    String[] languageEntries     = context.getResources().getStringArray(R.array.language_entries);
-    String[] languageEntryValues = context.getResources().getStringArray(R.array.language_values);
-    String[] themeEntries        = context.getResources().getStringArray(R.array.pref_theme_entries);
-    String[] themeEntryValues    = context.getResources().getStringArray(R.array.pref_theme_values);
+    Resources resources          = context.getResources();
+    String[] languageEntries     = resources.getStringArray(R.array.language_entries);
+    String[] languageEntryValues = resources.getStringArray(R.array.language_values);
+    String[] themeEntries        = resources.getStringArray(R.array.pref_theme_entries);
+    String[] themeEntryValues    = resources.getStringArray(R.array.pref_theme_values);
 
     int langIndex  = Arrays.asList(languageEntryValues).indexOf(TextSecurePreferences.getLanguage(context));
     int themeIndex = Arrays.asList(themeEntryValues).indexOf(TextSecurePreferences.getTheme(context));
