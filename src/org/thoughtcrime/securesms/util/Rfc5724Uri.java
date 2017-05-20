@@ -24,46 +24,43 @@ import java.util.Map;
 
 public class Rfc5724Uri {
 
-  private final String              uri;
   private final String              schema;
   private final String              path;
   private final Map<String, String> queryParams;
 
   public Rfc5724Uri(String uri) throws URISyntaxException {
-    this.uri         = uri;
-    this.schema      = parseSchema();
-    this.path        = parsePath();
-    this.queryParams = parseQueryParams();
+    this.schema      = parseSchema(uri);
+    this.path        = parsePath(uri);
+    this.queryParams = parseQueryParams(uri, this.path);
   }
 
-  private String parseSchema() throws URISyntaxException {
+  private static String parseSchema(final String uri) throws URISyntaxException {
     String[] parts = uri.split(":");
 
     if (parts.length < 1 || parts[0].isEmpty()) throw new URISyntaxException(uri, "invalid schema");
     else                                        return parts[0];
   }
 
-  private String parsePath() throws URISyntaxException {
+  private static String parsePath(final String uri) throws URISyntaxException {
     String[] parts = uri.split("\\?")[0].split(":", 2);
 
-    if (parts.length < 2 || parts[1].isEmpty()) throw new URISyntaxException(uri, "invalid path");
-    else                                        return parts[1];
+    if (parts.length < 2) throw new URISyntaxException(uri, "invalid path");
+    else                  return parts[1];
   }
 
-  private Map<String, String> parseQueryParams() throws URISyntaxException {
+  private static Map<String, String> parseQueryParams(final String uri, final String path) throws URISyntaxException {
     Map<String, String> queryParams = new HashMap<>();
-    if (uri.split("\\?").length < 2) {
-      return queryParams;
+    if (uri.split("\\?").length > 1) {
+      for (String keyValue : uri.split("\\?")[1].split("&")) {
+        String[] parts = keyValue.split("=");
+
+        if (parts.length == 1) queryParams.put(parts[0], "");
+        else                   queryParams.put(parts[0], URLDecoder.decode(parts[1]));
+      }
     }
 
-    for (String keyValue : uri.split("\\?")[1].split("&")) {
-      String[] parts = keyValue.split("=");
-
-      if (parts.length == 1) queryParams.put(parts[0], "");
-      else                  queryParams.put(parts[0], URLDecoder.decode(parts[1]));
-    }
-
-    return queryParams;
+    if (path.isEmpty() && !queryParams.containsKey("body")) throw new URISyntaxException(uri, "missing recipient(s)");
+    else                                                    return queryParams;
   }
 
   public String getSchema() {
