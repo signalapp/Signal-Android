@@ -83,7 +83,7 @@ public class ThreadDatabase extends Database {
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS thread_recipient_ids_index ON " + TABLE_NAME + " (" + RECIPIENT_IDS + ");",
-    "CREATE INDEX IF NOT EXISTS archived_index ON " + TABLE_NAME + " (" + ARCHIVED + ");",
+    "CREATE INDEX IF NOT EXISTS archived_count_index ON " + TABLE_NAME + " (" + ARCHIVED + ", " + MESSAGE_COUNT + ");",
   };
 
   public ThreadDatabase(Context context, SQLiteOpenHelper databaseHelper) {
@@ -339,7 +339,7 @@ public class ThreadDatabase extends Database {
 
   public Cursor getConversationList() {
     SQLiteDatabase db     = databaseHelper.getReadableDatabase();
-    Cursor         cursor =  db.query(TABLE_NAME, null, ARCHIVED + " = ?", new String[] {"0"}, null, null, DATE + " DESC");
+    Cursor         cursor =  db.query(TABLE_NAME, null, ARCHIVED + " = ? AND " + MESSAGE_COUNT + " != 0", new String[] {"0"}, null, null, DATE + " DESC");
 
     setNotifyConverationListListeners(cursor);
 
@@ -348,7 +348,7 @@ public class ThreadDatabase extends Database {
 
   public Cursor getArchivedConversationList() {
     SQLiteDatabase db     = databaseHelper.getReadableDatabase();
-    Cursor         cursor = db.query(TABLE_NAME, null, ARCHIVED + " = ?", new String[] {"1"}, null, null, DATE + " DESC");
+    Cursor         cursor = db.query(TABLE_NAME, null, ARCHIVED + " = ? AND " + MESSAGE_COUNT + " != 0", new String[] {"1"}, null, null, DATE + " DESC");
 
     setNotifyConverationListListeners(cursor);
 

@@ -38,8 +38,8 @@ import org.greenrobot.eventbus.ThreadMode;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallControls;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallScreen;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcIncomingCallOverlay;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.IdentityDatabase;
+import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
+import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -49,6 +49,9 @@ import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.whispersystems.libsignal.IdentityKey;
+import org.whispersystems.libsignal.SignalProtocolAddress;
+
+import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
 
 public class WebRtcCallActivity extends Activity {
 
@@ -254,8 +257,11 @@ public class WebRtcCallActivity extends Activity {
     callScreen.setAcceptIdentityListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(WebRtcCallActivity.this);
-        identityDatabase.saveIdentity(recipient.getRecipientId(), theirIdentity);
+        synchronized (SESSION_LOCK) {
+          if (new TextSecureIdentityKeyStore(WebRtcCallActivity.this).saveIdentity(new SignalProtocolAddress(recipient.getNumber(), 1), theirIdentity, true, true)) {
+            new TextSecureSessionStore(WebRtcCallActivity.this).deleteAllSessions(recipient.getNumber());
+          }
+        }
 
         Intent intent = new Intent(WebRtcCallActivity.this, WebRtcCallService.class);
         intent.putExtra(WebRtcCallService.EXTRA_REMOTE_NUMBER, recipient.getNumber());

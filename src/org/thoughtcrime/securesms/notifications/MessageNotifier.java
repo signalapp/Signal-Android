@@ -208,6 +208,11 @@ public class MessageNotifier {
     if (isVisible) {
       List<MarkedMessageInfo> messageIds = threads.setRead(threadId, false);
       MarkReadReceiver.process(context, messageIds);
+
+      if (recipients != null && recipients.getPrimaryRecipient() != null) {
+        DatabaseFactory.getIdentityDatabase(context)
+                       .setSeen(recipients.getPrimaryRecipient().getRecipientId());
+      }
     }
 
     if (!TextSecurePreferences.isNotificationsEnabled(context) ||

@@ -8,12 +8,13 @@ import android.support.v7.app.AlertDialog;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.MmsAddressDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
@@ -21,7 +22,6 @@ import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.jobs.IdentityUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -30,11 +30,14 @@ import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.VerifySpan;
+import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
 import java.io.IOException;
+
+import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
 
 public class ConfirmIdentityDialog extends AlertDialog {
 
@@ -102,19 +105,16 @@ public class ConfirmIdentityDialog extends AlertDialog {
       {
         @Override
         protected Void doInBackground(Void... params) {
-          IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(getContext());
+          synchronized (SESSION_LOCK) {
+            SignalProtocolAddress mismatchAddress = new SignalProtocolAddress(number, 1);
 
-          identityDatabase.saveIdentity(mismatch.getRecipientId(),
-                                        mismatch.getIdentityKey());
-
-          new TextSecureSessionStore(getContext()).deleteAllSessions(number);
+            if (new TextSecureIdentityKeyStore(getContext()).saveIdentity(mismatchAddress, mismatch.getIdentityKey(), true, true)) {
+              new TextSecureSessionStore(getContext()).deleteAllSessions(number);
+            }
+          }
 
           processMessageRecord(messageRecord);
           processPendingMessageRecords(messageRecord.getThreadId(), mismatch);
-
-          ApplicationContext.getInstance(getContext())
-                            .getJobManager()
-                            .add(new IdentityUpdateJob(getContext(), mismatch.getRecipientId()));
 
           return null;
         }
