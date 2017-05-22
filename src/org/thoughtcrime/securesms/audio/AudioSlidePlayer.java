@@ -133,7 +133,10 @@ public class AudioSlidePlayer implements SensorEventListener {
           }
 
           sensorManager.unregisterListener(AudioSlidePlayer.this);
-          if (wakeLock != null && wakeLock.isHeld()) wakeLock.release();
+
+          if (wakeLock != null && wakeLock.isHeld()) {
+            wakeLock.release(PowerManager.RELEASE_FLAG_WAIT_FOR_NO_PROXIMITY);
+          }
         }
 
         notifyOnStop();
@@ -157,7 +160,10 @@ public class AudioSlidePlayer implements SensorEventListener {
           }
 
           sensorManager.unregisterListener(AudioSlidePlayer.this);
-          if (wakeLock != null && wakeLock.isHeld()) wakeLock.release();
+
+          if (wakeLock != null && wakeLock.isHeld()) {
+            wakeLock.release(PowerManager.RELEASE_FLAG_WAIT_FOR_NO_PROXIMITY);
+          }
         }
 
         notifyOnStop();
