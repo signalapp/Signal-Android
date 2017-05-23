@@ -52,7 +52,7 @@
                   android:singleLine="true"
                   tools:text="Jules Bonnot"
                   android:ellipsize="end"
-                  android:layout_marginTop="2dp"
+                  android:layout_marginTop="0dp"
                   android:layout_marginBottom="0dp"
                   android:drawablePadding="4dp"/>
 
