@@ -48,10 +48,12 @@
                   android:layout_toStartOf="@+id/thumbnail"
                   android:textAppearance="?android:attr/textAppearanceMedium"
                   android:textColor="?attr/conversation_list_item_contact_color"
+                  android:textSize="16sp"
                   android:singleLine="true"
                   tools:text="Jules Bonnot"
                   android:ellipsize="end"
-                  android:layout_marginBottom="2dp"
+                  android:layout_marginTop="2dp"
+                  android:layout_marginBottom="0dp"
                   android:drawablePadding="4dp"/>
 
         <org.thoughtcrime.securesms.components.AlertView
@@ -95,7 +97,7 @@
                 android:layout_toLeftOf="@+id/date"
                 android:layout_toStartOf="@+id/date"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="4dip"
+                android:layout_marginTop="0dip"
                 android:contentDescription="@string/conversation_activity__attachment_thumbnail"
                 app:backgroundColorHint="?conversation_background"
                 android:visibility="gone"
@@ -109,7 +111,7 @@
                   android:layout_width="wrap_content"
                   android:layout_alignParentRight="true"
                   android:layout_alignParentEnd="true"
-                  android:layout_alignParentTop="true"
+                  android:layout_alignBaseline="@id/from"
                   android:layout_above="@id/subject"
                   android:textAppearance="?android:attr/textAppearanceSmall"
                   android:textColor="?attr/conversation_list_item_date_color"
@@ -127,9 +129,8 @@
                   android:layout_marginLeft="4dp"
                   android:layout_marginRight="0dp"
                   android:text="@string/conversation_list_item_view__archived"
+                  android:textAppearance="?android:attr/textAppearanceSmall"
                   android:textColor="#ffbbbbbb"
-                  android:background="@drawable/rounded_rectangle"
-                  android:textSize="12sp"
                 />
 
         <org.thoughtcrime.securesms.components.DeliveryStatusView
