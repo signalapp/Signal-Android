@@ -67,7 +67,11 @@ public class CompatMmsConnection implements OutgoingMmsConnection, IncomingMmsCo
   {
     if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
       Log.w(TAG, "Receiving via Lollipop API");
-      return new IncomingLollipopMmsConnection(context).retrieve(contentLocation, transactionId, subscriptionId);
+      try {
+        return new IncomingLollipopMmsConnection(context).retrieve(contentLocation, transactionId, subscriptionId);
+      } catch (MmsException e) {
+        Log.w(TAG, e);
+      }
     }
 
     if (subscriptionId == -1) {
