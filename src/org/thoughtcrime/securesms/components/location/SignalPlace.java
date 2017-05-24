@@ -20,10 +20,10 @@ public class SignalPlace {
   private static final String TAG = SignalPlace.class.getSimpleName();
 
   @JsonProperty
-  private String name;
+  private CharSequence name;
 
   @JsonProperty
-  private String address;
+  private CharSequence address;
 
   @JsonProperty
   private double latitude;
@@ -32,8 +32,8 @@ public class SignalPlace {
   private double longitude;
 
   public SignalPlace(Place place) {
-    this.name      = place.getName().toString();
-    this.address   = place.getAddress().toString();
+    this.name      = place.getName();
+    this.address   = place.getAddress();
     this.latitude  = place.getLatLng().latitude;
     this.longitude = place.getLatLng().longitude;
   }
