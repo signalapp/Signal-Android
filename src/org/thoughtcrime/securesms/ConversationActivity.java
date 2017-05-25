@@ -25,6 +25,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuff.Mode;
@@ -88,8 +89,6 @@ import org.thoughtcrime.securesms.components.emoji.EmojiDrawer;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.thoughtcrime.securesms.components.reminder.InviteReminder;
 import org.thoughtcrime.securesms.components.reminder.ReminderView;
-import org.thoughtcrime.securesms.contacts.ContactAccessor;
-import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
@@ -1226,33 +1225,18 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void addAttachmentContactInfo(Uri contactUri) {
-    ContactAccessor contactDataList = ContactAccessor.getInstance();
-    ContactData contactData = contactDataList.getContactData(this, contactUri);
+    Cursor numberCursor = getContentResolver().query(contactUri, new String[]{
+            ContactsContract.CommonDataKinds.Phone.NUMBER,
+            ContactsContract.CommonDataKinds.Phone.LABEL,
+            ContactsContract.CommonDataKinds.Phone.TYPE },
+          null, null, null);
+    if (numberCursor.getCount() != 1 || !numberCursor.moveToFirst()) return;
 
-    if      (contactData.numbers.size() == 1) composeText.append(contactData.numbers.get(0).number);
-    else if (contactData.numbers.size() > 1)  selectContactInfo(contactData);
-  }
-
-  private void selectContactInfo(ContactData contactData) {
-    final CharSequence[] numbers     = new CharSequence[contactData.numbers.size()];
-    final CharSequence[] numberItems = new CharSequence[contactData.numbers.size()];
-
-    for (int i = 0; i < contactData.numbers.size(); i++) {
-      numbers[i]     = contactData.numbers.get(i).number;
-      numberItems[i] = contactData.numbers.get(i).type + ": " + contactData.numbers.get(i).number;
-    }
-
-    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setIconAttribute(R.attr.conversation_attach_contact_info);
-    builder.setTitle(R.string.ConversationActivity_select_contact_info);
-
-    builder.setItems(numberItems, new DialogInterface.OnClickListener() {
-      @Override
-      public void onClick(DialogInterface dialog, int which) {
-        composeText.append(numbers[which]);
-      }
-    });
-    builder.show();
+    int type         = numberCursor.getInt(numberCursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.TYPE));
+    String label     = numberCursor.getString(numberCursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.LABEL));
+    String number    = numberCursor.getString(numberCursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER));
+    String typeLabel = ContactsContract.CommonDataKinds.Phone.getTypeLabel(getResources(), type, label).toString();
+    composeText.append(typeLabel + ": " + number);
   }
 
   private Drafts getDraftsForCurrentState() {

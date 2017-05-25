@@ -14,7 +14,9 @@ import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Arrays;
@@ -33,6 +35,7 @@ public class RecipientPreferenceDatabase extends Database {
   private static final String VIBRATE                 = "vibrate";
   private static final String MUTE_UNTIL              = "mute_until";
   private static final String COLOR                   = "color";
+  private static final String VERIFIED_ID             = "verified_id";
   private static final String SEEN_INVITE_REMINDER    = "seen_invite_reminder";
   private static final String DEFAULT_SUBSCRIPTION_ID = "default_subscription_id";
   private static final String EXPIRE_MESSAGES         = "expire_messages";
@@ -64,6 +67,7 @@ public class RecipientPreferenceDatabase extends Database {
           VIBRATE + " INTEGER DEFAULT " + VibrateState.DEFAULT.getId() + ", " +
           MUTE_UNTIL + " INTEGER DEFAULT 0, " +
           COLOR + " TEXT DEFAULT NULL, " +
+          VERIFIED_ID + " BLOB DEFAULT NULL," +
           SEEN_INVITE_REMINDER + " INTEGER DEFAULT 0, " +
           DEFAULT_SUBSCRIPTION_ID + " INTEGER DEFAULT -1, " +
           EXPIRE_MESSAGES + " INTEGER DEFAULT 0);";
@@ -99,6 +103,7 @@ public class RecipientPreferenceDatabase extends Database {
 
       if (cursor != null && cursor.moveToNext()) {
         boolean blocked               = cursor.getInt(cursor.getColumnIndexOrThrow(BLOCK))                == 1;
+        String  verifiedIdentity      = cursor.getString(cursor.getColumnIndexOrThrow(VERIFIED_ID));
         String  notification          = cursor.getString(cursor.getColumnIndexOrThrow(NOTIFICATION));
         int     vibrateState          = cursor.getInt(cursor.getColumnIndexOrThrow(VIBRATE));
         long    muteUntil             = cursor.getLong(cursor.getColumnIndexOrThrow(MUTE_UNTIL));
@@ -120,6 +125,7 @@ public class RecipientPreferenceDatabase extends Database {
         Log.w(TAG, "Muted until: " + muteUntil);
 
         return Optional.of(new RecipientsPreferences(blocked, muteUntil,
+                                                     verifiedIdentity,
                                                      VibrateState.fromId(vibrateState),
                                                      notificationUri, color, seenInviteReminder,
                                                      defaultSubscriptionId, expireMessages));
@@ -142,6 +148,16 @@ public class RecipientPreferenceDatabase extends Database {
     values.put(DEFAULT_SUBSCRIPTION_ID, defaultSubscriptionId);
     updateOrInsert(recipients, values);
     EventBus.getDefault().post(new RecipientPreferenceEvent(recipients));
+  }
+
+  private static String encodeIdentityKey(IdentityKey identity) {
+    return identity == null ? null : Hex.toString(identity.serialize());
+  }
+
+  public void setVerifiedId(Recipients recipients, IdentityKey verified) {
+    ContentValues values = new ContentValues();
+    values.put(VERIFIED_ID, encodeIdentityKey(verified));
+    updateOrInsert(recipients, values);
   }
 
   public void setBlocked(Recipients recipients, boolean blocked) {
@@ -204,6 +220,7 @@ public class RecipientPreferenceDatabase extends Database {
 
   public static class RecipientsPreferences {
     private final boolean       blocked;
+    private final String        verifiedIdentity;
     private final long          muteUntil;
     private final VibrateState  vibrateState;
     private final Uri           notification;
@@ -213,6 +230,7 @@ public class RecipientPreferenceDatabase extends Database {
     private final int           expireMessages;
 
     public RecipientsPreferences(boolean blocked, long muteUntil,
+                                 String verifiedIdentity,
                                  @NonNull VibrateState vibrateState,
                                  @Nullable Uri notification,
                                  @Nullable MaterialColor color,
@@ -221,6 +239,7 @@ public class RecipientPreferenceDatabase extends Database {
                                  int expireMessages)
     {
       this.blocked               = blocked;
+      this.verifiedIdentity      = verifiedIdentity;
       this.muteUntil             = muteUntil;
       this.vibrateState          = vibrateState;
       this.notification          = notification;
@@ -236,6 +255,14 @@ public class RecipientPreferenceDatabase extends Database {
 
     public boolean isBlocked() {
       return blocked;
+    }
+
+    public boolean isVerifiedId(IdentityKey identity) {
+      return verifiedIdentity != null && verifiedIdentity.equals(encodeIdentityKey(identity));
+    }
+
+    public String getVerifiedId() {
+      return verifiedIdentity;
     }
 
     public long getMuteUntil() {

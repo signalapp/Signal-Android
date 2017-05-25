@@ -524,7 +524,7 @@ public class TextSecurePreferences {
   }
 
   public static boolean isSmsDeliveryReportsEnabled(Context context) {
-    return getBooleanPreference(context, SMS_DELIVERY_REPORT_PREF, false);
+    return getBooleanPreference(context, SMS_DELIVERY_REPORT_PREF, true);
   }
 
   public static boolean hasPromptedPushRegistration(Context context) {
