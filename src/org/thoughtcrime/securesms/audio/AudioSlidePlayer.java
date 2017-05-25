@@ -134,7 +134,7 @@ public class AudioSlidePlayer implements SensorEventListener {
 
           sensorManager.unregisterListener(AudioSlidePlayer.this);
 
-          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && wakeLock.isHeld()) {
+          if (wakeLock != null && wakeLock.isHeld()) {
             wakeLock.release(PowerManager.RELEASE_FLAG_WAIT_FOR_NO_PROXIMITY);
           }
         }
@@ -161,7 +161,7 @@ public class AudioSlidePlayer implements SensorEventListener {
 
           sensorManager.unregisterListener(AudioSlidePlayer.this);
 
-          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && wakeLock.isHeld()) {
+          if (wakeLock != null && wakeLock.isHeld()) {
             wakeLock.release(PowerManager.RELEASE_FLAG_WAIT_FOR_NO_PROXIMITY);
           }
         }
