@@ -877,6 +877,8 @@ public class DatabaseFactory {
 
         db.execSQL("DROP INDEX archived_count_index");
         db.execSQL("CREATE INDEX IF NOT EXISTS archived_count_index ON thread (archived, message_count)");
+
+        db.execSQL("UPDATE identities SET blocking_approval = '1'");
       }
 
       db.setTransactionSuccessful();
