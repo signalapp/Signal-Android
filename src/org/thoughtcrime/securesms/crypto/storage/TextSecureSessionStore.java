@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.Conversions;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.InvalidMessageException;
+import org.whispersystems.libsignal.protocol.CiphertextMessage;
 import org.whispersystems.libsignal.state.SessionRecord;
 import org.whispersystems.libsignal.state.SessionState;
 import org.whispersystems.libsignal.state.SessionStore;
@@ -108,8 +109,12 @@ public class TextSecureSessionStore implements SessionStore {
 
   @Override
   public boolean containsSession(SignalProtocolAddress address) {
-    return getSessionFile(address).exists() &&
-           loadSession(address).getSessionState().hasSenderChain();
+    if (!getSessionFile(address).exists()) return false;
+
+    SessionRecord sessionRecord = loadSession(address);
+
+    return sessionRecord.getSessionState().hasSenderChain() &&
+           sessionRecord.getSessionState().getSessionVersion() == CiphertextMessage.CURRENT_VERSION;
   }
 
   @Override

@@ -61,7 +61,7 @@ dependencies {
 
     compile 'org.whispersystems:jobmanager:1.0.2'
     compile 'org.whispersystems:libpastelog:1.0.7'
-    compile 'org.whispersystems:signal-service-android:2.5.7'
+    compile 'org.whispersystems:signal-service-android:2.5.8'
     compile 'org.whispersystems:webrtc-android:M57-S2'
 
     compile "me.leolin:ShortcutBadger:1.1.16"
@@ -135,7 +135,7 @@ dependencyVerification {
         'com.google.android.exoplayer:exoplayer:955085aa611a8f7cf6c61b88ae03d1a392f4ad94c9bfbc153f3dedb9ffb14718',
         'org.whispersystems:jobmanager:506f679fc2fcf7bb6d10f00f41d6f6ea0abf75c70dc95b913398661ad538a181',
         'org.whispersystems:libpastelog:bb331d9a98240fc139101128ba836c1edec3c40e000597cdbb29ebf4cbf34d88',
-        'org.whispersystems:signal-service-android:ef8e97ceef05909713dd5247f52d114cb0a30c3f48e79486d2e583ee4dbb89d5',
+        'org.whispersystems:signal-service-android:8c98a9ba366f61ce7c84810ff5580c601b54aff38808c216822f5ba4c7a5854f',
         'org.whispersystems:webrtc-android:9d11e39d4b3823713e5b1486226e0ce09f989d6f47f52da1815e406c186701d5',
         'me.leolin:ShortcutBadger:e3cb3e7625892129b0c92dd5e4bc649faffdd526d5af26d9c45ee31ff8851774',
         'se.emilsjolander:stickylistheaders:a08ca948aa6b220f09d82f16bbbac395f6b78897e9eeac6a9f0b0ba755928eeb',
@@ -169,23 +169,23 @@ dependencyVerification {
         'com.google.android.gms:play-services-base:0ca636a8fc9a5af45e607cdcd61783bf5d561cbbb0f862021ce69606eee5ad49',
         'com.google.android.gms:play-services-basement:95dd882c5ffba15b9a99de3fefb05d3a01946623af67454ca00055d222f85a8d',
         'com.google.android.gms:play-services-iid:54e919f9957b8b7820da7ee9b83471d00d0cac1cf08ddea8b5b41aea80bb1a70',
-        'org.whispersystems:signal-service-java:640e374e8bc5d4d2c33f0e0e51b1a88283c0f97a5ea89f8c81aaa957afd78f5c',
-        'org.whispersystems:signal-protocol-android:b6921cd5e2f237eb523cc8e0c301b022fb5109e4c8e4dca7bb873da6efbaa939',
+        'org.whispersystems:signal-protocol-android:efcc2681ad2222eb5d50e1ccaa57381ee8c01ba602eb2c76c086f251b1eb6459',
+        'org.whispersystems:signal-service-java:54015e312f264263ff2c732dbf763d74a5832975e666f24a3bd5bb23a5053bf8',
         'com.nineoldandroids:library:68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a',
         'javax.inject:javax.inject:91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff',
         'com.madgag.spongycastle:core:8d6240b974b0aca4d3da9c7dd44d42339d8a374358aca5fc98e50a995764511f',
         'com.klinkerapps:logger:177e325259a8b111ad6745ec10db5861723c99f402222b80629f576f49408541',
         'com.google.android.gms:play-services-tasks:69ec265168e601d0203d04cd42e34bb019b2f029aa1e16fabd38a5153eea2086',
+        'org.whispersystems:curve25519-android:bf6c34223d45d2f2813a8efcab9923caf99115115c760c9acea680bcb42d23c0',
+        'org.whispersystems:signal-protocol-java:12f45ad8cccafe6168af2b7c3872d7ec42f8ccaafeb99056158399f9bd0fa63e',
         'com.google.protobuf:protobuf-java:e0c1c64575c005601725e7c6a02cebf9e1285e888f756b2a1d73ffa8d725cc74',
         'com.googlecode.libphonenumber:libphonenumber:141ebcafba7070a13d879c44e7648ddbe10beab665cb64d7b0c1bea93afb8dc2',
         'com.fasterxml.jackson.core:jackson-databind:835097bcdd11f5bc8a08378c70d4c8054dfa4b911691cc2752063c75534d198d',
         'com.squareup.okhttp3:okhttp:a992938d7203ca557cd7a116f002e8c427ec9cdae7ea852441abb8aec891f948',
-        'org.whispersystems:curve25519-android:bf6c34223d45d2f2813a8efcab9923caf99115115c760c9acea680bcb42d23c0',
-        'org.whispersystems:signal-protocol-java:e184dee4c8c1900ce152f2cc9d539c97a0e42dd5f06663cd8e26b069a289ff61',
+        'org.whispersystems:curve25519-java:00f1d4919f759055f41f7853a3d475dc7c8decf0dbf045ae93414f8f23b066cc',
         'com.fasterxml.jackson.core:jackson-annotations:0ca408c24202a7626ec8b861e99d85eca5e38b73311dd6dd12e3e9deecc3fe94',
         'com.fasterxml.jackson.core:jackson-core:cbf4604784b4de226262845447a1ad3bb38a6728cebe86562e2c5afada8be2c0',
         'com.squareup.okio:okio:8c5436cadfab36bbd97db5f5c43b7bfdb5bf2f5f894ec8709b1929f14bdd010c',
-        'org.whispersystems:curve25519-java:00f1d4919f759055f41f7853a3d475dc7c8decf0dbf045ae93414f8f23b066cc',
         'com.android.support:support-annotations:47a2a30eab487a490a8a8f16678007c3d2b6dcae1e09b0485a12bbf921200ec3',
         'com.android.support:support-media-compat:8d6a1a5ba3d9eb1a25cb8f21bb312ac6280202e3d2900cb0b447d065d0d8a125',
         'com.android.support:support-core-utils:a7649e18c04143dde40c218c5ce9a030e7ae674089cd7b18c6cf8ed2a22cf01a',
