@@ -700,7 +700,8 @@ public class MmsDatabase extends MessagingDatabase {
                                 MmsAddresses.forTo(request.getRecipients().toNumberStringList(false)),
                                 request.getBody(),
                                 attachments,
-                                contentValues);
+                                contentValues,
+                                null);
     } catch (NoSuchMessageException e) {
       throw new MmsException(e);
     }
@@ -749,7 +750,7 @@ public class MmsDatabase extends MessagingDatabase {
 
     long messageId = insertMediaMessage(masterSecret, retrieved.getAddresses(),
                                         retrieved.getBody(), retrieved.getAttachments(),
-                                        contentValues);
+                                        contentValues, null);
 
     if (!Types.isExpirationTimerUpdate(mailbox)) {
       DatabaseFactory.getThreadDatabase(context).setUnread(threadId);
@@ -921,11 +922,7 @@ public class MmsDatabase extends MessagingDatabase {
     contentValues.remove(ADDRESS);
 
     long messageId = insertMediaMessage(masterSecret, addresses, message.getBody(),
-                                        message.getAttachments(), contentValues);
-
-    if (insertListener != null) {
-      insertListener.onComplete();
-    }
+                                        message.getAttachments(), contentValues, insertListener);
 
     DatabaseFactory.getThreadDatabase(context).setLastSeen(threadId);
     jobManager.add(new TrimThreadJob(context, threadId));
@@ -962,7 +959,8 @@ public class MmsDatabase extends MessagingDatabase {
                                   @NonNull MmsAddresses addresses,
                                   @Nullable String body,
                                   @NonNull List<Attachment> attachments,
-                                  @NonNull ContentValues contentValues)
+                                  @NonNull ContentValues contentValues,
+                                  @Nullable SmsDatabase.InsertListener insertListener)
       throws MmsException
   {
     SQLiteDatabase     db              = databaseHelper.getWritableDatabase();
@@ -990,6 +988,10 @@ public class MmsDatabase extends MessagingDatabase {
       return messageId;
     } finally {
       db.endTransaction();
+
+      if (insertListener != null) {
+        insertListener.onComplete();
+      }
 
       notifyConversationListeners(contentValues.getAsLong(THREAD_ID));
       DatabaseFactory.getThreadDatabase(context).update(contentValues.getAsLong(THREAD_ID), true);
