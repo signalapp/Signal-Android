@@ -743,6 +743,11 @@ public class PushDecryptJob extends ContextJob {
                                               @NonNull SignalServiceEnvelope envelope,
                                               @NonNull Optional<Long> smsMessageId)
   {
+    if (envelope.getLegacyMessage() == null || envelope.getLegacyMessage().length == 0) {
+      handleCorruptMessage(masterSecret, envelope, smsMessageId);
+      return;
+    }
+
     try {
       EncryptingSmsDatabase database       = DatabaseFactory.getEncryptingSmsDatabase(context);
       Recipients            recipients     = RecipientFactory.getRecipientsFromString(context, envelope.getSource(), false);
