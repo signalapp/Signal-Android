@@ -181,7 +181,7 @@ public class DeviceListFragment extends ListFragment
       @Override
       protected void onPostExecute(Void result) {
         super.onPostExecute(result);
-        getLoaderManager().restartLoader(0, null, DeviceListFragment.this);
+        getLoaderManager().restartLoader(0, null, DeviceListFragment.this).forceLoad();
       }
     }.execute();
   }
