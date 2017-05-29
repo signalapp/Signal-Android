@@ -58,11 +58,7 @@ dependencies {
     compile 'com.google.zxing:core:3.2.0'
     compile 'me.dm7.barcodescanner:zxing:1.7.2'
     compile 'com.android.support:cardview-v7:21.0.+'
-    compile('com.afollestad:material-dialogs:0.7.3.1') {
-        exclude module: 'appcompat-v7'
-        exclude module: 'recyclerview-v7'
-        exclude module: 'support-annotations'
-    }
+    compile 'com.afollestad.material-dialogs:core:0.9.4.5'
 
     compile 'com.github.bumptech.glide:glide:3.6.0'
     compile 'com.makeramen:roundedimageview:1.5.0'
@@ -99,12 +95,9 @@ dependencyVerification {
             'org.w3c:smil:085dc40f2bb249651578bfa07499fd08b16ad0886dbe2c4078586a408da62f9b',
             'org.apache.httpcomponents:httpclient-android:6f56466a9bd0d42934b90bfbfe9977a8b654c058bf44a12bdc2877c4e1f033f1',
             'com.github.chrisbanes.photoview:library:8b5344e206f125e7ba9d684008f36c4992d03853c57e5814125f88496126e3cc',
-            'com.android.support:design:41ff5f700d1bf8c190e1d3ac33582f92ad6e1f3b1080c8b8e2ac4f7b703be76a',
-            'com.android.support:recyclerview-v7:aaecd962eff758b716cef6ecef8d9237be10be3e2cb5ece4d5780e609e40246d',
             'com.madgag.spongycastle:prov:b8c3fec3a59aac1aa04ccf4dad7179351e54ef7672f53f508151b614c131398a',
             'me.dm7.barcodescanner:zxing:0d6dbf8182bbe4ab7984a743b5318c40c205374294738ec1fc9d0f2cad6692e9',
             'com.android.support:cardview-v7:45c48c2ab056bc7a8573970b10f8902742c5d443f180dae43c56557397ac39af',
-            //'com.afollestad:material-dialogs:c17205f0d300baa307599c428a5473a6659684c94a5f68ae3c2b84b5e4741172',
             'com.github.bumptech.glide:glide:adf657e6bddccb168a29e18ab0954043af46a9b5c736d8c3193c9783fd83d69e',
             'com.makeramen:roundedimageview:7dda2e78c406760e5c356ccce59b0df46b5b171cf18abb891998594405021548',
             'com.android.support:support-v4-preferencefragment:5470f5872514a6226fa1fc6f4e000991f38805691c534cf0bd2778911fc773ad',
@@ -129,9 +122,6 @@ dependencyVerification {
             'org.whispersystems:axolotl-java:9e6e1cb2e14a75c6bd44a0752e11312ac502d3fd1511fce71dd38926ca39b165',
             'com.squareup.okio:okio:5e1098bd3fdee4c3347f5ab815b40ba851e4ab1b348c5e49a5b0362f0ce6e978',
             'org.whispersystems:curve25519-java:08cc3be52723e0fc4148e5e7002d51d6d7e495b2130022237f2d47b90af6ae0b',
-            'com.android.support:support-v4:7bb6e40a18774aa2595e4d8f9fe0ae14e61670f71a1279272fb0b79b8be71180',
-            'com.android.support:appcompat-v7:2d5867698410b41f75140c91d6c1e58da74ae0f97baf6e0bdd1f7cc1017ceb2c',
-            'com.android.support:support-annotations:beac5cae60bdb597df9af9c916f785c2f71f8c8ae4be9a32d4298dea85496a42',
     ]
 }
 
