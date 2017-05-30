@@ -1573,6 +1573,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       buttonToggle.display(attachButton);
       quickAttachmentToggle.show();
     } else {
+      sendButton.setEnabled(true);
       buttonToggle.display(sendButton);
       quickAttachmentToggle.hide();
     }
@@ -1759,6 +1760,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private class SendButtonListener implements OnClickListener, TextView.OnEditorActionListener {
     @Override
     public void onClick(View v) {
+      sendButton.setEnabled(false);
       sendMessage();
     }
 
