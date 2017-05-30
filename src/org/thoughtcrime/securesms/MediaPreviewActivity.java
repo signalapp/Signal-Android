@@ -19,11 +19,13 @@ package org.thoughtcrime.securesms;
 import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
@@ -89,6 +91,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
                          WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    getSupportActionBar().setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.gray95_transparent50)));
     setContentView(R.layout.media_preview_activity);
 
     initializeViews();
