@@ -99,6 +99,7 @@
         <item name="colorAccent">@color/textsecure_primary_dark</item>
         <item name="colorControlActivated">@color/signal_primary</item>
         <item name="colorControlHighlight">@color/signal_primary</item>
+        <item name="autoCompleteTextViewStyle">@style/actionbar_cursor</item>
         <item name="android:windowBackground">@color/gray5</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleLight</item>
         <item name="android:alertDialogTheme">@style/AppCompatDialogStyleLight</item>
