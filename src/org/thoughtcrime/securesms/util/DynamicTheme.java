@@ -11,6 +11,17 @@ public class DynamicTheme {
   public static final String LIGHT = "light";
 
   private int currentTheme;
+  private int darkTheme;
+  private int lightTheme;
+
+  public DynamicTheme(int lightTheme, int darkTheme) {
+    this.lightTheme = lightTheme;
+    this.darkTheme  = darkTheme;
+  }
+
+  public DynamicTheme() {
+    this(R.style.TextSecure_LightTheme,R.style.TextSecure_DarkTheme);
+  }
 
   public void onCreate(Activity activity) {
     currentTheme = getSelectedTheme(activity);
@@ -30,9 +41,9 @@ public class DynamicTheme {
   protected int getSelectedTheme(Activity activity) {
     String theme = TextSecurePreferences.getTheme(activity);
 
-    if (theme.equals(DARK)) return R.style.TextSecure_DarkTheme;
+    if (theme.equals(DARK)) return darkTheme;
 
-    return R.style.TextSecure_LightTheme;
+    return lightTheme;
   }
 
   private static final class OverridePendingTransition {
