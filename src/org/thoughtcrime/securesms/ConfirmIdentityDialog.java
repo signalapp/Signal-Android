@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.VerifySpan;
 import org.whispersystems.libsignal.SignalProtocolAddress;
+import org.whispersystems.libsignal.state.IdentityKeyStore;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
@@ -106,11 +107,10 @@ public class ConfirmIdentityDialog extends AlertDialog {
         @Override
         protected Void doInBackground(Void... params) {
           synchronized (SESSION_LOCK) {
-            SignalProtocolAddress mismatchAddress = new SignalProtocolAddress(number, 1);
+            SignalProtocolAddress      mismatchAddress  = new SignalProtocolAddress(number, 1);
+            TextSecureIdentityKeyStore identityKeyStore = new TextSecureIdentityKeyStore(getContext());
 
-            if (new TextSecureIdentityKeyStore(getContext()).saveIdentity(mismatchAddress, mismatch.getIdentityKey(), true, true)) {
-              new TextSecureSessionStore(getContext()).deleteAllSessions(number);
-            }
+            identityKeyStore.saveIdentity(mismatchAddress, mismatch.getIdentityKey(), true, true);
           }
 
           processMessageRecord(messageRecord);

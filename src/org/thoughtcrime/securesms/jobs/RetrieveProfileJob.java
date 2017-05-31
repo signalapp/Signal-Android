@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -84,11 +83,7 @@ public class RetrieveProfileJob extends ContextJob implements InjectableType {
 
     synchronized (SESSION_LOCK) {
       IdentityKeyStore identityKeyStore = new TextSecureIdentityKeyStore(context);
-
-      if (identityKeyStore.saveIdentity(new SignalProtocolAddress(recipient.getNumber(), 1), identityKey)) {
-        Log.w(TAG, "Deleting all sessions...");
-        new TextSecureSessionStore(getContext()).deleteAllSessions(recipient.getNumber());
-      }
+      identityKeyStore.saveIdentity(new SignalProtocolAddress(recipient.getNumber(), 1), identityKey);
     }
   }
 

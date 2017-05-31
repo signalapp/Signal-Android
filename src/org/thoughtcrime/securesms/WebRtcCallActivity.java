@@ -39,7 +39,6 @@ import org.thoughtcrime.securesms.components.webrtc.WebRtcCallControls;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallScreen;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcIncomingCallOverlay;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -258,9 +257,8 @@ public class WebRtcCallActivity extends Activity {
       @Override
       public void onClick(View v) {
         synchronized (SESSION_LOCK) {
-          if (new TextSecureIdentityKeyStore(WebRtcCallActivity.this).saveIdentity(new SignalProtocolAddress(recipient.getNumber(), 1), theirIdentity, true, true)) {
-            new TextSecureSessionStore(WebRtcCallActivity.this).deleteAllSessions(recipient.getNumber());
-          }
+          TextSecureIdentityKeyStore identityKeyStore = new TextSecureIdentityKeyStore(WebRtcCallActivity.this);
+          identityKeyStore.saveIdentity(new SignalProtocolAddress(recipient.getNumber(), 1), theirIdentity, true, true);
         }
 
         Intent intent = new Intent(WebRtcCallActivity.this, WebRtcCallService.class);
