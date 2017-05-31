@@ -84,6 +84,7 @@ public class MessageNotifier {
   public static final  String EXTRA_REMOTE_REPLY = "extra_remote_reply";
 
   private static final  int   SUMMARY_NOTIFICATION_ID   = 1338;
+  private static final int    PENDING_MESSAGES_ID       = 1111;
   private static final String NOTIFICATION_GROUP        = "messages";
   private static final long   MIN_AUDIBLE_PERIOD_MILLIS = TimeUnit.SECONDS.toMillis(2);
   private static final long   DESKTOP_ACTIVITY_PERIOD   = TimeUnit.MINUTES.toMillis(1);
@@ -114,6 +115,15 @@ public class MessageNotifier {
       ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
         .notify((int)threadId, builder.build());
     }
+  }
+
+  public static void notifyMessagesPending(Context context) {
+    if (!TextSecurePreferences.isNotificationsEnabled(context)) {
+      return;
+    }
+
+    PendingMessageNotificationBuilder builder = new PendingMessageNotificationBuilder(context, TextSecurePreferences.getNotificationPrivacy(context));
+    ServiceUtil.getNotificationManager(context).notify(PENDING_MESSAGES_ID, builder.build());
   }
 
   public static void cancelDelayedNotifications() {
@@ -153,7 +163,8 @@ public class MessageNotifier {
           if (notification.getId() != SUMMARY_NOTIFICATION_ID &&
               notification.getId() != CallNotificationBuilder.WEBRTC_NOTIFICATION   &&
               notification.getId() != KeyCachingService.SERVICE_RUNNING_ID          &&
-              notification.getId() != MessageRetrievalService.FOREGROUND_ID)
+              notification.getId() != MessageRetrievalService.FOREGROUND_ID         &&
+              notification.getId() != PENDING_MESSAGES_ID)
           {
             for (NotificationItem item : notificationState.getNotifications()) {
               if (notification.getId() == (SUMMARY_NOTIFICATION_ID + item.getThreadId())) {

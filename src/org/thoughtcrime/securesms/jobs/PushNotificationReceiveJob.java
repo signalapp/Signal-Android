@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
@@ -50,5 +51,6 @@ public class PushNotificationReceiveJob extends PushReceivedJob implements Injec
   @Override
   public void onCanceled() {
     Log.w(TAG, "***** Failed to download pending message!");
+    MessageNotifier.notifyMessagesPending(getContext());
   }
 }
