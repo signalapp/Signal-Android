@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animator xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          tools:targetApi="11"
+          android:valueType="floatType"
+          android:valueFrom="10dp"
+          android:valueTo="50dp"
+          android:duration="200"
+          android:interpolator="@android:interpolator/accelerate_decelerate"/>

@@ -20,7 +20,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.hardware.Camera;
 import android.hardware.Camera.CameraInfo;
@@ -31,14 +33,23 @@ import android.os.Build;
 import android.os.Build.VERSION;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.view.GestureDetectorCompat;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.OrientationEventListener;
 import android.view.ViewGroup;
+
+import com.nineoldandroids.animation.Animator;
+import com.nineoldandroids.animation.AnimatorInflater;
+import com.nineoldandroids.animation.AnimatorListenerAdapter;
+import com.nineoldandroids.animation.ValueAnimator;
 
 import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -65,6 +76,13 @@ public class CameraView extends ViewGroup {
   private @Nullable Size                     previewSize;
   private @NonNull  List<CameraViewListener> listeners = Collections.synchronizedList(new LinkedList<CameraViewListener>());
   private           int                      outputOrientation  = -1;
+
+  private           int                   focusAreaSize   = -1;
+  private           GestureDetectorCompat gestureDetector;
+  private           boolean               focusEnabled, focusAnimationRunning, focusComplete;
+  private           float                 focusCircleX, focusCircleY, focusCircleRadius;
+  private           Paint                 focusCirclePaint;
+  private           ValueAnimator         focusCircleExpandAnimation, focusCircleFadeOutAnimation;
 
   public CameraView(Context context) {
     this(context, null);
@@ -125,6 +143,12 @@ public class CameraView extends ViewGroup {
             listener.onCameraFail();
           }
           return;
+        } else {
+          Parameters parameters = camera.get().getParameters();
+          focusEnabled = Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH &&
+              parameters.getSupportedFocusModes().contains(Camera.Parameters.FOCUS_MODE_AUTO) &&
+              (parameters.getMaxNumFocusAreas() > 0 || parameters.getMaxNumMeteringAreas() > 0);
+          if (focusEnabled) setupFocusAnimation();
         }
 
         if (getActivity().getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED) {
@@ -303,6 +327,120 @@ public class CameraView extends ViewGroup {
     });
   }
 
+  @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+  protected boolean focusOnArea(float x, float y, @Nullable Camera.AutoFocusCallback callback) {
+    if (!camera.isPresent()) return false;
+    Camera cameraInstance = camera.get();
+    cameraInstance.cancelAutoFocus();
+
+    final Size previewSize = camera.get().getParameters().getPreviewSize();
+    float newX = 0, newY = 0;
+    if (previewSize != null && (displayOrientation == 90 || displayOrientation == 270)) {
+      newX = x / previewSize.height * 2000 - 1000;
+      newY = y / previewSize.width * 2000 - 1000;
+    } else if (previewSize != null) {
+      newX = x / previewSize.width * 2000 - 1000;
+      newY = y / previewSize.height * 2000 - 1000;
+    }
+    Rect focusRect = calculateTapArea(newX, newY, 1.f);
+    // AE area is bigger because exposure is sensitive and
+    // easy to over- or underexposure if area is too small.
+    Rect meteringRect = calculateTapArea(newX, newY, 1.5f);
+
+    Camera.Parameters parameters = cameraInstance.getParameters();
+    if (parameters.getMaxNumFocusAreas() > 0) {
+      parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
+      ArrayList<Camera.Area> focusAreaArrayList = new ArrayList<>();
+      focusAreaArrayList.add(new Camera.Area(focusRect, 1000));
+      parameters.setFocusAreas(focusAreaArrayList);
+    }
+    if (parameters.getMaxNumMeteringAreas() > 0) {
+      ArrayList<Camera.Area> meteringAreaArrayList = new ArrayList<>();
+      meteringAreaArrayList.add(new Camera.Area(meteringRect, 1000));
+      parameters.setMeteringAreas(meteringAreaArrayList);
+    }
+    cameraInstance.setParameters(parameters);
+    cameraInstance.autoFocus(callback);
+    return true;
+  }
+
+  private Rect calculateTapArea(float x, float y, float coefficient) {
+    int scaledFocusAreaSize = (int) (coefficient * focusAreaSize);
+    int left = clamp((int) x - scaledFocusAreaSize / 2, -1000, 1000 - scaledFocusAreaSize);
+    int top = clamp((int) y - scaledFocusAreaSize / 2, -1000, 1000 - scaledFocusAreaSize);
+    return new Rect(left, top, left + scaledFocusAreaSize, top + scaledFocusAreaSize);
+  }
+
+  private static int clamp(int x, int min, int max) {
+    return Math.min(Math.max(x, min), max);
+  }
+
+  private void setupFocusAnimation() {
+    TapToFocusListener tapToFocusListener = new TapToFocusListener();
+    gestureDetector = new GestureDetectorCompat(getContext(), tapToFocusListener);
+    gestureDetector.setIsLongpressEnabled(false);
+    focusAnimationRunning = false;
+    focusComplete = false;
+    focusCircleX = focusCircleY = 0;
+    focusCirclePaint = new Paint();
+    focusCirclePaint.setAntiAlias(true);
+    focusCirclePaint.setColor(Color.WHITE);
+    focusCirclePaint.setStyle(Paint.Style.STROKE);
+    focusCirclePaint.setStrokeWidth(5);
+
+    focusCircleExpandAnimation = (ValueAnimator) AnimatorInflater.loadAnimator(getContext(), R.animator.quick_camera_focus_circle_expand);
+    focusCircleExpandAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+      @Override
+      public void onAnimationUpdate(ValueAnimator animation) {
+        focusCircleRadius = (Float) animation.getAnimatedValue();
+        invalidate();
+      }
+    });
+    focusCircleExpandAnimation.addListener(new AnimatorListenerAdapter() {
+      @Override
+      public void onAnimationStart(Animator animation) {
+        focusCirclePaint.setAlpha(255);
+        focusAnimationRunning = true;
+      }
+
+      @Override
+      public void onAnimationEnd(Animator animation) {
+        if (focusComplete)
+          focusCircleFadeOutAnimation.start();
+      }
+    });
+
+    focusCircleFadeOutAnimation = (ValueAnimator) AnimatorInflater.loadAnimator(getContext(), R.animator.quick_camera_focus_circle_fade_out);
+    focusCircleFadeOutAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+      @Override
+      public void onAnimationUpdate(ValueAnimator animation) {
+        focusCirclePaint.setAlpha((int) animation.getAnimatedValue());
+        invalidate();
+      }
+    });
+    focusCircleFadeOutAnimation.addListener(new AnimatorListenerAdapter() {
+      @Override
+      public void onAnimationEnd(Animator animation) {
+        focusAnimationRunning = false;
+        invalidate();
+      }
+    });
+  }
+
+  @Override
+  public boolean onTouchEvent(MotionEvent event) {
+    return focusEnabled && gestureDetector != null ?
+        this.gestureDetector.onTouchEvent(event) :
+        super.onTouchEvent(event);
+  }
+
+  @Override
+  protected void dispatchDraw(Canvas canvas) {
+    super.dispatchDraw(canvas);
+    if (focusEnabled && focusAnimationRunning)
+      canvas.drawCircle(focusCircleX, focusCircleY, focusCircleRadius, focusCirclePaint);
+  }
+
   private void startPreview(final @NonNull Parameters parameters) {
     if (this.camera.isPresent()) {
       try {
@@ -318,6 +456,9 @@ public class CameraView extends ViewGroup {
         } else {
           previewSize = parameters.getPreviewSize();
         }
+        // Recommended focus area size from the manufacture is 1/8 of the image
+        // width (i.e. longer edge of the image)
+        focusAreaSize = Math.max(parameters.getPreviewSize().width, parameters.getPreviewSize().height) / 8;
         long previewStartMillis = System.currentTimeMillis();
         camera.startPreview();
         Log.w(TAG, "camera.startPreview() -> " + (System.currentTimeMillis() - previewStartMillis) + "ms");
@@ -486,6 +627,34 @@ public class CameraView extends ViewGroup {
 
   private void enqueueTask(SerialAsyncTask job) {
     ApplicationContext.getInstance(getContext()).getJobManager().add(job);
+  }
+
+  private class TapToFocusListener extends GestureDetector.SimpleOnGestureListener
+      implements Camera.AutoFocusCallback {
+    @Override
+    public boolean onSingleTapUp(MotionEvent e) {
+      focusCircleX = e.getX();
+      focusCircleY = e.getY();
+      focusCircleExpandAnimation.cancel();
+      focusCircleFadeOutAnimation.cancel();
+      focusAnimationRunning = false;
+      focusComplete = false;
+      if (focusOnArea(focusCircleX, focusCircleY, this))
+        focusCircleExpandAnimation.start();
+      return true;
+    }
+
+    @Override
+    public boolean onDown(MotionEvent e) {
+      return true;
+    }
+
+    @Override
+    public void onAutoFocus(boolean success, Camera camera) {
+      focusComplete = true;
+      if (!focusCircleExpandAnimation.isRunning())
+        focusCircleFadeOutAnimation.start();
+    }
   }
 
   private static abstract class SerialAsyncTask<Result> extends Job {
