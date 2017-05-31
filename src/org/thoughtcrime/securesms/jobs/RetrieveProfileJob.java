@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.MessageRetrievalService;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.InvalidKeyException;
@@ -23,6 +24,7 @@ import org.whispersystems.signalservice.api.SignalServiceMessagePipe;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.SignalServiceProfile;
+import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.IOException;
 
@@ -51,11 +53,15 @@ public class RetrieveProfileJob extends ContextJob implements InjectableType {
 
   @Override
   public void onRun() throws IOException, InvalidKeyException {
-    Recipients recipients = RecipientFactory.getRecipientsForIds(context, recipientIds, true);
+    try {
+      Recipients recipients = RecipientFactory.getRecipientsForIds(context, recipientIds, true);
 
-    for (Recipient recipient : recipients) {
-      if (recipient.isGroupRecipient()) handleGroupRecipient(recipient);
-      else                              handleIndividualRecipient(recipient);
+      for (Recipient recipient : recipients) {
+        if (recipient.isGroupRecipient()) handleGroupRecipient(recipient);
+        else                              handleIndividualRecipient(recipient);
+      }
+    } catch (InvalidNumberException e) {
+      Log.w(TAG, e);
     }
   }
 
@@ -68,9 +74,10 @@ public class RetrieveProfileJob extends ContextJob implements InjectableType {
   public void onCanceled() {}
 
   private void handleIndividualRecipient(Recipient recipient)
-      throws IOException, InvalidKeyException
+      throws IOException, InvalidKeyException, InvalidNumberException
   {
-    SignalServiceProfile profile     = retrieveProfile(recipient.getNumber());
+    String               number      = Util.canonicalizeNumber(context, recipient.getNumber());
+    SignalServiceProfile profile     = retrieveProfile(number);
     IdentityKey          identityKey = new IdentityKey(Base64.decode(profile.getIdentityKey()), 0);
 
     if (!DatabaseFactory.getIdentityDatabase(context)
@@ -88,7 +95,7 @@ public class RetrieveProfileJob extends ContextJob implements InjectableType {
   }
 
   private void handleGroupRecipient(Recipient group)
-      throws IOException, InvalidKeyException
+      throws IOException, InvalidKeyException, InvalidNumberException
   {
     byte[]     groupId    = GroupUtil.getDecodedId(group.getNumber());
     Recipients recipients = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, false);
