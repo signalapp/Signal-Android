@@ -82,6 +82,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Şifrelenmemiş MMS\'e geri dönülsün mü?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Bu mesaj alıcının artık Signal kullanıcısı olmaması nedeniyle şifrelenmiş olarak <b>gönderilemez</b>. \n\nGüvensiz mesaj gönderilsin mi?</string>
   <string name="ConversationItem_unable_to_open_media">Bu medyayı açabilen bir uygulama bulunamadı.</string>
+  <string name="ConversationItem_copied_text">%s</string>
   <string name="ConversationItem_from_s">gönderen %s</string>
   <string name="ConversationItem_to_s">alıcı %s</string>
   <!--ConversationActivity-->
@@ -490,6 +491,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="ThreadRecord_media_message">Medya mesajı</string>
   <string name="ThreadRecord_s_joined_signal">%s Signal\'e katıldı!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Mesaj yok olma zamanı %s olarak belirlendi</string>
+  <string name="ThreadRecord_safety_number_changed">Güvenlik numarası değişti</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">%s ile güvenlik numaranız değişti.</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal güncellemesi</string>
@@ -554,6 +556,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="MessageNotifier_mark_read">Okundu</string>
   <string name="MessageNotifier_media_message">Medya mesajı</string>
   <string name="MessageNotifier_reply">Cevapla</string>
+  <string name="MessageNotifier_pending_signal_messages">Bekleyen Signal mesajları</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Telefonunuz için manuel MMS ayarları gerekmektedir.</string>
   <string name="MmsPreferencesFragment__enabled">Etkin</string>
@@ -588,6 +591,9 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="attachment_type_selector__location_description">Konum</string>
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__file_description">Dosya</string>
+  <string name="attachment_type_selector__gallery">Galeri</string>
+  <string name="attachment_type_selector__file">Dosya</string>
   <string name="attachment_type_selector__drawer_description">Ek çekmecesini göster/gizle</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Eski parola</string>
@@ -859,6 +865,8 @@ başarısız.</string>
   <string name="arrays__normal">Normal</string>
   <string name="arrays__large">Büyük</string>
   <string name="arrays__extra_large">Çok büyük</string>
+  <string name="arrays__default">Varsayılan</string>
+  <string name="arrays__high">Yüksek</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="other">%d saat</item>
@@ -973,8 +981,10 @@ başarısız.</string>
   <string name="preferences_advanced__always_relay_calls">Tüm aramaları aracı ile ilet</string>
   <string name="preferences_app_protection__communication">İletişim</string>
   <string name="preferences_notifications__message_notifications">Mesaj bildirimleri</string>
+  <string name="preferences_notifications__show">Göster</string>
   <string name="preferences_chats__message_text_size">Mesaj font boyutu</string>
   <string name="preferences_events__contact_joined_signal">Kişi Signal\'e katıldı</string>
+  <string name="preferences_notifications__priority">Öncelik</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

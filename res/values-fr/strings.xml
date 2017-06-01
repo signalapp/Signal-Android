@@ -85,7 +85,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Utiliser la solution de repli sur les MMS non chiffrés ?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ce message ne sera <b>pas</b> être chiffré, car le récepteur n\'a plus Signal. \n\nEnvoyer un message non sécurisé?</string>
   <string name="ConversationItem_unable_to_open_media">Impossible de trouver une application pour ouvrir le média.</string>
-  <string name="ConversationItem_copied_text">Copied %s</string>
+  <string name="ConversationItem_copied_text">Copié %s</string>
   <string name="ConversationItem_from_s">de %s</string>
   <string name="ConversationItem_to_s">à %s</string>
   <!--ConversationActivity-->
@@ -230,7 +230,7 @@
   <!--DocumentView-->
   <string name="DocumentView_unknown_file">Fichier inconnu</string>
   <!--DozeReminder-->
-  <string name="DozeReminder_optimize_for_missing_play_services">Optimiser les services Play manquant</string>
+  <string name="DozeReminder_optimize_for_missing_play_services">Optimiser les Play Services manquants</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Cet appareil ne prend pas en charge le Play Services. Appuyez sur cette touche pour désactiver les optimisations de la batterie du système qui empêchent le signal de récupérer les messages lorsqu\'ils sont inactifs.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Partager avec</string>
@@ -241,9 +241,9 @@
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure devient Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure et RedPhone forment maintenant une seule application : Signal. Appuyez pour découvrir.</string>
   <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Dites bonjour pour sécuriser les appels vidéo.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal prend désormais en charge les appels vidéo sécurisés. Il suffit de démarrer un appel de signal comme normal, appuyez sur le bouton vidéo, et vague salut.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Le signal prend désormais en charge les appels vidéo sécurisés.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal prend désormais en charge les appels vidéo sécurisés. Appuyez pour explorer.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal prend désormais en charge les appels vidéo sécurisés. Démarrez un appel normalement, appuyez sur le bouton vidéo puis faites un salut de la main.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal prend désormais en charge les appels vidéo sécurisés.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal prend désormais en charge les appels vidéo sécurisés. Appuyez pour plus d\'info.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exporter</string>
   <string name="ExportFragment_export_plaintext_to_storage">Exporter en clair dans l\'espace de stockage ?</string>
@@ -258,7 +258,7 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Échec de communication Signal permanent !</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Les appels et messages Signal ont été désactivés car Signal n\'a pas pu s\'enregistrer auprès de Google Play Services. Veuillez essayer de vous enregistrer à nouveau à partir du menu Paramètres &gt; Avancé.</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Erreur lors de la récupération du GIF en résolution totale</string>
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Erreur lors de la récupération du GIF en résolution maximale</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Autocollants</string>
@@ -353,7 +353,7 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Message multimédia</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Téléchargement du message MMS</string>
-  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Erreur lors du téléchargement du message MMS, appuyez sur pour réessayer</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Erreur lors du téléchargement du message MMS, appuyez pour réessayer</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Le message reçu est chiffré avec une ancienne version de Signal qui n\'est plus prise en charge. Veuillez demander à l’expéditeur de mettre à jour Signal et de renvoyer son message.</string>
   <string name="MessageRecord_left_group">Vous avez quitté le groupe.</string>
@@ -365,7 +365,7 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="MessageRecord_s_joined_signal">%s a rejoint Signal !</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Vous avez choisi %1$s comme heure de disparition du message.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a choisi %2$s comme heure de disparition du message.</string>
-  <string name="MessageRecord_your_safety_number_with_s_has_changed">Votre numéro de sécurité avec %s a changé</string>
+  <string name="MessageRecord_your_safety_number_with_s_has_changed">Votre numéro de sécurité avec %s a changé.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Les phrases de passe ne correspondent pas !</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Ancienne phrase de passe incorrecte !</string>
@@ -455,9 +455,9 @@ introduit (%s) n\'est pas valide.</string>
   <string name="RegistrationActivity_continue">Continuer</string>
   <string name="RegistrationActivity_edit">Modifier</string>
   <string name="RegistrationActivity_missing_google_play_services">Services Google Play manquants</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Google Play Services manque dans ce périphérique. Si vous n\'êtes pas un utilisateur avancé, n\'utilisez pas une ROM Android de rechange ou ne croyez pas que vous voyez cela par erreur, veuillez contacter support@whispersystems.org pour aider à résoudre les problèmes.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Play Services de Google n\'est pas installé, ceci peut réduire la fiabilité et les performances de Signal.\nSi vous n\'êtes pas un utilisateur avancé ou n\'utilisez pas de ROM Android de tiers ou que vous pensez voir ceci par erreur, veuillez contacter support@whispersystems.org pour résoudre ces problèmes.</string>
   <string name="RegistrationActivity_i_understand">Je comprends</string>
-  <string name="RegistrationActivity_play_services_error">Erreur Service Play</string>
+  <string name="RegistrationActivity_play_services_error">Erreur Play Services</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services est en cours de mise à jour ou est temporairement indisponible. Veuillez réessayer.</string>
   <string name="RegistrationActivity_more_information">Plus d\'informations</string>
   <string name="RegistrationActivity_less_information">Moins d\'informations</string>
@@ -484,7 +484,7 @@ introduit (%s) n\'est pas valide.</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Vous avez déjà demandé récemment un appel vocal. Vous pouvez en demander un autre dans 20 minutes.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Conflit d’inscription</string>
   <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Ce numéro est déjà enregistré sur un serveur Signal différent.
-Vous devez vous désinscrire sur l\'autre serveur avant de vous enregistrer ici.</string>
+Vous devez vous désinscrire de l\'autre serveur avant de vous enregistrer ici.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Enregistrement complet</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">L\'enregistrement sur Signal a bien réussi.</string>
@@ -517,10 +517,10 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Votre numéro de sécurité avec %s a changé</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Mise à jour de Signal</string>
-  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Une nouvelle version de Signal est disponible, appuyez pour mettre à jour</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Une nouvelle version de Signal est disponible, appuyez pour la mettre à jour</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Votre contact exécute une ancienne version de Signal. Veuillez lui demander de mettre à jour Signal avant de vérifier le numéro de sécurité.</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Votre contact utilise une version plus récente de Signal, avec un format de QR code incompatible. Mettez votre application à jour pour comparer.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Votre contact utilise une version plus récente de Signal, avec un format de code QR incompatible. Mettez Signal à jour pour comparer.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Le code QR scanné n\'est pas valide. Essayez de le scanner de nouveau.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Partager les numéros de sécurité via...</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Vos numéros de sécurité Signal :</string>
@@ -596,8 +596,8 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Erreur lors de la lecture de la vidéo</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">Le numéro de sécurité pour votre conversation avec %1$s a changé. Cela peut soit dire que quelqu\'un tente d\'intercepter votre communication, soit que %2$s a simplement réinstallé Signal.</string>
-  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Vous pouvez vérifier vos numéros de sécurité avec ce contact.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers">Le numéro de sécurité pour votre conversation avec %1$s a changé. Soit quelqu\'un tente d\'intercepter votre communication, soit que %2$s a simplement réinstallé Signal.</string>
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Vous pouvez vérifier votre numéro de sécurité avec ce contact.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Nouveau numéro de sécurité</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Appuyez pour activer votre vidéo</string>
@@ -607,7 +607,7 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="attachment_type_selector__contact">Contact</string>
   <string name="attachment_type_selector__contact_description">Contact</string>
   <string name="attachment_type_selector__camera">Appareil photo</string>
-  <string name="attachment_type_selector__camera_description">Appareil photo</string>
+  <string name="attachment_type_selector__camera_description">Caméra</string>
   <string name="attachment_type_selector__location">Lieu</string>
   <string name="attachment_type_selector__location_description">Lieu</string>
   <string name="attachment_type_selector__gif">GIFs</string>
@@ -774,7 +774,7 @@ Les paramètres MMS de votre opérateur peuvent généralement être obtenus en 
   <string name="recipient_preferences__block">Bloquer</string>
   <string name="recipient_preferences__color">Couleur</string>
   <string name="recipient_preferences__color_for_this_contact">Couleur pour ce contact</string>
-  <string name="recipient_preferences__verify_safety_number">Vérification des numéros de sécurité</string>
+  <string name="recipient_preferences__verify_safety_number">Vérification du numéro de sécurité</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Appel Signal</string>
   <string name="redphone_call_controls__end_call">Terminer l\'appel</string>
@@ -820,7 +820,7 @@ Signal peut aussi vous appeler pour vérifier votre numéro. Appuyez sur \'Appel
 possibles sont:</string>
   <string name="registration_progress_activity__no_network_connectivity">Pas de connexion
 au réseau.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Votre appareil a besoin d\'une connexion réseau pour pouvoir utiliser cette fonctionnalité de Signal. Vérifiez que la connexion mobile ou le WiFi est activé.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Votre appareil a besoin d\'une connexion réseau pour pouvoir utiliser cette fonctionnalité de Signal. Vérifiez que la connexion mobile ou WiFi est activé.</string>
   <string name="registration_progress_activity__restrictive_firewall">Pare-feu restrictif.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 Si vous êtes connectés au Wi-Fi, Il est possible qu\'un pare-feu bloque l\'accès
@@ -845,10 +845,10 @@ par SMS.</string>
   <string name="recipients_panel__to"><small>Entrez un nom ou un numéro</small></string>
   <string name="recipients_panel__add_members">Ajouter des membres</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Si vous voulez verifier la securité du chiffrement de bout en bout avec %s, comparez les numéros ci-dessus avec les numéros sur son appareil. Vous pouvez également scanner le code sur son téléphone, ou lui demander de scanner votre code. <a href="https://whispersystems.org/redirect/safety-numbers">En savoir plus sur les numéros de sécurité</a>.]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Si vous voulez vérifier la securité du chiffrement de bout en bout avec %s, comparez le numéro ci-dessus avec le numéro sur son appareil. Vous pouvez également scanner le code sur son téléphone ou lui demander de scanner votre code. <a href="https://whispersystems.org/redirect/safety-numbers">En savoir plus sur les numéros de sécurité</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Appuyer pour scanner</string>
   <!--verify_identity-->
-  <string name="verify_identity__share_safety_number">Partager les numéros de sécurité</string>
+  <string name="verify_identity__share_safety_number">Partager le numéro de sécurité</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Des problèmes requièrent votre attention.</string>
   <string name="message_details_header__sent">Envoyé</string>
@@ -864,7 +864,7 @@ par SMS.</string>
   <string name="AndroidManifest__select_contacts">Sélectionner des contacts</string>
   <string name="AndroidManifest__signal_detected">Signal détecté</string>
   <string name="AndroidManifest__change_passphrase">Modifier la phrase de passe</string>
-  <string name="AndroidManifest__verify_safety_number">Vérification des numéros de sécurité</string>
+  <string name="AndroidManifest__verify_safety_number">Vérification du numéro de sécurité</string>
   <string name="AndroidManifest__log_submit">Envoyer un rapport de débogage</string>
   <string name="AndroidManifest__media_preview">Aperçu du média</string>
   <string name="AndroidManifest__all_media">Tous les médias</string>
@@ -931,7 +931,7 @@ par SMS.</string>
   <string name="preferences__notifications">Notifications</string>
   <string name="preferences__enable_message_notifications">Activer les notifications de messages</string>
   <string name="preferences__new_contacts_notifications">Notifications pour les nouveaux contacts</string>
-  <string name="preferences__show_a_notification_for_new_signal_contacts">Montrer une notifications pour les nouveaux contacts Signal</string>
+  <string name="preferences__show_a_notification_for_new_signal_contacts">Afficher une notification pour les nouveaux contacts Signal</string>
   <string name="preferences__led_color">Couleur de la LED</string>
   <string name="preferences__led_color_unknown">Inconnu</string>
   <string name="preferences__pref_led_blink_title">Rythme de clignotement de la LED</string>
@@ -1010,15 +1010,15 @@ par SMS.</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Désactiver le support des emojis inclus dans Signal</string>
   <string name="preferences_advanced__video_calling_beta">Appel vidéo bêta</string>
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Prise en charge des appels vidéo et vocaux de prochaine génération lorsque les deux parties le permettent. Cette fonctionnalité est en version bêta.</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Relaie tout les appels via les serveur de Signal pour éviter de révéler votre IP à votre contact. L\'activation va réduire la qualité de l\'appel.</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Relayer tout les appels via les serveurs Signal pour éviter de révéler votre IP à votre contact. L\'activation va réduire la qualité de l\'appel.</string>
   <string name="preferences_advanced__always_relay_calls">Toujours relayer les appels</string>
   <string name="preferences_app_protection__app_access">Accès à l\'application</string>
   <string name="preferences_app_protection__communication">Communication</string>
-  <string name="preferences_chats__chats">Chats</string>
+  <string name="preferences_chats__chats">Tchats</string>
   <string name="preferences_notifications__message_notifications">Notifications de messages</string>
   <string name="preferences_notifications__events">Evènements</string>
   <string name="preferences_notifications__in_chat_sounds">Son dans le tchat</string>
-  <string name="preferences_notifications__show">Montrer</string>
+  <string name="preferences_notifications__show">Afficher</string>
   <string name="preferences_chats__show_invitation_prompts">Afficher les invitations</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Afficher les invitations pour les contacts sans Signal</string>
   <string name="preferences_chats__message_text_size">Taille de la police du message</string>
@@ -1050,7 +1050,7 @@ par SMS.</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Enregistrer la pièce jointe</string>
   <!--conversation_expiring_off-->
-  <string name="conversation_expiring_off__disappearing_messages">Disparition des messages</string>
+  <string name="conversation_expiring_off__disappearing_messages">Messages éphémères</string>
   <!--conversation_expiring_on-->
   <string name="menu_conversation_expiring_on__messages_expiring">Les messages expirent</string>
   <!--conversation_insecure-->
@@ -1111,10 +1111,10 @@ par SMS.</string>
   <string name="reminder_header_outdated_build">Votre version de Signal est trop ancienne</string>
   <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Votre version de Signal va expirer dans 1 jour. Appuyer pour mettre à jour vers la version la plus récente.</item>
-    <item quantity="other">Cette version de Signal expire dans %d jours. Appuyer pour installer la version la plus récente.</item>
+    <item quantity="other">Cette version de Signal expire dans %d jours. Appuyez pour installer la version la plus récente.</item>
   </plurals>
-  <string name="reminder_header_outdated_build_details_today">Cette version de Signal expire aujourd\'hui. Appuyer pour installer la version la plus récente.</string>
-  <string name="reminder_header_expired_build">Votre version de Signal a expirée!</string>
+  <string name="reminder_header_outdated_build_details_today">Cette version de Signal expire aujourd\'hui. Appuyez pour installer la version la plus récente.</string>
+  <string name="reminder_header_expired_build">Votre version de Signal a expiré !</string>
   <string name="reminder_header_expired_build_details">Les messages ne pourront plus être envoyés, veuillez installer la dernière version.</string>
   <string name="reminder_header_expired_build_button">METTRE À JOUR</string>
   <string name="reminder_header_sms_default_title">Utiliser comme application SMS par défaut</string>
@@ -1135,7 +1135,7 @@ par SMS.</string>
   <string name="reminder_header_close_button">FERMER</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Enregistrer</string>
-  <string name="media_preview__forward_title">Suivant</string>
+  <string name="media_preview__forward_title">Faire suivre</string>
   <string name="media_preview__all_media_title">Tous les médias</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Tout sauvegarder</string>

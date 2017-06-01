@@ -9,15 +9,15 @@
   <string name="AbstractNotificationBuilder_new_message">Ny melding</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Gjeldende: %s</string>
-  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har ikke valgt en passordfrase ennå.</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har ikke valgt en passordfrase enda.</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
     <item quantity="one">1 melding per samtale</item>
     <item quantity="other">%d meldinger per samtale</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Vil du slette alle gamle meldinger nå?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
-    <item quantity="one">Dette vil umiddelbart trimme alle samtaler til de siste meldingene.</item>
-    <item quantity="other">Dette forkorter alle samtaler til de %d siste meldingene.</item>
+    <item quantity="one">Dette forkorter alle samtaler til den nyeste meldinga umiddelbart.</item>
+    <item quantity="other">Dette forkorter alle samtaler til de %d siste meldingene umiddelbart.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Slett</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Vil du slå av bruk av passordfrase?</string>
@@ -65,7 +65,7 @@
   <string name="CallScreen_Incoming_call">Inngående samtale</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Ditt sikkerhetsnummer med %1$s er endret. Dette kan enten bety at noen prøver å fange opp kommunikasjonen din, eller at %2$s bare reinstallert Signal.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Du ønsker kanskje å bekrefte din sikkerhets nummer med denne kontakten.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Du bør kontrollere sikkerhetsnumrene dine mot denne kontakten.</string>
   <string name="ConfirmIdentityDialog_accept">Godta</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Melding %s</string>
@@ -120,6 +120,7 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">La oss bytte til Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">La oss bruke dette til å prate: %1$s</string>
+  <string name="ConversationActivity_error_leaving_group">Klarte ikke å forlate gruppe</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS støttes ikke</string>
   <string name="ConversationActivity_mms_not_supported_message">Operatøren din støtter ikke MMS, og meldinga ble derfor ikke sendt.</string>
   <string name="ConversationActivity_specify_recipient">Velg en kontakt</string>
@@ -129,6 +130,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Vedlegg overskrider maksimal størrelsesgrense for gjeldende meldingstype.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera utilgjengelig</string>
   <string name="ConversationActivity_unable_to_record_audio">Klarte ikke å ta opp lyd.</string>
+  <string name="ConversationActivity_error_sending_voice_message">Klarte ikke å sende lydmelding</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Du har ingen programmer på denne enheten som kan håndtere denne lenka.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
@@ -155,6 +157,10 @@
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">Det oppstod en feil under lagring av vedlegg som vanlig fil.</item>
     <item quantity="other">Det oppstod en feil under lagring av vedlegg som vanlige filer.</item>
+  </plurals>
+  <plurals name="ConversationFragment_files_saved_successfully">
+    <item quantity="one">Fila ble lagret.</item>
+    <item quantity="other">Filene ble lagret.</item>
   </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Klarte ikke å skrive til enhetslager.</string>
   <plurals name="ConversationFragment_saving_n_attachments">
@@ -196,6 +202,7 @@
     <item quantity="other">Flyttet %d samtaler til innboks</item>
   </plurals>
   <!--ConversationListItem-->
+  <string name="ConversationListItem_key_exchange_message">Nøkkelutveksling</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Arkiverte samtaler (%d)</string>
   <!--CustomDefaultPreference-->
@@ -224,6 +231,7 @@
   <string name="DocumentView_unknown_file">Ukjent fil</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimaliser for manglende Play Tjenester</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Denne enheten støtter ikke Play-tjenester. Trykk én gang for å slå av batterioptimalisering som kan hindre Signal i å motta meldinger når det kjører i bakgrunnen.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Del med</string>
   <!--ExperienceUpgradeActivity-->
@@ -250,6 +258,7 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Varig Signal-kommunikasjonsfeil.</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal klarte ikke å registrere seg som Google Play-tjeneste. Signal-meldinger og samtaler er derfor slått av. Prøv å registrere programmet på nytt under Innstillinger &gt; Avansert.</string>
   <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Feil under henting av GIF</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Klistremerker</string>
@@ -331,8 +340,11 @@ fører dette til dupliserte meldinger.</string>
   <string name="MessageDetailsRecipient_new_safety_number">Ny sikkerhets nummer</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_background_connection_enabled">Bakgrunnstilkobling slått på</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Feil under lagring av MMS.</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Feil under tilkobling til MMS-leverandør</string>
+  <string name="MmsDownloader_error_reading_mms_settings">Feil under lesing av oppsett for MMS-leverandør</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-samtale pågår</string>
   <string name="NotificationBarManager_missed_call_from_s">Tapt anrop fra %s</string>
@@ -346,6 +358,7 @@ fører dette til dupliserte meldinger.</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediemelding</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Laster ned MMS-melding</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Feil under nedlasting av MMS-melding. Trykk for å prøve igjen</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Mottatt en melding som er kryptert med en gammel versjon av Signal som ikke lenger støttes. Be avsenderen om å oppdatere til nyeste versjon og sende meldinga på nytt.</string>
   <string name="MessageRecord_left_group">Du har forlatt gruppa.</string>
@@ -369,7 +382,7 @@ fører dette til dupliserte meldinger.</string>
   <string name="DeviceProvisioningActivity_title">Vil du koble denne enheten til tjenesten?</string>
   <string name="DeviceProvisioningActivity_content_intro">Den kan i så fall</string>
   <string name="DeviceProvisioningActivity_content_bullets">
-• Lese alle meldingener
+• Lese alle meldingene dine
 \n• Sende meldinger i ditt navn
 </string>
   <string name="DeviceProvisioningActivity_content_progress_title">Kobler til enhet</string>
@@ -378,6 +391,7 @@ fører dette til dupliserte meldinger.</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Fant ingen enhet.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Nettverksfeil.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ugyldig QR-kode.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Du har koblet sammen for mange enheter allerede. Prøv å fjerne noen</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Dette er ikke en gyldig QR-kode for enhetstilkobling.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Vil du koble til en Signal-enhet?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Det ser ut som at du prøver å koble en enhet til Signal ved hjelp av en tredjepartsskanner. For din egen sikkerhet må du skanne koden på nytt via Signal.</string>
@@ -410,6 +424,7 @@ fører dette til dupliserte meldinger.</string>
   <string name="RecipientPreferenceActivity_disabled">Slått av</string>
   <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Tilgjengelig en gang en melding er sendt eller mottatt.</string>
   <!--RecipientProvider-->
+  <string name="RecipientProvider_unnamed_group">Gruppe uten navn</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">Svarer</string>
   <string name="RedPhone_ending_call">Avslutter samtale</string>
@@ -449,6 +464,7 @@ Dobbeltsjekk at dette er ditt nummer. Vi er i ferd med å bekrefte det ved å se
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Denne enheten mangler Google Play Tjenester. Du kan fortsatt bruke Signal, men denne konfigurasjonen kan føre til redusert pålitelighet eller ytelse.\n\nHvis du ikke er en avansert bruker, kjører ikke en ettermarked Android ROM, eller tror du ser dette feil, kan du kontakte support@whispersystems.org for å hjelpe med feilsøking.</string>
   <string name="RegistrationActivity_i_understand">Jeg forstår</string>
   <string name="RegistrationActivity_play_services_error">Play Tjenester Feil</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play-tjenester er opptatt eller midlertidig utilgjengelig. Vent litt, og prøv på nytt.</string>
   <string name="RegistrationActivity_more_information">Mer informasjon</string>
   <string name="RegistrationActivity_less_information">Mindre informasjon</string>
   <!--RegistrationProblemsActivity-->
@@ -519,7 +535,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Vil du fortsette selv om en forespørsel pågår allerede?</string>
   <string name="KeyExchangeInitiator_send">Send</string>
   <!--MessageDisplayHelper-->
+  <string name="MessageDisplayHelper_bad_encrypted_message">Ugyldig kryptert melding</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Dekrypterer. Vent litt …</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Melding kryptert for ikke-eksisterende økt</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">Feil under dekryptering av melding.</string>
   <!--ThreadDatabase-->
@@ -533,6 +551,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MmsDatabase_error_decrypting_message">Feil under dekryptering av melding.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Dekrypterer MMS. Vent litt …</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Ugyldig kryptert MMS</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-melding kryptert for ikke-eksisterende økt</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Ikke vis varsler</string>
   <!--ApplicationMigrationService-->
@@ -601,6 +621,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="attachment_type_selector__file_description">Fil</string>
   <string name="attachment_type_selector__gallery">Galleri</string>
   <string name="attachment_type_selector__file">Fil</string>
+  <string name="attachment_type_selector__drawer_description">Slå av/på vedleggsfunksjon</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Gammel passordfrase</string>
   <string name="change_passphrase_activity__new_passphrase">Ny passordfrase</string>
@@ -631,6 +652,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="conversation_activity__compose_description">Meldingsskriving</string>
   <string name="conversation_activity__emoji_toggle_description">Slå på/av emoji-tastatur</string>
   <string name="conversation_activity__attachment_thumbnail">Miniatyrbilde av vedlegg</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Slå av/på hurtig kamera-vedleggsfunksjon</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Ta opp og sende lyd vedlegg</string>
   <string name="conversation_activity__enable_signal_for_sms">Aktiver Signal for SMS</string>
   <!--conversation_input_panel-->
@@ -778,9 +800,9 @@ TELEFONNUMMER</string>
 er vanlig å møte:</string>
   <string name="registration_problems__sms_interceptors">SMS-kaprere.</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
-Noen tekstmeldingsklienter, som f.eks. Handcent og GOSMS, oppfører seg dårlig og
-fanger opp all inngående SMS. Sjekk om du har mottatt en tekstmelding som starter
-med «Din Signal bekreftelseskode : ». Hvis du har mottatt denne, må du sette opp tekstmeldingsklienten[e] til å slippe gjennom tekstmeldinger.
+Noen tekstmeldingsklienter, som f.eks. Handcent og GOSMS, oppfører seg rart og
+fanger opp all inngående SMS. Sjekk om du har mottatt en tekstmelding som begynner
+med «Your Signal verification code:». Hvis du har mottatt denne, må du sette opp tekstmeldingsklienten[e] til å slippe gjennom tekstmeldinger.
 </string>
   <string name="registration_problems__incorrect_number">Feil nummer.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
@@ -834,6 +856,7 @@ Signal fikk tidsavbrudd under venting på bekreftelsesmelding.</string>
   <string name="recipients_panel__to"><small>Skriv inn navn eller nummer</small></string>
   <string name="recipients_panel__add_members">Legg til medlemmer</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Hvis du vil kontrollere sikkerheten for ende til ende-kryptering med %s, må du sammenlikne tallene overfor med tallene på motpartens enhet. Du kan også ta bilde av koden på motpartens skjerm, eller be dem om å ta bilde av din. <a href="https://whispersystems.org/redirect/safety-numbers">Les mer om kontroll av sikkerhetsnumre her (engelsk)</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Trykk for å skanne</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Del sikkerhets nummer</string>
@@ -856,6 +879,7 @@ Signal fikk tidsavbrudd under venting på bekreftelsesmelding.</string>
   <string name="AndroidManifest__log_submit">Send debug logg</string>
   <string name="AndroidManifest__media_preview">Forhåndsvisning av medier</string>
   <string name="AndroidManifest__all_media">Alle medier</string>
+  <string name="AndroidManifest__all_media_named">Alle medier med %1$s</string>
   <string name="AndroidManifest__message_details">Meldingsdetaljer</string>
   <string name="AndroidManifest__linked_devices">Koblede enheter</string>
   <string name="AndroidManifest__invite_friends">Inviter venner</string>
@@ -884,6 +908,8 @@ Signal fikk tidsavbrudd under venting på bekreftelsesmelding.</string>
   <string name="arrays__large">Stor</string>
   <string name="arrays__extra_large">Ekstra stor</string>
   <string name="arrays__default">Standard</string>
+  <string name="arrays__high">Høy</string>
+  <string name="arrays__max">Maks</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d time</item>
@@ -994,6 +1020,7 @@ Signal fikk tidsavbrudd under venting på bekreftelsesmelding.</string>
   <string name="preferences_advanced__use_system_emoji">Bruk emoji på systemet</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Slå av innebygd emoji-støtte i Signal</string>
   <string name="preferences_advanced__video_calling_beta">Videosamtaler beta</string>
+  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Støtte for nye typer video- og lydsamtaler når det er i bruk av begge parter. Denne funksjonen er i testfase.</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Videresend alle anrop via Signal serveren for å unngå å avsløre din IP-adresse til kontakten. Aktivering vil redusere samtalekvaliteten.</string>
   <string name="preferences_advanced__always_relay_calls">Videresend alltid anrop</string>
   <string name="preferences_app_protection__app_access">App tilgang</string>
@@ -1001,8 +1028,11 @@ Signal fikk tidsavbrudd under venting på bekreftelsesmelding.</string>
   <string name="preferences_chats__chats">Samtaler</string>
   <string name="preferences_notifications__message_notifications">Meldingsvarsler</string>
   <string name="preferences_notifications__events">Arrangementer</string>
+  <string name="preferences_notifications__in_chat_sounds">Lyder i samtaler</string>
   <string name="preferences_notifications__show">Vis</string>
   <string name="preferences_chats__show_invitation_prompts">Vis invitasjonsmeldinger</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Vis invitasjonsspørringer for kontakter som ikke har Signal</string>
+  <string name="preferences_chats__message_text_size">Skriftstørrelse i meldinger</string>
   <string name="preferences_events__contact_joined_signal">Kontakt ble med Signal</string>
   <string name="preferences_notifications__priority">Prioritet</string>
   <!--****************************************-->
