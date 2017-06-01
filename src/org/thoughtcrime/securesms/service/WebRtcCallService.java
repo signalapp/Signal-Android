@@ -600,8 +600,8 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
   private void handleBusyMessage(Intent intent) {
     Log.w(TAG, "handleBusyMessage...");
 
-    Recipient recipient = getRemoteRecipient(intent);
-    long      callId    = getCallId(intent);
+    final Recipient recipient = getRemoteRecipient(intent);
+    final long      callId    = getCallId(intent);
 
     if (callState != CallState.STATE_DIALING || !Util.isEquals(this.callId, callId) || !recipient.equals(this.recipient)) {
       Log.w(TAG, "Got busy message for inactive session...");
@@ -614,7 +614,12 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
     serviceHandler.postDelayed(new Runnable() {
       @Override
       public void run() {
-        WebRtcCallService.this.terminate();
+        Intent intent = new Intent(WebRtcCallService.this, WebRtcCallService.class);
+        intent.setAction(ACTION_LOCAL_HANGUP);
+        intent.putExtra(EXTRA_CALL_ID, intent.getLongExtra(EXTRA_CALL_ID, -1));
+        intent.putExtra(EXTRA_REMOTE_NUMBER, intent.getStringExtra(EXTRA_REMOTE_NUMBER));
+
+        startService(intent);
       }
     }, WebRtcCallActivity.BUSY_SIGNAL_DELAY_FINISH);
   }

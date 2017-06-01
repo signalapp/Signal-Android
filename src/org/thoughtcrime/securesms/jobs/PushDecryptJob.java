@@ -66,6 +66,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.messages.calls.AnswerMessage;
+import org.whispersystems.signalservice.api.messages.calls.BusyMessage;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 import org.whispersystems.signalservice.api.messages.calls.IceUpdateMessage;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
@@ -176,6 +177,7 @@ public class PushDecryptJob extends ContextJob {
         else if (message.getAnswerMessage().isPresent())     handleCallAnswerMessage(envelope, message.getAnswerMessage().get());
         else if (message.getIceUpdateMessages().isPresent()) handleCallIceUpdateMessage(envelope, message.getIceUpdateMessages().get());
         else if (message.getHangupMessage().isPresent())     handleCallHangupMessage(envelope, message.getHangupMessage().get(), smsMessageId);
+        else if (message.getBusyMessage().isPresent())       handleCallBusyMessage(envelope, message.getBusyMessage().get());
       } else {
         Log.w(TAG, "Got unrecognized message...");
       }
@@ -266,6 +268,16 @@ public class PushDecryptJob extends ContextJob {
       intent.putExtra(WebRtcCallService.EXTRA_REMOTE_NUMBER, envelope.getSource());
       context.startService(intent);
     }
+  }
+
+  private void handleCallBusyMessage(@NonNull SignalServiceEnvelope envelope,
+                                     @NonNull BusyMessage message)
+  {
+    Intent intent = new Intent(context, WebRtcCallService.class);
+    intent.setAction(WebRtcCallService.ACTION_REMOTE_BUSY);
+    intent.putExtra(WebRtcCallService.EXTRA_CALL_ID, message.getId());
+    intent.putExtra(WebRtcCallService.EXTRA_REMOTE_NUMBER, envelope.getSource());
+    context.startService(intent);
   }
 
   private void handleEndSessionMessage(@NonNull MasterSecretUnion        masterSecret,
