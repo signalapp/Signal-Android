@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -16,8 +17,9 @@ public class ConversationTitleView extends LinearLayout {
 
   private static final String TAG = ConversationTitleView.class.getSimpleName();
 
-  private TextView  title;
-  private TextView  subtitle;
+  private TextView        title;
+  private TextView        subtitle;
+  private AvatarImageView photo;
 
   public ConversationTitleView(Context context) {
     this(context, null);
@@ -34,6 +36,7 @@ public class ConversationTitleView extends LinearLayout {
 
     this.title    = (TextView) findViewById(R.id.title);
     this.subtitle = (TextView) findViewById(R.id.subtitle);
+    this.photo    = (AvatarImageView) findViewById(R.id.contact_photo);
 
     ViewUtil.setTextViewGravityStart(this.title, getContext());
     ViewUtil.setTextViewGravityStart(this.subtitle, getContext());
@@ -65,6 +68,7 @@ public class ConversationTitleView extends LinearLayout {
         this.title.setText(recipient.getNumber());
         this.subtitle.setText(null);
         this.subtitle.setVisibility(View.GONE);
+        this.photo.setVisibility(View.GONE);
       } else {
         this.title.setText(recipient.getName());
 
@@ -72,11 +76,14 @@ public class ConversationTitleView extends LinearLayout {
         else                                    this.subtitle.setText(recipient.getNumber());
 
         this.subtitle.setVisibility(View.VISIBLE);
+        this.photo.setAvatar(recipient, true);
+        this.photo.setVisibility(View.VISIBLE);
       }
     } else {
       this.title.setText(recipient.getName());
       this.subtitle.setText(null);
       this.subtitle.setVisibility(View.GONE);
+      this.photo.setVisibility(View.GONE);
     }
   }
 
