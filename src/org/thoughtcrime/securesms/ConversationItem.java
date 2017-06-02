@@ -124,6 +124,7 @@ public class ConversationItem extends LinearLayout
   private @NonNull  ExpirationTimerView expirationTimer;
 
   private int defaultBubbleColor;
+  private int sentTextPrimaryColor;
 
   private final PassthroughClickListener        passthroughClickListener    = new PassthroughClickListener();
   private final AttachmentDownloadClickListener downloadClickListener       = new AttachmentDownloadClickListener();
@@ -206,10 +207,12 @@ public class ConversationItem extends LinearLayout
   private void initializeAttributes() {
     final int[]      attributes = new int[] {R.attr.conversation_item_bubble_background,
                                              R.attr.conversation_list_item_background_selected,
-                                             R.attr.conversation_item_background};
+                                             R.attr.conversation_item_background,
+                                             R.attr.conversation_item_sent_text_primary_color};
     final TypedArray attrs      = context.obtainStyledAttributes(attributes);
 
     defaultBubbleColor = attrs.getColor(0, Color.WHITE);
+    sentTextPrimaryColor = attrs.getColor(3, Color.BLACK);
     attrs.recycle();
   }
 
@@ -233,9 +236,20 @@ public class ConversationItem extends LinearLayout
       bodyBubble.getBackground().setColorFilter(defaultBubbleColor, PorterDuff.Mode.MULTIPLY);
       if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setBackgroundColorHint(defaultBubbleColor);
     } else {
-      int color = recipient.getColor().toConversationColor(context);
-      bodyBubble.getBackground().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
-      if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setBackgroundColorHint(color);
+      if (TextSecurePreferences.isThemeReceivedMsgsEnabled(context)) {
+        // Theme the incomming messages according the selected theme.
+        bodyBubble.getBackground().setColorFilter(defaultBubbleColor, PorterDuff.Mode.MULTIPLY);
+        if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setBackgroundColorHint(defaultBubbleColor);
+        this.secureImage.setColorFilter(sentTextPrimaryColor);
+        this.expirationTimer.setTint(sentTextPrimaryColor);
+        this.dateText.setTextColor(sentTextPrimaryColor);
+        this.simInfoText.setTextColor(sentTextPrimaryColor);
+        this.bodyText.setTextColor(sentTextPrimaryColor);
+      } else {
+        int color = recipient.getColor().toConversationColor(context);
+        bodyBubble.getBackground().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
+        if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setBackgroundColorHint(color);
+      }
     }
 
     if (audioViewStub.resolved()) {
