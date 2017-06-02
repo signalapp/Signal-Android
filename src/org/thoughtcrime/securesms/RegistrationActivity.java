@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -279,6 +281,16 @@ public class RegistrationActivity extends BaseActionBarActivity {
         case ConnectionResult.SUCCESS:
           return PlayServicesStatus.SUCCESS;
         case ConnectionResult.SERVICE_VERSION_UPDATE_REQUIRED:
+          try {
+            ApplicationInfo applicationInfo = getPackageManager().getApplicationInfo("com.google.android.gms", 0);
+
+            if (applicationInfo != null && !applicationInfo.enabled) {
+              return PlayServicesStatus.MISSING;
+            }
+          } catch (PackageManager.NameNotFoundException e) {
+            Log.w(TAG, e);
+          }
+
           return PlayServicesStatus.NEEDS_UPDATE;
         case ConnectionResult.SERVICE_DISABLED:
         case ConnectionResult.SERVICE_MISSING:
