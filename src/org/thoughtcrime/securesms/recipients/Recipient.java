@@ -196,7 +196,7 @@ public class Recipient {
   }
 
   public interface RecipientModifiedListener {
-    public void onModified(Recipient recipient);
+    void onModified(Recipient recipient);
   }
 
   boolean isStale() {

@@ -131,9 +131,8 @@ public class RecipientFactory {
   private static String parseBracketedNumber(String recipient) {
     int begin    = recipient.indexOf('<');
     int end      = recipient.indexOf('>', begin);
-    String value = recipient.substring(begin + 1, end);
 
-    return value;
+    return recipient.substring(begin + 1, end);
   }
 
   public static void clearCache(Context context) {

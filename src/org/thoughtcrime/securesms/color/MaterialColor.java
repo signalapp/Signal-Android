@@ -1,6 +1,9 @@
 package org.thoughtcrime.securesms.color;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 import android.util.TypedValue;
 
@@ -31,12 +34,12 @@ public enum MaterialColor {
               GREY.conversationColorDark, R.color.gray95, R.color.black,
               "group_color");
 
-  private final int conversationColorLight;
-  private final int actionBarColorLight;
-  private final int statusBarColorLight;
-  private final int conversationColorDark;
-  private final int actionBarColorDark;
-  private final int statusBarColorDark;
+  @ColorRes private final int conversationColorLight;
+  @ColorRes private final int actionBarColorLight;
+  @ColorRes private final int statusBarColorLight;
+  @ColorRes private final int conversationColorDark;
+  @ColorRes private final int actionBarColorDark;
+  @ColorRes private final int statusBarColorDark;
   private final String serialized;
 
   MaterialColor(int conversationColorLight, int actionBarColorLight,
@@ -60,6 +63,7 @@ public enum MaterialColor {
          darkColor, darkColor, darkStatusBarColor, serialized);
   }
 
+  @ColorInt
   public int toConversationColor(@NonNull Context context) {
     if (getAttribute(context, R.attr.theme_type, "light").equals("dark")) {
       return context.getResources().getColor(conversationColorDark);
@@ -68,6 +72,7 @@ public enum MaterialColor {
     }
   }
 
+  @ColorInt
   public int toActionBarColor(@NonNull Context context) {
     if (getAttribute(context, R.attr.theme_type, "light").equals("dark")) {
       return context.getResources().getColor(actionBarColorDark);
@@ -76,6 +81,7 @@ public enum MaterialColor {
     }
   }
 
+  @ColorInt
   public int toStatusBarColor(@NonNull Context context) {
     if (getAttribute(context, R.attr.theme_type, "light").equals("dark")) {
       return context.getResources().getColor(statusBarColorDark);
@@ -84,13 +90,14 @@ public enum MaterialColor {
     }
   }
 
-  public boolean represents(Context context, int colorValue) {
-    return context.getResources().getColor(conversationColorDark)  == colorValue ||
-           context.getResources().getColor(conversationColorLight) == colorValue ||
-           context.getResources().getColor(actionBarColorDark) == colorValue ||
-           context.getResources().getColor(actionBarColorLight) == colorValue ||
-           context.getResources().getColor(statusBarColorLight) == colorValue ||
-           context.getResources().getColor(statusBarColorDark) == colorValue;
+  public boolean represents(Context context, @ColorInt int colorValue) {
+    Resources resources = context.getResources();
+    return resources.getColor(conversationColorDark)  == colorValue ||
+           resources.getColor(conversationColorLight) == colorValue ||
+           resources.getColor(actionBarColorDark) == colorValue ||
+           resources.getColor(actionBarColorLight) == colorValue ||
+           resources.getColor(statusBarColorLight) == colorValue ||
+           resources.getColor(statusBarColorDark) == colorValue;
   }
 
   public String serialize() {

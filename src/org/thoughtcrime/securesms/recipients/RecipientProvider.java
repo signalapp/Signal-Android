@@ -175,7 +175,7 @@ class RecipientProvider {
         String       title        = record.getTitle();
 
         if (title == null) {
-          title = context.getString(R.string.RecipientProvider_unnamed_group);;
+          title = context.getString(R.string.RecipientProvider_unnamed_group);
         }
 
         return new RecipientDetails(title, groupId, null, null, contactPhoto, null);

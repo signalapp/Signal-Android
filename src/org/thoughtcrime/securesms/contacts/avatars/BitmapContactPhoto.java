@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.ColorInt;
 import android.widget.ImageView;
 
 import com.makeramen.roundedimageview.RoundedDrawable;
@@ -17,12 +18,12 @@ public class BitmapContactPhoto implements ContactPhoto {
   }
 
   @Override
-  public Drawable asDrawable(Context context, int color) {
+  public Drawable asDrawable(Context context, @ColorInt int color) {
     return asDrawable(context, color, false);
   }
 
   @Override
-  public Drawable asDrawable(Context context, int color, boolean inverted) {
+  public Drawable asDrawable(Context context, @ColorInt int color, boolean inverted) {
     return RoundedDrawable.fromBitmap(bitmap)
                           .setScaleType(ImageView.ScaleType.CENTER_CROP)
                           .setOval(true);

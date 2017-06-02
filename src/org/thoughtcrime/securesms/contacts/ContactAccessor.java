@@ -242,13 +242,13 @@ public class ContactAccessor {
     public ContactData(long id, String name) {
       this.id      = id;
       this.name    = name;
-      this.numbers = new LinkedList<NumberData>();
+      this.numbers = new LinkedList<>();
     }
 
     public ContactData(Parcel in) {
       id      = in.readLong();
       name    = in.readString();
-      numbers = new LinkedList<NumberData>();
+      numbers = new LinkedList<>();
       in.readTypedList(numbers, NumberData.CREATOR);
     }
 
@@ -316,21 +316,21 @@ public class ContactAccessor {
                                                 SORT_ORDER);
 
     if (phone.length() > 0) {
-      ArrayList result = new ArrayList();
-      result.add(Integer.valueOf(-1));                    // ID
-      result.add(Long.valueOf(-1));                       // CONTACT_ID
-      result.add(Integer.valueOf(Phone.TYPE_CUSTOM));     // TYPE
-      result.add(phone);                                  // NUMBER
+      ArrayList<Object> result = new ArrayList<>();
+      result.add(-1);                    // ID
+      result.add((long) -1);             // CONTACT_ID
+      result.add(Phone.TYPE_CUSTOM);     // TYPE
+      result.add(phone);                 // NUMBER
 
     /*
     * The "\u00A0" keeps Phone.getDisplayLabel() from deciding
     * to display the default label ("Home") next to the transformation
     * of the letters into numbers.
     */
-      result.add("\u00A0");                               // LABEL
-      result.add(cons);                                   // NAME
+      result.add("\u00A0");              // LABEL
+      result.add(cons);                  // NAME
 
-      ArrayList<ArrayList> wrap = new ArrayList<ArrayList>();
+      ArrayList<ArrayList> wrap = new ArrayList<>();
       wrap.add(result);
 
       ArrayListCursor translated = new ArrayListCursor(PROJECTION_PHONE, wrap);

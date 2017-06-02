@@ -32,12 +32,10 @@ public abstract class AbstractNotificationBuilder extends NotificationCompat.Bui
   }
 
   protected CharSequence getStyledMessage(@NonNull Recipient recipient, @Nullable CharSequence message) {
-    SpannableStringBuilder builder = new SpannableStringBuilder();
-    builder.append(Util.getBoldedString(recipient.toShortString()));
-    builder.append(": ");
-    builder.append(message == null ? "" : message);
-
-    return builder;
+    return new SpannableStringBuilder()
+        .append(Util.getBoldedString(recipient.toShortString()))
+        .append(": ")
+        .append(message == null ? "" : message);
   }
 
   public void setAlarms(@Nullable Uri ringtone, RecipientPreferenceDatabase.VibrateState vibrate) {
