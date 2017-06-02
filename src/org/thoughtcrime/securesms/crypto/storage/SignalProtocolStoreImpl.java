@@ -42,8 +42,8 @@ public class SignalProtocolStoreImpl implements SignalProtocolStore {
   }
 
   @Override
-  public void saveIdentity(SignalProtocolAddress address, IdentityKey identityKey) {
-    identityKeyStore.saveIdentity(address, identityKey);
+  public boolean saveIdentity(SignalProtocolAddress address, IdentityKey identityKey) {
+    return identityKeyStore.saveIdentity(address, identityKey);
   }
 
   @Override

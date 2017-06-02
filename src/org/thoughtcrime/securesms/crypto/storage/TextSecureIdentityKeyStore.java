@@ -42,8 +42,8 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
     return TextSecurePreferences.getLocalRegistrationId(context);
   }
 
-  public void saveIdentity(SignalProtocolAddress address, IdentityKey identityKey,
-                           boolean blockingApproval, boolean nonBlockingApproval)
+  public boolean saveIdentity(SignalProtocolAddress address, IdentityKey identityKey,
+                              boolean blockingApproval, boolean nonBlockingApproval)
   {
     synchronized (LOCK) {
       IdentityDatabase         identityDatabase = DatabaseFactory.getIdentityDatabase(context);
@@ -54,27 +54,29 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
       if (!identityRecord.isPresent()) {
         Log.w(TAG, "Saving new identity...");
         identityDatabase.saveIdentity(recipientId, identityKey, true, System.currentTimeMillis(), blockingApproval, nonBlockingApproval);
-        return;
+        return false;
       }
 
       if (!identityRecord.get().getIdentityKey().equals(identityKey)) {
         Log.w(TAG, "Replacing existing identity...");
         identityDatabase.saveIdentity(recipientId, identityKey, false, System.currentTimeMillis(), blockingApproval, nonBlockingApproval);
         IdentityUtil.markIdentityUpdate(context, recipients.getPrimaryRecipient());
-        return;
+        return true;
       }
 
       if (isBlockingApprovalRequired(identityRecord.get()) || isNonBlockingApprovalRequired(identityRecord.get())) {
         Log.w(TAG, "Setting approval status...");
         identityDatabase.setApproval(recipientId, blockingApproval, nonBlockingApproval);
-        return;
+        return false;
       }
+
+      return false;
     }
   }
 
   @Override
-  public void saveIdentity(SignalProtocolAddress address, IdentityKey identityKey) {
-    saveIdentity(address, identityKey, !TextSecurePreferences.isSendingIdentityApprovalRequired(context), false);
+  public boolean saveIdentity(SignalProtocolAddress address, IdentityKey identityKey) {
+    return saveIdentity(address, identityKey, !TextSecurePreferences.isSendingIdentityApprovalRequired(context), false);
   }
 
   @Override
