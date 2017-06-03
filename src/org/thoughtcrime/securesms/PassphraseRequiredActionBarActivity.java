@@ -129,10 +129,16 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
 
   private void routeApplicationState(MasterSecret masterSecret) {
     Intent intent = getIntentForState(masterSecret, getApplicationState(masterSecret));
-    if (intent != null) {
+    if (intent != null && !isSelfIntent(intent)) {
       startActivity(intent);
       finish();
     }
+  }
+
+  private boolean isSelfIntent(Intent intent) {
+    return intent != null &&
+           intent.getComponent() != null &&
+           intent.getComponent().getClassName().equals(this.getClass().getName());
   }
 
   private Intent getIntentForState(MasterSecret masterSecret, int state) {
