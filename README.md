@@ -6,7 +6,7 @@ Signal uses your phone's data connection (WiFi/3G/4G) to communicate securely, o
 
 Currently available on the Play store.
 
-<a href="https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" height=36px /></a>
+<a href='https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height='80px'/></a>
 
 ## Contributing Bug reports
 We use GitHub for bug tracking. Please search the existing issues for your bug and create a new one if the issue is not yet tracked!
@@ -74,3 +74,5 @@ Copyright 2011 Whisper Systems
 Copyright 2013-2017 Open Whisper Systems
 
 Licensed under the GPLv3: http://www.gnu.org/licenses/gpl-3.0.html
+
+Google Play and the Google Play logo are trademarks of Google Inc.
