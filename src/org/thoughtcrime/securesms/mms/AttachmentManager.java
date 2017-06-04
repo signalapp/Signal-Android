@@ -336,7 +336,7 @@ public class AttachmentManager {
   public static void selectLocation(Activity activity, int requestCode) {
     try {
       activity.startActivityForResult(new PlacePicker.IntentBuilder().build(activity), requestCode);
-    } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
+    } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException | ActivityNotFoundException e) {
       Log.w(TAG, e);
     }
   }
