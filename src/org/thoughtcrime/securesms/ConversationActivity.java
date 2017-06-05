@@ -401,6 +401,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       titleView.setTitle(recipients);
       setBlockedUserState(recipients, isSecureText, isDefaultSms);
       supportInvalidateOptionsMenu();
+      fragment.setLastSeen(0);
       break;
     case TAKE_PHOTO:
       if (attachmentManager.getCaptureUri() != null) {
