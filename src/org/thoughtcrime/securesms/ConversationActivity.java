@@ -187,6 +187,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   public static final String DISTRIBUTION_TYPE_EXTRA = "distribution_type";
   public static final String TIMING_EXTRA            = "timing";
   public static final String LAST_SEEN_EXTRA         = "last_seen";
+  public static final String INITIAL_RECIPIENT_EXTRA = "last_seen";
 
   private static final int PICK_GALLERY      = 1;
   private static final int PICK_DOCUMENT     = 2;
@@ -486,6 +487,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     inflater.inflate(R.menu.conversation, menu);
+    if(isSingleConversation()){
+      inflater.inflate(R.menu.conversation_new_group,menu);
+    }
 
     if (isSingleConversation() && isSecureText) {
       inflater.inflate(R.menu.conversation_secure, menu);
@@ -520,6 +524,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case R.id.menu_edit_group:                handleEditPushGroup();                             return true;
     case R.id.menu_leave:                     handleLeavePushGroup();                            return true;
     case R.id.menu_invite:                    handleInviteLink();                                return true;
+    case R.id.menu_new_group:                 handleNewGroupWithUser();                          return true;
     case R.id.menu_mute_notifications:        handleMuteNotifications();                         return true;
     case R.id.menu_unmute_notifications:      handleUnmuteNotifications();                       return true;
     case R.id.menu_conversation_settings:     handleConversationSettings();                      return true;
@@ -674,6 +679,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     } catch (NoSuchAlgorithmException e) {
       throw new AssertionError(e);
     }
+  }
+
+  private void handleNewGroupWithUser() {
+    Intent intent = new Intent(ConversationActivity.this,GroupCreateActivity.class);
+    Recipient primaryRecipient = recipients.getPrimaryRecipient();
+    if(primaryRecipient !=null) {
+      intent.putExtra(INITIAL_RECIPIENT_EXTRA, primaryRecipient.getRecipientId());
+    }
+    startActivity(intent);
   }
 
   private void handleResetSecureSession() {

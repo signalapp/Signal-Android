@@ -128,6 +128,13 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     initializeResources();
     initializeExistingGroup();
+
+    Bundle extras = getIntent().getExtras();
+    if (extras != null && extras.containsKey(ConversationActivity.INITIAL_RECIPIENT_EXTRA)) {
+      Recipient firstRecipient = RecipientFactory.getRecipientForId(this,
+          extras.getLong(ConversationActivity.INITIAL_RECIPIENT_EXTRA), false);
+      addSelectedContacts(firstRecipient);
+    }
   }
 
   @Override
