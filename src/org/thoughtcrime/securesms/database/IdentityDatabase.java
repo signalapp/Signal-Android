@@ -21,9 +21,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.net.Uri;
-import android.util.Log;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
+import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.InvalidKeyException;
@@ -35,17 +36,14 @@ public class IdentityDatabase extends Database {
 
   private static final String TAG = IdentityDatabase.class.getSimpleName();
 
-  private static final Uri CHANGE_URI                  = Uri.parse("content://textsecure/identities");
-
   private static final String TABLE_NAME           = "identities";
   private static final String ID                   = "_id";
   private static final String RECIPIENT            = "recipient";
   private static final String IDENTITY_KEY         = "key";
   private static final String TIMESTAMP            = "timestamp";
   private static final String FIRST_USE            = "first_use";
-  private static final String SEEN                 = "seen";
-  private static final String BLOCKING_APPROVAL    = "blocking_approval";
   private static final String NONBLOCKING_APPROVAL = "nonblocking_approval";
+  private static final String VERIFIED             = "verified";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME +
       " (" + ID + " INTEGER PRIMARY KEY, " +
@@ -53,12 +51,39 @@ public class IdentityDatabase extends Database {
       IDENTITY_KEY + " TEXT, " +
       FIRST_USE + " INTEGER DEFAULT 0, " +
       TIMESTAMP + " INTEGER DEFAULT 0, " +
-      SEEN + " INTEGER DEFAULT 0, " +
-      BLOCKING_APPROVAL + " INTEGER DEFAULT 0, " +
+      VERIFIED + " INTEGER DEFAULT 0, " +
       NONBLOCKING_APPROVAL + " INTEGER DEFAULT 0);";
+
+  public enum VerifiedStatus {
+    DEFAULT, VERIFIED, UNVERIFIED;
+
+    public int toInt() {
+      if      (this == DEFAULT)    return 0;
+      else if (this == VERIFIED)   return 1;
+      else if (this == UNVERIFIED) return 2;
+      else throw new AssertionError();
+    }
+
+    public static VerifiedStatus forState(int state) {
+      if      (state == 0)    return DEFAULT;
+      else if (state == 1)   return VERIFIED;
+      else if (state == 2) return UNVERIFIED;
+      else throw new AssertionError("No such state: " + state);
+    }
+  }
 
   IdentityDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
+  }
+
+  public Cursor getIdentities() {
+    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    return database.query(TABLE_NAME, null, null, null, null, null, null);
+  }
+
+  public @Nullable IdentityReader readerFor(@Nullable Cursor cursor) {
+    if (cursor == null) return null;
+    return new IdentityReader(cursor);
   }
 
   public Optional<IdentityRecord> getIdentity(long recipientId) {
@@ -70,15 +95,7 @@ public class IdentityDatabase extends Database {
                               new String[] {recipientId + ""}, null, null, null);
 
       if (cursor != null && cursor.moveToFirst()) {
-        String      serializedIdentity  = cursor.getString(cursor.getColumnIndexOrThrow(IDENTITY_KEY));
-        long        timestamp           = cursor.getLong(cursor.getColumnIndexOrThrow(TIMESTAMP));
-        long        seen                = cursor.getLong(cursor.getColumnIndexOrThrow(SEEN));
-        boolean     blockingApproval    = cursor.getInt(cursor.getColumnIndexOrThrow(BLOCKING_APPROVAL))    == 1;
-        boolean     nonblockingApproval = cursor.getInt(cursor.getColumnIndexOrThrow(NONBLOCKING_APPROVAL)) == 1;
-        boolean     firstUse            = cursor.getInt(cursor.getColumnIndexOrThrow(FIRST_USE)) == 1;
-        IdentityKey identity            = new IdentityKey(Base64.decode(serializedIdentity), 0);
-
-        return Optional.of(new IdentityRecord(identity, firstUse, timestamp, seen, blockingApproval, nonblockingApproval));
+        return Optional.of(getIdentityRecord(cursor));
       }
     } catch (InvalidKeyException | IOException e) {
       throw new AssertionError(e);
@@ -89,8 +106,8 @@ public class IdentityDatabase extends Database {
     return Optional.absent();
   }
 
-  public void saveIdentity(long recipientId, IdentityKey identityKey, boolean firstUse,
-                           long timestamp, boolean blockingApproval, boolean nonBlockingApproval)
+  public void saveIdentity(long recipientId, IdentityKey identityKey, VerifiedStatus verifiedStatus,
+                           boolean firstUse, long timestamp, boolean nonBlockingApproval)
   {
     SQLiteDatabase database          = databaseHelper.getWritableDatabase();
     String         identityKeyString = Base64.encodeBytes(identityKey.serialize());
@@ -99,58 +116,72 @@ public class IdentityDatabase extends Database {
     contentValues.put(RECIPIENT, recipientId);
     contentValues.put(IDENTITY_KEY, identityKeyString);
     contentValues.put(TIMESTAMP, timestamp);
-    contentValues.put(BLOCKING_APPROVAL, blockingApproval ? 1 : 0);
+    contentValues.put(VERIFIED, verifiedStatus.toInt());
     contentValues.put(NONBLOCKING_APPROVAL, nonBlockingApproval ? 1 : 0);
     contentValues.put(FIRST_USE, firstUse ? 1 : 0);
-    contentValues.put(SEEN, 0);
 
     database.replace(TABLE_NAME, null, contentValues);
 
-    context.getContentResolver().notifyChange(CHANGE_URI, null);
+    EventBus.getDefault().post(new IdentityRecord(recipientId, identityKey, verifiedStatus,
+                                                  firstUse, timestamp, nonBlockingApproval));
   }
 
-  public void setApproval(long recipientId, boolean blockingApproval, boolean nonBlockingApproval) {
+  public void setApproval(long recipientId, boolean nonBlockingApproval) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
 
     ContentValues contentValues = new ContentValues(2);
-    contentValues.put(BLOCKING_APPROVAL, blockingApproval);
     contentValues.put(NONBLOCKING_APPROVAL, nonBlockingApproval);
 
     database.update(TABLE_NAME, contentValues, RECIPIENT + " = ?",
                     new String[] {String.valueOf(recipientId)});
-
-    context.getContentResolver().notifyChange(CHANGE_URI, null);
   }
 
-  public void setSeen(long recipientId) {
-    Log.w(TAG, "Setting seen to current time: " + recipientId);
+  public void setVerified(long recipientId, IdentityKey identityKey, VerifiedStatus verifiedStatus) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
 
     ContentValues contentValues = new ContentValues(1);
-    contentValues.put(SEEN, System.currentTimeMillis());
+    contentValues.put(VERIFIED, verifiedStatus.toInt());
 
-    database.update(TABLE_NAME, contentValues, RECIPIENT + " = ? AND " + SEEN + " = 0",
-                    new String[] {String.valueOf(recipientId)});
+    database.update(TABLE_NAME, contentValues, RECIPIENT + " = ? AND " + IDENTITY_KEY + " = ?",
+                    new String[] {String.valueOf(recipientId),
+                                  Base64.encodeBytes(identityKey.serialize())});
+  }
+
+  private IdentityRecord getIdentityRecord(@NonNull Cursor cursor) throws IOException, InvalidKeyException {
+    long        recipientId         = cursor.getLong(cursor.getColumnIndexOrThrow(RECIPIENT));
+    String      serializedIdentity  = cursor.getString(cursor.getColumnIndexOrThrow(IDENTITY_KEY));
+    long        timestamp           = cursor.getLong(cursor.getColumnIndexOrThrow(TIMESTAMP));
+    int         verifiedStatus      = cursor.getInt(cursor.getColumnIndexOrThrow(VERIFIED));
+    boolean     nonblockingApproval = cursor.getInt(cursor.getColumnIndexOrThrow(NONBLOCKING_APPROVAL)) == 1;
+    boolean     firstUse            = cursor.getInt(cursor.getColumnIndexOrThrow(FIRST_USE))            == 1;
+    IdentityKey identity            = new IdentityKey(Base64.decode(serializedIdentity), 0);
+
+    return new IdentityRecord(recipientId, identity, VerifiedStatus.forState(verifiedStatus), firstUse, timestamp, nonblockingApproval);
   }
 
   public static class IdentityRecord {
 
-    private final IdentityKey identitykey;
-    private final boolean     firstUse;
-    private final long        timestamp;
-    private final long        seen;
-    private final boolean     blockingApproval;
-    private final boolean     nonblockingApproval;
+    private final long           recipientId;
+    private final IdentityKey    identitykey;
+    private final VerifiedStatus verifiedStatus;
+    private final boolean        firstUse;
+    private final long           timestamp;
+    private final boolean        nonblockingApproval;
 
-    private IdentityRecord(IdentityKey identitykey, boolean firstUse, long timestamp,
-                           long seen, boolean blockingApproval, boolean nonblockingApproval)
+    private IdentityRecord(long recipientId,
+                           IdentityKey identitykey, VerifiedStatus verifiedStatus,
+                           boolean firstUse, long timestamp, boolean nonblockingApproval)
     {
+      this.recipientId         = recipientId;
       this.identitykey         = identitykey;
+      this.verifiedStatus      = verifiedStatus;
       this.firstUse            = firstUse;
       this.timestamp           = timestamp;
-      this.seen                = seen;
-      this.blockingApproval    = blockingApproval;
       this.nonblockingApproval = nonblockingApproval;
+    }
+
+    public long getRecipientId() {
+      return recipientId;
     }
 
     public IdentityKey getIdentityKey() {
@@ -161,12 +192,8 @@ public class IdentityDatabase extends Database {
       return timestamp;
     }
 
-    public long getSeen() {
-      return seen;
-    }
-
-    public boolean isApprovedBlocking() {
-      return blockingApproval;
+    public VerifiedStatus getVerifiedStatus() {
+      return verifiedStatus;
     }
 
     public boolean isApprovedNonBlocking() {
@@ -177,6 +204,35 @@ public class IdentityDatabase extends Database {
       return firstUse;
     }
 
+    @Override
+    public String toString() {
+      return "{recipientId: " + recipientId + ", identityKey: " + identitykey + ", verifiedStatus: " + verifiedStatus + ", firstUse: " + firstUse + "}";
+    }
+
+  }
+
+  public class IdentityReader {
+    private final Cursor cursor;
+
+    public IdentityReader(@NonNull Cursor cursor) {
+      this.cursor = cursor;
+    }
+
+    public @Nullable IdentityRecord getNext() {
+      if (cursor.moveToNext()) {
+        try {
+          return getIdentityRecord(cursor);
+        } catch (IOException | InvalidKeyException e) {
+          throw new AssertionError(e);
+        }
+      }
+
+      return null;
+    }
+
+    public void close() {
+      cursor.close();
+    }
   }
 
 }

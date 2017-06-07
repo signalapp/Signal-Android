@@ -12,17 +12,25 @@
                   android:background="?verification_background"
                   android:orientation="vertical">
 
-        <FrameLayout android:layout_width="wrap_content"
-                     android:layout_height="wrap_content">
+        <FrameLayout android:layout_width="250dp"
+                     android:layout_height="250dp">
+
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="center"
+                      android:textSize="20sp"
+                      android:text="@string/verify_display_fragment__loading"/>
 
             <org.thoughtcrime.securesms.components.SquareImageView
                     android:id="@+id/qr_code"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_margin="20dp"
                     android:padding="20dp"
                     android:background="@drawable/qr_code_background"
-                    tools:src="@drawable/splash_logo"/>
+                    android:visibility="invisible"
+                    tools:src="@drawable/splash_logo"
+                    tools:visibility="invisible"/>
 
             <TextView android:id="@+id/tap_label"
                       android:layout_width="wrap_content"
@@ -31,6 +39,7 @@
                       android:layout_marginBottom="35dp"
                       android:textColor="@color/gray50"
                       android:textSize="11sp"
+                      android:visibility="invisible"
                       android:text="@string/verify_display_fragment__tap_to_scan"/>
 
             <org.thoughtcrime.securesms.components.SquareImageView
@@ -146,10 +155,30 @@
             </TableRow>
         </TableLayout>
 
+        <LinearLayout android:orientation="horizontal"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="10dp"
+                      android:paddingLeft="20dp">
+
+            <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/verified_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:layout_marginLeft="5dp"
+                    android:textSize="17dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/verify_display_fragment__verified"/>
+
+        </LinearLayout>
+
         <TextView android:id="@+id/description"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:layout_marginTop="25dp"
+                  android:layout_marginTop="15dp"
                   android:textSize="17sp"
                   android:lineSpacingExtra="3sp"
                   android:text="@string/verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"/>

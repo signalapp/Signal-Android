@@ -258,7 +258,7 @@ public class WebRtcCallActivity extends Activity {
       public void onClick(View v) {
         synchronized (SESSION_LOCK) {
           TextSecureIdentityKeyStore identityKeyStore = new TextSecureIdentityKeyStore(WebRtcCallActivity.this);
-          identityKeyStore.saveIdentity(new SignalProtocolAddress(recipient.getNumber(), 1), theirIdentity, true, true);
+          identityKeyStore.saveIdentity(new SignalProtocolAddress(recipient.getNumber(), 1), theirIdentity, true);
         }
 
         Intent intent = new Intent(WebRtcCallActivity.this, WebRtcCallService.class);

@@ -4,9 +4,11 @@ import android.content.Context;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+import org.thoughtcrime.securesms.crypto.SessionUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
+import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.IdentityUtil;
@@ -42,9 +44,7 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
     return TextSecurePreferences.getLocalRegistrationId(context);
   }
 
-  public boolean saveIdentity(SignalProtocolAddress address, IdentityKey identityKey,
-                              boolean blockingApproval, boolean nonBlockingApproval)
-  {
+  public boolean saveIdentity(SignalProtocolAddress address, IdentityKey identityKey, boolean nonBlockingApproval) {
     synchronized (LOCK) {
       IdentityDatabase         identityDatabase = DatabaseFactory.getIdentityDatabase(context);
       Recipients               recipients       = RecipientFactory.getRecipientsFromString(context, address.getName(), true);
@@ -53,20 +53,29 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
 
       if (!identityRecord.isPresent()) {
         Log.w(TAG, "Saving new identity...");
-        identityDatabase.saveIdentity(recipientId, identityKey, true, System.currentTimeMillis(), blockingApproval, nonBlockingApproval);
+        identityDatabase.saveIdentity(recipientId, identityKey, VerifiedStatus.DEFAULT, true, System.currentTimeMillis(), nonBlockingApproval);
         return false;
       }
 
       if (!identityRecord.get().getIdentityKey().equals(identityKey)) {
         Log.w(TAG, "Replacing existing identity...");
-        identityDatabase.saveIdentity(recipientId, identityKey, false, System.currentTimeMillis(), blockingApproval, nonBlockingApproval);
+        VerifiedStatus verifiedStatus;
+
+        if (identityRecord.get().getVerifiedStatus() == VerifiedStatus.VERIFIED) {
+          verifiedStatus = VerifiedStatus.UNVERIFIED;
+        } else {
+          verifiedStatus = VerifiedStatus.DEFAULT;
+        }
+
+        identityDatabase.saveIdentity(recipientId, identityKey, verifiedStatus, false, System.currentTimeMillis(), nonBlockingApproval);
         IdentityUtil.markIdentityUpdate(context, recipients.getPrimaryRecipient());
+        SessionUtil.archiveSiblingSessions(context, address);
         return true;
       }
 
-      if (isBlockingApprovalRequired(identityRecord.get()) || isNonBlockingApprovalRequired(identityRecord.get())) {
+      if (isNonBlockingApprovalRequired(identityRecord.get())) {
         Log.w(TAG, "Setting approval status...");
-        identityDatabase.setApproval(recipientId, blockingApproval, nonBlockingApproval);
+        identityDatabase.setApproval(recipientId, nonBlockingApproval);
         return false;
       }
 
@@ -76,7 +85,7 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
 
   @Override
   public boolean saveIdentity(SignalProtocolAddress address, IdentityKey identityKey) {
-    return saveIdentity(address, identityKey, !TextSecurePreferences.isSendingIdentityApprovalRequired(context), false);
+    return saveIdentity(address, identityKey, false);
   }
 
   @Override
@@ -110,8 +119,8 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
       return false;
     }
 
-    if (isBlockingApprovalRequired(identityRecord.get())) {
-      Log.w(TAG, "Needs blocking approval!");
+    if (identityRecord.get().getVerifiedStatus() == VerifiedStatus.UNVERIFIED) {
+      Log.w(TAG, "Needs unverified approval!");
       return false;
     }
 
@@ -121,12 +130,6 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
     }
 
     return true;
-  }
-
-  private boolean isBlockingApprovalRequired(IdentityRecord identityRecord) {
-    return !identityRecord.isFirstUse() &&
-           TextSecurePreferences.isSendingIdentityApprovalRequired(context) &&
-           !identityRecord.isApprovedBlocking();
   }
 
   private boolean isNonBlockingApprovalRequired(IdentityRecord identityRecord) {

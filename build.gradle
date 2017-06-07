@@ -61,7 +61,7 @@ dependencies {
 
     compile 'org.whispersystems:jobmanager:1.0.2'
     compile 'org.whispersystems:libpastelog:1.0.7'
-    compile 'org.whispersystems:signal-service-android:2.5.10'
+    compile 'org.whispersystems:signal-service-android:2.5.11'
     compile 'org.whispersystems:webrtc-android:M57-S2'
 
     compile "me.leolin:ShortcutBadger:1.1.16"
@@ -135,7 +135,7 @@ dependencyVerification {
         'com.google.android.exoplayer:exoplayer:955085aa611a8f7cf6c61b88ae03d1a392f4ad94c9bfbc153f3dedb9ffb14718',
         'org.whispersystems:jobmanager:506f679fc2fcf7bb6d10f00f41d6f6ea0abf75c70dc95b913398661ad538a181',
         'org.whispersystems:libpastelog:bb331d9a98240fc139101128ba836c1edec3c40e000597cdbb29ebf4cbf34d88',
-        'org.whispersystems:signal-service-android:0c6937decce77b94807d100a16bcffc9e69489057b4430ca07a5bce618637b6e',
+        'org.whispersystems:signal-service-android:355c2b139a7587bbde899261a0344bc6a32c1cf0baa5ac748f6c86190c07374c',
         'org.whispersystems:webrtc-android:9d11e39d4b3823713e5b1486226e0ce09f989d6f47f52da1815e406c186701d5',
         'me.leolin:ShortcutBadger:e3cb3e7625892129b0c92dd5e4bc649faffdd526d5af26d9c45ee31ff8851774',
         'se.emilsjolander:stickylistheaders:a08ca948aa6b220f09d82f16bbbac395f6b78897e9eeac6a9f0b0ba755928eeb',
@@ -169,7 +169,7 @@ dependencyVerification {
         'com.google.android.gms:play-services-base:0ca636a8fc9a5af45e607cdcd61783bf5d561cbbb0f862021ce69606eee5ad49',
         'com.google.android.gms:play-services-basement:95dd882c5ffba15b9a99de3fefb05d3a01946623af67454ca00055d222f85a8d',
         'com.google.android.gms:play-services-iid:54e919f9957b8b7820da7ee9b83471d00d0cac1cf08ddea8b5b41aea80bb1a70',
-        'org.whispersystems:signal-service-java:1de66a4068523098951529a363b4f02436e654d3d3fcf9228154b8c2cf94945b',
+        'org.whispersystems:signal-service-java:02956dc0c22d8a6c7cf613b2e40cf54aec15a5e1cc5acab4d0f8b82bc22f2e0d',
         'org.whispersystems:signal-protocol-android:b05cd9570d2e262afeb6610b70f473a936c54dd23a7c967d76e8f288766731fd',
         'com.nineoldandroids:library:68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a',
         'javax.inject:javax.inject:91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff',

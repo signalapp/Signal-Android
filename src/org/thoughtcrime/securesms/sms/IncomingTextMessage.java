@@ -227,6 +227,14 @@ public class IncomingTextMessage implements Parcelable {
     return false;
   }
 
+  public boolean isIdentityVerified() {
+    return false;
+  }
+
+  public boolean isIdentityDefault() {
+    return false;
+  }
+
   @Override
   public int describeContents() {
     return 0;

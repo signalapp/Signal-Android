@@ -70,7 +70,9 @@ public abstract class DisplayRecord {
   }
 
   public boolean isPending() {
-    return MmsSmsColumns.Types.isPendingMessageType(type);
+    return MmsSmsColumns.Types.isPendingMessageType(type) &&
+           !MmsSmsColumns.Types.isIdentityVerified(type)  &&
+           !MmsSmsColumns.Types.isIdentityDefault(type);
   }
 
   public boolean isOutgoing() {

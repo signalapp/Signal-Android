@@ -32,8 +32,9 @@ public class VerifySpan extends ClickableSpan {
   @Override
   public void onClick(View widget) {
     Intent intent = new Intent(context, VerifyIdentityActivity.class);
-    intent.putExtra(VerifyIdentityActivity.RECIPIENT_ID, recipientId);
-    intent.putExtra(VerifyIdentityActivity.RECIPIENT_IDENTITY, new IdentityKeyParcelable(identityKey));
+    intent.putExtra(VerifyIdentityActivity.RECIPIENT_ID_EXTRA, recipientId);
+    intent.putExtra(VerifyIdentityActivity.IDENTITY_EXTRA, new IdentityKeyParcelable(identityKey));
+    intent.putExtra(VerifyIdentityActivity.VERIFIED_EXTRA, false);
     context.startActivity(intent);
   }
 }

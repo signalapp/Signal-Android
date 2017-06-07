@@ -114,6 +114,12 @@ public abstract class MessageRecord extends DisplayRecord {
                           : emphasisAdded(context.getString(R.string.MessageRecord_s_set_disappearing_message_time_to_s, getIndividualRecipient().toShortString(), time));
     } else if (isIdentityUpdate()) {
       return emphasisAdded(context.getString(R.string.MessageRecord_your_safety_number_with_s_has_changed, getIndividualRecipient().toShortString()));
+    } else if (isIdentityVerified()) {
+      if (isOutgoing()) return emphasisAdded(context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_verified, getIndividualRecipient().toShortString()));
+      else              return emphasisAdded(context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device, getIndividualRecipient().toShortString()));
+    } else if (isIdentityDefault()) {
+      if (isOutgoing()) return emphasisAdded(context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_unverified, getIndividualRecipient().toShortString()));
+      else              return emphasisAdded(context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device, getIndividualRecipient().toShortString()));
     } else if (getBody().getBody().length() > MAX_DISPLAY_LENGTH) {
       return new SpannableString(getBody().getBody().substring(0, MAX_DISPLAY_LENGTH));
     }
@@ -140,12 +146,12 @@ public abstract class MessageRecord extends DisplayRecord {
     return SmsDatabase.Types.isForcedSms(type);
   }
 
-  public boolean isStaleKeyExchange() {
-    return SmsDatabase.Types.isStaleKeyExchange(type);
+  public boolean isIdentityVerified() {
+    return SmsDatabase.Types.isIdentityVerified(type);
   }
 
-  public boolean isProcessedKeyExchange() {
-    return SmsDatabase.Types.isProcessedKeyExchange(type);
+  public boolean isIdentityDefault() {
+    return SmsDatabase.Types.isIdentityDefault(type);
   }
 
   public boolean isIdentityMismatchFailure() {

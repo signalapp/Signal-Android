@@ -16,6 +16,8 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.animation.TypeEvaluator;
+import android.animation.ValueAnimator;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -26,13 +28,18 @@ import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
+import android.support.v4.animation.AnimatorCompatHelper;
+import android.support.v4.animation.ValueAnimatorCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.SwitchCompat;
 import android.text.Html;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
@@ -49,7 +56,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnticipateInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.view.animation.ScaleAnimation;
-import android.widget.AdapterView;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,14 +66,18 @@ import org.thoughtcrime.securesms.components.camera.CameraView;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
+import org.thoughtcrime.securesms.jobs.MultiDeviceVerifiedUpdateJob;
 import org.thoughtcrime.securesms.qr.QrCode;
 import org.thoughtcrime.securesms.qr.ScanListener;
 import org.thoughtcrime.securesms.qr.ScanningThread;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -80,6 +91,8 @@ import org.whispersystems.signalservice.api.util.InvalidNumberException;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 
+import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
+
 /**
  * Activity for verifying identity keys.
  *
@@ -89,8 +102,9 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
 
   private static final String TAG = VerifyIdentityActivity.class.getSimpleName();
 
-  public static final String RECIPIENT_ID       = "recipient_id";
-  public static final String RECIPIENT_IDENTITY = "recipient_identity";
+  public static final String RECIPIENT_ID_EXTRA = "recipient_id";
+  public static final String IDENTITY_EXTRA     = "recipient_identity";
+  public static final String VERIFIED_EXTRA     = "verified_state";
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -110,16 +124,18 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       getSupportActionBar().setDisplayHomeAsUpEnabled(true);
       getSupportActionBar().setTitle(R.string.AndroidManifest__verify_safety_number);
 
-      Recipient recipient = RecipientFactory.getRecipientForId(this, getIntent().getLongExtra(RECIPIENT_ID, -1), true);
+      Recipient recipient = RecipientFactory.getRecipientForId(this, getIntent().getLongExtra(RECIPIENT_ID_EXTRA, -1), true);
       recipient.addListener(this);
 
       setActionBarNotificationBarColor(recipient.getColor());
 
       Bundle extras = new Bundle();
-      extras.putParcelable(VerifyDisplayFragment.REMOTE_IDENTITY, getIntent().getParcelableExtra(RECIPIENT_IDENTITY));
+      extras.putLong(VerifyDisplayFragment.REMOTE_RECIPIENT_ID, getIntent().getLongExtra(RECIPIENT_ID_EXTRA, -1));
+      extras.putParcelable(VerifyDisplayFragment.REMOTE_IDENTITY, getIntent().getParcelableExtra(IDENTITY_EXTRA));
       extras.putString(VerifyDisplayFragment.REMOTE_NUMBER, Util.canonicalizeNumber(this, recipient.getNumber()));
       extras.putParcelable(VerifyDisplayFragment.LOCAL_IDENTITY, new IdentityKeyParcelable(IdentityKeyUtil.getIdentityKey(this)));
       extras.putString(VerifyDisplayFragment.LOCAL_NUMBER, TextSecurePreferences.getLocalNumber(this));
+      extras.putBoolean(VerifyDisplayFragment.VERIFIED_STATE, getIntent().getBooleanExtra(VERIFIED_EXTRA, false));
 
       scanFragment.setScanListener(this);
       displayFragment.setClickListener(this);
@@ -212,16 +228,19 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
   }
 
 
-  public static class VerifyDisplayFragment extends Fragment implements Recipients.RecipientsModifiedListener {
+  public static class VerifyDisplayFragment extends Fragment implements Recipient.RecipientModifiedListener, CompoundButton.OnCheckedChangeListener {
 
-    public static final String REMOTE_NUMBER   = "remote_number";
-    public static final String REMOTE_IDENTITY = "remote_identity";
-    public static final String LOCAL_IDENTITY  = "local_identity";
-    public static final String LOCAL_NUMBER    = "local_number";
+    public static final String REMOTE_RECIPIENT_ID = "remote_recipient_id";
+    public static final String REMOTE_NUMBER       = "remote_number";
+    public static final String REMOTE_IDENTITY     = "remote_identity";
+    public static final String LOCAL_IDENTITY      = "local_identity";
+    public static final String LOCAL_NUMBER        = "local_number";
+    public static final String VERIFIED_STATE      = "verified_state";
 
-    private Recipients recipient;
-    private String     localNumber;
-    private String     remoteNumber;
+    private MasterSecret masterSecret;
+    private Recipient    recipient;
+    private String       localNumber;
+    private String       remoteNumber;
 
     private IdentityKey localIdentity;
     private IdentityKey remoteIdentity;
@@ -232,8 +251,10 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
     private View                 numbersContainer;
     private ImageView            qrCode;
     private ImageView            qrVerified;
+    private TextView             tapLabel;
     private TextView             description;
     private View.OnClickListener clickListener;
+    private SwitchCompat         verified;
 
     private TextView[] codes                = new TextView[12];
     private boolean    animateSuccessOnDraw = false;
@@ -244,8 +265,10 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       this.container        = ViewUtil.inflate(inflater, viewGroup, R.layout.verify_display_fragment);
       this.numbersContainer = ViewUtil.findById(container, R.id.number_table);
       this.qrCode           = ViewUtil.findById(container, R.id.qr_code);
+      this.verified         = ViewUtil.findById(container, R.id.verified_switch);
       this.qrVerified       = ViewUtil.findById(container, R.id.qr_verified);
       this.description      = ViewUtil.findById(container, R.id.description);
+      this.tapLabel         = ViewUtil.findById(container, R.id.tap_label);
       this.codes[0]         = ViewUtil.findById(container, R.id.code_first);
       this.codes[1]         = ViewUtil.findById(container, R.id.code_second);
       this.codes[2]         = ViewUtil.findById(container, R.id.code_third);
@@ -262,6 +285,9 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       this.qrCode.setOnClickListener(clickListener);
       this.registerForContextMenu(numbersContainer);
 
+      this.verified.setChecked(getArguments().getBoolean(VERIFIED_STATE, false));
+      this.verified.setOnCheckedChangeListener(this);
+
       return container;
     }
 
@@ -269,23 +295,37 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
     public void onCreate(Bundle bundle) {
       super.onCreate(bundle);
 
+      this.masterSecret   = getArguments().getParcelable("master_secret");
       this.localNumber    = getArguments().getString(LOCAL_NUMBER);
       this.localIdentity  = ((IdentityKeyParcelable)getArguments().getParcelable(LOCAL_IDENTITY)).get();
       this.remoteNumber   = getArguments().getString(REMOTE_NUMBER);
-      this.recipient      = RecipientFactory.getRecipientsFromString(getActivity(), this.remoteNumber, true);
+      this.recipient      = RecipientFactory.getRecipientForId(getActivity(), getArguments().getLong(REMOTE_RECIPIENT_ID), true);
       this.remoteIdentity = ((IdentityKeyParcelable)getArguments().getParcelable(REMOTE_IDENTITY)).get();
-      this.fingerprint    = new NumericFingerprintGenerator(5200).createFor(localNumber, localIdentity,
-                                                                            remoteNumber, remoteIdentity);
 
       this.recipient.addListener(this);
+
+      new AsyncTask<Void, Void, Fingerprint>() {
+        @Override
+        protected Fingerprint doInBackground(Void... params) {
+          return new NumericFingerprintGenerator(5200).createFor(localNumber, localIdentity,
+                                                                 remoteNumber, remoteIdentity);
+        }
+
+        @Override
+        protected void onPostExecute(Fingerprint fingerprint) {
+          VerifyDisplayFragment.this.fingerprint = fingerprint;
+
+          setFingerprintViews(fingerprint, true);
+        }
+      }.execute();
     }
 
     @Override
-    public void onModified(Recipients recipients) {
+    public void onModified(final Recipient recipient) {
       Util.runOnMain(new Runnable() {
         @Override
         public void run() {
-          setFingerprintViews(fingerprint);
+          setRecipientText(recipient);
         }
       });
     }
@@ -294,7 +334,11 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
     public void onResume() {
       super.onResume();
 
-      setFingerprintViews(fingerprint);
+      setRecipientText(recipient);
+
+      if (fingerprint != null) {
+        setFingerprintViews(fingerprint, false);
+      }
 
       if (animateSuccessOnDraw) {
         animateSuccessOnDraw = false;
@@ -398,12 +442,19 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       }
     }
 
-    private void setFingerprintViews(Fingerprint fingerprint) {
+    private void setRecipientText(Recipient recipient) {
+      description.setText(Html.fromHtml(String.format(getActivity().getString(R.string.verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s), recipient.toShortString())));
+      description.setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
+    private void setFingerprintViews(Fingerprint fingerprint, boolean animate) {
       String digits   = fingerprint.getDisplayableFingerprint().getDisplayText();
       int    partSize = digits.length() / codes.length;
 
       for (int i=0;i<codes.length;i++) {
-        codes[i].setText(digits.substring(i * partSize, (i * partSize) + partSize));
+        String substring = digits.substring(i * partSize, (i * partSize) + partSize);
+        if (animate) setCodeSegment(codes[i], substring);
+        else         codes[i].setText(substring);
       }
 
       byte[] qrCodeData   = fingerprint.getScannableFingerprint().getSerialized();
@@ -411,8 +462,41 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       Bitmap qrCodeBitmap = QrCode.create(qrCodeString);
 
       qrCode.setImageBitmap(qrCodeBitmap);
-      description.setText(Html.fromHtml(String.format(getActivity().getString(R.string.verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s), recipient.toShortString())));
-      description.setMovementMethod(LinkMovementMethod.getInstance());
+
+      if (animate) {
+        ViewUtil.fadeIn(qrCode, 1000);
+        ViewUtil.fadeIn(tapLabel, 1000);
+      } else {
+        qrCode.setVisibility(View.VISIBLE);
+        tapLabel.setVisibility(View.VISIBLE);
+      }
+    }
+
+    private void setCodeSegment(final TextView codeView, String segment) {
+      if (Build.VERSION.SDK_INT >= 11) {
+        ValueAnimator valueAnimator = new ValueAnimator();
+        valueAnimator.setObjectValues(0, Integer.parseInt(segment));
+
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+          @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
+          @Override
+          public void onAnimationUpdate(ValueAnimator animation) {
+            int value = (int) animation.getAnimatedValue();
+            codeView.setText(String.format("%05d", value));
+          }
+        });
+
+        valueAnimator.setEvaluator(new TypeEvaluator<Integer>() {
+          public Integer evaluate(float fraction, Integer startValue, Integer endValue) {
+            return Math.round(startValue + (endValue - startValue) * fraction);
+          }
+        });
+
+        valueAnimator.setDuration(1000);
+        valueAnimator.start();
+      } else {
+        codeView.setText(segment);
+      }
     }
 
     private Bitmap createVerifiedBitmap(int width, int height, @DrawableRes int id) {
@@ -477,6 +561,41 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       });
 
       ViewUtil.animateIn(qrVerified, scaleAnimation);
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, final boolean isChecked) {
+      new AsyncTask<Recipient, Void, Void>() {
+        @Override
+        protected Void doInBackground(Recipient... params) {
+          synchronized (SESSION_LOCK) {
+            if (isChecked) {
+              Log.w(TAG, "Saving identity: " + params[0].getRecipientId());
+              DatabaseFactory.getIdentityDatabase(getActivity())
+                             .saveIdentity(params[0].getRecipientId(),
+                                           remoteIdentity,
+                                           VerifiedStatus.VERIFIED, false,
+                                           System.currentTimeMillis(), true);
+            } else {
+              DatabaseFactory.getIdentityDatabase(getActivity())
+                             .setVerified(params[0].getRecipientId(),
+                                          remoteIdentity,
+                                          VerifiedStatus.DEFAULT);
+            }
+
+            ApplicationContext.getInstance(getActivity())
+                              .getJobManager()
+                              .add(new MultiDeviceVerifiedUpdateJob(getActivity(),
+                                                                    recipient.getNumber(),
+                                                                    remoteIdentity,
+                                                                    isChecked ? VerifiedStatus.VERIFIED :
+                                                                                VerifiedStatus.DEFAULT));
+
+            IdentityUtil.markIdentityVerified(getActivity(), new MasterSecretUnion(masterSecret), recipient, isChecked, false);
+          }
+          return null;
+        }
+      }.execute(recipient);
     }
   }
 

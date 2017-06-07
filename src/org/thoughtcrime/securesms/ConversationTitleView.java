@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,6 +19,7 @@ public class ConversationTitleView extends LinearLayout {
 
   private TextView  title;
   private TextView  subtitle;
+  private ImageView verified;
 
   public ConversationTitleView(Context context) {
     this(context, null);
@@ -32,8 +34,9 @@ public class ConversationTitleView extends LinearLayout {
   public void onFinishInflate() {
     super.onFinishInflate();
 
-    this.title    = (TextView) findViewById(R.id.title);
-    this.subtitle = (TextView) findViewById(R.id.subtitle);
+    this.title    = (TextView)  findViewById(R.id.title);
+    this.subtitle = (TextView)  findViewById(R.id.subtitle);
+    this.verified = (ImageView) findViewById(R.id.verified_indicator);
 
     ViewUtil.setTextViewGravityStart(this.title, getContext());
     ViewUtil.setTextViewGravityStart(this.subtitle, getContext());
@@ -51,6 +54,10 @@ public class ConversationTitleView extends LinearLayout {
     } else {
       title.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
     }
+  }
+
+  public void setVerified(boolean verified) {
+    this.verified.setVisibility(verified ? View.VISIBLE : View.GONE);
   }
 
   private void setComposeTitle() {

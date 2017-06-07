@@ -521,6 +521,9 @@ public class SmsDatabase extends MessagingDatabase {
     if (message.isIdentityUpdate())      type |= Types.KEY_EXCHANGE_IDENTITY_UPDATE_BIT;
     if (message.isContentPreKeyBundle()) type |= Types.KEY_EXCHANGE_CONTENT_FORMAT;
 
+    if      (message.isIdentityVerified())    type |= Types.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT;
+    else if (message.isIdentityDefault())     type |= Types.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT;
+
     Recipients recipients;
 
     if (message.getSender() != null) {
@@ -540,7 +543,7 @@ public class SmsDatabase extends MessagingDatabase {
 
     boolean    unread     = (org.thoughtcrime.securesms.util.Util.isDefaultSmsProvider(context) ||
                             message.isSecureMessage() || message.isGroup() || message.isPreKeyBundle()) &&
-                            !message.isIdentityUpdate();
+                            !message.isIdentityUpdate() && !message.isIdentityDefault() && !message.isIdentityVerified();
 
     long       threadId;
 
@@ -577,7 +580,7 @@ public class SmsDatabase extends MessagingDatabase {
         DatabaseFactory.getThreadDatabase(context).setUnread(threadId);
       }
 
-      if (!message.isIdentityUpdate()) {
+      if (!message.isIdentityUpdate() && !message.isIdentityVerified() && !message.isIdentityDefault()) {
         DatabaseFactory.getThreadDatabase(context).update(threadId, true);
       }
 
@@ -604,6 +607,9 @@ public class SmsDatabase extends MessagingDatabase {
     else if (message.isSecureMessage()) type |= (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT);
     else if (message.isEndSession())    type |= Types.END_SESSION_BIT;
     if      (forceSms)                  type |= Types.MESSAGE_FORCE_SMS_BIT;
+
+    if      (message.isIdentityVerified()) type |= Types.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT;
+    else if (message.isIdentityDefault())  type |= Types.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT;
 
     String address = message.getRecipients().getPrimaryRecipient().getNumber();
 

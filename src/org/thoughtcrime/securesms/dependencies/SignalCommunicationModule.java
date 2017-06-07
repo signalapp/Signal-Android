@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceGroupUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
+import org.thoughtcrime.securesms.jobs.MultiDeviceVerifiedUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.PushGroupUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
@@ -61,7 +62,8 @@ import dagger.Provides;
                                      AvatarDownloadJob.class,
                                      RotateSignedPreKeyJob.class,
                                      WebRtcCallService.class,
-                                     RetrieveProfileJob.class})
+                                     RetrieveProfileJob.class,
+                                     MultiDeviceVerifiedUpdateJob.class})
 public class SignalCommunicationModule {
 
   private final Context                    context;

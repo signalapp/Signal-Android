@@ -64,10 +64,6 @@ public class SmsMessageRecord extends MessageRecord {
   public SpannableString getDisplayBody() {
     if (SmsDatabase.Types.isFailedDecryptType(type)) {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_bad_encrypted_message));
-    } else if (isProcessedKeyExchange()) {
-      return new SpannableString("");
-    } else if (isStaleKeyExchange()) {
-      return emphasisAdded(context.getString(R.string.ConversationItem_error_received_stale_key_exchange_message));
     } else if (isCorruptedKeyExchange()) {
       return emphasisAdded(context.getString(R.string.SmsMessageRecord_received_corrupted_key_exchange_message));
     } else if (isInvalidVersionKeyExchange()) {

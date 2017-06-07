@@ -60,6 +60,14 @@ public class OutgoingTextMessage {
     return false;
   }
 
+  public boolean isIdentityVerified() {
+    return false;
+  }
+
+  public boolean isIdentityDefault() {
+    return false;
+  }
+
   public static OutgoingTextMessage from(SmsMessageRecord record) {
     if (record.isSecure()) {
       return new OutgoingEncryptedMessage(record.getRecipients(), record.getBody().getBody(), record.getExpiresIn());

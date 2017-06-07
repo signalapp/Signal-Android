@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.groups.GroupMessageProcessor;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
+import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
@@ -44,6 +45,7 @@ import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.libsignal.DuplicateMessageException;
@@ -75,12 +77,11 @@ import org.whispersystems.signalservice.api.messages.multidevice.ReadMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.RequestMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SentTranscriptMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
+import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import org.thoughtcrime.securesms.mms.MmsException;
 
 public class PushDecryptJob extends ContextJob {
 
@@ -165,9 +166,10 @@ public class PushDecryptJob extends ContextJob {
       } else if (content.getSyncMessage().isPresent()) {
         SignalServiceSyncMessage syncMessage = content.getSyncMessage().get();
 
-        if      (syncMessage.getSent().isPresent())    handleSynchronizeSentMessage(masterSecret, envelope, syncMessage.getSent().get(), smsMessageId);
-        else if (syncMessage.getRequest().isPresent()) handleSynchronizeRequestMessage(masterSecret, syncMessage.getRequest().get());
-        else if (syncMessage.getRead().isPresent())    handleSynchronizeReadMessage(masterSecret, syncMessage.getRead().get(), envelope.getTimestamp());
+        if      (syncMessage.getSent().isPresent())     handleSynchronizeSentMessage(masterSecret, envelope, syncMessage.getSent().get(), smsMessageId);
+        else if (syncMessage.getRequest().isPresent())  handleSynchronizeRequestMessage(masterSecret, syncMessage.getRequest().get());
+        else if (syncMessage.getRead().isPresent())     handleSynchronizeReadMessage(masterSecret, syncMessage.getRead().get(), envelope.getTimestamp());
+        else if (syncMessage.getVerified().isPresent()) handleSynchronizeVerifiedMessage(masterSecret, syncMessage.getVerified().get());
         else                                           Log.w(TAG, "Contains no known sync types...");
       } else if (content.getCallMessage().isPresent()) {
         Log.w(TAG, "Got call message...");
@@ -389,6 +391,14 @@ public class PushDecryptJob extends ContextJob {
     }
   }
 
+  private void handleSynchronizeVerifiedMessage(@NonNull MasterSecretUnion masterSecret,
+                                                @NonNull List<VerifiedMessage> verifiedMessages)
+  {
+    for (VerifiedMessage verifiedMessage : verifiedMessages) {
+      IdentityUtil.processVerifiedMessage(context, masterSecret, verifiedMessage);
+    }
+  }
+
   private void handleSynchronizeSentMessage(@NonNull MasterSecretUnion masterSecret,
                                             @NonNull SignalServiceEnvelope envelope,
                                             @NonNull SentTranscriptMessage message,
@@ -430,6 +440,10 @@ public class PushDecryptJob extends ContextJob {
       ApplicationContext.getInstance(context)
                         .getJobManager()
                         .add(new MultiDeviceContactUpdateJob(getContext()));
+
+      ApplicationContext.getInstance(context)
+                        .getJobManager()
+                        .add(new MultiDeviceVerifiedUpdateJob(getContext()));
     }
 
     if (message.isGroupsRequest()) {

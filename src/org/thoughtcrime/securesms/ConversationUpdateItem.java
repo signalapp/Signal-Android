@@ -16,6 +16,8 @@ import android.widget.TextView;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.IdentityDatabase;
+import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -24,7 +26,6 @@ import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
-import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Locale;
@@ -96,6 +97,8 @@ public class ConversationUpdateItem extends LinearLayout
     else if (messageRecord.isExpirationTimerUpdate()) setTimerRecord(messageRecord);
     else if (messageRecord.isEndSession())            setEndSessionRecord(messageRecord);
     else if (messageRecord.isIdentityUpdate())        setIdentityRecord(messageRecord);
+    else if (messageRecord.isIdentityVerified() ||
+             messageRecord.isIdentityDefault())       setIdentityVerifyUpdate(messageRecord);
     else                                              throw new AssertionError("Neither group nor log nor joined.");
 
     if (batchSelected.contains(messageRecord)) setSelected(true);
@@ -127,6 +130,15 @@ public class ConversationUpdateItem extends LinearLayout
 
   private void setIdentityRecord(final MessageRecord messageRecord) {
     icon.setImageResource(R.drawable.ic_security_white_24dp);
+    icon.setColorFilter(new PorterDuffColorFilter(Color.parseColor("#757575"), PorterDuff.Mode.MULTIPLY));
+    body.setText(messageRecord.getDisplayBody());
+    date.setVisibility(View.GONE);
+  }
+
+  private void setIdentityVerifyUpdate(final MessageRecord messageRecord) {
+    if (messageRecord.isIdentityVerified()) icon.setImageResource(R.drawable.ic_check_white_24dp);
+    else                                    icon.setImageResource(R.drawable.ic_info_outline_white_24dp);
+
     icon.setColorFilter(new PorterDuffColorFilter(Color.parseColor("#757575"), PorterDuff.Mode.MULTIPLY));
     body.setText(messageRecord.getDisplayBody());
     date.setVisibility(View.GONE);
@@ -193,20 +205,25 @@ public class ConversationUpdateItem extends LinearLayout
 
     @Override
     public void onClick(View v) {
-      if (!messageRecord.isIdentityUpdate() || !batchSelected.isEmpty()) {
+      if ((!messageRecord.isIdentityUpdate()  &&
+           !messageRecord.isIdentityDefault() &&
+           !messageRecord.isIdentityVerified()) ||
+          !batchSelected.isEmpty())
+      {
         if (parent != null) parent.onClick(v);
         return;
       }
 
       final Recipient sender = ConversationUpdateItem.this.sender;
 
-      IdentityUtil.getRemoteIdentityKey(getContext(), masterSecret, sender).addListener(new ListenableFuture.Listener<Optional<IdentityKey>>() {
+      IdentityUtil.getRemoteIdentityKey(getContext(), sender).addListener(new ListenableFuture.Listener<Optional<IdentityRecord>>() {
         @Override
-        public void onSuccess(Optional<IdentityKey> result) {
+        public void onSuccess(Optional<IdentityRecord> result) {
           if (result.isPresent()) {
             Intent intent = new Intent(getContext(), VerifyIdentityActivity.class);
-            intent.putExtra(VerifyIdentityActivity.RECIPIENT_ID, sender.getRecipientId());
-            intent.putExtra(VerifyIdentityActivity.RECIPIENT_IDENTITY, new IdentityKeyParcelable(result.get()));
+            intent.putExtra(VerifyIdentityActivity.RECIPIENT_ID_EXTRA, sender.getRecipientId());
+            intent.putExtra(VerifyIdentityActivity.IDENTITY_EXTRA, new IdentityKeyParcelable(result.get().getIdentityKey()));
+            intent.putExtra(VerifyIdentityActivity.VERIFIED_EXTRA, result.get().getVerifiedStatus() == IdentityDatabase.VerifiedStatus.VERIFIED);
 
             getContext().startActivity(intent);
           }

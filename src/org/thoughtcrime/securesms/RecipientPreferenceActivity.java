@@ -21,6 +21,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.preference.PreferenceFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -32,6 +33,8 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.IdentityDatabase;
+import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.VibrateState;
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
@@ -302,9 +305,9 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         if (recipients.isBlocked()) blockPreference.setTitle(R.string.RecipientPreferenceActivity_unblock);
         else                        blockPreference.setTitle(R.string.RecipientPreferenceActivity_block);
 
-        IdentityUtil.getRemoteIdentityKey(getActivity(), masterSecret, recipients.getPrimaryRecipient()).addListener(new ListenableFuture.Listener<Optional<IdentityKey>>() {
+        IdentityUtil.getRemoteIdentityKey(getActivity(), recipients.getPrimaryRecipient()).addListener(new ListenableFuture.Listener<Optional<IdentityRecord>>() {
           @Override
-          public void onSuccess(Optional<IdentityKey> result) {
+          public void onSuccess(Optional<IdentityRecord> result) {
             if (result.isPresent()) {
               if (identityPreference != null) identityPreference.setOnPreferenceClickListener(new IdentityClickedListener(result.get()));
               if (identityPreference != null) identityPreference.setEnabled(true);
@@ -458,17 +461,19 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
     private class IdentityClickedListener implements Preference.OnPreferenceClickListener {
 
-      private final IdentityKey identityKey;
+      private final IdentityRecord identityKey;
 
-      private IdentityClickedListener(IdentityKey identityKey) {
+      private IdentityClickedListener(IdentityRecord identityKey) {
+        Log.w(TAG, "Identity record: " + identityKey);
         this.identityKey = identityKey;
       }
 
       @Override
       public boolean onPreferenceClick(Preference preference) {
         Intent verifyIdentityIntent = new Intent(getActivity(), VerifyIdentityActivity.class);
-        verifyIdentityIntent.putExtra(VerifyIdentityActivity.RECIPIENT_ID, recipients.getPrimaryRecipient().getRecipientId());
-        verifyIdentityIntent.putExtra(VerifyIdentityActivity.RECIPIENT_IDENTITY, new IdentityKeyParcelable(identityKey));
+        verifyIdentityIntent.putExtra(VerifyIdentityActivity.RECIPIENT_ID_EXTRA, recipients.getPrimaryRecipient().getRecipientId());
+        verifyIdentityIntent.putExtra(VerifyIdentityActivity.IDENTITY_EXTRA, new IdentityKeyParcelable(identityKey.getIdentityKey()));
+        verifyIdentityIntent.putExtra(VerifyIdentityActivity.VERIFIED_EXTRA, identityKey.getVerifiedStatus() == IdentityDatabase.VerifiedStatus.VERIFIED);
         startActivity(verifyIdentityIntent);
 
         return true;

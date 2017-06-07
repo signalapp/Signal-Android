@@ -110,7 +110,7 @@ public class ConfirmIdentityDialog extends AlertDialog {
             SignalProtocolAddress      mismatchAddress  = new SignalProtocolAddress(number, 1);
             TextSecureIdentityKeyStore identityKeyStore = new TextSecureIdentityKeyStore(getContext());
 
-            identityKeyStore.saveIdentity(mismatchAddress, mismatch.getIdentityKey(), true, true);
+            identityKeyStore.saveIdentity(mismatchAddress, mismatch.getIdentityKey(), true);
           }
 
           processMessageRecord(messageRecord);

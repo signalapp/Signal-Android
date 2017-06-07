@@ -240,7 +240,10 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   @Override
   public int getItemViewType(@NonNull MessageRecord messageRecord) {
     if (messageRecord.isGroupAction() || messageRecord.isCallLog() || messageRecord.isJoined() ||
-        messageRecord.isExpirationTimerUpdate() || messageRecord.isEndSession() || messageRecord.isIdentityUpdate()) {
+        messageRecord.isExpirationTimerUpdate() || messageRecord.isEndSession()                ||
+        messageRecord.isIdentityUpdate() || messageRecord.isIdentityVerified()                 ||
+        messageRecord.isIdentityDefault())
+    {
       return MESSAGE_TYPE_UPDATE;
     } else if (hasAudio(messageRecord)) {
       if (messageRecord.isOutgoing()) return MESSAGE_TYPE_AUDIO_OUTGOING;
