@@ -920,7 +920,7 @@
     <string name="media_overview_activity__no_media">No media</string>
 
     <!-- message_recipients_list_item -->
-    <string name="message_recipients_list_item__verify">VERIFY</string>
+    <string name="message_recipients_list_item__view">VIEW</string>
     <string name="message_recipients_list_item__resend">RESEND</string>
     <string name="message_recipients_list_item__resending">Resending...</string>
 
@@ -949,7 +949,7 @@
     <string name="recipient_preferences__block">Block</string>
     <string name="recipient_preferences__color">Color</string>
     <string name="recipient_preferences__color_for_this_contact">Color for this contact</string>
-    <string name="recipient_preferences__verify_safety_number">Verify safety number</string>
+    <string name="recipient_preferences__view_safety_number">View safety number</string>
 
     <!--- redphone_call_controls -->
     <string name="redphone_call_card__signal_call">Signal Call</string>

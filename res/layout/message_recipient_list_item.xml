@@ -75,7 +75,7 @@
                 android:paddingBottom="5dp"
                 android:layout_gravity="center_vertical"
                 android:drawableLeft="@drawable/ic_error_white_18dp"
-                android:text="@string/message_recipients_list_item__verify"
+                android:text="@string/message_recipients_list_item__view"
                 android:visibility="gone"
                 tools:visibility="visible" />
 
