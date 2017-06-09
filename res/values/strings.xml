@@ -441,7 +441,7 @@
     <string name="DeviceProvisioningActivity_content_progress_title">Linking device</string>
     <string name="DeviceProvisioningActivity_content_progress_content">Linking new device...</string>
     <string name="DeviceProvisioningActivity_content_progress_success">Device approved!</string>
-    <string name="DeviceProvisioningActivity_content_progress_no_device">No device found.</string>
+    <string name="DeviceProvisioningActivity_content_progress_no_device">No device found. If you are developing Signal, you\'ll need to use the staging server.</string>
     <string name="DeviceProvisioningActivity_content_progress_network_error">Network error.</string>
     <string name="DeviceProvisioningActivity_content_progress_key_error">Invalid QR code.</string>
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Sorry, you have too many devices linked already, try removing some</string>
