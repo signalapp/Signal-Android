@@ -187,7 +187,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   public static final String DISTRIBUTION_TYPE_EXTRA = "distribution_type";
   public static final String TIMING_EXTRA            = "timing";
   public static final String LAST_SEEN_EXTRA         = "last_seen";
-  public static final String INITIAL_RECIPIENT_EXTRA = "last_seen";
+  public static final String INITIAL_RECIPIENT_EXTRA = "initial_recipient";
 
   private static final int PICK_GALLERY      = 1;
   private static final int PICK_DOCUMENT     = 2;
@@ -487,7 +487,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     inflater.inflate(R.menu.conversation, menu);
-    if(isSingleConversation()){
+    if (isSingleConversation()) {
       inflater.inflate(R.menu.conversation_new_group,menu);
     }
 
@@ -684,7 +684,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void handleNewGroupWithUser() {
     Intent intent = new Intent(ConversationActivity.this,GroupCreateActivity.class);
     Recipient primaryRecipient = recipients.getPrimaryRecipient();
-    if(primaryRecipient !=null) {
+    if (primaryRecipient !=null) {
       intent.putExtra(INITIAL_RECIPIENT_EXTRA, primaryRecipient.getRecipientId());
     }
     startActivity(intent);
