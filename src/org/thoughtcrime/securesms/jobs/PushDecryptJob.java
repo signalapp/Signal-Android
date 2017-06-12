@@ -394,9 +394,9 @@ public class PushDecryptJob extends ContextJob {
   private void handleSynchronizeVerifiedMessage(@NonNull MasterSecretUnion masterSecret,
                                                 @NonNull List<VerifiedMessage> verifiedMessages)
   {
-    for (VerifiedMessage verifiedMessage : verifiedMessages) {
-      IdentityUtil.processVerifiedMessage(context, masterSecret, verifiedMessage);
-    }
+//    for (VerifiedMessage verifiedMessage : verifiedMessages) {
+//      IdentityUtil.processVerifiedMessage(context, masterSecret, verifiedMessage);
+//    }
   }
 
   private void handleSynchronizeSentMessage(@NonNull MasterSecretUnion masterSecret,

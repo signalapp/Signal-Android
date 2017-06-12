@@ -71,18 +71,18 @@ public class MultiDeviceVerifiedUpdateJob extends ContextJob implements Injectab
 
   @Override
   public void onRun() throws IOException, UntrustedIdentityException {
-    try {
-      if (!TextSecurePreferences.isMultiDevice(context)) {
-        Log.w(TAG, "Not multi device...");
-        return;
-      }
-
-      if (destination != null) sendSpecificUpdate(destination, identityKey, verifiedStatus);
-      else                     sendFullUpdate();
-
-    } catch (InvalidNumberException | InvalidKeyException e) {
-      throw new IOException(e);
-    }
+//    try {
+//      if (!TextSecurePreferences.isMultiDevice(context)) {
+//        Log.w(TAG, "Not multi device...");
+//        return;
+//      }
+//
+//      if (destination != null) sendSpecificUpdate(destination, identityKey, verifiedStatus);
+//      else                     sendFullUpdate();
+//
+//    } catch (InvalidNumberException | InvalidKeyException e) {
+//      throw new IOException(e);
+//    }
   }
 
   private void sendSpecificUpdate(String destination, byte[] identityKey, VerifiedStatus verifiedStatus)
