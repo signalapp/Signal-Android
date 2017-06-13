@@ -490,6 +490,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
   private void handleLocalIceCandidate(Intent intent) {
     if (callState == CallState.STATE_IDLE || !Util.isEquals(this.callId, getCallId(intent))) {
       Log.w(TAG, "State is now idle, ignoring ice candidate...");
+      return;
     }
 
     if (recipient == null || callId == null) {
@@ -501,6 +502,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
                                                              intent.getStringExtra(EXTRA_ICE_SDP));
 
     if (pendingIceUpdates != null) {
+      Log.w(TAG, "Adding to pending ice candidates...");
       this.pendingIceUpdates.add(iceUpdateMessage);
       return;
     }
@@ -1005,6 +1007,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
     intent.putExtra(EXTRA_ICE_SDP_MID, candidate.sdpMid);
     intent.putExtra(EXTRA_ICE_SDP_LINE_INDEX, candidate.sdpMLineIndex);
     intent.putExtra(EXTRA_ICE_SDP, candidate.sdp);
+    intent.putExtra(EXTRA_CALL_ID, callId);
 
     startService(intent);
   }
