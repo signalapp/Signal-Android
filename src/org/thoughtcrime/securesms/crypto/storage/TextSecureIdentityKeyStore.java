@@ -61,7 +61,9 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
         Log.w(TAG, "Replacing existing identity...");
         VerifiedStatus verifiedStatus;
 
-        if (identityRecord.get().getVerifiedStatus() == VerifiedStatus.VERIFIED) {
+        if (identityRecord.get().getVerifiedStatus() == VerifiedStatus.VERIFIED ||
+            identityRecord.get().getVerifiedStatus() == VerifiedStatus.UNVERIFIED)
+        {
           verifiedStatus = VerifiedStatus.UNVERIFIED;
         } else {
           verifiedStatus = VerifiedStatus.DEFAULT;
