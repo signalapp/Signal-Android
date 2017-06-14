@@ -6,7 +6,11 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 public class OutgoingIdentityDefaultMessage extends OutgoingTextMessage {
 
   public OutgoingIdentityDefaultMessage(Recipients recipients) {
-    super(recipients, "", -1);
+    this(recipients, "");
+  }
+
+  private OutgoingIdentityDefaultMessage(Recipients recipients, String body) {
+    super(recipients, body, -1);
   }
 
   @Override

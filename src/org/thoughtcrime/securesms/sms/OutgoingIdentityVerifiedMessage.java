@@ -6,7 +6,11 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 public class OutgoingIdentityVerifiedMessage extends OutgoingTextMessage {
 
   public OutgoingIdentityVerifiedMessage(Recipients recipients) {
-    super(recipients, "", -1);
+    this(recipients, "");
+  }
+
+  private OutgoingIdentityVerifiedMessage(Recipients recipients, String body) {
+    super(recipients, body, -1);
   }
 
   @Override
@@ -16,6 +20,6 @@ public class OutgoingIdentityVerifiedMessage extends OutgoingTextMessage {
 
   @Override
   public OutgoingTextMessage withBody(String body) {
-    return new OutgoingIdentityVerifiedMessage(getRecipients());
+    return new OutgoingIdentityVerifiedMessage(getRecipients(), body);
   }
 }
