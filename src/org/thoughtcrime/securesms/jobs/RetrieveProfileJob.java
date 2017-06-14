@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
@@ -79,9 +80,15 @@ public class RetrieveProfileJob extends ContextJob implements InjectableType {
   private void handleIndividualRecipient(Recipient recipient)
       throws IOException, InvalidKeyException, InvalidNumberException
   {
-    String               number      = Util.canonicalizeNumber(context, recipient.getNumber());
-    SignalServiceProfile profile     = retrieveProfile(number);
-    IdentityKey          identityKey = new IdentityKey(Base64.decode(profile.getIdentityKey()), 0);
+    String               number  = Util.canonicalizeNumber(context, recipient.getNumber());
+    SignalServiceProfile profile = retrieveProfile(number);
+
+    if (TextUtils.isEmpty(profile.getIdentityKey())) {
+      Log.w(TAG, "Identity key is missing on profile!");
+      return;
+    }
+
+    IdentityKey identityKey = new IdentityKey(Base64.decode(profile.getIdentityKey()), 0);
 
     if (!DatabaseFactory.getIdentityDatabase(context)
                         .getIdentity(recipient.getRecipientId())
