@@ -765,6 +765,7 @@
     <item quantity="other">%d أسبوع</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
+  <!--unverified safety numbers-->
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">ابحث في صور GIF واللصاقات</string>
   <!--giphy_fragment-->
@@ -800,7 +801,6 @@
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">لا يوجد وسيط</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">تحقق</string>
   <string name="message_recipients_list_item__resend">إعادة الإرسال</string>
   <string name="message_recipients_list_item__resending">إعادة الارسال</string>
   <!--GroupUtil-->
@@ -828,7 +828,6 @@
   <string name="recipient_preferences__block">حظر</string>
   <string name="recipient_preferences__color">اللون</string>
   <string name="recipient_preferences__color_for_this_contact">اللون المخصص لجهة الاتصال</string>
-  <string name="recipient_preferences__verify_safety_number">تحقق من رقم الأمان</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">مكالمة سيجنال</string>
   <string name="redphone_call_controls__end_call">إنهاء المكالمة</string>
@@ -887,7 +886,6 @@
   <string name="recipients_panel__to"><small>أدخل اسم أو رقم</small></string>
   <string name="recipients_panel__add_members">إضافة أعضاء</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[إن كنت ترغب في فحص أمان التشفير الحاصل بينك وبين %s من طرفيه ، قارن الرقم في الأعلى بالرقم الموجود على جهازهم. أو يمكنك كحل آخر إجراء مسح تصويري للرمز الموجود على جهازهم أو أن تطلب منهم إجراء مسح تصويري للرمز الذي على جهازك.<a href="https://whispersystems.org/redirect/safety-numbers">تعلم المزيد عن التحقق من أرقام الأمان</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">المس للمسح</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">شارك رقم الأمان</string>
@@ -1059,7 +1057,6 @@
   <string name="preferences_app_protection__app_access">دخول البرنامج</string>
   <string name="preferences_app_protection__communication">اتصال</string>
   <string name="preferences_chats__chats">دردشة</string>
-  <string name="preferences_notifications__message_notifications">تنويهات الرسائل</string>
   <string name="preferences_notifications__events">الأحداث</string>
   <string name="preferences_notifications__in_chat_sounds">أصوات خلال الدردشة</string>
   <string name="preferences_notifications__show">اظهار</string>

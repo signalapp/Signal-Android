@@ -371,6 +371,10 @@ fører dette til dupliserte meldingar.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du stilte inn at meldingar skal forsvinna etter %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s lot meldingar forsvinna etter %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Tryggleiksnummeret ditt med %s har endra seg.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Du markerte at tryggleiksnummeret ditt med %s er stadfesta.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Du markerte at tryggleiksnummeret ditt med %s er stadfesta frå ei anna eining</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Du markerte at tryggleiksnummeret ditt med %s ikkje er stadfesta.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Du markerte at tryggleiksnummeret ditt med %s ikkje er stadfesta frå ei anna eining</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passordfrasene samsvarer ikkje.</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Du skreiv inn feil gammal passordfrase.</string>
@@ -522,6 +526,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Utløpstid for melding endra til %s</string>
   <string name="ThreadRecord_safety_number_changed">Endra tryggleiksnummer</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Tryggleiksnummeret ditt med %s har endra seg.</string>
+  <string name="ThreadRecord_you_marked_verified">Du markerte som stadfesta</string>
+  <string name="ThreadRecord_you_marked_unverified">Du markerte som ikkje stadfesta</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal-oppdatering</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Det finst ei ny utgåve av Signal; trykk for å oppdatera</string>
@@ -723,6 +729,20 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
     <item quantity="other">%d veker</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%du</string>
+  <!--unverified safety numbers-->
+  <string name="IdentityUtil_unverified_banner_one">Tryggleiksnummmeret ditt med %s er endra og ikkje lenge stadfesta</string>
+  <string name="IdentityUtil_unverified_banner_two">Tryggleiksnummera dine med %1$s og %2$s er ikkje lenger stadfesta</string>
+  <string name="IdentityUtil_unverified_banner_many">Tryggleiksnummera dine med %1$s, %2$s og %3$s er ikkje lenger stadfesta</string>
+  <string name="IdentityUtil_unverified_dialog_one">Tryggleiksnummmeret ditt med %1$s er endra og ikkje lenge stadfesta. Dette kan anten bety at nokon prøver å overvaka kommunikasjonen din, eller berre at %1$s har installert Signal på nytt.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Tryggleiksnummera dine med %1$s og %2$s er endra og ikkje lenge stadfesta. Dette kan anten bety at nokon prøver å overvaka kommunikasjonen din, eller berre at dei har installert Signal på nytt.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Tryggleiksnummera dine med %1$s, %2$s og %3$s er endra og ikkje lenge stadfesta. Dette kan anten bety at nokon prøver å overvaka kommunikasjonen din, eller berre at dei har installert Signal på nytt.</string>
+  <string name="IdentityUtil_untrusted_dialog_one">Tryggleiksnummeret ditt med %s endra seg nett.</string>
+  <string name="IdentityUtil_untrusted_dialog_two">Tryggleiksnummera dine med %1$s og %2$s endra seg nett.</string>
+  <string name="IdentityUtil_untrusted_dialog_many">Tryggleiksnummera dine med %1$s, %2$s og %3$s endra seg nett.</string>
+  <plurals name="identity_others">
+    <item quantity="one">%d annan</item>
+    <item quantity="other">%d andre</item>
+  </plurals>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Søk Gif-ar og klistremerke</string>
   <!--giphy_fragment-->
@@ -758,7 +778,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Inga media</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">STADFEST</string>
+  <string name="message_recipients_list_item__view">VIS</string>
   <string name="message_recipients_list_item__resend">SEND PÅ NYTT</string>
   <string name="message_recipients_list_item__resending">Sender på nytt …</string>
   <!--GroupUtil-->
@@ -782,7 +802,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="recipient_preferences__block">Blokker</string>
   <string name="recipient_preferences__color">Farge</string>
   <string name="recipient_preferences__color_for_this_contact">Farge for denne kontakten</string>
-  <string name="recipient_preferences__verify_safety_number">Stadfest tryggleiksnummeret</string>
+  <string name="recipient_preferences__view_safety_number">Vis tryggleiksnummer</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal-samtale</string>
   <string name="redphone_call_controls__end_call">avslutt samtale</string>
@@ -858,8 +878,10 @@ Signal fekk tidsavbrot ved venting på stadfestingsmeldinga.</string>
   <string name="recipients_panel__to"><small>Skriv inn namn eller nummer</small></string>
   <string name="recipients_panel__add_members">Legg til medlemmar</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Viss du vil stadfesta at ende-til-ende-krypteringa di med %s er trygg, så kan du samanlikna nummeret over med nummeret på deira eining. Alternativt kan du skanna koden på deira telefon, eller be dei skanna din kode. <a href="https://whispersystems.org/redirect/safety-numbers">Lær meir om stadfesting av tryggleiksnummer</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Viss du vil stadfesta tryggleiken på krypteringa di med %s, kan du samanlikna nummeret over med nummeret på eininga deira. Alternativt kan du skanna koden på telefonen deira, eller be dei skanna koden din. <a href="https://whispersystems.org/redirect/safety-numbers">Lær meir.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Trykk for å skanna</string>
+  <string name="verify_display_fragment__loading">Lastar …</string>
+  <string name="verify_display_fragment__verified">Stadfesta</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Del tryggleiksnummeret</string>
   <!--message_details_header-->
@@ -1028,7 +1050,7 @@ Signal fekk tidsavbrot ved venting på stadfestingsmeldinga.</string>
   <string name="preferences_app_protection__app_access">App-tilgang</string>
   <string name="preferences_app_protection__communication">Kommunikasjon</string>
   <string name="preferences_chats__chats">Samtalar</string>
-  <string name="preferences_notifications__message_notifications">Meldingsvarsel</string>
+  <string name="preferences_notifications__messages">Meldingar</string>
   <string name="preferences_notifications__events">Hendingar</string>
   <string name="preferences_notifications__in_chat_sounds">Lydar i chat</string>
   <string name="preferences_notifications__show">Vis</string>
@@ -1166,5 +1188,9 @@ Signal fekk tidsavbrot ved venting på stadfestingsmeldinga.</string>
   <string name="trimmer__old_messages_successfully_deleted">Gamle meldingar vart sletta</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
+  <string name="UntrustedSendDialog_send_message">Send melding?</string>
+  <string name="UntrustedSendDialog_send">Send</string>
+  <string name="UnverifiedSendDialog_send_message">Send melding?</string>
+  <string name="UnverifiedSendDialog_send">Send</string>
   <!--EOF-->
 </resources>

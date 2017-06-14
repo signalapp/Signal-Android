@@ -537,6 +537,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="ThreadRecord_media_message">Multimedijalna poruka</string>
   <string name="ThreadRecord_s_joined_signal">%s se prijavio/la u Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Vrijeme nestajanja poruke postavljeno na %s</string>
+  <string name="ThreadRecord_safety_number_changed">Sigurnosni broj je izmijenjen</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Vaš sigurnosni broj s %s je izmjenjen.</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal ažuriranje</string>
@@ -601,6 +602,8 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="MessageNotifier_mark_read">Označi pročitano</string>
   <string name="MessageNotifier_media_message">Multimedijalna poruka</string>
   <string name="MessageNotifier_reply">Odgovori</string>
+  <string name="MessageNotifier_pending_signal_messages">Signal poruke na čekanju</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">Imate Signal poruka na čekanju, pritisnite kako biste ih otvorili i preuzeli</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Ručne MMS postavke su potrebne za vaš telefon.</string>
   <string name="MmsPreferencesFragment__enabled">Omogućeno</string>
@@ -742,6 +745,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
     <item quantity="other">%d tjedana</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
+  <!--unverified safety numbers-->
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Pretraži GIFove i naljepnice</string>
   <!--giphy_fragment-->
@@ -778,7 +782,6 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Bez medija</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">POTVRDI</string>
   <string name="message_recipients_list_item__resend">PONOVNO POŠALJI</string>
   <string name="message_recipients_list_item__resending">Ponovno slanje...</string>
   <!--GroupUtil-->
@@ -803,7 +806,6 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="recipient_preferences__block">Blokiraj</string>
   <string name="recipient_preferences__color">Boja</string>
   <string name="recipient_preferences__color_for_this_contact">Boja za ovaj kontakt</string>
-  <string name="recipient_preferences__verify_safety_number">Potvrdi sigurnosni broj</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal poziv</string>
   <string name="redphone_call_controls__end_call">završi poziv</string>
@@ -875,7 +877,6 @@ neuspješno.</string>
   <string name="recipients_panel__to"><small>Unesite ime ili broj</small></string>
   <string name="recipients_panel__add_members">Dodaj članove</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ukoliko želite provjeriti sigurnost vašeg kriptiranja s %s, usporedite broj iznad s brojem na njihovom uređaju. Također možete skenirati kod s njihovog uređaja, ili ih zatražiti da skeniraju vaš kod. <a href="https://whispersystems.org/redirect/safety-numbers">Saznajte više o provjeri sigurnosnih brojeva</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Pritisnite za skeniranje</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Podijeli sigurnosni broj</string>
@@ -1046,7 +1047,6 @@ neuspješno.</string>
   <string name="preferences_app_protection__app_access">Pristup aplikaciji</string>
   <string name="preferences_app_protection__communication">Komunikacija</string>
   <string name="preferences_chats__chats">Razgovori</string>
-  <string name="preferences_notifications__message_notifications">Obavijesti o porukama</string>
   <string name="preferences_notifications__events">Događaji</string>
   <string name="preferences_notifications__in_chat_sounds">Zvuk unutar razgovora</string>
   <string name="preferences_notifications__show">Prikaži</string>

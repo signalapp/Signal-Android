@@ -703,6 +703,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
     <item quantity="other">%d minggu</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dm</string>
+  <!--unverified safety numbers-->
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Cari GIF dan stiker</string>
   <!--giphy_fragment-->
@@ -738,7 +739,6 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Tidak ada media</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">VERIFIKASI</string>
   <string name="message_recipients_list_item__resend">KIRIM ULANG</string>
   <string name="message_recipients_list_item__resending">Mengirim ulang...</string>
   <!--GroupUtil-->
@@ -761,7 +761,6 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="recipient_preferences__block">Blokir</string>
   <string name="recipient_preferences__color">Warna</string>
   <string name="recipient_preferences__color_for_this_contact">Warna untuk kontak ini</string>
-  <string name="recipient_preferences__verify_safety_number">Periksa angka keamanan</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Panggilan Signal</string>
   <string name="redphone_call_controls__end_call">akhiri panggilan</string>
@@ -850,7 +849,6 @@ gagal
   <string name="recipients_panel__to"><small>Masukkan nama atau nomor</small></string>
   <string name="recipients_panel__add_members">Tambah anggota</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Jika Anda ingin memverifikasi keamanan enkripsi end-to-end dengan %s, bandingkan nomor di atas dengan nomor di perangkat mereka. Sebagai alternatif, Anda dapat memindai kode di telepon mereka, atau meminta mereka untuk memindai kode Anda. <a href="https://whispersystems.org/redirect/safety-numbers">Pelajari lebih lanjut tentang memverifikasi nomor keselamatan</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Ketuk untuk memindai</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Bagikan nomor keamanan</string>
@@ -1019,7 +1017,6 @@ gagal
   <string name="preferences_app_protection__app_access">Akses aplikasi</string>
   <string name="preferences_app_protection__communication">Komunikasi</string>
   <string name="preferences_chats__chats">Obrolan</string>
-  <string name="preferences_notifications__message_notifications">Notifikasi pesan</string>
   <string name="preferences_notifications__events">Acara</string>
   <string name="preferences_notifications__in_chat_sounds">Suara dalam-obrolan</string>
   <string name="preferences_notifications__show">Tampilkan</string>

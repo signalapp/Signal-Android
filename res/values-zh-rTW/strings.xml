@@ -354,6 +354,10 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">您將訊息銷毀時間設置爲 %1$s。</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s 將訊息銷毀時間設置爲 %2$s。</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">您與 %s 的安全碼已改變。</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">你標記與 %s 的安全碼為已驗證</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">你從另一個裝置標記與 %s 的安全碼為已驗證</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">你已標記與 %s 的安全碼為未驗證</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">你已從另一個裝置標記與 %s 的安全碼為未驗證</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">輸入的自訂密碼不相符！</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">輸入的是舊的自訂密碼！</string>
@@ -505,6 +509,8 @@
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">訊息銷毀時間設置爲 %s</string>
   <string name="ThreadRecord_safety_number_changed">安全碼已改變</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">您與 %s 的安全碼已改變。</string>
+  <string name="ThreadRecord_you_marked_verified">你標記為已驗證</string>
+  <string name="ThreadRecord_you_marked_unverified">你標記為未驗證</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal 更新</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">有新版本的 Signal，輕觸更新</string>
@@ -569,6 +575,8 @@
   <string name="MessageNotifier_mark_read">標示已讀</string>
   <string name="MessageNotifier_media_message">媒體訊息</string>
   <string name="MessageNotifier_reply">回覆</string>
+  <string name="MessageNotifier_pending_signal_messages">擱置的 Signal 訊息</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">你有擱置的 Signal 訊息，輕觸打開及取得訊息</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">您的手機需要手動設定多媒體訊息。</string>
   <string name="MmsPreferencesFragment__enabled">啟用</string>
@@ -700,6 +708,17 @@
     <item quantity="other">%d 星期</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
+  <!--unverified safety numbers-->
+  <string name="IdentityUtil_unverified_banner_one">你與 %s 的安全碼已經改變，而且不再是已驗證過的</string>
+  <string name="IdentityUtil_unverified_banner_two">你與 %1$s 及 %2$s 的安全碼不再是已驗證過的</string>
+  <string name="IdentityUtil_unverified_banner_many">你與 %1$s、%2$s 及 %3$s 的安全碼不再是已驗證過的</string>
+  <string name="IdentityUtil_unverified_dialog_one">你與 %1$s 的安全碼已改變，而且不再是已驗證。這有可能是有不明人士試圖攔截您的通訊，或是因為 %1$s 重新安裝 Signal。</string>
+  <string name="IdentityUtil_unverified_dialog_two">你與 %1$s 及 %2$s 的安全碼不再是已驗證。這有可能是有不明人士試圖攔截您的通訊，或是因為他們重新安裝 Signal。</string>
+  <string name="IdentityUtil_unverified_dialog_many">你與 %1$s、%2$s 及 %3$s 的安全碼不再是已驗證。這有可能是有不明人士試圖攔截您的通訊，或是因為他們重新安裝 Signal。</string>
+  <string name="IdentityUtil_untrusted_dialog_one">你與 %s 的安全碼剛剛已改變。</string>
+  <plurals name="identity_others">
+    <item quantity="other">%d 其他人</item>
+  </plurals>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">搜尋動態圖檔與貼圖</string>
   <!--giphy_fragment-->
@@ -735,7 +754,7 @@
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">無媒體</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">驗證</string>
+  <string name="message_recipients_list_item__view">檢視</string>
   <string name="message_recipients_list_item__resend">重新傳送</string>
   <string name="message_recipients_list_item__resending">重送中...</string>
   <!--GroupUtil-->
@@ -758,7 +777,7 @@
   <string name="recipient_preferences__block">封鎖</string>
   <string name="recipient_preferences__color">顏色</string>
   <string name="recipient_preferences__color_for_this_contact">此聯絡人的顏色</string>
-  <string name="recipient_preferences__verify_safety_number">驗證安全碼</string>
+  <string name="recipient_preferences__view_safety_number">檢視安全碼</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal 通話</string>
   <string name="redphone_call_controls__end_call">結束通話</string>
@@ -833,6 +852,8 @@ Signal 在等待簡訊驗證時超時。</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ 如果您想驗證和 %s 的端到端加密，請和他們比較上方的數字是否一致。或者，您可以掃描他們手機上的二維碼，或讓他們掃描您手機上面的二維碼。<a href="https://whispersystems.org/redirect/safety-numbers"> 了解更多有關驗證安全碼的訊息 </a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">點擊掃描</string>
+  <string name="verify_display_fragment__loading">載入中...</string>
+  <string name="verify_display_fragment__verified">已驗證</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">分享安全碼</string>
   <!--message_details_header-->
@@ -1000,7 +1021,6 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="preferences_app_protection__app_access">應用程式存取</string>
   <string name="preferences_app_protection__communication">溝通</string>
   <string name="preferences_chats__chats">聊天</string>
-  <string name="preferences_notifications__message_notifications">訊息通知</string>
   <string name="preferences_notifications__events">事件</string>
   <string name="preferences_notifications__in_chat_sounds">聊天音效</string>
   <string name="preferences_notifications__show">顯示</string>
@@ -1137,5 +1157,9 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="trimmer__old_messages_successfully_deleted">已完成刪除舊訊息</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">傳輸圖示</string>
+  <string name="UntrustedSendDialog_send_message">傳送訊息？</string>
+  <string name="UntrustedSendDialog_send">傳送</string>
+  <string name="UnverifiedSendDialog_send_message">傳送訊息？</string>
+  <string name="UnverifiedSendDialog_send">傳送</string>
   <!--EOF-->
 </resources>

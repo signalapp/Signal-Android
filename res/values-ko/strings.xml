@@ -596,6 +596,7 @@
     <item quantity="other">%d주</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%d주</string>
+  <!--unverified safety numbers-->
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIF 파일과 스티커 검색</string>
   <!--giphy_fragment-->
@@ -630,7 +631,6 @@
   <string name="load_more_header__see_full_conversation">대화 전체 보기</string>
   <!--media_overview_activity-->
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">확인</string>
   <string name="message_recipients_list_item__resend">다시 보내기</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">

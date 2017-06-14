@@ -498,6 +498,7 @@
   <string name="ThreadRecord_media_message">多媒体信息</string>
   <string name="ThreadRecord_s_joined_signal">%s加入了 Signal ！</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">信息销毁时间设置为 %s</string>
+  <string name="ThreadRecord_safety_number_changed">安全代码已改变</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">您与 %s 的安全码已经改变</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal 更新</string>
@@ -562,6 +563,8 @@
   <string name="MessageNotifier_mark_read">标记为已读</string>
   <string name="MessageNotifier_media_message">媒体信息</string>
   <string name="MessageNotifier_reply">回复</string>
+  <string name="MessageNotifier_pending_signal_messages">暗号信息待处理</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">您有待处理的信号消息，轻触来打开和收取</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">您的手机需要手动设置彩信。</string>
   <string name="MmsPreferencesFragment__enabled">启用</string>
@@ -693,6 +696,7 @@
     <item quantity="other">%d 周</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%d 周</string>
+  <!--unverified safety numbers-->
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">搜索 GIF图片与表情</string>
   <!--giphy_fragment-->
@@ -728,7 +732,6 @@
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">无媒体</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">验证</string>
   <string name="message_recipients_list_item__resend">重新发送</string>
   <string name="message_recipients_list_item__resending">正在重新发送…</string>
   <!--GroupUtil-->
@@ -751,7 +754,6 @@
   <string name="recipient_preferences__block">屏蔽</string>
   <string name="recipient_preferences__color">颜色</string>
   <string name="recipient_preferences__color_for_this_contact">此联系人的颜色</string>
-  <string name="recipient_preferences__verify_safety_number">验证安全代码</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">暗号呼叫</string>
   <string name="redphone_call_controls__end_call">结束呼叫</string>
@@ -825,7 +827,6 @@
   <string name="recipients_panel__to"><small>输入一个名字或号码</small></string>
   <string name="recipients_panel__add_members">添加成员</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ 如果您想验证和 %s  的端到端加密时安全的，请与对方比较上方的数字是否一致。或者，您可以扫描对方手机上的二维码，或让对方扫描您地二维码。<a href="https://whispersystems.org/redirect/safety-numbers"> 了解更多 </a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">点击扫码</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">分享安全代码</string>
@@ -994,7 +995,6 @@
   <string name="preferences_app_protection__app_access">应用保护</string>
   <string name="preferences_app_protection__communication">通讯</string>
   <string name="preferences_chats__chats">聊天界面</string>
-  <string name="preferences_notifications__message_notifications">提醒</string>
   <string name="preferences_notifications__events">事件</string>
   <string name="preferences_notifications__in_chat_sounds">聊天音效</string>
   <string name="preferences_notifications__show">展示</string>

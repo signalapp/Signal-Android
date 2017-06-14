@@ -586,6 +586,7 @@ Dammu okebere e namba yo.  Tugenda kugikakasa no bubaka ku simu</string>
     <item quantity="other">%d wiiki</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dwiiki</string>
+  <!--unverified safety numbers-->
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Noonya GIFs ne sticka</string>
   <!--giphy_fragment-->
@@ -621,7 +622,6 @@ Dammu okebere e namba yo.  Tugenda kugikakasa no bubaka ku simu</string>
   <string name="load_more_header__see_full_conversation">Laba emboozi yonna</string>
   <!--media_overview_activity-->
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">Kakasa</string>
   <string name="message_recipients_list_item__resend">Ddamu owerezze
 </string>
   <!--GroupUtil-->

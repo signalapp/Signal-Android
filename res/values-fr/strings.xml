@@ -366,6 +366,7 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Vous avez choisi %1$s comme heure de disparition du message.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a choisi %2$s comme heure de disparition du message.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Votre numéro de sécurité avec %s a changé.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Vous avez marqué votre numéro de sécurité avec %s vérifié</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Les phrases de passe ne correspondent pas !</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Ancienne phrase de passe incorrecte !</string>
@@ -514,6 +515,7 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="ThreadRecord_media_message">Message média</string>
   <string name="ThreadRecord_s_joined_signal">%s a rejoint Signal !</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Le temps de disparition des messages a été réglé à %s</string>
+  <string name="ThreadRecord_safety_number_changed">Numéro de sécurité changé</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Votre numéro de sécurité avec %s a changé</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Mise à jour de Signal</string>
@@ -578,6 +580,8 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="MessageNotifier_mark_read">Marquer comme lu</string>
   <string name="MessageNotifier_media_message">Message média</string>
   <string name="MessageNotifier_reply">Répondre</string>
+  <string name="MessageNotifier_pending_signal_messages">Messages Signal en attente</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">Vous avez des messages Signal en attente, appuyez pour ouvrir et récupérer</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Des paramètres MMS manuels sont nécessaires pour votre téléphone.</string>
   <string name="MmsPreferencesFragment__enabled">Activé</string>
@@ -714,6 +718,7 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
     <item quantity="other">%d semaines</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%d sem.</string>
+  <!--unverified safety numbers-->
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Rechercher GIFs et autocollants</string>
   <!--giphy_fragment-->
@@ -749,7 +754,6 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Pas de média</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">VÉRIFIER</string>
   <string name="message_recipients_list_item__resend">RÉENVOYER</string>
   <string name="message_recipients_list_item__resending">Renvoyer...</string>
   <!--GroupUtil-->
@@ -774,7 +778,6 @@ Les paramètres MMS de votre opérateur peuvent généralement être obtenus en 
   <string name="recipient_preferences__block">Bloquer</string>
   <string name="recipient_preferences__color">Couleur</string>
   <string name="recipient_preferences__color_for_this_contact">Couleur pour ce contact</string>
-  <string name="recipient_preferences__verify_safety_number">Vérification du numéro de sécurité</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Appel Signal</string>
   <string name="redphone_call_controls__end_call">Terminer l\'appel</string>
@@ -845,7 +848,6 @@ par SMS.</string>
   <string name="recipients_panel__to"><small>Entrez un nom ou un numéro</small></string>
   <string name="recipients_panel__add_members">Ajouter des membres</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Si vous voulez vérifier la securité du chiffrement de bout en bout avec %s, comparez le numéro ci-dessus avec le numéro sur son appareil. Vous pouvez également scanner le code sur son téléphone ou lui demander de scanner votre code. <a href="https://whispersystems.org/redirect/safety-numbers">En savoir plus sur les numéros de sécurité</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Appuyer pour scanner</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Partager le numéro de sécurité</string>
@@ -1015,7 +1017,6 @@ par SMS.</string>
   <string name="preferences_app_protection__app_access">Accès à l\'application</string>
   <string name="preferences_app_protection__communication">Communication</string>
   <string name="preferences_chats__chats">Tchats</string>
-  <string name="preferences_notifications__message_notifications">Notifications de messages</string>
   <string name="preferences_notifications__events">Evènements</string>
   <string name="preferences_notifications__in_chat_sounds">Son dans le tchat</string>
   <string name="preferences_notifications__show">Afficher</string>

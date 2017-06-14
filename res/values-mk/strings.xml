@@ -408,6 +408,7 @@
   <!--experience_upgrade_activity-->
   <!--expiration-->
   <string name="expiration_off">Исклучи</string>
+  <!--unverified safety numbers-->
   <!--giphy_activity-->
   <!--giphy_fragment-->
   <!--import_export_fragment-->
@@ -431,7 +432,6 @@
   <!--load_more_header-->
   <!--media_overview_activity-->
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">ВЕРИФИКУВАЈ</string>
   <string name="message_recipients_list_item__resend">ПРЕПРАТИ</string>
   <!--GroupUtil-->
   <!--prompt_passphrase_activity-->

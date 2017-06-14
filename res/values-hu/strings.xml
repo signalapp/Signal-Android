@@ -375,6 +375,10 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Beállítottad az eltűnő üzenet idejét erre: %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s beállította az eltűnő üzenet idejét erre: %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Megváltozott a biztonsági számod vele: %s.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Ellenőrzöttnek jelölted a biztonsági számodat vele: %s</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Egy másik készülékről ellenőrzöttnek jelölted a biztonsági számodat vele: %s</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Nem ellenőrzöttnek jelölted a biztonsági számodat vele: %s</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Egy másik készülékről nem ellenőrzöttnek jelölted a biztonsági számodat vele: %s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">A jelmondatok nem egyeznek!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Hibás régi jelmondat!</string>
@@ -531,6 +535,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Eltűnő üzenet ideje beállítva erre: %s</string>
   <string name="ThreadRecord_safety_number_changed">Megváltozott a biztonsági szám</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Megváltozott a biztonsági számod vele: %s.</string>
+  <string name="ThreadRecord_you_marked_verified">Ellenőrzöttnek jelölted</string>
+  <string name="ThreadRecord_you_marked_unverified">Nem ellenőrzöttnek jelölted</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal frissítés</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">A Signal egy új verziója érhető el, érints a frissítéshez</string>
@@ -734,6 +740,18 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
     <item quantity="other">%d hét</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dh</string>
+  <!--unverified safety numbers-->
+  <string name="IdentityUtil_unverified_banner_one">A biztonsági számod többé nem ellenőrzött vele: %s</string>
+  <string name="IdentityUtil_unverified_banner_two">A biztonsági számod többé nem ellenőrzött velük: %1$s és %2$s</string>
+  <string name="IdentityUtil_unverified_banner_many">A biztonsági számod többé nem ellenőrzött velük: %1$s, %2$s és %3$s</string>
+  <string name="IdentityUtil_unverified_dialog_one">A biztonsági számod megváltozott és többé nem ellenőrzött vele: %1$s. Ez jelentheti azt, hogy valaki megpróbálja lehallgatni a kommunikációdat, vagy azt, hogy%1$segyszerűen újratelepítette a Signal-t.</string>
+  <string name="IdentityUtil_unverified_dialog_two">A biztonsági számod megváltozott és többé nem ellenőrzött velük: %1$s és %2$s. Ez jelentheti azt, hogy valaki megpróbálja lehallgatni a kommunikációdat, vagy azt, hogy ők egyszerűen újratelepítették a Signal-t.</string>
+  <string name="IdentityUtil_unverified_dialog_many">A biztonsági számod megváltozott és többé nem ellenőrzött velük:%1$s, %2$s és %3$s. Ez jelentheti azt, hogy valaki megpróbálja lehallgatni a kommunikációdat, vagy azt, hogy ők egyszerűen újratelepítették a Signal-t.</string>
+  <string name="IdentityUtil_untrusted_dialog_one">Megváltozott a biztonsági számod vele: %s.</string>
+  <plurals name="identity_others">
+    <item quantity="one">%d további</item>
+    <item quantity="other">%d további</item>
+  </plurals>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFek és matricák keresése</string>
   <!--giphy_fragment-->
@@ -769,7 +787,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Nincs média</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">ELLENŐRZÉS</string>
+  <string name="message_recipients_list_item__view">MEGTEKINTÉS</string>
   <string name="message_recipients_list_item__resend">ÚJRAKÜLDÉS</string>
   <string name="message_recipients_list_item__resending">Újraküldés...</string>
   <!--GroupUtil-->
@@ -793,7 +811,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="recipient_preferences__block">Blokkolás</string>
   <string name="recipient_preferences__color">Szín</string>
   <string name="recipient_preferences__color_for_this_contact">Szín ehhez a kontakthoz</string>
-  <string name="recipient_preferences__verify_safety_number">Biztonsági szám ellenőrzése</string>
+  <string name="recipient_preferences__view_safety_number">Biztonsági szám ellenőrzése</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal hívás</string>
   <string name="redphone_call_controls__end_call">hívás vége</string>
@@ -884,8 +902,10 @@ sikertelen.
   <string name="recipients_panel__to"><small>Adj meg egy nevet vagy számot</small></string>
   <string name="recipients_panel__add_members">Tagok hozzáadása</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ha szeretnéd ellenőrizni a végpontok közti titkosítás biztonságát vele: %s, hasonlítsd össze a fenti számot az ő készülékén található számmal. Felváltva ezt, beszkennelheted a kódot a telefonján, vagy megkérheted, hogy szkennelje be a te kódod. <a href="https://whispersystems.org/redirect/safety-numbers">Tudj meg többet a biztonsági szám ellenőrzéséről</a>.]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ha szeretnéd ellenőrizni a titkosításod biztonságát vele: %s, hasonlítsd össze a fenti számot az ő készülékén található számmal. Felváltva ezt, beszkennelheted a kódot a telefonján, vagy megkérheted, hogy szkennelje be a te kódod. <a href="https://whispersystems.org/redirect/safety-numbers">Tudj meg többet.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Érints a szkenneléshez</string>
+  <string name="verify_display_fragment__loading">Betöltés</string>
+  <string name="verify_display_fragment__verified">Ellenőrzött</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Biztonsági szám megosztása</string>
   <!--message_details_header-->
@@ -1054,7 +1074,6 @@ sikertelen.
   <string name="preferences_app_protection__app_access">Alkalmazás hozzáférés</string>
   <string name="preferences_app_protection__communication">Kommunikáció</string>
   <string name="preferences_chats__chats">Csevegések</string>
-  <string name="preferences_notifications__message_notifications">Üzenet értesítések</string>
   <string name="preferences_notifications__events">Események</string>
   <string name="preferences_notifications__in_chat_sounds">Csevegésen belüli hangok</string>
   <string name="preferences_notifications__show">Mutat</string>
@@ -1192,5 +1211,9 @@ sikertelen.
   <string name="trimmer__old_messages_successfully_deleted">A régi üzenetek sikeresen törlődtek</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Átvitel ikon</string>
+  <string name="UntrustedSendDialog_send_message">Üzenet küldése?</string>
+  <string name="UntrustedSendDialog_send">Küldés</string>
+  <string name="UnverifiedSendDialog_send_message">Üzenet küldése?</string>
+  <string name="UnverifiedSendDialog_send">Küldés</string>
   <!--EOF-->
 </resources>

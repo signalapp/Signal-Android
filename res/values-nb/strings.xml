@@ -519,6 +519,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ThreadRecord_media_message">Mediemelding</string>
   <string name="ThreadRecord_s_joined_signal">%s ble med Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Utløpstid for meldinger endret til %s</string>
+  <string name="ThreadRecord_safety_number_changed">Sikkerhetsnummer endret </string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Din sikkerhets nummer med %s har endret seg.</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal oppdatering</string>
@@ -583,6 +584,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MessageNotifier_mark_read">Merk som lest</string>
   <string name="MessageNotifier_media_message">Mediemelding</string>
   <string name="MessageNotifier_reply">Svar</string>
+  <string name="MessageNotifier_pending_signal_messages">Venter Signalmeldinger </string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">Du har ventende Signalmeldinger, trykk for å åpne og hente</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Denne telefonen må settes opp for MMS manuelt.</string>
   <string name="MmsPreferencesFragment__enabled">Slått på</string>
@@ -719,6 +722,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
     <item quantity="other">%d uker</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%du</string>
+  <!--unverified safety numbers-->
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Søk GIFs og klistremerker</string>
   <!--giphy_fragment-->
@@ -754,7 +758,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Ingen medier</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">BEKREFT</string>
   <string name="message_recipients_list_item__resend">SEND PÅ NYTT</string>
   <string name="message_recipients_list_item__resending">Sender på nytt...</string>
   <!--GroupUtil-->
@@ -778,7 +781,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="recipient_preferences__block">Blokker</string>
   <string name="recipient_preferences__color">Farge</string>
   <string name="recipient_preferences__color_for_this_contact">Farge for denne kontakten</string>
-  <string name="recipient_preferences__verify_safety_number">Bekreft sikkerhets nummer</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal-samtale</string>
   <string name="redphone_call_controls__end_call">avslutt samtale</string>
@@ -856,7 +858,6 @@ Signal fikk tidsavbrudd under venting på bekreftelsesmelding.</string>
   <string name="recipients_panel__to"><small>Skriv inn navn eller nummer</small></string>
   <string name="recipients_panel__add_members">Legg til medlemmer</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Hvis du vil kontrollere sikkerheten for ende til ende-kryptering med %s, må du sammenlikne tallene overfor med tallene på motpartens enhet. Du kan også ta bilde av koden på motpartens skjerm, eller be dem om å ta bilde av din. <a href="https://whispersystems.org/redirect/safety-numbers">Les mer om kontroll av sikkerhetsnumre her (engelsk)</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Trykk for å skanne</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Del sikkerhets nummer</string>
@@ -1026,7 +1027,6 @@ Signal fikk tidsavbrudd under venting på bekreftelsesmelding.</string>
   <string name="preferences_app_protection__app_access">App tilgang</string>
   <string name="preferences_app_protection__communication">Kommunikasjon</string>
   <string name="preferences_chats__chats">Samtaler</string>
-  <string name="preferences_notifications__message_notifications">Meldingsvarsler</string>
   <string name="preferences_notifications__events">Arrangementer</string>
   <string name="preferences_notifications__in_chat_sounds">Lyder i samtaler</string>
   <string name="preferences_notifications__show">Vis</string>

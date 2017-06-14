@@ -85,6 +85,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Taganed krüptimata MMSile?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Seda sõnumit <b>ei</b> krüptita, kuna saaja ei ole enam Signali kasutaja.\n\nKas saata krüptimata sõnum?</string>
   <string name="ConversationItem_unable_to_open_media">Ei leia rakendust, mis oleks võimeline seda meediafaili avama.</string>
+  <string name="ConversationItem_copied_text">%s kopeeritud</string>
   <string name="ConversationItem_from_s">kontaktilt %s</string>
   <string name="ConversationItem_to_s">kontaktile %s</string>
   <!--ConversationActivity-->
@@ -527,6 +528,7 @@
   <string name="ThreadRecord_media_message">Meediasõnum</string>
   <string name="ThreadRecord_s_joined_signal">%s liitus Signaliga!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Hävineva sõnumi ajaks on seatud %s</string>
+  <string name="ThreadRecord_safety_number_changed">Turvanumber muudetud</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Sinu turvanumber kontaktiga %s on muutunud.</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signali uuendus</string>
@@ -591,6 +593,8 @@
   <string name="MessageNotifier_mark_read">Märgi loetuks</string>
   <string name="MessageNotifier_media_message">Meediasõnum</string>
   <string name="MessageNotifier_reply">Vasta</string>
+  <string name="MessageNotifier_pending_signal_messages">Ootel Signali sõnumid</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">Sul on ootel Signali sõnumeid, koputa vaatamiseks</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Käsitsi määratud MMS-seaded on vajalikud sinu telefoni jaoks.</string>
   <string name="MmsPreferencesFragment__enabled">Lubatud</string>
@@ -625,6 +629,10 @@
   <string name="attachment_type_selector__location_description">Asukoht</string>
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__gallery_description">Pilt või video</string>
+  <string name="attachment_type_selector__file_description">Fail</string>
+  <string name="attachment_type_selector__gallery">Galerii</string>
+  <string name="attachment_type_selector__file">Fail</string>
   <string name="attachment_type_selector__drawer_description">Lülita manusesahtlit</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Vana salaväljend</string>
@@ -723,6 +731,7 @@
     <item quantity="other">%d nädalat</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
+  <!--unverified safety numbers-->
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Otsi GIFe ja kleepse</string>
   <!--giphy_fragment-->
@@ -758,7 +767,6 @@
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Meedia puudub</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">KINNITA</string>
   <string name="message_recipients_list_item__resend">SAADA UUESTI</string>
   <string name="message_recipients_list_item__resending">Taassaatmine...</string>
   <!--GroupUtil-->
@@ -782,7 +790,6 @@
   <string name="recipient_preferences__block">Blokeeri</string>
   <string name="recipient_preferences__color">Värv</string>
   <string name="recipient_preferences__color_for_this_contact">Värv selle kontakti jaoks</string>
-  <string name="recipient_preferences__verify_safety_number">Kinnita turvanumbrit</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signali kõne</string>
   <string name="redphone_call_controls__end_call">lõpeta kõne</string>
@@ -872,7 +879,6 @@
   <string name="recipients_panel__to"><small>Sisesta nimi või number</small></string>
   <string name="recipients_panel__add_members">Lisa liikmeid</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Kui soovid kinnitada kontakti %s lõpust lõpuni krüpteeringu turvalisust, võrdle allolevat numbrit tema seadmes oleva numbriga. vastasel korral võid skanneerida tema telefoni koodi või paluda tal skanneerida sinu koodi. <a href="https://whispersystems.org/redirect/safety-numbers">Loe veel turvanumbrite kinnitamise kohta</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Koputa skäneerimiseks</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Jaga turvanumbrit</string>
@@ -923,6 +929,9 @@
   <string name="arrays__normal">Keskmine</string>
   <string name="arrays__large">Suur</string>
   <string name="arrays__extra_large">Ekstrasuur</string>
+  <string name="arrays__default">Vaikimisi</string>
+  <string name="arrays__high">Kõrge</string>
+  <string name="arrays__max">Maksimaalne</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d tund</item>
@@ -1039,12 +1048,14 @@
   <string name="preferences_app_protection__app_access">Rakenduse ligipääs</string>
   <string name="preferences_app_protection__communication">Suhtlus</string>
   <string name="preferences_chats__chats">Vestlused</string>
-  <string name="preferences_notifications__message_notifications">Sõnumiteated</string>
   <string name="preferences_notifications__events">Sündmused</string>
+  <string name="preferences_notifications__in_chat_sounds">Vestlusesisesed helid</string>
+  <string name="preferences_notifications__show">Kuva</string>
   <string name="preferences_chats__show_invitation_prompts">Kuva kutsete teateid</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Kuva kutsete teateid kontaktidele, kellel pole Signalit</string>
   <string name="preferences_chats__message_text_size">Sõnumi fondisuurus</string>
   <string name="preferences_events__contact_joined_signal">Kontakt liitus Signaliga</string>
+  <string name="preferences_notifications__priority">Prioriteet</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

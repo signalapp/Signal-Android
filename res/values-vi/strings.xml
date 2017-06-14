@@ -562,6 +562,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="experience_upgrade_activity__continue">tiếp tục</string>
   <!--expiration-->
   <string name="expiration_off">Tắt</string>
+  <!--unverified safety numbers-->
   <!--giphy_activity-->
   <!--giphy_fragment-->
   <!--import_export_fragment-->
@@ -593,7 +594,6 @@ Phục hồi sao lưu Signal đã mã khóa từng xuất ra trước đó</stri
   <string name="load_more_header__see_full_conversation">Xem cuộc hội thoại đầy đủ</string>
   <!--media_overview_activity-->
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">KIỂM CHỨNG</string>
   <string name="message_recipients_list_item__resend">GỬI LẠI</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">

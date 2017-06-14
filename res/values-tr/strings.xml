@@ -214,6 +214,8 @@
   <!--DocumentView-->
   <string name="DocumentView_unknown_file">Bilinmeyen dosya</string>
   <!--DozeReminder-->
+  <string name="DozeReminder_optimize_for_missing_play_services">Eksik Google Play Servisleri ile en iyi çalışacak hale getir</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Bu cihaz Play Servislerini desteklemiyor. Signal etkin değilken mesajları almasını engellemek üzere sistem pil eniyilemesini devre dışı bırakmak için dokunun.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Paylaşılan kişi</string>
   <!--ExperienceUpgradeActivity-->
@@ -300,7 +302,7 @@
     <item quantity="other">%d ARKADAŞINA SMS GÖNDER</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="other">%d SMS daveti yolla?</item>
+    <item quantity="other">%d SMS daveti gönderilsin mi?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Hadi Signal\'e geçelim: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Paylaşmak için herhangi bir uygulamanız yok gibi görünüyor.</string>
@@ -345,6 +347,10 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Mesaj yok olma zamanını %1$s olarak belirlediniz. </string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s mesaj yok olma zamanını %2$s olarak belirledi.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">%s ile güvenlik numaranız değişti.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">%s ile güvenlik numaranızı doğrulanmış işaretlediniz.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">%s ile güvenlik numaranızı başka bir cihazda doğrulanmış işaretlediniz.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s ile güvenlik numaranızı doğrulanmamış işaretlediniz.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s ile güvenlik numaranızı başka bir cihazda doğrulanmamış işaretlediniz.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Parolalar uyuşmuyor!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Yanlış eski parola!</string>
@@ -436,7 +442,11 @@
 Numaranızı ikinci kez kontrol ediniz! Numaranızı bir SMS ile doğrulamak üzereyiz.</string>
   <string name="RegistrationActivity_continue">Devam Et</string>
   <string name="RegistrationActivity_edit">Düzenle</string>
+  <string name="RegistrationActivity_missing_google_play_services">Google Play Servisleri eksik</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Bu cihazda Google Play Servisleri eksiktir. Signal\'i hala kullanabilirsiniz, ancak bu yapılandırma şekli düşük güvenilirlik veya performans sonucu doğurabilir.\n\nEğer ileri düzey bir kullanıcı değilseniz, ardıl pazar ürünü bir Android ROM çalıştırmıyorsanız veya bunu bir hata olarak görüyorsanız, sorunun giderilmesinde yardımcı olmaları için lütfen support@whispersystems.org adresi ile iletişim kurunuz.</string>
   <string name="RegistrationActivity_i_understand">Anladım</string>
+  <string name="RegistrationActivity_play_services_error">Play Servisleri Hatası</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Servisleri güncelleniyor veya geçiçi olarak kullanılamaz durumda. Lütfen yeniden deneyin.</string>
   <string name="RegistrationActivity_more_information">Daha fazla bilgi</string>
   <string name="RegistrationActivity_less_information">Daha az bilgi</string>
   <!--RegistrationProblemsActivity-->
@@ -493,6 +503,8 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Mesaj yok olma zamanı %s olarak belirlendi</string>
   <string name="ThreadRecord_safety_number_changed">Güvenlik numarası değişti</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">%s ile güvenlik numaranız değişti.</string>
+  <string name="ThreadRecord_you_marked_verified">Doğrulanmış işaretlediniz.</string>
+  <string name="ThreadRecord_you_marked_unverified">Doğrulanmamış işaretlediniz.</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal güncellemesi</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal\'in yeni sürümü mevcut, güncellemek için dokunun</string>
@@ -557,6 +569,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="MessageNotifier_media_message">Medya mesajı</string>
   <string name="MessageNotifier_reply">Cevapla</string>
   <string name="MessageNotifier_pending_signal_messages">Bekleyen Signal mesajları</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">Bekleyen Signal mesajlarınız var, almak ve aömak için dokunun</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Telefonunuz için manuel MMS ayarları gerekmektedir.</string>
   <string name="MmsPreferencesFragment__enabled">Etkin</string>
@@ -591,6 +604,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="attachment_type_selector__location_description">Konum</string>
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__gallery_description">Resim veya video</string>
   <string name="attachment_type_selector__file_description">Dosya</string>
   <string name="attachment_type_selector__gallery">Galeri</string>
   <string name="attachment_type_selector__file">Dosya</string>
@@ -687,6 +701,19 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
     <item quantity="other">%d hafta</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dh</string>
+  <!--unverified safety numbers-->
+  <string name="IdentityUtil_unverified_banner_one">%s ile güvenlik numaranız değişti ve artık doğrulanmış değil.</string>
+  <string name="IdentityUtil_unverified_banner_two">%1$s ve %2$s ile güvenlik numaralarınız artık doğrulanmış değil.</string>
+  <string name="IdentityUtil_unverified_banner_many">%1$s, %2$s ve %3$s ile güvenlik numaralarınız artık doğrulanmış değil. </string>
+  <string name="IdentityUtil_unverified_dialog_one">%1$s ile güvenlik numaranız değişti ve artık doğrulanmış değil.  Bu, birisinin sizin iletişiminizi araya girerek yakalayıp dinlemeye çalıştığı veya %1$s\'in yalnızca Signal\'i yeniden yüklediği anlamına gelebilir.</string>
+  <string name="IdentityUtil_unverified_dialog_two">%1$s ve %2$s ile güvenlik numaralarınız değişti ve artık doğrulanmış değil. Bu, birisinin sizin iletişiminizi araya girerek yakalayıp dinlemeye çalıştığı veya onların yalnızca Signal\'i yeniden yüklediği anlamına gelebilir.</string>
+  <string name="IdentityUtil_unverified_dialog_many">%1$s, %2$s ve %3$s ile güvenlik numaralarınız değişti ve artık doğrulanmış değil. Bu, birisinin sizin iletişiminizi araya girerek yakalayıp dinlemeye çalıştığı veya onların yalnızca Signal\'i yeniden yüklediği anlamına gelebilir.</string>
+  <string name="IdentityUtil_untrusted_dialog_one">%s ile güvenlik numaranız az önce değişti.</string>
+  <string name="IdentityUtil_untrusted_dialog_two">%1$s ve %2$sile güvenlik numaralarınız az önce değişti. </string>
+  <string name="IdentityUtil_untrusted_dialog_many">%1$s, %2$s ve %3$sile güvenlik numaralarınız az önce değişti.  </string>
+  <plurals name="identity_others">
+    <item quantity="other">%d diğer</item>
+  </plurals>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFleri ve çıkartmaları ara</string>
   <!--giphy_fragment-->
@@ -722,7 +749,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Medya yok</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">DOĞRULAMA</string>
+  <string name="message_recipients_list_item__view">GÖRÜNTÜLE</string>
   <string name="message_recipients_list_item__resend">YENİDEN GÖNDER</string>
   <string name="message_recipients_list_item__resending">Yeniden gönderiliyor...</string>
   <!--GroupUtil-->
@@ -745,7 +772,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="recipient_preferences__block">Engelle</string>
   <string name="recipient_preferences__color">Renk</string>
   <string name="recipient_preferences__color_for_this_contact">Bu kişi için renk</string>
-  <string name="recipient_preferences__verify_safety_number">Güvenlik numarasını doğrulayın</string>
+  <string name="recipient_preferences__view_safety_number">Güvenlik numarasını görüntüle</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal Araması</string>
   <string name="redphone_call_controls__end_call">Aramayı sonlandır</string>
@@ -814,8 +841,10 @@ başarısız.</string>
   <string name="recipients_panel__to"><small>Bir isim veya numara girin</small></string>
   <string name="recipients_panel__add_members">Üye ekle</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s ile uçtan uca şifreleme güvenliğini doğrulamak isterseniz, yukarıdaki sayıları kişinin cihazındaki numaralar ile karşılaştırın. Alternatif olarak, kişinin telefonundaki kodu kendiniz tarayabilir, ya da kendisinin taramasını isteyebilirsiniz. <a href="https://whispersystems.org/redirect/safety-numbers">Güvenlik numaralarını doğrulama hakkında daha fazla bilgi edinin.</a>.]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s ile şifreleme güvenliğini doğrulamak isterseniz,  yukarıdaki sayıları kişinin aygıtındaki numaralar ile karşılaştırın. Alternatif olarak, kişinin telefonundaki kodu kendiniz tarayabilirsiniz, ya da kendisinin taramasını isteyebilirsiniz. <a href="https://whispersystems.org/redirect/safety-numbers">Daha fazla bilgi edinin.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Taramak için dokunun</string>
+  <string name="verify_display_fragment__loading">Yükleniyor...</string>
+  <string name="verify_display_fragment__verified">Doğrulandı</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Güvenlik numarasını paylaş</string>
   <!--message_details_header-->
@@ -857,7 +886,7 @@ başarısız.</string>
   <string name="arrays__name_and_message">İsim ve mesaj</string>
   <string name="arrays__name_only">Yalnızca isim</string>
   <string name="arrays__no_name_or_message">İsim veya mesaj yok</string>
-  <string name="arrays__images">Resim</string>
+  <string name="arrays__images">Resimler</string>
   <string name="arrays__audio">Ses</string>
   <string name="arrays__video">Video</string>
   <string name="arrays__documents">Belgeler</string>
@@ -867,6 +896,7 @@ başarısız.</string>
   <string name="arrays__extra_large">Çok büyük</string>
   <string name="arrays__default">Varsayılan</string>
   <string name="arrays__high">Yüksek</string>
+  <string name="arrays__max">Maksimum</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="other">%d saat</item>
@@ -979,9 +1009,15 @@ başarısız.</string>
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Her iki tarafta etkinleştirildiğinde gelecek nesil görüntü ve sesli aramaları destekle. Bu özellik deneme aşamasındadır.</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Karşımdaki kişiye IP adresimi göstermemek için tüm aramaları Signal sunucuları aracılığı ile ilet. Bunu etkinleştirmek arama kalitesini düşürür.</string>
   <string name="preferences_advanced__always_relay_calls">Tüm aramaları aracı ile ilet</string>
+  <string name="preferences_app_protection__app_access">Uygulama erişimi</string>
   <string name="preferences_app_protection__communication">İletişim</string>
-  <string name="preferences_notifications__message_notifications">Mesaj bildirimleri</string>
+  <string name="preferences_chats__chats">Sohbetler</string>
+  <string name="preferences_notifications__messages">Mesajlar</string>
+  <string name="preferences_notifications__events">Etkinlikler</string>
+  <string name="preferences_notifications__in_chat_sounds">Sohbet içi sesler</string>
   <string name="preferences_notifications__show">Göster</string>
+  <string name="preferences_chats__show_invitation_prompts">Davetiye istemlerini göster</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Signal kullanmayan kişiler için davetiye istemlerini görüntüle</string>
   <string name="preferences_chats__message_text_size">Mesaj font boyutu</string>
   <string name="preferences_events__contact_joined_signal">Kişi Signal\'e katıldı</string>
   <string name="preferences_notifications__priority">Öncelik</string>
@@ -1113,5 +1149,9 @@ başarısız.</string>
   <string name="trimmer__old_messages_successfully_deleted">Eski iletiler başarıyla silindi</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ulaştırma simgesi</string>
+  <string name="UntrustedSendDialog_send_message">Mesaj gönderilsin mi?</string>
+  <string name="UntrustedSendDialog_send">Gönder</string>
+  <string name="UnverifiedSendDialog_send_message">Mesaj gönderilsin mi?</string>
+  <string name="UnverifiedSendDialog_send">Gönder</string>
   <!--EOF-->
 </resources>

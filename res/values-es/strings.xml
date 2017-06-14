@@ -375,6 +375,10 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Ha establecido la hora desaparición del mensaje a las %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s estableció la hora de desaparición del mensaje a las %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Su número de seguridad con %s ha cambiado.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Ha marcado su número de seguridad con %s verificado</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Ha marcado su número de seguridad con %s verificado desde otro dispositivo</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Ha marcado su número de seguridad con %s no verificado</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Ha marcado su número de seguridad con %s no verificado desde otro dispositivo</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">¡Las claves de acceso no coinciden!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">¡Clave de acceso antigua incorrecta!</string>
@@ -529,7 +533,10 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ThreadRecord_media_message">Mensaje multimedia</string>
   <string name="ThreadRecord_s_joined_signal">¡%s se ha unido a Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">El plazo del mensaje desvanecente se estableció a %s</string>
+  <string name="ThreadRecord_safety_number_changed">El número de seguridad ha cambiado</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Su número de seguridad con %s ha cambiado.</string>
+  <string name="ThreadRecord_you_marked_verified">Ha marcado verificado</string>
+  <string name="ThreadRecord_you_marked_unverified">Ha marcado no verificado</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Actualización de Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Está disponible una nueva versión de Signal, pulse para actualizar.</string>
@@ -593,6 +600,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MessageNotifier_mark_read">Marcar como leído</string>
   <string name="MessageNotifier_media_message">Mensaje multimedia</string>
   <string name="MessageNotifier_reply">Responder</string>
+  <string name="MessageNotifier_pending_signal_messages">Mensajes de Signal pendientes</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">Tiene mensajes de Signal pendientes, pulse para abrir y descargar</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Se requiere configuración manual de MMS para su teléfono.</string>
   <string name="MmsPreferencesFragment__enabled">Habilitado</string>
@@ -729,6 +738,20 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
     <item quantity="other">%d semanas</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%d s</string>
+  <!--unverified safety numbers-->
+  <string name="IdentityUtil_unverified_banner_one">Su número de seguridad con %s ha cambiado y ya no está verificado</string>
+  <string name="IdentityUtil_unverified_banner_two">Sus números de seguridad con %1$s y %2$s ya no están verificados</string>
+  <string name="IdentityUtil_unverified_banner_many">Sus números de seguridad con %1$s, %2$s, y %3$s ya no están verificados</string>
+  <string name="IdentityUtil_unverified_dialog_one">Su número de seguridad con %1$s ha cambiado y ya no está verificado. Esto podría significar que alguien está tratando de interceptar su comunicación, o simplemente que %1$s ha reinstalado Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Sus números de seguridad con%1$s y %2$s ya no están verificados. Esto podría significar que alguien está tratando de interceptar su comunicación, o simplemente que han reinstalado Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Sus números de seguridad con %1$s, %2$s, y %3$s ya no están verificados. Esto poddría significar que alguien está tratando de interceptar su comunicación, o simplemente que han reinstalado Signal.</string>
+  <string name="IdentityUtil_untrusted_dialog_one">Su número de seguridad con %s acaba de cambiar.</string>
+  <string name="IdentityUtil_untrusted_dialog_two">Sus números de seguridad con %1$s y %2$s acaban de cambiar.</string>
+  <string name="IdentityUtil_untrusted_dialog_many">Sus números de seguridad con %1$s, %2$s, y %3$s acaban de cambiar.</string>
+  <plurals name="identity_others">
+    <item quantity="one">%d otro</item>
+    <item quantity="other">%d otros</item>
+  </plurals>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Buscar GIFs y pegatinas (stickers)</string>
   <!--giphy_fragment-->
@@ -764,7 +787,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Sin audiovisual</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">VERIFICAR</string>
+  <string name="message_recipients_list_item__view">VER</string>
   <string name="message_recipients_list_item__resend">REENVIAR</string>
   <string name="message_recipients_list_item__resending">Renviando...</string>
   <!--GroupUtil-->
@@ -788,7 +811,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="recipient_preferences__block">Bloquear</string>
   <string name="recipient_preferences__color">Color</string>
   <string name="recipient_preferences__color_for_this_contact">Color para este contacto</string>
-  <string name="recipient_preferences__verify_safety_number">Verificar número de seguridad</string>
+  <string name="recipient_preferences__view_safety_number">Ver núnero de seguridad</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Llamada de Signal</string>
   <string name="redphone_call_controls__end_call">finalizar llamada</string>
@@ -872,8 +895,10 @@ por SMS.
   <string name="recipients_panel__to"><small>Introduzca un nombre o número</small></string>
   <string name="recipients_panel__add_members">Añadir miembros</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Si desea verificar la seguridad de su cifrado extremo-a-extremo con %s, compare el número de arriba con el número en su dispositivo. Como alternativa, puede escanear el código en el teléfono de su interlocutor, o pedirle a este que escanee el código de usted. <a href="https://whispersystems.org/redirect/safety-numbers">Conozca más acerca de la verificación de números de seguridad</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Si desea verificar la seguridad de su cifrado con %s, compare el número de arriba con el número presente en el dispositivo de su interlocutor. Como alternativa, puede escanear el código presente en el teléfono de su interlocutor, o pedirle a este que escanee el código de usted. <a href="https://whispersystems.org/redirect/safety-numbers">Conocer más.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Pulse para escanear</string>
+  <string name="verify_display_fragment__loading">Cargando...</string>
+  <string name="verify_display_fragment__verified">Verificado</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Compartir número de seguridad</string>
   <!--message_details_header-->
@@ -1042,7 +1067,7 @@ por SMS.
   <string name="preferences_app_protection__app_access">Acceso a la aplicación</string>
   <string name="preferences_app_protection__communication">Comunicación</string>
   <string name="preferences_chats__chats">Chats</string>
-  <string name="preferences_notifications__message_notifications">Notificaciones de mensaje</string>
+  <string name="preferences_notifications__messages">Mensajes</string>
   <string name="preferences_notifications__events">Eventos</string>
   <string name="preferences_notifications__in_chat_sounds">Sonidos en el chat</string>
   <string name="preferences_notifications__show">Mostrar</string>
@@ -1180,5 +1205,9 @@ por SMS.
   <string name="trimmer__old_messages_successfully_deleted">Mensajes antiguos borrados con éxito</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icono de transporte</string>
+  <string name="UntrustedSendDialog_send_message">¿Enviar mensaje?</string>
+  <string name="UntrustedSendDialog_send">Enviar</string>
+  <string name="UnverifiedSendDialog_send_message">¿Enviar mensaje?</string>
+  <string name="UnverifiedSendDialog_send">Enviar</string>
   <!--EOF-->
 </resources>

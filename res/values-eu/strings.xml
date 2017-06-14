@@ -671,6 +671,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
     <item quantity="other">%d aste</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%da</string>
+  <!--unverified safety numbers-->
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIF eta eranskailuak bilatu</string>
   <!--giphy_fragment-->
@@ -707,7 +708,6 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="load_more_header__see_full_conversation">Ikusi solasaldi osoa</string>
   <!--media_overview_activity-->
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">EGIAZTATU</string>
   <string name="message_recipients_list_item__resend">BIRBIDALI</string>
   <string name="message_recipients_list_item__resending">Birbidaltzen... </string>
   <!--GroupUtil-->
@@ -731,7 +731,6 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="recipient_preferences__block">Blokeatu</string>
   <string name="recipient_preferences__color">Kolorea</string>
   <string name="recipient_preferences__color_for_this_contact">Kontaktu honentzako kolorea</string>
-  <string name="recipient_preferences__verify_safety_number">Segurtasun zenbakia baieztatu</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal deia</string>
   <string name="redphone_call_controls__end_call">amaitu deia</string>

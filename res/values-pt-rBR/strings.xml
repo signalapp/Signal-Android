@@ -374,6 +374,10 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Você definiu a expiração da mensagem temporária para %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s definiu a expiração da mensagem temporária para %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Seu número de segurança com %s mudou.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Você marcou o seu número de segurança com %s como verificado</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Você marcou o seu número de segurança com %scomo verificado a partir de outro dispositivo</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Você marcou o seu número de segurança com %scomo não verificado</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Você marcou o seu número de segurança com %s como não verificado a partir de outro dispositivo</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Frases-chave não coincidem!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Frase-chave anterior incorreta!</string>
@@ -530,6 +534,8 @@
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Expiração da mensagem temporária definida para %s</string>
   <string name="ThreadRecord_safety_number_changed">Número de segurança alterado</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Seu número de segurança com %s mudou.</string>
+  <string name="ThreadRecord_you_marked_verified">Você marcou como verificado</string>
+  <string name="ThreadRecord_you_marked_unverified">Você marcou como não verificado</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Atualização do Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Uma nova versão do Signal está disponível, clique para atualizar.</string>
@@ -731,6 +737,20 @@
     <item quantity="other">%d semanas</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dsem</string>
+  <!--unverified safety numbers-->
+  <string name="IdentityUtil_unverified_banner_one">Seu número de segurança com %s mudou e não está verificado</string>
+  <string name="IdentityUtil_unverified_banner_two">Seus números de segurança com %1$s e %2$s não estão verificados</string>
+  <string name="IdentityUtil_unverified_banner_many">Seus números de segurança com %1$s, %2$s e %3$s não estão verificados</string>
+  <string name="IdentityUtil_unverified_dialog_one">Seu número de segurança com %1$s mudou e não está verificado. Isso pode significar que alguém está tentando interceptar a sua comunicação ou que %1$s simplesmente reinstalou o Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Seus números de segurança com %1$s e %2$s não estão verificados. Isso pode significar que alguém está tentando interceptar a sua comunicação ou que eles simplesmente reinstalaram o Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Seus números de segurança com %1$s, %2$s e %3$s não estão verificados. Isso pode significar que alguém está tentando interceptar a sua comunicação ou que eles simplesmente reinstalaram o Signal.</string>
+  <string name="IdentityUtil_untrusted_dialog_one">Seu número de segurança com %s acabou de mudar.</string>
+  <string name="IdentityUtil_untrusted_dialog_two">Seus números de segurança com %1$s e %2$s acabaram de mudar.</string>
+  <string name="IdentityUtil_untrusted_dialog_many">Seus números de segurança com %1$s, %2$s e %3$s acabaram de mudar.</string>
+  <plurals name="identity_others">
+    <item quantity="one">%d outro</item>
+    <item quantity="other">%d outros</item>
+  </plurals>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Procurar GIFs e stickers</string>
   <!--giphy_fragment-->
@@ -766,7 +786,7 @@
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Nenhuma mídia</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">VERIFICAR</string>
+  <string name="message_recipients_list_item__view">VER</string>
   <string name="message_recipients_list_item__resend">REENVIAR</string>
   <string name="message_recipients_list_item__resending">Reenviando...</string>
   <!--GroupUtil-->
@@ -790,7 +810,7 @@
   <string name="recipient_preferences__block">Bloquear</string>
   <string name="recipient_preferences__color">Cor</string>
   <string name="recipient_preferences__color_for_this_contact">Cor para este contato</string>
-  <string name="recipient_preferences__verify_safety_number">Verificar número de segurança</string>
+  <string name="recipient_preferences__view_safety_number">Ver número de segurança</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Chamada do Signal</string>
   <string name="redphone_call_controls__end_call">encerrar ligação</string>
@@ -866,8 +886,10 @@ falhou.</string>
   <string name="recipients_panel__to"><small>Digite um nome ou um número</small></string>
   <string name="recipients_panel__add_members">Adicionar membros</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Se você deseja verificar a segurança da sua criptografia ponta-a-ponta com %s, compare o número acima com o número no dispositivo dele(a). Alternativamente, você pode escanear o código no telefone dele(a) or pedir que ele(a) escaneie o seu código. <a href="https://whispersystems.org/redirect/safety-numbers">Saiba mais sobre a verificação de números de segurança</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Se você deseja verificar a segurança da sua criptografia com %s, compare o número acima com o número no dispositivo deles. Ou então, você pode escanear o código no telefone deles, ou ainda pedir a eles que escaneiem seu código. <a href="https://whispersystems.org/redirect/safety-numbers">Saiba mais.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Clique para escanear</string>
+  <string name="verify_display_fragment__loading">Carregando...</string>
+  <string name="verify_display_fragment__verified">Verificado</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Compartilhar número de segurança</string>
   <!--message_details_header-->
@@ -1036,7 +1058,7 @@ falhou.</string>
   <string name="preferences_app_protection__app_access">Acesso ao aplicativo</string>
   <string name="preferences_app_protection__communication">Comunicação</string>
   <string name="preferences_chats__chats">Chats</string>
-  <string name="preferences_notifications__message_notifications">Notificações de mensagem</string>
+  <string name="preferences_notifications__messages">Mensagens</string>
   <string name="preferences_notifications__events">Eventos</string>
   <string name="preferences_notifications__in_chat_sounds">Sons no chat</string>
   <string name="preferences_notifications__show">Exibir</string>
@@ -1175,5 +1197,9 @@ falhou.</string>
   <string name="trimmer__old_messages_successfully_deleted">Mensagens antigas excluídas com sucesso</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ícone do transporte</string>
+  <string name="UntrustedSendDialog_send_message">Enviar mensagem?</string>
+  <string name="UntrustedSendDialog_send">Enviar</string>
+  <string name="UnverifiedSendDialog_send_message">Enviar mensagem?</string>
+  <string name="UnverifiedSendDialog_send">Enviar</string>
   <!--EOF-->
 </resources>

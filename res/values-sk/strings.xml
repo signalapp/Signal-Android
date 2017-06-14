@@ -746,6 +746,7 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
     <item quantity="other">%d týž.</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
+  <!--unverified safety numbers-->
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Hľadať GIFy a nálepky</string>
   <!--giphy_fragment-->
@@ -781,7 +782,6 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Žiadne médiá</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">OVERIŤ</string>
   <string name="message_recipients_list_item__resend">POSLAŤ ZNOVU</string>
   <string name="message_recipients_list_item__resending">Odosiela sa znova...</string>
   <!--GroupUtil-->
@@ -806,7 +806,6 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <string name="recipient_preferences__block">Blokovať</string>
   <string name="recipient_preferences__color">Farba</string>
   <string name="recipient_preferences__color_for_this_contact">Farba pre tento kontakt</string>
-  <string name="recipient_preferences__verify_safety_number">Overiť bezpečnostné číslo</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal hovor</string>
   <string name="redphone_call_controls__end_call">Ukončiť hovor</string>
@@ -886,7 +885,6 @@ zlyhalo.
   <string name="recipients_panel__to"><small>Vlož meno alebo číslo</small></string>
   <string name="recipients_panel__add_members">Pridať členov</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ak si želáte overiť zabezpečenie vášho koncového šifrovania s kontaktom %s, porovnajte číslo vyššie s číslom na druhom zariadení. Tiež môžete naskenovať kód na druhom telefóne alebo požiadať kontakt o naskenovanie vášho kódu. <a href="https://whispersystems.org/redirect/safety-numbers">Zistite viac o overení bezpečnostných čísel</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Ťuknutím naskenujte</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Zdieľať bezpečnostné číslo</string>
@@ -1057,7 +1055,6 @@ zlyhalo.
   <string name="preferences_app_protection__app_access">Prístup k aplikácii</string>
   <string name="preferences_app_protection__communication">Komunikácia</string>
   <string name="preferences_chats__chats">Chaty</string>
-  <string name="preferences_notifications__message_notifications">Upozornenia správ</string>
   <string name="preferences_notifications__events">Udalosti</string>
   <string name="preferences_notifications__in_chat_sounds">Zvuky v chate</string>
   <string name="preferences_notifications__show">Zobraziť</string>

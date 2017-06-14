@@ -321,6 +321,7 @@
   <!--experience_upgrade_activity-->
   <!--expiration-->
   <string name="expiration_off">Выкл</string>
+  <!--unverified safety numbers-->
   <!--giphy_activity-->
   <!--giphy_fragment-->
   <!--import_export_fragment-->
@@ -344,7 +345,6 @@
   <!--load_more_header-->
   <!--media_overview_activity-->
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">ВЕРЫФІКАВАЦЬ</string>
   <string name="message_recipients_list_item__resend">ДАСЛАЦЬ ПАЎТОРНА</string>
   <!--GroupUtil-->
   <!--prompt_passphrase_activity-->

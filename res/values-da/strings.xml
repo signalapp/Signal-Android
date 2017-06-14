@@ -710,6 +710,7 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
     <item quantity="other">%d uger</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
+  <!--unverified safety numbers-->
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Søg i GIFs og klistermærker</string>
   <!--giphy_fragment-->
@@ -745,7 +746,6 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Ingen mediefiler</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">VERIFICÉR</string>
   <string name="message_recipients_list_item__resend">SEND IGEN</string>
   <string name="message_recipients_list_item__resending">Gensender...</string>
   <!--GroupUtil-->
@@ -769,7 +769,6 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="recipient_preferences__block">Blokér</string>
   <string name="recipient_preferences__color">Farve</string>
   <string name="recipient_preferences__color_for_this_contact">Denne kontakts farve</string>
-  <string name="recipient_preferences__verify_safety_number">Verificer sikkerhedsnøgle</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signalopkald</string>
   <string name="redphone_call_controls__end_call">læg på</string>
@@ -829,7 +828,6 @@ mislykkedes.</string>
   <string name="recipients_panel__to"><small>Indtast navn eller nummer</small></string>
   <string name="recipients_panel__add_members">Tilføj medlem</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Hvis du gerne vil verificere sikkerheden af din end-to-end kryptering med %s, så skal du sammenligne sikkerhedsnøglen ovenover med sikkerhedsnøglen på din enhed. Alternativ, så kan du skanne koden på hans mobil, og bede ham skanne koden på din mobil. <a href="https://whispersystems.org/redirect/safety-numbers">Lær mere om at verificere sikkerhedsnøgler - på engelsk</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tryk for at skanne</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Del sikkerhedsnøgle</string>
@@ -994,7 +992,6 @@ mislykkedes.</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Videresend alle opkald gennem Signal-serveren for at undgå at afsløre din IP-adresse for din kontakt. Dette vil give en dårligere signalkvalitet.</string>
   <string name="preferences_advanced__always_relay_calls">Videresend altid opkald</string>
   <string name="preferences_app_protection__communication">Kommunikation</string>
-  <string name="preferences_notifications__message_notifications">Beskednotifikationer</string>
   <string name="preferences_notifications__events">Begivenheder</string>
   <string name="preferences_notifications__in_chat_sounds">Chat-lyde</string>
   <string name="preferences_notifications__show">Vis</string>

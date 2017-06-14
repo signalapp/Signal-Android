@@ -499,6 +499,7 @@
   <string name="ThreadRecord_media_message">សារមេឌា</string>
   <string name="ThreadRecord_s_joined_signal">%s បានចូលរួម Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">កំណត់រយៈពេលសារមិនបង្ហាញ %s</string>
+  <string name="ThreadRecord_safety_number_changed">លេខសុវត្ថិភាព បានផ្លាស់ប្តូរ</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">លេខសុវត្ថិភាពអ្នកជាមួយ %s បានផ្លាស់ប្តូរ។</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">បច្ចុប្បន្នភាព Signal </string>
@@ -563,6 +564,8 @@
   <string name="MessageNotifier_mark_read">ដាក់អាន</string>
   <string name="MessageNotifier_media_message">សារមេឌា</string>
   <string name="MessageNotifier_reply">ឆ្លើយតប</string>
+  <string name="MessageNotifier_pending_signal_messages">សារSignal មិនទាន់សម្រេច</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">អ្នកមានសារSignal មិនទាន់សម្រេច ចុចដើម្បី បើក និងទាញយក</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">អ្នកត្រូវកំណត់ MMS លើឧបករណ៍ដោយខ្លួនឯង។</string>
   <string name="MmsPreferencesFragment__enabled">បានបើក</string>
@@ -694,6 +697,7 @@
     <item quantity="other">%d សប្តាហ៍</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
+  <!--unverified safety numbers-->
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">ស្វែករក GIFs និងស្ទីកគ័រ</string>
   <!--giphy_fragment-->
@@ -729,7 +733,6 @@
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">គ្មានមេឌា</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">ផ្ទៀងផ្ទាត់</string>
   <string name="message_recipients_list_item__resend">ផ្ញើសារឡើងវិញ</string>
   <string name="message_recipients_list_item__resending">កំពុងបញ្ជូនឡើងវិញ...</string>
   <!--GroupUtil-->
@@ -752,7 +755,6 @@
   <string name="recipient_preferences__block">បិទ</string>
   <string name="recipient_preferences__color">ពណ៌</string>
   <string name="recipient_preferences__color_for_this_contact">ដាក់ពណ៌លេខទំនាក់ទំនងនេះ</string>
-  <string name="recipient_preferences__verify_safety_number">ផ្ទៀងផ្ទាត់លេខសុវត្ថិភាព</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">ហៅទូរស័ព្ទ Signal </string>
   <string name="redphone_call_controls__end_call">បិទការហៅចូល</string>
@@ -824,7 +826,6 @@
   <string name="recipients_panel__to"><small>បញ្ចូលឈ្មោះ និងលេខទូរស័ព្ទ</small></string>
   <string name="recipients_panel__add_members">ថែមសមាជិក</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[បើអ្នកចង់ផ្ទៀងផ្ទាត់សុវត្ថិភាពការអ៊ិនគ្រីបទាំងសងខាងជាមួយ %s សូមប្រៀបធៀបលេខខាងលើ ជាមួយលេខនៅលើឧបករណ៍គេ។​ ក្រៅពីនេះ អ្នកអាចស្កេនកូដនៅលើឧបករណ៍គេ ឬសុំអោយគេស្កេនកូដរបស់អ្នកក៏បាន។ <a href="https://whispersystems.org/redirect/safety-numbers">យល់ដឹងបន្ថែមពីការផ្ទៀងផ្ទាត់លេខសុវត្ថិភាព</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">ចុច ដើម្បីស្កេន</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">ចែករំលែកលេខសុវត្ថិភាព</string>
@@ -993,7 +994,6 @@
   <string name="preferences_app_protection__app_access">ចូលប្រើប្រាស់កម្មវិធី</string>
   <string name="preferences_app_protection__communication">ការទំនាក់ទំនង</string>
   <string name="preferences_chats__chats">ការជជែក</string>
-  <string name="preferences_notifications__message_notifications">សារផ្តល់ដំណឹង</string>
   <string name="preferences_notifications__events">ព្រឹត្តិការណ៍</string>
   <string name="preferences_notifications__in_chat_sounds">សំឡេងក្នុងការជជែក</string>
   <string name="preferences_notifications__show">បង្ហាញ</string>

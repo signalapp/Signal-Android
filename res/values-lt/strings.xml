@@ -546,6 +546,7 @@
   <string name="ThreadRecord_media_message">Medijos žinutė</string>
   <string name="ThreadRecord_s_joined_signal">%s prisijungė prie Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Išnykstančių žinučių laikas nustatytas į %s</string>
+  <string name="ThreadRecord_safety_number_changed">Saugumo numeris pasikeitė</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Jūsų saugumo numeris su %s pasikeitė.</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal atnaujinimas</string>
@@ -610,6 +611,8 @@
   <string name="MessageNotifier_mark_read">Žymėti kaip skaitytą</string>
   <string name="MessageNotifier_media_message">Medijos žinutė</string>
   <string name="MessageNotifier_reply">Atsakyti</string>
+  <string name="MessageNotifier_pending_signal_messages">Laukiančios Signal žinutės</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">Jūs turite laukiančių Signal žinučių, bakstelėkite, norėdami atverti ir jas gauti</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Jūsų telefonui yra reikalingi rankiniai MMS nustatymai.</string>
   <string name="MmsPreferencesFragment__enabled">Įjungta</string>
@@ -751,6 +754,16 @@
     <item quantity="other">%d savaičių</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%d sav.</string>
+  <!--unverified safety numbers-->
+  <string name="IdentityUtil_unverified_banner_one">Jūsų saugumo numeris su %s pasikeitė ir yra daugiau nebepatvirtintas</string>
+  <string name="IdentityUtil_unverified_banner_two">Jūsų saugumo numeriai su %1$s ir %2$s yra daugiau nebepatvirtinti</string>
+  <string name="IdentityUtil_unverified_banner_many">Jūsų saugumo numeriai su %1$s, %2$s ir %3$s yra daugiau nebepatvirtinti</string>
+  <string name="IdentityUtil_unverified_dialog_one">Jūsų saugumo numeris su %1$s pasikeitė ir yra daugiau nebepatvirtintas. Tai gali reikšti, kad kažkas bando perimti jūsų susirašinėjimą arba, tiesiog, kad %1$s iš naujo įdiegė Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Jūsų saugumo numeriai su %1$s ir %2$s yra daugiau nebepatvirtinti. Tai gali reikšti, kad kažkas bando perimti jūsų susirašinėjimą arba, tiesiog, kad šie kontaktai iš naujo įdiegė Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Jūsų saugumo numeriai su %1$s, %2$s ir %3$s yra daugiau nebepatvirtinti. Tai gali reikšti, kad kažkas bando perimti jūsų susirašinėjimą arba, tiesiog, kad šie kontaktai iš naujo įdiegė Signal.</string>
+  <string name="IdentityUtil_untrusted_dialog_one">Jūsų saugumo numeris su %s ką tik pasikeitė.</string>
+  <string name="IdentityUtil_untrusted_dialog_two">Jūsų saugumo numeriai su %1$s ir %2$s ką tik pasikeitė.</string>
+  <string name="IdentityUtil_untrusted_dialog_many">Jūsų saugumo numeriai su %1$s, %2$s ir %3$s ką tik pasikeitė.</string>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Ieškoti GIF ir paveikslėlių</string>
   <!--giphy_fragment-->
@@ -786,7 +799,6 @@
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Nėra medijos</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">PATVIRTINTI</string>
   <string name="message_recipients_list_item__resend">SIŲSTI IŠ NAUJO</string>
   <string name="message_recipients_list_item__resending">Siunčiama iš naujo...</string>
   <!--GroupUtil-->
@@ -811,7 +823,7 @@
   <string name="recipient_preferences__block">Užblokuoti</string>
   <string name="recipient_preferences__color">Spalva</string>
   <string name="recipient_preferences__color_for_this_contact">Šio kontakto spalva</string>
-  <string name="recipient_preferences__verify_safety_number">Patvirtinti saugumo numerį</string>
+  <string name="recipient_preferences__view_safety_number">Rodyti saugumo numerį</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal skambutis</string>
   <string name="redphone_call_controls__end_call">baigti skambutį</string>
@@ -902,8 +914,9 @@ yra prisijungęs prie belaidžio (Wi-Fi) arba duomenų perdavimo tinklo.
   <string name="recipients_panel__to"><small>Įveskite vardą ar numerį</small></string>
   <string name="recipients_panel__add_members">Pridėti dalyvius</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Jeigu norite patvirtinti savo ištisinio perdavimo šifravimo su %s saugumą, tuomet palyginkite aukščiau esančius skaičius su jo/jos įrenginyje esančiais skaičiais. Kitu atveju, galite nuskenuoti jo/jos telefone esantį kodą arba paprašyti, kad jis/ji nuskenuotų jūsų kodą. <a href="https://whispersystems.org/redirect/safety-numbers">Sužinokite daugiau apie saugumo numerių patvirtinimą</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Jeigu norite patvirtinti savo šifravimo su %s saugumą, palyginkite aukščiau esantį numerį su numeriu kontakto įrenginyje. Arba kitaip, galite nuskenuoti kodą jo telefone arba paprašyti kontakto, kad nuskenuotų jūsų kodą. <a href="https://whispersystems.org/redirect/safety-numbers">Sužinoti daugiau.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Bakstelėkite, norėdami nuskenuoti</string>
+  <string name="verify_display_fragment__loading">Įkeliama...</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Dalintis saugumo numeriu</string>
   <!--message_details_header-->
@@ -1073,7 +1086,7 @@ yra prisijungęs prie belaidžio (Wi-Fi) arba duomenų perdavimo tinklo.
   <string name="preferences_app_protection__app_access">Programėlės prieiga</string>
   <string name="preferences_app_protection__communication">Susisiekimas</string>
   <string name="preferences_chats__chats">Pokalbiai</string>
-  <string name="preferences_notifications__message_notifications">Žinučių pranešimai</string>
+  <string name="preferences_notifications__messages">Žinutės</string>
   <string name="preferences_notifications__events">Įvykiai</string>
   <string name="preferences_notifications__in_chat_sounds">Garsai pokalbiuose</string>
   <string name="preferences_notifications__show">Rodyti</string>
@@ -1212,5 +1225,9 @@ yra prisijungęs prie belaidžio (Wi-Fi) arba duomenų perdavimo tinklo.
   <string name="trimmer__old_messages_successfully_deleted">Senos žinutės sėkmingai ištrintos</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Perdavimo piktograma</string>
+  <string name="UntrustedSendDialog_send_message">Siųsti žinutę?</string>
+  <string name="UntrustedSendDialog_send">Siųsti</string>
+  <string name="UnverifiedSendDialog_send_message">Siųsti žinutę?</string>
+  <string name="UnverifiedSendDialog_send">Siųsti</string>
   <!--EOF-->
 </resources>

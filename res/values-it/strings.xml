@@ -516,6 +516,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="ThreadRecord_media_message">Messaggio multimediale</string>
   <string name="ThreadRecord_s_joined_signal">%s si è unito/a Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">La scomparsa dei messaggi è settata a %s</string>
+  <string name="ThreadRecord_safety_number_changed">Numero di sicurezza cambiato</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Il tuo numero sicuro con %s è cambiato.</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Aggiornamento Signal</string>
@@ -580,6 +581,8 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="MessageNotifier_mark_read">Segna come già letto</string>
   <string name="MessageNotifier_media_message">Messaggio multimediale</string>
   <string name="MessageNotifier_reply">Rispondi</string>
+  <string name="MessageNotifier_pending_signal_messages">Messaggi Signal in attesa</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">Hai messaggi Signal in attesa, tocca per aprire e ricevere</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Impostazioni manuali degli MMS sono necessarie per il tuo telefono.</string>
   <string name="MmsPreferencesFragment__enabled">Attivato</string>
@@ -716,6 +719,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
     <item quantity="other">%d settimane</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dset.</string>
+  <!--unverified safety numbers-->
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Cerca GIF ed adesivi</string>
   <!--giphy_fragment-->
@@ -751,7 +755,6 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Nessun file multimediale</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">VERIFICA</string>
   <string name="message_recipients_list_item__resend">REINVIA</string>
   <string name="message_recipients_list_item__resending">Reinvio...</string>
   <!--GroupUtil-->
@@ -775,7 +778,6 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="recipient_preferences__block">Blocca</string>
   <string name="recipient_preferences__color">Colore</string>
   <string name="recipient_preferences__color_for_this_contact">Colore per questo contatto</string>
-  <string name="recipient_preferences__verify_safety_number">Verifica numero sicuro.</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Chiamata Signal</string>
   <string name="redphone_call_controls__end_call">termina chiamata</string>
@@ -851,7 +853,6 @@ non riuscita.
   <string name="recipients_panel__to"><small>Inserisci un nome o un numero</small></string>
   <string name="recipients_panel__add_members">Aggiungi membri</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Se desideri verificare la sicurezza della tua codifica end-to-end con %s, confronta il numero precedente con quello del suo dispositivo. In alternativa puoi fare uno scan del codice sul suo telefono o chiedergli di fare una scansione del tuo. <a href="https://whispersystems.org/redirect/safety-numbers">Impara di più sulla verifica dei numeri sicuri</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tocca per la scansione</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Condivi numero sicuro.</string>
@@ -1021,7 +1022,6 @@ non riuscita.
   <string name="preferences_app_protection__app_access">Accesso app</string>
   <string name="preferences_app_protection__communication">Comunicazione</string>
   <string name="preferences_chats__chats">Conversazioni</string>
-  <string name="preferences_notifications__message_notifications">Notifiche messaggi</string>
   <string name="preferences_notifications__events">Eventi</string>
   <string name="preferences_notifications__in_chat_sounds">Suoni in chat</string>
   <string name="preferences_notifications__show">Mostra</string>

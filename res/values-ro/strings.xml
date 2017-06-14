@@ -742,6 +742,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
     <item quantity="other">%d săptămâni</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%ds</string>
+  <!--unverified safety numbers-->
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Caută GIF-uri și autocolante</string>
   <!--giphy_fragment-->
@@ -777,7 +778,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Nu există fișiere media</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">VERIFICĂ</string>
   <string name="message_recipients_list_item__resend">RETRIMITE</string>
   <string name="message_recipients_list_item__resending">Se trimite din nou...</string>
   <!--GroupUtil-->
@@ -802,7 +802,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="recipient_preferences__block">Blochează</string>
   <string name="recipient_preferences__color">Culoare</string>
   <string name="recipient_preferences__color_for_this_contact">Culoarea pentru acest contact</string>
-  <string name="recipient_preferences__verify_safety_number">Verifică numărul de siguranță</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Apel Signal</string>
   <string name="redphone_call_controls__end_call">închide apelul</string>
@@ -884,7 +883,6 @@ SMS a eșuat.</string>
   <string name="recipients_panel__to"><small>Introdu un nume sau un număr</small></string>
   <string name="recipients_panel__add_members">Adaugă membri</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Dacă dorești să verifici securitatea criptării integrale cu %s, compară numărul de deasupra cu numărul de pe dispozitivul lor. Alternativ, poți scana codul de pe telefonul lor sau îi poți ruga să scaneze codul tău. <a href="https://whispersystems.org/redirect/safety-numbers">Află mai multe despre verificarea numerelor de siguranță</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Apasă pentru a scana</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Partajează numărul de siguranță</string>
@@ -1056,7 +1054,6 @@ SMS a eșuat.</string>
   <string name="preferences_app_protection__app_access">Acces aplicație</string>
   <string name="preferences_app_protection__communication">Comunicare</string>
   <string name="preferences_chats__chats">Conversații</string>
-  <string name="preferences_notifications__message_notifications">Notificări mesaje</string>
   <string name="preferences_notifications__events">Evenimente</string>
   <string name="preferences_notifications__in_chat_sounds">Sunete în conversație</string>
   <string name="preferences_notifications__show">Afișează</string>

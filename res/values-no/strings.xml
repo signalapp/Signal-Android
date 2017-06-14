@@ -613,6 +613,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
     <item quantity="other">%d uker</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%du</string>
+  <!--unverified safety numbers-->
   <!--giphy_activity-->
   <!--giphy_fragment-->
   <!--import_export_fragment-->
@@ -645,7 +646,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="load_more_header__see_full_conversation">Se hele samtalen</string>
   <!--media_overview_activity-->
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">VERIFISER</string>
   <string name="message_recipients_list_item__resend">SEND OM IGJEN</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">

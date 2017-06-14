@@ -474,6 +474,7 @@
   <string name="experience_upgrade_activity__continue">தொடர்</string>
   <!--expiration-->
   <string name="expiration_off">அணை</string>
+  <!--unverified safety numbers-->
   <!--giphy_activity-->
   <!--giphy_fragment-->
   <!--import_export_fragment-->
@@ -499,7 +500,6 @@
   <string name="load_more_header__see_full_conversation">முழு உரையாடலைப் பார்க்க</string>
   <!--media_overview_activity-->
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">சரிபார்க்கவும்</string>
   <string name="message_recipients_list_item__resend">மீண்டும் அனுப்பு</string>
   <!--GroupUtil-->
   <string name="GroupUtil_group_name_is_now">இக்குழுவின் பெயர் \'%1$s\'.</string>

@@ -371,6 +371,10 @@ tornar a fer-ho provocarà la generació de missatges duplicats.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Heu establit el temps del missatge efímer en %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ha establit el temps del missatge efímer en %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">El número de seguretat amb %s ha canviat.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Heu verificat el número de seguretat amb %s</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Heu verificat el número de seguretat amb %s des d\'un altre dispositiu</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Heu tret la verificació del número de seguretat amb %s</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Heu tret la verificació del número de seguretat amb %s des d\'un altre dispositiu</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Les contrasenyes no coincideixen!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Contrasenya antiga incorrecta.</string>
@@ -518,6 +522,8 @@ Comproveu que aquest és el vostre número. Anem a verificar-ho amb un SMS.</str
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">El temps del missatge efímer s\'ha establit a %s</string>
   <string name="ThreadRecord_safety_number_changed">El número de seguretat ha canviat</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">El número de seguretat amb %s ha canviat.</string>
+  <string name="ThreadRecord_you_marked_verified">Heu verificat</string>
+  <string name="ThreadRecord_you_marked_unverified">Heu tret la verificació</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Actualització del Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Hi ha disponible una versió nova del Signal, toqueu per a actualitzar</string>
@@ -719,6 +725,20 @@ Comproveu que aquest és el vostre número. Anem a verificar-ho amb un SMS.</str
     <item quantity="other">%d setmanes</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%d set</string>
+  <!--unverified safety numbers-->
+  <string name="IdentityUtil_unverified_banner_one">El número de seguretat amb %s ha canviat i ja no es troba verificat</string>
+  <string name="IdentityUtil_unverified_banner_two">Els números de seguretat amb %1$s i %2$s ja no es troben verificats</string>
+  <string name="IdentityUtil_unverified_banner_many">Els números de seguretat amb %1$s, %2$s i %3$s ja no es troben verificats</string>
+  <string name="IdentityUtil_unverified_dialog_one">El número de seguretat amb %1$s ha canviat i ja no està verificat. Això pot significar o bé que algú està provant d\'interceptar la comunicació, o bé que %1$s ha reinstal·lat el Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Els números de seguretat amb %1$s i %2$s ja no estan verificats. Això pot significar o bé que algú està provant d\'interceptar la comunicació, o bé que han reinstal·lat el Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Els números de seguretat amb %1$s, %2$s i %3$s ja no estan verificats. Això pot significar o bé que algú està provant d\'interceptar la comunicació, o bé que han reinstal·lat el Signal.</string>
+  <string name="IdentityUtil_untrusted_dialog_one">El número de seguretat amb %s ha canviat.</string>
+  <string name="IdentityUtil_untrusted_dialog_two">Els números de seguretat amb %1$s i %2$s han canviat.</string>
+  <string name="IdentityUtil_untrusted_dialog_many">Els números de seguretat amb %1$s, %2$s i %3$s han canviat.</string>
+  <plurals name="identity_others">
+    <item quantity="one">%d altre</item>
+    <item quantity="other">%d més</item>
+  </plurals>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Cerca GIF i adhesius</string>
   <!--giphy_fragment-->
@@ -754,7 +774,6 @@ Comproveu que aquest és el vostre número. Anem a verificar-ho amb un SMS.</str
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">No hi ha cap contingut</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">VERIFICA</string>
   <string name="message_recipients_list_item__resend">TORNA A ENVIAR</string>
   <string name="message_recipients_list_item__resending">S\'està tornant a enviar...</string>
   <!--GroupUtil-->
@@ -778,7 +797,7 @@ Comproveu que aquest és el vostre número. Anem a verificar-ho amb un SMS.</str
   <string name="recipient_preferences__block">Bloca</string>
   <string name="recipient_preferences__color">Color</string>
   <string name="recipient_preferences__color_for_this_contact">Color per a aquest contacte</string>
-  <string name="recipient_preferences__verify_safety_number">Verifica el número de seguretat</string>
+  <string name="recipient_preferences__view_safety_number">Mostra el número de seguretat</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Trucada Signal</string>
   <string name="redphone_call_controls__end_call">finalitza la trucada</string>
@@ -859,8 +878,10 @@ ha fallat.
   <string name="recipients_panel__to"><small>Introdueix un nom o número</small></string>
   <string name="recipients_panel__add_members">Afegeix-ne membres</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Si voleu verificar la seguretat del xifratge extrem a extrem amb %s, compareu el número de sobre amb el del seu dispositiu. Altrament, podeu escanejar el codi al seu telèfon, o demanar-li que escanege el vostre. <a href="https://whispersystems.org/redirect/safety-numbers">Més informació sobre la verificació dels números de seguretat</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Si voleu verificar la seguretat del xifratge amb %s, compareu el número de sobre amb el del seu dispositiu. Altrament, podeu escanejar el codi al seu telèfon, o demanar-li que escanege el vostre. <a href="https://whispersystems.org/redirect/safety-numbers">Més informació.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Toca per a escanejar</string>
+  <string name="verify_display_fragment__loading">S\'està carregant...</string>
+  <string name="verify_display_fragment__verified">Verificat</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Comparteix el número de seguretat</string>
   <!--message_details_header-->
@@ -1029,7 +1050,7 @@ ha fallat.
   <string name="preferences_app_protection__app_access">Accés de l\'aplicació</string>
   <string name="preferences_app_protection__communication">Comunicació</string>
   <string name="preferences_chats__chats">Xats</string>
-  <string name="preferences_notifications__message_notifications">Notificacions de missatge</string>
+  <string name="preferences_notifications__messages">Missatges</string>
   <string name="preferences_notifications__events">Esdeveniments</string>
   <string name="preferences_notifications__in_chat_sounds">Sons al xat</string>
   <string name="preferences_notifications__show">Mostra</string>
@@ -1167,5 +1188,9 @@ ha fallat.
   <string name="trimmer__old_messages_successfully_deleted">S\'han eliminant correctament els missatges antics</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona de trànsit</string>
+  <string name="UntrustedSendDialog_send_message">Voleu enviar el missatge?</string>
+  <string name="UntrustedSendDialog_send">Envia</string>
+  <string name="UnverifiedSendDialog_send_message">Voleu enviar el missatge?</string>
+  <string name="UnverifiedSendDialog_send">Envia</string>
   <!--EOF-->
 </resources>

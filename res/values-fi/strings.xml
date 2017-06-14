@@ -372,6 +372,10 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Sinä asetit viestien katoamisajan: %1$s</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s asetti viestien katoamisajan: %2$s</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Sinun ja yhteystiedon %s turvanumero on vaihtunut.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Merkitsit turvanumerosi yhteystiedon %s kanssa varmennetuksi.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Merkitsit turvanumerosi yhteystiedon %s kanssa varmennetuksi toisesta laitteestasi.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Merkitsit turvanumerosi yhteystiedon %s kanssa varmentamattomaksi.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Merkitsit turvanumerosi yhteystiedon %s kanssa varmentamattomaksi toisesta laitteesta.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Salalauseet eivät täsmää!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Vanha salalause on väärin!</string>
@@ -521,6 +525,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Katoavien viestien ajaksi asetettu %s</string>
   <string name="ThreadRecord_safety_number_changed">Turvanumero vaihtunut</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Sinun ja yhteystiedon %s turvanumero on vaihtunut.</string>
+  <string name="ThreadRecord_you_marked_verified">Merkitsit varmennetuksi.</string>
+  <string name="ThreadRecord_you_marked_unverified">Merkitsit varmentamattomaksi.</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal-päivitys</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Uusi versio Signalista on saatavilla. Päivitä napsauttamalla.</string>
@@ -722,6 +728,20 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
     <item quantity="other">%d viikkoa</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dvk</string>
+  <!--unverified safety numbers-->
+  <string name="IdentityUtil_unverified_banner_one">Sinun turvanumerosi yhteystiedon %s kanssa on vaihtunut eikä se ole enää varmennettu.</string>
+  <string name="IdentityUtil_unverified_banner_two">Sinun turvanumerot yhteystietojen %1$s ja %2$s kanssa eivät ole enää varmennettuja.</string>
+  <string name="IdentityUtil_unverified_banner_many">Sinun turvanumerot yhteystietojen %1$s, %2$s ja %3$s kanssa eivät ole enää varmennettuja.</string>
+  <string name="IdentityUtil_unverified_dialog_one">Turvanumerosi yhteystiedon %1$s kanssa on vaihtunut eikä ole enää varmennettu. Tämä voi tarkoittaa joko sitä, että joku yrittää kaapata viestiliikennettänne, tai sitä, että %1$s on vain yksinkertaisesti asentanut Signalin uudelleen.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Turvanumerosi yhteystietojen %1$s ja %2$s kanssa ovat vaihtuneet eivätkä ne ole enää varmennettuja. Tämä voi tarkoittaa joko sitä, että joku yrittää kaapata viestiliikennettänne, tai sitä, että he ovat vain yksinkertaisesti asentaneet Signalin uudelleen.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Turvanumerosi yhteystietojen %1$s, %2$s ja %3$s kanssa ovat vaihtuneet eivätkä ne ole enää varmennettuja. Tämä voi tarkoittaa joko sitä, että joku yrittää kaapata viestiliikennettänne, tai sitä, että he ovat vain yksinkertaisesti asentaneet Signalin uudelleen.</string>
+  <string name="IdentityUtil_untrusted_dialog_one">Turvanumerosi yhteystiedon %s kanssa on vaihtunut.</string>
+  <string name="IdentityUtil_untrusted_dialog_two">Turvanumerosi yhteystietojen %1$s ja %2$s kanssa ovat vaihtuneet.</string>
+  <string name="IdentityUtil_untrusted_dialog_many">Turvanumerosi yhteystietojen %1$s, %2$s ja %3$s kanssa ovat vaihtuneet.</string>
+  <plurals name="identity_others">
+    <item quantity="one">%d muu</item>
+    <item quantity="other">%d muuta</item>
+  </plurals>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Etsi GIFejä ja tarroja</string>
   <!--giphy_fragment-->
@@ -757,7 +777,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Ei mediatiedostoja</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">VARMENNA</string>
+  <string name="message_recipients_list_item__view">NÄYTÄ</string>
   <string name="message_recipients_list_item__resend">LÄHETÄ UUDELLEEN</string>
   <string name="message_recipients_list_item__resending">Uudelleenlähetetään...</string>
   <!--GroupUtil-->
@@ -781,7 +801,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="recipient_preferences__block">Estä</string>
   <string name="recipient_preferences__color">Väri</string>
   <string name="recipient_preferences__color_for_this_contact">Tämän yhteystiedon väri</string>
-  <string name="recipient_preferences__verify_safety_number">Varmenna turvanumero</string>
+  <string name="recipient_preferences__view_safety_number">Näytä turvanumero</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal-puhelu</string>
   <string name="redphone_call_controls__end_call">lopeta puhelu</string>
@@ -845,8 +865,10 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="recipients_panel__to"><small>Syötä nimi tai numero</small></string>
   <string name="recipients_panel__add_members">Lisää jäseniä</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Jos haluat varmentaa sinun ja yhteystiedon %s välisen salauksen tietoturvan, vertaa ylläolevaa numeroa hänen laitteessaan näkyvään vastaavaan numeroon. Vaihtoehtoisesti voit skannata koodin hänen puhelimestaan, tai pyytä häntä skannaamaan sinun koodisi. <a href="https://whispersystems.org/redirect/safety-numbers">Lue lisää turvanumeron varmentamisesta</a>.]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Jos haluat varmentaa sinun ja yhteystiedon %s välisen salauksen tietoturvan, vertaa ylläolevia numeroita hänen laitteessaan näkyviin vastaaviin numeroihin. Vaihtoehtoisesti voit skannata koodin hänen puhelimestaan, tai pyytä häntä skannaamaan sinun koodisi. <a href="https://whispersystems.org/redirect/safety-numbers">Lue lisää</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Skannaa napsauttamalla</string>
+  <string name="verify_display_fragment__loading">Ladataan...</string>
+  <string name="verify_display_fragment__verified">Varmennettu</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Jaa turvanumero</string>
   <!--message_details_header-->
@@ -1015,7 +1037,7 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="preferences_app_protection__app_access">Sovelluksen käyttö</string>
   <string name="preferences_app_protection__communication">Kommunikointi</string>
   <string name="preferences_chats__chats">Keskustelut</string>
-  <string name="preferences_notifications__message_notifications">Viesti-ilmoitukset</string>
+  <string name="preferences_notifications__messages">Viestit</string>
   <string name="preferences_notifications__events">Huomautukset</string>
   <string name="preferences_notifications__in_chat_sounds">Keskustelun sisäiset äänet</string>
   <string name="preferences_notifications__show">Näytä</string>
@@ -1153,5 +1175,9 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="trimmer__old_messages_successfully_deleted">Vanhojen viestien poisto onnistui</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Tyypin kuvake</string>
+  <string name="UntrustedSendDialog_send_message">Lähetä viesti?</string>
+  <string name="UntrustedSendDialog_send">Lähetä</string>
+  <string name="UnverifiedSendDialog_send_message">Lähetä viesti?</string>
+  <string name="UnverifiedSendDialog_send">Lähetä</string>
   <!--EOF-->
 </resources>

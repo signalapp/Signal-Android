@@ -65,7 +65,7 @@
   <string name="CallScreen_Incoming_call">Eingehender Anruf</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Deine gemeinsame Sicherheitsnummer mit %1$s hat sich geändert. Dies könnte bedeuten, dass jemand versucht, eure Kommunikation abzuhören. Oder %2$s hat Signal einfach erneut installiert.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Vielleicht möchtest du deine Sicherheitsnummer mit diesem Kontakt überprüfen.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Vielleicht möchtest du deine Sicherheitsnummer mit diesem Kontakt verifizieren.</string>
   <string name="ConfirmIdentityDialog_accept">OK</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Nachricht %s</string>
@@ -365,6 +365,10 @@ Das Wiederherstellen einer verschlüsselten Datensicherung ersetzt deine bestehe
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du hast die Zeit für verschwindende Nachrichten auf %1$s festgelegt</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s hat die Zeit für verschwindende Nachrichten auf %2$s festgelegt</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Deine Sicherheitsnummer mit %s hat sich geändert</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Du hast deine Sicherheitsnummer mit %s als verifiziert markiert</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Du hast deine Sicherheitsnummer mit %s von einem anderen Gerät aus als verifiziert markiert</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Du hast deine Sicherheitsnummer mit %s als nicht verifiziert markiert</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Du hast deine Sicherheitsnummer mit %s von einem anderen Gerät aus als nicht verifiziert markiert</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passwörter stimmen nicht überein!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Das eingegebene alte Passwort ist falsch!</string>
@@ -446,7 +450,7 @@ Das Wiederherstellen einer verschlüsselten Datensicherung ersetzt deine bestehe
   <string name="RegistrationActivity_invalid_number">Ungültige Rufnummer</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Die angegebene Rufummer (%s) ist ungültig.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
-Bitte kontrolliere noch einmal deine Rufnummer. Diese wird anschließend durch eine SMS überprüft.</string>
+Bitte kontrolliere noch einmal deine Rufnummer. Diese wird anschließend durch eine SMS verifiziert.</string>
   <string name="RegistrationActivity_continue">Weiter</string>
   <string name="RegistrationActivity_edit">Bearbeiten</string>
   <string name="RegistrationActivity_missing_google_play_services">Fehlende Google Play-Dienste</string>
@@ -459,20 +463,20 @@ Bitte kontrolliere noch einmal deine Rufnummer. Diese wird anschließend durch e
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">Mögliche Probleme</string>
   <!--RegistrationProgressActivity-->
-  <string name="RegistrationProgressActivity_verifying_number">Rufnummer wird überprüft</string>
+  <string name="RegistrationProgressActivity_verifying_number">Rufnummer wird verifiziert</string>
   <string name="RegistrationProgressActivity_edit_s">%s bearbeiten</string>
   <string name="RegistrationProgressActivity_registration_complete">Registrierung abgeschlossen!</string>
   <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Du musst den Code eingeben, den du zuvor empfangen hast</string>
   <string name="RegistrationProgressActivity_connecting">Verbinden</string>
-  <string name="RegistrationProgressActivity_connecting_for_verification">Verbindung wird zur Bestätigung hergestellt …</string>
+  <string name="RegistrationProgressActivity_connecting_for_verification">Verbindung wird zur Verifikation hergestellt …</string>
   <string name="RegistrationProgressActivity_network_error">Netzwerkfehler!</string>
   <string name="RegistrationProgressActivity_unable_to_connect">Verbindung konnte nicht hergestellt werden. Bitte überprüfe deine Verbindung und versuche es dann erneut.</string>
-  <string name="RegistrationProgressActivity_verification_failed">Bestätigung gescheitert!</string>
-  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">Der eingegebene Bestätigungscode ist falsch. Bitte versuche es erneut.</string>
+  <string name="RegistrationProgressActivity_verification_failed">Verifikation gescheitert!</string>
+  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">Der eingegebene Verifikationscode ist falsch. Bitte versuche es erneut.</string>
   <string name="RegistrationProgressActivity_too_many_attempts">Zu viele Versuche</string>
-  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Du hast zu viele falsche Bestätigungscodes eingegeben. Bitte warte eine Minute und versuche es dann erneut.</string>
+  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Du hast zu viele falsche Verifikationscodes eingegeben. Bitte warte eine Minute und versuche es dann erneut.</string>
   <string name="RegistrationProgressActivity_requesting_call">Anruf anfordern</string>
-  <string name="RegistrationProgressActivity_requesting_incoming_call">Bestätigungsanruf wird angefordert …</string>
+  <string name="RegistrationProgressActivity_requesting_incoming_call">Verifikationsanruf wird angefordert …</string>
   <string name="RegistrationProgressActivity_server_error">Serverfehler</string>
   <string name="RegistrationProgressActivity_the_server_encountered_an_error">Der Server hat einen Fehler festgestellt. Bitte versuche es erneut.</string>
   <string name="RegistrationProgressActivity_too_many_requests">Zu viele Anfragen!</string>
@@ -507,15 +511,17 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ThreadRecord_media_message">Nachricht mit Medieninhalten</string>
   <string name="ThreadRecord_s_joined_signal">%s ist jetzt bei Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Zeit für verschwindende Nachrichten auf %s festgelegt</string>
-  <string name="ThreadRecord_safety_number_changed">Die Sicherheitsnummer hat sich geändert.</string>
+  <string name="ThreadRecord_safety_number_changed">Geänderte Sicherheitsnummer</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Deine Sicherheitsnummer mit %s hat sich geändert</string>
+  <string name="ThreadRecord_you_marked_verified">Als verifiziert markiert</string>
+  <string name="ThreadRecord_you_marked_unverified">Als nicht verifiziert markiert</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal-Aktualisierung</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Eine neue Version von Signal ist verfügbar. Zum Aktualisieren antippen.</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Dein Kontakt verwendet eine alte Version von Signal. Bitte ihn Signal zu aktualisieren, bevor ihr eure Sicherheitsnummer überprüft.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Dein Kontakt verwendet eine alte Version von Signal. Bitte ihn Signal zu aktualisieren, bevor ihr eure Sicherheitsnummer verifiziert.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Dein Kontakt verwendet eine neuere Version von Signal mit einem inkompatiblen QR-Code-Format. Zum Vergleichen bitte aktualisieren.</string>
-  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Der eingescannte QR-Code ist kein korrekt formatierter Überprüfungscode einer Sicherheitsnummer. Bitte versuche es erneut.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Der eingescannte QR-Code ist kein korrekt formatierter Verifikationscode einer Sicherheitsnummer. Bitte versuche es erneut.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Sicherheitsnummer teilen über …</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Unsere Signal-Sicherheitsnummer:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Anscheinend hast du keine zum Teilen geeigneten Apps installiert.</string>
@@ -572,8 +578,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MessageNotifier_mark_read">Gelesen</string>
   <string name="MessageNotifier_media_message">Nachricht mit Medieninhalten</string>
   <string name="MessageNotifier_reply">Antworten</string>
-  <string name="MessageNotifier_pending_signal_messages">Noch nicht gesendete Nachrichten</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Du hast noch nicht erledigte Signalnachrichten, tippe um sie zu öffnen und aufzurufen.</string>
+  <string name="MessageNotifier_pending_signal_messages">Ausstehende Signal-Nachrichten</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">Du hast ausstehende Signal-Nachrichten. Antippen zum Öffnen und Abrufen.</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Für dein Telefon werden manuelle MMS-Einstellungen benötigt.</string>
   <string name="MmsPreferencesFragment__enabled">Aktiviert</string>
@@ -593,7 +599,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="VideoPlayer_error_playing_video">Fehler bei Videowiedergabe</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Die Sicherheitsnummer für deine Unterhaltung mit %1$s hat sich geändert. Dies könnte bedeuten, dass jemand versucht, eure Kommunikation abzuhören. Oder %2$s hat Signal einfach erneut installiert.</string>
-  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Vielleicht möchtest du deine Sicherheitsnummer mit diesem Kontakt überprüfen.</string>
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Vielleicht möchtest du deine Sicherheitsnummer mit diesem Kontakt verifizieren.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Neue Sicherheitsnummer</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Zum Aktivieren deiner Videoübertragung antippen</string>
@@ -710,6 +716,20 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
     <item quantity="other">%d Wochen</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
+  <!--unverified safety numbers-->
+  <string name="IdentityUtil_unverified_banner_one">Deine Sicherheitsnummer mit %s hat sich geändert und ist nicht mehr verifiziert</string>
+  <string name="IdentityUtil_unverified_banner_two">Deine Sicherheitsnummern mit %1$s und %2$s sind nicht mehr verifiziert</string>
+  <string name="IdentityUtil_unverified_banner_many">Deine Sicherheitsnummern mit %1$s, %2$s und %3$s sind nicht mehr verifiziert</string>
+  <string name="IdentityUtil_unverified_dialog_one">Deine Sicherheitsnummer mit %1$s hat sich geändert und ist nicht mehr verifiziert. Dies könnte bedeuten, dass jemand versucht, eure Kommunikation abzuhören. Oder %1$s hat Signal einfach erneut installiert. </string>
+  <string name="IdentityUtil_unverified_dialog_two">Deine Sicherheitsnummern mit %1$s und %2$s sind nicht mehr verifiziert. Dies könnte bedeuten, dass jemand versucht, eure Kommunikation abzuhören. Oder deine Kontakte haben Signal einfach erneut installiert.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Deine Sicherheitsnummern mit %1$s, %2$s und %3$s sind nicht mehr verifiziert. Dies könnte bedeuten, dass jemand versucht, eure Kommunikation abzuhören. Oder deine Kontakte haben Signal einfach erneut installiert.</string>
+  <string name="IdentityUtil_untrusted_dialog_one">Deine Sicherheitsnummer mit %s hat sich gerade geändert.</string>
+  <string name="IdentityUtil_untrusted_dialog_two">Deine Sicherheitsnummern mit %1$s und %2$s haben sich gerade geändert.</string>
+  <string name="IdentityUtil_untrusted_dialog_many">Deine Sicherheitsnummern mit %1$s, %2$s und %3$s haben sich gerade geändert.</string>
+  <plurals name="identity_others">
+    <item quantity="one">%d weiterer</item>
+    <item quantity="other">%d weitere</item>
+  </plurals>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFs und Sticker suchen</string>
   <!--giphy_fragment-->
@@ -745,7 +765,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Keine Medieninhalte</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">ÜBERPRÜFEN</string>
+  <string name="message_recipients_list_item__view">ANZEIGEN</string>
   <string name="message_recipients_list_item__resend">ERNEUT SENDEN</string>
   <string name="message_recipients_list_item__resending">Wird erneut gesendet …</string>
   <!--GroupUtil-->
@@ -769,7 +789,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="recipient_preferences__block">Kontakt blockieren</string>
   <string name="recipient_preferences__color">Farbe</string>
   <string name="recipient_preferences__color_for_this_contact">Farbe für diesen Kontakt</string>
-  <string name="recipient_preferences__verify_safety_number">Sicherheitsnummer überprüfen</string>
+  <string name="recipient_preferences__view_safety_number">Sicherheitsnummer anzeigen</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal-Anruf</string>
   <string name="redphone_call_controls__end_call">Anruf beenden</string>
@@ -778,7 +798,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="redphone_call_controls__signal_call">Signal-Anruf</string>
   <!--registration_activity-->
   <string name="registration_activity__verify_your_number_to_connect_with_signal">
-Überprüfe deine Rufnummer zur Registrierung bei Signal.</string>
+Verifiziere deine Rufnummer zur Registrierung bei Signal.</string>
   <string name="registration_activity__your_country">DEIN LAND</string>
   <string name="registration_activity__your_country_code_and_phone_number">DEINE LANDESVORWAHL UND RUFNUMMER</string>
   <string name="registration_activity__phone_number">RUFNUMMER</string>
@@ -797,10 +817,10 @@ Bitte überprüfe die eingegebene Rufnummer auf Richtigkeit und eine deiner Regi
   <string name="registration_problems__signal_will_not_work_with_google_voice_numbers">
 Signal funktioniert nicht mit Google Voice-Rufnummern.</string>
   <!--registration_progress_activity-->
-  <string name="registration_progress_activity__voice_verification">Bestätigung durch Anruf</string>
+  <string name="registration_progress_activity__voice_verification">Verifikation durch Anruf</string>
   <string name="registration_progress_activity__signal_can_also_call_you_to_verify_your_number">
-Signal kann dich zum Überprüfen deiner Rufnummer auch anrufen. Tippe auf »Anrufen« und gib unten den gehörten sechsstelligen Code ein.</string>
-  <string name="registration_progress_activity__verify">Überprüfen</string>
+Signal kann dich zur Verifikation deiner Rufnummer auch anrufen. Tippe auf »Anrufen« und gib unten den gehörten sechsstelligen Code ein.</string>
+  <string name="registration_progress_activity__verify">Verifizieren</string>
   <string name="registration_progress_activity__call_me">Mich anrufen</string>
   <string name="registration_progress_activity__edit_number">Rufnummer bearbeiten</string>
   <string name="registration_progress_activity__connectivity_error">Verbindungsfehler.</string>
@@ -812,14 +832,14 @@ Signal kann dich zum Überprüfen deiner Rufnummer auch anrufen. Tippe auf »Anr
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 Bei Verbindung über WLAN blockiert möglicherweise eine Firewall den Zugang zum Signal-Server. Versuche ein anderes Netzwerk oder die mobile Datenverbindung.</string>
   <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-Signal wird deine Rufnummer nun automatisch mit einer SMS überprüfen.</string>
+Signal wird deine Rufnummer nun automatisch mit einer SMS verifizieren.</string>
   <string name="registration_progress_activity__connecting">Verbindung wird hergestellt …</string>
-  <string name="registration_progress_activity__waiting_for_sms_verification">Warten auf SMS-Bestätigung …</string>
+  <string name="registration_progress_activity__waiting_for_sms_verification">Warten auf SMS-Verifikation …</string>
   <string name="registration_progress_activity__registering_with_server">Registrierung wird durchgeführt …</string>
-  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Dies kann einen Moment dauern, bitte etwas Geduld. Wir benachrichtigen dich, sobald die Bestätigung abgeschlossen ist.</string>
+  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Dies kann einen Moment dauern, bitte etwas Geduld. Wir benachrichtigen dich, sobald die Verifikation abgeschlossen ist.</string>
   <string name="registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message">
-Das Warten auf eine Bestätigungs-SMS hat zu lange gedauert.</string>
-  <string name="registration_progress_activity__sms_verification_failed">SMS-Bestätigung gescheitert.</string>
+Das Warten auf eine Verifikations-SMS hat zu lange gedauert.</string>
+  <string name="registration_progress_activity__sms_verification_failed">SMS-Verifikation gescheitert.</string>
   <string name="registration_progress_activity__generating_keys">Schlüssel werden erzeugt …</string>
   <string name="registration_progress_activity__alert">Benachrichtigung</string>
   <string name="registration_progress_activity__telephone">Telefon</string>
@@ -828,8 +848,10 @@ Das Warten auf eine Bestätigungs-SMS hat zu lange gedauert.</string>
   <string name="recipients_panel__to"><small>Name/Rufnummer eingeben</small></string>
   <string name="recipients_panel__add_members">Mitglieder hinzufügen</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Falls du die Sicherheit deiner Ende-zu-Ende-Verschlüsselung mit %s überprüfen möchtest, vergleiche bitte die oben dargestellte Nummer mit der Nummer auf dem Gerät deines Kontakts. Alternativ kannst du den Code deines Kontakts einscannen oder ihn deinen eigenen Code einscannen lassen. <a href="https://whispersystems.org/redirect/safety-numbers">Erfahre mehr über das Überprüfen von Sicherheitsnummern</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Falls du die Sicherheit deiner Verschlüsselung mit %s verifizieren möchtest, vergleiche bitte die oben dargestellte Nummer mit der Nummer auf dem Gerät deines Kontakts. Alternativ kannst du den Code deines Kontakts einscannen oder ihn deinen eigenen Code einscannen lassen. <a href="https://whispersystems.org/redirect/safety-numbers">Mehr erfahren</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Zum Scannen antippen</string>
+  <string name="verify_display_fragment__loading">Wird geladen …</string>
+  <string name="verify_display_fragment__verified">Verifiziert</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Sicherheitsnummer teilen</string>
   <!--message_details_header-->
@@ -847,7 +869,7 @@ Das Warten auf eine Bestätigungs-SMS hat zu lange gedauert.</string>
   <string name="AndroidManifest__select_contacts">Kontakte auswählen</string>
   <string name="AndroidManifest__signal_detected">Signal erkannt</string>
   <string name="AndroidManifest__change_passphrase">Passwort ändern</string>
-  <string name="AndroidManifest__verify_safety_number">Sicherheitsnummer überprüfen</string>
+  <string name="AndroidManifest__verify_safety_number">Sicherheitsnummer verifizieren</string>
   <string name="AndroidManifest__log_submit">Diagnoseprotokoll übermitteln</string>
   <string name="AndroidManifest__media_preview">Medieninhaltevorschau</string>
   <string name="AndroidManifest__all_media">Alle Medieninhalte</string>
@@ -998,7 +1020,7 @@ Das Warten auf eine Bestätigungs-SMS hat zu lange gedauert.</string>
   <string name="preferences_app_protection__app_access">App-Zugriff</string>
   <string name="preferences_app_protection__communication">Kommunikation</string>
   <string name="preferences_chats__chats">Unterhaltungen</string>
-  <string name="preferences_notifications__message_notifications">Nachrichten</string>
+  <string name="preferences_notifications__messages">Nachrichten</string>
   <string name="preferences_notifications__events">Ereignisse</string>
   <string name="preferences_notifications__in_chat_sounds">Töne während Unterhaltung</string>
   <string name="preferences_notifications__show">Anzeigen</string>
@@ -1136,5 +1158,9 @@ Das Warten auf eine Bestätigungs-SMS hat zu lange gedauert.</string>
   <string name="trimmer__old_messages_successfully_deleted">Alte Nachrichten wurden erfolgreich gelöscht</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Übertragungssymbol</string>
+  <string name="UntrustedSendDialog_send_message">Nachricht senden?</string>
+  <string name="UntrustedSendDialog_send">Senden</string>
+  <string name="UnverifiedSendDialog_send_message">Nachricht senden?</string>
+  <string name="UnverifiedSendDialog_send">Senden</string>
   <!--EOF-->
 </resources>

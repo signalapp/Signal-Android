@@ -403,6 +403,10 @@ Stracisz wszystkie informacje obecnie zawarte w aplikacji Signal z wyjątkiem ty
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Ustawiłeś zniknięcie wiadomości po: %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ustawił zniknięcie wiadomości po: %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Twój numer bezpieczeństwa z %s zmienił się.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Oznaczyłeś numer bezpieczeństwa z %s jako zweryfikowany</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Oznaczyłeś numer bezpieczeństwa z %s jako zweryfikowany na innym urządzeniu</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Oznaczyłeś numer bezpieczeństwa z %s jako niezweryfikowany</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Oznaczyłeś numer bezpieczeństwa z %s jako niezweryfikowany na innym urządzeniu</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Hasło niezgodne!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Nieprawidłowe stare hasło!</string>
@@ -548,7 +552,10 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ThreadRecord_media_message">Wiadomość multimedialna</string>
   <string name="ThreadRecord_s_joined_signal">%s dołączył(-a) do Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Czas znikania wiadomości ustawiony na %s</string>
+  <string name="ThreadRecord_safety_number_changed">Zmieniono numer bezpieczeństwa</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Twój numer bezpieczeństwa z %s zmienił się.</string>
+  <string name="ThreadRecord_you_marked_verified">Oznaczyłeś jako zweryfikowany</string>
+  <string name="ThreadRecord_you_marked_unverified">Oznaczyłeś jako niezweryfikowany</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Aktualizacja Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Dostępna jest nowa wersja Signal. Dotknij, aby zaktualizować</string>
@@ -612,6 +619,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="MessageNotifier_mark_read">Przeczytane</string>
   <string name="MessageNotifier_media_message">Wiadomość multimedialna</string>
   <string name="MessageNotifier_reply">Odpowiedź</string>
+  <string name="MessageNotifier_pending_signal_messages">Oczekujące wiadomości Signal</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">Masz oczekujące wiadomości Signal, dotknij aby otworzyć.</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Ręczne ustawienia MMS są wymagane dla Twojego telefonu.</string>
   <string name="MmsPreferencesFragment__enabled">Włączony</string>
@@ -758,6 +767,14 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
     <item quantity="other">%d tygodni</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dt</string>
+  <!--unverified safety numbers-->
+  <string name="IdentityUtil_unverified_banner_one">Twój numer bezpieczeństwa z %s zmienił się i nie jest już zweryfikowany</string>
+  <string name="IdentityUtil_unverified_banner_two">Numery z bezpieczeństwa z %1$s i %2$s nie są już zweryfikowane</string>
+  <string name="IdentityUtil_unverified_banner_many">Numery z bezpieczeństwa z %1$s, %2$s i %3$s nie są już zweryfikowane</string>
+  <string name="IdentityUtil_unverified_dialog_one">Twój numer bezpieczeństwa z %1$s zmienił się i nie już zweryfikowany. To może oznaczać, że ktoś próbuje przechwycić Twoją komunikację, lub że po prostu %1$s przeinstalował Signal. </string>
+  <string name="IdentityUtil_unverified_dialog_two">Twoje numery bezpieczeństwa z %1$s  i %2$s zmieniły się i nie są już zweryfikowane. To może oznaczać, że ktoś próbuje przechwycić Twoją komunikację, lub że rozmówcy przeinstalowali Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Twoje numery bezpieczeństwa z %1$s, %2$s i %3$s  zmieniły się. To może oznaczać, że ktoś próbuje przechwycić Twoją komunikację, lub że po rozmówcy przeinstalowali Signal.</string>
+  <string name="IdentityUtil_untrusted_dialog_one">Twój numer bezpieczeństwa z %s zmienił się.</string>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Szukaj gifów i naklejek</string>
   <!--giphy_fragment-->
@@ -793,7 +810,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Brak multimediów</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">WERYFIKUJ</string>
+  <string name="message_recipients_list_item__view">ZOBACZ</string>
   <string name="message_recipients_list_item__resend">WYŚLIJ PONOWNIE</string>
   <string name="message_recipients_list_item__resending">Ponowne wysyłanie...</string>
   <!--GroupUtil-->
@@ -819,7 +836,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="recipient_preferences__block">Blokuj</string>
   <string name="recipient_preferences__color">Kolor</string>
   <string name="recipient_preferences__color_for_this_contact">Kolor tego kontaktu</string>
-  <string name="recipient_preferences__verify_safety_number">Zweryfikuj numer bezpieczeństwa</string>
+  <string name="recipient_preferences__view_safety_number">Zobacz numer bezpieczeństwa</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Połączenie Signal</string>
   <string name="redphone_call_controls__end_call">Zakończ</string>
@@ -879,8 +896,10 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="recipients_panel__to">Wprowadź nazwę lub numer kontaktu</string>
   <string name="recipients_panel__add_members">Dodaj uczestników</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Jeśli chcesz zweryfikować bezpieczeństwo szyfrowania end-to-end z %s, porównaj numer powyżej z numerem na jego urządzeniu. Możesz również zeskanować kod na jego telefonie lub, poprosić o zeskanowanie twojego kodu. <a href="https://whispersystems.org/redirect/safety-numbers">Dowiedz się więcej o weryfikacji numeru bezpieczeństwa</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Jeśli chcesz zweryfikować bezpieczeństwo szyfrowania end-to-end z %s, porównaj numer powyżej z numerem na jego urządzeniu. Możesz również zeskanować kod na jego telefonie lub poprosić o zeskanowanie Twojego kodu. <a href="https://whispersystems.org/redirect/safety-numbers">Dowiedz się więcej</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Dotknij aby zeskanować</string>
+  <string name="verify_display_fragment__loading">Ładowanie...</string>
+  <string name="verify_display_fragment__verified">Zweryfikowano</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Podziel się numerem bezpieczeństwa</string>
   <!--message_details_header-->
@@ -1048,9 +1067,9 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Wsparcie dla rozmów wideo i audio następnej generacji, gdy jest aktywowane przez obu rozmówców. Funkcja jest w fazie testów.</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Przekazuj połączenia do serwerów Signal, aby uniknąć ujawnienia swojego IP swoim kontaktom. Włączenie tej opcji pogorszy jakość połączenia.</string>
   <string name="preferences_advanced__always_relay_calls">Zawsze przekazuj połączenia</string>
+  <string name="preferences_app_protection__app_access">Dostęp aplikacji</string>
   <string name="preferences_app_protection__communication">Komunikacja</string>
   <string name="preferences_chats__chats">Rozmowy</string>
-  <string name="preferences_notifications__message_notifications">Powiadomienia o wiadomościach</string>
   <string name="preferences_notifications__events">Zdarzenia</string>
   <string name="preferences_notifications__in_chat_sounds">Dźwięki podczas rozmowy</string>
   <string name="preferences_notifications__show">Pokazuj</string>
@@ -1190,5 +1209,9 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="trimmer__old_messages_successfully_deleted">Stare wiadomości zostały pomyślnie usunięte</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transportu</string>
+  <string name="UntrustedSendDialog_send_message">Wysłać wiadomość?</string>
+  <string name="UntrustedSendDialog_send">Wyślij</string>
+  <string name="UnverifiedSendDialog_send_message">Wysłać wiadomość?</string>
+  <string name="UnverifiedSendDialog_send">Wyślij</string>
   <!--EOF-->
 </resources>

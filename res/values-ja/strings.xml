@@ -682,6 +682,7 @@
     <item quantity="other">%d週間</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%d週間</string>
+  <!--unverified safety numbers-->
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFやステッカーを検索</string>
   <!--giphy_fragment-->
@@ -717,7 +718,6 @@
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">メディアがありません</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">確認</string>
   <string name="message_recipients_list_item__resend">再送</string>
   <string name="message_recipients_list_item__resending">再送中...</string>
   <!--GroupUtil-->
@@ -740,7 +740,6 @@
   <string name="recipient_preferences__block">ブロック</string>
   <string name="recipient_preferences__color">色</string>
   <string name="recipient_preferences__color_for_this_contact">この連絡先の色</string>
-  <string name="recipient_preferences__verify_safety_number">安全番号を確認する</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal通話</string>
   <string name="redphone_call_controls__end_call">通話を終了</string>
@@ -792,7 +791,6 @@
   <string name="recipients_panel__to"><small>名前または番号を入力して下さい</small></string>
   <string name="recipients_panel__add_members">メンバーを追加</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%sとの端末間の暗号化を確認するには，上記の番号と相手の端末上の番号を比べてください。あるいは，相手端末上のQRコードを読み取るか，上のQRコードを相手に読み取ってもらってください。<a href="https://whispersystems.org/redirect/safety-numbers">安全番号の確認についての詳細</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">読み取る</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">安全番号を共有する</string>
@@ -961,7 +959,6 @@
   <string name="preferences_app_protection__app_access">アプリのアクセス</string>
   <string name="preferences_app_protection__communication">通信</string>
   <string name="preferences_chats__chats">チャット</string>
-  <string name="preferences_notifications__message_notifications">メッセージの通知</string>
   <string name="preferences_notifications__events">イベント</string>
   <string name="preferences_notifications__in_chat_sounds">チャット着信音</string>
   <string name="preferences_notifications__show">表示</string>

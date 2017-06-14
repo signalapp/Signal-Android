@@ -385,6 +385,10 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Nastavili jste čas zmizení zprávy na %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s nastavil čas zmizení zprávy na %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Váš bezpečnostní kód s %s se změnil</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Označili jste vaše bezpečnostní kódy pro komunikaci s %s jako ověřené.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Označili jste na jiném zařízení vaše bezpečnostní kódy pro komunikaci s %s jako ověřené.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Označili jste vaše bezpečnostní kódy pro komunikaci s %s jako neověřené.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Označili jste na jiném zařízení vaše bezpečnostní kódy pro komunikaci s %s jako neověřené.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Hesla nejsou stejná</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Chybné staré heslo!</string>
@@ -531,6 +535,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas zmizení zprávy nastaven na %s</string>
   <string name="ThreadRecord_safety_number_changed">Bezpečnostní kód se změnil</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Váš bezpečnostní kód s %s se změnil</string>
+  <string name="ThreadRecord_you_marked_verified">Označen jako ověřený</string>
+  <string name="ThreadRecord_you_marked_unverified">Označen jako neověřený</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Aktualizace Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Je k dispozici nová verze Signal, klikněte pro aktualizaci</string>
@@ -737,6 +743,21 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
     <item quantity="other">%d týdnů</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
+  <!--unverified safety numbers-->
+  <string name="IdentityUtil_unverified_banner_one">Vaše bezpečnostní kódy pro komunikaci s %s již nejsou ověřené.</string>
+  <string name="IdentityUtil_unverified_banner_two">Vaše bezpečnostní kódy pro komunikaci s %1$s a %2$s již nejsou ověřené.</string>
+  <string name="IdentityUtil_unverified_banner_many">Vaše bezpečnostní kódy pro komunikaci s %1$s, %2$s a %3$s již nejsou ověřené.</string>
+  <string name="IdentityUtil_unverified_dialog_one">Vaše bezpečnostní kódy pro komunikaci s %1$s již nejsou ověřené. To může znamenat, že se někdo pokouší zachytit vaši konverzaci, nebo že si jen %1$s přeinstaloval Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Vaše bezpečnostní kódy pro komunikaci s %1$s a %2$s již nejsou ověřené. To může znamenat, že se někdo pokouší zachytit vaši konverzaci, nebo jen že si přeinstalovali Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Vaše bezpečnostní kódy pro komunikaci s %1$s, %2$s a %3$s již nejsou ověřené. To může znamenat, že se někdo pokouší zachytit vaši konverzaci, nebo jen že si přeinstalovali Signal.</string>
+  <string name="IdentityUtil_untrusted_dialog_one">Váš bezpečnostní kód s %s se právě změnil</string>
+  <string name="IdentityUtil_untrusted_dialog_two">Váš bezpečnostní kódy pro komunikaci s %1$s a %2$s se právě změnily</string>
+  <string name="IdentityUtil_untrusted_dialog_many">Váš bezpečnostní kódy pro komunikaci s %1$s, %2$s a %3$s se právě změnily</string>
+  <plurals name="identity_others">
+    <item quantity="one">%d ostatní</item>
+    <item quantity="few">%d ostatní</item>
+    <item quantity="other">%d ostatních</item>
+  </plurals>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Hledat GIFy an nálepky</string>
   <!--giphy_fragment-->
@@ -772,7 +793,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Žádná media</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">ZKONTROLOVAT</string>
+  <string name="message_recipients_list_item__view">ZOBRAZIT</string>
   <string name="message_recipients_list_item__resend">ZNOVU POSLAT</string>
   <string name="message_recipients_list_item__resending">Posílám znovu...</string>
   <!--GroupUtil-->
@@ -797,7 +818,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="recipient_preferences__block">Blokovat</string>
   <string name="recipient_preferences__color">Barva</string>
   <string name="recipient_preferences__color_for_this_contact">Barva tohoto kontaktu</string>
-  <string name="recipient_preferences__verify_safety_number">Kontrola bezpečnostního kódu.</string>
+  <string name="recipient_preferences__view_safety_number">Zobrazit bezpečnostní kód</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal volání</string>
   <string name="redphone_call_controls__end_call">ukončit hovor</string>
@@ -869,8 +890,10 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="recipients_panel__to"><small>Zadejte jméno nebo číslo</small></string>
   <string name="recipients_panel__add_members">Přidat členy</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Pokud chcete zkontrolovat bezpečnost šifrované komunikace s %s, porovnejte číslo nahoře na vašem zařízení s číslem na zařízení vašeho kontatku. Můžete také oskenovat kód na jeho telefonu, nebo jej požádat, aby oskenoval kód na vašem zařízení. <a href="https://whispersystems.org/redirect/safety-numbers">Zjistěte více o bezpečnostních kódech.</a>.]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Pokud chcete zkontrolovat bezpečnost šifrované komunikace s %s, porovnejte čísla nahoře na vašem zařízení s čísly na zařízení vašeho kontaktu. Můžete také oskenovat kód na jeho telefonu, nebo jej požádat, aby oskenoval kód na vašem zařízení. <a href="https://whispersystems.org/redirect/safety-numbers">Zjistěte více o kontrolních kódech.</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Klepnutím skenovat</string>
+  <string name="verify_display_fragment__loading">Načítám...</string>
+  <string name="verify_display_fragment__verified">Ověřeno</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Sdílet bezpečnostní kód</string>
   <!--message_details_header-->
@@ -1040,7 +1063,7 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="preferences_app_protection__app_access">Přístup aplikace</string>
   <string name="preferences_app_protection__communication">Komunikace</string>
   <string name="preferences_chats__chats">Konverzace</string>
-  <string name="preferences_notifications__message_notifications">Upozornění na zprávy</string>
+  <string name="preferences_notifications__messages">Zprávy</string>
   <string name="preferences_notifications__events">Události</string>
   <string name="preferences_notifications__in_chat_sounds">Zvuk během konverzace</string>
   <string name="preferences_notifications__show">Zobrazit</string>
@@ -1179,5 +1202,9 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="trimmer__old_messages_successfully_deleted">Staré zprávy byly úspěšně smazány.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona přenosu</string>
+  <string name="UntrustedSendDialog_send_message">Odeslat zprávu?</string>
+  <string name="UntrustedSendDialog_send">Odeslat</string>
+  <string name="UnverifiedSendDialog_send_message">Odeslat zprávu?</string>
+  <string name="UnverifiedSendDialog_send">Odeslat</string>
   <!--EOF-->
 </resources>
