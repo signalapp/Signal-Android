@@ -271,10 +271,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     initializeSecurity(false, isDefaultSms).addListener(new AssertedSuccessListener<Boolean>() {
       @Override
       public void onSuccess(Boolean result) {
+        initializeProfiles();
         initializeDraft();
       }
     });
-    initializeProfiles();
   }
 
   @Override
@@ -1268,6 +1268,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeProfiles() {
+    if (!isSecureText) {
+      Log.w(TAG, "SMS contact, no profile fetch needed.");
+      return;
+    }
+
     ApplicationContext.getInstance(this)
                       .getJobManager()
                       .add(new RetrieveProfileJob(this, recipients));
