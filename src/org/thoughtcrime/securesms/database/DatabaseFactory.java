@@ -872,7 +872,7 @@ public class DatabaseFactory {
         db.execSQL("ALTER TABLE identities ADD COLUMN timestamp INTEGER DEFAULT 0");
         db.execSQL("ALTER TABLE identities ADD COLUMN first_use INTEGER DEFAULT 0");
         db.execSQL("ALTER TABLE identities ADD COLUMN nonblocking_approval INTEGER DEFAULT 0");
-        db.execSQL("ALTER TABLE identities ADD COLuMN verified INTEGER DEFAULT 0");
+        db.execSQL("ALTER TABLE identities ADD COLUMN verified INTEGER DEFAULT 0");
 
         db.execSQL("DROP INDEX archived_index");
         db.execSQL("CREATE INDEX IF NOT EXISTS archived_count_index ON thread (archived, message_count)");
