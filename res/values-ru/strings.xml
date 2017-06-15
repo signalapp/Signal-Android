@@ -1199,5 +1199,9 @@ SMS-подтверждения...
   <string name="trimmer__old_messages_successfully_deleted">Старые сообщения успешно удалены</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Иконка транспорта</string>
+  <string name="UntrustedSendDialog_send_message">Отправить сообщение?</string>
+  <string name="UntrustedSendDialog_send">Отправить</string>
+  <string name="UnverifiedSendDialog_send_message">Отправить сообщение?</string>
+  <string name="UnverifiedSendDialog_send">Отправить</string>
   <!--EOF-->
 </resources>

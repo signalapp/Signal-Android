@@ -775,6 +775,14 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="IdentityUtil_unverified_dialog_two">Twoje numery bezpieczeństwa z %1$s  i %2$s zmieniły się i nie są już zweryfikowane. To może oznaczać, że ktoś próbuje przechwycić Twoją komunikację, lub że rozmówcy przeinstalowali Signal.</string>
   <string name="IdentityUtil_unverified_dialog_many">Twoje numery bezpieczeństwa z %1$s, %2$s i %3$s  zmieniły się. To może oznaczać, że ktoś próbuje przechwycić Twoją komunikację, lub że po rozmówcy przeinstalowali Signal.</string>
   <string name="IdentityUtil_untrusted_dialog_one">Twój numer bezpieczeństwa z %s zmienił się.</string>
+  <string name="IdentityUtil_untrusted_dialog_two">Twoje numery bezpieczeństwa z %1$s i %2$s zmieniły się.</string>
+  <string name="IdentityUtil_untrusted_dialog_many">Twoje numery bezpieczeństwa z %1$s, %2$s i %3$s zmieniły się.</string>
+  <plurals name="identity_others">
+    <item quantity="one">%d inny</item>
+    <item quantity="few">%d innych</item>
+    <item quantity="many">%d innych</item>
+    <item quantity="other">%d innych</item>
+  </plurals>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Szukaj gifów i naklejek</string>
   <!--giphy_fragment-->
@@ -1070,6 +1078,7 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="preferences_app_protection__app_access">Dostęp aplikacji</string>
   <string name="preferences_app_protection__communication">Komunikacja</string>
   <string name="preferences_chats__chats">Rozmowy</string>
+  <string name="preferences_notifications__messages">Wiadomości</string>
   <string name="preferences_notifications__events">Zdarzenia</string>
   <string name="preferences_notifications__in_chat_sounds">Dźwięki podczas rozmowy</string>
   <string name="preferences_notifications__show">Pokazuj</string>
