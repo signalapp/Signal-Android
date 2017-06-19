@@ -178,26 +178,22 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   private void initializeWebRtc() {
-    Set<String> HARDWARE_AEC_WHITELIST = new HashSet<String>() {{
-      add("D5803");
-      add("FP1");
-      add("SM-A500FU");
-      add("XT1092");
+    Set<String> HARDWARE_AEC_BLACKLIST = new HashSet<String>() {{
+      add("Pixel");
+      add("Pixel XL");
     }};
 
     Set<String> OPEN_SL_ES_WHITELIST = new HashSet<String>() {{
+      add("Pixel");
+      add("Pixel XL");
     }};
 
     if (Build.VERSION.SDK_INT >= 11) {
-      if (HARDWARE_AEC_WHITELIST.contains(Build.MODEL)) {
-        WebRtcAudioUtils.setWebRtcBasedAcousticEchoCanceler(false);
-      } else {
+      if (HARDWARE_AEC_BLACKLIST.contains(Build.MODEL)) {
         WebRtcAudioUtils.setWebRtcBasedAcousticEchoCanceler(true);
       }
 
-      if (OPEN_SL_ES_WHITELIST.contains(Build.MODEL)) {
-        WebRtcAudioManager.setBlacklistDeviceForOpenSLESUsage(false);
-      } else {
+      if (!OPEN_SL_ES_WHITELIST.contains(Build.MODEL)) {
         WebRtcAudioManager.setBlacklistDeviceForOpenSLESUsage(true);
       }
 
