@@ -589,7 +589,10 @@ public class SmsDatabase extends MessagingDatabase {
       }
 
       notifyConversationListeners(threadId);
-      jobManager.add(new TrimThreadJob(context, threadId));
+
+      if (!message.isIdentityUpdate() && !message.isIdentityVerified() && !message.isIdentityDefault()) {
+        jobManager.add(new TrimThreadJob(context, threadId));
+      }
 
       return Optional.of(new InsertResult(messageId, threadId));
     }
@@ -637,10 +640,16 @@ public class SmsDatabase extends MessagingDatabase {
       insertListener.onComplete();
     }
 
-    DatabaseFactory.getThreadDatabase(context).update(threadId, true);
-    DatabaseFactory.getThreadDatabase(context).setLastSeen(threadId);
+    if (!message.isIdentityVerified() && !message.isIdentityDefault()) {
+      DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+      DatabaseFactory.getThreadDatabase(context).setLastSeen(threadId);
+    }
+
     notifyConversationListeners(threadId);
-    jobManager.add(new TrimThreadJob(context, threadId));
+
+    if (!message.isIdentityVerified() && !message.isIdentityDefault()) {
+      jobManager.add(new TrimThreadJob(context, threadId));
+    }
 
     return messageId;
   }
