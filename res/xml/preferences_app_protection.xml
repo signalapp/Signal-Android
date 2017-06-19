@@ -36,12 +36,6 @@
     <PreferenceCategory android:title="@string/preferences_app_protection__communication">
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
                 android:defaultValue="false"
-                android:key="pref_approve_identity_changes"
-                android:title="@string/preferences_app_protection__safety_numbers_approval"
-                android:summary="@string/preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change"/>
-
-        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
-                android:defaultValue="false"
                 android:key="pref_turn_only"
                 android:title="@string/preferences_advanced__always_relay_calls"
                 android:summary="@string/preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address"/>
