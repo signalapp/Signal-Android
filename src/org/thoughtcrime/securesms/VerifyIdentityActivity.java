@@ -35,8 +35,6 @@ import android.os.Vibrator;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
-import android.support.v4.animation.AnimatorCompatHelper;
-import android.support.v4.animation.ValueAnimatorCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.SwitchCompat;
@@ -148,21 +146,9 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
   }
 
   @Override
-  public boolean onPrepareOptionsMenu(Menu menu) {
-    super.onPrepareOptionsMenu(menu);
-
-    menu.clear();
-    MenuInflater inflater = this.getMenuInflater();
-    inflater.inflate(R.menu.verify_identity, menu);
-
-    return true;
-  }
-
-  @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
-      case R.id.verify_identity__share: handleShare();  return true;
-      case android.R.id.home:           finish();       return true;
+      case android.R.id.home: finish(); return true;
     }
 
     return false;
@@ -209,24 +195,6 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       getWindow().setStatusBarColor(color.toStatusBarColor(this));
     }
   }
-
-  private void handleShare() {
-    String shareString =
-        getString(R.string.VerifyIdentityActivity_our_signal_safety_number) + "\n" +
-        displayFragment.getFormattedSafetyNumbers() + "\n";
-
-    Intent intent = new Intent();
-    intent.setAction(Intent.ACTION_SEND);
-    intent.putExtra(Intent.EXTRA_TEXT, shareString);
-    intent.setType("text/plain");
-
-    try {
-      startActivity(Intent.createChooser(intent, getString(R.string.VerifyIdentityActivity_share_safety_number_via)));
-    } catch (ActivityNotFoundException e) {
-      Toast.makeText(VerifyIdentityActivity.this, R.string.VerifyIdentityActivity_no_app_to_share_to, Toast.LENGTH_LONG).show();
-    }
-  }
-
 
   public static class VerifyDisplayFragment extends Fragment implements Recipient.RecipientModifiedListener, CompoundButton.OnCheckedChangeListener {
 
@@ -314,10 +282,12 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
         @Override
         protected void onPostExecute(Fingerprint fingerprint) {
           VerifyDisplayFragment.this.fingerprint = fingerprint;
-
           setFingerprintViews(fingerprint, true);
+          getActivity().supportInvalidateOptionsMenu();
         }
       }.execute();
+
+      setHasOptionsMenu(true);
     }
 
     @Override
@@ -345,7 +315,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
         animateVerifiedSuccess();
       } else if (animateFailureOnDraw) {
         animateFailureOnDraw = false;
-        animateVerifiedFailure();;
+        animateVerifiedFailure();
       }
     }
 
@@ -361,18 +331,39 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
     {
       super.onCreateContextMenu(menu, view, menuInfo);
 
-      MenuInflater inflater = getActivity().getMenuInflater();
-      inflater.inflate(R.menu.verify_display_fragment_context_menu, menu);
-
+      if (fingerprint != null) {
+        MenuInflater inflater = getActivity().getMenuInflater();
+        inflater.inflate(R.menu.verify_display_fragment_context_menu, menu);
+      }
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
+      if (fingerprint == null) return super.onContextItemSelected(item);
+
       switch (item.getItemId()) {
-        case R.id.menu_copy:    handleCopyToClipboard();      return true;
-        case R.id.menu_compare: handleCompareWithClipboard(); return true;
+        case R.id.menu_copy:    handleCopyToClipboard(fingerprint, codes.length); return true;
+        case R.id.menu_compare: handleCompareWithClipboard(fingerprint);          return true;
         default:                return super.onContextItemSelected(item);
       }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+      super.onCreateOptionsMenu(menu, inflater);
+
+      if (fingerprint != null) {
+        inflater.inflate(R.menu.verify_identity, menu);
+      }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+      switch (item.getItemId()) {
+        case R.id.verify_identity__share: handleShare(fingerprint, codes.length);  return true;
+      }
+
+      return false;
     }
 
     public void setScannedFingerprint(String scanned) {
@@ -401,13 +392,14 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       this.clickListener = listener;
     }
 
-    public String getFormattedSafetyNumbers() {
-      StringBuilder result = new StringBuilder();
+    private @NonNull String getFormattedSafetyNumbers(@NonNull Fingerprint fingerprint, int segmentCount) {
+      String[]      segments = getSegments(fingerprint, segmentCount);
+      StringBuilder result   = new StringBuilder();
 
-      for (int i = 0; i < codes.length; i++) {
-        result.append(codes[i].getText());
+      for (int i = 0; i < segments.length; i++) {
+        result.append(segments[i]);
 
-        if (i != codes.length - 1) {
+        if (i != segments.length - 1) {
           if (((i+1) % 4) == 0) result.append('\n');
           else                  result.append(' ');
         }
@@ -416,11 +408,11 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       return result.toString();
     }
 
-    private void handleCopyToClipboard() {
-      Util.writeTextToClipboard(getActivity(), getFormattedSafetyNumbers());
+    private void handleCopyToClipboard(Fingerprint fingerprint, int segmentCount) {
+      Util.writeTextToClipboard(getActivity(), getFormattedSafetyNumbers(fingerprint, segmentCount));
     }
 
-    private void handleCompareWithClipboard() {
+    private void handleCompareWithClipboard(Fingerprint fingerprint) {
       String clipboardData = Util.readTextFromClipboard(getActivity());
 
       if (clipboardData == null) {
@@ -442,19 +434,34 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       }
     }
 
+    private void handleShare(@NonNull Fingerprint fingerprint, int segmentCount) {
+      String shareString =
+          getString(R.string.VerifyIdentityActivity_our_signal_safety_number) + "\n" +
+              getFormattedSafetyNumbers(fingerprint, segmentCount) + "\n";
+
+      Intent intent = new Intent();
+      intent.setAction(Intent.ACTION_SEND);
+      intent.putExtra(Intent.EXTRA_TEXT, shareString);
+      intent.setType("text/plain");
+
+      try {
+        startActivity(Intent.createChooser(intent, getString(R.string.VerifyIdentityActivity_share_safety_number_via)));
+      } catch (ActivityNotFoundException e) {
+        Toast.makeText(getActivity(), R.string.VerifyIdentityActivity_no_app_to_share_to, Toast.LENGTH_LONG).show();
+      }
+    }
+
     private void setRecipientText(Recipient recipient) {
       description.setText(Html.fromHtml(String.format(getActivity().getString(R.string.verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s), recipient.toShortString())));
       description.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     private void setFingerprintViews(Fingerprint fingerprint, boolean animate) {
-      String digits   = fingerprint.getDisplayableFingerprint().getDisplayText();
-      int    partSize = digits.length() / codes.length;
+      String[] segments = getSegments(fingerprint, codes.length);
 
       for (int i=0;i<codes.length;i++) {
-        String substring = digits.substring(i * partSize, (i * partSize) + partSize);
-        if (animate) setCodeSegment(codes[i], substring);
-        else         codes[i].setText(substring);
+        if (animate) setCodeSegment(codes[i], segments[i]);
+        else         codes[i].setText(segments[i]);
       }
 
       byte[] qrCodeData   = fingerprint.getScannableFingerprint().getSerialized();
@@ -497,6 +504,18 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       } else {
         codeView.setText(segment);
       }
+    }
+
+    private String[] getSegments(Fingerprint fingerprint, int segmentCount) {
+      String[] segments = new String[segmentCount];
+      String   digits   = fingerprint.getDisplayableFingerprint().getDisplayText();
+      int      partSize = digits.length() / segmentCount;
+
+      for (int i=0;i<segmentCount;i++) {
+        segments[i] = digits.substring(i * partSize, (i * partSize) + partSize);
+      }
+
+      return segments;
     }
 
     private Bitmap createVerifiedBitmap(int width, int height, @DrawableRes int id) {
