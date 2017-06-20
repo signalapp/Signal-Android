@@ -99,11 +99,13 @@
   <string-array name="pref_theme_entries">
       <item>@string/preferences__light_theme</item>
       <item>@string/preferences__dark_theme</item>
+      <item>@string/preferences__autodark_theme</item>
   </string-array>
 
   <string-array name="pref_theme_values" translatable="false">
       <item>light</item>
       <item>dark</item>
+      <item>auto_dark</item>
   </string-array>
 
   <string-array name="pref_led_color_entries">
@@ -305,4 +307,5 @@
         <item>2</item>
     </string-array>
 
+    <string name="preferences__autodark_theme">Auto Dark</string>
 </resources>

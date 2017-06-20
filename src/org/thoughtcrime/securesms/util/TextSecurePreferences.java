@@ -109,6 +109,9 @@ public class TextSecurePreferences {
   private static final String MULTI_DEVICE_PROVISIONED_PREF    = "pref_multi_device";
   public  static final String DIRECT_CAPTURE_CAMERA_ID         = "pref_direct_capture_camera_id";
   private static final String ALWAYS_RELAY_CALLS_PREF          = "pref_turn_only";
+  private static final String SUNRISE_TIME_PREF                = "sunrise_time";
+  private static final String SUNSET_TIME_PREF                 = "sunset_time";
+  private static final String TIME_ELAPSED_PREF                = "time_elapsed_sunset_time";
 
   public static int getNotificationPriority(Context context) {
     return Integer.valueOf(getStringPreference(context, NOTIFICATION_PRIORITY_PREF, String.valueOf(NotificationCompat.PRIORITY_HIGH)));
@@ -608,6 +611,30 @@ public class TextSecurePreferences {
 
   public static @NonNull Set<String> getRoamingMediaDownloadAllowed(Context context) {
     return getMediaDownloadAllowed(context, MEDIA_DOWNLOAD_ROAMING_PREF, R.array.pref_media_download_roaming_default);
+  }
+
+  public static long getSunriseTime(Context context) {
+    return getLongPreference(context, SUNRISE_TIME_PREF, -1);
+  }
+
+  public static long getSunsetTime(Context context) {
+    return getLongPreference(context, SUNSET_TIME_PREF, -1);
+  }
+
+  public static long getSunsetLastModifiedTime(Context context) {
+    return getLongPreference(context, TIME_ELAPSED_PREF, -1);
+  }
+
+  public static void setSunriseTime(Context context, long sunriseTimeMillis) {
+    setLongPreference(context, SUNRISE_TIME_PREF, sunriseTimeMillis);
+  }
+
+  public static void setSunsetTime(Context context, long sunsetTimeMillis) {
+    setLongPreference(context, SUNSET_TIME_PREF, sunsetTimeMillis);
+  }
+
+  public static void setSunsetLastModifiedTime(Context context, long sunsetLastModifiedTimeMillis) {
+    setLongPreference(context, TIME_ELAPSED_PREF, sunsetLastModifiedTimeMillis);
   }
 
   private static @NonNull Set<String> getMediaDownloadAllowed(Context context, String key, @ArrayRes int defaultValuesRes) {
