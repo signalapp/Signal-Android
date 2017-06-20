@@ -51,6 +51,6 @@ public class PushNotificationReceiveJob extends PushReceivedJob implements Injec
   @Override
   public void onCanceled() {
     Log.w(TAG, "***** Failed to download pending message!");
-    MessageNotifier.notifyMessagesPending(getContext());
+//    MessageNotifier.notifyMessagesPending(getContext());
   }
 }
