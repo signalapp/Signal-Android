@@ -1203,6 +1203,7 @@
     <string name="preferences__linked_devices">Linked devices</string>
     <string name="preferences__light_theme">Light</string>
     <string name="preferences__dark_theme">Dark</string>
+    <string name="preferences__auto_dark__theme">Automatic dark</string>
     <string name="preferences__appearance">Appearance</string>
     <string name="preferences__theme">Theme</string>
     <string name="preferences__default">Default</string>

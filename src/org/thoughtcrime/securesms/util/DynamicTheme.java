@@ -6,7 +6,7 @@ import android.content.Intent;
 import org.thoughtcrime.securesms.R;
 
 public class DynamicTheme {
-
+  public static final String AUTO_DARK = "auto_dark";
   public static final String DARK  = "dark";
   public static final String LIGHT = "light";
 
@@ -25,12 +25,19 @@ public class DynamicTheme {
       activity.startActivity(intent);
       OverridePendingTransition.invoke(activity);
     }
+
+    String theme = TextSecurePreferences.getTheme(activity);
+    if (theme.equals(AUTO_DARK))
+      new AutoDarkModeManager(activity).listenForCurrentActivityIfNecessary();
   }
 
   protected int getSelectedTheme(Activity activity) {
     String theme = TextSecurePreferences.getTheme(activity);
 
     if (theme.equals(DARK)) return R.style.TextSecure_DarkTheme;
+
+    if (theme.equals(AUTO_DARK) && AutoDarkModeManager.shouldShowDarkTheme())
+      return R.style.TextSecure_DarkTheme;
 
     return R.style.TextSecure_LightTheme;
   }
