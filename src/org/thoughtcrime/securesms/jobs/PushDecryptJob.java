@@ -392,11 +392,9 @@ public class PushDecryptJob extends ContextJob {
   }
 
   private void handleSynchronizeVerifiedMessage(@NonNull MasterSecretUnion masterSecret,
-                                                @NonNull List<VerifiedMessage> verifiedMessages)
+                                                @NonNull VerifiedMessage verifiedMessage)
   {
-//    for (VerifiedMessage verifiedMessage : verifiedMessages) {
-//      IdentityUtil.processVerifiedMessage(context, masterSecret, verifiedMessage);
-//    }
+    IdentityUtil.processVerifiedMessage(context, masterSecret, verifiedMessage);
   }
 
   private void handleSynchronizeSentMessage(@NonNull MasterSecretUnion masterSecret,
@@ -440,10 +438,6 @@ public class PushDecryptJob extends ContextJob {
       ApplicationContext.getInstance(context)
                         .getJobManager()
                         .add(new MultiDeviceContactUpdateJob(getContext()));
-
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new MultiDeviceVerifiedUpdateJob(getContext()));
     }
 
     if (message.isGroupsRequest()) {

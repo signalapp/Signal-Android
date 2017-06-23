@@ -6,8 +6,6 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -16,14 +14,11 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.MessageRetrievalService;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.InvalidKeyException;
-import org.whispersystems.libsignal.SignalProtocolAddress;
-import org.whispersystems.libsignal.state.IdentityKeyStore;
-import org.whispersystems.libsignal.state.SessionRecord;
-import org.whispersystems.libsignal.state.SessionStore;
 import org.whispersystems.signalservice.api.SignalServiceMessagePipe;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
@@ -33,8 +28,6 @@ import org.whispersystems.signalservice.api.util.InvalidNumberException;
 import java.io.IOException;
 
 import javax.inject.Inject;
-
-import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
 
 public class RetrieveProfileJob extends ContextJob implements InjectableType {
 
@@ -98,20 +91,7 @@ public class RetrieveProfileJob extends ContextJob implements InjectableType {
       return;
     }
 
-    synchronized (SESSION_LOCK) {
-      IdentityKeyStore      identityKeyStore = new TextSecureIdentityKeyStore(context);
-      SessionStore          sessionStore     = new TextSecureSessionStore(context);
-      SignalProtocolAddress address          = new SignalProtocolAddress(number, 1);
-
-      if (identityKeyStore.saveIdentity(address, identityKey)) {
-        if (sessionStore.containsSession(address)) {
-          SessionRecord sessionRecord = sessionStore.loadSession(address);
-          sessionRecord.archiveCurrentState();
-
-          sessionStore.storeSession(address, sessionRecord);
-        }
-      }
-    }
+    IdentityUtil.saveIdentity(context, number, identityKey);
   }
 
   private void handleGroupRecipient(Recipient group)

@@ -10,6 +10,8 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
+import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
+import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
@@ -29,6 +31,11 @@ import org.thoughtcrime.securesms.sms.OutgoingIdentityVerifiedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
+import org.whispersystems.libsignal.IdentityKey;
+import org.whispersystems.libsignal.SignalProtocolAddress;
+import org.whispersystems.libsignal.state.IdentityKeyStore;
+import org.whispersystems.libsignal.state.SessionRecord;
+import org.whispersystems.libsignal.state.SessionStore;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
@@ -126,38 +133,6 @@ public class IdentityUtil {
     }
   }
 
-  public static void processVerifiedMessage(Context context, MasterSecretUnion masterSecret, VerifiedMessage verifiedMessage) {
-    synchronized (SESSION_LOCK) {
-      IdentityDatabase         identityDatabase = DatabaseFactory.getIdentityDatabase(context);
-      Recipient                recipient        = RecipientFactory.getRecipientsFromString(context, verifiedMessage.getDestination(), true).getPrimaryRecipient();
-      Optional<IdentityRecord> identityRecord   = identityDatabase.getIdentity(recipient.getRecipientId());
-
-      if (!identityRecord.isPresent() && verifiedMessage.getVerified() == VerifiedMessage.VerifiedState.DEFAULT) {
-        Log.w(TAG, "No existing record for default status");
-        return;
-      }
-
-      if (identityRecord.isPresent()                                                          &&
-          identityRecord.get().getIdentityKey().equals(verifiedMessage.getIdentityKey())      &&
-          identityRecord.get().getVerifiedStatus() != IdentityDatabase.VerifiedStatus.DEFAULT &&
-          verifiedMessage.getVerified() == VerifiedMessage.VerifiedState.DEFAULT)
-      {
-        identityDatabase.setVerified(recipient.getRecipientId(), identityRecord.get().getIdentityKey(), IdentityDatabase.VerifiedStatus.DEFAULT);
-        markIdentityVerified(context, masterSecret, recipient, false, true);
-      }
-
-      if (verifiedMessage.getVerified() == VerifiedMessage.VerifiedState.VERIFIED &&
-          (!identityRecord.isPresent() ||
-          (identityRecord.isPresent() && !identityRecord.get().getIdentityKey().equals(verifiedMessage.getIdentityKey())) ||
-          (identityRecord.isPresent() && identityRecord.get().getVerifiedStatus() != IdentityDatabase.VerifiedStatus.VERIFIED)))
-      {
-        identityDatabase.saveIdentity(recipient.getRecipientId(), verifiedMessage.getIdentityKey(),
-                                      IdentityDatabase.VerifiedStatus.VERIFIED, false, System.currentTimeMillis(), true);
-        markIdentityVerified(context, masterSecret, recipient, true, true);
-      }
-    }
-  }
-
   public static void markIdentityUpdate(Context context, Recipient recipient) {
     long                 time          = System.currentTimeMillis();
     SmsDatabase          smsDatabase   = DatabaseFactory.getSmsDatabase(context);
@@ -192,6 +167,56 @@ public class IdentityUtil {
       MessageNotifier.updateNotification(context, null, insertResult.get().getThreadId());
     }
   }
+
+  public static void saveIdentity(Context context, String number, IdentityKey identityKey) {
+    synchronized (SESSION_LOCK) {
+      IdentityKeyStore      identityKeyStore = new TextSecureIdentityKeyStore(context);
+      SessionStore          sessionStore     = new TextSecureSessionStore(context);
+      SignalProtocolAddress address          = new SignalProtocolAddress(number, 1);
+
+      if (identityKeyStore.saveIdentity(address, identityKey)) {
+        if (sessionStore.containsSession(address)) {
+          SessionRecord sessionRecord = sessionStore.loadSession(address);
+          sessionRecord.archiveCurrentState();
+
+          sessionStore.storeSession(address, sessionRecord);
+        }
+      }
+    }
+  }
+
+  public static void processVerifiedMessage(Context context, MasterSecretUnion masterSecret, VerifiedMessage verifiedMessage) {
+    synchronized (SESSION_LOCK) {
+      IdentityDatabase         identityDatabase = DatabaseFactory.getIdentityDatabase(context);
+      Recipient                recipient        = RecipientFactory.getRecipientsFromString(context, verifiedMessage.getDestination(), true).getPrimaryRecipient();
+      Optional<IdentityRecord> identityRecord   = identityDatabase.getIdentity(recipient.getRecipientId());
+
+      if (!identityRecord.isPresent() && verifiedMessage.getVerified() == VerifiedMessage.VerifiedState.DEFAULT) {
+        Log.w(TAG, "No existing record for default status");
+        return;
+      }
+
+      if (verifiedMessage.getVerified() == VerifiedMessage.VerifiedState.DEFAULT              &&
+          identityRecord.isPresent()                                                          &&
+          identityRecord.get().getIdentityKey().equals(verifiedMessage.getIdentityKey())      &&
+          identityRecord.get().getVerifiedStatus() != IdentityDatabase.VerifiedStatus.DEFAULT)
+      {
+        identityDatabase.setVerified(recipient.getRecipientId(), identityRecord.get().getIdentityKey(), IdentityDatabase.VerifiedStatus.DEFAULT);
+        markIdentityVerified(context, masterSecret, recipient, false, true);
+      }
+
+      if (verifiedMessage.getVerified() == VerifiedMessage.VerifiedState.VERIFIED &&
+          (!identityRecord.isPresent() ||
+              (identityRecord.isPresent() && !identityRecord.get().getIdentityKey().equals(verifiedMessage.getIdentityKey())) ||
+              (identityRecord.isPresent() && identityRecord.get().getVerifiedStatus() != IdentityDatabase.VerifiedStatus.VERIFIED)))
+      {
+        saveIdentity(context, verifiedMessage.getDestination(), verifiedMessage.getIdentityKey());
+        identityDatabase.setVerified(recipient.getRecipientId(), verifiedMessage.getIdentityKey(), IdentityDatabase.VerifiedStatus.VERIFIED);
+        markIdentityVerified(context, masterSecret, recipient, true, true);
+      }
+    }
+  }
+
 
   public static @Nullable String getUnverifiedBannerDescription(@NonNull Context context,
                                                                 @NonNull List<Recipient> unverified)

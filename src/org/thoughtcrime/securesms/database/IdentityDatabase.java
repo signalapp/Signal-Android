@@ -142,9 +142,14 @@ public class IdentityDatabase extends Database {
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(VERIFIED, verifiedStatus.toInt());
 
-    database.update(TABLE_NAME, contentValues, RECIPIENT + " = ? AND " + IDENTITY_KEY + " = ?",
-                    new String[] {String.valueOf(recipientId),
-                                  Base64.encodeBytes(identityKey.serialize())});
+    int updated = database.update(TABLE_NAME, contentValues, RECIPIENT + " = ? AND " + IDENTITY_KEY + " = ?",
+                                  new String[] {String.valueOf(recipientId),
+                                                Base64.encodeBytes(identityKey.serialize())});
+
+    if (updated > 0) {
+      Optional<IdentityRecord> record = getIdentity(recipientId);
+      if (record.isPresent()) EventBus.getDefault().post(record.get());
+    }
   }
 
   private IdentityRecord getIdentityRecord(@NonNull Cursor cursor) throws IOException, InvalidKeyException {
