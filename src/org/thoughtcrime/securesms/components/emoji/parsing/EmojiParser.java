@@ -56,6 +56,10 @@ public class EmojiParser {
           if (Fitzpatrick.fitzpatrickFromUnicode(text, emojiEnd) != null) {
             emojiEnd += 2;
           }
+
+          if (VariationSelectors.match(text.charAt(emojiEnd))) {
+            emojiEnd += 1;
+          }
         }
 
         results.add(new Candidate(i, emojiEnd, drawInfo));

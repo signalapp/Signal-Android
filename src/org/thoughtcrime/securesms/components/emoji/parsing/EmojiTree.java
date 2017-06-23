@@ -56,6 +56,8 @@ public class EmojiTree {
     for (int i=startPosition; i<endPosition; i++) {
       char character = sequence.charAt(i);
 
+      if (VariationSelectors.match(character)) continue;
+
       if (!tree.hasChild(character)) {
         return Matches.IMPOSSIBLE;
       }
@@ -71,6 +73,8 @@ public class EmojiTree {
 
     for (int i=startPosition; i<endPostiion; i++) {
       char character = unicode.charAt(i);
+
+      if (VariationSelectors.match(character)) continue;
 
       if (!tree.hasChild(character)) {
         return null;
