@@ -28,7 +28,7 @@ public class DynamicTheme {
 
     String theme = TextSecurePreferences.getTheme(activity);
     if (theme.equals(AUTO_DARK))
-      new AutoDarkModeManager(activity).listenForCurrentActivityIfNecessary();
+      AutoDarkModeManager.listenForCurrentActivityIfNecessary(activity);
   }
 
   protected int getSelectedTheme(Activity activity) {
