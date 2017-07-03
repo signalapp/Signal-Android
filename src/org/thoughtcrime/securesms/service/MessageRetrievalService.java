@@ -87,6 +87,8 @@ public class MessageRetrievalService extends Service implements InjectableType, 
     if (retrievalThread != null) {
       retrievalThread.stopThread();
     }
+
+    sendBroadcast(new Intent("org.thoughtcrime.securesms.RESTART"));
   }
 
   @Override
@@ -236,7 +238,7 @@ public class MessageRetrievalService extends Service implements InjectableType, 
       Log.w(TAG, "Exiting...");
     }
 
-    public void stopThread() {
+    private void stopThread() {
       stopThread.set(true);
     }
 

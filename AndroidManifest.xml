@@ -514,6 +514,13 @@
         </intent-filter>
     </receiver>
 
+    <receiver android:name=".service.BootReceiver">
+        <intent-filter>
+            <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            <action android:name="org.thoughtcrime.securesms.RESTART"/>
+        </intent-filter>
+    </receiver>
+
     <receiver android:name=".service.DirectoryRefreshListener">
         <intent-filter>
             <action android:name="android.intent.action.BOOT_COMPLETED" />
