@@ -1401,7 +1401,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Drafts drafts = new Drafts();
 
     if (!Util.isEmpty(composeText)) {
-      drafts.add(new Draft(Draft.TEXT, composeText.getText().toString()));
+      drafts.add(new Draft(Draft.TEXT, composeText.getTextTrimmed()));
     }
 
     for (Slide slide : attachmentManager.buildSlideDeck().getSlides()) {
@@ -1480,7 +1480,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void calculateCharactersRemaining() {
-    String          messageBody     = composeText.getText().toString();
+    String          messageBody     = composeText.getTextTrimmed();
     TransportOption transportOption = sendButton.getSelectedTransport();
     CharacterState  characterState  = transportOption.calculateCharacters(messageBody);
 
@@ -1537,7 +1537,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private String getMessage() throws InvalidMessageException {
-    String rawText = composeText.getText().toString();
+    String rawText = composeText.getTextTrimmed();
 
     if (rawText.length() < 1 && !attachmentManager.isAttachmentPresent())
       throw new InvalidMessageException(getString(R.string.ConversationActivity_message_is_empty_exclamation));
@@ -1715,7 +1715,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void updateToggleButtonState() {
-    if (composeText.getText().length() == 0 && !attachmentManager.isAttachmentPresent()) {
+    if (composeText.getTextTrimmed().length() == 0 && !attachmentManager.isAttachmentPresent()) {
       buttonToggle.display(attachButton);
       quickAttachmentToggle.show();
     } else {
@@ -1957,14 +1957,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count,int after) {
-      beforeLength = composeText.getText().length();
+      beforeLength = composeText.getTextTrimmed().length();
     }
 
     @Override
     public void afterTextChanged(Editable s) {
       calculateCharactersRemaining();
 
-      if (composeText.getText().length() == 0 || beforeLength == 0) {
+      if (composeText.getTextTrimmed().length() == 0 || beforeLength == 0) {
         composeText.postDelayed(new Runnable() {
           @Override
           public void run() {
