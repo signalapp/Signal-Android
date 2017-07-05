@@ -175,6 +175,24 @@ public class TextSecureSessionStore implements SessionStore {
     }
   }
 
+  public void archiveAllSessions() {
+    synchronized (FILE_LOCK) {
+      File directory = getSessionDirectory();
+
+      for (File session : directory.listFiles()) {
+        if (session.isFile()) {
+          SignalProtocolAddress address = getAddressName(session);
+
+          if (address != null) {
+            SessionRecord sessionRecord = loadSession(address);
+            sessionRecord.archiveCurrentState();
+            storeSession(address, sessionRecord);
+          }
+        }
+      }
+    }
+  }
+
   private File getSessionFile(SignalProtocolAddress address) {
     return new File(getSessionDirectory(), getSessionName(address));
   }

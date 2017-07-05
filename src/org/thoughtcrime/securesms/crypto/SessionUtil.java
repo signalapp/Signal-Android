@@ -41,6 +41,9 @@ public class SessionUtil {
         }
       }
     }
+  }
 
+  public static void archiveAllSessions(Context context) {
+    new TextSecureSessionStore(context).archiveAllSessions();
   }
 }

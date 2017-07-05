@@ -91,26 +91,6 @@ public class PreKeyUtil {
     }
   }
 
-  public static PreKeyRecord generateLastResortKey(Context context) {
-    PreKeyStore preKeyStore = new TextSecurePreKeyStore(context);
-
-    if (preKeyStore.containsPreKey(Medium.MAX_VALUE)) {
-      try {
-        return preKeyStore.loadPreKey(Medium.MAX_VALUE);
-      } catch (InvalidKeyIdException e) {
-        Log.w("PreKeyUtil", e);
-        preKeyStore.removePreKey(Medium.MAX_VALUE);
-      }
-    }
-
-    ECKeyPair    keyPair = Curve.generateKeyPair();
-    PreKeyRecord record  = new PreKeyRecord(Medium.MAX_VALUE, keyPair);
-
-    preKeyStore.storePreKey(Medium.MAX_VALUE, record);
-
-    return record;
-  }
-
   private static synchronized void setNextPreKeyId(Context context, int id) {
     try {
       File             nextFile = new File(getPreKeysDirectory(context), PreKeyIndex.FILE_NAME);

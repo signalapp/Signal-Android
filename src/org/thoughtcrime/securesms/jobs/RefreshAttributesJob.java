@@ -39,10 +39,9 @@ public class RefreshAttributesJob extends ContextJob implements InjectableType {
   public void onRun() throws IOException {
     String  signalingKey      = TextSecurePreferences.getSignalingKey(context);
     int     registrationId    = TextSecurePreferences.getLocalRegistrationId(context);
-    boolean video             = TextSecurePreferences.isWebrtcCallingEnabled(context);
     boolean fetchesMessages   = TextSecurePreferences.isGcmDisabled(context);
 
-    signalAccountManager.setAccountAttributes(signalingKey, registrationId, true, video || fetchesMessages, fetchesMessages);
+    signalAccountManager.setAccountAttributes(signalingKey, registrationId, fetchesMessages);
   }
 
   @Override

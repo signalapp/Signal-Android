@@ -15,6 +15,7 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
+import org.thoughtcrime.securesms.crypto.SessionUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
@@ -188,13 +189,9 @@ public class RegistrationService extends Service {
 
     String  number         = intent.getStringExtra(NUMBER_EXTRA);
     boolean supportsGcm    = intent.getBooleanExtra(GCM_SUPPORTED_EXTRA, true);
-    int     registrationId = TextSecurePreferences.getLocalRegistrationId(this);
-    boolean supportsVideo  = TextSecurePreferences.isWebrtcCallingEnabled(this) || !supportsGcm;
-
-    if (registrationId == 0) {
-      registrationId = KeyHelper.generateRegistrationId(false);
-      TextSecurePreferences.setLocalRegistrationId(this, registrationId);
-    }
+    int     registrationId = KeyHelper.generateRegistrationId(false);
+    TextSecurePreferences.setLocalRegistrationId(this, registrationId);
+    SessionUtil.archiveAllSessions(this);
 
     try {
       String password     = Util.getSecret(18);
@@ -208,7 +205,7 @@ public class RegistrationService extends Service {
 
       setState(new RegistrationState(RegistrationState.STATE_VERIFYING, number));
       String challenge = waitForChallenge();
-      accountManager.verifyAccountWithCode(challenge, signalingKey, registrationId, true, supportsVideo, !supportsGcm);
+      accountManager.verifyAccountWithCode(challenge, signalingKey, registrationId, !supportsGcm);
 
       handleCommonRegistration(accountManager, number, password, signalingKey, supportsGcm);
       markAsVerified(number, password, signalingKey);
@@ -243,9 +240,8 @@ public class RegistrationService extends Service {
     Recipient          self         = RecipientFactory.getRecipientsFromString(this, number, false).getPrimaryRecipient();
     IdentityKeyPair    identityKey  = IdentityKeyUtil.getIdentityKeyPair(this);
     List<PreKeyRecord> records      = PreKeyUtil.generatePreKeys(this);
-    PreKeyRecord       lastResort   = PreKeyUtil.generateLastResortKey(this);
     SignedPreKeyRecord signedPreKey = PreKeyUtil.generateSignedPreKey(this, identityKey, true);
-    accountManager.setPreKeys(identityKey.getPublicKey(),lastResort, signedPreKey, records);
+    accountManager.setPreKeys(identityKey.getPublicKey(), signedPreKey, records);
 
     setState(new RegistrationState(RegistrationState.STATE_GCM_REGISTERING, number));
 
