@@ -170,7 +170,6 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
   @Nullable private Recipient              recipient;
   @Nullable private PeerConnectionWrapper  peerConnection;
   @Nullable private DataChannel            dataChannel;
-  @Nullable private List<IceUpdateMessage> pendingIceUpdates;
 
   @Nullable public  static SurfaceViewRenderer localRenderer;
   @Nullable public  static SurfaceViewRenderer remoteRenderer;
@@ -383,7 +382,6 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
       this.callState         = CallState.STATE_DIALING;
       this.recipient         = getRemoteRecipient(intent);
       this.callId            = SecureRandom.getInstance("SHA1PRNG").nextLong();
-      this.pendingIceUpdates = new LinkedList<>();
 
       initializeVideo();
 
@@ -451,26 +449,11 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
         return;
       }
 
-      if (peerConnection == null || pendingIceUpdates == null) {
+      if (peerConnection == null) {
         throw new AssertionError("assert");
       }
 
-      if (!pendingIceUpdates.isEmpty()) {
-        ListenableFutureTask<Boolean> listenableFutureTask = sendMessage(recipient, SignalServiceCallMessage.forIceUpdates(pendingIceUpdates));
-
-        listenableFutureTask.addListener(new FailureListener<Boolean>(callState, callId) {
-          @Override
-          public void onFailureContinue(Throwable error) {
-            Log.w(TAG, error);
-            sendMessage(WebRtcViewModel.State.NETWORK_FAILURE, recipient, localVideoEnabled, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
-
-            terminate();
-          }
-        });
-      }
-
       this.peerConnection.setRemoteDescription(new SessionDescription(SessionDescription.Type.ANSWER, intent.getStringExtra(EXTRA_REMOTE_DESCRIPTION)));
-      this.pendingIceUpdates = null;
     } catch (PeerConnectionException e) {
       Log.w(TAG, e);
       terminate();
@@ -500,12 +483,6 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
     IceUpdateMessage iceUpdateMessage = new IceUpdateMessage(this.callId, intent.getStringExtra(EXTRA_ICE_SDP_MID),
                                                              intent.getIntExtra(EXTRA_ICE_SDP_LINE_INDEX, 0),
                                                              intent.getStringExtra(EXTRA_ICE_SDP));
-
-    if (pendingIceUpdates != null) {
-      Log.w(TAG, "Adding to pending ice candidates...");
-      this.pendingIceUpdates.add(iceUpdateMessage);
-      return;
-    }
 
     ListenableFutureTask<Boolean> listenableFutureTask = sendMessage(recipient, SignalServiceCallMessage.forIceUpdate(iceUpdateMessage));
 
@@ -886,7 +863,6 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
     this.microphoneEnabled  = true;
     this.localVideoEnabled  = false;
     this.remoteVideoEnabled = false;
-    this.pendingIceUpdates  = null;
     lockManager.updatePhoneState(LockManager.PhoneState.IDLE);
   }
 
