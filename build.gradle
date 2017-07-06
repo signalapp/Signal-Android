@@ -199,7 +199,7 @@ android {
     useLibrary 'org.apache.http.legacy'
 
     dexOptions {
-        javaMaxHeapSize "4g"
+        javaMaxHeapSize project.hasProperty('javaMaxHeapSize') ? project.getProperty('javaMaxHeapSize') : "4g"
     }
 
     defaultConfig {
