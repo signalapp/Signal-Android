@@ -151,7 +151,19 @@ public class PersistentBlobProvider {
   }
 
   private File getFile(long id) {
+    File legacy = getLegacyFile(id);
+    File cache  = getCacheFile(id);
+
+    if (legacy.exists()) return legacy;
+    else                 return cache;
+  }
+
+  private File getLegacyFile(long id) {
     return new File(context.getDir("captures", Context.MODE_PRIVATE), id + "." + BLOB_EXTENSION);
+  }
+
+  private File getCacheFile(long id) {
+    return new File(context.getCacheDir(), "capture-" + id + "." + BLOB_EXTENSION);
   }
 
   private @Nullable String getEncryptedFileName(@NonNull MasterSecret masterSecret, @Nullable String fileName) {
