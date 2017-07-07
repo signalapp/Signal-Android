@@ -235,7 +235,7 @@
         <item name="group_members_dialog_icon">@drawable/ic_group_grey600_24dp</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
 
-        <item name="thumbnail_play_overlay_tint">#77ffffff</item>
+        <item name="placeholder_play_overlay_tint">#77ffffff</item>
     </style>
 
     <style name="TextSecure.DarkTheme" parent="@style/Theme.AppCompat">
@@ -361,6 +361,6 @@
         <item name="group_members_dialog_icon">@drawable/ic_group_white_24dp</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
 
-        <item name="thumbnail_play_overlay_tint">#77000000</item>
+        <item name="placeholder_play_overlay_tint">#77000000</item>
     </style>
 </resources>

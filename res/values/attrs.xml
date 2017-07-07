@@ -119,7 +119,7 @@
 
     <attr name="app_protect_timeout_picker_color" format="reference"/>
 
-    <attr name="thumbnail_play_overlay_tint" format="reference|color" />
+    <attr name="placeholder_play_overlay_tint" format="reference|color" />
 
     <declare-styleable name="CustomDefaultPreference">
         <attr name="custom_pref_toggle" format="string"/>
