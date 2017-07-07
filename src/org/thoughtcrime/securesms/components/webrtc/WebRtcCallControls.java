@@ -146,11 +146,6 @@ public class WebRtcCallControls extends LinearLayout {
       videoMuteButton.setAlpha(0.3f);
       audioMuteButton.setAlpha(0.3f);
 
-      speakerButton.setChecked(false);
-      bluetoothButton.setChecked(false);
-      videoMuteButton.setChecked(false);
-      audioMuteButton.setChecked(false);
-
       speakerButton.setEnabled(false);
       bluetoothButton.setEnabled(false);
       videoMuteButton.setEnabled(false);
