@@ -86,7 +86,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     dynamicLanguage.onCreate(this);
 
     setFullscreenIfPossible();
-    supportRequestWindowFeature(AppCompatDelegate.FEATURE_SUPPORT_ACTION_BAR_OVERLAY);
     getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                          WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -95,7 +94,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     setContentView(R.layout.media_preview_activity);
 
     initializeViews();
-    initializeListeners();
+    initializeListenersIfNecessary();
     initializeResources();
     initializeActionBar();
   }
@@ -104,6 +103,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   private void setFullscreenIfPossible() {
     if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN) {
       getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+      supportRequestWindowFeature(AppCompatDelegate.FEATURE_SUPPORT_ACTION_BAR_OVERLAY);
     }
   }
 
@@ -153,31 +153,33 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     video = (VideoPlayer) findViewById(R.id.video_player);
   }
 
-  private void initializeListeners() {
-    image.setOnViewTapListener(new OnViewTapListener() {
-      @Override
-      public void onViewTap(View view, float v, float v1) {
-        toggleActionBar();
-      }
-    });
-
-    image.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        toggleActionBar();
-      }
-    });
-
-    video.setPlaybackControlVisibilityListener(new VisibilityListener() {
-      @Override
-      public void onVisibilityChange(int visibility) {
-        if (visibility == View.VISIBLE) {
-          getSupportActionBar().show();
-        } else {
-          getSupportActionBar().hide();
+  private void initializeListenersIfNecessary() {
+    if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN) {
+      image.setOnViewTapListener(new OnViewTapListener() {
+        @Override
+        public void onViewTap(View view, float v, float v1) {
+          toggleActionBar();
         }
-      }
-    });
+      });
+
+      image.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          toggleActionBar();
+        }
+      });
+
+      video.setPlaybackControlVisibilityListener(new VisibilityListener() {
+        @Override
+        public void onVisibilityChange(int visibility) {
+          if (visibility == View.VISIBLE) {
+            getSupportActionBar().show();
+          } else {
+            getSupportActionBar().hide();
+          }
+        }
+      });
+    }
   }
 
   private void toggleActionBar() {

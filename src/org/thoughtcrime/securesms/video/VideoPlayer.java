@@ -22,7 +22,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -70,10 +69,9 @@ public class VideoPlayer extends FrameLayout {
   @Nullable private final VideoView           videoView;
   @Nullable private final SimpleExoPlayerView exoView;
 
-  @Nullable private       SimpleExoPlayer           exoPlayer;
-  @Nullable private       AttachmentServer          attachmentServer;
-  @Nullable private       Window                    window;
-  @Nullable private       PlaybackControlViewCompat mediaController;
+  @Nullable private       SimpleExoPlayer  exoPlayer;
+  @Nullable private       AttachmentServer attachmentServer;
+  @Nullable private       Window           window;
 
   public VideoPlayer(Context context) {
     this(context, null);
@@ -166,7 +164,7 @@ public class VideoPlayer extends FrameLayout {
   }
 
   private void initializeVideoViewControls(@NonNull VideoView videoView) {
-    mediaController = new PlaybackControlViewCompat(getContext());
+    MediaController mediaController = new MediaController(getContext());
     mediaController.setAnchorView(videoView);
     mediaController.setMediaPlayer(videoView);
 
@@ -174,42 +172,7 @@ public class VideoPlayer extends FrameLayout {
   }
 
   public void setPlaybackControlVisibilityListener(VisibilityListener listener) {
-    if (exoView != null)         exoView.setControllerVisibilityListener(listener);
-    if (mediaController != null) mediaController.setVisibilityListener(listener);
-  }
-
-  private class PlaybackControlViewCompat extends MediaController {
-    private VisibilityListener visibilityListener;
-    private static final int DEFAULT_TIMEOUT = 5000;
-
-    private PlaybackControlViewCompat(Context context) {
-      super(context);
-    }
-
-    @Override
-    public void show() {
-      show(DEFAULT_TIMEOUT);
-    }
-
-    @Override
-    public void show(int timeout) {
-      super.show(timeout);
-      notifyVisibilityListener(View.VISIBLE);
-    }
-
-    @Override
-    public void hide() {
-      super.hide();
-      notifyVisibilityListener(View.GONE);
-    }
-
-    private void setVisibilityListener(VisibilityListener listener) {
-      this.visibilityListener = listener;
-    }
-
-    private void notifyVisibilityListener(int visibility) {
-      if (visibilityListener != null) visibilityListener.onVisibilityChange(visibility);
-    }
+    if (exoView != null) exoView.setControllerVisibilityListener(listener);
   }
 
   private class ExoPlayerListener implements ExoPlayer.EventListener {
