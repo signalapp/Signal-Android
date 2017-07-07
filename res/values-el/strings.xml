@@ -367,7 +367,6 @@
   <string name="MessageRecord_s_called_you">O/H %s σε κάλεσε</string>
   <string name="MessageRecord_called_s">Κάλεσες τον/την %s</string>
   <string name="MessageRecord_missed_call_from">Αναπάντητη κλήση από τον/την %s</string>
-  <string name="MessageRecord_s_joined_signal">Ο/Η %s εγκατέστησε το Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Όρισες το χρόνο εξαφάνισης των μηνυμάτων σε: %1$s</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">Ο/Η %1$s όρισε το χρόνο εξαφάνισης των μηνυμάτων σε: %2$s</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Ο αριθμός ασφαλείας με τον/την %s έχει αλλάξει.</string>
@@ -521,7 +520,6 @@
   <string name="ThreadRecord_called_you">Σε κάλεσε</string>
   <string name="ThreadRecord_missed_call">Αναπάντητη κλήση</string>
   <string name="ThreadRecord_media_message">Μήνυμα πολυμέσων</string>
-  <string name="ThreadRecord_s_joined_signal">Ο/Η %s εγκατέστησε το Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Ο χρόνος εξαφάνισης των μηνυμάτων ρυθμίστηκε σε %s</string>
   <string name="ThreadRecord_safety_number_changed">Ο αριθμός ασφαλείας άλλαξε</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Ο αριθμός ασφαλείας με τον/την %s έχει αλλάξει.</string>

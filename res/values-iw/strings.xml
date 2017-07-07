@@ -368,7 +368,6 @@
   <string name="MessageRecord_s_called_you">הייתה לך שיחה מאת %s</string>
   <string name="MessageRecord_called_s">התקשרת אל %s</string>
   <string name="MessageRecord_missed_call_from">שיחה שלא נענתה מאת %s</string>
-  <string name="MessageRecord_s_joined_signal">%s עכשיו בסיגנל!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">הגדרת את זמן העלמת המסר ל־%1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s הגדיר את זמן העלמת המסר ל־%2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">מספר הבטיחות שלך עם  %s השתנה.</string>
@@ -518,7 +517,6 @@
   <string name="ThreadRecord_called_you">התקשרו אליך</string>
   <string name="ThreadRecord_missed_call">שיחה שלא נענתה</string>
   <string name="ThreadRecord_media_message">מסר מדיה</string>
-  <string name="ThreadRecord_s_joined_signal">%s עכשיו בסיגנל!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">זמן העלמת המסר הוגדר ל־%s</string>
   <string name="ThreadRecord_safety_number_changed">מספר הבטיחות השתנה</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">מספר הבטיחות שלך עם  %s השתנה.</string>

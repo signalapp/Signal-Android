@@ -361,7 +361,7 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="MessageRecord_s_called_you">%s heeft je gebeld</string>
   <string name="MessageRecord_called_s">%s gebeld</string>
   <string name="MessageRecord_missed_call_from">Gemiste oproep van %s</string>
-  <string name="MessageRecord_s_joined_signal">%s gebruikt nu Signal!</string>
+  <string name="MessageRecord_s_joined_signal">%s zit op Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Je hebt de timer voor verdwijnende berichten ingesteld op %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s heeft de timer voor verdwijnende berichten ingesteld op %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Je veiligheidsnummer met %s is veranderd.</string>
@@ -516,7 +516,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="ThreadRecord_called_you">Heeft je gebeld</string>
   <string name="ThreadRecord_missed_call">Gemiste oproep</string>
   <string name="ThreadRecord_media_message">Mediabericht</string>
-  <string name="ThreadRecord_s_joined_signal">%s gebruikt nu Signal!</string>
+  <string name="ThreadRecord_s_is_on_signal">%s zit op Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Berichten zullen verdwijnen na %s</string>
   <string name="ThreadRecord_safety_number_changed">Veiligheidsnummer veranderd</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Je veiligheidsnummer met %s is veranderd.</string>

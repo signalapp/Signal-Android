@@ -343,7 +343,6 @@
   <string name="MessageRecord_s_called_you">%s sizi aradı</string>
   <string name="MessageRecord_called_s">%s arandı</string>
   <string name="MessageRecord_missed_call_from">%s tarafından cevapsız çağrı</string>
-  <string name="MessageRecord_s_joined_signal">%s Signal\'e katıldı!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Mesaj yok olma zamanını %1$s olarak belirlediniz. </string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s mesaj yok olma zamanını %2$s olarak belirledi.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">%s ile güvenlik numaranız değişti.</string>
@@ -499,7 +498,6 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="ThreadRecord_called_you">Sizi aradı</string>
   <string name="ThreadRecord_missed_call">Cevapsız arama</string>
   <string name="ThreadRecord_media_message">Medya mesajı</string>
-  <string name="ThreadRecord_s_joined_signal">%s Signal\'e katıldı!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Mesaj yok olma zamanı %s olarak belirlendi</string>
   <string name="ThreadRecord_safety_number_changed">Güvenlik numarası değişti</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">%s ile güvenlik numaranız değişti.</string>

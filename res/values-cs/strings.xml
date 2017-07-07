@@ -381,7 +381,7 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="MessageRecord_s_called_you">%s vám volal</string>
   <string name="MessageRecord_called_s">Volán %s</string>
   <string name="MessageRecord_missed_call_from">Zmeškaný hovor od %s</string>
-  <string name="MessageRecord_s_joined_signal">%s se připojil k Signalu!</string>
+  <string name="MessageRecord_s_joined_signal">%s má Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Nastavili jste čas zmizení zprávy na %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s nastavil čas zmizení zprávy na %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Váš bezpečnostní kód s %s se změnil</string>
@@ -531,7 +531,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="ThreadRecord_called_you">Volal vás</string>
   <string name="ThreadRecord_missed_call">Zmeškaný hovor</string>
   <string name="ThreadRecord_media_message">Multimediální zpráva</string>
-  <string name="ThreadRecord_s_joined_signal">%s se připojil k Signalu!</string>
+  <string name="ThreadRecord_s_is_on_signal">%s má Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas zmizení zprávy nastaven na %s</string>
   <string name="ThreadRecord_safety_number_changed">Bezpečnostní kód se změnil</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Váš bezpečnostní kód s %s se změnil</string>

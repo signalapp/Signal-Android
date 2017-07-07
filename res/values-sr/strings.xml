@@ -386,7 +386,6 @@
   <string name="MessageRecord_s_called_you">%s вас је позвао/ла</string>
   <string name="MessageRecord_called_s">Позвали сте %s</string>
   <string name="MessageRecord_missed_call_from">Пропуштен позив од %s</string>
-  <string name="MessageRecord_s_joined_signal">%s је на Сигналу!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Поставили сте време нестајања поруке на %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s постави време нестајања поруке на %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Ваш безбедносни број са %s је промењен.</string>
@@ -536,7 +535,6 @@
   <string name="ThreadRecord_called_you">Позвали вас</string>
   <string name="ThreadRecord_missed_call">Пропуштен позив</string>
   <string name="ThreadRecord_media_message">Мултимедијална порука</string>
-  <string name="ThreadRecord_s_joined_signal">%s је на Сигналу!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Време нестајања поруке постављено на %s</string>
   <string name="ThreadRecord_safety_number_changed">Безбедносни број промењен</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Ваш безбедносни број са %s је промењен.</string>

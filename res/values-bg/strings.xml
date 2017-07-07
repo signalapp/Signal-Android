@@ -366,7 +366,6 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="MessageRecord_s_called_you">%s ти се обади</string>
   <string name="MessageRecord_called_s">Обаждане до %s</string>
   <string name="MessageRecord_missed_call_from">Пропуснато обаждане от %s</string>
-  <string name="MessageRecord_s_joined_signal">%s се присъедини към Сигнал!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Заложихте време за изчезване на съобщения на %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s заложи време за изчезване на съобщения на %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Числата Ви за сигурност с %s са променени</string>
@@ -521,7 +520,6 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="ThreadRecord_called_you">Ви се обади</string>
   <string name="ThreadRecord_missed_call">Пропуснато обаждане</string>
   <string name="ThreadRecord_media_message">Медийно съобщение</string>
-  <string name="ThreadRecord_s_joined_signal">%s се присъедини към Сигнал!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Времето за изчезване на съобщенията е %s</string>
   <string name="ThreadRecord_safety_number_changed">Числата за сигурност се промениха</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Числата Ви за сигурност с %s са променени.</string>

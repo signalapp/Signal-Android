@@ -367,7 +367,7 @@ fører dette til dupliserte meldingar.</string>
   <string name="MessageRecord_s_called_you">%s ringte deg</string>
   <string name="MessageRecord_called_s">Ringte %s</string>
   <string name="MessageRecord_missed_call_from">Tapt anrop frå %s</string>
-  <string name="MessageRecord_s_joined_signal">%s blei med på Signal!</string>
+  <string name="MessageRecord_s_joined_signal">%s er på Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du stilte inn at meldingar skal forsvinna etter %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s lot meldingar forsvinna etter %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Tryggleiksnummeret ditt med %s har endra seg.</string>
@@ -522,7 +522,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="ThreadRecord_called_you">Ringte deg</string>
   <string name="ThreadRecord_missed_call">Usvart anrop</string>
   <string name="ThreadRecord_media_message">Mediemelding</string>
-  <string name="ThreadRecord_s_joined_signal">%s blei med på Signal!</string>
+  <string name="ThreadRecord_s_is_on_signal">%s er på Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Utløpstid for melding endra til %s</string>
   <string name="ThreadRecord_safety_number_changed">Endra tryggleiksnummer</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Tryggleiksnummeret ditt med %s har endra seg.</string>

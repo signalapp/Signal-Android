@@ -80,6 +80,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">암호화되지않은 MMS로 바꾸시겠습니까?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">수신자는 이젠 Signal 사용자가 아니어서 이 메시지는 <b>암호화되지 않습니다</b>.\n\n보안 해제된 메시지를 보내시겠습니까?</string>
   <string name="ConversationItem_unable_to_open_media">미디어를 열 수 있는 앱이 없음</string>
+  <string name="ConversationItem_copied_text">복사됨 %s</string>
   <string name="ConversationItem_from_s">%s을(를) 사용하여 수신 문자</string>
   <string name="ConversationItem_to_s">%s을(를) 사용하여 발신 문자</string>
   <!--ConversationActivity-->

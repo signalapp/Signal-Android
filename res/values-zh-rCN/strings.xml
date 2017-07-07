@@ -348,7 +348,6 @@
   <string name="MessageRecord_s_called_you">%s 呼叫过您</string>
   <string name="MessageRecord_called_s">已呼叫 %s</string>
   <string name="MessageRecord_missed_call_from">来自 %s 的未接来电</string>
-  <string name="MessageRecord_s_joined_signal">%s 加入了 Signal！</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">您将信息销毁时间设置为 %1$s</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s 将消息销毁时间设置为 %2$s</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">您与 %s 的安全代码已经改变</string>
@@ -496,10 +495,11 @@
   <string name="ThreadRecord_called_you">呼叫您的</string>
   <string name="ThreadRecord_missed_call">未接来电</string>
   <string name="ThreadRecord_media_message">多媒体信息</string>
-  <string name="ThreadRecord_s_joined_signal">%s加入了 Signal ！</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">信息销毁时间设置为 %s</string>
   <string name="ThreadRecord_safety_number_changed">安全代码已改变</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">您与 %s 的安全码已经改变</string>
+  <string name="ThreadRecord_you_marked_verified">你被标识为已验证</string>
+  <string name="ThreadRecord_you_marked_unverified">你被标记为未验证</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal 更新</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal 有新版本了，点击升级！</string>
@@ -697,6 +697,9 @@
   </plurals>
   <string name="expiration_weeks_abbreviated">%d 周</string>
   <!--unverified safety numbers-->
+  <plurals name="identity_others">
+    <item quantity="other">%d 个其他人</item>
+  </plurals>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">搜索 GIF图片与表情</string>
   <!--giphy_fragment-->
@@ -732,6 +735,7 @@
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">无媒体</string>
   <!--message_recipients_list_item-->
+  <string name="message_recipients_list_item__view">查看</string>
   <string name="message_recipients_list_item__resend">重新发送</string>
   <string name="message_recipients_list_item__resending">正在重新发送…</string>
   <!--GroupUtil-->
@@ -754,6 +758,7 @@
   <string name="recipient_preferences__block">屏蔽</string>
   <string name="recipient_preferences__color">颜色</string>
   <string name="recipient_preferences__color_for_this_contact">此联系人的颜色</string>
+  <string name="recipient_preferences__view_safety_number">查看安全代码</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">暗号呼叫</string>
   <string name="redphone_call_controls__end_call">结束呼叫</string>
@@ -828,6 +833,8 @@
   <string name="recipients_panel__add_members">添加成员</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__tap_to_scan">点击扫码</string>
+  <string name="verify_display_fragment__loading">载入中…</string>
+  <string name="verify_display_fragment__verified">已验证</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">分享安全代码</string>
   <!--message_details_header-->
@@ -995,6 +1002,7 @@
   <string name="preferences_app_protection__app_access">应用保护</string>
   <string name="preferences_app_protection__communication">通讯</string>
   <string name="preferences_chats__chats">聊天界面</string>
+  <string name="preferences_notifications__messages">信息</string>
   <string name="preferences_notifications__events">事件</string>
   <string name="preferences_notifications__in_chat_sounds">聊天音效</string>
   <string name="preferences_notifications__show">展示</string>
@@ -1131,5 +1139,9 @@
   <string name="trimmer__old_messages_successfully_deleted">旧信息已被成功删除。</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">传输图标</string>
+  <string name="UntrustedSendDialog_send_message">发送信息？</string>
+  <string name="UntrustedSendDialog_send">发送</string>
+  <string name="UnverifiedSendDialog_send_message">发送信息？</string>
+  <string name="UnverifiedSendDialog_send">发送</string>
   <!--EOF-->
 </resources>

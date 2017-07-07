@@ -365,10 +365,13 @@ som inte finns i säkerhetskopian.</string>
   <string name="MessageRecord_s_called_you">%s ringde dig</string>
   <string name="MessageRecord_called_s">Ringde %s</string>
   <string name="MessageRecord_missed_call_from">Missat samtal från %s</string>
-  <string name="MessageRecord_s_joined_signal">%s har anslutit sig till Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du ställde in tiden för försvinnande meddelanden till %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ställde in tiden för försvinnande meddelanden till %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Ditt säkerhetsnummer med %s har ändrats.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Du markerade ditt säkerhetsnummer med %s verifierad</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Du markerade ditt säkerhetsnummer med %s verifierad från en annan enhet</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Du markerade ditt säkerhetsnummer med %s overifierad</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Du markerade ditt säkerhetsnummer med %s overifierad från en annan enhet</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Lösenorden matchar inte!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Inkorrekt gammalt lösenord!</string>
@@ -514,9 +517,11 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ThreadRecord_called_you">Ringde dig</string>
   <string name="ThreadRecord_missed_call">Missat samtal</string>
   <string name="ThreadRecord_media_message">Mediameddelande</string>
-  <string name="ThreadRecord_s_joined_signal">%s har anslutit sig till Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tiden för försvinnande meddelanden inställd till %s</string>
+  <string name="ThreadRecord_safety_number_changed">Säkerhetsnummer ändrat</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Ditt säkerhetsnummer med %s har ändrats.</string>
+  <string name="ThreadRecord_you_marked_verified">Du markerade verifierad</string>
+  <string name="ThreadRecord_you_marked_unverified">Du markerade overifierad</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal uppdatering</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">En ny version av Signal finns tillgänglig, tryck för att uppdatera</string>
@@ -580,6 +585,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MessageNotifier_mark_read">Läst</string>
   <string name="MessageNotifier_media_message">Mediameddelande</string>
   <string name="MessageNotifier_reply">Svara</string>
+  <string name="MessageNotifier_pending_signal_messages">Väntande Signal-meddelanden</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">Du har väntande Signal-meddelanden, tryck för att öppna och hämta</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Manuella MMS-inställningar krävs för din telefon.</string>
   <string name="MmsPreferencesFragment__enabled">Aktiverad</string>
@@ -717,6 +724,19 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dv</string>
   <!--unverified safety numbers-->
+  <string name="IdentityUtil_unverified_banner_one">Ditt säkerhetsnummer med %s har ändrats och är inte längre verifierat</string>
+  <string name="IdentityUtil_unverified_banner_two">Dina säkerhetsnummer med %1$s och %2$s är inte längre verifierade</string>
+  <string name="IdentityUtil_unverified_banner_many">Dina säkerhetsnummer med %1$s, %2$s och %3$s är inte längre verifierade</string>
+  <string name="IdentityUtil_unverified_dialog_one">Ditt säkerhetsnummer med %1$s har ändrats och är inte längre verifierat. Detta kan antingen betyda att någon försöker avlyssna er kommunikation, eller att %1$s helt enkelt ominstallerat Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Dina säkerhetsnummer med %1$s och %2$s är inte längre verifierade. Detta kan antingen betyda att någon försöker avlyssna er kommunikation, eller att de helt enkelt ominstallerat Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Dina säkerhetsnummer med %1$s, %2$s och %3$s är inte längre verifierade. Detta kan antingen betyda att någon försöker avlyssna er kommunikation, eller att de helt enkelt ominstallerat Signal.</string>
+  <string name="IdentityUtil_untrusted_dialog_one">Ditt säkerhetsnummer med %s har just ändrats.</string>
+  <string name="IdentityUtil_untrusted_dialog_two">Dina säkerhetsnummer med %1$s och %2$s har just ändrats.</string>
+  <string name="IdentityUtil_untrusted_dialog_many">Dina säkerhetsnummer med %1$s , %2$s och %3$s har just ändrats.</string>
+  <plurals name="identity_others">
+    <item quantity="one">%d annan</item>
+    <item quantity="other">%d andra</item>
+  </plurals>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Sök GIF-bilder och stickers</string>
   <!--giphy_fragment-->
@@ -752,6 +772,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Inget media</string>
   <!--message_recipients_list_item-->
+  <string name="message_recipients_list_item__view">VISA</string>
   <string name="message_recipients_list_item__resend">SKICKA OM</string>
   <string name="message_recipients_list_item__resending">Skickar om...</string>
   <!--GroupUtil-->
@@ -775,6 +796,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="recipient_preferences__block">Blockera</string>
   <string name="recipient_preferences__color">Färg</string>
   <string name="recipient_preferences__color_for_this_contact">Färg för denna kontakt</string>
+  <string name="recipient_preferences__view_safety_number">Visa säkerhetsnummer</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signalsamtal</string>
   <string name="redphone_call_controls__end_call">avsluta samtal</string>
@@ -840,7 +862,10 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="recipients_panel__to"><small>Fyll i ett namn eller nummer</small></string>
   <string name="recipients_panel__add_members">Lägg till medlemmar</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Om du vill verifiera säkerheten i kryptering med %s, jämför numret ovan med numret på deras enhet. Alternativt så kan du skanna koden på deras telefon, eller be dem skanna din kod. <a href="https://whispersystems.org/redirect/safety-numbers">Lär dig mer</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tryck för att skanna</string>
+  <string name="verify_display_fragment__loading">Laddar...</string>
+  <string name="verify_display_fragment__verified">Verifierad</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Dela säkerhetsnummer</string>
   <!--message_details_header-->
@@ -1009,6 +1034,7 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="preferences_app_protection__app_access">Appåtkomst</string>
   <string name="preferences_app_protection__communication">Kommunikation</string>
   <string name="preferences_chats__chats">Chatt</string>
+  <string name="preferences_notifications__messages">Meddelanden</string>
   <string name="preferences_notifications__events">Händelser</string>
   <string name="preferences_notifications__in_chat_sounds">Ljud i chatter</string>
   <string name="preferences_notifications__show">Visa</string>
@@ -1146,5 +1172,9 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="trimmer__old_messages_successfully_deleted">Gamla meddelanden har raderats</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportikon</string>
+  <string name="UntrustedSendDialog_send_message">Skicka meddelande?</string>
+  <string name="UntrustedSendDialog_send">Skicka</string>
+  <string name="UnverifiedSendDialog_send_message">Skicka meddelande?</string>
+  <string name="UnverifiedSendDialog_send">Skicka</string>
   <!--EOF-->
 </resources>

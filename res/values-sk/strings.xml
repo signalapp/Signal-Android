@@ -386,10 +386,13 @@ opätovným importom zduplikujete správy.
   <string name="MessageRecord_s_called_you">%s vám volal/a</string>
   <string name="MessageRecord_called_s">%s volaný/á</string>
   <string name="MessageRecord_missed_call_from">Zmeškaný hovor od %s</string>
-  <string name="MessageRecord_s_joined_signal">%s tiež používa Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Nastavili ste čas miznúcich správ na %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s nastavil čas miznúcich správ na %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Vaše bezpečnostné číslo pre %s sa zmenilo.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Bezpečnostné číslo pre %s ste označili ako overené</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Bezpečnostné číslo pre %s ste označili ako overené z iného zariadenia</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Bezpečnostné číslo pre %s ste označili ako neoverené</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Bezpečnostné číslo pre %s ste označili ako neoverené z iného zariadenia</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Heslá sa nezhodujú!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Nesprávne staré heslo!</string>
@@ -539,9 +542,11 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <string name="ThreadRecord_called_you">Volal Vám</string>
   <string name="ThreadRecord_missed_call">Zmeškaný hovor</string>
   <string name="ThreadRecord_media_message">Multimediálna správa</string>
-  <string name="ThreadRecord_s_joined_signal">%s tiež používa Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas na zmiznutie správy nastavený na %s</string>
+  <string name="ThreadRecord_safety_number_changed">Bezpečnostné číslo bolo zmenené</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Vaše bezpečnostné číslo pre %s sa zmenilo.</string>
+  <string name="ThreadRecord_you_marked_verified">Označili ste ako overené</string>
+  <string name="ThreadRecord_you_marked_unverified">Označili ste ako neoverené</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Aktualizácia Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">K dispozícii je nová verzia Signal, ťuknutím aktualizujte</string>
@@ -605,6 +610,8 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <string name="MessageNotifier_mark_read">Označiť ako prečítané</string>
   <string name="MessageNotifier_media_message">Multimediálna správa</string>
   <string name="MessageNotifier_reply">Odpovedať</string>
+  <string name="MessageNotifier_pending_signal_messages">Nevybavené Signal správy </string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">Máte nevybavené Signal správy, stlačením otvorte a prevezmite</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Manuálne MMS nastavenia sú vyžadované pre tvoj telefón.</string>
   <string name="MmsPreferencesFragment__enabled">Povolené</string>
@@ -747,6 +754,20 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
   <!--unverified safety numbers-->
+  <string name="IdentityUtil_unverified_banner_one">Vaše bezpečnostné číslo pre %s sa zmenilo a nie je už overené</string>
+  <string name="IdentityUtil_unverified_banner_two">Vaše bezpečnostné čísla pre %1$s a %2$s už nie sú overené</string>
+  <string name="IdentityUtil_unverified_banner_many">Vaše bezpečnostné čísla pre %1$s, %2$s, a %3$s už nie sú overené</string>
+  <string name="IdentityUtil_unverified_dialog_one">Vaše bezpečnostné číslo pre %1$s sa zmenilo a nie je už overené. Toto môže znamenať, že sa niekto snaží preniknúť do vašej komunikácie alebo jednoducho, že %1$s preinštaloval/a Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Vaše bezpečnostné čísla pre %1$s a %2$s už nie sú overené. Toto môže znamenať, že sa niekto snaží preniknúť do vašej komunikácie alebo jednoducho, že preinštalovali Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Vaše bezpečnostné čísla pre %1$s, %2$s a %3$s už nie sú overené. Toto môže znamenať, že sa niekto snaží preniknúť do vašej komunikácie alebo jednoducho, že preinštalovali Signal.</string>
+  <string name="IdentityUtil_untrusted_dialog_one">Vaše bezpečnostné číslo pre %s sa zmenilo.</string>
+  <string name="IdentityUtil_untrusted_dialog_two">Vaše bezpečnostné čísla pre %1$s a %2$s sa zmenili.</string>
+  <string name="IdentityUtil_untrusted_dialog_many">Vaše bezpečnostné čísla pre %1$s, %2$s a %3$s sa zmenili.</string>
+  <plurals name="identity_others">
+    <item quantity="one">%d ďalší</item>
+    <item quantity="few">%d ďalších</item>
+    <item quantity="other">%d ďalších</item>
+  </plurals>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Hľadať GIFy a nálepky</string>
   <!--giphy_fragment-->
@@ -782,6 +803,7 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Žiadne médiá</string>
   <!--message_recipients_list_item-->
+  <string name="message_recipients_list_item__view">ZOBRAZIŤ</string>
   <string name="message_recipients_list_item__resend">POSLAŤ ZNOVU</string>
   <string name="message_recipients_list_item__resending">Odosiela sa znova...</string>
   <!--GroupUtil-->
@@ -806,6 +828,7 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <string name="recipient_preferences__block">Blokovať</string>
   <string name="recipient_preferences__color">Farba</string>
   <string name="recipient_preferences__color_for_this_contact">Farba pre tento kontakt</string>
+  <string name="recipient_preferences__view_safety_number">Zobraziť bezpečnostné číslo</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal hovor</string>
   <string name="redphone_call_controls__end_call">Ukončiť hovor</string>
@@ -885,7 +908,10 @@ zlyhalo.
   <string name="recipients_panel__to"><small>Vlož meno alebo číslo</small></string>
   <string name="recipients_panel__add_members">Pridať členov</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ak si chcete overiť zabezpečenie vášho šifrovania pre %s, porovnajte číslo vyššie s číslom na ich zariadení. Inak môžete tiež naskenovať kód na ich zariadení alebo ich požiadať o naskenovanie vášho kódu. <a href="https://whispersystems.org/redirect/safety-numbers">Zistiť viac.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Ťuknutím naskenujte</string>
+  <string name="verify_display_fragment__loading">Načítava sa...</string>
+  <string name="verify_display_fragment__verified">Overené</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Zdieľať bezpečnostné číslo</string>
   <!--message_details_header-->
@@ -1021,7 +1047,7 @@ zlyhalo.
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Pre každú odoslanú SMS vyžiadať správu o doručení</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Automaticky odstrániť staršie správy keď konverzácia presiahne určenú dĺžku</string>
   <string name="preferences__delete_old_messages">Vymazať staré správy</string>
-  <string name="preferences__chats">Chaty a médiá</string>
+  <string name="preferences__chats">Chat a médiá</string>
   <string name="preferences__conversation_length_limit">Obmedzenie dĺžky konverzácie</string>
   <string name="preferences__trim_all_conversations_now">Premazať všetky konverzácie teraz</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Skenovať všetky konverzácie a uplatniť limity dĺžky konverzácie</string>
@@ -1054,7 +1080,8 @@ zlyhalo.
   <string name="preferences_advanced__always_relay_calls">Vždy presmerovať hovory</string>
   <string name="preferences_app_protection__app_access">Prístup k aplikácii</string>
   <string name="preferences_app_protection__communication">Komunikácia</string>
-  <string name="preferences_chats__chats">Chaty</string>
+  <string name="preferences_chats__chats">Chat</string>
+  <string name="preferences_notifications__messages">Správy</string>
   <string name="preferences_notifications__events">Udalosti</string>
   <string name="preferences_notifications__in_chat_sounds">Zvuky v chate</string>
   <string name="preferences_notifications__show">Zobraziť</string>
@@ -1193,5 +1220,9 @@ zlyhalo.
   <string name="trimmer__old_messages_successfully_deleted">Staré správy úspešne vymazané</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona prenosu</string>
+  <string name="UntrustedSendDialog_send_message">Odoslať správu?</string>
+  <string name="UntrustedSendDialog_send">Odoslať</string>
+  <string name="UnverifiedSendDialog_send_message">Odoslať správu?</string>
+  <string name="UnverifiedSendDialog_send">Odoslať</string>
   <!--EOF-->
 </resources>

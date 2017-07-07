@@ -397,10 +397,14 @@
   <string name="MessageRecord_s_called_you">%s звонил(а) вам</string>
   <string name="MessageRecord_called_s">Вы звонили %s</string>
   <string name="MessageRecord_missed_call_from">Пропущен звонок от %s</string>
-  <string name="MessageRecord_s_joined_signal">%s присоединился к Signal!</string>
+  <string name="MessageRecord_s_joined_signal">%s теперь в Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Вы установили время исчезновения сообщений в %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s установил(а) время исчезновения сообщений в %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Ваш с %s код безопасности изменился.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Вы отметили код безопасности с %s как проверенный</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Вы отметили Ваш код безопасности с %s как проверенный с другого устройства</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Вы отметили Ваш код безопасности с %s как непроверенный</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Вы отметили Ваш код безопасности с %s как непроверенный с другого устройства</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Парольные фразы не совпадают!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Неверная старая парольная фраза!</string>
@@ -546,9 +550,12 @@
   <string name="ThreadRecord_called_you">Звонили вам</string>
   <string name="ThreadRecord_missed_call">Пропущен звонок</string>
   <string name="ThreadRecord_media_message">Медиа-сообщение</string>
-  <string name="ThreadRecord_s_joined_signal">%s присоединился к Signal!</string>
+  <string name="ThreadRecord_s_is_on_signal">%s теперь в Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Время исчезновения сообщений – %s</string>
+  <string name="ThreadRecord_safety_number_changed">Коды безопасности изменены</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Ваш с %s код безопасности изменился.</string>
+  <string name="ThreadRecord_you_marked_verified">Вы отметили как проверенный</string>
+  <string name="ThreadRecord_you_marked_unverified">Вы отметили как непроверенный</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Обновление Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Доступна новая версия Signal. Нажмите, чтобы обновиться</string>
@@ -612,6 +619,7 @@
   <string name="MessageNotifier_mark_read">Прочитано</string>
   <string name="MessageNotifier_media_message">Медиа-сообщение</string>
   <string name="MessageNotifier_reply">Ответить</string>
+  <string name="MessageNotifier_pending_signal_messages">Неполученные сообщения</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Для вашего телефона необходимо настроить MMS вручную.</string>
   <string name="MmsPreferencesFragment__enabled">Включено</string>
@@ -759,6 +767,7 @@
   </plurals>
   <string name="expiration_weeks_abbreviated">%dн</string>
   <!--unverified safety numbers-->
+  <string name="IdentityUtil_untrusted_dialog_many">Ваши коды безопасности с %1$s, %2$s и %3$s только что изменились.</string>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Найти GIF-анимации и стикеры</string>
   <!--giphy_fragment-->
@@ -891,6 +900,8 @@ SMS-подтверждения...
   <string name="recipients_panel__add_members">Добавить участников</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__tap_to_scan">Сканировать</string>
+  <string name="verify_display_fragment__loading">Загрузка...</string>
+  <string name="verify_display_fragment__verified">Подтвержден</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Поделиться кодом безопасности</string>
   <!--message_details_header-->
@@ -1060,6 +1071,7 @@ SMS-подтверждения...
   <string name="preferences_advanced__always_relay_calls">Всегда использовать сервер</string>
   <string name="preferences_app_protection__app_access">Доступ приложения</string>
   <string name="preferences_chats__chats">Чаты</string>
+  <string name="preferences_notifications__messages">Сообщения</string>
   <string name="preferences_notifications__events">События</string>
   <string name="preferences_notifications__in_chat_sounds">Звуки чата</string>
   <string name="preferences_notifications__show">Показать</string>

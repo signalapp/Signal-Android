@@ -371,7 +371,6 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="MessageRecord_s_called_you">%s ligou-lhe</string>
   <string name="MessageRecord_called_s">Ligou para %s</string>
   <string name="MessageRecord_missed_call_from">Chamada perdida de %s</string>
-  <string name="MessageRecord_s_joined_signal">%s juntou-se à rede Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Definiu o tempo de mensagens a desaparecer em %1$s</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s definiu o tempo de mensagens a desaparecer em %2$s</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">O seu número de segurança com %s mudou.</string>
@@ -523,7 +522,6 @@ Mensagem de troca de chave inválida para esta versão do protocolo.
   <string name="ThreadRecord_called_you">Ligou-lhe</string>
   <string name="ThreadRecord_missed_call">Chamada perdida</string>
   <string name="ThreadRecord_media_message">Mensagem media</string>
-  <string name="ThreadRecord_s_joined_signal">%s juntou-se à rede Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tempo de mensagens a desaparecer definido para %s</string>
   <string name="ThreadRecord_safety_number_changed">Número de segurança alterado</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">O seu número de segurança com %s mudou.</string>
@@ -787,6 +785,7 @@ Mensagem de troca de chave inválida para esta versão do protocolo.
   <string name="recipient_preferences__block">Bloquear</string>
   <string name="recipient_preferences__color">Cor</string>
   <string name="recipient_preferences__color_for_this_contact">Cor para este contacto</string>
+  <string name="recipient_preferences__view_safety_number">Número de verificação de segurança</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Chamada Signal</string>
   <string name="redphone_call_controls__end_call">terminar chamada</string>
@@ -870,6 +869,7 @@ falhou.
   <string name="recipients_panel__to"><small>Introduza um nome ou número</small></string>
   <string name="recipients_panel__add_members">Adicionar membros</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Se pretende verificar a segurança da sua encriptação end-to-end com o contacto %s, então compare este número acima com o equivalente no dispositivo do seu contacto. Em alternativa poderá fazer um scan ao QR code exibido no outro dispositivo. <a href="https://whispersystems.org/redirect/safety-numbers">Mais informações sobre o número de verificação de segurança </a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Toque para ler</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Partilhar número de segurança</string>

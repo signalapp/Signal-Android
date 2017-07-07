@@ -350,7 +350,7 @@
   <string name="MessageRecord_s_called_you">%s 呼叫您</string>
   <string name="MessageRecord_called_s">已呼叫 %s</string>
   <string name="MessageRecord_missed_call_from">來自 %s 的未接來電</string>
-  <string name="MessageRecord_s_joined_signal">%s 已加入 Signal!</string>
+  <string name="MessageRecord_s_joined_signal">%s 在 Signal 了！</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">您將訊息銷毀時間設置爲 %1$s。</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s 將訊息銷毀時間設置爲 %2$s。</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">您與 %s 的安全碼已改變。</string>
@@ -505,7 +505,7 @@
   <string name="ThreadRecord_called_you">呼叫您</string>
   <string name="ThreadRecord_missed_call">未接來電</string>
   <string name="ThreadRecord_media_message">媒體訊息</string>
-  <string name="ThreadRecord_s_joined_signal">%s 已加入 Signal!</string>
+  <string name="ThreadRecord_s_is_on_signal">%s 在 Signal 了！</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">訊息銷毀時間設置爲 %s</string>
   <string name="ThreadRecord_safety_number_changed">安全碼已改變</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">您與 %s 的安全碼已改變。</string>
@@ -716,6 +716,8 @@
   <string name="IdentityUtil_unverified_dialog_two">你與 %1$s 及 %2$s 的安全碼不再是已驗證。這有可能是有不明人士試圖攔截您的通訊，或是因為他們重新安裝 Signal。</string>
   <string name="IdentityUtil_unverified_dialog_many">你與 %1$s、%2$s 及 %3$s 的安全碼不再是已驗證。這有可能是有不明人士試圖攔截您的通訊，或是因為他們重新安裝 Signal。</string>
   <string name="IdentityUtil_untrusted_dialog_one">你與 %s 的安全碼剛剛已改變。</string>
+  <string name="IdentityUtil_untrusted_dialog_two">你與 %1$s 及 %2$s 的安全碼剛剛已改變。</string>
+  <string name="IdentityUtil_untrusted_dialog_many">你與 %1$s、%2$s 及 %3$s 的安全碼剛剛已改變。</string>
   <plurals name="identity_others">
     <item quantity="other">%d 其他人</item>
   </plurals>
@@ -1021,6 +1023,7 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="preferences_app_protection__app_access">應用程式存取</string>
   <string name="preferences_app_protection__communication">溝通</string>
   <string name="preferences_chats__chats">聊天</string>
+  <string name="preferences_notifications__messages">訊息</string>
   <string name="preferences_notifications__events">事件</string>
   <string name="preferences_notifications__in_chat_sounds">聊天音效</string>
   <string name="preferences_notifications__show">顯示</string>

@@ -407,7 +407,6 @@
   <string name="MessageRecord_s_called_you">%s قام بالاتصال</string>
   <string name="MessageRecord_called_s">%s قام بالاتصال</string>
   <string name="MessageRecord_missed_call_from">مكالمة فائتة من %s</string>
-  <string name="MessageRecord_s_joined_signal">%s انضم إلى Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">لقد قمت بتحديد توقيت اختفاء الرسالة ليكون %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">حدد %1$s توقيت اختفاء الرسالة ليكون %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">تم تغيير رقم الأمان الخاص بك وبـ%s.</string>
@@ -551,7 +550,6 @@
   <string name="ThreadRecord_called_you">مكالمات واردة</string>
   <string name="ThreadRecord_missed_call">مكالمة فائتة</string>
   <string name="ThreadRecord_media_message">رسالة وسائط متعددة</string>
-  <string name="ThreadRecord_s_joined_signal">%s انضم إلى Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">ضبط توقيت إخفاء الرسائل إلى %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">تم تغيير رقم الأمان الخاص بك وبـ%s.</string>
   <!--UpdateApkReadyListener-->

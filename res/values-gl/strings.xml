@@ -202,9 +202,12 @@
     <item quantity="other">%d conversas movidas á caixa de entrada</item>
   </plurals>
   <!--ConversationListItem-->
+  <string name="ConversationListItem_key_exchange_message">Mensaxe de intercambio de chaves</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Conversas arquivadas (%d)</string>
   <!--CustomDefaultPreference-->
+  <string name="CustomDefaultPreference_using_custom">Uso personalizado: %s</string>
+  <string name="CustomDefaultPreference_using_default">Uso predefinido: %s</string>
   <string name="CustomDefaultPreference_none">Ningunha</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Agora mesmo</string>
@@ -258,6 +261,7 @@
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Erro ao recuperar o GIF coa resolución completa</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
+  <string name="GiphyFragmentPagerAdapter_stickers">Adhesivos</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Novo grupo</string>
   <string name="GroupCreateActivity_actionbar_edit_title">Editar grupo</string>
@@ -364,11 +368,16 @@
   <string name="MessageRecord_you_updated_group">Actualizaches o grupo.</string>
   <string name="MessageRecord_s_updated_group">%s actualizou o grupo.</string>
   <string name="MessageRecord_s_called_you">%s chamoute</string>
+  <string name="MessageRecord_called_s">Chamaches a %s</string>
   <string name="MessageRecord_missed_call_from">Chamada perdida de %s</string>
-  <string name="MessageRecord_s_joined_signal">%s uniuse a Signal!</string>
+  <string name="MessageRecord_s_joined_signal">%s está en Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Estableciches a desaparición das mensaxes en %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s estableceu a desaparición das mensaxes en %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">O teu número de seguranza con %s cambiou.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Marcaches o teu número de seguranza con %s como verificado</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Marcaches o teu número de seguranza con %s como verificado desde outro dispositivo</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Marcaches como sen verificar o teu número de seguranza con %s </string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Marcaches como sen verificar o teu número de seguranza con %s desde outro dispositivo</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">As frases de acceso non coinciden!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Frase de acceso antiga incorrecta!</string>
@@ -425,6 +434,7 @@
   <string name="RecipientProvider_unnamed_group">Grupo sen nome</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">Respondendo</string>
+  <string name="RedPhone_ending_call">Finalizando chamada</string>
   <string name="RedPhone_dialing">Marcando</string>
   <string name="RedPhone_canceling_call">Cancelando chamada</string>
   <string name="RedPhone_call_rejected">Chamada rexeitada</string>
@@ -442,6 +452,7 @@
   <string name="RedPhone_message_from_the_server">Mensaxe do servidor</string>
   <string name="RedPhone_number_not_registered">Número non rexistrado!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">O número que marcaches non admite chamadas de voz seguras!</string>
+  <string name="RedPhone_got_it">Entendo</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_signal">Conectar con Signal</string>
   <string name="RegistrationActivity_select_your_country">Elixe o teu país</string>
@@ -482,6 +493,8 @@
   <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">O código de verificación que enviaches non é correcto. Téntao de novo.</string>
   <string name="RegistrationProgressActivity_too_many_attempts">Demasiadas tentativas</string>
   <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Enviaches un código de verificación incorrecto demasiadas veces. Agarda, por favor, un pouco antes de volvelo tentar.</string>
+  <string name="RegistrationProgressActivity_requesting_call">Solicitando chamada</string>
+  <string name="RegistrationProgressActivity_requesting_incoming_call">Solicitando chamada de verificación...</string>
   <string name="RegistrationProgressActivity_server_error">Erro do servidor</string>
   <string name="RegistrationProgressActivity_the_server_encountered_an_error">O servidor atopou un erro. Téntao de novo, por favor.</string>
   <string name="RegistrationProgressActivity_too_many_requests">Demasiadas solicitudes!</string>
@@ -517,9 +530,12 @@
   <string name="ThreadRecord_called_you">Chamoute</string>
   <string name="ThreadRecord_missed_call">Chamada perdida</string>
   <string name="ThreadRecord_media_message">Mensaxe multimedia</string>
-  <string name="ThreadRecord_s_joined_signal">%s uniuse a Signal!</string>
+  <string name="ThreadRecord_s_is_on_signal">%s está en Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Desaparición das mensaxes establecida en%s</string>
+  <string name="ThreadRecord_safety_number_changed">O número de seguranza cambiou</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">O teu número de seguranza con %s cambiou.</string>
+  <string name="ThreadRecord_you_marked_verified">Marcaches como verificado</string>
+  <string name="ThreadRecord_you_marked_unverified">Marcaches como sen verificar</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Actualizar Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Hai dispoñible unha nova versión de Signal; toca para actualizar</string>
@@ -532,6 +548,7 @@
   <string name="VerifyIdentityActivity_no_app_to_share_to">Semella que non hai ningunha que permita compartir.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Non se atopou no portapapeis número de seguranza ningún para comparar</string>
   <!--KeyExchangeInitiator-->
+  <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Iniciar a pesar da solicitude existente?</string>
   <string name="KeyExchangeInitiator_send">Enviar</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Mensaxe mal cifrada</string>
@@ -582,6 +599,8 @@
   <string name="MessageNotifier_mark_read">Marcar como lida</string>
   <string name="MessageNotifier_media_message">Mensaxe multimedia</string>
   <string name="MessageNotifier_reply">Responder</string>
+  <string name="MessageNotifier_pending_signal_messages">Mensaxes de Signal pendentes</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">Tes mensaxes de Signal pendentes, toca para abrir e recuperalas</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">É obrigatoria a configuración manual dos MMS para o teu teléfono.</string>
   <string name="MmsPreferencesFragment__enabled">Activado</string>
@@ -620,6 +639,7 @@
   <string name="attachment_type_selector__file_description">Ficheiro</string>
   <string name="attachment_type_selector__gallery">Galería</string>
   <string name="attachment_type_selector__file">Ficheiro</string>
+  <string name="attachment_type_selector__drawer_description">Activar panel de ficheiros anexos</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Frase de acceso antiga</string>
   <string name="change_passphrase_activity__new_passphrase">Nova frase de acceso</string>
@@ -632,6 +652,7 @@
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Foto do contacto</string>
   <!--ContactSelectionListFragment-->
+  <string name="ContactSelectionlistFragment_select_for">Seleccionar para</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Ningún contacto bloqueado</string>
   <!--contact_selection_recent_activity-->
@@ -649,6 +670,7 @@
   <string name="conversation_activity__compose_description">Redacción da mensaxe</string>
   <string name="conversation_activity__emoji_toggle_description">Cambiar a teclado emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Miniatura do anexo</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Activar panel rápido de ficheiros da cámara</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Gravar e enviar un anexo de audio</string>
   <string name="conversation_activity__enable_signal_for_sms">Activar Signal para SMS</string>
   <!--conversation_input_panel-->
@@ -662,6 +684,7 @@
   <string name="conversation_item_sent__downloading">Descargando</string>
   <string name="conversation_item_sent__send_failed_indicator_description">Erro ao enviar</string>
   <string name="conversation_item_sent__pending_approval_description">Pendente de aprobación</string>
+  <string name="conversation_item_sent__delivered_description">Entregado</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__download">Descargar</string>
   <string name="conversation_item_received__contact_photo_description">Foto do contacto</string>
@@ -715,7 +738,21 @@
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
   <!--unverified safety numbers-->
+  <string name="IdentityUtil_unverified_banner_one">O teu número de seguranza con %s cambiou e xa non está verificado</string>
+  <string name="IdentityUtil_unverified_banner_two">Os teus números de seguranza con %1$s e %2$s xa non están verificados</string>
+  <string name="IdentityUtil_unverified_banner_many">Os teus números de seguranza con %1$s, %2$s e %3$s xa non están verificados</string>
+  <string name="IdentityUtil_unverified_dialog_one">O teu número de seguranza con %1$s cambiou e xa non está verificado. Isto pode significar que alguén está tentando interceptar as túas comunicacións ou simplemente que  %1$s reinstalou Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Os teus números de seguranza con%1$s e%2$s xa non están verificados. Isto pode significar que alguén está tentando interceptar as túas comunicacións ou simplemente que reinstalaron Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Os teus números de seguranza con %1$s, %2$s e %3$s xa non están verificados. Isto pode significar que alguén está tentando interceptar as túas comunicacións ou simplemente que reinstalaron Signal.</string>
+  <string name="IdentityUtil_untrusted_dialog_one">O teu número de seguranza con %s acaba de cambiar.</string>
+  <string name="IdentityUtil_untrusted_dialog_two">Os teus números de seguranza con %1$s e %2$s acaban de cambiar.</string>
+  <string name="IdentityUtil_untrusted_dialog_many">Os teus números de seguranza con %1$s, %2$s e %3$s acaban de cambiar.</string>
+  <plurals name="identity_others">
+    <item quantity="one">%d máis</item>
+    <item quantity="other">%dmáis</item>
+  </plurals>
   <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Buscar GIF e adhesivos</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Non se atopou nada</string>
   <!--import_export_fragment-->
@@ -725,6 +762,7 @@
   <string name="log_submit_activity__log_fetch_failed">Non se puido ler o rexistro do teu dispositivo. Aínda podes utilizar ADB para obter no seu lugar un rexistro de depuración.</string>
   <string name="log_submit_activity__thanks">Grazas pola túa axuda!</string>
   <string name="log_submit_activity__submitting">Enviando</string>
+  <string name="log_submit_activity__posting_logs">Publicando rexistros de actividad en gist...</string>
   <string name="log_submit_activity__no_browser_installed">Ningún navegador instalado</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Gustaríache importar ás túas mensaxes de texto á base de datos cifrada de Signal?</string>
@@ -748,6 +786,7 @@
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Sen ficheiros multimedia</string>
   <!--message_recipients_list_item-->
+  <string name="message_recipients_list_item__view">VER</string>
   <string name="message_recipients_list_item__resend">REENVIAR</string>
   <string name="message_recipients_list_item__resending">Reenviando...</string>
   <!--GroupUtil-->
@@ -771,6 +810,7 @@
   <string name="recipient_preferences__block">Bloquear</string>
   <string name="recipient_preferences__color">Cor</string>
   <string name="recipient_preferences__color_for_this_contact">Cor para este contacto</string>
+  <string name="recipient_preferences__view_safety_number">Ver número de seguranza</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Chamada Signal</string>
   <string name="redphone_call_controls__end_call">finalizar chamada</string>
@@ -794,6 +834,12 @@
         incluído:
     </string>
   <string name="registration_problems__sms_interceptors">Interceptores de SMS.</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
+        Algúns programas de mensaxaría, como Handcent ou GoSMS, interfiren e interceptan
+        todas as mensaxes SMS entrantes. Comproba se recibiches unha mensaxe de texto que comeza
+        con \'O teu código de verificación de Signal:\'; se este é o caso, tes que configurar a túa aplicación
+        de mensaxaría externa para que deixe recibir as mensaxes.
+    </string>
   <string name="registration_problems__incorrect_number">Número incorrecto.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
         Por favor, comproba que inseriches o teu número correctament e cos parámetros correspondentes
@@ -855,11 +901,17 @@
   <string name="recipients_panel__to"><small>Inserir un nome ou número</small></string>
   <string name="recipients_panel__add_members">Engadir membros</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Se queres comprobar a seguranza da túa cifraxe con %s, compara o número superior co número do seu dispositivo. Outra opción é escanear o código do seu teléfono ou pedirlle que escanee o teu código. <a href="https://whispersystems.org/redirect/safety-numbers">Saber máis.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Toca para escanear</string>
+  <string name="verify_display_fragment__loading">Cargando...</string>
+  <string name="verify_display_fragment__verified">Verificado</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Compartir número de seguranza</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Algúns problemas requiren a túa atención.</string>
+  <string name="message_details_header__sent">Enviada</string>
+  <string name="message_details_header__received">Recibida</string>
+  <string name="message_details_header__disappears">Desaparece</string>
   <string name="message_details_header__via">Vía</string>
   <string name="message_details_header__to">Para:</string>
   <string name="message_details_header__from">De:</string>
@@ -979,6 +1031,7 @@
   <string name="preferences__enable_manual_mms">Utilizar a configuración manual de MMS</string>
   <string name="preferences__override_system_mms_settings">Utilizar a información seguinte no canto da configuración do sistema para as MMS.</string>
   <string name="preferences__mmsc_url">URL de MMSC</string>
+  <string name="preferences__mms_proxy_host">Servidor de proxy MMS</string>
   <string name="preferences__mms_proxy_port">Porto de proxy MMS</string>
   <string name="preferences__mmsc_username">Nome de usuario de MMSC</string>
   <string name="preferences__mmsc_password">Contrasinal de MMSC</string>
@@ -1015,10 +1068,12 @@
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Desactiva o soporte emoji integrado en Signal</string>
   <string name="preferences_advanced__video_calling_beta">Videochamada beta</string>
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Compatibilidade coas chamadas de voz e videochamadas de próxima xeración cando estean habilitadas por ambas as partes. En fase beta aínda.</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Redireccionar todas as chamadas a través do servidor de Signal para evitar revelar o teu enderezo IP aos teus contactos. Ao activar esta opción, reducirase a calidade da chamada.</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Redirecciona todas as chamadas a través do servidor de Signal para evitar revelar o teu enderezo IP aos teus contactos. Ao activar esta opción, reducirase a calidade da chamada.</string>
+  <string name="preferences_advanced__always_relay_calls">Redireccionar chamadas sempre</string>
   <string name="preferences_app_protection__app_access">Acceso á aplicación</string>
   <string name="preferences_app_protection__communication">Comunicacións</string>
   <string name="preferences_chats__chats">Conversas</string>
+  <string name="preferences_notifications__messages">Mensaxes</string>
   <string name="preferences_notifications__events">Eventos</string>
   <string name="preferences_notifications__in_chat_sounds">Sons durante a conversa</string>
   <string name="preferences_notifications__show">Mostrar</string>
@@ -1037,9 +1092,11 @@
   <string name="contact_selection_list__header_other">TODOS OS CONTACTOS</string>
   <string name="contact_selection_list__unknown_contact">Nova mensaxe a...</string>
   <!--contact_selection-->
+  <string name="contact_selection__menu_finished">Rematado</string>
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Actualizar listaxe de contactos</string>
   <!--conversation_callable_insecure-->
+  <string name="conversation_callable_insecure__menu_call">Chamar</string>
   <!--conversation_callable_secure-->
   <string name="conversation_callable_secure__menu_call">Chamada de Signal</string>
   <!--conversation_context-->
@@ -1090,6 +1147,7 @@
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Engadir a contactos</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Listaxe de destinatarios</string>
+  <string name="conversation_group_options__delivery">Entrega</string>
   <string name="conversation_group_options__conversation">Conversa</string>
   <string name="conversation_group_options__broadcast">Difusión</string>
   <!--key_scanning-->
@@ -1144,7 +1202,8 @@
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Actualizar</string>
   <!--redphone_audio_popup_menu-->
-  <string name="redphone_audio_popup_menu__headset">Auriculares</string>
+  <string name="redphone_audio_popup_menu__handset">Auriculares</string>
+  <string name="redphone_audio_popup_menu__headset">Auriculares con micrófono</string>
   <string name="redphone_audio_popup_menu__speaker">Altofalante</string>
   <!--Trimmer-->
   <string name="trimmer__deleting">Borrando</string>
@@ -1152,5 +1211,9 @@
   <string name="trimmer__old_messages_successfully_deleted">Mensaxes antigas borradas satisfactoriamente</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona do tráfico</string>
+  <string name="UntrustedSendDialog_send_message">Enviar mensaxe?</string>
+  <string name="UntrustedSendDialog_send">Enviar</string>
+  <string name="UnverifiedSendDialog_send_message">Enviar mensaxe?</string>
+  <string name="UnverifiedSendDialog_send">Enviar</string>
   <!--EOF-->
 </resources>

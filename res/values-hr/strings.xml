@@ -385,10 +385,14 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="MessageRecord_s_called_you">%s vas je zvao</string>
   <string name="MessageRecord_called_s">Nazvao %s</string>
   <string name="MessageRecord_missed_call_from">Propušteni poziv od %s</string>
-  <string name="MessageRecord_s_joined_signal">%s se prijavio/la u Signal!</string>
+  <string name="MessageRecord_s_joined_signal">%s je dostupan na Signalu!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Postavili ste nestajanje poruka na %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s je postavio/la vrijeme nestajanja poruke na %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Vaš sigurnosni broj s %s je izmjenjen.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Označili ste vaš sigurnosni broj s %s provjerenim</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Označili ste s drugog uređaja vaš sigurnosni broj s %s provjerenim</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Označili ste vaš sigurnosni broj s %s nepotvrđenim</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Označili ste s drugog uređaja vaš sigurnosni broj s %s nepotvrđenim</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Lozinka ne odgovara!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Netočna stara lozinka!</string>
@@ -535,10 +539,12 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="ThreadRecord_called_you">Zvali su vas</string>
   <string name="ThreadRecord_missed_call">Propušteni poziv</string>
   <string name="ThreadRecord_media_message">Multimedijalna poruka</string>
-  <string name="ThreadRecord_s_joined_signal">%s se prijavio/la u Signal!</string>
+  <string name="ThreadRecord_s_is_on_signal">%s je dostupan na Signalu!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Vrijeme nestajanja poruke postavljeno na %s</string>
   <string name="ThreadRecord_safety_number_changed">Sigurnosni broj je izmijenjen</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Vaš sigurnosni broj s %s je izmjenjen.</string>
+  <string name="ThreadRecord_you_marked_verified">Označili ste provjerenim</string>
+  <string name="ThreadRecord_you_marked_unverified">Označili ste nepotvrđenim</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal ažuriranje</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Nova inačica Signala je dostupna, pritisnite za ažuriranje</string>
@@ -746,6 +752,20 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
   <!--unverified safety numbers-->
+  <string name="IdentityUtil_unverified_banner_one">Vaš sigurnosni broj s %s je izmijenjen i više nije potvrđen</string>
+  <string name="IdentityUtil_unverified_banner_two">Vaši sigurnosni brojevi s %1$s i %2$s nisu više potvrđeni</string>
+  <string name="IdentityUtil_unverified_banner_many">Vaši sigurnosni brojevi s %1$s, %2$s i %3$s nisu više potvrđeni</string>
+  <string name="IdentityUtil_unverified_dialog_one">Vaš sigurnosni broj za %1$s je izmjenjen i nije više potvrđen. Ovo može značiti da netko pokušava presresti vašu komunikaciju ili da je %1$s jednostavno ponovno instalirao Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Vaš sigurnosni brojevi s %1$s i %2$s su izmjenjeni i nisu više potvrđeni. Ovo može značiti da netko pokušava presresti vašu komunikaciju ili da su jednostavno ponovno instalirali Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Vaš sigurnosni brojevi s %1$s, %2$s i %3$s su izmjenjeni i nisu više potvrđeni. Ovo može značiti da netko pokušava presresti vašu komunikaciju ili da su jednostavno ponovno instalirali Signal.</string>
+  <string name="IdentityUtil_untrusted_dialog_one">Vaš sigurnosni broj s %s je upravo izmjenjen.</string>
+  <string name="IdentityUtil_untrusted_dialog_two">Vaši sigurnosni brojevi s %1$s i %2$s su upravo izmjenjeni.</string>
+  <string name="IdentityUtil_untrusted_dialog_many">Vaši sigurnosni brojevi s %1$s, %2$s i %3$s su upravo izmjenjeni.</string>
+  <plurals name="identity_others">
+    <item quantity="one">%d drugi</item>
+    <item quantity="few">%d druga</item>
+    <item quantity="other">%d drugih</item>
+  </plurals>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Pretraži GIFove i naljepnice</string>
   <!--giphy_fragment-->
@@ -782,6 +802,7 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Bez medija</string>
   <!--message_recipients_list_item-->
+  <string name="message_recipients_list_item__view">PRIKAZ</string>
   <string name="message_recipients_list_item__resend">PONOVNO POŠALJI</string>
   <string name="message_recipients_list_item__resending">Ponovno slanje...</string>
   <!--GroupUtil-->
@@ -806,6 +827,7 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="recipient_preferences__block">Blokiraj</string>
   <string name="recipient_preferences__color">Boja</string>
   <string name="recipient_preferences__color_for_this_contact">Boja za ovaj kontakt</string>
+  <string name="recipient_preferences__view_safety_number">Prikaži sigurnosni broj</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal poziv</string>
   <string name="redphone_call_controls__end_call">završi poziv</string>
@@ -877,7 +899,10 @@ neuspješno.</string>
   <string name="recipients_panel__to"><small>Unesite ime ili broj</small></string>
   <string name="recipients_panel__add_members">Dodaj članove</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ukoliko želite provjeriti sigurnost vašeg kriptiranja s %s, usporedite brojeve koje vidite iznad s brojevima na njihovom uređaju. Ili možete skenirati kod s njihovog telefona ili iz zamoliti da skeniraju kod s vašeg telefona. <a href="https://whispersystems.org/redirect/safety-numbers">Saznajte više.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Pritisnite za skeniranje</string>
+  <string name="verify_display_fragment__loading">Učitavanje...</string>
+  <string name="verify_display_fragment__verified">Provjereno</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Podijeli sigurnosni broj</string>
   <!--message_details_header-->
@@ -1047,6 +1072,7 @@ neuspješno.</string>
   <string name="preferences_app_protection__app_access">Pristup aplikaciji</string>
   <string name="preferences_app_protection__communication">Komunikacija</string>
   <string name="preferences_chats__chats">Razgovori</string>
+  <string name="preferences_notifications__messages">Poruke</string>
   <string name="preferences_notifications__events">Događaji</string>
   <string name="preferences_notifications__in_chat_sounds">Zvuk unutar razgovora</string>
   <string name="preferences_notifications__show">Prikaži</string>
@@ -1185,5 +1211,9 @@ neuspješno.</string>
   <string name="trimmer__old_messages_successfully_deleted">Stare poruke su uspješno obrisane</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transporta</string>
+  <string name="UntrustedSendDialog_send_message">Pošalji poruku?</string>
+  <string name="UntrustedSendDialog_send">Pošalji</string>
+  <string name="UnverifiedSendDialog_send_message">Pošalji poruku?</string>
+  <string name="UnverifiedSendDialog_send">Pošalji</string>
   <!--EOF-->
 </resources>

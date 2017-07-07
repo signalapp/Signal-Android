@@ -17,11 +17,11 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Alle alten Nachrichten löschen?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">Kürzt sofort alle Unterhaltungen bis auf die letzte Nachricht.</item>
-    <item quantity="other">Kürzt sofort alle Unterhaltungen bis auf die %d letzten Nachrichten.</item>
+    <item quantity="other">Dies wird alle Unterhaltungen bis auf die %d letzten Nachrichten sofort löschen.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Löschen</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Passwort deaktivieren?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Entsperrt Signal und Benachrichtigungen über Nachrichten dauerhaft</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Dies wird Signal und Benachrichtigungen über Nachrichten dauerhaft entsperren.</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivieren</string>
   <string name="ApplicationPreferencesActivity_unregistering">Registrierung löschen</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Registrierung für Signal-Nachrichten und -Anrufe wird gelöscht …</string>
@@ -93,7 +93,7 @@
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Hilfreich bei Problemen mit der Verschlüsselung in dieser Unterhaltung. Deine Nachrichten bleiben erhalten.</string>
   <string name="ConversationActivity_reset">Neu starten</string>
   <string name="ConversationActivity_delete_thread_question">Unterhaltung löschen?</string>
-  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">Löscht unwiderruflich alle Nachrichten dieser Unterhaltung.</string>
+  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">Dies wird alle Nachrichten dieser Unterhaltung unwiderruflich löschen.</string>
   <string name="ConversationActivity_add_attachment">Anhang hinzufügen</string>
   <string name="ConversationActivity_select_contact_info">Kontaktinfo wählen</string>
   <string name="ConversationActivity_compose_message">Nachricht verfassen</string>
@@ -147,7 +147,7 @@
   </plurals>
   <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
     <item quantity="one">Löscht unwiderruflich die ausgewählte Nachricht.</item>
-    <item quantity="other">Löscht unwiderruflich alle %1$d ausgewählten Nachrichten.</item>
+    <item quantity="other">Dies wird alle %1$d ausgewählten Nachrichten unwiderruflich löschen.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Im Gerätespeicher speichern?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
@@ -247,7 +247,7 @@
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exportieren</string>
   <string name="ExportFragment_export_plaintext_to_storage">Klartextsicherung exportieren?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Achtung: Exportiert die unverschlüsselten Inhalte deiner Signal-Nachrichten in den Gerätespeicher.</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Achtung: Dies wird die unverschlüsselten Inhalte deiner Signal-Nachrichten in den Gerätespeicher exportieren.</string>
   <string name="ExportFragment_cancel">Abbruch</string>
   <string name="ExportFragment_exporting">Exportieren</string>
   <string name="ExportFragment_exporting_plaintext_to_storage">Klartext wird in Gerätespeicher exportiert …</string>
@@ -286,7 +286,7 @@
   <string name="ImportExportActivity_export">Exportieren</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">System-SMS-Datenbank importieren?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Importiert Nachrichten aus der Standard-SMS-Datenbank in Signal. Falls du dies schon einmal gemacht hast, wird es zu doppelten Nachrichten kommen.</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Dies wird die Nachrichten aus der Standard-SMS-Datenbank in Signal importieren. Falls du dies schon einmal gemacht hast, wird es zu doppelten Nachrichten kommen.</string>
   <string name="ImportFragment_import">Importieren</string>
   <string name="ImportFragment_cancel">Abbruch</string>
   <string name="ImportFragment_restore_encrypted_backup">Verschlüsselte Sicherung wiederherstellen?</string>
@@ -294,7 +294,7 @@
 Das Wiederherstellen einer verschlüsselten Datensicherung ersetzt deine bestehenden Schlüssel, Einstellungen und Nachrichten. Du wirst jegliche Informationen deiner jetzigen Signal-Installation verlieren, die nicht in dieser Datensicherung enthalten sind.</string>
   <string name="ImportFragment_restore">Wiederherstellen</string>
   <string name="ImportFragment_import_plaintext_backup">Klartextsicherung importieren?</string>
-  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Importiert Nachrichten aus einer Klartext-Datensicherung in Signal. Falls du bereits zuvor diese Datensicherung importiert hast, wird es zu doppelten Nachrichten kommen.</string>
+  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Dies wird Nachrichten aus einer Klartext-Datensicherung in Signal importieren. Falls du bereits zuvor diese Datensicherung importiert hast, wird es zu doppelten Nachrichten kommen.</string>
   <string name="ImportFragment_importing">Importieren</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">Klartextsicherung wird importiert …</string>
   <string name="ImportFragment_no_plaintext_backup_found">Keine Klartextsicherung gefunden!</string>
@@ -361,7 +361,7 @@ Das Wiederherstellen einer verschlüsselten Datensicherung ersetzt deine bestehe
   <string name="MessageRecord_s_called_you">Eingegangener Anruf von %s</string>
   <string name="MessageRecord_called_s">Ausgegangener Anruf an %s</string>
   <string name="MessageRecord_missed_call_from">Entgangener Anruf von %s</string>
-  <string name="MessageRecord_s_joined_signal">%s ist jetzt bei Signal!</string>
+  <string name="MessageRecord_s_joined_signal">%s ist bei Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du hast die Zeit für verschwindende Nachrichten auf %1$s festgelegt</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s hat die Zeit für verschwindende Nachrichten auf %2$s festgelegt</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Deine Sicherheitsnummer mit %s hat sich geändert</string>
@@ -509,7 +509,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ThreadRecord_called_you">Eingegangener Anruf</string>
   <string name="ThreadRecord_missed_call">Entgangener Anruf</string>
   <string name="ThreadRecord_media_message">Nachricht mit Medieninhalten</string>
-  <string name="ThreadRecord_s_joined_signal">%s ist jetzt bei Signal!</string>
+  <string name="ThreadRecord_s_is_on_signal">%s ist bei Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Zeit für verschwindende Nachrichten auf %s festgelegt</string>
   <string name="ThreadRecord_safety_number_changed">Geänderte Sicherheitsnummer</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Deine Sicherheitsnummer mit %s hat sich geändert</string>
@@ -721,11 +721,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="IdentityUtil_unverified_banner_two">Deine Sicherheitsnummern mit %1$s und %2$s sind nicht mehr verifiziert</string>
   <string name="IdentityUtil_unverified_banner_many">Deine Sicherheitsnummern mit %1$s, %2$s und %3$s sind nicht mehr verifiziert</string>
   <string name="IdentityUtil_unverified_dialog_one">Deine Sicherheitsnummer mit %1$s hat sich geändert und ist nicht mehr verifiziert. Dies könnte bedeuten, dass jemand versucht, eure Kommunikation abzuhören. Oder %1$s hat Signal einfach erneut installiert.</string>
-  <string name="IdentityUtil_unverified_dialog_two">Deine Sicherheitsnummern mit %1$s und %2$s sind nicht mehr verifiziert. Dies könnte bedeuten, dass jemand versucht, eure Kommunikation abzuhören. Oder deine Kontakte haben Signal einfach erneut installiert.</string>
-  <string name="IdentityUtil_unverified_dialog_many">Deine Sicherheitsnummern mit %1$s, %2$s und %3$s sind nicht mehr verifiziert. Dies könnte bedeuten, dass jemand versucht, eure Kommunikation abzuhören. Oder deine Kontakte haben Signal einfach erneut installiert.</string>
-  <string name="IdentityUtil_untrusted_dialog_one">Deine Sicherheitsnummer mit %s hat sich gerade geändert.</string>
-  <string name="IdentityUtil_untrusted_dialog_two">Deine Sicherheitsnummern mit %1$s und %2$s haben sich gerade geändert.</string>
-  <string name="IdentityUtil_untrusted_dialog_many">Deine Sicherheitsnummern mit %1$s, %2$s und %3$s haben sich gerade geändert.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Deine Sicherheitsnummern mit %1$s und %2$s sind nicht mehr verifiziert. Dies könnte bedeuten, dass jemand versucht, eure Kommunikation abzuhören. Oder diese Kontakte haben Signal einfach erneut installiert.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Deine Sicherheitsnummern mit %1$s, %2$s und %3$s sind nicht mehr verifiziert. Dies könnte bedeuten, dass jemand versucht, eure Kommunikation abzuhören. Oder diese Kontakte haben Signal einfach erneut installiert.</string>
+  <string name="IdentityUtil_untrusted_dialog_one">Deine Sicherheitsnummer mit %s hat sich kürzlich geändert.</string>
+  <string name="IdentityUtil_untrusted_dialog_two">Deine Sicherheitsnummern mit %1$s und %2$s haben sich kürzlich geändert.</string>
+  <string name="IdentityUtil_untrusted_dialog_many">Deine Sicherheitsnummern mit %1$s, %2$s und %3$s haben sich kürzlich geändert.</string>
   <plurals name="identity_others">
     <item quantity="one">%d weiterer</item>
     <item quantity="other">%d weitere</item>

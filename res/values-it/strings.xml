@@ -364,10 +364,14 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="MessageRecord_s_called_you">%s ti ha chiamato</string>
   <string name="MessageRecord_called_s">Hai chiamato %s</string>
   <string name="MessageRecord_missed_call_from">Chiamata persa da %s</string>
-  <string name="MessageRecord_s_joined_signal">%s si è unito/a a Signal!</string>
+  <string name="MessageRecord_s_joined_signal">%sè su Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Hai settato i messaggi a scomparsa a %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ha settato i messaggi a scomparsa a %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Il tuo numero sicuro con %s è cambiato.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Hai contrassegnato il tuo numero di sicurezza con %s come verificato</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Hai contrassegnato il tuo numero di sicurezza con %s come verificato da un altro dispositivo</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Hai contrassegnato il tuo numero di sicurezza con %s come non verificato</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Hai contrassegnato il tuo numero di sicurezza con %s come non verificato da un altro dispositivo</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Le password non corrispondono!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Vecchia password errata!</string>
@@ -514,10 +518,12 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="ThreadRecord_called_you">Ti ha chiamato</string>
   <string name="ThreadRecord_missed_call">Chiamata persa</string>
   <string name="ThreadRecord_media_message">Messaggio multimediale</string>
-  <string name="ThreadRecord_s_joined_signal">%s si è unito/a Signal!</string>
+  <string name="ThreadRecord_s_is_on_signal">%sè su Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">La scomparsa dei messaggi è settata a %s</string>
   <string name="ThreadRecord_safety_number_changed">Numero di sicurezza cambiato</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Il tuo numero sicuro con %s è cambiato.</string>
+  <string name="ThreadRecord_you_marked_verified">Contrassegnato come verificato</string>
+  <string name="ThreadRecord_you_marked_unverified">Contrassegnato come non verificato</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Aggiornamento Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">È disponibile una nuova versione di Signal, tocca per aggiornare</string>
@@ -720,6 +726,19 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   </plurals>
   <string name="expiration_weeks_abbreviated">%dset.</string>
   <!--unverified safety numbers-->
+  <string name="IdentityUtil_unverified_banner_one">Il tuo numero sicuro con %s è cambiato e non è più verificato</string>
+  <string name="IdentityUtil_unverified_banner_two">I tuoi numeri sicuri con %1$s e %2$s non sono più verificati</string>
+  <string name="IdentityUtil_unverified_banner_many">I tuoi numeri sicuri con %1$s,%2$s e %3$s non sono più verificati</string>
+  <string name="IdentityUtil_unverified_dialog_one">Il numero sicuro con %1$s è cambiato. Questo può voler dire che qualcuno sta cercando d\'intercettare la tua comunicazione, oppure che %1$s ha semplicemente reinstallato Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_two">I tuoi numeri sicuri con %1$s e %2$s non sono più verificati. Questo può voler dire che qualcuno sta cercando di intercettare la tua comunicazione che semplicemente hanno reinstallato Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_many">I tuoi numeri sicuri con %1$s,%2$s e %3$s non sono più verificati. Questo può voler dire che qualcuno sta cercando di intercettare la tua comunicazione che semplicemente hanno reinstallato Signal.</string>
+  <string name="IdentityUtil_untrusted_dialog_one">Il tuo numero sicuro con %s è cambiato.</string>
+  <string name="IdentityUtil_untrusted_dialog_two">I tuoi numeri sicuri con %1$s e %2$s sono cambiati.</string>
+  <string name="IdentityUtil_untrusted_dialog_many">I tuoi numeri sicuri con %1$s,%2$s e %3$s sono cambiati.</string>
+  <plurals name="identity_others">
+    <item quantity="one">%d altro</item>
+    <item quantity="other">%d altri</item>
+  </plurals>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Cerca GIF ed adesivi</string>
   <!--giphy_fragment-->
@@ -755,6 +774,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Nessun file multimediale</string>
   <!--message_recipients_list_item-->
+  <string name="message_recipients_list_item__view">VEDI</string>
   <string name="message_recipients_list_item__resend">REINVIA</string>
   <string name="message_recipients_list_item__resending">Reinvio...</string>
   <!--GroupUtil-->
@@ -778,6 +798,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="recipient_preferences__block">Blocca</string>
   <string name="recipient_preferences__color">Colore</string>
   <string name="recipient_preferences__color_for_this_contact">Colore per questo contatto</string>
+  <string name="recipient_preferences__view_safety_number">Mostra numero sicuro</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Chiamata Signal</string>
   <string name="redphone_call_controls__end_call">termina chiamata</string>
@@ -853,7 +874,10 @@ non riuscita.
   <string name="recipients_panel__to"><small>Inserisci un nome o un numero</small></string>
   <string name="recipients_panel__add_members">Aggiungi membri</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Se desideri verificare la sicurezza della tua crittografia end-to-end con %s, confronta i numeri precedenti con quelli del suo dispositivo. In alternativa puoi fare uno scan del codice sul suo telefono o chiedergli di fare una scansione del tuo. <a href="https://whispersystems.org/redirect/safety-numbers">Impara di più sulla verifica dei numeri sicuri</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tocca per la scansione</string>
+  <string name="verify_display_fragment__loading">Caricamento...</string>
+  <string name="verify_display_fragment__verified">Verificato</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Condivi numero sicuro.</string>
   <!--message_details_header-->
@@ -1022,13 +1046,14 @@ non riuscita.
   <string name="preferences_app_protection__app_access">Accesso app</string>
   <string name="preferences_app_protection__communication">Comunicazione</string>
   <string name="preferences_chats__chats">Conversazioni</string>
+  <string name="preferences_notifications__messages">Messaggi</string>
   <string name="preferences_notifications__events">Eventi</string>
   <string name="preferences_notifications__in_chat_sounds">Suoni in chat</string>
   <string name="preferences_notifications__show">Mostra</string>
   <string name="preferences_chats__show_invitation_prompts">Mostra i messaggi di invito</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Visualizza messaggio di invito per i contatti senza Signal</string>
   <string name="preferences_chats__message_text_size">Dimensione carattere messaggio</string>
-  <string name="preferences_events__contact_joined_signal">Un nuovo contatto si è unito a Signal!</string>
+  <string name="preferences_events__contact_joined_signal">Quando un nuovo contatto si unisce a Signal</string>
   <string name="preferences_notifications__priority">Priorità</string>
   <!--****************************************-->
   <!--menus-->
@@ -1159,5 +1184,9 @@ non riuscita.
   <string name="trimmer__old_messages_successfully_deleted">Vecchi messaggi cancellati con successo</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona trasporto</string>
+  <string name="UntrustedSendDialog_send_message">Inviare messaggio?</string>
+  <string name="UntrustedSendDialog_send">Invia</string>
+  <string name="UnverifiedSendDialog_send_message">Inviare messaggio?</string>
+  <string name="UnverifiedSendDialog_send">Invia</string>
   <!--EOF-->
 </resources>

@@ -388,10 +388,13 @@
   <string name="MessageRecord_s_called_you">Jums skambino %s</string>
   <string name="MessageRecord_called_s">Skambino %s</string>
   <string name="MessageRecord_missed_call_from">Praleistas skambutis nuo %s</string>
-  <string name="MessageRecord_s_joined_signal">%s prisijungė prie Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Jūs nustatėte išnykstančių žinučių laiką į %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s nustatė išnykstančių žinučių laiką į %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Jūsų saugumo numeris su %s pasikeitė.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Jūs pažymėjote savo saugumo numerį su %s kaip patvirtintą</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Jūs iš kito įrenginio pažymėjote savo saugumo numerį su %s kaip patvirtintą</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Jūs pažymėjote savo saugumo numerį su %s kaip nepatvirtintą</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Jūs iš kito įrenginio pažymėjote savo saugumo numerį su %s kaip nepatvirtintą</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Slaptafrazės nesutampa!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Neteisinga sena slaptafrazė!</string>
@@ -544,7 +547,6 @@
   <string name="ThreadRecord_called_you">Jums skambino</string>
   <string name="ThreadRecord_missed_call">Praleistas skambutis</string>
   <string name="ThreadRecord_media_message">Medijos žinutė</string>
-  <string name="ThreadRecord_s_joined_signal">%s prisijungė prie Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Išnykstančių žinučių laikas nustatytas į %s</string>
   <string name="ThreadRecord_safety_number_changed">Saugumo numeris pasikeitė</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Jūsų saugumo numeris su %s pasikeitė.</string>
@@ -764,6 +766,11 @@
   <string name="IdentityUtil_untrusted_dialog_one">Jūsų saugumo numeris su %s ką tik pasikeitė.</string>
   <string name="IdentityUtil_untrusted_dialog_two">Jūsų saugumo numeriai su %1$s ir %2$s ką tik pasikeitė.</string>
   <string name="IdentityUtil_untrusted_dialog_many">Jūsų saugumo numeriai su %1$s, %2$s ir %3$s ką tik pasikeitė.</string>
+  <plurals name="identity_others">
+    <item quantity="one">dar %d</item>
+    <item quantity="few">dar %d</item>
+    <item quantity="other">dar %d</item>
+  </plurals>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Ieškoti GIF ir paveikslėlių</string>
   <!--giphy_fragment-->

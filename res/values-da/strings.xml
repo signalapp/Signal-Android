@@ -86,6 +86,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Godkend ukrypteret MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Denne besked vil <b>ikke</b> blive krypteret, da modtageren ikke længere er Signal-bruger.\n\nSend ukrypteret besked?</string>
   <string name="ConversationItem_unable_to_open_media">Kan ikke finde en app, der kan åbne denne fil.</string>
+  <string name="ConversationItem_copied_text">Kopieret %s</string>
   <string name="ConversationItem_from_s">fra %s</string>
   <string name="ConversationItem_to_s">til %s</string>
   <!--ConversationActivity-->
@@ -240,6 +241,10 @@
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Velkommen til Signal!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure er nu Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure og RedPhone er nu én app: Signal. Tryk for at udforske.</string>
+  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Sig hej til sikre videoopkald.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal understøtter nu sikre videoopkald. Du skal bare starte et Signal opkald som normalt, tryk på video knappen og vink goddag.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal understøtter nu sikre videoopkald.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal understøtter nu sikre videoopkald. Tryk for at udforske.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Eksportér</string>
   <string name="ExportFragment_export_plaintext_to_storage">Eksportér klartekst til hukommelsen?</string>
@@ -362,6 +367,10 @@ vil det resultere i dupletter.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Beskeder sat til at forsvinde efter %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s har sat beskeder til at forsvinde efter %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Dit sikkerhedsnummer med %s er ændret</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Du har markeret dit sikkerhedsnummer med %s verificeret</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Du har markeret dit sikkerhedsnummer med %s verificeret fra en anden enhed</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Du har markeret dit sikkerhedsnummer med %s ubekræftet</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Du har markeret dit sikkerhedsnummer med %s ubekræftet fra en anden enhed</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Kodeord matcher ikke!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Ugyldigt nuværende kodeord!</string>
@@ -484,6 +493,7 @@ Dobbelttjek, at dette er dit nummer! Vi er ved at verificere det med en SMS.
   <string name="RegistrationProgressActivity_too_many_requests">For mange anmodninger!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Du har allerede anmodet om et opkald. Du kan anmode om et nyt om 20 minutter.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Registreringskonflikt</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Dette nummer er allerede registreret på en anden Signal server. Du skal først afmelde dig på den før du kan registrere dig her.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registrering fuldført</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Signal-registrering lykkedes.</string>
@@ -505,6 +515,7 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="SmsMessageRecord_secure_session_reset_s">%s nulstiller den sikre session</string>
   <string name="SmsMessageRecord_duplicate_message">Duplikeret besked.</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_group_updated">Gruppe opdateret</string>
   <string name="ThreadRecord_left_the_group">Har forladt gruppen</string>
   <string name="ThreadRecord_secure_session_reset">Sikker forbindelse gendannet.</string>
   <string name="ThreadRecord_draft">Kladder:</string>
@@ -513,8 +524,13 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="ThreadRecord_missed_call">Mistet opkald</string>
   <string name="ThreadRecord_media_message">Mediebesked</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Beskeder sat til at forsvinde efter %s</string>
+  <string name="ThreadRecord_safety_number_changed">Sikkerhedsnummer ændret</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Dit identitestsnøgle med %s er ændret</string>
+  <string name="ThreadRecord_you_marked_verified">Du markerede verificeret</string>
+  <string name="ThreadRecord_you_marked_unverified">Du markerede ubekræftet</string>
   <!--UpdateApkReadyListener-->
+  <string name="UpdateApkReadyListener_Signal_update">Signal opdatering</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">En ny version af Signal er tilgængelig, tryk for at opdatere</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Din kontakt bruger en gammel version af Signal. Bed ham om at updatere inden I udveksler sikkerhedsnøgler</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Din kontakt bruger en nyere version af Signal, med en inkompatibel QR kode. Du bliver nødt til at opdatere din app for at kunne sammenligne.</string>
@@ -575,6 +591,8 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="MessageNotifier_mark_read">Markér som læst</string>
   <string name="MessageNotifier_media_message">Multimediebesked</string>
   <string name="MessageNotifier_reply">Svar</string>
+  <string name="MessageNotifier_pending_signal_messages">Afventende Signal beskeder</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">Du har afventende Signal beskeder, tryk for at åbne og modtage</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Din telefon kræver manuel indtastning af MMS-indstillinger.</string>
   <string name="MmsPreferencesFragment__enabled">Aktiveret</string>
@@ -586,6 +604,7 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Hurtig-svar utilgængelig når Signal er låst!</string>
   <string name="QuickResponseService_problem_sending_message">Problem med at sende besked!</string>
   <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_open_directory">Åben bibliotek</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ny besked</string>
@@ -711,6 +730,15 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
   <!--unverified safety numbers-->
+  <string name="IdentityUtil_unverified_banner_one">Dit sikkerhedsnummer med %s er blevet ændret og er ikke længere verificeret</string>
+  <string name="IdentityUtil_unverified_banner_two">Dine sikkerhedsnumre med %1$s og %2$s er ikke længere verificeret</string>
+  <string name="IdentityUtil_unverified_banner_many">Dine sikkerhedsnumre med %1$s, %2$s, og %3$s er ikke længere verificeret</string>
+  <string name="IdentityUtil_unverified_dialog_one">Dine sikkerhedsnumre med %1$s er blevet ændret og er ikke længere verificeret. Dette kan betyde at nogen forsøger at opfange din kommunikation eller, at %1$s bare har geninstalleret Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Dine sikkerhedsnumre med %1$s og %2$s er ikke længere verificeret. Dette kan betyde at nogen forsøger at opfange din kommunikation eller, at de bare har geninstalleret Signal. </string>
+  <string name="IdentityUtil_unverified_dialog_many">Dine sikkerhedsnumre med %1$s, %2$s, og %3$s er ikke længere verificeret. Dette kan betyde at nogen forsøger at opfange din kommunikation eller, at de bare har geninstalleret Signal.</string>
+  <string name="IdentityUtil_untrusted_dialog_one">Dit sikkerhedsnummer med %s er lige blevet ændret.</string>
+  <string name="IdentityUtil_untrusted_dialog_two">Dine sikkerhedsnumre med %1$s og %2$s er lige blevet ændret.</string>
+  <string name="IdentityUtil_untrusted_dialog_many">Dine sikkerhedsnumre med %1$s, %2$s, og %3$s er lige blevet ændret.</string>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Søg i GIFs og klistermærker</string>
   <!--giphy_fragment-->
@@ -746,6 +774,7 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Ingen mediefiler</string>
   <!--message_recipients_list_item-->
+  <string name="message_recipients_list_item__view">VIS</string>
   <string name="message_recipients_list_item__resend">SEND IGEN</string>
   <string name="message_recipients_list_item__resending">Gensender...</string>
   <!--GroupUtil-->
@@ -769,6 +798,7 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="recipient_preferences__block">Blokér</string>
   <string name="recipient_preferences__color">Farve</string>
   <string name="recipient_preferences__color_for_this_contact">Denne kontakts farve</string>
+  <string name="recipient_preferences__view_safety_number">Vis sikkerhedsnummer</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signalopkald</string>
   <string name="redphone_call_controls__end_call">læg på</string>
@@ -783,6 +813,7 @@ Bekræft at dit telefonnummer er forbundet til Signal.</string>
 TELEFONNUMMER</string>
   <string name="registration_activity__phone_number">TELEFONNUMMER</string>
   <string name="registration_activity__register">Registrér</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal gør det nemt at kommunikere ved at bruge dit eksisterende telefonnummer og kontaktbog. Venner og kontakter som allerede ved hvordan de kontakter dig med telefon vil have nemt ved at komme i kontakt gennem Signal.\n\nRegistreringen overfører nogle kontaktinformationer til serveren. Disse bliver ikke gemt.</string>
   <string name="registration_activity__powered_by_twilio">Drevet af twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Mulige problemer:</string>
@@ -828,7 +859,10 @@ mislykkedes.</string>
   <string name="recipients_panel__to"><small>Indtast navn eller nummer</small></string>
   <string name="recipients_panel__add_members">Tilføj medlem</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Hvis du ønsker at verificere sikkerheden af din kryptering med %s, sammenlign ovenstående nummer med nummeret på deres enhed. En alternativ mulighed er, at du kan scanne koden på deres telefon, eller bede dem om at scanne din. <a href="https://whispersystems.org/redirect/safety-numbers">Learn more.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tryk for at skanne</string>
+  <string name="verify_display_fragment__loading">Indlæser...</string>
+  <string name="verify_display_fragment__verified">Bekræftet</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Del sikkerhedsnøgle</string>
   <!--message_details_header-->
@@ -878,6 +912,9 @@ mislykkedes.</string>
   <string name="arrays__normal">Normal</string>
   <string name="arrays__large">Stor</string>
   <string name="arrays__extra_large">Ekstra stor</string>
+  <string name="arrays__default">Standard</string>
+  <string name="arrays__high">Høj</string>
+  <string name="arrays__max">Maks</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d time</item>
@@ -991,7 +1028,10 @@ mislykkedes.</string>
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Understøttelse for forbedrede video- og stemmeopkald hvis aktiveret af begge parter. Denne funktionalitet er i beta.</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Videresend alle opkald gennem Signal-serveren for at undgå at afsløre din IP-adresse for din kontakt. Dette vil give en dårligere signalkvalitet.</string>
   <string name="preferences_advanced__always_relay_calls">Videresend altid opkald</string>
+  <string name="preferences_app_protection__app_access">App tilgang</string>
   <string name="preferences_app_protection__communication">Kommunikation</string>
+  <string name="preferences_chats__chats">Chats</string>
+  <string name="preferences_notifications__messages">Beskeder</string>
   <string name="preferences_notifications__events">Begivenheder</string>
   <string name="preferences_notifications__in_chat_sounds">Chat-lyde</string>
   <string name="preferences_notifications__show">Vis</string>
@@ -1129,5 +1169,9 @@ mislykkedes.</string>
   <string name="trimmer__old_messages_successfully_deleted">Gennemført sletning af gamle beskeder</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportikon</string>
+  <string name="UntrustedSendDialog_send_message">Send besked?</string>
+  <string name="UntrustedSendDialog_send">Send</string>
+  <string name="UnverifiedSendDialog_send_message">Send besked?</string>
+  <string name="UnverifiedSendDialog_send">Send</string>
   <!--EOF-->
 </resources>

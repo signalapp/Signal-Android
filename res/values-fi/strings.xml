@@ -368,7 +368,6 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="MessageRecord_s_called_you">%s soitti sinulle</string>
   <string name="MessageRecord_called_s">Soitit puhelun: %s</string>
   <string name="MessageRecord_missed_call_from">Vastaamatta jäänyt puhelu: %s</string>
-  <string name="MessageRecord_s_joined_signal">%s liittyi Signaliin</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Sinä asetit viestien katoamisajan: %1$s</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s asetti viestien katoamisajan: %2$s</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Sinun ja yhteystiedon %s turvanumero on vaihtunut.</string>
@@ -521,7 +520,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ThreadRecord_called_you">Soitti sinulle</string>
   <string name="ThreadRecord_missed_call">Vastaamatta jäänyt puhelu</string>
   <string name="ThreadRecord_media_message">Mediaviesti</string>
-  <string name="ThreadRecord_s_joined_signal">%s liittyi Signaliin</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Katoavien viestien ajaksi asetettu %s</string>
   <string name="ThreadRecord_safety_number_changed">Turvanumero vaihtunut</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Sinun ja yhteystiedon %s turvanumero on vaihtunut.</string>

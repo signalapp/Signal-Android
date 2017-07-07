@@ -367,7 +367,7 @@ tornar a fer-ho provocarà la generació de missatges duplicats.</string>
   <string name="MessageRecord_s_called_you">%s us ha trucat</string>
   <string name="MessageRecord_called_s">Heu trucat a %s</string>
   <string name="MessageRecord_missed_call_from">Trucada perduda de %s</string>
-  <string name="MessageRecord_s_joined_signal">%s s\'ha unit al Signal!</string>
+  <string name="MessageRecord_s_joined_signal">%s és al Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Heu establit el temps del missatge efímer en %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ha establit el temps del missatge efímer en %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">El número de seguretat amb %s ha canviat.</string>
@@ -518,7 +518,7 @@ Comproveu que aquest és el vostre número. Anem a verificar-ho amb un SMS.</str
   <string name="ThreadRecord_called_you">Us ha trucat</string>
   <string name="ThreadRecord_missed_call">Trucada perduda</string>
   <string name="ThreadRecord_media_message">Missatge multimèdia</string>
-  <string name="ThreadRecord_s_joined_signal">%s s\'ha unit al Signal!</string>
+  <string name="ThreadRecord_s_is_on_signal">%s és al Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">El temps del missatge efímer s\'ha establit a %s</string>
   <string name="ThreadRecord_safety_number_changed">El número de seguretat ha canviat</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">El número de seguretat amb %s ha canviat.</string>
@@ -774,6 +774,7 @@ Comproveu que aquest és el vostre número. Anem a verificar-ho amb un SMS.</str
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">No hi ha cap contingut</string>
   <!--message_recipients_list_item-->
+  <string name="message_recipients_list_item__view">MOSTRA</string>
   <string name="message_recipients_list_item__resend">TORNA A ENVIAR</string>
   <string name="message_recipients_list_item__resending">S\'està tornant a enviar...</string>
   <!--GroupUtil-->

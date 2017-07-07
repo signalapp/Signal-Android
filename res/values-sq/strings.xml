@@ -372,7 +372,6 @@ importimi i sërishëm do të rezultojë ne mesazhe duplikate.</string>
   <string name="MessageRecord_s_called_you">ju thirri %s</string>
   <string name="MessageRecord_called_s">Thirrët %s</string>
   <string name="MessageRecord_missed_call_from">Thirrje e humbur nga %s</string>
-  <string name="MessageRecord_s_joined_signal">%s u bashkëngjit në Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Ju rregulluat kohën për zhdukjen e porosive në %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s vendosi kohën e zhdukjes së porosive në %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Numri juaj sigurie me %s është ndryshuar.</string>
@@ -523,7 +522,6 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <string name="ThreadRecord_called_you">Të thirri</string>
   <string name="ThreadRecord_missed_call">Thirrje e humbur</string>
   <string name="ThreadRecord_media_message">Porosi mediale</string>
-  <string name="ThreadRecord_s_joined_signal">%s u bashkua në Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Koha për zhdukje të porosive rregulluar në %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Numri juaj sigurie me %s është ndryshuar.</string>
   <!--UpdateApkReadyListener-->

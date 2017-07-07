@@ -351,7 +351,6 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <string name="MessageRecord_s_called_you">%s menelpon Anda.</string>
   <string name="MessageRecord_called_s">Memanggil %s</string>
   <string name="MessageRecord_missed_call_from">Panggilan tak terjawab dari %s</string>
-  <string name="MessageRecord_s_joined_signal">%s bergabung di Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Anda mengatur waktu penghilangan pesan menjadi %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s mengatur waktu penghilangan pesan menjadi %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Angka keamanan Anda dengan %s telah berubah.</string>
@@ -506,7 +505,6 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ThreadRecord_called_you">Memanggil Anda</string>
   <string name="ThreadRecord_missed_call">Panggilan tak terjawab</string>
   <string name="ThreadRecord_media_message">Pesan media</string>
-  <string name="ThreadRecord_s_joined_signal">%s bergabung di Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Waktu pesan hilang diatur ke %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Angka keamanan anda dengan %s telah berubah.</string>
   <!--UpdateApkReadyListener-->
