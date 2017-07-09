@@ -109,6 +109,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   @Override
   public void onPause() {
     super.onPause();
+    dynamicTheme.onPause(this);
     if (!isPassingAlongMedia && resolvedExtra != null) {
       PersistentBlobProvider.getInstance(this).delete(resolvedExtra);
     }

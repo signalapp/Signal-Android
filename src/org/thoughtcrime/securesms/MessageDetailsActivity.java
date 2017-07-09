@@ -127,6 +127,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   protected void onPause() {
     super.onPause();
     MessageNotifier.setVisibleThread(-1L);
+    dynamicTheme.onPause(this);
   }
 
   @Override

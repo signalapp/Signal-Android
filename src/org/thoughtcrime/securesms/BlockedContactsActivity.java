@@ -51,6 +51,12 @@ public class BlockedContactsActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override
+  protected void onPause() {
+    super.onPause();
+    dynamicTheme.onPause(this);
+  }
+
+  @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
       case android.R.id.home: finish(); return true;

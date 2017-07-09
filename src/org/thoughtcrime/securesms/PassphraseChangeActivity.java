@@ -68,6 +68,12 @@ public class PassphraseChangeActivity extends PassphraseActivity {
     dynamicLanguage.onResume(this);
   }
 
+  @Override
+  protected void onPause() {
+    super.onPause();
+    dynamicTheme.onPause(this);
+  }
+
   private void initializeResources() {
     this.originalPassphrase      = (EditText) findViewById(R.id.old_passphrase      );
     this.newPassphrase           = (EditText) findViewById(R.id.new_passphrase      );

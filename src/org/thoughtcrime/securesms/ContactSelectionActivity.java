@@ -86,6 +86,12 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
     dynamicLanguage.onResume(this);
   }
 
+  @Override
+  protected void onPause() {
+    super.onPause();
+    dynamicTheme.onPause(this);
+  }
+
   protected ContactFilterToolbar getToolbar() {
     return toolbar;
   }

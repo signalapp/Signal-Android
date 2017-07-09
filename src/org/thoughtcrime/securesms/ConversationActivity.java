@@ -347,6 +347,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     markLastSeen();
     AudioSlidePlayer.stopAll();
     EventBus.getDefault().unregister(this);
+    dynamicTheme.onPause(this);
   }
 
   @Override

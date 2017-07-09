@@ -13,24 +13,13 @@ import android.os.Build;
  */
 public class ActivityUtil {
   public static void recreateActivity(Activity activity) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-      recreateHoneycomb(activity);
-    } else {
-      recreatePreHoneycomb(activity);
+    if (activity != null) {
+      Intent intent = activity.getIntent();
+      intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+      activity.finish();
+      activity.overridePendingTransition(0, 0);
+      activity.startActivity(intent);
+      activity.overridePendingTransition(0, 0);
     }
-  }
-
-  @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-  private static void recreateHoneycomb(Activity activity) {
-    activity.recreate();
-  }
-
-  private static void recreatePreHoneycomb(Activity activity) {
-    Intent intent = activity.getIntent();
-    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-    activity.finish();
-    activity.overridePendingTransition(0, 0);
-    activity.startActivity(intent);
-    activity.overridePendingTransition(0, 0);
   }
 }

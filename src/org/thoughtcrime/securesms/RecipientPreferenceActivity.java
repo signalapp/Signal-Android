@@ -107,6 +107,12 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   }
 
   @Override
+  protected void onPause() {
+    super.onPause();
+    dynamicTheme.onPause(this);
+  }
+
+  @Override
   public void onDestroy() {
     super.onDestroy();
     unregisterReceiver(staleReceiver);

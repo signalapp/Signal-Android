@@ -33,6 +33,12 @@ public class ImportExportActivity extends PassphraseRequiredActionBarActivity {
   }
 
   @Override
+  protected void onPause() {
+    super.onPause();
+    dynamicTheme.onPause(this);
+  }
+
+  @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     super.onOptionsItemSelected(item);
 

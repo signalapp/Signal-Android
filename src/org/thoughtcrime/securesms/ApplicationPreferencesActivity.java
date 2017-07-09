@@ -94,6 +94,12 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
   }
 
   @Override
+  protected void onPause() {
+    super.onPause();
+    dynamicTheme.onPause(this);
+  }
+
+  @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data)
   {
     super.onActivityResult(requestCode, resultCode, data);

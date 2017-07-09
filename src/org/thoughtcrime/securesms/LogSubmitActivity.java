@@ -39,6 +39,12 @@ public class LogSubmitActivity extends BaseActionBarActivity implements SubmitLo
   }
 
   @Override
+  protected void onPause() {
+    super.onPause();
+    dynamicTheme.onPause(this);
+  }
+
+  @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     super.onOptionsItemSelected(item);
     switch (item.getItemId()) {

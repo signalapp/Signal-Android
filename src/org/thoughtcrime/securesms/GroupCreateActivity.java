@@ -138,6 +138,12 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     updateViewState();
   }
 
+  @Override
+  protected void onPause() {
+    super.onPause();
+    dynamicTheme.onPause(this);
+  }
+
   private boolean isSignalGroup() {
     return TextSecurePreferences.isPushRegistered(this) && !getAdapter().hasNonPushMembers();
   }

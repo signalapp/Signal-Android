@@ -84,6 +84,12 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   }
 
   @Override
+  protected void onPause() {
+    super.onPause();
+    dynamicTheme.onPause(this);
+  }
+
+  @Override
   public void onDestroy() {
     if (observer != null) getContentResolver().unregisterContentObserver(observer);
     super.onDestroy();
