@@ -7,29 +7,33 @@
               android:orientation="horizontal"
               tools:background="@color/textsecure_primary">
 
-        <ToggleButton android:id="@+id/speakerButton"
-                      style="@style/WebRtcCallCompoundButton"
-                      android:background="@drawable/webrtc_speaker_button"
-                      tools:checked="true"
-                      android:layout_marginRight="15dp"/>
+        <org.thoughtcrime.securesms.components.AccessibleToggleButton
+                android:id="@+id/speakerButton"
+                style="@style/WebRtcCallCompoundButton"
+                android:background="@drawable/webrtc_speaker_button"
+                tools:checked="true"
+                android:layout_marginRight="15dp"/>
 
-        <ToggleButton android:id="@+id/bluetoothButton"
-                      style="@style/WebRtcCallCompoundButton"
-                      android:background="@drawable/webrtc_bluetooth_button"
-                      tools:checked="true"
-                      android:layout_marginRight="15dp"
-                      android:visibility="gone"/>
+        <org.thoughtcrime.securesms.components.AccessibleToggleButton
+                android:id="@+id/bluetoothButton"
+                style="@style/WebRtcCallCompoundButton"
+                android:background="@drawable/webrtc_bluetooth_button"
+                tools:checked="true"
+                android:layout_marginRight="15dp"
+                android:visibility="gone"/>
 
-        <ToggleButton android:id="@+id/muteButton"
-                      style="@style/WebRtcCallCompoundButton"
-                      android:background="@drawable/webrtc_mute_button"
-                      android:contentDescription="@string/redphone_call_controls__mute"
-                      android:layout_marginRight="15dp"
-                      tools:checked="false"
+        <org.thoughtcrime.securesms.components.AccessibleToggleButton
+                android:id="@+id/muteButton"
+                style="@style/WebRtcCallCompoundButton"
+                android:background="@drawable/webrtc_mute_button"
+                android:contentDescription="@string/redphone_call_controls__mute"
+                android:layout_marginRight="15dp"
+                tools:checked="false"
                 />
 
-        <ToggleButton android:id="@+id/video_mute_button"
-                      style="@style/WebRtcCallCompoundButton"
-                      android:background="@drawable/webrtc_video_mute_button"/>
+        <org.thoughtcrime.securesms.components.AccessibleToggleButton
+                android:id="@+id/video_mute_button"
+                style="@style/WebRtcCallCompoundButton"
+                android:background="@drawable/webrtc_video_mute_button"/>
 
 </merge>

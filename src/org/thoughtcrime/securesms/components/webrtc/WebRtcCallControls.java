@@ -6,6 +6,7 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,15 +17,18 @@ import com.tomergoldst.tooltips.ToolTip;
 import com.tomergoldst.tooltips.ToolTipsManager;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.AccessibleToggleButton;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class WebRtcCallControls extends LinearLayout {
 
-  private CompoundButton audioMuteButton;
-  private CompoundButton videoMuteButton;
-  private CompoundButton speakerButton;
-  private CompoundButton bluetoothButton;
+  private static final String TAG = WebRtcCallControls.class.getSimpleName();
+
+  private AccessibleToggleButton audioMuteButton;
+  private AccessibleToggleButton videoMuteButton;
+  private AccessibleToggleButton speakerButton;
+  private AccessibleToggleButton bluetoothButton;
 
   @TargetApi(Build.VERSION_CODES.LOLLIPOP)
   public WebRtcCallControls(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
@@ -106,14 +110,14 @@ public class WebRtcCallControls extends LinearLayout {
     }
 
     if (audioManager.isBluetoothScoOn()) {
-      bluetoothButton.setChecked(true);
-      speakerButton.setChecked(false);
+      bluetoothButton.setChecked(true, false);
+      speakerButton.setChecked(false, false);
     } else if (audioManager.isSpeakerphoneOn()) {
-      speakerButton.setChecked(true);
-      bluetoothButton.setChecked(false);
+      speakerButton.setChecked(true, false);
+      bluetoothButton.setChecked(false, false);
     } else {
-      speakerButton.setChecked(false);
-      bluetoothButton.setChecked(false);
+      speakerButton.setChecked(false, false);
+      bluetoothButton.setChecked(false, false);
     }
   }
 
@@ -122,11 +126,11 @@ public class WebRtcCallControls extends LinearLayout {
   }
 
   public void setVideoEnabled(boolean enabled) {
-    videoMuteButton.setChecked(enabled);
+    videoMuteButton.setChecked(enabled, false);
   }
 
   public void setMicrophoneEnabled(boolean enabled) {
-    audioMuteButton.setChecked(!enabled);
+    audioMuteButton.setChecked(!enabled, false);
   }
 
   public void setControlsEnabled(boolean enabled) {
@@ -145,12 +149,7 @@ public class WebRtcCallControls extends LinearLayout {
       bluetoothButton.setAlpha(0.3f);
       videoMuteButton.setAlpha(0.3f);
       audioMuteButton.setAlpha(0.3f);
-
-      speakerButton.setChecked(false);
-      bluetoothButton.setChecked(false);
-      videoMuteButton.setChecked(false);
-      audioMuteButton.setChecked(false);
-
+      
       speakerButton.setEnabled(false);
       bluetoothButton.setEnabled(false);
       videoMuteButton.setEnabled(false);
@@ -174,14 +173,6 @@ public class WebRtcCallControls extends LinearLayout {
         }
       }, 4000);
     }
-  }
-
-  public void reset() {
-    audioMuteButton.setChecked(false);
-    videoMuteButton.setChecked(false);
-    speakerButton.setChecked(false);
-    bluetoothButton.setChecked(false);
-    bluetoothButton.setVisibility(View.GONE);
   }
 
   public static interface MuteButtonListener {

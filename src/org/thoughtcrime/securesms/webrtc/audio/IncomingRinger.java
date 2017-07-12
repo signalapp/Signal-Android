@@ -32,7 +32,7 @@ public class IncomingRinger {
     this.vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
   }
 
-  public void start(boolean speakerphone) {
+  public void start() {
     AudioManager audioManager = ServiceUtil.getAudioManager(context);
 
     if (player != null) player.release();
@@ -60,10 +60,6 @@ public class IncomingRinger {
       }
     } else {
       Log.w(TAG, "Not ringing, mode: " + ringerMode);
-    }
-
-    if (speakerphone) {
-      audioManager.setSpeakerphoneOn(true);
     }
   }
 
@@ -120,7 +116,7 @@ public class IncomingRinger {
       mediaPlayer.setOnErrorListener(new MediaPlayerErrorListener());
       mediaPlayer.setDataSource(context, ringtoneUri);
       mediaPlayer.setLooping(true);
-      mediaPlayer.setAudioStreamType(AudioManager.STREAM_VOICE_CALL);
+      mediaPlayer.setAudioStreamType(AudioManager.STREAM_RING);
 
       return mediaPlayer;
     } catch (IOException e) {

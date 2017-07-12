@@ -46,16 +46,11 @@ public class SignalAudioManager {
     AudioManager audioManager = ServiceUtil.getAudioManager(context);
     boolean      speaker      = !audioManager.isWiredHeadsetOn() && !audioManager.isBluetoothScoOn();
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-      audioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
-    } else {
-      audioManager.setMode(AudioManager.MODE_IN_CALL);
-    }
-
+    audioManager.setMode(AudioManager.MODE_RINGTONE);
     audioManager.setMicrophoneMute(false);
     audioManager.setSpeakerphoneOn(speaker);
 
-    incomingRinger.start(speaker);
+    incomingRinger.start();
   }
 
   public void startOutgoingRinger(OutgoingRinger.Type type) {
@@ -84,6 +79,12 @@ public class SignalAudioManager {
 
     incomingRinger.stop();
     outgoingRinger.stop();
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+      audioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
+    } else {
+      audioManager.setMode(AudioManager.MODE_IN_CALL);
+    }
 
     if (!preserveSpeakerphone) {
       audioManager.setSpeakerphoneOn(false);

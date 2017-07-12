@@ -135,22 +135,6 @@ public class WebRtcCallScreen extends FrameLayout implements Recipient.Recipient
     this.endCallButton.setVisibility(View.INVISIBLE);
   }
 
-
-  public void reset() {
-    setPersonInfo(Recipient.getUnknownRecipient());
-    setMinimized(false);
-    this.status.setText("");
-    this.recipient = null;
-
-    this.controls.reset();
-    this.untrustedIdentityExplanation.setText("");
-    this.untrustedIdentityContainer.setVisibility(View.GONE);
-    this.localRenderLayout.removeAllViews();
-    this.remoteRenderLayout.removeAllViews();
-
-    incomingCallOverlay.reset();
-  }
-
   public void setIncomingCallActionListener(WebRtcIncomingCallOverlay.IncomingCallActionListener listener) {
     incomingCallOverlay.setIncomingCallActionListener(listener);
   }
