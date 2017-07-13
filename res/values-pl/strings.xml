@@ -399,6 +399,7 @@ Stracisz wszystkie informacje obecnie zawarte w aplikacji Signal z wyjątkiem ty
   <string name="MessageRecord_s_called_you">%s dzwonił do Ciebie</string>
   <string name="MessageRecord_called_s">Zadzwoniono do %s</string>
   <string name="MessageRecord_missed_call_from">Nieodebrane połączenie od %s</string>
+  <string name="MessageRecord_s_joined_signal">%s jest w Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Ustawiłeś zniknięcie wiadomości po: %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ustawił zniknięcie wiadomości po: %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Twój numer bezpieczeństwa z %s zmienił się.</string>
@@ -549,6 +550,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ThreadRecord_called_you">Oni zadzwonili</string>
   <string name="ThreadRecord_missed_call">Nieodebrane połączenie</string>
   <string name="ThreadRecord_media_message">Wiadomość multimedialna</string>
+  <string name="ThreadRecord_s_is_on_signal">%s jest w Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Czas znikania wiadomości ustawiony na %s</string>
   <string name="ThreadRecord_safety_number_changed">Zmieniono numer bezpieczeństwa</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Twój numer bezpieczeństwa z %s zmienił się.</string>

@@ -371,6 +371,7 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <string name="MessageRecord_s_called_you">%s hívott téged</string>
   <string name="MessageRecord_called_s">Hívtad: %s</string>
   <string name="MessageRecord_missed_call_from">Nem fogadott hívás tőle: %s</string>
+  <string name="MessageRecord_s_joined_signal">%s a Signal-on van!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Beállítottad az eltűnő üzenet idejét erre: %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s beállította az eltűnő üzenet idejét erre: %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Megváltozott a biztonsági számod vele: %s.</string>
@@ -530,6 +531,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ThreadRecord_called_you">Hívott téged</string>
   <string name="ThreadRecord_missed_call">Nem fogadott hívás</string>
   <string name="ThreadRecord_media_message">Média üzenet</string>
+  <string name="ThreadRecord_s_is_on_signal">%s a Signal-on van!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Eltűnő üzenet ideje beállítva erre: %s</string>
   <string name="ThreadRecord_safety_number_changed">Megváltozott a biztonsági szám</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Megváltozott a biztonsági számod vele: %s.</string>

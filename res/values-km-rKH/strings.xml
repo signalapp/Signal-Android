@@ -348,9 +348,14 @@
   <string name="MessageRecord_s_called_you">%s ហៅមកអ្នក</string>
   <string name="MessageRecord_called_s">ហៅទៅកាន់ %s</string>
   <string name="MessageRecord_missed_call_from">ការហៅមិនបានទទួលពី %s</string>
+  <string name="MessageRecord_s_joined_signal">%s ប្រើ Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">អ្នកកំណត់រយៈពេលសារមិនបង្ហាញ %1$s។</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s កំណត់រយៈពេលសារមិនបង្ហាញ %2$s។</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">លេខសុវត្ថិភាពអ្នកជាមួយ %s បានផ្លាស់ប្តូរ។</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">អ្នកបានផ្ទៀងផ្ទាត់លេខសុវត្ថិភាពជាមួយ %s</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">អ្នកបានផ្ទៀងផ្ទាត់លេខសុវត្ថិភាពជាមួយ %sពីឧបករណ៍ផ្សេង</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">អ្នកមិនបានផ្ទៀងផ្ទាត់លេខសុវត្ថិភាពជាមួយ​%s</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">អ្នកមិនបានផ្ទៀងផ្ទាត់លេខសុវត្ថិភាពជាមួយ %s ពីឧបករណ៍ផ្សេង</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">ឃ្លាសម្ងាត់មិនត្រូវគ្នា!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">ឃ្លាសម្ងាត់ចាស់មិនត្រឹមត្រូវ!</string>
@@ -496,9 +501,12 @@
   <string name="ThreadRecord_called_you">ហៅមកអ្នក</string>
   <string name="ThreadRecord_missed_call">ការហៅមិនបានទទួល</string>
   <string name="ThreadRecord_media_message">សារមេឌា</string>
+  <string name="ThreadRecord_s_is_on_signal">%s ប្រើ Signal!​</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">កំណត់រយៈពេលសារមិនបង្ហាញ %s</string>
   <string name="ThreadRecord_safety_number_changed">លេខសុវត្ថិភាព បានផ្លាស់ប្តូរ</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">លេខសុវត្ថិភាពអ្នកជាមួយ %s បានផ្លាស់ប្តូរ។</string>
+  <string name="ThreadRecord_you_marked_verified">អ្នកបានផ្ទៀងផ្ទាត់</string>
+  <string name="ThreadRecord_you_marked_unverified">អ្នកមិនបានផ្ទៀងផ្ទាត់</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">បច្ចុប្បន្នភាព Signal </string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">ជំនាន់ថ្មីរបស់ Signal មានហើយ, ចុច ដើម្បីធ្វើបច្ចុប្បន្នភាព</string>
@@ -696,6 +704,18 @@
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
   <!--unverified safety numbers-->
+  <string name="IdentityUtil_unverified_banner_one">លេខទំនាក់ទំនងជាមួយ %s បានផ្លាស់ប្តូរ និងមិនបានផ្ទៀងផ្ទាត់</string>
+  <string name="IdentityUtil_unverified_banner_two">លេខទំនាក់ទំនងជាមួយ %1$s និង %2$s បានផ្លាស់ប្តូរ និងមិនបានផ្ទៀងផ្ទាត់</string>
+  <string name="IdentityUtil_unverified_banner_many">លេខទំនាក់ទំនងជាមួយ %1$s, %2$s, និង %3$s បានផ្លាស់ប្តូរ និងមិនបានផ្ទៀងផ្ទាត់</string>
+  <string name="IdentityUtil_unverified_dialog_one">លេខសុវត្ថិភាពជាមួយ %1$s មិនបានផ្ទៀងផ្ទាត់ទេ។ នេះអាចមានន័យថា មានគេកំពុងព្យាយាមជ្រាតចូលការទំនាក់ទំនងរបស់អ្នក ឬ %1$sអាចបញ្ចូល Signal ម្តងទៀត។</string>
+  <string name="IdentityUtil_unverified_dialog_two">លេខសុវត្ថិភាពជាមួយ %1$s និង​ %2$s មិនបានផ្ទៀងផ្ទាត់ទេ។ នេះអាចមានន័យថា មានគេកំពុងព្យាយាមជ្រាតចូលការទំនាក់ទំនងរបស់អ្នក ឬ អ្នកអាចបញ្ចូល Signal ម្តងទៀត។</string>
+  <string name="IdentityUtil_unverified_dialog_many">លេខសុវត្ថិភាពជាមួយ %1$s, %2$s, និង %3$s មិនបានផ្ទៀងផ្ទាត់ទេ។ នេះអាចមានន័យថា មានគេកំពុងព្យាយាមជ្រាតចូលការទំនាក់ទំនងរបស់អ្នក ឬ អ្នកអាចបញ្ចូល Signal ម្តងទៀត។</string>
+  <string name="IdentityUtil_untrusted_dialog_one">លេខសុវត្ថិភាពជាមួយ %s ទើបផ្លាស់ប្តូរ។</string>
+  <string name="IdentityUtil_untrusted_dialog_two">លេខសុវត្ថិភាពជាមួយ %1$s និង %2$s ទើបផ្លាស់ប្តូរ។</string>
+  <string name="IdentityUtil_untrusted_dialog_many">លេខសុវត្ថិភាពជាមួយ %1$s, %2$s, និង %3$s ទើបផ្លាស់ប្តូរ។</string>
+  <plurals name="identity_others">
+    <item quantity="other">%dផ្សេង</item>
+  </plurals>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">ស្វែករក GIFs និងស្ទីកគ័រ</string>
   <!--giphy_fragment-->
@@ -731,6 +751,7 @@
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">គ្មានមេឌា</string>
   <!--message_recipients_list_item-->
+  <string name="message_recipients_list_item__view">បង្ហាញ</string>
   <string name="message_recipients_list_item__resend">ផ្ញើសារឡើងវិញ</string>
   <string name="message_recipients_list_item__resending">កំពុងបញ្ជូនឡើងវិញ...</string>
   <!--GroupUtil-->
@@ -753,6 +774,7 @@
   <string name="recipient_preferences__block">បិទ</string>
   <string name="recipient_preferences__color">ពណ៌</string>
   <string name="recipient_preferences__color_for_this_contact">ដាក់ពណ៌លេខទំនាក់ទំនងនេះ</string>
+  <string name="recipient_preferences__view_safety_number">បង្ហាញលេខសុវត្ថិភាព</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">ហៅទូរស័ព្ទ Signal </string>
   <string name="redphone_call_controls__end_call">បិទការហៅចូល</string>
@@ -824,7 +846,10 @@
   <string name="recipients_panel__to"><small>បញ្ចូលឈ្មោះ និងលេខទូរស័ព្ទ</small></string>
   <string name="recipients_panel__add_members">ថែមសមាជិក</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ ប្រសិនបើ អ្នកចង់ផ្ទៀងផ្ទាត់សុវត្ថិភាពនៃការអ៊ិនគ្រីបជាមួយ %s,  ផ្ទៀងផ្ទាត់លេខទំនាក់ទំនងខាងលើជាមួយ លេខនៅលើឧបករណ៍។ ផ្សេងពីនេះ អ្នកអាចស្កេនកូដលើ ទូរស័ព្ទ​របស់គេ, ឬប្រាប់គេ ស្កេនកូដរបស់អ្នក។ <a href="https://whispersystems.org/redirect/safety-numbers">ស្វែងយល់បន្ថែម</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">ចុច ដើម្បីស្កេន</string>
+  <string name="verify_display_fragment__loading">កំពុងផ្ទុក...</string>
+  <string name="verify_display_fragment__verified">បានផ្ទៀងផ្ទាត់</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">ចែករំលែកលេខសុវត្ថិភាព</string>
   <!--message_details_header-->
@@ -992,6 +1017,7 @@
   <string name="preferences_app_protection__app_access">ចូលប្រើប្រាស់កម្មវិធី</string>
   <string name="preferences_app_protection__communication">ការទំនាក់ទំនង</string>
   <string name="preferences_chats__chats">ការជជែក</string>
+  <string name="preferences_notifications__messages">សារ</string>
   <string name="preferences_notifications__events">ព្រឹត្តិការណ៍</string>
   <string name="preferences_notifications__in_chat_sounds">សំឡេងក្នុងការជជែក</string>
   <string name="preferences_notifications__show">បង្ហាញ</string>
@@ -1128,5 +1154,9 @@
   <string name="trimmer__old_messages_successfully_deleted">សារចាស់ៗត្រូវបានលុបចេញដោយជោគជ័យ</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">រូបតំណាងដឹកជញ្ជូន</string>
+  <string name="UntrustedSendDialog_send_message">ផ្ញើសារ?</string>
+  <string name="UntrustedSendDialog_send">បញ្ជូន</string>
+  <string name="UnverifiedSendDialog_send_message">ផ្ញើសារ?</string>
+  <string name="UnverifiedSendDialog_send">បញ្ជូន</string>
   <!--EOF-->
 </resources>

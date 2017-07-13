@@ -370,6 +370,7 @@
   <string name="MessageRecord_s_called_you">%s helistas sulle</string>
   <string name="MessageRecord_called_s">Helistasid kontaktile %s</string>
   <string name="MessageRecord_missed_call_from">Vastamata kõne kontaktilt %s</string>
+  <string name="MessageRecord_s_joined_signal">%s on Signalis!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Sa määrasid hävineva sõnumi ajaks %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s määras hävineva sõnumi ajaks %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Sinu turvanumber kontaktiga %s on muutunud.</string>
@@ -529,6 +530,7 @@
   <string name="ThreadRecord_called_you">Helistas sulle</string>
   <string name="ThreadRecord_missed_call">Vastamata kõne</string>
   <string name="ThreadRecord_media_message">Meediasõnum</string>
+  <string name="ThreadRecord_s_is_on_signal">%s on Signalis!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Hävineva sõnumi ajaks on seatud %s</string>
   <string name="ThreadRecord_safety_number_changed">Turvanumber muudetud</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Sinu turvanumber kontaktiga %s on muutunud.</string>

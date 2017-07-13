@@ -50,7 +50,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(видео)</string>
   <string name="DraftDatabase_Draft_location_snippet">(местоположение)</string>
   <!--AttchmentManager-->
-  <string name="AttachmentManager_cant_open_media_selection">Неуспешно откирване на папка за избор на файл.</string>
+  <string name="AttachmentManager_cant_open_media_selection">Неуспешно откриване на папка за избор на файл.</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_camera">Камера</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Картина</string>
@@ -64,7 +64,7 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Входящо обаждане</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Числата Ви за сигурност с %1$s са променени. Това означава, че или някой се опитва да прехване куминикацията Ви, или че %2$s е преинсталирал Сигнал.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Числата Ви за сигурност с %1$s са променени. Това означава, че или някой се опитва да прехване комуникацията Ви, или че %2$s е преинсталирал Сигнал.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Може да желаете да проверите числата за сигурност с този контакт.</string>
   <string name="ConfirmIdentityDialog_accept">Приемам</string>
   <!--ContactsDatabase-->
@@ -241,7 +241,7 @@
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure вече е Сигнал.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure и Redphone вече са една програма: Сигнал. Натисни за да разгледаш.</string>
   <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Кажете здравей на криптирани видео разговори.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Сигнал вече подддържа криптирани видео разговори. Просто започнете обаждане, както обикновено и натиснете бутонът за видео.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Сигнал вече поддържа криптирани видео разговори. Просто започнете обаждане, както обикновено и натиснете бутонът за видео.</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Сигнал вече поддържа криптирано видео обаждане.</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Сигнал вече поддържа криптирано видео обаждане. Натиснете, за да научите повече.</string>
   <!--ExportFragment-->
@@ -359,13 +359,14 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Изтегляне на MMS съобщение</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Грешка при изтегляне на MMS съобщение, натиснете за да опитате повторно</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Получихте съобщение криптирано със стара версия на Сигнал, която вече не се поддържа. Моля помолете изпращача да обнови версията си и да препрати съобщението.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Получихте съобщение криптирано със стара версия на Сигнал, която вече не се поддържа. Моля, помолете изпращача да обнови версията си и да препрати съобщението.</string>
   <string name="MessageRecord_left_group">Напуснахте групата.</string>
   <string name="MessageRecord_you_updated_group">Обновихте групата.</string>
   <string name="MessageRecord_s_updated_group">%s обнови групата.</string>
   <string name="MessageRecord_s_called_you">%s ти се обади</string>
   <string name="MessageRecord_called_s">Обаждане до %s</string>
   <string name="MessageRecord_missed_call_from">Пропуснато обаждане от %s</string>
+  <string name="MessageRecord_s_joined_signal">%s е в Сигнал!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Заложихте време за изчезване на съобщения на %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s заложи време за изчезване на съобщения на %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Числата Ви за сигурност с %s са променени</string>
@@ -389,7 +390,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
     </string>
   <string name="DeviceProvisioningActivity_content_progress_title">Свързване с устройството</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Свързване с ново устройство...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Устройството одобрено!</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Устройството е одобрено!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Не е открито устройство.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Проблем с мобилната мрежа.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Невалиден QR код.</string>
@@ -412,14 +413,14 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="RatingManager_rate_this_app">Оцени тази програма</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Ако харесваш тази програма, отдели една секунда и ни помогни като ѝ дадеш оценка.</string>
   <string name="RatingManager_rate_now">Оцени сега!</string>
-  <string name="RatingManager_no_thanks">Не благодаря</string>
+  <string name="RatingManager_no_thanks">Не, благодаря</string>
   <string name="RatingManager_later">По-късно</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Опа, Play Store приложението не е инсталирано на устройството Ви.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Блокирване на този контакт?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Повече няма да получавате съобщения и обаждания от този контакт.</string>
-  <string name="RecipientPreferenceActivity_block">Блокирване</string>
-  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Отблокирване на този контакт?</string>
+  <string name="RecipientPreferenceActivity_block">Блокиране</string>
+  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Отблокиране на този контакт?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Отново ще може да получавате съобщения и обаждания от този контакт.</string>
   <string name="RecipientPreferenceActivity_unblock">Отблокирване</string>
   <string name="RecipientPreferenceActivity_enabled">Активирано</string>
@@ -459,7 +460,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Избраният номер
 (%s) е невалиден.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
-Проверете, че това е Вашия номер! Следва да го проверим чрез SMS.</string>
+Проверете, че това е Вашият номер! Следва да го проверим чрез SMS.</string>
   <string name="RegistrationActivity_continue">Продължи</string>
   <string name="RegistrationActivity_edit">Промени</string>
   <string name="RegistrationActivity_missing_google_play_services">Липсват Google Play услуги</string>
@@ -520,6 +521,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="ThreadRecord_called_you">Ви се обади</string>
   <string name="ThreadRecord_missed_call">Пропуснато обаждане</string>
   <string name="ThreadRecord_media_message">Медийно съобщение</string>
+  <string name="ThreadRecord_s_is_on_signal">%s е в Сигнал!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Времето за изчезване на съобщенията е %s</string>
   <string name="ThreadRecord_safety_number_changed">Числата за сигурност се промениха</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Числата Ви за сигурност с %s са променени.</string>
@@ -529,9 +531,9 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="UpdateApkReadyListener_Signal_update">Обновление на Сигнал</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Има нова версия на Сигнал, натиснете, за да обновите.</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Вашият контакт използва стара версия на Сигна. Помолети го да я обнови преди да сравните числата за сигурност.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Вашият контакт използва стара версия на Сигнал. Помолете го да я обнови, преди да сравните числата за сигурност.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Вашият контакт използва по-нова версия на Сигнал с несъвместим QR формат. Моля, обновете версията си, за да можете да сравните.</string>
-  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Сканираният QR код не представлява правило форматирани числа за сигурност. Моля, опитайте да сканирате отново.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Сканираният QR код не представлява правилно форматирани числа за сигурност. Моля, опитайте да сканирате отново.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Споделяне на числа за сигурност през...</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Нашите Сигнал числа за сигурност:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Изглежда нямате приложения, с които да можете да сподялите.</string>
@@ -628,7 +630,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="attachment_type_selector__file_description">Файл</string>
   <string name="attachment_type_selector__gallery">Галерия</string>
   <string name="attachment_type_selector__file">Файл</string>
-  <string name="attachment_type_selector__drawer_description">Затворяне/отворяне на чекмеджето с прикачени файлове</string>
+  <string name="attachment_type_selector__drawer_description">Затваряне/отваряне на чекмеджето с прикачени файлове</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Стара парола</string>
   <string name="change_passphrase_activity__new_passphrase">Нова парола</string>
@@ -754,7 +756,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="log_submit_activity__posting_logs">Изпращане на доклад до gist...</string>
   <string name="log_submit_activity__no_browser_installed">Няма инсталиран браузър</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Желаете ли да внесете вече същестуващите текстови съобщения в криптиранта база данни на Сигнал?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Желаете ли да внесете вече съществуващите текстови съобщения в криптираната база данни на Сигнал?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Системната база данни няма да бъде променена по никакъв начин.</string>
   <string name="database_migration_activity__skip">Пропусни</string>
   <string name="database_migration_activity__import">Внасяне</string>
@@ -795,8 +797,8 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="recipient_preferences__mute_conversation">Слагане на чата в тих режим</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">Деактивиране на известия за този чат</string>
   <string name="recipient_preferences__notification_sound">Мелодия за известия</string>
-  <string name="recipient_preferences__vibrate">Вибрирация</string>
-  <string name="recipient_preferences__block">Блокирване</string>
+  <string name="recipient_preferences__vibrate">Вибрация</string>
+  <string name="recipient_preferences__block">Блокиране</string>
   <string name="recipient_preferences__color">Цвят</string>
   <string name="recipient_preferences__color_for_this_contact">Цвят за този контакт</string>
   <string name="recipient_preferences__view_safety_number">Преглеждане на числото за сигурност</string>
@@ -808,7 +810,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="redphone_call_controls__signal_call">Обаждане през Сигнал</string>
   <!--registration_activity-->
   <string name="registration_activity__verify_your_number_to_connect_with_signal">
-Потвърди своя телфонен номер, за да се свържеш с Сигнал</string>
+Потвърди своя телефонен номер, за да се свържеш с Сигнал</string>
   <string name="registration_activity__your_country">ТВОЯТА ДЪРЖАВА</string>
   <string name="registration_activity__your_country_code_and_phone_number">КОДА НА ТВОЯТА ДЪРЖАВА И
 ТЕЛЕФОНЕН НОМЕР</string>
@@ -845,7 +847,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
 </string>
   <string name="registration_progress_activity__no_network_connectivity">Няма интернет
 връзка.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Устройствот Ви
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Устройството Ви
 се нуждае от връзка с интернет, за да може да използва тази Сигнал услуга.
 Проверете и се убедете, че сте свързани с мобилната мрежа или Wi-Fi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Firewall-a e твърде рестриктивен.</string>
@@ -951,7 +953,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="preferences__change_passphrase">Смени паролата</string>
   <string name="preferences__change_your_passphrase">Сменете паролата си</string>
   <string name="preferences__enable_passphrase">Включи парола</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Заключи Сигнал и всички извесития с парола</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Заключи Сигнал и всички известия с парола</string>
   <string name="preferences__screen_security">Сигурност на екрана</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Забраняване на автоматично копиране на екрана в списка с често използвани програми и в самата програма.</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Автоматично заключвай Сигнал след зададен период от неактивност</string>
@@ -1027,7 +1029,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="preferences__support_wifi_calling">Съвместим режим \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Включи ако устройството ти използва WiFi за SMS/MMS(само ако \'Wifi Calling\' е включен на устройството ти)</string>
   <string name="preferences_app_protection__blocked_contacts">Блокирани контакти</string>
-  <string name="preferences_app_protection__safety_numbers_approval">Удобряване на числата за сигурност</string>
+  <string name="preferences_app_protection__safety_numbers_approval">Одобряване на числата за сигурност</string>
   <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Изискай удобряване на новите числа, когато бъдат променени</string>
   <string name="preferences_notifications__display_in_notifications">Покажи в полето с известия</string>
   <string name="preferences_chats__when_using_mobile_data">Когато използвам мобилен интернет</string>
@@ -1052,7 +1054,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Показване на покани за контакти без Сигнал</string>
   <string name="preferences_chats__message_text_size">Размер на текста</string>
   <string name="preferences_events__contact_joined_signal">Един от контактите Ви се присъедини към Сигнал!</string>
-  <string name="preferences_notifications__priority">Пиоритет</string>
+  <string name="preferences_notifications__priority">Приоритет</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1131,7 +1133,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="text_secure_normal__menu_settings">Настройки</string>
   <string name="text_secure_normal__menu_clear_passphrase">Заключи</string>
   <string name="text_secure_normal__mark_all_as_read">Маркиране на всички като прочетени</string>
-  <string name="text_secure_normal__invite_friends">Поканване на приятели</string>
+  <string name="text_secure_normal__invite_friends">Покани приятели</string>
   <string name="text_secure_normal__help">Помощ</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Копиране</string>
@@ -1143,13 +1145,13 @@ SMS-те от системния архив в Сигнал. Ако вече с�
     <item quantity="other">Вашата версия на Сигнал ще изтече след %d дена. Натиснете, за да обновите до най-новата версия.</item>
   </plurals>
   <string name="reminder_header_outdated_build_details_today">Вашата версия на Сигнал ще изтече днес. Натиснете, за да обновите до най-новата версия.</string>
-  <string name="reminder_header_expired_build">Вашата версоя ма Сигнал е изтекла!</string>
-  <string name="reminder_header_expired_build_details">Съобщенията няма да успесно изпращани от сега нататък. Натиснете, за да обновите до най-новата версия.</string>
+  <string name="reminder_header_expired_build">Вашата версия на Сигнал е изтекла!</string>
+  <string name="reminder_header_expired_build_details">Съобщенията няма да бъдат успешно изпращани от сега нататък. Натиснете, за да обновите до най-новата версия.</string>
   <string name="reminder_header_expired_build_button">ОБНОВИ</string>
   <string name="reminder_header_sms_default_title">Използвай като SMS програма по подразбиране</string>
   <string name="reminder_header_sms_default_text">Натисни, за да направиш Сигнал своята SMS програма по подразбиране.</string>
   <string name="reminder_header_sms_default_button">ЗАДАЙ</string>
-  <string name="reminder_header_sms_import_title">Внесяне на системните SMS-и</string>
+  <string name="reminder_header_sms_import_title">Внасяне на системните SMS-и</string>
   <string name="reminder_header_sms_import_text">Натиснете, за да копирате SMS съобщенията от Вашия телефон в криптираната база данни на Сигнал.</string>
   <string name="reminder_header_sms_import_button">ВНАСЯНЕ</string>
   <string name="reminder_header_push_title">Активирай Сигнал съобщения и обаждания</string>
