@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
@@ -27,10 +29,10 @@ public class SmsReceiveJob extends ContextJob {
 
   private static final String TAG = SmsReceiveJob.class.getSimpleName();
 
-  private final Object[] pdus;
+  private final @Nullable Object[] pdus;
   private final int      subscriptionId;
 
-  public SmsReceiveJob(Context context, Object[] pdus, int subscriptionId) {
+  public SmsReceiveJob(@NonNull Context context, @Nullable Object[] pdus, int subscriptionId) {
     super(context, JobParameters.newBuilder()
                                 .withPersistence()
                                 .withWakeLock(true)
@@ -104,7 +106,11 @@ public class SmsReceiveJob extends ContextJob {
     }
   }
 
-  private Optional<IncomingTextMessage> assembleMessageFragments(Object[] pdus, int subscriptionId) {
+  private Optional<IncomingTextMessage> assembleMessageFragments(@Nullable Object[] pdus, int subscriptionId) {
+    if (pdus == null) {
+      return Optional.absent();
+    }
+
     List<IncomingTextMessage> messages = new LinkedList<>();
 
     for (Object pdu : pdus) {
