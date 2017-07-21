@@ -159,27 +159,31 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   private void initializeWebRtc() {
-    Set<String> HARDWARE_AEC_BLACKLIST = new HashSet<String>() {{
-      add("Pixel");
-      add("Pixel XL");
-      add("Moto G5");
-    }};
+    try {
+      Set<String> HARDWARE_AEC_BLACKLIST = new HashSet<String>() {{
+        add("Pixel");
+        add("Pixel XL");
+        add("Moto G5");
+      }};
 
-    Set<String> OPEN_SL_ES_WHITELIST = new HashSet<String>() {{
-      add("Pixel");
-      add("Pixel XL");
-    }};
+      Set<String> OPEN_SL_ES_WHITELIST = new HashSet<String>() {{
+        add("Pixel");
+        add("Pixel XL");
+      }};
 
-    if (Build.VERSION.SDK_INT >= 11) {
-      if (HARDWARE_AEC_BLACKLIST.contains(Build.MODEL)) {
-        WebRtcAudioUtils.setWebRtcBasedAcousticEchoCanceler(true);
+      if (Build.VERSION.SDK_INT >= 11) {
+        if (HARDWARE_AEC_BLACKLIST.contains(Build.MODEL)) {
+          WebRtcAudioUtils.setWebRtcBasedAcousticEchoCanceler(true);
+        }
+
+        if (!OPEN_SL_ES_WHITELIST.contains(Build.MODEL)) {
+          WebRtcAudioManager.setBlacklistDeviceForOpenSLESUsage(true);
+        }
+
+        PeerConnectionFactory.initializeAndroidGlobals(this, true, true, true);
       }
-
-      if (!OPEN_SL_ES_WHITELIST.contains(Build.MODEL)) {
-        WebRtcAudioManager.setBlacklistDeviceForOpenSLESUsage(true);
-      }
-
-      PeerConnectionFactory.initializeAndroidGlobals(this, true, true, true);
+    } catch (UnsatisfiedLinkError e) {
+      Log.w(TAG, e);
     }
   }
 
