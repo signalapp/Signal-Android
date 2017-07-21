@@ -162,6 +162,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     Set<String> HARDWARE_AEC_BLACKLIST = new HashSet<String>() {{
       add("Pixel");
       add("Pixel XL");
+      add("Moto G5");
     }};
 
     Set<String> OPEN_SL_ES_WHITELIST = new HashSet<String>() {{
