@@ -84,10 +84,10 @@ public class AttachmentDatabase extends Database {
           static final String VOICE_NOTE             = "voice_note";
   public  static final String FAST_PREFLIGHT_ID      = "fast_preflight_id";
 
-  public static final int TRANSFER_PROGRESS_DONE         = 0;
-  public static final int TRANSFER_PROGRESS_STARTED      = 1;
-  public static final int TRANSFER_PROGRESS_AUTO_PENDING = 2;
-  public static final int TRANSFER_PROGRESS_FAILED       = 3;
+  public static final int TRANSFER_PROGRESS_DONE    = 0;
+  public static final int TRANSFER_PROGRESS_STARTED = 1;
+  public static final int TRANSFER_PROGRESS_PENDING = 2;
+  public static final int TRANSFER_PROGRESS_FAILED  = 3;
 
   private static final String PART_ID_WHERE = ROW_ID + " = ? AND " + UNIQUE_ID + " = ?";
 
@@ -380,7 +380,6 @@ public class AttachmentDatabase extends Database {
     values.put(TRANSFER_STATE, transferState);
     database.update(TABLE_NAME, values, PART_ID_WHERE, attachmentId.toStrings());
     notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId));
-    ApplicationContext.getInstance(context).notifyMediaControlEvent();
   }
 
   @VisibleForTesting

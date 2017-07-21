@@ -79,7 +79,8 @@ public class DatabaseFactory {
   private static final int INTRODUCED_FAST_PREFLIGHT                       = 33;
   private static final int INTRODUCED_VOICE_NOTES                          = 34;
   private static final int INTRODUCED_IDENTITY_TIMESTAMP                   = 35;
-  private static final int DATABASE_VERSION                                = 35;
+  private static final int SANIFY_ATTACHMENT_DOWNLOAD                      = 36;
+  private static final int DATABASE_VERSION                                = 36;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -876,6 +877,10 @@ public class DatabaseFactory {
 
         db.execSQL("DROP INDEX archived_index");
         db.execSQL("CREATE INDEX IF NOT EXISTS archived_count_index ON thread (archived, message_count)");
+      }
+
+      if (oldVersion < SANIFY_ATTACHMENT_DOWNLOAD) {
+        db.execSQL("UPDATE part SET pending_push = '2' WHERE pending_push = '1'");
       }
 
       db.setTransactionSuccessful();

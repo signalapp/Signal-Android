@@ -29,7 +29,7 @@ public class MmsNotificationAttachment extends Attachment {
     if (status == MmsDatabase.Status.DOWNLOAD_INITIALIZED ||
         status == MmsDatabase.Status.DOWNLOAD_NO_CONNECTIVITY)
     {
-      return AttachmentDatabase.TRANSFER_PROGRESS_AUTO_PENDING;
+      return AttachmentDatabase.TRANSFER_PROGRESS_PENDING;
     } else if (status == MmsDatabase.Status.DOWNLOAD_CONNECTING) {
       return AttachmentDatabase.TRANSFER_PROGRESS_STARTED;
     } else {

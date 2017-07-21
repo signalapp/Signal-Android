@@ -44,6 +44,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.components.AlertView;
 import org.thoughtcrime.securesms.components.AudioView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
@@ -61,6 +62,7 @@ import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.jobs.MmsDownloadJob;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
@@ -559,6 +561,11 @@ public class ConversationItem extends LinearLayout
         DatabaseFactory.getAttachmentDatabase(context).setTransferState(messageRecord.getId(),
                                                                         slide.asAttachment(),
                                                                         AttachmentDatabase.TRANSFER_PROGRESS_STARTED);
+
+        ApplicationContext.getInstance(context)
+                          .getJobManager()
+                          .add(new AttachmentDownloadJob(context, messageRecord.getId(),
+                                                         ((DatabaseAttachment)slide.asAttachment()).getAttachmentId(), true));
       }
     }
   }

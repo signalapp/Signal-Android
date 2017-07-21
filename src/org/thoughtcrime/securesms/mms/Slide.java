@@ -109,7 +109,7 @@ public abstract class Slide {
 
   public boolean isPendingDownload() {
     return getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_FAILED ||
-           getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_AUTO_PENDING;
+           getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_PENDING;
   }
 
   public long getTransferState() {

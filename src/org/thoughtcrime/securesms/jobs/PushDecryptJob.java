@@ -508,8 +508,7 @@ public class PushDecryptJob extends ContextJob {
       for (DatabaseAttachment attachment : attachments) {
         ApplicationContext.getInstance(context)
                           .getJobManager()
-                          .add(new AttachmentDownloadJob(context, insertResult.get().getMessageId(),
-                                                         attachment.getAttachmentId()));
+                          .add(new AttachmentDownloadJob(context, insertResult.get().getMessageId(), attachment.getAttachmentId(), false));
 
         if (!masterSecret.getMasterSecret().isPresent()) {
           ApplicationContext.getInstance(context)
@@ -579,7 +578,7 @@ public class PushDecryptJob extends ContextJob {
     for (DatabaseAttachment attachment : DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(null, messageId)) {
       ApplicationContext.getInstance(context)
                         .getJobManager()
-                        .add(new AttachmentDownloadJob(context, messageId, attachment.getAttachmentId()));
+                        .add(new AttachmentDownloadJob(context, messageId, attachment.getAttachmentId(), false));
     }
 
     if (smsMessageId.isPresent()) {

@@ -44,7 +44,7 @@ public class PointerAttachment extends Attachment {
         if (pointer.isPointer()) {
           String encryptedKey = MediaKey.getEncrypted(masterSecret, pointer.asPointer().getKey());
           results.add(new PointerAttachment(pointer.getContentType(),
-                                            AttachmentDatabase.TRANSFER_PROGRESS_AUTO_PENDING,
+                                            AttachmentDatabase.TRANSFER_PROGRESS_PENDING,
                                             pointer.asPointer().getSize().or(0),
                                             pointer.asPointer().getFileName().orNull(),
                                             String.valueOf(pointer.asPointer().getId()),

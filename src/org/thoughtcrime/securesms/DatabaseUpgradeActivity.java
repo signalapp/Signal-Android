@@ -257,7 +257,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
           Log.w(TAG, "queuing new attachment download job for incoming push part " + attachment.getAttachmentId() + ".");
           ApplicationContext.getInstance(context)
                             .getJobManager()
-                            .add(new AttachmentDownloadJob(context, attachment.getMmsId(), attachment.getAttachmentId()));
+                            .add(new AttachmentDownloadJob(context, attachment.getMmsId(), attachment.getAttachmentId(), false));
         }
         reader.close();
       }
