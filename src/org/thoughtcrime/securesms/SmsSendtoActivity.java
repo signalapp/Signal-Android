@@ -6,9 +6,11 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -38,19 +40,20 @@ public class SmsSendtoActivity extends Activity {
       destination = getDestinationForView(original);
     }
 
-    Recipients recipients = RecipientFactory.getRecipientsFromString(this, destination.getDestination(), true);
-    long       threadId   = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipients);
-
     final Intent nextIntent;
-    if (recipients.isEmpty()) {
+
+    if (TextUtils.isEmpty(destination.destination)) {
       nextIntent = new Intent(this, NewConversationActivity.class);
       nextIntent.putExtra(ConversationActivity.TEXT_EXTRA, destination.getBody());
       Toast.makeText(this, R.string.ConversationActivity_specify_recipient, Toast.LENGTH_LONG).show();
     } else {
+      Recipients recipients = RecipientFactory.getRecipientsFor(this, new Address[] {Address.fromExternal(this, destination.getDestination())}, true);
+      long       threadId   = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipients);
+
       nextIntent = new Intent(this, ConversationActivity.class);
       nextIntent.putExtra(ConversationActivity.TEXT_EXTRA, destination.getBody());
       nextIntent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
-      nextIntent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, recipients.getIds());
+      nextIntent.putExtra(ConversationActivity.ADDRESSES_EXTRA, recipients.getAddresses());
     }
     return nextIntent;
   }

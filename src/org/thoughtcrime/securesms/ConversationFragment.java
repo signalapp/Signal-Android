@@ -53,19 +53,14 @@ import android.widget.Toast;
 import org.thoughtcrime.securesms.ConversationAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.ConversationAdapter.ItemClickListener;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
-import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
-import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
-import org.thoughtcrime.securesms.database.model.DisplayRecord;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.Slide;
-import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -76,8 +71,6 @@ import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -191,8 +184,8 @@ public class ConversationFragment extends Fragment
   }
 
   private void initializeResources() {
-    this.recipients     = RecipientFactory.getRecipientsForIds(getActivity(), getActivity().getIntent().getLongArrayExtra("recipients"), true);
-    this.threadId       = this.getActivity().getIntent().getLongExtra("thread_id", -1);
+    this.recipients     = RecipientFactory.getRecipientsFor(getActivity(), Address.fromParcelable(getActivity().getIntent().getParcelableArrayExtra(ConversationActivity.ADDRESSES_EXTRA)), true);
+    this.threadId       = this.getActivity().getIntent().getLongExtra(ConversationActivity.THREAD_ID_EXTRA, -1);
     this.lastSeen       = this.getActivity().getIntent().getLongExtra(ConversationActivity.LAST_SEEN_EXTRA, -1);
     this.firstLoad      = true;
 
@@ -366,7 +359,7 @@ public class ConversationFragment extends Fragment
     intent.putExtra(MessageDetailsActivity.MESSAGE_ID_EXTRA, message.getId());
     intent.putExtra(MessageDetailsActivity.THREAD_ID_EXTRA, threadId);
     intent.putExtra(MessageDetailsActivity.TYPE_EXTRA, message.isMms() ? MmsSmsDatabase.MMS_TRANSPORT : MmsSmsDatabase.SMS_TRANSPORT);
-    intent.putExtra(MessageDetailsActivity.RECIPIENTS_IDS_EXTRA, recipients.getIds());
+    intent.putExtra(MessageDetailsActivity.ADDRESSES_EXTRA, recipients.getAddresses());
     intent.putExtra(MessageDetailsActivity.IS_PUSH_GROUP_EXTRA, (!recipients.isSingleRecipient() || recipients.isGroupRecipient()) && message.isPush());
     startActivity(intent);
   }

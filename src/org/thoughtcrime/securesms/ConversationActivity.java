@@ -97,6 +97,7 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
@@ -164,7 +165,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.LinkedList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -191,7 +192,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 {
   private static final String TAG = ConversationActivity.class.getSimpleName();
 
-  public static final String RECIPIENTS_EXTRA        = "recipients";
+  public static final String ADDRESSES_EXTRA         = "addresses";
   public static final String THREAD_ID_EXTRA         = "thread_id";
   public static final String IS_ARCHIVED_EXTRA       = "is_archived";
   public static final String TEXT_EXTRA              = "draft_text";
@@ -409,7 +410,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       addAttachmentContactInfo(data.getData());
       break;
     case GROUP_EDIT:
-      recipients = RecipientFactory.getRecipientsForIds(this, data.getLongArrayExtra(GroupCreateActivity.GROUP_RECIPIENT_EXTRA), true);
+      recipients = RecipientFactory.getRecipientsFor(this, RecipientFactory.getRecipientFor(this, (Address)data.getParcelableExtra(GroupCreateActivity.GROUP_ADDRESS_EXTRA), true), true);
       recipients.addListener(this);
       titleView.setTitle(recipients);
       setBlockedUserState(recipients, isSecureText, isDefaultSms);
@@ -421,7 +422,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       }
       break;
     case ADD_CONTACT:
-      recipients = RecipientFactory.getRecipientsForIds(ConversationActivity.this, recipients.getIds(), true);
+      recipients = RecipientFactory.getRecipientsFor(this, recipients.getAddresses(), true);
       recipients.addListener(this);
       fragment.reloadList();
       break;
@@ -679,7 +680,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         composeText.appendInvite(inviteText);
       } else {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
-        intent.setData(Uri.parse("smsto:" + recipients.getPrimaryRecipient().getNumber()));
+        intent.setData(Uri.parse("smsto:" + recipients.getPrimaryRecipient().getAddress().serialize()));
         intent.putExtra("sms_body", inviteText);
         intent.putExtra(Intent.EXTRA_TEXT, inviteText);
         startActivity(intent);
@@ -725,7 +726,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void handleViewMedia() {
     Intent intent = new Intent(this, MediaOverviewActivity.class);
     intent.putExtra(MediaOverviewActivity.THREAD_ID_EXTRA, threadId);
-    intent.putExtra(MediaOverviewActivity.RECIPIENT_EXTRA, recipients.getPrimaryRecipient().getRecipientId());
+    intent.putExtra(MediaOverviewActivity.ADDRESSES_EXTRA, recipients.getAddresses());
     startActivity(intent);
   }
 
@@ -746,7 +747,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       public void onClick(DialogInterface dialog, int which) {
         Context self = ConversationActivity.this;
         try {
-          byte[] groupId = GroupUtil.getDecodedId(getRecipients().getPrimaryRecipient().getNumber());
+          byte[] groupId = GroupUtil.getDecodedId(getRecipients().getPrimaryRecipient().getAddress().toGroupString());
           DatabaseFactory.getGroupDatabase(self).setActive(groupId, false);
 
           GroupContext context = GroupContext.newBuilder()
@@ -756,7 +757,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
           OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(getRecipients(), context, null, System.currentTimeMillis(), 0);
           MessageSender.send(self, masterSecret, outgoingMessage, threadId, false, null);
-          DatabaseFactory.getGroupDatabase(self).remove(groupId, TextSecurePreferences.getLocalNumber(self));
+          DatabaseFactory.getGroupDatabase(self).remove(groupId, Address.fromSerialized(TextSecurePreferences.getLocalNumber(self)));
           initializeEnabledCheck();
         } catch (IOException e) {
           Log.w(TAG, e);
@@ -771,7 +772,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void handleEditPushGroup() {
     Intent intent = new Intent(ConversationActivity.this, GroupCreateActivity.class);
-    intent.putExtra(GroupCreateActivity.GROUP_RECIPIENT_EXTRA, recipients.getPrimaryRecipient().getRecipientId());
+    intent.putExtra(GroupCreateActivity.GROUP_ADDRESS_EXTRA, recipients.getPrimaryRecipient().getAddress());
     startActivityForResult(intent, GROUP_EDIT);
   }
 
@@ -813,7 +814,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (isSecureText) {
       Intent intent = new Intent(this, WebRtcCallService.class);
       intent.setAction(WebRtcCallService.ACTION_OUTGOING_CALL);
-      intent.putExtra(WebRtcCallService.EXTRA_REMOTE_NUMBER, recipient.getNumber());
+      intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, recipient.getAddress());
       startService(intent);
 
       Intent activityIntent = new Intent(this, WebRtcCallActivity.class);
@@ -822,7 +823,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     } else {
       try {
         Intent dialIntent = new Intent(Intent.ACTION_DIAL,
-                                       Uri.parse("tel:" + recipient.getNumber()));
+                                       Uri.parse("tel:" + recipient.getAddress().serialize()));
         startActivity(dialIntent);
       } catch (ActivityNotFoundException anfe) {
         Log.w(TAG, anfe);
@@ -838,9 +839,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleAddToContacts() {
+    if (recipients.getPrimaryRecipient().getAddress().isGroup()) return;
+
     try {
       final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
-      intent.putExtra(ContactsContract.Intents.Insert.PHONE, recipients.getPrimaryRecipient().getNumber());
+      if (recipients.getPrimaryRecipient().getAddress().isEmail()) {
+        intent.putExtra(ContactsContract.Intents.Insert.EMAIL, recipients.getPrimaryRecipient().getAddress().toEmailString());
+      } else {
+        intent.putExtra(ContactsContract.Intents.Insert.PHONE, recipients.getPrimaryRecipient().getAddress().toPhoneString());
+      }
       intent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
       startActivityForResult(intent, ADD_CONTACT);
     } catch (ActivityNotFoundException e) {
@@ -1103,12 +1110,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
           if (recipients.isGroupRecipient()) {
             recipients = DatabaseFactory.getGroupDatabase(ConversationActivity.this)
-                                        .getGroupMembers(GroupUtil.getDecodedId(recipients.getPrimaryRecipient().getNumber()), false);
+                                        .getGroupMembers(GroupUtil.getDecodedId(recipients.getPrimaryRecipient().getAddress().toGroupString()), false);
           }
 
-          for (long recipientId : recipients.getIds()) {
-            Log.w(TAG, "Loading identity for: " + recipientId);
-            identityRecordList.add(identityDatabase.getIdentity(recipientId));
+          for (Address recipientAddress : recipients.getAddresses()) {
+            Log.w(TAG, "Loading identity for: " + recipientAddress);
+            identityRecordList.add(identityDatabase.getIdentity(recipientAddress));
           }
 
           String message = null;
@@ -1206,7 +1213,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       @Override
       public void onClick(View v) {
         Intent intent = new Intent(ConversationActivity.this, RecipientPreferenceActivity.class);
-        intent.putExtra(RecipientPreferenceActivity.RECIPIENTS_EXTRA, recipients.getIds());
+        intent.putExtra(RecipientPreferenceActivity.ADDRESSES_EXTRA, recipients.getAddresses());
         intent.putExtra(RecipientPreferenceActivity.CAN_HAVE_SAFETY_NUMBER_EXTRA,
                         isSecureText && !isSelfConversation());
 
@@ -1253,7 +1260,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void initializeResources() {
     if (recipients != null) recipients.removeListener(this);
 
-    recipients       = RecipientFactory.getRecipientsForIds(this, getIntent().getLongArrayExtra(RECIPIENTS_EXTRA), true);
+    recipients       = RecipientFactory.getRecipientsFor(this, Address.fromParcelable(getIntent().getParcelableArrayExtra(ADDRESSES_EXTRA)), true);
     threadId         = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
     archived         = getIntent().getBooleanExtra(IS_ARCHIVED_EXTRA, false);
     distributionType = getIntent().getIntExtra(DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
@@ -1295,7 +1302,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Subscribe(threadMode = ThreadMode.MAIN)
   public void onRecipientPreferenceUpdate(final RecipientPreferenceEvent event) {
-    if (event.getRecipients().getSortedIdsString().equals(this.recipients.getSortedIdsString())) {
+    if (Arrays.equals(event.getRecipients().getAddresses(), this.recipients.getAddresses())) {
       new RecipientPreferencesTask().execute(this.recipients);
     }
   }
@@ -1319,9 +1326,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       public void onReceive(Context context, Intent intent) {
         Log.w(TAG, "Group update received...");
         if (recipients != null) {
-          long[] ids = recipients.getIds();
           Log.w(TAG, "Looking up new recipients...");
-          recipients = RecipientFactory.getRecipientsForIds(context, ids, true);
+          recipients = RecipientFactory.getRecipientsFor(context, recipients.getAddresses(), true);
           recipients.addListener(ConversationActivity.this);
           onModified(recipients);
           fragment.reloadList();
@@ -1501,7 +1507,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (!isGroupConversation()) return false;
 
     try {
-      byte[]      groupId = GroupUtil.getDecodedId(getRecipients().getPrimaryRecipient().getNumber());
+      byte[]      groupId = GroupUtil.getDecodedId(getRecipients().getPrimaryRecipient().getAddress().toGroupString());
       GroupRecord record  = DatabaseFactory.getGroupDatabase(this).getGroup(groupId);
 
       return record != null && record.isActive();
@@ -1516,7 +1522,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (!recipients.isSingleRecipient())                     return false;
     if (recipients.getPrimaryRecipient().isGroupRecipient()) return false;
 
-    return Util.isOwnNumber(this, recipients.getPrimaryRecipient().getNumber());
+    return Util.isOwnNumber(this, recipients.getPrimaryRecipient().getAddress());
   }
 
   private boolean isGroupConversation() {
@@ -2000,7 +2006,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       }
 
       Optional<RecipientsPreferences> prefs = DatabaseFactory.getRecipientPreferenceDatabase(ConversationActivity.this)
-                                                             .getRecipientsPreferences(recipients[0].getIds());
+                                                             .getRecipientsPreferences(recipients[0].getAddresses());
       return new Pair<>(recipients[0], prefs.orNull());
     }
 
@@ -2023,7 +2029,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         protected Void doInBackground(Void... params) {
           synchronized (SESSION_LOCK) {
             for (IdentityRecord identityRecord : unverifiedIdentities) {
-              identityDatabase.setVerified(identityRecord.getRecipientId(),
+              identityDatabase.setVerified(identityRecord.getAddress(),
                                            identityRecord.getIdentityKey(),
                                            VerifiedStatus.DEFAULT);
             }
@@ -2046,7 +2052,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       Log.w(TAG, "onClicked: " + unverifiedIdentities.size());
       if (unverifiedIdentities.size() == 1) {
         Intent intent = new Intent(ConversationActivity.this, VerifyIdentityActivity.class);
-        intent.putExtra(VerifyIdentityActivity.RECIPIENT_ID_EXTRA, unverifiedIdentities.get(0).getRecipientId());
+        intent.putExtra(VerifyIdentityActivity.ADDRESS_EXTRA, unverifiedIdentities.get(0).getAddress());
         intent.putExtra(VerifyIdentityActivity.IDENTITY_EXTRA, new IdentityKeyParcelable(unverifiedIdentities.get(0).getIdentityKey()));
         intent.putExtra(VerifyIdentityActivity.VERIFIED_EXTRA, false);
 
@@ -2055,7 +2061,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         String[] unverifiedNames = new String[unverifiedIdentities.size()];
 
         for (int i=0;i<unverifiedIdentities.size();i++) {
-          unverifiedNames[i] = RecipientFactory.getRecipientForId(ConversationActivity.this, unverifiedIdentities.get(i).getRecipientId(), false).toShortString();
+          unverifiedNames[i] = RecipientFactory.getRecipientFor(ConversationActivity.this, unverifiedIdentities.get(i).getAddress(), false).toShortString();
         }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(ConversationActivity.this);
@@ -2065,7 +2071,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           @Override
           public void onClick(DialogInterface dialog, int which) {
             Intent intent = new Intent(ConversationActivity.this, VerifyIdentityActivity.class);
-            intent.putExtra(VerifyIdentityActivity.RECIPIENT_ID_EXTRA, unverifiedIdentities.get(which).getRecipientId());
+            intent.putExtra(VerifyIdentityActivity.ADDRESS_EXTRA, unverifiedIdentities.get(which).getAddress());
             intent.putExtra(VerifyIdentityActivity.IDENTITY_EXTRA, new IdentityKeyParcelable(unverifiedIdentities.get(which).getIdentityKey()));
             intent.putExtra(VerifyIdentityActivity.VERIFIED_EXTRA, false);
 

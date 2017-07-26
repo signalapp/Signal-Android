@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.TextSecureExpiredException;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
@@ -16,14 +17,12 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,10 +37,10 @@ public abstract class PushSendJob extends SendJob {
     super(context, parameters);
   }
 
-  protected static JobParameters constructParameters(Context context, String destination) {
+  protected static JobParameters constructParameters(Context context, Address destination) {
     JobParameters.Builder builder = JobParameters.newBuilder();
     builder.withPersistence();
-    builder.withGroupId(destination);
+    builder.withGroupId(destination.serialize());
     builder.withRequirement(new MasterSecretRequirement(context));
     builder.withRequirement(new NetworkRequirement(context));
     builder.withRetryCount(5);
@@ -62,10 +61,9 @@ public abstract class PushSendJob extends SendJob {
     onPushSend(masterSecret);
   }
 
-  protected SignalServiceAddress getPushAddress(String number) throws InvalidNumberException {
-    String e164number = Util.canonicalizeNumber(context, number);
-    String relay      = TextSecureDirectory.getInstance(context).getRelay(e164number);
-    return new SignalServiceAddress(e164number, Optional.fromNullable(relay));
+  protected SignalServiceAddress getPushAddress(Address address) {
+    String relay = TextSecureDirectory.getInstance(context).getRelay(address.toPhoneString());
+    return new SignalServiceAddress(address.toPhoneString(), Optional.fromNullable(relay));
   }
 
   protected List<SignalServiceAttachment> getAttachmentsFor(MasterSecret masterSecret, List<Attachment> parts) {

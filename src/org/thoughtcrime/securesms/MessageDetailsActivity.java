@@ -36,6 +36,7 @@ import android.widget.TextView;
 
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -73,7 +74,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   public final static String THREAD_ID_EXTRA      = "thread_id";
   public final static String IS_PUSH_GROUP_EXTRA  = "is_push_group";
   public final static String TYPE_EXTRA           = "type";
-  public final static String RECIPIENTS_IDS_EXTRA = "recipients_ids";
+  public final static String ADDRESSES_EXTRA      = "addresses";
 
   private MasterSecret     masterSecret;
   private long             threadId;
@@ -138,7 +139,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   private void initializeActionBar() {
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-    Recipients recipients = RecipientFactory.getRecipientsForIds(this, getIntent().getLongArrayExtra(RECIPIENTS_IDS_EXTRA), true);
+    Recipients recipients = RecipientFactory.getRecipientsFor(this, Address.fromParcelable(getIntent().getParcelableArrayExtra(ADDRESSES_EXTRA)), true);
     recipients.addListener(this);
 
     setActionBarColor(recipients.getColor());
@@ -355,9 +356,9 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
         recipients = intermediaryRecipients;
       } else {
         try {
-          String groupId = intermediaryRecipients.getPrimaryRecipient().getNumber();
+          Address groupId = intermediaryRecipients.getPrimaryRecipient().getAddress();
           recipients = DatabaseFactory.getGroupDatabase(context)
-                                      .getGroupMembers(GroupUtil.getDecodedId(groupId), false);
+                                      .getGroupMembers(GroupUtil.getDecodedId(groupId.toGroupString()), false);
         } catch (IOException e) {
           Log.w(TAG, e);
           recipients = RecipientFactory.getRecipientsFor(MessageDetailsActivity.this, new LinkedList<Recipient>(), false);

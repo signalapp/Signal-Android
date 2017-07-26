@@ -34,25 +34,25 @@ public class NumberUtil {
     return PhoneNumberUtils.isWellFormedSmsAddress(number) || isValidEmail(number);
   }
 
-  public static boolean isValidSmsOrEmailOrGroup(String number) {
-    return PhoneNumberUtils.isWellFormedSmsAddress(number) ||
-        isValidEmail(number) ||
-        GroupUtil.isEncodedGroup(number);
-  }
-
-  public static String filterNumber(String number) {
-    if (number == null) return null;
-
-    int length            = number.length();
-    StringBuilder builder = new StringBuilder(length);
-
-    for (int i = 0; i < length; i++) {
-      char character = number.charAt(i);
-
-      if (Character.isDigit(character) || character == '+')
-        builder.append(character);
-    }
-
-    return builder.toString();
-  }
+//  public static boolean isValidSmsOrEmailOrGroup(String number) {
+//    return PhoneNumberUtils.isWellFormedSmsAddress(number) ||
+//        isValidEmail(number) ||
+//        GroupUtil.isEncodedGroup(number);
+//  }
+//
+//  public static String filterNumber(String number) {
+//    if (number == null) return null;
+//
+//    int length            = number.length();
+//    StringBuilder builder = new StringBuilder(length);
+//
+//    for (int i = 0; i < length; i++) {
+//      char character = number.charAt(i);
+//
+//      if (Character.isDigit(character) || character == '+')
+//        builder.append(character);
+//    }
+//
+//    return builder.toString();
+//  }
 }

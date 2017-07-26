@@ -9,6 +9,7 @@ import android.util.Log;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
@@ -85,7 +86,7 @@ public class SmsReceiveJob extends ContextJob {
 
   private boolean isBlocked(IncomingTextMessage message) {
     if (message.getSender() != null) {
-      Recipients recipients = RecipientFactory.getRecipientsFromString(context, message.getSender(), false);
+      Recipients recipients = RecipientFactory.getRecipientsFor(context, new Address[] {message.getSender()}, false);
       return recipients.isBlocked();
     }
 
@@ -114,7 +115,7 @@ public class SmsReceiveJob extends ContextJob {
     List<IncomingTextMessage> messages = new LinkedList<>();
 
     for (Object pdu : pdus) {
-      messages.add(new IncomingTextMessage(SmsMessage.createFromPdu((byte[])pdu), subscriptionId));
+      messages.add(new IncomingTextMessage(context, SmsMessage.createFromPdu((byte[])pdu), subscriptionId));
     }
 
     if (messages.isEmpty()) {

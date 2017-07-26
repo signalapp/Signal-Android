@@ -22,8 +22,17 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
+import com.google.i18n.phonenumbers.ShortNumberInfo;
 
 import org.thoughtcrime.securesms.DatabaseUpgradeActivity;
 import org.thoughtcrime.securesms.contacts.ContactsDatabase;
@@ -31,9 +40,12 @@ import org.thoughtcrime.securesms.crypto.DecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
+import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.InvalidMessageException;
@@ -42,6 +54,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class DatabaseFactory {
 
@@ -80,7 +98,8 @@ public class DatabaseFactory {
   private static final int INTRODUCED_VOICE_NOTES                          = 34;
   private static final int INTRODUCED_IDENTITY_TIMESTAMP                   = 35;
   private static final int SANIFY_ATTACHMENT_DOWNLOAD                      = 36;
-  private static final int DATABASE_VERSION                                = 36;
+  private static final int NO_MORE_CANONICAL_ADDRESS_DATABASE              = 37;
+  private static final int DATABASE_VERSION                                = 37;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -95,7 +114,6 @@ public class DatabaseFactory {
   private final AttachmentDatabase attachments;
   private final MediaDatabase media;
   private final ThreadDatabase thread;
-  private final CanonicalAddressDatabase address;
   private final MmsAddressDatabase mmsAddress;
   private final MmsSmsDatabase mmsSmsDatabase;
   private final IdentityDatabase identityDatabase;
@@ -128,10 +146,6 @@ public class DatabaseFactory {
 
   public static MmsDatabase getMmsDatabase(Context context) {
     return getInstance(context).mms;
-  }
-
-  public static CanonicalAddressDatabase getAddressDatabase(Context context) {
-    return getInstance(context).address;
   }
 
   public static EncryptingSmsDatabase getEncryptingSmsDatabase(Context context) {
@@ -182,7 +196,6 @@ public class DatabaseFactory {
     this.attachments                 = new AttachmentDatabase(context, databaseHelper);
     this.media                       = new MediaDatabase(context, databaseHelper);
     this.thread                      = new ThreadDatabase(context, databaseHelper);
-    this.address                     = CanonicalAddressDatabase.getInstance(context);
     this.mmsAddress                  = new MmsAddressDatabase(context, databaseHelper);
     this.mmsSmsDatabase              = new MmsSmsDatabase(context, databaseHelper);
     this.identityDatabase            = new IdentityDatabase(context, databaseHelper);
@@ -210,8 +223,6 @@ public class DatabaseFactory {
     this.groupDatabase.reset(databaseHelper);
     this.recipientPreferenceDatabase.reset(databaseHelper);
     old.close();
-
-    this.address.reset(context);
   }
 
   public void onApplicationLevelUpgrade(Context context, MasterSecret masterSecret, int fromVersion,
@@ -504,8 +515,13 @@ public class DatabaseFactory {
 
   private static class DatabaseHelper extends SQLiteOpenHelper {
 
+    private static final String TAG = DatabaseHelper.class.getSimpleName();
+
+    private final Context context;
+
     public DatabaseHelper(Context context, String name, CursorFactory factory, int version) {
       super(context, name, factory, version);
+      this.context = context.getApplicationContext();
     }
 
     @Override
@@ -883,6 +899,299 @@ public class DatabaseFactory {
         db.execSQL("UPDATE part SET pending_push = '2' WHERE pending_push = '1'");
       }
 
+      if (oldVersion < NO_MORE_CANONICAL_ADDRESS_DATABASE) {
+        DatabaseHelper canonicalAddressDatabaseHelper = new DatabaseHelper(context, "canonical_address.db", null, 1);
+        SQLiteDatabase canonicalAddressDatabase       = canonicalAddressDatabaseHelper.getReadableDatabase();
+        NumberMigrator numberMigrator                 = new NumberMigrator(TextSecurePreferences.getLocalNumber(context));
+
+        // Migrate Thread Database
+        Cursor cursor = db.query("thread", new String[] {"_id", "recipient_ids"}, null, null, null, null, null);
+
+        while (cursor != null && cursor.moveToNext()) {
+          long     threadId         = cursor.getLong(0);
+          String   recipientIdsList = cursor.getString(1);
+          String[] recipientIds     = recipientIdsList.split(" ");
+          String[] numbers          = new String[recipientIds.length];
+
+          for (int i=0;i<recipientIds.length;i++) {
+            Cursor resolved = canonicalAddressDatabase.query("canonical_addresses", new String[] {"address"}, "_id = ?", new String[] {recipientIds[i]}, null, null, null);
+
+            if (resolved != null && resolved.moveToFirst()) {
+              String address = resolved.getString(0);
+              numbers[i] = numberMigrator.migrate(address);
+            } else {
+              throw new AssertionError("Unable to resolve: " + recipientIds[i]);
+            }
+
+            if (resolved != null) resolved.close();
+          }
+
+          ContentValues values = new ContentValues(1);
+          values.put("recipient_ids", Util.join(numbers, " "));
+          db.update("thread", values, "_id = ?", new String[] {String.valueOf(threadId)});
+        }
+
+        if (cursor != null) cursor.close();
+
+        // Migrate Identity database
+        db.execSQL("CREATE TABLE identities_migrated (_id INTEGER PRIMARY KEY, address TEXT UNIQUE, key TEXT, first_use INTEGER DEFAULT 0, timestamp INTEGER DEFAULT 0, verified INTEGER DEFAULT 0, nonblocking_approval INTEGER DEFAULT 0);");
+
+        cursor = db.query("identities", new String[] {"_id, recipient, key, first_use, timestamp, verified, nonblocking_approval"}, null, null, null, null, null);
+
+        while (cursor != null && cursor.moveToNext()) {
+          long   id                  = cursor.getLong(0);
+          long   recipientId         = cursor.getLong(1);
+          String key                 = cursor.getString(2);
+          int    firstUse            = cursor.getInt(3);
+          long   timestamp           = cursor.getLong(4);
+          int    verified            = cursor.getInt(5);
+          int    nonblockingApproval = cursor.getInt(6);
+
+          ContentValues values      = new ContentValues(6);
+
+          Cursor resolved = canonicalAddressDatabase.query("canonical_addresses", new String[] {"address"}, "_id = ?", new String[] {String.valueOf(recipientId)}, null, null, null);
+
+          if (resolved != null && resolved.moveToFirst()) {
+            String address = resolved.getString(0);
+            values.put("address", numberMigrator.migrate(address));
+            values.put("key", key);
+            values.put("first_use", firstUse);
+            values.put("timestamp", timestamp);
+            values.put("verified", verified);
+            values.put("nonblocking_approval", nonblockingApproval);
+          } else {
+            throw new AssertionError("Unable to resolve: " + recipientId);
+          }
+
+          if (resolved != null) resolved.close();
+
+          db.insert("identities_migrated", null, values);
+        }
+
+        if (cursor != null) cursor.close();
+
+        db.execSQL("DROP TABLE identities");
+        db.execSQL("ALTER TABLE identities_migrated RENAME TO identities");
+
+        // Migrate recipient preferences database
+        cursor = db.query("recipient_preferences", new String[] {"_id", "recipient_ids"}, null, null, null, null, null);
+
+        while (cursor != null && cursor.moveToNext()) {
+          long     id               = cursor.getLong(0);
+          String   recipientIdsList = cursor.getString(1);
+          String[] recipientIds     = recipientIdsList.split(" ");
+          String[] addresses        = new String[recipientIds.length];
+
+          for (int i=0;i<recipientIds.length;i++) {
+            Cursor resolved = canonicalAddressDatabase.query("canonical_addresses", new String[] {"address"}, "_id = ?", new String[] {recipientIds[i]}, null, null, null);
+
+            if (resolved != null && resolved.moveToFirst()) {
+              String address = resolved.getString(0);
+              addresses[i] = numberMigrator.migrate(address);
+            } else {
+              throw new AssertionError("Unable to resolve: " + recipientIds[i]);
+            }
+
+            if (resolved != null) resolved.close();
+          }
+
+          ContentValues values = new ContentValues(1);
+          values.put("recipient_ids", Util.join(addresses, " "));
+          db.update("thread", values, "_id = ?", new String[] {String.valueOf(id)});
+        }
+
+        if (cursor != null) cursor.close();
+
+        // Migrate SMS database
+        cursor = db.query("sms", new String[] {"_id", "address"}, null, null, null, null, null);
+
+        while (cursor != null && cursor.moveToNext()) {
+          long   id      = cursor.getLong(0);
+          String address = cursor.getString(1);
+
+          if (!TextUtils.isEmpty(address)) {
+            ContentValues values = new ContentValues(1);
+            values.put("address", numberMigrator.migrate(address));
+            db.update("sms", values, "_id = ?", new String[] {String.valueOf(id)});
+          }
+        }
+
+        if (cursor != null) cursor.close();
+
+        // Migrate MMS database
+        cursor = db.query("mms", new String[] {"_id", "address"}, null, null, null, null, null);
+
+        while (cursor != null && cursor.moveToNext()) {
+          long   id      = cursor.getLong(0);
+          String address = cursor.getString(1);
+
+          if (!TextUtils.isEmpty(address)) {
+            ContentValues values = new ContentValues(1);
+            values.put("address", numberMigrator.migrate(address));
+            db.update("mms", values, "_id = ?", new String[] {String.valueOf(id)});
+          }
+        }
+
+        if (cursor != null) cursor.close();
+
+        // Migrate MmsAddressDatabase
+        cursor = db.query("mms_addresses", new String[] {"_id", "address"}, null, null, null, null, null);
+
+        while (cursor != null && cursor.moveToNext()) {
+          long   id      = cursor.getLong(0);
+          String address = cursor.getString(1);
+
+          if (!TextUtils.isEmpty(address) && !"insert-address-token".equals(address)) {
+            ContentValues values = new ContentValues(1);
+            values.put("address", numberMigrator.migrate(address));
+            db.update("mms_addresses", values, "_id = ?", new String[] {String.valueOf(id)});
+          }
+        }
+
+        if (cursor != null) cursor.close();
+
+        // Migrate SMS mismatched identities
+        cursor = db.query("sms", new String[] {"_id", "mismatched_identities"}, "mismatched_identities IS NOT NULL", null, null, null, null);
+
+        while (cursor != null && cursor.moveToNext()) {
+          long   id       = cursor.getLong(0);
+          String document = cursor.getString(1);
+
+          if (!TextUtils.isEmpty(document)) {
+            try {
+              PreCanonicalAddressIdentityMismatchList            oldDocumentList = JsonUtils.fromJson(document, PreCanonicalAddressIdentityMismatchList.class);
+              List<PostCanonicalAddressIdentityMismatchDocument> newDocumentList = new LinkedList<>();
+
+              for (PreCanonicalAddressIdentityMismatchDocument oldDocument : oldDocumentList.list) {
+                Cursor resolved = canonicalAddressDatabase.query("canonical_addresses", new String[] {"address"}, "_id = ?", new String[] {String.valueOf(oldDocument.recipientId)}, null, null, null);
+
+                if (resolved != null && resolved.moveToFirst()) {
+                  String address = resolved.getString(0);
+                  newDocumentList.add(new PostCanonicalAddressIdentityMismatchDocument(numberMigrator.migrate(address), oldDocument.identityKey));
+                } else {
+                  throw new AssertionError("Unable to resolve: " + oldDocument.recipientId);
+                }
+
+                if (resolved != null) resolved.close();
+              }
+
+              ContentValues values = new ContentValues(1);
+              values.put("mismatched_identities", JsonUtils.toJson(new PostCanonicalAddressIdentityMismatchList(newDocumentList)));
+              db.update("sms", values, "_id = ?", new String[] {String.valueOf(id)});
+            } catch (IOException e) {
+              Log.w(TAG, e);
+            }
+          }
+        }
+
+        if (cursor != null) cursor.close();
+
+        // Migrate MMS mismatched identities
+        cursor = db.query("mms", new String[] {"_id", "mismatched_identities"}, "mismatched_identities IS NOT NULL", null, null, null, null);
+
+        while (cursor != null && cursor.moveToNext()) {
+          long   id       = cursor.getLong(0);
+          String document = cursor.getString(1);
+
+          if (!TextUtils.isEmpty(document)) {
+            try {
+              PreCanonicalAddressIdentityMismatchList            oldDocumentList = JsonUtils.fromJson(document, PreCanonicalAddressIdentityMismatchList.class);
+              List<PostCanonicalAddressIdentityMismatchDocument> newDocumentList = new LinkedList<>();
+
+              for (PreCanonicalAddressIdentityMismatchDocument oldDocument : oldDocumentList.list) {
+                Cursor resolved = canonicalAddressDatabase.query("canonical_addresses", new String[] {"address"}, "_id = ?", new String[] {String.valueOf(oldDocument.recipientId)}, null, null, null);
+
+                if (resolved != null && resolved.moveToFirst()) {
+                  String address = resolved.getString(0);
+                  newDocumentList.add(new PostCanonicalAddressIdentityMismatchDocument(numberMigrator.migrate(address), oldDocument.identityKey));
+                } else {
+                  throw new AssertionError("Unable to resolve: " + oldDocument.recipientId);
+                }
+
+                if (resolved != null) resolved.close();
+              }
+
+              ContentValues values = new ContentValues(1);
+              values.put("mismatched_identities", JsonUtils.toJson(new PostCanonicalAddressIdentityMismatchList(newDocumentList)));
+              db.update("mms", values, "_id = ?", new String[] {String.valueOf(id)});
+            } catch (IOException e) {
+              Log.w(TAG, e);
+            }
+          }
+        }
+
+        if (cursor != null) cursor.close();
+
+        // Migrate MMS network failures
+        cursor = db.query("mms", new String[] {"_id", "network_failures"}, "network_failures IS NOT NULL", null, null, null, null);
+
+        while (cursor != null && cursor.moveToNext()) {
+          long   id       = cursor.getLong(0);
+          String document = cursor.getString(1);
+
+          if (!TextUtils.isEmpty(document)) {
+            try {
+              PreCanonicalAddressNetworkFailureList            oldDocumentList = JsonUtils.fromJson(document, PreCanonicalAddressNetworkFailureList.class);
+              List<PostCanonicalAddressNetworkFailureDocument> newDocumentList = new LinkedList<>();
+
+              for (PreCanonicalAddressNetworkFailureDocument oldDocument : oldDocumentList.list) {
+                Cursor resolved = canonicalAddressDatabase.query("canonical_addresses", new String[] {"address"}, "_id = ?", new String[] {String.valueOf(oldDocument.recipientId)}, null, null, null);
+
+                if (resolved != null && resolved.moveToFirst()) {
+                  String address = resolved.getString(0);
+                  newDocumentList.add(new PostCanonicalAddressNetworkFailureDocument(numberMigrator.migrate(address)));
+                } else {
+                  throw new AssertionError("Unable to resolve: " + oldDocument.recipientId);
+                }
+
+                if (resolved != null) resolved.close();
+              }
+
+              ContentValues values = new ContentValues(1);
+              values.put("network_failures", JsonUtils.toJson(new PostCanonicalAddressNetworkFailureList(newDocumentList)));
+              db.update("mms", values, "_id = ?", new String[] {String.valueOf(id)});
+            } catch (IOException e) {
+              Log.w(TAG, e);
+            }
+          }
+        }
+
+        // Migrate sessions
+        File sessionsDirectory = new File(context.getFilesDir(), "sessions-v2");
+
+        if (sessionsDirectory.exists() && sessionsDirectory.isDirectory()) {
+          File[] sessions = sessionsDirectory.listFiles();
+
+          for (File session : sessions) {
+            try {
+              String[] sessionParts = session.getName().split("[.]");
+              long     recipientId  = Long.parseLong(sessionParts[0]);
+
+              int deviceId;
+
+              if (sessionParts.length > 1) deviceId = Integer.parseInt(sessionParts[1]);
+              else                         deviceId = 1;
+
+              Cursor resolved = canonicalAddressDatabase.query("canonical_addresses", new String[] {"address"}, "_id = ?", new String[] {String.valueOf(recipientId)}, null, null, null);
+
+              if (resolved != null && resolved.moveToNext()) {
+                String address     = resolved.getString(0);
+                File   destination = new File(session.getParentFile(), address + (deviceId != 1 ? "." + deviceId : ""));
+
+                if (!session.renameTo(destination)) {
+                  Log.w(TAG, "Session rename failed: " + destination);
+                }
+              }
+
+              if (resolved != null) resolved.close();
+            } catch (NumberFormatException e) {
+              Log.w(TAG, e);
+            }
+          }
+        }
+
+      }
+
       db.setTransactionSuccessful();
       db.endTransaction();
     }
@@ -893,4 +1202,153 @@ public class DatabaseFactory {
     }
 
   }
+
+  private static class PreCanonicalAddressIdentityMismatchList {
+    @JsonProperty(value = "m")
+    private List<PreCanonicalAddressIdentityMismatchDocument> list;
+  }
+
+  private static class PostCanonicalAddressIdentityMismatchList {
+    @JsonProperty(value = "m")
+    private List<PostCanonicalAddressIdentityMismatchDocument> list;
+
+    public PostCanonicalAddressIdentityMismatchList(List<PostCanonicalAddressIdentityMismatchDocument> list) {
+      this.list = list;
+    }
+  }
+
+  private static class PreCanonicalAddressIdentityMismatchDocument {
+    @JsonProperty(value = "r")
+    private long recipientId;
+
+    @JsonProperty(value = "k")
+    private String identityKey;
+  }
+
+  private static class PostCanonicalAddressIdentityMismatchDocument {
+    @JsonProperty(value = "a")
+    private String address;
+
+    @JsonProperty(value = "k")
+    private String identityKey;
+
+    public PostCanonicalAddressIdentityMismatchDocument() {}
+
+    public PostCanonicalAddressIdentityMismatchDocument(String address, String identityKey) {
+      this.address     = address;
+      this.identityKey = identityKey;
+    }
+  }
+
+  private static class PreCanonicalAddressNetworkFailureList {
+    @JsonProperty(value = "l")
+    private List<PreCanonicalAddressNetworkFailureDocument> list;
+  }
+
+  private static class PostCanonicalAddressNetworkFailureList {
+    @JsonProperty(value = "l")
+    private List<PostCanonicalAddressNetworkFailureDocument> list;
+
+    public PostCanonicalAddressNetworkFailureList(List<PostCanonicalAddressNetworkFailureDocument> list) {
+      this.list = list;
+    }
+  }
+
+  private static class PreCanonicalAddressNetworkFailureDocument {
+    @JsonProperty(value = "r")
+    private long recipientId;
+  }
+
+  private static class PostCanonicalAddressNetworkFailureDocument {
+    @JsonProperty(value = "a")
+    private String address;
+
+    public PostCanonicalAddressNetworkFailureDocument() {}
+
+    public PostCanonicalAddressNetworkFailureDocument(String address) {
+      this.address = address;
+    }
+  }
+
+  private static class NumberMigrator {
+
+    private static final String TAG = NumberMigrator.class.getSimpleName();
+
+    private static final Set<String> SHORT_COUNTRIES = new HashSet<String>() {{
+      add("NU");
+      add("TK");
+      add("NC");
+      add("AC");
+    }};
+
+    private final Phonenumber.PhoneNumber localNumber;
+    private final String                  localNumberString;
+    private final String                  localCountryCode;
+
+    private final PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.getInstance();
+
+    public NumberMigrator(String localNumber) {
+      try {
+        this.localNumberString = localNumber;
+        this.localNumber       = phoneNumberUtil.parse(localNumber, null);
+        this.localCountryCode  = phoneNumberUtil.getRegionCodeForNumber(this.localNumber);
+      } catch (NumberParseException e) {
+        throw new AssertionError(e);
+      }
+    }
+
+    public String migrate(@Nullable String number) {
+      if (number == null)                                                return "Unknown";
+      if (number.startsWith("__textsecure_group__!"))                    return number;
+      if (android.util.Patterns.EMAIL_ADDRESS.matcher(number).matches()) return number;
+
+      String bareNumber = number.replaceAll("[^0-9+]", "");
+
+      if (bareNumber.length() == 0) {
+        if (TextUtils.isEmpty(number.trim())) return "Unknown";
+        else                                  return number.trim();
+      }
+
+      // libphonenumber doesn't seem to be correct for Germany and Finland
+      if (bareNumber.length() <= 6 && ("DE".equals(localCountryCode) || "FI".equals(localCountryCode) || "SK".equals(localCountryCode))) {
+        return bareNumber;
+      }
+
+      // libphonenumber seems incorrect for Russia and a few other countries with 4 digit short codes.
+      if (bareNumber.length() <= 4 && !SHORT_COUNTRIES.contains(localCountryCode)) {
+        return bareNumber;
+      }
+
+      try {
+        Phonenumber.PhoneNumber parsedNumber = phoneNumberUtil.parse(bareNumber, localCountryCode);
+
+        if (ShortNumberInfo.getInstance().isPossibleShortNumberForRegion(parsedNumber, localCountryCode)) {
+          return bareNumber;
+        }
+
+        return phoneNumberUtil.format(parsedNumber, PhoneNumberUtil.PhoneNumberFormat.E164);
+      } catch (NumberParseException e) {
+        Log.w(TAG, e);
+        if (bareNumber.charAt(0) == '+')
+          return bareNumber;
+
+        String localNumberImprecise = localNumberString;
+
+        if (localNumberImprecise.charAt(0) == '+')
+          localNumberImprecise = localNumberImprecise.substring(1);
+
+        if (localNumberImprecise.length() == number.length() || number.length() > localNumberImprecise.length())
+          return "+" + number;
+
+        int difference = localNumberImprecise.length() - number.length();
+
+        return "+" + localNumberImprecise.substring(0, difference) + number;
+      }
+    }
+
+
+
+  }
+
+
 }

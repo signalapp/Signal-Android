@@ -6,11 +6,14 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 import static org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 
@@ -62,7 +65,13 @@ public class GroupUtil {
       if (groupContext == null || groupContext.getMembersList().isEmpty()) {
         this.members = null;
       } else {
-        this.members = RecipientFactory.getRecipientsFromStrings(context, groupContext.getMembersList(), true);
+        List<Address> adddresses = new LinkedList<>();
+
+        for (String member : groupContext.getMembersList()) {
+          adddresses.add(Address.fromExternal(context, member));
+        }
+
+        this.members = RecipientFactory.getRecipientsFor(context, adddresses.toArray(new Address[0]), true);
       }
     }
 

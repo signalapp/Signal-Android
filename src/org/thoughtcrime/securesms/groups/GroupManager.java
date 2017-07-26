@@ -11,6 +11,7 @@ import com.google.protobuf.ByteString;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
@@ -24,16 +25,17 @@ import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 public class GroupManager {
+
   public static @NonNull GroupActionResult createGroup(@NonNull  Context        context,
                                                        @NonNull  MasterSecret   masterSecret,
                                                        @NonNull  Set<Recipient> members,
@@ -41,23 +43,23 @@ public class GroupManager {
                                                        @Nullable String         name)
       throws InvalidNumberException
   {
-    final byte[]        avatarBytes       = BitmapUtil.toByteArray(avatar);
-    final GroupDatabase groupDatabase     = DatabaseFactory.getGroupDatabase(context);
-    final byte[]        groupId           = groupDatabase.allocateGroupId();
-    final Set<String>   memberE164Numbers = getE164Numbers(context, members);
+    final byte[]        avatarBytes      = BitmapUtil.toByteArray(avatar);
+    final GroupDatabase groupDatabase    = DatabaseFactory.getGroupDatabase(context);
+    final byte[]        groupId          = groupDatabase.allocateGroupId();
+    final Set<Address>  memberAddresses  = getMemberAddresses(context, members);
 
-    memberE164Numbers.add(TextSecurePreferences.getLocalNumber(context));
-    groupDatabase.create(groupId, name, new LinkedList<>(memberE164Numbers), null, null);
+    memberAddresses.add(Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)));
+    groupDatabase.create(groupId, name, new LinkedList<>(memberAddresses), null, null);
     groupDatabase.updateAvatar(groupId, avatarBytes);
-    return sendGroupUpdate(context, masterSecret, groupId, memberE164Numbers, name, avatarBytes);
+    return sendGroupUpdate(context, masterSecret, groupId, memberAddresses, name, avatarBytes);
   }
 
-  private static Set<String> getE164Numbers(Context context, Collection<Recipient> recipients)
+  private static Set<Address> getMemberAddresses(Context context, Collection<Recipient> recipients)
       throws InvalidNumberException
   {
-    final Set<String> results = new HashSet<>();
+    final Set<Address> results = new HashSet<>();
     for (Recipient recipient : recipients) {
-      results.add(Util.canonicalizeNumber(context, recipient.getNumber()));
+      results.add(recipient.getAddress());
     }
 
     return results;
@@ -71,33 +73,39 @@ public class GroupManager {
                                               @Nullable String         name)
       throws InvalidNumberException
   {
-    final GroupDatabase groupDatabase     = DatabaseFactory.getGroupDatabase(context);
-    final Set<String>   memberE164Numbers = getE164Numbers(context, members);
-    final byte[]        avatarBytes       = BitmapUtil.toByteArray(avatar);
+    final GroupDatabase groupDatabase   = DatabaseFactory.getGroupDatabase(context);
+    final Set<Address>  memberAddresses = getMemberAddresses(context, members);
+    final byte[]        avatarBytes     = BitmapUtil.toByteArray(avatar);
 
-    memberE164Numbers.add(TextSecurePreferences.getLocalNumber(context));
-    groupDatabase.updateMembers(groupId, new LinkedList<>(memberE164Numbers));
+    memberAddresses.add(Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)));
+    groupDatabase.updateMembers(groupId, new LinkedList<>(memberAddresses));
     groupDatabase.updateTitle(groupId, name);
     groupDatabase.updateAvatar(groupId, avatarBytes);
 
-    return sendGroupUpdate(context, masterSecret, groupId, memberE164Numbers, name, avatarBytes);
+    return sendGroupUpdate(context, masterSecret, groupId, memberAddresses, name, avatarBytes);
   }
 
   private static GroupActionResult sendGroupUpdate(@NonNull  Context      context,
                                                    @NonNull  MasterSecret masterSecret,
                                                    @NonNull  byte[]       groupId,
-                                                   @NonNull  Set<String>  e164numbers,
+                                                   @NonNull  Set<Address> members,
                                                    @Nullable String       groupName,
                                                    @Nullable byte[]       avatar)
   {
     Attachment avatarAttachment = null;
-    String     groupRecipientId = GroupUtil.getEncodedId(groupId);
-    Recipients groupRecipient   = RecipientFactory.getRecipientsFromString(context, groupRecipientId, false);
+    Address    groupAddress     = Address.fromSerialized(GroupUtil.getEncodedId(groupId));
+    Recipients groupRecipient   = RecipientFactory.getRecipientsFor(context, new Address[]{groupAddress}, false);
+
+    List<String> numbers = new LinkedList<>();
+
+    for (Address member : members) {
+      numbers.add(member.serialize());
+    }
 
     GroupContext.Builder groupContextBuilder = GroupContext.newBuilder()
                                                            .setId(ByteString.copyFrom(groupId))
                                                            .setType(GroupContext.Type.UPDATE)
-                                                           .addAllMembers(e164numbers);
+                                                           .addAllMembers(numbers);
     if (groupName != null) groupContextBuilder.setName(groupName);
     GroupContext groupContext = groupContextBuilder.build();
 

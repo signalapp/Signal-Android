@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -49,12 +50,20 @@ public class QuickResponseService extends MasterSecretIntentService {
       Rfc5724Uri uri        = new Rfc5724Uri(intent.getDataString());
       String     content    = intent.getStringExtra(Intent.EXTRA_TEXT);
       String     numbers    = uri.getPath();
-      if(numbers.contains("%")){
+
+      if (numbers.contains("%")){
         numbers = URLDecoder.decode(numbers);
       }
 
-      Recipients                      recipients     = RecipientFactory.getRecipientsFromString(this, numbers, false);
-      Optional<RecipientsPreferences> preferences    = DatabaseFactory.getRecipientPreferenceDatabase(this).getRecipientsPreferences(recipients.getIds());
+      String[]  numbersArray = numbers.split(",");
+      Address[] addresses    = new Address[numbersArray.length];
+
+      for (int i=0;i<numbersArray.length;i++) {
+        addresses[i] = Address.fromExternal(this, numbersArray[i]);
+      }
+
+      Recipients                      recipients     = RecipientFactory.getRecipientsFor(this, addresses, false);
+      Optional<RecipientsPreferences> preferences    = DatabaseFactory.getRecipientPreferenceDatabase(this).getRecipientsPreferences(recipients.getAddresses());
       int                             subscriptionId = preferences.isPresent() ? preferences.get().getDefaultSubscriptionId().or(-1) : -1;
       long                            expiresIn      = preferences.isPresent() ? preferences.get().getExpireMessages() * 1000 : 0;
 

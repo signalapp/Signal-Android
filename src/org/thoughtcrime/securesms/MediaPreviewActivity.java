@@ -34,6 +34,7 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.components.ZoomingImageView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
@@ -52,7 +53,7 @@ import java.io.IOException;
 public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity implements RecipientModifiedListener {
   private final static String TAG = MediaPreviewActivity.class.getSimpleName();
 
-  public static final String RECIPIENT_EXTRA = "recipient";
+  public static final String ADDRESS_EXTRA   = "address";
   public static final String THREAD_ID_EXTRA = "thread_id";
   public static final String DATE_EXTRA      = "date";
   public static final String SIZE_EXTRA      = "size";
@@ -143,7 +144,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   }
 
   private void initializeResources() {
-    final long recipientId = getIntent().getLongExtra(RECIPIENT_EXTRA, -1);
+    Address address = getIntent().getParcelableExtra(ADDRESS_EXTRA);
 
     mediaUri     = getIntent().getData();
     mediaType    = getIntent().getType();
@@ -151,8 +152,8 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     size         = getIntent().getLongExtra(SIZE_EXTRA, 0);
     threadId     = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
 
-    if (recipientId > -1) {
-      recipient = RecipientFactory.getRecipientForId(this, recipientId, true);
+    if (address != null) {
+      recipient = RecipientFactory.getRecipientFor(this, address, true);
       recipient.addListener(this);
     } else {
       recipient = null;

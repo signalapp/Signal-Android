@@ -23,6 +23,7 @@ import android.util.Pair;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -36,23 +37,19 @@ import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
 import org.thoughtcrime.securesms.jobs.PushTextSendJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
+import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
-import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.IOException;
-
-import org.thoughtcrime.securesms.mms.MmsException;
 
 public class MessageSender {
 
@@ -116,11 +113,11 @@ public class MessageSender {
     }
   }
 
-  public static void resendGroupMessage(Context context, MasterSecret masterSecret, MessageRecord messageRecord, long filterRecipientId) {
+  public static void resendGroupMessage(Context context, MasterSecret masterSecret, MessageRecord messageRecord, Address filterAddress) {
     if (!messageRecord.isMms()) throw new AssertionError("Not Group");
 
     Recipients recipients = DatabaseFactory.getMmsAddressDatabase(context).getRecipientsForId(messageRecord.getId());
-    sendGroupPush(context, recipients, messageRecord.getId(), filterRecipientId);
+    sendGroupPush(context, recipients, messageRecord.getId(), filterAddress);
   }
 
   public static void resend(Context context, MasterSecret masterSecret, MessageRecord messageRecord) {
@@ -150,7 +147,7 @@ public class MessageSender {
     if (!forceSms && isSelfSend(context, recipients)) {
       sendMediaSelf(context, masterSecret, messageId, expiresIn);
     } else if (isGroupPushSend(recipients)) {
-      sendGroupPush(context, recipients, messageId, -1);
+      sendGroupPush(context, recipients, messageId, null);
     } else if (!forceSms && isPushMediaSend(context, recipients)) {
       sendMediaPush(context, recipients, messageId);
     } else {
@@ -205,17 +202,17 @@ public class MessageSender {
 
   private static void sendTextPush(Context context, Recipients recipients, long messageId) {
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
-    jobManager.add(new PushTextSendJob(context, messageId, recipients.getPrimaryRecipient().getNumber()));
+    jobManager.add(new PushTextSendJob(context, messageId, recipients.getPrimaryRecipient().getAddress()));
   }
 
   private static void sendMediaPush(Context context, Recipients recipients, long messageId) {
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
-    jobManager.add(new PushMediaSendJob(context, messageId, recipients.getPrimaryRecipient().getNumber()));
+    jobManager.add(new PushMediaSendJob(context, messageId, recipients.getPrimaryRecipient().getAddress()));
   }
 
-  private static void sendGroupPush(Context context, Recipients recipients, long messageId, long filterRecipientId) {
+  private static void sendGroupPush(Context context, Recipients recipients, long messageId, Address filterAddress) {
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
-    jobManager.add(new PushGroupSendJob(context, messageId, recipients.getPrimaryRecipient().getNumber(), filterRecipientId));
+    jobManager.add(new PushGroupSendJob(context, messageId, recipients.getPrimaryRecipient().getAddress(), filterAddress));
   }
 
   private static void sendSms(Context context, Recipients recipients, long messageId) {
@@ -229,47 +226,31 @@ public class MessageSender {
   }
 
   private static boolean isPushTextSend(Context context, Recipients recipients, boolean keyExchange) {
-    try {
-      if (!TextSecurePreferences.isPushRegistered(context)) {
-        return false;
-      }
-
-      if (keyExchange) {
-        return false;
-      }
-
-      Recipient recipient   = recipients.getPrimaryRecipient();
-      String    destination = Util.canonicalizeNumber(context, recipient.getNumber());
-
-      return isPushDestination(context, destination);
-    } catch (InvalidNumberException e) {
-      Log.w(TAG, e);
+    if (!TextSecurePreferences.isPushRegistered(context)) {
       return false;
     }
+
+    if (keyExchange) {
+      return false;
+    }
+
+    return isPushDestination(context, recipients.getPrimaryRecipient().getAddress());
   }
 
   private static boolean isPushMediaSend(Context context, Recipients recipients) {
-    try {
-      if (!TextSecurePreferences.isPushRegistered(context)) {
-        return false;
-      }
-
-      if (recipients.getRecipientsList().size() > 1) {
-        return false;
-      }
-
-      Recipient recipient   = recipients.getPrimaryRecipient();
-      String    destination = Util.canonicalizeNumber(context, recipient.getNumber());
-
-      return isPushDestination(context, destination);
-    } catch (InvalidNumberException e) {
-      Log.w(TAG, e);
+    if (!TextSecurePreferences.isPushRegistered(context)) {
       return false;
     }
+
+    if (recipients.getRecipientsList().size() > 1) {
+      return false;
+    }
+
+    return isPushDestination(context, recipients.getPrimaryRecipient().getAddress());
   }
 
   private static boolean isGroupPushSend(Recipients recipients) {
-    return GroupUtil.isEncodedGroup(recipients.getPrimaryRecipient().getNumber());
+    return recipients.getPrimaryRecipient().getAddress().isGroup();
   }
 
   private static boolean isSelfSend(Context context, Recipients recipients) {
@@ -285,10 +266,10 @@ public class MessageSender {
       return false;
     }
 
-    return Util.isOwnNumber(context, recipients.getPrimaryRecipient().getNumber());
+    return Util.isOwnNumber(context, recipients.getPrimaryRecipient().getAddress());
   }
 
-  private static boolean isPushDestination(Context context, String destination) {
+  private static boolean isPushDestination(Context context, Address destination) {
     TextSecureDirectory directory = TextSecureDirectory.getInstance(context);
 
     try {
@@ -296,15 +277,15 @@ public class MessageSender {
     } catch (NotInDirectoryException e) {
       try {
         SignalServiceAccountManager   accountManager = AccountManagerFactory.createManager(context);
-        Optional<ContactTokenDetails> registeredUser = accountManager.getContact(destination);
+        Optional<ContactTokenDetails> registeredUser = accountManager.getContact(destination.serialize());
 
         if (!registeredUser.isPresent()) {
           registeredUser = Optional.of(new ContactTokenDetails());
-          registeredUser.get().setNumber(destination);
+          registeredUser.get().setNumber(destination.serialize());
           directory.setNumber(registeredUser.get(), false);
           return false;
         } else {
-          registeredUser.get().setNumber(destination);
+          registeredUser.get().setNumber(destination.toPhoneString());
           directory.setNumber(registeredUser.get(), true);
           return true;
         }

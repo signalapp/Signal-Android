@@ -4,6 +4,7 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
@@ -23,6 +24,8 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -72,11 +75,16 @@ public class PushGroupUpdateJob extends ContextJob implements InjectableType {
                                             .build();
     }
 
+    List<String> members = new LinkedList<>();
+
+    for (Address member : record.getMembers()) {
+      members.add(member.serialize());
+    }
 
     SignalServiceGroup groupContext = SignalServiceGroup.newBuilder(Type.UPDATE)
                                                         .withAvatar(avatar)
                                                         .withId(groupId)
-                                                        .withMembers(record.getMembers())
+                                                        .withMembers(members)
                                                         .withName(record.getTitle())
                                                         .build();
 

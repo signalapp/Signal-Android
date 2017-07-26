@@ -20,20 +20,17 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.util.Patterns;
 
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.VibrateState;
 import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
-import org.thoughtcrime.securesms.util.NumberUtil;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -217,15 +214,16 @@ public class Recipients implements Iterable<Recipient>, RecipientModifiedListene
 
   public boolean isEmailRecipient() {
     for (Recipient recipient : recipients) {
-      if (NumberUtil.isValidEmail(recipient.getNumber()))
+      if (recipient.getAddress().isEmail()) {
         return true;
+      }
     }
 
     return false;
   }
 
   public boolean isGroupRecipient() {
-    return isSingleRecipient() && GroupUtil.isEncodedGroup(recipients.get(0).getNumber());
+    return isSingleRecipient() && recipients.get(0).getAddress().isGroup();
   }
 
   public boolean isEmpty() {
@@ -247,57 +245,20 @@ public class Recipients implements Iterable<Recipient>, RecipientModifiedListene
     return this.recipients;
   }
 
-  public long[] getIds() {
-    long[] ids = new long[recipients.size()];
-    for (int i=0; i<recipients.size(); i++) {
-      ids[i] = recipients.get(i).getRecipientId();
+  public Address[] getAddresses() {
+    Address[] addresses = new Address[recipients.size()];
+    for (int i=0;i<recipients.size();i++) {
+      addresses[i] = recipients.get(i).getAddress();
     }
-    return ids;
+
+    Arrays.sort(addresses);
+
+    return addresses;
   }
 
-  public String getSortedIdsString() {
-    Set<Long> recipientSet  = new HashSet<>();
-
-    for (Recipient recipient : this.recipients) {
-      recipientSet.add(recipient.getRecipientId());
-    }
-
-    long[] recipientArray = new long[recipientSet.size()];
-    int i                 = 0;
-
-    for (Long recipientId : recipientSet) {
-      recipientArray[i++] = recipientId;
-    }
-
-    Arrays.sort(recipientArray);
-
-    return Util.join(recipientArray, " ");
-  }
-
-  public @NonNull String[] toNumberStringArray(boolean scrub) {
-    String[] recipientsArray     = new String[recipients.size()];
-    Iterator<Recipient> iterator = recipients.iterator();
-    int i                        = 0;
-
-    while (iterator.hasNext()) {
-      String number = iterator.next().getNumber();
-
-      if (scrub && number != null &&
-          !Patterns.EMAIL_ADDRESS.matcher(number).matches() &&
-          !GroupUtil.isEncodedGroup(number))
-      {
-        number = number.replaceAll("[^0-9+]", "");
-      }
-
-      recipientsArray[i++] = number;
-    }
-
-    return recipientsArray;
-  }
-
-  public @NonNull List<String> toNumberStringList(boolean scrub) {
-    List<String> results = new LinkedList<>();
-    Collections.addAll(results, toNumberStringArray(scrub));
+  public List<Address> getAddressesList() {
+    List<Address> results = new LinkedList<>();
+    Collections.addAll(results, getAddresses());
 
     return results;
   }

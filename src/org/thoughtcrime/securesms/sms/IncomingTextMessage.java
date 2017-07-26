@@ -1,9 +1,13 @@
 package org.thoughtcrime.securesms.sms;
 
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.telephony.SmsMessage;
 
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
@@ -24,23 +28,24 @@ public class IncomingTextMessage implements Parcelable {
       return new IncomingTextMessage[size];
     }
   };
+  private static final String TAG = IncomingTextMessage.class.getSimpleName();
 
   private final String  message;
-  private final String  sender;
+  private       Address sender;
   private final int     senderDeviceId;
   private final int     protocol;
   private final String  serviceCenterAddress;
   private final boolean replyPathPresent;
   private final String  pseudoSubject;
   private final long    sentTimestampMillis;
-  private final String  groupId;
+  private final Address groupId;
   private final boolean push;
   private final int     subscriptionId;
   private final long    expiresInMillis;
 
-  public IncomingTextMessage(SmsMessage message, int subscriptionId) {
+  public IncomingTextMessage(@NonNull Context context, @NonNull SmsMessage message, int subscriptionId) {
     this.message              = message.getDisplayMessageBody();
-    this.sender               = message.getDisplayOriginatingAddress();
+    this.sender               = Address.fromExternal(context, message.getDisplayOriginatingAddress());
     this.senderDeviceId       = SignalServiceAddress.DEFAULT_DEVICE_ID;
     this.protocol             = message.getProtocolIdentifier();
     this.serviceCenterAddress = message.getServiceCenterAddress();
@@ -53,7 +58,7 @@ public class IncomingTextMessage implements Parcelable {
     this.push                 = false;
   }
 
-  public IncomingTextMessage(String sender, int senderDeviceId, long sentTimestampMillis,
+  public IncomingTextMessage(Address sender, int senderDeviceId, long sentTimestampMillis,
                              String encodedBody, Optional<SignalServiceGroup> group,
                              long expiresInMillis)
   {
@@ -70,7 +75,7 @@ public class IncomingTextMessage implements Parcelable {
     this.expiresInMillis      = expiresInMillis;
 
     if (group.isPresent()) {
-      this.groupId = GroupUtil.getEncodedId(group.get().getGroupId());
+      this.groupId = Address.fromSerialized(GroupUtil.getEncodedId(group.get().getGroupId()));
     } else {
       this.groupId = null;
     }
@@ -78,14 +83,14 @@ public class IncomingTextMessage implements Parcelable {
 
   public IncomingTextMessage(Parcel in) {
     this.message              = in.readString();
-    this.sender               = in.readString();
+    this.sender               = in.readParcelable(IncomingTextMessage.class.getClassLoader());
     this.senderDeviceId       = in.readInt();
     this.protocol             = in.readInt();
     this.serviceCenterAddress = in.readString();
     this.replyPathPresent     = (in.readInt() == 1);
     this.pseudoSubject        = in.readString();
     this.sentTimestampMillis  = in.readLong();
-    this.groupId              = in.readString();
+    this.groupId              = in.readParcelable(IncomingTextMessage.class.getClassLoader());
     this.push                 = (in.readInt() == 1);
     this.subscriptionId       = in.readInt();
     this.expiresInMillis      = in.readLong();
@@ -127,7 +132,7 @@ public class IncomingTextMessage implements Parcelable {
     this.expiresInMillis      = fragments.get(0).getExpiresIn();
   }
 
-  protected IncomingTextMessage(String sender, String groupId)
+  protected IncomingTextMessage(@NonNull Address sender, @Nullable Address groupId)
   {
     this.message              = "";
     this.sender               = sender;
@@ -167,7 +172,7 @@ public class IncomingTextMessage implements Parcelable {
     return new IncomingTextMessage(this, message);
   }
 
-  public String getSender() {
+  public Address getSender() {
     return sender;
   }
 
@@ -211,7 +216,7 @@ public class IncomingTextMessage implements Parcelable {
     return push;
   }
 
-  public String getGroupId() {
+  public @Nullable Address getGroupId() {
     return groupId;
   }
 
@@ -243,14 +248,14 @@ public class IncomingTextMessage implements Parcelable {
   @Override
   public void writeToParcel(Parcel out, int flags) {
     out.writeString(message);
-    out.writeString(sender);
+    out.writeParcelable(sender, flags);
     out.writeInt(senderDeviceId);
     out.writeInt(protocol);
     out.writeString(serviceCenterAddress);
     out.writeInt(replyPathPresent ? 1 : 0);
     out.writeString(pseudoSubject);
     out.writeLong(sentTimestampMillis);
-    out.writeString(groupId);
+    out.writeParcelable(groupId, flags);
     out.writeInt(push ? 1 : 0);
     out.writeInt(subscriptionId);
   }

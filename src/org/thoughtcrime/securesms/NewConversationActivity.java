@@ -25,6 +25,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -49,10 +50,10 @@ public class NewConversationActivity extends ContactSelectionActivity {
 
   @Override
   public void onContactSelected(String number) {
-    Recipients recipients = RecipientFactory.getRecipientsFromString(this, number, true);
+    Recipients recipients = RecipientFactory.getRecipientsFor(this, new Address[] {Address.fromExternal(this, number)}, true);
 
     Intent intent = new Intent(this, ConversationActivity.class);
-    intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, recipients.getIds());
+    intent.putExtra(ConversationActivity.ADDRESSES_EXTRA, recipients.getAddresses());
     intent.putExtra(ConversationActivity.TEXT_EXTRA, getIntent().getStringExtra(ConversationActivity.TEXT_EXTRA));
     intent.setDataAndType(getIntent().getData(), getIntent().getType());
 

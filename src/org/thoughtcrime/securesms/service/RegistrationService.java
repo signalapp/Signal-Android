@@ -16,12 +16,11 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
 import org.thoughtcrime.securesms.crypto.SessionUtil;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -237,7 +236,7 @@ public class RegistrationService extends Service {
       throws IOException
   {
     setState(new RegistrationState(RegistrationState.STATE_GENERATING_KEYS, number));
-    Recipient          self         = RecipientFactory.getRecipientsFromString(this, number, false).getPrimaryRecipient();
+    Address            self         = Address.fromSerialized(number);
     IdentityKeyPair    identityKey  = IdentityKeyUtil.getIdentityKeyPair(this);
     List<PreKeyRecord> records      = PreKeyUtil.generatePreKeys(this);
     SignedPreKeyRecord signedPreKey = PreKeyUtil.generateSignedPreKey(this, identityKey, true);
@@ -257,7 +256,7 @@ public class RegistrationService extends Service {
 
     TextSecurePreferences.setWebsocketRegistered(this, true);
 
-    DatabaseFactory.getIdentityDatabase(this).saveIdentity(self.getRecipientId(), identityKey.getPublicKey(), IdentityDatabase.VerifiedStatus.VERIFIED, true, System.currentTimeMillis(), true);
+    DatabaseFactory.getIdentityDatabase(this).saveIdentity(self, identityKey.getPublicKey(), IdentityDatabase.VerifiedStatus.VERIFIED, true, System.currentTimeMillis(), true);
     DirectoryHelper.refreshDirectory(this, accountManager, number);
 
     DirectoryRefreshListener.schedule(this);

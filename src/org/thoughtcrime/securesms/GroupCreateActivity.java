@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.contacts.RecipientsEditor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
@@ -66,12 +67,11 @@ import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.thoughtcrime.securesms.util.SelectedRecipientsAdapter;
 import org.thoughtcrime.securesms.util.SelectedRecipientsAdapter.OnRecipientDeletedListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
@@ -95,8 +95,8 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
 
   private final static String TAG = GroupCreateActivity.class.getSimpleName();
 
-  public static final String GROUP_RECIPIENT_EXTRA = "group_recipient";
-  public static final String GROUP_THREAD_EXTRA    = "group_thread";
+  public static final String GROUP_ADDRESS_EXTRA = "group_recipient";
+  public static final String GROUP_THREAD_EXTRA  = "group_thread";
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -174,9 +174,8 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
 
   private static boolean isActiveInDirectory(Context context, Recipient recipient) {
     try {
-      return TextSecureDirectory.getInstance(context)
-                                .isSecureTextSupported(Util.canonicalizeNumber(context, recipient.getNumber()));
-    } catch (NotInDirectoryException | InvalidNumberException e) {
+      return TextSecureDirectory.getInstance(context).isSecureTextSupported(recipient.getAddress());
+    } catch (NotInDirectoryException e) {
       return false;
     }
   }
@@ -213,11 +212,13 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeExistingGroup() {
-    final String encodedGroupId = RecipientFactory.getRecipientForId(this, getIntent().getLongExtra(GROUP_RECIPIENT_EXTRA, -1), true)
-                                                  .getNumber();
+    final Address groupAddress = getIntent().getParcelableExtra(GROUP_ADDRESS_EXTRA);
+
     byte[] groupId;
+
     try {
-      groupId = GroupUtil.getDecodedId(encodedGroupId);
+      if (groupAddress != null) groupId = GroupUtil.getDecodedId(groupAddress.toGroupString());
+      else                      groupId = null;
     } catch (IOException ioe) {
       Log.w(TAG, "Couldn't decode the encoded groupId passed in via intent", ioe);
       groupId = null;
@@ -286,7 +287,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     Intent intent = new Intent(this, ConversationActivity.class);
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
     intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
-    intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, recipients.getIds());
+    intent.putExtra(ConversationActivity.ADDRESSES_EXTRA, recipients.getAddresses());
     startActivity(intent);
     finish();
   }
@@ -310,9 +311,12 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     switch (reqCode) {
       case PICK_CONTACT:
         List<String> selected = data.getStringArrayListExtra("contacts");
+
         for (String contact : selected) {
-          final Recipient recipient = RecipientFactory.getRecipientsFromString(this, contact, false).getPrimaryRecipient();
-          if (recipient != null) addSelectedContacts(recipient);
+          Address   address   = Address.fromExternal(this, contact);
+          Recipient recipient = RecipientFactory.getRecipientFor(this, address, false);
+
+          addSelectedContacts(recipient);
         }
         break;
 
@@ -470,7 +474,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
         if (!activity.isFinishing()) {
           Intent intent = activity.getIntent();
           intent.putExtra(GROUP_THREAD_EXTRA, result.get().getThreadId());
-          intent.putExtra(GROUP_RECIPIENT_EXTRA, result.get().getGroupRecipient().getIds());
+          intent.putExtra(GROUP_ADDRESS_EXTRA, result.get().getGroupRecipient().getPrimaryRecipient().getAddress());
           activity.setResult(RESULT_OK, intent);
           activity.finish();
         }
@@ -508,16 +512,12 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
       final List<Result> results = new LinkedList<>();
 
       for (Recipient recipient : recipients) {
-        boolean isPush        = isActiveInDirectory(activity, recipient);
-        String  recipientE164 = null;
-        try {
-          recipientE164 = Util.canonicalizeNumber(activity, recipient.getNumber());
-        } catch (InvalidNumberException ine) { /* do nothing */ }
+        boolean isPush = isActiveInDirectory(activity, recipient);
 
         if (failIfNotPush && !isPush) {
           results.add(new Result(null, false, activity.getString(R.string.GroupCreateActivity_cannot_add_non_push_to_existing_group,
-                                                                 recipient.getNumber())));
-        } else if (TextUtils.equals(TextSecurePreferences.getLocalNumber(activity), recipientE164)) {
+                                                                 recipient.toShortString())));
+        } else if (TextUtils.equals(TextSecurePreferences.getLocalNumber(activity), recipient.getAddress().serialize())) {
           results.add(new Result(null, false, activity.getString(R.string.GroupCreateActivity_youre_already_in_the_group)));
         } else {
           results.add(new Result(recipient, isPush, null));

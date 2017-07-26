@@ -18,31 +18,28 @@ package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
 import android.os.Build;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AutoCompleteTextView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.RecipientsAdapter;
 import org.thoughtcrime.securesms.contacts.RecipientsEditor;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.recipients.Recipients.RecipientsModifiedListener;
 
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
+import java.util.StringTokenizer;
 
 /**
  * Panel component combining both an editable field with a button for
@@ -74,26 +71,11 @@ public class PushRecipientsPanel extends RelativeLayout implements RecipientsMod
     initialize();
   }
 
-  public void addRecipient(String name, String number) {
-    if (name != null) recipientsText.append(name + "< " + number + ">, ");
-    else recipientsText.append(number + ", ");
-  }
-
-  public void addRecipients(Recipients recipients) {
-    List<Recipient> recipientList = recipients.getRecipientsList();
-    Iterator<Recipient> iterator = recipientList.iterator();
-
-    while (iterator.hasNext()) {
-      Recipient recipient = iterator.next();
-      addRecipient(recipient.getName(), recipient.getNumber());
-    }
-  }
-
   public Recipients getRecipients() throws RecipientFormattingException {
-    String rawText = recipientsText.getText().toString();
-    Recipients recipients = RecipientFactory.getRecipientsFromString(getContext(), rawText, true);
+    String     rawText    = recipientsText.getText().toString();
+    Recipients recipients = getRecipientsFromString(getContext(), rawText, true);
 
-    if (recipients.isEmpty())
+    if (recipients == null || recipients.isEmpty())
       throw new RecipientFormattingException("Recipient List Is Empty!");
 
     return recipients;
@@ -151,7 +133,40 @@ public class PushRecipientsPanel extends RelativeLayout implements RecipientsMod
     });
   }
 
-  @Override public void onModified(Recipients recipients) {
+  private @Nullable Recipients getRecipientsFromString(Context context, @NonNull String rawText, boolean asynchronous) {
+    StringTokenizer tokenizer = new StringTokenizer(rawText, ",");
+    List<Address>   addresses = new LinkedList<>();
+
+    while (tokenizer.hasMoreTokens()) {
+      String token = tokenizer.nextToken().trim();
+
+      if (!TextUtils.isEmpty(token)) {
+        if (hasBracketedNumber(token)) addresses.add(Address.fromExternal(context, parseBracketedNumber(token)));
+        else                           addresses.add(Address.fromExternal(context, token));
+      }
+    }
+
+    if (addresses.size() == 0) return null;
+    else                       return RecipientFactory.getRecipientsFor(context, addresses.toArray(new Address[0]), asynchronous);
+  }
+
+  private boolean hasBracketedNumber(String recipient) {
+    int openBracketIndex = recipient.indexOf('<');
+
+    return (openBracketIndex != -1) &&
+           (recipient.indexOf('>', openBracketIndex) != -1);
+  }
+
+  private  String parseBracketedNumber(String recipient) {
+    int begin    = recipient.indexOf('<');
+    int end      = recipient.indexOf('>', begin);
+    String value = recipient.substring(begin + 1, end);
+
+    return value;
+  }
+
+  @Override
+  public void onModified(Recipients recipients) {
     recipientsText.populate(recipients);
   }
 

@@ -69,14 +69,14 @@ public class ConversationTitleView extends LinearLayout {
   private void setRecipientTitle(Recipient recipient) {
     if (!recipient.isGroupRecipient()) {
       if (TextUtils.isEmpty(recipient.getName())) {
-        this.title.setText(recipient.getNumber());
+        this.title.setText(recipient.getAddress().serialize());
         this.subtitle.setText(null);
         this.subtitle.setVisibility(View.GONE);
       } else {
         this.title.setText(recipient.getName());
 
         if (recipient.getCustomLabel() != null) this.subtitle.setText(recipient.getCustomLabel());
-        else                                    this.subtitle.setText(recipient.getNumber());
+        else                                    this.subtitle.setText(recipient.getAddress().serialize());
 
         this.subtitle.setVisibility(View.VISIBLE);
       }

@@ -17,7 +17,6 @@ import org.whispersystems.libsignal.IdentityKey;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 public abstract class MessagingDatabase extends Database implements MmsSmsColumns {
@@ -30,9 +29,9 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
 
   protected abstract String getTableName();
 
-  public void setMismatchedIdentity(long messageId, final long recipientId, final IdentityKey identityKey) {
+  public void setMismatchedIdentity(long messageId, final Address address, final IdentityKey identityKey) {
     List<IdentityKeyMismatch> items = new ArrayList<IdentityKeyMismatch>() {{
-      add(new IdentityKeyMismatch(recipientId, identityKey));
+      add(new IdentityKeyMismatch(address, identityKey));
     }};
 
     IdentityKeyMismatchList document = new IdentityKeyMismatchList(items);
@@ -51,20 +50,20 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
     }
   }
 
-  public void addMismatchedIdentity(long messageId, long recipientId, IdentityKey identityKey) {
+  public void addMismatchedIdentity(long messageId, Address address, IdentityKey identityKey) {
     try {
       addToDocument(messageId, MISMATCHED_IDENTITIES,
-                    new IdentityKeyMismatch(recipientId, identityKey),
+                    new IdentityKeyMismatch(address, identityKey),
                     IdentityKeyMismatchList.class);
     } catch (IOException e) {
       Log.w(TAG, e);
     }
   }
 
-  public void removeMismatchedIdentity(long messageId, long recipientId, IdentityKey identityKey) {
+  public void removeMismatchedIdentity(long messageId, Address address, IdentityKey identityKey) {
     try {
       removeFromDocument(messageId, MISMATCHED_IDENTITIES,
-                         new IdentityKeyMismatch(recipientId, identityKey),
+                         new IdentityKeyMismatch(address, identityKey),
                          IdentityKeyMismatchList.class);
     } catch (IOException e) {
       Log.w(TAG, e);
@@ -168,15 +167,15 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
 
   public static class SyncMessageId {
 
-    private final String address;
+    private final Address address;
     private final long   timetamp;
 
-    public SyncMessageId(String address, long timetamp) {
+    public SyncMessageId(Address address, long timetamp) {
       this.address  = address;
       this.timetamp = timetamp;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
       return address;
     }
 

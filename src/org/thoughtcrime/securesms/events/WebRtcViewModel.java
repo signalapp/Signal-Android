@@ -88,6 +88,6 @@ public class WebRtcViewModel {
   }
 
   public String toString() {
-    return "[State: " + state + ", recipient: " + recipient.getNumber() + ", identity: " + identityKey + ", remoteVideo: " + remoteVideoEnabled + ", localVideo: " + localVideoEnabled + "]";
+    return "[State: " + state + ", recipient: " + recipient.getAddress() + ", identity: " + identityKey + ", remoteVideo: " + remoteVideoEnabled + ", localVideo: " + localVideoEnabled + "]";
   }
 }

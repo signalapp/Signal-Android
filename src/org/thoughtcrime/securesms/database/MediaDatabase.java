@@ -5,9 +5,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 
@@ -57,10 +57,10 @@ public class MediaDatabase extends Database {
   public static class MediaRecord {
 
     private final DatabaseAttachment attachment;
-    private final String             address;
+    private final Address            address;
     private final long               date;
 
-    private MediaRecord(DatabaseAttachment attachment, String address, long date) {
+    private MediaRecord(DatabaseAttachment attachment, @Nullable Address address, long date) {
       this.attachment = attachment;
       this.address    = address;
       this.date       = date;
@@ -69,7 +69,12 @@ public class MediaDatabase extends Database {
     public static MediaRecord from(@NonNull Context context, @NonNull MasterSecret masterSecret, @NonNull Cursor cursor) {
       AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
       DatabaseAttachment attachment         = attachmentDatabase.getAttachment(masterSecret, cursor);
-      String             address            = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS));
+      String             serializedAddress  = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS));
+      Address            address            = null;
+
+      if (serializedAddress != null) {
+        address = Address.fromSerialized(serializedAddress);
+      }
 
       long date;
 
@@ -90,7 +95,7 @@ public class MediaDatabase extends Database {
       return attachment.getContentType();
     }
 
-    public String getAddress() {
+    public @Nullable Address getAddress() {
       return address;
     }
 

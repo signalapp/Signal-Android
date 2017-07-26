@@ -8,6 +8,7 @@ import android.provider.ContactsContract;
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.WebRtcCallActivity;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
 
 public class VoiceCallShare extends Activity {
@@ -25,12 +26,13 @@ public class VoiceCallShare extends Activity {
         cursor = getContentResolver().query(getIntent().getData(), null, null, null, null);
 
         if (cursor != null && cursor.moveToNext()) {
-          String destination = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.RawContacts.Data.DATA1));
+          String  destination = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.RawContacts.Data.DATA1));
+          Address address     = Address.fromExternal(this, destination);
           
           if (!TextUtils.isEmpty(destination)) {
             Intent serviceIntent = new Intent(this, WebRtcCallService.class);
             serviceIntent.setAction(WebRtcCallService.ACTION_OUTGOING_CALL);
-            serviceIntent.putExtra(WebRtcCallService.EXTRA_REMOTE_NUMBER, destination);
+            serviceIntent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, address);
             startService(serviceIntent);
 
             Intent activityIntent = new Intent(this, WebRtcCallActivity.class);

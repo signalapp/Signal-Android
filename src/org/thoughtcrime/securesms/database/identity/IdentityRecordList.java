@@ -77,7 +77,7 @@ public class IdentityRecordList {
 
     for (IdentityRecord identityRecord : identityRecords) {
       if (isUntrusted(identityRecord)) {
-        untrusted.add(RecipientFactory.getRecipientForId(context, identityRecord.getRecipientId(), false));
+        untrusted.add(RecipientFactory.getRecipientFor(context, identityRecord.getAddress(), false));
       }
     }
 
@@ -101,7 +101,7 @@ public class IdentityRecordList {
 
     for (IdentityRecord identityRecord : identityRecords) {
       if (identityRecord.getVerifiedStatus() == VerifiedStatus.UNVERIFIED) {
-        unverified.add(RecipientFactory.getRecipientForId(context, identityRecord.getRecipientId(), false));
+        unverified.add(RecipientFactory.getRecipientFor(context, identityRecord.getAddress(), false));
       }
     }
 

@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase;
@@ -79,6 +80,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.SentTranscriptM
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -92,11 +94,11 @@ public class PushDecryptJob extends ContextJob {
   private final long messageId;
   private final long smsMessageId;
 
-  public PushDecryptJob(Context context, long pushMessageId, String sender) {
-    this(context, pushMessageId, -1, sender);
+  public PushDecryptJob(Context context, long pushMessageId) {
+    this(context, pushMessageId, -1);
   }
 
-  public PushDecryptJob(Context context, long pushMessageId, long smsMessageId, String sender) {
+  public PushDecryptJob(Context context, long pushMessageId, long smsMessageId) {
     super(context, JobParameters.newBuilder()
                                 .withPersistence()
                                 .withGroupId("__PUSH_DECRYPT_JOB__")
@@ -221,7 +223,7 @@ public class PushDecryptJob extends ContextJob {
       Intent intent = new Intent(context, WebRtcCallService.class);
       intent.setAction(WebRtcCallService.ACTION_INCOMING_CALL);
       intent.putExtra(WebRtcCallService.EXTRA_CALL_ID, message.getId());
-      intent.putExtra(WebRtcCallService.EXTRA_REMOTE_NUMBER, envelope.getSource());
+      intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromExternal(context, envelope.getSource()));
       intent.putExtra(WebRtcCallService.EXTRA_REMOTE_DESCRIPTION, message.getDescription());
       intent.putExtra(WebRtcCallService.EXTRA_TIMESTAMP, envelope.getTimestamp());
       context.startService(intent);
@@ -235,7 +237,7 @@ public class PushDecryptJob extends ContextJob {
     Intent intent = new Intent(context, WebRtcCallService.class);
     intent.setAction(WebRtcCallService.ACTION_RESPONSE_MESSAGE);
     intent.putExtra(WebRtcCallService.EXTRA_CALL_ID, message.getId());
-    intent.putExtra(WebRtcCallService.EXTRA_REMOTE_NUMBER, envelope.getSource());
+    intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromExternal(context, envelope.getSource()));
     intent.putExtra(WebRtcCallService.EXTRA_REMOTE_DESCRIPTION, message.getDescription());
     context.startService(intent);
   }
@@ -248,7 +250,7 @@ public class PushDecryptJob extends ContextJob {
       Intent intent = new Intent(context, WebRtcCallService.class);
       intent.setAction(WebRtcCallService.ACTION_ICE_MESSAGE);
       intent.putExtra(WebRtcCallService.EXTRA_CALL_ID, message.getId());
-      intent.putExtra(WebRtcCallService.EXTRA_REMOTE_NUMBER, envelope.getSource());
+      intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromExternal(context, envelope.getSource()));
       intent.putExtra(WebRtcCallService.EXTRA_ICE_SDP, message.getSdp());
       intent.putExtra(WebRtcCallService.EXTRA_ICE_SDP_MID, message.getSdpMid());
       intent.putExtra(WebRtcCallService.EXTRA_ICE_SDP_LINE_INDEX, message.getSdpMLineIndex());
@@ -267,7 +269,7 @@ public class PushDecryptJob extends ContextJob {
       Intent intent = new Intent(context, WebRtcCallService.class);
       intent.setAction(WebRtcCallService.ACTION_REMOTE_HANGUP);
       intent.putExtra(WebRtcCallService.EXTRA_CALL_ID, message.getId());
-      intent.putExtra(WebRtcCallService.EXTRA_REMOTE_NUMBER, envelope.getSource());
+      intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromExternal(context, envelope.getSource()));
       context.startService(intent);
     }
   }
@@ -278,7 +280,7 @@ public class PushDecryptJob extends ContextJob {
     Intent intent = new Intent(context, WebRtcCallService.class);
     intent.setAction(WebRtcCallService.ACTION_REMOTE_BUSY);
     intent.putExtra(WebRtcCallService.EXTRA_CALL_ID, message.getId());
-    intent.putExtra(WebRtcCallService.EXTRA_REMOTE_NUMBER, envelope.getSource());
+    intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromExternal(context, envelope.getSource()));
     context.startService(intent);
   }
 
@@ -288,7 +290,7 @@ public class PushDecryptJob extends ContextJob {
                                        @NonNull Optional<Long>           smsMessageId)
   {
     EncryptingSmsDatabase smsDatabase         = DatabaseFactory.getEncryptingSmsDatabase(context);
-    IncomingTextMessage   incomingTextMessage = new IncomingTextMessage(envelope.getSource(),
+    IncomingTextMessage   incomingTextMessage = new IncomingTextMessage(Address.fromExternal(context, envelope.getSource()),
                                                                         envelope.getSourceDevice(),
                                                                         message.getTimestamp(),
                                                                         "", Optional.<SignalServiceGroup>absent(), 0);
@@ -328,7 +330,7 @@ public class PushDecryptJob extends ContextJob {
 
     if (recipients.isSingleRecipient() && !recipients.isGroupRecipient()) {
       SessionStore sessionStore = new TextSecureSessionStore(context);
-      sessionStore.deleteAllSessions(recipients.getPrimaryRecipient().getNumber());
+      sessionStore.deleteAllSessions(recipients.getPrimaryRecipient().getAddress().toPhoneString());
 
       SecurityEvent.broadcastSecurityUpdateEvent(context);
 
@@ -373,8 +375,10 @@ public class PushDecryptJob extends ContextJob {
     MmsDatabase          database     = DatabaseFactory.getMmsDatabase(context);
     String               localNumber  = TextSecurePreferences.getLocalNumber(context);
     Recipients           recipients   = getMessageDestination(envelope, message);
-    IncomingMediaMessage mediaMessage = new IncomingMediaMessage(masterSecret, envelope.getSource(),
-                                                                 localNumber, message.getTimestamp(), -1,
+    IncomingMediaMessage mediaMessage = new IncomingMediaMessage(masterSecret,
+                                                                 Address.fromExternal(context, envelope.getSource()),
+                                                                 Address.fromSerialized(localNumber),
+                                                                 message.getTimestamp(), -1,
                                                                  message.getExpiresInSeconds() * 1000, true,
                                                                  Optional.fromNullable(envelope.getRelay()),
                                                                  Optional.<String>absent(), message.getGroupInfo(),
@@ -458,8 +462,8 @@ public class PushDecryptJob extends ContextJob {
                                             long envelopeTimestamp)
   {
     for (ReadMessage readMessage : readMessages) {
-      List<Pair<Long, Long>> expiringText = DatabaseFactory.getSmsDatabase(context).setTimestampRead(new SyncMessageId(readMessage.getSender(), readMessage.getTimestamp()), envelopeTimestamp);
-      List<Pair<Long, Long>> expiringMedia = DatabaseFactory.getMmsDatabase(context).setTimestampRead(new SyncMessageId(readMessage.getSender(), readMessage.getTimestamp()), envelopeTimestamp);
+      List<Pair<Long, Long>> expiringText = DatabaseFactory.getSmsDatabase(context).setTimestampRead(new SyncMessageId(Address.fromExternal(context, readMessage.getSender()), readMessage.getTimestamp()), envelopeTimestamp);
+      List<Pair<Long, Long>> expiringMedia = DatabaseFactory.getMmsDatabase(context).setTimestampRead(new SyncMessageId(Address.fromExternal(context, readMessage.getSender()), readMessage.getTimestamp()), envelopeTimestamp);
 
       for (Pair<Long, Long> expiringMessage : expiringText) {
         ApplicationContext.getInstance(context)
@@ -488,8 +492,10 @@ public class PushDecryptJob extends ContextJob {
     MmsDatabase          database     = DatabaseFactory.getMmsDatabase(context);
     String               localNumber  = TextSecurePreferences.getLocalNumber(context);
     Recipients           recipients   = getMessageDestination(envelope, message);
-    IncomingMediaMessage mediaMessage = new IncomingMediaMessage(masterSecret, envelope.getSource(),
-                                                                 localNumber, message.getTimestamp(), -1,
+    IncomingMediaMessage mediaMessage = new IncomingMediaMessage(masterSecret,
+                                                                 Address.fromExternal(context, envelope.getSource()),
+                                                                 Address.fromSerialized(localNumber),
+                                                                 message.getTimestamp(), -1,
                                                                  message.getExpiresInSeconds() * 1000, false,
                                                                  Optional.fromNullable(envelope.getRelay()),
                                                                  message.getBody(),
@@ -616,7 +622,7 @@ public class PushDecryptJob extends ContextJob {
     if (smsMessageId.isPresent() && !message.getGroupInfo().isPresent()) {
       threadId = database.updateBundleMessageBody(masterSecret, smsMessageId.get(), body).second;
     } else {
-      IncomingTextMessage textMessage = new IncomingTextMessage(envelope.getSource(),
+      IncomingTextMessage textMessage = new IncomingTextMessage(Address.fromExternal(context, envelope.getSource()),
                                                                 envelope.getSourceDevice(),
                                                                 message.getTimestamp(), body,
                                                                 message.getGroupInfo(),
@@ -764,14 +770,14 @@ public class PushDecryptJob extends ContextJob {
   {
     try {
       EncryptingSmsDatabase database       = DatabaseFactory.getEncryptingSmsDatabase(context);
-      Recipients            recipients     = RecipientFactory.getRecipientsFromString(context, envelope.getSource(), false);
-      long                  recipientId    = recipients.getPrimaryRecipient().getRecipientId();
+      Address               sourceAddress  = Address.fromExternal(context, envelope.getSource());
       byte[]                serialized     = envelope.hasLegacyMessage() ? envelope.getLegacyMessage() : envelope.getContent();
       PreKeySignalMessage   whisperMessage = new PreKeySignalMessage(serialized);
       IdentityKey           identityKey    = whisperMessage.getIdentityKey();
       String                encoded        = Base64.encodeBytes(serialized);
 
-      IncomingTextMessage   textMessage    = new IncomingTextMessage(envelope.getSource(), envelope.getSourceDevice(),
+      IncomingTextMessage   textMessage    = new IncomingTextMessage(sourceAddress,
+                                                                     envelope.getSourceDevice(),
                                                                      envelope.getTimestamp(), encoded,
                                                                      Optional.<SignalServiceGroup>absent(), 0);
 
@@ -780,13 +786,13 @@ public class PushDecryptJob extends ContextJob {
         Optional<InsertResult>      insertResult  = database.insertMessageInbox(masterSecret, bundleMessage);
 
         if (insertResult.isPresent()) {
-          database.setMismatchedIdentity(insertResult.get().getMessageId(), recipientId, identityKey);
+          database.setMismatchedIdentity(insertResult.get().getMessageId(), sourceAddress, identityKey);
           MessageNotifier.updateNotification(context, masterSecret.getMasterSecret().orNull(), insertResult.get().getThreadId());
         }
       } else {
         database.updateMessageBody(masterSecret, smsMessageId.get(), encoded);
         database.markAsPreKeyBundle(smsMessageId.get());
-        database.setMismatchedIdentity(smsMessageId.get(), recipientId, identityKey);
+        database.setMismatchedIdentity(smsMessageId.get(), sourceAddress, identityKey);
       }
     } catch (InvalidMessageException | InvalidVersionException e) {
       throw new AssertionError(e);
@@ -795,7 +801,8 @@ public class PushDecryptJob extends ContextJob {
 
   private Optional<InsertResult> insertPlaceholder(@NonNull SignalServiceEnvelope envelope) {
     EncryptingSmsDatabase database    = DatabaseFactory.getEncryptingSmsDatabase(context);
-    IncomingTextMessage   textMessage = new IncomingTextMessage(envelope.getSource(), envelope.getSourceDevice(),
+    IncomingTextMessage   textMessage = new IncomingTextMessage(Address.fromExternal(context, envelope.getSource()),
+                                                                envelope.getSourceDevice(),
                                                                 envelope.getTimestamp(), "",
                                                                 Optional.<SignalServiceGroup>absent(), 0);
 
@@ -805,17 +812,17 @@ public class PushDecryptJob extends ContextJob {
 
   private Recipients getSyncMessageDestination(SentTranscriptMessage message) {
     if (message.getMessage().getGroupInfo().isPresent()) {
-      return RecipientFactory.getRecipientsFromString(context, GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get().getGroupId()), false);
+      return RecipientFactory.getRecipientsFor(context, new Address[] {Address.fromExternal(context, GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get().getGroupId()))}, false);
     } else {
-      return RecipientFactory.getRecipientsFromString(context, message.getDestination().get(), false);
+      return RecipientFactory.getRecipientsFor(context, new Address[] {Address.fromExternal(context, message.getDestination().get())}, false);
     }
   }
 
   private Recipients getMessageDestination(SignalServiceEnvelope envelope, SignalServiceDataMessage message) {
     if (message.getGroupInfo().isPresent()) {
-      return RecipientFactory.getRecipientsFromString(context, GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId()), false);
+      return RecipientFactory.getRecipientsFor(context, new Address[] {Address.fromExternal(context, GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId()))}, false);
     } else {
-      return RecipientFactory.getRecipientsFromString(context, envelope.getSource(), false);
+      return RecipientFactory.getRecipientsFor(context, new Address[] {Address.fromExternal(context, envelope.getSource())}, false);
     }
   }
 }

@@ -80,7 +80,7 @@ public class SmsSendJob extends SendJob {
       throw new UndeliverableMessageException("Trying to send a secure SMS?");
     }
 
-    String recipient = message.getIndividualRecipient().getNumber();
+    String recipient = message.getIndividualRecipient().getAddress().serialize();
 
     // See issue #1516 for bug report, and discussion on commits related to #4833 for problems
     // related to the original fix to #1516. This still may not be a correct fix if networks allow

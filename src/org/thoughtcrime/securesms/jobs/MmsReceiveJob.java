@@ -10,6 +10,7 @@ import com.google.android.mms.pdu_alt.PduHeaders;
 import com.google.android.mms.pdu_alt.PduParser;
 
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -85,7 +86,7 @@ public class MmsReceiveJob extends ContextJob {
 
   private boolean isBlocked(GenericPdu pdu) {
     if (pdu.getFrom() != null && pdu.getFrom().getTextString() != null) {
-      Recipients recipients = RecipientFactory.getRecipientsFromString(context, Util.toIsoString(pdu.getFrom().getTextString()), false);
+      Recipients recipients = RecipientFactory.getRecipientsFor(context, new Address[] {Address.fromExternal(context, Util.toIsoString(pdu.getFrom().getTextString()))}, false);
       return recipients.isBlocked();
     }
 

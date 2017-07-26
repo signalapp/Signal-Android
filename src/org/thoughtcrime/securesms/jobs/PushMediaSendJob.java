@@ -6,14 +6,14 @@ import android.util.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
+import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
@@ -24,15 +24,12 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
-import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
 import javax.inject.Inject;
-
-import org.thoughtcrime.securesms.mms.MmsException;
 
 import static org.thoughtcrime.securesms.dependencies.SignalCommunicationModule.SignalMessageSenderFactory;
 
@@ -46,7 +43,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
 
   private final long messageId;
 
-  public PushMediaSendJob(Context context, long messageId, String destination) {
+  public PushMediaSendJob(Context context, long messageId, Address destination) {
     super(context, constructParameters(context, destination));
     this.messageId = messageId;
   }
@@ -82,10 +79,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       ApplicationContext.getInstance(context).getJobManager().add(new DirectoryRefreshJob(context));
     } catch (UntrustedIdentityException uie) {
       Log.w(TAG, uie);
-      Recipients recipients  = RecipientFactory.getRecipientsFromString(context, uie.getE164Number(), false);
-      long       recipientId = recipients.getPrimaryRecipient().getRecipientId();
-
-      database.addMismatchedIdentity(messageId, recipientId, uie.getIdentityKey());
+      database.addMismatchedIdentity(messageId, Address.fromSerialized(uie.getE164Number()), uie.getIdentityKey());
       database.markAsSentFailed(messageId);
     }
   }
@@ -108,17 +102,14 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       throws RetryLaterException, InsecureFallbackApprovalException, UntrustedIdentityException,
              UndeliverableMessageException
   {
-    if (message.getRecipients() == null                       ||
-        message.getRecipients().getPrimaryRecipient() == null ||
-        message.getRecipients().getPrimaryRecipient().getNumber() == null)
-    {
+    if (message.getRecipients() == null || message.getRecipients().getPrimaryRecipient() == null) {
       throw new UndeliverableMessageException("No destination address.");
     }
 
     SignalServiceMessageSender messageSender = messageSenderFactory.create();
 
     try {
-      SignalServiceAddress          address           = getPushAddress(message.getRecipients().getPrimaryRecipient().getNumber());
+      SignalServiceAddress          address           = getPushAddress(message.getRecipients().getPrimaryRecipient().getAddress());
       MediaConstraints              mediaConstraints  = MediaConstraints.getPushMediaConstraints();
       List<Attachment>              scaledAttachments = scaleAttachments(masterSecret, mediaConstraints, message.getAttachments());
       List<SignalServiceAttachment> attachmentStreams = getAttachmentsFor(masterSecret, scaledAttachments);
@@ -131,7 +122,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
                                                                                 .build();
 
       messageSender.sendMessage(address, mediaMessage);
-    } catch (InvalidNumberException | UnregisteredUserException e) {
+    } catch (UnregisteredUserException e) {
       Log.w(TAG, e);
       throw new InsecureFallbackApprovalException(e);
     } catch (FileNotFoundException e) {

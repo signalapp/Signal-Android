@@ -2,19 +2,21 @@ package org.thoughtcrime.securesms.database.documents;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import org.thoughtcrime.securesms.database.Address;
+
 public class NetworkFailure {
 
-  @JsonProperty(value = "r")
-  private long recipientId;
+  @JsonProperty(value = "a")
+  private String address;
 
-  public NetworkFailure(long recipientId) {
-    this.recipientId = recipientId;
+  public NetworkFailure(Address address) {
+    this.address = address.serialize();
   }
 
   public NetworkFailure() {}
 
-  public long getRecipientId() {
-    return recipientId;
+  public Address getAddress() {
+    return Address.fromSerialized(address);
   }
 
   @Override
@@ -22,11 +24,11 @@ public class NetworkFailure {
     if (other == null || !(other instanceof NetworkFailure)) return false;
 
     NetworkFailure that = (NetworkFailure)other;
-    return this.recipientId == that.recipientId;
+    return this.address.equals(that.address);
   }
 
   @Override
   public int hashCode() {
-    return (int)recipientId;
+    return address.hashCode();
   }
 }
