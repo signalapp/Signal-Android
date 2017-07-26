@@ -11,7 +11,7 @@ public class EarlyReceiptCache {
 
   private final LRUCache<Placeholder, Long> cache = new LRUCache<>(100);
 
-  public synchronized void increment(long timestamp, String address) {
+  public synchronized void increment(long timestamp, Address address) {
     Log.w(TAG, this+"");
     Log.w(TAG, String.format("Early receipt: %d,%s", timestamp, address));
     Placeholder tuple = new Placeholder(timestamp, address);
@@ -24,7 +24,7 @@ public class EarlyReceiptCache {
     }
   }
 
-  public synchronized long remove(long timestamp, String address) {
+  public synchronized long remove(long timestamp, Address address) {
     Long count = cache.remove(new Placeholder(timestamp, address));
     Log.w(TAG, this+"");
     Log.w(TAG, String.format("Checking early receipts (%d, %s): %d", timestamp, address, count));
@@ -34,9 +34,9 @@ public class EarlyReceiptCache {
   private class Placeholder {
 
     private final          long   timestamp;
-    private final @NonNull String address;
+    private final @NonNull Address address;
 
-    private Placeholder(long timestamp, @NonNull  String address) {
+    private Placeholder(long timestamp, @NonNull  Address address) {
       this.timestamp = timestamp;
       this.address   = address;
     }

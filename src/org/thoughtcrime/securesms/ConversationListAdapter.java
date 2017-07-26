@@ -29,6 +29,7 @@ import android.view.ViewGroup;
 
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -79,8 +80,8 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
     ThreadRecord  record  = getThreadRecord(cursor);
     StringBuilder builder = new StringBuilder("" + record.getThreadId());
 
-    for (long recipientId : record.getRecipients().getIds()) {
-      builder.append("::").append(recipientId);
+    for (Address address : record.getRecipients().getAddresses()) {
+      builder.append("::").append(address.serialize());
     }
 
     return Conversions.byteArrayToLong(digest.digest(builder.toString().getBytes()));

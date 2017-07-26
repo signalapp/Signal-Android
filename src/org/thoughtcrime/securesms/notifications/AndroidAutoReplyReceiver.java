@@ -17,7 +17,6 @@
 
 package org.thoughtcrime.securesms.notifications;
 
-import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -27,10 +26,9 @@ import android.support.v4.app.RemoteInput;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MessagingDatabase;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
-import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -48,11 +46,11 @@ import java.util.List;
  */
 public class AndroidAutoReplyReceiver extends MasterSecretBroadcastReceiver {
 
-  public static final String TAG                 = AndroidAutoReplyReceiver.class.getSimpleName();
-  public static final String REPLY_ACTION        = "org.thoughtcrime.securesms.notifications.ANDROID_AUTO_REPLY";
-  public static final String RECIPIENT_IDS_EXTRA = "car_recipient_ids";
-  public static final String VOICE_REPLY_KEY     = "car_voice_reply_key";
-  public static final String THREAD_ID_EXTRA     = "car_reply_thread_id";
+  public static final String TAG             = AndroidAutoReplyReceiver.class.getSimpleName();
+  public static final String REPLY_ACTION    = "org.thoughtcrime.securesms.notifications.ANDROID_AUTO_REPLY";
+  public static final String ADDRESSES_EXTRA = "car_addresses";
+  public static final String VOICE_REPLY_KEY = "car_voice_reply_key";
+  public static final String THREAD_ID_EXTRA = "car_reply_thread_id";
 
   @Override
   protected void onReceive(final Context context, Intent intent,
@@ -64,10 +62,10 @@ public class AndroidAutoReplyReceiver extends MasterSecretBroadcastReceiver {
 
     if (remoteInput == null) return;
 
-    final long[]       recipientIds = intent.getLongArrayExtra(RECIPIENT_IDS_EXTRA);
+    final Address[]    addresses    = Address.fromParcelable(intent.getParcelableArrayExtra(ADDRESSES_EXTRA));
     final long         threadId     = intent.getLongExtra(THREAD_ID_EXTRA, -1);
     final CharSequence responseText = getMessageText(intent);
-    final Recipients   recipients   = RecipientFactory.getRecipientsForIds(context, recipientIds, false);
+    final Recipients   recipients   = RecipientFactory.getRecipientsFor(context, addresses, false);
 
     if (responseText != null) {
       new AsyncTask<Void, Void, Void>() {
@@ -76,7 +74,7 @@ public class AndroidAutoReplyReceiver extends MasterSecretBroadcastReceiver {
 
           long replyThreadId;
 
-          Optional<RecipientsPreferences> preferences = DatabaseFactory.getRecipientPreferenceDatabase(context).getRecipientsPreferences(recipientIds);
+          Optional<RecipientsPreferences> preferences = DatabaseFactory.getRecipientPreferenceDatabase(context).getRecipientsPreferences(addresses);
           int  subscriptionId = preferences.isPresent() ? preferences.get().getDefaultSubscriptionId().or(-1) : -1;
           long expiresIn      = preferences.isPresent() ? preferences.get().getExpireMessages() * 1000 : 0;
 

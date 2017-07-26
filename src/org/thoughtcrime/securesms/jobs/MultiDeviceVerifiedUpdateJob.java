@@ -4,11 +4,11 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libsignal.IdentityKey;
@@ -18,7 +18,6 @@ import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
-import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.IOException;
 
@@ -38,14 +37,14 @@ public class MultiDeviceVerifiedUpdateJob extends ContextJob implements Injectab
   private final VerifiedStatus verifiedStatus;
   private final long           timestamp;
 
-  public MultiDeviceVerifiedUpdateJob(Context context, String destination, IdentityKey identityKey, VerifiedStatus verifiedStatus) {
+  public MultiDeviceVerifiedUpdateJob(Context context, Address destination, IdentityKey identityKey, VerifiedStatus verifiedStatus) {
     super(context, JobParameters.newBuilder()
                                 .withRequirement(new NetworkRequirement(context))
                                 .withPersistence()
                                 .withGroupId("__MULTI_DEVICE_VERIFIED_UPDATE__")
                                 .create());
 
-    this.destination    = destination;
+    this.destination    = destination.serialize();
     this.identityKey    = identityKey.serialize();
     this.verifiedStatus = verifiedStatus;
     this.timestamp      = System.currentTimeMillis();
@@ -64,13 +63,13 @@ public class MultiDeviceVerifiedUpdateJob extends ContextJob implements Injectab
         return;
       }
 
-      String                        canonicalDestination = Util.canonicalizeNumber(context, destination);
+      Address                       canonicalDestination = Address.fromSerialized(destination);
       VerifiedMessage.VerifiedState verifiedState        = getVerifiedState(verifiedStatus);
       SignalServiceMessageSender    messageSender        = messageSenderFactory.create();
-      VerifiedMessage               verifiedMessage      = new VerifiedMessage(canonicalDestination, new IdentityKey(identityKey, 0), verifiedState, timestamp);
+      VerifiedMessage               verifiedMessage      = new VerifiedMessage(canonicalDestination.toPhoneString(), new IdentityKey(identityKey, 0), verifiedState, timestamp);
 
       messageSender.sendMessage(SignalServiceSyncMessage.forVerified(verifiedMessage));
-    } catch (InvalidNumberException | InvalidKeyException e) {
+    } catch (InvalidKeyException e) {
       throw new IOException(e);
     }
   }

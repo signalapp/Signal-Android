@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
@@ -27,6 +28,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -61,8 +64,14 @@ public class MultiDeviceGroupUpdateJob extends MasterSecretJob implements Inject
       reader = DatabaseFactory.getGroupDatabase(context).getGroups();
 
       while ((record = reader.getNext()) != null) {
+        List<String> members = new LinkedList<>();
+
+        for (Address member : record.getMembers()) {
+          members.add(member.serialize());
+        }
+
         out.write(new DeviceGroup(record.getId(), Optional.fromNullable(record.getTitle()),
-                                  record.getMembers(), getAvatar(record.getAvatar()),
+                                  members, getAvatar(record.getAvatar()),
                                   record.isActive()));
       }
 

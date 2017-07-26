@@ -101,22 +101,20 @@ public class GroupDatabase extends Database {
   }
 
   public @NonNull Recipients getGroupMembers(byte[] groupId, boolean includeSelf) {
-    String          localNumber = TextSecurePreferences.getLocalNumber(context);
-    List<String>    members     = getCurrentMembers(groupId);
+    List<Address>   members     = getCurrentMembers(groupId);
     List<Recipient> recipients  = new LinkedList<>();
 
-    for (String member : members) {
-      if (!includeSelf && member.equals(localNumber))
+    for (Address member : members) {
+      if (!includeSelf && Util.isOwnNumber(context, member))
         continue;
 
-      recipients.addAll(RecipientFactory.getRecipientsFromString(context, member, false)
-                                        .getRecipientsList());
+      recipients.add(RecipientFactory.getRecipientFor(context, member, false));
     }
 
     return RecipientFactory.getRecipientsFor(context, recipients, false);
   }
 
-  public void create(byte[] groupId, String title, List<String> members,
+  public void create(byte[] groupId, String title, List<Address> members,
                      SignalServiceAttachmentPointer avatar, String relay)
   {
     ContentValues contentValues = new ContentValues();
@@ -185,7 +183,7 @@ public class GroupDatabase extends Database {
     notifyDatabaseListeners();
   }
 
-  public void updateMembers(byte[] id, List<String> members) {
+  public void updateMembers(byte[] id, List<Address> members) {
     ContentValues contents = new ContentValues();
     contents.put(MEMBERS, Util.join(members, ","));
     contents.put(ACTIVE, 1);
@@ -194,8 +192,8 @@ public class GroupDatabase extends Database {
                                                 new String[] {GroupUtil.getEncodedId(id)});
   }
 
-  public void remove(byte[] id, String source) {
-    List<String> currentMembers = getCurrentMembers(id);
+  public void remove(byte[] id, Address source) {
+    List<Address> currentMembers = getCurrentMembers(id);
     currentMembers.remove(source);
 
     ContentValues contents = new ContentValues();
@@ -205,7 +203,7 @@ public class GroupDatabase extends Database {
                                                 new String[] {GroupUtil.getEncodedId(id)});
   }
 
-  private List<String> getCurrentMembers(byte[] id) {
+  private List<Address> getCurrentMembers(byte[] id) {
     Cursor cursor = null;
 
     try {
@@ -215,7 +213,13 @@ public class GroupDatabase extends Database {
                                                           null, null, null);
 
       if (cursor != null && cursor.moveToFirst()) {
-        return Util.split(cursor.getString(cursor.getColumnIndexOrThrow(MEMBERS)), ",");
+        List<Address> results = new LinkedList<>();
+
+        for (String member : Util.split(cursor.getString(cursor.getColumnIndexOrThrow(MEMBERS)), ",")) {
+          results.add(Address.fromSerialized(member));
+        }
+
+        return results;
       }
 
       return new LinkedList<>();
@@ -286,16 +290,16 @@ public class GroupDatabase extends Database {
 
   public static class GroupRecord {
 
-    private final String       id;
-    private final String       title;
-    private final List<String> members;
-    private final byte[]       avatar;
-    private final long         avatarId;
-    private final byte[]       avatarKey;
-    private final byte[]       avatarDigest;
-    private final String       avatarContentType;
-    private final String       relay;
-    private final boolean      active;
+    private final String        id;
+    private final String        title;
+    private final List<Address> members;
+    private final byte[]        avatar;
+    private final long          avatarId;
+    private final byte[]        avatarKey;
+    private final byte[]        avatarDigest;
+    private final String        avatarContentType;
+    private final String        relay;
+    private final boolean       active;
 
     public GroupRecord(String id, String title, String members, byte[] avatar,
                        long avatarId, byte[] avatarKey, String avatarContentType,
@@ -303,7 +307,7 @@ public class GroupDatabase extends Database {
     {
       this.id                = id;
       this.title             = title;
-      this.members           = Util.split(members, ",");
+      this.members           = Address.fromSerializedList(members, ",");
       this.avatar            = avatar;
       this.avatarId          = avatarId;
       this.avatarKey         = avatarKey;
@@ -329,7 +333,7 @@ public class GroupDatabase extends Database {
       return title;
     }
 
-    public List<String> getMembers() {
+    public List<Address> getMembers() {
       return members;
     }
 

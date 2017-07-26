@@ -27,9 +27,10 @@ import android.util.Log;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.StringTokenizer;
 
 public class SmsMigrator {
@@ -137,24 +138,20 @@ public class SmsMigrator {
   }
 
   private static Recipients getOurRecipients(Context context, String theirRecipients) {
-    StringTokenizer tokenizer = new StringTokenizer(theirRecipients.trim(), " ");
-    StringBuilder sb          = new StringBuilder();
+    StringTokenizer tokenizer   = new StringTokenizer(theirRecipients.trim(), " ");
+    List<Address>   addressList = new LinkedList<>();
 
     while (tokenizer.hasMoreTokens()) {
       String theirRecipientId = tokenizer.nextToken();
       String address          = getTheirCanonicalAddress(context, theirRecipientId);
 
-      if (address == null)
-        continue;
-
-      if (sb.length() != 0)
-        sb.append(',');
-
-      sb.append(address);
+      if (address != null) {
+        addressList.add(Address.fromExternal(context, address));
+      }
     }
 
-    if (sb.length() == 0) return null;
-    else                  return RecipientFactory.getRecipientsFromString(context, sb.toString(), true);
+    if (addressList.isEmpty()) return null;
+    else                       return RecipientFactory.getRecipientsFor(context, addressList.toArray(new Address[0]), true);
   }
 
   private static String encrypt(MasterSecret masterSecret, String body)

@@ -137,7 +137,7 @@ public class MessageRecipientListItem extends RelativeLayout
   private NetworkFailure getNetworkFailure(final MessageRecord record) {
     if (record.hasNetworkFailures()) {
       for (final NetworkFailure failure : record.getNetworkFailures()) {
-        if (failure.getRecipientId() == recipient.getRecipientId()) {
+        if (failure.getAddress().equals(recipient.getAddress())) {
           return failure;
         }
       }
@@ -148,7 +148,7 @@ public class MessageRecipientListItem extends RelativeLayout
   private IdentityKeyMismatch getKeyMismatch(final MessageRecord record) {
     if (record.isIdentityMismatchFailure()) {
       for (final IdentityKeyMismatch mismatch : record.getIdentityKeyMismatches()) {
-        if (mismatch.getRecipientId() == recipient.getRecipientId()) {
+        if (mismatch.getAddress().equals(recipient.getAddress())) {
           return mismatch;
         }
       }
@@ -188,7 +188,7 @@ public class MessageRecipientListItem extends RelativeLayout
       mmsDatabase.removeFailure(record.getId(), failure);
 
       if (record.getRecipients().isGroupRecipient()) {
-        MessageSender.resendGroupMessage(getContext(), masterSecret, record, failure.getRecipientId());
+        MessageSender.resendGroupMessage(getContext(), masterSecret, record, failure.getAddress());
       } else {
         MessageSender.resend(getContext(), masterSecret, record);
       }

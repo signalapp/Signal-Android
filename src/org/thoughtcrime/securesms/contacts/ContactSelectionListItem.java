@@ -10,9 +10,10 @@ import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.recipients.RecipientsFormatter;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class ContactSelectionListItem extends LinearLayout implements Recipients.RecipientsModifiedListener {
@@ -53,9 +54,10 @@ public class ContactSelectionListItem extends LinearLayout implements Recipients
 
     if (type == ContactsDatabase.NEW_TYPE) {
       this.recipients = null;
-      this.contactPhotoImage.setAvatar(Recipient.getUnknownRecipient(), false);
+      this.contactPhotoImage.setAvatar(RecipientFactory.getRecipientFor(getContext(), Address.UNKNOWN, true), false);
     } else if (!TextUtils.isEmpty(number)) {
-      this.recipients = RecipientFactory.getRecipientsFromString(getContext(), number, true);
+      Address address = Address.fromExternal(getContext(), number);
+      this.recipients = RecipientFactory.getRecipientsFor(getContext(), new Address[] {address}, true);
 
       if (this.recipients.getPrimaryRecipient() != null &&
           this.recipients.getPrimaryRecipient().getName() != null)

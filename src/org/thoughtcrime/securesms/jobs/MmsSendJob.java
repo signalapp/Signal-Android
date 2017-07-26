@@ -21,12 +21,14 @@ import com.klinker.android.send_message.Utils;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.CompatMmsConnection;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
+import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.MmsSendResult;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -44,8 +46,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-
-import org.thoughtcrime.securesms.mms.MmsException;
 
 public class MmsSendJob extends SendJob {
 
@@ -171,16 +171,16 @@ public class MmsSendJob extends SendJob {
   {
     SendReq          req               = new SendReq();
     String           lineNumber        = Utils.getMyPhoneNumber(context);
-    List<String>     numbers           = message.getRecipients().toNumberStringList(true);
-    MediaConstraints mediaConstraints = MediaConstraints.getMmsMediaConstraints(message.getSubscriptionId());
+    Address[]        numbers           = message.getRecipients().getAddresses();
+    MediaConstraints mediaConstraints  = MediaConstraints.getMmsMediaConstraints(message.getSubscriptionId());
     List<Attachment> scaledAttachments = scaleAttachments(masterSecret, mediaConstraints, message.getAttachments());
 
     if (!TextUtils.isEmpty(lineNumber)) {
       req.setFrom(new EncodedStringValue(lineNumber));
     }
 
-    for (String recipient : numbers) {
-      req.addTo(new EncodedStringValue(recipient));
+    for (Address recipient : numbers) {
+      req.addTo(new EncodedStringValue(recipient.serialize()));
     }
 
     req.setDate(System.currentTimeMillis() / 1000);

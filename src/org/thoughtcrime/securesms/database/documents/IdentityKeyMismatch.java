@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.InvalidKeyException;
@@ -22,8 +23,8 @@ public class IdentityKeyMismatch {
 
   private static final String TAG = IdentityKeyMismatch.class.getSimpleName();
 
-  @JsonProperty(value = "r")
-  private long recipientId;
+  @JsonProperty(value = "a")
+  private String address;
 
   @JsonProperty(value = "k")
   @JsonSerialize(using = IdentityKeySerializer.class)
@@ -32,13 +33,13 @@ public class IdentityKeyMismatch {
 
   public IdentityKeyMismatch() {}
 
-  public IdentityKeyMismatch(long recipientId, IdentityKey identityKey) {
-    this.recipientId = recipientId;
+  public IdentityKeyMismatch(Address address, IdentityKey identityKey) {
+    this.address     = address.serialize();
     this.identityKey = identityKey;
   }
 
-  public long getRecipientId() {
-    return recipientId;
+  public Address getAddress() {
+    return Address.fromSerialized(address);
   }
 
   public IdentityKey getIdentityKey() {
@@ -52,12 +53,12 @@ public class IdentityKeyMismatch {
     }
 
     IdentityKeyMismatch that = (IdentityKeyMismatch)other;
-    return that.recipientId == this.recipientId && that.identityKey.equals(this.identityKey);
+    return that.address.equals(this.address) && that.identityKey.equals(this.identityKey);
   }
 
   @Override
   public int hashCode() {
-    return (int)recipientId ^ identityKey.hashCode();
+    return address.hashCode() ^ identityKey.hashCode();
   }
 
   private static class IdentityKeySerializer extends JsonSerializer<IdentityKey> {

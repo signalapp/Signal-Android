@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.ApnUnavailableException;
 import org.thoughtcrime.securesms.mms.CompatMmsConnection;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
+import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.MmsRadioException;
 import org.thoughtcrime.securesms.mms.PartParser;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -41,8 +42,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import org.thoughtcrime.securesms.mms.MmsException;
 
 public class MmsDownloadJob extends MasterSecretJob {
 
@@ -206,7 +205,7 @@ public class MmsDownloadJob extends MasterSecretJob {
 
 
 
-    IncomingMediaMessage   message      = new IncomingMediaMessage(from, to, cc, body, retrieved.getDate() * 1000L, attachments, subscriptionId, 0, false);
+    IncomingMediaMessage   message      = new IncomingMediaMessage(context, from, to, cc, body, retrieved.getDate() * 1000L, attachments, subscriptionId, 0, false);
     Optional<InsertResult> insertResult = database.insertMessageInbox(new MasterSecretUnion(masterSecret),
                                                                       message, contentLocation, threadId);
 

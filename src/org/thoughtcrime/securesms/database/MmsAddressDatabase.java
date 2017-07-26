@@ -55,18 +55,18 @@ public class MmsAddressDatabase extends Database {
     super(context, databaseHelper);
   }
 
-  private void insertAddress(long messageId, int type, @NonNull String value) {
+  private void insertAddress(long messageId, int type, @NonNull Address value) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     ContentValues contentValues = new ContentValues();
     contentValues.put(MMS_ID, messageId);
     contentValues.put(TYPE, type);
-    contentValues.put(ADDRESS, value);
+    contentValues.put(ADDRESS, value.serialize());
     contentValues.put(ADDRESS_CHARSET, "UTF-8");
     database.insert(TABLE_NAME, null, contentValues);
   }
 
-  private void insertAddress(long messageId, int type, @NonNull List<String> addresses) {
-    for (String address : addresses) {
+  private void insertAddress(long messageId, int type, @NonNull List<Address> addresses) {
+    for (Address address : addresses) {
       insertAddress(messageId, type, address);
     }
   }
@@ -84,17 +84,17 @@ public class MmsAddressDatabase extends Database {
   public MmsAddresses getAddressesForId(long messageId) {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
     Cursor         cursor   = null;
-    String         from     = null;
-    List<String>   to       = new LinkedList<>();
-    List<String>   cc       = new LinkedList<>();
-    List<String>   bcc      = new LinkedList<>();
+    Address        from     = null;
+    List<Address>  to       = new LinkedList<>();
+    List<Address>  cc       = new LinkedList<>();
+    List<Address>  bcc      = new LinkedList<>();
 
     try {
       cursor = database.query(TABLE_NAME, null, MMS_ID + " = ?", new String[] {messageId+""}, null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
-        long   type    = cursor.getLong(cursor.getColumnIndexOrThrow(TYPE));
-        String address = cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS));
+        long    type    = cursor.getLong(cursor.getColumnIndexOrThrow(TYPE));
+        Address address = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
 
         if (type == PduHeaders.FROM) from = address;
         if (type == PduHeaders.TO)   to.add(address);
@@ -109,8 +109,8 @@ public class MmsAddressDatabase extends Database {
     return new MmsAddresses(from, to, cc, bcc);
   }
 
-  public List<String> getAddressesListForId(long messageId) {
-    List<String> results   = new LinkedList<>();
+  public List<Address> getAddressesListForId(long messageId) {
+    List<Address> results   = new LinkedList<>();
     MmsAddresses addresses = getAddressesForId(messageId);
 
     if (addresses.getFrom() != null) {
@@ -125,13 +125,12 @@ public class MmsAddressDatabase extends Database {
   }
 
   public Recipients getRecipientsForId(long messageId) {
-    List<String>    numbers = getAddressesListForId(messageId);
-    List<Recipient> results = new LinkedList<>();
+    List<Address>   addresses = getAddressesListForId(messageId);
+    List<Recipient> results   = new LinkedList<>();
 
-    for (String number : numbers) {
-      if (!PduHeaders.FROM_INSERT_ADDRESS_TOKEN_STR.equals(number)) {
-        results.add(RecipientFactory.getRecipientsFromString(context, number, false)
-                                    .getPrimaryRecipient());
+    for (Address address : addresses) {
+      if (!PduHeaders.FROM_INSERT_ADDRESS_TOKEN_STR.equals(address.serialize())) {
+        results.add(RecipientFactory.getRecipientFor(context, address, false));
       }
     }
 

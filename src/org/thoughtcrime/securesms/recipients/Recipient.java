@@ -25,9 +25,9 @@ import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.recipients.RecipientProvider.RecipientDetails;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 
 import java.util.Collections;
@@ -42,9 +42,8 @@ public class Recipient {
 
   private final Set<RecipientModifiedListener> listeners = Collections.newSetFromMap(new WeakHashMap<RecipientModifiedListener, Boolean>());
 
-  private final long recipientId;
+  private final @NonNull Address address;
 
-  private @NonNull  String  number;
   private @Nullable String  name;
   private @Nullable String  customLabel;
   private boolean stale;
@@ -55,13 +54,11 @@ public class Recipient {
 
   @Nullable private MaterialColor color;
 
-  Recipient(long recipientId,
-            @NonNull  String number,
+  Recipient(@NonNull  Address address,
             @Nullable Recipient stale,
             @NonNull  ListenableFutureTask<RecipientDetails> future)
   {
-    this.recipientId  = recipientId;
-    this.number       = number;
+    this.address      = address;
     this.contactPhoto = ContactPhotoFactory.getLoadingPhoto();
     this.color        = null;
     this.resolving    = true;
@@ -80,7 +77,6 @@ public class Recipient {
         if (result != null) {
           synchronized (Recipient.this) {
             Recipient.this.name         = result.name;
-            Recipient.this.number       = result.number;
             Recipient.this.contactUri   = result.contactUri;
             Recipient.this.contactPhoto = result.avatar;
             Recipient.this.color        = result.color;
@@ -99,9 +95,8 @@ public class Recipient {
     });
   }
 
-  Recipient(long recipientId, RecipientDetails details) {
-    this.recipientId  = recipientId;
-    this.number       = details.number;
+  Recipient(Address address, RecipientDetails details) {
+    this.address      = address;
     this.contactUri   = details.contactUri;
     this.name         = details.name;
     this.contactPhoto = details.avatar;
@@ -132,20 +127,16 @@ public class Recipient {
     notifyListeners();
   }
 
-  public @NonNull String getNumber() {
-    return number;
+  public @NonNull Address getAddress() {
+    return address;
   }
 
   public @Nullable String getCustomLabel() {
     return customLabel;
   }
 
-  public long getRecipientId() {
-    return recipientId;
-  }
-
   public boolean isGroupRecipient() {
-    return GroupUtil.isEncodedGroup(number);
+    return address.isGroup();
   }
 
   public synchronized void addListener(RecipientModifiedListener listener) {
@@ -157,17 +148,13 @@ public class Recipient {
   }
 
   public synchronized String toShortString() {
-    return (name == null ? number : name);
+    return (name == null ? address.serialize() : name);
   }
 
   public synchronized @NonNull ContactPhoto getContactPhoto() {
     return contactPhoto;
   }
 
-  public static Recipient getUnknownRecipient() {
-    return new Recipient(-1, new RecipientDetails("Unknown", "Unknown", null, null,
-                                                  ContactPhotoFactory.getDefaultContactPhoto(null), null));
-  }
 
   @Override
   public boolean equals(Object o) {
@@ -176,12 +163,12 @@ public class Recipient {
 
     Recipient that = (Recipient) o;
 
-    return this.recipientId == that.recipientId;
+    return this.address.equals(that.address);
   }
 
   @Override
   public int hashCode() {
-    return 31 + (int)this.recipientId;
+    return this.address.hashCode();
   }
 
   private void notifyListeners() {

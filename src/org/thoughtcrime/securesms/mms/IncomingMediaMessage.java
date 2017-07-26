@@ -1,8 +1,11 @@
 package org.thoughtcrime.securesms.mms;
 
+import android.content.Context;
+
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.PointerAttachment;
 import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.MmsAddresses;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -14,25 +17,25 @@ import java.util.List;
 
 public class IncomingMediaMessage {
 
-  private final String  from;
+  private final Address from;
   private final String  body;
-  private final String  groupId;
+  private final Address groupId;
   private final boolean push;
   private final long    sentTimeMillis;
   private final int     subscriptionId;
   private final long    expiresIn;
   private final boolean expirationUpdate;
 
-  private final List<String>     to          = new LinkedList<>();
-  private final List<String>     cc          = new LinkedList<>();
+  private final List<Address>    to          = new LinkedList<>();
+  private final List<Address>    cc          = new LinkedList<>();
   private final List<Attachment> attachments = new LinkedList<>();
 
-  public IncomingMediaMessage(String from, List<String> to, List<String> cc,
+  public IncomingMediaMessage(Context context, String from, List<String> to, List<String> cc,
                               String body, long sentTimeMillis,
                               List<Attachment> attachments, int subscriptionId,
                               long expiresIn, boolean expirationUpdate)
   {
-    this.from             = from;
+    this.from             = Address.fromExternal(context, from);
     this.sentTimeMillis   = sentTimeMillis;
     this.body             = body;
     this.groupId          = null;
@@ -41,14 +44,20 @@ public class IncomingMediaMessage {
     this.expiresIn        = expiresIn;
     this.expirationUpdate = expirationUpdate;
 
-    this.to.addAll(to);
-    this.cc.addAll(cc);
+    for (String destination : to) {
+      this.to.add(Address.fromExternal(context, destination));
+    }
+
+    for (String destination : cc) {
+      this.cc.add(Address.fromExternal(context, destination));
+    }
+
     this.attachments.addAll(attachments);
   }
 
   public IncomingMediaMessage(MasterSecretUnion masterSecret,
-                              String from,
-                              String to,
+                              Address from,
+                              Address to,
                               long sentTimeMillis,
                               int subscriptionId,
                               long expiresIn,
@@ -66,7 +75,7 @@ public class IncomingMediaMessage {
     this.expiresIn        = expiresIn;
     this.expirationUpdate = expirationUpdate;
 
-    if (group.isPresent()) this.groupId = GroupUtil.getEncodedId(group.get().getGroupId());
+    if (group.isPresent()) this.groupId = Address.fromSerialized(GroupUtil.getEncodedId(group.get().getGroupId()));
     else                   this.groupId = null;
 
     this.to.add(to);
@@ -82,14 +91,14 @@ public class IncomingMediaMessage {
   }
 
   public MmsAddresses getAddresses() {
-    return new MmsAddresses(from, to, cc, new LinkedList<String>());
+    return new MmsAddresses(from, to, cc, new LinkedList<Address>());
   }
 
   public List<Attachment> getAttachments() {
     return attachments;
   }
 
-  public String getGroupId() {
+  public Address getGroupId() {
     return groupId;
   }
 

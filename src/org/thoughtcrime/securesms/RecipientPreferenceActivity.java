@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.color.MaterialColors;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
@@ -48,7 +49,6 @@ import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
-import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.concurrent.ExecutionException;
@@ -57,7 +57,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 {
   private static final String TAG = RecipientPreferenceActivity.class.getSimpleName();
 
-  public static final String RECIPIENTS_EXTRA             = "recipient_ids";
+  public static final String ADDRESSES_EXTRA              = "recipient_addresses";
   public static final String CAN_HAVE_SAFETY_NUMBER_EXTRA = "can_have_safety_number";
 
   private static final String PREFERENCE_MUTED    = "pref_key_recipient_mute";
@@ -86,8 +86,8 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   public void onCreate(Bundle instanceState, @NonNull MasterSecret masterSecret) {
     setContentView(R.layout.recipient_preference_activity);
 
-    long[]     recipientIds = getIntent().getLongArrayExtra(RECIPIENTS_EXTRA);
-    Recipients recipients   = RecipientFactory.getRecipientsForIds(this, recipientIds, true);
+    Address[]  addresses  = Address.fromParcelable(getIntent().getParcelableArrayExtra(ADDRESSES_EXTRA));
+    Recipients recipients = RecipientFactory.getRecipientsFor(this, addresses, true);
 
     initializeToolbar();
     initializeReceivers();
@@ -95,7 +95,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     recipients.addListener(this);
 
     Bundle bundle = new Bundle();
-    bundle.putLongArray(RECIPIENTS_EXTRA, recipientIds);
+    bundle.putParcelableArray(ADDRESSES_EXTRA, addresses);
     initFragment(R.id.preference_fragment, new RecipientPreferenceFragment(), masterSecret, null, bundle);
   }
 
@@ -149,7 +149,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     this.staleReceiver = new BroadcastReceiver() {
       @Override
       public void onReceive(Context context, Intent intent) {
-        Recipients recipients = RecipientFactory.getRecipientsForIds(context, getIntent().getLongArrayExtra(RECIPIENTS_EXTRA), true);
+        Recipients recipients = RecipientFactory.getRecipientsFor(context, Address.fromParcelable(getIntent().getParcelableArrayExtra(ADDRESSES_EXTRA)), true);
         recipients.addListener(RecipientPreferenceActivity.this);
         onModified(recipients);
       }
@@ -234,9 +234,9 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     }
 
     private void initializeRecipients() {
-      this.recipients = RecipientFactory.getRecipientsForIds(getActivity(),
-                                                             getArguments().getLongArray(RECIPIENTS_EXTRA),
-                                                             true);
+      this.recipients = RecipientFactory.getRecipientsFor(getActivity(),
+                                                          Address.fromParcelable(getArguments().getParcelableArray(ADDRESSES_EXTRA)),
+                                                          true);
 
       this.recipients.addListener(this);
 
@@ -244,7 +244,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         @Override
         public void onReceive(Context context, Intent intent) {
           recipients.removeListener(RecipientPreferenceFragment.this);
-          recipients = RecipientFactory.getRecipientsForIds(getActivity(), getArguments().getLongArray(RECIPIENTS_EXTRA), true);
+          recipients = RecipientFactory.getRecipientsFor(getActivity(), Address.fromParcelable(getArguments().getParcelableArray(ADDRESSES_EXTRA)), true);
           onModified(recipients);
         }
       };
@@ -411,7 +411,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
               {
                 ApplicationContext.getInstance(context)
                                   .getJobManager()
-                                  .add(new MultiDeviceContactUpdateJob(context, recipients.getPrimaryRecipient().getRecipientId()));
+                                  .add(new MultiDeviceContactUpdateJob(context, recipients.getPrimaryRecipient().getAddress()));
               }
               return null;
             }
@@ -471,7 +471,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       @Override
       public boolean onPreferenceClick(Preference preference) {
         Intent verifyIdentityIntent = new Intent(getActivity(), VerifyIdentityActivity.class);
-        verifyIdentityIntent.putExtra(VerifyIdentityActivity.RECIPIENT_ID_EXTRA, recipients.getPrimaryRecipient().getRecipientId());
+        verifyIdentityIntent.putExtra(VerifyIdentityActivity.ADDRESS_EXTRA, recipients.getPrimaryRecipient().getAddress());
         verifyIdentityIntent.putExtra(VerifyIdentityActivity.IDENTITY_EXTRA, new IdentityKeyParcelable(identityKey.getIdentityKey()));
         verifyIdentityIntent.putExtra(VerifyIdentityActivity.VERIFIED_EXTRA, identityKey.getVerifiedStatus() == IdentityDatabase.VerifiedStatus.VERIFIED);
         startActivity(verifyIdentityIntent);

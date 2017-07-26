@@ -34,7 +34,7 @@ public class PlaintextBackupImporter {
       XmlBackup.XmlBackupItem item;
 
       while ((item = backup.getNext()) != null) {
-        Recipients      recipients = RecipientFactory.getRecipientsFromString(context, item.getAddress(), false);
+        Recipients      recipients = RecipientFactory.getRecipientsFor(context, new Address[] {Address.fromExternal(context, item.getAddress())}, false);
         long            threadId   = threads.getThreadIdFor(recipients);
         SQLiteStatement statement  = db.createInsertStatement(transaction);
 

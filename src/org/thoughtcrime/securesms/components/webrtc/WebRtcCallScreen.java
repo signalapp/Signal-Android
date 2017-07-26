@@ -120,7 +120,7 @@ public class WebRtcCallScreen extends FrameLayout implements Recipient.Recipient
     String          introduction    = String.format(getContext().getString(R.string.WebRtcCallScreen_new_safety_numbers), name, name);
     SpannableString spannableString = new SpannableString(introduction + " " + getContext().getString(R.string.WebRtcCallScreen_you_may_wish_to_verify_this_contact));
 
-    spannableString.setSpan(new VerifySpan(getContext(), personInfo.getRecipientId(), untrustedIdentity),
+    spannableString.setSpan(new VerifySpan(getContext(), personInfo.getAddress(), untrustedIdentity),
                             introduction.length()+1, spannableString.length(),
                             Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
@@ -302,7 +302,7 @@ public class WebRtcCallScreen extends FrameLayout implements Recipient.Recipient
     }.execute();
 
     this.name.setText(recipient.getName());
-    this.phoneNumber.setText(recipient.getNumber());
+    this.phoneNumber.setText(recipient.getAddress().serialize());
   }
 
   private void setCard(Recipient recipient, String status) {

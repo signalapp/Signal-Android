@@ -19,16 +19,10 @@ package org.thoughtcrime.securesms.recipients;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.text.TextUtils;
 
-import org.thoughtcrime.securesms.database.CanonicalAddressDatabase;
-import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.guava.Optional;
+import org.thoughtcrime.securesms.database.Address;
 
 import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.StringTokenizer;
 
 public class RecipientFactory {
 
@@ -36,104 +30,32 @@ public class RecipientFactory {
 
   private static final RecipientProvider provider = new RecipientProvider();
 
-  public static Recipients getRecipientsForIds(Context context, String recipientIds, boolean asynchronous) {
-    if (TextUtils.isEmpty(recipientIds))
-      return new Recipients();
-
-    return getRecipientsForIds(context, Util.split(recipientIds, " "), asynchronous);
-  }
-
   public static @NonNull Recipients getRecipientsFor(Context context, Collection<Recipient> recipients, boolean asynchronous) {
-    long[] ids = new long[recipients.size()];
+    Address[] addresses= new Address[recipients.size()];
     int    i   = 0;
 
     for (Recipient recipient : recipients) {
-      ids[i++] = recipient.getRecipientId();
+      addresses[i++] = recipient.getAddress();
     }
 
-    return provider.getRecipients(context, ids, asynchronous);
+    return provider.getRecipients(context, addresses, asynchronous);
   }
 
   public static Recipients getRecipientsFor(Context context, Recipient recipient, boolean asynchronous) {
-    long[] ids = new long[1];
-    ids[0] = recipient.getRecipientId();
+    Address[] addresses = new Address[1];
+    addresses[0] = recipient.getAddress();
 
-    return provider.getRecipients(context, ids, asynchronous);
+    return provider.getRecipients(context, addresses, asynchronous);
   }
 
-  public @NonNull static Recipient getRecipientForId(Context context, long recipientId, boolean asynchronous) {
-    return provider.getRecipient(context, recipientId, asynchronous);
+  public static @NonNull Recipients getRecipientsFor(@NonNull Context context, @NonNull Address[] addresses, boolean asynchronous) {
+    if (addresses == null || addresses.length == 0) throw new AssertionError(addresses);
+    return provider.getRecipients(context, addresses, asynchronous);
   }
 
-  public @NonNull static Recipients getRecipientsForIds(Context context, long[] recipientIds, boolean asynchronous) {
-    return provider.getRecipients(context, recipientIds, asynchronous);
-  }
-
-  public static @NonNull Recipients getRecipientsFromString(Context context, @NonNull String rawText, boolean asynchronous) {
-    StringTokenizer tokenizer = new StringTokenizer(rawText, ",");
-    List<String>    ids       = new LinkedList<>();
-
-    while (tokenizer.hasMoreTokens()) {
-      Optional<Long> id = getRecipientIdFromNumber(context, tokenizer.nextToken());
-
-      if (id.isPresent()) {
-        ids.add(String.valueOf(id.get()));
-      }
-    }
-
-    return getRecipientsForIds(context, ids, asynchronous);
-  }
-
-  public static @NonNull Recipients getRecipientsFromStrings(@NonNull Context context, @NonNull List<String> numbers, boolean asynchronous) {
-    List<String> ids = new LinkedList<>();
-
-    for (String number : numbers) {
-      Optional<Long> id = getRecipientIdFromNumber(context, number);
-
-      if (id.isPresent()) {
-        ids.add(String.valueOf(id.get()));
-      }
-    }
-
-    return getRecipientsForIds(context, ids, asynchronous);
-  }
-
-  private static @NonNull Recipients getRecipientsForIds(Context context, List<String> idStrings, boolean asynchronous) {
-    long[]       ids      = new long[idStrings.size()];
-    int          i        = 0;
-
-    for (String id : idStrings) {
-      ids[i++] = Long.parseLong(id);
-    }
-
-    return provider.getRecipients(context, ids, asynchronous);
-  }
-
-  private static Optional<Long> getRecipientIdFromNumber(Context context, String number) {
-    number = number.trim();
-
-    if (number.isEmpty()) return Optional.absent();
-
-    if (hasBracketedNumber(number)) {
-      number = parseBracketedNumber(number);
-    }
-
-    return Optional.of(CanonicalAddressDatabase.getInstance(context).getCanonicalAddressId(number));
-  }
-
-  private static boolean hasBracketedNumber(String recipient) {
-    int openBracketIndex = recipient.indexOf('<');
-
-    return (openBracketIndex != -1) &&
-           (recipient.indexOf('>', openBracketIndex) != -1);
-  }
-
-  private static String parseBracketedNumber(String recipient) {
-    int begin    = recipient.indexOf('<');
-    int end      = recipient.indexOf('>', begin);
-    String value = recipient.substring(begin + 1, end);
-
-    return value;
+  public static @NonNull Recipient getRecipientFor(@NonNull Context context, @NonNull Address address, boolean asynchronous) {
+    if (address == null) throw new AssertionError(address);
+    return provider.getRecipient(context, address, asynchronous);
   }
 
   public static void clearCache(Context context) {

@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.notifications;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -19,6 +18,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
+import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.Slide;
@@ -69,11 +70,8 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
                                                           .toConversationColor(context)));
     } else {
       setContentTitle(context.getString(R.string.SingleRecipientNotificationBuilder_signal));
-      setLargeIcon(Recipient.getUnknownRecipient()
-                            .getContactPhoto()
-                            .asDrawable(context, Recipient.getUnknownRecipient()
-                                                          .getColor()
-                                                          .toConversationColor(context)));
+      setLargeIcon(ContactPhotoFactory.getDefaultContactPhoto("Unknown")
+                                      .asDrawable(context, ContactColors.UNKNOWN_COLOR.toConversationColor(context)));
     }
   }
 

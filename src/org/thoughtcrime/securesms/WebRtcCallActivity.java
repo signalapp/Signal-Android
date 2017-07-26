@@ -258,11 +258,11 @@ public class WebRtcCallActivity extends Activity {
       public void onClick(View v) {
         synchronized (SESSION_LOCK) {
           TextSecureIdentityKeyStore identityKeyStore = new TextSecureIdentityKeyStore(WebRtcCallActivity.this);
-          identityKeyStore.saveIdentity(new SignalProtocolAddress(recipient.getNumber(), 1), theirIdentity, true);
+          identityKeyStore.saveIdentity(new SignalProtocolAddress(recipient.getAddress().serialize(), 1), theirIdentity, true);
         }
 
         Intent intent = new Intent(WebRtcCallActivity.this, WebRtcCallService.class);
-        intent.putExtra(WebRtcCallService.EXTRA_REMOTE_NUMBER, recipient.getNumber());
+        intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, recipient.getAddress());
         intent.setAction(WebRtcCallService.ACTION_OUTGOING_CALL);
         startService(intent);
       }

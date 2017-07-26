@@ -9,13 +9,11 @@ import android.util.Log;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.MessageRetrievalService;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.InvalidKeyException;
@@ -35,14 +33,14 @@ public class RetrieveProfileJob extends ContextJob implements InjectableType {
 
   @Inject transient SignalServiceMessageReceiver receiver;
 
-  private final long[] recipientIds;
+  private final Recipients recipients;
 
   public RetrieveProfileJob(Context context, Recipients recipients) {
     super(context, JobParameters.newBuilder()
                                 .withRetryCount(3)
                                 .create());
 
-    this.recipientIds = recipients.getIds();
+    this.recipients = recipients;
   }
 
   @Override
@@ -51,8 +49,6 @@ public class RetrieveProfileJob extends ContextJob implements InjectableType {
   @Override
   public void onRun() throws IOException, InvalidKeyException {
     try {
-      Recipients recipients = RecipientFactory.getRecipientsForIds(context, recipientIds, true);
-
       for (Recipient recipient : recipients) {
         if (recipient.isGroupRecipient()) handleGroupRecipient(recipient);
         else                              handleIndividualRecipient(recipient);
@@ -73,7 +69,7 @@ public class RetrieveProfileJob extends ContextJob implements InjectableType {
   private void handleIndividualRecipient(Recipient recipient)
       throws IOException, InvalidKeyException, InvalidNumberException
   {
-    String               number  = Util.canonicalizeNumber(context, recipient.getNumber());
+    String               number  = recipient.getAddress().toPhoneString();
     SignalServiceProfile profile = retrieveProfile(number);
 
     if (TextUtils.isEmpty(profile.getIdentityKey())) {
@@ -84,7 +80,7 @@ public class RetrieveProfileJob extends ContextJob implements InjectableType {
     IdentityKey identityKey = new IdentityKey(Base64.decode(profile.getIdentityKey()), 0);
 
     if (!DatabaseFactory.getIdentityDatabase(context)
-                        .getIdentity(recipient.getRecipientId())
+                        .getIdentity(recipient.getAddress())
                         .isPresent())
     {
       Log.w(TAG, "Still first use...");
@@ -97,7 +93,7 @@ public class RetrieveProfileJob extends ContextJob implements InjectableType {
   private void handleGroupRecipient(Recipient group)
       throws IOException, InvalidKeyException, InvalidNumberException
   {
-    byte[]     groupId    = GroupUtil.getDecodedId(group.getNumber());
+    byte[]     groupId    = GroupUtil.getDecodedId(group.getAddress().toGroupString());
     Recipients recipients = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, false);
 
     for (Recipient recipient : recipients) {

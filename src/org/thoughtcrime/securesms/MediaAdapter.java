@@ -21,7 +21,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -33,8 +32,6 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;
 import org.thoughtcrime.securesms.mms.Slide;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
 public class MediaAdapter extends CursorRecyclerViewAdapter<ViewHolder> {
@@ -93,14 +90,10 @@ public class MediaAdapter extends CursorRecyclerViewAdapter<ViewHolder> {
         intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, mediaRecord.getAttachment().getSize());
         intent.putExtra(MediaPreviewActivity.THREAD_ID_EXTRA, threadId);
 
-        if (!TextUtils.isEmpty(mediaRecord.getAddress())) {
-          Recipients recipients = RecipientFactory.getRecipientsFromString(getContext(),
-                                                                           mediaRecord.getAddress(),
-                                                                           true);
-          if (recipients != null && recipients.getPrimaryRecipient() != null) {
-            intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, recipients.getPrimaryRecipient().getRecipientId());
-          }
+        if (mediaRecord.getAddress() != null) {
+          intent.putExtra(MediaPreviewActivity.ADDRESS_EXTRA, mediaRecord.getAddress());
         }
+
         intent.setDataAndType(mediaRecord.getAttachment().getDataUri(), mediaRecord.getContentType());
         getContext().startActivity(intent);
       }

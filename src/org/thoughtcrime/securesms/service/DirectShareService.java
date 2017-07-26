@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.service.chooser.ChooserTarget;
 import android.service.chooser.ChooserTargetService;
 import android.support.annotation.RequiresApi;
@@ -48,17 +49,22 @@ public class DirectShareService extends ChooserTargetService {
       ThreadRecord record;
 
       while ((record = reader.getNext()) != null && results.size() < 10) {
-        Recipients recipients = RecipientFactory.getRecipientsForIds(this, record.getRecipients().getIds(), false);
+        Recipients recipients = RecipientFactory.getRecipientsFor(this, record.getRecipients().getAddresses(), false);
         String     name       = recipients.toShortString();
         Drawable   drawable   = recipients.getContactPhoto().asDrawable(this, recipients.getColor().toConversationColor(this));
         Bitmap     avatar     = BitmapUtil.createFromDrawable(drawable, 500, 500);
 
+        Parcel parcel = Parcel.obtain();
+        parcel.writeTypedArray(recipients.getAddresses(), 0);
+
         Bundle bundle = new Bundle();
         bundle.putLong(ShareActivity.EXTRA_THREAD_ID, record.getThreadId());
-        bundle.putLongArray(ShareActivity.EXTRA_RECIPIENT_IDS, recipients.getIds());
+        bundle.putByteArray(ShareActivity.EXTRA_ADDRESSES_MARSHALLED, parcel.marshall());
         bundle.putInt(ShareActivity.EXTRA_DISTRIBUTION_TYPE, record.getDistributionType());
+        bundle.setClassLoader(getClassLoader());
 
         results.add(new ChooserTarget(name, Icon.createWithBitmap(avatar), 1.0f, componentName, bundle));
+        parcel.recycle();
       }
 
       return results;

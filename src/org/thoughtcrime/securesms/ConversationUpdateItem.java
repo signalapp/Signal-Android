@@ -221,7 +221,7 @@ public class ConversationUpdateItem extends LinearLayout
         public void onSuccess(Optional<IdentityRecord> result) {
           if (result.isPresent()) {
             Intent intent = new Intent(getContext(), VerifyIdentityActivity.class);
-            intent.putExtra(VerifyIdentityActivity.RECIPIENT_ID_EXTRA, sender.getRecipientId());
+            intent.putExtra(VerifyIdentityActivity.ADDRESS_EXTRA, sender.getAddress());
             intent.putExtra(VerifyIdentityActivity.IDENTITY_EXTRA, new IdentityKeyParcelable(result.get().getIdentityKey()));
             intent.putExtra(VerifyIdentityActivity.VERIFIED_EXTRA, result.get().getVerifiedStatus() == IdentityDatabase.VerifiedStatus.VERIFIED);
 

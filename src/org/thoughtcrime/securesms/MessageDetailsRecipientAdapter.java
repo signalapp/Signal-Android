@@ -11,6 +11,10 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.Conversions;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class MessageDetailsRecipientAdapter extends BaseAdapter implements AbsListView.RecyclerListener {
 
@@ -43,7 +47,11 @@ public class MessageDetailsRecipientAdapter extends BaseAdapter implements AbsLi
 
   @Override
   public long getItemId(int position) {
-    return recipients.getRecipientsList().get(position).getRecipientId();
+    try {
+      return Conversions.byteArrayToLong(MessageDigest.getInstance("SHA1").digest(recipients.getRecipientsList().get(position).getAddress().serialize().getBytes()));
+    } catch (NoSuchAlgorithmException e) {
+      throw new AssertionError(e);
+    }
   }
 
   @Override

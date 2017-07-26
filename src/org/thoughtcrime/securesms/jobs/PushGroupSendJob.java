@@ -1,11 +1,14 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
@@ -17,7 +20,6 @@ import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
@@ -51,20 +53,22 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
   @Inject transient SignalMessageSenderFactory messageSenderFactory;
 
-  private final long messageId;
-  private final long filterRecipientId;
+  private final long   messageId;
+  private final long   filterRecipientId; // Deprecated
+  private final String filterAddress;
 
-  public PushGroupSendJob(Context context, long messageId, String destination, long filterRecipientId) {
+  public PushGroupSendJob(Context context, long messageId, @NonNull Address destination, @Nullable Address filterAddress) {
     super(context, JobParameters.newBuilder()
                                 .withPersistence()
-                                .withGroupId(destination)
+                                .withGroupId(destination.toGroupString())
                                 .withRequirement(new MasterSecretRequirement(context))
                                 .withRequirement(new NetworkRequirement(context))
                                 .withRetryCount(5)
                                 .create());
 
     this.messageId         = messageId;
-    this.filterRecipientId = filterRecipientId;
+    this.filterAddress     = filterAddress == null ? null :filterAddress.toPhoneString();
+    this.filterRecipientId = -1;
   }
 
   @Override
@@ -79,7 +83,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     OutgoingMediaMessage message  = database.getOutgoingMessage(masterSecret, messageId);
 
     try {
-      deliver(masterSecret, message, filterRecipientId);
+      deliver(masterSecret, message, filterAddress == null ? null : Address.fromSerialized(filterAddress));
 
       database.markAsSent(messageId, true);
       markAttachmentsUploaded(messageId, message.getAttachments());
@@ -99,13 +103,11 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       List<NetworkFailure> failures = new LinkedList<>();
 
       for (NetworkFailureException nfe : e.getNetworkExceptions()) {
-        Recipient recipient = RecipientFactory.getRecipientsFromString(context, nfe.getE164number(), false).getPrimaryRecipient();
-        failures.add(new NetworkFailure(recipient.getRecipientId()));
+        failures.add(new NetworkFailure(Address.fromSerialized(nfe.getE164number())));
       }
 
       for (UntrustedIdentityException uie : e.getUntrustedIdentityExceptions()) {
-        Recipient recipient = RecipientFactory.getRecipientsFromString(context, uie.getE164Number(), false).getPrimaryRecipient();
-        database.addMismatchedIdentity(messageId, recipient.getRecipientId(), uie.getIdentityKey());
+        database.addMismatchedIdentity(messageId, Address.fromSerialized(uie.getE164Number()), uie.getIdentityKey());
       }
 
       database.addFailures(messageId, failures);
@@ -131,20 +133,21 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageId);
   }
 
-  private void deliver(MasterSecret masterSecret, OutgoingMediaMessage message, long filterRecipientId)
+  private void deliver(MasterSecret masterSecret, OutgoingMediaMessage message, @Nullable Address filterAddress)
       throws IOException, RecipientFormattingException, InvalidNumberException,
       EncapsulatedExceptions, UndeliverableMessageException
   {
     SignalServiceMessageSender    messageSender     = messageSenderFactory.create();
-    byte[]                        groupId           = GroupUtil.getDecodedId(message.getRecipients().getPrimaryRecipient().getNumber());
+    byte[]                        groupId           = GroupUtil.getDecodedId(message.getRecipients().getPrimaryRecipient().getAddress().toGroupString());
     Recipients                    recipients        = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, false);
     MediaConstraints              mediaConstraints  = MediaConstraints.getPushMediaConstraints();
     List<Attachment>              scaledAttachments = scaleAttachments(masterSecret, mediaConstraints, message.getAttachments());
     List<SignalServiceAttachment> attachmentStreams = getAttachmentsFor(masterSecret, scaledAttachments);
+
     List<SignalServiceAddress>    addresses;
 
-    if (filterRecipientId >= 0) addresses = getPushAddresses(filterRecipientId);
-    else                        addresses = getPushAddresses(recipients);
+    if (filterAddress != null) addresses = getPushAddresses(filterAddress);
+    else                       addresses = getPushAddresses(recipients);
 
     if (message.isGroup()) {
       OutgoingGroupMediaMessage groupMessage     = (OutgoingGroupMediaMessage) message;
@@ -166,20 +169,19 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     }
   }
 
-  private List<SignalServiceAddress> getPushAddresses(Recipients recipients) throws InvalidNumberException {
+  private List<SignalServiceAddress> getPushAddresses(Address address) {
+    List<SignalServiceAddress> addresses = new LinkedList<>();
+    addresses.add(getPushAddress(address));
+    return addresses;
+  }
+
+  private List<SignalServiceAddress> getPushAddresses(Recipients recipients) {
     List<SignalServiceAddress> addresses = new LinkedList<>();
 
     for (Recipient recipient : recipients.getRecipientsList()) {
-      addresses.add(getPushAddress(recipient.getNumber()));
+      addresses.add(getPushAddress(recipient.getAddress()));
     }
 
     return addresses;
   }
-
-  private List<SignalServiceAddress> getPushAddresses(long filterRecipientId) throws InvalidNumberException {
-    List<SignalServiceAddress> addresses = new LinkedList<>();
-    addresses.add(getPushAddress(RecipientFactory.getRecipientForId(context, filterRecipientId, false).getNumber()));
-    return addresses;
-  }
-
 }

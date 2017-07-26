@@ -27,6 +27,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -102,8 +103,8 @@ public class ContactsCursorLoader extends CursorLoader {
                                                                 ContactsDatabase.LABEL_COLUMN,
                                                                 ContactsDatabase.CONTACT_TYPE_COLUMN});
       while (cursor.moveToNext()) {
-        final String number = cursor.getString(cursor.getColumnIndexOrThrow(ContactsDatabase.NUMBER_COLUMN));
-        final Recipients recipients = RecipientFactory.getRecipientsFromString(getContext(), number, true);
+        final String     number     = cursor.getString(cursor.getColumnIndexOrThrow(ContactsDatabase.NUMBER_COLUMN));
+        final Recipients recipients = RecipientFactory.getRecipientsFor(getContext(), new Address[]{Address.fromExternal(getContext(), number)}, true);
 
         if (DirectoryHelper.getUserCapabilities(getContext(), recipients)
                            .getTextCapability() != Capability.SUPPORTED)

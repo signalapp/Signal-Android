@@ -14,9 +14,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -40,7 +38,7 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, Recipients> {
   @Override
   protected Recipients doInBackground(Void... params) {
     try {
-      String groupId = recipients.getPrimaryRecipient().getNumber();
+      String groupId = recipients.getPrimaryRecipient().getAddress().toGroupString();
       return DatabaseFactory.getGroupDatabase(context)
                             .getGroupMembers(GroupUtil.getDecodedId(groupId), true);
     } catch (IOException e) {
@@ -85,7 +83,11 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, Recipients> {
                                                        ContactsContract.QuickContact.MODE_LARGE, null);
       } else {
         final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
-        intent.putExtra(ContactsContract.Intents.Insert.PHONE, recipient.getNumber());
+        if (recipient.getAddress().isEmail()) {
+          intent.putExtra(ContactsContract.Intents.Insert.EMAIL, recipient.getAddress().toEmailString());
+        } else {
+          intent.putExtra(ContactsContract.Intents.Insert.PHONE, recipient.getAddress().toPhoneString());
+        }
         intent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
         context.startActivity(intent);
       }
@@ -134,15 +136,7 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, Recipients> {
     }
 
     private boolean isLocalNumber(Recipient recipient) {
-      try {
-        String localNumber = TextSecurePreferences.getLocalNumber(context);
-        String e164Number  = Util.canonicalizeNumber(context, recipient.getNumber());
-
-        return e164Number != null && e164Number.equals(localNumber);
-      } catch (InvalidNumberException e) {
-        Log.w(TAG, e);
-        return false;
-      }
+      return Util.isOwnNumber(context, recipient.getAddress());
     }
   }
 }

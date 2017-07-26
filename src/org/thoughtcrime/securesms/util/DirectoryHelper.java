@@ -15,9 +15,10 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SessionUtil;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.NotInDirectoryException;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
+import org.thoughtcrime.securesms.database.NotInDirectoryException;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -28,7 +29,6 @@ import org.thoughtcrime.securesms.util.DirectoryHelper.UserCapabilities.Capabili
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
-import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -118,36 +118,31 @@ public class DirectoryHelper {
                                                      @NonNull  String localNumber)
       throws IOException
   {
-    try {
-      TextSecureDirectory           directory      = TextSecureDirectory.getInstance(context);
-      SignalServiceAccountManager   accountManager = AccountManagerFactory.createManager(context);
-      String                        number         = Util.canonicalizeNumber(context, recipients.getPrimaryRecipient().getNumber());
-      Optional<ContactTokenDetails> details        = accountManager.getContact(number);
+    TextSecureDirectory           directory      = TextSecureDirectory.getInstance(context);
+    SignalServiceAccountManager   accountManager = AccountManagerFactory.createManager(context);
+    String                        number         = recipients.getPrimaryRecipient().getAddress().serialize();
+    Optional<ContactTokenDetails> details        = accountManager.getContact(number);
 
-      if (details.isPresent()) {
-        directory.setNumber(details.get(), true);
+    if (details.isPresent()) {
+      directory.setNumber(details.get(), true);
 
-        RefreshResult result = updateContactsDatabase(context, localNumber, details.get());
+      RefreshResult result = updateContactsDatabase(context, localNumber, details.get());
 
-        if (!result.getNewUsers().isEmpty() && TextSecurePreferences.isMultiDevice(context)) {
-          ApplicationContext.getInstance(context).getJobManager().add(new MultiDeviceContactUpdateJob(context));
-        }
-
-        if (!result.isFresh()) {
-          notifyNewUsers(context, masterSecret, result.getNewUsers());
-        }
-
-        return new UserCapabilities(Capability.SUPPORTED,
-                                    details.get().isVoice() ? Capability.SUPPORTED : Capability.UNSUPPORTED,
-                                    details.get().isVideo() ? Capability.SUPPORTED : Capability.UNSUPPORTED);
-      } else {
-        ContactTokenDetails absent = new ContactTokenDetails();
-        absent.setNumber(number);
-        directory.setNumber(absent, false);
-        return UserCapabilities.UNSUPPORTED;
+      if (!result.getNewUsers().isEmpty() && TextSecurePreferences.isMultiDevice(context)) {
+        ApplicationContext.getInstance(context).getJobManager().add(new MultiDeviceContactUpdateJob(context));
       }
-    } catch (InvalidNumberException e) {
-      Log.w(TAG, e);
+
+      if (!result.isFresh()) {
+        notifyNewUsers(context, masterSecret, result.getNewUsers());
+      }
+
+      return new UserCapabilities(Capability.SUPPORTED,
+                                  details.get().isVoice() ? Capability.SUPPORTED : Capability.UNSUPPORTED,
+                                  details.get().isVideo() ? Capability.SUPPORTED : Capability.UNSUPPORTED);
+    } else {
+      ContactTokenDetails absent = new ContactTokenDetails();
+      absent.setNumber(number);
+      directory.setNumber(absent, false);
       return UserCapabilities.UNSUPPORTED;
     }
   }
@@ -172,24 +167,14 @@ public class DirectoryHelper {
         return new UserCapabilities(Capability.SUPPORTED, Capability.UNSUPPORTED, Capability.UNSUPPORTED);
       }
 
-      final String number = recipients.getPrimaryRecipient().getNumber();
+      final Address address = recipients.getPrimaryRecipient().getAddress();
 
-      if (number == null) {
-        return UserCapabilities.UNSUPPORTED;
-      }
+      boolean secureText  = TextSecureDirectory.getInstance(context).isSecureTextSupported(address);
 
-      String  e164number  = Util.canonicalizeNumber(context, number);
-      boolean secureText  = TextSecureDirectory.getInstance(context).isSecureTextSupported(e164number);
-      boolean secureVoice = TextSecureDirectory.getInstance(context).isSecureVoiceSupported(e164number);
-      boolean secureVideo = TextSecureDirectory.getInstance(context).isSecureVideoSupported(e164number);
+      return new UserCapabilities(secureText ? Capability.SUPPORTED : Capability.UNSUPPORTED,
+                                  secureText ? Capability.SUPPORTED : Capability.UNSUPPORTED,
+                                  secureText ? Capability.SUPPORTED : Capability.UNSUPPORTED);
 
-      return new UserCapabilities(secureText  ? Capability.SUPPORTED : Capability.UNSUPPORTED,
-                                  secureVoice ? Capability.SUPPORTED : Capability.UNSUPPORTED,
-                                  secureVideo ? Capability.SUPPORTED : Capability.UNSUPPORTED);
-
-    } catch (InvalidNumberException e) {
-      Log.w(TAG, e);
-      return UserCapabilities.UNSUPPORTED;
     } catch (NotInDirectoryException e) {
       return UserCapabilities.UNKNOWN;
     }
@@ -231,7 +216,9 @@ public class DirectoryHelper {
   {
     if (!TextSecurePreferences.isNewContactsNotificationEnabled(context)) return;
 
-    for (String newUser : newUsers) {
+    for (String newUserString : newUsers) {
+      Address newUser = Address.fromSerialized(newUserString);
+
       if (!SessionUtil.hasSession(context, masterSecret, newUser) && !Util.isOwnNumber(context, newUser)) {
         IncomingJoinedMessage  message      = new IncomingJoinedMessage(newUser);
         Optional<InsertResult> insertResult = DatabaseFactory.getSmsDatabase(context).insertMessageInbox(message);

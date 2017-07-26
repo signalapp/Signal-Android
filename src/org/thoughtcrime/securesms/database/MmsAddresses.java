@@ -8,13 +8,13 @@ import java.util.List;
 
 public class MmsAddresses {
 
-  private final @Nullable String       from;
-  private final @NonNull  List<String> to;
-  private final @NonNull  List<String> cc;
-  private final @NonNull  List<String> bcc;
+  private final @Nullable Address       from;
+  private final @NonNull  List<Address> to;
+  private final @NonNull  List<Address> cc;
+  private final @NonNull  List<Address> bcc;
 
-  public MmsAddresses(@Nullable String from, @NonNull List<String> to,
-                      @NonNull List<String> cc, @NonNull List<String> bcc)
+  public MmsAddresses(@Nullable Address from, @NonNull List<Address> to,
+                      @NonNull List<Address> cc, @NonNull List<Address> bcc)
   {
     this.from = from;
     this.to   = to;
@@ -23,34 +23,34 @@ public class MmsAddresses {
   }
 
   @NonNull
-  public List<String> getTo() {
+  public List<Address> getTo() {
     return to;
   }
 
   @NonNull
-  public List<String> getCc() {
+  public List<Address> getCc() {
     return cc;
   }
 
   @NonNull
-  public List<String> getBcc() {
+  public List<Address> getBcc() {
     return bcc;
   }
 
   @Nullable
-  public String getFrom() {
+  public Address getFrom() {
     return from;
   }
 
-  public static MmsAddresses forTo(@NonNull List<String> to) {
-    return new MmsAddresses(null, to, new LinkedList<String>(), new LinkedList<String>());
+  public static MmsAddresses forTo(@NonNull List<Address> to) {
+    return new MmsAddresses(null, to, new LinkedList<Address>(), new LinkedList<Address>());
   }
 
-  public static MmsAddresses forBcc(@NonNull List<String> bcc) {
-    return new MmsAddresses(null, new LinkedList<String>(), new LinkedList<String>(), bcc);
+  public static MmsAddresses forBcc(@NonNull List<Address> bcc) {
+    return new MmsAddresses(null, new LinkedList<Address>(), new LinkedList<Address>(), bcc);
   }
 
-  public static MmsAddresses forFrom(@NonNull String from) {
-    return new MmsAddresses(from, new LinkedList<String>(), new LinkedList<String>(), new LinkedList<String>());
+  public static MmsAddresses forFrom(@NonNull Address from) {
+    return new MmsAddresses(from, new LinkedList<Address>(), new LinkedList<Address>(), new LinkedList<Address>());
   }
 }

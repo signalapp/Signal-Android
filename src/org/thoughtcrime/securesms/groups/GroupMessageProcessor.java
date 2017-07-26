@@ -10,13 +10,15 @@ import com.google.protobuf.ByteString;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
+import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.jobs.AvatarDownloadJob;
 import org.thoughtcrime.securesms.jobs.PushGroupUpdateJob;
+import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -36,8 +38,6 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-
-import org.thoughtcrime.securesms.mms.MmsException;
 
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import static org.whispersystems.signalservice.internal.push.SignalServiceProtos.AttachmentPointer;
@@ -88,9 +88,16 @@ public class GroupMessageProcessor {
     GroupContext.Builder builder  = createGroupContext(group);
     builder.setType(GroupContext.Type.UPDATE);
 
-    SignalServiceAttachment avatar = group.getAvatar().orNull();
+    SignalServiceAttachment avatar  = group.getAvatar().orNull();
+    List<Address>           members = group.getMembers().isPresent() ? new LinkedList<Address>() : null;
 
-    database.create(id, group.getName().orNull(), group.getMembers().orNull(),
+    if (group.getMembers().isPresent()) {
+      for (String member : group.getMembers().get()) {
+        members.add(Address.fromExternal(context, member));
+      }
+    }
+
+    database.create(id, group.getName().orNull(), members,
                     avatar != null && avatar.isPointer() ? avatar.asPointer() : null,
                     envelope.getRelay());
 
@@ -108,24 +115,32 @@ public class GroupMessageProcessor {
     GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
     byte[]        id       = group.getGroupId();
 
-    Set<String> recordMembers = new HashSet<>(groupRecord.getMembers());
-    Set<String> messageMembers = new HashSet<>(group.getMembers().get());
+    Set<Address> recordMembers = new HashSet<>(groupRecord.getMembers());
+    Set<Address> messageMembers = new HashSet<>();
 
-    Set<String> addedMembers = new HashSet<>(messageMembers);
+    for (String messageMember : group.getMembers().get()) {
+      messageMembers.add(Address.fromExternal(context, messageMember));
+    }
+
+    Set<Address> addedMembers = new HashSet<>(messageMembers);
     addedMembers.removeAll(recordMembers);
 
-    Set<String> missingMembers = new HashSet<>(recordMembers);
+    Set<Address> missingMembers = new HashSet<>(recordMembers);
     missingMembers.removeAll(messageMembers);
 
     GroupContext.Builder builder = createGroupContext(group);
     builder.setType(GroupContext.Type.UPDATE);
 
     if (addedMembers.size() > 0) {
-      Set<String> unionMembers = new HashSet<>(recordMembers);
+      Set<Address> unionMembers = new HashSet<>(recordMembers);
       unionMembers.addAll(messageMembers);
       database.updateMembers(id, new LinkedList<>(unionMembers));
 
-      builder.clearMembers().addAllMembers(addedMembers);
+      builder.clearMembers();
+
+      for (Address addedMember : addedMembers) {
+        builder.addMembers(addedMember.serialize());
+      }
     } else {
       builder.clearMembers();
     }
@@ -171,13 +186,13 @@ public class GroupMessageProcessor {
   {
     GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
     byte[]        id       = group.getGroupId();
-    List<String>  members  = record.getMembers();
+    List<Address> members  = record.getMembers();
 
     GroupContext.Builder builder = createGroupContext(group);
     builder.setType(GroupContext.Type.QUIT);
 
-    if (members.contains(envelope.getSource())) {
-      database.remove(id, envelope.getSource());
+    if (members.contains(Address.fromExternal(context, envelope.getSource()))) {
+      database.remove(id, Address.fromExternal(context, envelope.getSource()));
       if (outgoing) database.setActive(id, false);
 
       return storeMessage(context, masterSecret, envelope, group, builder.build(), outgoing);
@@ -202,7 +217,8 @@ public class GroupMessageProcessor {
     try {
       if (outgoing) {
         MmsDatabase               mmsDatabase     = DatabaseFactory.getMmsDatabase(context);
-        Recipients                recipients      = RecipientFactory.getRecipientsFromString(context, GroupUtil.getEncodedId(group.getGroupId()), false);
+        Address                   addres          = Address.fromExternal(context, GroupUtil.getEncodedId(group.getGroupId()));
+        Recipients                recipients      = RecipientFactory.getRecipientsFor(context, new Address[] {addres}, false);
         OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(recipients, storage, null, envelope.getTimestamp(), 0);
         long                      threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
         long                      messageId       = mmsDatabase.insertMessageOutbox(masterSecret, outgoingMessage, threadId, false, null);
@@ -213,7 +229,7 @@ public class GroupMessageProcessor {
       } else {
         EncryptingSmsDatabase smsDatabase  = DatabaseFactory.getEncryptingSmsDatabase(context);
         String                body         = Base64.encodeBytes(storage.toByteArray());
-        IncomingTextMessage   incoming     = new IncomingTextMessage(envelope.getSource(), envelope.getSourceDevice(), envelope.getTimestamp(), body, Optional.of(group), 0);
+        IncomingTextMessage   incoming     = new IncomingTextMessage(Address.fromExternal(context, envelope.getSource()), envelope.getSourceDevice(), envelope.getTimestamp(), body, Optional.of(group), 0);
         IncomingGroupMessage  groupMessage = new IncomingGroupMessage(incoming, storage, body);
 
         Optional<InsertResult> insertResult = smsDatabase.insertMessageInbox(masterSecret, groupMessage);

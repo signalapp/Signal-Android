@@ -65,6 +65,7 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.jobs.MultiDeviceVerifiedUpdateJob;
@@ -84,7 +85,6 @@ import org.whispersystems.libsignal.fingerprint.Fingerprint;
 import org.whispersystems.libsignal.fingerprint.FingerprintParsingException;
 import org.whispersystems.libsignal.fingerprint.FingerprintVersionMismatchException;
 import org.whispersystems.libsignal.fingerprint.NumericFingerprintGenerator;
-import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
@@ -100,9 +100,9 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
 
   private static final String TAG = VerifyIdentityActivity.class.getSimpleName();
 
-  public static final String RECIPIENT_ID_EXTRA = "recipient_id";
-  public static final String IDENTITY_EXTRA     = "recipient_identity";
-  public static final String VERIFIED_EXTRA     = "verified_state";
+  public static final String ADDRESS_EXTRA  = "address";
+  public static final String IDENTITY_EXTRA = "recipient_identity";
+  public static final String VERIFIED_EXTRA = "verified_state";
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -118,31 +118,26 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
 
   @Override
   protected void onCreate(Bundle state, @NonNull MasterSecret masterSecret) {
-    try {
-      getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-      getSupportActionBar().setTitle(R.string.AndroidManifest__verify_safety_number);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    getSupportActionBar().setTitle(R.string.AndroidManifest__verify_safety_number);
 
-      Recipient recipient = RecipientFactory.getRecipientForId(this, getIntent().getLongExtra(RECIPIENT_ID_EXTRA, -1), true);
-      recipient.addListener(this);
+    Recipient recipient = RecipientFactory.getRecipientFor(this, (Address)getIntent().getParcelableExtra(ADDRESS_EXTRA), true);
+    recipient.addListener(this);
 
-      setActionBarNotificationBarColor(recipient.getColor());
+    setActionBarNotificationBarColor(recipient.getColor());
 
-      Bundle extras = new Bundle();
-      extras.putLong(VerifyDisplayFragment.REMOTE_RECIPIENT_ID, getIntent().getLongExtra(RECIPIENT_ID_EXTRA, -1));
-      extras.putParcelable(VerifyDisplayFragment.REMOTE_IDENTITY, getIntent().getParcelableExtra(IDENTITY_EXTRA));
-      extras.putString(VerifyDisplayFragment.REMOTE_NUMBER, Util.canonicalizeNumber(this, recipient.getNumber()));
-      extras.putParcelable(VerifyDisplayFragment.LOCAL_IDENTITY, new IdentityKeyParcelable(IdentityKeyUtil.getIdentityKey(this)));
-      extras.putString(VerifyDisplayFragment.LOCAL_NUMBER, TextSecurePreferences.getLocalNumber(this));
-      extras.putBoolean(VerifyDisplayFragment.VERIFIED_STATE, getIntent().getBooleanExtra(VERIFIED_EXTRA, false));
+    Bundle extras = new Bundle();
+    extras.putParcelable(VerifyDisplayFragment.REMOTE_ADDRESS, getIntent().getParcelableExtra(ADDRESS_EXTRA));
+    extras.putParcelable(VerifyDisplayFragment.REMOTE_IDENTITY, getIntent().getParcelableExtra(IDENTITY_EXTRA));
+    extras.putString(VerifyDisplayFragment.REMOTE_NUMBER, recipient.getAddress().toPhoneString());
+    extras.putParcelable(VerifyDisplayFragment.LOCAL_IDENTITY, new IdentityKeyParcelable(IdentityKeyUtil.getIdentityKey(this)));
+    extras.putString(VerifyDisplayFragment.LOCAL_NUMBER, TextSecurePreferences.getLocalNumber(this));
+    extras.putBoolean(VerifyDisplayFragment.VERIFIED_STATE, getIntent().getBooleanExtra(VERIFIED_EXTRA, false));
 
-      scanFragment.setScanListener(this);
-      displayFragment.setClickListener(this);
+    scanFragment.setScanListener(this);
+    displayFragment.setClickListener(this);
 
-      initFragment(android.R.id.content, displayFragment, masterSecret, dynamicLanguage.getCurrentLocale(), extras);
-    } catch (InvalidNumberException e) {
-      Log.w(TAG, e);
-      finish();
-    }
+    initFragment(android.R.id.content, displayFragment, masterSecret, dynamicLanguage.getCurrentLocale(), extras);
   }
 
   @Override
@@ -198,12 +193,12 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
 
   public static class VerifyDisplayFragment extends Fragment implements Recipient.RecipientModifiedListener, CompoundButton.OnCheckedChangeListener {
 
-    public static final String REMOTE_RECIPIENT_ID = "remote_recipient_id";
-    public static final String REMOTE_NUMBER       = "remote_number";
-    public static final String REMOTE_IDENTITY     = "remote_identity";
-    public static final String LOCAL_IDENTITY      = "local_identity";
-    public static final String LOCAL_NUMBER        = "local_number";
-    public static final String VERIFIED_STATE      = "verified_state";
+    public static final String REMOTE_ADDRESS  = "remote_address";
+    public static final String REMOTE_NUMBER   = "remote_number";
+    public static final String REMOTE_IDENTITY = "remote_identity";
+    public static final String LOCAL_IDENTITY  = "local_identity";
+    public static final String LOCAL_NUMBER    = "local_number";
+    public static final String VERIFIED_STATE  = "verified_state";
 
     private MasterSecret masterSecret;
     private Recipient    recipient;
@@ -263,12 +258,20 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
     public void onCreate(Bundle bundle) {
       super.onCreate(bundle);
 
+      Address               address                  = getArguments().getParcelable(REMOTE_ADDRESS);
+      IdentityKeyParcelable localIdentityParcelable  = getArguments().getParcelable(LOCAL_IDENTITY);
+      IdentityKeyParcelable remoteIdentityParcelable = getArguments().getParcelable(REMOTE_IDENTITY);
+
+      if (address == null)                  throw new AssertionError("Address required");
+      if (localIdentityParcelable == null)  throw new AssertionError("local identity required");
+      if (remoteIdentityParcelable == null) throw new AssertionError("remote identity required");
+
       this.masterSecret   = getArguments().getParcelable("master_secret");
       this.localNumber    = getArguments().getString(LOCAL_NUMBER);
-      this.localIdentity  = ((IdentityKeyParcelable)getArguments().getParcelable(LOCAL_IDENTITY)).get();
+      this.localIdentity  = localIdentityParcelable.get();
       this.remoteNumber   = getArguments().getString(REMOTE_NUMBER);
-      this.recipient      = RecipientFactory.getRecipientForId(getActivity(), getArguments().getLong(REMOTE_RECIPIENT_ID), true);
-      this.remoteIdentity = ((IdentityKeyParcelable)getArguments().getParcelable(REMOTE_IDENTITY)).get();
+      this.recipient      = RecipientFactory.getRecipientFor(getActivity(), address, true);
+      this.remoteIdentity = remoteIdentityParcelable.get();
 
       this.recipient.addListener(this);
 
@@ -589,15 +592,15 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
         protected Void doInBackground(Recipient... params) {
           synchronized (SESSION_LOCK) {
             if (isChecked) {
-              Log.w(TAG, "Saving identity: " + params[0].getRecipientId());
+              Log.w(TAG, "Saving identity: " + params[0].getAddress());
               DatabaseFactory.getIdentityDatabase(getActivity())
-                             .saveIdentity(params[0].getRecipientId(),
+                             .saveIdentity(params[0].getAddress(),
                                            remoteIdentity,
                                            VerifiedStatus.VERIFIED, false,
                                            System.currentTimeMillis(), true);
             } else {
               DatabaseFactory.getIdentityDatabase(getActivity())
-                             .setVerified(params[0].getRecipientId(),
+                             .setVerified(params[0].getAddress(),
                                           remoteIdentity,
                                           VerifiedStatus.DEFAULT);
             }
@@ -605,7 +608,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
             ApplicationContext.getInstance(getActivity())
                               .getJobManager()
                               .add(new MultiDeviceVerifiedUpdateJob(getActivity(),
-                                                                    recipient.getNumber(),
+                                                                    recipient.getAddress(),
                                                                     remoteIdentity,
                                                                     isChecked ? VerifiedStatus.VERIFIED :
                                                                                 VerifiedStatus.DEFAULT));

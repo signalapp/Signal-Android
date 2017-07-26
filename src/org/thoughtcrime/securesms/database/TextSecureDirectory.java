@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.text.TextUtils;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
@@ -69,10 +69,9 @@ public class TextSecureDirectory {
     this.databaseHelper = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
   }
 
-  public boolean isSecureTextSupported(String e164number) throws NotInDirectoryException {
-    if (e164number == null || e164number.length() == 0) {
-      return false;
-    }
+  public boolean isSecureTextSupported(@NonNull Address address) throws NotInDirectoryException {
+    if (address.isEmail()) return false;
+    if (address.isGroup()) return true;
 
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
     Cursor cursor = null;
@@ -80,7 +79,7 @@ public class TextSecureDirectory {
     try {
       cursor = db.query(TABLE_NAME,
           new String[]{REGISTERED}, NUMBER + " = ?",
-          new String[] {e164number}, null, null, null);
+          new String[] {address.serialize()}, null, null, null);
 
       if (cursor != null && cursor.moveToFirst()) {
         return cursor.getInt(0) == 1;
@@ -94,55 +93,55 @@ public class TextSecureDirectory {
     }
   }
 
-  public boolean isSecureVoiceSupported(String e164number) throws NotInDirectoryException {
-    if (TextUtils.isEmpty(e164number)) {
-      return false;
-    }
+//  public boolean isSecureVoiceSupported(String e164number) throws NotInDirectoryException {
+//    if (TextUtils.isEmpty(e164number)) {
+//      return false;
+//    }
+//
+//    SQLiteDatabase db     = databaseHelper.getReadableDatabase();
+//    Cursor         cursor = null;
+//
+//    try {
+//      cursor = db.query(TABLE_NAME,
+//                        new String[]{VOICE}, NUMBER + " = ?",
+//                        new String[] {e164number}, null, null, null);
+//
+//      if (cursor != null && cursor.moveToFirst()) {
+//        return cursor.getInt(0) == 1;
+//      } else {
+//        throw new NotInDirectoryException();
+//      }
+//
+//    } finally {
+//      if (cursor != null)
+//        cursor.close();
+//    }
+//  }
 
-    SQLiteDatabase db     = databaseHelper.getReadableDatabase();
-    Cursor         cursor = null;
-
-    try {
-      cursor = db.query(TABLE_NAME,
-                        new String[]{VOICE}, NUMBER + " = ?",
-                        new String[] {e164number}, null, null, null);
-
-      if (cursor != null && cursor.moveToFirst()) {
-        return cursor.getInt(0) == 1;
-      } else {
-        throw new NotInDirectoryException();
-      }
-
-    } finally {
-      if (cursor != null)
-        cursor.close();
-    }
-  }
-
-  public boolean isSecureVideoSupported(String e164number) throws NotInDirectoryException {
-    if (TextUtils.isEmpty(e164number)) {
-      return false;
-    }
-
-    SQLiteDatabase db     = databaseHelper.getReadableDatabase();
-    Cursor         cursor = null;
-
-    try {
-      cursor = db.query(TABLE_NAME,
-                        new String[]{VIDEO}, NUMBER + " = ?",
-                        new String[] {e164number}, null, null, null);
-
-      if (cursor != null && cursor.moveToFirst()) {
-        return cursor.getInt(0) == 1;
-      } else {
-        throw new NotInDirectoryException();
-      }
-
-    } finally {
-      if (cursor != null)
-        cursor.close();
-    }
-  }
+//  public boolean isSecureVideoSupported(String e164number) throws NotInDirectoryException {
+//    if (TextUtils.isEmpty(e164number)) {
+//      return false;
+//    }
+//
+//    SQLiteDatabase db     = databaseHelper.getReadableDatabase();
+//    Cursor         cursor = null;
+//
+//    try {
+//      cursor = db.query(TABLE_NAME,
+//                        new String[]{VIDEO}, NUMBER + " = ?",
+//                        new String[] {e164number}, null, null, null);
+//
+//      if (cursor != null && cursor.moveToFirst()) {
+//        return cursor.getInt(0) == 1;
+//      } else {
+//        throw new NotInDirectoryException();
+//      }
+//
+//    } finally {
+//      if (cursor != null)
+//        cursor.close();
+//    }
+//  }
 
   public String getRelay(String e164number) {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();

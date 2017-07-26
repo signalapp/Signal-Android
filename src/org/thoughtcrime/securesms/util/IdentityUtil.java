@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
@@ -39,7 +40,6 @@ import org.whispersystems.libsignal.state.SessionStore;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
-import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.util.List;
 
@@ -57,7 +57,7 @@ public class IdentityUtil {
       @Override
       protected Optional<IdentityRecord> doInBackground(Recipient... recipient) {
         return DatabaseFactory.getIdentityDatabase(context)
-                              .getIdentity(recipient[0].getRecipientId());
+                              .getIdentity(recipient[0].getAddress());
       }
 
       @Override
@@ -78,29 +78,21 @@ public class IdentityUtil {
     Recipients           recipients    = RecipientFactory.getRecipientsFor(context, recipient, true);
     GroupDatabase.Reader reader        = groupDatabase.getGroups();
 
-    String number = recipient.getNumber();
-
-    try {
-      number = Util.canonicalizeNumber(context, number);
-    } catch (InvalidNumberException e) {
-      Log.w(TAG, e);
-    }
-
     GroupDatabase.GroupRecord groupRecord;
 
     while ((groupRecord = reader.getNext()) != null) {
-      if (groupRecord.getMembers().contains(number) && groupRecord.isActive()) {
+      if (groupRecord.getMembers().contains(recipient.getAddress()) && groupRecord.isActive()) {
         SignalServiceGroup group = new SignalServiceGroup(groupRecord.getId());
 
         if (remote) {
-          IncomingTextMessage incoming = new IncomingTextMessage(number, 1, time, null, Optional.of(group), 0);
+          IncomingTextMessage incoming = new IncomingTextMessage(recipient.getAddress(), 1, time, null, Optional.of(group), 0);
 
           if (verified) incoming = new IncomingIdentityVerifiedMessage(incoming);
           else          incoming = new IncomingIdentityDefaultMessage(incoming);
 
           smsDatabase.insertMessageInbox(incoming);
         } else {
-          Recipients          groupRecipients = RecipientFactory.getRecipientsFromString(context, GroupUtil.getEncodedId(group.getGroupId()), true);
+          Recipients          groupRecipients = RecipientFactory.getRecipientsFor(context, new Address[] {Address.fromSerialized(GroupUtil.getEncodedId(group.getGroupId()))}, true);
           long                threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipients);
           OutgoingTextMessage outgoing ;
 
@@ -113,7 +105,7 @@ public class IdentityUtil {
     }
 
     if (remote) {
-      IncomingTextMessage incoming = new IncomingTextMessage(number, 1, time, null, Optional.<SignalServiceGroup>absent(), 0);
+      IncomingTextMessage incoming = new IncomingTextMessage(recipient.getAddress(), 1, time, null, Optional.<SignalServiceGroup>absent(), 0);
 
       if (verified) incoming = new IncomingIdentityVerifiedMessage(incoming);
       else          incoming = new IncomingIdentityDefaultMessage(incoming);
@@ -139,27 +131,19 @@ public class IdentityUtil {
     GroupDatabase        groupDatabase = DatabaseFactory.getGroupDatabase(context);
     GroupDatabase.Reader reader        = groupDatabase.getGroups();
 
-    String number = recipient.getNumber();
-
-    try {
-      number = Util.canonicalizeNumber(context, number);
-    } catch (InvalidNumberException e) {
-      Log.w(TAG, e);
-    }
-
     GroupDatabase.GroupRecord groupRecord;
 
     while ((groupRecord = reader.getNext()) != null) {
-      if (groupRecord.getMembers().contains(number) && groupRecord.isActive()) {
+      if (groupRecord.getMembers().contains(recipient.getAddress()) && groupRecord.isActive()) {
         SignalServiceGroup            group       = new SignalServiceGroup(groupRecord.getId());
-        IncomingTextMessage           incoming    = new IncomingTextMessage(number, 1, time, null, Optional.of(group), 0);
+        IncomingTextMessage           incoming    = new IncomingTextMessage(recipient.getAddress(), 1, time, null, Optional.of(group), 0);
         IncomingIdentityUpdateMessage groupUpdate = new IncomingIdentityUpdateMessage(incoming);
 
         smsDatabase.insertMessageInbox(groupUpdate);
       }
     }
 
-    IncomingTextMessage           incoming         = new IncomingTextMessage(number, 1, time, null, Optional.<SignalServiceGroup>absent(), 0);
+    IncomingTextMessage           incoming         = new IncomingTextMessage(recipient.getAddress(), 1, time, null, Optional.<SignalServiceGroup>absent(), 0);
     IncomingIdentityUpdateMessage individualUpdate = new IncomingIdentityUpdateMessage(incoming);
     Optional<InsertResult>        insertResult     = smsDatabase.insertMessageInbox(individualUpdate);
 
@@ -188,8 +172,8 @@ public class IdentityUtil {
   public static void processVerifiedMessage(Context context, MasterSecretUnion masterSecret, VerifiedMessage verifiedMessage) {
     synchronized (SESSION_LOCK) {
       IdentityDatabase         identityDatabase = DatabaseFactory.getIdentityDatabase(context);
-      Recipient                recipient        = RecipientFactory.getRecipientsFromString(context, verifiedMessage.getDestination(), true).getPrimaryRecipient();
-      Optional<IdentityRecord> identityRecord   = identityDatabase.getIdentity(recipient.getRecipientId());
+      Recipient                recipient        = RecipientFactory.getRecipientFor(context, Address.fromExternal(context, verifiedMessage.getDestination()), true);
+      Optional<IdentityRecord> identityRecord   = identityDatabase.getIdentity(recipient.getAddress());
 
       if (!identityRecord.isPresent() && verifiedMessage.getVerified() == VerifiedMessage.VerifiedState.DEFAULT) {
         Log.w(TAG, "No existing record for default status");
@@ -201,7 +185,7 @@ public class IdentityUtil {
           identityRecord.get().getIdentityKey().equals(verifiedMessage.getIdentityKey())      &&
           identityRecord.get().getVerifiedStatus() != IdentityDatabase.VerifiedStatus.DEFAULT)
       {
-        identityDatabase.setVerified(recipient.getRecipientId(), identityRecord.get().getIdentityKey(), IdentityDatabase.VerifiedStatus.DEFAULT);
+        identityDatabase.setVerified(recipient.getAddress(), identityRecord.get().getIdentityKey(), IdentityDatabase.VerifiedStatus.DEFAULT);
         markIdentityVerified(context, masterSecret, recipient, false, true);
       }
 
@@ -211,7 +195,7 @@ public class IdentityUtil {
               (identityRecord.isPresent() && identityRecord.get().getVerifiedStatus() != IdentityDatabase.VerifiedStatus.VERIFIED)))
       {
         saveIdentity(context, verifiedMessage.getDestination(), verifiedMessage.getIdentityKey());
-        identityDatabase.setVerified(recipient.getRecipientId(), verifiedMessage.getIdentityKey(), IdentityDatabase.VerifiedStatus.VERIFIED);
+        identityDatabase.setVerified(recipient.getAddress(), verifiedMessage.getIdentityKey(), IdentityDatabase.VerifiedStatus.VERIFIED);
         markIdentityVerified(context, masterSecret, recipient, true, true);
       }
     }

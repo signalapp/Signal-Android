@@ -6,13 +6,14 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
@@ -20,9 +21,7 @@ import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule.SignalM
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libsignal.IdentityKey;
@@ -50,19 +49,19 @@ import javax.inject.Inject;
 
 public class MultiDeviceContactUpdateJob extends MasterSecretJob implements InjectableType {
 
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 2L;
 
   private static final String TAG = MultiDeviceContactUpdateJob.class.getSimpleName();
 
   @Inject transient SignalMessageSenderFactory messageSenderFactory;
 
-  private final long recipientId;
+  private final @Nullable String address;
 
   public MultiDeviceContactUpdateJob(Context context) {
-    this(context, -1);
+    this(context, null);
   }
 
-  public MultiDeviceContactUpdateJob(Context context, long recipientId) {
+  public MultiDeviceContactUpdateJob(Context context, Address address) {
     super(context, JobParameters.newBuilder()
                                 .withRequirement(new NetworkRequirement(context))
                                 .withRequirement(new MasterSecretRequirement(context))
@@ -70,7 +69,7 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
                                 .withPersistence()
                                 .create());
 
-    this.recipientId = recipientId;
+    this.address = address.serialize();
   }
 
   @Override
@@ -82,11 +81,11 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
       return;
     }
 
-    if (recipientId <= 0) generateFullContactUpdate();
-    else                  generateSingleContactUpdate(recipientId);
+    if (address == null) generateFullContactUpdate();
+    else                 generateSingleContactUpdate(Address.fromSerialized(address));
   }
 
-  private void generateSingleContactUpdate(long recipientId)
+  private void generateSingleContactUpdate(@NonNull Address address)
       throws IOException, UntrustedIdentityException, NetworkException
   {
     SignalServiceMessageSender messageSender   = messageSenderFactory.create();
@@ -94,11 +93,11 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
 
     try {
       DeviceContactsOutputStream                out             = new DeviceContactsOutputStream(new FileOutputStream(contactDataFile));
-      Recipient                                 recipient       = RecipientFactory.getRecipientForId(context, recipientId, false);
-      Optional<IdentityDatabase.IdentityRecord> identityRecord  = DatabaseFactory.getIdentityDatabase(context).getIdentity(recipientId);
+      Recipient                                 recipient       = RecipientFactory.getRecipientFor(context, address, false);
+      Optional<IdentityDatabase.IdentityRecord> identityRecord  = DatabaseFactory.getIdentityDatabase(context).getIdentity(address);
       Optional<VerifiedMessage>                 verifiedMessage = getVerifiedMessage(recipient, identityRecord);
 
-      out.write(new DeviceContact(Util.canonicalizeNumber(context, recipient.getNumber()),
+      out.write(new DeviceContact(address.toPhoneString(),
                                   Optional.fromNullable(recipient.getName()),
                                   getAvatar(recipient.getContactUri()),
                                   Optional.fromNullable(recipient.getColor().serialize()),
@@ -126,14 +125,14 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
 
       for (ContactData contactData : contacts) {
         Uri                                       contactUri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_URI, String.valueOf(contactData.id));
-        String                                    number     = Util.canonicalizeNumber(context, contactData.numbers.get(0).number);
-        Recipient                                 recipient  = RecipientFactory.getRecipientsFromString(context, number, true).getPrimaryRecipient();
-        Optional<IdentityDatabase.IdentityRecord> identity   = DatabaseFactory.getIdentityDatabase(context).getIdentity(recipient.getRecipientId());
+        Address                                   address    = Address.fromExternal(context, contactData.numbers.get(0).number);
+        Recipient                                 recipient  = RecipientFactory.getRecipientFor(context, address, false);
+        Optional<IdentityDatabase.IdentityRecord> identity   = DatabaseFactory.getIdentityDatabase(context).getIdentity(address);
         Optional<VerifiedMessage>                 verified   = getVerifiedMessage(recipient, identity);
         Optional<String>                          name       = Optional.fromNullable(contactData.name);
-        Optional<String>                          color      = getColor(number);
+        Optional<String>                          color      = Optional.of(recipient.getColor().serialize());
 
-        out.write(new DeviceContact(number, name, getAvatar(contactUri), color, verified));
+        out.write(new DeviceContact(address.toPhoneString(), name, getAvatar(contactUri), color, verified));
       }
 
       out.close();
@@ -159,15 +158,6 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
   @Override
   public void onCanceled() {
 
-  }
-
-  private Optional<String> getColor(String number) {
-    if (!TextUtils.isEmpty(number)) {
-      Recipients recipients = RecipientFactory.getRecipientsFromString(context, number, false);
-      return Optional.of(recipients.getColor().serialize());
-    } else {
-      return Optional.absent();
-    }
   }
 
   private void sendUpdate(SignalServiceMessageSender messageSender, File contactsFile, boolean complete)
@@ -245,7 +235,7 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
   private Optional<VerifiedMessage> getVerifiedMessage(Recipient recipient, Optional<IdentityDatabase.IdentityRecord> identity) throws InvalidNumberException {
     if (!identity.isPresent()) return Optional.absent();
 
-    String      destination = Util.canonicalizeNumber(context, recipient.getNumber());
+    String      destination = recipient.getAddress().toPhoneString();
     IdentityKey identityKey = identity.get().getIdentityKey();
 
     VerifiedMessage.VerifiedState state;

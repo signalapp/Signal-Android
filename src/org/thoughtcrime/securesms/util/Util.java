@@ -45,8 +45,8 @@ import com.google.android.mms.pdu_alt.EncodedStringValue;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
 import org.thoughtcrime.securesms.BuildConfig;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.mms.OutgoingLegacyMmsConnection;
-import org.whispersystems.signalservice.api.util.InvalidNumberException;
 import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
 
 import java.io.ByteArrayOutputStream;
@@ -71,6 +71,20 @@ public class Util {
   private static final String TAG = Util.class.getSimpleName();
 
   public static Handler handler = new Handler(Looper.getMainLooper());
+
+  public static String join(List<Address> list, String delimiter) {
+    return join(list.toArray(new Address[0]), delimiter);
+  }
+
+  public static String join(Address[] list, String delimiter) {
+    List<String> stringList = new LinkedList<>();
+
+    for (Address address : list) {
+      stringList.add(address.serialize());
+    }
+
+    return join(stringList, delimiter);
+  }
 
   public static String join(String[] list, String delimiter) {
     return join(Arrays.asList(list), delimiter);
@@ -193,28 +207,11 @@ public class Util {
     return totalSize;
   }
 
-  public static String canonicalizeNumber(Context context, String number)
-      throws InvalidNumberException
-  {
-    String localNumber = TextSecurePreferences.getLocalNumber(context);
-    return PhoneNumberFormatter.formatNumber(number, localNumber);
-  }
+  public static boolean isOwnNumber(Context context, Address address) {
+    if (address.isGroup()) return false;
+    if (address.isEmail()) return false;
 
-  public static String canonicalizeNumberOrGroup(@NonNull Context context, @NonNull String number)
-      throws InvalidNumberException
-  {
-    if (GroupUtil.isEncodedGroup(number)) return number;
-    else                                  return canonicalizeNumber(context, number);
-  }
-
-  public static boolean isOwnNumber(Context context, String number) {
-    try {
-      String e164number = canonicalizeNumber(context, number);
-      return TextSecurePreferences.getLocalNumber(context).equals(e164number);
-    } catch (InvalidNumberException e) {
-      Log.w(TAG, e);
-    }
-    return false;
+    return TextSecurePreferences.getLocalNumber(context).equals(address.toPhoneString());
   }
 
   public static byte[] readFully(InputStream in) throws IOException {

@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.database.documents;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.LinkedList;
@@ -25,6 +26,7 @@ public class IdentityKeyMismatchList implements Document<IdentityKeyMismatch> {
   }
 
   @Override
+  @JsonIgnore
   public List<IdentityKeyMismatch> getList() {
     return mismatches;
   }
