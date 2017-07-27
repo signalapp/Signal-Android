@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -70,26 +71,11 @@ public class PushRecipientsPanel extends RelativeLayout implements RecipientsMod
     initialize();
   }
 
-//  public void addRecipient(String name, String number) {
-//    if (name != null) recipientsText.append(name + "< " + number + ">, ");
-//    else recipientsText.append(number + ", ");
-//  }
-
-//  public void addRecipients(Recipients recipients) {
-//    List<Recipient> recipientList = recipients.getRecipientsList();
-//    Iterator<Recipient> iterator = recipientList.iterator();
-//
-//    while (iterator.hasNext()) {
-//      Recipient recipient = iterator.next();
-//      addRecipient(recipient.getName(), recipient.getNumber());
-//    }
-//  }
-
   public Recipients getRecipients() throws RecipientFormattingException {
     String     rawText    = recipientsText.getText().toString();
     Recipients recipients = getRecipientsFromString(getContext(), rawText, true);
 
-    if (recipients.isEmpty())
+    if (recipients == null || recipients.isEmpty())
       throw new RecipientFormattingException("Recipient List Is Empty!");
 
     return recipients;
@@ -147,7 +133,7 @@ public class PushRecipientsPanel extends RelativeLayout implements RecipientsMod
     });
   }
 
-  public static @NonNull Recipients getRecipientsFromString(Context context, @NonNull String rawText, boolean asynchronous) {
+  private @Nullable Recipients getRecipientsFromString(Context context, @NonNull String rawText, boolean asynchronous) {
     StringTokenizer tokenizer = new StringTokenizer(rawText, ",");
     List<Address>   addresses = new LinkedList<>();
 
@@ -160,17 +146,18 @@ public class PushRecipientsPanel extends RelativeLayout implements RecipientsMod
       }
     }
 
-    return RecipientFactory.getRecipientsFor(context, addresses.toArray(new Address[0]), asynchronous);
+    if (addresses.size() == 0) return null;
+    else                       return RecipientFactory.getRecipientsFor(context, addresses.toArray(new Address[0]), asynchronous);
   }
 
-  private static boolean hasBracketedNumber(String recipient) {
+  private boolean hasBracketedNumber(String recipient) {
     int openBracketIndex = recipient.indexOf('<');
 
     return (openBracketIndex != -1) &&
            (recipient.indexOf('>', openBracketIndex) != -1);
   }
 
-  private static String parseBracketedNumber(String recipient) {
+  private  String parseBracketedNumber(String recipient) {
     int begin    = recipient.indexOf('<');
     int end      = recipient.indexOf('>', begin);
     String value = recipient.substring(begin + 1, end);
@@ -178,7 +165,8 @@ public class PushRecipientsPanel extends RelativeLayout implements RecipientsMod
     return value;
   }
 
-  @Override public void onModified(Recipients recipients) {
+  @Override
+  public void onModified(Recipients recipients) {
     recipientsText.populate(recipients);
   }
 
