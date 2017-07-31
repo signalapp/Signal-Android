@@ -620,6 +620,7 @@
   <string name="MessageNotifier_media_message">Медиа-сообщение</string>
   <string name="MessageNotifier_reply">Ответить</string>
   <string name="MessageNotifier_pending_signal_messages">Неполученные сообщения</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">У Вас есть ожидающие получения сообщения, нажмите, чтобы получить их и открыть</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Для вашего телефона необходимо настроить MMS вручную.</string>
   <string name="MmsPreferencesFragment__enabled">Включено</string>
@@ -767,7 +768,21 @@
   </plurals>
   <string name="expiration_weeks_abbreviated">%dн</string>
   <!--unverified safety numbers-->
+  <string name="IdentityUtil_unverified_banner_one">Ваш код безопасности с %s изменился и больше не является подтверждённым</string>
+  <string name="IdentityUtil_unverified_banner_two">Ваши коды безопасности с %1$s и %2$s изменились и больше не являются подтверждёнными</string>
+  <string name="IdentityUtil_unverified_banner_many">Ваши коды безопасности с %1$s, %2$s и %3$s изменились и больше не являются подтверждёнными</string>
+  <string name="IdentityUtil_unverified_dialog_one">Ваш код безопасности с %1$s изменился и больше не является подтверждённым. Это означает, что %1$s переустановил(а) Signal или кто-то посторонний извне пытается проникнуть в Вашу переписку.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Ваши коды безопасности с %1$s и %2$s изменились и больше не являются подтверждёнными. Это означает, что они переустановили Signal или кто-то посторонний извне пытается проникнуть в Вашу переписку.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Ваши коды безопасности с %1$s, %2$s и %3$s изменились и больше не являются подтверждёнными. Это означает, что они переустановили Signal или кто-то посторонний извне пытается проникнуть в Вашу переписку.</string>
+  <string name="IdentityUtil_untrusted_dialog_one">Ваш код безопасности с %s был изменён.</string>
+  <string name="IdentityUtil_untrusted_dialog_two">Ваши коды безопасности с %1$s и %2$s были изменены.</string>
   <string name="IdentityUtil_untrusted_dialog_many">Ваши коды безопасности с %1$s, %2$s и %3$s только что изменились.</string>
+  <plurals name="identity_others">
+    <item quantity="one">%d прочий</item>
+    <item quantity="few">%d прочие</item>
+    <item quantity="many">%d прочие</item>
+    <item quantity="other">%d прочие</item>
+  </plurals>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Найти GIF-анимации и стикеры</string>
   <!--giphy_fragment-->
@@ -803,6 +818,7 @@
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Нет медиа-файлов</string>
   <!--message_recipients_list_item-->
+  <string name="message_recipients_list_item__view">Просмотреть</string>
   <string name="message_recipients_list_item__resend">ОТПРАВИТЬ ЕЩЁ РАЗ</string>
   <string name="message_recipients_list_item__resending">Пересылка...</string>
   <!--GroupUtil-->
@@ -828,6 +844,7 @@
   <string name="recipient_preferences__block">Заблокировать</string>
   <string name="recipient_preferences__color">Цвет</string>
   <string name="recipient_preferences__color_for_this_contact">Цвет для этого контакта</string>
+  <string name="recipient_preferences__view_safety_number">Просмотреть код безопасности</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Звонок через Signal</string>
   <string name="redphone_call_controls__end_call">завершить звонок</string>
@@ -899,6 +916,7 @@ SMS-подтверждения...
   <string name="recipients_panel__to"><small>Введите имя или номер</small></string>
   <string name="recipients_panel__add_members">Добавить участников</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Если Вы хотите убедиться в надёжности шифрования переписки с %s, сравните код выше с таким же кодом на его (её) устройстве. Также Вы можете отсканировать код на его (её) телефоне или попросить его (её) отсканировать Ваш код. <a href="https://whispersystems.org/redirect/safety-numbers">Узнать больше</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Сканировать</string>
   <string name="verify_display_fragment__loading">Загрузка...</string>
   <string name="verify_display_fragment__verified">Подтвержден</string>
@@ -1070,6 +1088,7 @@ SMS-подтверждения...
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Пропускать все звонки через сервер Signal, чтобы не раскрывать ваш IP-адреса собеседнику. Качество звонка ухудшится.</string>
   <string name="preferences_advanced__always_relay_calls">Всегда использовать сервер</string>
   <string name="preferences_app_protection__app_access">Доступ приложения</string>
+  <string name="preferences_app_protection__communication">Переписка</string>
   <string name="preferences_chats__chats">Чаты</string>
   <string name="preferences_notifications__messages">Сообщения</string>
   <string name="preferences_notifications__events">События</string>

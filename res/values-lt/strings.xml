@@ -388,6 +388,7 @@
   <string name="MessageRecord_s_called_you">Jums skambino %s</string>
   <string name="MessageRecord_called_s">Skambino %s</string>
   <string name="MessageRecord_missed_call_from">Praleistas skambutis nuo %s</string>
+  <string name="MessageRecord_s_joined_signal">%s atėjo į Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Jūs nustatėte išnykstančių žinučių laiką į %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s nustatė išnykstančių žinučių laiką į %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Jūsų saugumo numeris su %s pasikeitė.</string>
@@ -547,9 +548,12 @@
   <string name="ThreadRecord_called_you">Jums skambino</string>
   <string name="ThreadRecord_missed_call">Praleistas skambutis</string>
   <string name="ThreadRecord_media_message">Medijos žinutė</string>
+  <string name="ThreadRecord_s_is_on_signal">%s atėjo į Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Išnykstančių žinučių laikas nustatytas į %s</string>
   <string name="ThreadRecord_safety_number_changed">Saugumo numeris pasikeitė</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Jūsų saugumo numeris su %s pasikeitė.</string>
+  <string name="ThreadRecord_you_marked_verified">Jūs pažymėjote patvirtintu</string>
+  <string name="ThreadRecord_you_marked_unverified">Jūs pažymėjote nepatvirtintu</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal atnaujinimas</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Yra prieinama nauja Signal versija, bakstelėkite, norėdami atnaujinti</string>
@@ -806,6 +810,7 @@
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Nėra medijos</string>
   <!--message_recipients_list_item-->
+  <string name="message_recipients_list_item__view">RODYTI</string>
   <string name="message_recipients_list_item__resend">SIŲSTI IŠ NAUJO</string>
   <string name="message_recipients_list_item__resending">Siunčiama iš naujo...</string>
   <!--GroupUtil-->
@@ -924,6 +929,7 @@ yra prisijungęs prie belaidžio (Wi-Fi) arba duomenų perdavimo tinklo.
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Jeigu norite patvirtinti savo šifravimo su %s saugumą, palyginkite aukščiau esantį numerį su numeriu kontakto įrenginyje. Arba kitaip, galite nuskenuoti kodą jo telefone arba paprašyti kontakto, kad nuskenuotų jūsų kodą. <a href="https://whispersystems.org/redirect/safety-numbers">Sužinoti daugiau.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Bakstelėkite, norėdami nuskenuoti</string>
   <string name="verify_display_fragment__loading">Įkeliama...</string>
+  <string name="verify_display_fragment__verified">Patvirtintas</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Dalintis saugumo numeriu</string>
   <!--message_details_header-->

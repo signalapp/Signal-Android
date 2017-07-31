@@ -907,7 +907,7 @@ bila uspešna.</string>
   <string name="recipients_panel__to"><small>Vnesite ime ali številko</small></string>
   <string name="recipients_panel__add_members">Dodaj člane</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Če želite preveriti varnost vaše šifrirane komunikacije z uporabnikom %s, primerjajte gornje število s številom na njegovi napravi. Namesto tega lahko tudi skenirate kodo na napravi uporabnika ali njega prosite, naj skenira vašo. <a href="https://whispersystems.org/redirect/safety-numbers">Več...</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Če želite preveriti varnost šifrirane komunikacije z uporabnikom %s, primerjajte gornje število s številom na njegovi napravi. Namesto tega lahko tudi skenirate kodo na napravi uporabnika ali njega prosite, naj skenira vašo. <a href="https://whispersystems.org/redirect/safety-numbers">Več ...</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tapnite za skeniranje</string>
   <string name="verify_display_fragment__loading">Nalagam...</string>
   <string name="verify_display_fragment__verified">Potrjeno</string>

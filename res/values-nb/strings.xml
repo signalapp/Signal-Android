@@ -367,6 +367,7 @@ fører dette til dupliserte meldinger.</string>
   <string name="MessageRecord_s_called_you">%s ringte deg</string>
   <string name="MessageRecord_called_s">Ringte %s</string>
   <string name="MessageRecord_missed_call_from">Tapt anrop fra %s</string>
+  <string name="MessageRecord_s_joined_signal">%s er på Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du satt utløpstid for meldinger til %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s satt utløpstid for meldinger til %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Din sikkerhets nummer med %s har endret seg.</string>
@@ -520,6 +521,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ThreadRecord_called_you">Ringte deg</string>
   <string name="ThreadRecord_missed_call">Ubesvart anrop</string>
   <string name="ThreadRecord_media_message">Mediemelding</string>
+  <string name="ThreadRecord_s_is_on_signal"> %s er på Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Utløpstid for meldinger endret til %s</string>
   <string name="ThreadRecord_safety_number_changed">Sikkerhetsnummer endret </string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Din sikkerhets nummer med %s har endret seg.</string>

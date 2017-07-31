@@ -21,7 +21,7 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Διαγραφή</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Απενεργοποίηση συνθηματικού;</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Αυτό θα ξεκλειδώσει μόνιμα το Signal και τις ειδοποιήσεις μηνυμάτων.na </string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Αυτό θα ξεκλειδώσει μόνιμα το Signal και τις ειδοποιήσεις μηνυμάτων.</string>
   <string name="ApplicationPreferencesActivity_disable">Απενεργοποίηση</string>
   <string name="ApplicationPreferencesActivity_unregistering">Απεγγραφή</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Απεγγραφή από τα μηνύματα και τις κλήσεις Signal...</string>
@@ -367,7 +367,7 @@
   <string name="MessageRecord_s_called_you">O/H %s σε κάλεσε</string>
   <string name="MessageRecord_called_s">Κάλεσες τον/την %s</string>
   <string name="MessageRecord_missed_call_from">Αναπάντητη κλήση από τον/την %s</string>
-  <string name="MessageRecord_s_joined_signal">%s είναι στο Signal!</string>
+  <string name="MessageRecord_s_joined_signal">Ο/Η %s είναι στο Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Όρισες το χρόνο εξαφάνισης των μηνυμάτων σε: %1$s</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">Ο/Η %1$s όρισε το χρόνο εξαφάνισης των μηνυμάτων σε: %2$s</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Ο αριθμός ασφαλείας με τον/την %s έχει αλλάξει.</string>
@@ -521,7 +521,7 @@
   <string name="ThreadRecord_called_you">Σε κάλεσε</string>
   <string name="ThreadRecord_missed_call">Αναπάντητη κλήση</string>
   <string name="ThreadRecord_media_message">Μήνυμα πολυμέσων</string>
-  <string name="ThreadRecord_s_is_on_signal">%s είναι στο Signal!</string>
+  <string name="ThreadRecord_s_is_on_signal">Ο/Η %s είναι στο Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Ο χρόνος εξαφάνισης των μηνυμάτων ρυθμίστηκε σε %s</string>
   <string name="ThreadRecord_safety_number_changed">Ο αριθμός ασφαλείας άλλαξε</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Ο αριθμός ασφαλείας με τον/την %s έχει αλλάξει.</string>
@@ -962,7 +962,7 @@
   <string name="preferences__enable_passphrase">Ενεργοποίηση συνθηματικού</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Κλείδωμα του Signal και των ειδοποιήσεων μηνυμάτων με ένα συνθηματικό</string>
   <string name="preferences__screen_security">Ασφάλεια οθόνης</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">Να μην επιτρέπεται η καταγραφή της οθόνης (screenshots)</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Να μην επιτρέπεται η καταγραφή της οθόνης (screenshots) στη λίστα με τα πρόσφατα και μέσα στην εφαρμογή</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Αυτόματο κλείδωμα του Signal μετά απο κάποιο συγκεκριμένο χρόνο αδράνειας</string>
   <string name="preferences__inactivity_timeout_passphrase">Συνθηματικό χρόνου αδράνειας</string>
   <string name="preferences__inactivity_timeout_interval">Χρονικό διάστημα χρόνου αδράνειας</string>

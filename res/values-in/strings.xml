@@ -351,9 +351,14 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <string name="MessageRecord_s_called_you">%s menelpon Anda.</string>
   <string name="MessageRecord_called_s">Memanggil %s</string>
   <string name="MessageRecord_missed_call_from">Panggilan tak terjawab dari %s</string>
+  <string name="MessageRecord_s_joined_signal">%s ada di Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Anda mengatur waktu penghilangan pesan menjadi %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s mengatur waktu penghilangan pesan menjadi %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Angka keamanan Anda dengan %s telah berubah.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Anda menandai nomor keamanan anda dengan %s terverifikasi</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Anda menandai nomor keamanan anda dengan %s terverifikasi dari perangkat lain</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Anda menandai nomor keamanan anda dengan %s tidak terverifikasi</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Anda menandai nomor keamanan anda dengan %s tidak terverifikasi dari perangkat lain</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Frasa sandi tidak cocok!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Kata kunci lama salah!</string>
@@ -505,8 +510,12 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ThreadRecord_called_you">Memanggil Anda</string>
   <string name="ThreadRecord_missed_call">Panggilan tak terjawab</string>
   <string name="ThreadRecord_media_message">Pesan media</string>
+  <string name="ThreadRecord_s_is_on_signal">%s ada di Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Waktu pesan hilang diatur ke %s</string>
+  <string name="ThreadRecord_safety_number_changed">Nomor keamanan berubah</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Angka keamanan anda dengan %s telah berubah.</string>
+  <string name="ThreadRecord_you_marked_verified">Anda ditandai terverifikasi</string>
+  <string name="ThreadRecord_you_marked_unverified">Anda ditandai tidak terverifikasi</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Perbarui Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Versi baru Signal tersedia, ketuk untuk memperbarui</string>
@@ -570,6 +579,8 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MessageNotifier_mark_read">Tandai sudah dibaca</string>
   <string name="MessageNotifier_media_message">Pesan media</string>
   <string name="MessageNotifier_reply">Balas</string>
+  <string name="MessageNotifier_pending_signal_messages">Pesan Signal tertunda</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">Anda memiliki pesan Signal yang tertunda, ketuk untuk membuka dan menerima</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Telepon Anda membutuhkan pengaturan MMS secara manual.</string>
   <string name="MmsPreferencesFragment__enabled">Aktif</string>
@@ -702,6 +713,18 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   </plurals>
   <string name="expiration_weeks_abbreviated">%dm</string>
   <!--unverified safety numbers-->
+  <string name="IdentityUtil_unverified_banner_one">Nomor keamanan anda dengan%s telah berubah dan tidak lagi terverifikasi</string>
+  <string name="IdentityUtil_unverified_banner_two">Nomor keamanan anda dengan %1$s dan %2$s tidak lagi terverifikasi</string>
+  <string name="IdentityUtil_unverified_banner_many">Nomor keamanan anda dengan %1$s, %2$s, dan%3$s tidak lagi terverifikasi</string>
+  <string name="IdentityUtil_unverified_dialog_one">Nomor keamanan anda dengan %1$s telah berubah dan tidak lagi terverifikasi. Ini bisa berarti bahwa seseorang mencoba mencegat komunikasi anda, atau dikarenakan%1$s telah memasang ulang Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Nomor keamanan anda dengan %1$s dan %2$s tidak lagi terverifikasi. Ini bisa berarti bahwa seseorang mencoba mencegat komunikasi anda, atau dikarenakan mereka memasang ulang Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Nomor keamanan anda dengan %1$s, %2$s, dan %3$s tidak lagi terverifikasi. Ini bisa berarti bahwa seseorang mencoba mencegat komunikasi anda, atau dikarenakan mereka memasang ulang Signal.</string>
+  <string name="IdentityUtil_untrusted_dialog_one">Nomor keamanan anda dengan %s baru saja berubah.</string>
+  <string name="IdentityUtil_untrusted_dialog_two">Nomor keamanan anda dengan %1$s dan %2$s baru saja berubah.</string>
+  <string name="IdentityUtil_untrusted_dialog_many">Nomor keamanan anda dengan %1$s, %2$s, dan %3$s baru saja berubah.</string>
+  <plurals name="identity_others">
+    <item quantity="other">%d yang lain</item>
+  </plurals>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Cari GIF dan stiker</string>
   <!--giphy_fragment-->
@@ -737,6 +760,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Tidak ada media</string>
   <!--message_recipients_list_item-->
+  <string name="message_recipients_list_item__view">LIHAT</string>
   <string name="message_recipients_list_item__resend">KIRIM ULANG</string>
   <string name="message_recipients_list_item__resending">Mengirim ulang...</string>
   <!--GroupUtil-->
@@ -759,6 +783,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="recipient_preferences__block">Blokir</string>
   <string name="recipient_preferences__color">Warna</string>
   <string name="recipient_preferences__color_for_this_contact">Warna untuk kontak ini</string>
+  <string name="recipient_preferences__view_safety_number">Lihat nomor keamanan</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Panggilan Signal</string>
   <string name="redphone_call_controls__end_call">akhiri panggilan</string>
@@ -847,7 +872,10 @@ gagal
   <string name="recipients_panel__to"><small>Masukkan nama atau nomor</small></string>
   <string name="recipients_panel__add_members">Tambah anggota</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Jika anda ingin memverifikasi keamanan enkripsi anda dengan %s, bandingkan nomor diatas dengan nomor di perangkat mereka. Alternatifnya, anda bisa memindai kode di telepon mereka, atau minta mereka untuk  memindai kode anda. <a href="https://whispersystems.org/redirect/safety-numbers">Pelajari lebih lanjut.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Ketuk untuk memindai</string>
+  <string name="verify_display_fragment__loading">Memuat...</string>
+  <string name="verify_display_fragment__verified">Terverifikasi</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Bagikan nomor keamanan</string>
   <!--message_details_header-->
@@ -1015,6 +1043,7 @@ gagal
   <string name="preferences_app_protection__app_access">Akses aplikasi</string>
   <string name="preferences_app_protection__communication">Komunikasi</string>
   <string name="preferences_chats__chats">Obrolan</string>
+  <string name="preferences_notifications__messages">Pesan</string>
   <string name="preferences_notifications__events">Acara</string>
   <string name="preferences_notifications__in_chat_sounds">Suara dalam-obrolan</string>
   <string name="preferences_notifications__show">Tampilkan</string>
@@ -1151,5 +1180,9 @@ gagal
   <string name="trimmer__old_messages_successfully_deleted">Pesan lama berhasil dihapus</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikon transport</string>
+  <string name="UntrustedSendDialog_send_message">Kirim pesan?</string>
+  <string name="UntrustedSendDialog_send">Kirim</string>
+  <string name="UnverifiedSendDialog_send_message">Kirim pesan?</string>
+  <string name="UnverifiedSendDialog_send">Kirim</string>
   <!--EOF-->
 </resources>
