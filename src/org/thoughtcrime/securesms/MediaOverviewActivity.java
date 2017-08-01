@@ -24,6 +24,7 @@ import android.database.Cursor;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
@@ -132,10 +133,10 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
     gridView.setLayoutManager(gridManager);
     gridView.setHasFixedSize(true);
 
-    Address[] addresses = Address.fromParcelable(getIntent().getParcelableArrayExtra(ADDRESSES_EXTRA));
+    Parcelable[] parcelables = getIntent().getParcelableArrayExtra(ADDRESSES_EXTRA);
 
-    if (addresses != null) {
-      recipients = RecipientFactory.getRecipientsFor(this, addresses, true);
+    if (parcelables != null) {
+      recipients = RecipientFactory.getRecipientsFor(this, Address.fromParcelable(parcelables), true);
     } else if (threadId > -1) {
       recipients = DatabaseFactory.getThreadDatabase(this).getRecipientsForThreadId(threadId);
     } else {
