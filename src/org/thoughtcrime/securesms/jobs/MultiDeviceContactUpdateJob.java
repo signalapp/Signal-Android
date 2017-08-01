@@ -57,11 +57,11 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
 
   private final @Nullable String address;
 
-  public MultiDeviceContactUpdateJob(Context context) {
+  public MultiDeviceContactUpdateJob(@NonNull Context context) {
     this(context, null);
   }
 
-  public MultiDeviceContactUpdateJob(Context context, Address address) {
+  public MultiDeviceContactUpdateJob(@NonNull Context context, @Nullable Address address) {
     super(context, JobParameters.newBuilder()
                                 .withRequirement(new NetworkRequirement(context))
                                 .withRequirement(new MasterSecretRequirement(context))
@@ -69,7 +69,8 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
                                 .withPersistence()
                                 .create());
 
-    this.address = address.serialize();
+    if (address != null) this.address = address.serialize();
+    else                 this.address = null;
   }
 
   @Override
