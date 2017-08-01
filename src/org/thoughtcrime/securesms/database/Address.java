@@ -6,19 +6,24 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
+import android.support.annotation.VisibleForTesting;
 import android.util.Log;
+
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
+import com.google.i18n.phonenumbers.ShortNumberInfo;
 
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.NumberUtil;
-import org.thoughtcrime.securesms.util.ShortCodeUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.signalservice.api.util.InvalidNumberException;
-import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
+import java.util.regex.Pattern;
 
 public class Address implements Parcelable, Comparable<Address> {
 
@@ -62,23 +67,8 @@ public class Address implements Parcelable, Comparable<Address> {
     return addresses;
   }
 
-  public static Address fromExternal(@NonNull Context context, @Nullable String external)
-  {
-    if (external == null) return new Address("Unknown");
-
-    try {
-      String localNumber = TextSecurePreferences.getLocalNumber(context);
-
-      if      (GroupUtil.isEncodedGroup(external))               return new Address(external);
-      else if (NumberUtil.isValidEmail(external))                return new Address(external);
-      else if (ShortCodeUtil.isShortCode(localNumber, external)) return new Address(external.replaceAll("[^0-9+]", ""));
-
-      return new Address(PhoneNumberFormatter.formatNumber(external, localNumber));
-    } catch (InvalidNumberException e) {
-      Log.w(TAG, e);
-      if (TextUtils.isEmpty(external.trim())) return new Address("Unknown");
-      else                                    return new Address(external.trim());
-    }
+  public static Address fromExternal(@NonNull Context context, @Nullable String external) {
+    return new Address(new ExternalAddressFormatter(TextSecurePreferences.getLocalNumber(context)).format(external));
   }
 
   public static Address[] fromParcelable(Parcelable[] parcelables) {
@@ -153,4 +143,84 @@ public class Address implements Parcelable, Comparable<Address> {
   public int compareTo(@NonNull Address other) {
     return address.compareTo(other.address);
   }
+
+  @VisibleForTesting
+  static class ExternalAddressFormatter {
+
+    private static final String TAG = ExternalAddressFormatter.class.getSimpleName();
+
+    private static final Set<String> SHORT_COUNTRIES = new HashSet<String>() {{
+      add("NU");
+      add("TK");
+      add("NC");
+      add("AC");
+    }};
+
+    private final Phonenumber.PhoneNumber localNumber;
+    private final String                  localNumberString;
+    private final String                  localCountryCode;
+
+    private final PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.getInstance();
+    private final Pattern         ALPHA_PATTERN   = Pattern.compile("[a-zA-Z]");
+
+    public ExternalAddressFormatter(String localNumber) {
+      try {
+        this.localNumberString = localNumber;
+        this.localNumber       = phoneNumberUtil.parse(localNumber, null);
+        this.localCountryCode  = phoneNumberUtil.getRegionCodeForNumber(this.localNumber);
+      } catch (NumberParseException e) {
+        throw new AssertionError(e);
+      }
+    }
+
+    public String format(@Nullable String number) {
+      if (number == null)                             return "Unknown";
+      if (number.startsWith("__textsecure_group__!")) return number;
+      if (ALPHA_PATTERN.matcher(number).matches())    return number.trim();
+
+      String bareNumber = number.replaceAll("[^0-9+]", "");
+
+      if (bareNumber.length() == 0) {
+        if (number.trim().length() == 0) return "Unknown";
+        else                             return number.trim();
+      }
+
+      // libphonenumber doesn't seem to be correct for Germany and Finland
+      if (bareNumber.length() <= 6 && ("DE".equals(localCountryCode) || "FI".equals(localCountryCode) || "SK".equals(localCountryCode))) {
+        return bareNumber;
+      }
+
+      // libphonenumber seems incorrect for Russia and a few other countries with 4 digit short codes.
+      if (bareNumber.length() <= 4 && !SHORT_COUNTRIES.contains(localCountryCode)) {
+        return bareNumber;
+      }
+
+      try {
+        Phonenumber.PhoneNumber parsedNumber = phoneNumberUtil.parse(bareNumber, localCountryCode);
+
+        if (ShortNumberInfo.getInstance().isPossibleShortNumberForRegion(parsedNumber, localCountryCode)) {
+          return bareNumber;
+        }
+
+        return phoneNumberUtil.format(parsedNumber, PhoneNumberUtil.PhoneNumberFormat.E164);
+      } catch (NumberParseException e) {
+        Log.w(TAG, e);
+        if (bareNumber.charAt(0) == '+')
+          return bareNumber;
+
+        String localNumberImprecise = localNumberString;
+
+        if (localNumberImprecise.charAt(0) == '+')
+          localNumberImprecise = localNumberImprecise.substring(1);
+
+        if (localNumberImprecise.length() == bareNumber.length() || bareNumber.length() > localNumberImprecise.length())
+          return "+" + number;
+
+        int difference = localNumberImprecise.length() - bareNumber.length();
+
+        return "+" + localNumberImprecise.substring(0, difference) + bareNumber;
+      }
+    }
+  }
+
 }
