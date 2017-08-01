@@ -1286,6 +1286,8 @@ public class DatabaseFactory {
     private final String                  localCountryCode;
 
     private final PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.getInstance();
+    private final Pattern         ALPHA_PATTERN   = Pattern.compile("[a-zA-Z]");
+
 
     public NumberMigrator(String localNumber) {
       try {
@@ -1298,9 +1300,9 @@ public class DatabaseFactory {
     }
 
     public String migrate(@Nullable String number) {
-      if (number == null)                                                return "Unknown";
-      if (number.startsWith("__textsecure_group__!"))                    return number;
-      if (android.util.Patterns.EMAIL_ADDRESS.matcher(number).matches()) return number;
+      if (number == null)                             return "Unknown";
+      if (number.startsWith("__textsecure_group__!")) return number;
+      if (ALPHA_PATTERN.matcher(number).matches())    return number;
 
       String bareNumber = number.replaceAll("[^0-9+]", "");
 
