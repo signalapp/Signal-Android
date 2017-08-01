@@ -74,6 +74,7 @@ import org.thoughtcrime.securesms.qr.ScanListener;
 import org.thoughtcrime.securesms.qr.ScanningThread;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.IdentityUtil;
@@ -96,7 +97,7 @@ import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
  *
  * @author Moxie Marlinspike
  */
-public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity implements Recipient.RecipientModifiedListener, ScanListener, View.OnClickListener {
+public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity implements RecipientModifiedListener, ScanListener, View.OnClickListener {
 
   private static final String TAG = VerifyIdentityActivity.class.getSimpleName();
 
@@ -191,7 +192,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
     }
   }
 
-  public static class VerifyDisplayFragment extends Fragment implements Recipient.RecipientModifiedListener, CompoundButton.OnCheckedChangeListener {
+  public static class VerifyDisplayFragment extends Fragment implements RecipientModifiedListener, CompoundButton.OnCheckedChangeListener {
 
     public static final String REMOTE_ADDRESS  = "remote_address";
     public static final String REMOTE_NUMBER   = "remote_number";

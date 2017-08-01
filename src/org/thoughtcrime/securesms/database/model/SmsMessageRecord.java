@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.Recipients;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -41,7 +40,7 @@ import java.util.List;
 public class SmsMessageRecord extends MessageRecord {
 
   public SmsMessageRecord(Context context, long id,
-                          Body body, Recipients recipients,
+                          Body body, Recipient recipient,
                           Recipient individualRecipient,
                           int recipientDeviceId,
                           long dateSent, long dateReceived,
@@ -50,7 +49,7 @@ public class SmsMessageRecord extends MessageRecord {
                           int status, List<IdentityKeyMismatch> mismatches,
                           int subscriptionId, long expiresIn, long expireStarted)
   {
-    super(context, id, body, recipients, individualRecipient, recipientDeviceId,
+    super(context, id, body, recipient, individualRecipient, recipientDeviceId,
           dateSent, dateReceived, threadId, status, receiptCount, type,
           mismatches, new LinkedList<NetworkFailure>(), subscriptionId,
           expiresIn, expireStarted);

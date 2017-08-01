@@ -8,8 +8,8 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.File;
@@ -34,8 +34,8 @@ public class PlaintextBackupImporter {
       XmlBackup.XmlBackupItem item;
 
       while ((item = backup.getNext()) != null) {
-        Recipients      recipients = RecipientFactory.getRecipientsFor(context, new Address[] {Address.fromExternal(context, item.getAddress())}, false);
-        long            threadId   = threads.getThreadIdFor(recipients);
+        Recipient       recipient  = RecipientFactory.getRecipientFor(context, Address.fromExternal(context, item.getAddress()), false);
+        long            threadId   = threads.getThreadIdFor(recipient);
         SQLiteStatement statement  = db.createInsertStatement(transaction);
 
         if (item.getAddress() == null || item.getAddress().equals("null"))

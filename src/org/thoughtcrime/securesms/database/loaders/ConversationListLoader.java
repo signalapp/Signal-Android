@@ -42,7 +42,7 @@ public class ConversationListLoader extends AbstractCursorLoader {
     if (archivedCount > 0) {
       MatrixCursor switchToArchiveCursor = new MatrixCursor(new String[] {
           ThreadDatabase.ID, ThreadDatabase.DATE, ThreadDatabase.MESSAGE_COUNT,
-          ThreadDatabase.ADDRESSES, ThreadDatabase.SNIPPET, ThreadDatabase.READ,
+          ThreadDatabase.ADDRESS, ThreadDatabase.SNIPPET, ThreadDatabase.READ,
           ThreadDatabase.TYPE, ThreadDatabase.SNIPPET_TYPE, ThreadDatabase.SNIPPET_URI,
           ThreadDatabase.ARCHIVED, ThreadDatabase.STATUS, ThreadDatabase.RECEIPT_COUNT,
           ThreadDatabase.EXPIRES_IN, ThreadDatabase.LAST_SEEN}, 1);

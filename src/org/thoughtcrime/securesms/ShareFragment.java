@@ -28,10 +28,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-
-import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
+import org.thoughtcrime.securesms.recipients.Recipient;
 
 /**
  * A fragment to select and share to open conversations
@@ -73,7 +72,7 @@ public class ShareFragment extends ListFragment implements LoaderManager.LoaderC
     if (v instanceof ShareListItem) {
       ShareListItem headerView = (ShareListItem) v;
 
-      handleCreateConversation(headerView.getThreadId(), headerView.getRecipients(),
+      handleCreateConversation(headerView.getThreadId(), headerView.getRecipient(),
                                headerView.getDistributionType());
     }
   }
@@ -84,8 +83,8 @@ public class ShareFragment extends ListFragment implements LoaderManager.LoaderC
     getLoaderManager().restartLoader(0, null, this);
   }
 
-  private void handleCreateConversation(long threadId, Recipients recipients, int distributionType) {
-    listener.onCreateConversation(threadId, recipients, distributionType);
+  private void handleCreateConversation(long threadId, Recipient recipient, int distributionType) {
+    listener.onCreateConversation(threadId, recipient, distributionType);
   }
 
   @Override
@@ -104,6 +103,6 @@ public class ShareFragment extends ListFragment implements LoaderManager.LoaderC
   }
 
   public interface ConversationSelectedListener {
-    public void onCreateConversation(long threadId, Recipients recipients, int distributionType);
+    public void onCreateConversation(long threadId, Recipient recipient, int distributionType);
   }
 }

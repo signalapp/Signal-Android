@@ -12,12 +12,9 @@ import android.util.Log;
 
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.color.MaterialColor;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.whispersystems.libsignal.util.guava.Optional;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class RecipientPreferenceDatabase extends Database {
 
@@ -26,7 +23,7 @@ public class RecipientPreferenceDatabase extends Database {
 
   private static final String TABLE_NAME              = "recipient_preferences";
   private static final String ID                      = "_id";
-  private static final String ADDRESSES               = "recipient_ids";
+  private static final String ADDRESS                 = "recipient_ids";
   private static final String BLOCK                   = "block";
   private static final String NOTIFICATION            = "notification";
   private static final String VIBRATE                 = "vibrate";
@@ -57,7 +54,7 @@ public class RecipientPreferenceDatabase extends Database {
   public static final String CREATE_TABLE =
       "CREATE TABLE " + TABLE_NAME +
           " (" + ID + " INTEGER PRIMARY KEY, " +
-          ADDRESSES + " TEXT UNIQUE, " +
+          ADDRESS + " TEXT UNIQUE, " +
           BLOCK + " INTEGER DEFAULT 0," +
           NOTIFICATION + " TEXT DEFAULT NULL, " +
           VIBRATE + " INTEGER DEFAULT " + VibrateState.DEFAULT.getId() + ", " +
@@ -74,7 +71,7 @@ public class RecipientPreferenceDatabase extends Database {
   public Cursor getBlocked() {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
 
-    Cursor cursor = database.query(TABLE_NAME, new String[] {ID, ADDRESSES}, BLOCK + " = 1",
+    Cursor cursor = database.query(TABLE_NAME, new String[] {ID, ADDRESS}, BLOCK + " = 1",
                                    null, null, null, null, null);
     cursor.setNotificationUri(context.getContentResolver(), Uri.parse(RECIPIENT_PREFERENCES_URI));
 
@@ -85,14 +82,13 @@ public class RecipientPreferenceDatabase extends Database {
     return new BlockedReader(context, cursor);
   }
 
-  public Optional<RecipientsPreferences> getRecipientsPreferences(@NonNull Address[] addresses) {
+
+  public Optional<RecipientsPreferences> getRecipientsPreferences(@NonNull Address address) {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
     Cursor         cursor   = null;
 
     try {
-      cursor = database.query(TABLE_NAME, null, ADDRESSES + " = ?",
-                              new String[] {Address.toSerializedList(Arrays.asList(addresses), ' ')},
-                              null, null, null);
+      cursor = database.query(TABLE_NAME, null, ADDRESS + " = ?", new String[] {address.serialize()}, null, null, null);
 
       if (cursor != null && cursor.moveToNext()) {
         boolean blocked               = cursor.getInt(cursor.getColumnIndexOrThrow(BLOCK))                == 1;
@@ -128,69 +124,68 @@ public class RecipientPreferenceDatabase extends Database {
     }
   }
 
-  public void setColor(Recipients recipients, MaterialColor color) {
+  public void setColor(Recipient recipient, MaterialColor color) {
     ContentValues values = new ContentValues();
     values.put(COLOR, color.serialize());
-    updateOrInsert(recipients, values);
+    updateOrInsert(recipient, values);
   }
 
-  public void setDefaultSubscriptionId(@NonNull  Recipients recipients, int defaultSubscriptionId) {
+  public void setDefaultSubscriptionId(@NonNull Recipient recipient, int defaultSubscriptionId) {
     ContentValues values = new ContentValues();
     values.put(DEFAULT_SUBSCRIPTION_ID, defaultSubscriptionId);
-    updateOrInsert(recipients, values);
-    EventBus.getDefault().post(new RecipientPreferenceEvent(recipients));
+    updateOrInsert(recipient, values);
+    EventBus.getDefault().post(new RecipientPreferenceEvent(recipient));
   }
 
-  public void setBlocked(Recipients recipients, boolean blocked) {
+  public void setBlocked(Recipient recipient, boolean blocked) {
     ContentValues values = new ContentValues();
     values.put(BLOCK, blocked ? 1 : 0);
-    updateOrInsert(recipients, values);
+    updateOrInsert(recipient, values);
   }
 
-  public void setRingtone(Recipients recipients, @Nullable Uri notification) {
+  public void setRingtone(Recipient recipient, @Nullable Uri notification) {
     ContentValues values = new ContentValues();
     values.put(NOTIFICATION, notification == null ? null : notification.toString());
-    updateOrInsert(recipients, values);
+    updateOrInsert(recipient, values);
   }
 
-  public void setVibrate(Recipients recipients, @NonNull VibrateState enabled) {
+  public void setVibrate(Recipient recipient, @NonNull VibrateState enabled) {
     ContentValues values = new ContentValues();
     values.put(VIBRATE, enabled.getId());
-    updateOrInsert(recipients, values);
+    updateOrInsert(recipient, values);
   }
 
-  public void setMuted(Recipients recipients, long until) {
+  public void setMuted(Recipient recipient, long until) {
     Log.w(TAG, "Setting muted until: " + until);
     ContentValues values = new ContentValues();
     values.put(MUTE_UNTIL, until);
-    updateOrInsert(recipients, values);
+    updateOrInsert(recipient, values);
   }
 
-  public void setSeenInviteReminder(Recipients recipients, boolean seen) {
+  public void setSeenInviteReminder(Recipient recipient, boolean seen) {
     ContentValues values = new ContentValues(1);
     values.put(SEEN_INVITE_REMINDER, seen ? 1 : 0);
-    updateOrInsert(recipients, values);
+    updateOrInsert(recipient, values);
   }
 
-  public void setExpireMessages(Recipients recipients, int expiration) {
-    recipients.setExpireMessages(expiration);
+  public void setExpireMessages(Recipient recipient, int expiration) {
+    recipient.setExpireMessages(expiration);
 
     ContentValues values = new ContentValues(1);
     values.put(EXPIRE_MESSAGES, expiration);
-    updateOrInsert(recipients, values);
+    updateOrInsert(recipient, values);
   }
 
-  private void updateOrInsert(Recipients recipients, ContentValues contentValues) {
+  private void updateOrInsert(Recipient recipient, ContentValues contentValues) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
 
     database.beginTransaction();
 
-    List<Address> addresses           = recipients.getAddressesList();
-    String        serializedAddresses = Address.toSerializedList(addresses, ' ');
-    int           updated             = database.update(TABLE_NAME, contentValues, ADDRESSES + " = ?", new String[]{serializedAddresses});
+    int updated = database.update(TABLE_NAME, contentValues, ADDRESS + " = ?",
+                                  new String[] {recipient.getAddress().serialize()});
 
     if (updated < 1) {
-      contentValues.put(ADDRESSES, serializedAddresses);
+      contentValues.put(ADDRESS, recipient.getAddress().serialize());
       database.insert(TABLE_NAME, null, contentValues);
     }
 
@@ -271,14 +266,12 @@ public class RecipientPreferenceDatabase extends Database {
       this.cursor  = cursor;
     }
 
-    public @NonNull Recipients getCurrent() {
-      String        serialized  = cursor.getString(cursor.getColumnIndexOrThrow(ADDRESSES));
-      List<Address> addressList = Address.fromSerializedList(serialized, ' ');
-
-      return RecipientFactory.getRecipientsFor(context, addressList.toArray(new Address[0]), false);
+    public @NonNull Recipient getCurrent() {
+      String serialized = cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS));
+      return RecipientFactory.getRecipientFor(context, Address.fromSerialized(serialized), false);
     }
 
-    public @Nullable Recipients getNext() {
+    public @Nullable Recipient getNext() {
       if (!cursor.moveToNext()) {
         return null;
       }
@@ -289,14 +282,14 @@ public class RecipientPreferenceDatabase extends Database {
 
   public static class RecipientPreferenceEvent {
 
-    private final Recipients recipients;
+    private final Recipient recipient;
 
-    RecipientPreferenceEvent(Recipients recipients) {
-      this.recipients = recipients;
+    public RecipientPreferenceEvent(Recipient recipients) {
+      this.recipient = recipients;
     }
 
-    public Recipients getRecipients() {
-      return recipients;
+    public Recipient getRecipient() {
+      return recipient;
     }
   }
 }

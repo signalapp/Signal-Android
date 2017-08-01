@@ -69,7 +69,7 @@ import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.task.SnackbarAsyncTask;
@@ -309,8 +309,8 @@ public class ConversationListFragment extends Fragment
                                      getListAdapter().getBatchSelections().size()));
   }
 
-  private void handleCreateConversation(long threadId, Recipients recipients, int distributionType, long lastSeen) {
-    ((ConversationSelectedListener)getActivity()).onCreateConversation(threadId, recipients, distributionType, lastSeen);
+  private void handleCreateConversation(long threadId, Recipient recipient, int distributionType, long lastSeen) {
+    ((ConversationSelectedListener)getActivity()).onCreateConversation(threadId, recipient, distributionType, lastSeen);
   }
 
   @Override
@@ -331,7 +331,7 @@ public class ConversationListFragment extends Fragment
   @Override
   public void onItemClick(ConversationListItem item) {
     if (actionMode == null) {
-      handleCreateConversation(item.getThreadId(), item.getRecipients(),
+      handleCreateConversation(item.getThreadId(), item.getRecipient(),
                                item.getDistributionType(), item.getLastSeen());
     } else {
       ConversationListAdapter adapter = (ConversationListAdapter)list.getAdapter();
@@ -363,7 +363,7 @@ public class ConversationListFragment extends Fragment
   }
 
   public interface ConversationSelectedListener {
-    void onCreateConversation(long threadId, Recipients recipients, int distributionType, long lastSeen);
+    void onCreateConversation(long threadId, Recipient recipient, int distributionType, long lastSeen);
     void onSwitchToArchive();
 }
 

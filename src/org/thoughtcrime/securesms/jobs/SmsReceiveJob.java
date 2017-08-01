@@ -9,13 +9,12 @@ import android.util.Log;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.whispersystems.jobqueue.JobParameters;
@@ -86,8 +85,8 @@ public class SmsReceiveJob extends ContextJob {
 
   private boolean isBlocked(IncomingTextMessage message) {
     if (message.getSender() != null) {
-      Recipients recipients = RecipientFactory.getRecipientsFor(context, new Address[] {message.getSender()}, false);
-      return recipients.isBlocked();
+      Recipient recipient = RecipientFactory.getRecipientFor(context, message.getSender(), false);
+      return recipient.isBlocked();
     }
 
     return false;

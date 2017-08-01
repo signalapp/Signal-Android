@@ -30,8 +30,8 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -231,19 +231,17 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
       if (context == null) return null;
 
       for (String number : numbers) {
-        Recipients recipients = RecipientFactory.getRecipientsFor(context, new Address[] {Address.fromExternal(context, number)}, false);
+        Recipient                       recipient      = RecipientFactory.getRecipientFor(context, Address.fromExternal(context, number), false);
+        Optional<RecipientsPreferences> preferences    = DatabaseFactory.getRecipientPreferenceDatabase(context).getRecipientsPreferences(recipient.getAddress());
+        int                             subscriptionId = preferences.isPresent() ? preferences.get().getDefaultSubscriptionId().or(-1) : -1;
 
-        if (recipients.getPrimaryRecipient() != null) {
-          Optional<RecipientsPreferences> preferences    = DatabaseFactory.getRecipientPreferenceDatabase(context).getRecipientsPreferences(recipients.getAddresses());
-          int                             subscriptionId = preferences.isPresent() ? preferences.get().getDefaultSubscriptionId().or(-1) : -1;
+        MessageSender.send(context, masterSecret, new OutgoingTextMessage(recipient, message, subscriptionId), -1L, true, null);
 
-          MessageSender.send(context, masterSecret, new OutgoingTextMessage(recipients, message, subscriptionId), -1L, true, null);
-
-          if (recipients.getPrimaryRecipient().getContactUri() != null) {
-            DatabaseFactory.getRecipientPreferenceDatabase(context).setSeenInviteReminder(recipients, true);
-          }
+        if (recipient.getContactUri() != null) {
+          DatabaseFactory.getRecipientPreferenceDatabase(context).setSeenInviteReminder(recipient, true);
         }
       }
+
       return null;
     }
 

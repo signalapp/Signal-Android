@@ -41,7 +41,7 @@ import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.mms.SlideDeck;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Conversions;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.LRUCache;
@@ -93,7 +93,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   private final @Nullable ItemClickListener clickListener;
   private final @NonNull  MasterSecret      masterSecret;
   private final @NonNull  Locale            locale;
-  private final @NonNull  Recipients        recipients;
+  private final @NonNull  Recipient         recipient;
   private final @NonNull  MmsSmsDatabase    db;
   private final @NonNull  LayoutInflater    inflater;
   private final @NonNull  Calendar          calendar;
@@ -143,7 +143,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
       this.masterSecret  = null;
       this.locale        = null;
       this.clickListener = null;
-      this.recipients    = null;
+      this.recipient     = null;
       this.inflater      = null;
       this.db            = null;
       this.calendar      = null;
@@ -158,7 +158,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
                              @NonNull Locale locale,
                              @Nullable ItemClickListener clickListener,
                              @Nullable Cursor cursor,
-                             @NonNull Recipients recipients)
+                             @NonNull Recipient recipient)
   {
     super(context, cursor);
 
@@ -166,7 +166,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
       this.masterSecret  = masterSecret;
       this.locale        = locale;
       this.clickListener = clickListener;
-      this.recipients    = recipients;
+      this.recipient     = recipient;
       this.inflater      = LayoutInflater.from(context);
       this.db            = DatabaseFactory.getMmsSmsDatabase(context);
       this.calendar      = Calendar.getInstance();
@@ -188,7 +188,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   @Override
   protected void onBindItemViewHolder(ViewHolder viewHolder, @NonNull MessageRecord messageRecord) {
     long start = System.currentTimeMillis();
-    viewHolder.getView().bind(masterSecret, messageRecord, locale, batchSelected, recipients);
+    viewHolder.getView().bind(masterSecret, messageRecord, locale, batchSelected, recipient);
     Log.w(TAG, "Bind time: " + (System.currentTimeMillis() - start));
   }
 

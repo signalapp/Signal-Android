@@ -47,26 +47,25 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
 
-import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Locale;
 
 /**
  * @author Jake McGinty
  */
-public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity implements LoaderCallbacks<Cursor>, Recipients.RecipientsModifiedListener {
+public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity implements LoaderCallbacks<Cursor>, RecipientModifiedListener {
   private final static String TAG = MessageDetailsActivity.class.getSimpleName();
 
   public final static String MASTER_SECRET_EXTRA  = "master_secret";
@@ -74,7 +73,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   public final static String THREAD_ID_EXTRA      = "thread_id";
   public final static String IS_PUSH_GROUP_EXTRA  = "is_push_group";
   public final static String TYPE_EXTRA           = "type";
-  public final static String ADDRESSES_EXTRA      = "addresses";
+  public final static String ADDRESS_EXTRA        = "address";
 
   private MasterSecret     masterSecret;
   private long             threadId;
@@ -139,10 +138,10 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   private void initializeActionBar() {
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-    Recipients recipients = RecipientFactory.getRecipientsFor(this, Address.fromParcelable(getIntent().getParcelableArrayExtra(ADDRESSES_EXTRA)), true);
-    recipients.addListener(this);
+    Recipient recipient = RecipientFactory.getRecipientFor(this, (Address)getIntent().getParcelableExtra(ADDRESS_EXTRA), true);
+    recipient.addListener(this);
 
-    setActionBarColor(recipients.getColor());
+    setActionBarColor(recipient.getColor());
   }
 
   private void setActionBarColor(MaterialColor color) {
@@ -154,11 +153,11 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   }
 
   @Override
-  public void onModified(final Recipients recipients) {
+  public void onModified(final Recipient recipient) {
     Util.runOnMain(new Runnable() {
       @Override
       public void run() {
-        setActionBarColor(recipients.getColor());
+        setActionBarColor(recipient.getColor());
       }
     });
   }
@@ -243,7 +242,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     });
   }
 
-  private void updateRecipients(MessageRecord messageRecord, Recipients recipients) {
+  private void updateRecipients(MessageRecord messageRecord, Recipient recipient, List<Recipient> recipients) {
     final int toFromRes;
     if (messageRecord.isMms() && !messageRecord.isPush() && !messageRecord.isOutgoing()) {
       toFromRes = R.string.message_details_header__with;
@@ -254,7 +253,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     }
     toFrom.setText(toFromRes);
     conversationItem.bind(masterSecret, messageRecord, dynamicLanguage.getCurrentLocale(),
-                         new HashSet<MessageRecord>(), recipients);
+                         new HashSet<MessageRecord>(), recipient);
     recipientsList.setAdapter(new MessageDetailsRecipientAdapter(this, masterSecret, messageRecord,
                                                                  recipients, isPushGroup));
   }
@@ -321,7 +320,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     return false;
   }
 
-  private class MessageRecipientAsyncTask extends AsyncTask<Void,Void,Recipients> {
+  private class MessageRecipientAsyncTask extends AsyncTask<Void,Void,List<Recipient>> {
     private WeakReference<Context> weakContext;
     private MessageRecord          messageRecord;
 
@@ -335,41 +334,27 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     }
 
     @Override
-    public Recipients doInBackground(Void... voids) {
+    public List<Recipient> doInBackground(Void... voids) {
       Context context = getContext();
       if (context == null) {
         Log.w(TAG, "associated context is destroyed, finishing early");
         return null;
       }
 
-      Recipients recipients;
+      List<Recipient> recipients = new LinkedList<>();
 
-      final Recipients intermediaryRecipients;
-      if (messageRecord.isMms()) {
-        intermediaryRecipients = DatabaseFactory.getMmsAddressDatabase(context).getRecipientsForId(messageRecord.getId());
-      } else {
-        intermediaryRecipients = messageRecord.getRecipients();
-      }
-
-      if (!intermediaryRecipients.isGroupRecipient()) {
+      if (!messageRecord.getRecipient().isGroupRecipient()) {
         Log.w(TAG, "Recipient is not a group, resolving members immediately.");
-        recipients = intermediaryRecipients;
+        recipients.add(messageRecord.getRecipient());
       } else {
-        try {
-          Address groupId = intermediaryRecipients.getPrimaryRecipient().getAddress();
-          recipients = DatabaseFactory.getGroupDatabase(context)
-                                      .getGroupMembers(GroupUtil.getDecodedId(groupId.toGroupString()), false);
-        } catch (IOException e) {
-          Log.w(TAG, e);
-          recipients = RecipientFactory.getRecipientsFor(MessageDetailsActivity.this, new LinkedList<Recipient>(), false);
-        }
+        recipients.addAll(DatabaseFactory.getGroupDatabase(context).getGroupMembers(messageRecord.getRecipient().getAddress().toGroupString(), false));
       }
 
       return recipients;
     }
 
     @Override
-    public void onPostExecute(Recipients recipients) {
+    public void onPostExecute(List<Recipient> recipients) {
       if (getContext() == null) {
         Log.w(TAG, "AsyncTask finished with a destroyed context, leaving early.");
         return;
@@ -377,7 +362,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
 
       inflateMessageViewIfAbsent(messageRecord);
 
-      updateRecipients(messageRecord, recipients);
+      updateRecipients(messageRecord, messageRecord.getRecipient(), recipients);
       if (messageRecord.isFailed()) {
         errorText.setVisibility(View.VISIBLE);
         metadataContainer.setVisibility(View.GONE);

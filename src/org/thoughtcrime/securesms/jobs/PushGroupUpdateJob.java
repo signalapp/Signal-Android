@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule.SignalMessageSenderFactory;
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -59,7 +60,7 @@ public class PushGroupUpdateJob extends ContextJob implements InjectableType {
   public void onRun() throws IOException, UntrustedIdentityException {
     SignalServiceMessageSender messageSender = messageSenderFactory.create();
     GroupDatabase              groupDatabase = DatabaseFactory.getGroupDatabase(context);
-    GroupRecord                record        = groupDatabase.getGroup(groupId);
+    GroupRecord                record        = groupDatabase.getGroup(GroupUtil.getEncodedId(groupId, false));
     SignalServiceAttachment    avatar        = null;
 
     if (record == null) {

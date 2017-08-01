@@ -25,7 +25,8 @@ import android.widget.RelativeLayout;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.FromTextView;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 
 /**
  * A simple view to show the recipients of an open conversation
@@ -33,12 +34,12 @@ import org.thoughtcrime.securesms.recipients.Recipients;
  * @author Jake McGinty
  */
 public class ShareListItem extends RelativeLayout
-                        implements Recipients.RecipientsModifiedListener
+                        implements RecipientModifiedListener
 {
   private final static String TAG = ShareListItem.class.getSimpleName();
 
   private Context      context;
-  private Recipients   recipients;
+  private Recipient    recipient;
   private long         threadId;
   private FromTextView fromView;
 
@@ -59,24 +60,25 @@ public class ShareListItem extends RelativeLayout
 
   @Override
   protected void onFinishInflate() {
+    super.onFinishInflate();
     this.fromView          = (FromTextView)    findViewById(R.id.from);
     this.contactPhotoImage = (AvatarImageView) findViewById(R.id.contact_photo_image);
   }
 
   public void set(ThreadRecord thread) {
-    this.recipients       = thread.getRecipients();
+    this.recipient        = thread.getRecipient();
     this.threadId         = thread.getThreadId();
     this.distributionType = thread.getDistributionType();
 
-    this.recipients.addListener(this);
-    this.fromView.setText(recipients);
+    this.recipient.addListener(this);
+    this.fromView.setText(recipient);
 
     setBackground();
-    this.contactPhotoImage.setAvatar(this.recipients, false);
+    this.contactPhotoImage.setAvatar(this.recipient, false);
   }
 
   public void unbind() {
-    if (this.recipients != null) this.recipients.removeListener(this);
+    if (this.recipient != null) this.recipient.removeListener(this);
   }
 
   private void setBackground() {
@@ -88,8 +90,8 @@ public class ShareListItem extends RelativeLayout
     drawables.recycle();
   }
 
-  public Recipients getRecipients() {
-    return recipients;
+  public Recipient getRecipient() {
+    return recipient;
   }
 
   public long getThreadId() {
@@ -101,12 +103,12 @@ public class ShareListItem extends RelativeLayout
   }
 
   @Override
-  public void onModified(final Recipients recipients) {
+  public void onModified(final Recipient recipient) {
     handler.post(new Runnable() {
       @Override
       public void run() {
-        fromView.setText(recipients);
-        contactPhotoImage.setAvatar(recipients, false);
+        fromView.setText(recipient);
+        contactPhotoImage.setAvatar(recipient, false);
       }
     });
   }

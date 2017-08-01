@@ -20,12 +20,10 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.loaders.BlockedContactsLoader;
 import org.thoughtcrime.securesms.preferences.BlockedContactListItem;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-
-import java.util.List;
 
 public class BlockedContactsActivity extends PassphraseRequiredActionBarActivity {
 
@@ -106,9 +104,9 @@ public class BlockedContactsActivity extends PassphraseRequiredActionBarActivity
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-      Recipients recipients = ((BlockedContactListItem)view).getRecipients();
-      Intent     intent     = new Intent(getActivity(), RecipientPreferenceActivity.class);
-      intent.putExtra(RecipientPreferenceActivity.ADDRESSES_EXTRA, recipients.getAddresses());
+      Recipient recipient = ((BlockedContactListItem)view).getRecipient();
+      Intent    intent    = new Intent(getActivity(), RecipientPreferenceActivity.class);
+      intent.putExtra(RecipientPreferenceActivity.ADDRESS_EXTRA, recipient.getAddress());
 
       startActivity(intent);
     }
@@ -127,12 +125,10 @@ public class BlockedContactsActivity extends PassphraseRequiredActionBarActivity
 
       @Override
       public void bindView(View view, Context context, Cursor cursor) {
-        String        addressesConcat = cursor.getString(1);
-        List<Address> addresses       = Address.fromSerializedList(addressesConcat, ' ');
+        String    address   = cursor.getString(1);
+        Recipient recipient = RecipientFactory.getRecipientFor(context, Address.fromSerialized(address), true);
 
-        Recipients recipients   = RecipientFactory.getRecipientsFor(context, addresses.toArray(new Address[0]), true);
-
-        ((BlockedContactListItem) view).set(recipients);
+        ((BlockedContactListItem) view).set(recipient);
       }
     }
 

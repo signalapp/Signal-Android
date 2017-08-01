@@ -24,7 +24,7 @@ import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.IncomingJoinedMessage;
 import org.thoughtcrime.securesms.util.DirectoryHelper.UserCapabilities.Capability;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -123,12 +123,12 @@ public class DirectoryHelper {
 
   public static UserCapabilities refreshDirectoryFor(@NonNull  Context context,
                                                      @Nullable MasterSecret masterSecret,
-                                                     @NonNull  Recipients recipients)
+                                                     @NonNull  Recipient recipient)
       throws IOException
   {
     TextSecureDirectory           directory      = TextSecureDirectory.getInstance(context);
     SignalServiceAccountManager   accountManager = AccountManagerFactory.createManager(context);
-    String                        number         = recipients.getPrimaryRecipient().getAddress().serialize();
+    String                        number         = recipient.getAddress().serialize();
     Optional<ContactTokenDetails> details        = accountManager.getContact(number);
 
     if (details.isPresent()) {
@@ -156,10 +156,10 @@ public class DirectoryHelper {
   }
 
   public static @NonNull UserCapabilities getUserCapabilities(@NonNull Context context,
-                                                              @Nullable Recipients recipients)
+                                                              @Nullable Recipient recipient)
   {
     try {
-      if (recipients == null) {
+      if (recipient == null) {
         return UserCapabilities.UNSUPPORTED;
       }
 
@@ -167,15 +167,15 @@ public class DirectoryHelper {
         return UserCapabilities.UNSUPPORTED;
       }
 
-      if (!recipients.isSingleRecipient()) {
+      if (recipient.isMmsGroupRecipient()) {
         return UserCapabilities.UNSUPPORTED;
       }
 
-      if (recipients.isGroupRecipient()) {
+      if (recipient.isPushGroupRecipient()) {
         return new UserCapabilities(Capability.SUPPORTED, Capability.UNSUPPORTED, Capability.UNSUPPORTED);
       }
 
-      final Address address = recipients.getPrimaryRecipient().getAddress();
+      final Address address = recipient.getAddress();
 
       boolean secureText  = TextSecureDirectory.getInstance(context).isSecureTextSupported(address);
 

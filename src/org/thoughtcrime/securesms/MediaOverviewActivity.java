@@ -24,7 +24,6 @@ import android.database.Cursor;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
@@ -43,8 +42,9 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.AbstractCursorLoader;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
@@ -59,7 +59,7 @@ import java.util.List;
 public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity implements LoaderManager.LoaderCallbacks<Cursor> {
   private final static String TAG = MediaOverviewActivity.class.getSimpleName();
 
-  public static final String ADDRESSES_EXTRA = "addresses";
+  public static final String ADDRESS_EXTRA   = "address";
   public static final String THREAD_ID_EXTRA = "thread_id";
 
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -69,7 +69,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
   private RecyclerView      gridView;
   private GridLayoutManager gridManager;
   private TextView          noImages;
-  private Recipients        recipients;
+  private Recipient         recipient;
   private long              threadId;
 
   @Override
@@ -114,9 +114,9 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
   }
 
   private void initializeActionBar() {
-    getSupportActionBar().setTitle(recipients == null
+    getSupportActionBar().setTitle(recipient == null
                                    ? getString(R.string.AndroidManifest__all_media)
-                                   : getString(R.string.AndroidManifest__all_media_named, recipients.toShortString()));
+                                   : getString(R.string.AndroidManifest__all_media_named, recipient.toShortString()));
   }
 
   @Override
@@ -133,20 +133,20 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
     gridView.setLayoutManager(gridManager);
     gridView.setHasFixedSize(true);
 
-    Parcelable[] parcelables = getIntent().getParcelableArrayExtra(ADDRESSES_EXTRA);
+    Address address = getIntent().getParcelableExtra(ADDRESS_EXTRA);
 
-    if (parcelables != null) {
-      recipients = RecipientFactory.getRecipientsFor(this, Address.fromParcelable(parcelables), true);
+    if (address != null) {
+      recipient = RecipientFactory.getRecipientFor(this, address, true);
     } else if (threadId > -1) {
-      recipients = DatabaseFactory.getThreadDatabase(this).getRecipientsForThreadId(threadId);
+      recipient = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadId);
     } else {
-      recipients = null;
+      recipient = null;
     }
 
-    if (recipients != null) {
-      recipients.addListener(new Recipients.RecipientsModifiedListener() {
+    if (recipient != null) {
+      recipient.addListener(new RecipientModifiedListener() {
         @Override
-        public void onModified(Recipients recipients) {
+        public void onModified(Recipient recipients) {
           initializeActionBar();
         }
       });

@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.AttachmentStreamUriLoader.AttachmentModel;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Hex;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
@@ -54,8 +55,9 @@ public class AvatarDownloadJob extends MasterSecretJob implements InjectableType
 
   @Override
   public void onRun(MasterSecret masterSecret) throws IOException {
+    String                    encodeId   = GroupUtil.getEncodedId(groupId, false);
     GroupDatabase             database   = DatabaseFactory.getGroupDatabase(context);
-    GroupDatabase.GroupRecord record     = database.getGroup(groupId);
+    GroupDatabase.GroupRecord record     = database.getGroup(encodeId);
     File                      attachment = null;
 
     try {
@@ -82,7 +84,7 @@ public class AvatarDownloadJob extends MasterSecretJob implements InjectableType
         InputStream                    inputStream = receiver.retrieveAttachment(pointer, attachment, MAX_AVATAR_SIZE);
         Bitmap                         avatar      = BitmapUtil.createScaledBitmap(context, new AttachmentModel(attachment, key), 500, 500);
 
-        database.updateAvatar(groupId, avatar);
+        database.updateAvatar(encodeId, avatar);
         inputStream.close();
       }
     } catch (BitmapDecodingException | NonSuccessfulResponseCodeException | InvalidMessageException e) {

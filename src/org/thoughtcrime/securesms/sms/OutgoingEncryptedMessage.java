@@ -1,11 +1,11 @@
 package org.thoughtcrime.securesms.sms;
 
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.recipients.Recipient;
 
 public class OutgoingEncryptedMessage extends OutgoingTextMessage {
 
-  public OutgoingEncryptedMessage(Recipients recipients, String body, long expiresIn) {
-    super(recipients, body, expiresIn, -1);
+  public OutgoingEncryptedMessage(Recipient recipient, String body, long expiresIn) {
+    super(recipient, body, expiresIn, -1);
   }
 
   private OutgoingEncryptedMessage(OutgoingEncryptedMessage base, String body) {

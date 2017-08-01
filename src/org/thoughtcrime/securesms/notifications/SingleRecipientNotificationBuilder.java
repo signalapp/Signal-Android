@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.preferences.NotificationPrivacyPreference;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -57,16 +56,16 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     setCategory(NotificationCompat.CATEGORY_MESSAGE);
   }
 
-  public void setThread(@NonNull Recipients recipients) {
+  public void setThread(@NonNull Recipient recipient) {
     if (privacy.isDisplayContact()) {
-      setContentTitle(recipients.toShortString());
+      setContentTitle(recipient.toShortString());
 
-      if (recipients.isSingleRecipient() && recipients.getPrimaryRecipient().getContactUri() != null) {
-        addPerson(recipients.getPrimaryRecipient().getContactUri().toString());
+      if (recipient.getContactUri() != null) {
+        addPerson(recipient.getContactUri().toString());
       }
 
-      setLargeIcon(recipients.getContactPhoto()
-                            .asDrawable(context, recipients.getColor()
+      setLargeIcon(recipient.getContactPhoto()
+                            .asDrawable(context, recipient.getColor()
                                                           .toConversationColor(context)));
     } else {
       setContentTitle(context.getString(R.string.SingleRecipientNotificationBuilder_signal));
@@ -80,14 +79,14 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     setNumber(messageCount);
   }
 
-  public void setPrimaryMessageBody(@NonNull  Recipients threadRecipients,
+  public void setPrimaryMessageBody(@NonNull  Recipient threadRecipients,
                                     @NonNull  Recipient individualRecipient,
                                     @NonNull  CharSequence message,
                                     @Nullable SlideDeck slideDeck)
   {
     SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
 
-    if (privacy.isDisplayContact() && (threadRecipients.isGroupRecipient() || !threadRecipients.isSingleRecipient())) {
+    if (privacy.isDisplayContact() && threadRecipients.isGroupRecipient()) {
       stringBuilder.append(Util.getBoldedString(individualRecipient.toShortString() + ": "));
     }
 
@@ -162,13 +161,13 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     }
   }
 
-  public void addMessageBody(@NonNull Recipients threadRecipients,
+  public void addMessageBody(@NonNull Recipient threadRecipient,
                              @NonNull Recipient individualRecipient,
                              @Nullable CharSequence messageBody)
   {
     SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
 
-    if (privacy.isDisplayContact() && (threadRecipients.isGroupRecipient() || !threadRecipients.isSingleRecipient())) {
+    if (privacy.isDisplayContact() && threadRecipient.isGroupRecipient()) {
       stringBuilder.append(Util.getBoldedString(individualRecipient.toShortString() + ": "));
     }
 

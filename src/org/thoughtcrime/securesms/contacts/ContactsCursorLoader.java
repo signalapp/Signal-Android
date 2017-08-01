@@ -29,8 +29,8 @@ import android.util.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DirectoryHelper.UserCapabilities.Capability;
 import org.thoughtcrime.securesms.util.NumberUtil;
@@ -103,12 +103,10 @@ public class ContactsCursorLoader extends CursorLoader {
                                                                 ContactsDatabase.LABEL_COLUMN,
                                                                 ContactsDatabase.CONTACT_TYPE_COLUMN});
       while (cursor.moveToNext()) {
-        final String     number     = cursor.getString(cursor.getColumnIndexOrThrow(ContactsDatabase.NUMBER_COLUMN));
-        final Recipients recipients = RecipientFactory.getRecipientsFor(getContext(), new Address[]{Address.fromExternal(getContext(), number)}, true);
+        final String    number    = cursor.getString(cursor.getColumnIndexOrThrow(ContactsDatabase.NUMBER_COLUMN));
+        final Recipient recipient = RecipientFactory.getRecipientFor(getContext(), Address.fromExternal(getContext(), number), true);
 
-        if (DirectoryHelper.getUserCapabilities(getContext(), recipients)
-                           .getTextCapability() != Capability.SUPPORTED)
-        {
+        if (DirectoryHelper.getUserCapabilities(getContext(), recipient).getTextCapability() != Capability.SUPPORTED) {
           matrix.addRow(new Object[]{cursor.getLong(cursor.getColumnIndexOrThrow(ContactsDatabase.ID_COLUMN)),
                                      cursor.getString(cursor.getColumnIndexOrThrow(ContactsDatabase.NAME_COLUMN)),
                                      number,

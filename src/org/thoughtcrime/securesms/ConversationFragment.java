@@ -61,8 +61,8 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.Slide;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
@@ -91,7 +91,7 @@ public class ConversationFragment extends Fragment
   private ConversationFragmentListener listener;
 
   private MasterSecret                masterSecret;
-  private Recipients                  recipients;
+  private Recipient                   recipient;
   private long                        threadId;
   private long                        lastSeen;
   private boolean                     firstLoad;
@@ -184,7 +184,7 @@ public class ConversationFragment extends Fragment
   }
 
   private void initializeResources() {
-    this.recipients     = RecipientFactory.getRecipientsFor(getActivity(), Address.fromParcelable(getActivity().getIntent().getParcelableArrayExtra(ConversationActivity.ADDRESSES_EXTRA)), true);
+    this.recipient      = RecipientFactory.getRecipientFor(getActivity(), (Address)getActivity().getIntent().getParcelableExtra(ConversationActivity.ADDRESS_EXTRA), true);
     this.threadId       = this.getActivity().getIntent().getLongExtra(ConversationActivity.THREAD_ID_EXTRA, -1);
     this.lastSeen       = this.getActivity().getIntent().getLongExtra(ConversationActivity.LAST_SEEN_EXTRA, -1);
     this.firstLoad      = true;
@@ -194,8 +194,8 @@ public class ConversationFragment extends Fragment
   }
 
   private void initializeListAdapter() {
-    if (this.recipients != null && this.threadId != -1) {
-      ConversationAdapter adapter = new ConversationAdapter(getActivity(), masterSecret, locale, selectionClickListener, null, this.recipients);
+    if (this.recipient != null && this.threadId != -1) {
+      ConversationAdapter adapter = new ConversationAdapter(getActivity(), masterSecret, locale, selectionClickListener, null, this.recipient);
       list.setAdapter(adapter);
       list.addItemDecoration(new StickyHeaderDecoration(adapter, false, false));
 
@@ -256,8 +256,8 @@ public class ConversationFragment extends Fragment
     else                            throw new AssertionError();
   }
 
-  public void reload(Recipients recipients, long threadId) {
-    this.recipients = recipients;
+  public void reload(Recipient recipient, long threadId) {
+    this.recipient = recipient;
 
     if (this.threadId != threadId) {
       this.threadId = threadId;
@@ -359,8 +359,8 @@ public class ConversationFragment extends Fragment
     intent.putExtra(MessageDetailsActivity.MESSAGE_ID_EXTRA, message.getId());
     intent.putExtra(MessageDetailsActivity.THREAD_ID_EXTRA, threadId);
     intent.putExtra(MessageDetailsActivity.TYPE_EXTRA, message.isMms() ? MmsSmsDatabase.MMS_TRANSPORT : MmsSmsDatabase.SMS_TRANSPORT);
-    intent.putExtra(MessageDetailsActivity.ADDRESSES_EXTRA, recipients.getAddresses());
-    intent.putExtra(MessageDetailsActivity.IS_PUSH_GROUP_EXTRA, (!recipients.isSingleRecipient() || recipients.isGroupRecipient()) && message.isPush());
+    intent.putExtra(MessageDetailsActivity.ADDRESS_EXTRA, recipient.getAddress());
+    intent.putExtra(MessageDetailsActivity.IS_PUSH_GROUP_EXTRA, recipient.isGroupRecipient() && message.isPush());
     startActivity(intent);
   }
 

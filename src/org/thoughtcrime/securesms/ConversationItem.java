@@ -70,7 +70,7 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -97,7 +97,7 @@ import java.util.Set;
  */
 
 public class ConversationItem extends LinearLayout
-    implements Recipient.RecipientModifiedListener, Recipients.RecipientsModifiedListener, BindableConversationItem
+    implements RecipientModifiedListener, BindableConversationItem
 {
   private final static String TAG = ConversationItem.class.getSimpleName();
 
@@ -119,7 +119,7 @@ public class ConversationItem extends LinearLayout
   private AlertView          alertView;
 
   private @NonNull  Set<MessageRecord>  batchSelected = new HashSet<>();
-  private @Nullable Recipients          conversationRecipients;
+  private @Nullable Recipient           conversationRecipient;
   private @NonNull  Stub<ThumbnailView> mediaThumbnailStub;
   private @NonNull  Stub<AudioView>     audioViewStub;
   private @NonNull  Stub<DocumentView>  documentViewStub;
@@ -180,18 +180,18 @@ public class ConversationItem extends LinearLayout
                    @NonNull MessageRecord      messageRecord,
                    @NonNull Locale             locale,
                    @NonNull Set<MessageRecord> batchSelected,
-                   @NonNull Recipients         conversationRecipients)
+                   @NonNull Recipient          conversationRecipient)
   {
     this.masterSecret           = masterSecret;
     this.messageRecord          = messageRecord;
     this.locale                 = locale;
     this.batchSelected          = batchSelected;
-    this.conversationRecipients = conversationRecipients;
-    this.groupThread            = !conversationRecipients.isSingleRecipient() || conversationRecipients.isGroupRecipient();
+    this.conversationRecipient  = conversationRecipient;
+    this.groupThread            = conversationRecipient.isGroupRecipient();
     this.recipient              = messageRecord.getIndividualRecipient();
 
     this.recipient.addListener(this);
-    this.conversationRecipients.addListener(this);
+    this.conversationRecipient.addListener(this);
 
     setMediaAttributes(messageRecord);
     setInteractionState(messageRecord);
@@ -241,35 +241,35 @@ public class ConversationItem extends LinearLayout
     }
 
     if (audioViewStub.resolved()) {
-      setAudioViewTint(messageRecord, conversationRecipients);
+      setAudioViewTint(messageRecord, conversationRecipient);
     }
 
     if (documentViewStub.resolved()) {
-      setDocumentViewTint(messageRecord, conversationRecipients);
+      setDocumentViewTint(messageRecord, conversationRecipient);
     }
   }
 
-  private void setAudioViewTint(MessageRecord messageRecord, Recipients recipients) {
+  private void setAudioViewTint(MessageRecord messageRecord, Recipient recipient) {
     if (messageRecord.isOutgoing()) {
       if (DynamicTheme.LIGHT.equals(TextSecurePreferences.getTheme(context))) {
-        audioViewStub.get().setTint(recipients.getColor().toConversationColor(context), defaultBubbleColor);
+        audioViewStub.get().setTint(recipient.getColor().toConversationColor(context), defaultBubbleColor);
       } else {
         audioViewStub.get().setTint(Color.WHITE, defaultBubbleColor);
       }
     } else {
-      audioViewStub.get().setTint(Color.WHITE, recipients.getColor().toConversationColor(context));
+      audioViewStub.get().setTint(Color.WHITE, recipient.getColor().toConversationColor(context));
     }
   }
 
-  private void setDocumentViewTint(MessageRecord messageRecord, Recipients recipients) {
+  private void setDocumentViewTint(MessageRecord messageRecord, Recipient recipient) {
     if (messageRecord.isOutgoing()) {
       if (DynamicTheme.LIGHT.equals(TextSecurePreferences.getTheme(context))) {
-        documentViewStub.get().setTint(recipients.getColor().toConversationColor(context), defaultBubbleColor);
+        documentViewStub.get().setTint(recipient.getColor().toConversationColor(context), defaultBubbleColor);
       } else {
         documentViewStub.get().setTint(Color.WHITE, defaultBubbleColor);
       }
     } else {
-      documentViewStub.get().setTint(Color.WHITE, recipients.getColor().toConversationColor(context));
+      documentViewStub.get().setTint(Color.WHITE, recipient.getColor().toConversationColor(context));
     }
   }
 
@@ -535,16 +535,7 @@ public class ConversationItem extends LinearLayout
         setBubbleState(messageRecord, recipient);
         setContactPhoto(recipient);
         setGroupMessageStatus(messageRecord, recipient);
-      }
-    });
-  }
-
-  @Override
-  public void onModified(final Recipients recipients) {
-    Util.runOnMain(new Runnable() {
-      @Override
-      public void run() {
-        setAudioViewTint(messageRecord, recipients);
+        setAudioViewTint(messageRecord, recipient);
       }
     });
   }
@@ -635,7 +626,7 @@ public class ConversationItem extends LinearLayout
         intent.putExtra(MessageDetailsActivity.THREAD_ID_EXTRA, messageRecord.getThreadId());
         intent.putExtra(MessageDetailsActivity.TYPE_EXTRA, messageRecord.isMms() ? MmsSmsDatabase.MMS_TRANSPORT : MmsSmsDatabase.SMS_TRANSPORT);
         intent.putExtra(MessageDetailsActivity.IS_PUSH_GROUP_EXTRA, groupThread && messageRecord.isPush());
-        intent.putExtra(MessageDetailsActivity.ADDRESSES_EXTRA, conversationRecipients.getAddresses());
+        intent.putExtra(MessageDetailsActivity.ADDRESS_EXTRA, conversationRecipient.getAddress());
         context.startActivity(intent);
       } else if (!messageRecord.isOutgoing() && messageRecord.isIdentityMismatchFailure()) {
         handleApproveIdentity();

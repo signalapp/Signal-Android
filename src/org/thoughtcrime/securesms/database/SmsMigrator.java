@@ -22,16 +22,19 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteStatement;
 import android.net.Uri;
-import android.text.TextUtils;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 public class SmsMigrator {
@@ -140,21 +143,21 @@ public class SmsMigrator {
     }
   }
 
-  private static Recipients getOurRecipients(Context context, String theirRecipients) {
-    StringTokenizer tokenizer   = new StringTokenizer(theirRecipients.trim(), " ");
-    List<Address>   addressList = new LinkedList<>();
+  private static @Nullable Set<Recipient> getOurRecipients(Context context, String theirRecipients) {
+    StringTokenizer tokenizer     = new StringTokenizer(theirRecipients.trim(), " ");
+    Set<Recipient>  recipientList = new HashSet<>();
 
     while (tokenizer.hasMoreTokens()) {
       String theirRecipientId = tokenizer.nextToken();
       String address          = getTheirCanonicalAddress(context, theirRecipientId);
 
       if (address != null) {
-        addressList.add(Address.fromExternal(context, address));
+        recipientList.add(RecipientFactory.getRecipientFor(context, Address.fromExternal(context, address), true));
       }
     }
 
-    if (addressList.isEmpty()) return null;
-    else                       return RecipientFactory.getRecipientsFor(context, addressList.toArray(new Address[0]), true);
+    if (recipientList.isEmpty()) return null;
+    else                         return recipientList;
   }
 
   private static String encrypt(MasterSecret masterSecret, String body)
@@ -221,16 +224,30 @@ public class SmsMigrator {
       cursor            = context.getContentResolver().query(threadListUri, null, null, null, "date ASC");
 
       while (cursor != null && cursor.moveToNext()) {
-        long   theirThreadId         = cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
-        String theirRecipients       = cursor.getString(cursor.getColumnIndexOrThrow("recipient_ids"));
-        Recipients ourRecipients     = getOurRecipients(context, theirRecipients);
-        ProgressDescription progress = new ProgressDescription(cursor.getCount(), cursor.getPosition(), 100, 0);
+        long                theirThreadId   = cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
+        String              theirRecipients = cursor.getString(cursor.getColumnIndexOrThrow("recipient_ids"));
+        Set<Recipient>     ourRecipients   = getOurRecipients(context, theirRecipients);
+        ProgressDescription progress        = new ProgressDescription(cursor.getCount(), cursor.getPosition(), 100, 0);
 
         if (ourRecipients != null) {
-          long ourThreadId = threadDatabase.getThreadIdFor(ourRecipients);
-          migrateConversation(context, masterSecret,
-                              listener, progress,
-                              theirThreadId, ourThreadId);
+          if (ourRecipients.size() == 1) {
+            long ourThreadId = threadDatabase.getThreadIdFor(ourRecipients.iterator().next());
+            migrateConversation(context, masterSecret, listener, progress, theirThreadId, ourThreadId);
+          } else if (ourRecipients.size() > 1) {
+            ourRecipients.add(RecipientFactory.getRecipientFor(context, Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)), true));
+
+            List<Address> memberAddresses = new LinkedList<>();
+
+            for (Recipient recipient : ourRecipients) {
+              memberAddresses.add(recipient.getAddress());
+            }
+
+            String    ourGroupId        = DatabaseFactory.getGroupDatabase(context).getOrCreateGroupForMembers(memberAddresses, true);
+            Recipient ourGroupRecipient = RecipientFactory.getRecipientFor(context, Address.fromSerialized(ourGroupId), true);
+            long      ourThreadId       = threadDatabase.getThreadIdFor(ourGroupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
+
+            migrateConversation(context, masterSecret, listener, progress, theirThreadId, ourThreadId);
+          }
         }
 
         progress.incrementPrimaryComplete();

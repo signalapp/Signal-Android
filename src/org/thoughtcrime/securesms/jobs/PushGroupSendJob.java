@@ -21,7 +21,6 @@ import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.jobqueue.JobParameters;
@@ -138,8 +137,8 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       EncapsulatedExceptions, UndeliverableMessageException
   {
     SignalServiceMessageSender    messageSender     = messageSenderFactory.create();
-    byte[]                        groupId           = GroupUtil.getDecodedId(message.getRecipients().getPrimaryRecipient().getAddress().toGroupString());
-    Recipients                    recipients        = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, false);
+    String                        groupId           = message.getRecipient().getAddress().toGroupString();
+    List<Recipient>               recipients        = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, false);
     MediaConstraints              mediaConstraints  = MediaConstraints.getPushMediaConstraints();
     List<Attachment>              scaledAttachments = scaleAttachments(masterSecret, mediaConstraints, message.getAttachments());
     List<SignalServiceAttachment> attachmentStreams = getAttachmentsFor(masterSecret, scaledAttachments);
@@ -154,12 +153,12 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       GroupContext              groupContext     = groupMessage.getGroupContext();
       SignalServiceAttachment   avatar           = attachmentStreams.isEmpty() ? null : attachmentStreams.get(0);
       SignalServiceGroup.Type   type             = groupMessage.isGroupQuit() ? SignalServiceGroup.Type.QUIT : SignalServiceGroup.Type.UPDATE;
-      SignalServiceGroup        group            = new SignalServiceGroup(type, groupId, groupContext.getName(), groupContext.getMembersList(), avatar);
+      SignalServiceGroup        group            = new SignalServiceGroup(type, GroupUtil.getDecodedId(groupId), groupContext.getName(), groupContext.getMembersList(), avatar);
       SignalServiceDataMessage  groupDataMessage = new SignalServiceDataMessage(message.getSentTimeMillis(), group, null, null);
 
       messageSender.sendMessage(addresses, groupDataMessage);
     } else {
-      SignalServiceGroup       group        = new SignalServiceGroup(groupId);
+      SignalServiceGroup       group        = new SignalServiceGroup(GroupUtil.getDecodedId(groupId));
       SignalServiceDataMessage groupMessage = new SignalServiceDataMessage(message.getSentTimeMillis(), group,
                                                                            attachmentStreams, message.getBody(), false,
                                                                            (int)(message.getExpiresIn() / 1000),
@@ -175,10 +174,10 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     return addresses;
   }
 
-  private List<SignalServiceAddress> getPushAddresses(Recipients recipients) {
+  private List<SignalServiceAddress> getPushAddresses(List<Recipient> recipients) {
     List<SignalServiceAddress> addresses = new LinkedList<>();
 
-    for (Recipient recipient : recipients.getRecipientsList()) {
+    for (Recipient recipient : recipients) {
       addresses.add(getPushAddress(recipient.getAddress()));
     }
 

@@ -78,13 +78,8 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
   @Override
   public long getItemId(@NonNull Cursor cursor) {
     ThreadRecord  record  = getThreadRecord(cursor);
-    StringBuilder builder = new StringBuilder("" + record.getThreadId());
 
-    for (Address address : record.getRecipients().getAddresses()) {
-      builder.append("::").append(address.serialize());
-    }
-
-    return Conversions.byteArrayToLong(digest.digest(builder.toString().getBytes()));
+    return Conversions.byteArrayToLong(digest.digest(record.getRecipient().getAddress().serialize().getBytes()));
   }
 
   public ConversationListAdapter(@NonNull Context context,

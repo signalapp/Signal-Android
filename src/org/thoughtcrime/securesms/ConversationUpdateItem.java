@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
@@ -33,7 +33,7 @@ import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 public class ConversationUpdateItem extends LinearLayout
-    implements Recipients.RecipientsModifiedListener, Recipient.RecipientModifiedListener, BindableConversationItem
+    implements RecipientModifiedListener, BindableConversationItem
 {
   private static final String TAG = ConversationUpdateItem.class.getSimpleName();
 
@@ -71,7 +71,7 @@ public class ConversationUpdateItem extends LinearLayout
                    @NonNull MessageRecord messageRecord,
                    @NonNull Locale locale,
                    @NonNull Set<MessageRecord> batchSelected,
-                   @NonNull Recipients conversationRecipients)
+                   @NonNull Recipient conversationRecipient)
   {
     this.masterSecret  = masterSecret;
     this.batchSelected = batchSelected;
@@ -167,12 +167,7 @@ public class ConversationUpdateItem extends LinearLayout
     body.setText(messageRecord.getDisplayBody());
     date.setVisibility(View.GONE);
   }
-
-  @Override
-  public void onModified(Recipients recipients) {
-    onModified(recipients.getPrimaryRecipient());
-  }
-
+  
   @Override
   public void onModified(Recipient recipient) {
     Util.runOnMain(new Runnable() {

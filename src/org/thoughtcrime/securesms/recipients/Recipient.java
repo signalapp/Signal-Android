@@ -26,31 +26,41 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.VibrateState;
 import org.thoughtcrime.securesms.recipients.RecipientProvider.RecipientDetails;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 import java.util.WeakHashMap;
 import java.util.concurrent.ExecutionException;
 
-public class Recipient {
+public class Recipient implements RecipientModifiedListener {
 
   private final static String TAG = Recipient.class.getSimpleName();
 
   private final Set<RecipientModifiedListener> listeners = Collections.newSetFromMap(new WeakHashMap<RecipientModifiedListener, Boolean>());
 
   private final @NonNull Address address;
+  private final @NonNull List<Recipient> participants = new LinkedList<>();
 
   private @Nullable String  name;
   private @Nullable String  customLabel;
-  private boolean stale;
-  private boolean resolving;
+  private           boolean stale;
+  private           boolean resolving;
 
   private ContactPhoto contactPhoto;
   private Uri          contactUri;
+  private Uri          ringtone       = null;
+  private long         mutedUntil     = 0;
+  private boolean      blocked        = false;
+  private VibrateState vibrate        = VibrateState.DEFAULT;
+  private int          expireMessages = 0;
 
   @Nullable private MaterialColor color;
 
@@ -64,11 +74,16 @@ public class Recipient {
     this.resolving    = true;
 
     if (stale != null) {
-      this.name         = stale.name;
-      this.contactUri   = stale.contactUri;
-      this.contactPhoto = stale.contactPhoto;
-      this.color        = stale.color;
-      this.customLabel  = stale.customLabel;
+      this.name           = stale.name;
+      this.contactUri     = stale.contactUri;
+      this.contactPhoto   = stale.contactPhoto;
+      this.color          = stale.color;
+      this.customLabel    = stale.customLabel;
+      this.ringtone       = stale.ringtone;
+      this.mutedUntil     = stale.mutedUntil;
+      this.blocked        = stale.blocked;
+      this.vibrate        = stale.vibrate;
+      this.expireMessages = stale.expireMessages;
     }
 
     future.addListener(new FutureTaskListener<RecipientDetails>() {
@@ -76,12 +91,22 @@ public class Recipient {
       public void onSuccess(RecipientDetails result) {
         if (result != null) {
           synchronized (Recipient.this) {
-            Recipient.this.name         = result.name;
-            Recipient.this.contactUri   = result.contactUri;
-            Recipient.this.contactPhoto = result.avatar;
-            Recipient.this.color        = result.color;
-            Recipient.this.customLabel  = result.customLabel;
-            Recipient.this.resolving    = false;
+            Recipient.this.name           = result.name;
+            Recipient.this.contactUri     = result.contactUri;
+            Recipient.this.contactPhoto   = result.avatar;
+            Recipient.this.color          = result.color;
+            Recipient.this.customLabel    = result.customLabel;
+            Recipient.this.ringtone       = result.ringtone;
+            Recipient.this.mutedUntil     = result.mutedUntil;
+            Recipient.this.blocked        = result.blocked;
+            Recipient.this.vibrate        = result.vibrateState;
+            Recipient.this.expireMessages = result.expireMessages;
+            Recipient.this.participants.addAll(result.participants);
+            Recipient.this.resolving      = false;
+
+            if (!listeners.isEmpty()) {
+              for (Recipient recipient : participants) recipient.addListener(Recipient.this);
+            }
           }
 
           notifyListeners();
@@ -95,14 +120,20 @@ public class Recipient {
     });
   }
 
-  Recipient(Address address, RecipientDetails details) {
-    this.address      = address;
-    this.contactUri   = details.contactUri;
-    this.name         = details.name;
-    this.contactPhoto = details.avatar;
-    this.color        = details.color;
+  Recipient(@NonNull Address address, @NonNull RecipientDetails details) {
+    this.address        = address;
+    this.contactUri     = details.contactUri;
+    this.name           = details.name;
+    this.contactPhoto   = details.avatar;
+    this.color          = details.color;
+    this.customLabel    = details.customLabel;
+    this.ringtone       = details.ringtone;
+    this.mutedUntil     = details.mutedUntil;
+    this.blocked        = details.blocked;
+    this.vibrate        = details.vibrateState;
+    this.expireMessages = details.expireMessages;
+    this.participants.addAll(details.participants);
     this.resolving    = false;
-    this.customLabel  = details.customLabel;
   }
 
   public synchronized @Nullable Uri getContactUri() {
@@ -110,13 +141,24 @@ public class Recipient {
   }
 
   public synchronized @Nullable String getName() {
+    if (this.name == null && isMmsGroupRecipient()) {
+      List<String> names = new LinkedList<>();
+
+      for (Recipient recipient : participants) {
+        names.add(recipient.toShortString());
+      }
+
+      return Util.join(names, ", ");
+    }
+
     return this.name;
   }
 
   public synchronized @NonNull MaterialColor getColor() {
-    if      (color != null) return color;
-    else if (name != null)  return ContactColors.generateFor(name);
-    else                    return ContactColors.UNKNOWN_COLOR;
+    if      (isGroupRecipient()) return MaterialColor.GROUP;
+    else if (color != null)      return color;
+    else if (name != null)       return ContactColors.generateFor(name);
+    else                         return ContactColors.UNKNOWN_COLOR;
   }
 
   public void setColor(@NonNull MaterialColor color) {
@@ -139,20 +181,99 @@ public class Recipient {
     return address.isGroup();
   }
 
+  public boolean isMmsGroupRecipient() {
+    return address.isMmsGroup();
+  }
+
+  public boolean isPushGroupRecipient() {
+    return address.isGroup() && !address.isMmsGroup();
+  }
+
+  public List<Recipient> getParticipants() {
+    return participants;
+  }
+
   public synchronized void addListener(RecipientModifiedListener listener) {
+    if (listeners.isEmpty()) {
+      for (Recipient recipient : participants) recipient.addListener(this);
+    }
     listeners.add(listener);
   }
 
   public synchronized void removeListener(RecipientModifiedListener listener) {
     listeners.remove(listener);
+
+    if (listeners.isEmpty()) {
+      for (Recipient recipient : participants) recipient.removeListener(this);
+    }
   }
 
   public synchronized String toShortString() {
-    return (name == null ? address.serialize() : name);
+    return (getName() == null ? address.serialize() : getName());
   }
 
   public synchronized @NonNull ContactPhoto getContactPhoto() {
     return contactPhoto;
+  }
+
+  public synchronized @Nullable Uri getRingtone() {
+    return ringtone;
+  }
+
+  public void setRingtone(Uri ringtone) {
+    synchronized (this) {
+      this.ringtone = ringtone;
+    }
+
+    notifyListeners();
+  }
+
+  public synchronized boolean isMuted() {
+    return System.currentTimeMillis() <= mutedUntil;
+  }
+
+  public void setMuted(long mutedUntil) {
+    synchronized (this) {
+      this.mutedUntil = mutedUntil;
+    }
+
+    notifyListeners();
+  }
+
+  public synchronized boolean isBlocked() {
+    return blocked;
+  }
+
+  public void setBlocked(boolean blocked) {
+    synchronized (this) {
+      this.blocked = blocked;
+    }
+
+    notifyListeners();
+  }
+
+  public synchronized VibrateState getVibrate() {
+    return vibrate;
+  }
+
+  public void setVibrate(VibrateState vibrate) {
+    synchronized (this) {
+      this.vibrate = vibrate;
+    }
+
+    notifyListeners();
+  }
+
+  public synchronized int getExpireMessages() {
+    return expireMessages;
+  }
+
+  public void setExpireMessages(int expireMessages) {
+    synchronized (this) {
+      this.expireMessages = expireMessages;
+    }
+
+    notifyListeners();
   }
 
 
@@ -182,8 +303,9 @@ public class Recipient {
       listener.onModified(this);
   }
 
-  public interface RecipientModifiedListener {
-    public void onModified(Recipient recipient);
+  @Override
+  public void onModified(Recipient recipient) {
+    notifyListeners();
   }
 
   boolean isStale() {

@@ -102,14 +102,14 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       throws RetryLaterException, InsecureFallbackApprovalException, UntrustedIdentityException,
              UndeliverableMessageException
   {
-    if (message.getRecipients() == null || message.getRecipients().getPrimaryRecipient() == null) {
+    if (message.getRecipient() == null) {
       throw new UndeliverableMessageException("No destination address.");
     }
 
     SignalServiceMessageSender messageSender = messageSenderFactory.create();
 
     try {
-      SignalServiceAddress          address           = getPushAddress(message.getRecipients().getPrimaryRecipient().getAddress());
+      SignalServiceAddress          address           = getPushAddress(message.getRecipient().getAddress());
       MediaConstraints              mediaConstraints  = MediaConstraints.getPushMediaConstraints();
       List<Attachment>              scaledAttachments = scaleAttachments(masterSecret, mediaConstraints, message.getAttachments());
       List<SignalServiceAttachment> attachmentStreams = getAttachmentsFor(masterSecret, scaledAttachments);

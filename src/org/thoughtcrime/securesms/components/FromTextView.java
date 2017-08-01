@@ -11,8 +11,6 @@ import android.util.AttributeSet;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
 
 public class FromTextView extends EmojiTextView {
 
@@ -27,17 +25,13 @@ public class FromTextView extends EmojiTextView {
   }
 
   public void setText(Recipient recipient) {
-    setText(RecipientFactory.getRecipientsFor(getContext(), recipient, true));
+    setText(recipient, true);
   }
 
-  public void setText(Recipients recipients) {
-    setText(recipients, true);
-  }
-
-  public void setText(Recipients recipients, boolean read) {
+  public void setText(Recipient recipient, boolean read) {
     int        attributes[] = new int[]{R.attr.conversation_list_item_count_color};
     TypedArray colors       = getContext().obtainStyledAttributes(attributes);
-    String     fromString   = recipients.toShortString();
+    String     fromString   = recipient.toShortString();
 
     int typeface;
 
@@ -55,9 +49,9 @@ public class FromTextView extends EmojiTextView {
 
     setText(builder);
 
-    if      (recipients.isBlocked()) setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_block_grey600_18dp, 0, 0, 0);
-    else if (recipients.isMuted())   setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_volume_off_grey600_18dp, 0, 0, 0);
-    else                             setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+    if      (recipient.isBlocked()) setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_block_grey600_18dp, 0, 0, 0);
+    else if (recipient.isMuted())   setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_volume_off_grey600_18dp, 0, 0, 0);
+    else                            setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
   }
 
 

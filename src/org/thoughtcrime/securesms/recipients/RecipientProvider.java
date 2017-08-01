@@ -28,21 +28,18 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.color.MaterialColor;
-import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
-import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.VibrateState;
 import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
-import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -55,7 +52,6 @@ class RecipientProvider {
   private static final String TAG = RecipientProvider.class.getSimpleName();
 
   private static final RecipientCache  recipientCache         = new RecipientCache();
-  private static final RecipientsCache recipientsCache        = new RecipientsCache();
   private static final ExecutorService asyncRecipientResolver = Util.newSingleThreadedLifoExecutor();
 
   private static final String[] CALLER_ID_PROJECTION = new String[] {
@@ -69,7 +65,7 @@ class RecipientProvider {
   private static final Map<String, RecipientDetails> STATIC_DETAILS = new HashMap<String, RecipientDetails>() {{
     put("262966", new RecipientDetails("Amazon", null, null,
                                        ContactPhotoFactory.getResourceContactPhoto(R.drawable.ic_amazon),
-                                       ContactColors.UNKNOWN_COLOR));
+                                       null, null));
   }};
 
   @NonNull Recipient getRecipient(Context context, Address address, boolean asynchronous) {
@@ -81,35 +77,15 @@ class RecipientProvider {
     if (asynchronous) {
       cachedRecipient = new Recipient(address, cachedRecipient, getRecipientDetailsAsync(context, address));
     } else {
-      cachedRecipient = new Recipient(address, getRecipientDetailsSync(context, address));
+      cachedRecipient = new Recipient(address, getRecipientDetailsSync(context, address, false));
     }
 
     recipientCache.set(address, cachedRecipient);
     return cachedRecipient;
   }
 
-  @NonNull Recipients getRecipients(Context context, Address[] recipientAddresses, boolean asynchronous) {
-    Recipients cachedRecipients = recipientsCache.get(new RecipientAddresses(recipientAddresses));
-    if (cachedRecipients != null && !cachedRecipients.isStale() && (asynchronous || !cachedRecipients.isResolving())) {
-      return cachedRecipients;
-    }
-
-    List<Recipient> recipientList = new LinkedList<>();
-
-    for (Address address : recipientAddresses) {
-      recipientList.add(getRecipient(context, address, asynchronous));
-    }
-
-    if (asynchronous) cachedRecipients = new Recipients(recipientList, cachedRecipients, getRecipientsPreferencesAsync(context, recipientAddresses));
-    else              cachedRecipients = new Recipients(recipientList, getRecipientsPreferencesSync(context, recipientAddresses));
-
-    recipientsCache.set(new RecipientAddresses(recipientAddresses), cachedRecipients);
-    return cachedRecipients;
-  }
-
   void clearCache() {
     recipientCache.reset();
-    recipientsCache.reset();
   }
 
   private @NonNull ListenableFutureTask<RecipientDetails> getRecipientDetailsAsync(final Context context, final @NonNull Address address)
@@ -117,7 +93,7 @@ class RecipientProvider {
     Callable<RecipientDetails> task = new Callable<RecipientDetails>() {
       @Override
       public RecipientDetails call() throws Exception {
-        return getRecipientDetailsSync(context, address);
+        return getRecipientDetailsSync(context, address, true);
       }
     };
 
@@ -126,14 +102,13 @@ class RecipientProvider {
     return future;
   }
 
-  private @NonNull RecipientDetails getRecipientDetailsSync(Context context, @NonNull Address address) {
-    if (address.isGroup()) return getGroupRecipientDetails(context, address);
+  private @NonNull RecipientDetails getRecipientDetailsSync(Context context, @NonNull Address address, boolean nestedAsynchronous) {
+    if (address.isGroup()) return getGroupRecipientDetails(context, address, nestedAsynchronous);
     else                   return getIndividualRecipientDetails(context, address);
   }
 
   private @NonNull RecipientDetails getIndividualRecipientDetails(Context context, @NonNull Address address) {
-    Optional<RecipientsPreferences> preferences = DatabaseFactory.getRecipientPreferenceDatabase(context).getRecipientsPreferences(new Address[]{address});
-    MaterialColor                   color       = preferences.isPresent() ? preferences.get().getColor() : null;
+    Optional<RecipientsPreferences> preferences = DatabaseFactory.getRecipientPreferenceDatabase(context).getRecipientsPreferences(address);
 
     if (address.isPhone() && !TextUtils.isEmpty(address.toPhoneString())) {
       Uri    uri    = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(address.toPhoneString()));
@@ -149,7 +124,7 @@ class RecipientProvider {
                                                                             Uri.withAppendedPath(Contacts.CONTENT_URI, cursor.getLong(2) + ""),
                                                                             name);
 
-            return new RecipientDetails(cursor.getString(0), cursor.getString(4), contactUri, contactPhoto, color);
+            return new RecipientDetails(cursor.getString(0), cursor.getString(4), contactUri, contactPhoto, preferences.orNull(), null);
           } else {
             Log.w(TAG, "resultNumber is null");
           }
@@ -161,84 +136,61 @@ class RecipientProvider {
     }
 
     if (STATIC_DETAILS.containsKey(address.serialize())) return STATIC_DETAILS.get(address.serialize());
-    else                                                 return new RecipientDetails(null, null, null, ContactPhotoFactory.getDefaultContactPhoto(null), color);
+    else                                                 return new RecipientDetails(null, null, null, ContactPhotoFactory.getDefaultContactPhoto(null), preferences.orNull(), null);
   }
 
-  private @NonNull RecipientDetails getGroupRecipientDetails(Context context, Address groupId) {
-    try {
-      GroupDatabase.GroupRecord record = DatabaseFactory.getGroupDatabase(context)
-                                                        .getGroup(GroupUtil.getDecodedId(groupId.toGroupString()));
+  private @NonNull RecipientDetails getGroupRecipientDetails(Context context, Address groupId, boolean asynchronous) {
+    GroupDatabase.GroupRecord record = DatabaseFactory.getGroupDatabase(context).getGroup(groupId.toGroupString());
 
-      if (record != null) {
-        ContactPhoto contactPhoto = ContactPhotoFactory.getGroupContactPhoto(record.getAvatar());
-        String       title        = record.getTitle();
+    if (record != null) {
+      ContactPhoto    contactPhoto    = ContactPhotoFactory.getGroupContactPhoto(record.getAvatar());
+      String          title           = record.getTitle();
+      List<Address>   memberAddresses = record.getMembers();
+      List<Recipient> members         = new LinkedList<>();
 
-        if (title == null) {
-          title = context.getString(R.string.RecipientProvider_unnamed_group);;
-        }
-
-        return new RecipientDetails(title, null, null, contactPhoto, null);
+      for (Address memberAddress : memberAddresses) {
+        members.add(getRecipient(context, memberAddress, asynchronous));
       }
 
-      return new RecipientDetails(context.getString(R.string.RecipientProvider_unnamed_group), null, null, ContactPhotoFactory.getDefaultGroupPhoto(), null);
-    } catch (IOException e) {
-      Log.w("RecipientProvider", e);
-      return new RecipientDetails(context.getString(R.string.RecipientProvider_unnamed_group), null, null, ContactPhotoFactory.getDefaultGroupPhoto(), null);
+      if (!groupId.isMmsGroup() && title == null) {
+        title = context.getString(R.string.RecipientProvider_unnamed_group);;
+      }
+
+      return new RecipientDetails(title, null, null, contactPhoto, null, members);
     }
+
+    return new RecipientDetails(context.getString(R.string.RecipientProvider_unnamed_group), null, null, ContactPhotoFactory.getDefaultGroupPhoto(), null, null);
   }
 
-  private @Nullable RecipientsPreferences getRecipientsPreferencesSync(Context context, Address[] addresses) {
-    return DatabaseFactory.getRecipientPreferenceDatabase(context)
-                          .getRecipientsPreferences(addresses)
-                          .orNull();
-  }
-
-  private ListenableFutureTask<RecipientsPreferences> getRecipientsPreferencesAsync(final Context context, final Address[] addresses) {
-    ListenableFutureTask<RecipientsPreferences> task = new ListenableFutureTask<>(new Callable<RecipientsPreferences>() {
-      @Override
-      public RecipientsPreferences call() throws Exception {
-        return getRecipientsPreferencesSync(context, addresses);
-      }
-    });
-
-    asyncRecipientResolver.execute(task);
-
-    return task;
-  }
-
-  public static class RecipientDetails {
-    @Nullable public final String        name;
-    @Nullable public final String        customLabel;
-    @NonNull  public final ContactPhoto  avatar;
-    @Nullable public final Uri           contactUri;
-    @Nullable public final MaterialColor color;
+  static class RecipientDetails {
+    @Nullable public final String          name;
+    @Nullable public final String          customLabel;
+    @NonNull  public final ContactPhoto    avatar;
+    @Nullable public final Uri             contactUri;
+    @Nullable public final MaterialColor   color;
+    @Nullable public final Uri             ringtone;
+              public final long            mutedUntil;
+    @Nullable public final VibrateState    vibrateState;
+              public final boolean         blocked;
+              public final int             expireMessages;
+    @NonNull  public final List<Recipient> participants;
 
     public RecipientDetails(@Nullable String name, @Nullable String customLabel,
                             @Nullable Uri contactUri, @NonNull ContactPhoto avatar,
-                            @Nullable MaterialColor color)
+                            @Nullable RecipientsPreferences preferences,
+                            @Nullable List<Recipient> participants)
     {
-      this.name         = name;
-      this.customLabel  = customLabel;
-      this.avatar       = avatar;
-      this.contactUri   = contactUri;
-      this.color        = color;
-    }
-  }
-
-  private static class RecipientAddresses {
-    private final Address[] addresses;
-
-    private RecipientAddresses(Address[] addresses) {
-      this.addresses = addresses;
-    }
-
-    public boolean equals(Object other) {
-      if (other == null || !(other instanceof RecipientAddresses)) return false;
-      return Arrays.equals(this.addresses, ((RecipientAddresses) other).addresses);
-    }
-
-    public int hashCode() {
-      return Arrays.hashCode(addresses);
+      this.name           = name;
+      this.customLabel    = customLabel;
+      this.avatar         = avatar;
+      this.contactUri     = contactUri;
+      this.color          = preferences  != null ? preferences.getColor() : null;
+      this.ringtone       = preferences  != null ? preferences.getRingtone() : null;
+      this.mutedUntil     = preferences  != null ? preferences.getMuteUntil() : 0;
+      this.vibrateState   = preferences  != null ? preferences.getVibrateState() : null;
+      this.blocked        = preferences != null && preferences.isBlocked();
+      this.expireMessages = preferences  != null ? preferences.getExpireMessages() : 0;
+      this.participants   = participants == null ? new LinkedList<Recipient>() : participants;
     }
   }
 
@@ -261,27 +213,5 @@ class RecipientProvider {
     }
 
   }
-
-  private static class RecipientsCache {
-
-    private final Map<RecipientAddresses,Recipients> cache = new LRUCache<>(1000);
-
-    public synchronized Recipients get(RecipientAddresses addresses) {
-      return cache.get(addresses);
-    }
-
-    public synchronized void set(RecipientAddresses addresses, Recipients recipients) {
-      cache.put(addresses, recipients);
-    }
-
-    public synchronized void reset() {
-      for (Recipients recipients : cache.values()) {
-        recipients.setStale();
-      }
-    }
-
-  }
-
-
 
 }

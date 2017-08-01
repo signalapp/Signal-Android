@@ -1,16 +1,16 @@
 package org.thoughtcrime.securesms.sms;
 
 
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.recipients.Recipient;
 
 public class OutgoingIdentityDefaultMessage extends OutgoingTextMessage {
 
-  public OutgoingIdentityDefaultMessage(Recipients recipients) {
-    this(recipients, "");
+  public OutgoingIdentityDefaultMessage(Recipient recipient) {
+    this(recipient, "");
   }
 
-  private OutgoingIdentityDefaultMessage(Recipients recipients, String body) {
-    super(recipients, body, -1);
+  private OutgoingIdentityDefaultMessage(Recipient recipient, String body) {
+    super(recipient, body, -1);
   }
 
   @Override
@@ -19,6 +19,6 @@ public class OutgoingIdentityDefaultMessage extends OutgoingTextMessage {
   }
 
   public OutgoingTextMessage withBody(String body) {
-    return new OutgoingIdentityDefaultMessage(getRecipients());
+    return new OutgoingIdentityDefaultMessage(getRecipient());
   }
 }

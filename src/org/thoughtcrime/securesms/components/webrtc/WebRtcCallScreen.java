@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.util.VerifySpan;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -57,7 +58,7 @@ import org.whispersystems.libsignal.IdentityKey;
  * @author Moxie Marlinspike
  *
  */
-public class WebRtcCallScreen extends FrameLayout implements Recipient.RecipientModifiedListener {
+public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedListener {
 
   private static final String TAG = WebRtcCallScreen.class.getSimpleName();
 

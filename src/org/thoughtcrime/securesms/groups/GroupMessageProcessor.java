@@ -21,8 +21,8 @@ import org.thoughtcrime.securesms.jobs.PushGroupUpdateJob;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.util.Base64;
@@ -60,7 +60,7 @@ public class GroupMessageProcessor {
 
     GroupDatabase      database = DatabaseFactory.getGroupDatabase(context);
     SignalServiceGroup group    = message.getGroupInfo().get();
-    byte[]             id       = group.getGroupId();
+    String             id       = GroupUtil.getEncodedId(group.getGroupId(), false);
     GroupRecord        record   = database.getGroup(id);
 
     if (record != null && group.getType() == Type.UPDATE) {
@@ -84,7 +84,7 @@ public class GroupMessageProcessor {
                                                   boolean outgoing)
   {
     GroupDatabase        database = DatabaseFactory.getGroupDatabase(context);
-    byte[]               id       = group.getGroupId();
+    String               id       = GroupUtil.getEncodedId(group.getGroupId(), false);
     GroupContext.Builder builder  = createGroupContext(group);
     builder.setType(GroupContext.Type.UPDATE);
 
@@ -113,7 +113,7 @@ public class GroupMessageProcessor {
   {
 
     GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
-    byte[]        id       = group.getGroupId();
+    String        id       = GroupUtil.getEncodedId(group.getGroupId(), false);
 
     Set<Address> recordMembers = new HashSet<>(groupRecord.getMembers());
     Set<Address> messageMembers = new HashSet<>();
@@ -185,7 +185,7 @@ public class GroupMessageProcessor {
                                        boolean  outgoing)
   {
     GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
-    byte[]        id       = group.getGroupId();
+    String        id       = GroupUtil.getEncodedId(group.getGroupId(), false);
     List<Address> members  = record.getMembers();
 
     GroupContext.Builder builder = createGroupContext(group);
@@ -217,10 +217,10 @@ public class GroupMessageProcessor {
     try {
       if (outgoing) {
         MmsDatabase               mmsDatabase     = DatabaseFactory.getMmsDatabase(context);
-        Address                   addres          = Address.fromExternal(context, GroupUtil.getEncodedId(group.getGroupId()));
-        Recipients                recipients      = RecipientFactory.getRecipientsFor(context, new Address[] {addres}, false);
-        OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(recipients, storage, null, envelope.getTimestamp(), 0);
-        long                      threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
+        Address                   addres          = Address.fromExternal(context, GroupUtil.getEncodedId(group.getGroupId(), false));
+        Recipient                 recipient       = RecipientFactory.getRecipientFor(context, addres, false);
+        OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(recipient, storage, null, envelope.getTimestamp(), 0);
+        long                      threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
         long                      messageId       = mmsDatabase.insertMessageOutbox(masterSecret, outgoingMessage, threadId, false, null);
 
         mmsDatabase.markAsSent(messageId, true);

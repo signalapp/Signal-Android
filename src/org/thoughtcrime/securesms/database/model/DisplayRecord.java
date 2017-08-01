@@ -21,7 +21,7 @@ import android.text.SpannableString;
 
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.recipients.Recipient;
 
 /**
  * The base class for all message record models.  Encapsulates basic data
@@ -36,7 +36,7 @@ public abstract class DisplayRecord {
   protected final Context context;
   protected final long type;
 
-  private final Recipients recipients;
+  private final Recipient  recipient;
   private final long       dateSent;
   private final long       dateReceived;
   private final long       threadId;
@@ -44,12 +44,12 @@ public abstract class DisplayRecord {
   private final int        deliveryStatus;
   private final int        receiptCount;
 
-  public DisplayRecord(Context context, Body body, Recipients recipients, long dateSent,
+  public DisplayRecord(Context context, Body body, Recipient recipient, long dateSent,
                        long dateReceived, long threadId, int deliveryStatus, int receiptCount, long type)
   {
     this.context              = context.getApplicationContext();
     this.threadId             = threadId;
-    this.recipients           = recipients;
+    this.recipient            = recipient;
     this.dateSent             = dateSent;
     this.dateReceived         = dateReceived;
     this.type                 = type;
@@ -81,8 +81,8 @@ public abstract class DisplayRecord {
 
   public abstract SpannableString getDisplayBody();
 
-  public Recipients getRecipients() {
-    return recipients;
+  public Recipient getRecipient() {
+    return recipient;
   }
 
   public long getDateSent() {

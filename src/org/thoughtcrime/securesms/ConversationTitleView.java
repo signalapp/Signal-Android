@@ -10,7 +10,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class ConversationTitleView extends LinearLayout {
@@ -42,14 +41,13 @@ public class ConversationTitleView extends LinearLayout {
     ViewUtil.setTextViewGravityStart(this.subtitle, getContext());
   }
 
-  public void setTitle(@Nullable Recipients recipients) {
-    if      (recipients == null)             setComposeTitle();
-    else if (recipients.isSingleRecipient()) setRecipientTitle(recipients.getPrimaryRecipient());
-    else                                     setRecipientsTitle(recipients);
+  public void setTitle(@Nullable Recipient recipient) {
+    if      (recipient == null) setComposeTitle();
+    else                        setRecipientTitle(recipient);
 
-    if (recipients != null && recipients.isBlocked()) {
+    if (recipient != null && recipient.isBlocked()) {
       title.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_block_white_18dp, 0, 0, 0);
-    } else if (recipients != null && recipients.isMuted()) {
+    } else if (recipient != null && recipient.isMuted()) {
       title.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_volume_off_white_18dp, 0, 0, 0);
     } else {
       title.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
@@ -86,17 +84,4 @@ public class ConversationTitleView extends LinearLayout {
       this.subtitle.setVisibility(View.GONE);
     }
   }
-
-  private void setRecipientsTitle(Recipients recipients) {
-    int size = recipients.getRecipientsList().size();
-
-    title.setText(getContext().getString(R.string.ConversationActivity_group_conversation));
-    subtitle.setText(getContext().getResources().getQuantityString(R.plurals.ConversationActivity_d_recipients_in_group, size, size));
-    subtitle.setVisibility(View.VISIBLE);
-  }
-
-
-
-
-
 }

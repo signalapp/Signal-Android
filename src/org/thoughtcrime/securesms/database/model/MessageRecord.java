@@ -28,7 +28,6 @@ import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 
@@ -55,7 +54,7 @@ public abstract class MessageRecord extends DisplayRecord {
   private final long                      expiresIn;
   private final long                      expireStarted;
 
-  MessageRecord(Context context, long id, Body body, Recipients recipients,
+  MessageRecord(Context context, long id, Body body, Recipient conversationRecipient,
                 Recipient individualRecipient, int recipientDeviceId,
                 long dateSent, long dateReceived, long threadId,
                 int deliveryStatus, int receiptCount, long type,
@@ -63,7 +62,7 @@ public abstract class MessageRecord extends DisplayRecord {
                 List<NetworkFailure> networkFailures,
                 int subscriptionId, long expiresIn, long expireStarted)
   {
-    super(context, body, recipients, dateSent, dateReceived, threadId, deliveryStatus, receiptCount,
+    super(context, body, conversationRecipient, dateSent, dateReceived, threadId, deliveryStatus, receiptCount,
           type);
     this.id                  = id;
     this.individualRecipient = individualRecipient;

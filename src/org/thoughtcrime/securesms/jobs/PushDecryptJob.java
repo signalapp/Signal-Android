@@ -34,8 +34,8 @@ import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
@@ -80,7 +80,6 @@ import org.whispersystems.signalservice.api.messages.multidevice.SentTranscriptM
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -162,7 +161,7 @@ public class PushDecryptJob extends ContextJob {
         else if (message.getAttachments().isPresent()) handleMediaMessage(masterSecret, envelope, message, smsMessageId);
         else                                           handleTextMessage(masterSecret, envelope, message, smsMessageId);
 
-        if (message.getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(message.getGroupInfo().get().getGroupId())) {
+        if (message.getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false))) {
           handleUnknownGroupMessage(envelope, message.getGroupInfo().get());
         }
       } else if (content.getSyncMessage().isPresent()) {
@@ -322,15 +321,15 @@ public class PushDecryptJob extends ContextJob {
                                                       @NonNull Optional<Long>        smsMessageId)
   {
     EncryptingSmsDatabase     database                  = DatabaseFactory.getEncryptingSmsDatabase(context);
-    Recipients                recipients                = getSyncMessageDestination(message);
-    OutgoingTextMessage       outgoingTextMessage       = new OutgoingTextMessage(recipients, "", -1);
+    Recipient                 recipient                 = getSyncMessageDestination(message);
+    OutgoingTextMessage       outgoingTextMessage       = new OutgoingTextMessage(recipient, "", -1);
     OutgoingEndSessionMessage outgoingEndSessionMessage = new OutgoingEndSessionMessage(outgoingTextMessage);
 
-    long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
+    long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
 
-    if (recipients.isSingleRecipient() && !recipients.isGroupRecipient()) {
+    if (!recipient.isGroupRecipient()) {
       SessionStore sessionStore = new TextSecureSessionStore(context);
-      sessionStore.deleteAllSessions(recipients.getPrimaryRecipient().getAddress().toPhoneString());
+      sessionStore.deleteAllSessions(recipient.getAddress().toPhoneString());
 
       SecurityEvent.broadcastSecurityUpdateEvent(context);
 
@@ -373,11 +372,9 @@ public class PushDecryptJob extends ContextJob {
       throws MmsException
   {
     MmsDatabase          database     = DatabaseFactory.getMmsDatabase(context);
-    String               localNumber  = TextSecurePreferences.getLocalNumber(context);
-    Recipients           recipients   = getMessageDestination(envelope, message);
+    Recipient            recipient    = getMessageDestination(envelope, message);
     IncomingMediaMessage mediaMessage = new IncomingMediaMessage(masterSecret,
                                                                  Address.fromExternal(context, envelope.getSource()),
-                                                                 Address.fromSerialized(localNumber),
                                                                  message.getTimestamp(), -1,
                                                                  message.getExpiresInSeconds() * 1000, true,
                                                                  Optional.fromNullable(envelope.getRelay()),
@@ -388,7 +385,7 @@ public class PushDecryptJob extends ContextJob {
 
     database.insertSecureDecryptedMessageInbox(masterSecret, mediaMessage, -1);
 
-    DatabaseFactory.getRecipientPreferenceDatabase(context).setExpireMessages(recipients, message.getExpiresInSeconds());
+    DatabaseFactory.getRecipientPreferenceDatabase(context).setExpireMessages(recipient, message.getExpiresInSeconds());
 
     if (smsMessageId.isPresent()) {
       DatabaseFactory.getSmsDatabase(context).deleteMessage(smsMessageId.get());
@@ -423,7 +420,7 @@ public class PushDecryptJob extends ContextJob {
       threadId = handleSynchronizeSentTextMessage(masterSecret, message, smsMessageId);
     }
 
-    if (message.getMessage().getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(message.getMessage().getGroupInfo().get().getGroupId())) {
+    if (message.getMessage().getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get().getGroupId(), false))) {
       handleUnknownGroupMessage(envelope, message.getMessage().getGroupInfo().get());
     }
 
@@ -490,11 +487,9 @@ public class PushDecryptJob extends ContextJob {
       throws MmsException
   {
     MmsDatabase          database     = DatabaseFactory.getMmsDatabase(context);
-    String               localNumber  = TextSecurePreferences.getLocalNumber(context);
-    Recipients           recipients   = getMessageDestination(envelope, message);
+    Recipient            recipient    = getMessageDestination(envelope, message);
     IncomingMediaMessage mediaMessage = new IncomingMediaMessage(masterSecret,
                                                                  Address.fromExternal(context, envelope.getSource()),
-                                                                 Address.fromSerialized(localNumber),
                                                                  message.getTimestamp(), -1,
                                                                  message.getExpiresInSeconds() * 1000, false,
                                                                  Optional.fromNullable(envelope.getRelay()),
@@ -502,7 +497,7 @@ public class PushDecryptJob extends ContextJob {
                                                                  message.getGroupInfo(),
                                                                  message.getAttachments());
 
-    if (message.getExpiresInSeconds() != recipients.getExpireMessages()) {
+    if (message.getExpiresInSeconds() != recipient.getExpireMessages()) {
       handleExpirationUpdate(masterSecret, envelope, message, Optional.<Long>absent());
     }
 
@@ -537,18 +532,18 @@ public class PushDecryptJob extends ContextJob {
       throws MmsException
   {
     MmsDatabase database   = DatabaseFactory.getMmsDatabase(context);
-    Recipients  recipients = getSyncMessageDestination(message);
+    Recipient   recipient  = getSyncMessageDestination(message);
 
-    OutgoingExpirationUpdateMessage expirationUpdateMessage = new OutgoingExpirationUpdateMessage(recipients,
+    OutgoingExpirationUpdateMessage expirationUpdateMessage = new OutgoingExpirationUpdateMessage(recipient,
                                                                                                   message.getTimestamp(),
                                                                                                   message.getMessage().getExpiresInSeconds() * 1000);
 
-    long threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
+    long threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
     long messageId = database.insertMessageOutbox(masterSecret, expirationUpdateMessage, threadId, false, null);
 
     database.markAsSent(messageId, true);
 
-    DatabaseFactory.getRecipientPreferenceDatabase(context).setExpireMessages(recipients, message.getMessage().getExpiresInSeconds());
+    DatabaseFactory.getRecipientPreferenceDatabase(context).setExpireMessages(recipient, message.getMessage().getExpiresInSeconds());
 
     if (smsMessageId.isPresent()) {
       DatabaseFactory.getSmsDatabase(context).deleteMessage(smsMessageId.get());
@@ -563,7 +558,7 @@ public class PushDecryptJob extends ContextJob {
       throws MmsException
   {
     MmsDatabase           database     = DatabaseFactory.getMmsDatabase(context);
-    Recipients            recipients   = getSyncMessageDestination(message);
+    Recipient             recipients   = getSyncMessageDestination(message);
     OutgoingMediaMessage  mediaMessage = new OutgoingMediaMessage(recipients, message.getMessage().getBody().orNull(),
                                                                   PointerAttachment.forPointers(masterSecret, message.getMessage().getAttachments()),
                                                                   message.getTimestamp(), -1,
@@ -611,9 +606,9 @@ public class PushDecryptJob extends ContextJob {
   {
     EncryptingSmsDatabase database   = DatabaseFactory.getEncryptingSmsDatabase(context);
     String                body       = message.getBody().isPresent() ? message.getBody().get() : "";
-    Recipients            recipients = getMessageDestination(envelope, message);
+    Recipient             recipient = getMessageDestination(envelope, message);
 
-    if (message.getExpiresInSeconds() != recipients.getExpireMessages()) {
+    if (message.getExpiresInSeconds() != recipient.getExpireMessages()) {
       handleExpirationUpdate(masterSecret, envelope, message, Optional.<Long>absent());
     }
 
@@ -648,16 +643,16 @@ public class PushDecryptJob extends ContextJob {
       throws MmsException
   {
     EncryptingSmsDatabase database            = DatabaseFactory.getEncryptingSmsDatabase(context);
-    Recipients            recipients          = getSyncMessageDestination(message);
+    Recipient             recipient           = getSyncMessageDestination(message);
     String                body                = message.getMessage().getBody().or("");
     long                  expiresInMillis     = message.getMessage().getExpiresInSeconds() * 1000;
-    OutgoingTextMessage   outgoingTextMessage = new OutgoingTextMessage(recipients, body, expiresInMillis, -1);
+    OutgoingTextMessage   outgoingTextMessage = new OutgoingTextMessage(recipient, body, expiresInMillis, -1);
 
-    if (recipients.getExpireMessages() != message.getMessage().getExpiresInSeconds()) {
+    if (recipient.getExpireMessages() != message.getMessage().getExpiresInSeconds()) {
       handleSynchronizeSentExpirationUpdate(masterSecret, message, Optional.<Long>absent());
     }
 
-    long threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
+    long threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
     long messageId = database.insertMessageOutbox(masterSecret, threadId, outgoingTextMessage, false, message.getTimestamp(), null);
 
     database.markAsSent(messageId, true);
@@ -810,19 +805,19 @@ public class PushDecryptJob extends ContextJob {
     return database.insertMessageInbox(textMessage);
   }
 
-  private Recipients getSyncMessageDestination(SentTranscriptMessage message) {
+  private Recipient getSyncMessageDestination(SentTranscriptMessage message) {
     if (message.getMessage().getGroupInfo().isPresent()) {
-      return RecipientFactory.getRecipientsFor(context, new Address[] {Address.fromExternal(context, GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get().getGroupId()))}, false);
+      return RecipientFactory.getRecipientFor(context, Address.fromExternal(context, GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get().getGroupId(), false)), false);
     } else {
-      return RecipientFactory.getRecipientsFor(context, new Address[] {Address.fromExternal(context, message.getDestination().get())}, false);
+      return RecipientFactory.getRecipientFor(context, Address.fromExternal(context, message.getDestination().get()), false);
     }
   }
 
-  private Recipients getMessageDestination(SignalServiceEnvelope envelope, SignalServiceDataMessage message) {
+  private Recipient getMessageDestination(SignalServiceEnvelope envelope, SignalServiceDataMessage message) {
     if (message.getGroupInfo().isPresent()) {
-      return RecipientFactory.getRecipientsFor(context, new Address[] {Address.fromExternal(context, GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId()))}, false);
+      return RecipientFactory.getRecipientFor(context, Address.fromExternal(context, GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false)), false);
     } else {
-      return RecipientFactory.getRecipientsFor(context, new Address[] {Address.fromExternal(context, envelope.getSource())}, false);
+      return RecipientFactory.getRecipientFor(context, Address.fromExternal(context, envelope.getSource()), false);
     }
   }
 }

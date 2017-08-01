@@ -36,13 +36,12 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DelimiterUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.InvalidMessageException;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -55,7 +54,7 @@ public class ThreadDatabase extends Database {
   public  static final String ID              = "_id";
   public  static final String DATE            = "date";
   public  static final String MESSAGE_COUNT   = "message_count";
-  public  static final String ADDRESSES       = "recipient_ids";
+  public  static final String ADDRESS         = "recipient_ids";
   public  static final String SNIPPET         = "snippet";
   private static final String SNIPPET_CHARSET = "snippet_cs";
   public  static final String READ            = "read";
@@ -71,7 +70,7 @@ public class ThreadDatabase extends Database {
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " ("                    +
     ID + " INTEGER PRIMARY KEY, " + DATE + " INTEGER DEFAULT 0, "                                  +
-    MESSAGE_COUNT + " INTEGER DEFAULT 0, " + ADDRESSES + " TEXT, " + SNIPPET + " TEXT, "       +
+    MESSAGE_COUNT + " INTEGER DEFAULT 0, " + ADDRESS + " TEXT, " + SNIPPET + " TEXT, "       +
     SNIPPET_CHARSET + " INTEGER DEFAULT 0, " + READ + " INTEGER DEFAULT 1, "                       +
     TYPE + " INTEGER DEFAULT 0, " + ERROR + " INTEGER DEFAULT 0, "                                 +
     SNIPPET_TYPE + " INTEGER DEFAULT 0, " + SNIPPET_URI + " TEXT DEFAULT NULL, "                   +
@@ -80,7 +79,7 @@ public class ThreadDatabase extends Database {
     LAST_SEEN + " INTEGER DEFAULT 0);";
 
   public static final String[] CREATE_INDEXS = {
-    "CREATE INDEX IF NOT EXISTS thread_recipient_ids_index ON " + TABLE_NAME + " (" + ADDRESSES + ");",
+    "CREATE INDEX IF NOT EXISTS thread_recipient_ids_index ON " + TABLE_NAME + " (" + ADDRESS + ");",
     "CREATE INDEX IF NOT EXISTS archived_count_index ON " + TABLE_NAME + " (" + ARCHIVED + ", " + MESSAGE_COUNT + ");",
   };
 
@@ -88,14 +87,14 @@ public class ThreadDatabase extends Database {
     super(context, databaseHelper);
   }
 
-  private long createThreadForRecipients(Address[] addresses, int recipientCount, int distributionType) {
+  private long createThreadForRecipient(Address address, boolean group, int distributionType) {
     ContentValues contentValues = new ContentValues(4);
     long date                   = System.currentTimeMillis();
 
     contentValues.put(DATE, date - date % 1000);
-    contentValues.put(ADDRESSES, Address.toSerializedList(Arrays.asList(addresses), ' '));
+    contentValues.put(ADDRESS, address.serialize());
 
-    if (recipientCount > 1)
+    if (group)
       contentValues.put(TYPE, distributionType);
 
     contentValues.put(MESSAGE_COUNT, 0);
@@ -272,6 +271,22 @@ public class ThreadDatabase extends Database {
     notifyConversationListListeners();
   }
 
+  public int getDistributionType(long threadId) {
+    SQLiteDatabase db     = databaseHelper.getReadableDatabase();
+    Cursor         cursor = db.query(TABLE_NAME, new String[]{TYPE}, ID_WHERE, new String[]{String.valueOf(threadId)}, null, null, null);
+
+    try {
+      if (cursor != null && cursor.moveToNext()) {
+        return cursor.getInt(cursor.getColumnIndexOrThrow(TYPE));
+      }
+
+      return DistributionTypes.DEFAULT;
+    } finally {
+      if (cursor != null) cursor.close();
+    }
+
+  }
+
   public Cursor getFilteredConversationList(List<Address> filter) {
     if (filter == null || filter.size() == 0)
       return null;
@@ -281,11 +296,11 @@ public class ThreadDatabase extends Database {
     List<Cursor>        cursors              = new LinkedList<>();
 
     for (List<Address> addresses : partitionedAddresses) {
-      String   selection      = ADDRESSES + " = ?";
+      String   selection      = ADDRESS + " = ?";
       String[] selectionArgs  = new String[addresses.size()];
 
       for (int i=0;i<addresses.size()-1;i++)
-        selection += (" OR " + ADDRESSES + " = ?");
+        selection += (" OR " + ADDRESS + " = ?");
 
       int i= 0;
       for (Address address : addresses) {
@@ -410,12 +425,11 @@ public class ThreadDatabase extends Database {
     deleteAllThreads();
   }
 
-  public long getThreadIdIfExistsFor(Recipients recipients) {
-    List<Address>  addresses     = Arrays.asList(recipients.getAddresses());
-    SQLiteDatabase db            = databaseHelper.getReadableDatabase();
-    String         where         = ADDRESSES + " = ?";
-    String[]       recipientsArg = new String[]{Address.toSerializedList(addresses, ' ')};
-    Cursor         cursor        = null;
+  public long getThreadIdIfExistsFor(Recipient recipient) {
+    SQLiteDatabase db      = databaseHelper.getReadableDatabase();
+    String where           = ADDRESS + " = ?";
+    String[] recipientsArg = new String[] {recipient.getAddress().serialize()};
+    Cursor cursor          = null;
 
     try {
       cursor = db.query(TABLE_NAME, new String[]{ID}, where, recipientsArg, null, null, null);
@@ -430,15 +444,14 @@ public class ThreadDatabase extends Database {
     }
   }
 
-  public long getThreadIdFor(Recipients recipients) {
-    return getThreadIdFor(recipients, DistributionTypes.DEFAULT);
+  public long getThreadIdFor(Recipient recipient) {
+    return getThreadIdFor(recipient, DistributionTypes.DEFAULT);
   }
 
-  public long getThreadIdFor(Recipients recipients, int distributionType) {
-    Address[]      addresses     = recipients.getAddresses();
+  public long getThreadIdFor(Recipient recipient, int distributionType) {
     SQLiteDatabase db            = databaseHelper.getReadableDatabase();
-    String         where         = ADDRESSES + " = ?";
-    String[]       recipientsArg = new String[]{Address.toSerializedList(Arrays.asList(addresses), ' ')};
+    String         where         = ADDRESS + " = ?";
+    String[]       recipientsArg = new String[]{recipient.getAddress().serialize()};
     Cursor         cursor        = null;
 
     try {
@@ -447,7 +460,7 @@ public class ThreadDatabase extends Database {
       if (cursor != null && cursor.moveToFirst()) {
         return cursor.getLong(cursor.getColumnIndexOrThrow(ID));
       } else {
-        return createThreadForRecipients(addresses, recipients.getRecipientsList().size(), distributionType);
+        return createThreadForRecipient(recipient.getAddress(), recipient.isGroupRecipient(), distributionType);
       }
     } finally {
       if (cursor != null)
@@ -455,7 +468,7 @@ public class ThreadDatabase extends Database {
     }
   }
 
-  public @Nullable Recipients getRecipientsForThreadId(long threadId) {
+  public @Nullable Recipient getRecipientForThreadId(long threadId) {
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
     Cursor cursor     = null;
 
@@ -463,8 +476,8 @@ public class ThreadDatabase extends Database {
       cursor = db.query(TABLE_NAME, null, ID + " = ?", new String[] {threadId+""}, null, null, null);
 
       if (cursor != null && cursor.moveToFirst()) {
-        List<Address> addresses = Address.fromSerializedList(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESSES)), ' ');
-        return RecipientFactory.getRecipientsFor(context, addresses.toArray(new Address[0]), false);
+        Address address = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
+        return RecipientFactory.getRecipientFor(context, address, false);
       }
     } finally {
       if (cursor != null)
@@ -561,9 +574,9 @@ public class ThreadDatabase extends Database {
     }
 
     public ThreadRecord getCurrent() {
-      long          threadId   = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.ID));
-      List<Address> addresses  = Address.fromSerializedList(cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.ADDRESSES)), ' ');
-      Recipients    recipients = RecipientFactory.getRecipientsFor(context, addresses.toArray(new Address[0]), true);
+      long      threadId  = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.ID));
+      Address   address   = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.ADDRESS)));
+      Recipient recipient = RecipientFactory.getRecipientFor(context, address, true);
 
       DisplayRecord.Body body = getPlaintextBody(cursor);
       long date               = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.DATE));
@@ -578,7 +591,7 @@ public class ThreadDatabase extends Database {
       long lastSeen           = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.LAST_SEEN));
       Uri snippetUri          = getSnippetUri(cursor);
 
-      return new ThreadRecord(context, body, snippetUri, recipients, date, count, read == 1,
+      return new ThreadRecord(context, body, snippetUri, recipient, date, count, read == 1,
                               threadId, receiptCount, status, type, distributionType, archived,
                               expiresIn, lastSeen);
     }

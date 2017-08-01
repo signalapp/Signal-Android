@@ -39,7 +39,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FileUtils;
@@ -60,9 +60,9 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
 {
   private static final String TAG = ShareActivity.class.getSimpleName();
 
-  public static final String EXTRA_THREAD_ID            = "thread_id";
-  public static final String EXTRA_ADDRESSES_MARSHALLED = "addresses";
-  public static final String EXTRA_DISTRIBUTION_TYPE    = "distribution_type";
+  public static final String EXTRA_THREAD_ID          = "thread_id";
+  public static final String EXTRA_ADDRESS_MARSHALLED = "address_marshalled";
+  public static final String EXTRA_DISTRIBUTION_TYPE  = "distribution_type";
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme   ();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -165,25 +165,25 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override
-  public void onCreateConversation(long threadId, Recipients recipients, int distributionType) {
-    createConversation(threadId, recipients.getAddresses(), distributionType);
+  public void onCreateConversation(long threadId, Recipient recipient, int distributionType) {
+    createConversation(threadId, recipient.getAddress(), distributionType);
   }
 
   private void handleResolvedMedia(Intent intent, boolean animate) {
     long      threadId         = intent.getLongExtra(EXTRA_THREAD_ID, -1);
     int       distributionType = intent.getIntExtra(EXTRA_DISTRIBUTION_TYPE, -1);
-    Address[] addresses        = null;
+    Address   address          = null;
 
-    if (intent.hasExtra(EXTRA_ADDRESSES_MARSHALLED)) {
+    if (intent.hasExtra(EXTRA_ADDRESS_MARSHALLED)) {
       Parcel parcel = Parcel.obtain();
-      byte[] marshalled = intent.getByteArrayExtra(EXTRA_ADDRESSES_MARSHALLED);
+      byte[] marshalled = intent.getByteArrayExtra(EXTRA_ADDRESS_MARSHALLED);
       parcel.unmarshall(marshalled, 0, marshalled.length);
       parcel.setDataPosition(0);
-      addresses = parcel.createTypedArray(Address.CREATOR);
+      address = parcel.readParcelable(getClassLoader());
       parcel.recycle();
     }
 
-    boolean hasResolvedDestination = threadId != -1 && addresses != null && distributionType != -1;
+    boolean hasResolvedDestination = threadId != -1 && address != null && distributionType != -1;
 
     if (!hasResolvedDestination && animate) {
       ViewUtil.fadeIn(fragmentContainer, 300);
@@ -192,13 +192,13 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
       fragmentContainer.setVisibility(View.VISIBLE);
       progressWheel.setVisibility(View.GONE);
     } else {
-      createConversation(threadId, addresses, distributionType);
+      createConversation(threadId, address, distributionType);
     }
   }
 
-  private void createConversation(long threadId, Address[] addresses, int distributionType) {
+  private void createConversation(long threadId, Address address, int distributionType) {
     final Intent intent = getBaseShareIntent(ConversationActivity.class);
-    intent.putExtra(ConversationActivity.ADDRESSES_EXTRA, addresses);
+    intent.putExtra(ConversationActivity.ADDRESS_EXTRA, address);
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
     intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, distributionType);
 

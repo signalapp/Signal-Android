@@ -31,8 +31,8 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -45,9 +45,9 @@ import java.util.List;
  */
 public class RemoteReplyReceiver extends MasterSecretBroadcastReceiver {
 
-  public static final String TAG             = RemoteReplyReceiver.class.getSimpleName();
-  public static final String REPLY_ACTION    = "org.thoughtcrime.securesms.notifications.WEAR_REPLY";
-  public static final String ADDRESSES_EXTRA = "addresses";
+  public static final String TAG           = RemoteReplyReceiver.class.getSimpleName();
+  public static final String REPLY_ACTION  = "org.thoughtcrime.securesms.notifications.WEAR_REPLY";
+  public static final String ADDRESS_EXTRA = "address";
 
   @Override
   protected void onReceive(final Context context, Intent intent,
@@ -59,7 +59,7 @@ public class RemoteReplyReceiver extends MasterSecretBroadcastReceiver {
 
     if (remoteInput == null) return;
 
-    final Address[]       addresses = Address.fromParcelable(intent.getParcelableArrayExtra(ADDRESSES_EXTRA));
+    final Address      address      = intent.getParcelableExtra(ADDRESS_EXTRA);
     final CharSequence responseText = remoteInput.getCharSequence(MessageNotifier.EXTRA_REMOTE_REPLY);
 
     if (masterSecret != null && responseText != null) {
@@ -68,16 +68,16 @@ public class RemoteReplyReceiver extends MasterSecretBroadcastReceiver {
         protected Void doInBackground(Void... params) {
           long threadId;
 
-          Optional<RecipientsPreferences> preferences = DatabaseFactory.getRecipientPreferenceDatabase(context).getRecipientsPreferences(addresses);
+          Optional<RecipientsPreferences> preferences = DatabaseFactory.getRecipientPreferenceDatabase(context).getRecipientsPreferences(address);
           int  subscriptionId = preferences.isPresent() ? preferences.get().getDefaultSubscriptionId().or(-1) : -1;
           long expiresIn      = preferences.isPresent() ? preferences.get().getExpireMessages() * 1000 : 0;
+          Recipient recipient = RecipientFactory.getRecipientFor(context, address, false);
 
-          Recipients recipients = RecipientFactory.getRecipientsFor(context, addresses, false);
-          if (recipients.isGroupRecipient()) {
-            OutgoingMediaMessage reply = new OutgoingMediaMessage(recipients, responseText.toString(), new LinkedList<Attachment>(), System.currentTimeMillis(), subscriptionId, expiresIn, 0);
+          if (recipient.isGroupRecipient()) {
+            OutgoingMediaMessage reply = new OutgoingMediaMessage(recipient, responseText.toString(), new LinkedList<Attachment>(), System.currentTimeMillis(), subscriptionId, expiresIn, 0);
             threadId = MessageSender.send(context, masterSecret, reply, -1, false, null);
           } else {
-            OutgoingTextMessage reply = new OutgoingTextMessage(recipients, responseText.toString(), expiresIn, subscriptionId);
+            OutgoingTextMessage reply = new OutgoingTextMessage(recipient, responseText.toString(), expiresIn, subscriptionId);
             threadId = MessageSender.send(context, masterSecret, reply, -1, false, null);
           }
 

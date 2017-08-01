@@ -96,18 +96,12 @@ public class Address implements Parcelable, Comparable<Address> {
     return Util.join(escapedAddresses, delimiter + "");
   }
 
-  public static Address[] fromParcelable(Parcelable[] parcelables) {
-    Address[] addresses = new Address[parcelables.length];
-
-    for (int i=0;i<parcelables.length;i++) {
-      addresses[i] = (Address)parcelables[i];
-    }
-
-    return addresses;
-  }
-
   public boolean isGroup() {
     return GroupUtil.isEncodedGroup(address);
+  }
+
+  public boolean isMmsGroup() {
+    return GroupUtil.isMmsGroup(address);
   }
 
   public boolean isEmail() {
@@ -204,9 +198,9 @@ public class Address implements Parcelable, Comparable<Address> {
     }
 
     public String format(@Nullable String number) {
-      if (number == null)                             return "Unknown";
-      if (number.startsWith("__textsecure_group__!")) return number;
-      if (ALPHA_PATTERN.matcher(number).find())       return number.trim();
+      if (number == null)                       return "Unknown";
+      if (GroupUtil.isEncodedGroup(number))     return number;
+      if (ALPHA_PATTERN.matcher(number).find()) return number.trim();
 
       String bareNumber = number.replaceAll("[^0-9+]", "");
 

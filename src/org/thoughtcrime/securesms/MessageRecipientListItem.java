@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.sms.MessageSender;
 
 /**
@@ -43,7 +44,7 @@ import org.thoughtcrime.securesms.sms.MessageSender;
  * @author Jake McGinty
  */
 public class MessageRecipientListItem extends RelativeLayout
-    implements Recipient.RecipientModifiedListener
+    implements RecipientModifiedListener
 {
   private final static String TAG = MessageRecipientListItem.class.getSimpleName();
 
@@ -67,6 +68,7 @@ public class MessageRecipientListItem extends RelativeLayout
 
   @Override
   protected void onFinishInflate() {
+    super.onFinishInflate();
     this.fromView          = (FromTextView)    findViewById(R.id.from);
     this.errorDescription  = (TextView)        findViewById(R.id.error_description);
     this.actionDescription = (TextView)        findViewById(R.id.action_description);
@@ -172,11 +174,13 @@ public class MessageRecipientListItem extends RelativeLayout
   }
 
   private class ResendAsyncTask extends AsyncTask<Void,Void,Void> {
+    private final Context        context;
     private final MasterSecret   masterSecret;
     private final MessageRecord  record;
     private final NetworkFailure failure;
 
     public ResendAsyncTask(MasterSecret masterSecret, MessageRecord record, NetworkFailure failure) {
+      this.context      = getContext().getApplicationContext();
       this.masterSecret = masterSecret;
       this.record       = record;
       this.failure      = failure;
@@ -184,13 +188,13 @@ public class MessageRecipientListItem extends RelativeLayout
 
     @Override
     protected Void doInBackground(Void... params) {
-      MmsDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(getContext());
+      MmsDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(context);
       mmsDatabase.removeFailure(record.getId(), failure);
 
-      if (record.getRecipients().isGroupRecipient()) {
-        MessageSender.resendGroupMessage(getContext(), masterSecret, record, failure.getAddress());
+      if (record.getRecipient().isPushGroupRecipient()) {
+        MessageSender.resendGroupMessage(context, record, failure.getAddress());
       } else {
-        MessageSender.resend(getContext(), masterSecret, record);
+        MessageSender.resend(context, masterSecret, record);
       }
       return null;
     }

@@ -20,8 +20,8 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 
 import java.util.LinkedList;
@@ -49,17 +49,17 @@ public class DirectShareService extends ChooserTargetService {
       ThreadRecord record;
 
       while ((record = reader.getNext()) != null && results.size() < 10) {
-        Recipients recipients = RecipientFactory.getRecipientsFor(this, record.getRecipients().getAddresses(), false);
-        String     name       = recipients.toShortString();
-        Drawable   drawable   = recipients.getContactPhoto().asDrawable(this, recipients.getColor().toConversationColor(this));
-        Bitmap     avatar     = BitmapUtil.createFromDrawable(drawable, 500, 500);
+        Recipient recipient = RecipientFactory.getRecipientFor(this, record.getRecipient().getAddress(), false);
+        String    name      = recipient.toShortString();
+        Drawable  drawable  = recipient.getContactPhoto().asDrawable(this, recipient.getColor().toConversationColor(this));
+        Bitmap    avatar    = BitmapUtil.createFromDrawable(drawable, 500, 500);
 
         Parcel parcel = Parcel.obtain();
-        parcel.writeTypedArray(recipients.getAddresses(), 0);
+        parcel.writeParcelable(recipient.getAddress(), 0);
 
         Bundle bundle = new Bundle();
         bundle.putLong(ShareActivity.EXTRA_THREAD_ID, record.getThreadId());
-        bundle.putByteArray(ShareActivity.EXTRA_ADDRESSES_MARSHALLED, parcel.marshall());
+        bundle.putByteArray(ShareActivity.EXTRA_ADDRESS_MARSHALLED, parcel.marshall());
         bundle.putInt(ShareActivity.EXTRA_DISTRIBUTION_TYPE, record.getDistributionType());
         bundle.setClassLoader(getClassLoader());
 

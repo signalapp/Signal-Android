@@ -28,8 +28,6 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
@@ -41,10 +39,10 @@ import org.thoughtcrime.securesms.crypto.DecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
-import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.DelimiterUtil;
+import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -56,12 +54,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DatabaseFactory {
@@ -102,7 +100,8 @@ public class DatabaseFactory {
   private static final int INTRODUCED_IDENTITY_TIMESTAMP                   = 35;
   private static final int SANIFY_ATTACHMENT_DOWNLOAD                      = 36;
   private static final int NO_MORE_CANONICAL_ADDRESS_DATABASE              = 37;
-  private static final int DATABASE_VERSION                                = 37;
+  private static final int NO_MORE_RECIPIENTS_PLURAL                       = 38;
+  private static final int DATABASE_VERSION                                = 38;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -117,7 +116,6 @@ public class DatabaseFactory {
   private final AttachmentDatabase attachments;
   private final MediaDatabase media;
   private final ThreadDatabase thread;
-  private final MmsAddressDatabase mmsAddress;
   private final MmsSmsDatabase mmsSmsDatabase;
   private final IdentityDatabase identityDatabase;
   private final DraftDatabase draftDatabase;
@@ -163,10 +161,6 @@ public class DatabaseFactory {
     return getInstance(context).media;
   }
 
-  public static MmsAddressDatabase getMmsAddressDatabase(Context context) {
-    return getInstance(context).mmsAddress;
-  }
-
   public static IdentityDatabase getIdentityDatabase(Context context) {
     return getInstance(context).identityDatabase;
   }
@@ -199,7 +193,6 @@ public class DatabaseFactory {
     this.attachments                 = new AttachmentDatabase(context, databaseHelper);
     this.media                       = new MediaDatabase(context, databaseHelper);
     this.thread                      = new ThreadDatabase(context, databaseHelper);
-    this.mmsAddress                  = new MmsAddressDatabase(context, databaseHelper);
     this.mmsSmsDatabase              = new MmsSmsDatabase(context, databaseHelper);
     this.identityDatabase            = new IdentityDatabase(context, databaseHelper);
     this.draftDatabase               = new DraftDatabase(context, databaseHelper);
@@ -218,7 +211,6 @@ public class DatabaseFactory {
     this.mms.reset(databaseHelper);
     this.attachments.reset(databaseHelper);
     this.thread.reset(databaseHelper);
-    this.mmsAddress.reset(databaseHelper);
     this.mmsSmsDatabase.reset(databaseHelper);
     this.identityDatabase.reset(databaseHelper);
     this.draftDatabase.reset(databaseHelper);
@@ -533,7 +525,6 @@ public class DatabaseFactory {
       db.execSQL(MmsDatabase.CREATE_TABLE);
       db.execSQL(AttachmentDatabase.CREATE_TABLE);
       db.execSQL(ThreadDatabase.CREATE_TABLE);
-      db.execSQL(MmsAddressDatabase.CREATE_TABLE);
       db.execSQL(IdentityDatabase.CREATE_TABLE);
       db.execSQL(DraftDatabase.CREATE_TABLE);
       db.execSQL(PushDatabase.CREATE_TABLE);
@@ -544,7 +535,6 @@ public class DatabaseFactory {
       executeStatements(db, MmsDatabase.CREATE_INDEXS);
       executeStatements(db, AttachmentDatabase.CREATE_INDEXS);
       executeStatements(db, ThreadDatabase.CREATE_INDEXS);
-      executeStatements(db, MmsAddressDatabase.CREATE_INDEXS);
       executeStatements(db, DraftDatabase.CREATE_INDEXS);
       executeStatements(db, GroupDatabase.CREATE_INDEXS);
     }
@@ -1207,6 +1197,80 @@ public class DatabaseFactory {
           }
         }
 
+      }
+
+      if (oldVersion < NO_MORE_RECIPIENTS_PLURAL) {
+        db.execSQL("ALTER TABLE groups ADD COLUMN mms INTEGER DEFAULT 0");
+
+        Cursor cursor = db.query("thread", new String[] {"_id", "recipient_ids"}, null, null, null, null, null);
+
+        while (cursor != null && cursor.moveToNext()) {
+          long     threadId          = cursor.getLong(0);
+          String   addressListString = cursor.getString(1);
+          String[] addressList       = DelimiterUtil.split(addressListString, ' ');
+
+          if (addressList.length == 1) {
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("recipient_ids", DelimiterUtil.unescape(addressListString, ' '));
+            db.update("thread", contentValues, "_id = ?", new String[] {String.valueOf(threadId)});
+          } else {
+            byte[]       groupId = new byte[16];
+            List<String> members = new LinkedList<>();
+
+            new SecureRandom().nextBytes(groupId);
+
+            for (String address : addressList) {
+              members.add(DelimiterUtil.escape(DelimiterUtil.unescape(address, ' '), ','));
+            }
+
+            String        encodedGroupId = "__signal_mms_group__!" + Hex.toStringCondensed(groupId);
+            ContentValues groupValues    = new ContentValues();
+            ContentValues threadValues   = new ContentValues();
+
+            groupValues.put("group_id", encodedGroupId);
+            groupValues.put("members", Util.join(members, ","));
+            groupValues.put("mms", 1);
+
+            threadValues.put("recipient_ids", encodedGroupId);
+
+            db.insert("groups", null, groupValues);
+            db.update("thread", threadValues, "_id = ?", new String[] {String.valueOf(threadId)});
+            db.update("recipient_preferences", threadValues, "recipient_ids = ?", new String[] {addressListString});
+          }
+        }
+
+        if (cursor != null) cursor.close();
+
+        cursor = db.query("recipient_preferences", new String[] {"_id", "recipient_ids"}, null, null, null, null, null);
+
+        while (cursor != null && cursor.moveToNext()) {
+          long     id                = cursor.getLong(0);
+          String   addressListString = cursor.getString(1);
+          String[] addressList       = DelimiterUtil.split(addressListString, ' ');
+
+          if (addressList.length == 1) {
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("recipient_ids", DelimiterUtil.unescape(addressListString, ' '));
+            db.update("recipient_preferences", contentValues, "_id = ?", new String[] {String.valueOf(id)});
+          } else {
+            Log.w(TAG, "Found preferences for MMS thread that appears to be gone: " + addressListString);
+            db.delete("recipient_preferences", "_id = ?", new String[] {String.valueOf(id)});
+          }
+        }
+
+        if (cursor != null) cursor.close();
+
+        cursor = db.rawQuery("SELECT mms._id, thread.recipient_ids FROM mms, thread WHERE mms.address IS NULL AND mms.thread_id = thread._id", null);
+
+        while (cursor != null && cursor.moveToNext()) {
+          long          id            = cursor.getLong(0);
+          ContentValues contentValues = new ContentValues(1);
+
+          contentValues.put("address", cursor.getString(1));
+          db.update("mms", contentValues, "_id = ?", new String[] {String.valueOf(id)});
+        }
+
+        if (cursor != null) cursor.close();
       }
 
       db.setTransactionSuccessful();

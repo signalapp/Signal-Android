@@ -8,22 +8,22 @@ import android.view.View.OnClickListener;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.recipients.Recipient;
 
 public class InviteReminder extends Reminder {
 
   public InviteReminder(final @NonNull Context context,
-                        final @NonNull Recipients recipients)
+                        final @NonNull Recipient recipient)
   {
     super(context.getString(R.string.reminder_header_invite_title),
-          context.getString(R.string.reminder_header_invite_text, recipients.toShortString()));
+          context.getString(R.string.reminder_header_invite_text, recipient.toShortString()));
 
     setDismissListener(new OnClickListener() {
       @Override public void onClick(View v) {
         new AsyncTask<Void,Void,Void>() {
 
           @Override protected Void doInBackground(Void... params) {
-            DatabaseFactory.getRecipientPreferenceDatabase(context).setSeenInviteReminder(recipients, true);
+            DatabaseFactory.getRecipientPreferenceDatabase(context).setSeenInviteReminder(recipient, true);
             return null;
           }
         }.execute();

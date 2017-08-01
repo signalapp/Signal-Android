@@ -9,8 +9,8 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.NotInDirectoryException;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.jobqueue.JobParameters;
@@ -35,8 +35,8 @@ public abstract class PushReceivedJob extends ContextJob {
 
       directory.setNumber(contactTokenDetails, true);
 
-      Recipients recipients = RecipientFactory.getRecipientsFor(context, new Address[] {source}, false);
-      ApplicationContext.getInstance(context).getJobManager().add(new DirectoryRefreshJob(context, KeyCachingService.getMasterSecret(context), recipients));
+      Recipient recipient = RecipientFactory.getRecipientFor(context, source, false);
+      ApplicationContext.getInstance(context).getJobManager().add(new DirectoryRefreshJob(context, KeyCachingService.getMasterSecret(context), recipient));
     }
 
     if (envelope.isReceipt()) {
@@ -49,7 +49,7 @@ public abstract class PushReceivedJob extends ContextJob {
   }
 
   private void handleMessage(SignalServiceEnvelope envelope, Address source, boolean sendExplicitReceipt) {
-    Recipients recipients = RecipientFactory.getRecipientsFor(context, new Address[] {source}, false);
+    Recipient  recipients = RecipientFactory.getRecipientFor(context, source, false);
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
 
     if (!recipients.isBlocked()) {

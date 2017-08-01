@@ -27,7 +27,6 @@ import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.Recipients;
 
 import java.util.List;
 
@@ -45,7 +44,7 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
   private final Context context;
   private final int     partCount;
 
-  public MediaMmsMessageRecord(Context context, long id, Recipients recipients,
+  public MediaMmsMessageRecord(Context context, long id, Recipient conversationRecipient,
                                Recipient individualRecipient, int recipientDeviceId,
                                long dateSent, long dateReceived, int receiptCount,
                                long threadId, Body body,
@@ -55,7 +54,7 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
                                List<NetworkFailure> failures, int subscriptionId,
                                long expiresIn, long expireStarted)
   {
-    super(context, id, body, recipients, individualRecipient, recipientDeviceId, dateSent,
+    super(context, id, body, conversationRecipient, individualRecipient, recipientDeviceId, dateSent,
           dateReceived, threadId, Status.STATUS_NONE, receiptCount, mailbox, mismatches, failures,
           subscriptionId, expiresIn, expireStarted, slideDeck);
 

@@ -49,7 +49,6 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.MessageRetrievalService;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -102,12 +101,12 @@ public class MessageNotifier {
     lastDesktopActivityTimestamp = timestamp;
   }
 
-  public static void notifyMessageDeliveryFailed(Context context, Recipients recipients, long threadId) {
+  public static void notifyMessageDeliveryFailed(Context context, Recipient recipient, long threadId) {
     if (visibleThread == threadId) {
-      sendInThreadNotification(context, recipients);
+      sendInThreadNotification(context, recipient);
     } else {
       Intent intent = new Intent(context, ConversationActivity.class);
-      intent.putExtra(ConversationActivity.ADDRESSES_EXTRA, recipients.getAddresses());
+      intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.getAddress());
       intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
       intent.setData((Uri.parse("custom://" + System.currentTimeMillis())));
 
@@ -213,8 +212,8 @@ public class MessageNotifier {
     boolean    isVisible  = visibleThread == threadId;
 
     ThreadDatabase threads    = DatabaseFactory.getThreadDatabase(context);
-    Recipients     recipients = DatabaseFactory.getThreadDatabase(context)
-                                               .getRecipientsForThreadId(threadId);
+    Recipient      recipients = DatabaseFactory.getThreadDatabase(context)
+                                               .getRecipientForThreadId(threadId);
 
     if (isVisible) {
       List<MarkedMessageInfo> messageIds = threads.setRead(threadId, false);
@@ -228,7 +227,7 @@ public class MessageNotifier {
     }
 
     if (isVisible) {
-      sendInThreadNotification(context, threads.getRecipientsForThreadId(threadId));
+      sendInThreadNotification(context, threads.getRecipientForThreadId(threadId));
     } else {
       updateNotification(context, masterSecret, signal, 0);
     }
@@ -299,13 +298,13 @@ public class MessageNotifier {
 
     SingleRecipientNotificationBuilder builder        = new SingleRecipientNotificationBuilder(context, masterSecret, TextSecurePreferences.getNotificationPrivacy(context));
     List<NotificationItem>             notifications  = notificationState.getNotifications();
-    Recipients                         recipients     = notifications.get(0).getRecipients();
+    Recipient                          recipient      = notifications.get(0).getRecipient();
     int                                notificationId = (int) (SUMMARY_NOTIFICATION_ID + (bundled ? notifications.get(0).getThreadId() : 0));
 
 
-    builder.setThread(notifications.get(0).getRecipients());
+    builder.setThread(notifications.get(0).getRecipient());
     builder.setMessageCount(notificationState.getMessageCount());
-    builder.setPrimaryMessageBody(recipients, notifications.get(0).getIndividualRecipient(),
+    builder.setPrimaryMessageBody(recipient, notifications.get(0).getIndividualRecipient(),
                                   notifications.get(0).getText(), notifications.get(0).getSlideDeck());
     builder.setContentIntent(notifications.get(0).getPendingIntent(context));
     builder.setGroup(NOTIFICATION_GROUP);
@@ -316,17 +315,17 @@ public class MessageNotifier {
 
     builder.addActions(masterSecret,
                        notificationState.getMarkAsReadIntent(context, notificationId),
-                       notificationState.getQuickReplyIntent(context, notifications.get(0).getRecipients()),
-                       notificationState.getRemoteReplyIntent(context, notifications.get(0).getRecipients()));
+                       notificationState.getQuickReplyIntent(context, notifications.get(0).getRecipient()),
+                       notificationState.getRemoteReplyIntent(context, notifications.get(0).getRecipient()));
 
-    builder.addAndroidAutoAction(notificationState.getAndroidAutoReplyIntent(context, notifications.get(0).getRecipients()),
+    builder.addAndroidAutoAction(notificationState.getAndroidAutoReplyIntent(context, notifications.get(0).getRecipient()),
                                  notificationState.getAndroidAutoHeardIntent(context, notificationId), notifications.get(0).getTimestamp());
 
     ListIterator<NotificationItem> iterator = notifications.listIterator(notifications.size());
 
     while(iterator.hasPrevious()) {
       NotificationItem item = iterator.previous();
-      builder.addMessageBody(item.getRecipients(), item.getIndividualRecipient(), item.getText());
+      builder.addMessageBody(item.getRecipient(), item.getIndividualRecipient(), item.getText());
     }
 
     if (signal) {
@@ -375,14 +374,14 @@ public class MessageNotifier {
     NotificationManagerCompat.from(context).notify(SUMMARY_NOTIFICATION_ID, builder.build());
   }
 
-  private static void sendInThreadNotification(Context context, Recipients recipients) {
+  private static void sendInThreadNotification(Context context, Recipient recipient) {
     if (!TextSecurePreferences.isInThreadNotifications(context) ||
         ServiceUtil.getAudioManager(context).getRingerMode() != AudioManager.RINGER_MODE_NORMAL)
     {
       return;
     }
 
-    Uri uri = recipients != null ? recipients.getRingtone() : null;
+    Uri uri = recipient != null ? recipient.getRingtone() : null;
 
     if (uri == null) {
       String ringtone = TextSecurePreferences.getNotificationRingtone(context);
@@ -435,19 +434,19 @@ public class MessageNotifier {
     else                      reader = DatabaseFactory.getMmsSmsDatabase(context).readerFor(cursor, masterSecret);
 
     while ((record = reader.getNext()) != null) {
-      long         id               = record.getId();
-      boolean      mms              = record.isMms() || record.isMmsNotification();
-      Recipient    recipient        = record.getIndividualRecipient();
-      Recipients   recipients       = record.getRecipients();
-      long         threadId         = record.getThreadId();
-      CharSequence body             = record.getDisplayBody();
-      Recipients   threadRecipients = null;
-      SlideDeck    slideDeck        = null;
-      long         timestamp        = record.getTimestamp();
+      long         id                    = record.getId();
+      boolean      mms                   = record.isMms() || record.isMmsNotification();
+      Recipient    recipient             = record.getIndividualRecipient();
+      Recipient    conversationRecipient = record.getRecipient();
+      long         threadId              = record.getThreadId();
+      CharSequence body                  = record.getDisplayBody();
+      Recipient    threadRecipients      = null;
+      SlideDeck    slideDeck             = null;
+      long         timestamp             = record.getTimestamp();
 
 
       if (threadId != -1) {
-        threadRecipients = DatabaseFactory.getThreadDatabase(context).getRecipientsForThreadId(threadId);
+        threadRecipients = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId);
       }
 
       if (SmsDatabase.Types.isDecryptInProgressType(record.getType()) || !record.getBody().isPlaintext()) {
@@ -463,7 +462,7 @@ public class MessageNotifier {
       }
 
       if (threadRecipients == null || !threadRecipients.isMuted()) {
-        notificationState.addNotification(new NotificationItem(id, mms, recipient, recipients, threadRecipients, threadId, body, timestamp, slideDeck));
+        notificationState.addNotification(new NotificationItem(id, mms, recipient, conversationRecipient, threadRecipients, threadId, body, timestamp, slideDeck));
       }
     }
 

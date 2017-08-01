@@ -11,7 +11,7 @@ import android.util.Log;
 import org.thoughtcrime.securesms.ConversationActivity;
 import org.thoughtcrime.securesms.ConversationPopupActivity;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.VibrateState;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.recipients.Recipient;
 
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -45,10 +45,10 @@ public class NotificationState {
 
   public @Nullable Uri getRingtone() {
     if (!notifications.isEmpty()) {
-      Recipients recipients = notifications.getFirst().getRecipients();
+      Recipient recipient = notifications.getFirst().getRecipient();
 
-      if (recipients != null) {
-        return recipients.getRingtone();
+      if (recipient != null) {
+        return recipient.getRingtone();
       }
     }
 
@@ -57,10 +57,10 @@ public class NotificationState {
 
   public VibrateState getVibrate() {
     if (!notifications.isEmpty()) {
-      Recipients recipients = notifications.getFirst().getRecipients();
+      Recipient recipient = notifications.getFirst().getRecipient();
 
-      if (recipients != null) {
-        return recipients.getVibrate();
+      if (recipient != null) {
+        return recipient.getVibrate();
       }
     }
 
@@ -115,26 +115,26 @@ public class NotificationState {
     return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
   }
 
-  public PendingIntent getRemoteReplyIntent(Context context, Recipients recipients) {
+  public PendingIntent getRemoteReplyIntent(Context context, Recipient recipient) {
     if (threads.size() != 1) throw new AssertionError("We only support replies to single thread notifications!");
 
     Intent intent = new Intent(RemoteReplyReceiver.REPLY_ACTION);
     intent.setClass(context, RemoteReplyReceiver.class);
     intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
-    intent.putExtra(RemoteReplyReceiver.ADDRESSES_EXTRA, recipients.getAddresses());
+    intent.putExtra(RemoteReplyReceiver.ADDRESS_EXTRA, recipient.getAddress());
     intent.setPackage(context.getPackageName());
 
     return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
   }
 
-  public PendingIntent getAndroidAutoReplyIntent(Context context, Recipients recipients) {
+  public PendingIntent getAndroidAutoReplyIntent(Context context, Recipient recipient) {
     if (threads.size() != 1) throw new AssertionError("We only support replies to single thread notifications!");
 
     Intent intent = new Intent(AndroidAutoReplyReceiver.REPLY_ACTION);
     intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
     intent.setClass(context, AndroidAutoReplyReceiver.class);
     intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
-    intent.putExtra(AndroidAutoReplyReceiver.ADDRESSES_EXTRA, recipients.getAddresses());
+    intent.putExtra(AndroidAutoReplyReceiver.ADDRESS_EXTRA, recipient.getAddress());
     intent.putExtra(AndroidAutoReplyReceiver.THREAD_ID_EXTRA, (long)threads.toArray()[0]);
     intent.setPackage(context.getPackageName());
 
@@ -160,11 +160,11 @@ public class NotificationState {
     return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
   }
 
-  public PendingIntent getQuickReplyIntent(Context context, Recipients recipients) {
+  public PendingIntent getQuickReplyIntent(Context context, Recipient recipient) {
     if (threads.size() != 1) throw new AssertionError("We only support replies to single thread notifications! " + threads.size());
 
     Intent     intent           = new Intent(context, ConversationPopupActivity.class);
-    intent.putExtra(ConversationActivity.ADDRESSES_EXTRA, recipients.getAddresses());
+    intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.getAddress());
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, (long)threads.toArray()[0]);
     intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
 
