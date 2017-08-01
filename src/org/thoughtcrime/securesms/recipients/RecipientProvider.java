@@ -133,32 +133,34 @@ class RecipientProvider {
   private @NonNull RecipientDetails getIndividualRecipientDetails(Context context, @NonNull Address address) {
     Optional<RecipientsPreferences> preferences = DatabaseFactory.getRecipientPreferenceDatabase(context).getRecipientsPreferences(new Address[]{address});
     MaterialColor                   color       = preferences.isPresent() ? preferences.get().getColor() : null;
-    Uri                             uri         = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(address.toPhoneString()));
-    Cursor                          cursor      = context.getContentResolver().query(uri, CALLER_ID_PROJECTION,
-                                                                                     null, null, null);
 
-    try {
-      if (cursor != null && cursor.moveToFirst()) {
-        final String resultNumber = cursor.getString(3);
-        if (resultNumber != null) {
-          Uri          contactUri   = Contacts.getLookupUri(cursor.getLong(2), cursor.getString(1));
-          String       name         = resultNumber.equals(cursor.getString(0)) ? null : cursor.getString(0);
-          ContactPhoto contactPhoto = ContactPhotoFactory.getContactPhoto(context,
-                                                                          Uri.withAppendedPath(Contacts.CONTENT_URI, cursor.getLong(2) + ""),
-                                                                          name);
+    if (address.isPhone()) {
+      Uri    uri    = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(address.toPhoneString()));
+      Cursor cursor = context.getContentResolver().query(uri, CALLER_ID_PROJECTION, null, null, null);
 
-          return new RecipientDetails(cursor.getString(0), cursor.getString(4), contactUri, contactPhoto, color);
-        } else {
-          Log.w(TAG, "resultNumber is null");
+      try {
+        if (cursor != null && cursor.moveToFirst()) {
+          final String resultNumber = cursor.getString(3);
+          if (resultNumber != null) {
+            Uri          contactUri   = Contacts.getLookupUri(cursor.getLong(2), cursor.getString(1));
+            String       name         = resultNumber.equals(cursor.getString(0)) ? null : cursor.getString(0);
+            ContactPhoto contactPhoto = ContactPhotoFactory.getContactPhoto(context,
+                                                                            Uri.withAppendedPath(Contacts.CONTENT_URI, cursor.getLong(2) + ""),
+                                                                            name);
+
+            return new RecipientDetails(cursor.getString(0), cursor.getString(4), contactUri, contactPhoto, color);
+          } else {
+            Log.w(TAG, "resultNumber is null");
+          }
         }
+      } finally {
+        if (cursor != null)
+          cursor.close();
       }
-    } finally {
-      if (cursor != null)
-        cursor.close();
     }
 
-    if (STATIC_DETAILS.containsKey(address.toPhoneString())) return STATIC_DETAILS.get(address.toPhoneString());
-    else                                                     return new RecipientDetails(null, null, null, ContactPhotoFactory.getDefaultContactPhoto(null), color);
+    if (STATIC_DETAILS.containsKey(address.serialize())) return STATIC_DETAILS.get(address.serialize());
+    else                                                 return new RecipientDetails(null, null, null, ContactPhotoFactory.getDefaultContactPhoto(null), color);
   }
 
   private @NonNull RecipientDetails getGroupRecipientDetails(Context context, Address groupId) {
