@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -997,7 +998,13 @@ public class DatabaseFactory {
 
           ContentValues values = new ContentValues(1);
           values.put("recipient_ids", Util.join(addresses, " "));
-          db.update("recipient_preferences", values, "_id = ?", new String[] {String.valueOf(id)});
+
+          try {
+            db.update("recipient_preferences", values, "_id = ?", new String[] {String.valueOf(id)});
+          } catch (SQLiteConstraintException e) {
+            Log.w(TAG, e);
+            db.delete("recipient_preference", "_id = ?", new String[] {String.valueOf(id)});
+          }
         }
 
         if (cursor != null) cursor.close();
