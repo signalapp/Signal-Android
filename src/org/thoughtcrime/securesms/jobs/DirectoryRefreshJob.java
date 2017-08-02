@@ -54,7 +54,7 @@ public class DirectoryRefreshJob extends ContextJob {
       if (recipients == null) {
         DirectoryHelper.refreshDirectory(context, KeyCachingService.getMasterSecret(context));
       } else {
-        DirectoryHelper.refreshDirectoryFor(context, masterSecret, recipients, TextSecurePreferences.getLocalNumber(context));
+        DirectoryHelper.refreshDirectoryFor(context, masterSecret, recipients);
       }
       SecurityEvent.broadcastSecurityUpdateEvent(context);
     } finally {

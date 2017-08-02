@@ -7,6 +7,7 @@ import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.i18n.phonenumbers.NumberParseException;
@@ -20,7 +21,6 @@ import org.thoughtcrime.securesms.util.NumberUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -60,7 +60,17 @@ public class Address implements Parcelable, Comparable<Address> {
   }
 
   public static Address fromExternal(@NonNull Context context, @Nullable String external) {
-    return new Address(new ExternalAddressFormatter(TextSecurePreferences.getLocalNumber(context)).format(external));
+    String localNumber = TextSecurePreferences.getLocalNumber(context);
+
+    ExternalAddressFormatter formatter;
+
+    if (!TextUtils.isEmpty(localNumber)) {
+      formatter = new ExternalAddressFormatter(localNumber);
+    } else  {
+      formatter = new ExternalAddressFormatter(Util.getSimCountryIso(context).or("US"), true);
+    }
+
+    return new Address(formatter.format(external));
   }
 
   public static @NonNull List<Address> fromSerializedList(@NonNull String serialized, char delimiter) {
@@ -171,21 +181,26 @@ public class Address implements Parcelable, Comparable<Address> {
       add("AC");
     }};
 
-    private final Phonenumber.PhoneNumber localNumber;
-    private final String                  localNumberString;
-    private final String                  localCountryCode;
+    private final String localNumberString;
+    private final String localCountryCode;
 
     private final PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.getInstance();
     private final Pattern         ALPHA_PATTERN   = Pattern.compile("[a-zA-Z]");
 
-    public ExternalAddressFormatter(String localNumber) {
+    ExternalAddressFormatter(@NonNull String localNumberString) {
       try {
-        this.localNumberString = localNumber;
-        this.localNumber       = phoneNumberUtil.parse(localNumber, null);
-        this.localCountryCode  = phoneNumberUtil.getRegionCodeForNumber(this.localNumber);
+        Phonenumber.PhoneNumber localNumber = phoneNumberUtil.parse(localNumberString, null);
+
+        this.localNumberString = localNumberString;
+        this.localCountryCode  = phoneNumberUtil.getRegionCodeForNumber(localNumber);
       } catch (NumberParseException e) {
         throw new AssertionError(e);
       }
+    }
+
+    ExternalAddressFormatter(@NonNull String localCountryCode, boolean countryCode) {
+      this.localNumberString = "";
+      this.localCountryCode  = localCountryCode;
     }
 
     public String format(@Nullable String number) {

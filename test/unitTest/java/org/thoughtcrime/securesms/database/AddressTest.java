@@ -39,12 +39,21 @@ public class AddressTest {
     assertEquals(formatter.format("+1 415.111.1126"), "+14151111126");
     assertEquals(formatter.format("+1 415 111 1127"), "+14151111127");
     assertEquals(formatter.format("+1 (415) 111 1128"), "+14151111128");
+
+    formatter = new Address.ExternalAddressFormatter("+442079460010");
+    assertEquals(formatter.format("(020) 7946 0018"), "+442079460018");
   }
 
   @Test
   public void testGroup() throws Exception {
     Address.ExternalAddressFormatter formatter = new Address.ExternalAddressFormatter("+14152222222");
     assertEquals(formatter.format("__textsecure_group__!foobar"), "__textsecure_group__!foobar");
+  }
+
+  @Test
+  public void testLostLocalNumber() throws Exception {
+    Address.ExternalAddressFormatter formatter = new Address.ExternalAddressFormatter("US", true);
+    assertEquals(formatter.format("(415) 111-1122"), "+14151111122");
   }
 
 }

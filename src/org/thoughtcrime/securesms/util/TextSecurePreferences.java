@@ -304,7 +304,7 @@ public class TextSecurePreferences {
   }
 
   public static String getLocalNumber(Context context) {
-    return getStringPreference(context, LOCAL_NUMBER_PREF, "No Stored Number");
+    return getStringPreference(context, LOCAL_NUMBER_PREF, null);
   }
 
   public static void setLocalNumber(Context context, String localNumber) {

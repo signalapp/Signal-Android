@@ -42,11 +42,14 @@ import android.widget.EditText;
 
 import com.google.android.mms.pdu_alt.CharacterSets;
 import com.google.android.mms.pdu_alt.EncodedStringValue;
+import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
 
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.mms.OutgoingLegacyMmsConnection;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
 
 import java.io.ByteArrayOutputStream;
@@ -234,22 +237,24 @@ public class Util {
     return total;
   }
 
-  public static @Nullable String getDeviceE164Number(Context context) {
-    final String  localNumber = ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getLine1Number();
-    final String  countryIso  = getSimCountryIso(context);
-    final Integer countryCode = PhoneNumberUtil.getInstance().getCountryCodeForRegion(countryIso);
+  public static Optional<Phonenumber.PhoneNumber> getDeviceNumber(Context context) {
+    try {
+      final String           localNumber = ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getLine1Number();
+      final Optional<String> countryIso  = getSimCountryIso(context);
 
-    if (TextUtils.isEmpty(localNumber)) return null;
+      if (TextUtils.isEmpty(localNumber)) return Optional.absent();
+      if (!countryIso.isPresent())        return Optional.absent();
 
-    if      (localNumber.startsWith("+"))    return localNumber;
-    else if (!TextUtils.isEmpty(countryIso)) return PhoneNumberFormatter.formatE164(String.valueOf(countryCode), localNumber);
-    else if (localNumber.length() == 10)     return "+1" + localNumber;
-    else                                     return "+" + localNumber;
+      return Optional.fromNullable(PhoneNumberUtil.getInstance().parse(localNumber, countryIso.get()));
+    } catch (NumberParseException e) {
+      Log.w(TAG, e);
+      return Optional.absent();
+    }
   }
 
-  public static @Nullable String getSimCountryIso(Context context) {
+  public static Optional<String> getSimCountryIso(Context context) {
     String simCountryIso = ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getSimCountryIso();
-    return simCountryIso != null ? simCountryIso.toUpperCase() : null;
+    return Optional.fromNullable(simCountryIso != null ? simCountryIso.toUpperCase() : null);
   }
 
   public static <T> List<List<T>> partition(List<T> list, int partitionSize) {

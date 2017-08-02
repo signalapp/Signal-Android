@@ -206,6 +206,7 @@ public class RegistrationService extends Service {
       String challenge = waitForChallenge();
       accountManager.verifyAccountWithCode(challenge, signalingKey, registrationId, !supportsGcm);
 
+      TextSecurePreferences.setLocalNumber(this, number);
       handleCommonRegistration(accountManager, number, password, signalingKey, supportsGcm);
       markAsVerified(number, password, signalingKey);
 
@@ -257,7 +258,7 @@ public class RegistrationService extends Service {
     TextSecurePreferences.setWebsocketRegistered(this, true);
 
     DatabaseFactory.getIdentityDatabase(this).saveIdentity(self, identityKey.getPublicKey(), IdentityDatabase.VerifiedStatus.VERIFIED, true, System.currentTimeMillis(), true);
-    DirectoryHelper.refreshDirectory(this, accountManager, number);
+    DirectoryHelper.refreshDirectory(this, accountManager);
 
     DirectoryRefreshListener.schedule(this);
     RotateSignedPreKeyListener.schedule(this);

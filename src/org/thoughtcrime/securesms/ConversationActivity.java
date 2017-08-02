@@ -1023,8 +1023,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             capabilities.getVideoCapability() == Capability.UNKNOWN)
         {
           try {
-            capabilities = DirectoryHelper.refreshDirectoryFor(context, masterSecret, recipients,
-                                                               TextSecurePreferences.getLocalNumber(context));
+            capabilities = DirectoryHelper.refreshDirectoryFor(context, masterSecret, recipients);
           } catch (IOException e) {
             Log.w(TAG, e);
           }

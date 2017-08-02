@@ -35,6 +35,7 @@ import android.util.Log;
 import android.util.Pair;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
@@ -76,29 +77,28 @@ public class ContactsDatabase {
     this.context  = context;
   }
 
-  public synchronized @NonNull List<String> setRegisteredUsers(@NonNull Account account,
-                                                               @NonNull String localNumber,
-                                                               @NonNull List<ContactTokenDetails> registeredContacts,
-                                                               boolean remove)
+  public synchronized @NonNull List<Address> setRegisteredUsers(@NonNull Account account,
+                                                                @NonNull List<ContactTokenDetails> registeredContacts,
+                                                                boolean remove)
       throws RemoteException, OperationApplicationException
   {
 
-    Map<String, ContactTokenDetails>    registeredNumbers = new HashMap<>();
-    List<String>                        addedNumbers      = new LinkedList<>();
-    ArrayList<ContentProviderOperation> operations        = new ArrayList<>();
-    Map<String, SignalContact>          currentContacts   = getSignalRawContacts(account, localNumber);
+    Map<Address, ContactTokenDetails>   registeredAddresses = new HashMap<>();
+    List<Address>                       addedAddresses      = new LinkedList<>();
+    ArrayList<ContentProviderOperation> operations          = new ArrayList<>();
+    Map<Address, SignalContact>         currentContacts     = getSignalRawContacts(account);
 
     for (ContactTokenDetails registeredContact : registeredContacts) {
-      String registeredNumber = registeredContact.getNumber();
+      Address registeredAddress = Address.fromSerialized(registeredContact.getNumber());
 
-      registeredNumbers.put(registeredNumber, registeredContact);
+      registeredAddresses.put(registeredAddress, registeredContact);
 
-      if (!currentContacts.containsKey(registeredNumber)) {
-        Optional<SystemContactInfo> systemContactInfo = getSystemContactInfo(registeredNumber, localNumber);
+      if (!currentContacts.containsKey(registeredAddress)) {
+        Optional<SystemContactInfo> systemContactInfo = getSystemContactInfo(registeredAddress);
 
         if (systemContactInfo.isPresent()) {
-          Log.w(TAG, "Adding number: " + registeredNumber);
-          addedNumbers.add(registeredNumber);
+          Log.w(TAG, "Adding number: " + registeredAddress);
+          addedAddresses.add(registeredAddress);
           addTextSecureRawContact(operations, account, systemContactInfo.get().number,
                                   systemContactInfo.get().name, systemContactInfo.get().id,
                                   true);
@@ -106,8 +106,8 @@ public class ContactsDatabase {
       }
     }
 
-    for (Map.Entry<String, SignalContact> currentContactEntry : currentContacts.entrySet()) {
-      ContactTokenDetails tokenDetails = registeredNumbers.get(currentContactEntry.getKey());
+    for (Map.Entry<Address, SignalContact> currentContactEntry : currentContacts.entrySet()) {
+      ContactTokenDetails tokenDetails = registeredAddresses.get(currentContactEntry.getKey());
 
       if (tokenDetails == null) {
         if (remove) {
@@ -129,7 +129,7 @@ public class ContactsDatabase {
       context.getContentResolver().applyBatch(ContactsContract.AUTHORITY, operations);
     }
 
-    return addedNumbers;
+    return addedAddresses;
   }
 
   @NonNull Cursor querySystemContacts(String filter) {
@@ -220,7 +220,7 @@ public class ContactsDatabase {
   }
 
   private void addContactVoiceSupport(List<ContentProviderOperation> operations,
-                                      @NonNull String e164number, long rawContactId)
+                                      @NonNull Address address, long rawContactId)
   {
     operations.add(ContentProviderOperation.newUpdate(RawContacts.CONTENT_URI)
                                            .withSelection(RawContacts._ID + " = ?", new String[] {String.valueOf(rawContactId)})
@@ -230,9 +230,9 @@ public class ContactsDatabase {
     operations.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI.buildUpon().appendQueryParameter(ContactsContract.CALLER_IS_SYNCADAPTER, "true").build())
                                            .withValue(ContactsContract.Data.RAW_CONTACT_ID, rawContactId)
                                            .withValue(ContactsContract.Data.MIMETYPE, CALL_MIMETYPE)
-                                           .withValue(ContactsContract.Data.DATA1, e164number)
+                                           .withValue(ContactsContract.Data.DATA1, address.toPhoneString())
                                            .withValue(ContactsContract.Data.DATA2, context.getString(R.string.app_name))
-                                           .withValue(ContactsContract.Data.DATA3, context.getString(R.string.ContactsDatabase_signal_call_s, e164number))
+                                           .withValue(ContactsContract.Data.DATA3, context.getString(R.string.ContactsDatabase_signal_call_s, address.toPhoneString()))
                                            .withYieldAllowed(true)
                                            .build());
   }
@@ -346,15 +346,13 @@ public class ContactsDatabase {
                                            .build());
   }
 
-  private @NonNull Map<String, SignalContact> getSignalRawContacts(@NonNull Account account,
-                                                                   @NonNull String localNumber)
-  {
+  private @NonNull Map<Address, SignalContact> getSignalRawContacts(@NonNull Account account) {
     Uri currentContactsUri = RawContacts.CONTENT_URI.buildUpon()
                                                     .appendQueryParameter(RawContacts.ACCOUNT_NAME, account.name)
                                                     .appendQueryParameter(RawContacts.ACCOUNT_TYPE, account.type).build();
 
-    Map<String, SignalContact> signalContacts = new HashMap<>();
-    Cursor                     cursor         = null;
+    Map<Address, SignalContact> signalContacts = new HashMap<>();
+    Cursor                      cursor         = null;
 
     try {
       String[] projection;
@@ -368,21 +366,13 @@ public class ContactsDatabase {
       cursor = context.getContentResolver().query(currentContactsUri, projection, null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
-        String currentNumber;
-
-        try {
-          currentNumber = PhoneNumberFormatter.formatNumber(cursor.getString(1), localNumber);
-        } catch (InvalidNumberException e) {
-          Log.w(TAG, e);
-          currentNumber = cursor.getString(1);
-        }
-
-        long   rawContactId                = cursor.getLong(0);
-        long   contactId                   = cursor.getLong(3);
-        String supportsVoice               = cursor.getString(2);
-        String rawContactDisplayName       = null;
-        String aggregateDisplayName        = null;
-        int    rawContactDisplayNameSource = 0;
+        Address currentAddress              = Address.fromExternal(context, cursor.getString(1));
+        long    rawContactId                = cursor.getLong(0);
+        long    contactId                   = cursor.getLong(3);
+        String  supportsVoice               = cursor.getString(2);
+        String  rawContactDisplayName       = null;
+        String  aggregateDisplayName        = null;
+        int     rawContactDisplayNameSource = 0;
 
         if (Build.VERSION.SDK_INT >= 11) {
           rawContactDisplayName       = cursor.getString(4);
@@ -390,7 +380,7 @@ public class ContactsDatabase {
           aggregateDisplayName        = getDisplayName(contactId);
         }
 
-        signalContacts.put(currentNumber, new SignalContact(rawContactId, supportsVoice, rawContactDisplayName, aggregateDisplayName, rawContactDisplayNameSource));
+        signalContacts.put(currentAddress, new SignalContact(rawContactId, supportsVoice, rawContactDisplayName, aggregateDisplayName, rawContactDisplayNameSource));
       }
     } finally {
       if (cursor != null)
@@ -400,10 +390,11 @@ public class ContactsDatabase {
     return signalContacts;
   }
 
-  private Optional<SystemContactInfo> getSystemContactInfo(@NonNull String e164number,
-                                                           @NonNull String localNumber)
+  private Optional<SystemContactInfo> getSystemContactInfo(@NonNull Address address)
   {
-    Uri      uri          = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(e164number));
+    if (!address.isPhone()) return Optional.absent();
+
+    Uri      uri          = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(address.toPhoneString()));
     String[] projection   = {ContactsContract.PhoneLookup.NUMBER,
                              ContactsContract.PhoneLookup._ID,
                              ContactsContract.PhoneLookup.DISPLAY_NAME};
@@ -414,25 +405,21 @@ public class ContactsDatabase {
       numberCursor = context.getContentResolver().query(uri, projection, null, null, null);
 
       while (numberCursor != null && numberCursor.moveToNext()) {
-        try {
-          String systemNumber              = numberCursor.getString(0);
-          String canonicalizedSystemNumber = PhoneNumberFormatter.formatNumber(systemNumber, localNumber);
+        String  systemNumber  = numberCursor.getString(0);
+        Address systemAddress = Address.fromExternal(context, systemNumber);
 
-          if (canonicalizedSystemNumber.equals(e164number)) {
-            idCursor = context.getContentResolver().query(RawContacts.CONTENT_URI,
-                                                          new String[] {RawContacts._ID},
-                                                          RawContacts.CONTACT_ID + " = ? ",
-                                                          new String[] {String.valueOf(numberCursor.getLong(1))},
-                                                          null);
+        if (systemAddress.equals(address)) {
+          idCursor = context.getContentResolver().query(RawContacts.CONTENT_URI,
+                                                        new String[] {RawContacts._ID},
+                                                        RawContacts.CONTACT_ID + " = ? ",
+                                                        new String[] {String.valueOf(numberCursor.getLong(1))},
+                                                        null);
 
-            if (idCursor != null && idCursor.moveToNext()) {
-              return Optional.of(new SystemContactInfo(numberCursor.getString(2),
-                                                       numberCursor.getString(0),
-                                                       idCursor.getLong(0)));
-            }
+          if (idCursor != null && idCursor.moveToNext()) {
+            return Optional.of(new SystemContactInfo(numberCursor.getString(2),
+                                                     numberCursor.getString(0),
+                                                     idCursor.getLong(0)));
           }
-        } catch (InvalidNumberException e) {
-          Log.w(TAG, e);
         }
       }
     } finally {
