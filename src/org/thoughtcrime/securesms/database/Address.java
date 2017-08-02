@@ -14,11 +14,14 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 import com.google.i18n.phonenumbers.ShortNumberInfo;
 
+import org.thoughtcrime.securesms.util.DelimiterUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.NumberUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -52,23 +55,35 @@ public class Address implements Parcelable, Comparable<Address> {
     this(in.readString());
   }
 
-  public static Address fromSerialized(@NonNull String serialized) {
+  public static @NonNull Address fromSerialized(@NonNull String serialized) {
     return new Address(serialized);
   }
 
-  public static List<Address> fromSerializedList(@NonNull String serialized, @NonNull String delimiter) {
-    List<String>  elements  = Util.split(serialized, delimiter);
-    List<Address> addresses = new LinkedList<>();
+  public static Address fromExternal(@NonNull Context context, @Nullable String external) {
+    return new Address(new ExternalAddressFormatter(TextSecurePreferences.getLocalNumber(context)).format(external));
+  }
 
-    for (String element : elements) {
-      addresses.add(Address.fromSerialized(element));
+  public static @NonNull List<Address> fromSerializedList(@NonNull String serialized, char delimiter) {
+    String[]      escapedAddresses = DelimiterUtil.split(serialized, delimiter);
+    List<Address> addresses        = new LinkedList<>();
+
+    for (String escapedAddress : escapedAddresses) {
+      addresses.add(Address.fromSerialized(DelimiterUtil.unescape(escapedAddress, delimiter)));
     }
 
     return addresses;
   }
 
-  public static Address fromExternal(@NonNull Context context, @Nullable String external) {
-    return new Address(new ExternalAddressFormatter(TextSecurePreferences.getLocalNumber(context)).format(external));
+  public static @NonNull String toSerializedList(@NonNull List<Address> addresses, char delimiter) {
+    Collections.sort(addresses);
+
+    List<String> escapedAddresses = new LinkedList<>();
+
+    for (Address address : addresses) {
+      escapedAddresses.add(DelimiterUtil.escape(address.serialize(), delimiter));
+    }
+
+    return Util.join(escapedAddresses, delimiter + "");
   }
 
   public static Address[] fromParcelable(Parcelable[] parcelables) {

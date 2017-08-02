@@ -23,7 +23,6 @@ import android.database.MergeCursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
@@ -39,9 +38,11 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.DelimiterUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.InvalidMessageException;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -92,7 +93,7 @@ public class ThreadDatabase extends Database {
     long date                   = System.currentTimeMillis();
 
     contentValues.put(DATE, date - date % 1000);
-    contentValues.put(ADDRESSES, Util.join(addresses, " "));
+    contentValues.put(ADDRESSES, Address.toSerializedList(Arrays.asList(addresses), ' '));
 
     if (recipientCount > 1)
       contentValues.put(TYPE, distributionType);
@@ -288,7 +289,7 @@ public class ThreadDatabase extends Database {
 
       int i= 0;
       for (Address address : addresses) {
-        selectionArgs[i++] = address.serialize();
+        selectionArgs[i++] = DelimiterUtil.escape(address.serialize(), ' ');
       }
 
       cursors.add(db.query(TABLE_NAME, null, selection, selectionArgs, null, null, DATE + " DESC"));
@@ -410,11 +411,11 @@ public class ThreadDatabase extends Database {
   }
 
   public long getThreadIdIfExistsFor(Recipients recipients) {
-    Address[] addresses = recipients.getAddresses();
-    SQLiteDatabase db      = databaseHelper.getReadableDatabase();
-    String where           = ADDRESSES + " = ?";
-    String[] recipientsArg = new String[] {Util.join(addresses, " ")};
-    Cursor cursor          = null;
+    List<Address>  addresses     = Arrays.asList(recipients.getAddresses());
+    SQLiteDatabase db            = databaseHelper.getReadableDatabase();
+    String         where         = ADDRESSES + " = ?";
+    String[]       recipientsArg = new String[]{Address.toSerializedList(addresses, ' ')};
+    Cursor         cursor        = null;
 
     try {
       cursor = db.query(TABLE_NAME, new String[]{ID}, where, recipientsArg, null, null, null);
@@ -437,7 +438,7 @@ public class ThreadDatabase extends Database {
     Address[]      addresses     = recipients.getAddresses();
     SQLiteDatabase db            = databaseHelper.getReadableDatabase();
     String         where         = ADDRESSES + " = ?";
-    String[]       recipientsArg = new String[]{Util.join(addresses, " ")};
+    String[]       recipientsArg = new String[]{Address.toSerializedList(Arrays.asList(addresses), ' ')};
     Cursor         cursor        = null;
 
     try {
@@ -462,8 +463,8 @@ public class ThreadDatabase extends Database {
       cursor = db.query(TABLE_NAME, null, ID + " = ?", new String[] {threadId+""}, null, null, null);
 
       if (cursor != null && cursor.moveToFirst()) {
-        Address[] addresses = getAddressesFromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESSES)));
-        return RecipientFactory.getRecipientsFor(context, addresses, false);
+        List<Address> addresses = Address.fromSerializedList(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESSES)), ' ');
+        return RecipientFactory.getRecipientsFor(context, addresses.toArray(new Address[0]), false);
       }
     } finally {
       if (cursor != null)
@@ -527,17 +528,6 @@ public class ThreadDatabase extends Database {
     return thumbnail != null ? thumbnail.getThumbnailUri() : null;
   }
 
-  private @NonNull Address[] getAddressesFromSerialized(String serializedAddresses) {
-    String[]  serializedAddressParts = serializedAddresses.split(" ");
-    Address[] addresses              = new Address[serializedAddressParts.length];
-
-    for (int i=0;i<serializedAddressParts.length;i++) {
-      addresses[i] = Address.fromSerialized(serializedAddressParts[i]);
-    }
-
-    return addresses;
-  }
-
   public static interface ProgressListener {
     public void onProgress(int complete, int total);
   }
@@ -571,9 +561,9 @@ public class ThreadDatabase extends Database {
     }
 
     public ThreadRecord getCurrent() {
-      long       threadId   = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.ID));
-      Address[]  addresses  = getAddressesFromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.ADDRESSES)));
-      Recipients recipients = RecipientFactory.getRecipientsFor(context, addresses, true);
+      long          threadId   = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.ID));
+      List<Address> addresses  = Address.fromSerializedList(cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.ADDRESSES)), ' ');
+      Recipients    recipients = RecipientFactory.getRecipientsFor(context, addresses.toArray(new Address[0]), true);
 
       DisplayRecord.Body body = getPlaintextBody(cursor);
       long date               = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.DATE));

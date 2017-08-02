@@ -72,20 +72,6 @@ public class Util {
 
   public static Handler handler = new Handler(Looper.getMainLooper());
 
-  public static String join(List<Address> list, String delimiter) {
-    return join(list.toArray(new Address[0]), delimiter);
-  }
-
-  public static String join(Address[] list, String delimiter) {
-    List<String> stringList = new LinkedList<>();
-
-    for (Address address : list) {
-      stringList.add(address.serialize());
-    }
-
-    return join(stringList, delimiter);
-  }
-
   public static String join(String[] list, String delimiter) {
     return join(Arrays.asList(list), delimiter);
   }

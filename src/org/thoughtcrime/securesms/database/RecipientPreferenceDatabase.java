@@ -14,10 +14,10 @@ import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class RecipientPreferenceDatabase extends Database {
 
@@ -86,14 +86,12 @@ public class RecipientPreferenceDatabase extends Database {
   }
 
   public Optional<RecipientsPreferences> getRecipientsPreferences(@NonNull Address[] addresses) {
-    Arrays.sort(addresses);
-
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
     Cursor         cursor   = null;
 
     try {
       cursor = database.query(TABLE_NAME, null, ADDRESSES + " = ?",
-                              new String[] {Util.join(addresses, " ")},
+                              new String[] {Address.toSerializedList(Arrays.asList(addresses), ' ')},
                               null, null, null);
 
       if (cursor != null && cursor.moveToNext()) {
@@ -187,11 +185,12 @@ public class RecipientPreferenceDatabase extends Database {
 
     database.beginTransaction();
 
-    int updated = database.update(TABLE_NAME, contentValues, ADDRESSES + " = ?",
-                                  new String[] {Util.join(recipients.getAddresses(), " ")});
+    List<Address> addresses           = recipients.getAddressesList();
+    String        serializedAddresses = Address.toSerializedList(addresses, ' ');
+    int           updated             = database.update(TABLE_NAME, contentValues, ADDRESSES + " = ?", new String[]{serializedAddresses});
 
     if (updated < 1) {
-      contentValues.put(ADDRESSES, Util.join(recipients.getAddresses(), " "));
+      contentValues.put(ADDRESSES, serializedAddresses);
       database.insert(TABLE_NAME, null, contentValues);
     }
 
@@ -211,13 +210,13 @@ public class RecipientPreferenceDatabase extends Database {
     private final int           defaultSubscriptionId;
     private final int           expireMessages;
 
-    public RecipientsPreferences(boolean blocked, long muteUntil,
-                                 @NonNull VibrateState vibrateState,
-                                 @Nullable Uri notification,
-                                 @Nullable MaterialColor color,
-                                 boolean seenInviteReminder,
-                                 int defaultSubscriptionId,
-                                 int expireMessages)
+    RecipientsPreferences(boolean blocked, long muteUntil,
+                          @NonNull VibrateState vibrateState,
+                          @Nullable Uri notification,
+                          @Nullable MaterialColor color,
+                          boolean seenInviteReminder,
+                          int defaultSubscriptionId,
+                          int expireMessages)
     {
       this.blocked               = blocked;
       this.muteUntil             = muteUntil;
@@ -267,21 +266,16 @@ public class RecipientPreferenceDatabase extends Database {
     private final Context context;
     private final Cursor cursor;
 
-    public BlockedReader(Context context, Cursor cursor) {
+    BlockedReader(Context context, Cursor cursor) {
       this.context = context;
       this.cursor  = cursor;
     }
 
     public @NonNull Recipients getCurrent() {
-      String    serialized  = cursor.getString(cursor.getColumnIndexOrThrow(ADDRESSES));
-      String[]  addresses   = serialized.split(" ");
-      Address[] addressList = new Address[addresses.length];
+      String        serialized  = cursor.getString(cursor.getColumnIndexOrThrow(ADDRESSES));
+      List<Address> addressList = Address.fromSerializedList(serialized, ' ');
 
-      for (int i=0;i<addresses.length;i++) {
-        addressList[i] = Address.fromSerialized(addresses[i]);
-      }
-
-      return RecipientFactory.getRecipientsFor(context, addressList, false);
+      return RecipientFactory.getRecipientsFor(context, addressList.toArray(new Address[0]), false);
     }
 
     public @Nullable Recipients getNext() {
@@ -297,7 +291,7 @@ public class RecipientPreferenceDatabase extends Database {
 
     private final Recipients recipients;
 
-    public RecipientPreferenceEvent(Recipients recipients) {
+    RecipientPreferenceEvent(Recipients recipients) {
       this.recipients = recipients;
     }
 

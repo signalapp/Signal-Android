@@ -17,7 +17,6 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 
@@ -120,7 +119,7 @@ public class GroupDatabase extends Database {
     ContentValues contentValues = new ContentValues();
     contentValues.put(GROUP_ID, GroupUtil.getEncodedId(groupId));
     contentValues.put(TITLE, title);
-    contentValues.put(MEMBERS, Util.join(members, ","));
+    contentValues.put(MEMBERS, Address.toSerializedList(members, ','));
 
     if (avatar != null) {
       contentValues.put(AVATAR_ID, avatar.getId());
@@ -185,7 +184,7 @@ public class GroupDatabase extends Database {
 
   public void updateMembers(byte[] id, List<Address> members) {
     ContentValues contents = new ContentValues();
-    contents.put(MEMBERS, Util.join(members, ","));
+    contents.put(MEMBERS, Address.toSerializedList(members, ','));
     contents.put(ACTIVE, 1);
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?",
@@ -197,7 +196,7 @@ public class GroupDatabase extends Database {
     currentMembers.remove(source);
 
     ContentValues contents = new ContentValues();
-    contents.put(MEMBERS, Util.join(currentMembers, ","));
+    contents.put(MEMBERS, Address.toSerializedList(currentMembers, ','));
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?",
                                                 new String[] {GroupUtil.getEncodedId(id)});
@@ -213,13 +212,8 @@ public class GroupDatabase extends Database {
                                                           null, null, null);
 
       if (cursor != null && cursor.moveToFirst()) {
-        List<Address> results = new LinkedList<>();
-
-        for (String member : Util.split(cursor.getString(cursor.getColumnIndexOrThrow(MEMBERS)), ",")) {
-          results.add(Address.fromSerialized(member));
-        }
-
-        return results;
+        String serializedMembers = cursor.getString(cursor.getColumnIndexOrThrow(MEMBERS));
+        return Address.fromSerializedList(serializedMembers, ',');
       }
 
       return new LinkedList<>();
@@ -307,7 +301,7 @@ public class GroupDatabase extends Database {
     {
       this.id                = id;
       this.title             = title;
-      this.members           = Address.fromSerializedList(members, ",");
+      this.members           = Address.fromSerializedList(members, ',');
       this.avatar            = avatar;
       this.avatarId          = avatarId;
       this.avatarKey         = avatarKey;
