@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.DelimiterUtil;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -55,6 +56,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -919,7 +921,7 @@ public class DatabaseFactory {
 
             if (resolved != null && resolved.moveToFirst()) {
               String address = resolved.getString(0);
-              addresses[i] = numberMigrator.migrate(address);
+              addresses[i] = DelimiterUtil.escape(numberMigrator.migrate(address), ' ');
             } else if (recipientIds[i].equals("-1")) {
               addresses[i] = "Unknown";
             } else {
@@ -928,6 +930,8 @@ public class DatabaseFactory {
 
             if (resolved != null) resolved.close();
           }
+
+          Arrays.sort(addresses);
 
           ContentValues values = new ContentValues(1);
           values.put("recipient_ids", Util.join(addresses, " "));
@@ -990,7 +994,7 @@ public class DatabaseFactory {
 
             if (resolved != null && resolved.moveToFirst()) {
               String address = resolved.getString(0);
-              addresses[i] = numberMigrator.migrate(address);
+              addresses[i] = DelimiterUtil.escape(numberMigrator.migrate(address), ' ');
             } else if (recipientIds[i].equals("-1")) {
               addresses[i] = "Unknown";
             } else {
@@ -999,6 +1003,8 @@ public class DatabaseFactory {
 
             if (resolved != null) resolved.close();
           }
+
+          Arrays.sort(addresses);
 
           ContentValues values = new ContentValues(1);
           values.put("recipient_ids", Util.join(addresses, " "));
