@@ -920,6 +920,8 @@ public class DatabaseFactory {
             if (resolved != null && resolved.moveToFirst()) {
               String address = resolved.getString(0);
               addresses[i] = numberMigrator.migrate(address);
+            } else if (recipientIds[i].equals("-1")) {
+              addresses[i] = "Unknown";
             } else {
               throw new AssertionError("Unable to resolve: " + recipientIds[i]);
             }
@@ -989,6 +991,8 @@ public class DatabaseFactory {
             if (resolved != null && resolved.moveToFirst()) {
               String address = resolved.getString(0);
               addresses[i] = numberMigrator.migrate(address);
+            } else if (recipientIds[i].equals("-1")) {
+              addresses[i] = "Unknown";
             } else {
               throw new AssertionError("Unable to resolve: " + recipientIds[i]);
             }
