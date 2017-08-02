@@ -128,7 +128,7 @@ public class BlockedContactsActivity extends PassphraseRequiredActionBarActivity
       @Override
       public void bindView(View view, Context context, Cursor cursor) {
         String        addressesConcat = cursor.getString(1);
-        List<Address> addresses       = Address.fromSerializedList(addressesConcat, " ");
+        List<Address> addresses       = Address.fromSerializedList(addressesConcat, ' ');
 
         Recipients recipients   = RecipientFactory.getRecipientsFor(context, addresses.toArray(new Address[0]), true);
 
