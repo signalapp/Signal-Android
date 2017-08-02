@@ -1007,7 +1007,7 @@ public class DatabaseFactory {
             db.update("recipient_preferences", values, "_id = ?", new String[] {String.valueOf(id)});
           } catch (SQLiteConstraintException e) {
             Log.w(TAG, e);
-            db.delete("recipient_preference", "_id = ?", new String[] {String.valueOf(id)});
+            db.delete("recipient_preferences", "_id = ?", new String[] {String.valueOf(id)});
           }
         }
 
