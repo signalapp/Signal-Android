@@ -922,10 +922,10 @@ public class DatabaseFactory {
             if (resolved != null && resolved.moveToFirst()) {
               String address = resolved.getString(0);
               addresses[i] = DelimiterUtil.escape(numberMigrator.migrate(address), ' ');
-            } else if (recipientIds[i].equals("-1")) {
+            } else if (TextUtils.isEmpty(recipientIds[i]) || recipientIds[i].equals("-1")) {
               addresses[i] = "Unknown";
             } else {
-              throw new AssertionError("Unable to resolve: " + recipientIds[i]);
+              throw new AssertionError("Unable to resolve: " + recipientIds[i] + ", recipientIdsList: '" + recipientIdsList + "'");
             }
 
             if (resolved != null) resolved.close();
@@ -995,10 +995,10 @@ public class DatabaseFactory {
             if (resolved != null && resolved.moveToFirst()) {
               String address = resolved.getString(0);
               addresses[i] = DelimiterUtil.escape(numberMigrator.migrate(address), ' ');
-            } else if (recipientIds[i].equals("-1")) {
+            } else if (TextUtils.isEmpty(recipientIds[i]) || recipientIds[i].equals("-1")) {
               addresses[i] = "Unknown";
             } else {
-              throw new AssertionError("Unable to resolve: " + recipientIds[i]);
+              throw new AssertionError("Unable to resolve: " + recipientIds[i] + ", recipientIdsList: '" + recipientIdsList + "'");
             }
 
             if (resolved != null) resolved.close();
