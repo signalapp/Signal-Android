@@ -206,7 +206,7 @@ public class Address implements Parcelable, Comparable<Address> {
     public String format(@Nullable String number) {
       if (number == null)                             return "Unknown";
       if (number.startsWith("__textsecure_group__!")) return number;
-      if (ALPHA_PATTERN.matcher(number).matches())    return number.trim();
+      if (ALPHA_PATTERN.matcher(number).find())       return number.trim();
 
       String bareNumber = number.replaceAll("[^0-9+]", "");
 
