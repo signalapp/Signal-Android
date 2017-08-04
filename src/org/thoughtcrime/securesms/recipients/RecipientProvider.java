@@ -23,6 +23,7 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.PhoneLookup;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
@@ -134,7 +135,7 @@ class RecipientProvider {
     Optional<RecipientsPreferences> preferences = DatabaseFactory.getRecipientPreferenceDatabase(context).getRecipientsPreferences(new Address[]{address});
     MaterialColor                   color       = preferences.isPresent() ? preferences.get().getColor() : null;
 
-    if (address.isPhone()) {
+    if (address.isPhone() && !TextUtils.isEmpty(address.toPhoneString())) {
       Uri    uri    = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(address.toPhoneString()));
       Cursor cursor = context.getContentResolver().query(uri, CALLER_ID_PROJECTION, null, null, null);
 
