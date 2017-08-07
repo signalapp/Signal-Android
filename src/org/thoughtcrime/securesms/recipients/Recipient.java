@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.recipients;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.color.MaterialColor;
@@ -26,11 +27,13 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.VibrateState;
 import org.thoughtcrime.securesms.recipients.RecipientProvider.RecipientDetails;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -66,6 +69,7 @@ public class Recipient implements RecipientModifiedListener {
 
   Recipient(@NonNull  Address address,
             @Nullable Recipient stale,
+            @NonNull  Optional<RecipientsPreferences> preferences,
             @NonNull  ListenableFutureTask<RecipientDetails> future)
   {
     this.address      = address;
@@ -84,6 +88,19 @@ public class Recipient implements RecipientModifiedListener {
       this.blocked        = stale.blocked;
       this.vibrate        = stale.vibrate;
       this.expireMessages = stale.expireMessages;
+    }
+
+    if (preferences.isPresent()) {
+      if (!TextUtils.isEmpty(preferences.get().getSystemDisplayName())) {
+        this.name = preferences.get().getSystemDisplayName();
+      }
+
+      this.color          = preferences.get().getColor();
+      this.ringtone       = preferences.get().getRingtone();
+      this.mutedUntil     = preferences.get().getMuteUntil();
+      this.blocked        = preferences.get().isBlocked();
+      this.vibrate        = preferences.get().getVibrateState();
+      this.expireMessages = preferences.get().getExpireMessages();
     }
 
     future.addListener(new FutureTaskListener<RecipientDetails>() {

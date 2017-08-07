@@ -44,9 +44,11 @@ import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Database to supply all types of contacts that TextSecure needs to know about
@@ -78,20 +80,17 @@ public class ContactsDatabase {
   }
 
   public synchronized @NonNull List<Address> setRegisteredUsers(@NonNull Account account,
-                                                                @NonNull List<ContactTokenDetails> registeredContacts,
+                                                                @NonNull List<Address> registeredAddressList,
                                                                 boolean remove)
       throws RemoteException, OperationApplicationException
   {
+    Set<Address>                        registeredAddressSet = new HashSet<>();
+    List<Address>                       addedAddresses       = new LinkedList<>();
+    ArrayList<ContentProviderOperation> operations           = new ArrayList<>();
+    Map<Address, SignalContact>         currentContacts      = getSignalRawContacts(account);
 
-    Map<Address, ContactTokenDetails>   registeredAddresses = new HashMap<>();
-    List<Address>                       addedAddresses      = new LinkedList<>();
-    ArrayList<ContentProviderOperation> operations          = new ArrayList<>();
-    Map<Address, SignalContact>         currentContacts     = getSignalRawContacts(account);
-
-    for (ContactTokenDetails registeredContact : registeredContacts) {
-      Address registeredAddress = Address.fromSerialized(registeredContact.getNumber());
-
-      registeredAddresses.put(registeredAddress, registeredContact);
+    for (Address registeredAddress : registeredAddressList) {
+      registeredAddressSet.add(registeredAddress);
 
       if (!currentContacts.containsKey(registeredAddress)) {
         Optional<SystemContactInfo> systemContactInfo = getSystemContactInfo(registeredAddress);
@@ -107,9 +106,7 @@ public class ContactsDatabase {
     }
 
     for (Map.Entry<Address, SignalContact> currentContactEntry : currentContacts.entrySet()) {
-      ContactTokenDetails tokenDetails = registeredAddresses.get(currentContactEntry.getKey());
-
-      if (tokenDetails == null) {
+      if (!registeredAddressSet.contains(currentContactEntry.getKey())) {
         if (remove) {
           Log.w(TAG, "Removing number: " + currentContactEntry.getKey());
           removeTextSecureRawContact(operations, account, currentContactEntry.getValue().getId());
@@ -132,7 +129,7 @@ public class ContactsDatabase {
     return addedAddresses;
   }
 
-  @NonNull Cursor querySystemContacts(String filter) {
+  @NonNull Cursor querySystemContacts(@Nullable String filter) {
     Uri uri;
 
     if (!TextUtils.isEmpty(filter)) {

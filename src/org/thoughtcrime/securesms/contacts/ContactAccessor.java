@@ -78,6 +78,10 @@ public class ContactAccessor {
     return results;
   }
 
+  public Cursor getAllSystemContacts(Context context) {
+    return context.getContentResolver().query(Phone.CONTENT_URI, new String[] {Phone.NUMBER, Phone.DISPLAY_NAME}, null, null, null);
+  }
+
   public boolean isSystemContact(Context context, String number) {
     Uri      uri        = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(number));
     String[] projection = new String[]{PhoneLookup.DISPLAY_NAME, PhoneLookup.LOOKUP_KEY,

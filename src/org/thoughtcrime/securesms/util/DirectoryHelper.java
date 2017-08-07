@@ -5,6 +5,7 @@ import android.accounts.AccountManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.OperationApplicationException;
+import android.database.Cursor;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
@@ -92,7 +93,7 @@ public class DirectoryHelper {
       }
 
       recipientPreferenceDatabase.setRegistered(activeAddresses, new LinkedList<>(inactiveAddresses));
-      return updateContactsDatabase(context, activeTokens, true);
+      return updateContactsDatabase(context, activeAddresses, true);
     }
 
     return new RefreshResult(new LinkedList<>(), false);
@@ -111,7 +112,7 @@ public class DirectoryHelper {
     if (details.isPresent()) {
       recipientDatabase.setRegistered(Util.asList(recipient.getAddress()), new LinkedList<>());
 
-      RefreshResult result = updateContactsDatabase(context, details.get());
+      RefreshResult result = updateContactsDatabase(context, Util.asList(recipient.getAddress()), false);
 
       if (!result.getNewUsers().isEmpty() && TextSecurePreferences.isMultiDevice(context)) {
         ApplicationContext.getInstance(context).getJobManager().add(new MultiDeviceContactUpdateJob(context));
@@ -153,22 +154,26 @@ public class DirectoryHelper {
     else                                                                                    return Capability.UNKNOWN;
   }
 
-  private static @NonNull RefreshResult updateContactsDatabase(@NonNull Context context,
-                                                               @NonNull final ContactTokenDetails activeToken)
-  {
-    return updateContactsDatabase(context, new LinkedList<ContactTokenDetails>() {{add(activeToken);}}, false);
-  }
-
-  private static @NonNull RefreshResult updateContactsDatabase(@NonNull Context context,
-                                                               @NonNull List<ContactTokenDetails> activeTokens,
-                                                               boolean removeMissing)
-  {
+  private static @NonNull RefreshResult updateContactsDatabase(@NonNull Context context, @NonNull List<Address> activeAddresses, boolean removeMissing) {
     Optional<AccountHolder> account = getOrCreateAccount(context);
 
     if (account.isPresent()) {
       try {
         List<Address> newUsers = DatabaseFactory.getContactsDatabase(context)
-                                                .setRegisteredUsers(account.get().getAccount(), activeTokens, removeMissing);
+                                                .setRegisteredUsers(account.get().getAccount(), activeAddresses, removeMissing);
+
+        Cursor cursor = ContactAccessor.getInstance().getAllSystemContacts(context);
+
+        while (cursor != null && cursor.moveToNext()) {
+          String number = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER));
+
+          if (!TextUtils.isEmpty(number)) {
+            Address address     = Address.fromExternal(context, number);
+            String  displayName = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+
+            DatabaseFactory.getRecipientPreferenceDatabase(context).setSystemDisplayName(address, displayName);
+          }
+        }
 
         return new RefreshResult(newUsers, account.get().isFresh());
       } catch (RemoteException | OperationApplicationException e) {

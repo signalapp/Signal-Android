@@ -40,9 +40,10 @@ public class RecipientPreferenceDatabase extends Database {
   private static final String DEFAULT_SUBSCRIPTION_ID = "default_subscription_id";
   private static final String EXPIRE_MESSAGES         = "expire_messages";
   private static final String REGISTERED              = "registered";
+  private static final String SYSTEM_DISPLAY_NAME     = "system_display_name";
 
   private static final String[] RECIPIENT_PROJECTION = new String[] {
-      BLOCK, NOTIFICATION, VIBRATE, MUTE_UNTIL, COLOR, SEEN_INVITE_REMINDER, DEFAULT_SUBSCRIPTION_ID, EXPIRE_MESSAGES, REGISTERED
+      BLOCK, NOTIFICATION, VIBRATE, MUTE_UNTIL, COLOR, SEEN_INVITE_REMINDER, DEFAULT_SUBSCRIPTION_ID, EXPIRE_MESSAGES, REGISTERED, SYSTEM_DISPLAY_NAME
   };
 
   static final List<String> TYPED_RECIPIENT_PROJECTION = Stream.of(RECIPIENT_PROJECTION)
@@ -79,7 +80,8 @@ public class RecipientPreferenceDatabase extends Database {
           SEEN_INVITE_REMINDER + " INTEGER DEFAULT 0, " +
           DEFAULT_SUBSCRIPTION_ID + " INTEGER DEFAULT -1, " +
           EXPIRE_MESSAGES + " INTEGER DEFAULT 0, " +
-          REGISTERED + " INTEGER DEFAULT 0);";
+          REGISTERED + " INTEGER DEFAULT 0, " +
+          SYSTEM_DISPLAY_NAME + " TEXT DEFAULT NULL);";
 
   public RecipientPreferenceDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -128,6 +130,7 @@ public class RecipientPreferenceDatabase extends Database {
     int     defaultSubscriptionId = cursor.getInt(cursor.getColumnIndexOrThrow(DEFAULT_SUBSCRIPTION_ID));
     int     expireMessages        = cursor.getInt(cursor.getColumnIndexOrThrow(EXPIRE_MESSAGES));
     boolean registered            = cursor.getInt(cursor.getColumnIndexOrThrow(REGISTERED)) == 1;
+    String  systemDisplayname     = cursor.getString(cursor.getColumnIndexOrThrow(SYSTEM_DISPLAY_NAME));
 
     MaterialColor color;
 
@@ -141,51 +144,52 @@ public class RecipientPreferenceDatabase extends Database {
     return new RecipientsPreferences(blocked, muteUntil,
                                      VibrateState.fromId(vibrateState),
                                      notificationUri, color, seenInviteReminder,
-                                     defaultSubscriptionId, expireMessages, registered);
+                                     defaultSubscriptionId, expireMessages, registered,
+                                     systemDisplayname);
   }
 
   public void setColor(Recipient recipient, MaterialColor color) {
     ContentValues values = new ContentValues();
     values.put(COLOR, color.serialize());
-    updateOrInsert(recipient, values);
+    updateOrInsert(recipient.getAddress(), values);
   }
 
   public void setDefaultSubscriptionId(@NonNull Recipient recipient, int defaultSubscriptionId) {
     ContentValues values = new ContentValues();
     values.put(DEFAULT_SUBSCRIPTION_ID, defaultSubscriptionId);
-    updateOrInsert(recipient, values);
+    updateOrInsert(recipient.getAddress(), values);
     EventBus.getDefault().post(new RecipientPreferenceEvent(recipient));
   }
 
   public void setBlocked(Recipient recipient, boolean blocked) {
     ContentValues values = new ContentValues();
     values.put(BLOCK, blocked ? 1 : 0);
-    updateOrInsert(recipient, values);
+    updateOrInsert(recipient.getAddress(), values);
   }
 
   public void setRingtone(Recipient recipient, @Nullable Uri notification) {
     ContentValues values = new ContentValues();
     values.put(NOTIFICATION, notification == null ? null : notification.toString());
-    updateOrInsert(recipient, values);
+    updateOrInsert(recipient.getAddress(), values);
   }
 
   public void setVibrate(Recipient recipient, @NonNull VibrateState enabled) {
     ContentValues values = new ContentValues();
     values.put(VIBRATE, enabled.getId());
-    updateOrInsert(recipient, values);
+    updateOrInsert(recipient.getAddress(), values);
   }
 
   public void setMuted(Recipient recipient, long until) {
     Log.w(TAG, "Setting muted until: " + until);
     ContentValues values = new ContentValues();
     values.put(MUTE_UNTIL, until);
-    updateOrInsert(recipient, values);
+    updateOrInsert(recipient.getAddress(), values);
   }
 
   public void setSeenInviteReminder(Recipient recipient, boolean seen) {
     ContentValues values = new ContentValues(1);
     values.put(SEEN_INVITE_REMINDER, seen ? 1 : 0);
-    updateOrInsert(recipient, values);
+    updateOrInsert(recipient.getAddress(), values);
   }
 
   public void setExpireMessages(Recipient recipient, int expiration) {
@@ -193,7 +197,13 @@ public class RecipientPreferenceDatabase extends Database {
 
     ContentValues values = new ContentValues(1);
     values.put(EXPIRE_MESSAGES, expiration);
-    updateOrInsert(recipient, values);
+    updateOrInsert(recipient.getAddress(), values);
+  }
+
+  public void setSystemDisplayName(@NonNull Address address, @Nullable String systemDisplayName) {
+    ContentValues values = new ContentValues(1);
+    values.put(SYSTEM_DISPLAY_NAME, systemDisplayName);
+    updateOrInsert(address, values);
   }
 
   public Set<Address> getAllRecipients() {
@@ -246,16 +256,16 @@ public class RecipientPreferenceDatabase extends Database {
     return results;
   }
 
-  private void updateOrInsert(Recipient recipient, ContentValues contentValues) {
+  private void updateOrInsert(Address address, ContentValues contentValues) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
 
     database.beginTransaction();
 
     int updated = database.update(TABLE_NAME, contentValues, ADDRESS + " = ?",
-                                  new String[] {recipient.getAddress().serialize()});
+                                  new String[] {address.serialize()});
 
     if (updated < 1) {
-      contentValues.put(ADDRESS, recipient.getAddress().serialize());
+      contentValues.put(ADDRESS, address.serialize());
       database.insert(TABLE_NAME, null, contentValues);
     }
 
@@ -275,6 +285,7 @@ public class RecipientPreferenceDatabase extends Database {
     private final int           defaultSubscriptionId;
     private final int           expireMessages;
     private final boolean       registered;
+    private final String        systemDisplayName;
 
     RecipientsPreferences(boolean blocked, long muteUntil,
                           @NonNull VibrateState vibrateState,
@@ -283,7 +294,8 @@ public class RecipientPreferenceDatabase extends Database {
                           boolean seenInviteReminder,
                           int defaultSubscriptionId,
                           int expireMessages,
-                          boolean registered)
+                          boolean registered,
+                          String systemDisplayName)
     {
       this.blocked               = blocked;
       this.muteUntil             = muteUntil;
@@ -294,6 +306,7 @@ public class RecipientPreferenceDatabase extends Database {
       this.defaultSubscriptionId = defaultSubscriptionId;
       this.expireMessages        = expireMessages;
       this.registered            = registered;
+      this.systemDisplayName     = systemDisplayName;
     }
 
     public @Nullable MaterialColor getColor() {
@@ -330,6 +343,10 @@ public class RecipientPreferenceDatabase extends Database {
 
     public boolean isRegistered() {
       return registered;
+    }
+
+    public String getSystemDisplayName() {
+      return systemDisplayName;
     }
   }
 

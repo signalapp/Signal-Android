@@ -102,7 +102,8 @@ public class DatabaseFactory {
   private static final int NO_MORE_CANONICAL_ADDRESS_DATABASE              = 37;
   private static final int NO_MORE_RECIPIENTS_PLURAL                       = 38;
   private static final int INTERNAL_DIRECTORY                              = 39;
-  private static final int DATABASE_VERSION                                = 39;
+  private static final int INTERNAL_SYSTEM_DISPLAY_NAME                    = 40;
+  private static final int DATABASE_VERSION                                = 40;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -1290,6 +1291,10 @@ public class DatabaseFactory {
           contentValues.put("registered", cursor.getInt(1) == 1);
           db.replace("recipient_preferences", null, contentValues);
         }
+      }
+
+      if (oldVersion < INTERNAL_SYSTEM_DISPLAY_NAME) {
+        db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN system_display_name TEXT DEFAULT NULL");
       }
 
       db.setTransactionSuccessful();

@@ -75,7 +75,7 @@ class RecipientProvider {
     }
 
     if (asynchronous) {
-      cachedRecipient = new Recipient(address, cachedRecipient, getRecipientDetailsAsync(context, address, preferences));
+      cachedRecipient = new Recipient(address, cachedRecipient, preferences, getRecipientDetailsAsync(context, address, preferences));
     } else {
       cachedRecipient = new Recipient(address, getRecipientDetailsSync(context, address, preferences, false));
     }
