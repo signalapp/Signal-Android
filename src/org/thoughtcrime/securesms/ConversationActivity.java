@@ -143,8 +143,7 @@ import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
-import org.thoughtcrime.securesms.util.DirectoryHelper.UserCapabilities;
-import org.thoughtcrime.securesms.util.DirectoryHelper.UserCapabilities.Capability;
+import org.thoughtcrime.securesms.util.DirectoryHelper.Capability;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
@@ -1016,19 +1015,17 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       protected boolean[] doInBackground(Recipient... params) {
         Context           context      = ConversationActivity.this;
         Recipient         recipient    = params[0];
-        UserCapabilities  capabilities = DirectoryHelper.getUserCapabilities(context, recipient);
+        Capability capability = DirectoryHelper.getUserCapabilities(context, recipient);
 
-        if (capabilities.getTextCapability() == Capability.UNKNOWN ||
-            capabilities.getVideoCapability() == Capability.UNKNOWN)
-        {
+        if (capability == Capability.UNKNOWN) {
           try {
-            capabilities = DirectoryHelper.refreshDirectoryFor(context, masterSecret, recipient);
+            capability = DirectoryHelper.refreshDirectoryFor(context, masterSecret, recipient);
           } catch (IOException e) {
             Log.w(TAG, e);
           }
         }
 
-        return new boolean[] {capabilities.getTextCapability() == Capability.SUPPORTED, Util.isDefaultSmsProvider(context)};
+        return new boolean[] {capability == Capability.SUPPORTED, Util.isDefaultSmsProvider(context)};
       }
 
       @Override

@@ -32,7 +32,6 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
-import org.thoughtcrime.securesms.util.DirectoryHelper.UserCapabilities.Capability;
 import org.thoughtcrime.securesms.util.NumberUtil;
 
 import java.util.ArrayList;
@@ -106,7 +105,7 @@ public class ContactsCursorLoader extends CursorLoader {
         final String    number    = cursor.getString(cursor.getColumnIndexOrThrow(ContactsDatabase.NUMBER_COLUMN));
         final Recipient recipient = RecipientFactory.getRecipientFor(getContext(), Address.fromExternal(getContext(), number), true);
 
-        if (DirectoryHelper.getUserCapabilities(getContext(), recipient).getTextCapability() != Capability.SUPPORTED) {
+        if (DirectoryHelper.getUserCapabilities(getContext(), recipient) != DirectoryHelper.Capability.SUPPORTED) {
           matrix.addRow(new Object[]{cursor.getLong(cursor.getColumnIndexOrThrow(ContactsDatabase.ID_COLUMN)),
                                      cursor.getString(cursor.getColumnIndexOrThrow(ContactsDatabase.NAME_COLUMN)),
                                      number,

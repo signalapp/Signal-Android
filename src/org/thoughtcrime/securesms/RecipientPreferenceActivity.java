@@ -407,9 +407,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
               DatabaseFactory.getRecipientPreferenceDatabase(context)
                              .setColor(recipient, selectedColor);
 
-              if (DirectoryHelper.getUserCapabilities(context, recipient)
-                                 .getTextCapability() == DirectoryHelper.UserCapabilities.Capability.SUPPORTED)
-              {
+              if (DirectoryHelper.getUserCapabilities(context, recipient) == DirectoryHelper.Capability.SUPPORTED) {
                 ApplicationContext.getInstance(context)
                                   .getJobManager()
                                   .add(new MultiDeviceContactUpdateJob(context, recipient.getAddress()));

@@ -30,7 +30,6 @@ import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.IncomingJoinedMessage;
-import org.thoughtcrime.securesms.util.DirectoryHelper.UserCapabilities.Capability;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
@@ -44,37 +43,8 @@ import java.util.Set;
 
 public class DirectoryHelper {
 
-  public static class UserCapabilities {
-
-    public static final UserCapabilities UNKNOWN     = new UserCapabilities(Capability.UNKNOWN, Capability.UNKNOWN, Capability.UNKNOWN);
-    public static final UserCapabilities UNSUPPORTED = new UserCapabilities(Capability.UNSUPPORTED, Capability.UNSUPPORTED, Capability.UNSUPPORTED);
-    public static final UserCapabilities SUPPORTED   = new UserCapabilities(Capability.SUPPORTED, Capability.SUPPORTED, Capability.SUPPORTED);
-
-    public enum Capability {
-      UNKNOWN, SUPPORTED, UNSUPPORTED
-    }
-
-    private final Capability text;
-    private final Capability voice;
-    private final Capability video;
-
-    public UserCapabilities(Capability text, Capability voice, Capability video) {
-      this.text  = text;
-      this.voice = voice;
-      this.video = video;
-    }
-
-    public Capability getTextCapability() {
-      return text;
-    }
-
-    public Capability getVoiceCapability() {
-      return voice;
-    }
-
-    public Capability getVideoCapability() {
-      return video;
-    }
+  public enum Capability {
+    UNKNOWN, SUPPORTED, UNSUPPORTED
   }
 
   private static final String TAG = DirectoryHelper.class.getSimpleName();
@@ -128,9 +98,9 @@ public class DirectoryHelper {
     return new RefreshResult(new LinkedList<>(), false);
   }
 
-  public static UserCapabilities refreshDirectoryFor(@NonNull  Context context,
-                                                     @Nullable MasterSecret masterSecret,
-                                                     @NonNull  Recipient recipient)
+  public static Capability refreshDirectoryFor(@NonNull  Context context,
+                                               @Nullable MasterSecret masterSecret,
+                                               @NonNull  Recipient recipient)
       throws IOException
   {
     RecipientPreferenceDatabase   recipientDatabase = DatabaseFactory.getRecipientPreferenceDatabase(context);
@@ -151,40 +121,36 @@ public class DirectoryHelper {
         notifyNewUsers(context, masterSecret, result.getNewUsers());
       }
 
-      return new UserCapabilities(Capability.SUPPORTED,
-                                  details.get().isVoice() ? Capability.SUPPORTED : Capability.UNSUPPORTED,
-                                  details.get().isVideo() ? Capability.SUPPORTED : Capability.UNSUPPORTED);
+      return Capability.SUPPORTED;
     } else {
       recipientDatabase.setRegistered(new LinkedList<>(), Util.asList(recipient.getAddress()));
-      return UserCapabilities.UNSUPPORTED;
+      return Capability.UNSUPPORTED;
     }
   }
 
-  public static @NonNull UserCapabilities getUserCapabilities(@NonNull Context context,
-                                                              @Nullable Recipient recipient)
-  {
+  public static @NonNull Capability getUserCapabilities(@NonNull Context context, @Nullable Recipient recipient) {
     if (recipient == null) {
-      return UserCapabilities.UNSUPPORTED;
+      return Capability.UNSUPPORTED;
     }
 
     if (!TextSecurePreferences.isPushRegistered(context)) {
-      return UserCapabilities.UNSUPPORTED;
+      return Capability.UNSUPPORTED;
     }
 
     if (recipient.isMmsGroupRecipient()) {
-      return UserCapabilities.UNSUPPORTED;
+      return Capability.UNSUPPORTED;
     }
 
     if (recipient.isPushGroupRecipient()) {
-      return new UserCapabilities(Capability.SUPPORTED, Capability.UNSUPPORTED, Capability.UNSUPPORTED);
+      return Capability.SUPPORTED;
     }
 
     final RecipientPreferenceDatabase     recipientDatabase    = DatabaseFactory.getRecipientPreferenceDatabase(context);
     final Optional<RecipientsPreferences> recipientPreferences = recipientDatabase.getRecipientsPreferences(recipient.getAddress());
 
-    if      (recipientPreferences.isPresent() && recipientPreferences.get().isRegistered()) return UserCapabilities.SUPPORTED;
-    else if (recipientPreferences.isPresent())                                              return UserCapabilities.UNSUPPORTED;
-    else                                                                                    return UserCapabilities.UNKNOWN;
+    if      (recipientPreferences.isPresent() && recipientPreferences.get().isRegistered()) return Capability.SUPPORTED;
+    else if (recipientPreferences.isPresent())                                              return Capability.UNSUPPORTED;
+    else                                                                                    return Capability.UNKNOWN;
   }
 
   private static @NonNull RefreshResult updateContactsDatabase(@NonNull Context context,
