@@ -537,18 +537,18 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
 
     @Override
     protected Optional<GroupData> doInBackground(String... groupIds) {
-      final GroupDatabase   db               = DatabaseFactory.getGroupDatabase(activity);
-      final List<Recipient> recipients       = db.getGroupMembers(groupIds[0], false);
-      final GroupRecord     group            = db.getGroup(groupIds[0]);
-      final Set<Recipient>  existingContacts = new HashSet<>(recipients.size());
+      final GroupDatabase         db               = DatabaseFactory.getGroupDatabase(activity);
+      final List<Recipient>       recipients       = db.getGroupMembers(groupIds[0], false);
+      final Optional<GroupRecord> group            = db.getGroup(groupIds[0]);
+      final Set<Recipient>        existingContacts = new HashSet<>(recipients.size());
       existingContacts.addAll(recipients);
 
-      if (group != null) {
+      if (group.isPresent()) {
         return Optional.of(new GroupData(groupIds[0],
                                          existingContacts,
-                                         BitmapUtil.fromByteArray(group.getAvatar()),
-                                         group.getAvatar(),
-                                         group.getTitle()));
+                                         BitmapUtil.fromByteArray(group.get().getAvatar()),
+                                         group.get().getAvatar(),
+                                         group.get().getTitle()));
       } else {
         return Optional.absent();
       }

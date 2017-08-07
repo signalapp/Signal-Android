@@ -30,7 +30,7 @@ public class RecipientPreferenceDatabase extends Database {
 
           static final String TABLE_NAME              = "recipient_preferences";
   private static final String ID                      = "_id";
-  private static final String ADDRESS                 = "recipient_ids";
+          static final String ADDRESS                 = "recipient_ids";
   private static final String BLOCK                   = "block";
   private static final String NOTIFICATION            = "notification";
   private static final String VIBRATE                 = "vibrate";
@@ -110,7 +110,7 @@ public class RecipientPreferenceDatabase extends Database {
       cursor = database.query(TABLE_NAME, null, ADDRESS + " = ?", new String[] {address.serialize()}, null, null, null);
 
       if (cursor != null && cursor.moveToNext()) {
-        return Optional.of(getRecipientPreferences(cursor));
+        return getRecipientPreferences(cursor);
       }
 
       return Optional.absent();
@@ -119,7 +119,7 @@ public class RecipientPreferenceDatabase extends Database {
     }
   }
 
-  RecipientsPreferences getRecipientPreferences(@NonNull Cursor cursor) {
+  Optional<RecipientsPreferences> getRecipientPreferences(@NonNull Cursor cursor) {
     boolean blocked               = cursor.getInt(cursor.getColumnIndexOrThrow(BLOCK))                == 1;
     String  notification          = cursor.getString(cursor.getColumnIndexOrThrow(NOTIFICATION));
     int     vibrateState          = cursor.getInt(cursor.getColumnIndexOrThrow(VIBRATE));
@@ -141,11 +141,11 @@ public class RecipientPreferenceDatabase extends Database {
       color = null;
     }
 
-    return new RecipientsPreferences(blocked, muteUntil,
-                                     VibrateState.fromId(vibrateState),
-                                     notificationUri, color, seenInviteReminder,
-                                     defaultSubscriptionId, expireMessages, registered,
-                                     systemDisplayname);
+    return Optional.of(new RecipientsPreferences(blocked, muteUntil,
+                                                 VibrateState.fromId(vibrateState),
+                                                 notificationUri, color, seenInviteReminder,
+                                                 defaultSubscriptionId, expireMessages, registered,
+                                                 systemDisplayname));
   }
 
   public void setColor(Recipient recipient, MaterialColor color) {

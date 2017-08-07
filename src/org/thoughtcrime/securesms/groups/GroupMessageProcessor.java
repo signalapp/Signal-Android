@@ -58,19 +58,19 @@ public class GroupMessageProcessor {
       return null;
     }
 
-    GroupDatabase      database = DatabaseFactory.getGroupDatabase(context);
-    SignalServiceGroup group    = message.getGroupInfo().get();
-    String             id       = GroupUtil.getEncodedId(group.getGroupId(), false);
-    GroupRecord        record   = database.getGroup(id);
+    GroupDatabase         database = DatabaseFactory.getGroupDatabase(context);
+    SignalServiceGroup    group    = message.getGroupInfo().get();
+    String                id       = GroupUtil.getEncodedId(group.getGroupId(), false);
+    Optional<GroupRecord> record   = database.getGroup(id);
 
-    if (record != null && group.getType() == Type.UPDATE) {
-      return handleGroupUpdate(context, masterSecret, envelope, group, record, outgoing);
-    } else if (record == null && group.getType() == Type.UPDATE) {
+    if (record.isPresent() && group.getType() == Type.UPDATE) {
+      return handleGroupUpdate(context, masterSecret, envelope, group, record.get(), outgoing);
+    } else if (record.isPresent() && group.getType() == Type.UPDATE) {
       return handleGroupCreate(context, masterSecret, envelope, group, outgoing);
-    } else if (record != null && group.getType() == Type.QUIT) {
-      return handleGroupLeave(context, masterSecret, envelope, group, record, outgoing);
-    } else if (record != null && group.getType() == Type.REQUEST_INFO) {
-      return handleGroupInfoRequest(context, envelope, group, record);
+    } else if (record.isPresent() && group.getType() == Type.QUIT) {
+      return handleGroupLeave(context, masterSecret, envelope, group, record.get(), outgoing);
+    } else if (record.isPresent() && group.getType() == Type.REQUEST_INFO) {
+      return handleGroupInfoRequest(context, envelope, group, record.get());
     } else {
       Log.w(TAG, "Received unknown type, ignoring...");
       return null;

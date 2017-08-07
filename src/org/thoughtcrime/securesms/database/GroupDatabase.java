@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.database;
 
 
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -11,12 +10,17 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
+import android.util.Log;
+
+import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 
 import java.io.IOException;
@@ -32,9 +36,9 @@ public class GroupDatabase extends Database {
 
   private static final String TAG = GroupDatabase.class.getSimpleName();
 
-  private static final String TABLE_NAME          = "groups";
+          static final String TABLE_NAME          = "groups";
   private static final String ID                  = "_id";
-  private static final String GROUP_ID            = "group_id";
+          static final String GROUP_ID            = "group_id";
   private static final String TITLE               = "title";
   private static final String MEMBERS             = "members";
   private static final String AVATAR              = "avatar";
@@ -67,21 +71,33 @@ public class GroupDatabase extends Database {
       "CREATE UNIQUE INDEX IF NOT EXISTS group_id_index ON " + TABLE_NAME + " (" + GROUP_ID + ");",
   };
 
+  private static final String[] GROUP_PROJECTION = {
+      GROUP_ID, TITLE, MEMBERS, AVATAR, AVATAR_ID, AVATAR_KEY, AVATAR_CONTENT_TYPE, AVATAR_RELAY, AVATAR_DIGEST,
+      TIMESTAMP, ACTIVE, MMS
+  };
+
+  static final List<String> TYPED_GROUP_PROJECTION = Stream.of(GROUP_PROJECTION).map(columnName -> TABLE_NAME + "." + columnName).toList();
+
   public GroupDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
   }
 
-  public @Nullable GroupRecord getGroup(String groupId) {
-    @SuppressLint("Recycle")
-    Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, GROUP_ID + " = ?",
-                                                               new String[] {groupId},
-                                                               null, null, null);
+  public Optional<GroupRecord> getGroup(String groupId) {
+    try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, GROUP_ID + " = ?",
+                                                                    new String[] {groupId},
+                                                                    null, null, null))
+    {
+      if (cursor != null && cursor.moveToNext()) {
+        return getGroup(cursor);
+      }
 
-    Reader      reader = new Reader(cursor);
-    GroupRecord record = reader.getNext();
+      return Optional.absent();
+    }
+  }
 
-    reader.close();
-    return record;
+  Optional<GroupRecord> getGroup(Cursor cursor) {
+    Reader reader = new Reader(cursor);
+    return Optional.fromNullable(reader.getCurrent());
   }
 
   public boolean isUnknownGroup(String groupId) {
@@ -251,8 +267,8 @@ public class GroupDatabase extends Database {
   }
 
   public boolean isActive(String groupId) {
-    GroupRecord record = getGroup(groupId);
-    return record != null && record.isActive();
+    Optional<GroupRecord> record = getGroup(groupId);
+    return record.isPresent() && record.get().isActive();
   }
 
   public void setActive(String groupId, boolean active) {
@@ -288,6 +304,14 @@ public class GroupDatabase extends Database {
 
     public @Nullable GroupRecord getNext() {
       if (cursor == null || !cursor.moveToNext()) {
+        return null;
+      }
+
+      return getCurrent();
+    }
+
+    public @Nullable GroupRecord getCurrent() {
+      if (cursor == null || cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID)) == null) {
         return null;
       }
 
@@ -330,7 +354,6 @@ public class GroupDatabase extends Database {
     {
       this.id                = id;
       this.title             = title;
-      this.members           = Address.fromSerializedList(members, ',');
       this.avatar            = avatar;
       this.avatarId          = avatarId;
       this.avatarKey         = avatarKey;
@@ -339,6 +362,9 @@ public class GroupDatabase extends Database {
       this.relay             = relay;
       this.active            = active;
       this.mms               = mms;
+
+      if (!TextUtils.isEmpty(members)) this.members = Address.fromSerializedList(members, ',');
+      else                             this.members = new LinkedList<>();
     }
 
     public byte[] getId() {

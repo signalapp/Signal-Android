@@ -1497,8 +1497,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private boolean isActiveGroup() {
     if (!isGroupConversation()) return false;
 
-    GroupRecord record = DatabaseFactory.getGroupDatabase(this).getGroup(getRecipient().getAddress().toGroupString());
-    return record != null && record.isActive();
+    Optional<GroupRecord> record = DatabaseFactory.getGroupDatabase(this).getGroup(getRecipient().getAddress().toGroupString());
+    return record.isPresent() && record.get().isActive();
   }
 
   private boolean isSelfConversation() {

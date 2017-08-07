@@ -69,7 +69,7 @@ public class Recipient implements RecipientModifiedListener {
 
   Recipient(@NonNull  Address address,
             @Nullable Recipient stale,
-            @NonNull  Optional<RecipientsPreferences> preferences,
+            @NonNull  Optional<RecipientDetails> details,
             @NonNull  ListenableFutureTask<RecipientDetails> future)
   {
     this.address      = address;
@@ -90,17 +90,17 @@ public class Recipient implements RecipientModifiedListener {
       this.expireMessages = stale.expireMessages;
     }
 
-    if (preferences.isPresent()) {
-      if (!TextUtils.isEmpty(preferences.get().getSystemDisplayName())) {
-        this.name = preferences.get().getSystemDisplayName();
-      }
-
-      this.color          = preferences.get().getColor();
-      this.ringtone       = preferences.get().getRingtone();
-      this.mutedUntil     = preferences.get().getMuteUntil();
-      this.blocked        = preferences.get().isBlocked();
-      this.vibrate        = preferences.get().getVibrateState();
-      this.expireMessages = preferences.get().getExpireMessages();
+    if (details.isPresent()) {
+      this.name           = details.get().name;
+      this.contactPhoto   = details.get().avatar;
+      this.color          = details.get().color;
+      this.ringtone       = details.get().ringtone;
+      this.mutedUntil     = details.get().mutedUntil;
+      this.blocked        = details.get().blocked;
+      this.vibrate        = details.get().vibrateState;
+      this.expireMessages = details.get().expireMessages;
+      this.participants.clear();
+      this.participants.addAll(details.get().participants);
     }
 
     future.addListener(new FutureTaskListener<RecipientDetails>() {
@@ -118,6 +118,8 @@ public class Recipient implements RecipientModifiedListener {
             Recipient.this.blocked        = result.blocked;
             Recipient.this.vibrate        = result.vibrateState;
             Recipient.this.expireMessages = result.expireMessages;
+
+            Recipient.this.participants.clear();
             Recipient.this.participants.addAll(result.participants);
             Recipient.this.resolving      = false;
 

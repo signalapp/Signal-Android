@@ -31,6 +31,7 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
+import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.database.model.DisplayRecord;
@@ -44,6 +45,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.DelimiterUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.InvalidMessageException;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -95,9 +97,10 @@ public class ThreadDatabase extends Database {
                                                                     .map(columnName -> TABLE_NAME + "." + columnName)
                                                                     .toList();
 
-  private static final List<String> COMBINED_THREAD_RECIPIENT_PROJECTION = Stream.concat(Stream.of(TYPED_THREAD_PROJECTION),
-                                                                                         Stream.of(RecipientPreferenceDatabase.TYPED_RECIPIENT_PROJECTION))
-                                                                                 .toList();
+  private static final List<String> COMBINED_THREAD_RECIPIENT_GROUP_PROJECTION = Stream.concat(Stream.concat(Stream.of(TYPED_THREAD_PROJECTION),
+                                                                                                             Stream.of(RecipientPreferenceDatabase.TYPED_RECIPIENT_PROJECTION)),
+                                                                                               Stream.of(GroupDatabase.TYPED_GROUP_PROJECTION))
+                                                                                       .toList();
 
   public ThreadDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -340,11 +343,13 @@ public class ThreadDatabase extends Database {
   }
 
   private Cursor getConversationList(String archived) {
-    String         projection = Util.join(COMBINED_THREAD_RECIPIENT_PROJECTION, ",");
+    String         projection = Util.join(COMBINED_THREAD_RECIPIENT_GROUP_PROJECTION, ",");
     SQLiteDatabase db         = databaseHelper.getReadableDatabase();
     Cursor         cursor     = db.rawQuery("SELECT " + projection + " FROM " + TABLE_NAME +
                                             " LEFT OUTER JOIN " + RecipientPreferenceDatabase.TABLE_NAME +
-                                            " ON " + TABLE_NAME + "." + ADDRESS + " = " + RecipientPreferenceDatabase.TABLE_NAME + "." + ADDRESS +
+                                            " ON " + TABLE_NAME + "." + ADDRESS + " = " + RecipientPreferenceDatabase.TABLE_NAME + "." + RecipientPreferenceDatabase.ADDRESS +
+                                            " LEFT OUTER JOIN " + GroupDatabase.TABLE_NAME +
+                                            " ON " + TABLE_NAME + "." + ADDRESS + " = " + GroupDatabase.TABLE_NAME + "." + GroupDatabase.GROUP_ID +
                                             " WHERE " + ARCHIVED + " = ? AND " + MESSAGE_COUNT + " != 0" +
                                             " ORDER BY " + TABLE_NAME + "." + DATE + " DESC",
                                             new String[] {archived});
@@ -356,7 +361,7 @@ public class ThreadDatabase extends Database {
 
   public Cursor getDirectShareList() {
     SQLiteDatabase db         = databaseHelper.getReadableDatabase();
-    String         projection = Util.join(COMBINED_THREAD_RECIPIENT_PROJECTION, ",");
+    String         projection = Util.join(COMBINED_THREAD_RECIPIENT_GROUP_PROJECTION, ",");
 
     return db.rawQuery("SELECT " + projection + " FROM " + TABLE_NAME +
                        " LEFT OUTER JOIN " + RecipientPreferenceDatabase.TABLE_NAME +
@@ -601,10 +606,11 @@ public class ThreadDatabase extends Database {
     }
 
     public ThreadRecord getCurrent() {
-      long                  threadId    = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.ID));
-      Address               address     = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.ADDRESS)));
-      RecipientsPreferences preferences = DatabaseFactory.getRecipientPreferenceDatabase(context).getRecipientPreferences(cursor);
-      Recipient             recipient   = RecipientFactory.getRecipientFor(context, address, preferences, true);
+      long                            threadId    = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.ID));
+      Address                         address     = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.ADDRESS)));
+      Optional<RecipientsPreferences> preferences = DatabaseFactory.getRecipientPreferenceDatabase(context).getRecipientPreferences(cursor);
+      Optional<GroupRecord>           groupRecord = DatabaseFactory.getGroupDatabase(context).getGroup(cursor);
+      Recipient                       recipient   = RecipientFactory.getRecipientFor(context, address, preferences, groupRecord, true);
 
       DisplayRecord.Body body             = getPlaintextBody(cursor);
       long               date             = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.DATE));
