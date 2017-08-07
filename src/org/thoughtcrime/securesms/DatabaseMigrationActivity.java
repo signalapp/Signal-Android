@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
@@ -92,7 +93,7 @@ public class DatabaseMigrationActivity extends PassphraseRequiredActionBarActivi
       public void onClick(View v) {
         Intent intent = new Intent(DatabaseMigrationActivity.this, ApplicationMigrationService.class);
         intent.setAction(ApplicationMigrationService.MIGRATE_DATABASE);
-        intent.putExtra("master_secret", getIntent().getParcelableExtra("master_secret"));
+        intent.putExtra("master_secret", (Parcelable)getIntent().getParcelableExtra("master_secret"));
         startService(intent);
 
         promptLayout.setVisibility(View.GONE);

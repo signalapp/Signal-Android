@@ -27,9 +27,12 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.annimon.stream.Stream;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
+import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.database.model.DisplayRecord;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -82,6 +85,19 @@ public class ThreadDatabase extends Database {
     "CREATE INDEX IF NOT EXISTS thread_recipient_ids_index ON " + TABLE_NAME + " (" + ADDRESS + ");",
     "CREATE INDEX IF NOT EXISTS archived_count_index ON " + TABLE_NAME + " (" + ARCHIVED + ", " + MESSAGE_COUNT + ");",
   };
+
+  private static final String[] THREAD_PROJECTION = {
+      ID, DATE, MESSAGE_COUNT, ADDRESS, SNIPPET, SNIPPET_CHARSET, READ, TYPE, ERROR, SNIPPET_TYPE,
+      SNIPPET_URI, ARCHIVED, STATUS, RECEIPT_COUNT, EXPIRES_IN, LAST_SEEN
+  };
+
+  private static final List<String> TYPED_THREAD_PROJECTION = Stream.of(THREAD_PROJECTION)
+                                                                    .map(columnName -> TABLE_NAME + "." + columnName)
+                                                                    .toList();
+
+  private static final List<String> COMBINED_THREAD_RECIPIENT_PROJECTION = Stream.concat(Stream.of(TYPED_THREAD_PROJECTION),
+                                                                                         Stream.of(RecipientPreferenceDatabase.TYPED_RECIPIENT_PROJECTION))
+                                                                                 .toList();
 
   public ThreadDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -316,17 +332,22 @@ public class ThreadDatabase extends Database {
   }
 
   public Cursor getConversationList() {
-    SQLiteDatabase db     = databaseHelper.getReadableDatabase();
-    Cursor         cursor =  db.query(TABLE_NAME, null, ARCHIVED + " = ? AND " + MESSAGE_COUNT + " != 0", new String[] {"0"}, null, null, DATE + " DESC");
-
-    setNotifyConverationListListeners(cursor);
-
-    return cursor;
+    return getConversationList("0");
   }
 
   public Cursor getArchivedConversationList() {
-    SQLiteDatabase db     = databaseHelper.getReadableDatabase();
-    Cursor         cursor = db.query(TABLE_NAME, null, ARCHIVED + " = ? AND " + MESSAGE_COUNT + " != 0", new String[] {"1"}, null, null, DATE + " DESC");
+    return getConversationList("1");
+  }
+
+  private Cursor getConversationList(String archived) {
+    String         projection = Util.join(COMBINED_THREAD_RECIPIENT_PROJECTION, ",");
+    SQLiteDatabase db         = databaseHelper.getReadableDatabase();
+    Cursor         cursor     = db.rawQuery("SELECT " + projection + " FROM " + TABLE_NAME +
+                                            " LEFT OUTER JOIN " + RecipientPreferenceDatabase.TABLE_NAME +
+                                            " ON " + TABLE_NAME + "." + ADDRESS + " = " + RecipientPreferenceDatabase.TABLE_NAME + "." + ADDRESS +
+                                            " WHERE " + ARCHIVED + " = ? AND " + MESSAGE_COUNT + " != 0" +
+                                            " ORDER BY " + TABLE_NAME + "." + DATE + " DESC",
+                                            new String[] {archived});
 
     setNotifyConverationListListeners(cursor);
 
@@ -334,8 +355,14 @@ public class ThreadDatabase extends Database {
   }
 
   public Cursor getDirectShareList() {
-    SQLiteDatabase db = databaseHelper.getReadableDatabase();
-    return db.query(TABLE_NAME, null, null, null, null, null, DATE + " DESC");
+    SQLiteDatabase db         = databaseHelper.getReadableDatabase();
+    String         projection = Util.join(COMBINED_THREAD_RECIPIENT_PROJECTION, ",");
+
+    return db.rawQuery("SELECT " + projection + " FROM " + TABLE_NAME +
+                       " LEFT OUTER JOIN " + RecipientPreferenceDatabase.TABLE_NAME +
+                       " ON " + TABLE_NAME + "." + ADDRESS + " = " + RecipientPreferenceDatabase.TABLE_NAME + "." + ADDRESS +
+                       " ORDER BY " + TABLE_NAME + "." + DATE + " DESC",
+                       null);
   }
 
   public int getArchivedConversationListCount() {
@@ -574,22 +601,23 @@ public class ThreadDatabase extends Database {
     }
 
     public ThreadRecord getCurrent() {
-      long      threadId  = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.ID));
-      Address   address   = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.ADDRESS)));
-      Recipient recipient = RecipientFactory.getRecipientFor(context, address, true);
+      long                  threadId    = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.ID));
+      Address               address     = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.ADDRESS)));
+      RecipientsPreferences preferences = DatabaseFactory.getRecipientPreferenceDatabase(context).getRecipientPreferences(cursor);
+      Recipient             recipient   = RecipientFactory.getRecipientFor(context, address, preferences, true);
 
-      DisplayRecord.Body body = getPlaintextBody(cursor);
-      long date               = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.DATE));
-      long count              = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.MESSAGE_COUNT));
-      long read               = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.READ));
-      long type               = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.SNIPPET_TYPE));
-      int distributionType    = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.TYPE));
-      boolean archived        = cursor.getInt(cursor.getColumnIndex(ThreadDatabase.ARCHIVED)) != 0;
-      int status              = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.STATUS));
-      int receiptCount        = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.RECEIPT_COUNT));
-      long expiresIn          = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.EXPIRES_IN));
-      long lastSeen           = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.LAST_SEEN));
-      Uri snippetUri          = getSnippetUri(cursor);
+      DisplayRecord.Body body             = getPlaintextBody(cursor);
+      long               date             = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.DATE));
+      long               count            = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.MESSAGE_COUNT));
+      long               read             = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.READ));
+      long               type             = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.SNIPPET_TYPE));
+      int                distributionType = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.TYPE));
+      boolean            archived         = cursor.getInt(cursor.getColumnIndex(ThreadDatabase.ARCHIVED)) != 0;
+      int                status           = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.STATUS));
+      int                receiptCount     = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.RECEIPT_COUNT));
+      long               expiresIn        = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.EXPIRES_IN));
+      long               lastSeen         = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.LAST_SEEN));
+      Uri                snippetUri       = getSnippetUri(cursor);
 
       return new ThreadRecord(context, body, snippetUri, recipient, date, count, read == 1,
                               threadId, receiptCount, status, type, distributionType, archived,

@@ -10,18 +10,22 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.annimon.stream.Stream;
+
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.List;
+
 public class RecipientPreferenceDatabase extends Database {
 
   private static final String TAG = RecipientPreferenceDatabase.class.getSimpleName();
   private static final String RECIPIENT_PREFERENCES_URI = "content://textsecure/recipients/";
 
-  private static final String TABLE_NAME              = "recipient_preferences";
+          static final String TABLE_NAME              = "recipient_preferences";
   private static final String ID                      = "_id";
   private static final String ADDRESS                 = "recipient_ids";
   private static final String BLOCK                   = "block";
@@ -32,6 +36,14 @@ public class RecipientPreferenceDatabase extends Database {
   private static final String SEEN_INVITE_REMINDER    = "seen_invite_reminder";
   private static final String DEFAULT_SUBSCRIPTION_ID = "default_subscription_id";
   private static final String EXPIRE_MESSAGES         = "expire_messages";
+
+  private static final String[] RECIPIENT_PROJECTION = new String[] {
+      BLOCK, NOTIFICATION, VIBRATE, MUTE_UNTIL, COLOR, SEEN_INVITE_REMINDER, DEFAULT_SUBSCRIPTION_ID, EXPIRE_MESSAGES
+  };
+
+  static final List<String> TYPED_RECIPIENT_PROJECTION = Stream.of(RECIPIENT_PROJECTION)
+                                                               .map(columnName -> TABLE_NAME + "." + columnName)
+                                                               .toList();
 
   public enum VibrateState {
     DEFAULT(0), ENABLED(1), DISABLED(2);
@@ -91,37 +103,39 @@ public class RecipientPreferenceDatabase extends Database {
       cursor = database.query(TABLE_NAME, null, ADDRESS + " = ?", new String[] {address.serialize()}, null, null, null);
 
       if (cursor != null && cursor.moveToNext()) {
-        boolean blocked               = cursor.getInt(cursor.getColumnIndexOrThrow(BLOCK))                == 1;
-        String  notification          = cursor.getString(cursor.getColumnIndexOrThrow(NOTIFICATION));
-        int     vibrateState          = cursor.getInt(cursor.getColumnIndexOrThrow(VIBRATE));
-        long    muteUntil             = cursor.getLong(cursor.getColumnIndexOrThrow(MUTE_UNTIL));
-        String  serializedColor       = cursor.getString(cursor.getColumnIndexOrThrow(COLOR));
-        Uri     notificationUri       = notification == null ? null : Uri.parse(notification);
-        boolean seenInviteReminder    = cursor.getInt(cursor.getColumnIndexOrThrow(SEEN_INVITE_REMINDER)) == 1;
-        int     defaultSubscriptionId = cursor.getInt(cursor.getColumnIndexOrThrow(DEFAULT_SUBSCRIPTION_ID));
-        int     expireMessages        = cursor.getInt(cursor.getColumnIndexOrThrow(EXPIRE_MESSAGES));
-
-        MaterialColor color;
-
-        try {
-          color = serializedColor == null ? null : MaterialColor.fromSerialized(serializedColor);
-        } catch (MaterialColor.UnknownColorException e) {
-          Log.w(TAG, e);
-          color = null;
-        }
-
-        Log.w(TAG, "Muted until: " + muteUntil);
-
-        return Optional.of(new RecipientsPreferences(blocked, muteUntil,
-                                                     VibrateState.fromId(vibrateState),
-                                                     notificationUri, color, seenInviteReminder,
-                                                     defaultSubscriptionId, expireMessages));
+        return Optional.of(getRecipientPreferences(cursor));
       }
 
       return Optional.absent();
     } finally {
       if (cursor != null) cursor.close();
     }
+  }
+
+  RecipientsPreferences getRecipientPreferences(@NonNull Cursor cursor) {
+    boolean blocked               = cursor.getInt(cursor.getColumnIndexOrThrow(BLOCK))                == 1;
+    String  notification          = cursor.getString(cursor.getColumnIndexOrThrow(NOTIFICATION));
+    int     vibrateState          = cursor.getInt(cursor.getColumnIndexOrThrow(VIBRATE));
+    long    muteUntil             = cursor.getLong(cursor.getColumnIndexOrThrow(MUTE_UNTIL));
+    String  serializedColor       = cursor.getString(cursor.getColumnIndexOrThrow(COLOR));
+    Uri     notificationUri       = notification == null ? null : Uri.parse(notification);
+    boolean seenInviteReminder    = cursor.getInt(cursor.getColumnIndexOrThrow(SEEN_INVITE_REMINDER)) == 1;
+    int     defaultSubscriptionId = cursor.getInt(cursor.getColumnIndexOrThrow(DEFAULT_SUBSCRIPTION_ID));
+    int     expireMessages        = cursor.getInt(cursor.getColumnIndexOrThrow(EXPIRE_MESSAGES));
+
+    MaterialColor color;
+
+    try {
+      color = serializedColor == null ? null : MaterialColor.fromSerialized(serializedColor);
+    } catch (MaterialColor.UnknownColorException e) {
+      Log.w(TAG, e);
+      color = null;
+    }
+
+    return new RecipientsPreferences(blocked, muteUntil,
+                                     VibrateState.fromId(vibrateState),
+                                     notificationUri, color, seenInviteReminder,
+                                     defaultSubscriptionId, expireMessages);
   }
 
   public void setColor(Recipient recipient, MaterialColor color) {

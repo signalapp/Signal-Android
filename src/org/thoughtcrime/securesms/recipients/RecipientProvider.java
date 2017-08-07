@@ -68,16 +68,16 @@ class RecipientProvider {
                                        null, null));
   }};
 
-  @NonNull Recipient getRecipient(Context context, Address address, boolean asynchronous) {
+  @NonNull Recipient getRecipient(Context context, Address address, Optional<RecipientsPreferences> preferences, boolean asynchronous) {
     Recipient cachedRecipient = recipientCache.get(address);
     if (cachedRecipient != null && !cachedRecipient.isStale() && (asynchronous || !cachedRecipient.isResolving())) {
       return cachedRecipient;
     }
 
     if (asynchronous) {
-      cachedRecipient = new Recipient(address, cachedRecipient, getRecipientDetailsAsync(context, address));
+      cachedRecipient = new Recipient(address, cachedRecipient, getRecipientDetailsAsync(context, address, preferences));
     } else {
-      cachedRecipient = new Recipient(address, getRecipientDetailsSync(context, address, false));
+      cachedRecipient = new Recipient(address, getRecipientDetailsSync(context, address, preferences, false));
     }
 
     recipientCache.set(address, cachedRecipient);
@@ -88,12 +88,12 @@ class RecipientProvider {
     recipientCache.reset();
   }
 
-  private @NonNull ListenableFutureTask<RecipientDetails> getRecipientDetailsAsync(final Context context, final @NonNull Address address)
+  private @NonNull ListenableFutureTask<RecipientDetails> getRecipientDetailsAsync(final Context context, final @NonNull Address address, final @NonNull Optional<RecipientsPreferences> preferences)
   {
     Callable<RecipientDetails> task = new Callable<RecipientDetails>() {
       @Override
       public RecipientDetails call() throws Exception {
-        return getRecipientDetailsSync(context, address, true);
+        return getRecipientDetailsSync(context, address, preferences, true);
       }
     };
 
@@ -102,13 +102,15 @@ class RecipientProvider {
     return future;
   }
 
-  private @NonNull RecipientDetails getRecipientDetailsSync(Context context, @NonNull Address address, boolean nestedAsynchronous) {
+  private @NonNull RecipientDetails getRecipientDetailsSync(Context context, @NonNull Address address, Optional<RecipientsPreferences> preferences, boolean nestedAsynchronous) {
     if (address.isGroup()) return getGroupRecipientDetails(context, address, nestedAsynchronous);
-    else                   return getIndividualRecipientDetails(context, address);
+    else                   return getIndividualRecipientDetails(context, address, preferences);
   }
 
-  private @NonNull RecipientDetails getIndividualRecipientDetails(Context context, @NonNull Address address) {
-    Optional<RecipientsPreferences> preferences = DatabaseFactory.getRecipientPreferenceDatabase(context).getRecipientsPreferences(address);
+  private @NonNull RecipientDetails getIndividualRecipientDetails(Context context, @NonNull Address address, Optional<RecipientsPreferences> preferences) {
+    if (!preferences.isPresent()) {
+      preferences = DatabaseFactory.getRecipientPreferenceDatabase(context).getRecipientsPreferences(address);
+    }
 
     if (address.isPhone() && !TextUtils.isEmpty(address.toPhoneString())) {
       Uri    uri    = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(address.toPhoneString()));
@@ -149,7 +151,7 @@ class RecipientProvider {
       List<Recipient> members         = new LinkedList<>();
 
       for (Address memberAddress : memberAddresses) {
-        members.add(getRecipient(context, memberAddress, asynchronous));
+        members.add(getRecipient(context, memberAddress, Optional.absent(), asynchronous));
       }
 
       if (!groupId.isMmsGroup() && title == null) {

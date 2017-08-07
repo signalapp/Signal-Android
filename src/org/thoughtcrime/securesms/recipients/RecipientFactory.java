@@ -21,6 +21,9 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase;
+import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 public class RecipientFactory {
 
@@ -30,7 +33,12 @@ public class RecipientFactory {
 
   public static @NonNull Recipient getRecipientFor(@NonNull Context context, @NonNull Address address, boolean asynchronous) {
     if (address == null) throw new AssertionError(address);
-    return provider.getRecipient(context, address, asynchronous);
+    return provider.getRecipient(context, address, Optional.absent(), asynchronous);
+  }
+
+  public static @NonNull Recipient getRecipientFor(@NonNull Context context, @NonNull Address address, @NonNull RecipientsPreferences preferences, boolean asynchronous) {
+    if (address == null) throw new AssertionError(address);
+    return provider.getRecipient(context, address, Optional.of(preferences), asynchronous);
   }
 
   public static void clearCache(Context context) {
