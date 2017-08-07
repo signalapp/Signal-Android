@@ -10,7 +10,6 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -62,7 +61,8 @@ public abstract class PushSendJob extends SendJob {
   }
 
   protected SignalServiceAddress getPushAddress(Address address) {
-    String relay = TextSecureDirectory.getInstance(context).getRelay(address.toPhoneString());
+//    String relay = TextSecureDirectory.getInstance(context).getRelay(address.toPhoneString());
+    String relay = null;
     return new SignalServiceAddress(address.toPhoneString(), Optional.fromNullable(relay));
   }
 

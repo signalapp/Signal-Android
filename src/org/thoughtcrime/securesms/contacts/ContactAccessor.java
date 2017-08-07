@@ -27,15 +27,18 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.PhoneLookup;
 import android.telephony.PhoneNumberUtils;
+import android.text.TextUtils;
 
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.TextSecureDirectory;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 
@@ -61,6 +64,20 @@ public class ContactAccessor {
     return instance;
   }
 
+  public Set<Address> getAllContactsWithNumbers(Context context) {
+    Set<Address> results = new HashSet<>();
+
+    try (Cursor cursor = context.getContentResolver().query(Phone.CONTENT_URI, new String[] {Phone.NUMBER}, null ,null, null)) {
+      while (cursor != null && cursor.moveToNext()) {
+        if (!TextUtils.isEmpty(cursor.getString(0))) {
+          results.add(Address.fromExternal(context, cursor.getString(0)));
+        }
+      }
+    }
+
+    return results;
+  }
+
   public boolean isSystemContact(Context context, String number) {
     Uri      uri        = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(number));
     String[] projection = new String[]{PhoneLookup.DISPLAY_NAME, PhoneLookup.LOOKUP_KEY,
@@ -82,16 +99,17 @@ public class ContactAccessor {
     final ContentResolver resolver = context.getContentResolver();
     final String[] inProjection    = new String[]{PhoneLookup._ID, PhoneLookup.DISPLAY_NAME};
 
-    List<String> pushNumbers = TextSecureDirectory.getInstance(context).getActiveNumbers();
-    final Collection<ContactData> lookupData = new ArrayList<>(pushNumbers.size());
+    final List<Address>           registeredAddresses = DatabaseFactory.getRecipientPreferenceDatabase(context).getRegistered();
+    final Collection<ContactData> lookupData          = new ArrayList<>(registeredAddresses.size());
 
-    for (String pushNumber : pushNumbers) {
-      Uri uri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(pushNumber));
+    for (Address registeredAddress : registeredAddresses) {
+      Uri    uri          = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(registeredAddress.serialize()));
       Cursor lookupCursor = resolver.query(uri, inProjection, null, null, null);
+
       try {
         if (lookupCursor != null && lookupCursor.moveToFirst()) {
           final ContactData contactData = new ContactData(lookupCursor.getLong(0), lookupCursor.getString(1));
-          contactData.numbers.add(new NumberData("TextSecure", pushNumber));
+          contactData.numbers.add(new NumberData("TextSecure", registeredAddress.serialize()));
           lookupData.add(contactData);
         }
       } finally {
@@ -99,6 +117,7 @@ public class ContactAccessor {
           lookupCursor.close();
       }
     }
+
     return lookupData;
   }
 

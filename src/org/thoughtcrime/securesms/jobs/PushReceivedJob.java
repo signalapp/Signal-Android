@@ -7,15 +7,17 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
-import org.thoughtcrime.securesms.database.NotInDirectoryException;
-import org.thoughtcrime.securesms.database.TextSecureDirectory;
+import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.jobqueue.JobParameters;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
-import org.whispersystems.signalservice.api.push.ContactTokenDetails;
+
+import java.util.LinkedList;
 
 public abstract class PushReceivedJob extends ContextJob {
 
@@ -29,12 +31,7 @@ public abstract class PushReceivedJob extends ContextJob {
     Address source = Address.fromExternal(context, envelope.getSource());
 
     if (!isActiveNumber(context, source)) {
-      TextSecureDirectory directory           = TextSecureDirectory.getInstance(context);
-      ContactTokenDetails contactTokenDetails = new ContactTokenDetails();
-      contactTokenDetails.setNumber(envelope.getSource());
-
-      directory.setNumber(contactTokenDetails, true);
-
+      DatabaseFactory.getRecipientPreferenceDatabase(context).setRegistered(Util.asList(source), new LinkedList<>());
       Recipient recipient = RecipientFactory.getRecipientFor(context, source, false);
       ApplicationContext.getInstance(context).getJobManager().add(new DirectoryRefreshJob(context, KeyCachingService.getMasterSecret(context), recipient));
     }
@@ -73,15 +70,8 @@ public abstract class PushReceivedJob extends ContextJob {
   }
 
   private boolean isActiveNumber(Context context, Address address) {
-    boolean isActiveNumber;
-
-    try {
-      isActiveNumber = TextSecureDirectory.getInstance(context).isSecureTextSupported(address);
-    } catch (NotInDirectoryException e) {
-      isActiveNumber = false;
-    }
-
-    return isActiveNumber;
+    Optional<RecipientsPreferences> preferences = DatabaseFactory.getRecipientPreferenceDatabase(context).getRecipientsPreferences(address);
+    return preferences.isPresent() && preferences.get().isRegistered();
   }
 
 

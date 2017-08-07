@@ -54,8 +54,7 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
-import org.thoughtcrime.securesms.database.NotInDirectoryException;
-import org.thoughtcrime.securesms.database.TextSecureDirectory;
+import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.GroupManager.GroupActionResult;
@@ -170,11 +169,8 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   }
 
   private static boolean isActiveInDirectory(Context context, Recipient recipient) {
-    try {
-      return TextSecureDirectory.getInstance(context).isSecureTextSupported(recipient.getAddress());
-    } catch (NotInDirectoryException e) {
-      return false;
-    }
+    Optional<RecipientsPreferences> preferences = DatabaseFactory.getRecipientPreferenceDatabase(context).getRecipientsPreferences(recipient.getAddress());
+    return preferences.isPresent() && preferences.get().isRegistered();
   }
 
   private void addSelectedContacts(@NonNull Recipient... recipients) {

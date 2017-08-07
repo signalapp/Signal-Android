@@ -101,7 +101,8 @@ public class DatabaseFactory {
   private static final int SANIFY_ATTACHMENT_DOWNLOAD                      = 36;
   private static final int NO_MORE_CANONICAL_ADDRESS_DATABASE              = 37;
   private static final int NO_MORE_RECIPIENTS_PLURAL                       = 38;
-  private static final int DATABASE_VERSION                                = 38;
+  private static final int INTERNAL_DIRECTORY                              = 39;
+  private static final int DATABASE_VERSION                                = 39;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -1271,6 +1272,24 @@ public class DatabaseFactory {
         }
 
         if (cursor != null) cursor.close();
+      }
+
+      if (oldVersion < INTERNAL_DIRECTORY) {
+        db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN registered INTEGER DEFAULT 0");
+
+        DatabaseHelper directoryDatabaseHelper = new DatabaseHelper(context, "whisper_directory.db", null, 5);
+        SQLiteDatabase directoryDatabase       = directoryDatabaseHelper.getReadableDatabase();
+
+        Cursor cursor = directoryDatabase.query("directory", new String[] {"number", "registered"}, null, null, null, null, null);
+
+        while (cursor != null && cursor.moveToNext()) {
+          String        address       = new NumberMigrator(TextSecurePreferences.getLocalNumber(context)).migrate(cursor.getString(0));
+          ContentValues contentValues = new ContentValues(1);
+
+          contentValues.put("recipient_ids", address);
+          contentValues.put("registered", cursor.getInt(1) == 1);
+          db.replace("recipient_preferences", null, contentValues);
+        }
       }
 
       db.setTransactionSuccessful();

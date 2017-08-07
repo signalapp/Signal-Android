@@ -12,15 +12,19 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.annimon.stream.Collectors;
+import com.annimon.stream.Stream;
+
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SessionUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
-import org.thoughtcrime.securesms.database.NotInDirectoryException;
-import org.thoughtcrime.securesms.database.TextSecureDirectory;
+import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase;
+import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
@@ -44,6 +48,7 @@ public class DirectoryHelper {
 
     public static final UserCapabilities UNKNOWN     = new UserCapabilities(Capability.UNKNOWN, Capability.UNKNOWN, Capability.UNKNOWN);
     public static final UserCapabilities UNSUPPORTED = new UserCapabilities(Capability.UNSUPPORTED, Capability.UNSUPPORTED, Capability.UNSUPPORTED);
+    public static final UserCapabilities SUPPORTED   = new UserCapabilities(Capability.SUPPORTED, Capability.SUPPORTED, Capability.SUPPORTED);
 
     public enum Capability {
       UNKNOWN, SUPPORTED, UNSUPPORTED
@@ -96,29 +101,31 @@ public class DirectoryHelper {
       throws IOException
   {
     if (TextUtils.isEmpty(TextSecurePreferences.getLocalNumber(context))) {
-      return new RefreshResult(new LinkedList<Address>(), false);
+      return new RefreshResult(new LinkedList<>(), false);
     }
 
-    TextSecureDirectory directory              = TextSecureDirectory.getInstance(context);
-    Set<Address>        eligibleContactNumbers = directory.getPushEligibleContactNumbers();
-    Set<String>         serializedAddresses    = new HashSet<>();
+    RecipientPreferenceDatabase recipientPreferenceDatabase = DatabaseFactory.getRecipientPreferenceDatabase(context);
+    Set<Address>                eligibleContactNumbers      = recipientPreferenceDatabase.getAllRecipients();
+    eligibleContactNumbers.addAll(ContactAccessor.getInstance().getAllContactsWithNumbers(context));
 
-    for (Address address : eligibleContactNumbers) {
-      serializedAddresses.add(address.serialize());
-    }
-
-    List<ContactTokenDetails> activeTokens = accountManager.getContacts(serializedAddresses);
+    Set<String>               serializedAddress = Stream.of(eligibleContactNumbers).map(Address::serialize).collect(Collectors.toSet());
+    List<ContactTokenDetails> activeTokens      = accountManager.getContacts(serializedAddress);
 
     if (activeTokens != null) {
+      List<Address> activeAddresses   = new LinkedList<>();
+      Set<Address>  inactiveAddresses = new HashSet<>(eligibleContactNumbers);
+
       for (ContactTokenDetails activeToken : activeTokens) {
-        eligibleContactNumbers.remove(Address.fromSerialized(activeToken.getNumber()));
+        Address activeAddress = Address.fromSerialized(activeToken.getNumber());
+        activeAddresses.add(activeAddress);
+        inactiveAddresses.remove(activeAddress);
       }
 
-      directory.setNumbers(activeTokens, eligibleContactNumbers);
+      recipientPreferenceDatabase.setRegistered(activeAddresses, new LinkedList<>(inactiveAddresses));
       return updateContactsDatabase(context, activeTokens, true);
     }
 
-    return new RefreshResult(new LinkedList<Address>(), false);
+    return new RefreshResult(new LinkedList<>(), false);
   }
 
   public static UserCapabilities refreshDirectoryFor(@NonNull  Context context,
@@ -126,13 +133,13 @@ public class DirectoryHelper {
                                                      @NonNull  Recipient recipient)
       throws IOException
   {
-    TextSecureDirectory           directory      = TextSecureDirectory.getInstance(context);
-    SignalServiceAccountManager   accountManager = AccountManagerFactory.createManager(context);
-    String                        number         = recipient.getAddress().serialize();
-    Optional<ContactTokenDetails> details        = accountManager.getContact(number);
+    RecipientPreferenceDatabase   recipientDatabase = DatabaseFactory.getRecipientPreferenceDatabase(context);
+    SignalServiceAccountManager   accountManager    = AccountManagerFactory.createManager(context);
+    String                        number            = recipient.getAddress().serialize();
+    Optional<ContactTokenDetails> details           = accountManager.getContact(number);
 
     if (details.isPresent()) {
-      directory.setNumber(details.get(), true);
+      recipientDatabase.setRegistered(Util.asList(recipient.getAddress()), new LinkedList<>());
 
       RefreshResult result = updateContactsDatabase(context, details.get());
 
@@ -148,9 +155,7 @@ public class DirectoryHelper {
                                   details.get().isVoice() ? Capability.SUPPORTED : Capability.UNSUPPORTED,
                                   details.get().isVideo() ? Capability.SUPPORTED : Capability.UNSUPPORTED);
     } else {
-      ContactTokenDetails absent = new ContactTokenDetails();
-      absent.setNumber(number);
-      directory.setNumber(absent, false);
+      recipientDatabase.setRegistered(new LinkedList<>(), Util.asList(recipient.getAddress()));
       return UserCapabilities.UNSUPPORTED;
     }
   }
@@ -158,34 +163,28 @@ public class DirectoryHelper {
   public static @NonNull UserCapabilities getUserCapabilities(@NonNull Context context,
                                                               @Nullable Recipient recipient)
   {
-    try {
-      if (recipient == null) {
-        return UserCapabilities.UNSUPPORTED;
-      }
-
-      if (!TextSecurePreferences.isPushRegistered(context)) {
-        return UserCapabilities.UNSUPPORTED;
-      }
-
-      if (recipient.isMmsGroupRecipient()) {
-        return UserCapabilities.UNSUPPORTED;
-      }
-
-      if (recipient.isPushGroupRecipient()) {
-        return new UserCapabilities(Capability.SUPPORTED, Capability.UNSUPPORTED, Capability.UNSUPPORTED);
-      }
-
-      final Address address = recipient.getAddress();
-
-      boolean secureText  = TextSecureDirectory.getInstance(context).isSecureTextSupported(address);
-
-      return new UserCapabilities(secureText ? Capability.SUPPORTED : Capability.UNSUPPORTED,
-                                  secureText ? Capability.SUPPORTED : Capability.UNSUPPORTED,
-                                  secureText ? Capability.SUPPORTED : Capability.UNSUPPORTED);
-
-    } catch (NotInDirectoryException e) {
-      return UserCapabilities.UNKNOWN;
+    if (recipient == null) {
+      return UserCapabilities.UNSUPPORTED;
     }
+
+    if (!TextSecurePreferences.isPushRegistered(context)) {
+      return UserCapabilities.UNSUPPORTED;
+    }
+
+    if (recipient.isMmsGroupRecipient()) {
+      return UserCapabilities.UNSUPPORTED;
+    }
+
+    if (recipient.isPushGroupRecipient()) {
+      return new UserCapabilities(Capability.SUPPORTED, Capability.UNSUPPORTED, Capability.UNSUPPORTED);
+    }
+
+    final RecipientPreferenceDatabase     recipientDatabase    = DatabaseFactory.getRecipientPreferenceDatabase(context);
+    final Optional<RecipientsPreferences> recipientPreferences = recipientDatabase.getRecipientsPreferences(recipient.getAddress());
+
+    if      (recipientPreferences.isPresent() && recipientPreferences.get().isRegistered()) return UserCapabilities.SUPPORTED;
+    else if (recipientPreferences.isPresent())                                              return UserCapabilities.UNSUPPORTED;
+    else                                                                                    return UserCapabilities.UNKNOWN;
   }
 
   private static @NonNull RefreshResult updateContactsDatabase(@NonNull Context context,

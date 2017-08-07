@@ -18,7 +18,10 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public class RecipientPreferenceDatabase extends Database {
 
@@ -36,9 +39,10 @@ public class RecipientPreferenceDatabase extends Database {
   private static final String SEEN_INVITE_REMINDER    = "seen_invite_reminder";
   private static final String DEFAULT_SUBSCRIPTION_ID = "default_subscription_id";
   private static final String EXPIRE_MESSAGES         = "expire_messages";
+  private static final String REGISTERED              = "registered";
 
   private static final String[] RECIPIENT_PROJECTION = new String[] {
-      BLOCK, NOTIFICATION, VIBRATE, MUTE_UNTIL, COLOR, SEEN_INVITE_REMINDER, DEFAULT_SUBSCRIPTION_ID, EXPIRE_MESSAGES
+      BLOCK, NOTIFICATION, VIBRATE, MUTE_UNTIL, COLOR, SEEN_INVITE_REMINDER, DEFAULT_SUBSCRIPTION_ID, EXPIRE_MESSAGES, REGISTERED
   };
 
   static final List<String> TYPED_RECIPIENT_PROJECTION = Stream.of(RECIPIENT_PROJECTION)
@@ -74,7 +78,8 @@ public class RecipientPreferenceDatabase extends Database {
           COLOR + " TEXT DEFAULT NULL, " +
           SEEN_INVITE_REMINDER + " INTEGER DEFAULT 0, " +
           DEFAULT_SUBSCRIPTION_ID + " INTEGER DEFAULT -1, " +
-          EXPIRE_MESSAGES + " INTEGER DEFAULT 0);";
+          EXPIRE_MESSAGES + " INTEGER DEFAULT 0, " +
+          REGISTERED + " INTEGER DEFAULT 0);";
 
   public RecipientPreferenceDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -122,6 +127,7 @@ public class RecipientPreferenceDatabase extends Database {
     boolean seenInviteReminder    = cursor.getInt(cursor.getColumnIndexOrThrow(SEEN_INVITE_REMINDER)) == 1;
     int     defaultSubscriptionId = cursor.getInt(cursor.getColumnIndexOrThrow(DEFAULT_SUBSCRIPTION_ID));
     int     expireMessages        = cursor.getInt(cursor.getColumnIndexOrThrow(EXPIRE_MESSAGES));
+    boolean registered            = cursor.getInt(cursor.getColumnIndexOrThrow(REGISTERED)) == 1;
 
     MaterialColor color;
 
@@ -135,7 +141,7 @@ public class RecipientPreferenceDatabase extends Database {
     return new RecipientsPreferences(blocked, muteUntil,
                                      VibrateState.fromId(vibrateState),
                                      notificationUri, color, seenInviteReminder,
-                                     defaultSubscriptionId, expireMessages);
+                                     defaultSubscriptionId, expireMessages, registered);
   }
 
   public void setColor(Recipient recipient, MaterialColor color) {
@@ -190,6 +196,56 @@ public class RecipientPreferenceDatabase extends Database {
     updateOrInsert(recipient, values);
   }
 
+  public Set<Address> getAllRecipients() {
+    SQLiteDatabase db      = databaseHelper.getReadableDatabase();
+    Set<Address>   results = new HashSet<>();
+
+    try (Cursor cursor = db.query(TABLE_NAME, new String[] {ADDRESS}, null, null, null, null, null)) {
+      while (cursor != null && cursor.moveToNext()) {
+        results.add(Address.fromExternal(context, cursor.getString(0)));
+      }
+    }
+
+    return results;
+  }
+
+  public void setRegistered(@NonNull List<Address> activeAddresses,
+                            @NonNull List<Address> inactiveAddresses)
+  {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    for (Address activeAddress : activeAddresses) {
+      ContentValues contentValues = new ContentValues(2);
+      contentValues.put(ADDRESS, activeAddress.serialize());
+      contentValues.put(REGISTERED, 1);
+
+      db.replace(TABLE_NAME, null, contentValues);
+    }
+
+    for (Address inactiveAddress : inactiveAddresses) {
+      ContentValues contentValues = new ContentValues(2);
+      contentValues.put(ADDRESS, inactiveAddress.serialize());
+      contentValues.put(REGISTERED, 0);
+
+      db.replace(TABLE_NAME, null, contentValues);
+    }
+
+    context.getContentResolver().notifyChange(Uri.parse(RECIPIENT_PREFERENCES_URI), null);
+  }
+
+  public List<Address> getRegistered() {
+    SQLiteDatabase db      = databaseHelper.getReadableDatabase();
+    List<Address>  results = new LinkedList<>();
+
+    try (Cursor cursor = db.query(TABLE_NAME, new String[] {ADDRESS}, REGISTERED + " = ?", new String[] {"1"}, null, null, null)) {
+      while (cursor != null && cursor.moveToNext()) {
+        results.add(Address.fromSerialized(cursor.getString(0)));
+      }
+    }
+
+    return results;
+  }
+
   private void updateOrInsert(Recipient recipient, ContentValues contentValues) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
 
@@ -218,6 +274,7 @@ public class RecipientPreferenceDatabase extends Database {
     private final boolean       seenInviteReminder;
     private final int           defaultSubscriptionId;
     private final int           expireMessages;
+    private final boolean       registered;
 
     RecipientsPreferences(boolean blocked, long muteUntil,
                           @NonNull VibrateState vibrateState,
@@ -225,7 +282,8 @@ public class RecipientPreferenceDatabase extends Database {
                           @Nullable MaterialColor color,
                           boolean seenInviteReminder,
                           int defaultSubscriptionId,
-                          int expireMessages)
+                          int expireMessages,
+                          boolean registered)
     {
       this.blocked               = blocked;
       this.muteUntil             = muteUntil;
@@ -235,6 +293,7 @@ public class RecipientPreferenceDatabase extends Database {
       this.seenInviteReminder    = seenInviteReminder;
       this.defaultSubscriptionId = defaultSubscriptionId;
       this.expireMessages        = expireMessages;
+      this.registered            = registered;
     }
 
     public @Nullable MaterialColor getColor() {
@@ -267,6 +326,10 @@ public class RecipientPreferenceDatabase extends Database {
 
     public int getExpireMessages() {
       return expireMessages;
+    }
+
+    public boolean isRegistered() {
+      return registered;
     }
   }
 

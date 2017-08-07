@@ -27,9 +27,9 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.database.NotInDirectoryException;
+import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase;
+import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
@@ -50,6 +50,7 @@ import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
 
 import java.io.IOException;
+import java.util.LinkedList;
 
 public class MessageSender {
 
@@ -264,23 +265,21 @@ public class MessageSender {
   }
 
   private static boolean isPushDestination(Context context, Address destination) {
-    TextSecureDirectory directory = TextSecureDirectory.getInstance(context);
+    RecipientPreferenceDatabase     recipientsDatabase   = DatabaseFactory.getRecipientPreferenceDatabase(context);
+    Optional<RecipientsPreferences> recipientPreferences = recipientsDatabase.getRecipientsPreferences(destination);
 
-    try {
-      return directory.isSecureTextSupported(destination);
-    } catch (NotInDirectoryException e) {
+    if (recipientPreferences.isPresent()) {
+      return recipientPreferences.get().isRegistered();
+    } else {
       try {
         SignalServiceAccountManager   accountManager = AccountManagerFactory.createManager(context);
         Optional<ContactTokenDetails> registeredUser = accountManager.getContact(destination.serialize());
 
         if (!registeredUser.isPresent()) {
-          registeredUser = Optional.of(new ContactTokenDetails());
-          registeredUser.get().setNumber(destination.serialize());
-          directory.setNumber(registeredUser.get(), false);
+          recipientsDatabase.setRegistered(new LinkedList<>(), Util.asList(destination));
           return false;
         } else {
-          registeredUser.get().setNumber(destination.toPhoneString());
-          directory.setNumber(registeredUser.get(), true);
+          recipientsDatabase.setRegistered(Util.asList(destination), new LinkedList<>());
           return true;
         }
       } catch (IOException e1) {

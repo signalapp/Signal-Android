@@ -75,6 +75,12 @@ public class Util {
 
   public static Handler handler = new Handler(Looper.getMainLooper());
 
+  public static <T> List<T> asList(T... elements) {
+    List<T> result = new LinkedList<>();
+    Collections.addAll(result, elements);
+    return result;
+  }
+
   public static String join(String[] list, String delimiter) {
     return join(Arrays.asList(list), delimiter);
   }
