@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.dependencies;
 import android.content.Context;
 
 import org.thoughtcrime.securesms.BuildConfig;
+import org.thoughtcrime.securesms.CreateProfileActivity;
 import org.thoughtcrime.securesms.DeviceListFragment;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
@@ -63,7 +64,8 @@ import dagger.Provides;
                                      RotateSignedPreKeyJob.class,
                                      WebRtcCallService.class,
                                      RetrieveProfileJob.class,
-                                     MultiDeviceVerifiedUpdateJob.class})
+                                     MultiDeviceVerifiedUpdateJob.class,
+                                     CreateProfileActivity.class})
 public class SignalCommunicationModule {
 
   private final Context                    context;

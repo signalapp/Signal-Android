@@ -2,13 +2,14 @@ package org.thoughtcrime.securesms.push;
 
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.push.TrustStore;
-import org.whispersystems.signalservice.internal.push.SignalServiceUrl;
+import org.whispersystems.signalservice.internal.configuration.SignalCdnUrl;
+import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
+import org.whispersystems.signalservice.internal.configuration.SignalServiceUrl;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -93,9 +94,9 @@ public class SignalServiceNetworkAccess {
       .build();
 
 
-  private final Map<String, SignalServiceUrl[]> censorshipConfiguration;
-  private final String[]                        censoredCountries;
-  private final SignalServiceUrl[]              uncensoredConfiguration;
+  private final Map<String, SignalServiceConfiguration> censorshipConfiguration;
+  private final String[]                                censoredCountries;
+  private final SignalServiceConfiguration              uncensoredConfiguration;
 
   public SignalServiceNetworkAccess(Context context) {
     final TrustStore       googleTrustStore = new GoogleFrontingTrustStore(context);
@@ -105,41 +106,43 @@ public class SignalServiceNetworkAccess {
     final SignalServiceUrl mapsTwoAndroid   = new SignalServiceUrl("https://clients4.google.com", APPSPOT_REFLECTOR_HOST, googleTrustStore, GMAPS_CONNECTION_SPEC);
     final SignalServiceUrl mailAndroid      = new SignalServiceUrl("https://mail.google.com", APPSPOT_REFLECTOR_HOST, googleTrustStore, GMAIL_CONNECTION_SPEC);
 
-    this.censorshipConfiguration = new HashMap<String, SignalServiceUrl[]>() {{
-      put("+20", new SignalServiceUrl[] {new SignalServiceUrl("https://www.google.com.eg",
-                                                              APPSPOT_REFLECTOR_HOST,
-                                                              googleTrustStore, GMAIL_CONNECTION_SPEC),
-                                         baseAndroid, mapsOneAndroid, mapsTwoAndroid, mailAndroid});
+    this.censorshipConfiguration = new HashMap<String, SignalServiceConfiguration>() {{
+      put("+20", new SignalServiceConfiguration(new SignalServiceUrl[] {new SignalServiceUrl("https://www.google.com.eg",
+                                                                                             APPSPOT_REFLECTOR_HOST,
+                                                                                             googleTrustStore, GMAIL_CONNECTION_SPEC),
+                                                                        baseAndroid, mapsOneAndroid, mapsTwoAndroid, mailAndroid},
+                                                new SignalCdnUrl[] {})); // XXX
 
-      put("+971", new SignalServiceUrl[] {new SignalServiceUrl("https://www.google.ae",
-                                                               APPSPOT_REFLECTOR_HOST,
-                                                               googleTrustStore, GMAIL_CONNECTION_SPEC),
-                                          baseAndroid, baseGoogle, mapsOneAndroid, mapsTwoAndroid, mailAndroid});
+      put("+971", new SignalServiceConfiguration(new SignalServiceUrl[] {new SignalServiceUrl("https://www.google.ae",
+                                                                                              APPSPOT_REFLECTOR_HOST,
+                                                                                              googleTrustStore, GMAIL_CONNECTION_SPEC),
+                                                                         baseAndroid, baseGoogle, mapsOneAndroid, mapsTwoAndroid, mailAndroid},
+                                                 new SignalCdnUrl[] {})); // XXX
 
 //      put("+53", new SignalServiceUrl[] {new SignalServiceUrl("https://www.google.com.cu",
 //                                                              APPSPOT_REFLECTOR_HOST,
 //                                                              googleTrustStore, GMAIL_CONNECTION_SPEC),
 //                                         baseAndroid, baseGoogle, mapsOneAndroid, mapsTwoAndroid, mailAndroid});
 
-      put("+968", new SignalServiceUrl[] {new SignalServiceUrl("https://www.google.com.om",
-                                                               APPSPOT_REFLECTOR_HOST,
-                                                               googleTrustStore, GMAIL_CONNECTION_SPEC),
-                                          baseAndroid, baseGoogle, mapsOneAndroid, mapsTwoAndroid, mailAndroid});
+      put("+968", new SignalServiceConfiguration(new SignalServiceUrl[] {new SignalServiceUrl("https://www.google.com.om",
+                                                                                              APPSPOT_REFLECTOR_HOST,
+                                                                                              googleTrustStore, GMAIL_CONNECTION_SPEC),
+                                                                         baseAndroid, baseGoogle, mapsOneAndroid, mapsTwoAndroid, mailAndroid},
+                                                 new SignalCdnUrl[] {})); // XXX
     }};
 
-    this.uncensoredConfiguration = new SignalServiceUrl[] {
-        new SignalServiceUrl(BuildConfig.SIGNAL_URL, new SignalServiceTrustStore(context))
-    };
+    this.uncensoredConfiguration = new SignalServiceConfiguration(new SignalServiceUrl[] {new SignalServiceUrl(BuildConfig.SIGNAL_URL, new SignalServiceTrustStore(context))},
+                                                                  new SignalCdnUrl[] {new SignalCdnUrl(BuildConfig.SIGNAL_CDN_URL, new SignalServiceTrustStore(context))});
 
     this.censoredCountries = this.censorshipConfiguration.keySet().toArray(new String[0]);
   }
 
-  public SignalServiceUrl[] getConfiguration(Context context) {
+  public SignalServiceConfiguration getConfiguration(Context context) {
     String localNumber = TextSecurePreferences.getLocalNumber(context);
     return getConfiguration(localNumber);
   }
 
-  public SignalServiceUrl[] getConfiguration(@Nullable String localNumber) {
+  public SignalServiceConfiguration getConfiguration(@Nullable String localNumber) {
     if (localNumber == null) return this.uncensoredConfiguration;
 
     for (String censoredRegion : this.censoredCountries) {

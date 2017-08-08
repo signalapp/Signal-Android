@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.ArrayRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -109,6 +110,15 @@ public class TextSecurePreferences {
   private static final String MULTI_DEVICE_PROVISIONED_PREF    = "pref_multi_device";
   public  static final String DIRECT_CAPTURE_CAMERA_ID         = "pref_direct_capture_camera_id";
   private static final String ALWAYS_RELAY_CALLS_PREF          = "pref_turn_only";
+  private static final String PROFILE_KEY_PREF                 = "pref_profile_key";
+
+  public static @Nullable String getProfileKey(Context context) {
+    return getStringPreference(context, PROFILE_KEY_PREF, null);
+  }
+
+  public static void setProfileKey(Context context, String key) {
+    setStringPreference(context, PROFILE_KEY_PREF, key);
+  }
 
   public static int getNotificationPriority(Context context) {
     return Integer.valueOf(getStringPreference(context, NOTIFICATION_PRIORITY_PREF, String.valueOf(NotificationCompat.PRIORITY_HIGH)));

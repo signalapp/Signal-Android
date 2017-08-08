@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<org.thoughtcrime.securesms.components.InputAwareLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="16dp"
+                  android:layout_marginRight="16dp"
+                  android:orientation="horizontal">
+
+        <ImageView android:id="@+id/avatar"
+                   android:layout_width="64dp"
+                   android:layout_height="64dp"/>
+
+        <org.thoughtcrime.securesms.components.emoji.EmojiEditText
+                android:id="@+id/name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:inputType="textCapWords"/>
+
+        <org.thoughtcrime.securesms.components.emoji.EmojiToggle
+                android:id="@+id/emoji_toggle"
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/touch_highlight_background"
+                android:contentDescription="@string/conversation_activity__emoji_toggle_description" />
+
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/information_link_container"
+                  android:clickable="true"
+                  android:orientation="horizontal"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="16dp"
+                  android:layout_marginRight="16dp"
+                  android:layout_marginTop="16dip"
+                  android:gravity="center_horizontal">
+
+        <ImageView android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:clickable="false"
+                   android:src="@drawable/ic_info_white_18dp"
+                   android:tint="#73B7F0"/>
+
+        <TextView style="@style/Registration.Description"
+                  android:id="@+id/information_label"
+                  android:clickable="false"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="3dp"
+                  android:layout_gravity="center_vertical"
+                  android:textColor="#73B7F0"
+                  android:text="Who can see this information?"/>
+    </LinearLayout>
+
+
+    <LinearLayout android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:gravity="bottom"
+                  android:clipChildren="false"
+                  android:clipToPadding="false">
+
+        <Button android:id="@+id/finish_button"
+                android:text="FINISH"
+                android:textAllCaps="true"
+                android:background="@color/signal_primary"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_gravity="center_horizontal"/>
+
+        <org.thoughtcrime.securesms.components.emoji.EmojiDrawer
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/emoji_drawer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+    </LinearLayout>
+
+</org.thoughtcrime.securesms.components.InputAwareLayout>
