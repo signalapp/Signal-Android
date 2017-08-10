@@ -104,7 +104,7 @@ public class SmsSendJob extends SendJob {
     // repeatedly crash every time you start the app.
     try {
       getSmsManagerFor(message.getSubscriptionId()).sendMultipartTextMessage(recipient, null, messages, sentIntents, deliveredIntents);
-    } catch (NullPointerException npe) {
+    } catch (NullPointerException | IllegalArgumentException npe) {
       Log.w(TAG, npe);
       Log.w(TAG, "Recipient: " + recipient);
       Log.w(TAG, "Message Parts: " + messages.size());
@@ -115,7 +115,7 @@ public class SmsSendJob extends SendJob {
                                                                         sentIntents.get(i),
                                                                         deliveredIntents == null ? null : deliveredIntents.get(i));
         }
-      } catch (NullPointerException npe2) {
+      } catch (NullPointerException | IllegalArgumentException npe2) {
         Log.w(TAG, npe);
         throw new UndeliverableMessageException(npe2);
       }
