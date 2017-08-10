@@ -22,6 +22,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteStatement;
 import android.net.Uri;
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterCipher;
@@ -100,7 +101,9 @@ public class SmsMigrator {
                                              Cursor cursor, long threadId,
                                              SQLiteStatement statement)
   {
-    addStringToStatement(statement, cursor, 1, SmsDatabase.ADDRESS);
+    String theirAddress = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.ADDRESS));
+    statement.bindString(1, Address.fromExternal(context, theirAddress).serialize());
+
     addIntToStatement(statement, cursor, 2, SmsDatabase.PERSON);
     addIntToStatement(statement, cursor, 3, SmsDatabase.DATE_RECEIVED);
     addIntToStatement(statement, cursor, 4, SmsDatabase.DATE_RECEIVED);
