@@ -13,6 +13,8 @@ import org.thoughtcrime.securesms.glide.OkHttpUrlLoader;
 import org.thoughtcrime.securesms.mms.AttachmentStreamUriLoader.AttachmentModel;
 import org.thoughtcrime.securesms.mms.ContactPhotoUriLoader.ContactPhotoUri;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
+import org.thoughtcrime.securesms.profiles.AvatarPhotoUriLoader;
+import org.thoughtcrime.securesms.profiles.AvatarPhotoUriLoader.AvatarPhotoUri;
 
 import java.io.InputStream;
 
@@ -28,6 +30,7 @@ public class TextSecureGlideModule implements GlideModule {
     glide.register(ContactPhotoUri.class, InputStream.class, new ContactPhotoUriLoader.Factory());
     glide.register(AttachmentModel.class, InputStream.class, new AttachmentStreamUriLoader.Factory());
     glide.register(GlideUrl.class, InputStream.class, new OkHttpUrlLoader.Factory());
+    glide.register(AvatarPhotoUri.class, InputStream.class, new AvatarPhotoUriLoader.Factory());
   }
 
   public static class NoopDiskCacheFactory implements DiskCache.Factory {

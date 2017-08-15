@@ -25,6 +25,8 @@ import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.PushDatabase;
+import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase;
+import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.groups.GroupMessageProcessor;
@@ -81,6 +83,8 @@ import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSy
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
+import java.security.MessageDigest;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -163,6 +167,10 @@ public class PushDecryptJob extends ContextJob {
 
         if (message.getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false))) {
           handleUnknownGroupMessage(envelope, message.getGroupInfo().get());
+        }
+
+        if (message.getProfileKey().isPresent()) {
+          handleProfileKey(envelope, message);
         }
       } else if (content.getSyncMessage().isPresent()) {
         SignalServiceSyncMessage syncMessage = content.getSyncMessage().get();
@@ -792,6 +800,24 @@ public class PushDecryptJob extends ContextJob {
     } catch (InvalidMessageException | InvalidVersionException e) {
       throw new AssertionError(e);
     }
+  }
+
+  private void handleProfileKey(@NonNull SignalServiceEnvelope envelope,
+                                @NonNull SignalServiceDataMessage message)
+  {
+    RecipientPreferenceDatabase     database      = DatabaseFactory.getRecipientPreferenceDatabase(context);
+    Address                         sourceAddress = Address.fromExternal(context, envelope.getSource());
+    Optional<RecipientsPreferences> preferences   = database.getRecipientsPreferences(sourceAddress);
+
+    if (!preferences.isPresent() || preferences.get().getProfileKey() == null ||
+        !MessageDigest.isEqual(message.getProfileKey().get(), preferences.get().getProfileKey()))
+    {
+      database.setProfileKey(sourceAddress, message.getProfileKey().get());
+
+      Recipient recipient = RecipientFactory.getRecipientFor(context, sourceAddress, true);
+      ApplicationContext.getInstance(context).getJobManager().add(new RetrieveProfileJob(context, recipient));
+    }
+
   }
 
   private Optional<InsertResult> insertPlaceholder(@NonNull SignalServiceEnvelope envelope) {

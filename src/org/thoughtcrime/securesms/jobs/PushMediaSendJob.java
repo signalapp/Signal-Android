@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
@@ -113,11 +114,13 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       MediaConstraints              mediaConstraints  = MediaConstraints.getPushMediaConstraints();
       List<Attachment>              scaledAttachments = scaleAttachments(masterSecret, mediaConstraints, message.getAttachments());
       List<SignalServiceAttachment> attachmentStreams = getAttachmentsFor(masterSecret, scaledAttachments);
+      Optional<byte[]>              profileKey        = getProfileKey(message.getRecipient().getAddress());
       SignalServiceDataMessage      mediaMessage      = SignalServiceDataMessage.newBuilder()
                                                                                 .withBody(message.getBody())
                                                                                 .withAttachments(attachmentStreams)
                                                                                 .withTimestamp(message.getSentTimeMillis())
                                                                                 .withExpiration((int)(message.getExpiresIn() / 1000))
+                                                                                .withProfileKey(profileKey.orNull())
                                                                                 .asExpirationUpdate(message.isExpirationUpdate())
                                                                                 .build();
 

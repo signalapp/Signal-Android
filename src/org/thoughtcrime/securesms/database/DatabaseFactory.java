@@ -103,7 +103,8 @@ public class DatabaseFactory {
   private static final int NO_MORE_RECIPIENTS_PLURAL                       = 38;
   private static final int INTERNAL_DIRECTORY                              = 39;
   private static final int INTERNAL_SYSTEM_DISPLAY_NAME                    = 40;
-  private static final int DATABASE_VERSION                                = 40;
+  private static final int PROFILES                                        = 41;
+  private static final int DATABASE_VERSION                                = 41;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -1295,6 +1296,12 @@ public class DatabaseFactory {
 
       if (oldVersion < INTERNAL_SYSTEM_DISPLAY_NAME) {
         db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN system_display_name TEXT DEFAULT NULL");
+      }
+
+      if (oldVersion < PROFILES) {
+        db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN profile_key TEXT DEFAULT NULL");
+        db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN signal_profile_name TEXT DEFAULT NULL");
+        db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN signal_profile_avatar TEXT DEFAULT NULL");
       }
 
       db.setTransactionSuccessful();

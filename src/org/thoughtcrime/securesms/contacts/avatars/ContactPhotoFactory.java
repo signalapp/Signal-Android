@@ -13,7 +13,10 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.mms.ContactPhotoUriLoader.ContactPhotoUri;
+import org.thoughtcrime.securesms.profiles.AvatarPhotoUriLoader;
+import org.thoughtcrime.securesms.profiles.AvatarPhotoUriLoader.AvatarPhotoUri;
 
 import java.util.concurrent.ExecutionException;
 
@@ -38,17 +41,18 @@ public class ContactPhotoFactory {
     return new ResourceContactPhoto(R.drawable.ic_group_white_24dp);
   }
 
-  public static ContactPhoto getContactPhoto(Context context, Uri uri, String name) {
+  public static ContactPhoto getContactPhoto(@NonNull Context context, @Nullable Uri uri, @NonNull Address address, @Nullable String name) {
     int targetSize = context.getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size);
-    return getContactPhoto(context, uri, name, targetSize);
+    return getContactPhoto(context, uri, address, name, targetSize);
   }
 
   public static ContactPhoto getContactPhoto(@NonNull  Context context,
                                              @Nullable Uri uri,
+                                             @NonNull  Address address,
                                              @Nullable String name,
                                              int targetSize)
   {
-    if (uri == null) return getDefaultContactPhoto(name);
+    if (uri == null) return getSignalAvatarContactPhoto(context, address, name, targetSize);
 
     try {
       Bitmap bitmap = Glide.with(context)
@@ -57,7 +61,7 @@ public class ContactPhotoFactory {
                            .centerCrop().into(targetSize, targetSize).get();
       return new BitmapContactPhoto(bitmap);
     } catch (ExecutionException e) {
-      return getDefaultContactPhoto(name);
+      return getSignalAvatarContactPhoto(context, address, name, targetSize);
     } catch (InterruptedException e) {
       throw new AssertionError(e);
     }
@@ -67,5 +71,27 @@ public class ContactPhotoFactory {
     if (avatar == null) return getDefaultGroupPhoto();
 
     return new BitmapContactPhoto(BitmapFactory.decodeByteArray(avatar, 0, avatar.length));
+  }
+
+  private static ContactPhoto getSignalAvatarContactPhoto(@NonNull  Context context,
+                                                          @NonNull  Address address,
+                                                          @Nullable String name,
+                                                          int       targetSize)
+  {
+    try {
+      Bitmap bitmap = Glide.with(context)
+                           .load(new AvatarPhotoUri(address))
+                           .asBitmap()
+                           .diskCacheStrategy(DiskCacheStrategy.NONE)
+                           .centerCrop()
+                           .into(targetSize, targetSize)
+                           .get();
+
+      return new BitmapContactPhoto(bitmap);
+    } catch (ExecutionException e) {
+      return getDefaultContactPhoto(name);
+    } catch (InterruptedException e) {
+      throw new AssertionError(e);
+    }
   }
 }

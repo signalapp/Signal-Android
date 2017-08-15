@@ -16,8 +16,10 @@ import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -40,10 +42,14 @@ public class RecipientPreferenceDatabase extends Database {
   private static final String DEFAULT_SUBSCRIPTION_ID = "default_subscription_id";
   private static final String EXPIRE_MESSAGES         = "expire_messages";
   private static final String REGISTERED              = "registered";
+  private static final String PROFILE_KEY             = "profile_key";
   private static final String SYSTEM_DISPLAY_NAME     = "system_display_name";
+  private static final String SIGNAL_PROFILE_NAME     = "signal_profile_name";
+  private static final String SIGNAL_PROFILE_AVATAR   = "signal_profile_avatar";
 
   private static final String[] RECIPIENT_PROJECTION = new String[] {
-      BLOCK, NOTIFICATION, VIBRATE, MUTE_UNTIL, COLOR, SEEN_INVITE_REMINDER, DEFAULT_SUBSCRIPTION_ID, EXPIRE_MESSAGES, REGISTERED, SYSTEM_DISPLAY_NAME
+      BLOCK, NOTIFICATION, VIBRATE, MUTE_UNTIL, COLOR, SEEN_INVITE_REMINDER, DEFAULT_SUBSCRIPTION_ID, EXPIRE_MESSAGES, REGISTERED,
+      PROFILE_KEY, SYSTEM_DISPLAY_NAME, SIGNAL_PROFILE_NAME, SIGNAL_PROFILE_AVATAR
   };
 
   static final List<String> TYPED_RECIPIENT_PROJECTION = Stream.of(RECIPIENT_PROJECTION)
@@ -81,7 +87,10 @@ public class RecipientPreferenceDatabase extends Database {
           DEFAULT_SUBSCRIPTION_ID + " INTEGER DEFAULT -1, " +
           EXPIRE_MESSAGES + " INTEGER DEFAULT 0, " +
           REGISTERED + " INTEGER DEFAULT 0, " +
-          SYSTEM_DISPLAY_NAME + " TEXT DEFAULT NULL);";
+          SYSTEM_DISPLAY_NAME + " TEXT DEFAULT NULL, " +
+          PROFILE_KEY + " TEXT DEFAULT NULL, " +
+          SIGNAL_PROFILE_NAME + " TEXT DEFAULT NULL, " +
+          SIGNAL_PROFILE_AVATAR + " TEXT DEFAULT NULL);";
 
   public RecipientPreferenceDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -130,9 +139,13 @@ public class RecipientPreferenceDatabase extends Database {
     int     defaultSubscriptionId = cursor.getInt(cursor.getColumnIndexOrThrow(DEFAULT_SUBSCRIPTION_ID));
     int     expireMessages        = cursor.getInt(cursor.getColumnIndexOrThrow(EXPIRE_MESSAGES));
     boolean registered            = cursor.getInt(cursor.getColumnIndexOrThrow(REGISTERED)) == 1;
-    String  systemDisplayname     = cursor.getString(cursor.getColumnIndexOrThrow(SYSTEM_DISPLAY_NAME));
+    String  profileKeyString      = cursor.getString(cursor.getColumnIndexOrThrow(PROFILE_KEY));
+    String  systemDisplayName     = cursor.getString(cursor.getColumnIndexOrThrow(SYSTEM_DISPLAY_NAME));
+    String  signalProfileName     = cursor.getString(cursor.getColumnIndexOrThrow(SIGNAL_PROFILE_NAME));
+    String  signalProfileAvatar   = cursor.getString(cursor.getColumnIndexOrThrow(SIGNAL_PROFILE_AVATAR));
 
     MaterialColor color;
+    byte[]        profileKey = null;
 
     try {
       color = serializedColor == null ? null : MaterialColor.fromSerialized(serializedColor);
@@ -141,11 +154,21 @@ public class RecipientPreferenceDatabase extends Database {
       color = null;
     }
 
+    if (profileKeyString != null) {
+      try {
+        profileKey = Base64.decode(profileKeyString);
+      } catch (IOException e) {
+        Log.w(TAG, e);
+        profileKey = null;
+      }
+    }
+
     return Optional.of(new RecipientsPreferences(blocked, muteUntil,
                                                  VibrateState.fromId(vibrateState),
                                                  notificationUri, color, seenInviteReminder,
                                                  defaultSubscriptionId, expireMessages, registered,
-                                                 systemDisplayname));
+                                                 profileKey, systemDisplayName, signalProfileName,
+                                                 signalProfileAvatar));
   }
 
   public void setColor(Recipient recipient, MaterialColor color) {
@@ -204,6 +227,24 @@ public class RecipientPreferenceDatabase extends Database {
     ContentValues values = new ContentValues(1);
     values.put(SYSTEM_DISPLAY_NAME, systemDisplayName);
     updateOrInsert(address, values);
+  }
+
+  public void setProfileKey(@NonNull Address address, @Nullable byte[] profileKey) {
+    ContentValues values = new ContentValues(1);
+    values.put(PROFILE_KEY, profileKey == null ? null : Base64.encodeBytes(profileKey));
+    updateOrInsert(address, values);;
+  }
+
+  public void setProfileName(@NonNull Address address, @Nullable String profileName) {
+    ContentValues contentValues = new ContentValues(1);
+    contentValues.put(SIGNAL_PROFILE_NAME, profileName);
+    updateOrInsert(address, contentValues);
+  }
+
+  public void setProfileAvatar(@NonNull Address address, @Nullable String profileAvatar) {
+    ContentValues contentValues = new ContentValues(1);
+    contentValues.put(SIGNAL_PROFILE_AVATAR, profileAvatar);
+    updateOrInsert(address, contentValues);
   }
 
   public Set<Address> getAllRecipients() {
@@ -285,7 +326,10 @@ public class RecipientPreferenceDatabase extends Database {
     private final int           defaultSubscriptionId;
     private final int           expireMessages;
     private final boolean       registered;
+    private final byte[]        profileKey;
     private final String        systemDisplayName;
+    private final String        signalProfileName;
+    private final String        signalProfileAvatar;
 
     RecipientsPreferences(boolean blocked, long muteUntil,
                           @NonNull VibrateState vibrateState,
@@ -295,7 +339,10 @@ public class RecipientPreferenceDatabase extends Database {
                           int defaultSubscriptionId,
                           int expireMessages,
                           boolean registered,
-                          String systemDisplayName)
+                          @Nullable byte[] profileKey,
+                          @Nullable String systemDisplayName,
+                          @Nullable String signalProfileName,
+                          @Nullable String signalProfileAvatar)
     {
       this.blocked               = blocked;
       this.muteUntil             = muteUntil;
@@ -306,7 +353,10 @@ public class RecipientPreferenceDatabase extends Database {
       this.defaultSubscriptionId = defaultSubscriptionId;
       this.expireMessages        = expireMessages;
       this.registered            = registered;
+      this.profileKey            = profileKey;
       this.systemDisplayName     = systemDisplayName;
+      this.signalProfileName     = signalProfileName;
+      this.signalProfileAvatar   = signalProfileAvatar;
     }
 
     public @Nullable MaterialColor getColor() {
@@ -345,8 +395,20 @@ public class RecipientPreferenceDatabase extends Database {
       return registered;
     }
 
-    public String getSystemDisplayName() {
+    public byte[] getProfileKey() {
+      return profileKey;
+    }
+
+    public @Nullable String getSystemDisplayName() {
       return systemDisplayName;
+    }
+
+    public @Nullable String getProfileName() {
+      return signalProfileName;
+    }
+
+    public @Nullable String getProfileAvatar() {
+      return signalProfileAvatar;
     }
   }
 

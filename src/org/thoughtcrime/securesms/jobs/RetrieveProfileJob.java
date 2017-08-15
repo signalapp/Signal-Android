@@ -6,17 +6,23 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.service.MessageRetrievalService;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.IdentityUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.InvalidKeyException;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessagePipe;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
+import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
@@ -66,25 +72,13 @@ public class RetrieveProfileJob extends ContextJob implements InjectableType {
   private void handleIndividualRecipient(Recipient recipient)
       throws IOException, InvalidKeyException, InvalidNumberException
   {
-    String               number  = recipient.getAddress().toPhoneString();
-    SignalServiceProfile profile = retrieveProfile(number);
+    String                          number               = recipient.getAddress().toPhoneString();
+    SignalServiceProfile            profile              = retrieveProfile(number);
+    Optional<RecipientsPreferences> recipientPreferences = DatabaseFactory.getRecipientPreferenceDatabase(context).getRecipientsPreferences(recipient.getAddress());
 
-    if (TextUtils.isEmpty(profile.getIdentityKey())) {
-      Log.w(TAG, "Identity key is missing on profile!");
-      return;
-    }
-
-    IdentityKey identityKey = new IdentityKey(Base64.decode(profile.getIdentityKey()), 0);
-
-    if (!DatabaseFactory.getIdentityDatabase(context)
-                        .getIdentity(recipient.getAddress())
-                        .isPresent())
-    {
-      Log.w(TAG, "Still first use...");
-      return;
-    }
-
-    IdentityUtil.saveIdentity(context, number, identityKey);
+    setIdentityKey(recipient, profile.getIdentityKey());
+    setProfileName(recipient, recipientPreferences, profile.getName());
+    setProfileAvatar(recipient, recipientPreferences, profile.getAvatar());
   }
 
   private void handleGroupRecipient(Recipient group)
@@ -109,5 +103,60 @@ public class RetrieveProfileJob extends ContextJob implements InjectableType {
     }
 
     return receiver.retrieveProfile(new SignalServiceAddress(number));
+  }
+
+  private void setIdentityKey(Recipient recipient, String identityKeyValue) {
+    try {
+      if (TextUtils.isEmpty(identityKeyValue)) {
+        Log.w(TAG, "Identity key is missing on profile!");
+        return;
+      }
+
+      IdentityKey identityKey = new IdentityKey(Base64.decode(identityKeyValue), 0);
+
+      if (!DatabaseFactory.getIdentityDatabase(context)
+                          .getIdentity(recipient.getAddress())
+                          .isPresent())
+      {
+        Log.w(TAG, "Still first use...");
+        return;
+      }
+
+      IdentityUtil.saveIdentity(context, recipient.getAddress().toPhoneString(), identityKey);
+    } catch (InvalidKeyException | IOException e) {
+      Log.w(TAG, e);
+    }
+  }
+
+  private void setProfileName(Recipient recipient, Optional<RecipientsPreferences> recipientPreferences, String profileName) {
+    try {
+      if (!recipientPreferences.isPresent()) return;
+      if (recipientPreferences.get().getProfileKey() == null) return;
+
+      String plaintextProfileName = null;
+
+      if (profileName != null) {
+        ProfileCipher profileCipher = new ProfileCipher(recipientPreferences.get().getProfileKey());
+        plaintextProfileName = new String(profileCipher.decryptName(Base64.decode(profileName)));
+      }
+
+      if (!Util.equals(plaintextProfileName, recipientPreferences.get().getProfileName())) {
+        DatabaseFactory.getRecipientPreferenceDatabase(context).setProfileName(recipient.getAddress(), plaintextProfileName);
+        RecipientFactory.clearCache(context);
+      }
+    } catch (ProfileCipher.InvalidCiphertextException | IOException e) {
+      Log.w(TAG, e);
+    }
+  }
+
+  private void setProfileAvatar(Recipient recipient, Optional<RecipientsPreferences> recipientPreferences, String profileAvatar) {
+    if (!recipientPreferences.isPresent())                  return;
+    if (recipientPreferences.get().getProfileKey() == null) return;
+
+    if (!Util.equals(profileAvatar, recipientPreferences.get().getProfileAvatar())) {
+      ApplicationContext.getInstance(context)
+                        .getJobManager()
+                        .add(new RetrieveProfileAvatarJob(context, recipient, profileAvatar));
+    }
   }
 }

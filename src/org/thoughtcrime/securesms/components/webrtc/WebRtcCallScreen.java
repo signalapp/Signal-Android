@@ -293,7 +293,7 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
         Uri            contentUri    = ContactsContract.Contacts.lookupContact(context.getContentResolver(),
                                                                                recipient.getContactUri());
         windowManager.getDefaultDisplay().getMetrics(metrics);
-        return ContactPhotoFactory.getContactPhoto(context, contentUri, null, metrics.widthPixels);
+        return ContactPhotoFactory.getContactPhoto(context, contentUri, recipient.getAddress(), null, metrics.widthPixels);
       }
 
       @Override

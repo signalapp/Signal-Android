@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
@@ -101,10 +102,12 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
     try {
       SignalServiceAddress       address           = getPushAddress(message.getIndividualRecipient().getAddress());
       SignalServiceMessageSender messageSender     = messageSenderFactory.create();
+      Optional<byte[]>           profileKey        = getProfileKey(message.getIndividualRecipient().getAddress());
       SignalServiceDataMessage   textSecureMessage = SignalServiceDataMessage.newBuilder()
                                                                              .withTimestamp(message.getDateSent())
                                                                              .withBody(message.getBody().getBody())
                                                                              .withExpiration((int)(message.getExpiresIn() / 1000))
+                                                                             .withProfileKey(profileKey.orNull())
                                                                              .asEndSessionMessage(message.isEndSession())
                                                                              .build();
 

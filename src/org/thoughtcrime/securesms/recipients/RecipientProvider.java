@@ -139,6 +139,7 @@ class RecipientProvider {
             String       name         = resultNumber.equals(cursor.getString(0)) ? null : cursor.getString(0);
             ContactPhoto contactPhoto = ContactPhotoFactory.getContactPhoto(context,
                                                                             Uri.withAppendedPath(Contacts.CONTENT_URI, cursor.getLong(2) + ""),
+                                                                            address,
                                                                             name);
 
             return new RecipientDetails(cursor.getString(0), cursor.getString(4), contactUri, contactPhoto, preferences.orNull(), null);
