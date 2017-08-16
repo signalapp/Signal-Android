@@ -75,7 +75,12 @@
                           android:paddingRight="4dp"
                           android:layout_gravity="right">
 
-                <TextView android:id="@+id/group_message_status"
+                <View android:id="@+id/group_sender_holder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"/>
+
+                <TextView android:id="@+id/group_message_sender"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:linksClickable="false"
@@ -85,6 +90,18 @@
                           android:visibility="gone"
                           android:layout_marginRight="8dip"
                           android:paddingTop="1dip" />
+
+                <TextView android:id="@+id/group_message_sender_profile"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:linksClickable="false"
+                          android:textAppearance="?android:attr/textAppearanceSmall"
+                          android:layout_gravity="right"
+                          android:textColor="?conversation_item_sent_text_secondary_color"
+                          android:visibility="gone"
+                          android:layout_marginRight="8dip"
+                          android:paddingTop="1dip" />
+
 
                 <TextView android:id="@+id/conversation_item_date"
                           android:autoLink="none"

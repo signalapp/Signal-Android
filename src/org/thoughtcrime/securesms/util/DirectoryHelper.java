@@ -162,17 +162,22 @@ public class DirectoryHelper {
         List<Address> newUsers = DatabaseFactory.getContactsDatabase(context)
                                                 .setRegisteredUsers(account.get().getAccount(), activeAddresses, removeMissing);
 
-        Cursor cursor = ContactAccessor.getInstance().getAllSystemContacts(context);
+        Cursor                                           cursor = ContactAccessor.getInstance().getAllSystemContacts(context);
+        RecipientPreferenceDatabase.BulkOperationsHandle handle = DatabaseFactory.getRecipientPreferenceDatabase(context).resetAllDisplayNames();
 
-        while (cursor != null && cursor.moveToNext()) {
-          String number = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER));
+        try {
+          while (cursor != null && cursor.moveToNext()) {
+            String number = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER));
 
-          if (!TextUtils.isEmpty(number)) {
-            Address address     = Address.fromExternal(context, number);
-            String  displayName = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+            if (!TextUtils.isEmpty(number)) {
+              Address address     = Address.fromExternal(context, number);
+              String  displayName = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
 
-            DatabaseFactory.getRecipientPreferenceDatabase(context).setSystemDisplayName(address, displayName);
+              handle.setDisplayName(address, displayName);
+            }
           }
+        } finally {
+          handle.finish();
         }
 
         return new RefreshResult(newUsers, account.get().isFresh());

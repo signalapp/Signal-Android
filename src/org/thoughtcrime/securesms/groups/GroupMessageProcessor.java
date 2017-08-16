@@ -65,7 +65,7 @@ public class GroupMessageProcessor {
 
     if (record.isPresent() && group.getType() == Type.UPDATE) {
       return handleGroupUpdate(context, masterSecret, envelope, group, record.get(), outgoing);
-    } else if (record.isPresent() && group.getType() == Type.UPDATE) {
+    } else if (!record.isPresent() && group.getType() == Type.UPDATE) {
       return handleGroupCreate(context, masterSecret, envelope, group, outgoing);
     } else if (record.isPresent() && group.getType() == Type.QUIT) {
       return handleGroupLeave(context, masterSecret, envelope, group, record.get(), outgoing);

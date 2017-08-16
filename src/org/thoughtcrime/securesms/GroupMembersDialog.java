@@ -111,7 +111,13 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, List<Recipient>> {
         if (isLocalNumber(recipient)) {
           recipientStrings.add(context.getString(R.string.GroupMembersDialog_me));
         } else {
-          recipientStrings.add(recipient.toShortString());
+          String name = recipient.toShortString();
+
+          if (recipient.getName() == null && recipient.getProfileName() != null) {
+            name += " ~" + recipient.getProfileName();
+          }
+
+          recipientStrings.add(name);
         }
       }
 

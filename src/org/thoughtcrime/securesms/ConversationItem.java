@@ -73,6 +73,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.util.DateUtils;
+import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.LongClickCopySpan;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
@@ -112,7 +113,9 @@ public class ConversationItem extends LinearLayout
   private TextView           dateText;
   private TextView           simInfoText;
   private TextView           indicatorText;
-  private TextView           groupStatusText;
+  private TextView           groupSender;
+  private TextView           groupSenderProfileName;
+  private View               groupSenderHolder;
   private ImageView          secureImage;
   private AvatarImageView    contactPhoto;
   private DeliveryStatusView deliveryStatusIndicator;
@@ -156,7 +159,8 @@ public class ConversationItem extends LinearLayout
     this.dateText                = (TextView)           findViewById(R.id.conversation_item_date);
     this.simInfoText             = (TextView)           findViewById(R.id.sim_info);
     this.indicatorText           = (TextView)           findViewById(R.id.indicator_text);
-    this.groupStatusText         = (TextView)           findViewById(R.id.group_message_status);
+    this.groupSender             = (TextView)           findViewById(R.id.group_message_sender);
+    this.groupSenderProfileName  = (TextView)           findViewById(R.id.group_message_sender_profile);
     this.secureImage             = (ImageView)          findViewById(R.id.secure_indicator);
     this.deliveryStatusIndicator = (DeliveryStatusView) findViewById(R.id.delivery_status);
     this.alertView               = (AlertView)          findViewById(R.id.indicators_parent);
@@ -166,6 +170,7 @@ public class ConversationItem extends LinearLayout
     this.audioViewStub           = new Stub<>((ViewStub) findViewById(R.id.audio_view_stub));
     this.documentViewStub        = new Stub<>((ViewStub) findViewById(R.id.document_view_stub));
     this.expirationTimer         = (ExpirationTimerView) findViewById(R.id.expiration_indicator);
+    this.groupSenderHolder       =                       findViewById(R.id.group_sender_holder);
 
     setOnClickListener(new ClickListener(null));
 
@@ -203,6 +208,32 @@ public class ConversationItem extends LinearLayout
     setMinimumWidth();
     setSimInfo(messageRecord);
     setExpiration(messageRecord);
+  }
+
+  @Override
+  public void onLayout(boolean changed, int left, int top, int right, int bottom) {
+    super.onLayout(changed, left, top, right, bottom);
+
+    if (groupSenderHolder != null && groupSenderHolder.getVisibility() == View.VISIBLE) {
+      View content = (View) groupSenderHolder.getParent();
+
+      groupSenderHolder.layout(content.getPaddingLeft(), content.getPaddingTop(),
+                               content.getWidth() - content.getPaddingRight(),
+                               content.getPaddingTop() + groupSenderHolder.getMeasuredHeight());
+
+
+      if (DynamicLanguage.getLayoutDirection(context) == LAYOUT_DIRECTION_RTL) {
+        groupSenderProfileName.layout(groupSenderHolder.getPaddingLeft(),
+                                      groupSenderHolder.getPaddingTop(),
+                                      groupSenderHolder.getPaddingLeft() + groupSenderProfileName.getWidth(),
+                                      groupSenderHolder.getPaddingTop() + groupSenderProfileName.getHeight());
+      } else {
+        groupSenderProfileName.layout(groupSenderHolder.getWidth() - groupSenderHolder.getPaddingRight() - groupSenderProfileName.getWidth(),
+                                      groupSenderHolder.getPaddingTop(),
+                                      groupSenderHolder.getWidth() - groupSenderProfileName.getPaddingRight(),
+                                      groupSenderHolder.getPaddingTop() + groupSenderProfileName.getHeight());
+      }
+    }
   }
 
   private void initializeAttributes() {
@@ -499,10 +530,19 @@ public class ConversationItem extends LinearLayout
 
   private void setGroupMessageStatus(MessageRecord messageRecord, Recipient recipient) {
     if (groupThread && !messageRecord.isOutgoing()) {
-      this.groupStatusText.setText(recipient.toShortString());
-      this.groupStatusText.setVisibility(View.VISIBLE);
+      this.groupSender.setText(recipient.toShortString());
+
+      if (recipient.getName() == null && recipient.getProfileName() != null) {
+        this.groupSenderProfileName.setText("~" + recipient.getProfileName());
+        this.groupSenderProfileName.setVisibility(View.VISIBLE);
+      } else {
+        this.groupSenderProfileName.setText(null);
+        this.groupSenderProfileName.setVisibility(View.GONE);
+      }
+
+      this.groupSenderHolder.setVisibility(View.VISIBLE);
     } else {
-      this.groupStatusText.setVisibility(View.GONE);
+      this.groupSenderHolder.setVisibility(View.GONE);
     }
   }
 

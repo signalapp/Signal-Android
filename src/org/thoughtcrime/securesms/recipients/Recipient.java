@@ -64,6 +64,7 @@ public class Recipient implements RecipientModifiedListener {
   private boolean      blocked        = false;
   private VibrateState vibrate        = VibrateState.DEFAULT;
   private int          expireMessages = 0;
+  private String       profileName    = null;
 
   @Nullable private MaterialColor color;
 
@@ -88,6 +89,9 @@ public class Recipient implements RecipientModifiedListener {
       this.blocked        = stale.blocked;
       this.vibrate        = stale.vibrate;
       this.expireMessages = stale.expireMessages;
+      this.profileName    = stale.profileName;
+      this.participants.clear();
+      this.participants.addAll(stale.participants);
     }
 
     if (details.isPresent()) {
@@ -99,6 +103,7 @@ public class Recipient implements RecipientModifiedListener {
       this.blocked        = details.get().blocked;
       this.vibrate        = details.get().vibrateState;
       this.expireMessages = details.get().expireMessages;
+      this.profileName    = details.get().profileName;
       this.participants.clear();
       this.participants.addAll(details.get().participants);
     }
@@ -118,6 +123,7 @@ public class Recipient implements RecipientModifiedListener {
             Recipient.this.blocked        = result.blocked;
             Recipient.this.vibrate        = result.vibrateState;
             Recipient.this.expireMessages = result.expireMessages;
+            Recipient.this.profileName    = result.profileName;
 
             Recipient.this.participants.clear();
             Recipient.this.participants.addAll(result.participants);
@@ -151,6 +157,7 @@ public class Recipient implements RecipientModifiedListener {
     this.blocked        = details.blocked;
     this.vibrate        = details.vibrateState;
     this.expireMessages = details.expireMessages;
+    this.profileName    = details.profileName;
     this.participants.addAll(details.participants);
     this.resolving    = false;
   }
@@ -196,6 +203,10 @@ public class Recipient implements RecipientModifiedListener {
     return customLabel;
   }
 
+  public @Nullable String getProfileName() {
+    return profileName;
+  }
+
   public boolean isGroupRecipient() {
     return address.isGroup();
   }
@@ -208,7 +219,7 @@ public class Recipient implements RecipientModifiedListener {
     return address.isGroup() && !address.isMmsGroup();
   }
 
-  public List<Recipient> getParticipants() {
+  public @NonNull List<Recipient> getParticipants() {
     return participants;
   }
 

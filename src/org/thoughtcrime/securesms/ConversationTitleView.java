@@ -65,23 +65,35 @@ public class ConversationTitleView extends LinearLayout {
   }
 
   private void setRecipientTitle(Recipient recipient) {
-    if (!recipient.isGroupRecipient()) {
-      if (TextUtils.isEmpty(recipient.getName())) {
-        this.title.setText(recipient.getAddress().serialize());
-        this.subtitle.setText(null);
-        this.subtitle.setVisibility(View.GONE);
-      } else {
-        this.title.setText(recipient.getName());
+    if      (recipient.isGroupRecipient())           setGroupRecipientTitle(recipient);
+    else if (TextUtils.isEmpty(recipient.getName())) setNonContactRecipientTitle(recipient);
+    else                                             setContactRecipientTitle(recipient);
+  }
 
-        if (recipient.getCustomLabel() != null) this.subtitle.setText(recipient.getCustomLabel());
-        else                                    this.subtitle.setText(recipient.getAddress().serialize());
+  private void setGroupRecipientTitle(Recipient recipient) {
+    this.title.setText(recipient.getName());
+    this.subtitle.setText(null);
+    this.subtitle.setVisibility(View.GONE);
+  }
 
-        this.subtitle.setVisibility(View.VISIBLE);
-      }
-    } else {
-      this.title.setText(recipient.getName());
+  private void setNonContactRecipientTitle(Recipient recipient) {
+    this.title.setText(recipient.getAddress().serialize());
+
+    if (TextUtils.isEmpty(recipient.getProfileName())) {
       this.subtitle.setText(null);
       this.subtitle.setVisibility(View.GONE);
+    } else {
+      this.subtitle.setText("~" + recipient.getProfileName());
+      this.subtitle.setVisibility(View.VISIBLE);
     }
+  }
+
+  private void setContactRecipientTitle(Recipient recipient) {
+    this.title.setText(recipient.getName());
+
+    if (recipient.getCustomLabel() != null) this.subtitle.setText(recipient.getCustomLabel());
+    else                                    this.subtitle.setText(recipient.getAddress().serialize());
+
+    this.subtitle.setVisibility(View.VISIBLE);
   }
 }

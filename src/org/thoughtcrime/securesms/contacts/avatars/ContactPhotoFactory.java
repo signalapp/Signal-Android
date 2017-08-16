@@ -73,10 +73,10 @@ public class ContactPhotoFactory {
     return new BitmapContactPhoto(BitmapFactory.decodeByteArray(avatar, 0, avatar.length));
   }
 
-  private static ContactPhoto getSignalAvatarContactPhoto(@NonNull  Context context,
-                                                          @NonNull  Address address,
-                                                          @Nullable String name,
-                                                          int       targetSize)
+  public static ContactPhoto getSignalAvatarContactPhoto(@NonNull  Context context,
+                                                         @NonNull  Address address,
+                                                         @Nullable String name,
+                                                         int       targetSize)
   {
     try {
       Bitmap bitmap = Glide.with(context)

@@ -1288,9 +1288,12 @@ public class DatabaseFactory {
           String        address       = new NumberMigrator(TextSecurePreferences.getLocalNumber(context)).migrate(cursor.getString(0));
           ContentValues contentValues = new ContentValues(1);
 
-          contentValues.put("recipient_ids", address);
           contentValues.put("registered", cursor.getInt(1) == 1);
-          db.replace("recipient_preferences", null, contentValues);
+
+          if (db.update("recipient_preferences", contentValues, "recipient_ids = ?", new String[] {address}) < 1) {
+            contentValues.put("recipient_ids", address);
+            db.insert("recipient_preferences", null, contentValues);
+          }
         }
       }
 

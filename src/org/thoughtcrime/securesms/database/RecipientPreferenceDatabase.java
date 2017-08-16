@@ -171,6 +171,18 @@ public class RecipientPreferenceDatabase extends Database {
                                                  signalProfileAvatar));
   }
 
+  public BulkOperationsHandle resetAllDisplayNames() {
+    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    database.beginTransaction();
+
+    ContentValues contentValues = new ContentValues(1);
+    contentValues.put(SYSTEM_DISPLAY_NAME, (String)null);
+
+    database.update(TABLE_NAME, contentValues, null, null);
+
+    return new BulkOperationsHandle(database);
+  }
+
   public void setColor(Recipient recipient, MaterialColor color) {
     ContentValues values = new ContentValues();
     values.put(COLOR, color.serialize());
@@ -266,19 +278,17 @@ public class RecipientPreferenceDatabase extends Database {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
     for (Address activeAddress : activeAddresses) {
-      ContentValues contentValues = new ContentValues(2);
-      contentValues.put(ADDRESS, activeAddress.serialize());
+      ContentValues contentValues = new ContentValues(1);
       contentValues.put(REGISTERED, 1);
 
-      db.replace(TABLE_NAME, null, contentValues);
+      updateOrInsert(activeAddress, contentValues);
     }
 
     for (Address inactiveAddress : inactiveAddresses) {
-      ContentValues contentValues = new ContentValues(2);
-      contentValues.put(ADDRESS, inactiveAddress.serialize());
+      ContentValues contentValues = new ContentValues(1);
       contentValues.put(REGISTERED, 0);
 
-      db.replace(TABLE_NAME, null, contentValues);
+      updateOrInsert(inactiveAddress, contentValues);
     }
 
     context.getContentResolver().notifyChange(Uri.parse(RECIPIENT_PREFERENCES_URI), null);
@@ -302,6 +312,15 @@ public class RecipientPreferenceDatabase extends Database {
 
     database.beginTransaction();
 
+    updateOrInsert(database, address, contentValues);
+
+    database.setTransactionSuccessful();
+    database.endTransaction();
+
+    context.getContentResolver().notifyChange(Uri.parse(RECIPIENT_PREFERENCES_URI), null);
+  }
+
+  private void updateOrInsert(SQLiteDatabase database, Address address, ContentValues contentValues) {
     int updated = database.update(TABLE_NAME, contentValues, ADDRESS + " = ?",
                                   new String[] {address.serialize()});
 
@@ -309,11 +328,28 @@ public class RecipientPreferenceDatabase extends Database {
       contentValues.put(ADDRESS, address.serialize());
       database.insert(TABLE_NAME, null, contentValues);
     }
+  }
 
-    database.setTransactionSuccessful();
-    database.endTransaction();
+  public class BulkOperationsHandle {
 
-    context.getContentResolver().notifyChange(Uri.parse(RECIPIENT_PREFERENCES_URI), null);
+    private final SQLiteDatabase database;
+
+    public BulkOperationsHandle(SQLiteDatabase database) {
+      this.database = database;
+    }
+
+    public void setDisplayName(@NonNull Address address, @Nullable String displayName) {
+      ContentValues contentValues = new ContentValues(1);
+      contentValues.put(SYSTEM_DISPLAY_NAME, displayName);
+      updateOrInsert(address, contentValues);
+    }
+
+    public void finish() {
+      database.setTransactionSuccessful();
+      database.endTransaction();
+      RecipientFactory.clearCache(context);
+      context.getContentResolver().notifyChange(Uri.parse(RECIPIENT_PREFERENCES_URI), null);
+    }
   }
 
   public static class RecipientsPreferences {

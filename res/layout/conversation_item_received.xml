@@ -13,16 +13,6 @@
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView android:id="@+id/group_message_status"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginLeft="15dp"
-              android:layout_marginTop="5dp"
-              android:fontFamily="sans-serif-light"
-              android:textSize="13sp"
-              android:textColor="?attr/conversation_group_member_name"
-              android:visibility="gone" />
-
     <RelativeLayout android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
@@ -48,6 +38,42 @@
                       android:background="@drawable/received_bubble"
                       android:orientation="vertical"
                       tools:backgroundTint="@color/blue_900">
+
+            <LinearLayout android:id="@+id/group_sender_holder"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+                          android:visibility="gone"
+                          android:paddingRight="4dp"
+                          android:paddingLeft="4dp"
+                          android:layout_marginBottom="10dp"
+                          tools:visibility="visible">
+
+                <TextView android:id="@+id/group_message_sender"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:paddingRight="4sp"
+                          android:paddingEnd="4sp"
+                          android:textSize="13sp"
+                          android:textColor="?conversation_item_received_text_primary_color"
+                          android:maxLines="1"
+                          android:ellipsize="end"
+                          tools:visibility="visible"
+                          tools:text="+14152222222"/>
+
+                <TextView android:id="@+id/group_message_sender_profile"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:paddingRight="4sp"
+                          android:paddingLeft="4sp"
+                          android:fontFamily="sans-serif-light"
+                          android:textColor="?conversation_item_received_text_secondary_color"
+                          android:textSize="13sp"
+                          android:maxLines="1"
+                          android:ellipsize="end"
+                          tools:text="~Clement Duval"/>
+
+            </LinearLayout>
 
             <ViewStub
                     android:id="@+id/image_view_stub"
@@ -76,7 +102,8 @@
                     android:textColor="?conversation_item_received_text_primary_color"
                     android:textColorLink="?conversation_item_received_text_primary_color"
                     android:textSize="@dimen/conversation_item_body_text_size"
-                    app:scaleEmojis="true" />
+                    app:scaleEmojis="true"
+                    tools:text="boop"/>
 
             <LinearLayout android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
