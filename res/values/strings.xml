@@ -73,6 +73,10 @@
     <!-- CallScreen -->
     <string name="CallScreen_Incoming_call">Incoming call</string>
 
+    <!-- ClearProfileActivity -->
+    <string name="ClearProfileActivity_remove">Remove</string>
+    <string name="ClearProfileActivity_remove_profile_photo">Remove profile photo?</string>
+
     <!-- ConfirmIdentityDialog -->
     <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Your safety number with %1$s has changed. This could either mean that someone is trying to intercept your communication, or that %2$s simply reinstalled Signal.</string>
     <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">You may wish to verify your safety number with this contact.</string>
@@ -613,6 +617,14 @@
     <string name="UpdateApkReadyListener_Signal_update">Signal update</string>
     <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">A new version of Signal is available, tap to update</string>
 
+    <!-- UntrustedSendDialog -->
+    <string name="UntrustedSendDialog_send_message">Send message?</string>
+    <string name="UntrustedSendDialog_send">Send</string>
+
+    <!-- UnverifiedSendDialog -->
+    <string name="UnverifiedSendDialog_send_message">Send message?</string>
+    <string name="UnverifiedSendDialog_send">Send</string>
+
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Your contact is running an old version of Signal. Please ask them to update before verifying your safety number.</string>
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Your contact is running a newer version of Signal with an incompatible QR code format. Please update to compare.</string>
@@ -1087,6 +1099,7 @@
     <string name="AndroidManifest__linked_devices">Linked devices</string>
     <string name="AndroidManifest__invite_friends">Invite friends</string>
     <string name="AndroidManifest_archived_conversations">Archived conversations</string>
+    <string name="AndroidManifest_remove_photo">Remove photo</string>
 
     <!-- arrays.xml -->
     <string name="arrays__import_export">Import / export</string>
@@ -1409,10 +1422,7 @@
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
-    <string name="UntrustedSendDialog_send_message">Send message?</string>
-    <string name="UntrustedSendDialog_send">Send</string>
-    <string name="UnverifiedSendDialog_send_message">Send message?</string>
-    <string name="UnverifiedSendDialog_send">Send</string>
+
 
 
     <!-- EOF -->

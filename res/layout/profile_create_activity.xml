@@ -16,7 +16,8 @@
 
         <ImageView android:id="@+id/avatar"
                    android:layout_width="64dp"
-                   android:layout_height="64dp"/>
+                   android:layout_height="64dp"
+                   android:transitionName="avatar"/>
 
         <org.thoughtcrime.securesms.components.emoji.EmojiEditText
                 android:id="@+id/name"

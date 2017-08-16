@@ -388,6 +388,18 @@
               android:theme="@style/TextSecure.LightTheme"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
+    <activity android:name=".ClearProfileAvatarActivity"
+              android:theme="@style/Theme.AppCompat.Dialog.Alert"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+              android:icon="@drawable/clear_profile_avatar"
+              android:label="@string/AndroidManifest_remove_photo">
+
+        <intent-filter>
+            <action android:name="org.thoughtcrime.securesms.action.CLEAR_PROFILE_PHOTO"/>
+            <category android:name="android.intent.category.DEFAULT"/>
+        </intent-filter>
+    </activity>
+
     <service android:enabled="true" android:name="org.thoughtcrime.securesms.service.WebRtcCallService"/>
 
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>

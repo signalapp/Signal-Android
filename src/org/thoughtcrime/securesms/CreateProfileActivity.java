@@ -53,6 +53,8 @@ import org.whispersystems.signalservice.api.util.StreamDetails;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import javax.inject.Inject;
@@ -62,6 +64,9 @@ import static android.provider.MediaStore.EXTRA_OUTPUT;
 public class CreateProfileActivity extends PassphraseRequiredActionBarActivity implements InjectableType {
 
   private static final String TAG = CreateProfileActivity.class.getSimpleName();
+
+  public static final String NEXT_INTENT    = "next_intent";
+  public static final String EXCLUDE_SYSTEM = "exclude_system";
 
   private static final int REQUEST_CODE_AVATAR = 1;
 
@@ -74,8 +79,9 @@ public class CreateProfileActivity extends PassphraseRequiredActionBarActivity i
   private EmojiToggle      emojiToggle;
   private EmojiDrawer      emojiDrawer;
 
+  private Intent nextIntent;
   private byte[] avatarBytes;
-  private File  captureFile;
+  private File   captureFile;
 
   @Override
   public void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
@@ -88,8 +94,8 @@ public class CreateProfileActivity extends PassphraseRequiredActionBarActivity i
 
     initializeResources();
     initializeEmojiInput();
-    initializeProfileName();
-    initializeProfileAvatar();
+    initializeProfileName(getIntent().getBooleanExtra(EXCLUDE_SYSTEM, false));
+    initializeProfileAvatar(getIntent().getBooleanExtra(EXCLUDE_SYSTEM, false));
 
     ApplicationContext.getInstance(this).injectDependencies(this);
   }
@@ -123,7 +129,13 @@ public class CreateProfileActivity extends PassphraseRequiredActionBarActivity i
             inputFile = Uri.fromFile(captureFile);
           }
 
-          new Crop(inputFile).output(outputFile).asSquare().start(this);
+          if (data.getBooleanExtra("delete", false)) {
+            avatarBytes = null;
+            avatar.setImageDrawable(ContactPhotoFactory.getResourceContactPhoto(R.drawable.ic_camera_alt_white_24dp)
+                                                       .asDrawable(this, getResources().getColor(R.color.grey_400)));
+          } else {
+            new Crop(inputFile).output(outputFile).asSquare().start(this);
+          }
         }
 
         break;
@@ -148,6 +160,7 @@ public class CreateProfileActivity extends PassphraseRequiredActionBarActivity i
     this.emojiDrawer  = ViewUtil.findById(this, R.id.emoji_drawer);
     this.container    = ViewUtil.findById(this, R.id.container);
     this.finishButton = ViewUtil.findById(this, R.id.finish_button);
+    this.nextIntent   = getIntent().getParcelableExtra(NEXT_INTENT);
 
     this.avatar.setImageDrawable(ContactPhotoFactory.getResourceContactPhoto(R.drawable.ic_camera_alt_white_24dp)
                                                     .asDrawable(this, getResources().getColor(R.color.grey_400)));
@@ -160,7 +173,7 @@ public class CreateProfileActivity extends PassphraseRequiredActionBarActivity i
         captureFile = null;
       }
 
-      Intent chooserIntent = createAvatarSelectionIntent(captureFile);
+      Intent chooserIntent = createAvatarSelectionIntent(captureFile, avatarBytes != null);
       startActivityForResult(chooserIntent, REQUEST_CODE_AVATAR);
     });
 
@@ -169,13 +182,13 @@ public class CreateProfileActivity extends PassphraseRequiredActionBarActivity i
     });
   }
 
-  private void initializeProfileName() {
+  private void initializeProfileName(boolean excludeSystem) {
     if (!TextUtils.isEmpty(TextSecurePreferences.getProfileName(this))) {
       String profileName = TextSecurePreferences.getProfileName(this);
 
       name.setText(profileName);
       name.setSelection(profileName.length(), profileName.length());
-    } else {
+    } else if (!excludeSystem) {
       SystemProfileUtil.getSystemProfileName(this).addListener(new ListenableFuture.Listener<String>() {
         @Override
         public void onSuccess(String result) {
@@ -193,7 +206,7 @@ public class CreateProfileActivity extends PassphraseRequiredActionBarActivity i
     }
   }
 
-  private void initializeProfileAvatar() {
+  private void initializeProfileAvatar(boolean excludeSystem) {
     Address ourAddress = Address.fromSerialized(TextSecurePreferences.getLocalNumber(this));
 
     if (AvatarHelper.getAvatarFile(this, ourAddress).exists() && AvatarHelper.getAvatarFile(this, ourAddress).length() > 0) {
@@ -217,7 +230,7 @@ public class CreateProfileActivity extends PassphraseRequiredActionBarActivity i
           }
         }
       }.execute();
-    } else {
+    } else if (!excludeSystem) {
       SystemProfileUtil.getSystemProfileAvatar(this, new ProfileMediaConstraints()).addListener(new ListenableFuture.Listener<byte[]>() {
         @Override
         public void onSuccess(byte[] result) {
@@ -266,8 +279,9 @@ public class CreateProfileActivity extends PassphraseRequiredActionBarActivity i
     this.name.setOnClickListener(v -> container.showSoftkey(name));
   }
 
-  private Intent createAvatarSelectionIntent(@Nullable File captureFile) {
-    Intent galleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+  private Intent createAvatarSelectionIntent(@Nullable File captureFile, boolean includeClear) {
+    List<Intent> extraIntents  = new LinkedList<>();
+    Intent       galleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
     galleryIntent.setType("image/*");
 
     if (!IntentUtils.isResolvable(CreateProfileActivity.this, galleryIntent)) {
@@ -276,22 +290,22 @@ public class CreateProfileActivity extends PassphraseRequiredActionBarActivity i
     }
 
     Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+    cameraIntent.putExtra(EXTRA_OUTPUT, Uri.fromFile(captureFile));
 
     if (captureFile != null && cameraIntent.resolveActivity(getPackageManager()) != null) {
-      cameraIntent.putExtra(EXTRA_OUTPUT, Uri.fromFile(captureFile));
-    } else {
-      cameraIntent = null;
+      extraIntents.add(cameraIntent);
+    }
+
+    if (includeClear) {
+      extraIntents.add(new Intent("org.thoughtcrime.securesms.action.CLEAR_PROFILE_PHOTO"));
     }
 
     Intent chooserIntent = Intent.createChooser(galleryIntent, getString(R.string.CreateProfileActivity_profile_photo));
+    chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, extraIntents.toArray(new Intent[0]));
 
-    if (cameraIntent != null) {
-      chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] {cameraIntent});
-    }
 
     return chooserIntent;
   }
-
 
   private void handleUpload() {
     final String        name;
@@ -342,7 +356,8 @@ public class CreateProfileActivity extends PassphraseRequiredActionBarActivity i
 
         if (result) {
           if (captureFile != null) captureFile.delete();
-          startActivity(new Intent(CreateProfileActivity.this, ConversationListActivity.class));
+          if (nextIntent != null)  startActivity(nextIntent);
+
           finish();
         } else        {
           Toast.makeText(CreateProfileActivity.this, R.string.CreateProfileActivity_problem_setting_profile, Toast.LENGTH_LONG).show();
