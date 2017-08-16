@@ -4,12 +4,17 @@ package org.thoughtcrime.securesms;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.BitmapFactory;
+import android.media.CameraProfile;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Pair;
 import android.view.KeyEvent;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -17,14 +22,20 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.soundcloud.android.crop.Crop;
 
 import org.thoughtcrime.securesms.components.InputAwareLayout;
 import org.thoughtcrime.securesms.components.emoji.EmojiDrawer;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
+import org.thoughtcrime.securesms.contacts.avatars.BitmapContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.profiles.AvatarHelper;
+import org.thoughtcrime.securesms.profiles.AvatarPhotoUriLoader;
 import org.thoughtcrime.securesms.profiles.ProfileMediaConstraints;
 import org.thoughtcrime.securesms.profiles.SystemProfileUtil;
 import org.thoughtcrime.securesms.util.Base64;
@@ -46,6 +57,8 @@ import java.util.concurrent.ExecutionException;
 
 import javax.inject.Inject;
 
+import static android.provider.MediaStore.EXTRA_OUTPUT;
+
 public class CreateProfileActivity extends PassphraseRequiredActionBarActivity implements InjectableType {
 
   private static final String TAG = CreateProfileActivity.class.getSimpleName();
@@ -62,6 +75,7 @@ public class CreateProfileActivity extends PassphraseRequiredActionBarActivity i
   private EmojiDrawer      emojiDrawer;
 
   private byte[] avatarBytes;
+  private File  captureFile;
 
   @Override
   public void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
@@ -70,11 +84,12 @@ public class CreateProfileActivity extends PassphraseRequiredActionBarActivity i
     setContentView(R.layout.profile_create_activity);
 
     getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-    getSupportActionBar().setTitle("Your profile info");
+    getSupportActionBar().setTitle(R.string.CreateProfileActivity_your_profile_info);
 
     initializeResources();
     initializeEmojiInput();
-    initializeDeviceOwner();
+    initializeProfileName();
+    initializeProfileAvatar();
 
     ApplicationContext.getInstance(this).injectDependencies(this);
   }
@@ -102,7 +117,13 @@ public class CreateProfileActivity extends PassphraseRequiredActionBarActivity i
       case REQUEST_CODE_AVATAR:
         if (resultCode == Activity.RESULT_OK) {
           Uri outputFile = Uri.fromFile(new File(getCacheDir(), "cropped"));
-          new Crop(data.getData()).output(outputFile).asSquare().start(this);
+          Uri inputFile  = data.getData();
+
+          if (inputFile == null && captureFile != null) {
+            inputFile = Uri.fromFile(captureFile);
+          }
+
+          new Crop(inputFile).output(outputFile).asSquare().start(this);
         }
 
         break;
@@ -113,7 +134,7 @@ public class CreateProfileActivity extends PassphraseRequiredActionBarActivity i
             avatar.setImageDrawable(ContactPhotoFactory.getGroupContactPhoto(avatarBytes).asDrawable(this, 0));
           } catch (BitmapDecodingException e) {
             Log.w(TAG, e);
-            Toast.makeText(this, "Error setting profile photo", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.CreateProfileActivity_error_setting_profile_photo, Toast.LENGTH_LONG).show();
           }
         }
         break;
@@ -132,18 +153,14 @@ public class CreateProfileActivity extends PassphraseRequiredActionBarActivity i
                                                     .asDrawable(this, getResources().getColor(R.color.grey_400)));
 
     this.avatar.setOnClickListener(view -> {
-      Intent galleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-      galleryIntent.setType("image/*");
-
-      if (!IntentUtils.isResolvable(CreateProfileActivity.this, galleryIntent)) {
-        galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
-        galleryIntent.setType("image/*");
+      try {
+        captureFile  = File.createTempFile("capture", "jpg", getExternalCacheDir());
+      } catch (IOException e) {
+        Log.w(TAG, e);
+        captureFile = null;
       }
 
-      Intent cameraIntent  = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-      Intent chooserIntent = Intent.createChooser(galleryIntent, "Profile photo");
-      chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] { cameraIntent });
-
+      Intent chooserIntent = createAvatarSelectionIntent(captureFile);
       startActivityForResult(chooserIntent, REQUEST_CODE_AVATAR);
     });
 
@@ -152,36 +169,70 @@ public class CreateProfileActivity extends PassphraseRequiredActionBarActivity i
     });
   }
 
-  private void initializeDeviceOwner() {
-    SystemProfileUtil.getSystemProfileName(this).addListener(new ListenableFuture.Listener<String>() {
-      @Override
-      public void onSuccess(String result) {
-        if (!TextUtils.isEmpty(result)) {
-          name.setText(result);
-          name.setSelection(result.length(), result.length());
+  private void initializeProfileName() {
+    if (!TextUtils.isEmpty(TextSecurePreferences.getProfileName(this))) {
+      String profileName = TextSecurePreferences.getProfileName(this);
+
+      name.setText(profileName);
+      name.setSelection(profileName.length(), profileName.length());
+    } else {
+      SystemProfileUtil.getSystemProfileName(this).addListener(new ListenableFuture.Listener<String>() {
+        @Override
+        public void onSuccess(String result) {
+          if (!TextUtils.isEmpty(result)) {
+            name.setText(result);
+            name.setSelection(result.length(), result.length());
+          }
         }
-      }
 
-      @Override
-      public void onFailure(ExecutionException e) {
-        Log.w(TAG, e);
-      }
-    });
-
-    SystemProfileUtil.getSystemProfileAvatar(this, new ProfileMediaConstraints()).addListener(new ListenableFuture.Listener<byte[]>() {
-      @Override
-      public void onSuccess(byte[] result) {
-        if (result != null) {
-          avatarBytes = result;
-          avatar.setImageDrawable(ContactPhotoFactory.getGroupContactPhoto(result).asDrawable(CreateProfileActivity.this, 0));
+        @Override
+        public void onFailure(ExecutionException e) {
+          Log.w(TAG, e);
         }
-      }
+      });
+    }
+  }
 
-      @Override
-      public void onFailure(ExecutionException e) {
-        Log.w(TAG, e);
-      }
-    });
+  private void initializeProfileAvatar() {
+    Address ourAddress = Address.fromSerialized(TextSecurePreferences.getLocalNumber(this));
+
+    if (AvatarHelper.getAvatarFile(this, ourAddress).exists() && AvatarHelper.getAvatarFile(this, ourAddress).length() > 0) {
+      new AsyncTask<Void, Void, Pair<byte[], ContactPhoto>>() {
+        @Override
+        protected Pair<byte[], ContactPhoto> doInBackground(Void... params) {
+          try {
+            byte[] data =Util.readFully(AvatarHelper.getInputStreamFor(CreateProfileActivity.this, ourAddress));
+            return new Pair<>(data, ContactPhotoFactory.getSignalAvatarContactPhoto(CreateProfileActivity.this, ourAddress, null, getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size)));
+          } catch (IOException e) {
+            Log.w(TAG, e);
+            return null;
+          }
+        }
+
+        @Override
+        protected void onPostExecute(Pair<byte[], ContactPhoto> result) {
+          if (result != null) {
+            avatarBytes = result.first;
+            avatar.setImageDrawable(result.second.asDrawable(CreateProfileActivity.this, 0));
+          }
+        }
+      }.execute();
+    } else {
+      SystemProfileUtil.getSystemProfileAvatar(this, new ProfileMediaConstraints()).addListener(new ListenableFuture.Listener<byte[]>() {
+        @Override
+        public void onSuccess(byte[] result) {
+          if (result != null) {
+            avatarBytes = result;
+            avatar.setImageDrawable(ContactPhotoFactory.getGroupContactPhoto(result).asDrawable(CreateProfileActivity.this, 0));
+          }
+        }
+
+        @Override
+        public void onFailure(ExecutionException e) {
+          Log.w(TAG, e);
+        }
+      });
+    }
   }
 
   private void initializeEmojiInput() {
@@ -215,6 +266,33 @@ public class CreateProfileActivity extends PassphraseRequiredActionBarActivity i
     this.name.setOnClickListener(v -> container.showSoftkey(name));
   }
 
+  private Intent createAvatarSelectionIntent(@Nullable File captureFile) {
+    Intent galleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+    galleryIntent.setType("image/*");
+
+    if (!IntentUtils.isResolvable(CreateProfileActivity.this, galleryIntent)) {
+      galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
+      galleryIntent.setType("image/*");
+    }
+
+    Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+    if (captureFile != null && cameraIntent.resolveActivity(getPackageManager()) != null) {
+      cameraIntent.putExtra(EXTRA_OUTPUT, Uri.fromFile(captureFile));
+    } else {
+      cameraIntent = null;
+    }
+
+    Intent chooserIntent = Intent.createChooser(galleryIntent, getString(R.string.CreateProfileActivity_profile_photo));
+
+    if (cameraIntent != null) {
+      chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] {cameraIntent});
+    }
+
+    return chooserIntent;
+  }
+
+
   private void handleUpload() {
     final String        name;
     final StreamDetails avatar;
@@ -226,7 +304,10 @@ public class CreateProfileActivity extends PassphraseRequiredActionBarActivity i
     else                                                avatar = new StreamDetails(new ByteArrayInputStream(avatarBytes),
                                                                                    "image/jpeg", avatarBytes.length);
 
-    new ProgressDialogAsyncTask<Void, Void, Boolean>(this, "Updating and encrypting profile", "Updating profile") {
+    new ProgressDialogAsyncTask<Void, Void, Boolean>(this,
+                                                     getString(R.string.CreateProfileActivity_updating_and_encrypting_profile),
+                                                     getString(R.string.CreateProfileActivity_updating_profile))
+    {
       @Override
       protected Boolean doInBackground(Void... params) {
         String encodedProfileKey = TextSecurePreferences.getProfileKey(CreateProfileActivity.this);
@@ -238,13 +319,15 @@ public class CreateProfileActivity extends PassphraseRequiredActionBarActivity i
 
         try {
           accountManager.setProfileName(Base64.decode(encodedProfileKey), name);
+          TextSecurePreferences.setProfileName(getContext(), name);
         } catch (IOException e) {
           Log.w(TAG, e);
           return false;
         }
 
         try {
-          accountManager.setProfileAvatar(Base64.decode(encodedProfileKey), avatar);;
+          accountManager.setProfileAvatar(Base64.decode(encodedProfileKey), avatar);
+          AvatarHelper.setAvatar(getContext(), Address.fromSerialized(TextSecurePreferences.getLocalNumber(getContext())), avatarBytes);
         } catch (IOException e) {
           Log.w(TAG, e);
           return false;
@@ -257,8 +340,13 @@ public class CreateProfileActivity extends PassphraseRequiredActionBarActivity i
       public void onPostExecute(Boolean result) {
         super.onPostExecute(result);
 
-        if (result) finish();
-        else        Toast.makeText(CreateProfileActivity.this, "Problem setting profile", Toast.LENGTH_LONG).show();;
+        if (result) {
+          if (captureFile != null) captureFile.delete();
+          startActivity(new Intent(CreateProfileActivity.this, ConversationListActivity.class));
+          finish();
+        } else        {
+          Toast.makeText(CreateProfileActivity.this, R.string.CreateProfileActivity_problem_setting_profile, Toast.LENGTH_LONG).show();
+        }
       }
     }.execute();
   }

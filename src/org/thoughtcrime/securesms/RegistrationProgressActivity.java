@@ -342,7 +342,7 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
     }
 
     shutdownService();
-    startActivity(new Intent(this, ConversationListActivity.class));
+    startActivity(new Intent(this, CreateProfileActivity.class));
     finish();
   }
 

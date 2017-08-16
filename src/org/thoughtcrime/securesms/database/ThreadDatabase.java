@@ -22,6 +22,7 @@ import android.database.Cursor;
 import android.database.MergeCursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Path;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -606,24 +607,33 @@ public class ThreadDatabase extends Database {
     }
 
     public ThreadRecord getCurrent() {
-      long                            threadId    = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.ID));
-      Address                         address     = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.ADDRESS)));
-      Optional<RecipientsPreferences> preferences = DatabaseFactory.getRecipientPreferenceDatabase(context).getRecipientPreferences(cursor);
-      Optional<GroupRecord>           groupRecord = DatabaseFactory.getGroupDatabase(context).getGroup(cursor);
-      Recipient                       recipient   = RecipientFactory.getRecipientFor(context, address, preferences, groupRecord, true);
+      long    threadId         = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.ID));
+      int     distributionType = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.TYPE));
+      Address address          = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.ADDRESS)));
 
-      DisplayRecord.Body body             = getPlaintextBody(cursor);
-      long               date             = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.DATE));
-      long               count            = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.MESSAGE_COUNT));
-      long               read             = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.READ));
-      long               type             = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.SNIPPET_TYPE));
-      int                distributionType = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.TYPE));
-      boolean            archived         = cursor.getInt(cursor.getColumnIndex(ThreadDatabase.ARCHIVED)) != 0;
-      int                status           = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.STATUS));
-      int                receiptCount     = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.RECEIPT_COUNT));
-      long               expiresIn        = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.EXPIRES_IN));
-      long               lastSeen         = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.LAST_SEEN));
-      Uri                snippetUri       = getSnippetUri(cursor);
+      Optional<RecipientsPreferences> preferences;
+      Optional<GroupRecord>           groupRecord;
+
+      if (distributionType != DistributionTypes.ARCHIVE) {
+        preferences = DatabaseFactory.getRecipientPreferenceDatabase(context).getRecipientPreferences(cursor);
+        groupRecord = DatabaseFactory.getGroupDatabase(context).getGroup(cursor);
+      } else {
+        preferences = Optional.absent();
+        groupRecord = Optional.absent();
+      }
+
+      Recipient          recipient    = RecipientFactory.getRecipientFor(context, address, preferences, groupRecord, true);
+      DisplayRecord.Body body         = getPlaintextBody(cursor);
+      long               date         = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.DATE));
+      long               count        = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.MESSAGE_COUNT));
+      long               read         = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.READ));
+      long               type         = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.SNIPPET_TYPE));
+      boolean            archived     = cursor.getInt(cursor.getColumnIndex(ThreadDatabase.ARCHIVED)) != 0;
+      int                status       = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.STATUS));
+      int                receiptCount = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.RECEIPT_COUNT));
+      long               expiresIn    = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.EXPIRES_IN));
+      long               lastSeen     = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.LAST_SEEN));
+      Uri                snippetUri   = getSnippetUri(cursor);
 
       return new ThreadRecord(context, body, snippetUri, recipient, date, count, read == 1,
                               threadId, receiptCount, status, type, distributionType, archived,

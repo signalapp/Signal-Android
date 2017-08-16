@@ -185,7 +185,11 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
   }
 
   private Intent getPushRegistrationIntent(MasterSecret masterSecret) {
-    return getRoutedIntent(RegistrationActivity.class, getConversationListIntent(), masterSecret);
+    return getRoutedIntent(RegistrationActivity.class, getCreateProfileIntent(masterSecret), masterSecret);
+  }
+
+  private Intent getCreateProfileIntent(MasterSecret masterSecret) {
+    return getRoutedIntent(CreateProfileActivity.class, getConversationListIntent(), masterSecret);
   }
 
   private Intent getRoutedIntent(Class<?> destination, @Nullable Intent nextIntent, @Nullable MasterSecret masterSecret) {

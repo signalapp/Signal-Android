@@ -28,10 +28,8 @@ public class AvatarPhotoUriFetcher implements DataFetcher<InputStream> {
   }
 
   @Override
-  public InputStream loadData(Priority priority) throws FileNotFoundException {
-    File avatarsDir = new File(context.getFilesDir(), "avatars");
-    inputStream = new FileInputStream(new File(avatarsDir, address.serialize()));
-
+  public InputStream loadData(Priority priority) throws IOException {
+    inputStream = AvatarHelper.getInputStreamFor(context, address);
     return inputStream;
   }
 

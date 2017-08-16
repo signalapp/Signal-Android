@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.Util;
@@ -53,10 +54,6 @@ public class RetrieveProfileAvatarJob extends ContextJob implements InjectableTy
   public void onRun() throws IOException {
     RecipientPreferenceDatabase     database              = DatabaseFactory.getRecipientPreferenceDatabase(context);
     Optional<RecipientsPreferences> recipientsPreferences = database.getRecipientsPreferences(recipient.getAddress());
-    File                            avatarDirectory       = new File(context.getFilesDir(), "avatars");
-    File                            avatarFile            = new File(avatarDirectory, new File(recipient.getAddress().serialize()).getName());
-
-    avatarDirectory.mkdirs();
 
     if (!recipientsPreferences.isPresent()) {
       Log.w(TAG, "Recipient preference row is gone!");
@@ -75,7 +72,7 @@ public class RetrieveProfileAvatarJob extends ContextJob implements InjectableTy
 
     if (TextUtils.isEmpty(profileAvatar)) {
       Log.w(TAG, "Removing profile avatar for: " + recipient.getAddress().serialize());
-      avatarFile.delete();
+      AvatarHelper.delete(context, recipient.getAddress());
       return;
     }
 
@@ -86,7 +83,7 @@ public class RetrieveProfileAvatarJob extends ContextJob implements InjectableTy
       File        decryptDestination = File.createTempFile("avatar", "jpg", context.getCacheDir());
 
       Util.copy(avatarStream, new FileOutputStream(decryptDestination));
-      decryptDestination.renameTo(avatarFile);
+      decryptDestination.renameTo(AvatarHelper.getAvatarFile(context, recipient.getAddress()));
     } finally {
       if (downloadDestination != null) downloadDestination.delete();
     }

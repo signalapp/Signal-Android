@@ -226,6 +226,14 @@
     <!-- ConversationListItemAction -->
     <string name="ConversationListItemAction_archived_conversations_d">Archived conversations (%d)</string>
 
+    <!-- CreateProfileActivity -->
+    <string name="CreateProfileActivity_your_profile_info">Your profile info</string>
+    <string name="CreateProfileActivity_error_setting_profile_photo">Error setting profile photo</string>
+    <string name="CreateProfileActivity_problem_setting_profile">Problem setting profile</string>
+    <string name="CreateProfileActivity_updating_profile">Updating profile</string>
+    <string name="CreateProfileActivity_updating_and_encrypting_profile">Updating and encrypting profile</string>
+    <string name="CreateProfileActivity_profile_photo">Profile photo</string>
+
     <!-- CustomDefaultPreference -->
     <string name="CustomDefaultPreference_using_custom">Using custom: %s</string>
     <string name="CustomDefaultPreference_using_default">Using default: %s</string>
