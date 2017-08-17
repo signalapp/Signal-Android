@@ -104,7 +104,8 @@ public class DatabaseFactory {
   private static final int INTERNAL_DIRECTORY                              = 39;
   private static final int INTERNAL_SYSTEM_DISPLAY_NAME                    = 40;
   private static final int PROFILES                                        = 41;
-  private static final int DATABASE_VERSION                                = 41;
+  private static final int PROFILE_SHARING_APPROVAL                        = 42;
+  private static final int DATABASE_VERSION                                = 42;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -1305,6 +1306,10 @@ public class DatabaseFactory {
         db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN profile_key TEXT DEFAULT NULL");
         db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN signal_profile_name TEXT DEFAULT NULL");
         db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN signal_profile_avatar TEXT DEFAULT NULL");
+      }
+
+      if (oldVersion < PROFILE_SHARING_APPROVAL) {
+        db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN profile_sharing_approval INTEGER DEFAULT 0");
       }
 
       db.setTransactionSuccessful();

@@ -55,6 +55,7 @@ public class GroupManager {
 
     if (!mms) {
       groupDatabase.updateAvatar(groupId, avatarBytes);
+      DatabaseFactory.getRecipientPreferenceDatabase(context).setProfileSharing(Address.fromSerialized(groupId), true);
       return sendGroupUpdate(context, masterSecret, groupId, memberAddresses, name, avatarBytes);
     } else {
       Recipient groupRecipient = RecipientFactory.getRecipientFor(context, Address.fromSerialized(groupId), true);

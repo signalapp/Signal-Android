@@ -46,10 +46,11 @@ public class RecipientPreferenceDatabase extends Database {
   private static final String SYSTEM_DISPLAY_NAME     = "system_display_name";
   private static final String SIGNAL_PROFILE_NAME     = "signal_profile_name";
   private static final String SIGNAL_PROFILE_AVATAR   = "signal_profile_avatar";
+  private static final String PROFILE_SHARING         = "profile_sharing_approval";
 
   private static final String[] RECIPIENT_PROJECTION = new String[] {
       BLOCK, NOTIFICATION, VIBRATE, MUTE_UNTIL, COLOR, SEEN_INVITE_REMINDER, DEFAULT_SUBSCRIPTION_ID, EXPIRE_MESSAGES, REGISTERED,
-      PROFILE_KEY, SYSTEM_DISPLAY_NAME, SIGNAL_PROFILE_NAME, SIGNAL_PROFILE_AVATAR
+      PROFILE_KEY, SYSTEM_DISPLAY_NAME, SIGNAL_PROFILE_NAME, SIGNAL_PROFILE_AVATAR, PROFILE_SHARING
   };
 
   static final List<String> TYPED_RECIPIENT_PROJECTION = Stream.of(RECIPIENT_PROJECTION)
@@ -90,7 +91,8 @@ public class RecipientPreferenceDatabase extends Database {
           SYSTEM_DISPLAY_NAME + " TEXT DEFAULT NULL, " +
           PROFILE_KEY + " TEXT DEFAULT NULL, " +
           SIGNAL_PROFILE_NAME + " TEXT DEFAULT NULL, " +
-          SIGNAL_PROFILE_AVATAR + " TEXT DEFAULT NULL);";
+          SIGNAL_PROFILE_AVATAR + " TEXT DEFAULT NULL, " +
+          PROFILE_SHARING + " INTEGER DEFAULT 0);";
 
   public RecipientPreferenceDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -143,6 +145,7 @@ public class RecipientPreferenceDatabase extends Database {
     String  systemDisplayName     = cursor.getString(cursor.getColumnIndexOrThrow(SYSTEM_DISPLAY_NAME));
     String  signalProfileName     = cursor.getString(cursor.getColumnIndexOrThrow(SIGNAL_PROFILE_NAME));
     String  signalProfileAvatar   = cursor.getString(cursor.getColumnIndexOrThrow(SIGNAL_PROFILE_AVATAR));
+    boolean profileSharing        = cursor.getInt(cursor.getColumnIndexOrThrow(PROFILE_SHARING)) == 1;
 
     MaterialColor color;
     byte[]        profileKey = null;
@@ -168,7 +171,7 @@ public class RecipientPreferenceDatabase extends Database {
                                                  notificationUri, color, seenInviteReminder,
                                                  defaultSubscriptionId, expireMessages, registered,
                                                  profileKey, systemDisplayName, signalProfileName,
-                                                 signalProfileAvatar));
+                                                 signalProfileAvatar, profileSharing));
   }
 
   public BulkOperationsHandle resetAllDisplayNames() {
@@ -256,6 +259,12 @@ public class RecipientPreferenceDatabase extends Database {
   public void setProfileAvatar(@NonNull Address address, @Nullable String profileAvatar) {
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(SIGNAL_PROFILE_AVATAR, profileAvatar);
+    updateOrInsert(address, contentValues);
+  }
+
+  public void setProfileSharing(@NonNull Address address, boolean enabled) {
+    ContentValues contentValues = new ContentValues(1);
+    contentValues.put(PROFILE_SHARING, enabled ? 1 : 0);
     updateOrInsert(address, contentValues);
   }
 
@@ -366,6 +375,7 @@ public class RecipientPreferenceDatabase extends Database {
     private final String        systemDisplayName;
     private final String        signalProfileName;
     private final String        signalProfileAvatar;
+    private final boolean       profileSharing;
 
     RecipientsPreferences(boolean blocked, long muteUntil,
                           @NonNull VibrateState vibrateState,
@@ -378,7 +388,8 @@ public class RecipientPreferenceDatabase extends Database {
                           @Nullable byte[] profileKey,
                           @Nullable String systemDisplayName,
                           @Nullable String signalProfileName,
-                          @Nullable String signalProfileAvatar)
+                          @Nullable String signalProfileAvatar,
+                          boolean profileSharing)
     {
       this.blocked               = blocked;
       this.muteUntil             = muteUntil;
@@ -393,6 +404,7 @@ public class RecipientPreferenceDatabase extends Database {
       this.systemDisplayName     = systemDisplayName;
       this.signalProfileName     = signalProfileName;
       this.signalProfileAvatar   = signalProfileAvatar;
+      this.profileSharing        = profileSharing;
     }
 
     public @Nullable MaterialColor getColor() {
@@ -445,6 +457,10 @@ public class RecipientPreferenceDatabase extends Database {
 
     public @Nullable String getProfileAvatar() {
       return signalProfileAvatar;
+    }
+
+    public boolean isProfileSharing() {
+      return profileSharing;
     }
   }
 

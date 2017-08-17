@@ -70,18 +70,21 @@ public abstract class PushSendJob extends SendJob {
       Optional<RecipientsPreferences> recipientsPreferences = DatabaseFactory.getRecipientPreferenceDatabase(context)
                                                                              .getRecipientsPreferences(address);
 
-      if (recipientsPreferences.isPresent() && !TextUtils.isEmpty(recipientsPreferences.get().getSystemDisplayName())) {
-        String profileKey = TextSecurePreferences.getProfileKey(context);
+      if (!recipientsPreferences.isPresent()) return Optional.absent();
 
-        if (profileKey == null) {
-          profileKey = Util.getSecret(32);
-          TextSecurePreferences.setProfileKey(context, profileKey);
-        }
+      boolean isSystemContact = !TextUtils.isEmpty(recipientsPreferences.get().getSystemDisplayName());
+      boolean isApproved      = recipientsPreferences.get().isProfileSharing();
 
-        return Optional.of(Base64.decode(profileKey));
+      if (!isSystemContact & !isApproved) return Optional.absent();
+
+      String profileKey = TextSecurePreferences.getProfileKey(context);
+
+      if (profileKey == null) {
+        profileKey = Util.getSecret(32);
+        TextSecurePreferences.setProfileKey(context, profileKey);
       }
 
-      return Optional.absent();
+      return Optional.of(Base64.decode(profileKey));
     } catch (IOException e) {
       throw new AssertionError(e);
     }
