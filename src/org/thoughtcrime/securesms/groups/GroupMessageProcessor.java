@@ -168,7 +168,7 @@ public class GroupMessageProcessor {
                                              @NonNull SignalServiceGroup group,
                                              @NonNull GroupRecord record)
   {
-    if (record.getMembers().contains(envelope.getSource())) {
+    if (record.getMembers().contains(Address.fromExternal(context, envelope.getSource()))) {
       ApplicationContext.getInstance(context)
                         .getJobManager()
                         .add(new PushGroupUpdateJob(context, envelope.getSource(), group.getGroupId()));
