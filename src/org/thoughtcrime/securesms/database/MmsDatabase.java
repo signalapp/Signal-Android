@@ -808,6 +808,7 @@ public class MmsDatabase extends MessagingDatabase {
     long messageId = insertMediaMessage(masterSecret, message.getBody(), message.getAttachments(), contentValues, insertListener);
 
     DatabaseFactory.getThreadDatabase(context).setLastSeen(threadId);
+    DatabaseFactory.getThreadDatabase(context).setHasSent(threadId, true);
     jobManager.add(new TrimThreadJob(context, threadId));
 
     return messageId;

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:paddingLeft="16dp"
+              android:paddingRight="16dp"
+              android:layout_marginTop="20dp"
+              android:background="@color/white">
+
+    <TextView android:id="@+id/unknown_sender_label"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="10dp"
+              android:layout_marginBottom="25dp"
+              android:textColor="?android:textColorSecondary"
+              android:text="@string/unknown_sender_view__the_sender_is_not_in_your_contact_list"/>
+
+
+    <LinearLayout android:id="@+id/block"
+                  android:orientation="horizontal"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginBottom="25dp"
+                  android:clickable="true"
+                  android:gravity="center_vertical">
+
+        <ImageView android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:src="@drawable/ic_block_white_24dp"
+                   android:tint="@color/signal_primary"/>
+
+        <TextView android:layout_marginLeft="15dp"
+                  android:layout_marginStart="15dp"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="@string/unknown_sender_view__block"
+                  android:textAllCaps="true"
+                  android:textStyle="bold"
+                  android:textColor="@color/signal_primary"
+                  android:textSize="14sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/add_to_contacts"
+                  android:clickable="true"
+                  android:orientation="horizontal"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginBottom="25dp"
+                  android:gravity="center_vertical">
+
+        <ImageView android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:src="@drawable/ic_person_add_white_24dp"
+                   android:tint="@color/signal_primary"/>
+
+        <TextView android:layout_marginLeft="15dp"
+                  android:layout_marginStart="15dp"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="@string/unknown_sender_view__add_to_contacts"
+                  android:textAllCaps="true"
+                  android:textStyle="bold"
+                  android:textColor="@color/signal_primary"
+                  android:textSize="14sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/share_profile"
+                  android:clickable="true"
+                  android:orientation="horizontal"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginBottom="25dp"
+                  android:gravity="center_vertical">
+
+        <ImageView android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:src="@drawable/ic_face_white_24dp"
+                   android:tint="@color/signal_primary"/>
+
+        <TextView android:layout_marginLeft="15dp"
+                  android:layout_marginStart="15dp"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="@string/unknown_sender_view__don_t_add_but_make_my_profile_visible"
+                  android:textAllCaps="true"
+                  android:textStyle="bold"
+                  android:textColor="@color/signal_primary"
+                  android:textSize="14sp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

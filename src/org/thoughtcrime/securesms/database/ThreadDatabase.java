@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.DelimiterUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.InvalidMessageException;
+import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.LinkedList;
@@ -73,6 +74,7 @@ public class ThreadDatabase extends Database {
   public  static final String RECEIPT_COUNT   = "delivery_receipt_count";
   public  static final String EXPIRES_IN      = "expires_in";
   public  static final String LAST_SEEN       = "last_seen";
+  private static final String HAS_SENT        = "has_sent";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " ("                    +
     ID + " INTEGER PRIMARY KEY, " + DATE + " INTEGER DEFAULT 0, "                                  +
@@ -82,7 +84,7 @@ public class ThreadDatabase extends Database {
     SNIPPET_TYPE + " INTEGER DEFAULT 0, " + SNIPPET_URI + " TEXT DEFAULT NULL, "                   +
     ARCHIVED + " INTEGER DEFAULT 0, " + STATUS + " INTEGER DEFAULT 0, "                            +
     RECEIPT_COUNT + " INTEGER DEFAULT 0, " + EXPIRES_IN + " INTEGER DEFAULT 0, "                   +
-    LAST_SEEN + " INTEGER DEFAULT 0);";
+    LAST_SEEN + " INTEGER DEFAULT 0, " + HAS_SENT + " INTEGER DEFAULT 0);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS thread_recipient_ids_index ON " + TABLE_NAME + " (" + ADDRESS + ");",
@@ -417,20 +419,19 @@ public class ThreadDatabase extends Database {
     notifyConversationListListeners();
   }
 
-  public long getLastSeen(long threadId) {
+  public Pair<Long, Boolean> getLastSeenAndHasSent(long threadId) {
     SQLiteDatabase db     = databaseHelper.getReadableDatabase();
-    Cursor         cursor = db.query(TABLE_NAME, new String[]{LAST_SEEN}, ID_WHERE, new String[]{String.valueOf(threadId)}, null, null, null);
+    Cursor         cursor = db.query(TABLE_NAME, new String[]{LAST_SEEN, HAS_SENT}, ID_WHERE, new String[]{String.valueOf(threadId)}, null, null, null);
 
     try {
       if (cursor != null && cursor.moveToFirst()) {
-        return cursor.getLong(0);
+        return new Pair<>(cursor.getLong(0), cursor.getLong(1) == 1);
       }
 
-      return -1;
+      return new Pair<>(-1L, false);
     } finally {
       if (cursor != null) cursor.close();
     }
-
   }
 
   public void deleteConversation(long threadId) {
@@ -518,6 +519,16 @@ public class ThreadDatabase extends Database {
     }
 
     return null;
+  }
+
+  public void setHasSent(long threadId, boolean hasSent) {
+    ContentValues contentValues = new ContentValues(1);
+    contentValues.put(HAS_SENT, hasSent ? 1 : 0);
+
+    databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, ID_WHERE,
+                                                new String[] {String.valueOf(threadId)});
+
+    notifyConversationListeners(threadId);
   }
 
   public void updateReadState(long threadId) {

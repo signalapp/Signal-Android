@@ -615,6 +615,8 @@ public class SmsDatabase extends MessagingDatabase {
       DatabaseFactory.getThreadDatabase(context).setLastSeen(threadId);
     }
 
+    DatabaseFactory.getThreadDatabase(context).setHasSent(threadId, true);
+
     notifyConversationListeners(threadId);
 
     if (!message.isIdentityVerified() && !message.isIdentityDefault()) {

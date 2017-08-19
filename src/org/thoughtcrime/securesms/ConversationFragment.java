@@ -61,6 +61,7 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.Slide;
+import org.thoughtcrime.securesms.profiles.UnknownSenderView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -100,6 +101,7 @@ public class ConversationFragment extends Fragment
   private RecyclerView                list;
   private RecyclerView.ItemDecoration lastSeenDecoration;
   private View                        loadMoreView;
+  private UnknownSenderView           unknownSenderView;
   private View                        composeDivider;
   private View                        scrollToBottomButton;
   private TextView                    scrollDateHeader;
@@ -132,14 +134,12 @@ public class ConversationFragment extends Fragment
     list.setItemAnimator(null);
 
     loadMoreView = inflater.inflate(R.layout.load_more_header, container, false);
-    loadMoreView.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        Bundle args = new Bundle();
-        args.putLong("limit", 0);
-        getLoaderManager().restartLoader(0, args, ConversationFragment.this);
-      }
+    loadMoreView.setOnClickListener(v -> {
+      Bundle args = new Bundle();
+      args.putLong("limit", 0);
+      getLoaderManager().restartLoader(0, args, ConversationFragment.this);
     });
+
     return view;
   }
 
@@ -184,10 +184,11 @@ public class ConversationFragment extends Fragment
   }
 
   private void initializeResources() {
-    this.recipient      = RecipientFactory.getRecipientFor(getActivity(), (Address)getActivity().getIntent().getParcelableExtra(ConversationActivity.ADDRESS_EXTRA), true);
-    this.threadId       = this.getActivity().getIntent().getLongExtra(ConversationActivity.THREAD_ID_EXTRA, -1);
-    this.lastSeen       = this.getActivity().getIntent().getLongExtra(ConversationActivity.LAST_SEEN_EXTRA, -1);
-    this.firstLoad      = true;
+    this.recipient         = RecipientFactory.getRecipientFor(getActivity(), (Address) getActivity().getIntent().getParcelableExtra(ConversationActivity.ADDRESS_EXTRA), true);
+    this.threadId          = this.getActivity().getIntent().getLongExtra(ConversationActivity.THREAD_ID_EXTRA, -1);
+    this.lastSeen          = this.getActivity().getIntent().getLongExtra(ConversationActivity.LAST_SEEN_EXTRA, -1);
+    this.firstLoad         = true;
+    this.unknownSenderView = new UnknownSenderView(getActivity(), recipient, threadId);
 
     OnScrollListener scrollListener = new ConversationScrollListener(getActivity());
     list.addOnScrollListener(scrollListener);
@@ -430,6 +431,12 @@ public class ConversationFragment extends Fragment
         setLastSeen(loader.getLastSeen());
       }
 
+      if (!loader.hasSent() && recipient.getName() == null) {
+        getListAdapter().setHeaderView(unknownSenderView);
+      } else {
+        getListAdapter().setHeaderView(null);
+      }
+
       getListAdapter().changeCursor(cursor);
 
       int lastSeenPosition = getListAdapter().findLastSeenPosition(lastSeen);
@@ -456,6 +463,8 @@ public class ConversationFragment extends Fragment
     MessageRecord messageRecord = DatabaseFactory.getMmsDatabase(getContext()).readerFor(message, threadId).getCurrent();
 
     if (getListAdapter() != null) {
+      getListAdapter().setHeaderView(null);
+      setLastSeen(0);
       getListAdapter().addFastRecord(messageRecord);
     }
 
@@ -466,6 +475,8 @@ public class ConversationFragment extends Fragment
     MessageRecord messageRecord = DatabaseFactory.getSmsDatabase(getContext()).readerFor(message, threadId).getCurrent();
 
     if (getListAdapter() != null) {
+      getListAdapter().setHeaderView(null);
+      setLastSeen(0);
       getListAdapter().addFastRecord(messageRecord);
     }
 

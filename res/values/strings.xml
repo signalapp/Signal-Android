@@ -617,6 +617,14 @@
     <string name="UpdateApkReadyListener_Signal_update">Signal update</string>
     <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">A new version of Signal is available, tap to update</string>
 
+    <!-- UnknownSenderView -->
+    <string name="UnknownSenderView_block_s">Block %s?</string>
+    <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Blocked contacts will no longer be able to send you messages or call you.</string>
+    <string name="UnknownSenderView_block">Block</string>
+    <string name="UnknownSenderView_share_profile_with_s">Share profile with %s?</string>
+    <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">The easiest way to share your profile information is to add the sender to your contacts. If you do not wish to, you can still share your profile information this way.</string>
+    <string name="UnknownSenderView_share_profile">Share profile</string>
+
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">Send message?</string>
     <string name="UntrustedSendDialog_send">Send</string>
@@ -1065,6 +1073,12 @@
     <string name="recipients_panel__to"><small>Enter a name or number</small></string>
     <string name="recipients_panel__add_members">Add members</string>
 
+    <!-- unknown_sender_view -->
+    <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">The sender is not in your contact list</string>
+    <string name="unknown_sender_view__block">BLOCK</string>
+    <string name="unknown_sender_view__add_to_contacts">ADD TO CONTACTS</string>
+    <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">DON\'T ADD, BUT MAKE MY PROFILE VISIBLE</string>
+
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[If you wish to verify the security of your encryption with %s, compare the number above with the number on their device. Alternatively, you can scan the code on their phone, or ask them to scan your code. <a href="https://whispersystems.org/redirect/safety-numbers">Learn more.</a>]]></string>
     <string name="verify_display_fragment__tap_to_scan">Tap to scan</string>
@@ -1422,7 +1436,6 @@
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
-
 
 
     <!-- EOF -->

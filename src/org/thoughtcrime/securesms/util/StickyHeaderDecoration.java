@@ -132,7 +132,7 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
   {
     int headerHeight = getHeaderHeightForLayout(header);
     int top = getChildY(parent, child) - headerHeight;
-    if (layoutPos == 0) {
+    if (sticky && layoutPos == 0) {
       final int count = parent.getChildCount();
       final long currentId = adapter.getHeaderId(adapterPos);
       // find next view with header and compute the offscreen push if needed
