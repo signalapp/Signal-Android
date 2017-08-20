@@ -500,6 +500,36 @@ public class ConversationFragment extends Fragment
     }
   }
 
+  public void find(String query) {
+    if (getListAdapter() != null) {
+      final ConversationLoader conversationLoader = new ConversationLoader(getActivity(), threadId, -1, -1);
+      final int maxLoadedPosition = list.getAdapter().getItemCount() - 1;
+
+      final Toast searchingMessage = Toast.makeText(getContext(), R.string.conversation_fragment__searching, Toast.LENGTH_LONG);
+      searchingMessage.show();
+
+      new AsyncTask<String, Void, Integer>() {
+        @Override
+        protected Integer doInBackground(String... query) {
+          return getListAdapter().findMatchingItem(conversationLoader.getCursor(), query[0], maxLoadedPosition);
+        }
+
+        @Override
+        protected void onPostExecute(Integer matchingPosition) {
+          searchingMessage.cancel();
+          if (matchingPosition >= 0) {
+            list.scrollToPosition(matchingPosition);
+          } else if (maxLoadedPosition == PARTIAL_CONVERSATION_LIMIT) {
+            list.scrollToPosition(maxLoadedPosition);
+            Toast.makeText(getContext(), R.string.conversation_fragment__no_matching_message_found_so_far, Toast.LENGTH_SHORT).show();
+          } else {
+            Toast.makeText(getContext(), R.string.conversation_fragment__no_matching_message_found, Toast.LENGTH_SHORT).show();
+          }
+        }
+      }.execute(query);
+    }
+  }
+
   public interface ConversationFragmentListener {
     void setThreadId(long threadId);
   }

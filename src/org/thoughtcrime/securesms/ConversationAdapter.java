@@ -403,6 +403,24 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     viewHolder.setText(getContext().getResources().getQuantityString(R.plurals.ConversationAdapter_n_unread_messages, (position + 1), (position + 1)));
   }
 
+  int findMatchingItem(Cursor cursor, String query, int maxPosition) {
+    query = query.trim().toLowerCase();
+    if (!query.isEmpty()) {
+      if (cursor != null && cursor.moveToFirst()) {
+        while(cursor.moveToNext()) {
+          MessageRecord messageRecord = getRecordFromCursor(cursor);
+          if(messageRecord.getDisplayBody().toString().toLowerCase().contains(query)) {
+            return cursor.getPosition();
+          }
+          if(cursor.getPosition() >= maxPosition) {
+            return -1;
+          }
+        }
+      }
+    }
+    return -1;
+  }
+
   static class LastSeenHeader extends StickyHeaderDecoration {
 
     private final ConversationAdapter adapter;

@@ -840,6 +840,10 @@
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">Scroll to the bottom</string>
+    <string name="conversation_fragment__action_search_message">Search message</string>
+    <string name="conversation_fragment__no_matching_message_found">No matching message found.</string>
+    <string name="conversation_fragment__no_matching_message_found_so_far">No matching message found so far.</string>
+    <string name="conversation_fragment__searching">Searching …</string>
 
     <!-- country_selection_fragment -->
     <string name="country_selection_fragment__loading_countries">Loading countries...</string>
