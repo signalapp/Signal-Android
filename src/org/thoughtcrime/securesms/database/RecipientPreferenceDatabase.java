@@ -218,7 +218,6 @@ public class RecipientPreferenceDatabase extends Database {
   }
 
   public void setMuted(Recipient recipient, long until) {
-    Log.w(TAG, "Setting muted until: " + until);
     ContentValues values = new ContentValues();
     values.put(MUTE_UNTIL, until);
     updateOrInsert(recipient.getAddress(), values);
