@@ -71,9 +71,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
     initializeContactUpdatesReceiver();
 
-    Intent intent = new Intent(this, CreateProfileActivity.class);
-    startActivity(intent);
-
     RatingManager.showRatingDialogIfNecessary(this);
   }
 

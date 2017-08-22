@@ -430,6 +430,9 @@ public class Recipient implements RecipientModifiedListener {
   }
 
   public synchronized RegisteredState getRegistered() {
+    if      (isPushGroupRecipient()) return RegisteredState.REGISTERED;
+    else if (isMmsGroupRecipient())  return RegisteredState.NOT_REGISTERED;
+
     return registered;
   }
 

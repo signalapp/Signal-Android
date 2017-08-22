@@ -327,6 +327,11 @@
     <string name="GroupCreateActivity_loading_group_details">Loading group details...</string>
     <string name="GroupCreateActivity_youre_already_in_the_group">You\'re already in the group.</string>
 
+    <!-- GroupShareProfileView -->
+    <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Share your profile name and photo with this group?</string>
+    <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Do you want to make your profile name and photo visible to all current and future members of this group?</string>
+    <string name="GroupShareProfileView_make_visible">Make visible</string>
+
     <!-- GroupMembersDialog -->
     <string name="GroupMembersDialog_me">Me</string>
 
@@ -958,6 +963,9 @@
         <item quantity="other">%1$s joined the group.</item>
     </plurals>
     <string name="GroupUtil_group_name_is_now">Group name is now \'%1$s\'.</string>
+
+    <!-- profile_group_share_view -->
+    <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Make your profile name and photo visible to this group?</string>
 
     <!-- prompt_passphrase_activity -->
     <string name="prompt_passphrase_activity__unlock">Unlock</string>

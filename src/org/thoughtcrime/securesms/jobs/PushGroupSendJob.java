@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
@@ -138,6 +139,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
   {
     SignalServiceMessageSender    messageSender     = messageSenderFactory.create();
     String                        groupId           = message.getRecipient().getAddress().toGroupString();
+    Optional<byte[]>              profileKey        = getProfileKey(message.getRecipient());
     List<Recipient>               recipients        = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, false);
     MediaConstraints              mediaConstraints  = MediaConstraints.getPushMediaConstraints();
     List<Attachment>              scaledAttachments = scaleAttachments(masterSecret, mediaConstraints, message.getAttachments());
@@ -154,15 +156,23 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       SignalServiceAttachment   avatar           = attachmentStreams.isEmpty() ? null : attachmentStreams.get(0);
       SignalServiceGroup.Type   type             = groupMessage.isGroupQuit() ? SignalServiceGroup.Type.QUIT : SignalServiceGroup.Type.UPDATE;
       SignalServiceGroup        group            = new SignalServiceGroup(type, GroupUtil.getDecodedId(groupId), groupContext.getName(), groupContext.getMembersList(), avatar);
-      SignalServiceDataMessage  groupDataMessage = new SignalServiceDataMessage(message.getSentTimeMillis(), group, null, null);
+      SignalServiceDataMessage  groupDataMessage = SignalServiceDataMessage.newBuilder()
+                                                                           .withTimestamp(message.getSentTimeMillis())
+                                                                           .asGroupMessage(group)
+                                                                           .build();
 
       messageSender.sendMessage(addresses, groupDataMessage);
     } else {
       SignalServiceGroup       group        = new SignalServiceGroup(GroupUtil.getDecodedId(groupId));
-      SignalServiceDataMessage groupMessage = new SignalServiceDataMessage(message.getSentTimeMillis(), group,
-                                                                           attachmentStreams, message.getBody(), false,
-                                                                           (int)(message.getExpiresIn() / 1000),
-                                                                           message.isExpirationUpdate(), null);
+      SignalServiceDataMessage groupMessage = SignalServiceDataMessage.newBuilder()
+                                                                      .withTimestamp(message.getSentTimeMillis())
+                                                                      .asGroupMessage(group)
+                                                                      .withAttachments(attachmentStreams)
+                                                                      .withBody(message.getBody())
+                                                                      .withExpiration((int)(message.getExpiresIn() / 1000))
+                                                                      .asExpirationUpdate(message.isExpirationUpdate())
+                                                                      .withProfileKey(profileKey.orNull())
+                                                                      .build();
 
       messageSender.sendMessage(addresses, groupMessage);
     }

@@ -23,6 +23,12 @@
                   android:clipToPadding="false"
                   android:clipChildren="false">
 
+        <ViewStub android:id="@+id/group_share_profile_view_stub"
+                  android:layout="@layout/conversation_activity_group_share_profile_stub"
+                  android:inflatedId="@+id/group_share_profile_view"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"/>
+
         <ViewStub android:id="@+id/unverified_banner_stub"
                   android:layout="@layout/conversation_activity_unverified_banner_stub"
                   android:inflatedId="@+id/unverified_banner"

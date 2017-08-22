@@ -56,6 +56,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -430,7 +431,7 @@ public class ConversationFragment extends Fragment
         setLastSeen(loader.getLastSeen());
       }
 
-      if (!loader.hasSent() && !recipient.isGroupRecipient() && recipient.getName() == null) {
+      if (!loader.hasSent() && !recipient.isSystemContact() && !recipient.isGroupRecipient() && recipient.getRegistered() != RecipientDatabase.RegisteredState.REGISTERED) {
         getListAdapter().setHeaderView(unknownSenderView);
       } else {
         getListAdapter().setHeaderView(null);
