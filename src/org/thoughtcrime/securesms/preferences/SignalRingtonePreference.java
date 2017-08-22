@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
 
-public class SignalRingtonePreference extends RingtonePreference {
+public class SignalRingtonePreference extends AdvancedRingtonePreference {
 
   private TextView rightSummary;
   private CharSequence summary;
