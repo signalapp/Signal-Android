@@ -24,9 +24,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-public class RecipientPreferenceDatabase extends Database {
+public class RecipientDatabase extends Database {
 
-  private static final String TAG = RecipientPreferenceDatabase.class.getSimpleName();
+  private static final String TAG = RecipientDatabase.class.getSimpleName();
   private static final String RECIPIENT_PREFERENCES_URI = "content://textsecure/recipients/";
 
           static final String TABLE_NAME              = "recipient_preferences";
@@ -93,7 +93,7 @@ public class RecipientPreferenceDatabase extends Database {
           SIGNAL_PROFILE_AVATAR + " TEXT DEFAULT NULL, " +
           PROFILE_SHARING + " INTEGER DEFAULT 0);";
 
-  public RecipientPreferenceDatabase(Context context, SQLiteOpenHelper databaseHelper) {
+  public RecipientDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
   }
 

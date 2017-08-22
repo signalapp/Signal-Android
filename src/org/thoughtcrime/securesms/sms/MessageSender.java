@@ -27,8 +27,8 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase;
-import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -265,7 +265,7 @@ public class MessageSender {
   }
 
   private static boolean isPushDestination(Context context, Address destination) {
-    RecipientPreferenceDatabase     recipientsDatabase   = DatabaseFactory.getRecipientPreferenceDatabase(context);
+    RecipientDatabase               recipientsDatabase   = DatabaseFactory.getRecipientPreferenceDatabase(context);
     Optional<RecipientsPreferences> recipientPreferences = recipientsDatabase.getRecipientsPreferences(destination);
 
     if (recipientPreferences.isPresent()) {

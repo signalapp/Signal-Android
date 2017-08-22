@@ -10,7 +10,7 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.ConversationActivity;
 import org.thoughtcrime.securesms.ConversationPopupActivity;
-import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.VibrateState;
+import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 import java.util.LinkedHashSet;

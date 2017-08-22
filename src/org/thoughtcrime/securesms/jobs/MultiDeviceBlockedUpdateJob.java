@@ -4,8 +4,8 @@ import android.content.Context;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase;
-import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.BlockedReader;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.RecipientDatabase.BlockedReader;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule.SignalMessageSenderFactory;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
@@ -45,10 +45,10 @@ public class MultiDeviceBlockedUpdateJob extends MasterSecretJob implements Inje
   public void onRun(MasterSecret masterSecret)
       throws IOException, UntrustedIdentityException
   {
-    RecipientPreferenceDatabase database      = DatabaseFactory.getRecipientPreferenceDatabase(context);
-    SignalServiceMessageSender  messageSender = messageSenderFactory.create();
-    BlockedReader               reader        = database.readerForBlocked(database.getBlocked());
-    List<String>                blocked       = new LinkedList<>();
+    RecipientDatabase          database      = DatabaseFactory.getRecipientPreferenceDatabase(context);
+    SignalServiceMessageSender messageSender = messageSenderFactory.create();
+    BlockedReader              reader        = database.readerForBlocked(database.getBlocked());
+    List<String>               blocked       = new LinkedList<>();
 
     Recipient recipient;
 

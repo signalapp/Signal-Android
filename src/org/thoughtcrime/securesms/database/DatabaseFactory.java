@@ -126,7 +126,7 @@ public class DatabaseFactory {
   private final DraftDatabase draftDatabase;
   private final PushDatabase pushDatabase;
   private final GroupDatabase groupDatabase;
-  private final RecipientPreferenceDatabase recipientPreferenceDatabase;
+  private final RecipientDatabase recipientDatabase;
   private final ContactsDatabase contactsDatabase;
 
   public static DatabaseFactory getInstance(Context context) {
@@ -182,8 +182,8 @@ public class DatabaseFactory {
     return getInstance(context).groupDatabase;
   }
 
-  public static RecipientPreferenceDatabase getRecipientPreferenceDatabase(Context context) {
-    return getInstance(context).recipientPreferenceDatabase;
+  public static RecipientDatabase getRecipientPreferenceDatabase(Context context) {
+    return getInstance(context).recipientDatabase;
   }
 
   public static ContactsDatabase getContactsDatabase(Context context) {
@@ -203,7 +203,7 @@ public class DatabaseFactory {
     this.draftDatabase               = new DraftDatabase(context, databaseHelper);
     this.pushDatabase                = new PushDatabase(context, databaseHelper);
     this.groupDatabase               = new GroupDatabase(context, databaseHelper);
-    this.recipientPreferenceDatabase = new RecipientPreferenceDatabase(context, databaseHelper);
+    this.recipientDatabase = new RecipientDatabase(context, databaseHelper);
     this.contactsDatabase            = new ContactsDatabase(context);
   }
 
@@ -221,7 +221,7 @@ public class DatabaseFactory {
     this.draftDatabase.reset(databaseHelper);
     this.pushDatabase.reset(databaseHelper);
     this.groupDatabase.reset(databaseHelper);
-    this.recipientPreferenceDatabase.reset(databaseHelper);
+    this.recipientDatabase.reset(databaseHelper);
     old.close();
   }
 
@@ -534,7 +534,7 @@ public class DatabaseFactory {
       db.execSQL(DraftDatabase.CREATE_TABLE);
       db.execSQL(PushDatabase.CREATE_TABLE);
       db.execSQL(GroupDatabase.CREATE_TABLE);
-      db.execSQL(RecipientPreferenceDatabase.CREATE_TABLE);
+      db.execSQL(RecipientDatabase.CREATE_TABLE);
 
       executeStatements(db, SmsDatabase.CREATE_INDEXS);
       executeStatements(db, MmsDatabase.CREATE_INDEXS);

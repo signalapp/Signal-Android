@@ -6,8 +6,8 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase;
-import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -51,7 +51,7 @@ public class RetrieveProfileAvatarJob extends ContextJob implements InjectableTy
 
   @Override
   public void onRun() throws IOException {
-    RecipientPreferenceDatabase     database              = DatabaseFactory.getRecipientPreferenceDatabase(context);
+    RecipientDatabase               database              = DatabaseFactory.getRecipientPreferenceDatabase(context);
     Optional<RecipientsPreferences> recipientsPreferences = database.getRecipientsPreferences(recipient.getAddress());
 
     if (!recipientsPreferences.isPresent()) {

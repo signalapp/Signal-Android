@@ -25,8 +25,8 @@ import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.PushDatabase;
-import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase;
-import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.groups.GroupMessageProcessor;
@@ -803,7 +803,7 @@ public class PushDecryptJob extends ContextJob {
   private void handleProfileKey(@NonNull SignalServiceEnvelope envelope,
                                 @NonNull SignalServiceDataMessage message)
   {
-    RecipientPreferenceDatabase     database      = DatabaseFactory.getRecipientPreferenceDatabase(context);
+    RecipientDatabase               database      = DatabaseFactory.getRecipientPreferenceDatabase(context);
     Address                         sourceAddress = Address.fromExternal(context, envelope.getSource());
     Optional<RecipientsPreferences> preferences   = database.getRecipientsPreferences(sourceAddress);
 

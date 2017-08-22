@@ -11,7 +11,7 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.preferences.NotificationPrivacyPreference;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -40,15 +40,15 @@ public abstract class AbstractNotificationBuilder extends NotificationCompat.Bui
     return builder;
   }
 
-  public void setAlarms(@Nullable Uri ringtone, RecipientPreferenceDatabase.VibrateState vibrate) {
+  public void setAlarms(@Nullable Uri ringtone, RecipientDatabase.VibrateState vibrate) {
     String  defaultRingtoneName = TextSecurePreferences.getNotificationRingtone(context);
     boolean defaultVibrate      = TextSecurePreferences.isNotificationVibrateEnabled(context);
 
     if      (ringtone == null && !TextUtils.isEmpty(defaultRingtoneName)) setSound(Uri.parse(defaultRingtoneName));
     else if (ringtone != null && !ringtone.toString().isEmpty())          setSound(ringtone);
 
-    if (vibrate == RecipientPreferenceDatabase.VibrateState.ENABLED ||
-        (vibrate == RecipientPreferenceDatabase.VibrateState.DEFAULT && defaultVibrate))
+    if (vibrate == RecipientDatabase.VibrateState.ENABLED ||
+        (vibrate == RecipientDatabase.VibrateState.DEFAULT && defaultVibrate))
     {
       setDefaults(Notification.DEFAULT_VIBRATE);
     }

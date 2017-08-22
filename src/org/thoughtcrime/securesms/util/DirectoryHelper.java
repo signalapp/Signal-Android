@@ -24,8 +24,8 @@ import org.thoughtcrime.securesms.crypto.SessionUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
-import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase;
-import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
@@ -75,8 +75,8 @@ public class DirectoryHelper {
       return new RefreshResult(new LinkedList<>(), false);
     }
 
-    RecipientPreferenceDatabase recipientPreferenceDatabase = DatabaseFactory.getRecipientPreferenceDatabase(context);
-    Set<Address>                eligibleContactNumbers      = recipientPreferenceDatabase.getAllRecipients();
+    RecipientDatabase recipientDatabase      = DatabaseFactory.getRecipientPreferenceDatabase(context);
+    Set<Address>      eligibleContactNumbers = recipientDatabase.getAllRecipients();
     eligibleContactNumbers.addAll(ContactAccessor.getInstance().getAllContactsWithNumbers(context));
 
     Set<String>               serializedAddress = Stream.of(eligibleContactNumbers).map(Address::serialize).collect(Collectors.toSet());
@@ -92,7 +92,7 @@ public class DirectoryHelper {
         inactiveAddresses.remove(activeAddress);
       }
 
-      recipientPreferenceDatabase.setRegistered(activeAddresses, new LinkedList<>(inactiveAddresses));
+      recipientDatabase.setRegistered(activeAddresses, new LinkedList<>(inactiveAddresses));
       return updateContactsDatabase(context, activeAddresses, true);
     }
 
@@ -104,7 +104,7 @@ public class DirectoryHelper {
                                                @NonNull  Recipient recipient)
       throws IOException
   {
-    RecipientPreferenceDatabase   recipientDatabase = DatabaseFactory.getRecipientPreferenceDatabase(context);
+    RecipientDatabase             recipientDatabase = DatabaseFactory.getRecipientPreferenceDatabase(context);
     SignalServiceAccountManager   accountManager    = AccountManagerFactory.createManager(context);
     String                        number            = recipient.getAddress().serialize();
     Optional<ContactTokenDetails> details           = accountManager.getContact(number);
@@ -146,7 +146,7 @@ public class DirectoryHelper {
       return Capability.SUPPORTED;
     }
 
-    final RecipientPreferenceDatabase     recipientDatabase    = DatabaseFactory.getRecipientPreferenceDatabase(context);
+    final RecipientDatabase               recipientDatabase    = DatabaseFactory.getRecipientPreferenceDatabase(context);
     final Optional<RecipientsPreferences> recipientPreferences = recipientDatabase.getRecipientsPreferences(recipient.getAddress());
 
     if      (recipientPreferences.isPresent() && recipientPreferences.get().isRegistered()) return Capability.SUPPORTED;
@@ -163,7 +163,7 @@ public class DirectoryHelper {
                                                 .setRegisteredUsers(account.get().getAccount(), activeAddresses, removeMissing);
 
         Cursor                                           cursor = ContactAccessor.getInstance().getAllSystemContacts(context);
-        RecipientPreferenceDatabase.BulkOperationsHandle handle = DatabaseFactory.getRecipientPreferenceDatabase(context).resetAllDisplayNames();
+        RecipientDatabase.BulkOperationsHandle handle = DatabaseFactory.getRecipientPreferenceDatabase(context).resetAllDisplayNames();
 
         try {
           while (cursor != null && cursor.moveToNext()) {

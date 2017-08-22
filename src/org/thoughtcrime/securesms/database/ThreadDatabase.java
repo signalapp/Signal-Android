@@ -33,7 +33,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
-import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
+import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.database.model.DisplayRecord;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -99,7 +99,7 @@ public class ThreadDatabase extends Database {
                                                                     .toList();
 
   private static final List<String> COMBINED_THREAD_RECIPIENT_GROUP_PROJECTION = Stream.concat(Stream.concat(Stream.of(TYPED_THREAD_PROJECTION),
-                                                                                                             Stream.of(RecipientPreferenceDatabase.TYPED_RECIPIENT_PROJECTION)),
+                                                                                                             Stream.of(RecipientDatabase.TYPED_RECIPIENT_PROJECTION)),
                                                                                                Stream.of(GroupDatabase.TYPED_GROUP_PROJECTION))
                                                                                        .toList();
 
@@ -347,8 +347,8 @@ public class ThreadDatabase extends Database {
     String         projection = Util.join(COMBINED_THREAD_RECIPIENT_GROUP_PROJECTION, ",");
     SQLiteDatabase db         = databaseHelper.getReadableDatabase();
     Cursor         cursor     = db.rawQuery("SELECT " + projection + " FROM " + TABLE_NAME +
-                                            " LEFT OUTER JOIN " + RecipientPreferenceDatabase.TABLE_NAME +
-                                            " ON " + TABLE_NAME + "." + ADDRESS + " = " + RecipientPreferenceDatabase.TABLE_NAME + "." + RecipientPreferenceDatabase.ADDRESS +
+                                            " LEFT OUTER JOIN " + RecipientDatabase.TABLE_NAME +
+                                            " ON " + TABLE_NAME + "." + ADDRESS + " = " + RecipientDatabase.TABLE_NAME + "." + RecipientDatabase.ADDRESS +
                                             " LEFT OUTER JOIN " + GroupDatabase.TABLE_NAME +
                                             " ON " + TABLE_NAME + "." + ADDRESS + " = " + GroupDatabase.TABLE_NAME + "." + GroupDatabase.GROUP_ID +
                                             " WHERE " + ARCHIVED + " = ? AND " + MESSAGE_COUNT + " != 0" +
@@ -365,8 +365,8 @@ public class ThreadDatabase extends Database {
     String         projection = Util.join(COMBINED_THREAD_RECIPIENT_GROUP_PROJECTION, ",");
 
     return db.rawQuery("SELECT " + projection + " FROM " + TABLE_NAME +
-                       " LEFT OUTER JOIN " + RecipientPreferenceDatabase.TABLE_NAME +
-                       " ON " + TABLE_NAME + "." + ADDRESS + " = " + RecipientPreferenceDatabase.TABLE_NAME + "." + ADDRESS +
+                       " LEFT OUTER JOIN " + RecipientDatabase.TABLE_NAME +
+                       " ON " + TABLE_NAME + "." + ADDRESS + " = " + RecipientDatabase.TABLE_NAME + "." + ADDRESS +
                        " ORDER BY " + TABLE_NAME + "." + DATE + " DESC",
                        null);
   }
