@@ -51,11 +51,10 @@ public class QuickResponseService extends MasterSecretIntentService {
         number = URLDecoder.decode(number);
       }
 
-      Address                     address        = Address.fromExternal(this, number);
-      Recipient                   recipient      = Recipient.from(this, address, false);
-      Optional<RecipientSettings> settings       = DatabaseFactory.getRecipientDatabase(this).getRecipientSettings(recipient.getAddress());
-      int                         subscriptionId = settings.isPresent() ? settings.get().getDefaultSubscriptionId().or(-1) : -1;
-      long                        expiresIn      = settings.isPresent() ? settings.get().getExpireMessages() * 1000 : 0;
+      Address   address        = Address.fromExternal(this, number);
+      Recipient recipient      = Recipient.from(this, address, false);
+      int       subscriptionId = recipient.getDefaultSubscriptionId().or(-1);
+      long      expiresIn      = recipient.getExpireMessages() * 1000;
 
       if (!TextUtils.isEmpty(content)) {
         MessageSender.send(this, masterSecret, new OutgoingTextMessage(recipient, content, expiresIn, subscriptionId), -1, false, null);

@@ -43,21 +43,21 @@ public class GroupManager {
                                                        @Nullable String         name,
                                                                  boolean        mms)
   {
-    final byte[]        avatarBytes      = BitmapUtil.toByteArray(avatar);
-    final GroupDatabase groupDatabase    = DatabaseFactory.getGroupDatabase(context);
-    final String        groupId          = GroupUtil.getEncodedId(groupDatabase.allocateGroupId(), mms);
-    final Set<Address>  memberAddresses  = getMemberAddresses(members);
+    final byte[]        avatarBytes     = BitmapUtil.toByteArray(avatar);
+    final GroupDatabase groupDatabase   = DatabaseFactory.getGroupDatabase(context);
+    final String        groupId         = GroupUtil.getEncodedId(groupDatabase.allocateGroupId(), mms);
+    final Recipient     groupRecipient  = Recipient.from(context, Address.fromSerialized(groupId), false);
+    final Set<Address>  memberAddresses = getMemberAddresses(members);
 
     memberAddresses.add(Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)));
     groupDatabase.create(groupId, name, new LinkedList<>(memberAddresses), null, null);
 
     if (!mms) {
       groupDatabase.updateAvatar(groupId, avatarBytes);
-      DatabaseFactory.getRecipientDatabase(context).setProfileSharing(Address.fromSerialized(groupId), true);
+      DatabaseFactory.getRecipientDatabase(context).setProfileSharing(groupRecipient, true);
       return sendGroupUpdate(context, masterSecret, groupId, memberAddresses, name, avatarBytes);
     } else {
-      Recipient groupRecipient = Recipient.from(context, Address.fromSerialized(groupId), true);
-      long      threadId       = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
+      long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
       return new GroupActionResult(groupRecipient, threadId);
     }
   }

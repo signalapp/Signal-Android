@@ -45,6 +45,11 @@ public class ResourceContactPhoto implements ContactPhoto {
     return context.getResources().getDrawable(resourceId);
   }
 
+  @Override
+  public boolean isGenerated() {
+    return false;
+  }
+
   private static class ExpandingLayerDrawable extends LayerDrawable {
     public ExpandingLayerDrawable(Drawable[] layers) {
       super(layers);

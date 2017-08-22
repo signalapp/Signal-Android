@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -64,17 +65,11 @@ public abstract class PushSendJob extends SendJob {
     onPushSend(masterSecret);
   }
 
-  protected Optional<byte[]> getProfileKey(Address address) {
+  protected Optional<byte[]> getProfileKey(@NonNull Recipient recipient) {
     try {
-      Optional<RecipientSettings> recipientsPreferences = DatabaseFactory.getRecipientDatabase(context)
-                                                                         .getRecipientSettings(address);
-
-      if (!recipientsPreferences.isPresent()) return Optional.absent();
-
-      boolean isSystemContact = !TextUtils.isEmpty(recipientsPreferences.get().getSystemDisplayName());
-      boolean isApproved      = recipientsPreferences.get().isProfileSharing();
-
-      if (!isSystemContact & !isApproved) return Optional.absent();
+      if (!recipient.resolve().isSystemContact() && !recipient.resolve().isProfileSharing()) {
+        return Optional.absent();
+      }
 
       String profileKey = TextSecurePreferences.getProfileKey(context);
 

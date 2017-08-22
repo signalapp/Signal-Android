@@ -624,7 +624,7 @@ public class ThreadDatabase extends Database {
       Optional<GroupRecord>       groupRecord;
 
       if (distributionType != DistributionTypes.ARCHIVE) {
-        settings    = DatabaseFactory.getRecipientDatabase(context).getRecipientPreferences(cursor);
+        settings    = DatabaseFactory.getRecipientDatabase(context).getRecipientSettings(cursor);
         groupRecord = DatabaseFactory.getGroupDatabase(context).getGroup(cursor);
       } else {
         settings    = Optional.absent();

@@ -67,10 +67,9 @@ public class RemoteReplyReceiver extends MasterSecretBroadcastReceiver {
         protected Void doInBackground(Void... params) {
           long threadId;
 
-          Optional<RecipientSettings> settings = DatabaseFactory.getRecipientDatabase(context).getRecipientSettings(address);
-          int  subscriptionId = settings.isPresent() ? settings.get().getDefaultSubscriptionId().or(-1) : -1;
-          long expiresIn      = settings.isPresent() ? settings.get().getExpireMessages() * 1000 : 0;
           Recipient recipient = Recipient.from(context, address, false);
+          int  subscriptionId = recipient.getDefaultSubscriptionId().or(-1);
+          long expiresIn      = recipient.getExpireMessages() * 1000;
 
           if (recipient.isGroupRecipient()) {
             OutgoingMediaMessage reply = new OutgoingMediaMessage(recipient, responseText.toString(), new LinkedList<Attachment>(), System.currentTimeMillis(), subscriptionId, expiresIn, 0);

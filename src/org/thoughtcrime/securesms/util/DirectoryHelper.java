@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
+import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
@@ -43,10 +44,6 @@ import java.util.List;
 import java.util.Set;
 
 public class DirectoryHelper {
-
-  public enum Capability {
-    UNKNOWN, SUPPORTED, UNSUPPORTED
-  }
 
   private static final String TAG = DirectoryHelper.class.getSimpleName();
 
@@ -75,33 +72,38 @@ public class DirectoryHelper {
       return new RefreshResult(new LinkedList<>(), false);
     }
 
-    RecipientDatabase recipientDatabase      = DatabaseFactory.getRecipientDatabase(context);
-    Set<Address>      eligibleContactNumbers = recipientDatabase.getAllRecipients();
-    eligibleContactNumbers.addAll(ContactAccessor.getInstance().getAllContactsWithNumbers(context));
+    RecipientDatabase recipientDatabase                       = DatabaseFactory.getRecipientDatabase(context);
+    Stream<String>    eligibleRecipientDatabaseContactNumbers = Stream.of(recipientDatabase.getAllRecipients()).map(recipient -> recipient.getAddress().serialize());
+    Stream<String>    eligibleSystemDatabaseContactNumbers    = Stream.of(ContactAccessor.getInstance().getAllContactsWithNumbers(context)).map(Address::serialize);
+    Set<String>       eligibleContactNumbers                  = Stream.concat(eligibleRecipientDatabaseContactNumbers, eligibleSystemDatabaseContactNumbers).collect(Collectors.toSet());
 
-    Set<String>               serializedAddress = Stream.of(eligibleContactNumbers).map(Address::serialize).collect(Collectors.toSet());
-    List<ContactTokenDetails> activeTokens      = accountManager.getContacts(serializedAddress);
+    List<ContactTokenDetails> activeTokens = accountManager.getContacts(eligibleContactNumbers);
 
     if (activeTokens != null) {
-      List<Address> activeAddresses   = new LinkedList<>();
-      Set<Address>  inactiveAddresses = new HashSet<>(eligibleContactNumbers);
+      List<Recipient> activeRecipients   = new LinkedList<>();
+      List<Recipient> inactiveRecipients = new LinkedList<>();
+
+      Set<String>  inactiveContactNumbers = new HashSet<>(eligibleContactNumbers);
 
       for (ContactTokenDetails activeToken : activeTokens) {
-        Address activeAddress = Address.fromSerialized(activeToken.getNumber());
-        activeAddresses.add(activeAddress);
-        inactiveAddresses.remove(activeAddress);
+        activeRecipients.add(Recipient.from(context, Address.fromSerialized(activeToken.getNumber()), true));
+        inactiveContactNumbers.remove(activeToken.getNumber());
       }
 
-      recipientDatabase.setRegistered(activeAddresses, new LinkedList<>(inactiveAddresses));
-      return updateContactsDatabase(context, activeAddresses, true);
+      for (String inactiveContactNumber : inactiveContactNumbers) {
+        inactiveRecipients.add(Recipient.from(context, Address.fromSerialized(inactiveContactNumber), true));
+      }
+
+      recipientDatabase.setRegistered(activeRecipients, inactiveRecipients);
+      return updateContactsDatabase(context, Stream.of(activeRecipients).map(Recipient::getAddress).toList(), true);
     }
 
     return new RefreshResult(new LinkedList<>(), false);
   }
 
-  public static Capability refreshDirectoryFor(@NonNull  Context context,
-                                               @Nullable MasterSecret masterSecret,
-                                               @NonNull  Recipient recipient)
+  public static RegisteredState refreshDirectoryFor(@NonNull  Context context,
+                                                    @Nullable MasterSecret masterSecret,
+                                                    @NonNull  Recipient recipient)
       throws IOException
   {
     RecipientDatabase             recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
@@ -110,7 +112,7 @@ public class DirectoryHelper {
     Optional<ContactTokenDetails> details           = accountManager.getContact(number);
 
     if (details.isPresent()) {
-      recipientDatabase.setRegistered(Util.asList(recipient.getAddress()), new LinkedList<>());
+      recipientDatabase.setRegistered(recipient, RegisteredState.REGISTERED);
 
       RefreshResult result = updateContactsDatabase(context, Util.asList(recipient.getAddress()), false);
 
@@ -122,36 +124,11 @@ public class DirectoryHelper {
         notifyNewUsers(context, masterSecret, result.getNewUsers());
       }
 
-      return Capability.SUPPORTED;
+      return RegisteredState.REGISTERED;
     } else {
-      recipientDatabase.setRegistered(new LinkedList<>(), Util.asList(recipient.getAddress()));
-      return Capability.UNSUPPORTED;
+      recipientDatabase.setRegistered(recipient, RegisteredState.NOT_REGISTERED);
+      return RegisteredState.NOT_REGISTERED;
     }
-  }
-
-  public static @NonNull Capability getUserCapabilities(@NonNull Context context, @Nullable Recipient recipient) {
-    if (recipient == null) {
-      return Capability.UNSUPPORTED;
-    }
-
-    if (!TextSecurePreferences.isPushRegistered(context)) {
-      return Capability.UNSUPPORTED;
-    }
-
-    if (recipient.isMmsGroupRecipient()) {
-      return Capability.UNSUPPORTED;
-    }
-
-    if (recipient.isPushGroupRecipient()) {
-      return Capability.SUPPORTED;
-    }
-
-    final RecipientDatabase           recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
-    final Optional<RecipientSettings> recipientSettings = recipientDatabase.getRecipientSettings(recipient.getAddress());
-
-    if      (recipientSettings.isPresent() && recipientSettings.get().isRegistered()) return Capability.SUPPORTED;
-    else if (recipientSettings.isPresent())                                           return Capability.UNSUPPORTED;
-    else                                                                              return Capability.UNKNOWN;
   }
 
   private static @NonNull RefreshResult updateContactsDatabase(@NonNull Context context, @NonNull List<Address> activeAddresses, boolean removeMissing) {
@@ -162,7 +139,7 @@ public class DirectoryHelper {
         List<Address> newUsers = DatabaseFactory.getContactsDatabase(context)
                                                 .setRegisteredUsers(account.get().getAccount(), activeAddresses, removeMissing);
 
-        Cursor                                           cursor = ContactAccessor.getInstance().getAllSystemContacts(context);
+        Cursor                                 cursor = ContactAccessor.getInstance().getAllSystemContacts(context);
         RecipientDatabase.BulkOperationsHandle handle = DatabaseFactory.getRecipientDatabase(context).resetAllDisplayNames();
 
         try {
@@ -170,10 +147,11 @@ public class DirectoryHelper {
             String number = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER));
 
             if (!TextUtils.isEmpty(number)) {
-              Address address     = Address.fromExternal(context, number);
-              String  displayName = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+              Address   address     = Address.fromExternal(context, number);
+              Recipient recipient   = Recipient.from(context, address, true);
+              String    displayName = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
 
-              handle.setDisplayName(address, displayName);
+              handle.setDisplayName(recipient, displayName);
             }
           }
         } finally {

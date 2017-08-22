@@ -5,16 +5,16 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
@@ -51,20 +51,15 @@ public class RetrieveProfileAvatarJob extends ContextJob implements InjectableTy
 
   @Override
   public void onRun() throws IOException {
-    RecipientDatabase           database          = DatabaseFactory.getRecipientDatabase(context);
-    Optional<RecipientSettings> recipientSettings = database.getRecipientSettings(recipient.getAddress());
+    RecipientDatabase database   = DatabaseFactory.getRecipientDatabase(context);
+    byte[]            profileKey = recipient.resolve().getProfileKey();
 
-    if (!recipientSettings.isPresent()) {
-      Log.w(TAG, "Recipient preference row is gone!");
-      return;
-    }
-
-    if (recipientSettings.get().getProfileKey() == null) {
+    if (profileKey == null) {
       Log.w(TAG, "Recipient profile key is gone!");
       return;
     }
 
-    if (Util.equals(profileAvatar, recipientSettings.get().getProfileAvatar())) {
+    if (Util.equals(profileAvatar, recipient.resolve().getProfileAvatar())) {
       Log.w(TAG, "Already retrieved profile avatar: " + profileAvatar);
       return;
     }
@@ -72,13 +67,14 @@ public class RetrieveProfileAvatarJob extends ContextJob implements InjectableTy
     if (TextUtils.isEmpty(profileAvatar)) {
       Log.w(TAG, "Removing profile avatar for: " + recipient.getAddress().serialize());
       AvatarHelper.delete(context, recipient.getAddress());
+      database.setProfileAvatar(recipient, profileAvatar);
       return;
     }
 
     File downloadDestination = File.createTempFile("avatar", "jpg", context.getCacheDir());
 
     try {
-      InputStream avatarStream       = receiver.retrieveProfileAvatar(profileAvatar, downloadDestination, recipientSettings.get().getProfileKey(), MAX_PROFILE_SIZE_BYTES);
+      InputStream avatarStream       = receiver.retrieveProfileAvatar(profileAvatar, downloadDestination, profileKey, MAX_PROFILE_SIZE_BYTES);
       File        decryptDestination = File.createTempFile("avatar", "jpg", context.getCacheDir());
 
       Util.copy(avatarStream, new FileOutputStream(decryptDestination));
@@ -87,8 +83,11 @@ public class RetrieveProfileAvatarJob extends ContextJob implements InjectableTy
       if (downloadDestination != null) downloadDestination.delete();
     }
 
-    database.setProfileAvatar(recipient.getAddress(), profileAvatar);
-    Recipient.clearCache(context);
+    database.setProfileAvatar(recipient, profileAvatar);
+
+    if (recipient.resolve().getContactPhoto().isGenerated()) {
+      recipient.setContactPhoto(ContactPhotoFactory.getSignalAvatarContactPhoto(context, recipient.getAddress(), recipient.getName(), context.getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size)));
+    }
   }
 
   @Override

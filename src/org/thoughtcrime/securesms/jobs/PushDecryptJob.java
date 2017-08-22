@@ -803,19 +803,14 @@ public class PushDecryptJob extends ContextJob {
   private void handleProfileKey(@NonNull SignalServiceEnvelope envelope,
                                 @NonNull SignalServiceDataMessage message)
   {
-    RecipientDatabase           database      = DatabaseFactory.getRecipientDatabase(context);
-    Address                     sourceAddress = Address.fromExternal(context, envelope.getSource());
-    Optional<RecipientSettings> settings      = database.getRecipientSettings(sourceAddress);
+    RecipientDatabase database      = DatabaseFactory.getRecipientDatabase(context);
+    Address           sourceAddress = Address.fromExternal(context, envelope.getSource());
+    Recipient         recipient     = Recipient.from(context, sourceAddress, false);
 
-    if (!settings.isPresent() || settings.get().getProfileKey() == null ||
-        !MessageDigest.isEqual(message.getProfileKey().get(), settings.get().getProfileKey()))
-    {
-      database.setProfileKey(sourceAddress, message.getProfileKey().get());
-
-      Recipient recipient = Recipient.from(context, sourceAddress, true);
+    if (recipient.getProfileKey() == null || MessageDigest.isEqual(recipient.getProfileKey(), message.getProfileKey().get())) {
+      database.setProfileKey(recipient, message.getProfileKey().get());
       ApplicationContext.getInstance(context).getJobManager().add(new RetrieveProfileJob(context, recipient));
     }
-
   }
 
   private Optional<InsertResult> insertPlaceholder(@NonNull SignalServiceEnvelope envelope) {

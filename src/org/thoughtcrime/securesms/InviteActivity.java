@@ -230,9 +230,8 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
       if (context == null) return null;
 
       for (String number : numbers) {
-        Recipient                   recipient      = Recipient.from(context, Address.fromExternal(context, number), false);
-        Optional<RecipientSettings> settings       = DatabaseFactory.getRecipientDatabase(context).getRecipientSettings(recipient.getAddress());
-        int                         subscriptionId = settings.isPresent() ? settings.get().getDefaultSubscriptionId().or(-1) : -1;
+        Recipient recipient      = Recipient.from(context, Address.fromExternal(context, number), false);
+        int       subscriptionId = recipient.getDefaultSubscriptionId().or(-1);
 
         MessageSender.send(context, masterSecret, new OutgoingTextMessage(recipient, message, subscriptionId), -1L, true, null);
 

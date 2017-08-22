@@ -71,13 +71,12 @@ public class RetrieveProfileJob extends ContextJob implements InjectableType {
   private void handleIndividualRecipient(Recipient recipient)
       throws IOException, InvalidKeyException, InvalidNumberException
   {
-    String                      number            = recipient.getAddress().toPhoneString();
-    SignalServiceProfile        profile           = retrieveProfile(number);
-    Optional<RecipientSettings> recipientSettings = DatabaseFactory.getRecipientDatabase(context).getRecipientSettings(recipient.getAddress());
+    String               number  = recipient.getAddress().toPhoneString();
+    SignalServiceProfile profile = retrieveProfile(number);
 
     setIdentityKey(recipient, profile.getIdentityKey());
-    setProfileName(recipient, recipientSettings, profile.getName());
-    setProfileAvatar(recipient, recipientSettings, profile.getAvatar());
+    setProfileName(recipient, profile.getName());
+    setProfileAvatar(recipient, profile.getAvatar());
   }
 
   private void handleGroupRecipient(Recipient group)
@@ -127,32 +126,30 @@ public class RetrieveProfileJob extends ContextJob implements InjectableType {
     }
   }
 
-  private void setProfileName(Recipient recipient, Optional<RecipientSettings> recipientPreferences, String profileName) {
+  private void setProfileName(Recipient recipient, String profileName) {
     try {
-      if (!recipientPreferences.isPresent()) return;
-      if (recipientPreferences.get().getProfileKey() == null) return;
+      byte[] profileKey = recipient.getProfileKey();
+      if (profileKey == null) return;
 
       String plaintextProfileName = null;
 
       if (profileName != null) {
-        ProfileCipher profileCipher = new ProfileCipher(recipientPreferences.get().getProfileKey());
+        ProfileCipher profileCipher = new ProfileCipher(profileKey);
         plaintextProfileName = new String(profileCipher.decryptName(Base64.decode(profileName)));
       }
 
-      if (!Util.equals(plaintextProfileName, recipientPreferences.get().getProfileName())) {
-        DatabaseFactory.getRecipientDatabase(context).setProfileName(recipient.getAddress(), plaintextProfileName);
-        Recipient.clearCache(context);
+      if (!Util.equals(plaintextProfileName, recipient.getProfileName())) {
+        DatabaseFactory.getRecipientDatabase(context).setProfileName(recipient, plaintextProfileName);
       }
     } catch (ProfileCipher.InvalidCiphertextException | IOException e) {
       Log.w(TAG, e);
     }
   }
 
-  private void setProfileAvatar(Recipient recipient, Optional<RecipientSettings> recipientPreferences, String profileAvatar) {
-    if (!recipientPreferences.isPresent())                  return;
-    if (recipientPreferences.get().getProfileKey() == null) return;
+  private void setProfileAvatar(Recipient recipient, String profileAvatar) {
+    if (recipient.getProfileKey() == null) return;
 
-    if (!Util.equals(profileAvatar, recipientPreferences.get().getProfileAvatar())) {
+    if (!Util.equals(profileAvatar, recipient.getProfileAvatar())) {
       ApplicationContext.getInstance(context)
                         .getJobManager()
                         .add(new RetrieveProfileAvatarJob(context, recipient, profileAvatar));

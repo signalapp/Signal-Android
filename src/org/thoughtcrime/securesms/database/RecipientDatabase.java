@@ -12,10 +12,11 @@ import android.util.Log;
 
 import com.annimon.stream.Stream;
 
-import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.color.MaterialColor;
+import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Base64;
+import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
@@ -74,6 +75,24 @@ public class RecipientDatabase extends Database {
     }
   }
 
+  public enum RegisteredState {
+    UNKNOWN(0), REGISTERED(1), NOT_REGISTERED(2);
+
+    private final int id;
+
+    RegisteredState(int id) {
+      this.id = id;
+    }
+
+    public int getId() {
+      return id;
+    }
+
+    public static RegisteredState fromId(int id) {
+      return values()[id];
+    }
+  }
+
   public static final String CREATE_TABLE =
       "CREATE TABLE " + TABLE_NAME +
           " (" + ID + " INTEGER PRIMARY KEY, " +
@@ -120,7 +139,7 @@ public class RecipientDatabase extends Database {
       cursor = database.query(TABLE_NAME, null, ADDRESS + " = ?", new String[] {address.serialize()}, null, null, null);
 
       if (cursor != null && cursor.moveToNext()) {
-        return getRecipientPreferences(cursor);
+        return getRecipientSettings(cursor);
       }
 
       return Optional.absent();
@@ -129,7 +148,7 @@ public class RecipientDatabase extends Database {
     }
   }
 
-  Optional<RecipientSettings> getRecipientPreferences(@NonNull Cursor cursor) {
+  Optional<RecipientSettings> getRecipientSettings(@NonNull Cursor cursor) {
     boolean blocked               = cursor.getInt(cursor.getColumnIndexOrThrow(BLOCK))                == 1;
     String  notification          = cursor.getString(cursor.getColumnIndexOrThrow(NOTIFICATION));
     int     vibrateState          = cursor.getInt(cursor.getColumnIndexOrThrow(VIBRATE));
@@ -139,12 +158,12 @@ public class RecipientDatabase extends Database {
     boolean seenInviteReminder    = cursor.getInt(cursor.getColumnIndexOrThrow(SEEN_INVITE_REMINDER)) == 1;
     int     defaultSubscriptionId = cursor.getInt(cursor.getColumnIndexOrThrow(DEFAULT_SUBSCRIPTION_ID));
     int     expireMessages        = cursor.getInt(cursor.getColumnIndexOrThrow(EXPIRE_MESSAGES));
-    boolean registered            = cursor.getInt(cursor.getColumnIndexOrThrow(REGISTERED)) == 1;
+    int     registeredState       = cursor.getInt(cursor.getColumnIndexOrThrow(REGISTERED));
     String  profileKeyString      = cursor.getString(cursor.getColumnIndexOrThrow(PROFILE_KEY));
     String  systemDisplayName     = cursor.getString(cursor.getColumnIndexOrThrow(SYSTEM_DISPLAY_NAME));
     String  signalProfileName     = cursor.getString(cursor.getColumnIndexOrThrow(SIGNAL_PROFILE_NAME));
     String  signalProfileAvatar   = cursor.getString(cursor.getColumnIndexOrThrow(SIGNAL_PROFILE_AVATAR));
-    boolean profileSharing        = cursor.getInt(cursor.getColumnIndexOrThrow(PROFILE_SHARING)) == 1;
+    boolean profileSharing        = cursor.getInt(cursor.getColumnIndexOrThrow(PROFILE_SHARING))      == 1;
 
     MaterialColor color;
     byte[]        profileKey = null;
@@ -168,7 +187,8 @@ public class RecipientDatabase extends Database {
     return Optional.of(new RecipientSettings(blocked, muteUntil,
                                              VibrateState.fromId(vibrateState),
                                              notificationUri, color, seenInviteReminder,
-                                             defaultSubscriptionId, expireMessages, registered,
+                                             defaultSubscriptionId, expireMessages,
+                                             RegisteredState.fromId(registeredState),
                                              profileKey, systemDisplayName, signalProfileName,
                                              signalProfileAvatar, profileSharing));
   }
@@ -185,117 +205,129 @@ public class RecipientDatabase extends Database {
     return new BulkOperationsHandle(database);
   }
 
-  public void setColor(Recipient recipient, MaterialColor color) {
+  public void setColor(@NonNull Recipient recipient, @NonNull MaterialColor color) {
     ContentValues values = new ContentValues();
     values.put(COLOR, color.serialize());
     updateOrInsert(recipient.getAddress(), values);
+    recipient.resolve().setColor(color);
   }
 
   public void setDefaultSubscriptionId(@NonNull Recipient recipient, int defaultSubscriptionId) {
     ContentValues values = new ContentValues();
     values.put(DEFAULT_SUBSCRIPTION_ID, defaultSubscriptionId);
     updateOrInsert(recipient.getAddress(), values);
-    EventBus.getDefault().post(new RecipientPreferenceEvent(recipient));
+    recipient.resolve().setDefaultSubscriptionId(Optional.of(defaultSubscriptionId));
   }
 
-  public void setBlocked(Recipient recipient, boolean blocked) {
+  public void setBlocked(@NonNull Recipient recipient, boolean blocked) {
     ContentValues values = new ContentValues();
     values.put(BLOCK, blocked ? 1 : 0);
     updateOrInsert(recipient.getAddress(), values);
+    recipient.resolve().setBlocked(blocked);
   }
 
-  public void setRingtone(Recipient recipient, @Nullable Uri notification) {
+  public void setRingtone(@NonNull Recipient recipient, @Nullable Uri notification) {
     ContentValues values = new ContentValues();
     values.put(NOTIFICATION, notification == null ? null : notification.toString());
     updateOrInsert(recipient.getAddress(), values);
+    recipient.resolve().setRingtone(notification);
   }
 
-  public void setVibrate(Recipient recipient, @NonNull VibrateState enabled) {
+  public void setVibrate(@NonNull Recipient recipient, @NonNull VibrateState enabled) {
     ContentValues values = new ContentValues();
     values.put(VIBRATE, enabled.getId());
     updateOrInsert(recipient.getAddress(), values);
+    recipient.resolve().setVibrate(enabled);
   }
 
-  public void setMuted(Recipient recipient, long until) {
+  public void setMuted(@NonNull Recipient recipient, long until) {
     ContentValues values = new ContentValues();
     values.put(MUTE_UNTIL, until);
     updateOrInsert(recipient.getAddress(), values);
+    recipient.resolve().setMuted(until);
   }
 
-  public void setSeenInviteReminder(Recipient recipient, boolean seen) {
+  public void setSeenInviteReminder(@NonNull Recipient recipient, boolean seen) {
     ContentValues values = new ContentValues(1);
     values.put(SEEN_INVITE_REMINDER, seen ? 1 : 0);
     updateOrInsert(recipient.getAddress(), values);
+    recipient.resolve().setHasSeenInviteReminder(seen);
   }
 
-  public void setExpireMessages(Recipient recipient, int expiration) {
+  public void setExpireMessages(@NonNull Recipient recipient, int expiration) {
     recipient.setExpireMessages(expiration);
 
     ContentValues values = new ContentValues(1);
     values.put(EXPIRE_MESSAGES, expiration);
     updateOrInsert(recipient.getAddress(), values);
+    recipient.resolve().setExpireMessages(expiration);
   }
 
-  public void setSystemDisplayName(@NonNull Address address, @Nullable String systemDisplayName) {
-    ContentValues values = new ContentValues(1);
-    values.put(SYSTEM_DISPLAY_NAME, systemDisplayName);
-    updateOrInsert(address, values);
-  }
-
-  public void setProfileKey(@NonNull Address address, @Nullable byte[] profileKey) {
+  public void setProfileKey(@NonNull Recipient recipient, @Nullable byte[] profileKey) {
     ContentValues values = new ContentValues(1);
     values.put(PROFILE_KEY, profileKey == null ? null : Base64.encodeBytes(profileKey));
-    updateOrInsert(address, values);;
+    updateOrInsert(recipient.getAddress(), values);
+    recipient.resolve().setProfileKey(profileKey);
   }
 
-  public void setProfileName(@NonNull Address address, @Nullable String profileName) {
+  public void setProfileName(@NonNull Recipient recipient, @Nullable String profileName) {
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(SIGNAL_PROFILE_NAME, profileName);
-    updateOrInsert(address, contentValues);
+    updateOrInsert(recipient.getAddress(), contentValues);
+    recipient.resolve().setProfileName(profileName);
   }
 
-  public void setProfileAvatar(@NonNull Address address, @Nullable String profileAvatar) {
+  public void setProfileAvatar(@NonNull Recipient recipient, @Nullable String profileAvatar) {
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(SIGNAL_PROFILE_AVATAR, profileAvatar);
-    updateOrInsert(address, contentValues);
+    updateOrInsert(recipient.getAddress(), contentValues);
+    recipient.resolve().setProfileAvatar(profileAvatar);
   }
 
-  public void setProfileSharing(@NonNull Address address, boolean enabled) {
+  public void setProfileSharing(@NonNull Recipient recipient, boolean enabled) {
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(PROFILE_SHARING, enabled ? 1 : 0);
-    updateOrInsert(address, contentValues);
+    updateOrInsert(recipient.getAddress(), contentValues);
+    recipient.setProfileSharing(enabled);
   }
 
-  public Set<Address> getAllRecipients() {
+  public Set<Recipient> getAllRecipients() {
     SQLiteDatabase db      = databaseHelper.getReadableDatabase();
-    Set<Address>   results = new HashSet<>();
+    Set<Recipient> results = new HashSet<>();
 
     try (Cursor cursor = db.query(TABLE_NAME, new String[] {ADDRESS}, null, null, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
-        results.add(Address.fromExternal(context, cursor.getString(0)));
+        results.add(Recipient.from(context, Address.fromExternal(context, cursor.getString(0)), true));
       }
     }
 
     return results;
   }
 
-  public void setRegistered(@NonNull List<Address> activeAddresses,
-                            @NonNull List<Address> inactiveAddresses)
+  public void setRegistered(@NonNull Recipient recipient, RegisteredState registeredState) {
+    ContentValues contentValues = new ContentValues(1);
+    contentValues.put(REGISTERED, registeredState.getId());
+    updateOrInsert(recipient.getAddress(), contentValues);
+    recipient.setRegistered(registeredState);
+  }
+
+  public void setRegistered(@NonNull List<Recipient> activeRecipients,
+                            @NonNull List<Recipient> inactiveRecipients)
   {
-    SQLiteDatabase db = databaseHelper.getWritableDatabase();
-
-    for (Address activeAddress : activeAddresses) {
+    for (Recipient activeRecipient : activeRecipients) {
       ContentValues contentValues = new ContentValues(1);
-      contentValues.put(REGISTERED, 1);
+      contentValues.put(REGISTERED, RegisteredState.REGISTERED.getId());
 
-      updateOrInsert(activeAddress, contentValues);
+      updateOrInsert(activeRecipient.getAddress(), contentValues);
+      activeRecipient.setRegistered(RegisteredState.REGISTERED);
     }
 
-    for (Address inactiveAddress : inactiveAddresses) {
+    for (Recipient inactiveRecipient : inactiveRecipients) {
       ContentValues contentValues = new ContentValues(1);
-      contentValues.put(REGISTERED, 0);
+      contentValues.put(REGISTERED, RegisteredState.NOT_REGISTERED.getId());
 
-      updateOrInsert(inactiveAddress, contentValues);
+      updateOrInsert(inactiveRecipient.getAddress(), contentValues);
+      inactiveRecipient.setRegistered(RegisteredState.NOT_REGISTERED);
     }
 
     context.getContentResolver().notifyChange(Uri.parse(RECIPIENT_PREFERENCES_URI), null);
@@ -341,39 +373,44 @@ public class RecipientDatabase extends Database {
 
     private final SQLiteDatabase database;
 
-    public BulkOperationsHandle(SQLiteDatabase database) {
+    private final List<Pair<Recipient, String>> pendingDisplayNames = new LinkedList<>();
+
+    BulkOperationsHandle(SQLiteDatabase database) {
       this.database = database;
     }
 
-    public void setDisplayName(@NonNull Address address, @Nullable String displayName) {
+    public void setDisplayName(@NonNull Recipient recipient, @Nullable String displayName) {
       ContentValues contentValues = new ContentValues(1);
       contentValues.put(SYSTEM_DISPLAY_NAME, displayName);
-      updateOrInsert(address, contentValues);
+      updateOrInsert(recipient.getAddress(), contentValues);
+      pendingDisplayNames.add(new Pair<>(recipient, displayName));
     }
 
     public void finish() {
       database.setTransactionSuccessful();
       database.endTransaction();
-      Recipient.clearCache(context);
+
+      Stream.of(pendingDisplayNames).forEach(pair -> pair.first().resolve().setSystemDisplayName(pair.second()));
+
       context.getContentResolver().notifyChange(Uri.parse(RECIPIENT_PREFERENCES_URI), null);
     }
   }
 
   public static class RecipientSettings {
-    private final boolean       blocked;
-    private final long          muteUntil;
-    private final VibrateState  vibrateState;
-    private final Uri           notification;
-    private final MaterialColor color;
-    private final boolean       seenInviteReminder;
-    private final int           defaultSubscriptionId;
-    private final int           expireMessages;
-    private final boolean       registered;
-    private final byte[]        profileKey;
-    private final String        systemDisplayName;
-    private final String        signalProfileName;
-    private final String        signalProfileAvatar;
-    private final boolean       profileSharing;
+    private final boolean         blocked;
+    private final long            muteUntil;
+    private final VibrateState    vibrateState;
+    private final Uri             notification;
+    private final MaterialColor   color;
+    private final boolean         seenInviteReminder;
+    private final int             defaultSubscriptionId;
+    private final int             expireMessages;
+    private final RegisteredState registered;
+    private final byte[]          profileKey;
+    private final String          systemDisplayName;
+    private final String          signalProfileName;
+    private final String          signalProfileAvatar;
+    private final boolean         profileSharing;
 
     RecipientSettings(boolean blocked, long muteUntil,
                       @NonNull VibrateState vibrateState,
@@ -382,7 +419,7 @@ public class RecipientDatabase extends Database {
                       boolean seenInviteReminder,
                       int defaultSubscriptionId,
                       int expireMessages,
-                      boolean registered,
+                      @NonNull  RegisteredState registered,
                       @Nullable byte[] profileKey,
                       @Nullable String systemDisplayName,
                       @Nullable String signalProfileName,
@@ -437,7 +474,7 @@ public class RecipientDatabase extends Database {
       return expireMessages;
     }
 
-    public boolean isRegistered() {
+    public RegisteredState getRegistered() {
       return registered;
     }
 
@@ -483,19 +520,6 @@ public class RecipientDatabase extends Database {
       }
 
       return getCurrent();
-    }
-  }
-
-  public static class RecipientPreferenceEvent {
-
-    private final Recipient recipient;
-
-    public RecipientPreferenceEvent(Recipient recipients) {
-      this.recipient = recipients;
-    }
-
-    public Recipient getRecipient() {
-      return recipient;
     }
   }
 }

@@ -191,20 +191,20 @@ public class DatabaseFactory {
   }
 
   private DatabaseFactory(Context context) {
-    this.databaseHelper              = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
-    this.sms                         = new SmsDatabase(context, databaseHelper);
-    this.encryptingSms               = new EncryptingSmsDatabase(context, databaseHelper);
-    this.mms                         = new MmsDatabase(context, databaseHelper);
-    this.attachments                 = new AttachmentDatabase(context, databaseHelper);
-    this.media                       = new MediaDatabase(context, databaseHelper);
-    this.thread                      = new ThreadDatabase(context, databaseHelper);
-    this.mmsSmsDatabase              = new MmsSmsDatabase(context, databaseHelper);
-    this.identityDatabase            = new IdentityDatabase(context, databaseHelper);
-    this.draftDatabase               = new DraftDatabase(context, databaseHelper);
-    this.pushDatabase                = new PushDatabase(context, databaseHelper);
-    this.groupDatabase               = new GroupDatabase(context, databaseHelper);
+    this.databaseHelper    = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
+    this.sms               = new SmsDatabase(context, databaseHelper);
+    this.encryptingSms     = new EncryptingSmsDatabase(context, databaseHelper);
+    this.mms               = new MmsDatabase(context, databaseHelper);
+    this.attachments       = new AttachmentDatabase(context, databaseHelper);
+    this.media             = new MediaDatabase(context, databaseHelper);
+    this.thread            = new ThreadDatabase(context, databaseHelper);
+    this.mmsSmsDatabase    = new MmsSmsDatabase(context, databaseHelper);
+    this.identityDatabase  = new IdentityDatabase(context, databaseHelper);
+    this.draftDatabase     = new DraftDatabase(context, databaseHelper);
+    this.pushDatabase      = new PushDatabase(context, databaseHelper);
+    this.groupDatabase     = new GroupDatabase(context, databaseHelper);
     this.recipientDatabase = new RecipientDatabase(context, databaseHelper);
-    this.contactsDatabase            = new ContactsDatabase(context);
+    this.contactsDatabase  = new ContactsDatabase(context);
   }
 
   public void reset(Context context) {
@@ -1290,7 +1290,7 @@ public class DatabaseFactory {
           String        address       = new NumberMigrator(TextSecurePreferences.getLocalNumber(context)).migrate(cursor.getString(0));
           ContentValues contentValues = new ContentValues(1);
 
-          contentValues.put("registered", cursor.getInt(1) == 1);
+          contentValues.put("registered", cursor.getInt(1) == 1 ? 1 : 2);
 
           if (db.update("recipient_preferences", contentValues, "recipient_ids = ?", new String[] {address}) < 1) {
             contentValues.put("recipient_ids", address);

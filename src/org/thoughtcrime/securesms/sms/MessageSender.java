@@ -28,7 +28,6 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -50,7 +49,6 @@ import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
 
 import java.io.IOException;
-import java.util.LinkedList;
 
 public class MessageSender {
 
@@ -232,7 +230,7 @@ public class MessageSender {
       return false;
     }
 
-    return isPushDestination(context, recipient.getAddress());
+    return isPushDestination(context, recipient);
   }
 
   private static boolean isPushMediaSend(Context context, Recipient recipient) {
@@ -244,7 +242,7 @@ public class MessageSender {
       return false;
     }
 
-    return isPushDestination(context, recipient.getAddress());
+    return isPushDestination(context, recipient);
   }
 
   private static boolean isGroupPushSend(Recipient recipient) {
@@ -264,22 +262,21 @@ public class MessageSender {
     return Util.isOwnNumber(context, recipient.getAddress());
   }
 
-  private static boolean isPushDestination(Context context, Address destination) {
-    RecipientDatabase               recipientsDatabase   = DatabaseFactory.getRecipientDatabase(context);
-    Optional<RecipientSettings> recipientPreferences = recipientsDatabase.getRecipientSettings(destination);
-
-    if (recipientPreferences.isPresent()) {
-      return recipientPreferences.get().isRegistered();
+  private static boolean isPushDestination(Context context, Recipient destination) {
+    if (destination.resolve().getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
+      return true;
+    } else if (destination.resolve().getRegistered() == RecipientDatabase.RegisteredState.NOT_REGISTERED) {
+      return false;
     } else {
       try {
         SignalServiceAccountManager   accountManager = AccountManagerFactory.createManager(context);
-        Optional<ContactTokenDetails> registeredUser = accountManager.getContact(destination.serialize());
+        Optional<ContactTokenDetails> registeredUser = accountManager.getContact(destination.getAddress().serialize());
 
         if (!registeredUser.isPresent()) {
-          recipientsDatabase.setRegistered(new LinkedList<>(), Util.asList(destination));
+          DatabaseFactory.getRecipientDatabase(context).setRegistered(destination, RecipientDatabase.RegisteredState.NOT_REGISTERED);
           return false;
         } else {
-          recipientsDatabase.setRegistered(Util.asList(destination), new LinkedList<>());
+          DatabaseFactory.getRecipientDatabase(context).setRegistered(destination, RecipientDatabase.RegisteredState.REGISTERED);
           return true;
         }
       } catch (IOException e1) {

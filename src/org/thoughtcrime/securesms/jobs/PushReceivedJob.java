@@ -1,12 +1,14 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
@@ -27,11 +29,11 @@ public abstract class PushReceivedJob extends ContextJob {
   }
 
   public void handle(SignalServiceEnvelope envelope, boolean sendExplicitReceipt) {
-    Address source = Address.fromExternal(context, envelope.getSource());
+    Address   source    = Address.fromExternal(context, envelope.getSource());
+    Recipient recipient = Recipient.from(context, source, false);
 
-    if (!isActiveNumber(context, source)) {
-      DatabaseFactory.getRecipientDatabase(context).setRegistered(Util.asList(source), new LinkedList<>());
-      Recipient recipient = Recipient.from(context, source, false);
+    if (!isActiveNumber(recipient)) {
+      DatabaseFactory.getRecipientDatabase(context).setRegistered(recipient, RecipientDatabase.RegisteredState.REGISTERED);
       ApplicationContext.getInstance(context).getJobManager().add(new DirectoryRefreshJob(context, KeyCachingService.getMasterSecret(context), recipient));
     }
 
@@ -68,9 +70,8 @@ public abstract class PushReceivedJob extends ContextJob {
                                                                                                envelope.getTimestamp()));
   }
 
-  private boolean isActiveNumber(Context context, Address address) {
-    Optional<RecipientSettings> settings = DatabaseFactory.getRecipientDatabase(context).getRecipientSettings(address);
-    return settings.isPresent() && settings.get().isRegistered();
+  private boolean isActiveNumber(@NonNull Recipient recipient) {
+    return recipient.resolve().getRegistered() == RecipientDatabase.RegisteredState.REGISTERED;
   }
 
 

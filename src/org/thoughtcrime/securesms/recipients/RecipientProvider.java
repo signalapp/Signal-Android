@@ -33,7 +33,9 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
+import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
 import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
@@ -187,38 +189,52 @@ class RecipientProvider {
   }
 
   static class RecipientDetails {
-    @Nullable public final String          name;
-    @Nullable public final String          customLabel;
-    @NonNull  public final ContactPhoto    avatar;
-    @Nullable public final Uri             contactUri;
-    @Nullable public final MaterialColor   color;
-    @Nullable public final Uri             ringtone;
-              public final long            mutedUntil;
-    @Nullable public final VibrateState    vibrateState;
-              public final boolean         blocked;
-              public final int             expireMessages;
-    @NonNull  public final List<Recipient> participants;
-    @Nullable public final String          profileName;
+    @Nullable public final String            name;
+    @Nullable public final String            customLabel;
+    @NonNull  public final ContactPhoto      avatar;
+    @Nullable public final Uri               contactUri;
+    @Nullable public final MaterialColor     color;
+    @Nullable public final Uri               ringtone;
+              public final long              mutedUntil;
+    @Nullable public final VibrateState      vibrateState;
+              public final boolean           blocked;
+              public final int               expireMessages;
+    @NonNull  public final List<Recipient>   participants;
+    @Nullable public final String            profileName;
+              public final boolean           seenInviteReminder;
+              public final Optional<Integer> defaultSubscriptionId;
+    @NonNull  public final RegisteredState   registered;
+    @Nullable public final byte[]            profileKey;
+    @Nullable public final String            profileAvatar;
+              public final boolean           profileSharing;
+              public final boolean           systemContact;
 
     public RecipientDetails(@Nullable String name, @Nullable String customLabel,
                             @Nullable Uri contactUri, @NonNull ContactPhoto avatar,
                             @Nullable RecipientSettings settings,
                             @Nullable List<Recipient> participants)
     {
-      this.customLabel    = customLabel;
-      this.avatar         = avatar;
-      this.contactUri     = contactUri;
-      this.color          = settings  != null ? settings.getColor() : null;
-      this.ringtone       = settings  != null ? settings.getRingtone() : null;
-      this.mutedUntil     = settings  != null ? settings.getMuteUntil() : 0;
-      this.vibrateState   = settings  != null ? settings.getVibrateState() : null;
-      this.blocked        = settings != null && settings.isBlocked();
-      this.expireMessages = settings  != null ? settings.getExpireMessages() : 0;
-      this.participants   = participants == null ? new LinkedList<Recipient>() : participants;
-      this.profileName    = settings != null ? settings.getProfileName() : null;
+      this.customLabel           = customLabel;
+      this.avatar                = avatar;
+      this.contactUri            = contactUri;
+      this.color                 = settings     != null ? settings.getColor() : null;
+      this.ringtone              = settings     != null ? settings.getRingtone() : null;
+      this.mutedUntil            = settings     != null ? settings.getMuteUntil() : 0;
+      this.vibrateState          = settings     != null ? settings.getVibrateState() : null;
+      this.blocked               = settings != null && settings.isBlocked();
+      this.expireMessages        = settings     != null ? settings.getExpireMessages() : 0;
+      this.participants          = participants == null ? new LinkedList<Recipient>() : participants;
+      this.profileName           = settings     != null ? settings.getProfileName() : null;
+      this.seenInviteReminder    = settings != null && settings.hasSeenInviteReminder();
+      this.defaultSubscriptionId = settings     != null ? settings.getDefaultSubscriptionId() : Optional.absent();
+      this.registered            = settings     != null ? settings.getRegistered() : RegisteredState.UNKNOWN;
+      this.profileKey            = settings     != null ? settings.getProfileKey() : null;
+      this.profileAvatar         = settings     != null ? settings.getProfileAvatar() : null;
+      this.profileSharing        = settings != null && settings.isProfileSharing();
+      this.systemContact         = settings != null && !TextUtils.isEmpty(settings.getSystemDisplayName());
 
       if (name == null && settings != null) this.name = settings.getSystemDisplayName();
-      else                                     this.name = name;
+      else                                  this.name = name;
     }
   }
 

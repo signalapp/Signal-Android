@@ -73,9 +73,8 @@ public class AndroidAutoReplyReceiver extends MasterSecretBroadcastReceiver {
 
           long replyThreadId;
 
-          Optional<RecipientSettings> settings = DatabaseFactory.getRecipientDatabase(context).getRecipientSettings(address);
-          int  subscriptionId = settings.isPresent() ? settings.get().getDefaultSubscriptionId().or(-1) : -1;
-          long expiresIn      = settings.isPresent() ? settings.get().getExpireMessages() * 1000 : 0;
+          int  subscriptionId = recipient.getDefaultSubscriptionId().or(-1);
+          long expiresIn      = recipient.getExpireMessages() * 1000;
 
           if (recipient.isGroupRecipient()) {
             Log.w("AndroidAutoReplyReceiver", "GroupRecipient, Sending media message");

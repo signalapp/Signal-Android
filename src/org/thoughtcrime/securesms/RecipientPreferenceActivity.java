@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
@@ -43,7 +44,6 @@ import org.thoughtcrime.securesms.preferences.AdvancedRingtonePreference;
 import org.thoughtcrime.securesms.preferences.ColorPreference;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
-import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -350,8 +350,6 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
           uri = Uri.parse(value);
         }
 
-        recipient.setRingtone(uri);
-
         new AsyncTask<Uri, Void, Void>() {
           @Override
           protected Void doInBackground(Uri... params) {
@@ -370,8 +368,6 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       public boolean onPreferenceChange(Preference preference, Object newValue) {
               int          value        = Integer.parseInt((String) newValue);
         final VibrateState vibrateState = VibrateState.fromId(value);
-
-        recipient.setVibrate(vibrateState);
 
         new AsyncTask<Void, Void, Void>() {
           @Override
@@ -397,16 +393,13 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         if (selectedColor == null) return true;
 
         if (preference.isEnabled() && !currentColor.equals(selectedColor)) {
-          recipient.setColor(selectedColor);
-
           new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
               Context context = getActivity();
-              DatabaseFactory.getRecipientDatabase(context)
-                             .setColor(recipient, selectedColor);
+              DatabaseFactory.getRecipientDatabase(context).setColor(recipient, selectedColor);
 
-              if (DirectoryHelper.getUserCapabilities(context, recipient) == DirectoryHelper.Capability.SUPPORTED) {
+              if (recipient.resolve().getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
                 ApplicationContext.getInstance(context)
                                   .getJobManager()
                                   .add(new MultiDeviceContactUpdateJob(context, recipient.getAddress()));
@@ -516,8 +509,6 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       }
 
       private void setBlocked(final Recipient recipient, final boolean blocked) {
-        recipient.setBlocked(blocked);
-
         new AsyncTask<Void, Void, Void>() {
           @Override
           protected Void doInBackground(Void... params) {

@@ -18,7 +18,6 @@
 package org.thoughtcrime.securesms;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -54,7 +53,7 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
-import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.GroupManager.GroupActionResult;
@@ -167,9 +166,8 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
-  private static boolean isActiveInDirectory(Context context, Recipient recipient) {
-    Optional<RecipientSettings> preferences = DatabaseFactory.getRecipientDatabase(context).getRecipientSettings(recipient.getAddress());
-    return preferences.isPresent() && preferences.get().isRegistered();
+  private static boolean isActiveInDirectory(Recipient recipient) {
+    return recipient.resolve().getRegistered() == RecipientDatabase.RegisteredState.REGISTERED;
   }
 
   private void addSelectedContacts(@NonNull Recipient... recipients) {
@@ -495,7 +493,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
       final List<Result> results = new LinkedList<>();
 
       for (Recipient recipient : recipients) {
-        boolean isPush = isActiveInDirectory(activity, recipient);
+        boolean isPush = isActiveInDirectory(recipient);
 
         if (failIfNotPush && !isPush) {
           results.add(new Result(null, false, activity.getString(R.string.GroupCreateActivity_cannot_add_non_push_to_existing_group,

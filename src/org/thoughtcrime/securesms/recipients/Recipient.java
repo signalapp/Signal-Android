@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
+import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
 import org.thoughtcrime.securesms.recipients.RecipientProvider.RecipientDetails;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
@@ -61,16 +62,24 @@ public class Recipient implements RecipientModifiedListener {
   private           boolean stale;
   private           boolean resolving;
 
-  private ContactPhoto contactPhoto;
-  private Uri          contactUri;
-  private Uri          ringtone       = null;
-  private long         mutedUntil     = 0;
-  private boolean      blocked        = false;
-  private VibrateState vibrate        = VibrateState.DEFAULT;
-  private int          expireMessages = 0;
-  private String       profileName    = null;
+  private           ContactPhoto      contactPhoto;
+  private           Uri               contactUri;
+  private @Nullable Uri               ringtone              = null;
+  private           long              mutedUntil            = 0;
+  private           boolean           blocked               = false;
+  private           VibrateState      vibrate               = VibrateState.DEFAULT;
+  private           int               expireMessages        = 0;
+  private           Optional<Integer> defaultSubscriptionId = Optional.absent();
+  private @NonNull  RegisteredState   registered            = RegisteredState.UNKNOWN;
 
-  @Nullable private MaterialColor color;
+  private @Nullable MaterialColor  color;
+  private           boolean        seenInviteReminder;
+  private @Nullable byte[]         profileKey;
+  private @Nullable String         profileName;
+  private @Nullable String         profileAvatar;
+  private           boolean        profileSharing;
+  private           boolean        isSystemContact;
+
 
   public static @NonNull Recipient from(@NonNull Context context, @NonNull Address address, boolean asynchronous) {
     if (address == null) throw new AssertionError(address);
@@ -98,31 +107,45 @@ public class Recipient implements RecipientModifiedListener {
     this.resolving    = true;
 
     if (stale != null) {
-      this.name           = stale.name;
-      this.contactUri     = stale.contactUri;
-      this.contactPhoto   = stale.contactPhoto;
-      this.color          = stale.color;
-      this.customLabel    = stale.customLabel;
-      this.ringtone       = stale.ringtone;
-      this.mutedUntil     = stale.mutedUntil;
-      this.blocked        = stale.blocked;
-      this.vibrate        = stale.vibrate;
-      this.expireMessages = stale.expireMessages;
-      this.profileName    = stale.profileName;
+      this.name                  = stale.name;
+      this.contactUri            = stale.contactUri;
+      this.contactPhoto          = stale.contactPhoto;
+      this.color                 = stale.color;
+      this.customLabel           = stale.customLabel;
+      this.ringtone              = stale.ringtone;
+      this.mutedUntil            = stale.mutedUntil;
+      this.blocked               = stale.blocked;
+      this.vibrate               = stale.vibrate;
+      this.expireMessages        = stale.expireMessages;
+      this.seenInviteReminder    = stale.seenInviteReminder;
+      this.defaultSubscriptionId = stale.defaultSubscriptionId;
+      this.registered            = stale.registered;
+      this.profileKey            = stale.profileKey;
+      this.profileName           = stale.profileName;
+      this.profileAvatar         = stale.profileAvatar;
+      this.profileSharing        = stale.profileSharing;
+      this.isSystemContact       = stale.isSystemContact;
       this.participants.clear();
       this.participants.addAll(stale.participants);
     }
 
     if (details.isPresent()) {
-      this.name           = details.get().name;
-      this.contactPhoto   = details.get().avatar;
-      this.color          = details.get().color;
-      this.ringtone       = details.get().ringtone;
-      this.mutedUntil     = details.get().mutedUntil;
-      this.blocked        = details.get().blocked;
-      this.vibrate        = details.get().vibrateState;
-      this.expireMessages = details.get().expireMessages;
-      this.profileName    = details.get().profileName;
+      this.name                  = details.get().name;
+      this.contactPhoto          = details.get().avatar;
+      this.color                 = details.get().color;
+      this.ringtone              = details.get().ringtone;
+      this.mutedUntil            = details.get().mutedUntil;
+      this.blocked               = details.get().blocked;
+      this.vibrate               = details.get().vibrateState;
+      this.expireMessages        = details.get().expireMessages;
+      this.seenInviteReminder    = details.get().seenInviteReminder;
+      this.defaultSubscriptionId = details.get().defaultSubscriptionId;
+      this.registered            = details.get().registered;
+      this.profileKey            = details.get().profileKey;
+      this.profileName           = details.get().profileName;
+      this.profileAvatar         = details.get().profileAvatar;
+      this.profileSharing        = details.get().profileSharing;
+      this.isSystemContact       = details.get().systemContact;
       this.participants.clear();
       this.participants.addAll(details.get().participants);
     }
@@ -132,25 +155,35 @@ public class Recipient implements RecipientModifiedListener {
       public void onSuccess(RecipientDetails result) {
         if (result != null) {
           synchronized (Recipient.this) {
-            Recipient.this.name           = result.name;
-            Recipient.this.contactUri     = result.contactUri;
-            Recipient.this.contactPhoto   = result.avatar;
-            Recipient.this.color          = result.color;
-            Recipient.this.customLabel    = result.customLabel;
-            Recipient.this.ringtone       = result.ringtone;
-            Recipient.this.mutedUntil     = result.mutedUntil;
-            Recipient.this.blocked        = result.blocked;
-            Recipient.this.vibrate        = result.vibrateState;
-            Recipient.this.expireMessages = result.expireMessages;
-            Recipient.this.profileName    = result.profileName;
+            Recipient.this.name                  = result.name;
+            Recipient.this.contactUri            = result.contactUri;
+            Recipient.this.contactPhoto          = result.avatar;
+            Recipient.this.color                 = result.color;
+            Recipient.this.customLabel           = result.customLabel;
+            Recipient.this.ringtone              = result.ringtone;
+            Recipient.this.mutedUntil            = result.mutedUntil;
+            Recipient.this.blocked               = result.blocked;
+            Recipient.this.vibrate               = result.vibrateState;
+            Recipient.this.expireMessages        = result.expireMessages;
+            Recipient.this.seenInviteReminder    = result.seenInviteReminder;
+            Recipient.this.defaultSubscriptionId = result.defaultSubscriptionId;
+            Recipient.this.registered            = result.registered;
+            Recipient.this.profileKey            = result.profileKey;
+            Recipient.this.profileName           = result.profileName;
+            Recipient.this.profileAvatar         = result.profileAvatar;
+            Recipient.this.profileSharing        = result.profileSharing;
+            Recipient.this.profileName           = result.profileName;
+            Recipient.this.isSystemContact       = result.systemContact;
 
             Recipient.this.participants.clear();
             Recipient.this.participants.addAll(result.participants);
-            Recipient.this.resolving      = false;
+            Recipient.this.resolving = false;
 
             if (!listeners.isEmpty()) {
               for (Recipient recipient : participants) recipient.addListener(Recipient.this);
             }
+
+            Recipient.this.notifyAll();
           }
 
           notifyListeners();
@@ -165,18 +198,25 @@ public class Recipient implements RecipientModifiedListener {
   }
 
   Recipient(@NonNull Address address, @NonNull RecipientDetails details) {
-    this.address        = address;
-    this.contactUri     = details.contactUri;
-    this.name           = details.name;
-    this.contactPhoto   = details.avatar;
-    this.color          = details.color;
-    this.customLabel    = details.customLabel;
-    this.ringtone       = details.ringtone;
-    this.mutedUntil     = details.mutedUntil;
-    this.blocked        = details.blocked;
-    this.vibrate        = details.vibrateState;
-    this.expireMessages = details.expireMessages;
-    this.profileName    = details.profileName;
+    this.address               = address;
+    this.contactUri            = details.contactUri;
+    this.name                  = details.name;
+    this.contactPhoto          = details.avatar;
+    this.color                 = details.color;
+    this.customLabel           = details.customLabel;
+    this.ringtone              = details.ringtone;
+    this.mutedUntil            = details.mutedUntil;
+    this.blocked               = details.blocked;
+    this.vibrate               = details.vibrateState;
+    this.expireMessages        = details.expireMessages;
+    this.seenInviteReminder    = details.seenInviteReminder;
+    this.defaultSubscriptionId = details.defaultSubscriptionId;
+    this.registered            = details.registered;
+    this.profileKey            = details.profileKey;
+    this.profileName           = details.profileName;
+    this.profileAvatar         = details.profileAvatar;
+    this.profileSharing        = details.profileSharing;
+    this.isSystemContact       = details.systemContact;
     this.participants.addAll(details.participants);
     this.resolving    = false;
   }
@@ -222,8 +262,52 @@ public class Recipient implements RecipientModifiedListener {
     return customLabel;
   }
 
-  public @Nullable String getProfileName() {
+  public synchronized Optional<Integer> getDefaultSubscriptionId() {
+    return defaultSubscriptionId;
+  }
+
+  public void setDefaultSubscriptionId(Optional<Integer> defaultSubscriptionId) {
+    synchronized (this) {
+      this.defaultSubscriptionId = defaultSubscriptionId;
+    }
+
+    notifyListeners();
+  }
+
+  public synchronized @Nullable String getProfileName() {
     return profileName;
+  }
+
+  public void setProfileName(@Nullable String profileName) {
+    synchronized (this) {
+      this.profileName = profileName;
+    }
+
+    notifyListeners();
+  }
+
+  public synchronized @Nullable String getProfileAvatar() {
+    return profileAvatar;
+  }
+
+  public void setProfileAvatar(@Nullable String profileAvatar) {
+    synchronized (this) {
+      this.profileAvatar = profileAvatar;
+    }
+
+    notifyListeners();
+  }
+
+  public synchronized boolean isProfileSharing() {
+    return profileSharing;
+  }
+
+  public void setProfileSharing(boolean value) {
+    synchronized (this) {
+      this.profileSharing = value;
+    }
+
+    notifyListeners();
   }
 
   public boolean isGroupRecipient() {
@@ -263,6 +347,14 @@ public class Recipient implements RecipientModifiedListener {
 
   public synchronized @NonNull ContactPhoto getContactPhoto() {
     return contactPhoto;
+  }
+
+  public void setContactPhoto(@NonNull ContactPhoto contactPhoto) {
+    synchronized (this) {
+      this.contactPhoto = contactPhoto;
+    }
+
+    notifyListeners();
   }
 
   public synchronized @Nullable Uri getRingtone() {
@@ -325,6 +417,60 @@ public class Recipient implements RecipientModifiedListener {
     notifyListeners();
   }
 
+  public synchronized boolean hasSeenInviteReminder() {
+    return seenInviteReminder;
+  }
+
+  public void setHasSeenInviteReminder(boolean value) {
+    synchronized (this) {
+      this.seenInviteReminder = value;
+    }
+
+    notifyListeners();
+  }
+
+  public synchronized RegisteredState getRegistered() {
+    return registered;
+  }
+
+  public void setRegistered(@NonNull RegisteredState value) {
+    synchronized (this) {
+      this.registered = value;
+    }
+
+    notifyListeners();
+  }
+
+  public synchronized @Nullable byte[] getProfileKey() {
+    return profileKey;
+  }
+
+  public void setProfileKey(@Nullable byte[] profileKey) {
+    synchronized (this) {
+      this.profileKey = profileKey;
+    }
+
+    notifyListeners();
+  }
+
+  public synchronized boolean isSystemContact() {
+    return isSystemContact;
+  }
+
+  public void setSystemDisplayName(@Nullable String displayName) {
+    synchronized (this) {
+      if (displayName == null) this.name = profileName;
+      else                     this.name = displayName;
+    }
+
+    notifyListeners();
+  }
+
+  public synchronized Recipient resolve() {
+    while (resolving) Util.wait(this, 0);
+    return this;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -368,5 +514,6 @@ public class Recipient implements RecipientModifiedListener {
   synchronized boolean isResolving() {
     return resolving;
   }
+
 
 }

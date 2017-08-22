@@ -52,11 +52,6 @@ public class UnknownSenderView extends FrameLayout {
               if (threadId != -1) DatabaseFactory.getThreadDatabase(context).setHasSent(threadId, true);
               return null;
             }
-
-            @Override
-            protected void onPostExecute(Void result) {
-              recipient.setBlocked(true);
-            }
           }.execute();
         })
         .setNegativeButton(android.R.string.cancel, null)
@@ -94,7 +89,7 @@ public class UnknownSenderView extends FrameLayout {
           new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
-              DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient.getAddress(), true);
+              DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true);
               if (threadId != -1) DatabaseFactory.getThreadDatabase(context).setHasSent(threadId, true);
               return null;
             }

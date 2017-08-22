@@ -108,8 +108,7 @@ import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MmsSmsColumns.Types;
-import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientPreferenceEvent;
-import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
+import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.identity.IdentityRecordList;
@@ -142,7 +141,6 @@ import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
-import org.thoughtcrime.securesms.util.DirectoryHelper.Capability;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
@@ -574,10 +572,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         new AsyncTask<Void, Void, Void>() {
           @Override
           protected Void doInBackground(Void... params) {
-            DatabaseFactory.getRecipientDatabase(ConversationActivity.this)
-                           .setExpireMessages(recipient, expirationTime);
-            recipient.setExpireMessages(expirationTime);
-
+            DatabaseFactory.getRecipientDatabase(ConversationActivity.this).setExpireMessages(recipient, expirationTime);
             OutgoingExpirationUpdateMessage outgoingMessage = new OutgoingExpirationUpdateMessage(getRecipient(), System.currentTimeMillis(), expirationTime * 1000);
             MessageSender.send(ConversationActivity.this, masterSecret, outgoingMessage, threadId, false, null);
 
@@ -639,8 +634,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         .setPositiveButton(R.string.ConversationActivity_unblock, new DialogInterface.OnClickListener() {
           @Override
           public void onClick(DialogInterface dialog, int which) {
-            recipient.setBlocked(false);
-
             new AsyncTask<Void, Void, Void>() {
               @Override
               protected Void doInBackground(Void... params) {
@@ -1012,19 +1005,19 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     new AsyncTask<Recipient, Void, boolean[]>() {
       @Override
       protected boolean[] doInBackground(Recipient... params) {
-        Context           context      = ConversationActivity.this;
-        Recipient         recipient    = params[0];
-        Capability capability = DirectoryHelper.getUserCapabilities(context, recipient);
+        Context           context         = ConversationActivity.this;
+        Recipient         recipient       = params[0];
+        RegisteredState   registeredState = recipient.resolve().getRegistered();
 
-        if (capability == Capability.UNKNOWN) {
+        if (registeredState == RegisteredState.UNKNOWN) {
           try {
-            capability = DirectoryHelper.refreshDirectoryFor(context, masterSecret, recipient);
+            registeredState = DirectoryHelper.refreshDirectoryFor(context, masterSecret, recipient);
           } catch (IOException e) {
             Log.w(TAG, e);
           }
         }
 
-        return new boolean[] {capability == Capability.SUPPORTED, Util.isDefaultSmsProvider(context)};
+        return new boolean[] {registeredState == RegisteredState.REGISTERED, Util.isDefaultSmsProvider(context)};
       }
 
       @Override
@@ -1041,11 +1034,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void onSecurityUpdated() {
-    updateRecipientPreferences();
-  }
-
-  private void updateRecipientPreferences() {
-    new RecipientPreferencesTask().execute(recipient);
+    updateInviteReminder(recipient.hasSeenInviteReminder());
+    updateDefaultSubscriptionId(recipient.getDefaultSubscriptionId());
   }
 
   protected void updateInviteReminder(boolean seenInvite) {
@@ -1284,17 +1274,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         titleView.setVerified(identityRecords.isVerified());
         setBlockedUserState(recipient, isSecureText, isDefaultSms);
         setActionBarColor(recipient.getColor());
+        updateInviteReminder(recipient.hasSeenInviteReminder());
+        updateDefaultSubscriptionId(recipient.getDefaultSubscriptionId());
+        initializeSecurity(isSecureText, isDefaultSms);
         invalidateOptionsMenu();
-        updateRecipientPreferences();
       }
     });
-  }
-
-  @Subscribe(threadMode = ThreadMode.MAIN)
-  public void onRecipientPreferenceUpdate(final RecipientPreferenceEvent event) {
-    if (event.getRecipient().getAddress().equals(this.recipient.getAddress())) {
-      new RecipientPreferencesTask().execute(this.recipient);
-    }
   }
 
   @Subscribe(threadMode = ThreadMode.MAIN)
@@ -1652,7 +1637,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       @Override
       protected Long doInBackground(OutgoingMediaMessage... messages) {
         if (initiating) {
-          DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient.getAddress(), true);
+          DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true);
         }
 
         return MessageSender.send(context, masterSecret, messages[0], threadId, forceSms, new SmsDatabase.InsertListener() {
@@ -1692,7 +1677,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       @Override
       protected Long doInBackground(OutgoingTextMessage... messages) {
         if (initiatingConversation) {
-          DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient.getAddress(), true);
+          DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true);
         }
 
         return MessageSender.send(context, masterSecret, messages[0], threadId, forceSms, new SmsDatabase.InsertListener() {
@@ -1987,27 +1972,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   public void onAttachmentChanged() {
     handleSecurityChange(isSecureText, isDefaultSms);
     updateToggleButtonState();
-  }
-
-  private class RecipientPreferencesTask extends AsyncTask<Recipient, Void, Pair<Recipient,RecipientSettings>> {
-    @Override
-    protected Pair<Recipient, RecipientSettings> doInBackground(Recipient... recipient) {
-      if (recipient.length != 1 || recipient[0] == null) {
-        throw new AssertionError("task needs exactly one Recipients object");
-      }
-
-      Optional<RecipientSettings> prefs = DatabaseFactory.getRecipientDatabase(ConversationActivity.this)
-                                                         .getRecipientSettings(recipient[0].getAddress());
-      return new Pair<>(recipient[0], prefs.orNull());
-    }
-
-    @Override
-    protected void onPostExecute(@NonNull  Pair<Recipient, RecipientSettings> result) {
-      if (result.first == recipient) {
-        updateInviteReminder(result.second != null && result.second.hasSeenInviteReminder());
-        updateDefaultSubscriptionId(result.second != null ? result.second.getDefaultSubscriptionId() : Optional.<Integer>absent());
-      }
-    }
   }
 
   private class UnverifiedDismissedListener implements UnverifiedBannerView.DismissListener {
