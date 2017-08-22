@@ -45,7 +45,7 @@ public class MultiDeviceBlockedUpdateJob extends MasterSecretJob implements Inje
   public void onRun(MasterSecret masterSecret)
       throws IOException, UntrustedIdentityException
   {
-    RecipientDatabase          database      = DatabaseFactory.getRecipientPreferenceDatabase(context);
+    RecipientDatabase          database      = DatabaseFactory.getRecipientDatabase(context);
     SignalServiceMessageSender messageSender = messageSenderFactory.create();
     BlockedReader              reader        = database.readerForBlocked(database.getBlocked());
     List<String>               blocked       = new LinkedList<>();

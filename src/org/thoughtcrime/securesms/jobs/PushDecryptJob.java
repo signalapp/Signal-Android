@@ -26,7 +26,7 @@ import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientsPreferences;
+import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.groups.GroupMessageProcessor;
@@ -391,7 +391,7 @@ public class PushDecryptJob extends ContextJob {
 
     database.insertSecureDecryptedMessageInbox(masterSecret, mediaMessage, -1);
 
-    DatabaseFactory.getRecipientPreferenceDatabase(context).setExpireMessages(recipient, message.getExpiresInSeconds());
+    DatabaseFactory.getRecipientDatabase(context).setExpireMessages(recipient, message.getExpiresInSeconds());
 
     if (smsMessageId.isPresent()) {
       DatabaseFactory.getSmsDatabase(context).deleteMessage(smsMessageId.get());
@@ -549,7 +549,7 @@ public class PushDecryptJob extends ContextJob {
 
     database.markAsSent(messageId, true);
 
-    DatabaseFactory.getRecipientPreferenceDatabase(context).setExpireMessages(recipient, message.getMessage().getExpiresInSeconds());
+    DatabaseFactory.getRecipientDatabase(context).setExpireMessages(recipient, message.getMessage().getExpiresInSeconds());
 
     if (smsMessageId.isPresent()) {
       DatabaseFactory.getSmsDatabase(context).deleteMessage(smsMessageId.get());
@@ -803,12 +803,12 @@ public class PushDecryptJob extends ContextJob {
   private void handleProfileKey(@NonNull SignalServiceEnvelope envelope,
                                 @NonNull SignalServiceDataMessage message)
   {
-    RecipientDatabase               database      = DatabaseFactory.getRecipientPreferenceDatabase(context);
-    Address                         sourceAddress = Address.fromExternal(context, envelope.getSource());
-    Optional<RecipientsPreferences> preferences   = database.getRecipientsPreferences(sourceAddress);
+    RecipientDatabase           database      = DatabaseFactory.getRecipientDatabase(context);
+    Address                     sourceAddress = Address.fromExternal(context, envelope.getSource());
+    Optional<RecipientSettings> settings      = database.getRecipientSettings(sourceAddress);
 
-    if (!preferences.isPresent() || preferences.get().getProfileKey() == null ||
-        !MessageDigest.isEqual(message.getProfileKey().get(), preferences.get().getProfileKey()))
+    if (!settings.isPresent() || settings.get().getProfileKey() == null ||
+        !MessageDigest.isEqual(message.getProfileKey().get(), settings.get().getProfileKey()))
     {
       database.setProfileKey(sourceAddress, message.getProfileKey().get());
 

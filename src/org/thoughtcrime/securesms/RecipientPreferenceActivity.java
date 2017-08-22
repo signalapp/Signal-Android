@@ -355,7 +355,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         new AsyncTask<Uri, Void, Void>() {
           @Override
           protected Void doInBackground(Uri... params) {
-            DatabaseFactory.getRecipientPreferenceDatabase(getActivity())
+            DatabaseFactory.getRecipientDatabase(getActivity())
                            .setRingtone(recipient, params[0]);
             return null;
           }
@@ -376,7 +376,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         new AsyncTask<Void, Void, Void>() {
           @Override
           protected Void doInBackground(Void... params) {
-            DatabaseFactory.getRecipientPreferenceDatabase(getActivity())
+            DatabaseFactory.getRecipientDatabase(getActivity())
                            .setVibrate(recipient, vibrateState);
             return null;
           }
@@ -403,7 +403,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
             @Override
             protected Void doInBackground(Void... params) {
               Context context = getActivity();
-              DatabaseFactory.getRecipientPreferenceDatabase(context)
+              DatabaseFactory.getRecipientDatabase(context)
                              .setColor(recipient, selectedColor);
 
               if (DirectoryHelper.getUserCapabilities(context, recipient) == DirectoryHelper.Capability.SUPPORTED) {
@@ -449,7 +449,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         new AsyncTask<Void, Void, Void>() {
           @Override
           protected Void doInBackground(Void... params) {
-            DatabaseFactory.getRecipientPreferenceDatabase(getActivity())
+            DatabaseFactory.getRecipientDatabase(getActivity())
                            .setMuted(recipient, until);
             return null;
           }
@@ -523,7 +523,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
           protected Void doInBackground(Void... params) {
             Context context = getActivity();
 
-            DatabaseFactory.getRecipientPreferenceDatabase(context)
+            DatabaseFactory.getRecipientDatabase(context)
                            .setBlocked(recipient, blocked);
 
             ApplicationContext.getInstance(context)

@@ -8,7 +8,7 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientsPreferences;
+import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.MessageRetrievalService;
@@ -71,13 +71,13 @@ public class RetrieveProfileJob extends ContextJob implements InjectableType {
   private void handleIndividualRecipient(Recipient recipient)
       throws IOException, InvalidKeyException, InvalidNumberException
   {
-    String                          number               = recipient.getAddress().toPhoneString();
-    SignalServiceProfile            profile              = retrieveProfile(number);
-    Optional<RecipientsPreferences> recipientPreferences = DatabaseFactory.getRecipientPreferenceDatabase(context).getRecipientsPreferences(recipient.getAddress());
+    String                      number            = recipient.getAddress().toPhoneString();
+    SignalServiceProfile        profile           = retrieveProfile(number);
+    Optional<RecipientSettings> recipientSettings = DatabaseFactory.getRecipientDatabase(context).getRecipientSettings(recipient.getAddress());
 
     setIdentityKey(recipient, profile.getIdentityKey());
-    setProfileName(recipient, recipientPreferences, profile.getName());
-    setProfileAvatar(recipient, recipientPreferences, profile.getAvatar());
+    setProfileName(recipient, recipientSettings, profile.getName());
+    setProfileAvatar(recipient, recipientSettings, profile.getAvatar());
   }
 
   private void handleGroupRecipient(Recipient group)
@@ -127,7 +127,7 @@ public class RetrieveProfileJob extends ContextJob implements InjectableType {
     }
   }
 
-  private void setProfileName(Recipient recipient, Optional<RecipientsPreferences> recipientPreferences, String profileName) {
+  private void setProfileName(Recipient recipient, Optional<RecipientSettings> recipientPreferences, String profileName) {
     try {
       if (!recipientPreferences.isPresent()) return;
       if (recipientPreferences.get().getProfileKey() == null) return;
@@ -140,7 +140,7 @@ public class RetrieveProfileJob extends ContextJob implements InjectableType {
       }
 
       if (!Util.equals(plaintextProfileName, recipientPreferences.get().getProfileName())) {
-        DatabaseFactory.getRecipientPreferenceDatabase(context).setProfileName(recipient.getAddress(), plaintextProfileName);
+        DatabaseFactory.getRecipientDatabase(context).setProfileName(recipient.getAddress(), plaintextProfileName);
         Recipient.clearCache(context);
       }
     } catch (ProfileCipher.InvalidCiphertextException | IOException e) {
@@ -148,7 +148,7 @@ public class RetrieveProfileJob extends ContextJob implements InjectableType {
     }
   }
 
-  private void setProfileAvatar(Recipient recipient, Optional<RecipientsPreferences> recipientPreferences, String profileAvatar) {
+  private void setProfileAvatar(Recipient recipient, Optional<RecipientSettings> recipientPreferences, String profileAvatar) {
     if (!recipientPreferences.isPresent())                  return;
     if (recipientPreferences.get().getProfileKey() == null) return;
 

@@ -7,7 +7,7 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
-import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientsPreferences;
+import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.Util;
@@ -30,7 +30,7 @@ public abstract class PushReceivedJob extends ContextJob {
     Address source = Address.fromExternal(context, envelope.getSource());
 
     if (!isActiveNumber(context, source)) {
-      DatabaseFactory.getRecipientPreferenceDatabase(context).setRegistered(Util.asList(source), new LinkedList<>());
+      DatabaseFactory.getRecipientDatabase(context).setRegistered(Util.asList(source), new LinkedList<>());
       Recipient recipient = Recipient.from(context, source, false);
       ApplicationContext.getInstance(context).getJobManager().add(new DirectoryRefreshJob(context, KeyCachingService.getMasterSecret(context), recipient));
     }
@@ -69,8 +69,8 @@ public abstract class PushReceivedJob extends ContextJob {
   }
 
   private boolean isActiveNumber(Context context, Address address) {
-    Optional<RecipientsPreferences> preferences = DatabaseFactory.getRecipientPreferenceDatabase(context).getRecipientsPreferences(address);
-    return preferences.isPresent() && preferences.get().isRegistered();
+    Optional<RecipientSettings> settings = DatabaseFactory.getRecipientDatabase(context).getRecipientSettings(address);
+    return settings.isPresent() && settings.get().isRegistered();
   }
 
 

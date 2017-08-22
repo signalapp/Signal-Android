@@ -182,7 +182,7 @@ public class DatabaseFactory {
     return getInstance(context).groupDatabase;
   }
 
-  public static RecipientDatabase getRecipientPreferenceDatabase(Context context) {
+  public static RecipientDatabase getRecipientDatabase(Context context) {
     return getInstance(context).recipientDatabase;
   }
 

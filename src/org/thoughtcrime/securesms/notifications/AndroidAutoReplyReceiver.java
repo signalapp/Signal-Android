@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
-import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientsPreferences;
+import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -73,9 +73,9 @@ public class AndroidAutoReplyReceiver extends MasterSecretBroadcastReceiver {
 
           long replyThreadId;
 
-          Optional<RecipientsPreferences> preferences = DatabaseFactory.getRecipientPreferenceDatabase(context).getRecipientsPreferences(address);
-          int  subscriptionId = preferences.isPresent() ? preferences.get().getDefaultSubscriptionId().or(-1) : -1;
-          long expiresIn      = preferences.isPresent() ? preferences.get().getExpireMessages() * 1000 : 0;
+          Optional<RecipientSettings> settings = DatabaseFactory.getRecipientDatabase(context).getRecipientSettings(address);
+          int  subscriptionId = settings.isPresent() ? settings.get().getDefaultSubscriptionId().or(-1) : -1;
+          long expiresIn      = settings.isPresent() ? settings.get().getExpireMessages() * 1000 : 0;
 
           if (recipient.isGroupRecipient()) {
             Log.w("AndroidAutoReplyReceiver", "GroupRecipient, Sending media message");

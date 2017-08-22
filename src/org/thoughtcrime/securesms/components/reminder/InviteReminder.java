@@ -23,7 +23,7 @@ public class InviteReminder extends Reminder {
         new AsyncTask<Void,Void,Void>() {
 
           @Override protected Void doInBackground(Void... params) {
-            DatabaseFactory.getRecipientPreferenceDatabase(context).setSeenInviteReminder(recipient, true);
+            DatabaseFactory.getRecipientDatabase(context).setSeenInviteReminder(recipient, true);
             return null;
           }
         }.execute();

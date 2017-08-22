@@ -103,7 +103,7 @@ public class ContactAccessor {
     final ContentResolver resolver = context.getContentResolver();
     final String[] inProjection    = new String[]{PhoneLookup._ID, PhoneLookup.DISPLAY_NAME};
 
-    final List<Address>           registeredAddresses = DatabaseFactory.getRecipientPreferenceDatabase(context).getRegistered();
+    final List<Address>           registeredAddresses = DatabaseFactory.getRecipientDatabase(context).getRegistered();
     final Collection<ContactData> lookupData          = new ArrayList<>(registeredAddresses.size());
 
     for (Address registeredAddress : registeredAddresses) {

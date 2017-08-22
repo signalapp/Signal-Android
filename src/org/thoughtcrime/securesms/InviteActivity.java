@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.components.ContactFilterToolbar.OnFilterChange
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientsPreferences;
+import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
@@ -230,14 +230,14 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
       if (context == null) return null;
 
       for (String number : numbers) {
-        Recipient                       recipient      = Recipient.from(context, Address.fromExternal(context, number), false);
-        Optional<RecipientsPreferences> preferences    = DatabaseFactory.getRecipientPreferenceDatabase(context).getRecipientsPreferences(recipient.getAddress());
-        int                             subscriptionId = preferences.isPresent() ? preferences.get().getDefaultSubscriptionId().or(-1) : -1;
+        Recipient                   recipient      = Recipient.from(context, Address.fromExternal(context, number), false);
+        Optional<RecipientSettings> settings       = DatabaseFactory.getRecipientDatabase(context).getRecipientSettings(recipient.getAddress());
+        int                         subscriptionId = settings.isPresent() ? settings.get().getDefaultSubscriptionId().or(-1) : -1;
 
         MessageSender.send(context, masterSecret, new OutgoingTextMessage(recipient, message, subscriptionId), -1L, true, null);
 
         if (recipient.getContactUri() != null) {
-          DatabaseFactory.getRecipientPreferenceDatabase(context).setSeenInviteReminder(recipient, true);
+          DatabaseFactory.getRecipientDatabase(context).setSeenInviteReminder(recipient, true);
         }
       }
 

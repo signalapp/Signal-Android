@@ -54,7 +54,7 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
-import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientsPreferences;
+import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.GroupManager.GroupActionResult;
@@ -168,7 +168,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   }
 
   private static boolean isActiveInDirectory(Context context, Recipient recipient) {
-    Optional<RecipientsPreferences> preferences = DatabaseFactory.getRecipientPreferenceDatabase(context).getRecipientsPreferences(recipient.getAddress());
+    Optional<RecipientSettings> preferences = DatabaseFactory.getRecipientDatabase(context).getRecipientSettings(recipient.getAddress());
     return preferences.isPresent() && preferences.get().isRegistered();
   }
 

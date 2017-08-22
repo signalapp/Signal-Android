@@ -7,7 +7,7 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientsPreferences;
+import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -51,20 +51,20 @@ public class RetrieveProfileAvatarJob extends ContextJob implements InjectableTy
 
   @Override
   public void onRun() throws IOException {
-    RecipientDatabase               database              = DatabaseFactory.getRecipientPreferenceDatabase(context);
-    Optional<RecipientsPreferences> recipientsPreferences = database.getRecipientsPreferences(recipient.getAddress());
+    RecipientDatabase           database          = DatabaseFactory.getRecipientDatabase(context);
+    Optional<RecipientSettings> recipientSettings = database.getRecipientSettings(recipient.getAddress());
 
-    if (!recipientsPreferences.isPresent()) {
+    if (!recipientSettings.isPresent()) {
       Log.w(TAG, "Recipient preference row is gone!");
       return;
     }
 
-    if (recipientsPreferences.get().getProfileKey() == null) {
+    if (recipientSettings.get().getProfileKey() == null) {
       Log.w(TAG, "Recipient profile key is gone!");
       return;
     }
 
-    if (Util.equals(profileAvatar, recipientsPreferences.get().getProfileAvatar())) {
+    if (Util.equals(profileAvatar, recipientSettings.get().getProfileAvatar())) {
       Log.w(TAG, "Already retrieved profile avatar: " + profileAvatar);
       return;
     }
@@ -78,7 +78,7 @@ public class RetrieveProfileAvatarJob extends ContextJob implements InjectableTy
     File downloadDestination = File.createTempFile("avatar", "jpg", context.getCacheDir());
 
     try {
-      InputStream avatarStream       = receiver.retrieveProfileAvatar(profileAvatar, downloadDestination, recipientsPreferences.get().getProfileKey(), MAX_PROFILE_SIZE_BYTES);
+      InputStream avatarStream       = receiver.retrieveProfileAvatar(profileAvatar, downloadDestination, recipientSettings.get().getProfileKey(), MAX_PROFILE_SIZE_BYTES);
       File        decryptDestination = File.createTempFile("avatar", "jpg", context.getCacheDir());
 
       Util.copy(avatarStream, new FileOutputStream(decryptDestination));

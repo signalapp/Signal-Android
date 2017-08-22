@@ -112,7 +112,7 @@ public class RecipientDatabase extends Database {
   }
 
 
-  public Optional<RecipientsPreferences> getRecipientsPreferences(@NonNull Address address) {
+  public Optional<RecipientSettings> getRecipientSettings(@NonNull Address address) {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
     Cursor         cursor   = null;
 
@@ -129,7 +129,7 @@ public class RecipientDatabase extends Database {
     }
   }
 
-  Optional<RecipientsPreferences> getRecipientPreferences(@NonNull Cursor cursor) {
+  Optional<RecipientSettings> getRecipientPreferences(@NonNull Cursor cursor) {
     boolean blocked               = cursor.getInt(cursor.getColumnIndexOrThrow(BLOCK))                == 1;
     String  notification          = cursor.getString(cursor.getColumnIndexOrThrow(NOTIFICATION));
     int     vibrateState          = cursor.getInt(cursor.getColumnIndexOrThrow(VIBRATE));
@@ -165,12 +165,12 @@ public class RecipientDatabase extends Database {
       }
     }
 
-    return Optional.of(new RecipientsPreferences(blocked, muteUntil,
-                                                 VibrateState.fromId(vibrateState),
-                                                 notificationUri, color, seenInviteReminder,
-                                                 defaultSubscriptionId, expireMessages, registered,
-                                                 profileKey, systemDisplayName, signalProfileName,
-                                                 signalProfileAvatar, profileSharing));
+    return Optional.of(new RecipientSettings(blocked, muteUntil,
+                                             VibrateState.fromId(vibrateState),
+                                             notificationUri, color, seenInviteReminder,
+                                             defaultSubscriptionId, expireMessages, registered,
+                                             profileKey, systemDisplayName, signalProfileName,
+                                             signalProfileAvatar, profileSharing));
   }
 
   public BulkOperationsHandle resetAllDisplayNames() {
@@ -359,7 +359,7 @@ public class RecipientDatabase extends Database {
     }
   }
 
-  public static class RecipientsPreferences {
+  public static class RecipientSettings {
     private final boolean       blocked;
     private final long          muteUntil;
     private final VibrateState  vibrateState;
@@ -375,19 +375,19 @@ public class RecipientDatabase extends Database {
     private final String        signalProfileAvatar;
     private final boolean       profileSharing;
 
-    RecipientsPreferences(boolean blocked, long muteUntil,
-                          @NonNull VibrateState vibrateState,
-                          @Nullable Uri notification,
-                          @Nullable MaterialColor color,
-                          boolean seenInviteReminder,
-                          int defaultSubscriptionId,
-                          int expireMessages,
-                          boolean registered,
-                          @Nullable byte[] profileKey,
-                          @Nullable String systemDisplayName,
-                          @Nullable String signalProfileName,
-                          @Nullable String signalProfileAvatar,
-                          boolean profileSharing)
+    RecipientSettings(boolean blocked, long muteUntil,
+                      @NonNull VibrateState vibrateState,
+                      @Nullable Uri notification,
+                      @Nullable MaterialColor color,
+                      boolean seenInviteReminder,
+                      int defaultSubscriptionId,
+                      int expireMessages,
+                      boolean registered,
+                      @Nullable byte[] profileKey,
+                      @Nullable String systemDisplayName,
+                      @Nullable String signalProfileName,
+                      @Nullable String signalProfileAvatar,
+                      boolean profileSharing)
     {
       this.blocked               = blocked;
       this.muteUntil             = muteUntil;

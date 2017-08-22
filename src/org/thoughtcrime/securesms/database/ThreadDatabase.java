@@ -33,7 +33,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
-import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientsPreferences;
+import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.database.model.DisplayRecord;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -620,18 +620,18 @@ public class ThreadDatabase extends Database {
       int     distributionType = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.TYPE));
       Address address          = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.ADDRESS)));
 
-      Optional<RecipientsPreferences> preferences;
-      Optional<GroupRecord>           groupRecord;
+      Optional<RecipientSettings> settings;
+      Optional<GroupRecord>       groupRecord;
 
       if (distributionType != DistributionTypes.ARCHIVE) {
-        preferences = DatabaseFactory.getRecipientPreferenceDatabase(context).getRecipientPreferences(cursor);
+        settings    = DatabaseFactory.getRecipientDatabase(context).getRecipientPreferences(cursor);
         groupRecord = DatabaseFactory.getGroupDatabase(context).getGroup(cursor);
       } else {
-        preferences = Optional.absent();
+        settings    = Optional.absent();
         groupRecord = Optional.absent();
       }
 
-      Recipient          recipient    = Recipient.from(context, address, preferences, groupRecord, true);
+      Recipient          recipient    = Recipient.from(context, address, settings, groupRecord, true);
       DisplayRecord.Body body         = getPlaintextBody(cursor);
       long               date         = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.DATE));
       long               count        = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.MESSAGE_COUNT));

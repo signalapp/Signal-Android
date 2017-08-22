@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientsPreferences;
+import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -66,8 +66,8 @@ public abstract class PushSendJob extends SendJob {
 
   protected Optional<byte[]> getProfileKey(Address address) {
     try {
-      Optional<RecipientsPreferences> recipientsPreferences = DatabaseFactory.getRecipientPreferenceDatabase(context)
-                                                                             .getRecipientsPreferences(address);
+      Optional<RecipientSettings> recipientsPreferences = DatabaseFactory.getRecipientDatabase(context)
+                                                                         .getRecipientSettings(address);
 
       if (!recipientsPreferences.isPresent()) return Optional.absent();
 

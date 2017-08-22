@@ -559,7 +559,7 @@ public class SmsDatabase extends MessagingDatabase {
       }
 
       if (message.getSubscriptionId() != -1) {
-        DatabaseFactory.getRecipientPreferenceDatabase(context).setDefaultSubscriptionId(recipient, message.getSubscriptionId());
+        DatabaseFactory.getRecipientDatabase(context).setDefaultSubscriptionId(recipient, message.getSubscriptionId());
       }
 
       notifyConversationListeners(threadId);

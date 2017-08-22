@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientsPreferences;
+import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
 import org.thoughtcrime.securesms.recipients.RecipientProvider.RecipientDetails;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
@@ -77,9 +77,9 @@ public class Recipient implements RecipientModifiedListener {
     return provider.getRecipient(context, address, Optional.absent(), Optional.absent(), asynchronous);
   }
 
-  public static @NonNull Recipient from(@NonNull Context context, @NonNull Address address, @NonNull Optional<RecipientsPreferences> preferences, @NonNull Optional<GroupDatabase.GroupRecord> groupRecord, boolean asynchronous) {
+  public static @NonNull Recipient from(@NonNull Context context, @NonNull Address address, @NonNull Optional<RecipientSettings> settings, @NonNull Optional<GroupDatabase.GroupRecord> groupRecord, boolean asynchronous) {
     if (address == null) throw new AssertionError(address);
-    return provider.getRecipient(context, address, preferences, groupRecord, asynchronous);
+    return provider.getRecipient(context, address, settings, groupRecord, asynchronous);
   }
 
   public static void clearCache(Context context) {

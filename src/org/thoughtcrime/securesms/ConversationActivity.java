@@ -109,7 +109,7 @@ import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MmsSmsColumns.Types;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientPreferenceEvent;
-import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientsPreferences;
+import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.identity.IdentityRecordList;
@@ -574,7 +574,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         new AsyncTask<Void, Void, Void>() {
           @Override
           protected Void doInBackground(Void... params) {
-            DatabaseFactory.getRecipientPreferenceDatabase(ConversationActivity.this)
+            DatabaseFactory.getRecipientDatabase(ConversationActivity.this)
                            .setExpireMessages(recipient, expirationTime);
             recipient.setExpireMessages(expirationTime);
 
@@ -603,7 +603,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         new AsyncTask<Void, Void, Void>() {
           @Override
           protected Void doInBackground(Void... params) {
-            DatabaseFactory.getRecipientPreferenceDatabase(ConversationActivity.this)
+            DatabaseFactory.getRecipientDatabase(ConversationActivity.this)
                            .setMuted(recipient, until);
 
             return null;
@@ -623,7 +623,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     new AsyncTask<Void, Void, Void>() {
       @Override
       protected Void doInBackground(Void... params) {
-        DatabaseFactory.getRecipientPreferenceDatabase(ConversationActivity.this)
+        DatabaseFactory.getRecipientDatabase(ConversationActivity.this)
                        .setMuted(recipient, 0);
 
         return null;
@@ -644,7 +644,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             new AsyncTask<Void, Void, Void>() {
               @Override
               protected Void doInBackground(Void... params) {
-                DatabaseFactory.getRecipientPreferenceDatabase(ConversationActivity.this)
+                DatabaseFactory.getRecipientDatabase(ConversationActivity.this)
                                .setBlocked(recipient, false);
 
                 ApplicationContext.getInstance(ConversationActivity.this)
@@ -1652,7 +1652,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       @Override
       protected Long doInBackground(OutgoingMediaMessage... messages) {
         if (initiating) {
-          DatabaseFactory.getRecipientPreferenceDatabase(context).setProfileSharing(recipient.getAddress(), true);
+          DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient.getAddress(), true);
         }
 
         return MessageSender.send(context, masterSecret, messages[0], threadId, forceSms, new SmsDatabase.InsertListener() {
@@ -1692,7 +1692,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       @Override
       protected Long doInBackground(OutgoingTextMessage... messages) {
         if (initiatingConversation) {
-          DatabaseFactory.getRecipientPreferenceDatabase(context).setProfileSharing(recipient.getAddress(), true);
+          DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient.getAddress(), true);
         }
 
         return MessageSender.send(context, masterSecret, messages[0], threadId, forceSms, new SmsDatabase.InsertListener() {
@@ -1724,7 +1724,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     new AsyncTask<Void, Void, Void>() {
       @Override
       protected Void doInBackground(Void... params) {
-        DatabaseFactory.getRecipientPreferenceDatabase(ConversationActivity.this)
+        DatabaseFactory.getRecipientDatabase(ConversationActivity.this)
                        .setDefaultSubscriptionId(recipient, subscriptionId.or(-1));
         return null;
       }
@@ -1989,20 +1989,20 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     updateToggleButtonState();
   }
 
-  private class RecipientPreferencesTask extends AsyncTask<Recipient, Void, Pair<Recipient,RecipientsPreferences>> {
+  private class RecipientPreferencesTask extends AsyncTask<Recipient, Void, Pair<Recipient,RecipientSettings>> {
     @Override
-    protected Pair<Recipient, RecipientsPreferences> doInBackground(Recipient... recipient) {
+    protected Pair<Recipient, RecipientSettings> doInBackground(Recipient... recipient) {
       if (recipient.length != 1 || recipient[0] == null) {
         throw new AssertionError("task needs exactly one Recipients object");
       }
 
-      Optional<RecipientsPreferences> prefs = DatabaseFactory.getRecipientPreferenceDatabase(ConversationActivity.this)
-                                                             .getRecipientsPreferences(recipient[0].getAddress());
+      Optional<RecipientSettings> prefs = DatabaseFactory.getRecipientDatabase(ConversationActivity.this)
+                                                         .getRecipientSettings(recipient[0].getAddress());
       return new Pair<>(recipient[0], prefs.orNull());
     }
 
     @Override
-    protected void onPostExecute(@NonNull  Pair<Recipient, RecipientsPreferences> result) {
+    protected void onPostExecute(@NonNull  Pair<Recipient, RecipientSettings> result) {
       if (result.first == recipient) {
         updateInviteReminder(result.second != null && result.second.hasSeenInviteReminder());
         updateDefaultSubscriptionId(result.second != null ? result.second.getDefaultSubscriptionId() : Optional.<Integer>absent());
