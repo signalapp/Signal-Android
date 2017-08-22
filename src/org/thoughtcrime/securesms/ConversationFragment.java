@@ -431,7 +431,7 @@ public class ConversationFragment extends Fragment
         setLastSeen(loader.getLastSeen());
       }
 
-      if (!loader.hasSent() && recipient.getName() == null) {
+      if (!loader.hasSent() && !recipient.isGroupRecipient() && recipient.getName() == null) {
         getListAdapter().setHeaderView(unknownSenderView);
       } else {
         getListAdapter().setHeaderView(null);
