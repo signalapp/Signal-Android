@@ -21,7 +21,6 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.loaders.BlockedContactsLoader;
 import org.thoughtcrime.securesms.preferences.BlockedContactListItem;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
@@ -126,7 +125,7 @@ public class BlockedContactsActivity extends PassphraseRequiredActionBarActivity
       @Override
       public void bindView(View view, Context context, Cursor cursor) {
         String    address   = cursor.getString(1);
-        Recipient recipient = RecipientFactory.getRecipientFor(context, Address.fromSerialized(address), true);
+        Recipient recipient = Recipient.from(context, Address.fromSerialized(address), true);
 
         ((BlockedContactListItem) view).set(recipient);
       }

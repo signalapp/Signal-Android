@@ -32,7 +32,6 @@ import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -71,7 +70,7 @@ public class RemoteReplyReceiver extends MasterSecretBroadcastReceiver {
           Optional<RecipientsPreferences> preferences = DatabaseFactory.getRecipientPreferenceDatabase(context).getRecipientsPreferences(address);
           int  subscriptionId = preferences.isPresent() ? preferences.get().getDefaultSubscriptionId().or(-1) : -1;
           long expiresIn      = preferences.isPresent() ? preferences.get().getExpireMessages() * 1000 : 0;
-          Recipient recipient = RecipientFactory.getRecipientFor(context, address, false);
+          Recipient recipient = Recipient.from(context, address, false);
 
           if (recipient.isGroupRecipient()) {
             OutgoingMediaMessage reply = new OutgoingMediaMessage(recipient, responseText.toString(), new LinkedList<Attachment>(), System.currentTimeMillis(), subscriptionId, expiresIn, 0);

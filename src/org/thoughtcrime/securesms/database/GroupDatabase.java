@@ -11,12 +11,10 @@ import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -145,7 +143,7 @@ public class GroupDatabase extends Database {
       if (!includeSelf && Util.isOwnNumber(context, member))
         continue;
 
-      recipients.add(RecipientFactory.getRecipientFor(context, member, false));
+      recipients.add(Recipient.from(context, member, false));
     }
 
     return recipients;
@@ -174,7 +172,7 @@ public class GroupDatabase extends Database {
     contentValues.put(MMS, GroupUtil.isMmsGroup(groupId));
 
     databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, contentValues);
-    RecipientFactory.clearCache(context);
+    Recipient.clearCache(context);
     notifyConversationListListeners();
   }
 
@@ -193,7 +191,7 @@ public class GroupDatabase extends Database {
                                                 GROUP_ID + " = ?",
                                                 new String[] {groupId});
 
-    RecipientFactory.clearCache(context);
+    Recipient.clearCache(context);
     notifyDatabaseListeners();
     notifyConversationListListeners();
   }
@@ -204,7 +202,7 @@ public class GroupDatabase extends Database {
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
                                                 new String[] {groupId});
 
-    RecipientFactory.clearCache(context);
+    Recipient.clearCache(context);
     notifyDatabaseListeners();
   }
 
@@ -219,7 +217,7 @@ public class GroupDatabase extends Database {
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
                                                 new String[] {groupId});
 
-    RecipientFactory.clearCache(context);
+    Recipient.clearCache(context);
     notifyDatabaseListeners();
   }
 

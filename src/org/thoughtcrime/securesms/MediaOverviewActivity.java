@@ -43,7 +43,6 @@ import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.AbstractCursorLoader;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
@@ -136,7 +135,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
     Address address = getIntent().getParcelableExtra(ADDRESS_EXTRA);
 
     if (address != null) {
-      recipient = RecipientFactory.getRecipientFor(this, address, true);
+      recipient = Recipient.from(this, address, true);
     } else if (threadId > -1) {
       recipient = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadId);
     } else {

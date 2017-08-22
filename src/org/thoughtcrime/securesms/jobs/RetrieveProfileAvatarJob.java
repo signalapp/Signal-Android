@@ -11,7 +11,6 @@ import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.Recipient
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
@@ -89,7 +88,7 @@ public class RetrieveProfileAvatarJob extends ContextJob implements InjectableTy
     }
 
     database.setProfileAvatar(recipient.getAddress(), profileAvatar);
-    RecipientFactory.clearCache(context);
+    Recipient.clearCache(context);
   }
 
   @Override

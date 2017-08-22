@@ -19,13 +19,11 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.providers.SingleUseBlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 
@@ -58,7 +56,7 @@ public class GroupManager {
       DatabaseFactory.getRecipientPreferenceDatabase(context).setProfileSharing(Address.fromSerialized(groupId), true);
       return sendGroupUpdate(context, masterSecret, groupId, memberAddresses, name, avatarBytes);
     } else {
-      Recipient groupRecipient = RecipientFactory.getRecipientFor(context, Address.fromSerialized(groupId), true);
+      Recipient groupRecipient = Recipient.from(context, Address.fromSerialized(groupId), true);
       long      threadId       = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
       return new GroupActionResult(groupRecipient, threadId);
     }
@@ -84,7 +82,7 @@ public class GroupManager {
     if (!GroupUtil.isMmsGroup(groupId)) {
       return sendGroupUpdate(context, masterSecret, groupId, memberAddresses, name, avatarBytes);
     } else {
-      Recipient groupRecipient = RecipientFactory.getRecipientFor(context, Address.fromSerialized(groupId), true);
+      Recipient groupRecipient = Recipient.from(context, Address.fromSerialized(groupId), true);
       long      threadId       = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
       return new GroupActionResult(groupRecipient, threadId);
     }
@@ -100,7 +98,7 @@ public class GroupManager {
     try {
       Attachment avatarAttachment = null;
       Address    groupAddress     = Address.fromSerialized(groupId);
-      Recipient  groupRecipient   = RecipientFactory.getRecipientFor(context, groupAddress, false);
+      Recipient  groupRecipient   = Recipient.from(context, groupAddress, false);
 
       List<String> numbers = new LinkedList<>();
 

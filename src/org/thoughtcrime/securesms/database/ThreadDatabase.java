@@ -22,7 +22,6 @@ import android.database.Cursor;
 import android.database.MergeCursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Path;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -42,7 +41,6 @@ import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.DelimiterUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.InvalidMessageException;
@@ -511,7 +509,7 @@ public class ThreadDatabase extends Database {
 
       if (cursor != null && cursor.moveToFirst()) {
         Address address = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
-        return RecipientFactory.getRecipientFor(context, address, false);
+        return Recipient.from(context, address, false);
       }
     } finally {
       if (cursor != null)
@@ -633,7 +631,7 @@ public class ThreadDatabase extends Database {
         groupRecord = Optional.absent();
       }
 
-      Recipient          recipient    = RecipientFactory.getRecipientFor(context, address, preferences, groupRecord, true);
+      Recipient          recipient    = Recipient.from(context, address, preferences, groupRecord, true);
       DisplayRecord.Body body         = getPlaintextBody(cursor);
       long               date         = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.DATE));
       long               count        = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.MESSAGE_COUNT));

@@ -28,7 +28,6 @@ import android.util.Log;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.HashSet;
@@ -152,7 +151,7 @@ public class SmsMigrator {
       String address          = getTheirCanonicalAddress(context, theirRecipientId);
 
       if (address != null) {
-        recipientList.add(RecipientFactory.getRecipientFor(context, Address.fromExternal(context, address), true));
+        recipientList.add(Recipient.from(context, Address.fromExternal(context, address), true));
       }
     }
 
@@ -234,7 +233,7 @@ public class SmsMigrator {
             long ourThreadId = threadDatabase.getThreadIdFor(ourRecipients.iterator().next());
             migrateConversation(context, masterSecret, listener, progress, theirThreadId, ourThreadId);
           } else if (ourRecipients.size() > 1) {
-            ourRecipients.add(RecipientFactory.getRecipientFor(context, Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)), true));
+            ourRecipients.add(Recipient.from(context, Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)), true));
 
             List<Address> memberAddresses = new LinkedList<>();
 
@@ -243,7 +242,7 @@ public class SmsMigrator {
             }
 
             String    ourGroupId        = DatabaseFactory.getGroupDatabase(context).getOrCreateGroupForMembers(memberAddresses, true);
-            Recipient ourGroupRecipient = RecipientFactory.getRecipientFor(context, Address.fromSerialized(ourGroupId), true);
+            Recipient ourGroupRecipient = Recipient.from(context, Address.fromSerialized(ourGroupId), true);
             long      ourThreadId       = threadDatabase.getThreadIdFor(ourGroupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
 
             migrateConversation(context, masterSecret, listener, progress, theirThreadId, ourThreadId);

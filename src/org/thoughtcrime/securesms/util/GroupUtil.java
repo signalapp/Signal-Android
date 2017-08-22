@@ -8,7 +8,6 @@ import android.util.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 
 import java.io.IOException;
@@ -73,7 +72,7 @@ public class GroupUtil {
         this.members = new LinkedList<>();
 
         for (String member : groupContext.getMembersList()) {
-          this.members.add(RecipientFactory.getRecipientFor(context, Address.fromExternal(context, member), true));
+          this.members.add(Recipient.from(context, Address.fromExternal(context, member), true));
         }
       }
     }

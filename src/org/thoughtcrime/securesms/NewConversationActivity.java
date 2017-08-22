@@ -29,7 +29,6 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 
 /**
  * Activity container for starting a new conversation.
@@ -50,7 +49,7 @@ public class NewConversationActivity extends ContactSelectionActivity {
 
   @Override
   public void onContactSelected(String number) {
-    Recipient recipient = RecipientFactory.getRecipientFor(this, Address.fromExternal(this, number), true);
+    Recipient recipient = Recipient.from(this, Address.fromExternal(this, number), true);
 
     Intent intent = new Intent(this, ConversationActivity.class);
     intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.getAddress());

@@ -21,7 +21,6 @@ import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.sms.IncomingIdentityDefaultMessage;
 import org.thoughtcrime.securesms.sms.IncomingIdentityUpdateMessage;
 import org.thoughtcrime.securesms.sms.IncomingIdentityVerifiedMessage;
@@ -90,7 +89,7 @@ public class IdentityUtil {
 
           smsDatabase.insertMessageInbox(incoming);
         } else {
-          Recipient           groupRecipient = RecipientFactory.getRecipientFor(context, Address.fromSerialized(GroupUtil.getEncodedId(group.getGroupId(), false)), true);
+          Recipient           groupRecipient = Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(group.getGroupId(), false)), true);
           long                threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
           OutgoingTextMessage outgoing ;
 
@@ -170,7 +169,7 @@ public class IdentityUtil {
   public static void processVerifiedMessage(Context context, MasterSecretUnion masterSecret, VerifiedMessage verifiedMessage) {
     synchronized (SESSION_LOCK) {
       IdentityDatabase         identityDatabase = DatabaseFactory.getIdentityDatabase(context);
-      Recipient                recipient        = RecipientFactory.getRecipientFor(context, Address.fromExternal(context, verifiedMessage.getDestination()), true);
+      Recipient                recipient        = Recipient.from(context, Address.fromExternal(context, verifiedMessage.getDestination()), true);
       Optional<IdentityRecord> identityRecord   = identityDatabase.getIdentity(recipient.getAddress());
 
       if (!identityRecord.isPresent() && verifiedMessage.getVerified() == VerifiedMessage.VerifiedState.DEFAULT) {

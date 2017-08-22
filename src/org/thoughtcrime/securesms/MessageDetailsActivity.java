@@ -46,7 +46,6 @@ import org.thoughtcrime.securesms.database.loaders.MessageDetailsLoader;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
@@ -138,7 +137,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   private void initializeActionBar() {
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-    Recipient recipient = RecipientFactory.getRecipientFor(this, (Address)getIntent().getParcelableExtra(ADDRESS_EXTRA), true);
+    Recipient recipient = Recipient.from(this, (Address)getIntent().getParcelableExtra(ADDRESS_EXTRA), true);
     recipient.addListener(this);
 
     setActionBarColor(recipient.getColor());

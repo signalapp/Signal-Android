@@ -60,7 +60,6 @@ import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.GroupManager.GroupActionResult;
 import org.thoughtcrime.securesms.mms.RoundedCorners;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -298,7 +297,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
 
         for (String contact : selected) {
           Address   address   = Address.fromExternal(this, contact);
-          Recipient recipient = RecipientFactory.getRecipientFor(this, address, false);
+          Recipient recipient = Recipient.from(this, address, false);
 
           addSelectedContacts(recipient);
         }
@@ -351,7 +350,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
       }
 
       String    groupId        = DatabaseFactory.getGroupDatabase(activity).getOrCreateGroupForMembers(memberAddresses, true);
-      Recipient groupRecipient = RecipientFactory.getRecipientFor(activity, Address.fromSerialized(groupId), true);
+      Recipient groupRecipient = Recipient.from(activity, Address.fromSerialized(groupId), true);
       long      threadId       = DatabaseFactory.getThreadDatabase(activity).getThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.DEFAULT);
 
       return new GroupActionResult(groupRecipient, threadId);

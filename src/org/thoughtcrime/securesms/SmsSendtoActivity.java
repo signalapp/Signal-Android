@@ -13,7 +13,6 @@ import android.widget.Toast;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.Rfc5724Uri;
 
 import java.net.URISyntaxException;
@@ -47,7 +46,7 @@ public class SmsSendtoActivity extends Activity {
       nextIntent.putExtra(ConversationActivity.TEXT_EXTRA, destination.getBody());
       Toast.makeText(this, R.string.ConversationActivity_specify_recipient, Toast.LENGTH_LONG).show();
     } else {
-      Recipient recipient = RecipientFactory.getRecipientFor(this, Address.fromExternal(this, destination.getDestination()), true);
+      Recipient recipient = Recipient.from(this, Address.fromExternal(this, destination.getDestination()), true);
       long      threadId  = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipient);
 
       nextIntent = new Intent(this, ConversationActivity.class);

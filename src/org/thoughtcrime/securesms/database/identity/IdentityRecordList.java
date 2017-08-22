@@ -6,7 +6,6 @@ import android.content.Context;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.LinkedList;
@@ -77,7 +76,7 @@ public class IdentityRecordList {
 
     for (IdentityRecord identityRecord : identityRecords) {
       if (isUntrusted(identityRecord)) {
-        untrusted.add(RecipientFactory.getRecipientFor(context, identityRecord.getAddress(), false));
+        untrusted.add(Recipient.from(context, identityRecord.getAddress(), false));
       }
     }
 
@@ -101,7 +100,7 @@ public class IdentityRecordList {
 
     for (IdentityRecord identityRecord : identityRecords) {
       if (identityRecord.getVerifiedStatus() == VerifiedStatus.UNVERIFIED) {
-        unverified.add(RecipientFactory.getRecipientFor(context, identityRecord.getAddress(), false));
+        unverified.add(Recipient.from(context, identityRecord.getAddress(), false));
       }
     }
 

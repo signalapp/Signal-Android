@@ -12,7 +12,6 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -54,10 +53,10 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientM
 
     if (type == ContactsDatabase.NEW_TYPE) {
       this.recipient = null;
-      this.contactPhotoImage.setAvatar(RecipientFactory.getRecipientFor(getContext(), Address.UNKNOWN, true), false);
+      this.contactPhotoImage.setAvatar(Recipient.from(getContext(), Address.UNKNOWN, true), false);
     } else if (!TextUtils.isEmpty(number)) {
       Address address = Address.fromExternal(getContext(), number);
-      this.recipient = RecipientFactory.getRecipientFor(getContext(), address, true);
+      this.recipient = Recipient.from(getContext(), address, true);
 
       if (this.recipient.getName() != null) {
         name = this.recipient.getName();

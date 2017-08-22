@@ -33,7 +33,6 @@ import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule.SignalM
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -945,7 +944,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
     Address remoteAddress = intent.getParcelableExtra(EXTRA_REMOTE_ADDRESS);
     if (remoteAddress == null) throw new AssertionError("No recipient in intent!");
 
-    return RecipientFactory.getRecipientFor(this, remoteAddress, true);
+    return Recipient.from(this, remoteAddress, true);
   }
 
   private long getCallId(Intent intent) {

@@ -21,7 +21,6 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 
 import java.util.LinkedList;
@@ -49,7 +48,7 @@ public class DirectShareService extends ChooserTargetService {
       ThreadRecord record;
 
       while ((record = reader.getNext()) != null && results.size() < 10) {
-        Recipient recipient = RecipientFactory.getRecipientFor(this, record.getRecipient().getAddress(), false);
+        Recipient recipient = Recipient.from(this, record.getRecipient().getAddress(), false);
         String    name      = recipient.toShortString();
         Drawable  drawable  = recipient.getContactPhoto().asDrawable(this, recipient.getColor().toConversationColor(this));
         Bitmap    avatar    = BitmapUtil.createFromDrawable(drawable, 500, 500);

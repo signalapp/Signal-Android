@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.IdentityKey;
@@ -69,7 +69,7 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
         }
 
         identityDatabase.saveIdentity(signalAddress, identityKey, verifiedStatus, false, System.currentTimeMillis(), nonBlockingApproval);
-        IdentityUtil.markIdentityUpdate(context, RecipientFactory.getRecipientFor(context, signalAddress, true));
+        IdentityUtil.markIdentityUpdate(context, Recipient.from(context, signalAddress, true));
         SessionUtil.archiveSiblingSessions(context, address);
         return true;
       }

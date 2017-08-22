@@ -73,7 +73,6 @@ import org.thoughtcrime.securesms.qr.QrCode;
 import org.thoughtcrime.securesms.qr.ScanListener;
 import org.thoughtcrime.securesms.qr.ScanningThread;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -122,7 +121,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setTitle(R.string.AndroidManifest__verify_safety_number);
 
-    Recipient recipient = RecipientFactory.getRecipientFor(this, (Address)getIntent().getParcelableExtra(ADDRESS_EXTRA), true);
+    Recipient recipient = Recipient.from(this, (Address)getIntent().getParcelableExtra(ADDRESS_EXTRA), true);
     recipient.addListener(this);
 
     setActionBarNotificationBarColor(recipient.getColor());
@@ -271,7 +270,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       this.localNumber    = getArguments().getString(LOCAL_NUMBER);
       this.localIdentity  = localIdentityParcelable.get();
       this.remoteNumber   = getArguments().getString(REMOTE_NUMBER);
-      this.recipient      = RecipientFactory.getRecipientFor(getActivity(), address, true);
+      this.recipient      = Recipient.from(getActivity(), address, true);
       this.remoteIdentity = remoteIdentityParcelable.get();
 
       this.recipient.addListener(this);

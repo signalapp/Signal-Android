@@ -32,7 +32,6 @@ import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.whispersystems.libsignal.logging.Log;
@@ -65,7 +64,7 @@ public class AndroidAutoReplyReceiver extends MasterSecretBroadcastReceiver {
     final Address      address      = intent.getParcelableExtra(ADDRESS_EXTRA);
     final long         threadId     = intent.getLongExtra(THREAD_ID_EXTRA, -1);
     final CharSequence responseText = getMessageText(intent);
-    final Recipient    recipient    = RecipientFactory.getRecipientFor(context, address, false);
+    final Recipient    recipient    = Recipient.from(context, address, false);
 
     if (responseText != null) {
       new AsyncTask<Void, Void, Void>() {

@@ -38,7 +38,6 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
@@ -153,7 +152,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     threadId     = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
 
     if (address != null) {
-      recipient = RecipientFactory.getRecipientFor(this, address, true);
+      recipient = Recipient.from(this, address, true);
       recipient.addListener(this);
     } else {
       recipient = null;

@@ -20,7 +20,6 @@ import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule.SignalMessageSenderFactory;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
@@ -94,7 +93,7 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
 
     try {
       DeviceContactsOutputStream                out             = new DeviceContactsOutputStream(new FileOutputStream(contactDataFile));
-      Recipient                                 recipient       = RecipientFactory.getRecipientFor(context, address, false);
+      Recipient                                 recipient       = Recipient.from(context, address, false);
       Optional<IdentityDatabase.IdentityRecord> identityRecord  = DatabaseFactory.getIdentityDatabase(context).getIdentity(address);
       Optional<VerifiedMessage>                 verifiedMessage = getVerifiedMessage(recipient, identityRecord);
 
@@ -127,7 +126,7 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
       for (ContactData contactData : contacts) {
         Uri                                       contactUri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_URI, String.valueOf(contactData.id));
         Address                                   address    = Address.fromExternal(context, contactData.numbers.get(0).number);
-        Recipient                                 recipient  = RecipientFactory.getRecipientFor(context, address, false);
+        Recipient                                 recipient  = Recipient.from(context, address, false);
         Optional<IdentityDatabase.IdentityRecord> identity   = DatabaseFactory.getIdentityDatabase(context).getIdentity(address);
         Optional<VerifiedMessage>                 verified   = getVerifiedMessage(recipient, identity);
         Optional<String>                          name       = Optional.fromNullable(contactData.name);

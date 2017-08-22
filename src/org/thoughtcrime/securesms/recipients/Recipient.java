@@ -16,6 +16,8 @@
  */
 package org.thoughtcrime.securesms.recipients;
 
+import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -27,6 +29,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.VibrateState;
 import org.thoughtcrime.securesms.recipients.RecipientProvider.RecipientDetails;
@@ -45,7 +48,9 @@ import java.util.concurrent.ExecutionException;
 
 public class Recipient implements RecipientModifiedListener {
 
-  private final static String TAG = Recipient.class.getSimpleName();
+  public static final  String            RECIPIENT_CLEAR_ACTION = "org.thoughtcrime.securesms.database.RecipientFactory.CLEAR";
+  private static final String            TAG                    = Recipient.class.getSimpleName();
+  private static final RecipientProvider provider               = new RecipientProvider();
 
   private final Set<RecipientModifiedListener> listeners = Collections.newSetFromMap(new WeakHashMap<RecipientModifiedListener, Boolean>());
 
@@ -67,6 +72,21 @@ public class Recipient implements RecipientModifiedListener {
   private String       profileName    = null;
 
   @Nullable private MaterialColor color;
+
+  public static @NonNull Recipient from(@NonNull Context context, @NonNull Address address, boolean asynchronous) {
+    if (address == null) throw new AssertionError(address);
+    return provider.getRecipient(context, address, Optional.absent(), Optional.absent(), asynchronous);
+  }
+
+  public static @NonNull Recipient from(@NonNull Context context, @NonNull Address address, @NonNull Optional<RecipientsPreferences> preferences, @NonNull Optional<GroupDatabase.GroupRecord> groupRecord, boolean asynchronous) {
+    if (address == null) throw new AssertionError(address);
+    return provider.getRecipient(context, address, preferences, groupRecord, asynchronous);
+  }
+
+  public static void clearCache(Context context) {
+    provider.clearCache();
+    context.sendBroadcast(new Intent(RECIPIENT_CLEAR_ACTION));
+  }
 
   Recipient(@NonNull  Address address,
             @Nullable Recipient stale,

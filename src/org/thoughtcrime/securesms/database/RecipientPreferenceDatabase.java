@@ -15,7 +15,6 @@ import com.annimon.stream.Stream;
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -355,7 +354,7 @@ public class RecipientPreferenceDatabase extends Database {
     public void finish() {
       database.setTransactionSuccessful();
       database.endTransaction();
-      RecipientFactory.clearCache(context);
+      Recipient.clearCache(context);
       context.getContentResolver().notifyChange(Uri.parse(RECIPIENT_PREFERENCES_URI), null);
     }
   }
@@ -475,7 +474,7 @@ public class RecipientPreferenceDatabase extends Database {
 
     public @NonNull Recipient getCurrent() {
       String serialized = cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS));
-      return RecipientFactory.getRecipientFor(context, Address.fromSerialized(serialized), false);
+      return Recipient.from(context, Address.fromSerialized(serialized), false);
     }
 
     public @Nullable Recipient getNext() {

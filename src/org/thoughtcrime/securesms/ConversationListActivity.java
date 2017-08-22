@@ -38,7 +38,6 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -230,7 +229,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
       public void onChange(boolean selfChange) {
         super.onChange(selfChange);
         Log.w(TAG, "Detected android contact data changed, refreshing cache");
-        RecipientFactory.clearCache(ConversationListActivity.this);
+        Recipient.clearCache(ConversationListActivity.this);
         ConversationListActivity.this.runOnUiThread(new Runnable() {
           @Override
           public void run() {

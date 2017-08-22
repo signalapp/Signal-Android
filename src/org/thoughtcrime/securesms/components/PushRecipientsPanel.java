@@ -31,7 +31,6 @@ import org.thoughtcrime.securesms.contacts.RecipientsAdapter;
 import org.thoughtcrime.securesms.contacts.RecipientsEditor;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 
 import java.util.LinkedList;
@@ -128,8 +127,8 @@ public class PushRecipientsPanel extends RelativeLayout implements RecipientModi
       String token = tokenizer.nextToken().trim();
 
       if (!TextUtils.isEmpty(token)) {
-        if (hasBracketedNumber(token)) recipients.add(RecipientFactory.getRecipientFor(context, Address.fromExternal(context, parseBracketedNumber(token)), asynchronous));
-        else                           recipients.add(RecipientFactory.getRecipientFor(context, Address.fromExternal(context, token), asynchronous));
+        if (hasBracketedNumber(token)) recipients.add(Recipient.from(context, Address.fromExternal(context, parseBracketedNumber(token)), asynchronous));
+        else                           recipients.add(Recipient.from(context, Address.fromExternal(context, token), asynchronous));
       }
     }
 

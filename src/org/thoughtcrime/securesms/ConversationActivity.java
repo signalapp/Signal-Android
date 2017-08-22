@@ -130,7 +130,6 @@ import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.scribbles.ScribbleActivity;
@@ -408,7 +407,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       addAttachmentContactInfo(data.getData());
       break;
     case GROUP_EDIT:
-      recipient = RecipientFactory.getRecipientFor(this, (Address)data.getParcelableExtra(GroupCreateActivity.GROUP_ADDRESS_EXTRA), true);
+      recipient = Recipient.from(this, (Address)data.getParcelableExtra(GroupCreateActivity.GROUP_ADDRESS_EXTRA), true);
       recipient.addListener(this);
       titleView.setTitle(recipient);
       setBlockedUserState(recipient, isSecureText, isDefaultSms);
@@ -420,7 +419,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       }
       break;
     case ADD_CONTACT:
-      recipient = RecipientFactory.getRecipientFor(this, recipient.getAddress(), true);
+      recipient = Recipient.from(this, recipient.getAddress(), true);
       recipient.addListener(this);
       fragment.reloadList();
       break;
@@ -1251,7 +1250,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void initializeResources() {
     if (recipient != null) recipient.removeListener(this);
 
-    recipient        = RecipientFactory.getRecipientFor(this, (Address)getIntent().getParcelableExtra(ADDRESS_EXTRA), true);
+    recipient        = Recipient.from(this, (Address)getIntent().getParcelableExtra(ADDRESS_EXTRA), true);
     threadId         = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
     archived         = getIntent().getBooleanExtra(IS_ARCHIVED_EXTRA, false);
     distributionType = getIntent().getIntExtra(DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
@@ -1318,7 +1317,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         Log.w(TAG, "Group update received...");
         if (recipient != null) {
           Log.w(TAG, "Looking up new recipients...");
-          recipient = RecipientFactory.getRecipientFor(context, recipient.getAddress(), true);
+          recipient = Recipient.from(context, recipient.getAddress(), true);
           recipient.addListener(ConversationActivity.this);
           onModified(recipient);
           fragment.reloadList();
@@ -1328,7 +1327,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     IntentFilter staleFilter = new IntentFilter();
     staleFilter.addAction(GroupDatabase.DATABASE_UPDATE_ACTION);
-    staleFilter.addAction(RecipientFactory.RECIPIENT_CLEAR_ACTION);
+    staleFilter.addAction(Recipient.RECIPIENT_CLEAR_ACTION);
 
     registerReceiver(securityUpdateReceiver,
                      new IntentFilter(SecurityEvent.SECURITY_UPDATE_EVENT),
@@ -2053,7 +2052,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         String[] unverifiedNames = new String[unverifiedIdentities.size()];
 
         for (int i=0;i<unverifiedIdentities.size();i++) {
-          unverifiedNames[i] = RecipientFactory.getRecipientFor(ConversationActivity.this, unverifiedIdentities.get(i).getAddress(), false).toShortString();
+          unverifiedNames[i] = Recipient.from(ConversationActivity.this, unverifiedIdentities.get(i).getAddress(), false).toShortString();
         }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(ConversationActivity.this);

@@ -57,7 +57,6 @@ import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.Util;
@@ -250,10 +249,10 @@ public class MmsDatabase extends MessagingDatabase {
 
   private long getThreadIdFor(IncomingMediaMessage retrieved) throws RecipientFormattingException, MmsException {
     if (retrieved.getGroupId() != null) {
-      Recipient groupRecipients = RecipientFactory.getRecipientFor(context, retrieved.getGroupId(), true);
+      Recipient groupRecipients = Recipient.from(context, retrieved.getGroupId(), true);
       return DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipients);
     } else {
-      Recipient sender = RecipientFactory.getRecipientFor(context, retrieved.getFrom(), true);
+      Recipient sender = Recipient.from(context, retrieved.getFrom(), true);
       return DatabaseFactory.getThreadDatabase(context).getThreadIdFor(sender);
     }
   }
@@ -262,7 +261,7 @@ public class MmsDatabase extends MessagingDatabase {
     String fromString = notification.getFrom() != null && notification.getFrom().getTextString() != null
                       ? Util.toIsoString(notification.getFrom().getTextString())
                       : "";
-    Recipient recipient = RecipientFactory.getRecipientFor(context, Address.fromExternal(context, fromString), false);
+    Recipient recipient = Recipient.from(context, Address.fromExternal(context, fromString), false);
     return DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
   }
 
@@ -553,7 +552,7 @@ public class MmsDatabase extends MessagingDatabase {
         long             threadId         = cursor.getLong(cursor.getColumnIndexOrThrow(THREAD_ID));
         int              distributionType = DatabaseFactory.getThreadDatabase(context).getDistributionType(threadId);
 
-        Recipient recipient = RecipientFactory.getRecipientFor(context, Address.fromSerialized(address), false);
+        Recipient recipient = Recipient.from(context, Address.fromSerialized(address), false);
 
         if (body != null && (Types.isGroupQuit(outboxType) || Types.isGroupUpdate(outboxType))) {
           return new OutgoingGroupMediaMessage(recipient, body, attachments, timestamp, 0);
@@ -1162,7 +1161,7 @@ public class MmsDatabase extends MessagingDatabase {
         address = Address.fromSerialized(serialized);
 
       }
-      return RecipientFactory.getRecipientFor(context, address, true);
+      return Recipient.from(context, address, true);
     }
 
     private List<IdentityKeyMismatch> getMismatchedIdentities(String document) {

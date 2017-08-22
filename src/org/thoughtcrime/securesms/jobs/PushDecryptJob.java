@@ -37,7 +37,6 @@ import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
@@ -84,7 +83,6 @@ import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.security.MessageDigest;
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -814,7 +812,7 @@ public class PushDecryptJob extends ContextJob {
     {
       database.setProfileKey(sourceAddress, message.getProfileKey().get());
 
-      Recipient recipient = RecipientFactory.getRecipientFor(context, sourceAddress, true);
+      Recipient recipient = Recipient.from(context, sourceAddress, true);
       ApplicationContext.getInstance(context).getJobManager().add(new RetrieveProfileJob(context, recipient));
     }
 
@@ -833,17 +831,17 @@ public class PushDecryptJob extends ContextJob {
 
   private Recipient getSyncMessageDestination(SentTranscriptMessage message) {
     if (message.getMessage().getGroupInfo().isPresent()) {
-      return RecipientFactory.getRecipientFor(context, Address.fromExternal(context, GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get().getGroupId(), false)), false);
+      return Recipient.from(context, Address.fromExternal(context, GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get().getGroupId(), false)), false);
     } else {
-      return RecipientFactory.getRecipientFor(context, Address.fromExternal(context, message.getDestination().get()), false);
+      return Recipient.from(context, Address.fromExternal(context, message.getDestination().get()), false);
     }
   }
 
   private Recipient getMessageDestination(SignalServiceEnvelope envelope, SignalServiceDataMessage message) {
     if (message.getGroupInfo().isPresent()) {
-      return RecipientFactory.getRecipientFor(context, Address.fromExternal(context, GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false)), false);
+      return Recipient.from(context, Address.fromExternal(context, GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false)), false);
     } else {
-      return RecipientFactory.getRecipientFor(context, Address.fromExternal(context, envelope.getSource()), false);
+      return Recipient.from(context, Address.fromExternal(context, envelope.getSource()), false);
     }
   }
 }

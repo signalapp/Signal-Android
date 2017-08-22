@@ -35,7 +35,6 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
@@ -457,7 +456,7 @@ public class SmsDatabase extends MessagingDatabase {
   }
 
   private @NonNull Pair<Long, Long> insertCallLog(@NonNull Address address, long type, boolean unread) {
-    Recipient recipient = RecipientFactory.getRecipientFor(context, address, true);
+    Recipient recipient = Recipient.from(context, address, true);
     long      threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
 
     ContentValues values = new ContentValues(6);
@@ -506,14 +505,14 @@ public class SmsDatabase extends MessagingDatabase {
     if      (message.isIdentityVerified())    type |= Types.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT;
     else if (message.isIdentityDefault())     type |= Types.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT;
 
-    Recipient recipient = RecipientFactory.getRecipientFor(context, message.getSender(), true);
+    Recipient recipient = Recipient.from(context, message.getSender(), true);
 
     Recipient groupRecipient;
 
     if (message.getGroupId() == null) {
       groupRecipient = null;
     } else {
-      groupRecipient = RecipientFactory.getRecipientFor(context, message.getGroupId(), true);
+      groupRecipient = Recipient.from(context, message.getGroupId(), true);
     }
 
     boolean    unread     = (org.thoughtcrime.securesms.util.Util.isDefaultSmsProvider(context) ||
@@ -830,7 +829,7 @@ public class SmsDatabase extends MessagingDatabase {
       long    expireStarted    = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.EXPIRE_STARTED));
 
       List<IdentityKeyMismatch> mismatches = getMismatches(mismatchDocument);
-      Recipient                 recipient  = RecipientFactory.getRecipientFor(context, address, true);
+      Recipient                 recipient  = Recipient.from(context, address, true);
       DisplayRecord.Body        body       = getBody(cursor);
 
       return new SmsMessageRecord(context, messageId, body, recipient,

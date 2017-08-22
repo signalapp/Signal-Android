@@ -42,7 +42,6 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.preferences.AdvancedRingtonePreference;
 import org.thoughtcrime.securesms.preferences.ColorPreference;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
@@ -88,7 +87,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     setContentView(R.layout.recipient_preference_activity);
 
     Address   address   = getIntent().getParcelableExtra(ADDRESS_EXTRA);
-    Recipient recipient = RecipientFactory.getRecipientFor(this, address, true);
+    Recipient recipient = Recipient.from(this, address, true);
 
     initializeToolbar();
     initializeReceivers();
@@ -150,7 +149,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     this.staleReceiver = new BroadcastReceiver() {
       @Override
       public void onReceive(Context context, Intent intent) {
-        Recipient recipient = RecipientFactory.getRecipientFor(context, (Address)getIntent().getParcelableExtra(ADDRESS_EXTRA), true);
+        Recipient recipient = Recipient.from(context, (Address)getIntent().getParcelableExtra(ADDRESS_EXTRA), true);
         recipient.addListener(RecipientPreferenceActivity.this);
         onModified(recipient);
       }
@@ -158,7 +157,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
     IntentFilter staleFilter = new IntentFilter();
     staleFilter.addAction(GroupDatabase.DATABASE_UPDATE_ACTION);
-    staleFilter.addAction(RecipientFactory.RECIPIENT_CLEAR_ACTION);
+    staleFilter.addAction(Recipient.RECIPIENT_CLEAR_ACTION);
 
     registerReceiver(staleReceiver, staleFilter);
   }
@@ -235,9 +234,9 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     }
 
     private void initializeRecipients() {
-      this.recipient = RecipientFactory.getRecipientFor(getActivity(),
-                                                        (Address)getArguments().getParcelable(ADDRESS_EXTRA),
-                                                        true);
+      this.recipient = Recipient.from(getActivity(),
+                                      (Address)getArguments().getParcelable(ADDRESS_EXTRA),
+                                      true);
 
       this.recipient.addListener(this);
 
@@ -245,14 +244,14 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         @Override
         public void onReceive(Context context, Intent intent) {
           recipient.removeListener(RecipientPreferenceFragment.this);
-          recipient = RecipientFactory.getRecipientFor(getActivity(), (Address)getArguments().getParcelable(ADDRESS_EXTRA), true);
+          recipient = Recipient.from(getActivity(), (Address)getArguments().getParcelable(ADDRESS_EXTRA), true);
           onModified(recipient);
         }
       };
 
       IntentFilter intentFilter = new IntentFilter();
       intentFilter.addAction(GroupDatabase.DATABASE_UPDATE_ACTION);
-      intentFilter.addAction(RecipientFactory.RECIPIENT_CLEAR_ACTION);
+      intentFilter.addAction(Recipient.RECIPIENT_CLEAR_ACTION);
 
       getActivity().registerReceiver(staleReceiver, intentFilter);
     }

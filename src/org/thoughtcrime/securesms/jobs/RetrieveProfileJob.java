@@ -11,7 +11,6 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.service.MessageRetrievalService;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.IdentityUtil;
@@ -142,7 +141,7 @@ public class RetrieveProfileJob extends ContextJob implements InjectableType {
 
       if (!Util.equals(plaintextProfileName, recipientPreferences.get().getProfileName())) {
         DatabaseFactory.getRecipientPreferenceDatabase(context).setProfileName(recipient.getAddress(), plaintextProfileName);
-        RecipientFactory.clearCache(context);
+        Recipient.clearCache(context);
       }
     } catch (ProfileCipher.InvalidCiphertextException | IOException e) {
       Log.w(TAG, e);
