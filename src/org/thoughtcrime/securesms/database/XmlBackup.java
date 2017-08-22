@@ -191,7 +191,7 @@ public class XmlBackup {
       stringBuilder.append(OPEN_TAG_SMS);
       appendAttribute(stringBuilder, PROTOCOL, item.getProtocol());
       appendAttribute(stringBuilder, ADDRESS, escapeXML(item.getAddress()));
-      appendAttribute(stringBuilder, CONTACT_NAME, item.getContactName());
+      appendAttribute(stringBuilder, CONTACT_NAME, escapeXML(item.getContactName()));
       appendAttribute(stringBuilder, DATE, item.getDate());
       appendAttribute(stringBuilder, READABLE_DATE, item.getReadableDate());
       appendAttribute(stringBuilder, TYPE, item.getType());
