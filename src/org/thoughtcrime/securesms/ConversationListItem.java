@@ -31,15 +31,16 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.thoughtcrime.securesms.components.AlertView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.DeliveryStatusView;
-import org.thoughtcrime.securesms.components.AlertView;
 import org.thoughtcrime.securesms.components.FromTextView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DateUtils;
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.ResUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -65,17 +66,14 @@ public class ConversationListItem extends RelativeLayout
   private final static Typeface LIGHT_TYPEFACE = Typeface.create("sans-serif-light", Typeface.NORMAL);
 
   private Set<Long>          selectedThreads;
-  private Recipients         recipients;
-  private long               threadId;
+  private ThreadRecord       thread;
   private TextView           subjectView;
   private FromTextView       fromView;
   private TextView           dateView;
   private TextView           archivedView;
   private DeliveryStatusView deliveryStatusIndicator;
   private AlertView          alertView;
-  private long               lastSeen;
 
-  private boolean         read;
   private AvatarImageView contactPhotoImage;
   private ThumbnailView   thumbnailView;
 
@@ -83,7 +81,6 @@ public class ConversationListItem extends RelativeLayout
   private final @DrawableRes int unreadBackround;
 
   private final Handler handler = new Handler();
-  private int distributionType;
 
   public ConversationListItem(Context context) {
     this(context, null);
@@ -115,16 +112,18 @@ public class ConversationListItem extends RelativeLayout
   public void bind(@NonNull MasterSecret masterSecret, @NonNull ThreadRecord thread,
                    @NonNull Locale locale, @NonNull Set<Long> selectedThreads, boolean batchMode)
   {
-    this.selectedThreads  = selectedThreads;
-    this.recipients       = thread.getRecipients();
-    this.threadId         = thread.getThreadId();
-    this.read             = thread.isRead();
-    this.distributionType = thread.getDistributionType();
-    this.lastSeen         = thread.getLastSeen();
+    this.selectedThreads = selectedThreads;
+    this.thread          = thread;
 
-    this.recipients.addListener(this);
+    final boolean    read       = thread.isRead();
+    final Recipients recipients = thread.getRecipients();
+
+    recipients.addListener(this);
     this.fromView.setText(recipients, read);
 
+    if (thread.isGroupUpdate()) {
+      GroupUtil.getDescription(getContext(), thread.getBody().getBody()).addListener(this);
+    }
     this.subjectView.setText(thread.getDisplayBody());
     this.subjectView.setTypeface(read ? LIGHT_TYPEFACE : BOLD_TYPEFACE);
 
@@ -150,31 +149,31 @@ public class ConversationListItem extends RelativeLayout
 
   @Override
   public void unbind() {
-    if (this.recipients != null) this.recipients.removeListener(this);
+    if (this.getRecipients() != null) this.getRecipients().removeListener(this);
   }
 
   private void setBatchState(boolean batch) {
-    setSelected(batch && selectedThreads.contains(threadId));
+    setSelected(batch && selectedThreads.contains(getThreadId()));
   }
 
   public Recipients getRecipients() {
-    return recipients;
+    return thread.getRecipients();
   }
 
   public long getThreadId() {
-    return threadId;
+    return thread.getThreadId();
   }
 
   public boolean getRead() {
-    return read;
+    return thread.isRead();
   }
 
   public int getDistributionType() {
-    return distributionType;
+    return thread.getDistributionType();
   }
 
   public long getLastSeen() {
-    return lastSeen;
+    return thread.getLastSeen();
   }
 
   private void setThumbnailSnippet(MasterSecret masterSecret, ThreadRecord thread) {
@@ -238,7 +237,8 @@ public class ConversationListItem extends RelativeLayout
     handler.post(new Runnable() {
       @Override
       public void run() {
-        fromView.setText(recipients, read);
+        fromView.setText(recipients, getRead());
+        subjectView.setText(thread.getDisplayBody());
         contactPhotoImage.setAvatar(recipients, true);
         setRippleColor(recipients);
       }
