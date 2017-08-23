@@ -177,6 +177,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
       } else if (mediaType != null && mediaType.startsWith("video/")) {
         image.setVisibility(View.GONE);
         video.setVisibility(View.VISIBLE);
+        video.setWindow(getWindow());
         video.setVideoSource(masterSecret, new VideoSlide(this, mediaUri, size));
       }
     } catch (IOException e) {
