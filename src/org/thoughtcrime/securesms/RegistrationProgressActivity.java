@@ -39,6 +39,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.KeyHelper;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
 import org.whispersystems.signalservice.api.push.exceptions.ExpectationFailedException;
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
 import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
@@ -546,6 +547,9 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
           } catch (RateLimitException e) {
             Log.w(TAG, e);
             return RATE_LIMIT_ERROR;
+          } catch (AuthorizationFailedException e) {
+            Log.w(TAG, e);
+            return VERIFICATION_ERROR;
           } catch (IOException e) {
             Log.w(TAG, e);
             return NETWORK_ERROR;
