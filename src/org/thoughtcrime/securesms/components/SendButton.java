@@ -67,6 +67,10 @@ public class SendButton extends ImageButton
     transportOptions.addOnTransportChangedListener(listener);
   }
 
+  public boolean hasEnabledTransports() {
+    return transportOptions.hasEnabledTransports();
+  }
+
   public TransportOption getSelectedTransport() {
     return transportOptions.getSelectedTransport();
   }
@@ -80,11 +84,11 @@ public class SendButton extends ImageButton
   }
 
   public void setDefaultTransport(TransportOption.Type type) {
-    transportOptions.setDefaultTransport(type);
+    if (transportOptions.hasEnabledTransports()) transportOptions.setDefaultTransport(type);
   }
 
   public void setDefaultSubscriptionId(Optional<Integer> subscriptionId) {
-    transportOptions.setDefaultSubscriptionId(subscriptionId);
+    if (transportOptions.hasEnabledTransports()) transportOptions.setDefaultSubscriptionId(subscriptionId);
   }
 
   @Override

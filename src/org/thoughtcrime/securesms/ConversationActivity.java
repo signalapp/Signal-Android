@@ -1469,7 +1469,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void setBlockedUserState(Recipients recipients, boolean isSecureText, boolean isDefaultSms) {
-    if (recipients.isBlocked()) {
+    if (!sendButton.hasEnabledTransports()) {
+      unblockButton.setVisibility(View.GONE);
+      composePanel.setVisibility(View.GONE);
+      makeDefaultSmsButton.setVisibility(View.GONE);
+    } else if (recipients.isBlocked()) {
       unblockButton.setVisibility(View.VISIBLE);
       composePanel.setVisibility(View.GONE);
       makeDefaultSmsButton.setVisibility(View.GONE);
@@ -1485,6 +1489,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void calculateCharactersRemaining() {
+    if (!sendButton.hasEnabledTransports()) {
+      charactersLeft.setVisibility(View.GONE);
+      return;
+    }
+
     String          messageBody     = composeText.getTextTrimmed();
     TransportOption transportOption = sendButton.getSelectedTransport();
     CharacterState  characterState  = transportOption.calculateCharacters(messageBody);

@@ -76,6 +76,10 @@ public class TransportOptions {
     return this.selectedOption.isPresent();
   }
 
+  public boolean hasEnabledTransports() {
+    return !enabledTransports.isEmpty();
+  }
+
   public @NonNull TransportOption getSelectedTransport() {
     if (selectedOption.isPresent()) return selectedOption.get();
 
