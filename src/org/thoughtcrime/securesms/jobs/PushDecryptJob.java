@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.groups.GroupMessageProcessor;
@@ -167,7 +166,7 @@ public class PushDecryptJob extends ContextJob {
           handleUnknownGroupMessage(envelope, message.getGroupInfo().get());
         }
 
-        if (message.getProfileKey().isPresent()) {
+        if (message.getProfileKey().isPresent() && message.getProfileKey().get().length == 32) {
           handleProfileKey(envelope, message);
         }
       } else if (content.getSyncMessage().isPresent()) {
@@ -807,7 +806,7 @@ public class PushDecryptJob extends ContextJob {
     Address           sourceAddress = Address.fromExternal(context, envelope.getSource());
     Recipient         recipient     = Recipient.from(context, sourceAddress, false);
 
-    if (recipient.getProfileKey() == null || MessageDigest.isEqual(recipient.getProfileKey(), message.getProfileKey().get())) {
+    if (recipient.getProfileKey() == null || !MessageDigest.isEqual(recipient.getProfileKey(), message.getProfileKey().get())) {
       database.setProfileKey(recipient, message.getProfileKey().get());
       ApplicationContext.getInstance(context).getJobManager().add(new RetrieveProfileJob(context, recipient));
     }

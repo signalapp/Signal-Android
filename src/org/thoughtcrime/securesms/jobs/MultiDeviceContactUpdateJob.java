@@ -101,7 +101,8 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
                                   Optional.fromNullable(recipient.getName()),
                                   getAvatar(recipient.getContactUri()),
                                   Optional.fromNullable(recipient.getColor().serialize()),
-                                  verifiedMessage));
+                                  verifiedMessage,
+                                  Optional.fromNullable(recipient.getProfileKey())));
 
       out.close();
       sendUpdate(messageSender, contactDataFile, false);
@@ -131,8 +132,9 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
         Optional<VerifiedMessage>                 verified   = getVerifiedMessage(recipient, identity);
         Optional<String>                          name       = Optional.fromNullable(contactData.name);
         Optional<String>                          color      = Optional.of(recipient.getColor().serialize());
+        Optional<byte[]>                          profileKey = Optional.fromNullable(recipient.getProfileKey());
 
-        out.write(new DeviceContact(address.toPhoneString(), name, getAvatar(contactUri), color, verified));
+        out.write(new DeviceContact(address.toPhoneString(), name, getAvatar(contactUri), color, verified, profileKey));
       }
 
       out.close();

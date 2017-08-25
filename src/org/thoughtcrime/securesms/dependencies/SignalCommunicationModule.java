@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceGroupUpdateJob;
+import org.thoughtcrime.securesms.jobs.MultiDeviceProfileKeyUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceVerifiedUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
@@ -67,7 +68,8 @@ import dagger.Provides;
                                      RetrieveProfileJob.class,
                                      MultiDeviceVerifiedUpdateJob.class,
                                      CreateProfileActivity.class,
-                                     RetrieveProfileAvatarJob.class})
+                                     RetrieveProfileAvatarJob.class,
+                                     MultiDeviceProfileKeyUpdateJob.class})
 public class SignalCommunicationModule {
 
   private final Context                    context;

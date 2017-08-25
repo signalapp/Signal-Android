@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.TextSecureExpiredException;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
@@ -66,22 +67,11 @@ public abstract class PushSendJob extends SendJob {
   }
 
   protected Optional<byte[]> getProfileKey(@NonNull Recipient recipient) {
-    try {
-      if (!recipient.resolve().isSystemContact() && !recipient.resolve().isProfileSharing()) {
-        return Optional.absent();
-      }
-
-      String profileKey = TextSecurePreferences.getProfileKey(context);
-
-      if (profileKey == null) {
-        profileKey = Util.getSecret(32);
-        TextSecurePreferences.setProfileKey(context, profileKey);
-      }
-
-      return Optional.of(Base64.decode(profileKey));
-    } catch (IOException e) {
-      throw new AssertionError(e);
+    if (!recipient.resolve().isSystemContact() && !recipient.resolve().isProfileSharing()) {
+      return Optional.absent();
     }
+
+    return Optional.of(ProfileKeyUtil.getProfileKey(context));
   }
 
   protected SignalServiceAddress getPushAddress(Address address) {

@@ -34,8 +34,10 @@ import org.thoughtcrime.securesms.contacts.avatars.BitmapContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.jobs.MultiDeviceProfileKeyUpdateJob;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.AvatarPhotoUriLoader;
 import org.thoughtcrime.securesms.profiles.ProfileMediaConstraints;
@@ -344,15 +346,10 @@ public class CreateProfileActivity extends PassphraseRequiredActionBarActivity i
     {
       @Override
       protected Boolean doInBackground(Void... params) {
-        String encodedProfileKey = TextSecurePreferences.getProfileKey(CreateProfileActivity.this);
-
-        if (encodedProfileKey == null) {
-          encodedProfileKey = Util.getSecret(32);
-          TextSecurePreferences.setProfileKey(CreateProfileActivity.this, encodedProfileKey);
-        }
+        byte[] profileKey = ProfileKeyUtil.getProfileKey(CreateProfileActivity.this);
 
         try {
-          accountManager.setProfileName(Base64.decode(encodedProfileKey), name);
+          accountManager.setProfileName(profileKey, name);
           TextSecurePreferences.setProfileName(getContext(), name);
         } catch (IOException e) {
           Log.w(TAG, e);
@@ -360,12 +357,14 @@ public class CreateProfileActivity extends PassphraseRequiredActionBarActivity i
         }
 
         try {
-          accountManager.setProfileAvatar(Base64.decode(encodedProfileKey), avatar);
+          accountManager.setProfileAvatar(profileKey, avatar);
           AvatarHelper.setAvatar(getContext(), Address.fromSerialized(TextSecurePreferences.getLocalNumber(getContext())), avatarBytes);
         } catch (IOException e) {
           Log.w(TAG, e);
           return false;
         }
+
+        ApplicationContext.getInstance(getContext()).getJobManager().add(new MultiDeviceProfileKeyUpdateJob(getContext()));
 
         return true;
       }
