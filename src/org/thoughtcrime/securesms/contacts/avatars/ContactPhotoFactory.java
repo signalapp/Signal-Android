@@ -83,6 +83,7 @@ public class ContactPhotoFactory {
                            .load(new AvatarPhotoUri(address))
                            .asBitmap()
                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                           .skipMemoryCache(true)
                            .centerCrop()
                            .into(targetSize, targetSize)
                            .get();

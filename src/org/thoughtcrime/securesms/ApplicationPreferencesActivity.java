@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.AppearancePreferenceFragment;
 import org.thoughtcrime.securesms.preferences.CorrectedPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.NotificationsPreferenceFragment;
+import org.thoughtcrime.securesms.preferences.ProfilePreference;
 import org.thoughtcrime.securesms.preferences.SmsMmsPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.ChatsPreferenceFragment;
 import org.thoughtcrime.securesms.service.KeyCachingService;
@@ -171,6 +172,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
     }
 
     private void setCategorySummaries() {
+      ((ProfilePreference)this.findPreference(PREFERENCE_CATEGORY_PROFILE)).refresh();
+
       this.findPreference(PREFERENCE_CATEGORY_SMS_MMS)
           .setSummary(SmsMmsPreferenceFragment.getSummary(getActivity()));
       this.findPreference(PREFERENCE_CATEGORY_NOTIFICATIONS)
@@ -284,7 +287,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
         Intent intent = new Intent(preference.getContext(), CreateProfileActivity.class);
         intent.putExtra(CreateProfileActivity.EXCLUDE_SYSTEM, true);
 
-        ((BaseActionBarActivity)getActivity()).startActivitySceneTransition(intent, getActivity().findViewById(R.id.avatar), "avatar");
+        getActivity().startActivity(intent);
+//        ((BaseActionBarActivity)getActivity()).startActivitySceneTransition(intent, getActivity().findViewById(R.id.avatar), "avatar");
         return true;
       }
     }

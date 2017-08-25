@@ -18,12 +18,13 @@
                   android:layout_marginLeft="10dp"
                   android:layout_marginStart="10dp">
 
-        <TextView android:id="@+id/profile_name"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_marginBottom="5dp"
-                  android:textSize="20sp"
-                  tools:text="Voltarine DeClyre"/>
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+                android:id="@+id/profile_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:textSize="20sp"
+                tools:text="Voltarine DeClyre"/>
 
         <TextView android:id="@+id/number"
                   android:layout_width="match_parent"

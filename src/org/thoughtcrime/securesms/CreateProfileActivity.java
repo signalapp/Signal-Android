@@ -12,7 +12,9 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Pair;
 import android.view.KeyEvent;
@@ -48,6 +50,7 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.util.StreamDetails;
 
 import java.io.ByteArrayInputStream;
@@ -175,6 +178,23 @@ public class CreateProfileActivity extends PassphraseRequiredActionBarActivity i
 
       Intent chooserIntent = createAvatarSelectionIntent(captureFile, avatarBytes != null);
       startActivityForResult(chooserIntent, REQUEST_CODE_AVATAR);
+    });
+
+    this.name.addTextChangedListener(new TextWatcher() {
+      @Override
+      public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+      @Override
+      public void onTextChanged(CharSequence s, int start, int before, int count) {}
+      @Override
+      public void afterTextChanged(Editable s) {
+        if (s.toString().getBytes().length > ProfileCipher.NAME_PADDED_LENGTH) {
+          name.setError(getString(R.string.CreateProfileActivity_too_long));
+          finishButton.setEnabled(false);
+        } else if (name.getError() != null || !finishButton.isEnabled()) {
+          name.setError(null);
+          finishButton.setEnabled(true);
+        }
+      }
     });
 
     this.finishButton.setOnClickListener(view -> {

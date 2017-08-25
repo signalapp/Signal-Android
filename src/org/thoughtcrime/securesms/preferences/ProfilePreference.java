@@ -2,9 +2,12 @@ package org.thoughtcrime.securesms.preferences;
 
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.preference.Preference;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -16,10 +19,15 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class ProfilePreference extends Preference {
+
+  private ImageView avatarView;
+  private TextView  profileNameView;
+  private TextView  profileNumberView;
 
   @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
   public ProfilePreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
@@ -50,27 +58,42 @@ public class ProfilePreference extends Preference {
   protected void onBindView(View view) {
     super.onBindView(view);
 
-    final ImageView avatar        = ViewUtil.findById(view, R.id.avatar);
-    final TextView  profileName   = ViewUtil.findById(view, R.id.profile_name);
-    final TextView  profileNumber = ViewUtil.findById(view, R.id.number);
-    final Address   localAddress  = Address.fromSerialized(TextSecurePreferences.getLocalNumber(getContext()));
+    avatarView        = ViewUtil.findById(view, R.id.avatar);
+    profileNameView   = ViewUtil.findById(view, R.id.profile_name);
+    profileNumberView = ViewUtil.findById(view, R.id.number);
 
-    new AsyncTask<Void, Void, ContactPhoto>() {
+    refresh();
+  }
+
+  public void refresh() {
+    if (profileNumberView == null) return;
+
+    final Address localAddress = Address.fromSerialized(TextSecurePreferences.getLocalNumber(getContext()));
+    final String  profileName  = TextSecurePreferences.getProfileName(getContext());
+
+    new AsyncTask<Void, Void, Drawable>() {
       @Override
-      protected ContactPhoto doInBackground(Void... params) {
-        return ContactPhotoFactory.getSignalAvatarContactPhoto(getContext(), localAddress, null, getContext().getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size));
+      protected @NonNull Drawable doInBackground(Void... params) {
+        if (AvatarHelper.getAvatarFile(getContext(), localAddress).exists()) {
+          return ContactPhotoFactory.getSignalAvatarContactPhoto(getContext(), localAddress, profileName,
+                                                                 getContext().getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size))
+                                    .asDrawable(getContext(), 0);
+        } else {
+          return ContactPhotoFactory.getResourceContactPhoto(R.drawable.ic_camera_alt_white_24dp)
+                                    .asDrawable(getContext(), getContext().getResources().getColor(R.color.grey_400));
+        }
       }
 
       @Override
-      protected void onPostExecute(ContactPhoto contactPhoto) {
-        avatar.setImageDrawable(contactPhoto.asDrawable(getContext(), 0));
+      protected void onPostExecute(@NonNull Drawable contactPhoto) {
+        avatarView.setImageDrawable(contactPhoto);
       }
     }.execute();
 
-    if (!TextUtils.isEmpty(TextSecurePreferences.getProfileName(getContext()))) {
-      profileName.setText(TextSecurePreferences.getProfileName(getContext()));
+    if (!TextUtils.isEmpty(profileName)) {
+      profileNameView.setText(profileName);
     }
 
-    profileNumber.setText(localAddress.toPhoneString());
+    profileNumberView.setText(localAddress.toPhoneString());
   }
 }

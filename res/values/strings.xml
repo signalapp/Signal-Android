@@ -237,6 +237,7 @@
     <string name="CreateProfileActivity_updating_profile">Updating profile</string>
     <string name="CreateProfileActivity_updating_and_encrypting_profile">Updating and encrypting profile</string>
     <string name="CreateProfileActivity_profile_photo">Profile photo</string>
+    <string name="CreateProfileActivity_too_long">Too long</string>
 
     <!-- CustomDefaultPreference -->
     <string name="CustomDefaultPreference_using_custom">Using custom: %s</string>
@@ -1444,6 +1445,7 @@
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
+
 
 
     <!-- EOF -->
