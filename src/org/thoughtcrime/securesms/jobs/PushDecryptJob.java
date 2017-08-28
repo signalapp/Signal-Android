@@ -160,7 +160,7 @@ public class PushDecryptJob extends ContextJob {
         else if (message.isGroupUpdate())              handleGroupMessage(masterSecret, envelope, message, smsMessageId);
         else if (message.isExpirationUpdate())         handleExpirationUpdate(masterSecret, envelope, message, smsMessageId);
         else if (message.getAttachments().isPresent()) handleMediaMessage(masterSecret, envelope, message, smsMessageId);
-        else                                           handleTextMessage(masterSecret, envelope, message, smsMessageId);
+        else if (message.getBody().isPresent())        handleTextMessage(masterSecret, envelope, message, smsMessageId);
 
         if (message.getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false))) {
           handleUnknownGroupMessage(envelope, message.getGroupInfo().get());
