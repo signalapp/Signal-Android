@@ -429,6 +429,18 @@ public class PushDecryptJob extends ContextJob {
       handleUnknownGroupMessage(envelope, message.getMessage().getGroupInfo().get());
     }
 
+    if (message.getMessage().getProfileKey().isPresent()) {
+      Recipient recipient = null;
+
+      if      (message.getDestination().isPresent())            recipient = Recipient.from(context, Address.fromExternal(context, message.getDestination().get()), false);
+      else if (message.getMessage().getGroupInfo().isPresent()) recipient = Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get().getGroupId(), false)), false);
+
+
+      if (recipient != null && !recipient.isSystemContact() && !recipient.isProfileSharing()) {
+        DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true);
+      }
+    }
+
     if (threadId != null) {
       DatabaseFactory.getThreadDatabase(getContext()).setRead(threadId, true);
       MessageNotifier.updateNotification(getContext(), masterSecret.getMasterSecret().orNull());
