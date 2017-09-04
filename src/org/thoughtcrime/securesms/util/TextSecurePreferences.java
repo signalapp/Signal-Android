@@ -48,6 +48,7 @@ public class TextSecurePreferences {
 
   private static final String LAST_VERSION_CODE_PREF           = "last_version_code";
   private static final String LAST_EXPERIENCE_VERSION_PREF     = "last_experience_version_code";
+  private static final String EXPERIENCE_DISMISSED_PREF        = "experience_dismissed";
   public  static final String RINGTONE_PREF                    = "pref_key_ringtone";
   private static final String VIBRATE_PREF                     = "pref_key_vibrate";
   private static final String NOTIFICATION_PREF                = "pref_key_enable_notifications";
@@ -486,6 +487,14 @@ public class TextSecurePreferences {
 
   public static void setLastExperienceVersionCode(Context context, int versionCode) {
     setIntegerPrefrence(context, LAST_EXPERIENCE_VERSION_PREF, versionCode);
+  }
+
+  public static int getExperienceDismissedVersionCode(Context context) {
+    return getIntegerPreference(context, EXPERIENCE_DISMISSED_PREF, 0);
+  }
+
+  public static void setExperienceDismissedVersionCode(Context context, int versionCode) {
+    setIntegerPrefrence(context, EXPERIENCE_DISMISSED_PREF, versionCode);
   }
 
   public static String getTheme(Context context) {

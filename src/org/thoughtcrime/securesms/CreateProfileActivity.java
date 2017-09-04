@@ -22,6 +22,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -80,6 +81,7 @@ public class CreateProfileActivity extends PassphraseRequiredActionBarActivity i
   private InputAwareLayout container;
   private ImageView        avatar;
   private Button           finishButton;
+  private TextView         skipButton;
   private EditText         name;
   private EmojiToggle      emojiToggle;
   private EmojiDrawer      emojiDrawer;
@@ -165,6 +167,7 @@ public class CreateProfileActivity extends PassphraseRequiredActionBarActivity i
     this.emojiDrawer  = ViewUtil.findById(this, R.id.emoji_drawer);
     this.container    = ViewUtil.findById(this, R.id.container);
     this.finishButton = ViewUtil.findById(this, R.id.finish_button);
+    this.skipButton   = ViewUtil.findById(this, R.id.skip_button);
     this.nextIntent   = getIntent().getParcelableExtra(NEXT_INTENT);
 
     this.avatar.setImageDrawable(ContactPhotoFactory.getResourceContactPhoto(R.drawable.ic_camera_alt_white_24dp)
@@ -201,6 +204,11 @@ public class CreateProfileActivity extends PassphraseRequiredActionBarActivity i
 
     this.finishButton.setOnClickListener(view -> {
       handleUpload();
+    });
+
+    this.skipButton.setOnClickListener(view -> {
+      if (nextIntent != null) startActivity(nextIntent);
+      finish();
     });
   }
 

@@ -61,7 +61,7 @@
                   android:layout_marginLeft="3dp"
                   android:layout_gravity="center_vertical"
                   android:textColor="#73B7F0"
-                  android:text="Who can see this information?"/>
+                  android:text="@string/profile_create_activity__who_can_see_this_information"/>
     </LinearLayout>
 
 
@@ -73,7 +73,7 @@
                   android:clipToPadding="false">
 
         <Button android:id="@+id/finish_button"
-                android:text="FINISH"
+                android:text="@string/profile_create_activity__finish"
                 android:textAllCaps="true"
                 android:background="@color/signal_primary"
                 android:textColor="@color/white"
@@ -81,6 +81,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:layout_gravity="center_horizontal"/>
+
+        <TextView android:id="@+id/skip_button"
+                  android:layout_gravity="center_horizontal"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="0dp"
+                  android:layout_marginBottom="20dp"
+                  android:textColor="@color/gray50"
+                  android:text="@string/profile_create_activity__set_later"/>
 
         <org.thoughtcrime.securesms.components.emoji.EmojiDrawer
                 xmlns:android="http://schemas.android.com/apk/res/android"

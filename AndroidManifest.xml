@@ -572,6 +572,10 @@
             <action android:name="android.intent.action.PACKAGE_REPLACED"/>
             <data android:scheme="package" />
         </intent-filter>
+
+        <intent-filter>
+            <action android:name="org.thoughtcrime.securesms.ExperienceUpgradeActivity.DISMISS_ACTION"/>
+        </intent-filter>
     </receiver>
 
     <receiver

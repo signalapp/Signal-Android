@@ -2,18 +2,16 @@ package org.thoughtcrime.securesms.jobs;
 
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule.SignalMessageSenderFactory;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream;
@@ -35,7 +33,7 @@ public class MultiDeviceProfileKeyUpdateJob extends MasterSecretJob implements I
   private static final long serialVersionUID = 1L;
   private static final String TAG = MultiDeviceProfileKeyUpdateJob.class.getSimpleName();
 
-  @Inject SignalServiceMessageSender messageSender;
+  @Inject SignalMessageSenderFactory messageSender;
 
   public MultiDeviceProfileKeyUpdateJob(Context context) {
     super(context, JobParameters.newBuilder()
@@ -73,7 +71,7 @@ public class MultiDeviceProfileKeyUpdateJob extends MasterSecretJob implements I
 
     SignalServiceSyncMessage      syncMessage      = SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream, false));
 
-    messageSender.sendMessage(syncMessage);
+    messageSender.create().sendMessage(syncMessage);
   }
 
   @Override

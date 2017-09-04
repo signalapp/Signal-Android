@@ -263,6 +263,7 @@ android {
                           'proguard-webrtc.pro',
                           'proguard-klinker.pro',
                           'proguard-retrolambda.pro',
+                          'proguard-okhttp.pro',
                           'proguard.cfg'
             testProguardFiles 'proguard-automation.pro',
                           'proguard.cfg'
