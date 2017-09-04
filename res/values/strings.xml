@@ -96,10 +96,10 @@
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">Received key exchange message, tap to process.</string>
     <string name="ConversationItem_group_action_left">%1$s has left the group.</string>
     <string name="ConversationItem_click_for_details">Tap for details</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Tap for unsecured fallback</string>
+    <string name="ConversationItem_click_to_approve_unencrypted">Tap for insecure fallback</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Fallback to unencrypted SMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Fallback to unencrypted MMS?</string>
-    <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">This message will <b>not</b> be encrypted because the recipient is no longer a Signal user.\n\nSend unsecured message?</string>
+    <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">This message will <b>not</b> be encrypted because the recipient is no longer a Signal user.\n\nSend insecure message?</string>
     <string name="ConversationItem_unable_to_open_media">Can\'t find an app able to open this media.</string>
     <string name="ConversationItem_copied_text">Copied %s</string>
     <string name="ConversationItem_from_s">from %s</string>
@@ -795,8 +795,8 @@
 
     <!-- conversation_activity -->
     <string name="conversation_activity__type_message_push">Signal message</string>
-    <string name="conversation_activity__type_message_sms_insecure">Unsecured SMS</string>
-    <string name="conversation_activity__type_message_mms_insecure">Unsecured MMS</string>
+    <string name="conversation_activity__type_message_sms_insecure">Insecure SMS</string>
+    <string name="conversation_activity__type_message_mms_insecure">Insecure MMS</string>
     <string name="conversation_activity__from_sim_name">From %1$s</string>
     <string name="conversation_activity__send">Send</string>
     <string name="conversation_activity__remove">Remove</string>
