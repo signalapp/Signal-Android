@@ -4,8 +4,6 @@ package org.thoughtcrime.securesms;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.BitmapFactory;
-import android.media.CameraProfile;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -25,13 +23,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.soundcloud.android.crop.Crop;
 
 import org.thoughtcrime.securesms.components.InputAwareLayout;
 import org.thoughtcrime.securesms.components.emoji.EmojiDrawer;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
-import org.thoughtcrime.securesms.contacts.avatars.BitmapContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -40,10 +36,8 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileKeyUpdateJob;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
-import org.thoughtcrime.securesms.profiles.AvatarPhotoUriLoader;
 import org.thoughtcrime.securesms.profiles.ProfileMediaConstraints;
 import org.thoughtcrime.securesms.profiles.SystemProfileUtil;
-import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.IntentUtils;
@@ -81,7 +75,6 @@ public class CreateProfileActivity extends PassphraseRequiredActionBarActivity i
   private InputAwareLayout container;
   private ImageView        avatar;
   private Button           finishButton;
-  private TextView         skipButton;
   private EditText         name;
   private EmojiToggle      emojiToggle;
   private EmojiDrawer      emojiDrawer;
@@ -161,13 +154,15 @@ public class CreateProfileActivity extends PassphraseRequiredActionBarActivity i
   }
 
   private void initializeResources() {
+    TextView skipButton       = ViewUtil.findById(this, R.id.skip_button);
+    TextView informationLabel = ViewUtil.findById(this, R.id.information_label);
+
     this.avatar       = ViewUtil.findById(this, R.id.avatar);
     this.name         = ViewUtil.findById(this, R.id.name);
     this.emojiToggle  = ViewUtil.findById(this, R.id.emoji_toggle);
     this.emojiDrawer  = ViewUtil.findById(this, R.id.emoji_drawer);
     this.container    = ViewUtil.findById(this, R.id.container);
     this.finishButton = ViewUtil.findById(this, R.id.finish_button);
-    this.skipButton   = ViewUtil.findById(this, R.id.skip_button);
     this.nextIntent   = getIntent().getParcelableExtra(NEXT_INTENT);
 
     this.avatar.setImageDrawable(ContactPhotoFactory.getResourceContactPhoto(R.drawable.ic_camera_alt_white_24dp)
@@ -206,9 +201,18 @@ public class CreateProfileActivity extends PassphraseRequiredActionBarActivity i
       handleUpload();
     });
 
-    this.skipButton.setOnClickListener(view -> {
+    skipButton.setOnClickListener(view -> {
       if (nextIntent != null) startActivity(nextIntent);
       finish();
+    });
+
+    informationLabel.setOnClickListener(view -> {
+      Intent intent = new Intent(Intent.ACTION_VIEW);
+      intent.setData(Uri.parse("https://support.signal.org/hc/en-us/articles/115001434171"));
+
+      if (getPackageManager().queryIntentActivities(intent, 0).size() > 0) {
+        startActivity(intent);
+      }
     });
   }
 
