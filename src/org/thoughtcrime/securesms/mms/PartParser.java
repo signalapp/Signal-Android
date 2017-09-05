@@ -24,7 +24,7 @@ public class PartParser {
           String characterSet = CharacterSets.getMimeName(body.getPart(i).getCharset());
 
           if (characterSet.equals(CharacterSets.MIMENAME_ANY_CHARSET))
-            characterSet = CharacterSets.UTF_8;
+            characterSet = CharacterSets.MIMENAME_ISO_8859_1;
 
           if (body.getPart(i).getData() != null) {
             partText = new String(body.getPart(i).getData(), characterSet);
