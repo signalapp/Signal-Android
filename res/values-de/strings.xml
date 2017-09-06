@@ -215,7 +215,7 @@
   <string name="CreateProfileActivity_updating_profile">Profil wird aktualisiert</string>
   <string name="CreateProfileActivity_updating_and_encrypting_profile">Profil wird aktualisiert und verschlüsselt</string>
   <string name="CreateProfileActivity_profile_photo">Profilfoto</string>
-  <string name="CreateProfileActivity_too_long">Zu lang</string>
+  <string name="CreateProfileActivity_too_long">Profilname ist zu lang</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Benutzerdefiniert: %s</string>
   <string name="CustomDefaultPreference_using_default">Standard: %s</string>
@@ -816,6 +816,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="profile_create_activity__set_later">Später festlegen</string>
   <string name="profile_create_activity__finish">ABSCHLIEẞEN</string>
   <string name="profile_create_activity__who_can_see_this_information">Wer kann diese Informationen sehen?</string>
+  <string name="profile_create_activity__your_name">Dein Name</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">BLOCKIERT</string>
   <!--recipient_preferences-->

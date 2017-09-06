@@ -62,6 +62,7 @@
   <string name="CallScreen_Incoming_call">來電</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">移除</string>
+  <string name="ClearProfileActivity_remove_profile_photo">移除頭像照片？</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s 的安全碼產生變動。這有可能是有不明人士試圖攔截您的通訊／對話內容，或是因為 %2$s 重新安裝 Signal。</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">您可能希望驗證這名聯絡人的安全碼。</string>
@@ -192,6 +193,7 @@
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">存檔對話 (%d)</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity_your_profile_info">你的個人資訊</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">使用定製：%s</string>
   <string name="CustomDefaultPreference_using_default">使用預設：%s</string>

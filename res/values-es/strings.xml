@@ -838,6 +838,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="profile_create_activity__set_later">Establecer más tarde</string>
   <string name="profile_create_activity__finish">FINALIZADO</string>
   <string name="profile_create_activity__who_can_see_this_information">¿Quién puede ver esta información?</string>
+  <string name="profile_create_activity__your_name">Su nombre</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">BLOQUEADO</string>
   <!--recipient_preferences-->

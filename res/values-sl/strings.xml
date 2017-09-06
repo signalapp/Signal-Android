@@ -247,7 +247,7 @@
   <string name="CreateProfileActivity_updating_profile">Posodabljam profil</string>
   <string name="CreateProfileActivity_updating_and_encrypting_profile">Posodabljam in šifriram profil</string>
   <string name="CreateProfileActivity_profile_photo">Predstavitvena fotografija</string>
-  <string name="CreateProfileActivity_too_long">Predolgo</string>
+  <string name="CreateProfileActivity_too_long">Ime profila je predolgo</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Uporabljam izbirno: %s</string>
   <string name="CustomDefaultPreference_using_default">Prednastavljeno: %s</string>
@@ -868,6 +868,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="profile_create_activity__set_later">Nastavi kasneje</string>
   <string name="profile_create_activity__finish">DOKONČAJ</string>
   <string name="profile_create_activity__who_can_see_this_information">Kdo lahko vidi vse to?</string>
+  <string name="profile_create_activity__your_name">Vaše ime</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">BLOKIRAN</string>
   <!--recipient_preferences-->

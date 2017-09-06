@@ -289,6 +289,7 @@
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Теперь Signal поддерживает защищённые видео-звонки. Нажмите, чтобы узнать больше.</string>
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Готовы к крупному плану?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Теперь вы можете поделиться фотографией профиля и именем с друзьями в Signal</string>
+  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Профили Signal здесь</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Экспорт</string>
   <string name="ExportFragment_export_plaintext_to_storage">Экспортировать открытым текстом?</string>
@@ -798,13 +799,13 @@
   </plurals>
   <string name="expiration_weeks_abbreviated">%dн</string>
   <!--unverified safety numbers-->
-  <string name="IdentityUtil_unverified_banner_one">Ваш код безопасности с %s изменился и больше не является подтверждённым</string>
-  <string name="IdentityUtil_unverified_banner_two">Ваши коды безопасности с %1$s и %2$s изменились и больше не являются подтверждёнными</string>
-  <string name="IdentityUtil_unverified_banner_many">Ваши коды безопасности с %1$s, %2$s и %3$s изменились и больше не являются подтверждёнными</string>
-  <string name="IdentityUtil_unverified_dialog_one">Ваш код безопасности с %1$s изменился и больше не является подтверждённым. Это означает, что %1$s переустановил(а) Signal или кто-то посторонний извне пытается проникнуть в Вашу переписку.</string>
-  <string name="IdentityUtil_unverified_dialog_two">Ваши коды безопасности с %1$s и %2$s изменились и больше не являются подтверждёнными. Это означает, что они переустановили Signal или кто-то посторонний извне пытается проникнуть в Вашу переписку.</string>
-  <string name="IdentityUtil_unverified_dialog_many">Ваши коды безопасности с %1$s, %2$s и %3$s изменились и больше не являются подтверждёнными. Это означает, что они переустановили Signal или кто-то посторонний извне пытается проникнуть в Вашу переписку.</string>
-  <string name="IdentityUtil_untrusted_dialog_one">Ваш код безопасности с %s был изменён.</string>
+  <string name="IdentityUtil_unverified_banner_one">Ваш код безопасности с %s изменился и больше не является подтвержденным</string>
+  <string name="IdentityUtil_unverified_banner_two">Ваши коды безопасности с %1$s и %2$s изменились и больше не являются подтвержденными</string>
+  <string name="IdentityUtil_unverified_banner_many">Ваши коды безопасности с %1$s, %2$s и %3$s изменились и больше не являются подтвержденными</string>
+  <string name="IdentityUtil_unverified_dialog_one">Ваш код безопасности с %1$s изменился и больше не является подтвержденным. Это означает, что кто-то пытается перехватить вашу переписку или %1$s просто переустановил(а) Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Ваши коды безопасности с %1$s и %2$s изменились и больше не являются подтвержденными. Это означает, что кто-то пытается перехватить вашу переписку или они просто переустановили Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Ваши коды безопасности с %1$s, %2$s и %3$s изменились и больше не являются подтвержденными. Это означает, что кто-то пытается перехватить вашу переписку или они просто переустановили Signal.</string>
+  <string name="IdentityUtil_untrusted_dialog_one">Ваш код безопасности с %s был изменен.</string>
   <string name="IdentityUtil_untrusted_dialog_two">Ваши коды безопасности с %1$s и %2$s были изменены.</string>
   <string name="IdentityUtil_untrusted_dialog_many">Ваши коды безопасности с %1$s, %2$s и %3$s только что изменились.</string>
   <plurals name="identity_others">
@@ -870,6 +871,7 @@
   <string name="profile_create_activity__set_later">Настроить позже</string>
   <string name="profile_create_activity__finish">КОНЕЦ</string>
   <string name="profile_create_activity__who_can_see_this_information">Кто может видеть эту информацию?</string>
+  <string name="profile_create_activity__your_name">Ваше имя</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">ЗАБЛОКИРОВАН</string>
   <!--recipient_preferences-->
@@ -957,7 +959,7 @@ SMS-подтверждения...
   <string name="unknown_sender_view__add_to_contacts">ДОБАВИТЬ В КОНТАКТЫ</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">НЕ ДОБАВЛЯТЬ, НО СДЕЛАТЬ МОЙ ПРОФИЛЬ ВИДИМЫМ</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Если Вы хотите убедиться в надёжности шифрования переписки с %s, сравните код выше с таким же кодом на его (её) устройстве. Также Вы можете отсканировать код на его (её) телефоне или попросить его (её) отсканировать Ваш код. <a href="https://whispersystems.org/redirect/safety-numbers">Узнать больше</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Если вы хотите убедиться в надежности шифрования переписки с %s, сравните код выше с таким же кодом на его (ее) устройстве. Также вы можете отсканировать код на его (ее) телефоне или попросить его (ее) отсканировать ваш код. <a href="https://whispersystems.org/redirect/safety-numbers">Узнать больше</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Сканировать</string>
   <string name="verify_display_fragment__loading">Загрузка...</string>
   <string name="verify_display_fragment__verified">Подтвержден</string>
