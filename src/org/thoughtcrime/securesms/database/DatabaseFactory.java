@@ -1228,6 +1228,8 @@ public class DatabaseFactory {
               members.add(DelimiterUtil.escape(DelimiterUtil.unescape(address, ' '), ','));
             }
 
+            members.add(DelimiterUtil.escape(TextSecurePreferences.getLocalNumber(context), ','));
+
             String        encodedGroupId = "__signal_mms_group__!" + Hex.toStringCondensed(groupId);
             ContentValues groupValues    = new ContentValues();
             ContentValues threadValues   = new ContentValues();
