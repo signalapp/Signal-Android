@@ -69,6 +69,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   public static final int MEDIA_DOWNLOAD_CONTROLS_VERSION      = 151;
   public static final int REDPHONE_SUPPORT_VERSION             = 157;
   public static final int NO_MORE_CANONICAL_DB_VERSION         = 276;
+  public static final int PROFILES                             = 289;
 
   private static final SortedSet<Integer> UPGRADE_VERSIONS = new TreeSet<Integer>() {{
     add(NO_MORE_KEY_EXCHANGE_PREFIX_VERSION);
@@ -228,6 +229,12 @@ public class DatabaseUpgradeActivity extends BaseActivity {
         ApplicationContext.getInstance(getApplicationContext())
                           .getJobManager()
                           .add(new RefreshAttributesJob(getApplicationContext()));
+        ApplicationContext.getInstance(getApplicationContext())
+                          .getJobManager()
+                          .add(new DirectoryRefreshJob(getApplicationContext()));
+      }
+
+      if (params[0] < PROFILES) {
         ApplicationContext.getInstance(getApplicationContext())
                           .getJobManager()
                           .add(new DirectoryRefreshJob(getApplicationContext()));

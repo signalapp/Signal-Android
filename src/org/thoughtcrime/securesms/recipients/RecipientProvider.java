@@ -67,7 +67,7 @@ class RecipientProvider {
   private static final Map<String, RecipientDetails> STATIC_DETAILS = new HashMap<String, RecipientDetails>() {{
     put("262966", new RecipientDetails("Amazon", null, null,
                                        ContactPhotoFactory.getResourceContactPhoto(R.drawable.ic_amazon),
-                                       null, null));
+                                       false, null, null));
   }};
 
   @NonNull Recipient getRecipient(Context context, Address address, Optional<RecipientSettings> settings, Optional<GroupRecord> groupRecord, boolean asynchronous) {
@@ -100,7 +100,7 @@ class RecipientProvider {
     if (address.isGroup() && settings.isPresent() && groupRecord.isPresent()) {
       return Optional.of(getGroupRecipientDetails(context, address, groupRecord, settings, true));
     } else if (!address.isGroup() && settings.isPresent()) {
-      return Optional.of(new RecipientDetails(null, null, null, ContactPhotoFactory.getLoadingPhoto(), settings.get(), null));
+      return Optional.of(new RecipientDetails(null, null, null, ContactPhotoFactory.getLoadingPhoto(), !TextUtils.isEmpty(settings.get().getSystemDisplayName()), settings.get(), null));
     }
 
     return Optional.absent();
@@ -145,7 +145,7 @@ class RecipientProvider {
                                                                             address,
                                                                             name);
 
-            return new RecipientDetails(cursor.getString(0), cursor.getString(4), contactUri, contactPhoto, settings.orNull(), null);
+            return new RecipientDetails(cursor.getString(0), cursor.getString(4), contactUri, contactPhoto, true, settings.orNull(), null);
           } else {
             Log.w(TAG, "resultNumber is null");
           }
@@ -157,7 +157,7 @@ class RecipientProvider {
     }
 
     if (STATIC_DETAILS.containsKey(address.serialize())) return STATIC_DETAILS.get(address.serialize());
-    else                                                 return new RecipientDetails(null, null, null, ContactPhotoFactory.getSignalAvatarContactPhoto(context, address, null, context.getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size)), settings.orNull(), null);
+    else                                                 return new RecipientDetails(null, null, null, ContactPhotoFactory.getSignalAvatarContactPhoto(context, address, null, context.getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size)), false, settings.orNull(), null);
   }
 
   private @NonNull RecipientDetails getGroupRecipientDetails(Context context, Address groupId, Optional<GroupRecord> groupRecord, Optional<RecipientSettings> settings, boolean asynchronous) {
@@ -183,10 +183,10 @@ class RecipientProvider {
         title = context.getString(R.string.RecipientProvider_unnamed_group);;
       }
 
-      return new RecipientDetails(title, null, null, contactPhoto, settings.orNull(), members);
+      return new RecipientDetails(title, null, null, contactPhoto, false, settings.orNull(), members);
     }
 
-    return new RecipientDetails(context.getString(R.string.RecipientProvider_unnamed_group), null, null, ContactPhotoFactory.getDefaultGroupPhoto(), settings.orNull(), null);
+    return new RecipientDetails(context.getString(R.string.RecipientProvider_unnamed_group), null, null, ContactPhotoFactory.getDefaultGroupPhoto(), false, settings.orNull(), null);
   }
 
   static class RecipientDetails {
@@ -212,7 +212,7 @@ class RecipientProvider {
 
     public RecipientDetails(@Nullable String name, @Nullable String customLabel,
                             @Nullable Uri contactUri, @NonNull ContactPhoto avatar,
-                            @Nullable RecipientSettings settings,
+                            boolean systemContact, @Nullable RecipientSettings settings,
                             @Nullable List<Recipient> participants)
     {
       this.customLabel           = customLabel;
@@ -232,7 +232,7 @@ class RecipientProvider {
       this.profileKey            = settings     != null ? settings.getProfileKey() : null;
       this.profileAvatar         = settings     != null ? settings.getProfileAvatar() : null;
       this.profileSharing        = settings != null && settings.isProfileSharing();
-      this.systemContact         = settings != null && !TextUtils.isEmpty(settings.getSystemDisplayName());
+      this.systemContact         = systemContact;
 
       if (name == null && settings != null) this.name = settings.getSystemDisplayName();
       else                                  this.name = name;

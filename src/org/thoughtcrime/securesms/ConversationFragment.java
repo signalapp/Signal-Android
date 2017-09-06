@@ -431,7 +431,7 @@ public class ConversationFragment extends Fragment
         setLastSeen(loader.getLastSeen());
       }
 
-      if (!loader.hasSent() && !recipient.isSystemContact() && !recipient.isGroupRecipient() && recipient.getRegistered() != RecipientDatabase.RegisteredState.REGISTERED) {
+      if (!loader.hasSent() && !recipient.isSystemContact() && !recipient.isGroupRecipient() && recipient.getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
         getListAdapter().setHeaderView(unknownSenderView);
       } else {
         getListAdapter().setHeaderView(null);

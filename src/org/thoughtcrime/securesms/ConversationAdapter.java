@@ -317,9 +317,9 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     if (lastSeen <= 0)     return -1;
     if (!isActiveCursor()) return -1;
 
-    int count = getItemCount() - (hasHeaderView() ? 1 : 0) - (hasFooterView() ? 1 : 0);
+    int count = getItemCount() - (hasFooterView() ? 1 : 0);
 
-    for (int i=0;i<count;i++) {
+    for (int i=(hasHeaderView() ? 1 : 0);i<count;i++) {
       MessageRecord messageRecord = getRecordForPositionOrThrow(i);
 
       if (messageRecord.isOutgoing() || messageRecord.getDateReceived() <= lastSeen) {

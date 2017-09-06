@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import org.thoughtcrime.securesms.R;
@@ -27,6 +28,7 @@ public class UnknownSenderView extends FrameLayout {
     this.threadId  = threadId;
 
     inflate(context, R.layout.unknown_sender_view, this);
+    setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 
     View block         = ViewUtil.findById(this, R.id.block);
     View add           = ViewUtil.findById(this, R.id.add_to_contacts);
