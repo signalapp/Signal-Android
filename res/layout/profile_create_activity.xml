@@ -21,10 +21,12 @@
 
         <org.thoughtcrime.securesms.components.emoji.EmojiEditText
                 android:id="@+id/name"
+                android:hint="@string/profile_create_activity__your_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
+                android:layout_marginLeft="10dp"
                 android:inputType="textCapWords"/>
 
         <org.thoughtcrime.securesms.components.emoji.EmojiToggle

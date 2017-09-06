@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -30,7 +29,6 @@ import org.thoughtcrime.securesms.components.emoji.EmojiDrawer;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
@@ -61,7 +59,7 @@ import javax.inject.Inject;
 
 import static android.provider.MediaStore.EXTRA_OUTPUT;
 
-public class CreateProfileActivity extends PassphraseRequiredActionBarActivity implements InjectableType {
+public class CreateProfileActivity extends BaseActionBarActivity implements InjectableType {
 
   private static final String TAG = CreateProfileActivity.class.getSimpleName();
 
@@ -84,8 +82,8 @@ public class CreateProfileActivity extends PassphraseRequiredActionBarActivity i
   private File   captureFile;
 
   @Override
-  public void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
-    super.onCreate(bundle, masterSecret);
+  public void onCreate(Bundle bundle) {
+    super.onCreate(bundle);
 
     setContentView(R.layout.profile_create_activity);
 

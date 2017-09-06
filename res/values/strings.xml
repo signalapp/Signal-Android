@@ -983,6 +983,7 @@
     <string name="profile_create_activity__set_later">Set later</string>
     <string name="profile_create_activity__finish">FINISH</string>
     <string name="profile_create_activity__who_can_see_this_information">Who can see this information?</string>
+    <string name="profile_create_activity__your_name">Your name</string>
 
     <!-- recipient_preferences_activity -->
     <string name="recipient_preference_activity__blocked">BLOCKED</string>
@@ -1454,6 +1455,7 @@
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
+
 
 
     <!-- EOF -->
