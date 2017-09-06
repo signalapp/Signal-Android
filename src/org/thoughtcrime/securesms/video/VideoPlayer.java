@@ -69,9 +69,9 @@ public class VideoPlayer extends FrameLayout {
   @Nullable private final VideoView           videoView;
   @Nullable private final SimpleExoPlayerView exoView;
 
-  @Nullable private       SimpleExoPlayer  exoPlayer;
-  @Nullable private       AttachmentServer attachmentServer;
-  @Nullable private       Window           window;
+  @Nullable private       SimpleExoPlayer     exoPlayer;
+  @Nullable private       AttachmentServer    attachmentServer;
+  @Nullable private       Window              window;
 
   public VideoPlayer(Context context) {
     this(context, null);
