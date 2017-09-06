@@ -83,7 +83,7 @@ public class TextSecurePreKeyStore implements PreKeyStore, SignedPreKeyStore {
             results.add(new SignedPreKeyRecord(loadSerializedRecord(signedPreKeyFile)));
           }
         } catch (IOException | InvalidMessageException e) {
-          Log.w(TAG, e);
+          Log.w(TAG, signedPreKeyFile.getAbsolutePath(), e);
         }
       }
 
@@ -184,7 +184,7 @@ public class TextSecurePreKeyStore implements PreKeyStore, SignedPreKeyStore {
       MasterCipher masterCipher = new MasterCipher(masterSecret);
       serializedRecord = masterCipher.decryptBytes(serializedRecord);
     } else if (recordVersion < PLAINTEXT_VERSION) {
-      throw new AssertionError("Migration didn't happen!");
+      throw new AssertionError("Migration didn't happen! " + recordFile.getAbsolutePath() + ", " + recordVersion);
     }
 
     fin.close();
