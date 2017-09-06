@@ -119,17 +119,15 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
 
     switch (requestCode) {
       case REQUEST_CODE_AVATAR:
-        if (resultCode == Activity.RESULT_OK && data == null) {
-          Toast.makeText(this, R.string.CreateProfileActivity_error_capturing_photo_camera_did_not_return_image, Toast.LENGTH_LONG).show();
-        } else if (resultCode == Activity.RESULT_OK) {
+        if (resultCode == Activity.RESULT_OK) {
           Uri outputFile = Uri.fromFile(new File(getCacheDir(), "cropped"));
-          Uri inputFile  = data.getData();
+          Uri inputFile  = (data != null ? data.getData() : null);
 
           if (inputFile == null && captureFile != null) {
             inputFile = Uri.fromFile(captureFile);
           }
 
-          if (data.getBooleanExtra("delete", false)) {
+          if (data != null && data.getBooleanExtra("delete", false)) {
             avatarBytes = null;
             avatar.setImageDrawable(ContactPhotoFactory.getResourceContactPhoto(R.drawable.ic_camera_alt_white_24dp)
                                                        .asDrawable(this, getResources().getColor(R.color.grey_400)));
