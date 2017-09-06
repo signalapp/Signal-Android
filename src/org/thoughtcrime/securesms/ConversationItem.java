@@ -568,14 +568,15 @@ public class ConversationItem extends LinearLayout
   }
 
   @Override
-  public void onModified(final Recipient recipient) {
+  public void onModified(final Recipient modified) {
     Util.runOnMain(new Runnable() {
       @Override
       public void run() {
         setBubbleState(messageRecord, recipient);
         setContactPhoto(recipient);
         setGroupMessageStatus(messageRecord, recipient);
-        setAudioViewTint(messageRecord, recipient);
+        setAudioViewTint(messageRecord, conversationRecipient);
+        setDocumentViewTint(messageRecord, conversationRecipient);
       }
     });
   }
