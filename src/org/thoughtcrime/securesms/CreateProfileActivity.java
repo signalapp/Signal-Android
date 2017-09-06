@@ -119,7 +119,9 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
 
     switch (requestCode) {
       case REQUEST_CODE_AVATAR:
-        if (resultCode == Activity.RESULT_OK) {
+        if (resultCode == Activity.RESULT_OK && data == null) {
+          Toast.makeText(this, R.string.CreateProfileActivity_error_capturing_photo_camera_did_not_return_image, Toast.LENGTH_LONG).show();
+        } else if (resultCode == Activity.RESULT_OK) {
           Uri outputFile = Uri.fromFile(new File(getCacheDir(), "cropped"));
           Uri inputFile  = data.getData();
 

@@ -238,6 +238,7 @@
     <string name="CreateProfileActivity_updating_and_encrypting_profile">Updating and encrypting profile</string>
     <string name="CreateProfileActivity_profile_photo">Profile photo</string>
     <string name="CreateProfileActivity_too_long">Too long</string>
+    <string name="CreateProfileActivity_error_capturing_photo_camera_did_not_return_image">Error capturing photo, camera did not return image</string>
 
     <!-- CustomDefaultPreference -->
     <string name="CustomDefaultPreference_using_custom">Using custom: %s</string>
