@@ -63,6 +63,8 @@
   <string name="BlockedContactsActivity_blocked_contacts">Blokkolt kontaktok</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Bejövő hívás</string>
+  <!--ClearProfileActivity-->
+  <string name="ClearProfileActivity_remove">Eltávolítás</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">A biztonsági számod megváltozott vele: %1$s. Ez jelentheti azt, hogy valaki megpróbálja lehallgatni a kommunikációdat, vagy azt, hogy %2$s egyszerűen újratelepítette a Signal-t.
     </string>
@@ -207,6 +209,7 @@
   <string name="ConversationListItem_key_exchange_message">Kulcs-csere üzenet</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Archivált beszélgetések (%d)</string>
+  <!--CreateProfileActivity-->
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Egyéni használata: %s</string>
   <string name="CustomDefaultPreference_using_default">Alapértelmezett használata: %s</string>
@@ -281,6 +284,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s-t nem lehet hozzáadni, mert nem egy Signal felhasználó.</string>
   <string name="GroupCreateActivity_loading_group_details">A csoport részleteinek betöltése...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Már a csoportban vagy.</string>
+  <!--GroupShareProfileView-->
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Én</string>
   <!--ImportExportActivity-->
@@ -417,7 +421,7 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
 Kérlek telepítsd újra a Google Play Szolgáltatásokat és próbálkozz újra!</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Értékeld az alkalmazást</string>
-  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Ha tetszik ez az alkalmazás, kélek szánj időt a segítségünkre azzal, hogy értékeled.</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Ha tetszik ez az alkalmazás, kérlek szánj egy pillanatot a segítségünkre az értékelésével.</string>
   <string name="RatingManager_rate_now">Értékelés most!</string>
   <string name="RatingManager_no_thanks">Nem, köszönöm</string>
   <string name="RatingManager_later">Később</string>
@@ -540,6 +544,14 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal frissítés</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">A Signal egy új verziója érhető el, érints a frissítéshez</string>
+  <!--UnknownSenderView-->
+  <string name="UnknownSenderView_block">Blokkolás</string>
+  <!--UntrustedSendDialog-->
+  <string name="UntrustedSendDialog_send_message">Üzenet küldése?</string>
+  <string name="UntrustedSendDialog_send">Küldés</string>
+  <!--UnverifiedSendDialog-->
+  <string name="UnverifiedSendDialog_send_message">Üzenet küldése?</string>
+  <string name="UnverifiedSendDialog_send">Küldés</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">A kontaktod a Signal egy régebbi verzióját futtatja. Kérd meg, hogy frissítsen a biztonsági szám ellenőrzése előtt.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">A kontaktod a Signal egy újabb verzióját futtatja egy inkompatibilis QR kód formátummal. Kérlek frissíts az összehasonlításhoz.</string>
@@ -798,11 +810,13 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
     <item quantity="other">%1$s csatlakozott a csoporthoz.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">A csoport neve most \'%1$s\'.</string>
+  <!--profile_group_share_view-->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Feloldás</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">A Signal-nak szüksége van az MMS beállításokra, hogy kézbesítse a média és csoport üzeneteket a vezeték nélküli szolgáltatódon keresztül. A készüléked nem teszi ezt az információt elérhetővé, ami néha igaz a zárolt eszközökre és egyéb korlátozó konfigurációkra.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Média és csoport üzenetek küldéséhez érintsd meg az \'OK\'-t és hajtsd végre a kért beállításokat. Az MMS beállítások a szolgáltatódhoz általában megtalálhatóak  a \'szolgáltatód APN-je\'-re kereséssel. Csak egyszer szükséges ezt megtenned.</string>
+  <!--profile_create_activity-->
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">BLOKKOLVA</string>
   <!--recipient_preferences-->
@@ -903,6 +917,7 @@ sikertelen.
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Adj meg egy nevet vagy számot</small></string>
   <string name="recipients_panel__add_members">Tagok hozzáadása</string>
+  <!--unknown_sender_view-->
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ha szeretnéd ellenőrizni a titkosításod biztonságát vele: %s, hasonlítsd össze a fenti számot az ő készülékén található számmal. Felváltva ezt, beszkennelheted a kódot a telefonján, vagy megkérheted, hogy szkennelje be a te kódod. <a href="https://whispersystems.org/redirect/safety-numbers">Tudj meg többet.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Érints a szkenneléshez</string>
@@ -1214,9 +1229,5 @@ sikertelen.
   <string name="trimmer__old_messages_successfully_deleted">A régi üzenetek sikeresen törlődtek</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Átvitel ikon</string>
-  <string name="UntrustedSendDialog_send_message">Üzenet küldése?</string>
-  <string name="UntrustedSendDialog_send">Küldés</string>
-  <string name="UnverifiedSendDialog_send_message">Üzenet küldése?</string>
-  <string name="UnverifiedSendDialog_send">Küldés</string>
   <!--EOF-->
 </resources>

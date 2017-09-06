@@ -66,6 +66,8 @@
   <string name="BlockedContactsActivity_blocked_contacts">Blokované kontakty</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Prichádzajúce volanie</string>
+  <!--ClearProfileActivity-->
+  <string name="ClearProfileActivity_remove">Odstrániť</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Vaše bezpečnostné číslo pre %1$s sa zmenilo. Toto môže znamenať, že sa niekto snaží preniknúť do vašej komunikácie alebo jednoducho, že %2$s preinštaloval/a Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Možno by ste chceli overiť bezpečnostné číslo s týmto kontaktom.</string>
@@ -221,6 +223,7 @@
   <string name="ConversationListItem_key_exchange_message">Správa vzájomnej výmeny kľúčov</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Archivované konverzácie (%d)</string>
+  <!--CreateProfileActivity-->
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Používa sa upravené: %s</string>
   <string name="CustomDefaultPreference_using_default">Používa sa predvolené: %s</string>
@@ -295,6 +298,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nepodarilo sa pridať %1$s pretože nie je užívateľ Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Načítavajú sa údaje o skupine...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Už ste v skupine.</string>
+  <!--GroupShareProfileView-->
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Ja</string>
   <!--ImportExportActivity-->
@@ -550,6 +554,14 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Aktualizácia Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">K dispozícii je nová verzia Signal, ťuknutím aktualizujte</string>
+  <!--UnknownSenderView-->
+  <string name="UnknownSenderView_block">Blokovať</string>
+  <!--UntrustedSendDialog-->
+  <string name="UntrustedSendDialog_send_message">Odoslať správu?</string>
+  <string name="UntrustedSendDialog_send">Odoslať</string>
+  <!--UnverifiedSendDialog-->
+  <string name="UnverifiedSendDialog_send_message">Odoslať správu?</string>
+  <string name="UnverifiedSendDialog_send">Odoslať</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Váš kontakt používa starú verziu Signal. Pred overením bezpečnostného čísla ich požiadajte o aktualizáciu aplikácie.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Váš kontakt používa novšiu verziu Signal nekompatibilnú s formátom QR kódu. Prosím aktualizujte pre porovnanie.</string>
@@ -813,11 +825,13 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
     <item quantity="other">%1$s sa pripojil/a do skupiny. </item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Názov skupiny je teraz \'%1$s\'.</string>
+  <!--profile_group_share_view-->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Odomkni</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal vyžaduje nastavenia MMS na doručenie médií a skupinových správ cez vášho poskytovateľa pripojenia. Vaše zariadenie neposkytuje tieto informácie, čo občas spôsobujú uzamknuté zariadenia alebo iné nastavenia.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Na odoslanie médií a skupinových správ, stlačte OK a dokončite žiadané nastavenia. MMS nastavenia pre vášho poskytovateľa sa dajú nájsť keď vyhľadáte Váš poskytovateľ APN. Toto musíte nastaviť len raz.</string>
+  <!--profile_create_activity-->
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">BLOKOVANÉ</string>
   <!--recipient_preferences-->
@@ -907,6 +921,7 @@ zlyhalo.
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Vlož meno alebo číslo</small></string>
   <string name="recipients_panel__add_members">Pridať členov</string>
+  <!--unknown_sender_view-->
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ak si chcete overiť zabezpečenie vášho šifrovania pre %s, porovnajte číslo vyššie s číslom na ich zariadení. Inak môžete tiež naskenovať kód na ich zariadení alebo ich požiadať o naskenovanie vášho kódu. <a href="https://whispersystems.org/redirect/safety-numbers">Zistiť viac.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Ťuknutím naskenujte</string>
@@ -1220,9 +1235,5 @@ zlyhalo.
   <string name="trimmer__old_messages_successfully_deleted">Staré správy úspešne vymazané</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona prenosu</string>
-  <string name="UntrustedSendDialog_send_message">Odoslať správu?</string>
-  <string name="UntrustedSendDialog_send">Odoslať</string>
-  <string name="UnverifiedSendDialog_send_message">Odoslať správu?</string>
-  <string name="UnverifiedSendDialog_send">Odoslať</string>
   <!--EOF-->
 </resources>

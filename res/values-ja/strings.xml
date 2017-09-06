@@ -60,6 +60,8 @@
   <string name="BlockedContactsActivity_blocked_contacts">ブロックした連絡先</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">着信</string>
+  <!--ClearProfileActivity-->
+  <string name="ClearProfileActivity_remove">削除</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$sとの安全番号が変わりました。だれかが通信を傍受しているかも知れませんし，%2$sがSignalを再インストールしただけかも知れません。</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">この連絡先との安全番号を確認しておいた方がいいかも知れません。</string>
@@ -189,6 +191,7 @@
   <string name="ConversationListItem_key_exchange_message">鍵交換のメッセージ</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">アーカイブ済みの会話 (%d)</string>
+  <!--CreateProfileActivity-->
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">カスタム利用: %s</string>
   <string name="CustomDefaultPreference_using_default">デフォルト利用: %s</string>
@@ -263,6 +266,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Signalユーザーでないので%1$sを加えることはできません</string>
   <string name="GroupCreateActivity_loading_group_details">グループ詳細を読み込み...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">グループに加入済みです</string>
+  <!--GroupShareProfileView-->
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">私</string>
   <!--ImportExportActivity-->
@@ -342,6 +346,7 @@
   <string name="MessageRecord_s_called_you">%sから着信</string>
   <string name="MessageRecord_called_s">%sに発信</string>
   <string name="MessageRecord_missed_call_from">%sから不在着信</string>
+  <string name="MessageRecord_s_joined_signal">%sがSignalに加わりました</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">メッセージの消去時間を%1$sに設定しました</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$sがメッセージの消去時間を%2$sに設定しました</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">%sとの安全番号が変わりました</string>
@@ -488,6 +493,7 @@
   <string name="ThreadRecord_called_you">着信がありました</string>
   <string name="ThreadRecord_missed_call">不在着信がありました</string>
   <string name="ThreadRecord_media_message">メディアでのメッセージ</string>
+  <string name="ThreadRecord_s_is_on_signal">%sがSignalにいます</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">メッセージの消去時間が%sに設定されました</string>
   <string name="ThreadRecord_safety_number_changed">安全番号が変わりました</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">%sとの安全番号が変わりました</string>
@@ -496,6 +502,14 @@
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signalを更新する</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signalの最新版が出ました。タップして更新してください。</string>
+  <!--UnknownSenderView-->
+  <string name="UnknownSenderView_block">ブロック</string>
+  <!--UntrustedSendDialog-->
+  <string name="UntrustedSendDialog_send_message">送信しますか？</string>
+  <string name="UntrustedSendDialog_send">送信</string>
+  <!--UnverifiedSendDialog-->
+  <string name="UnverifiedSendDialog_send_message">送信しますか？</string>
+  <string name="UnverifiedSendDialog_send">送信</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">相手は古いSignalを使っています。Signalを更新してから安全番号の確認を行うようお願いしてください。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">相手が使っているSignalのバージョンが新しいため，QRコードの形式が異なります。Signalを更新してから改めて比較してください。</string>
@@ -745,11 +759,13 @@
     <item quantity="other">%1$sがグループに加わりました</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">グループ名が「%1$s」になりました</string>
+  <!--profile_group_share_view-->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">ロック解除</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">グループメッセージや画像等を携帯電話回線を使って送るようMMSの設定をする必要がありますが、このデバイスの設定情報が不明です。これはデバイスにロックや制限が掛かっている場合に起こることがあります。</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">グループメッセージや画像等を送るには「OK」を押して設定を完了してください。MMSの設定は一般的には「アクセスポイント名」を探すことで見つかります。これは１度行えば十分です。</string>
+  <!--profile_create_activity-->
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">ブロック済み</string>
   <!--recipient_preferences-->
@@ -811,6 +827,7 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>名前または番号を入力して下さい</small></string>
   <string name="recipients_panel__add_members">メンバーを追加</string>
+  <!--unknown_sender_view-->
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%sに対する暗号化を検証したい場合は，上記の番号が相手端末上の番号が一致するか確認してください。あるいは相手の端末上のQRコードを読み取るか，こちらのQRコードを相手に読み取ってもらってください。<a href="https://whispersystems.org/redirect/safety-numbers">詳細</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">読み取る</string>
@@ -1120,9 +1137,5 @@
   <string name="trimmer__old_messages_successfully_deleted">古いメッセージの削除に成功</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">転送アイコン</string>
-  <string name="UntrustedSendDialog_send_message">送信しますか？</string>
-  <string name="UntrustedSendDialog_send">送信</string>
-  <string name="UnverifiedSendDialog_send_message">送信しますか？</string>
-  <string name="UnverifiedSendDialog_send">送信</string>
   <!--EOF-->
 </resources>

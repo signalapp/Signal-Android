@@ -63,6 +63,8 @@
   <string name="BlockedContactsActivity_blocked_contacts">Blokeeritud kontaktid</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Sissetulev kõne</string>
+  <!--ClearProfileActivity-->
+  <string name="ClearProfileActivity_remove">Eemalda</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Sinu turvanumber kontaktiga %1$s on muutunud. See võib tähendada, et keegi proovib sinu vestlusesse sekkuda või et %2$s lihtsalt taasinstallis Signali.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Sa võid tahta kinnitada oma turvanumbrit selle kontaktiga.</string>
@@ -205,6 +207,7 @@
   <string name="ConversationListItem_key_exchange_message">Võtmevahetussõnum</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Arhiveeritud vestlused (%d)</string>
+  <!--CreateProfileActivity-->
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Kasutan kohandatud: %s</string>
   <string name="CustomDefaultPreference_using_default">Kasutan vaikimisi: %s</string>
@@ -279,6 +282,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s ei saanud lisada kuna ta pole Signali kasutaja.</string>
   <string name="GroupCreateActivity_loading_group_details">Laadin grupi andmeid...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Sa oled juba grupis.</string>
+  <!--GroupShareProfileView-->
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Mina</string>
   <!--ImportExportActivity-->
@@ -539,6 +543,14 @@
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signali uuendus</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Uus Signali versioon on saadaval, koputa uuendamiseks</string>
+  <!--UnknownSenderView-->
+  <string name="UnknownSenderView_block">Blokeeri</string>
+  <!--UntrustedSendDialog-->
+  <string name="UntrustedSendDialog_send_message">Saadad sõnumi?</string>
+  <string name="UntrustedSendDialog_send">Saada</string>
+  <!--UnverifiedSendDialog-->
+  <string name="UnverifiedSendDialog_send_message">Saadad sõnumi?</string>
+  <string name="UnverifiedSendDialog_send">Saada</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Sinu kontakt kasutab vana Signali versiooni. Palun palu neil uuendada, enne kui kinnitad oma turvanumbrit.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Sinu kontakt kasutab uuemat Signali versiooni ühildumatu QR-koodi vorminguga. Võrdlemiseks palun uuenda.</string>
@@ -795,11 +807,13 @@
     <item quantity="other">%1$s liitusid grupiga.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Grupi nimi on nüüd \"%1$s\".</string>
+  <!--profile_group_share_view-->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Eemalda blokeering</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal vajab MMS-seadeid, et edastada meediat ja grupisõnumeid läbi sinu võrguteenuse pakkuja. Sinu seade ei tee seda informatsiooni saadavaks, mis esineb mõnikord lukustatud seadmete ja piiravate konfiguratsioonide puhul.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Et saata meedia- ja grupisõnumeid, koputa nupul \"OK\" ja lõpeta soovitud seaded. MMS-seaded sinu teenusepakkuja jaoks võib tavaliselt leida, otsides \"sinu teenusepakkuja APN\". Sa pead seda tegema ainult ühe korra.</string>
+  <!--profile_create_activity-->
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">BLOKEERITUD</string>
   <!--recipient_preferences-->
@@ -899,6 +913,7 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Sisesta nimi või number</small></string>
   <string name="recipients_panel__add_members">Lisa liikmeid</string>
+  <!--unknown_sender_view-->
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Kui sa soovid oma krüpteeringut kasutajaga %s kinnitada, võrdle ülalolevat numbrit nende seadmes oleva numbriga. Alternatiivselt võid sa skanneerida koodi nende seadmes, või paluda neil skanneerida sinu koodi. <a href="https://whispersystems.org/redirect/safety-numbers">Loe veel.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Koputa skäneerimiseks</string>
@@ -1210,9 +1225,5 @@
   <string name="trimmer__old_messages_successfully_deleted">Vanad sõnumid edukalt kustutatud</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transpordi ikoon</string>
-  <string name="UntrustedSendDialog_send_message">Saadad sõnumi?</string>
-  <string name="UntrustedSendDialog_send">Saada</string>
-  <string name="UnverifiedSendDialog_send_message">Saadad sõnumi?</string>
-  <string name="UnverifiedSendDialog_send">Saada</string>
   <!--EOF-->
 </resources>

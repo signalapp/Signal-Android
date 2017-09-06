@@ -60,6 +60,8 @@
   <string name="BlockedContactsActivity_blocked_contacts">已封鎖的聯絡人</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">來電</string>
+  <!--ClearProfileActivity-->
+  <string name="ClearProfileActivity_remove">移除</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s 的安全碼產生變動。這有可能是有不明人士試圖攔截您的通訊／對話內容，或是因為 %2$s 重新安裝 Signal。</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">您可能希望驗證這名聯絡人的安全碼。</string>
@@ -189,6 +191,7 @@
   <string name="ConversationListItem_key_exchange_message">金鑰交換訊息</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">存檔對話 (%d)</string>
+  <!--CreateProfileActivity-->
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">使用定製：%s</string>
   <string name="CustomDefaultPreference_using_default">使用預設：%s</string>
@@ -263,6 +266,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">無法新增 %1$s，因為他們不是 Signal 使用者。</string>
   <string name="GroupCreateActivity_loading_group_details">讀取群組詳情...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">您已在此群組中。</string>
+  <!--GroupShareProfileView-->
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">我</string>
   <!--ImportExportActivity-->
@@ -514,6 +518,14 @@
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal 更新</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">有新版本的 Signal，輕觸更新</string>
+  <!--UnknownSenderView-->
+  <string name="UnknownSenderView_block">封鎖</string>
+  <!--UntrustedSendDialog-->
+  <string name="UntrustedSendDialog_send_message">傳送訊息？</string>
+  <string name="UntrustedSendDialog_send">傳送</string>
+  <!--UnverifiedSendDialog-->
+  <string name="UnverifiedSendDialog_send_message">傳送訊息？</string>
+  <string name="UnverifiedSendDialog_send">傳送</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">您的聯絡人使用的是舊版本的 Signal。在驗證您的安全碼前請尋求對方先進行更新。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">您的聯絡人使用的是新版本的 Signal，程式無法識別這個聯絡人的二維碼。
@@ -764,11 +776,13 @@
     <item quantity="other">%1$s 加入了群組。</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">群組現在名為 \'%1$s\'。</string>
+  <!--profile_group_share_view-->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">解鎖</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal 需要多媒體訊息設定以透過業者傳輸媒體與群組訊息。您的裝置沒有所需的資訊，有可能是由於裝置被鎖定或者其他限制設定。</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">傳送媒體檔案或群組訊息，請按下 \"OK\" 並完成必要的設定。您所使用電信業者相關的MMS多媒體簡訊設定可能羅列在 \'無線與網路／行動網路\'的設定項目內。且您只需設定一次。</string>
+  <!--profile_create_activity-->
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">已封鎖</string>
   <!--recipient_preferences-->
@@ -851,6 +865,7 @@ Signal 在等待簡訊驗證時超時。</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>輸入名稱或手機號碼</small></string>
   <string name="recipients_panel__add_members">新增成員</string>
+  <!--unknown_sender_view-->
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ 如果您想驗證和 %s 的端到端加密，請和他們比較上方的數字是否一致。或者，您可以掃描他們手機上的二維碼，或讓他們掃描您手機上面的二維碼。<a href="https://whispersystems.org/redirect/safety-numbers"> 了解更多有關驗證安全碼的訊息 </a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">點擊掃描</string>
@@ -1160,9 +1175,5 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="trimmer__old_messages_successfully_deleted">已完成刪除舊訊息</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">傳輸圖示</string>
-  <string name="UntrustedSendDialog_send_message">傳送訊息？</string>
-  <string name="UntrustedSendDialog_send">傳送</string>
-  <string name="UnverifiedSendDialog_send_message">傳送訊息？</string>
-  <string name="UnverifiedSendDialog_send">傳送</string>
   <!--EOF-->
 </resources>

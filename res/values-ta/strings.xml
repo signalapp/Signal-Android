@@ -56,6 +56,8 @@
   <string name="BlockedContactsActivity_blocked_contacts">முடக்கப்பட்ட தொடர்புகள்</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">உள்வரும் அழைப்பு</string>
+  <!--ClearProfileActivity-->
+  <string name="ClearProfileActivity_remove">நீக்கு</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_accept">ஏற்க</string>
   <!--ContactsDatabase-->
@@ -155,6 +157,7 @@
   <!--ConversationListItem-->
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d"> உரையாடல்கள் பெட்டகப்படுத்தப்பட்டது (%d)</string>
+  <!--CreateProfileActivity-->
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">பயன்படுத்தப்படும் விருப்பம்: %s</string>
   <string name="CustomDefaultPreference_using_default">பயன்படுத்தப்படும் இயல்புநிலை: %s</string>
@@ -201,6 +204,7 @@
   <string name="GroupCreateActivity_updating_group">%1$s மேம்படுத்தப்படுகிறது...</string>
   <string name="GroupCreateActivity_loading_group_details">குழு விவரங்கள் ஏற்றப்படுகிறது...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">நீங்கள் குழுவில் ஏற்கனவே உறுப்பினர்.</string>
+  <!--GroupShareProfileView-->
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">நான்</string>
   <!--ImportExportActivity-->
@@ -356,6 +360,10 @@
   <string name="ThreadRecord_missed_call">தவறிய அழைப்பு</string>
   <string name="ThreadRecord_media_message">பல்லூடகச் செய்தி</string>
   <!--UpdateApkReadyListener-->
+  <!--UnknownSenderView-->
+  <string name="UnknownSenderView_block">முடக்கு</string>
+  <!--UntrustedSendDialog-->
+  <!--UnverifiedSendDialog-->
   <!--VerifyIdentityActivity-->
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">பழைய கோரிக்கை இருப்பினும் தொடங்கலாமா?</string>
@@ -503,9 +511,11 @@
   <string name="message_recipients_list_item__resend">மீண்டும் அனுப்பு</string>
   <!--GroupUtil-->
   <string name="GroupUtil_group_name_is_now">இக்குழுவின் பெயர் \'%1$s\'.</string>
+  <!--profile_group_share_view-->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">திற</string>
   <!--prompt_mms_activity-->
+  <!--profile_create_activity-->
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">முடக்கப்பட்ட</string>
   <!--recipient_preferences-->
@@ -557,6 +567,7 @@
   <string name="registration_progress_activity__check">சரி பார்க்க</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>ஒரு பெயர் அல்லது எண்ணை உள்ளிடவும்</small></string>
+  <!--unknown_sender_view-->
   <!--verify_display_fragment-->
   <!--verify_identity-->
   <!--message_details_header-->

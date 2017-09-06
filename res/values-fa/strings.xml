@@ -60,6 +60,8 @@
   <string name="BlockedContactsActivity_blocked_contacts">اطلاعات تماس مسدود</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">تماس های دریافتی</string>
+  <!--ClearProfileActivity-->
+  <string name="ClearProfileActivity_remove">حذف</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_accept">پذیرفتن</string>
   <!--ContactsDatabase-->
@@ -177,6 +179,7 @@
   <!--ConversationListItem-->
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">گفتگوهای آرشیو شده (%d)</string>
+  <!--CreateProfileActivity-->
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">با استفاده از سفارشی: %s</string>
   <string name="CustomDefaultPreference_using_default">با استفاده از پیش فرض: %s</string>
@@ -236,6 +239,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">امکان اضافه کردن %1$s وجود ندارد زیرا از کاربران سیگنال نیستند.</string>
   <string name="GroupCreateActivity_loading_group_details">در حال بارگذاری جزئیات گروه...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">در حال حاضردر این گروه هستید</string>
+  <!--GroupShareProfileView-->
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">به من</string>
   <!--ImportExportActivity-->
@@ -433,6 +437,10 @@
   <string name="ThreadRecord_missed_call">تماس از دست رفته</string>
   <string name="ThreadRecord_media_message">پیام رسانه</string>
   <!--UpdateApkReadyListener-->
+  <!--UnknownSenderView-->
+  <string name="UnknownSenderView_block">بلوک</string>
+  <!--UntrustedSendDialog-->
+  <!--UnverifiedSendDialog-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_no_app_to_share_to">به نظر می رسد شما هیچ برنامه ای برای اشتراک گذاری در آن ندارید.</string>
   <!--KeyExchangeInitiator-->
@@ -621,9 +629,11 @@
     <item quantity="other">%1$s به گروه افزوده شد.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">نام گروه در حال حاضر \'%1$s\'.</string>
+  <!--profile_group_share_view-->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">قفل باز شود</string>
   <!--prompt_mms_activity-->
+  <!--profile_create_activity-->
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">مسدود</string>
   <!--recipient_preferences-->
@@ -695,6 +705,7 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>نام یا شماره را وارد کنید</small></string>
   <string name="recipients_panel__add_members">افزودن اعضاء</string>
+  <!--unknown_sender_view-->
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__tap_to_scan">برای جستجو ضربه بزنید</string>
   <!--verify_identity-->

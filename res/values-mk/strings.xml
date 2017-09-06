@@ -51,6 +51,8 @@
   <string name="BlockedContactsActivity_blocked_contacts">Блокирани контакти</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Доаѓачки повик</string>
+  <!--ClearProfileActivity-->
+  <string name="ClearProfileActivity_remove">Отстрани</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_accept">Прифати</string>
   <!--ContactsDatabase-->
@@ -113,6 +115,7 @@
   <string name="ConversationListFragment_deleting">Бришење</string>
   <!--ConversationListItem-->
   <!--ConversationListItemAction-->
+  <!--CreateProfileActivity-->
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Користејќи прилагодено: %s</string>
   <string name="CustomDefaultPreference_using_default">Користејќи стандардно: %s</string>
@@ -144,6 +147,7 @@
   <string name="GroupCreateActivity_creating_group">Се креира %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Се ажурира %1$s...</string>
   <string name="GroupCreateActivity_loading_group_details">Вчитување на детали за групата...</string>
+  <!--GroupShareProfileView-->
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Јас</string>
   <!--ImportExportActivity-->
@@ -301,6 +305,10 @@
   <!--ThreadRecord-->
   <string name="ThreadRecord_draft">Скица:</string>
   <!--UpdateApkReadyListener-->
+  <!--UnknownSenderView-->
+  <string name="UnknownSenderView_block">Блокирај</string>
+  <!--UntrustedSendDialog-->
+  <!--UnverifiedSendDialog-->
   <!--VerifyIdentityActivity-->
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Иницирај и покрај постоечкото барање?</string>
@@ -434,9 +442,11 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__resend">ПРЕПРАТИ</string>
   <!--GroupUtil-->
+  <!--profile_group_share_view-->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Отклучи</string>
   <!--prompt_mms_activity-->
+  <!--profile_create_activity-->
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">БЛОКИРАНО</string>
   <!--recipient_preferences-->
@@ -488,6 +498,7 @@
   <string name="registration_progress_activity__check">Проверка</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Внесете име или број</small></string>
+  <!--unknown_sender_view-->
   <!--verify_display_fragment-->
   <!--verify_identity-->
   <!--message_details_header-->

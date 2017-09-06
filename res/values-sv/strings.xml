@@ -63,6 +63,8 @@
   <string name="BlockedContactsActivity_blocked_contacts">Blockerade kontakter</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Inkommande samtal</string>
+  <!--ClearProfileActivity-->
+  <string name="ClearProfileActivity_remove">Ta bort</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Ditt säkerhetsnummer med %1$s har ändrats. Detta kan antingen betyda att någon försöker avlyssna er kommunikation, eller att %2$s helt enkelt ominstallerat Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Du kan vilja verifiera ditt säkerhetsnummer med denna kontakt.</string>
@@ -205,6 +207,7 @@
   <string name="ConversationListItem_key_exchange_message">Nyckelutbytesmeddelande</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Arkiverade konversationer (%d)</string>
+  <!--CreateProfileActivity-->
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Använder anpassade: %s</string>
   <string name="CustomDefaultPreference_using_default">Använder standard: %s</string>
@@ -279,6 +282,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Kunde inte lägga till %1$s för han/hon är ingen Signal-användare.</string>
   <string name="GroupCreateActivity_loading_group_details">Laddar gruppdetaljer...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Du är redan i gruppen.</string>
+  <!--GroupShareProfileView-->
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Jag</string>
   <!--ImportExportActivity-->
@@ -365,6 +369,7 @@ som inte finns i säkerhetskopian.</string>
   <string name="MessageRecord_s_called_you">%s ringde dig</string>
   <string name="MessageRecord_called_s">Ringde %s</string>
   <string name="MessageRecord_missed_call_from">Missat samtal från %s</string>
+  <string name="MessageRecord_s_joined_signal">%s finns på Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du ställde in tiden för försvinnande meddelanden till %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ställde in tiden för försvinnande meddelanden till %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Ditt säkerhetsnummer med %s har ändrats.</string>
@@ -517,6 +522,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ThreadRecord_called_you">Ringde dig</string>
   <string name="ThreadRecord_missed_call">Missat samtal</string>
   <string name="ThreadRecord_media_message">Mediameddelande</string>
+  <string name="ThreadRecord_s_is_on_signal">%s finns på Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tiden för försvinnande meddelanden inställd till %s</string>
   <string name="ThreadRecord_safety_number_changed">Säkerhetsnummer ändrat</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Ditt säkerhetsnummer med %s har ändrats.</string>
@@ -525,6 +531,14 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal uppdatering</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">En ny version av Signal finns tillgänglig, tryck för att uppdatera</string>
+  <!--UnknownSenderView-->
+  <string name="UnknownSenderView_block">Blockera</string>
+  <!--UntrustedSendDialog-->
+  <string name="UntrustedSendDialog_send_message">Skicka meddelande?</string>
+  <string name="UntrustedSendDialog_send">Skicka</string>
+  <!--UnverifiedSendDialog-->
+  <string name="UnverifiedSendDialog_send_message">Skicka meddelande?</string>
+  <string name="UnverifiedSendDialog_send">Skicka</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Din kontakt använder en äldre version av Signal. Be dem uppdatera sin mjukvara innan de verifierar din säkerhetskod.  </string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Din kontakt kör en nyare version av Signal med ett inkompatibelt format på QR koden. Vänligen uppdatera för att jämföra.</string>
@@ -781,11 +795,13 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
     <item quantity="other">%1$s gick med i gruppen.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Gruppnamnet är nu \'%1$s\'.</string>
+  <!--profile_group_share_view-->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Lås upp</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal kräver MMS-inställningar för att leverera medie- och gruppmeddelanden via din mobiloperatör. Din enhet gör inte den här informationen tillgänglig, vilket ibland stämmer för låsta enheter och andra restriktiva konfigurationer.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">För att skicka medie- och gruppmeddelande, tryck \'OK\' och fyll i de begärda inställningarna. MMS-inställningarna för din operatör kan generellt hittas genom att söka efter \'din operatör APN\'. Du behöver bara göra det här en gång.</string>
+  <!--profile_create_activity-->
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">BLOCKERAD</string>
   <!--recipient_preferences-->
@@ -861,6 +877,7 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Fyll i ett namn eller nummer</small></string>
   <string name="recipients_panel__add_members">Lägg till medlemmar</string>
+  <!--unknown_sender_view-->
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Om du vill verifiera säkerheten i kryptering med %s, jämför numret ovan med numret på deras enhet. Alternativt så kan du skanna koden på deras telefon, eller be dem skanna din kod. <a href="https://whispersystems.org/redirect/safety-numbers">Lär dig mer</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tryck för att skanna</string>
@@ -1172,9 +1189,5 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="trimmer__old_messages_successfully_deleted">Gamla meddelanden har raderats</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportikon</string>
-  <string name="UntrustedSendDialog_send_message">Skicka meddelande?</string>
-  <string name="UntrustedSendDialog_send">Skicka</string>
-  <string name="UnverifiedSendDialog_send_message">Skicka meddelande?</string>
-  <string name="UnverifiedSendDialog_send">Skicka</string>
   <!--EOF-->
 </resources>

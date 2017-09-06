@@ -9,7 +9,7 @@
   <string name="AbstractNotificationBuilder_new_message">Ny melding</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Gjeldende: %s</string>
-  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har ikke valgt en passordfrase enda.</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har ikke satt ett passord enda!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
     <item quantity="one">1 melding per samtale</item>
     <item quantity="other">%d meldinger per samtale</item>
@@ -20,24 +20,24 @@
     <item quantity="other">Dette forkorter alle samtaler til de %d siste meldingene umiddelbart.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Slett</string>
-  <string name="ApplicationPreferencesActivity_disable_passphrase">Vil du slå av bruk av passordfrase?</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Deaktiver passord?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Dette låser opp Signal og meldingsvarsler.</string>
   <string name="ApplicationPreferencesActivity_disable">Slå av</string>
   <string name="ApplicationPreferencesActivity_unregistering">Avregistrerer</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Avregistrerer fra Signal-meldinger og -samtaler </string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Avregistrerer fra Signal-meldinger og samtaler...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Vil du slå av Signal-meldinger og -samtaler?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Slå av Signal-meldinger og -samtaler ved å avregistrere deg fra tjeneren. Du må registrere telefonnummeret ditt for å kunne finne igjen disse senere.</string>
-  <string name="ApplicationPreferencesActivity_error_connecting_to_server">Det oppstod en feil under tilkobling til tjener.</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">SMS slått på</string>
+  <string name="ApplicationPreferencesActivity_error_connecting_to_server">Feil ved å koble til server!</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS Aktivert</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Trykk for å bytte forvalgt SMS-program</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">SMS slått av</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS Deaktivert</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Trykk for å bruke Signal som standard SMS-program</string>
   <string name="ApplicationPreferencesActivity_on">på</string>
   <string name="ApplicationPreferencesActivity_On">På</string>
   <string name="ApplicationPreferencesActivity_off">av</string>
   <string name="ApplicationPreferencesActivity_Off">Av</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Passordfrase %1$s, Skjermsikkerhet %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Passord %1$s, Skjermsikkerhet %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Språk %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -63,6 +63,9 @@
   <string name="BlockedContactsActivity_blocked_contacts">Blokkerte kontakter</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Inngående samtale</string>
+  <!--ClearProfileActivity-->
+  <string name="ClearProfileActivity_remove">Fjern</string>
+  <string name="ClearProfileActivity_remove_profile_photo">Fjerne profilbilde?</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Ditt sikkerhetsnummer med %1$s er endret. Dette kan enten bety at noen prøver å fange opp kommunikasjonen din, eller at %2$s bare reinstallert Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Du bør kontrollere sikkerhetsnumrene dine mot denne kontakten.</string>
@@ -205,6 +208,14 @@
   <string name="ConversationListItem_key_exchange_message">Nøkkelutveksling</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Arkiverte samtaler (%d)</string>
+  <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity_your_profile_info">Din profilinfo</string>
+  <string name="CreateProfileActivity_error_setting_profile_photo">Feil ved largring av profilbilde</string>
+  <string name="CreateProfileActivity_problem_setting_profile">Feil ved lagring av profil</string>
+  <string name="CreateProfileActivity_updating_profile">Oppdaterer profil</string>
+  <string name="CreateProfileActivity_updating_and_encrypting_profile">Oppdaterer og krypterer profil</string>
+  <string name="CreateProfileActivity_profile_photo">Profilbilde</string>
+  <string name="CreateProfileActivity_too_long">For lang</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Bruker selvvalgt: %s</string>
   <string name="CustomDefaultPreference_using_default">Bruker forvalgt: %s</string>
@@ -244,6 +255,9 @@
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal støtter nå sikker videosamtaler. Bare start et signalanrop som normalt, trykk på videoknappen og vink hei.</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal støtter nå sikker videosamtaler.</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal støtter nå sikker videosamtaler. Trykk for å utforske.</string>
+  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Klar for nærbilde?</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Nå kan du dele et profilbilde og et navn med venner på Signal</string>
+  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal introduserer profiler</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Eksporter</string>
   <string name="ExportFragment_export_plaintext_to_storage">Vil du eksporter klartekst som vanlig fil?</string>
@@ -279,6 +293,10 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Klarte ikke å legge til %1$s fordi vedkommende ikke bruker Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Laster inn gruppedetaljer </string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Du ligger allerede i gruppa.</string>
+  <!--GroupShareProfileView-->
+  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Del ditt profilnavn og bilde med denne gruppen?</string>
+  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Ønsker du å gjøre profilnavn og bilde synlig for alle nåværende og fremtidige medlemmer av denne gruppen?</string>
+  <string name="GroupShareProfileView_make_visible">Gjør synlig</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Meg</string>
   <!--ImportExportActivity-->
@@ -376,9 +394,9 @@ fører dette til dupliserte meldinger.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Du markerte sikkerhetsnummer for %s som ikke verifisert</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Du markerte sikkerhetsnummer for %s som ikke verifisert fra en annen enhet</string>
   <!--PassphraseChangeActivity-->
-  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passordfrasene samsvarer ikke.</string>
-  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Du skrev inn feil gammel passordfrase.</string>
-  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Skriv inn ny passordfrase.</string>
+  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passordene stemmer ikke overens!</string>
+  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Feil gammel passord!</string>
+  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Skriv inn ny passord!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Vil du koble denne enheten til tjenesten?</string>
   <string name="DeviceProvisioningActivity_cancel">AVBRYT</string>
@@ -404,10 +422,10 @@ fører dette til dupliserte meldinger.</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Meldinger går ikke ut på tid.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Meldinger du sender og mottar i denne samtalen forsvinner %s etter at de er blitt sett.</string>
   <!--PassphrasePromptActivity-->
-  <string name="PassphrasePromptActivity_enter_passphrase">Skriv inn passordfrase</string>
+  <string name="PassphrasePromptActivity_enter_passphrase">Skriv inn passord</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-ikon</string>
-  <string name="PassphrasePromptActivity_ok_button_content_description">Send inn passordfrase</string>
-  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ugyldig passordfrase.</string>
+  <string name="PassphrasePromptActivity_ok_button_content_description">Send inn passord</string>
+  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ugyldig passord!</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Versjonen av Google Play Tjenester som er installert på denne enheten fungerer ikke skikkelig. Installer Google Play Tjenester på nytt og prøv igjen.</string>
   <!--RatingManager-->
@@ -530,6 +548,19 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal oppdatering</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">En ny versjon av Signal er tilgjengelig, trykk for å oppdatere</string>
+  <!--UnknownSenderView-->
+  <string name="UnknownSenderView_block_s">Blokker %s?</string>
+  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Blokkerte kontakter vil ikke kunne sende meldinger til deg eller ringe deg.</string>
+  <string name="UnknownSenderView_block">Blokker</string>
+  <string name="UnknownSenderView_share_profile_with_s">Del profilen med %s?</string>
+  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Den enkleste måten å dele profilinformasjon på er å legge til senderen i dine kontakter. Om du ikke ønsker det, kan du fortsatt dele informasjonen her.</string>
+  <string name="UnknownSenderView_share_profile">Del profil</string>
+  <!--UntrustedSendDialog-->
+  <string name="UntrustedSendDialog_send_message">Send melding?</string>
+  <string name="UntrustedSendDialog_send">Send</string>
+  <!--UnverifiedSendDialog-->
+  <string name="UnverifiedSendDialog_send_message">Send melding?</string>
+  <string name="UnverifiedSendDialog_send">Send</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Din kontakt kjører en gammel versjon av Signal. Vennligst be dem om å oppdatere før verifisere din sikkerhets nummer.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Din kontakt kjører en nyere versjon av Signal med en inkompatibel QR-kode format. Vennligst oppdater for å sammenligne.</string>
@@ -571,7 +602,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="KeyCachingService_signal_passphrase_cached">Trykk for å åpne.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Trykk for å åpne, eller trykk på lås for å lukke.</string>
   <string name="KeyCachingService_passphrase_cached">Signal er låst opp</string>
-  <string name="KeyCachingService_lock">Lås med passordfrase</string>
+  <string name="KeyCachingService_lock">Lås med passord</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Deg</string>
   <string name="MediaPreviewActivity_cant_display">Klarte ikke å forhåndsvise bilde</string>
@@ -632,9 +663,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="attachment_type_selector__file">Fil</string>
   <string name="attachment_type_selector__drawer_description">Slå av/på vedleggsfunksjon</string>
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">Gammel passordfrase</string>
-  <string name="change_passphrase_activity__new_passphrase">Ny passordfrase</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">Gjenta ny passordfrase</string>
+  <string name="change_passphrase_activity__old_passphrase">Gammel passord</string>
+  <string name="change_passphrase_activity__new_passphrase">Ny passord</string>
+  <string name="change_passphrase_activity__repeat_new_passphrase">Gjenta ny passord</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Skriv inn navn eller nummer</string>
   <!--contact_selection_group_activity-->
@@ -738,6 +769,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="IdentityUtil_untrusted_dialog_one">Sikkerhetsnummer for %s har nylig endret seg.</string>
   <string name="IdentityUtil_untrusted_dialog_two">Sikkerhetsnummer for %1$s og %2$s har nylig endret seg.</string>
   <string name="IdentityUtil_untrusted_dialog_many">Sikkerhetsnummer for %1$s, %2$s og %3$s endret seg nylig.</string>
+  <plurals name="identity_others">
+    <item quantity="one">%d annen</item>
+    <item quantity="other">%d andre</item>
+  </plurals>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Søk GIFs og klistremerker</string>
   <!--giphy_fragment-->
@@ -782,11 +817,17 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
     <item quantity="other">%1$s ble med i gruppa.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Gruppenavnet er nå «%1$s».</string>
+  <!--profile_group_share_view-->
+  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Gjør profilnavnet og profilbildet ditt synlig for denne gruppen?</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Lås opp</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal krever MMS-oppsett for å levere medier og gruppemeldinger via mobilnett. Enheten din gjør ikke ikke denne informasjonen tilgjengelig. Dette er vanlig på enheter med restriktive oppsett.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Trykk «OK» og følg anvisninger hvis du vil sende medie- og gruppemeldinger. Du finner vanligvis MMS-oppsettet for operatøren din ved å søke etter «din operatør APN». Du trenger bare å gjøre dette én gang.</string>
+  <!--profile_create_activity-->
+  <string name="profile_create_activity__set_later">Legg til senere</string>
+  <string name="profile_create_activity__finish">FERDIG</string>
+  <string name="profile_create_activity__who_can_see_this_information">Hvem kan se denne informasjonen?</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">BLOKKERT</string>
   <!--recipient_preferences-->
@@ -874,6 +915,11 @@ Signal fikk tidsavbrudd under venting på bekreftelsesmelding.</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Skriv inn navn eller nummer</small></string>
   <string name="recipients_panel__add_members">Legg til medlemmer</string>
+  <!--unknown_sender_view-->
+  <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">Denne avsenderen er ikke i kontaktlisten din</string>
+  <string name="unknown_sender_view__block">BLOKKER</string>
+  <string name="unknown_sender_view__add_to_contacts">LEGG TIL KONTAKTER</string>
+  <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">IKKE LEGG TIL, MEN GJØR PROFILEN MIN SYNLIG</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Hvis du ønsker å verifisere at krypteringen er sikker for %s, sammenlign tallet over med tallet på kontaktens mobil/enhet. Alternativt, kan du skanne koden på kontaktens telefon, eller be personen om å skanne koden på din. <a href="https://whispersystems.org/redirect/safety-numbers">Lær mer.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Trykk for å skanne</string>
@@ -891,11 +937,11 @@ Signal fikk tidsavbrudd under venting på bekreftelsesmelding.</string>
   <string name="message_details_header__from">Fra:</string>
   <string name="message_details_header__with">Med:</string>
   <!--AndroidManifest.xml-->
-  <string name="AndroidManifest__create_passphrase">Lag passordfrase</string>
-  <string name="AndroidManifest__enter_passphrase">Skriv inn passordfrase</string>
+  <string name="AndroidManifest__create_passphrase">Opprett passord</string>
+  <string name="AndroidManifest__enter_passphrase">Skriv inn passordet</string>
   <string name="AndroidManifest__select_contacts">Velg kontakter</string>
   <string name="AndroidManifest__signal_detected">Signal oppdaget</string>
-  <string name="AndroidManifest__change_passphrase">Endre passordfrase</string>
+  <string name="AndroidManifest__change_passphrase">Endre passord</string>
   <string name="AndroidManifest__verify_safety_number">Bekreft sikkerhets nummer</string>
   <string name="AndroidManifest__log_submit">Send debug logg</string>
   <string name="AndroidManifest__media_preview">Forhåndsvisning av medier</string>
@@ -905,6 +951,7 @@ Signal fikk tidsavbrudd under venting på bekreftelsesmelding.</string>
   <string name="AndroidManifest__linked_devices">Koblede enheter</string>
   <string name="AndroidManifest__invite_friends">Inviter venner</string>
   <string name="AndroidManifest_archived_conversations">Lagrede samtaler</string>
+  <string name="AndroidManifest_remove_photo">Fjern bilde</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importer / eksporter</string>
   <string name="arrays__use_default">Bruk forvalgt</string>
@@ -951,14 +998,14 @@ Signal fikk tidsavbrudd under venting på bekreftelsesmelding.</string>
   <string name="preferences__display_settings">Skjerminnstillinger</string>
   <string name="preferences__choose_identity">Velg identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Velg kontakt fra kontaktliste.</string>
-  <string name="preferences__change_passphrase">Endre passordfrase</string>
-  <string name="preferences__change_your_passphrase">Endre passordfrase</string>
-  <string name="preferences__enable_passphrase">Slå på passordfrase</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lås Signal og meldingsvarsler med passordfrase</string>
+  <string name="preferences__change_passphrase">Endre passord</string>
+  <string name="preferences__change_your_passphrase">Endre passordet ditt</string>
+  <string name="preferences__enable_passphrase">Aktiver passord</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lås Signal og meldingsvarsler med ett passord</string>
   <string name="preferences__screen_security">Skjermsikkerhet</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokker skjermbilder i sist brukte-liste og i programmet</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Lås Signal automatisk etter valgt tid uten aktivitet</string>
-  <string name="preferences__inactivity_timeout_passphrase">Passordfrase ved tidsavbrudd</string>
+  <string name="preferences__inactivity_timeout_passphrase">Passord ved tidsavbrudd</string>
   <string name="preferences__inactivity_timeout_interval">Tidsavbrudd ved inaktivitet</string>
   <string name="preferences__notifications">Varsler</string>
   <string name="preferences__enable_message_notifications">Slå på meldingsvarslinger</string>
@@ -1186,9 +1233,5 @@ Signal fikk tidsavbrudd under venting på bekreftelsesmelding.</string>
   <string name="trimmer__old_messages_successfully_deleted">Gamle meldinger ble slettet</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
-  <string name="UntrustedSendDialog_send_message">Send melding?</string>
-  <string name="UntrustedSendDialog_send">Send</string>
-  <string name="UnverifiedSendDialog_send_message">Send melding?</string>
-  <string name="UnverifiedSendDialog_send">Send</string>
   <!--EOF-->
 </resources>
