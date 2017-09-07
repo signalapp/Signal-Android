@@ -238,8 +238,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private int        distributionType;
   private boolean    archived;
   private boolean    isSecureText;
-  private boolean    isDefaultSms = true;
-  private boolean    isMmsEnabled = true;
+  private boolean    isDefaultSms          = true;
+  private boolean    isMmsEnabled          = true;
+  private boolean    isSecurityInitialized = false;
 
   private final IdentityRecordList identityRecords = new IdentityRecordList();
   private final DynamicTheme       dynamicTheme    = new DynamicTheme();
@@ -918,8 +919,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleSecurityChange(boolean isSecureText, boolean isDefaultSms) {
-    this.isSecureText  = isSecureText;
-    this.isDefaultSms  = isDefaultSms;
+    if (isSecurityInitialized && isSecureText == this.isSecureText && isDefaultSms == this.isDefaultSms) {
+      return;
+    }
+
+    this.isSecureText          = isSecureText;
+    this.isDefaultSms          = isDefaultSms;
+    this.isSecurityInitialized = true;
 
     boolean isMediaMessage = recipient.isMmsGroupRecipient() || attachmentManager.isAttachmentPresent();
 
