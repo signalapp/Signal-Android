@@ -307,7 +307,7 @@ public class ThreadDatabase extends Database {
 
   }
 
-  public Cursor getFilteredConversationList(List<Address> filter) {
+  public Cursor getFilteredConversationList(@Nullable List<Address> filter) {
     if (filter == null || filter.size() == 0)
       return null;
 
@@ -316,18 +316,27 @@ public class ThreadDatabase extends Database {
     List<Cursor>        cursors              = new LinkedList<>();
 
     for (List<Address> addresses : partitionedAddresses) {
-      String   selection      = ADDRESS + " = ?";
+      String   selection      = TABLE_NAME + "." + ADDRESS + " = ?";
       String[] selectionArgs  = new String[addresses.size()];
 
       for (int i=0;i<addresses.size()-1;i++)
-        selection += (" OR " + ADDRESS + " = ?");
+        selection += (" OR " + TABLE_NAME + "." + ADDRESS + " = ?");
 
       int i= 0;
       for (Address address : addresses) {
         selectionArgs[i++] = DelimiterUtil.escape(address.serialize(), ' ');
       }
 
-      cursors.add(db.query(TABLE_NAME, null, selection, selectionArgs, null, null, DATE + " DESC"));
+      String         projection = Util.join(COMBINED_THREAD_RECIPIENT_GROUP_PROJECTION, ",");
+      String query = "SELECT " + projection + " FROM " + TABLE_NAME +
+                     " LEFT OUTER JOIN " + RecipientDatabase.TABLE_NAME +
+                     " ON " + TABLE_NAME + "." + ADDRESS + " = " + RecipientDatabase.TABLE_NAME + "." + RecipientDatabase.ADDRESS +
+                     " LEFT OUTER JOIN " + GroupDatabase.TABLE_NAME +
+                     " ON " + TABLE_NAME + "." + ADDRESS + " = " + GroupDatabase.TABLE_NAME + "." + GroupDatabase.GROUP_ID +
+                     " WHERE " + selection +
+                     " ORDER BY " + TABLE_NAME + "." + DATE + " DESC";
+
+      cursors.add(db.rawQuery(query, selectionArgs));
     }
 
     Cursor cursor = cursors.size() > 1 ? new MergeCursor(cursors.toArray(new Cursor[cursors.size()])) : cursors.get(0);
