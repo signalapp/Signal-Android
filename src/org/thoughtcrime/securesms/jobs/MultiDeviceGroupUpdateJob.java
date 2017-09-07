@@ -64,15 +64,17 @@ public class MultiDeviceGroupUpdateJob extends MasterSecretJob implements Inject
       reader = DatabaseFactory.getGroupDatabase(context).getGroups();
 
       while ((record = reader.getNext()) != null) {
-        List<String> members = new LinkedList<>();
+        if (!record.isMms()) {
+          List<String> members = new LinkedList<>();
 
-        for (Address member : record.getMembers()) {
-          members.add(member.serialize());
+          for (Address member : record.getMembers()) {
+            members.add(member.serialize());
+          }
+
+          out.write(new DeviceGroup(record.getId(), Optional.fromNullable(record.getTitle()),
+                                    members, getAvatar(record.getAvatar()),
+                                    record.isActive()));
         }
-
-        out.write(new DeviceGroup(record.getId(), Optional.fromNullable(record.getTitle()),
-                                  members, getAvatar(record.getAvatar()),
-                                  record.isActive()));
       }
 
       out.close();
