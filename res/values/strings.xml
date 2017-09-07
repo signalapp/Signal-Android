@@ -1452,6 +1452,7 @@
 
     <!-- media_overview_context -->
     <string name="media_overview_context__menu_delete_attachments">Delete attachments</string>
+    <string name="media_overview_context__menu_select_all">Select all</string>
 
     <!-- media_preview_activity -->
     <string name="media_preview_activity__media_content_description">Media preview</string>

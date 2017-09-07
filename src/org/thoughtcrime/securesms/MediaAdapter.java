@@ -102,6 +102,13 @@ public class MediaAdapter extends CursorRecyclerViewAdapter<ViewHolder> {
     this.notifyDataSetChanged();
   }
 
+  public void selectAllMedia() {
+    for (int i = 0; i < getItemCount(); i++) {
+      batchSelected.add(MediaRecord.from(getContext(), masterSecret, getCursorAtPositionOrThrow(i)));
+    }
+    this.notifyDataSetChanged();
+  }
+
   public void clearSelection() {
     batchSelected.clear();
     this.notifyDataSetChanged();

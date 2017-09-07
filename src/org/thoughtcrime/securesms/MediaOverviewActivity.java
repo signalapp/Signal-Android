@@ -234,6 +234,10 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
     builder.show();
   }
 
+  private void handleSelectAllMedia() {
+    getListAdapter().selectAllMedia();
+  }
+
   private MediaAdapter getListAdapter() {
     return (MediaAdapter) gridView.getAdapter();
   }
@@ -354,6 +358,9 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
         case R.id.menu_context_delete_attachments:
           handleDeleteAttachments(getListAdapter().getSelectedItems());
           actionMode.finish();
+          return true;
+        case R.id.menu_context_select_all:
+          handleSelectAllMedia();
           return true;
       }
 
