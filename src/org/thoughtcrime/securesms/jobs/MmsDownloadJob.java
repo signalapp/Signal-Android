@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
 import android.net.Uri;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.google.android.mms.pdu_alt.CharacterSets;
@@ -115,7 +116,7 @@ public class MmsDownloadJob extends MasterSecretJob {
         throw new MmsException("RetrieveConf was null");
       }
 
-      storeRetrievedMms(masterSecret, contentLocation, messageId, threadId, retrieveConf, notification.get().getSubscriptionId());
+      storeRetrievedMms(masterSecret, contentLocation, messageId, threadId, retrieveConf, notification.get().getSubscriptionId(), notification.get().getFrom());
     } catch (ApnUnavailableException e) {
       Log.w(TAG, e);
       handleDownloadError(masterSecret, messageId, threadId, MmsDatabase.Status.DOWNLOAD_APN_UNAVAILABLE,
@@ -163,7 +164,7 @@ public class MmsDownloadJob extends MasterSecretJob {
 
   private void storeRetrievedMms(MasterSecret masterSecret, String contentLocation,
                                  long messageId, long threadId, RetrieveConf retrieved,
-                                 int subscriptionId)
+                                 int subscriptionId, @Nullable Address notificationFrom)
       throws MmsException, NoSessionException, DuplicateMessageException, InvalidMessageException,
              LegacyMessageException
   {
@@ -178,6 +179,8 @@ public class MmsDownloadJob extends MasterSecretJob {
 
     if (retrieved.getFrom() != null) {
       from = Address.fromExternal(context, Util.toIsoString(retrieved.getFrom().getTextString()));
+    } else if (notificationFrom != null) {
+      from = notificationFrom;
     } else {
       from = Address.UNKNOWN;
     }
@@ -194,6 +197,7 @@ public class MmsDownloadJob extends MasterSecretJob {
       }
     }
 
+    members.add(from);
     members.add(Address.fromExternal(context, TextSecurePreferences.getLocalNumber(context)));
 
     if (retrieved.getBody() != null) {

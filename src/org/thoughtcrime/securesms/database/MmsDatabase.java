@@ -519,7 +519,8 @@ public class MmsDatabase extends MessagingDatabase {
       cursor = rawQuery(RAW_ID_WHERE, new String[] {String.valueOf(messageId)});
 
       if (cursor != null && cursor.moveToNext()) {
-        return Optional.of(new MmsNotificationInfo(cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_LOCATION)),
+        return Optional.of(new MmsNotificationInfo(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)),
+                                                   cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_LOCATION)),
                                                    cursor.getString(cursor.getColumnIndexOrThrow(TRANSACTION_ID)),
                                                    cursor.getInt(cursor.getColumnIndexOrThrow(SUBSCRIPTION_ID))));
       } else {
@@ -1002,11 +1003,13 @@ public class MmsDatabase extends MessagingDatabase {
   }
 
   public static class MmsNotificationInfo {
-    private final String contentLocation;
-    private final String transactionId;
-    private final int    subscriptionId;
+    private final Address from;
+    private final String  contentLocation;
+    private final String  transactionId;
+    private final int     subscriptionId;
 
-    public MmsNotificationInfo(String contentLocation, String transactionId, int subscriptionId) {
+    MmsNotificationInfo(@Nullable String from, String contentLocation, String transactionId, int subscriptionId) {
+      this.from            = from == null ? null : Address.fromSerialized(from);
       this.contentLocation = contentLocation;
       this.transactionId   = transactionId;
       this.subscriptionId  = subscriptionId;
@@ -1022,6 +1025,10 @@ public class MmsDatabase extends MessagingDatabase {
 
     public int getSubscriptionId() {
       return subscriptionId;
+    }
+
+    public @Nullable Address getFrom() {
+      return from;
     }
   }
 
