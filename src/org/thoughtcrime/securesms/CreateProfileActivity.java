@@ -322,9 +322,9 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
     }
 
     Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-    cameraIntent.putExtra(EXTRA_OUTPUT, Uri.fromFile(captureFile));
 
     if (captureFile != null && cameraIntent.resolveActivity(getPackageManager()) != null) {
+      cameraIntent.putExtra(EXTRA_OUTPUT, Uri.fromFile(captureFile));
       extraIntents.add(cameraIntent);
     }
 
