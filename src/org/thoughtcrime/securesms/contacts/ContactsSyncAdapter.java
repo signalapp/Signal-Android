@@ -37,4 +37,14 @@ public class ContactsSyncAdapter extends AbstractThreadedSyncAdapter {
     }
   }
 
+  @Override
+  public void onSyncCanceled() {
+    Log.w(TAG, "onSyncCanceled()");
+  }
+
+  @Override
+  public void onSyncCanceled(Thread thread) {
+    Log.w(TAG, "onSyncCanceled(" + thread + ")");
+  }
+
 }
