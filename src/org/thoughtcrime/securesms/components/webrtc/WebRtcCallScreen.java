@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.VerifySpan;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.webrtc.SurfaceViewRenderer;
@@ -339,9 +340,11 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
 
   @Override
   public void onModified(Recipient recipient) {
-    if (recipient == this.recipient) {
-      setPersonInfo(recipient);
-    }
+    Util.runOnMain(() -> {
+      if (recipient == WebRtcCallScreen.this.recipient) {
+        setPersonInfo(recipient);
+      }
+    });
   }
 
   public static interface HangupButtonListener {

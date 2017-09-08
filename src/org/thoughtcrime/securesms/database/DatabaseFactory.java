@@ -1299,6 +1299,8 @@ public class DatabaseFactory {
             db.insert("recipient_preferences", null, contentValues);
           }
         }
+
+        if (cursor != null) cursor.close();
       }
 
       if (oldVersion < INTERNAL_SYSTEM_DISPLAY_NAME) {
