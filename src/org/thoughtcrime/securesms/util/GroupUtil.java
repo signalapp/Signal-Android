@@ -23,7 +23,7 @@ public class GroupUtil {
   private static final String TAG                  = GroupUtil.class.getSimpleName();
 
   public static String getEncodedId(byte[] groupId, boolean mms) {
-    return mms ? ENCODED_MMS_GROUP_PREFIX : ENCODED_SIGNAL_GROUP_PREFIX + Hex.toStringCondensed(groupId);
+    return (mms ? ENCODED_MMS_GROUP_PREFIX  : ENCODED_SIGNAL_GROUP_PREFIX) + Hex.toStringCondensed(groupId);
   }
 
   public static byte[] getDecodedId(String groupId) throws IOException {
