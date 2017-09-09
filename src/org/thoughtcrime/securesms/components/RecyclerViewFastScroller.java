@@ -79,9 +79,11 @@ public class RecyclerViewFastScroller extends LinearLayout {
   @Override
   protected void onSizeChanged(int w, int h, int oldw, int oldh) {
     super.onSizeChanged(w, h, oldw, oldh);
-    height = h;
-    if (recyclerView != null) {
-      setBubbleAndHandlePosition(computeBubbleAndHandlePosition(recyclerView));
+    if (height != h) {
+      height = h;
+      if (recyclerView != null) {
+        setBubbleAndHandlePosition(computeBubbleAndHandlePosition(recyclerView));
+      }
     }
   }
 
