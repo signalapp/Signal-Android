@@ -129,10 +129,7 @@ public class RecyclerViewFastScroller extends LinearLayout {
       public boolean onPreDraw() {
         recyclerView.getViewTreeObserver().removeOnPreDrawListener(this);
         if (handle.isSelected()) return true;
-        final int verticalScrollOffset = recyclerView.computeVerticalScrollOffset();
-        final int verticalScrollRange = recyclerView.computeVerticalScrollRange();
-        float proportion = (float)verticalScrollOffset / ((float)verticalScrollRange - height);
-        setBubbleAndHandlePosition(height * proportion);
+        setBubbleAndHandlePosition(computeBubbleAndHandlePosition(recyclerView));
         return true;
       }
     });
