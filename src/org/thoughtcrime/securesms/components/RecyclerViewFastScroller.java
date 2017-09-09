@@ -54,7 +54,7 @@ public class RecyclerViewFastScroller extends LinearLayout {
     @Override
     public void onScrolled(final RecyclerView recyclerView, final int dx, final int dy) {
       if (handle.isSelected()) return;
-      computeBubbleAndHandlePosition();
+      setBubbleAndHandlePosition(computeBubbleAndHandlePosition(recyclerView));
     }
   };
 
@@ -80,7 +80,9 @@ public class RecyclerViewFastScroller extends LinearLayout {
   protected void onSizeChanged(int w, int h, int oldw, int oldh) {
     super.onSizeChanged(w, h, oldw, oldh);
     height = h;
-    computeBubbleAndHandlePosition();
+    if (recyclerView != null) {
+      setBubbleAndHandlePosition(computeBubbleAndHandlePosition(recyclerView));
+    }
   }
 
   @Override
@@ -172,14 +174,12 @@ public class RecyclerViewFastScroller extends LinearLayout {
                                      height - bubbleHeight));
   }
 
-  private void computeBubbleAndHandlePosition() {
-    if (recyclerView != null) {
-      final int offset      = recyclerView.computeVerticalScrollOffset();
-      final int range       = recyclerView.computeVerticalScrollRange();
-      final int extent      = recyclerView.computeVerticalScrollExtent();
-      final int offsetRange = Math.max(range - extent, 1);
-      setBubbleAndHandlePosition((float) Util.clamp(offset, 0, offsetRange) / offsetRange);
-    }
+  private float computeBubbleAndHandlePosition(@NonNull RecyclerView recyclerView) {
+    int offset      = recyclerView.computeVerticalScrollOffset();
+    int range       = recyclerView.computeVerticalScrollRange();
+    int extent      = recyclerView.computeVerticalScrollExtent();
+    int offsetRange = Math.max(range - extent, 1);
+    return (float) Util.clamp(offset, 0, offsetRange) / offsetRange;
   }
 
   @TargetApi(11)
