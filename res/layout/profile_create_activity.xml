@@ -47,11 +47,13 @@
                   android:layout_marginLeft="16dp"
                   android:layout_marginRight="16dp"
                   android:layout_marginTop="16dip"
-                  android:gravity="center_horizontal">
+                  android:gravity="center_horizontal|center_vertical">
 
         <ImageView android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
+                   android:layout_height="match_parent"
                    android:clickable="false"
+                   android:layout_gravity="center_vertical"
+                   android:gravity="center_vertical"
                    android:src="@drawable/ic_info_white_18dp"
                    android:tint="#73B7F0"/>
 
@@ -59,9 +61,10 @@
                   android:id="@+id/information_label"
                   android:clickable="true"
                   android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
+                  android:layout_height="match_parent"
                   android:layout_marginLeft="3dp"
                   android:layout_gravity="center_vertical"
+                  android:gravity="center_vertical"
                   android:textColor="#73B7F0"
                   android:text="@string/profile_create_activity__who_can_see_this_information"/>
     </LinearLayout>
@@ -102,5 +105,4 @@
                 android:visibility="gone" />
 
     </LinearLayout>
-
 </org.thoughtcrime.securesms.components.InputAwareLayout>
