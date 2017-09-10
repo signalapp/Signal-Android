@@ -220,7 +220,7 @@ public class MmsDownloadJob extends MasterSecretJob {
       }
     }
 
-    if (members.size() > 1) {
+    if (members.size() > 2) {
       group = Optional.of(Address.fromSerialized(DatabaseFactory.getGroupDatabase(context).getOrCreateGroupForMembers(new LinkedList<>(members), true)));
     }
 
