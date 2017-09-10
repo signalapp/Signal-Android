@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.WorkerThread;
 import android.text.TextUtils;
 
 import com.bumptech.glide.Glide;
@@ -46,6 +47,7 @@ public class ContactPhotoFactory {
     return getContactPhoto(context, uri, address, name, targetSize);
   }
 
+  @WorkerThread
   public static ContactPhoto getContactPhoto(@NonNull  Context context,
                                              @Nullable Uri uri,
                                              @NonNull  Address address,
@@ -73,6 +75,7 @@ public class ContactPhotoFactory {
     return new BitmapContactPhoto(BitmapFactory.decodeByteArray(avatar, 0, avatar.length));
   }
 
+  @WorkerThread
   public static ContactPhoto getSignalAvatarContactPhoto(@NonNull  Context context,
                                                          @NonNull  Address address,
                                                          @Nullable String name,
