@@ -23,7 +23,6 @@ import android.graphics.Typeface;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
-import android.os.Handler;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
@@ -42,6 +41,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.ResUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.Locale;
@@ -83,7 +83,6 @@ public class ConversationListItem extends RelativeLayout
   private final @DrawableRes int readBackground;
   private final @DrawableRes int unreadBackround;
 
-  private final Handler handler = new Handler();
   private int distributionType;
 
   public ConversationListItem(Context context) {
@@ -236,13 +235,10 @@ public class ConversationListItem extends RelativeLayout
 
   @Override
   public void onModified(final Recipient recipient) {
-    handler.post(new Runnable() {
-      @Override
-      public void run() {
-        fromView.setText(recipient, read);
-        contactPhotoImage.setAvatar(recipient, true);
-        setRippleColor(recipient);
-      }
+    Util.runOnMain(() -> {
+      fromView.setText(recipient, read);
+      contactPhotoImage.setAvatar(recipient, true);
+      setRippleColor(recipient);
     });
   }
 

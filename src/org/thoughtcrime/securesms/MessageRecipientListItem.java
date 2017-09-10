@@ -18,7 +18,6 @@ package org.thoughtcrime.securesms;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.os.Handler;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
@@ -37,6 +36,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.sms.MessageSender;
+import org.thoughtcrime.securesms.util.Util;
 
 /**
  * A simple view to show the recipients of a message
@@ -55,8 +55,6 @@ public class MessageRecipientListItem extends RelativeLayout
   private Button          conflictButton;
   private Button          resendButton;
   private AvatarImageView contactPhotoImage;
-
-  private final Handler handler = new Handler();
 
   public MessageRecipientListItem(Context context) {
     super(context);
@@ -164,12 +162,9 @@ public class MessageRecipientListItem extends RelativeLayout
 
   @Override
   public void onModified(final Recipient recipient) {
-    handler.post(new Runnable() {
-      @Override
-      public void run() {
-        fromView.setText(recipient);
-        contactPhotoImage.setAvatar(recipient, false);
-      }
+    Util.runOnMain(() -> {
+      fromView.setText(recipient);
+      contactPhotoImage.setAvatar(recipient, false);
     });
   }
 

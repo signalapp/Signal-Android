@@ -379,6 +379,10 @@ public class Util {
     else                handler.post(runnable);
   }
 
+  public static void runOnMainDelayed(final @NonNull Runnable runnable, long delayMillis) {
+    handler.postDelayed(runnable, delayMillis);
+  }
+
   public static void runOnMainSync(final @NonNull Runnable runnable) {
     if (isMainThread()) {
       runnable.run();

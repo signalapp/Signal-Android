@@ -48,6 +48,7 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.IdentityUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -189,9 +190,6 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       extends    PreferenceFragment
       implements RecipientModifiedListener
   {
-
-    private final Handler handler = new Handler();
-
     private Recipient         recipient;
     private BroadcastReceiver staleReceiver;
     private MasterSecret      masterSecret;
@@ -329,12 +327,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
     @Override
     public void onModified(final Recipient recipient) {
-      handler.post(new Runnable() {
-        @Override
-        public void run() {
-          setSummaries(recipient);
-        }
-      });
+      Util.runOnMain(() -> setSummaries(recipient));
     }
 
     private class RingtoneChangeListener implements Preference.OnPreferenceChangeListener {

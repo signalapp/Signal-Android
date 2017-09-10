@@ -1,8 +1,6 @@
 package org.thoughtcrime.securesms.components.webrtc;
 
 import android.content.Context;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -11,8 +9,9 @@ import android.view.animation.Animation;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.components.multiwaveview.MultiWaveView;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.multiwaveview.MultiWaveView;
+import org.thoughtcrime.securesms.util.Util;
 
 /**
  * Displays the controls at the bottom of the in-call screen.
@@ -25,16 +24,6 @@ public class WebRtcIncomingCallOverlay extends RelativeLayout {
 
   private MultiWaveView incomingCallWidget;
   private TextView      redphoneLabel;
-
-  private Handler handler = new Handler() {
-    @Override
-    public void handleMessage(Message message) {
-      if (incomingCallWidget.getVisibility() == View.VISIBLE) {
-        incomingCallWidget.ping();
-        handler.sendEmptyMessageDelayed(0, 1200);
-      }
-    }
-  };
 
   public WebRtcIncomingCallOverlay(Context context) {
     super(context);
@@ -63,7 +52,15 @@ public class WebRtcIncomingCallOverlay extends RelativeLayout {
     incomingCallWidget.setVisibility(View.VISIBLE);
     redphoneLabel.setVisibility(View.VISIBLE);
 
-    handler.sendEmptyMessageDelayed(0, 500);
+    Util.runOnMainDelayed(new Runnable() {
+      @Override
+      public void run() {
+        if (incomingCallWidget.getVisibility() == View.VISIBLE) {
+          incomingCallWidget.ping();
+          Util.runOnMainDelayed(this, 1200);
+        }
+      }
+    }, 500);
   }
 
   public void setActiveCall() {

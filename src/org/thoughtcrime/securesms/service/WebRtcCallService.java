@@ -147,7 +147,6 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
   private boolean   localVideoEnabled  = false;
   private boolean   remoteVideoEnabled = false;
   private boolean   bluetoothAvailable = false;
-  private Handler   serviceHandler     = new Handler();
 
   @Inject public SignalMessageSenderFactory  messageSenderFactory;
   @Inject public SignalServiceAccountManager accountManager;
@@ -611,7 +610,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
     sendMessage(WebRtcViewModel.State.CALL_BUSY, recipient, localVideoEnabled, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
 
     audioManager.startOutgoingRinger(OutgoingRinger.Type.BUSY);
-    serviceHandler.postDelayed(new Runnable() {
+    Util.runOnMainDelayed(new Runnable() {
       @Override
       public void run() {
         Intent intent = new Intent(WebRtcCallService.this, WebRtcCallService.class);

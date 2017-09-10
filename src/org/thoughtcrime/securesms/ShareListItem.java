@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.components.FromTextView;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
+import org.thoughtcrime.securesms.util.Util;
 
 /**
  * A simple view to show the recipients of an open conversation
@@ -45,7 +46,6 @@ public class ShareListItem extends RelativeLayout
 
   private AvatarImageView contactPhotoImage;
 
-  private final Handler handler = new Handler();
   private int distributionType;
 
   public ShareListItem(Context context) {
@@ -104,12 +104,9 @@ public class ShareListItem extends RelativeLayout
 
   @Override
   public void onModified(final Recipient recipient) {
-    handler.post(new Runnable() {
-      @Override
-      public void run() {
-        fromView.setText(recipient);
-        contactPhotoImage.setAvatar(recipient, false);
-      }
+    Util.runOnMain(() -> {
+      fromView.setText(recipient);
+      contactPhotoImage.setAvatar(recipient, false);
     });
   }
 }
