@@ -95,6 +95,7 @@ public class ConversationListFragment extends Fragment
   private Locale               locale;
   private String               queryFilter  = "";
   private boolean              archive;
+  private ItemTouchHelper      itemTouchHelper;
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -126,7 +127,8 @@ public class ConversationListFragment extends Fragment
     list.setLayoutManager(new LinearLayoutManager(getActivity()));
     list.setItemAnimator(new DeleteItemAnimator());
 
-    new ItemTouchHelper(new ArchiveListenerCallback()).attachToRecyclerView(list);
+    itemTouchHelper = new ItemTouchHelper(new ArchiveListenerCallback());
+    itemTouchHelper.attachToRecyclerView(list);
 
     return view;
   }
@@ -475,7 +477,6 @@ public class ConversationListFragment extends Fragment
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
       final long    threadId = ((ConversationListItem)viewHolder.itemView).getThreadId();
       final boolean read     = ((ConversationListItem)viewHolder.itemView).getRead();
-      final int     position = viewHolder.getAdapterPosition();
 
       if (((ConversationListItem)viewHolder.itemView).getArchived()) {
         new SnackbarAsyncTask<Long>(getView(),
@@ -487,7 +488,6 @@ public class ConversationListFragment extends Fragment
           @Override
           protected void executeAction(@Nullable Long parameter) {
             DatabaseFactory.getThreadDatabase(getActivity()).unarchiveConversation(threadId);
-            if (isSearchActive()) getListAdapter().notifyItemChanged(position);
           }
 
           @Override
@@ -505,7 +505,6 @@ public class ConversationListFragment extends Fragment
           @Override
           protected void executeAction(@Nullable Long parameter) {
             DatabaseFactory.getThreadDatabase(getActivity()).archiveConversation(threadId);
-            if (isSearchActive()) getListAdapter().notifyItemChanged(position);
 
             if (!read) {
               List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(getActivity()).setRead(threadId, false);
@@ -524,6 +523,14 @@ public class ConversationListFragment extends Fragment
             }
           }
         }.execute(threadId);
+      }
+
+      if (isSearchActive()) {
+        itemTouchHelper.attachToRecyclerView(null);
+        itemTouchHelper.attachToRecyclerView(list);
+        if (Build.VERSION.SDK_INT >= 11) {
+          viewHolder.itemView.setAlpha(1.0f);
+        }
       }
     }
 
