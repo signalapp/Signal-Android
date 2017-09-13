@@ -103,7 +103,11 @@ public class MmsDownloadJob extends MasterSecretJob {
       byte[] transactionId   = new byte[0];
 
       try {
-        transactionId = notification.get().getTransactionId().getBytes(CharacterSets.MIMENAME_ISO_8859_1);
+        if (notification.get().getTransactionId() != null) {
+          transactionId = notification.get().getTransactionId().getBytes(CharacterSets.MIMENAME_ISO_8859_1);
+        } else {
+          Log.w(TAG, "No transaction ID!");
+        }
       } catch (UnsupportedEncodingException e) {
         Log.w(TAG, e);
       }
