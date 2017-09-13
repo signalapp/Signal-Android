@@ -13,6 +13,7 @@ import android.util.Log;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
@@ -20,6 +21,7 @@ import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule.SignalMessageSenderFactory;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
@@ -135,6 +137,13 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
         Optional<byte[]>                          profileKey = Optional.fromNullable(recipient.getProfileKey());
 
         out.write(new DeviceContact(address.toPhoneString(), name, getAvatar(contactUri), color, verified, profileKey));
+      }
+
+      if (ProfileKeyUtil.hasProfileKey(context)) {
+        out.write(new DeviceContact(TextSecurePreferences.getLocalNumber(context),
+                                    Optional.absent(), Optional.absent(),
+                                    Optional.absent(), Optional.absent(),
+                                    Optional.of(ProfileKeyUtil.getProfileKey(context))));
       }
 
       out.close();

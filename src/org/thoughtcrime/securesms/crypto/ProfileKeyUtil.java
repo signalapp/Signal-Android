@@ -12,6 +12,10 @@ import java.io.IOException;
 
 public class ProfileKeyUtil {
 
+  public static synchronized boolean hasProfileKey(@NonNull Context context) {
+    return TextSecurePreferences.getProfileKey(context) != null;
+  }
+
   public static synchronized @NonNull byte[] getProfileKey(@NonNull Context context) {
     try {
       String encodedProfileKey = TextSecurePreferences.getProfileKey(context);
