@@ -5,30 +5,30 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.preference.PreferenceFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
+import android.view.WindowManager;
+import android.widget.ImageView;
 
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.color.MaterialColors;
-import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -71,11 +72,9 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   private final DynamicTheme    dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
-  private AvatarImageView   avatar;
-  private Toolbar           toolbar;
-  private TextView          title;
-  private TextView          blockedIndicator;
-  private BroadcastReceiver staleReceiver;
+  private ImageView               avatar;
+  private CollapsingToolbarLayout toolbarLayout;
+  private BroadcastReceiver       staleReceiver;
 
   @Override
   public void onPreCreate() {
@@ -125,25 +124,35 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     super.onOptionsItemSelected(item);
     switch (item.getItemId()) {
       case android.R.id.home:
-        super.onBackPressed();
+        onBackPressed();
         return true;
     }
 
     return false;
   }
 
+  @Override
+  public void onBackPressed() {
+    finish();
+    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+  }
+
   private void initializeToolbar() {
-    this.toolbar = (Toolbar) findViewById(R.id.toolbar);
-    this.toolbar.setLogo(null);
+    this.toolbarLayout = ViewUtil.findById(this, R.id.collapsing_toolbar);
+    this.avatar        = ViewUtil.findById(this, R.id.avatar);
 
+    this.toolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.white));
+    this.toolbarLayout.setCollapsedTitleTextColor(getResources().getColor(R.color.white));
+
+    Toolbar toolbar = ViewUtil.findById(this, R.id.toolbar);
     setSupportActionBar(toolbar);
-
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    getSupportActionBar().setDisplayShowTitleEnabled(false);
+    getSupportActionBar().setLogo(null);
 
-    this.avatar           = (AvatarImageView) toolbar.findViewById(R.id.avatar);
-    this.title            = (TextView) toolbar.findViewById(R.id.name);
-    this.blockedIndicator = (TextView) toolbar.findViewById(R.id.blocked_indicator);
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+      getWindow().setStatusBarColor(Color.TRANSPARENT);
+    }
   }
 
   private void initializeReceivers() {
@@ -163,27 +172,15 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     registerReceiver(staleReceiver, staleFilter);
   }
 
-  private void setHeader(Recipient recipient) {
-    this.avatar.setAvatar(recipient, true);
-    this.title.setText(recipient.toShortString());
-    this.toolbar.setBackgroundColor(recipient.getColor().toActionBarColor(this));
-
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      getWindow().setStatusBarColor(recipient.getColor().toStatusBarColor(this));
-    }
-
-    if (recipient.isBlocked()) this.blockedIndicator.setVisibility(View.VISIBLE);
-    else                       this.blockedIndicator.setVisibility(View.GONE);
+  private void setHeader(@NonNull Recipient recipient) {
+    this.avatar.setImageDrawable(recipient.getContactPhoto().asCallCard(this));
+    this.toolbarLayout.setTitle(recipient.toShortString());
+    this.toolbarLayout.setContentScrimColor(recipient.getColor().toActionBarColor(this));
   }
 
   @Override
   public void onModified(final Recipient recipient) {
-    title.post(new Runnable() {
-      @Override
-      public void run() {
-        setHeader(recipient);
-      }
-    });
+    Util.runOnMain(() -> setHeader(recipient));
   }
 
   public static class RecipientPreferenceFragment

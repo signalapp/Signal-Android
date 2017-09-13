@@ -1201,31 +1201,18 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       }
     });
 
-    titleView.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        Intent intent = new Intent(ConversationActivity.this, RecipientPreferenceActivity.class);
-        intent.putExtra(RecipientPreferenceActivity.ADDRESS_EXTRA, recipient.getAddress());
-        intent.putExtra(RecipientPreferenceActivity.CAN_HAVE_SAFETY_NUMBER_EXTRA,
-                        isSecureText && !isSelfConversation());
+    titleView.setOnClickListener(v -> {
+      Intent intent = new Intent(ConversationActivity.this, RecipientPreferenceActivity.class);
+      intent.putExtra(RecipientPreferenceActivity.ADDRESS_EXTRA, recipient.getAddress());
+      intent.putExtra(RecipientPreferenceActivity.CAN_HAVE_SAFETY_NUMBER_EXTRA,
+                      isSecureText && !isSelfConversation());
 
-        startActivitySceneTransition(intent, titleView.findViewById(R.id.title), "recipient_name");
-      }
+      startActivitySceneTransition(intent, titleView.findViewById(R.id.contact_photo_image), "avatar");
     });
 
-    unblockButton.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        handleUnblock();
-      }
-    });
-
-    makeDefaultSmsButton.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        handleMakeDefaultSms();
-      }
-    });
+    titleView.setOnBackClickedListener(view -> onBackPressed());
+    unblockButton.setOnClickListener(v -> handleUnblock());
+    makeDefaultSmsButton.setOnClickListener(v -> handleMakeDefaultSms());
 
     composeText.setOnKeyListener(composeKeyPressedListener);
     composeText.addTextChangedListener(composeKeyPressedListener);
@@ -1243,7 +1230,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   protected void initializeActionBar() {
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     getSupportActionBar().setCustomView(R.layout.conversation_title_view);
     getSupportActionBar().setDisplayShowCustomEnabled(true);
     getSupportActionBar().setDisplayShowTitleEnabled(false);

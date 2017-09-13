@@ -123,7 +123,7 @@ public class ConversationItem extends LinearLayout
   private AlertView          alertView;
 
   private @NonNull  Set<MessageRecord>  batchSelected = new HashSet<>();
-  private @Nullable Recipient           conversationRecipient;
+  private @NonNull  Recipient           conversationRecipient;
   private @NonNull  Stub<ThumbnailView> mediaThumbnailStub;
   private @NonNull  Stub<AudioView>     audioViewStub;
   private @NonNull  Stub<DocumentView>  documentViewStub;
@@ -404,9 +404,14 @@ public class ConversationItem extends LinearLayout
     }
   }
 
-  private void setContactPhoto(Recipient recipient) {
-    if (! messageRecord.isOutgoing()) {
-      setContactPhotoForRecipient(recipient);
+  private void setContactPhoto(@NonNull Recipient recipient) {
+    if (contactPhoto == null) return;
+
+    if (messageRecord.isOutgoing() || !groupThread) {
+      contactPhoto.setVisibility(View.GONE);
+    } else {
+      contactPhoto.setAvatar(recipient, true);
+      contactPhoto.setVisibility(View.VISIBLE);
     }
   }
 
@@ -547,15 +552,6 @@ public class ConversationItem extends LinearLayout
     }
   }
 
-  /// Helper Methods
-
-  private void setContactPhotoForRecipient(final Recipient recipient) {
-    if (contactPhoto == null) return;
-
-    contactPhoto.setAvatar(recipient, true);
-    contactPhoto.setVisibility(View.VISIBLE);
-  }
-
   /// Event handlers
 
   private void handleApproveIdentity() {
@@ -570,15 +566,12 @@ public class ConversationItem extends LinearLayout
 
   @Override
   public void onModified(final Recipient modified) {
-    Util.runOnMain(new Runnable() {
-      @Override
-      public void run() {
-        setBubbleState(messageRecord, recipient);
-        setContactPhoto(recipient);
-        setGroupMessageStatus(messageRecord, recipient);
-        setAudioViewTint(messageRecord, conversationRecipient);
-        setDocumentViewTint(messageRecord, conversationRecipient);
-      }
+    Util.runOnMain(() -> {
+      setBubbleState(messageRecord, recipient);
+      setContactPhoto(recipient);
+      setGroupMessageStatus(messageRecord, recipient);
+      setAudioViewTint(messageRecord, conversationRecipient);
+      setDocumentViewTint(messageRecord, conversationRecipient);
     });
   }
 
