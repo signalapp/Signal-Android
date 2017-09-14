@@ -99,7 +99,7 @@ public class GroupDatabase extends Database {
   }
 
   public boolean isUnknownGroup(String groupId) {
-    return getGroup(groupId) == null;
+    return !getGroup(groupId).isPresent();
   }
 
   public Reader getGroupsFilteredByTitle(String constraint) {
