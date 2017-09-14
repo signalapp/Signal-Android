@@ -1017,6 +1017,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         Context           context         = ConversationActivity.this;
         Recipient         recipient       = params[0];
         RegisteredState   registeredState = recipient.resolve().getRegistered();
+        boolean           signalEnabled   = TextSecurePreferences.isPushRegistered(context);
 
         if (registeredState == RegisteredState.UNKNOWN) {
           try {
@@ -1026,7 +1027,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           }
         }
 
-        return new boolean[] {registeredState == RegisteredState.REGISTERED, Util.isDefaultSmsProvider(context)};
+        return new boolean[] {registeredState == RegisteredState.REGISTERED && signalEnabled,
+                              Util.isDefaultSmsProvider(context)};
       }
 
       @Override
