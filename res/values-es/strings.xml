@@ -220,6 +220,7 @@ Recibido:%4$s</string>
   <string name="CreateProfileActivity_updating_and_encrypting_profile">Actualizando y cifrando el perfil</string>
   <string name="CreateProfileActivity_profile_photo">Foto del perfil</string>
   <string name="CreateProfileActivity_too_long">Demasiado largo</string>
+  <string name="CreateProfileActivity_error_capturing_photo_camera_did_not_return_image">Error al tomar la foto: la cámara no ha devuelto ninguna foto</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usando personalizado: %s</string>
   <string name="CustomDefaultPreference_using_default">Usando predeterminado: %s</string>
@@ -245,8 +246,8 @@ Recibido:%4$s</string>
   <!--DocumentView-->
   <string name="DocumentView_unknown_file">Fichero desconocido</string>
   <!--DozeReminder-->
-  <string name="DozeReminder_optimize_for_missing_play_services">Optimizar por la ausencia de \"Play Services\"</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Este dispositivo no admite \"Play Services\". Pulsa para inhabilitar las optimizaciones de batería del sistema que impiden a Signal obtener mensajes mientras está inactivo.</string>
+  <string name="DozeReminder_optimize_for_missing_play_services">Optimizar por falta de servicios de Google Play</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Este dispositivo no soporta los servicios de Google Play. Pulsa para inhabilitar las optimizaciones de batería del sistema que impiden a Signal obtener mensajes mientras está inactivo.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Compartir con</string>
   <!--ExperienceUpgradeActivity-->

@@ -210,12 +210,13 @@
   <string name="ConversationListItemAction_archived_conversations_d">Archivierte Unterhaltungen (%d)</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Deine Profilinformationen</string>
-  <string name="CreateProfileActivity_error_setting_profile_photo">Problem beim Festlegen des Profilfotos</string>
+  <string name="CreateProfileActivity_error_setting_profile_photo">Fehler beim Festlegen des Profilfotos</string>
   <string name="CreateProfileActivity_problem_setting_profile">Problem beim Festlegen des Profils</string>
   <string name="CreateProfileActivity_updating_profile">Profil wird aktualisiert</string>
   <string name="CreateProfileActivity_updating_and_encrypting_profile">Profil wird aktualisiert und verschlüsselt</string>
   <string name="CreateProfileActivity_profile_photo">Profilfoto</string>
-  <string name="CreateProfileActivity_too_long">Profilname ist zu lang</string>
+  <string name="CreateProfileActivity_too_long">Profilname zu lang</string>
+  <string name="CreateProfileActivity_error_capturing_photo_camera_did_not_return_image">Fehler beim Fotografieren: Kamera hat kein Bild zurückgegeben</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Benutzerdefiniert: %s</string>
   <string name="CustomDefaultPreference_using_default">Standard: %s</string>
@@ -255,7 +256,7 @@
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal unterstützt jetzt sichere Videoanrufe. Beginne einfach einen Signal-Anruf wie sonst auch, tippe die Kameraschaltfläche an und winke deinem Kontakt zu.</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal unterstützt jetzt sichere Videoanrufe.</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal unterstützt jetzt sichere Videoanrufe. Zum Erkunden antippen.</string>
-  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Bereit für dein Profilfoto?</string>
+  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Bereit für deine Nahaufnahme?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Jetzt kannst du bei Signal ein Profilfoto und einen Profilnamen mit Freunden teilen</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Profile für Signal sind da</string>
   <!--ExportFragment-->
@@ -814,7 +815,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Zum Versenden von Nachrichten mit Medieninhalten und Gruppennachrichten bitte »OK« antippen und die geforderten Einstellungen vervollständigen. Die MMS-Einstellungen deines Mobilfunkanbieters können normalerweise durch eine Internetsuche nach dem »APN« des Anbieters gefunden werden.</string>
   <!--profile_create_activity-->
   <string name="profile_create_activity__set_later">Später festlegen</string>
-  <string name="profile_create_activity__finish">ABSCHLIEẞEN</string>
+  <string name="profile_create_activity__finish">ABSCHLIESSEN</string>
   <string name="profile_create_activity__who_can_see_this_information">Wer kann diese Informationen sehen?</string>
   <string name="profile_create_activity__your_name">Dein Name</string>
   <!--recipient_preferences_activity-->
@@ -889,7 +890,7 @@ Das Warten auf eine Verifikations-SMS hat zu lange gedauert.</string>
   <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">Der Absender ist nicht in deiner Kontaktliste</string>
   <string name="unknown_sender_view__block">BLOCKIEREN</string>
   <string name="unknown_sender_view__add_to_contacts">ZU KONTAKTEN HINZUFÜGEN</string>
-  <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NICHT HINZUFÜGEN, ABER PROFIL SICHTBAR MACHEN</string>
+  <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NICHT HINZUFÜGEN, ABER MEIN PROFIL SICHTBAR MACHEN</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Falls du die Sicherheit deiner Verschlüsselung mit %s verifizieren möchtest, vergleiche bitte die oben dargestellte Nummer mit der Nummer auf dem Gerät deines Kontakts. Alternativ kannst du den Code deines Kontakts einscannen oder ihn deinen eigenen Code einscannen lassen. <a href="https://whispersystems.org/redirect/safety-numbers">Mehr erfahren</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Zum Scannen antippen</string>

@@ -232,6 +232,7 @@
   <string name="CreateProfileActivity_updating_and_encrypting_profile">Aktualizuji a šifruji profil</string>
   <string name="CreateProfileActivity_profile_photo">Profilová fotografie</string>
   <string name="CreateProfileActivity_too_long">Příliš dlouhý</string>
+  <string name="CreateProfileActivity_error_capturing_photo_camera_did_not_return_image">Nepodařilo se získat fotku, kamera nevrátila obrázek</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Používá se vlastní: %s</string>
   <string name="CustomDefaultPreference_using_default">Používá se výchozí: %s</string>
@@ -845,6 +846,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="profile_create_activity__set_later">Nastavit později</string>
   <string name="profile_create_activity__finish">HOTOVO</string>
   <string name="profile_create_activity__who_can_see_this_information">Kdo může vidět tuto informaci?</string>
+  <string name="profile_create_activity__your_name">Vaše jméno</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">BLOKOVÁN</string>
   <!--recipient_preferences-->

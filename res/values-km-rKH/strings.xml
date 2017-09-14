@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">Signal</string>
+  <string name="app_name">រលកសញ្ញា</string>
   <string name="yes">មែន</string>
   <string name="no">ទេ</string>
   <string name="delete">លុប</string>
@@ -8,12 +8,12 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">សារថ្មី</string>
   <!--ApplicationPreferencesActivity-->
-  <string name="ApplicationPreferencesActivity_currently_s">ឥលូវ៖ %s</string>
+  <string name="ApplicationPreferencesActivity_currently_s">ឥឡូវ៖ %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">អ្នកមិនទាន់ដាក់ឃ្លាសម្ងាត់ទេ!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
     <item quantity="other">%d សារក្នុង ១​ សន្ទនា</item>
   </plurals>
-  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">លុបសារចាស់ៗឥលូវ?</string>
+  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">លុបសារចាស់ៗឥឡូវ?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="other">វានឹងតម្រឹមការសន្ទនាទាំងអស់ ទៅ %d នៃសារថ្មីៗ</item>
   </plurals>
@@ -53,7 +53,7 @@
   <string name="AttachmentTypeSelectorAdapter_picture">រូបភាព</string>
   <string name="AttachmentTypeSelectorAdapter_video">វីដេអូ</string>
   <string name="AttachmentTypeSelectorAdapter_audio">សំឡេង</string>
-  <string name="AttachmentTypeSelectorAdapter_contact">ព័ត៌មានទំនាក់ទំនង</string>
+  <string name="AttachmentTypeSelectorAdapter_contact">ព័ត៌មានទាក់ទង</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">បញ្ហាចាក់សំឡេង!</string>
   <!--BlockedContactsActivity-->
@@ -61,7 +61,7 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">ហៅចូល</string>
   <!--ClearProfileActivity-->
-  <string name="ClearProfileActivity_remove">លុប</string>
+  <string name="ClearProfileActivity_remove">ដកចេញ</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">លេខសុវត្ថិភាពរបស់អ្នកជាមួយ %1$s បានផ្លាស់ប្តូរ។ អាចមានន័យថា មានអ្នកផ្សេងព្យាយាមជ្រាតចូលការទំនាក់ទំនង ឬយកល្អ %2$s ដំឡើង Signal ឡើងវិញ។</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">អ្នកប្រហែល ចង់ផ្ទៀងផ្ទាត់លេខសុវត្ថិភាពរបស់អ្នក ជាមួយលេខទំនាក់ទំនងនេះ។</string>
@@ -192,6 +192,11 @@
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">សន្ទនាក្នុងបណ្ណសារ (%d)</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity_your_profile_info">ព័ត៌មានអំពីខ្លួនអ្នក</string>
+  <string name="CreateProfileActivity_error_setting_profile_photo">បញ្ហាការកំណត់រូបថតខ្លួនអ្នក</string>
+  <string name="CreateProfileActivity_updating_profile">ធ្វើបច្ចុប្បន្នភាពឯកសារ</string>
+  <string name="CreateProfileActivity_updating_and_encrypting_profile">ធ្វើបច្ចុប្បន្នភាព និងកូដនីយកម្មឯកសារ</string>
+  <string name="CreateProfileActivity_too_long">វែងពេក</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">ប្រើផ្សេងៗ៖ %s</string>
   <string name="CustomDefaultPreference_using_default">ប្រើលំនាំដើម៖ %s</string>
@@ -267,6 +272,7 @@
   <string name="GroupCreateActivity_loading_group_details">កំពុងបើកព័ត៌មានក្រុម...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">អ្នកនៅក្នុងក្រុមហើយ។</string>
   <!--GroupShareProfileView-->
+  <string name="GroupShareProfileView_make_visible">ធ្វើឲ្យអាចមើលឃើញ</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">ខ្ញុំ</string>
   <!--ImportExportActivity-->

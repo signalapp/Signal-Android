@@ -216,6 +216,7 @@
   <string name="CreateProfileActivity_updating_and_encrypting_profile">Aggiornamento e cifratura del profilo</string>
   <string name="CreateProfileActivity_profile_photo">Foto del profilo</string>
   <string name="CreateProfileActivity_too_long">Troppo lungo</string>
+  <string name="CreateProfileActivity_error_capturing_photo_camera_did_not_return_image">Nessuna foto scattata, la fotocamera non ha fornito un\'immagine</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Utilizzo di personalizzato: %s</string>
   <string name="CustomDefaultPreference_using_default">Utilizzo di predefinito: %s</string>
@@ -825,6 +826,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="profile_create_activity__set_later">Impostalo più tardi</string>
   <string name="profile_create_activity__finish">FINE</string>
   <string name="profile_create_activity__who_can_see_this_information">Chi può vedere queste informazioni?</string>
+  <string name="profile_create_activity__your_name">Il tuo nome</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">BLOCCATO</string>
   <!--recipient_preferences-->

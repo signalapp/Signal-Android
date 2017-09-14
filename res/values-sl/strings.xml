@@ -66,7 +66,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Napaka pri predvajanju zvoka!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">Blokirani stiki</string>
+  <string name="BlockedContactsActivity_blocked_contacts">Blokirani uporabniki</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Dohodni klic</string>
   <!--ClearProfileActivity-->
@@ -135,7 +135,7 @@
   <string name="ConversationActivity_mms_not_supported_title">Sporočila MMS niso podprta</string>
   <string name="ConversationActivity_mms_not_supported_message">Tega sporočila ni mogoče poslati, ker vaš mobilni ponudnik ne podpira sporočil MMS.</string>
   <string name="ConversationActivity_specify_recipient">Prosimo, izberite stik</string>
-  <string name="ConversationActivity_unblock_this_contact_question">Odblokiram ta stik?</string>
+  <string name="ConversationActivity_unblock_this_contact_question">Odblokiram tega uporabnika?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Zopet boste lahko prejemali sporočila in klice tega uporabnika.</string>
   <string name="ConversationActivity_unblock">Odblokiraj</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Velikost priponke presega omejitev velikosti za ta tip sporočil.</string>
@@ -248,6 +248,7 @@
   <string name="CreateProfileActivity_updating_and_encrypting_profile">Posodabljam in šifriram profil</string>
   <string name="CreateProfileActivity_profile_photo">Predstavitvena fotografija</string>
   <string name="CreateProfileActivity_too_long">Ime profila je predolgo</string>
+  <string name="CreateProfileActivity_error_capturing_photo_camera_did_not_return_image">Napaka pri zajemanju fotografije; kamera ni vrnila nobene slike</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Uporabljam izbirno: %s</string>
   <string name="CustomDefaultPreference_using_default">Prednastavljeno: %s</string>
@@ -465,10 +466,10 @@ Uvoz iz šifrirane varnostne kopije bo popolnoma nadomestil obstoječe ključe, 
   <string name="RatingManager_later">Kasneje</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Opa! Trgovina Google Play ni nameščena na vaši napravi.</string>
   <!--RecipientPreferencesActivity-->
-  <string name="RecipientPreferenceActivity_block_this_contact_question">Blokiram ta stik?</string>
+  <string name="RecipientPreferenceActivity_block_this_contact_question">Blokiram tega uporabnika?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Sporočil in klicev tega uporabnika ne boste več prejemali.</string>
   <string name="RecipientPreferenceActivity_block">Blokiraj</string>
-  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Odblokiram ta stik?</string>
+  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Odblokiram tega uporabnika?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Zopet boste lahko prejemali sporočila in klice tega uporabnika.</string>
   <string name="RecipientPreferenceActivity_unblock">Odblokiraj</string>
   <string name="RecipientPreferenceActivity_enabled">Vklopljeno</string>
@@ -702,7 +703,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Izberi za</string>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">Ni blokiranih stikov</string>
+  <string name="blocked_contacts_fragment__no_blocked_contacts">Ni blokiranih uporabnikov</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Ni zadnjih klicev.</string>
   <!--conversation_title_view-->
@@ -1107,7 +1108,7 @@ bila uspešna.</string>
   <string name="preferences__submit_debug_log">Oddaj sistemsko zabeležbo</string>
   <string name="preferences__support_wifi_calling">Združljivostni način \'Klicanje WiFi\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivirajte, če dostava SMS/MMS sporočil na vaši napravi poteka preko povezave WiFi (samo, če imate vklopljeno \'WiFi klicanje/WiFi Calling\')</string>
-  <string name="preferences_app_protection__blocked_contacts">Blokirani stiki</string>
+  <string name="preferences_app_protection__blocked_contacts">Blokirani uporabniki</string>
   <string name="preferences_app_protection__safety_numbers_approval">Potrditev varnostnih števil</string>
   <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Zahtevaj potrditev varnostnih števil, če se ta spremenijo</string>
   <string name="preferences_notifications__display_in_notifications">Prikazano v obvestilu</string>

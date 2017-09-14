@@ -216,6 +216,7 @@
   <string name="CreateProfileActivity_updating_and_encrypting_profile">Profiel bijwerken en versleutelen</string>
   <string name="CreateProfileActivity_profile_photo">Profielfoto</string>
   <string name="CreateProfileActivity_too_long">Te lang</string>
+  <string name="CreateProfileActivity_error_capturing_photo_camera_did_not_return_image">Fout bij vastleggen van foto, camera gaf geen beeld weer</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Aangepast in gebruik: %s</string>
   <string name="CustomDefaultPreference_using_default">Standaard in gebruik: %s</string>
@@ -241,8 +242,8 @@
   <!--DocumentView-->
   <string name="DocumentView_unknown_file">Onbekend bestand</string>
   <!--DozeReminder-->
-  <string name="DozeReminder_optimize_for_missing_play_services">Achtergrond verbinding geactiveerd</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dit apparaat ondersteund de Play Services niet. Tik om de optimalisaties m.b.t. stroomverbruik uit te schakelen die Signal momenteel verhinderen om berichten te ontvangen op de achtergrond.</string>
+  <string name="DozeReminder_optimize_for_missing_play_services">Optimaliseren voor ontbrekende Google Play Services</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dit apparaat biedt geen ondersteuning voor de Play Services. Tik om de optimalisaties m.b.t. stroomverbruik uit te schakelen, die Signal momenteel verhinderen om berichten te ontvangen op de achtergrond.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Delen met</string>
   <!--ExperienceUpgradeActivity-->
@@ -352,7 +353,7 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="MessageDetailsRecipient_new_safety_number">Nieuw veiligheidsnummer</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
-  <string name="MessageRetrievalService_background_connection_enabled">Achtergrond verbinding tot stand gebracht</string>
+  <string name="MessageRetrievalService_background_connection_enabled">Achtergrondverbinding tot stand gebracht</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">MMS opslaan mislukt!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Fout bij het verbinden met de MMS provider</string>
@@ -823,6 +824,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="profile_create_activity__set_later">Later instellen</string>
   <string name="profile_create_activity__finish">KLAAR</string>
   <string name="profile_create_activity__who_can_see_this_information">Wie kan deze informatie zien?</string>
+  <string name="profile_create_activity__your_name">Je naam</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">GEBLOKKEERD</string>
   <!--recipient_preferences-->

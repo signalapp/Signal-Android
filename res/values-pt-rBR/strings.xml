@@ -216,6 +216,7 @@
   <string name="CreateProfileActivity_updating_and_encrypting_profile">Atualizando e criptografando perfil</string>
   <string name="CreateProfileActivity_profile_photo">Foto do perfil</string>
   <string name="CreateProfileActivity_too_long">Muito longo</string>
+  <string name="CreateProfileActivity_error_capturing_photo_camera_did_not_return_image">Erro ao capturar foto. A câmera não retornou uma imagem.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usando personalização: %s</string>
   <string name="CustomDefaultPreference_using_default">Usando padrão: %s</string>

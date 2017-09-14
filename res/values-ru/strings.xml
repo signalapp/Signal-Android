@@ -248,6 +248,7 @@
   <string name="CreateProfileActivity_updating_and_encrypting_profile">Обновление и шифрование профиля</string>
   <string name="CreateProfileActivity_profile_photo">Фото профиля</string>
   <string name="CreateProfileActivity_too_long">Слишком долго</string>
+  <string name="CreateProfileActivity_error_capturing_photo_camera_did_not_return_image">Ошибка захвата фотографии, камера не вернула изображение</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Пользовательское: %s</string>
   <string name="CustomDefaultPreference_using_default">По умолчанию: %s</string>

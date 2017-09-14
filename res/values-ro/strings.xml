@@ -232,6 +232,7 @@
   <string name="CreateProfileActivity_updating_and_encrypting_profile">Se actualizează și se criptează profilul</string>
   <string name="CreateProfileActivity_profile_photo">Poză profil</string>
   <string name="CreateProfileActivity_too_long">Prea lung</string>
+  <string name="CreateProfileActivity_error_capturing_photo_camera_did_not_return_image">Eroare la capturarea fotografiei, camera nu a returnat nicio imagine</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Specific %s</string>
   <string name="CustomDefaultPreference_using_default">Implicit: %s</string>

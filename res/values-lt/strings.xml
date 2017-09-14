@@ -231,6 +231,8 @@
   <string name="CreateProfileActivity_updating_profile">Atnaujinamas profilis</string>
   <string name="CreateProfileActivity_updating_and_encrypting_profile">Atnaujinamas ir šifruojamas profilis</string>
   <string name="CreateProfileActivity_profile_photo">Profilio nuotrauka</string>
+  <string name="CreateProfileActivity_too_long">Per ilgas</string>
+  <string name="CreateProfileActivity_error_capturing_photo_camera_did_not_return_image">Klaida, fotografuojant nuotrauką, kamera negrąžino paveikslo</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Naudojamas tinkintas: %s</string>
   <string name="CustomDefaultPreference_using_default">Naudojamas numatytasis: %s</string>
@@ -270,6 +272,7 @@
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Dabar, Signal palaiko saugius vaizdo skambučius. Tiesiog, pradėkite, kaip įprasta, Signal skambutį, bakstelėkite vaizdo mygtuką ir pamojuokite.</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Dabar, Signal palaiko saugius vaizdo skambučius.</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Dabar, Signal palaiko saugius vaizdo skambučius. Bakstelėkite, norėdami išnagrinėti.</string>
+  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Pasiruošę artimesniam bendravimui?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Dabar, su Signal draugais galite bendrinti profilio nuotrauką ir vardą</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profiliai jau čia</string>
   <!--ExportFragment-->
@@ -860,6 +863,7 @@
   <string name="profile_create_activity__set_later">Nustatyti vėliau</string>
   <string name="profile_create_activity__finish">UŽBAIGTI</string>
   <string name="profile_create_activity__who_can_see_this_information">Kas gali matyti šią informaciją?</string>
+  <string name="profile_create_activity__your_name">Jūsų vardas</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">UŽBLOKUOTAS</string>
   <!--recipient_preferences-->

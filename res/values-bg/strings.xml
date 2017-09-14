@@ -216,6 +216,7 @@
   <string name="CreateProfileActivity_updating_and_encrypting_profile">Обновяване и криптиране на профила</string>
   <string name="CreateProfileActivity_profile_photo">Снимка на профила</string>
   <string name="CreateProfileActivity_too_long">Твърде дълго</string>
+  <string name="CreateProfileActivity_error_capturing_photo_camera_did_not_return_image">Грешка при заснемането, камерата не върна изображение</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Използване на специален:  %s</string>
   <string name="CustomDefaultPreference_using_default">Използване на подразбиращ се: %s</string>
@@ -828,6 +829,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="profile_create_activity__set_later">Промени по-късно</string>
   <string name="profile_create_activity__finish">ЗАВЪРШВАНЕ</string>
   <string name="profile_create_activity__who_can_see_this_information">Кой може да види тази информация?</string>
+  <string name="profile_create_activity__your_name">Вашето име</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">БЛОКИРАН</string>
   <!--recipient_preferences-->
