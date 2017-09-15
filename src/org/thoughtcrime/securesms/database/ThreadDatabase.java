@@ -23,6 +23,7 @@ import android.database.MergeCursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
@@ -327,15 +328,7 @@ public class ThreadDatabase extends Database {
         selectionArgs[i++] = DelimiterUtil.escape(address.serialize(), ' ');
       }
 
-      String         projection = Util.join(COMBINED_THREAD_RECIPIENT_GROUP_PROJECTION, ",");
-      String query = "SELECT " + projection + " FROM " + TABLE_NAME +
-                     " LEFT OUTER JOIN " + RecipientDatabase.TABLE_NAME +
-                     " ON " + TABLE_NAME + "." + ADDRESS + " = " + RecipientDatabase.TABLE_NAME + "." + RecipientDatabase.ADDRESS +
-                     " LEFT OUTER JOIN " + GroupDatabase.TABLE_NAME +
-                     " ON " + TABLE_NAME + "." + ADDRESS + " = " + GroupDatabase.TABLE_NAME + "." + GroupDatabase.GROUP_ID +
-                     " WHERE " + selection +
-                     " ORDER BY " + TABLE_NAME + "." + DATE + " DESC";
-
+      String query = createQuery(selection);
       cursors.add(db.rawQuery(query, selectionArgs));
     }
 
@@ -353,16 +346,9 @@ public class ThreadDatabase extends Database {
   }
 
   private Cursor getConversationList(String archived) {
-    String         projection = Util.join(COMBINED_THREAD_RECIPIENT_GROUP_PROJECTION, ",");
-    SQLiteDatabase db         = databaseHelper.getReadableDatabase();
-    Cursor         cursor     = db.rawQuery("SELECT " + projection + " FROM " + TABLE_NAME +
-                                            " LEFT OUTER JOIN " + RecipientDatabase.TABLE_NAME +
-                                            " ON " + TABLE_NAME + "." + ADDRESS + " = " + RecipientDatabase.TABLE_NAME + "." + RecipientDatabase.ADDRESS +
-                                            " LEFT OUTER JOIN " + GroupDatabase.TABLE_NAME +
-                                            " ON " + TABLE_NAME + "." + ADDRESS + " = " + GroupDatabase.TABLE_NAME + "." + GroupDatabase.GROUP_ID +
-                                            " WHERE " + ARCHIVED + " = ? AND " + MESSAGE_COUNT + " != 0" +
-                                            " ORDER BY " + TABLE_NAME + "." + DATE + " DESC",
-                                            new String[] {archived});
+    SQLiteDatabase db     = databaseHelper.getReadableDatabase();
+    String         query  = createQuery(ARCHIVED + " = ? AND " + MESSAGE_COUNT + " != 0");
+    Cursor         cursor = db.rawQuery(query, new String[]{archived});
 
     setNotifyConverationListListeners(cursor);
 
@@ -370,14 +356,10 @@ public class ThreadDatabase extends Database {
   }
 
   public Cursor getDirectShareList() {
-    SQLiteDatabase db         = databaseHelper.getReadableDatabase();
-    String         projection = Util.join(COMBINED_THREAD_RECIPIENT_GROUP_PROJECTION, ",");
+    SQLiteDatabase db    = databaseHelper.getReadableDatabase();
+    String         query = createQuery(MESSAGE_COUNT + " != 0");
 
-    return db.rawQuery("SELECT " + projection + " FROM " + TABLE_NAME +
-                       " LEFT OUTER JOIN " + RecipientDatabase.TABLE_NAME +
-                       " ON " + TABLE_NAME + "." + ADDRESS + " = " + RecipientDatabase.TABLE_NAME + "." + ADDRESS +
-                       " ORDER BY " + TABLE_NAME + "." + DATE + " DESC",
-                       null);
+    return db.rawQuery(query, null);
   }
 
   public int getArchivedConversationListCount() {
@@ -590,6 +572,17 @@ public class ThreadDatabase extends Database {
     Slide     thumbnail = slideDeck.getThumbnailSlide();
 
     return thumbnail != null ? thumbnail.getThumbnailUri() : null;
+  }
+
+  private @NonNull String createQuery(@NonNull String where) {
+    String projection = Util.join(COMBINED_THREAD_RECIPIENT_GROUP_PROJECTION, ",");
+    return "SELECT " + projection + " FROM " + TABLE_NAME +
+           " LEFT OUTER JOIN " + RecipientDatabase.TABLE_NAME +
+           " ON " + TABLE_NAME + "." + ADDRESS + " = " + RecipientDatabase.TABLE_NAME + "." + RecipientDatabase.ADDRESS +
+           " LEFT OUTER JOIN " + GroupDatabase.TABLE_NAME +
+           " ON " + TABLE_NAME + "." + ADDRESS + " = " + GroupDatabase.TABLE_NAME + "." + GroupDatabase.GROUP_ID +
+           " WHERE " + where +
+           " ORDER BY " + TABLE_NAME + "." + DATE + " DESC";
   }
 
   public static interface ProgressListener {
