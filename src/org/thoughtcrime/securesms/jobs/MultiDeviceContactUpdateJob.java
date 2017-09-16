@@ -18,7 +18,6 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule.SignalMessageSenderFactory;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Base64;
@@ -54,7 +53,7 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
 
   private static final String TAG = MultiDeviceContactUpdateJob.class.getSimpleName();
 
-  @Inject transient SignalMessageSenderFactory messageSenderFactory;
+  @Inject transient SignalServiceMessageSender messageSender;
 
   private final @Nullable String address;
 
@@ -90,8 +89,7 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
   private void generateSingleContactUpdate(@NonNull Address address)
       throws IOException, UntrustedIdentityException, NetworkException
   {
-    SignalServiceMessageSender messageSender   = messageSenderFactory.create();
-    File                       contactDataFile = createTempFile("multidevice-contact-update");
+    File contactDataFile = createTempFile("multidevice-contact-update");
 
     try {
       DeviceContactsOutputStream                out             = new DeviceContactsOutputStream(new FileOutputStream(contactDataFile));
@@ -119,8 +117,7 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
   private void generateFullContactUpdate()
       throws IOException, UntrustedIdentityException, NetworkException
   {
-    SignalServiceMessageSender messageSender   = messageSenderFactory.create();
-    File                       contactDataFile = createTempFile("multidevice-contact-update");
+    File contactDataFile = createTempFile("multidevice-contact-update");
 
     try {
       DeviceContactsOutputStream out      = new DeviceContactsOutputStream(new FileOutputStream(contactDataFile));

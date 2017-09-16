@@ -9,7 +9,6 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule.SignalMessageSenderFactory;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
@@ -37,7 +36,7 @@ public class PushGroupUpdateJob extends ContextJob implements InjectableType {
 
   private static final long serialVersionUID = 0L;
 
-  @Inject transient SignalMessageSenderFactory messageSenderFactory;
+  @Inject transient SignalServiceMessageSender messageSender;
 
   private final String source;
   private final byte[] groupId;
@@ -59,10 +58,9 @@ public class PushGroupUpdateJob extends ContextJob implements InjectableType {
 
   @Override
   public void onRun() throws IOException, UntrustedIdentityException {
-    SignalServiceMessageSender messageSender = messageSenderFactory.create();
-    GroupDatabase              groupDatabase = DatabaseFactory.getGroupDatabase(context);
-    Optional<GroupRecord>      record        = groupDatabase.getGroup(GroupUtil.getEncodedId(groupId, false));
-    SignalServiceAttachment    avatar        = null;
+    GroupDatabase           groupDatabase = DatabaseFactory.getGroupDatabase(context);
+    Optional<GroupRecord>   record        = groupDatabase.getGroup(GroupUtil.getEncodedId(groupId, false));
+    SignalServiceAttachment avatar        = null;
 
     if (record == null) {
       Log.w(TAG, "No information for group record info request: " + new String(groupId));

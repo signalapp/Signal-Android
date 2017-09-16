@@ -9,7 +9,6 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
@@ -38,8 +37,7 @@ public class MultiDeviceGroupUpdateJob extends MasterSecretJob implements Inject
   private static final long serialVersionUID = 1L;
   private static final String TAG = MultiDeviceGroupUpdateJob.class.getSimpleName();
 
-  @Inject
-  transient SignalCommunicationModule.SignalMessageSenderFactory messageSenderFactory;
+  @Inject transient SignalServiceMessageSender messageSender;
 
   public MultiDeviceGroupUpdateJob(Context context) {
     super(context, JobParameters.newBuilder()
@@ -52,9 +50,8 @@ public class MultiDeviceGroupUpdateJob extends MasterSecretJob implements Inject
 
   @Override
   public void onRun(MasterSecret masterSecret) throws Exception {
-    SignalServiceMessageSender messageSender = messageSenderFactory.create();
-    File                    contactDataFile  = createTempFile("multidevice-contact-update");
-    GroupDatabase.Reader    reader           = null;
+    File                 contactDataFile = createTempFile("multidevice-contact-update");
+    GroupDatabase.Reader reader          = null;
 
     GroupDatabase.GroupRecord record;
 

@@ -44,15 +44,16 @@ public class SmsMessageRecord extends MessageRecord {
                           Recipient individualRecipient,
                           int recipientDeviceId,
                           long dateSent, long dateReceived,
-                          int receiptCount,
+                          int deliveryReceiptCount,
                           long type, long threadId,
                           int status, List<IdentityKeyMismatch> mismatches,
-                          int subscriptionId, long expiresIn, long expireStarted)
+                          int subscriptionId, long expiresIn, long expireStarted,
+                          int readReceiptCount)
   {
     super(context, id, body, recipient, individualRecipient, recipientDeviceId,
-          dateSent, dateReceived, threadId, status, receiptCount, type,
+          dateSent, dateReceived, threadId, status, deliveryReceiptCount, type,
           mismatches, new LinkedList<NetworkFailure>(), subscriptionId,
-          expiresIn, expireStarted);
+          expiresIn, expireStarted, readReceiptCount);
   }
 
   public long getType() {

@@ -106,7 +106,8 @@ public class DatabaseFactory {
   private static final int PROFILES                                        = 41;
   private static final int PROFILE_SHARING_APPROVAL                        = 42;
   private static final int UNSEEN_NUMBER_OFFER                             = 43;
-  private static final int DATABASE_VERSION                                = 43;
+  private static final int READ_RECEIPTS                                   = 44;
+  private static final int DATABASE_VERSION                                = 44;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -1319,6 +1320,12 @@ public class DatabaseFactory {
 
       if (oldVersion < UNSEEN_NUMBER_OFFER) {
         db.execSQL("ALTER TABLE thread ADD COLUMN has_sent INTEGER DEFAULT 0");
+      }
+
+      if (oldVersion < READ_RECEIPTS) {
+        db.execSQL("ALTER TABLE sms ADD COLUMN read_receipt_count INTEGER DEFAULT 0");
+        db.execSQL("ATLER TABLE mms ADD COLUMN read_receipt_count INTEGER DEFAULT 0");
+        db.execSQL("ALTER TABLE thread ADD COLUMN read_receipt_count INTEGER DEFAULT 0");
       }
 
       db.setTransactionSuccessful();

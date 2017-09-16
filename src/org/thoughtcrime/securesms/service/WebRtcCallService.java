@@ -29,7 +29,6 @@ import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule.SignalMessageSenderFactory;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -148,10 +147,9 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
   private boolean   remoteVideoEnabled = false;
   private boolean   bluetoothAvailable = false;
 
-  @Inject public SignalMessageSenderFactory  messageSenderFactory;
+  @Inject public SignalServiceMessageSender  messageSender;
   @Inject public SignalServiceAccountManager accountManager;
 
-  private SignalServiceMessageSender messageSender;
   private PeerConnectionFactory      peerConnectionFactory;
   private SignalAudioManager         audioManager;
   private BluetoothStateManager      bluetoothStateManager;
@@ -271,7 +269,6 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
     this.peerConnectionFactory = new PeerConnectionFactory(new PeerConnectionFactoryOptions());
     this.audioManager          = new SignalAudioManager(this);
     this.bluetoothStateManager = new BluetoothStateManager(this, this);
-    this.messageSender         = messageSenderFactory.create();
     this.messageSender.setSoTimeoutMillis(TimeUnit.SECONDS.toMillis(10));
     this.accountManager.setSoTimeoutMillis(TimeUnit.SECONDS.toMillis(10));
   }

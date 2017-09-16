@@ -32,15 +32,13 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import static org.thoughtcrime.securesms.dependencies.SignalCommunicationModule.SignalMessageSenderFactory;
-
 public class PushMediaSendJob extends PushSendJob implements InjectableType {
 
   private static final long serialVersionUID = 1L;
 
   private static final String TAG = PushMediaSendJob.class.getSimpleName();
 
-  @Inject transient SignalMessageSenderFactory messageSenderFactory;
+  @Inject transient SignalServiceMessageSender messageSender;
 
   private final long messageId;
 
@@ -106,8 +104,6 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
     if (message.getRecipient() == null) {
       throw new UndeliverableMessageException("No destination address.");
     }
-
-    SignalServiceMessageSender messageSender = messageSenderFactory.create();
 
     try {
       SignalServiceAddress          address           = getPushAddress(message.getRecipient().getAddress());

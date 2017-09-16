@@ -214,7 +214,7 @@ public class MessageRetrievalService extends Service implements InjectableType, 
                                  Log.w(TAG, "Retrieved envelope! " + envelope.getSource());
 
                                  PushContentReceiveJob receiveJob = new PushContentReceiveJob(MessageRetrievalService.this);
-                                 receiveJob.handle(envelope, false);
+                                 receiveJob.handle(envelope);
 
                                  decrementPushReceived();
                                }

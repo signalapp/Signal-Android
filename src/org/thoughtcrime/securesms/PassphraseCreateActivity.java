@@ -68,6 +68,7 @@ public class PassphraseCreateActivity extends PassphraseActivity {
       VersionTracker.updateLastSeenVersion(PassphraseCreateActivity.this);
       TextSecurePreferences.setLastExperienceVersionCode(PassphraseCreateActivity.this, Util.getCurrentApkReleaseVersion(PassphraseCreateActivity.this));
       TextSecurePreferences.setPasswordDisabled(PassphraseCreateActivity.this, true);
+      TextSecurePreferences.setReadReceiptsEnabled(PassphraseCreateActivity.this, true);
 
       return null;
     }

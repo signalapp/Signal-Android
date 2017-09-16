@@ -18,12 +18,12 @@ public abstract class MmsMessageRecord extends MessageRecord {
 
   MmsMessageRecord(Context context, long id, Body body, Recipient conversationRecipient,
                    Recipient individualRecipient, int recipientDeviceId, long dateSent,
-                   long dateReceived, long threadId, int deliveryStatus, int receiptCount,
+                   long dateReceived, long threadId, int deliveryStatus, int deliveryReceiptCount,
                    long type, List<IdentityKeyMismatch> mismatches,
                    List<NetworkFailure> networkFailures, int subscriptionId, long expiresIn,
-                   long expireStarted, @NonNull SlideDeck slideDeck)
+                   long expireStarted, @NonNull SlideDeck slideDeck, int readReceiptCount)
   {
-    super(context, id, body, conversationRecipient, individualRecipient, recipientDeviceId, dateSent, dateReceived, threadId, deliveryStatus, receiptCount, type, mismatches, networkFailures, subscriptionId, expiresIn, expireStarted);
+    super(context, id, body, conversationRecipient, individualRecipient, recipientDeviceId, dateSent, dateReceived, threadId, deliveryStatus, deliveryReceiptCount, type, mismatches, networkFailures, subscriptionId, expiresIn, expireStarted, readReceiptCount);
     this.slideDeck = slideDeck;
   }
 

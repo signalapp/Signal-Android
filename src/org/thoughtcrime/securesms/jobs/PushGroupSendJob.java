@@ -43,15 +43,13 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import static org.thoughtcrime.securesms.dependencies.SignalCommunicationModule.SignalMessageSenderFactory;
-
 public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
   private static final long serialVersionUID = 1L;
 
   private static final String TAG = PushGroupSendJob.class.getSimpleName();
 
-  @Inject transient SignalMessageSenderFactory messageSenderFactory;
+  @Inject transient SignalServiceMessageSender messageSender;
 
   private final long   messageId;
   private final long   filterRecipientId; // Deprecated
@@ -137,7 +135,6 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       throws IOException, RecipientFormattingException, InvalidNumberException,
       EncapsulatedExceptions, UndeliverableMessageException
   {
-    SignalServiceMessageSender    messageSender     = messageSenderFactory.create();
     String                        groupId           = message.getRecipient().getAddress().toGroupString();
     Optional<byte[]>              profileKey        = getProfileKey(message.getRecipient());
     List<Recipient>               recipients        = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, false);

@@ -443,10 +443,11 @@ public class ConversationItem extends LinearLayout
     } else {
       alertView.setNone();
 
-      if      (!messageRecord.isOutgoing()) deliveryStatusIndicator.setNone();
-      else if (messageRecord.isPending())   deliveryStatusIndicator.setPending();
-      else if (messageRecord.isDelivered()) deliveryStatusIndicator.setDelivered();
-      else                                  deliveryStatusIndicator.setSent();
+      if      (!messageRecord.isOutgoing())  deliveryStatusIndicator.setNone();
+      else if (messageRecord.isPending())    deliveryStatusIndicator.setPending();
+      else if (messageRecord.isRemoteRead()) deliveryStatusIndicator.setRead();
+      else if (messageRecord.isDelivered())  deliveryStatusIndicator.setDelivered();
+      else                                   deliveryStatusIndicator.setSent();
     }
   }
 

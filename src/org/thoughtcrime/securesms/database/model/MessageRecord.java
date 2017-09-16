@@ -57,13 +57,14 @@ public abstract class MessageRecord extends DisplayRecord {
   MessageRecord(Context context, long id, Body body, Recipient conversationRecipient,
                 Recipient individualRecipient, int recipientDeviceId,
                 long dateSent, long dateReceived, long threadId,
-                int deliveryStatus, int receiptCount, long type,
+                int deliveryStatus, int deliveryReceiptCount, long type,
                 List<IdentityKeyMismatch> mismatches,
                 List<NetworkFailure> networkFailures,
-                int subscriptionId, long expiresIn, long expireStarted)
+                int subscriptionId, long expiresIn, long expireStarted,
+                int readReceiptCount)
   {
-    super(context, body, conversationRecipient, dateSent, dateReceived, threadId, deliveryStatus, receiptCount,
-          type);
+    super(context, body, conversationRecipient, dateSent, dateReceived,
+          threadId, deliveryStatus, deliveryReceiptCount, type, readReceiptCount);
     this.id                  = id;
     this.individualRecipient = individualRecipient;
     this.recipientDeviceId   = recipientDeviceId;

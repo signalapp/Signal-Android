@@ -27,6 +27,18 @@
                android:paddingBottom="2dp"
                android:visibility="gone"
                android:contentDescription="@string/conversation_item_sent__delivered_description"
+               tools:visibility="gone"/>
+
+    <ImageView android:id="@+id/read_indicator"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center_vertical|end"
+               android:src="@drawable/ic_done_all_white_18dp"
+               android:paddingLeft="2dp"
+               android:paddingBottom="2dp"
+               android:visibility="gone"
+               android:contentDescription="@string/conversation_item_sent__message_read"
+               android:tint="@color/blue_800"
                tools:visibility="visible"/>
 
 </merge>

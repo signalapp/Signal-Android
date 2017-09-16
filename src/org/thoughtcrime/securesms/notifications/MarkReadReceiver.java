@@ -8,17 +8,23 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
+import com.annimon.stream.Collectors;
+import com.annimon.stream.Stream;
+
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.ExpirationInfo;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
+import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class MarkReadReceiver extends MasterSecretBroadcastReceiver {
 
@@ -72,6 +78,18 @@ public class MarkReadReceiver extends MasterSecretBroadcastReceiver {
     ApplicationContext.getInstance(context)
                       .getJobManager()
                       .add(new MultiDeviceReadUpdateJob(context, syncMessageIds));
+
+    Map<Address, List<SyncMessageId>> addressMap = Stream.of(markedReadMessages)
+                                                         .map(MarkedMessageInfo::getSyncMessageId)
+                                                         .collect(Collectors.groupingBy(SyncMessageId::getAddress));
+
+    for (Address address : addressMap.keySet()) {
+      List<Long> timestamps = Stream.of(addressMap.get(address)).map(SyncMessageId::getTimetamp).toList();
+
+      ApplicationContext.getInstance(context)
+                        .getJobManager()
+                        .add(new SendReadReceiptJob(context, address, timestamps));
+    }
   }
 
   private static void scheduleDeletion(Context context, ExpirationInfo expirationInfo) {

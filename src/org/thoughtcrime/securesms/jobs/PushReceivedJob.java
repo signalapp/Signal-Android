@@ -9,16 +9,11 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.jobqueue.JobParameters;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
-
-import java.util.LinkedList;
 
 public abstract class PushReceivedJob extends ContextJob {
 
@@ -28,7 +23,7 @@ public abstract class PushReceivedJob extends ContextJob {
     super(context, parameters);
   }
 
-  public void handle(SignalServiceEnvelope envelope, boolean sendExplicitReceipt) {
+  public void handle(SignalServiceEnvelope envelope) {
     Address   source    = Address.fromExternal(context, envelope.getSource());
     Recipient recipient = Recipient.from(context, source, false);
 
@@ -40,13 +35,13 @@ public abstract class PushReceivedJob extends ContextJob {
     if (envelope.isReceipt()) {
       handleReceipt(envelope);
     } else if (envelope.isPreKeySignalMessage() || envelope.isSignalMessage()) {
-      handleMessage(envelope, source, sendExplicitReceipt);
+      handleMessage(envelope, source);
     } else {
       Log.w(TAG, "Received envelope of unknown type: " + envelope.getType());
     }
   }
 
-  private void handleMessage(SignalServiceEnvelope envelope, Address source, boolean sendExplicitReceipt) {
+  private void handleMessage(SignalServiceEnvelope envelope, Address source) {
     Recipient  recipients = Recipient.from(context, source, false);
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
 
@@ -55,12 +50,6 @@ public abstract class PushReceivedJob extends ContextJob {
       jobManager.add(new PushDecryptJob(context, messageId));
     } else {
       Log.w(TAG, "*** Received blocked push message, ignoring...");
-    }
-
-    if (sendExplicitReceipt) {
-      jobManager.add(new DeliveryReceiptJob(context, envelope.getSource(),
-                                            envelope.getTimestamp(),
-                                            envelope.getRelay()));
     }
   }
 

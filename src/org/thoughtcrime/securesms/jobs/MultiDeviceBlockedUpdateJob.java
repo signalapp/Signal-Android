@@ -7,7 +7,6 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.BlockedReader;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule.SignalMessageSenderFactory;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.jobqueue.JobParameters;
@@ -30,7 +29,7 @@ public class MultiDeviceBlockedUpdateJob extends MasterSecretJob implements Inje
 
   private static final String TAG = MultiDeviceBlockedUpdateJob.class.getSimpleName();
 
-  @Inject transient SignalMessageSenderFactory messageSenderFactory;
+  @Inject transient SignalServiceMessageSender messageSender;
 
   public MultiDeviceBlockedUpdateJob(Context context) {
     super(context, JobParameters.newBuilder()
@@ -45,10 +44,9 @@ public class MultiDeviceBlockedUpdateJob extends MasterSecretJob implements Inje
   public void onRun(MasterSecret masterSecret)
       throws IOException, UntrustedIdentityException
   {
-    RecipientDatabase          database      = DatabaseFactory.getRecipientDatabase(context);
-    SignalServiceMessageSender messageSender = messageSenderFactory.create();
-    BlockedReader              reader        = database.readerForBlocked(database.getBlocked());
-    List<String>               blocked       = new LinkedList<>();
+    RecipientDatabase database = DatabaseFactory.getRecipientDatabase(context);
+    BlockedReader     reader   = database.readerForBlocked(database.getBlocked());
+    List<String>      blocked  = new LinkedList<>();
 
     Recipient recipient;
 

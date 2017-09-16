@@ -68,6 +68,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
+import org.whispersystems.signalservice.api.messages.SignalServiceReceiptMessage;
 import org.whispersystems.signalservice.api.messages.calls.AnswerMessage;
 import org.whispersystems.signalservice.api.messages.calls.BusyMessage;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
@@ -186,6 +187,11 @@ public class PushDecryptJob extends ContextJob {
         else if (message.getIceUpdateMessages().isPresent()) handleCallIceUpdateMessage(envelope, message.getIceUpdateMessages().get());
         else if (message.getHangupMessage().isPresent())     handleCallHangupMessage(envelope, message.getHangupMessage().get(), smsMessageId);
         else if (message.getBusyMessage().isPresent())       handleCallBusyMessage(envelope, message.getBusyMessage().get());
+      } else if (content.getReceiptMessage().isPresent()) {
+        SignalServiceReceiptMessage message = content.getReceiptMessage().get();
+
+        if      (message.isReadReceipt())     handleReadReceipt(envelope, message);
+        else if (message.isDeliveryReceipt()) handleDeliveryReceipt(envelope, message);
       } else {
         Log.w(TAG, "Got unrecognized message...");
       }
@@ -821,6 +827,29 @@ public class PushDecryptJob extends ContextJob {
     if (recipient.getProfileKey() == null || !MessageDigest.isEqual(recipient.getProfileKey(), message.getProfileKey().get())) {
       database.setProfileKey(recipient, message.getProfileKey().get());
       ApplicationContext.getInstance(context).getJobManager().add(new RetrieveProfileJob(context, recipient));
+    }
+  }
+
+  private void handleDeliveryReceipt(@NonNull SignalServiceEnvelope envelope,
+                                     @NonNull SignalServiceReceiptMessage message)
+  {
+    for (long timestamp : message.getTimestamps()) {
+      Log.w(TAG, String.format("Received encrypted delivery receipt: (XXXXX, %d)", timestamp));
+      DatabaseFactory.getMmsSmsDatabase(context)
+                     .incrementDeliveryReceiptCount(new SyncMessageId(Address.fromExternal(context, envelope.getSource()), timestamp));
+    }
+  }
+
+  private void handleReadReceipt(@NonNull SignalServiceEnvelope envelope,
+                                 @NonNull SignalServiceReceiptMessage message)
+  {
+    if (TextSecurePreferences.isReadReceiptsEnabled(context)) {
+      for (long timestamp : message.getTimestamps()) {
+        Log.w(TAG, String.format("Received encrypted read receipt: (XXXXX, %d)", timestamp));
+
+        DatabaseFactory.getMmsSmsDatabase(context)
+                       .incrementReadReceiptCount(new SyncMessageId(Address.fromExternal(context, envelope.getSource()), timestamp));
+      }
     }
   }
 

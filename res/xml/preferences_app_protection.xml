@@ -40,6 +40,12 @@
                 android:title="@string/preferences_advanced__always_relay_calls"
                 android:summary="@string/preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address"/>
 
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+                android:defaultValue="false"
+                android:key="pref_read_receipts"
+                android:title="@string/preferences__read_receipts"
+                android:summary="@string/preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts"/>
+
         <Preference android:key="preference_category_blocked"
                     android:title="@string/preferences_app_protection__blocked_contacts" />
     </PreferenceCategory>

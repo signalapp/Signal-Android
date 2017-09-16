@@ -39,7 +39,7 @@ public class PushContentReceiveJob extends PushReceivedJob {
       String                sessionKey = TextSecurePreferences.getSignalingKey(context);
       SignalServiceEnvelope envelope   = new SignalServiceEnvelope(data, sessionKey);
 
-      handle(envelope, true);
+      handle(envelope);
     } catch (IOException | InvalidVersionException e) {
       Log.w(TAG, e);
     }

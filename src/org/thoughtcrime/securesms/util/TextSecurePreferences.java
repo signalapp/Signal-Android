@@ -113,6 +113,15 @@ public class TextSecurePreferences {
   private static final String ALWAYS_RELAY_CALLS_PREF          = "pref_turn_only";
   private static final String PROFILE_KEY_PREF                 = "pref_profile_key";
   private static final String PROFILE_NAME_PREF                = "pref_profile_name";
+  private static final String READ_RECEIPTS_PREF               = "pref_read_receipts";
+
+  public static boolean isReadReceiptsEnabled(Context context) {
+    return getBooleanPreference(context, READ_RECEIPTS_PREF, false);
+  }
+
+  public static void setReadReceiptsEnabled(Context context, boolean enabled) {
+    setBooleanPreference(context, READ_RECEIPTS_PREF, enabled);
+  }
 
   public static @Nullable String getProfileKey(Context context) {
     return getStringPreference(context, PROFILE_KEY_PREF, null);

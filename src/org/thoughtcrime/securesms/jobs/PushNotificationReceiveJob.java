@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
@@ -37,7 +36,7 @@ public class PushNotificationReceiveJob extends PushReceivedJob implements Injec
     receiver.retrieveMessages(new SignalServiceMessageReceiver.MessageReceivedCallback() {
       @Override
       public void onMessage(SignalServiceEnvelope envelope) {
-        handle(envelope, false);
+        handle(envelope);
       }
     });
   }

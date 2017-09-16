@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DelimiterUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.Pair;
@@ -56,34 +57,36 @@ public class ThreadDatabase extends Database {
 
   private static final String TAG = ThreadDatabase.class.getSimpleName();
 
-          static final String TABLE_NAME      = "thread";
-  public  static final String ID              = "_id";
-  public  static final String DATE            = "date";
-  public  static final String MESSAGE_COUNT   = "message_count";
-  public  static final String ADDRESS         = "recipient_ids";
-  public  static final String SNIPPET         = "snippet";
-  private static final String SNIPPET_CHARSET = "snippet_cs";
-  public  static final String READ            = "read";
-  public  static final String TYPE            = "type";
-  private static final String ERROR           = "error";
-  public  static final String SNIPPET_TYPE    = "snippet_type";
-  public  static final String SNIPPET_URI     = "snippet_uri";
-  public  static final String ARCHIVED        = "archived";
-  public  static final String STATUS          = "status";
-  public  static final String RECEIPT_COUNT   = "delivery_receipt_count";
-  public  static final String EXPIRES_IN      = "expires_in";
-  public  static final String LAST_SEEN       = "last_seen";
-  private static final String HAS_SENT        = "has_sent";
+          static final String TABLE_NAME             = "thread";
+  public  static final String ID                     = "_id";
+  public  static final String DATE                   = "date";
+  public  static final String MESSAGE_COUNT          = "message_count";
+  public  static final String ADDRESS                = "recipient_ids";
+  public  static final String SNIPPET                = "snippet";
+  private static final String SNIPPET_CHARSET        = "snippet_cs";
+  public  static final String READ                   = "read";
+  public  static final String TYPE                   = "type";
+  private static final String ERROR                  = "error";
+  public  static final String SNIPPET_TYPE           = "snippet_type";
+  public  static final String SNIPPET_URI            = "snippet_uri";
+  public  static final String ARCHIVED               = "archived";
+  public  static final String STATUS                 = "status";
+  public  static final String DELIVERY_RECEIPT_COUNT = "delivery_receipt_count";
+  public  static final String READ_RECEIPT_COUNT     = "read_receipt_count";
+  public  static final String EXPIRES_IN             = "expires_in";
+  public  static final String LAST_SEEN              = "last_seen";
+  private static final String HAS_SENT               = "has_sent";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " ("                    +
     ID + " INTEGER PRIMARY KEY, " + DATE + " INTEGER DEFAULT 0, "                                  +
-    MESSAGE_COUNT + " INTEGER DEFAULT 0, " + ADDRESS + " TEXT, " + SNIPPET + " TEXT, "       +
+    MESSAGE_COUNT + " INTEGER DEFAULT 0, " + ADDRESS + " TEXT, " + SNIPPET + " TEXT, "             +
     SNIPPET_CHARSET + " INTEGER DEFAULT 0, " + READ + " INTEGER DEFAULT 1, "                       +
     TYPE + " INTEGER DEFAULT 0, " + ERROR + " INTEGER DEFAULT 0, "                                 +
     SNIPPET_TYPE + " INTEGER DEFAULT 0, " + SNIPPET_URI + " TEXT DEFAULT NULL, "                   +
     ARCHIVED + " INTEGER DEFAULT 0, " + STATUS + " INTEGER DEFAULT 0, "                            +
-    RECEIPT_COUNT + " INTEGER DEFAULT 0, " + EXPIRES_IN + " INTEGER DEFAULT 0, "                   +
-    LAST_SEEN + " INTEGER DEFAULT 0, " + HAS_SENT + " INTEGER DEFAULT 0);";
+    DELIVERY_RECEIPT_COUNT + " INTEGER DEFAULT 0, " + EXPIRES_IN + " INTEGER DEFAULT 0, "          +
+    LAST_SEEN + " INTEGER DEFAULT 0, " + HAS_SENT + " INTEGER DEFAULT 0, "                         +
+    READ_RECEIPT_COUNT + " INTEGER DEFAULT 0);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS thread_recipient_ids_index ON " + TABLE_NAME + " (" + ADDRESS + ");",
@@ -92,7 +95,7 @@ public class ThreadDatabase extends Database {
 
   private static final String[] THREAD_PROJECTION = {
       ID, DATE, MESSAGE_COUNT, ADDRESS, SNIPPET, SNIPPET_CHARSET, READ, TYPE, ERROR, SNIPPET_TYPE,
-      SNIPPET_URI, ARCHIVED, STATUS, RECEIPT_COUNT, EXPIRES_IN, LAST_SEEN
+      SNIPPET_URI, ARCHIVED, STATUS, DELIVERY_RECEIPT_COUNT, EXPIRES_IN, LAST_SEEN, READ_RECEIPT_COUNT
   };
 
   private static final List<String> TYPED_THREAD_PROJECTION = Stream.of(THREAD_PROJECTION)
@@ -125,8 +128,8 @@ public class ThreadDatabase extends Database {
   }
 
   private void updateThread(long threadId, long count, String body, @Nullable Uri attachment,
-                            long date, int status, int receiptCount, long type, boolean unarchive,
-                            long expiresIn)
+                            long date, int status, int deliveryReceiptCount, long type, boolean unarchive,
+                            long expiresIn, int readReceiptCount)
   {
     ContentValues contentValues = new ContentValues(7);
     contentValues.put(DATE, date - date % 1000);
@@ -135,7 +138,8 @@ public class ThreadDatabase extends Database {
     contentValues.put(SNIPPET_URI, attachment == null ? null : attachment.toString());
     contentValues.put(SNIPPET_TYPE, type);
     contentValues.put(STATUS, status);
-    contentValues.put(RECEIPT_COUNT, receiptCount);
+    contentValues.put(DELIVERY_RECEIPT_COUNT, deliveryReceiptCount);
+    contentValues.put(READ_RECEIPT_COUNT, readReceiptCount);
     contentValues.put(EXPIRES_IN, expiresIn);
 
     if (unarchive) {
@@ -550,8 +554,8 @@ public class ThreadDatabase extends Database {
 
       if (reader != null && (record = reader.getNext()) != null) {
         updateThread(threadId, count, record.getBody().getBody(), getAttachmentUriFor(record),
-                     record.getTimestamp(), record.getDeliveryStatus(), record.getReceiptCount(),
-                     record.getType(), unarchive, record.getExpiresIn());
+                     record.getTimestamp(), record.getDeliveryStatus(), record.getDeliveryReceiptCount(),
+                     record.getType(), unarchive, record.getExpiresIn(), record.getReadReceiptCount());
         notifyConversationListListeners();
         return false;
       } else {
@@ -633,22 +637,27 @@ public class ThreadDatabase extends Database {
         groupRecord = Optional.absent();
       }
 
-      Recipient          recipient    = Recipient.from(context, address, settings, groupRecord, true);
-      DisplayRecord.Body body         = getPlaintextBody(cursor);
-      long               date         = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.DATE));
-      long               count        = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.MESSAGE_COUNT));
-      long               read         = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.READ));
-      long               type         = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.SNIPPET_TYPE));
-      boolean            archived     = cursor.getInt(cursor.getColumnIndex(ThreadDatabase.ARCHIVED)) != 0;
-      int                status       = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.STATUS));
-      int                receiptCount = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.RECEIPT_COUNT));
-      long               expiresIn    = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.EXPIRES_IN));
-      long               lastSeen     = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.LAST_SEEN));
-      Uri                snippetUri   = getSnippetUri(cursor);
+      Recipient          recipient            = Recipient.from(context, address, settings, groupRecord, true);
+      DisplayRecord.Body body                 = getPlaintextBody(cursor);
+      long               date                 = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.DATE));
+      long               count                = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.MESSAGE_COUNT));
+      long               read                 = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.READ));
+      long               type                 = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.SNIPPET_TYPE));
+      boolean            archived             = cursor.getInt(cursor.getColumnIndex(ThreadDatabase.ARCHIVED)) != 0;
+      int                status               = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.STATUS));
+      int                deliveryReceiptCount = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.DELIVERY_RECEIPT_COUNT));
+      int                readReceiptCount     = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.READ_RECEIPT_COUNT));
+      long               expiresIn            = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.EXPIRES_IN));
+      long               lastSeen             = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.LAST_SEEN));
+      Uri                snippetUri           = getSnippetUri(cursor);
+
+      if (!TextSecurePreferences.isReadReceiptsEnabled(context)) {
+        readReceiptCount = 0;
+      }
 
       return new ThreadRecord(context, body, snippetUri, recipient, date, count, read == 1,
-                              threadId, receiptCount, status, type, distributionType, archived,
-                              expiresIn, lastSeen);
+                              threadId, deliveryReceiptCount, status, type, distributionType, archived,
+                              expiresIn, lastSeen, readReceiptCount);
     }
 
     private DisplayRecord.Body getPlaintextBody(Cursor cursor) {
