@@ -1283,8 +1283,8 @@ public class DatabaseFactory {
       if (oldVersion < INTERNAL_DIRECTORY) {
         db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN registered INTEGER DEFAULT 0");
 
-        DatabaseHelper directoryDatabaseHelper = new DatabaseHelper(context, "whisper_directory.db", null, 5);
-        SQLiteDatabase directoryDatabase       = directoryDatabaseHelper.getReadableDatabase();
+        OldDirectoryDatabaseHelper directoryDatabaseHelper = new OldDirectoryDatabaseHelper(context);
+        SQLiteDatabase             directoryDatabase       = directoryDatabaseHelper.getWritableDatabase();
 
         Cursor cursor = directoryDatabase.query("directory", new String[] {"number", "registered"}, null, null, null, null, null);
 
@@ -1476,10 +1476,62 @@ public class DatabaseFactory {
         return "+" + localNumberImprecise.substring(0, difference) + bareNumber;
       }
     }
-
-
-
   }
 
+  private static class OldDirectoryDatabaseHelper extends SQLiteOpenHelper {
 
+    private static final int INTRODUCED_CHANGE_FROM_TOKEN_TO_E164_NUMBER = 2;
+    private static final int INTRODUCED_VOICE_COLUMN                     = 4;
+    private static final int INTRODUCED_VIDEO_COLUMN                     = 5;
+
+    private static final String DATABASE_NAME    = "whisper_directory.db";
+    private static final int    DATABASE_VERSION = 5;
+
+    private static final String TABLE_NAME   = "directory";
+    private static final String ID           = "_id";
+    private static final String NUMBER       = "number";
+    private static final String REGISTERED   = "registered";
+    private static final String RELAY        = "relay";
+    private static final String TIMESTAMP    = "timestamp";
+    private static final String VOICE        = "voice";
+    private static final String VIDEO        = "video";
+
+    private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + ID + " INTEGER PRIMARY KEY, " +
+        NUMBER       + " TEXT UNIQUE, " +
+        REGISTERED   + " INTEGER, " +
+        RELAY        + " TEXT, " +
+        TIMESTAMP    + " INTEGER, " +
+        VOICE        + " INTEGER, " +
+        VIDEO        + " INTEGER);";
+
+    public OldDirectoryDatabaseHelper(Context context) {
+      super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+      db.execSQL(CREATE_TABLE);
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+      if (oldVersion < INTRODUCED_CHANGE_FROM_TOKEN_TO_E164_NUMBER) {
+        db.execSQL("DROP TABLE directory;");
+        db.execSQL("CREATE TABLE directory ( _id INTEGER PRIMARY KEY, " +
+                       "number TEXT UNIQUE, " +
+                       "registered INTEGER, " +
+                       "relay TEXT, " +
+                       "supports_sms INTEGER, " +
+                       "timestamp INTEGER);");
+      }
+
+      if (oldVersion < INTRODUCED_VOICE_COLUMN) {
+        db.execSQL("ALTER TABLE directory ADD COLUMN voice INTEGER;");
+      }
+
+      if (oldVersion < INTRODUCED_VIDEO_COLUMN) {
+        db.execSQL("ALTER TABLE directory ADD COLUMN video INTEGER;");
+      }
+    }
+  }
 }
