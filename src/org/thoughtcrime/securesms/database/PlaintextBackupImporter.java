@@ -80,7 +80,7 @@ public class PlaintextBackupImporter {
     }
   }
 
-  private static File getPlaintextBackupFile() throws NoExternalStorageException, FileNotFoundException {
+  public static File getPlaintextBackupFile() throws NoExternalStorageException, FileNotFoundException {
     File[] backupFiles = StorageUtil.getBackupDir().listFiles(new FilenameFilter() {
       @Override
       public boolean accept(File dir, String filename) {

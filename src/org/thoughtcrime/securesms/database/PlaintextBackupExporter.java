@@ -18,10 +18,10 @@ import java.util.TimeZone;
 public class PlaintextBackupExporter {
   private static final String TAG = PlaintextBackupExporter.class.getSimpleName();
 
-  public static void exportPlaintextToSd(Context context, MasterSecret masterSecret)
+  public static File exportPlaintextToSd(Context context, MasterSecret masterSecret)
       throws NoExternalStorageException, IOException
   {
-    exportPlaintext(context, masterSecret);
+    return exportPlaintext(context, masterSecret);
   }
 
   private static File getTimestampedPlaintextExportFile() throws NoExternalStorageException {
@@ -32,7 +32,7 @@ public class PlaintextBackupExporter {
     return new File(StorageUtil.getBackupDir(), filename);
   }
 
-  private static void exportPlaintext(Context context, MasterSecret masterSecret)
+  private static File exportPlaintext(Context context, MasterSecret masterSecret)
       throws NoExternalStorageException, IOException
   {
     int  count      = DatabaseFactory.getSmsDatabase(context).getMessageCount();
@@ -74,5 +74,6 @@ public class PlaintextBackupExporter {
     } while (reader.getCount() > 0);
 
     writer.close();
+    return exportFile;
   }
 }
