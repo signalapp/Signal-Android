@@ -17,11 +17,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class PlaintextBackupImporter {
+  private static final String TAG = PlaintextBackupImporter.class.getSimpleName();
 
   public static void importPlaintextFromSd(Context context, MasterSecret masterSecret)
       throws NoExternalStorageException, IOException
   {
-    Log.w("PlaintextBackupImporter", "importPlaintext()");
+    Log.w(TAG, "importPlaintext()");
     SmsDatabase    db          = DatabaseFactory.getSmsDatabase(context);
     SQLiteDatabase transaction = db.beginTransaction();
 
@@ -64,9 +65,9 @@ public class PlaintextBackupImporter {
         threads.update(threadId, true);
       }
 
-      Log.w("PlaintextBackupImporter", "Exited loop");
+      Log.w(TAG, "Exited loop");
     } catch (XmlPullParserException e) {
-      Log.w("PlaintextBackupImporter", e);
+      Log.w(TAG, e);
       throw new IOException("XML Parsing error!");
     } finally {
       db.endTransaction(transaction);
