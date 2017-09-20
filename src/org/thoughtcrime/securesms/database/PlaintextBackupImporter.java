@@ -9,11 +9,14 @@ import android.util.Log;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.StorageUtil;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FilenameFilter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,7 +32,7 @@ public class PlaintextBackupImporter {
 
     try {
       ThreadDatabase threads         = DatabaseFactory.getThreadDatabase(context);
-      String         filePath        = getPlaintextExportFile().getAbsolutePath();
+      String         filePath        = getPlaintextBackupFile().getAbsolutePath();
       Log.d(TAG, "Importing from " + filePath);
       XmlBackup      backup          = new XmlBackup(filePath);
       MasterCipher   masterCipher    = new MasterCipher(masterSecret);
@@ -77,10 +80,16 @@ public class PlaintextBackupImporter {
     }
   }
 
-  private static File getPlaintextExportFile() throws NoExternalStorageException, FileNotFoundException {
-    File backupFile = PlaintextBackupExporter.getPlaintextExportFile();
-    if (backupFile.exists()) {
-      return backupFile;
+  private static File getPlaintextBackupFile() throws NoExternalStorageException, FileNotFoundException {
+    File[] backupFiles = StorageUtil.getBackupDir().listFiles(new FilenameFilter() {
+      @Override
+      public boolean accept(File dir, String filename) {
+        return filename.startsWith("SignalPlaintextBackup-") && filename.endsWith(".xml");
+      }
+    });
+    if (backupFiles.length >= 1) {
+      Arrays.sort(backupFiles);
+      return backupFiles[backupFiles.length - 1];
     }
 
     File[] historicalBackupFiles = {
