@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
@@ -28,7 +29,9 @@ public class PlaintextBackupImporter {
 
     try {
       ThreadDatabase threads         = DatabaseFactory.getThreadDatabase(context);
-      XmlBackup      backup          = new XmlBackup(getPlaintextExportFile().getAbsolutePath());
+      String         filePath        = getPlaintextExportFile().getAbsolutePath();
+      Log.d(TAG, "Importing from " + filePath);
+      XmlBackup      backup          = new XmlBackup(filePath);
       MasterCipher   masterCipher    = new MasterCipher(masterSecret);
       Set<Long>      modifiedThreads = new HashSet<>();
       XmlBackup.XmlBackupItem item;
@@ -74,11 +77,24 @@ public class PlaintextBackupImporter {
     }
   }
 
-  private static File getPlaintextExportFile() throws NoExternalStorageException {
-    File backup    = PlaintextBackupExporter.getPlaintextExportFile();
-    File oldBackup = new File(Environment.getExternalStorageDirectory(), "TextSecurePlaintextBackup.xml");
+  private static File getPlaintextExportFile() throws NoExternalStorageException, FileNotFoundException {
+    File backupFile = PlaintextBackupExporter.getPlaintextExportFile();
+    if (backupFile.exists()) {
+      return backupFile;
+    }
 
-    return !backup.exists() && oldBackup.exists() ? oldBackup : backup;
+    File[] historicalBackupFiles = {
+      new File(Environment.getExternalStorageDirectory(), "SignalPlaintextBackup.xml"),
+      new File(Environment.getExternalStorageDirectory(), "TextSecurePlaintextBackup.xml"),
+    };
+
+    for (File possibleBackupFile: historicalBackupFiles) {
+      if (possibleBackupFile.exists()) {
+        return possibleBackupFile;
+      }
+    }
+
+    throw new FileNotFoundException();
   }
 
   private static void addEncryptedStringToStatement(MasterCipher masterCipher, SQLiteStatement statement, int index, String value) {

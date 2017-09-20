@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.database;
 
 
 import android.content.Context;
+import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
@@ -11,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class PlaintextBackupExporter {
+  private static final String TAG = PlaintextBackupExporter.class.getSimpleName();
 
   private static final String FILENAME = "SignalPlaintextBackup.xml";
 
@@ -27,8 +29,15 @@ public class PlaintextBackupExporter {
   private static void exportPlaintext(Context context, MasterSecret masterSecret)
       throws NoExternalStorageException, IOException
   {
-    int count               = DatabaseFactory.getSmsDatabase(context).getMessageCount();
-    XmlBackup.Writer writer = new XmlBackup.Writer(getPlaintextExportFile().getAbsolutePath(), count);
+    int  count      = DatabaseFactory.getSmsDatabase(context).getMessageCount();
+    File exportFile = getPlaintextExportFile();
+    File exportDir  = exportFile.getParentFile();
+    if (!exportDir.exists()) {
+      if (!exportDir.mkdirs()) {
+        Log.w(TAG, "mkdirs() returned false, attempting to continue exporting");
+      }
+    }
+    XmlBackup.Writer writer = new XmlBackup.Writer(exportFile.getAbsolutePath(), count);
 
 
     SmsMessageRecord record;
