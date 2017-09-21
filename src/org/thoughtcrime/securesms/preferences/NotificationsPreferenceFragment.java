@@ -12,12 +12,12 @@ import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceManager;
 import android.text.TextUtils;
-import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.preferences.widgets.AdvancedRingtonePreference;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragment {

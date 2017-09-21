@@ -10,7 +10,7 @@
                 android:disableDependentsState="true"
                 android:persistent="false" />
 
-        <org.thoughtcrime.securesms.preferences.SignalRingtonePreference
+        <org.thoughtcrime.securesms.preferences.widgets.SignalRingtonePreference
                             android:dependency="pref_key_recipient_mute"
                             android:key="pref_key_recipient_ringtone"
                             android:title="@string/recipient_preferences__notification_sound"
@@ -19,7 +19,7 @@
                             android:showDefault="true"
                             android:persistent="false"/>
 
-        <org.thoughtcrime.securesms.preferences.SignalListPreference
+        <org.thoughtcrime.securesms.preferences.widgets.SignalListPreference
                 android:dependency="pref_key_recipient_mute"
                 android:key="pref_key_recipient_vibrate"
                 android:title="@string/recipient_preferences__vibrate"
@@ -28,7 +28,7 @@
                 android:defaultValue="0"
                 android:persistent="false"/>
 
-        <org.thoughtcrime.securesms.preferences.ColorPickerPreference
+        <org.thoughtcrime.securesms.preferences.widgets.ColorPickerPreference
                 android:key="pref_key_recipient_color"
                 android:title="@string/recipient_preferences__color"
                 android:defaultValue="@android:color/black"

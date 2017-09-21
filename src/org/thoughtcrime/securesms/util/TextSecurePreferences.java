@@ -15,7 +15,7 @@ import android.util.Log;
 import com.h6ah4i.android.compat.content.SharedPreferenceCompat;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.preferences.NotificationPrivacyPreference;
+import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 
 import java.io.IOException;
 import java.util.Arrays;

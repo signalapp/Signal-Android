@@ -9,7 +9,7 @@ import android.support.v4.app.NotificationCompat;
 import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.preferences.NotificationPrivacyPreference;
+import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class PendingMessageNotificationBuilder extends AbstractNotificationBuilder {

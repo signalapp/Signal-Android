@@ -8,6 +8,10 @@ import android.support.v7.preference.PreferenceFragmentCompat;
 import android.view.View;
 
 import org.thoughtcrime.securesms.components.CustomDefaultPreference;
+import org.thoughtcrime.securesms.preferences.widgets.ColorPickerPreference;
+import org.thoughtcrime.securesms.preferences.widgets.ColorPickerPreferenceDialogFragmentCompat;
+import org.thoughtcrime.securesms.preferences.widgets.RingtonePreference;
+import org.thoughtcrime.securesms.preferences.widgets.RingtonePreferenceDialogFragmentCompat;
 
 public abstract class CorrectedPreferenceFragment extends PreferenceFragmentCompat {
 

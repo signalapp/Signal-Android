@@ -1,13 +1,11 @@
-package org.thoughtcrime.securesms.preferences;
+package org.thoughtcrime.securesms.preferences.widgets;
 
 
 import android.content.Context;
 import android.os.Build;
-import android.preference.RingtonePreference;
 import android.support.annotation.RequiresApi;
 import android.support.v7.preference.PreferenceViewHolder;
 import android.util.AttributeSet;
-import android.view.View;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;

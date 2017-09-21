@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.preferences;
+package org.thoughtcrime.securesms.preferences.widgets;
 
 import android.content.Context;
 import android.net.Uri;

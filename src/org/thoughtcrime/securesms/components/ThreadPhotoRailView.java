@@ -65,7 +65,7 @@ public class ThreadPhotoRailView extends FrameLayout {
   public void setCursor(@Nullable Cursor cursor, @NonNull MasterSecret masterSecret) {
     this.recyclerView.setAdapter(new ThreadPhotoRailAdapter(getContext(), masterSecret, cursor, this.listener));
   }
-  
+
   private static class ThreadPhotoRailAdapter extends CursorRecyclerViewAdapter<ThreadPhotoRailAdapter.ThreadPhotoViewHolder> {
 
     private static final String TAG = ThreadPhotoRailAdapter.class.getName();
