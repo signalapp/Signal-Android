@@ -16,12 +16,14 @@ import android.widget.Toast;
 import com.doomonafireball.betterpickers.hmspicker.HmsPickerBuilder;
 import com.doomonafireball.betterpickers.hmspicker.HmsPickerDialogFragment;
 
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.BlockedContactsActivity;
 import org.thoughtcrime.securesms.PassphraseChangeActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
+import org.thoughtcrime.securesms.jobs.MultiDeviceReadReceiptUpdateJob;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -45,6 +47,8 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
         .setOnPreferenceClickListener(new ChangePassphraseClickListener());
     this.findPreference(TextSecurePreferences.PASSPHRASE_TIMEOUT_INTERVAL_PREF)
         .setOnPreferenceClickListener(new PassphraseIntervalClickListener());
+    this.findPreference(TextSecurePreferences.READ_RECEIPTS_PREF)
+        .setOnPreferenceChangeListener(new ReadReceiptToggleListener());
     this.findPreference(PREFERENCE_CATEGORY_BLOCKED)
         .setOnPreferenceClickListener(new BlockedContactsClickListener());
     disablePassphrase
@@ -167,6 +171,18 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
       }
 
       return false;
+    }
+  }
+
+  private class ReadReceiptToggleListener implements Preference.OnPreferenceChangeListener {
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+      boolean enabled = (boolean)newValue;
+      ApplicationContext.getInstance(getContext())
+                        .getJobManager()
+                        .add(new MultiDeviceReadReceiptUpdateJob(getContext(), enabled));
+
+      return true;
     }
   }
 
