@@ -42,9 +42,9 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;
+import org.thoughtcrime.securesms.database.loaders.ThreadMediaLoader;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
-import org.thoughtcrime.securesms.util.AbstractCursorLoader;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
@@ -59,7 +59,6 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
   private final static String TAG = MediaOverviewActivity.class.getSimpleName();
 
   public static final String ADDRESS_EXTRA   = "address";
-  public static final String THREAD_ID_EXTRA = "thread_id";
 
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
@@ -69,7 +68,6 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
   private GridLayoutManager gridManager;
   private TextView          noImages;
   private Recipient         recipient;
-  private long              threadId;
 
   @Override
   protected void onPreCreate() {
@@ -124,8 +122,6 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
   }
 
   private void initializeResources() {
-    threadId = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
-
     noImages = (TextView    ) findViewById(R.id.no_images );
     gridView = (RecyclerView) findViewById(R.id.media_grid);
     gridManager = new GridLayoutManager(this, getResources().getInteger(R.integer.media_overview_cols));
@@ -136,8 +132,6 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
 
     if (address != null) {
       recipient = Recipient.from(this, address, true);
-    } else if (threadId > -1) {
-      recipient = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadId);
     } else {
       recipient = null;
     }
@@ -163,16 +157,19 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
                                                                                      R.string.please_wait) {
           @Override
           protected List<SaveAttachmentTask.Attachment> doInBackground(Void... params) {
+            long  threadId                                  = DatabaseFactory.getThreadDatabase(c).getThreadIdFor(recipient);
             Cursor cursor                                   = DatabaseFactory.getMediaDatabase(c).getMediaForThread(threadId);
             List<SaveAttachmentTask.Attachment> attachments = new ArrayList<>(cursor.getCount());
 
-            while (cursor != null && cursor.moveToNext()) {
+            while (cursor.moveToNext()) {
               MediaRecord record = MediaRecord.from(c, masterSecret, cursor);
               attachments.add(new SaveAttachmentTask.Attachment(record.getAttachment().getDataUri(),
                                                                 record.getContentType(),
                                                                 record.getDate(),
                                                                 null));
             }
+
+            cursor.close();
 
             return attachments;
           }
@@ -216,13 +213,13 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
 
   @Override
   public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-    return new ThreadMediaLoader(this, threadId);
+    return new ThreadMediaLoader(this, masterSecret, recipient.getAddress());
   }
 
   @Override
   public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
     Log.w(TAG, "onLoadFinished()");
-    gridView.setAdapter(new MediaAdapter(this, masterSecret, cursor, threadId));
+    gridView.setAdapter(new MediaAdapter(this, masterSecret, cursor, recipient.getAddress()));
     noImages.setVisibility(gridView.getAdapter().getItemCount() > 0 ? View.GONE : View.VISIBLE);
     invalidateOptionsMenu();
   }
@@ -232,17 +229,4 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
     ((CursorRecyclerViewAdapter)gridView.getAdapter()).changeCursor(null);
   }
 
-  public static class ThreadMediaLoader extends AbstractCursorLoader {
-    private final long threadId;
-
-    public ThreadMediaLoader(Context context, long threadId) {
-      super(context);
-      this.threadId = threadId;
-    }
-
-    @Override
-    public Cursor getCursor() {
-      return DatabaseFactory.getMediaDatabase(getContext()).getMediaForThread(threadId);
-    }
-  }
 }

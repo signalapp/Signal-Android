@@ -4,6 +4,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
         android:background="@color/transparent"
         xmlns:tools="http://schemas.android.com/tools">
 
@@ -58,14 +60,39 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView
+            android:id="@+id/scroll_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true"
+            android:descendantFocusability="blocksDescendants"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <FrameLayout android:id="@+id/preference_fragment"
-                     android:layout_width="match_parent"
-                     android:layout_height="match_parent"/>
+        <LinearLayout android:orientation="vertical"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content">
+
+            <TextView android:id="@+id/rail_label"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:padding="16dp"
+                      android:text="Shared media"
+                      android:visibility="gone"
+                      android:textColor="?attr/colorPrimary"/>
+
+            <org.thoughtcrime.securesms.components.ThreadPhotoRailView
+                    android:id="@+id/recent_photos"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:visibility="visible"
+                    android:layout_marginBottom="16dp"/>
+
+            <include layout="@layout/preference_divider"/>
+
+            <FrameLayout android:id="@+id/preference_fragment"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"/>
+
+        </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
 

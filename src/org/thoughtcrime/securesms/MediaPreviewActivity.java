@@ -54,7 +54,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   private final static String TAG = MediaPreviewActivity.class.getSimpleName();
 
   public static final String ADDRESS_EXTRA   = "address";
-  public static final String THREAD_ID_EXTRA = "thread_id";
   public static final String DATE_EXTRA      = "date";
   public static final String SIZE_EXTRA      = "size";
 
@@ -68,7 +67,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   private Uri       mediaUri;
   private String    mediaType;
   private Recipient recipient;
-  private long      threadId;
   private long      date;
   private long      size;
 
@@ -150,7 +148,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     mediaType    = getIntent().getType();
     date         = getIntent().getLongExtra(DATE_EXTRA, -1);
     size         = getIntent().getLongExtra(SIZE_EXTRA, 0);
-    threadId     = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
 
     if (address != null) {
       recipient = Recipient.from(this, address, true);
@@ -194,7 +191,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
   private void showOverview() {
     Intent intent = new Intent(this, MediaOverviewActivity.class);
-    intent.putExtra(MediaOverviewActivity.THREAD_ID_EXTRA, threadId);
+    intent.putExtra(MediaOverviewActivity.ADDRESS_EXTRA, recipient.getAddress());
     startActivity(intent);
   }
 
@@ -223,7 +220,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     menu.clear();
     MenuInflater inflater = this.getMenuInflater();
     inflater.inflate(R.menu.media_preview, menu);
-    if (threadId == -1) menu.findItem(R.id.media_preview__overview).setVisible(false);
+    if (recipient == null) menu.findItem(R.id.media_preview__overview).setVisible(false);
 
     return true;
   }

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -12,23 +13,28 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
-import android.preference.ListPreference;
-import android.preference.Preference;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.preference.PreferenceFragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.preference.CheckBoxPreference;
+import android.support.v7.preference.ListPreference;
+import android.support.v7.preference.Preference;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.color.MaterialColors;
+import org.thoughtcrime.securesms.components.ThreadPhotoRailView;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
@@ -38,10 +44,12 @@ import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
+import org.thoughtcrime.securesms.database.loaders.ThreadMediaLoader;
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.preferences.AdvancedRingtonePreference;
-import org.thoughtcrime.securesms.preferences.ColorPreference;
+import org.thoughtcrime.securesms.preferences.ColorPickerPreference;
+import org.thoughtcrime.securesms.preferences.CorrectedPreferenceFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
@@ -55,7 +63,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.concurrent.ExecutionException;
 
-public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActivity implements RecipientModifiedListener
+public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActivity implements RecipientModifiedListener, LoaderManager.LoaderCallbacks<Cursor>
 {
   private static final String TAG = RecipientPreferenceActivity.class.getSimpleName();
 
@@ -73,6 +81,10 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private ImageView               avatar;
+  private MasterSecret            masterSecret;
+  private Address                 address;
+  private TextView                threadPhotoRailLabel;
+  private ThreadPhotoRailView     threadPhotoRailView;
   private CollapsingToolbarLayout toolbarLayout;
   private BroadcastReceiver       staleReceiver;
 
@@ -85,8 +97,9 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   @Override
   public void onCreate(Bundle instanceState, @NonNull MasterSecret masterSecret) {
     setContentView(R.layout.recipient_preference_activity);
+    this.masterSecret = masterSecret;
+    this.address      = getIntent().getParcelableExtra(ADDRESS_EXTRA);
 
-    Address   address   = getIntent().getParcelableExtra(ADDRESS_EXTRA);
     Recipient recipient = Recipient.from(this, address, true);
 
     initializeToolbar();
@@ -94,9 +107,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     setHeader(recipient);
     recipient.addListener(this);
 
-    Bundle bundle = new Bundle();
-    bundle.putParcelable(ADDRESS_EXTRA, address);
-    initFragment(R.id.preference_fragment, new RecipientPreferenceFragment(), masterSecret, null, bundle);
+    getSupportLoaderManager().initLoader(0, null, this);
   }
 
   @Override
@@ -138,11 +149,28 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   }
 
   private void initializeToolbar() {
-    this.toolbarLayout = ViewUtil.findById(this, R.id.collapsing_toolbar);
-    this.avatar        = ViewUtil.findById(this, R.id.avatar);
+    this.toolbarLayout        = ViewUtil.findById(this, R.id.collapsing_toolbar);
+    this.avatar               = ViewUtil.findById(this, R.id.avatar);
+    this.threadPhotoRailView  = ViewUtil.findById(this, R.id.recent_photos);
+    this.threadPhotoRailLabel = ViewUtil.findById(this, R.id.rail_label);
 
     this.toolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.white));
     this.toolbarLayout.setCollapsedTitleTextColor(getResources().getColor(R.color.white));
+
+    this.threadPhotoRailView.setListener(mediaRecord -> {
+      Intent intent = new Intent(RecipientPreferenceActivity.this, MediaPreviewActivity.class);
+      intent.putExtra(MediaPreviewActivity.ADDRESS_EXTRA, address);
+      intent.putExtra(MediaPreviewActivity.DATE_EXTRA, mediaRecord.getDate());
+      intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, mediaRecord.getAttachment().getSize());
+      intent.setDataAndType(mediaRecord.getAttachment().getDataUri(), mediaRecord.getContentType());
+      startActivity(intent);
+    });
+
+    this.threadPhotoRailLabel.setOnClickListener(v -> {
+      Intent intent = new Intent(this, MediaOverviewActivity.class);
+      intent.putExtra(MediaOverviewActivity.ADDRESS_EXTRA, address);
+      startActivity(intent);
+    });
 
     Toolbar toolbar = ViewUtil.findById(this, R.id.toolbar);
     setSupportActionBar(toolbar);
@@ -183,23 +211,48 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     Util.runOnMain(() -> setHeader(recipient));
   }
 
+  @Override
+  public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+    return new ThreadMediaLoader(this, masterSecret, address);
+  }
+
+  @Override
+  public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+    if (data != null && data.getCount() > 0) {
+      this.threadPhotoRailLabel.setVisibility(View.VISIBLE);
+      this.threadPhotoRailView.setVisibility(View.VISIBLE);
+    } else {
+      this.threadPhotoRailLabel.setVisibility(View.GONE);
+      this.threadPhotoRailView.setVisibility(View.GONE);
+    }
+
+    this.threadPhotoRailView.setCursor(data, masterSecret);
+
+    Bundle bundle = new Bundle();
+    bundle.putParcelable(ADDRESS_EXTRA, address);
+    initFragment(R.id.preference_fragment, new RecipientPreferenceFragment(), masterSecret, null, bundle);
+  }
+
+  @Override
+  public void onLoaderReset(Loader<Cursor> loader) {
+    this.threadPhotoRailView.setCursor(null, masterSecret);
+  }
+
   public static class RecipientPreferenceFragment
-      extends    PreferenceFragment
+      extends    CorrectedPreferenceFragment
       implements RecipientModifiedListener
   {
     private Recipient         recipient;
     private BroadcastReceiver staleReceiver;
-    private MasterSecret      masterSecret;
     private boolean           canHaveSafetyNumber;
 
     @Override
     public void onCreate(Bundle icicle) {
+      Log.w(TAG, "onCreate (fragment)");
       super.onCreate(icicle);
 
-      addPreferencesFromResource(R.xml.recipient_preferences);
       initializeRecipients();
 
-      this.masterSecret        = getArguments().getParcelable("master_secret");
       this.canHaveSafetyNumber = getActivity().getIntent()
                                  .getBooleanExtra(RecipientPreferenceActivity.CAN_HAVE_SAFETY_NUMBER_EXTRA, false);
 
@@ -213,7 +266,12 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
           .setOnPreferenceClickListener(new BlockClickedListener());
       this.findPreference(PREFERENCE_COLOR)
           .setOnPreferenceChangeListener(new ColorChangeListener());
-   }
+    }
+
+    @Override
+    public void onCreatePreferences(@Nullable Bundle savedInstanceState, String rootKey) {
+      addPreferencesFromResource(R.xml.recipient_preferences);
+    }
 
     @Override
     public void onResume() {
@@ -255,9 +313,9 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       CheckBoxPreference         mutePreference     = (CheckBoxPreference) this.findPreference(PREFERENCE_MUTED);
       AdvancedRingtonePreference ringtonePreference = (AdvancedRingtonePreference) this.findPreference(PREFERENCE_TONE);
       ListPreference             vibratePreference  = (ListPreference) this.findPreference(PREFERENCE_VIBRATE);
-      ColorPreference            colorPreference    = (ColorPreference) this.findPreference(PREFERENCE_COLOR);
+      ColorPickerPreference      colorPreference    = (ColorPickerPreference) this.findPreference(PREFERENCE_COLOR);
       Preference                 blockPreference    = this.findPreference(PREFERENCE_BLOCK);
-      final Preference           identityPreference = this.findPreference(PREFERENCE_IDENTITY);
+      Preference                 identityPreference = this.findPreference(PREFERENCE_IDENTITY);
 
       mutePreference.setChecked(recipient.isMuted());
 
@@ -294,11 +352,11 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         if (blockPreference    != null) getPreferenceScreen().removePreference(blockPreference);
         if (identityPreference != null) getPreferenceScreen().removePreference(identityPreference);
       } else {
-        colorPreference.setChoices(MaterialColors.CONVERSATION_PALETTE.asConversationColorArray(getActivity()));
-        colorPreference.setValue(recipient.getColor().toActionBarColor(getActivity()));
+        colorPreference.setColors(MaterialColors.CONVERSATION_PALETTE.asConversationColorArray(getActivity()));
+        colorPreference.setColor(recipient.getColor().toActionBarColor(getActivity()));
 
         if (recipient.isBlocked()) blockPreference.setTitle(R.string.RecipientPreferenceActivity_unblock);
-        else                        blockPreference.setTitle(R.string.RecipientPreferenceActivity_block);
+        else                       blockPreference.setTitle(R.string.RecipientPreferenceActivity_block);
 
         IdentityUtil.getRemoteIdentityKey(getActivity(), recipient).addListener(new ListenableFuture.Listener<Optional<IdentityRecord>>() {
           @Override
@@ -330,14 +388,10 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     private class RingtoneChangeListener implements Preference.OnPreferenceChangeListener {
       @Override
       public boolean onPreferenceChange(Preference preference, Object newValue) {
-        String value = (String)newValue;
+        Uri value = (Uri)newValue;
 
-        final Uri uri;
-
-        if (Settings.System.DEFAULT_NOTIFICATION_URI.toString().equals(value)) {
-          uri = null;
-        } else {
-          uri = Uri.parse(value);
+        if (Settings.System.DEFAULT_NOTIFICATION_URI.equals(value)) {
+          value = null;
         }
 
         new AsyncTask<Uri, Void, Void>() {
@@ -347,7 +401,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
                            .setRingtone(recipient, params[0]);
             return null;
           }
-        }.execute(uri);
+        }.execute(value);
 
         return false;
       }

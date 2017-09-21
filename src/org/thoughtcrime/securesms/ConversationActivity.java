@@ -719,7 +719,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void handleViewMedia() {
     Intent intent = new Intent(this, MediaOverviewActivity.class);
-    intent.putExtra(MediaOverviewActivity.THREAD_ID_EXTRA, threadId);
     intent.putExtra(MediaOverviewActivity.ADDRESS_EXTRA, recipient.getAddress());
     startActivity(intent);
   }

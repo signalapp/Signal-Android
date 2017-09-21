@@ -29,6 +29,7 @@ import android.view.ViewGroup;
 import org.thoughtcrime.securesms.MediaAdapter.ViewHolder;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;
 import org.thoughtcrime.securesms.mms.Slide;
@@ -38,7 +39,7 @@ public class MediaAdapter extends CursorRecyclerViewAdapter<ViewHolder> {
   private static final String TAG = MediaAdapter.class.getSimpleName();
 
   private final MasterSecret masterSecret;
-  private final long         threadId;
+  private final Address      address;
 
   public static class ViewHolder extends RecyclerView.ViewHolder {
     public ThumbnailView imageView;
@@ -49,10 +50,10 @@ public class MediaAdapter extends CursorRecyclerViewAdapter<ViewHolder> {
     }
   }
 
-  public MediaAdapter(Context context, MasterSecret masterSecret, Cursor c, long threadId) {
+  public MediaAdapter(Context context, MasterSecret masterSecret, Cursor c, Address address) {
     super(context, c);
     this.masterSecret = masterSecret;
-    this.threadId     = threadId;
+    this.address      = address;
   }
 
   @Override
@@ -88,7 +89,7 @@ public class MediaAdapter extends CursorRecyclerViewAdapter<ViewHolder> {
         Intent intent = new Intent(getContext(), MediaPreviewActivity.class);
         intent.putExtra(MediaPreviewActivity.DATE_EXTRA, mediaRecord.getDate());
         intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, mediaRecord.getAttachment().getSize());
-        intent.putExtra(MediaPreviewActivity.THREAD_ID_EXTRA, threadId);
+        intent.putExtra(MediaPreviewActivity.ADDRESS_EXTRA, address);
 
         if (mediaRecord.getAddress() != null) {
           intent.putExtra(MediaPreviewActivity.ADDRESS_EXTRA, mediaRecord.getAddress());

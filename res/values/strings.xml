@@ -998,6 +998,8 @@
     <string name="recipient_preferences__color">Color</string>
     <string name="recipient_preferences__color_for_this_contact">Color for this contact</string>
     <string name="recipient_preferences__view_safety_number">View safety number</string>
+    <string name="recipient_preferences__chat_settings">Chat settings</string>
+    <string name="recipient_preferences__privacy">Privacy</string>
 
     <!--- redphone_call_controls -->
     <string name="redphone_call_card__signal_call">Signal Call</string>
