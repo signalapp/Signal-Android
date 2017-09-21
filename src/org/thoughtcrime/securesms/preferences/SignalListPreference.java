@@ -3,8 +3,9 @@ package org.thoughtcrime.securesms.preferences;
 
 import android.content.Context;
 import android.os.Build;
-import android.preference.ListPreference;
 import android.support.annotation.RequiresApi;
+import android.support.v7.preference.ListPreference;
+import android.support.v7.preference.PreferenceViewHolder;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
@@ -45,8 +46,8 @@ public class SignalListPreference extends ListPreference {
   }
 
   @Override
-  protected void onBindView(View view) {
-    super.onBindView(view);
+  public void onBindViewHolder(PreferenceViewHolder view) {
+    super.onBindViewHolder(view);
 
     this.rightSummary = (TextView)view.findViewById(R.id.right_summary);
     setSummary(this.summary);

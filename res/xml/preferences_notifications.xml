@@ -30,7 +30,7 @@
             android:entries="@array/pref_led_color_entries"
             android:entryValues="@array/pref_led_color_values" />
 
-        <org.thoughtcrime.securesms.preferences.LedBlinkPatternListPreference
+        <org.thoughtcrime.securesms.preferences.SignalListPreference
             android:key="pref_led_blink"
             android:defaultValue="500,2000"
             android:title="@string/preferences__pref_led_blink_title"

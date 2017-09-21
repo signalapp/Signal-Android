@@ -256,4 +256,7 @@
         <item name="android:focusable">false</item>
     </style>
 
+    <style name="PreferenceThemeOverlay.Fix" parent="PreferenceThemeOverlay.v14.Material">
+    </style>
+
 </resources>

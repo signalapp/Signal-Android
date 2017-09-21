@@ -7,11 +7,12 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.ListPreference;
-import android.preference.Preference;
-import android.preference.PreferenceManager;
-import android.preference.RingtonePreference;
+import android.support.annotation.Nullable;
+import android.support.v7.preference.ListPreference;
+import android.support.v7.preference.Preference;
+import android.support.v7.preference.PreferenceManager;
 import android.text.TextUtils;
+import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
@@ -21,13 +22,14 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragment {
 
+  private static final String TAG = NotificationsPreferenceFragment.class.getSimpleName();
+
   private MasterSecret masterSecret;
 
   @Override
   public void onCreate(Bundle paramBundle) {
     super.onCreate(paramBundle);
     masterSecret = getArguments().getParcelable("master_secret");
-    addPreferencesFromResource(R.xml.preferences_notifications);
 
     this.findPreference(TextSecurePreferences.LED_COLOR_PREF)
         .setOnPreferenceChangeListener(new ListSummaryListener());
@@ -47,7 +49,12 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
     initializeListSummary((ListPreference) findPreference(TextSecurePreferences.REPEAT_ALERTS_PREF));
     initializeListSummary((ListPreference) findPreference(TextSecurePreferences.NOTIFICATION_PRIVACY_PREF));
     initializeListSummary((ListPreference) findPreference(TextSecurePreferences.NOTIFICATION_PRIORITY_PREF));
-    initializeRingtoneSummary((RingtonePreference) findPreference(TextSecurePreferences.RINGTONE_PREF));
+    initializeRingtoneSummary((AdvancedRingtonePreference) findPreference(TextSecurePreferences.RINGTONE_PREF));
+  }
+
+  @Override
+  public void onCreatePreferences(@Nullable Bundle savedInstanceState, String rootKey) {
+    addPreferencesFromResource(R.xml.preferences_notifications);
   }
 
   @Override
@@ -59,12 +66,12 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
   private class RingtoneSummaryListener implements Preference.OnPreferenceChangeListener {
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-      String value = (String) newValue;
+      Uri value = (Uri) newValue;
 
-      if (TextUtils.isEmpty(value)) {
+      if (value == null) {
         preference.setSummary(R.string.preferences__silent);
       } else {
-        Ringtone tone = RingtoneManager.getRingtone(getActivity(), Uri.parse(value));
+        Ringtone tone = RingtoneManager.getRingtone(getActivity(), value);
         if (tone != null) {
           preference.setSummary(tone.getTitle(getActivity()));
         }
@@ -74,12 +81,13 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
     }
   }
 
-  private void initializeRingtoneSummary(RingtonePreference pref) {
-    RingtoneSummaryListener listener =
-      (RingtoneSummaryListener) pref.getOnPreferenceChangeListener();
-    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+  private void initializeRingtoneSummary(AdvancedRingtonePreference pref) {
+    RingtoneSummaryListener listener          = (RingtoneSummaryListener) pref.getOnPreferenceChangeListener();
+    SharedPreferences       sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+    String                  encodedUri        = sharedPreferences.getString(pref.getKey(), null);
+    Uri                     uri               = !TextUtils.isEmpty(encodedUri) ? Uri.parse(encodedUri) : null;
 
-    listener.onPreferenceChange(pref, sharedPreferences.getString(pref.getKey(), ""));
+    listener.onPreferenceChange(pref, uri);
   }
 
   public static CharSequence getSummary(Context context) {

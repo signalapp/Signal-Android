@@ -1460,6 +1460,14 @@
     <string name="preferences__read_receipts">Read receipts</string>
     <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">If you read receipts are disabled, you won\'t be able to see read receipts from others.</string>
 
+    <string name="RingtonePreference_ringtone_default">Default ringtone</string>
+    <string name="RingtonePreference_ringtone_silent">None</string>
+    <string name="RingtonePreference_ringtone_picker_title">Ringtones</string>
+    <string name="RingtonePreference_notification_sound_default">Default notification sound</string>
+    <string name="RingtonePreference_alarm_sound_default">Default alarm sound</string>
+    <string name="RingtonePreference_add_ringtone_text">Add ringtone</string>
+    <string name="RingtonePreference_unable_to_add_ringtone">Unable to add custom ringtone</string>
+
 
     <!-- EOF -->
 

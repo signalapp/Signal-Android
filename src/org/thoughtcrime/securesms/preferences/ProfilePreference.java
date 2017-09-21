@@ -5,10 +5,11 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.preference.Preference;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.v7.preference.Preference;
+import android.support.v7.preference.PreferenceViewHolder;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
@@ -16,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
@@ -55,12 +55,11 @@ public class ProfilePreference extends Preference {
   }
 
   @Override
-  protected void onBindView(View view) {
-    super.onBindView(view);
-
-    avatarView        = ViewUtil.findById(view, R.id.avatar);
-    profileNameView   = ViewUtil.findById(view, R.id.profile_name);
-    profileNumberView = ViewUtil.findById(view, R.id.number);
+  public void onBindViewHolder(PreferenceViewHolder viewHolder) {
+    super.onBindViewHolder(viewHolder);
+    avatarView        = (ImageView)viewHolder.findViewById(R.id.avatar);
+    profileNameView   = (TextView)viewHolder.findViewById(R.id.profile_name);
+    profileNumberView = (TextView)viewHolder.findViewById(R.id.number);
 
     refresh();
   }

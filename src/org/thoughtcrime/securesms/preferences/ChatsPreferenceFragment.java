@@ -3,15 +3,13 @@ package org.thoughtcrime.securesms.preferences;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.preference.EditTextPreference;
-import android.preference.ListPreference;
-import android.preference.Preference;
-import android.preference.Preference.OnPreferenceChangeListener;
-import android.support.v4.preference.PreferenceFragment;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.preference.EditTextPreference;
+import android.support.v7.preference.ListPreference;
+import android.support.v7.preference.Preference;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
@@ -28,7 +26,6 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
   @Override
   public void onCreate(Bundle paramBundle) {
     super.onCreate(paramBundle);
-    addPreferencesFromResource(R.xml.preferences_chats);
 
     findPreference(TextSecurePreferences.MEDIA_DOWNLOAD_MOBILE_PREF)
         .setOnPreferenceChangeListener(new MediaDownloadChangeListener());
@@ -45,6 +42,11 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
         .setOnPreferenceChangeListener(new TrimLengthValidationListener());
 
     initializeListSummary((ListPreference) findPreference(TextSecurePreferences.MESSAGE_BODY_TEXT_SIZE_PREF));
+  }
+
+  @Override
+  public void onCreatePreferences(@Nullable Bundle savedInstanceState, String rootKey) {
+    addPreferencesFromResource(R.xml.preferences_chats);
   }
 
   @Override
@@ -99,7 +101,7 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
     }
   }
 
-  private class MediaDownloadChangeListener implements OnPreferenceChangeListener {
+  private class MediaDownloadChangeListener implements Preference.OnPreferenceChangeListener {
     @SuppressWarnings("unchecked")
     @Override public boolean onPreferenceChange(Preference preference, Object newValue) {
       Log.w(TAG, "onPreferenceChange");

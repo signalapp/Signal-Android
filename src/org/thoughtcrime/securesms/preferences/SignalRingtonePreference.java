@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Build;
 import android.preference.RingtonePreference;
 import android.support.annotation.RequiresApi;
+import android.support.v7.preference.PreferenceViewHolder;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
@@ -42,8 +43,8 @@ public class SignalRingtonePreference extends AdvancedRingtonePreference {
   }
 
   @Override
-  protected void onBindView(View view) {
-    super.onBindView(view);
+  public void onBindViewHolder(PreferenceViewHolder view) {
+    super.onBindViewHolder(view);
 
     this.rightSummary = (TextView)view.findViewById(R.id.right_summary);
     setSummary(summary);

@@ -6,11 +6,11 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
-import android.preference.Preference;
-import android.preference.PreferenceScreen;
-import android.support.v4.preference.PreferenceFragment;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.preference.CheckBoxPreference;
+import android.support.v7.preference.Preference;
+import android.support.v7.preference.PreferenceScreen;
 import android.widget.Toast;
 
 import com.doomonafireball.betterpickers.hmspicker.HmsPickerBuilder;
@@ -37,7 +37,6 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
   @Override
   public void onCreate(Bundle paramBundle) {
     super.onCreate(paramBundle);
-    addPreferencesFromResource(R.xml.preferences_app_protection);
 
     masterSecret      = getArguments().getParcelable("master_secret");
     disablePassphrase = (CheckBoxPreference) this.findPreference("pref_enable_passphrase_temporary");
@@ -53,6 +52,11 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
   }
 
   @Override
+  public void onCreatePreferences(@Nullable Bundle savedInstanceState, String rootKey) {
+    addPreferencesFromResource(R.xml.preferences_app_protection);
+  }
+
+  @Override
   public void onResume() {
     super.onResume();
     ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.preferences__privacy);
@@ -65,7 +69,7 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
 
   private void initializePlatformSpecificOptions() {
     PreferenceScreen preferenceScreen         = getPreferenceScreen();
-    Preference       screenSecurityPreference = findPreference(TextSecurePreferences.SCREEN_SECURITY_PREF);
+    Preference screenSecurityPreference = findPreference(TextSecurePreferences.SCREEN_SECURITY_PREF);
 
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH &&
         screenSecurityPreference != null) {
