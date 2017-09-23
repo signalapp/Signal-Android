@@ -1324,7 +1324,7 @@ public class DatabaseFactory {
 
       if (oldVersion < READ_RECEIPTS) {
         db.execSQL("ALTER TABLE sms ADD COLUMN read_receipt_count INTEGER DEFAULT 0");
-        db.execSQL("ATLER TABLE mms ADD COLUMN read_receipt_count INTEGER DEFAULT 0");
+        db.execSQL("ALTER TABLE mms ADD COLUMN read_receipt_count INTEGER DEFAULT 0");
         db.execSQL("ALTER TABLE thread ADD COLUMN read_receipt_count INTEGER DEFAULT 0");
       }
 
