@@ -18,65 +18,104 @@ package org.thoughtcrime.securesms;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-import org.thoughtcrime.securesms.MediaAdapter.ViewHolder;
+import com.codewaves.stickyheadergrid.StickyHeaderGridAdapter;
+
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
-import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;
+import org.thoughtcrime.securesms.database.loaders.BucketedThreadMediaLoader.BucketedThreadMedia;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
-public class MediaAdapter extends CursorRecyclerViewAdapter<ViewHolder> {
+import java.util.Locale;
+
+public class MediaAdapter extends StickyHeaderGridAdapter {
   private static final String TAG = MediaAdapter.class.getSimpleName();
 
-  private final MasterSecret masterSecret;
-  private final Address      address;
+  private final Context             context;
+  private final MasterSecret        masterSecret;
+  private final Locale              locale;
+  private final Address             address;
 
-  public static class ViewHolder extends RecyclerView.ViewHolder {
-    public ThumbnailView imageView;
+  private  BucketedThreadMedia media;
 
-    public ViewHolder(View v) {
+  private static class ViewHolder extends StickyHeaderGridAdapter.ItemViewHolder {
+    ThumbnailView imageView;
+
+    ViewHolder(View v) {
       super(v);
       imageView = (ThumbnailView) v.findViewById(R.id.image);
     }
   }
 
-  public MediaAdapter(Context context, MasterSecret masterSecret, Cursor c, Address address) {
-    super(context, c);
+  private static class HeaderHolder extends StickyHeaderGridAdapter.HeaderViewHolder {
+    TextView textView;
+
+    HeaderHolder(View itemView) {
+      super(itemView);
+      textView = (TextView) itemView.findViewById(R.id.text);
+    }
+  }
+
+  public MediaAdapter(Context context, MasterSecret masterSecret, BucketedThreadMedia media, Locale locale, Address address) {
+    this.context      = context;
     this.masterSecret = masterSecret;
+    this.locale       = locale;
+    this.media        = media;
     this.address      = address;
   }
 
-  @Override
-  public ViewHolder onCreateItemViewHolder(final ViewGroup viewGroup, final int i) {
-    final View view = LayoutInflater.from(getContext()).inflate(R.layout.media_overview_item, viewGroup, false);
-    return new ViewHolder(view);
+  public void setMedia(BucketedThreadMedia media) {
+    this.media = media;
   }
 
   @Override
-  public void onBindItemViewHolder(final ViewHolder viewHolder, final @NonNull Cursor cursor) {
-    final ThumbnailView imageView   = viewHolder.imageView;
-    final MediaRecord   mediaRecord = MediaRecord.from(getContext(), masterSecret, cursor);
+  public StickyHeaderGridAdapter.HeaderViewHolder onCreateHeaderViewHolder(ViewGroup parent, int headerType) {
+    return new HeaderHolder(LayoutInflater.from(context).inflate(R.layout.media_overview_item_header, parent, false));
+  }
 
-    Slide slide = MediaUtil.getSlideForAttachment(getContext(), mediaRecord.getAttachment());
+  @Override
+  public ItemViewHolder onCreateItemViewHolder(ViewGroup parent, int itemType) {
+    return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.media_overview_item, parent, false));
+  }
+
+  @Override
+  public void onBindHeaderViewHolder(StickyHeaderGridAdapter.HeaderViewHolder viewHolder, int section) {
+    ((HeaderHolder)viewHolder).textView.setText(media.getName(section, locale));
+  }
+
+  @Override
+  public void onBindItemViewHolder(ItemViewHolder viewHolder, int section, int offset) {
+    MediaRecord   mediaRecord   = media.get(section, offset);
+    ThumbnailView thumbnailView = ((ViewHolder)viewHolder).imageView;
+
+    Slide slide = MediaUtil.getSlideForAttachment(context, mediaRecord.getAttachment());
 
     if (slide != null) {
-      imageView.setImageResource(masterSecret, slide, false, false);
+      thumbnailView.setImageResource(masterSecret, slide, false, false);
     }
 
-    imageView.setOnClickListener(new OnMediaClickListener(mediaRecord));
+    thumbnailView.setOnClickListener(new OnMediaClickListener(mediaRecord));
   }
 
-  private class OnMediaClickListener implements OnClickListener {
+  @Override
+  public int getSectionCount() {
+    return media.getSectionCount();
+  }
+
+  @Override
+  public int getSectionItemCount(int section) {
+    return media.getSectionItemCount(section);
+  }
+
+  private class OnMediaClickListener implements View.OnClickListener {
+
     private final MediaRecord mediaRecord;
 
     private OnMediaClickListener(MediaRecord mediaRecord) {
@@ -86,7 +125,7 @@ public class MediaAdapter extends CursorRecyclerViewAdapter<ViewHolder> {
     @Override
     public void onClick(View v) {
       if (mediaRecord.getAttachment().getDataUri() != null) {
-        Intent intent = new Intent(getContext(), MediaPreviewActivity.class);
+        Intent intent = new Intent(context, MediaPreviewActivity.class);
         intent.putExtra(MediaPreviewActivity.DATE_EXTRA, mediaRecord.getDate());
         intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, mediaRecord.getAttachment().getSize());
         intent.putExtra(MediaPreviewActivity.ADDRESS_EXTRA, address);
@@ -96,8 +135,9 @@ public class MediaAdapter extends CursorRecyclerViewAdapter<ViewHolder> {
         }
 
         intent.setDataAndType(mediaRecord.getAttachment().getDataUri(), mediaRecord.getContentType());
-        getContext().startActivity(intent);
+        context.startActivity(intent);
       }
     }
   }
+
 }

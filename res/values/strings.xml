@@ -1469,6 +1469,10 @@
     <string name="RingtonePreference_alarm_sound_default">Default alarm sound</string>
     <string name="RingtonePreference_add_ringtone_text">Add ringtone</string>
     <string name="RingtonePreference_unable_to_add_ringtone">Unable to add custom ringtone</string>
+    <string name="BucketedThreadMedia_Today">Today</string>
+    <string name="BucketedThreadMedia_Yesterday">Yesterday</string>
+    <string name="BucketedThreadMedia_This_week">This week</string>
+    <string name="BucketedThreadMedia_This_month">This month</string>
 
 
     <!-- EOF -->
