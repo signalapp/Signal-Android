@@ -219,7 +219,7 @@ android {
         versionCode 298
         versionName "4.10.12"
 
-        minSdkVersion 9
+        minSdkVersion 14
         targetSdkVersion 22
         multiDexEnabled true
 
