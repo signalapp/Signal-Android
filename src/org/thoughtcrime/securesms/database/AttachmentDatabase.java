@@ -243,6 +243,7 @@ public class AttachmentDatabase extends Database {
     }
 
     database.delete(TABLE_NAME, MMS_ID + " = ?", new String[] {mmsId + ""});
+    notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(mmsId));
   }
 
   @SuppressWarnings("ResultOfMethodCallIgnored")
