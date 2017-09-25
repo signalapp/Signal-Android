@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 
 public class MediaDatabase extends Database {
 
-    private final static String MEDIA_QUERY = "SELECT " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " AS " + AttachmentDatabase.ATTACHMENT_ID_ALIAS + ", "
+    private static final String BASE_MEDIA_QUERY = "SELECT " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " AS " + AttachmentDatabase.ATTACHMENT_ID_ALIAS + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_TYPE + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.THUMBNAIL_ASPECT_RATIO + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.UNIQUE_ID + ", "
@@ -37,19 +37,27 @@ public class MediaDatabase extends Database {
         + " ON " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + " = " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " "
         + "WHERE " + AttachmentDatabase.MMS_ID + " IN (SELECT " + MmsSmsColumns.ID
         + " FROM " + MmsDatabase.TABLE_NAME
-        + " WHERE " + MmsDatabase.THREAD_ID + " = ?) AND ("
-        + AttachmentDatabase.CONTENT_TYPE + " LIKE 'image/%' OR "
-        + AttachmentDatabase.CONTENT_TYPE + " LIKE 'video/%') AND "
+        + " WHERE " + MmsDatabase.THREAD_ID + " = ?) AND (%s) AND "
         + AttachmentDatabase.DATA + " IS NOT NULL "
         + "ORDER BY " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " DESC";
+
+  private static final String GALLERY_MEDIA_QUERY  = String.format(BASE_MEDIA_QUERY, AttachmentDatabase.CONTENT_TYPE + " LIKE 'image/%' OR " + AttachmentDatabase.CONTENT_TYPE + " LIKE 'video/%'");
+  private static final String DOCUMENT_MEDIA_QUERY = String.format(BASE_MEDIA_QUERY, AttachmentDatabase.CONTENT_TYPE + " NOT LIKE 'image/%' AND " + AttachmentDatabase.CONTENT_TYPE + " NOT LIKE 'video/%'");
 
   public MediaDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
   }
 
-  public Cursor getMediaForThread(long threadId) {
+  public Cursor getGalleryMediaForThread(long threadId) {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
-    Cursor cursor = database.rawQuery(MEDIA_QUERY, new String[]{threadId+""});
+    Cursor cursor = database.rawQuery(GALLERY_MEDIA_QUERY, new String[]{threadId+""});
+    setNotifyConverationListeners(cursor, threadId);
+    return cursor;
+  }
+
+  public Cursor getDocumentMediaForThread(long threadId) {
+    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    Cursor cursor = database.rawQuery(DOCUMENT_MEDIA_QUERY, new String[]{threadId+""});
     setNotifyConverationListeners(cursor, threadId);
     return cursor;
   }

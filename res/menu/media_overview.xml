@@ -3,6 +3,5 @@
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/save"
           android:title="@string/media_overview__save_all"
-          android:icon="@drawable/ic_save_all_white_24dp"
-          app:showAsAction="ifRoom"/>
+          app:showAsAction="never"/>
 </menu>

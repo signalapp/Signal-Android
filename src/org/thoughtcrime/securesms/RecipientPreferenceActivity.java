@@ -213,7 +213,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
   @Override
   public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-    return new ThreadMediaLoader(this, masterSecret, address);
+    return new ThreadMediaLoader(this, masterSecret, address, true);
   }
 
   @Override

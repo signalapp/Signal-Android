@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:padding="16dp">
+
+    <org.thoughtcrime.securesms.components.DocumentView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/document_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            app:documentForegroundTintColor="?attr/media_overview_document_foreground"
+            app:documentBackgroundTintColor="?attr/media_overview_document_background"
+            android:visibility="visible"
+            tools:visibility="visible"/>
+
+    <TextView android:id="@+id/date"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_vertical"
+              android:textSize="12sp"
+              android:textColor="?attr/media_overview_document_foreground"
+              android:paddingTop="20dp"
+              tools:text="Jun 1"/>
+
+</LinearLayout>

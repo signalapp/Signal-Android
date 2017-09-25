@@ -35,8 +35,8 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 
 import java.util.Locale;
 
-public class MediaAdapter extends StickyHeaderGridAdapter {
-  private static final String TAG = MediaAdapter.class.getSimpleName();
+public class MediaGalleryAdapter extends StickyHeaderGridAdapter {
+  private static final String TAG = MediaGalleryAdapter.class.getSimpleName();
 
   private final Context             context;
   private final MasterSecret        masterSecret;
@@ -63,7 +63,7 @@ public class MediaAdapter extends StickyHeaderGridAdapter {
     }
   }
 
-  public MediaAdapter(Context context, MasterSecret masterSecret, BucketedThreadMedia media, Locale locale, Address address) {
+  public MediaGalleryAdapter(Context context, MasterSecret masterSecret, BucketedThreadMedia media, Locale locale, Address address) {
     this.context      = context;
     this.masterSecret = masterSecret;
     this.locale       = locale;
@@ -77,12 +77,12 @@ public class MediaAdapter extends StickyHeaderGridAdapter {
 
   @Override
   public StickyHeaderGridAdapter.HeaderViewHolder onCreateHeaderViewHolder(ViewGroup parent, int headerType) {
-    return new HeaderHolder(LayoutInflater.from(context).inflate(R.layout.media_overview_item_header, parent, false));
+    return new HeaderHolder(LayoutInflater.from(context).inflate(R.layout.media_overview_gallery_item_header, parent, false));
   }
 
   @Override
   public ItemViewHolder onCreateItemViewHolder(ViewGroup parent, int itemType) {
-    return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.media_overview_item, parent, false));
+    return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.media_overview_gallery_item, parent, false));
   }
 
   @Override

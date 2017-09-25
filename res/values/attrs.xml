@@ -130,6 +130,12 @@
 
     <attr name="verification_background" format="color"/>
 
+    <attr name="media_overview_toolbar_background" format="color"/>
+    <attr name="media_overview_toolbar_foreground" format="color"/>
+    <attr name="media_overview_header_foreground" format="color"/>
+    <attr name="media_overview_document_background" format="color"/>
+    <attr name="media_overview_document_foreground" format="color"/>
+
     <declare-styleable name="ColorPreference">
         <attr name="itemLayout" format="reference" />
         <attr name="choices" format="reference" />

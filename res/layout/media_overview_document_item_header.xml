@@ -3,14 +3,14 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
-             android:background="@color/white"
+             android:background="?attr/media_overview_toolbar_background"
              android:padding="16dp">
 
     <TextView android:id="@+id/text"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_gravity="start|center_vertical"
-              android:textColor="@color/gray50"
+              android:textColor="?attr/media_overview_header_foreground"
               android:textSize="14sp"
               android:textStyle="bold"
               android:textAllCaps="true"

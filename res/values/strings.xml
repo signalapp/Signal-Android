@@ -1473,6 +1473,9 @@
     <string name="BucketedThreadMedia_Yesterday">Yesterday</string>
     <string name="BucketedThreadMedia_This_week">This week</string>
     <string name="BucketedThreadMedia_This_month">This month</string>
+    <string name="MediaOverviewActivity_Media">Media</string>
+    <string name="MediaOverviewActivity_Documents">Documents</string>
+    <string name="media_overview_documents_fragment__no_documents_found">No documents found</string>
 
 
     <!-- EOF -->

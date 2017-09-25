@@ -20,6 +20,12 @@
         <item name="dialog_background_color">@color/background_material_light</item>
         <item name="pref_divider">@drawable/preference_divider_light</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
+
+        <item name="media_overview_toolbar_background">@color/white</item>
+        <item name="media_overview_toolbar_foreground">@color/gray70</item>
+        <item name="media_overview_header_foreground">@color/gray50</item>
+        <item name="media_overview_document_foreground">@color/gray70</item>
+        <item name="media_overview_document_background">@color/white</item>
     </style>
 
     <style name="TextSecure.DarkNoActionBar" parent="@style/Theme.AppCompat.NoActionBar">
@@ -38,6 +44,12 @@
         <item name="dialog_background_color">@color/background_material_dark</item>
         <item name="pref_divider">@drawable/preference_divider_dark</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
+
+        <item name="media_overview_toolbar_background">@color/black</item>
+        <item name="media_overview_toolbar_foreground">@color/white</item>
+        <item name="media_overview_header_foreground">@color/gray10</item>
+        <item name="media_overview_document_foreground">@color/white</item>
+        <item name="media_overview_document_background">@color/black</item>
     </style>
 
     <style name="TextSecure.HighlightTheme" parent="@style/TextSecure.LightTheme">

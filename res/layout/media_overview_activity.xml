@@ -1,24 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
+    <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white">
+                android:layout_height="?android:attr/actionBarSize"
+                android:background="?attr/media_overview_toolbar_background"
+                android:titleTextColor="?attr/media_overview_toolbar_foreground"
+                android:foreground="?attr/media_overview_toolbar_foreground"
+                app:layout_scrollFlags="scroll|enterAlways"/>
 
-    <android.support.v7.widget.RecyclerView
-            android:id="@+id/media_grid"
+        <android.support.design.widget.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                app:tabBackground="?attr/media_overview_toolbar_background"
+                app:tabIndicatorColor="@color/textsecure_primary"
+                app:tabSelectedTextColor="@color/textsecure_primary"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="vertical" />
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-    <TextView android:id="@+id/no_images"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:textSize="24sp"
-              android:gravity="center"
-              android:paddingTop="30dp"
-              android:visibility="gone"
-              android:text="@string/media_overview_activity__no_media" />
-
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>
