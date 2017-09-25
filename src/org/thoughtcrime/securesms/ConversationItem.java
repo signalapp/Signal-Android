@@ -27,6 +27,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AlertDialog;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -222,7 +223,7 @@ public class ConversationItem extends LinearLayout
                                content.getPaddingTop() + groupSenderHolder.getMeasuredHeight());
 
 
-      if (DynamicLanguage.getLayoutDirection(context) == LAYOUT_DIRECTION_RTL) {
+      if (ViewCompat.getLayoutDirection(groupSenderProfileName) == ViewCompat.LAYOUT_DIRECTION_RTL) {
         groupSenderProfileName.layout(groupSenderHolder.getPaddingLeft(),
                                       groupSenderHolder.getPaddingTop(),
                                       groupSenderHolder.getPaddingLeft() + groupSenderProfileName.getWidth(),
