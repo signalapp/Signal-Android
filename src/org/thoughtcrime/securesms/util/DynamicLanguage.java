@@ -8,7 +8,9 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
+import android.os.Build;
 import android.text.TextUtils;
+import android.view.View;
 
 import java.util.Locale;
 
@@ -44,8 +46,17 @@ public class DynamicLanguage {
 
   @TargetApi(VERSION_CODES.JELLY_BEAN_MR1)
   public static int getLayoutDirection(Context context) {
-    Configuration configuration = context.getResources().getConfiguration();
-    return configuration.getLayoutDirection();
+    if(isLayoutDirectionTroublemaker()) {
+      return View.LAYOUT_DIRECTION_LTR;
+    }
+    else {
+      Configuration configuration = context.getResources().getConfiguration();
+      return configuration.getLayoutDirection();
+    }
+  }
+
+  private static boolean isLayoutDirectionTroublemaker() {
+    return "alien_jolla_bionic".equals(Build.DEVICE);
   }
 
   private static void setContextLocale(Context context, Locale selectedLocale) {
