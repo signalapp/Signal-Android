@@ -55,6 +55,7 @@ public class DynamicLanguage {
     }
   }
 
+  // https://github.com/WhisperSystems/Signal-Android/issues/6987
   private static boolean isLayoutDirectionTroublemaker() {
     return "alien_jolla_bionic".equals(Build.DEVICE);
   }
