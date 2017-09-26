@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.profiles.ProfileMediaConstraints;
 import org.thoughtcrime.securesms.profiles.SystemProfileUtil;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.IntentUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -68,6 +69,8 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
 
   private static final int REQUEST_CODE_AVATAR = 1;
 
+  private final DynamicTheme dynamicTheme    = new DynamicTheme();
+
   @Inject SignalServiceAccountManager accountManager;
 
   private InputAwareLayout container;
@@ -85,6 +88,8 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
   public void onCreate(Bundle bundle) {
     super.onCreate(bundle);
 
+    dynamicTheme.onCreate(this);
+
     setContentView(R.layout.profile_create_activity);
 
     getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
@@ -96,6 +101,12 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
     initializeProfileAvatar(getIntent().getBooleanExtra(EXCLUDE_SYSTEM, false));
 
     ApplicationContext.getInstance(this).injectDependencies(this);
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    dynamicTheme.onResume(this);
   }
 
   @Override
