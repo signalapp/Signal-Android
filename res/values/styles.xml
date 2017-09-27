@@ -259,4 +259,8 @@
     <style name="PreferenceThemeOverlay.Fix" parent="PreferenceThemeOverlay.v14.Material">
     </style>
 
+    <style name="Color1SwitchStyle">
+        <item name="colorControlActivated">@color/white</item>
+    </style>
+
 </resources>

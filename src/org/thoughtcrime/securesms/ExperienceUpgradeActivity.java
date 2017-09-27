@@ -61,7 +61,14 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity {
              R.string.ExperienceUpgradeActivity_signal_profiles_are_here,
              R.string.ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal,
              R.string.ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal,
-             CreateProfileActivity.class);
+             CreateProfileActivity.class),
+    READ_RECEIPTS(299,
+                  new IntroPage(0xFF2090EA,
+                                ReadReceiptsIntroFragment.newInstance()),
+                  R.string.ExperienceUpgradeActivity_signal_profiles_are_here,
+                  R.string.ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal,
+                  R.string.ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal,
+                  null);
 
     private            int             version;
     private            List<IntroPage> pages;
