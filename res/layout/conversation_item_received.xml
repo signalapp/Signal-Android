@@ -113,15 +113,16 @@
                           android:orientation="horizontal"
                           android:gravity="left">
 
-                <ImageView android:id="@+id/secure_indicator"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
+                <ImageView android:id="@+id/insecure_indicator"
+                           android:layout_width="12dp"
+                           android:layout_height="11dp"
                            android:layout_gravity="center_vertical"
-                           android:paddingRight="2dp"
-                           android:paddingEnd="4dp"
-                           android:src="?menu_lock_icon_small"
+                           android:layout_marginRight="3dp"
+                           android:layout_marginEnd="3dp"
+                           android:src="@drawable/ic_unlocked_white_18dp"
                            android:contentDescription="@string/conversation_item__secure_message_description"
                            android:visibility="gone"
+                           android:alpha=".65"
                            android:tint="?conversation_item_received_text_secondary_color"
                            android:tintMode="multiply"
                            tools:visibility="visible"/>
@@ -135,8 +136,10 @@
                         app:offset="0"
                         android:layout_gravity="center_vertical|end"
                         android:alpha=".65"
-                        android:layout_width="10dp"
+                        android:layout_width="8dp"
                         android:layout_height="11dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginEnd="3dp"
                         android:visibility="gone"
                         tools:visibility="visible"/>
 

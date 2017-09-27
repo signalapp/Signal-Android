@@ -117,7 +117,7 @@ public class ConversationItem extends LinearLayout
   private TextView           groupSender;
   private TextView           groupSenderProfileName;
   private View               groupSenderHolder;
-  private ImageView          secureImage;
+  private ImageView          insecureImage;
   private AvatarImageView    contactPhoto;
   private DeliveryStatusView deliveryStatusIndicator;
   private AlertView          alertView;
@@ -162,7 +162,7 @@ public class ConversationItem extends LinearLayout
     this.indicatorText           = (TextView)           findViewById(R.id.indicator_text);
     this.groupSender             = (TextView)           findViewById(R.id.group_message_sender);
     this.groupSenderProfileName  = (TextView)           findViewById(R.id.group_message_sender_profile);
-    this.secureImage             = (ImageView)          findViewById(R.id.secure_indicator);
+    this.insecureImage           = (ImageView)          findViewById(R.id.insecure_indicator);
     this.deliveryStatusIndicator = (DeliveryStatusView) findViewById(R.id.delivery_status);
     this.alertView               = (AlertView)          findViewById(R.id.indicators_parent);
     this.contactPhoto            = (AvatarImageView)    findViewById(R.id.contact_photo);
@@ -432,7 +432,7 @@ public class ConversationItem extends LinearLayout
   private void setStatusIcons(MessageRecord messageRecord) {
     indicatorText.setVisibility(View.GONE);
 
-    secureImage.setVisibility(messageRecord.isSecure() ? View.VISIBLE : View.GONE);
+    insecureImage.setVisibility(messageRecord.isSecure() ? View.GONE : View.VISIBLE);
     bodyText.setCompoundDrawablesWithIntrinsicBounds(0, 0, messageRecord.isKeyExchange() ? R.drawable.ic_menu_login : 0, 0);
     dateText.setText(DateUtils.getExtendedRelativeTimeSpanString(getContext(), locale, messageRecord.getTimestamp()));
 
