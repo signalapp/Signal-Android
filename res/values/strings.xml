@@ -234,8 +234,8 @@
     <string name="CreateProfileActivity_your_profile_info">Your profile info</string>
     <string name="CreateProfileActivity_error_setting_profile_photo">Error setting profile photo</string>
     <string name="CreateProfileActivity_problem_setting_profile">Problem setting profile</string>
-    <string name="CreateProfileActivity_updating_profile">Updating profile</string>
-    <string name="CreateProfileActivity_updating_and_encrypting_profile">Updating and encrypting profile</string>
+    <string name="CreateProfileActivity_updating">Updating</string>
+    <string name="CreateProfileActivity_updating_and_encrypting_profile">Updating and encrypting profile...</string>
     <string name="CreateProfileActivity_profile_photo">Profile photo</string>
     <string name="CreateProfileActivity_too_long">Too long</string>
     <string name="CreateProfileActivity_error_capturing_photo_camera_did_not_return_image">Error capturing photo, camera did not return image</string>

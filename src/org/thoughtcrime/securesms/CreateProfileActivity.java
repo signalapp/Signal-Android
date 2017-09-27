@@ -351,8 +351,8 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
                                                                                    "image/jpeg", avatarBytes.length);
 
     new ProgressDialogAsyncTask<Void, Void, Boolean>(this,
-                                                     getString(R.string.CreateProfileActivity_updating_and_encrypting_profile),
-                                                     getString(R.string.CreateProfileActivity_updating_profile))
+                                                     getString(R.string.CreateProfileActivity_updating),
+                                                     getString(R.string.CreateProfileActivity_updating_and_encrypting_profile))
     {
       @Override
       protected Boolean doInBackground(Void... params) {
