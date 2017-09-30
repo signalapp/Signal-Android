@@ -16,39 +16,38 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
-public class MessageDetailsRecipientAdapter extends BaseAdapter implements AbsListView.RecyclerListener {
+class MessageDetailsRecipientAdapter extends BaseAdapter implements AbsListView.RecyclerListener {
 
-  private final Context         context;
-  private final MasterSecret    masterSecret;
-  private final MessageRecord   record;
-  private final List<Recipient> recipients;
-  private final boolean         isPushGroup;
+  private final Context                       context;
+  private final MasterSecret                  masterSecret;
+  private final MessageRecord                 record;
+  private final List<RecipientDeliveryStatus> members;
+  private final boolean                       isPushGroup;
 
-  public MessageDetailsRecipientAdapter(Context context, MasterSecret masterSecret,
-                                        MessageRecord record, List<Recipient> recipients,
-                                        boolean isPushGroup)
+  MessageDetailsRecipientAdapter(Context context, MasterSecret masterSecret, MessageRecord record,
+                                 List<RecipientDeliveryStatus> members, boolean isPushGroup)
   {
     this.context      = context;
     this.masterSecret = masterSecret;
     this.record       = record;
-    this.recipients   = recipients;
     this.isPushGroup  = isPushGroup;
+    this.members      = members;
   }
 
   @Override
   public int getCount() {
-    return recipients.size();
+    return members.size();
   }
 
   @Override
   public Object getItem(int position) {
-    return recipients.get(position);
+    return members.get(position);
   }
 
   @Override
   public long getItemId(int position) {
     try {
-      return Conversions.byteArrayToLong(MessageDigest.getInstance("SHA1").digest(recipients.get(position).getAddress().serialize().getBytes()));
+      return Conversions.byteArrayToLong(MessageDigest.getInstance("SHA1").digest(members.get(position).recipient.getAddress().serialize().getBytes()));
     } catch (NoSuchAlgorithmException e) {
       throw new AssertionError(e);
     }
@@ -60,14 +59,46 @@ public class MessageDetailsRecipientAdapter extends BaseAdapter implements AbsLi
       convertView = LayoutInflater.from(context).inflate(R.layout.message_recipient_list_item, parent, false);
     }
 
-    Recipient recipient = recipients.get(position);
-    ((MessageRecipientListItem)convertView).set(masterSecret, record, recipient, isPushGroup);
+    RecipientDeliveryStatus member = members.get(position);
+
+    ((MessageRecipientListItem)convertView).set(masterSecret, record, member, isPushGroup);
     return convertView;
   }
 
   @Override
   public void onMovedToScrapHeap(View view) {
     ((MessageRecipientListItem)view).unbind();
+  }
+
+
+  static class RecipientDeliveryStatus {
+
+    enum Status {
+      UNKNOWN, PENDING, SENT, DELIVERED, READ
+    }
+
+    private final Recipient recipient;
+    private final Status    deliveryStatus;
+    private final long      timestamp;
+
+    RecipientDeliveryStatus(Recipient recipient, Status deliveryStatus, long timestamp) {
+      this.recipient      = recipient;
+      this.deliveryStatus = deliveryStatus;
+      this.timestamp      = timestamp;
+    }
+
+    Status getDeliveryStatus() {
+      return deliveryStatus;
+    }
+
+    public long getTimestamp() {
+      return timestamp;
+    }
+
+    public Recipient getRecipient() {
+      return recipient;
+    }
+
   }
 
 }

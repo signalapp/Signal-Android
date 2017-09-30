@@ -107,7 +107,8 @@ public class DatabaseFactory {
   private static final int PROFILE_SHARING_APPROVAL                        = 42;
   private static final int UNSEEN_NUMBER_OFFER                             = 43;
   private static final int READ_RECEIPTS                                   = 44;
-  private static final int DATABASE_VERSION                                = 44;
+  private static final int GROUP_RECEIPT_TRACKING                          = 45;
+  private static final int DATABASE_VERSION                                = 45;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -129,6 +130,7 @@ public class DatabaseFactory {
   private final GroupDatabase groupDatabase;
   private final RecipientDatabase recipientDatabase;
   private final ContactsDatabase contactsDatabase;
+  private final GroupReceiptDatabase groupReceiptDatabase;
 
   public static DatabaseFactory getInstance(Context context) {
     synchronized (lock) {
@@ -191,21 +193,26 @@ public class DatabaseFactory {
     return getInstance(context).contactsDatabase;
   }
 
+  public static GroupReceiptDatabase getGroupReceiptDatabase(Context context) {
+    return getInstance(context).groupReceiptDatabase;
+  }
+
   private DatabaseFactory(Context context) {
-    this.databaseHelper    = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
-    this.sms               = new SmsDatabase(context, databaseHelper);
-    this.encryptingSms     = new EncryptingSmsDatabase(context, databaseHelper);
-    this.mms               = new MmsDatabase(context, databaseHelper);
-    this.attachments       = new AttachmentDatabase(context, databaseHelper);
-    this.media             = new MediaDatabase(context, databaseHelper);
-    this.thread            = new ThreadDatabase(context, databaseHelper);
-    this.mmsSmsDatabase    = new MmsSmsDatabase(context, databaseHelper);
-    this.identityDatabase  = new IdentityDatabase(context, databaseHelper);
-    this.draftDatabase     = new DraftDatabase(context, databaseHelper);
-    this.pushDatabase      = new PushDatabase(context, databaseHelper);
-    this.groupDatabase     = new GroupDatabase(context, databaseHelper);
-    this.recipientDatabase = new RecipientDatabase(context, databaseHelper);
-    this.contactsDatabase  = new ContactsDatabase(context);
+    this.databaseHelper       = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
+    this.sms                  = new SmsDatabase(context, databaseHelper);
+    this.encryptingSms        = new EncryptingSmsDatabase(context, databaseHelper);
+    this.mms                  = new MmsDatabase(context, databaseHelper);
+    this.attachments          = new AttachmentDatabase(context, databaseHelper);
+    this.media                = new MediaDatabase(context, databaseHelper);
+    this.thread               = new ThreadDatabase(context, databaseHelper);
+    this.mmsSmsDatabase       = new MmsSmsDatabase(context, databaseHelper);
+    this.identityDatabase     = new IdentityDatabase(context, databaseHelper);
+    this.draftDatabase        = new DraftDatabase(context, databaseHelper);
+    this.pushDatabase         = new PushDatabase(context, databaseHelper);
+    this.groupDatabase        = new GroupDatabase(context, databaseHelper);
+    this.recipientDatabase    = new RecipientDatabase(context, databaseHelper);
+    this.groupReceiptDatabase = new GroupReceiptDatabase(context, databaseHelper);
+    this.contactsDatabase     = new ContactsDatabase(context);
   }
 
   public void reset(Context context) {
@@ -223,6 +230,7 @@ public class DatabaseFactory {
     this.pushDatabase.reset(databaseHelper);
     this.groupDatabase.reset(databaseHelper);
     this.recipientDatabase.reset(databaseHelper);
+    this.groupReceiptDatabase.reset(databaseHelper);
     old.close();
   }
 
@@ -536,6 +544,7 @@ public class DatabaseFactory {
       db.execSQL(PushDatabase.CREATE_TABLE);
       db.execSQL(GroupDatabase.CREATE_TABLE);
       db.execSQL(RecipientDatabase.CREATE_TABLE);
+      db.execSQL(GroupReceiptDatabase.CREATE_TABLE);
 
       executeStatements(db, SmsDatabase.CREATE_INDEXS);
       executeStatements(db, MmsDatabase.CREATE_INDEXS);
@@ -543,6 +552,7 @@ public class DatabaseFactory {
       executeStatements(db, ThreadDatabase.CREATE_INDEXS);
       executeStatements(db, DraftDatabase.CREATE_INDEXS);
       executeStatements(db, GroupDatabase.CREATE_INDEXS);
+      executeStatements(db, GroupReceiptDatabase.CREATE_INDEXES);
     }
 
     @Override
@@ -1326,6 +1336,11 @@ public class DatabaseFactory {
         db.execSQL("ALTER TABLE sms ADD COLUMN read_receipt_count INTEGER DEFAULT 0");
         db.execSQL("ALTER TABLE mms ADD COLUMN read_receipt_count INTEGER DEFAULT 0");
         db.execSQL("ALTER TABLE thread ADD COLUMN read_receipt_count INTEGER DEFAULT 0");
+      }
+
+      if (oldVersion < GROUP_RECEIPT_TRACKING) {
+        db.execSQL("CREATE TABLE group_receipts (_id INTEGER PRIMARY KEY, mms_id  INTEGER, address TEXT, status INTEGER, timestamp INTEGER)");
+        db.execSQL("CREATE INDEX IF NOT EXISTS group_receipt_mms_id_index ON group_receipts (mms_id)");
       }
 
       db.setTransactionSuccessful();

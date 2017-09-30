@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2015 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -34,11 +34,14 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.thoughtcrime.securesms.MessageDetailsRecipientAdapter.RecipientDeliveryStatus;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
+import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
+import org.thoughtcrime.securesms.database.GroupReceiptDatabase.GroupReceiptInfo;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
@@ -153,12 +156,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
 
   @Override
   public void onModified(final Recipient recipient) {
-    Util.runOnMain(new Runnable() {
-      @Override
-      public void run() {
-        setActionBarColor(recipient.getColor());
-      }
-    });
+    Util.runOnMain(() -> setActionBarColor(recipient.getColor()));
   }
 
   private void initializeResources() {
@@ -241,7 +239,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     });
   }
 
-  private void updateRecipients(MessageRecord messageRecord, Recipient recipient, List<Recipient> recipients) {
+  private void updateRecipients(MessageRecord messageRecord, Recipient recipient, List<RecipientDeliveryStatus> recipients) {
     final int toFromRes;
     if (messageRecord.isMms() && !messageRecord.isPush() && !messageRecord.isOutgoing()) {
       toFromRes = R.string.message_details_header__with;
@@ -251,8 +249,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
       toFromRes = R.string.message_details_header__from;
     }
     toFrom.setText(toFromRes);
-    conversationItem.bind(masterSecret, messageRecord, dynamicLanguage.getCurrentLocale(),
-                         new HashSet<MessageRecord>(), recipient);
+    conversationItem.bind(masterSecret, messageRecord, dynamicLanguage.getCurrentLocale(), new HashSet<>(), recipient);
     recipientsList.setAdapter(new MessageDetailsRecipientAdapter(this, masterSecret, messageRecord,
                                                                  recipients, isPushGroup));
   }
@@ -319,11 +316,12 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     return false;
   }
 
-  private class MessageRecipientAsyncTask extends AsyncTask<Void,Void,List<Recipient>> {
-    private WeakReference<Context> weakContext;
-    private MessageRecord          messageRecord;
+  private class MessageRecipientAsyncTask extends AsyncTask<Void,Void,List<RecipientDeliveryStatus>> {
 
-    public MessageRecipientAsyncTask(@NonNull  Context context, @NonNull MessageRecord messageRecord) {
+    private final WeakReference<Context> weakContext;
+    private final MessageRecord          messageRecord;
+
+    MessageRecipientAsyncTask(@NonNull Context context, @NonNull MessageRecord messageRecord) {
       this.weakContext   = new WeakReference<>(context);
       this.messageRecord = messageRecord;
     }
@@ -333,27 +331,41 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     }
 
     @Override
-    public List<Recipient> doInBackground(Void... voids) {
+    public List<RecipientDeliveryStatus> doInBackground(Void... voids) {
       Context context = getContext();
+
       if (context == null) {
         Log.w(TAG, "associated context is destroyed, finishing early");
         return null;
       }
 
-      List<Recipient> recipients = new LinkedList<>();
+      List<RecipientDeliveryStatus> recipients = new LinkedList<>();
 
       if (!messageRecord.getRecipient().isGroupRecipient()) {
-        Log.w(TAG, "Recipient is not a group, resolving members immediately.");
-        recipients.add(messageRecord.getRecipient());
+        recipients.add(new RecipientDeliveryStatus(messageRecord.getRecipient(), getStatusFor(messageRecord.getDeliveryReceiptCount(), messageRecord.getReadReceiptCount(), messageRecord.isPending()), -1));
       } else {
-        recipients.addAll(DatabaseFactory.getGroupDatabase(context).getGroupMembers(messageRecord.getRecipient().getAddress().toGroupString(), false));
+        List<GroupReceiptInfo> receiptInfoList = DatabaseFactory.getGroupReceiptDatabase(context).getGroupReceiptInfo(messageRecord.getId());
+
+        if (receiptInfoList.isEmpty()) {
+          List<Recipient> group = DatabaseFactory.getGroupDatabase(context).getGroupMembers(messageRecord.getRecipient().getAddress().toGroupString(), false);
+
+          for (Recipient recipient : group) {
+            recipients.add(new RecipientDeliveryStatus(recipient, RecipientDeliveryStatus.Status.UNKNOWN, -1));
+          }
+        } else {
+          for (GroupReceiptInfo info : receiptInfoList) {
+            recipients.add(new RecipientDeliveryStatus(Recipient.from(context, info.getAddress(), true),
+                                                       getStatusFor(info.getStatus(), messageRecord.isPending()),
+                                                       info.getTimestamp()));
+          }
+        }
       }
 
       return recipients;
     }
 
     @Override
-    public void onPostExecute(List<Recipient> recipients) {
+    public void onPostExecute(List<RecipientDeliveryStatus> recipients) {
       if (getContext() == null) {
         Log.w(TAG, "AsyncTask finished with a destroyed context, leaving early.");
         return;
@@ -373,5 +385,22 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
         metadataContainer.setVisibility(View.VISIBLE);
       }
     }
+
+    private RecipientDeliveryStatus.Status getStatusFor(int deliveryReceiptCount, int readReceiptCount, boolean pending) {
+      if      (readReceiptCount > 0)     return RecipientDeliveryStatus.Status.READ;
+      else if (deliveryReceiptCount > 0) return RecipientDeliveryStatus.Status.DELIVERED;
+      else if (!pending)                 return RecipientDeliveryStatus.Status.SENT;
+      else                               return RecipientDeliveryStatus.Status.PENDING;
+    }
+
+    private RecipientDeliveryStatus.Status getStatusFor(int groupStatus, boolean pending) {
+      if      (groupStatus == GroupReceiptDatabase.STATUS_READ)                    return RecipientDeliveryStatus.Status.READ;
+      else if (groupStatus == GroupReceiptDatabase.STATUS_DELIVERED)               return RecipientDeliveryStatus.Status.DELIVERED;
+      else if (groupStatus == GroupReceiptDatabase.STATUS_UNDELIVERED && !pending) return RecipientDeliveryStatus.Status.SENT;
+      else if (groupStatus == GroupReceiptDatabase.STATUS_UNDELIVERED)             return RecipientDeliveryStatus.Status.PENDING;
+      else if (groupStatus == GroupReceiptDatabase.STATUS_UNKNOWN)                 return RecipientDeliveryStatus.Status.UNKNOWN;
+      throw new AssertionError();
+    }
+
   }
 }

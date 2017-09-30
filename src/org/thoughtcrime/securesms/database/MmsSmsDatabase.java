@@ -137,14 +137,14 @@ public class MmsSmsDatabase extends Database {
     return count;
   }
 
-  public void incrementDeliveryReceiptCount(SyncMessageId syncMessageId) {
+  public void incrementDeliveryReceiptCount(SyncMessageId syncMessageId, long timestamp) {
     DatabaseFactory.getSmsDatabase(context).incrementReceiptCount(syncMessageId, true, false);
-    DatabaseFactory.getMmsDatabase(context).incrementReceiptCount(syncMessageId, true, false);
+    DatabaseFactory.getMmsDatabase(context).incrementReceiptCount(syncMessageId, timestamp, true, false);
   }
 
-  public void incrementReadReceiptCount(SyncMessageId syncMessageId) {
+  public void incrementReadReceiptCount(SyncMessageId syncMessageId, long timestamp) {
     DatabaseFactory.getSmsDatabase(context).incrementReceiptCount(syncMessageId, false, true);
-    DatabaseFactory.getMmsDatabase(context).incrementReceiptCount(syncMessageId, false, true);
+    DatabaseFactory.getMmsDatabase(context).incrementReceiptCount(syncMessageId, timestamp, false, true);
   }
 
   private Cursor queryTables(String[] projection, String selection, String order, String limit) {

@@ -28,6 +28,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
 
+import com.annimon.stream.Stream;
 import com.google.android.mms.pdu_alt.NotificationInd;
 import com.google.android.mms.pdu_alt.PduHeaders;
 
@@ -125,7 +126,7 @@ public class MmsDatabase extends MessagingDatabase {
       CONTENT_LOCATION, EXPIRY, MESSAGE_TYPE,
       MESSAGE_SIZE, STATUS, TRANSACTION_ID,
       BODY, PART_COUNT, ADDRESS, ADDRESS_DEVICE_ID,
-      DELIVERY_RECEIPT_COUNT, MISMATCHED_IDENTITIES, NETWORK_FAILURE, SUBSCRIPTION_ID,
+      DELIVERY_RECEIPT_COUNT, READ_RECEIPT_COUNT, MISMATCHED_IDENTITIES, NETWORK_FAILURE, SUBSCRIPTION_ID,
       EXPIRES_IN, EXPIRE_STARTED, NOTIFIED,
       AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " AS " + AttachmentDatabase.ATTACHMENT_ID_ALIAS,
       AttachmentDatabase.UNIQUE_ID,
@@ -194,7 +195,7 @@ public class MmsDatabase extends MessagingDatabase {
     }
   }
 
-  public void incrementReceiptCount(SyncMessageId messageId, boolean deliveryReceipt, boolean readReceipt) {
+  public void incrementReceiptCount(SyncMessageId messageId, long timestamp, boolean deliveryReceipt, boolean readReceipt) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     Cursor         cursor   = null;
     boolean        found    = false;
@@ -211,6 +212,7 @@ public class MmsDatabase extends MessagingDatabase {
           if (ourAddress.equals(theirAddress) || theirAddress.isGroup()) {
             long id       = cursor.getLong(cursor.getColumnIndexOrThrow(ID));
             long threadId = cursor.getLong(cursor.getColumnIndexOrThrow(THREAD_ID));
+            int  status   = deliveryReceipt ? GroupReceiptDatabase.STATUS_DELIVERED : GroupReceiptDatabase.STATUS_READ;
 
             found = true;
 
@@ -218,6 +220,7 @@ public class MmsDatabase extends MessagingDatabase {
                              columnName + " = " + columnName + " + 1 WHERE " + ID + " = ?",
                              new String[] {String.valueOf(id)});
 
+            DatabaseFactory.getGroupReceiptDatabase(context).update(ourAddress, id, status, timestamp);
             DatabaseFactory.getThreadDatabase(context).update(threadId, false);
             notifyConversationListeners(threadId);
           }
@@ -814,6 +817,14 @@ public class MmsDatabase extends MessagingDatabase {
 
     long messageId = insertMediaMessage(masterSecret, message.getBody(), message.getAttachments(), contentValues, insertListener);
 
+    if (message.getRecipient().getAddress().isGroup()) {
+      List<Recipient>      members         = DatabaseFactory.getGroupDatabase(context).getGroupMembers(message.getRecipient().getAddress().toGroupString(), false);
+      GroupReceiptDatabase receiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
+
+      receiptDatabase.insert(Stream.of(members).map(Recipient::getAddress).toList(),
+                             messageId, GroupReceiptDatabase.STATUS_UNDELIVERED, message.getSentTimeMillis());
+    }
+
     DatabaseFactory.getThreadDatabase(context).setLastSeen(threadId);
     DatabaseFactory.getThreadDatabase(context).setHasSent(threadId, true);
     jobManager.add(new TrimThreadJob(context, threadId));
@@ -890,6 +901,9 @@ public class MmsDatabase extends MessagingDatabase {
     long               threadId           = getThreadIdForMessage(messageId);
     AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
     attachmentDatabase.deleteAttachmentsForMessage(messageId);
+
+    GroupReceiptDatabase groupReceiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
+    groupReceiptDatabase.deleteRowsForMessage(messageId);
 
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     database.delete(TABLE_NAME, ID_WHERE, new String[] {messageId+""});
@@ -972,6 +986,7 @@ public class MmsDatabase extends MessagingDatabase {
 
   public void deleteAllThreads() {
     DatabaseFactory.getAttachmentDatabase(context).deleteAllAttachments();
+    DatabaseFactory.getGroupReceiptDatabase(context).deleteAllRows();
 
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     database.delete(TABLE_NAME, null, null);
