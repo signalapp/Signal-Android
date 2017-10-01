@@ -539,7 +539,7 @@ public class ConversationItem extends LinearLayout
     if (groupThread && !messageRecord.isOutgoing()) {
       this.groupSender.setText(recipient.toShortString());
 
-      if (recipient.getName() == null && recipient.getProfileName() != null) {
+      if (recipient.getName() == null && !TextUtils.isEmpty(recipient.getProfileName())) {
         this.groupSenderProfileName.setText("~" + recipient.getProfileName());
         this.groupSenderProfileName.setVisibility(View.VISIBLE);
       } else {
