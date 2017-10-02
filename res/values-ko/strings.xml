@@ -663,6 +663,7 @@
   <string name="recipient_preferences__block">차단</string>
   <string name="recipient_preferences__color">색상</string>
   <string name="recipient_preferences__color_for_this_contact">사용자 색상</string>
+  <string name="recipient_preferences__privacy">개인정보 보호</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal 통화</string>
   <string name="redphone_call_controls__end_call">통화 종료</string>
@@ -980,5 +981,8 @@
   <string name="trimmer__old_messages_successfully_deleted">이전 메시지 삭제됨</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">전송 아이콘</string>
+  <string name="RingtonePreference_ringtone_silent">없음</string>
+  <string name="BucketedThreadMedia_Today">오늘</string>
+  <string name="BucketedThreadMedia_Yesterday">어제</string>
   <!--EOF-->
 </resources>

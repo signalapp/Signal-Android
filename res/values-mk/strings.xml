@@ -456,6 +456,7 @@
   <string name="recipient_preferences__block">Блокирај</string>
   <string name="recipient_preferences__color">Боја</string>
   <string name="recipient_preferences__color_for_this_contact">Боја за овој контакт?</string>
+  <string name="recipient_preferences__privacy">Приватност</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_controls__audio">Звук</string>
   <!--registration_activity-->
@@ -696,5 +697,6 @@
   <string name="trimmer__old_messages_successfully_deleted">Старите пораки се успешно избришани</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Симбол за транспорт</string>
+  <string name="RingtonePreference_ringtone_silent">Ниедна</string>
   <!--EOF-->
 </resources>

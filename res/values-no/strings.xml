@@ -678,6 +678,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="recipient_preferences__block">Blokker</string>
   <string name="recipient_preferences__color">Farge</string>
   <string name="recipient_preferences__color_for_this_contact">Farge for denne kontakten</string>
+  <string name="recipient_preferences__privacy">Personvern</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal anrop</string>
   <string name="redphone_call_controls__end_call">Avslutt samtale</string>
@@ -1015,5 +1016,7 @@ feilet.</string>
   <string name="trimmer__old_messages_successfully_deleted">Sletting av gamle meldinger vellykket</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportikon</string>
+  <string name="RingtonePreference_ringtone_silent">Ingen</string>
+  <string name="BucketedThreadMedia_Today">I dag</string>
   <!--EOF-->
 </resources>

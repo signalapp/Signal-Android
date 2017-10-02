@@ -817,6 +817,7 @@
   <string name="recipient_preferences__block">Блокирај</string>
   <string name="recipient_preferences__color">Боја</string>
   <string name="recipient_preferences__color_for_this_contact">Боја за контакт</string>
+  <string name="recipient_preferences__privacy">Приватност</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Позив на Сигналу</string>
   <string name="redphone_call_controls__end_call">окончај позив</string>
@@ -1196,5 +1197,9 @@
   <string name="trimmer__old_messages_successfully_deleted">Старе поруке успешно обрисане</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Икона преноса</string>
+  <string name="RingtonePreference_ringtone_silent">Ништа</string>
+  <string name="BucketedThreadMedia_Today">Данас</string>
+  <string name="BucketedThreadMedia_Yesterday">Јуче</string>
+  <string name="MediaOverviewActivity_Documents">Документи</string>
   <!--EOF-->
 </resources>

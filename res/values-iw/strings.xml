@@ -812,6 +812,7 @@
   <string name="recipient_preferences__color">צבע</string>
   <string name="recipient_preferences__color_for_this_contact">צבע לאיש הקשר הזה</string>
   <string name="recipient_preferences__view_safety_number">הצג מספר בטיחות</string>
+  <string name="recipient_preferences__privacy">פרטיות</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">שיחת סיגנל</string>
   <string name="redphone_call_controls__end_call">סיום שיחה</string>
@@ -1193,5 +1194,9 @@
   <string name="trimmer__old_messages_successfully_deleted">מסרים ישנים נמחקו</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">סמל תעבורה</string>
+  <string name="RingtonePreference_ringtone_silent">אין</string>
+  <string name="BucketedThreadMedia_Today">היום</string>
+  <string name="BucketedThreadMedia_Yesterday">אתמול</string>
+  <string name="MediaOverviewActivity_Documents">מסמכים</string>
   <!--EOF-->
 </resources>

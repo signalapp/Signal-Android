@@ -247,7 +247,7 @@ Recibido:%4$s</string>
   <string name="DocumentView_unknown_file">Fichero desconocido</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizar por falta de servicios de Google Play</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Este dispositivo no soporta los servicios de Google Play. Pulsa para inhabilitar las optimizaciones de batería del sistema que impiden a Signal obtener mensajes mientras está inactivo.</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Este dispositivo no soporta los servicios de Google Play. Pulse para inhabilitar las optimizaciones de batería del sistema que impiden a Signal obtener mensajes mientras está inactivo.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Compartir con</string>
   <!--ExperienceUpgradeActivity-->
@@ -851,6 +851,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="recipient_preferences__color">Color</string>
   <string name="recipient_preferences__color_for_this_contact">Color para este contacto</string>
   <string name="recipient_preferences__view_safety_number">Ver número de seguridad</string>
+  <string name="recipient_preferences__privacy">Privacidad</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Llamada de Signal</string>
   <string name="redphone_call_controls__end_call">finalizar llamada</string>
@@ -1250,5 +1251,9 @@ por SMS.
   <string name="trimmer__old_messages_successfully_deleted">Mensajes antiguos borrados con éxito</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icono de transporte</string>
+  <string name="RingtonePreference_ringtone_silent">Ninguno</string>
+  <string name="BucketedThreadMedia_Today">Hoy</string>
+  <string name="BucketedThreadMedia_Yesterday">Ayer</string>
+  <string name="MediaOverviewActivity_Documents">Documentos</string>
   <!--EOF-->
 </resources>

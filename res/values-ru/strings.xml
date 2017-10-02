@@ -73,7 +73,7 @@
   <string name="ClearProfileActivity_remove">Удалить</string>
   <string name="ClearProfileActivity_remove_profile_photo">Удалить фото профиля?</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Ваш с %1$s код безопасности изменился. Это может означать, что кто-то пытается перехватить вашу переписку и звонки, или что %2$s просто переустановил(а) Signal.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Ваш код безопасности с %1$s изменился. Это означает, что либо вашу переписку пытаются перехватить, либо %2$s просто переустановил(-а) Signal. </string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Возможно, вам стоит подтвердить код безопасности с этим контактом.</string>
   <string name="ConfirmIdentityDialog_accept">Принять</string>
   <!--ContactsDatabase-->
@@ -94,7 +94,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Отправить как незашифрованное MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Данное сообщение <b>не будет</b> зашифровано, поскольку получатель больше не использует Signal.\n\nОтправить незащищённое сообщение?</string>
   <string name="ConversationItem_unable_to_open_media">Не найдено приложение, которое может открыть этот медиа-файл.</string>
-  <string name="ConversationItem_copied_text">Копировать %s</string>
+  <string name="ConversationItem_copied_text">Скопировано: %s</string>
   <string name="ConversationItem_from_s">от %s</string>
   <string name="ConversationItem_to_s">для %s</string>
   <!--ConversationActivity-->
@@ -241,14 +241,14 @@
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Архивированные разговоры (%d)</string>
   <!--CreateProfileActivity-->
-  <string name="CreateProfileActivity_your_profile_info">Сведения о вашем профиле</string>
-  <string name="CreateProfileActivity_error_setting_profile_photo">Ошибка настройки фото профиля</string>
-  <string name="CreateProfileActivity_problem_setting_profile">Ошибка настройки профиля</string>
+  <string name="CreateProfileActivity_your_profile_info">Ваш профиль</string>
+  <string name="CreateProfileActivity_error_setting_profile_photo">Ошибка при сохранении фото профиля</string>
+  <string name="CreateProfileActivity_problem_setting_profile">Ошибка при сохранении профиля</string>
   <string name="CreateProfileActivity_updating_profile">Обновление профиля</string>
-  <string name="CreateProfileActivity_updating_and_encrypting_profile">Обновление и шифрование профиля</string>
+  <string name="CreateProfileActivity_updating_and_encrypting_profile">Обновляем и шифруем профиль</string>
   <string name="CreateProfileActivity_profile_photo">Фото профиля</string>
-  <string name="CreateProfileActivity_too_long">Слишком долго</string>
-  <string name="CreateProfileActivity_error_capturing_photo_camera_did_not_return_image">Ошибка захвата фотографии, камера не вернула изображение</string>
+  <string name="CreateProfileActivity_too_long">Слишком длинно</string>
+  <string name="CreateProfileActivity_error_capturing_photo_camera_did_not_return_image">Ошибка при съёмке, камера не вернула изображение</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Пользовательское: %s</string>
   <string name="CustomDefaultPreference_using_default">По умолчанию: %s</string>
@@ -289,8 +289,8 @@
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Теперь Signal поддерживает защищённые видео-звонки.</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Теперь Signal поддерживает защищённые видео-звонки. Нажмите, чтобы узнать больше.</string>
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Готовы к крупному плану?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Теперь вы можете поделиться фотографией профиля и именем с друзьями в Signal</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Профили Signal здесь</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Теперь вы можете создать свой профиль с именем и фотографией, которые увидят ваши друзья в Signal</string>
+  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Профили Signal находятся здесь</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Экспорт</string>
   <string name="ExportFragment_export_plaintext_to_storage">Экспортировать открытым текстом?</string>
@@ -323,13 +323,13 @@
   <string name="GroupCreateActivity_menu_apply_button">Применить</string>
   <string name="GroupCreateActivity_creating_group">Создаём %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Обновляем %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Невозможно добавить %1$s, так как он(а) не является пользователем Signal.</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Невозможно добавить %1$s, так как он (она) не является пользователем Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Загружаем подробности о группе...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Вы уже в группе.</string>
   <!--GroupShareProfileView-->
-  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Поделиться именем и фотографией профиля с этой группой?</string>
-  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Хотите сделать имя и фотографию профиля видимыми для всех текущих и будущих членов этой группы?</string>
-  <string name="GroupShareProfileView_make_visible">Сделать видимым</string>
+  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Открыть ваше имя и фото этой группе?</string>
+  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Вы хотите сделать имя и фотографию из своего профиля видимыми для всех текущих и будущих членов этой группы?</string>
+  <string name="GroupShareProfileView_make_visible">Сделать видимыми</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Я</string>
   <!--ImportExportActivity-->
@@ -395,11 +395,11 @@
   <string name="MmsDownloader_error_connecting_to_mms_provider">Ошибка при подключении к провайдеру MMS</string>
   <string name="MmsDownloader_error_reading_mms_settings">Ошибка при чтении настроек MMS беспроводного провайдера</string>
   <!--- NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">Идёт звонок через Signal</string>
+  <string name="NotificationBarManager_signal_call_in_progress">Идёт звонок в Signal</string>
   <string name="NotificationBarManager_missed_call_from_s">Пропущен звонок от %s</string>
   <string name="NotificationBarManager_missed_signal_call">Пропущен звонок в Signal</string>
-  <string name="NotificationBarManager__establishing_signal_call">Начинаем звонок через Signal</string>
-  <string name="NotificationBarManager__incoming_signal_call">Входящий звонок через Signal</string>
+  <string name="NotificationBarManager__establishing_signal_call">Начинаем звонок в Signal</string>
+  <string name="NotificationBarManager__incoming_signal_call">Входящий звонок в Signal</string>
   <string name="NotificationBarManager__deny_call">Отклонить</string>
   <string name="NotificationBarManager__answer_call">Ответить</string>
   <string name="NotificationBarManager__end_call">Завершить</string>
@@ -420,10 +420,10 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Вы установили время исчезновения сообщений в %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s установил(а) время исчезновения сообщений в %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Ваш с %s код безопасности изменился.</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Вы отметили код безопасности с %s как проверенный</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Вы отметили Ваш код безопасности с %s как проверенный с другого устройства</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Вы отметили Ваш код безопасности с %s как непроверенный</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Вы отметили Ваш код безопасности с %s как непроверенный с другого устройства</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Вы отметили код безопасности с %s как подтверждённый</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Вы отметили код безопасности с %s как подтверждённый с другого устройства</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Вы отметили код безопасности с %s как неподтверждённый</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Вы отметили код безопасности с %s как неподтверждённый с другого устройства</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Парольные фразы не совпадают!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Неверная старая парольная фраза!</string>
@@ -539,7 +539,7 @@
   <string name="RegistrationProgressActivity_too_many_requests">Слишком много запросов!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Вы недавно уже запрашивали голосовой звонок. Запросить ещё один вы сможете через 20 минут.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Конфликт регистрации</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Этот номер уже зарегистрирован на другом сервере Signal. Вам нужно прекратить регистрацию там для регистрации здесь.</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Этот номер уже зарегистрирован на другом сервере Signal. Вам нужно удалить регистрацию там, чтобы зарегистрироваться здесь.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Регистрация завершена</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Регистрация в Signal успешно завершена.</string>
@@ -571,20 +571,20 @@
   <string name="ThreadRecord_media_message">Медиа-сообщение</string>
   <string name="ThreadRecord_s_is_on_signal">%s теперь в Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Время исчезновения сообщений – %s</string>
-  <string name="ThreadRecord_safety_number_changed">Коды безопасности изменены</string>
-  <string name="ThreadRecord_your_safety_number_with_s_has_changed">Ваш с %s код безопасности изменился.</string>
-  <string name="ThreadRecord_you_marked_verified">Вы отметили как проверенный</string>
-  <string name="ThreadRecord_you_marked_unverified">Вы отметили как непроверенный</string>
+  <string name="ThreadRecord_safety_number_changed">Код безопасности изменился</string>
+  <string name="ThreadRecord_your_safety_number_with_s_has_changed">Ваш код безопасности с %s изменился.</string>
+  <string name="ThreadRecord_you_marked_verified">Вы отметили как подтверждённый</string>
+  <string name="ThreadRecord_you_marked_unverified">Вы отметили как неподтверждённый</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Обновление Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Доступна новая версия Signal. Нажмите, чтобы обновиться</string>
   <!--UnknownSenderView-->
   <string name="UnknownSenderView_block_s">Заблокировать %s?</string>
-  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Заблокированные контакты больше не смогут отправлять вам сообщения или звонить.</string>
+  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Заблокированные контакты больше не смогут отправлять сообщения или звонить вам.</string>
   <string name="UnknownSenderView_block">Заблокировать</string>
-  <string name="UnknownSenderView_share_profile_with_s">Поделиться профилем с %s?</string>
-  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Самый простой способ поделиться информацией о вашем профиле - добавить отправителя в свои контакты. Если вы этого не хотите, вы по-прежнему можете делиться своими данными профиля.</string>
-  <string name="UnknownSenderView_share_profile">Поделиться профилем</string>
+  <string name="UnknownSenderView_share_profile_with_s">Открыть ваш профиль для %s?</string>
+  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Самый простой способ открыть ваш профиль кому-то — добавить отправителя в контакты. Если вы не хотите этого делать, можете открыть профиль и так.</string>
+  <string name="UnknownSenderView_share_profile">Открыть профиль</string>
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Отправить сообщение?</string>
   <string name="UntrustedSendDialog_send">Отправить</string>
@@ -595,7 +595,7 @@
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">У вашего контакта старая версия Signal. Попросите его обновиться, чтобы подтвердить код безопасности.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">У вашего контакта более новая версию Signal с несовместимым форматом QR-кода. Пожалуйста, обновитесь, чтобы сверить код.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Просканированный QR-код не является кодом безопасности. Пожалуйста, попробуйте ещё раз.</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">Поделиться кодом безопасности с помощью...</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Поделиться кодом безопасности через...</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Наш код безопасности Signal:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Похоже, что у вас нет приложений, через которые можно поделиться.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Коды безопасности в буфере обмена не найдены</string>
@@ -652,7 +652,7 @@
   <string name="MessageNotifier_media_message">Медиа-сообщение</string>
   <string name="MessageNotifier_reply">Ответить</string>
   <string name="MessageNotifier_pending_signal_messages">Неполученные сообщения</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">У Вас есть ожидающие получения сообщения, нажмите, чтобы получить их и открыть</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">У вас есть неполученные сообщения в Signal. Нажмите, чтобы открыть приложение и получить их.</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Для вашего телефона необходимо настроить MMS вручную.</string>
   <string name="MmsPreferencesFragment__enabled">Включено</string>
@@ -713,8 +713,8 @@
   <string name="conversation_title_view__conversation_muted">Звуки разговора выключены</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Сообщение Signal</string>
-  <string name="conversation_activity__type_message_sms_insecure">Нешифрованное SMS</string>
-  <string name="conversation_activity__type_message_mms_insecure">Нешифрованное MMS</string>
+  <string name="conversation_activity__type_message_sms_insecure">Незащищённое SMS</string>
+  <string name="conversation_activity__type_message_mms_insecure">Незащищённое MMS</string>
   <string name="conversation_activity__from_sim_name">Через %1$s</string>
   <string name="conversation_activity__send">Отправить</string>
   <string name="conversation_activity__remove">Удалить</string>
@@ -800,20 +800,20 @@
   </plurals>
   <string name="expiration_weeks_abbreviated">%dн</string>
   <!--unverified safety numbers-->
-  <string name="IdentityUtil_unverified_banner_one">Ваш код безопасности с %s изменился и больше не является подтвержденным</string>
-  <string name="IdentityUtil_unverified_banner_two">Ваши коды безопасности с %1$s и %2$s изменились и больше не являются подтвержденными</string>
-  <string name="IdentityUtil_unverified_banner_many">Ваши коды безопасности с %1$s, %2$s и %3$s изменились и больше не являются подтвержденными</string>
-  <string name="IdentityUtil_unverified_dialog_one">Ваш код безопасности с %1$s изменился и больше не является подтвержденным. Это означает, что кто-то пытается перехватить вашу переписку или %1$s просто переустановил(а) Signal.</string>
-  <string name="IdentityUtil_unverified_dialog_two">Ваши коды безопасности с %1$s и %2$s изменились и больше не являются подтвержденными. Это означает, что кто-то пытается перехватить вашу переписку или они просто переустановили Signal.</string>
-  <string name="IdentityUtil_unverified_dialog_many">Ваши коды безопасности с %1$s, %2$s и %3$s изменились и больше не являются подтвержденными. Это означает, что кто-то пытается перехватить вашу переписку или они просто переустановили Signal.</string>
-  <string name="IdentityUtil_untrusted_dialog_one">Ваш код безопасности с %s был изменен.</string>
-  <string name="IdentityUtil_untrusted_dialog_two">Ваши коды безопасности с %1$s и %2$s были изменены.</string>
-  <string name="IdentityUtil_untrusted_dialog_many">Ваши коды безопасности с %1$s, %2$s и %3$s только что изменились.</string>
+  <string name="IdentityUtil_unverified_banner_one">Ваш код безопасности с %s изменился и перестал считаться подтверждённым</string>
+  <string name="IdentityUtil_unverified_banner_two">Ваши коды безопасности с %1$s и %2$s перестали считаться подтверждёнными</string>
+  <string name="IdentityUtil_unverified_banner_many">Ваши коды безопасности с %1$s, %2$s и %3$s перестали считаться подтверждёнными</string>
+  <string name="IdentityUtil_unverified_dialog_one">Ваш код безопасности с %1$s изменился и более не считается подтверждённым. Это означает, что либо вашу переписку пытаются перехватить, либо %1$s просто переустановил(а) Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Ваши коды безопасности с %1$s и %2$s изменились и больше не считаются подтверждёнными. Это означает, что либо вашу переписку пытаются перехватить, либо они просто переустановили Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Ваши коды безопасности с %1$s, %2$s и %3$s изменились и более не считаются подтверждёнными. Это означает, что либо вашу переписку пытаются перехватить, либо они просто переустановили Signal.</string>
+  <string name="IdentityUtil_untrusted_dialog_one">Ваш код безопасности с %s изменился.</string>
+  <string name="IdentityUtil_untrusted_dialog_two">Ваши коды безопасности с %1$s и %2$s изменились.</string>
+  <string name="IdentityUtil_untrusted_dialog_many">Ваши коды безопасности с %1$s, %2$s и %3$s изменились.</string>
   <plurals name="identity_others">
     <item quantity="one">%d прочий</item>
     <item quantity="few">%d прочие</item>
     <item quantity="many">%d прочие</item>
-    <item quantity="other">%d прочие</item>
+    <item quantity="other">%d другими</item>
   </plurals>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Найти GIF-анимации и стикеры</string>
@@ -850,7 +850,7 @@
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Нет медиа-файлов</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__view">Просмотреть</string>
+  <string name="message_recipients_list_item__view">ПРОСМОТРЕТЬ</string>
   <string name="message_recipients_list_item__resend">ОТПРАВИТЬ ЕЩЁ РАЗ</string>
   <string name="message_recipients_list_item__resending">Пересылка...</string>
   <!--GroupUtil-->
@@ -870,7 +870,7 @@
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Чтобы отправлять мультимедийные и групповые сообщения, нажмите «ОК» и введите необходимые настройки. Настройки MMS вашего оператора обычно можно найти по запросу «ваш оператор APN». Это нужно сделать только один раз.</string>
   <!--profile_create_activity-->
   <string name="profile_create_activity__set_later">Настроить позже</string>
-  <string name="profile_create_activity__finish">КОНЕЦ</string>
+  <string name="profile_create_activity__finish">ЗАВЕРШИТЬ</string>
   <string name="profile_create_activity__who_can_see_this_information">Кто может видеть эту информацию?</string>
   <string name="profile_create_activity__your_name">Ваше имя</string>
   <!--recipient_preferences_activity-->
@@ -884,6 +884,7 @@
   <string name="recipient_preferences__color">Цвет</string>
   <string name="recipient_preferences__color_for_this_contact">Цвет для этого контакта</string>
   <string name="recipient_preferences__view_safety_number">Просмотреть код безопасности</string>
+  <string name="recipient_preferences__privacy">Конфиденциальность</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Звонок через Signal</string>
   <string name="redphone_call_controls__end_call">завершить звонок</string>
@@ -898,7 +899,7 @@
 И НОМЕР ТЕЛЕФОНА</string>
   <string name="registration_activity__phone_number">НОМЕР ТЕЛЕФОНА</string>
   <string name="registration_activity__register">Зарегистрироваться</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal упрощает связь, используя номер телефона и адресную книгу. Ваши друзья с легкостью смогут связаться с вам, зная ваш номер.\n\nПри регистрации на сервер передается некоторая информация о контактах, но не сохраняется там.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Чтобы упростить общение, Signal использует ваш номер телефона и адресную книгу. Ваши друзья и контакты, которые звонят вам по телефону, с легкостью смогут связаться с вами и через Signal.\n\nПри регистрации на сервер передаётся некоторая информация о контактах, но не сохраняется там.</string>
   <string name="registration_activity__powered_by_twilio">Сервис предоставлен twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Возможные причины:</string>
@@ -955,15 +956,15 @@ SMS-подтверждения...
   <string name="recipients_panel__to"><small>Введите имя или номер</small></string>
   <string name="recipients_panel__add_members">Добавить участников</string>
   <!--unknown_sender_view-->
-  <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">Отправитель не входит в ваш список контактов</string>
+  <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">Отправителя нет в вашем списке контактов</string>
   <string name="unknown_sender_view__block">БЛОКИРОВАТЬ</string>
   <string name="unknown_sender_view__add_to_contacts">ДОБАВИТЬ В КОНТАКТЫ</string>
-  <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">НЕ ДОБАВЛЯТЬ, НО СДЕЛАТЬ МОЙ ПРОФИЛЬ ВИДИМЫМ</string>
+  <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">НЕ ДОБАВЛЯТЬ, НО ОТКРЫТЬ МОЙ ПРОФИЛЬ</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Если вы хотите убедиться в надежности шифрования переписки с %s, сравните код выше с таким же кодом на его (ее) устройстве. Также вы можете отсканировать код на его (ее) телефоне или попросить его (ее) отсканировать ваш код. <a href="https://whispersystems.org/redirect/safety-numbers">Узнать больше</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Если вы хотите убедиться в надёжности шифрования переписки с %s, сравните этот код с таким же кодом на устройстве вашего собеседника. Также вы можете отсканировать код на устройстве собеседника или попросить его отсканировать ваш код. <a href="https://whispersystems.org/redirect/safety-numbers">Узнать больше</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Сканировать</string>
   <string name="verify_display_fragment__loading">Загрузка...</string>
-  <string name="verify_display_fragment__verified">Подтвержден</string>
+  <string name="verify_display_fragment__verified">Подтверждён</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Поделиться кодом безопасности</string>
   <!--message_details_header-->
@@ -1015,7 +1016,7 @@ SMS-подтверждения...
   <string name="arrays__large">Большой</string>
   <string name="arrays__extra_large">Очень большой</string>
   <string name="arrays__default">По умолчанию</string>
-  <string name="arrays__high">Громкий</string>
+  <string name="arrays__high">Высокий</string>
   <string name="arrays__max">Максимальный</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
@@ -1137,12 +1138,12 @@ SMS-подтверждения...
   <string name="preferences_chats__chats">Чаты</string>
   <string name="preferences_notifications__messages">Сообщения</string>
   <string name="preferences_notifications__events">События</string>
-  <string name="preferences_notifications__in_chat_sounds">Звуки чата</string>
+  <string name="preferences_notifications__in_chat_sounds">Звуки в чате</string>
   <string name="preferences_notifications__show">Показать</string>
   <string name="preferences_chats__show_invitation_prompts">Показать приглашения</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Отображать приглашения для контактов, не пользующихся Signal</string>
   <string name="preferences_chats__message_text_size">Размер шрифта сообщения</string>
-  <string name="preferences_events__contact_joined_signal">Этот контакт появился в Signal</string>
+  <string name="preferences_events__contact_joined_signal">Контакт появился в Signal</string>
   <string name="preferences_notifications__priority">Приоритет</string>
   <!--****************************************-->
   <!--menus-->
@@ -1275,5 +1276,9 @@ SMS-подтверждения...
   <string name="trimmer__old_messages_successfully_deleted">Старые сообщения успешно удалены</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Иконка транспорта</string>
+  <string name="RingtonePreference_ringtone_silent">Нет</string>
+  <string name="BucketedThreadMedia_Today">Сегодня</string>
+  <string name="BucketedThreadMedia_Yesterday">Вчера</string>
+  <string name="MediaOverviewActivity_Documents">Документы</string>
   <!--EOF-->
 </resources>

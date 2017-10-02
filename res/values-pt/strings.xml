@@ -216,6 +216,7 @@
   <string name="CreateProfileActivity_updating_and_encrypting_profile">A actualizar e cifrar o perfil</string>
   <string name="CreateProfileActivity_profile_photo">Foto de perfil</string>
   <string name="CreateProfileActivity_too_long">Demasiado longo</string>
+  <string name="CreateProfileActivity_error_capturing_photo_camera_did_not_return_image">Erro na captura da foto, a câmara não tirou nenhuma foto.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usar a opção personalizada: %s</string>
   <string name="CustomDefaultPreference_using_default">Usar a opção por omissão: %s</string>
@@ -845,6 +846,7 @@ Mensagem de troca de chave inválida para esta versão do protocolo.
   <string name="recipient_preferences__color">Cor</string>
   <string name="recipient_preferences__color_for_this_contact">Cor para este contacto</string>
   <string name="recipient_preferences__view_safety_number">Número de verificação de segurança</string>
+  <string name="recipient_preferences__privacy">Privacidade</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Chamada do Signal</string>
   <string name="redphone_call_controls__end_call">terminar chamada</string>
@@ -1245,5 +1247,9 @@ falhou.
   <string name="trimmer__old_messages_successfully_deleted">Mensagens antigas apagadas com sucesso</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icon de transporte</string>
+  <string name="RingtonePreference_ringtone_silent">Nenhum</string>
+  <string name="BucketedThreadMedia_Today">Hoje</string>
+  <string name="BucketedThreadMedia_Yesterday">Ontem</string>
+  <string name="MediaOverviewActivity_Documents">Documentos</string>
   <!--EOF-->
 </resources>

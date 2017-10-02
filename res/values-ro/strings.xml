@@ -863,6 +863,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="recipient_preferences__color">Culoare</string>
   <string name="recipient_preferences__color_for_this_contact">Culoarea pentru acest contact</string>
   <string name="recipient_preferences__view_safety_number">Vizualizare număr de siguranță</string>
+  <string name="recipient_preferences__privacy">Confidenţialitate</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Apel Signal</string>
   <string name="redphone_call_controls__end_call">închide apelul</string>
@@ -949,7 +950,7 @@ SMS a eșuat.</string>
   <string name="unknown_sender_view__add_to_contacts">ADAUGĂ LA CONTACTE</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NU ADĂUGA, DAR FĂ-MI PROFILUL MEU VIZIBIL</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Dacă dorești să verifici securitatea criptării integrale cu %s, compară numărul de deasupra cu numărul de pe dispozitivul lor. Alternativ, poți scana codul de pe telefonul lor sau îi poți ruga să scaneze codul tău. <a href="https://whispersystems.org/redirect/safety-numbers">Află mai multe.</a>.]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Dacă dorești să verifici securitatea criptării integrale cu %s, compară numărul de deasupra cu numărul de pe dispozitivul lor. Alternativ, poți scana codul de pe telefonul lor sau îi poți ruga să scaneze codul tău. <a href="https://whispersystems.org/redirect/safety-numbers">Află mai multe.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Apasă pentru a scana</string>
   <string name="verify_display_fragment__loading">Se încarcă...</string>
   <string name="verify_display_fragment__verified">Verificat</string>
@@ -1263,5 +1264,9 @@ SMS a eșuat.</string>
   <string name="trimmer__old_messages_successfully_deleted">Mesajele vechi au fost șterse cu succes</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Pictogramă transport</string>
+  <string name="RingtonePreference_ringtone_silent">Niciuna</string>
+  <string name="BucketedThreadMedia_Today">Azi</string>
+  <string name="BucketedThreadMedia_Yesterday">Ieri</string>
+  <string name="MediaOverviewActivity_Documents">Documente</string>
   <!--EOF-->
 </resources>

@@ -838,6 +838,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="recipient_preferences__color">Färg</string>
   <string name="recipient_preferences__color_for_this_contact">Färg för denna kontakt</string>
   <string name="recipient_preferences__view_safety_number">Visa säkerhetsnummer</string>
+  <string name="recipient_preferences__privacy">Integritet</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signalsamtal</string>
   <string name="redphone_call_controls__end_call">avsluta samtal</string>
@@ -1219,5 +1220,9 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="trimmer__old_messages_successfully_deleted">Gamla meddelanden har raderats</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportikon</string>
+  <string name="RingtonePreference_ringtone_silent">Inga</string>
+  <string name="BucketedThreadMedia_Today">Idag</string>
+  <string name="BucketedThreadMedia_Yesterday">Igår</string>
+  <string name="MediaOverviewActivity_Documents">Dokument</string>
   <!--EOF-->
 </resources>

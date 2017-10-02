@@ -624,6 +624,7 @@ Phục hồi sao lưu Signal đã mã khóa từng xuất ra trước đó</stri
   <string name="recipient_preferences__block">Chặn</string>
   <string name="recipient_preferences__color">Màu</string>
   <string name="recipient_preferences__color_for_this_contact">Màu cho liên lạc này</string>
+  <string name="recipient_preferences__privacy">Riêng tư</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Cuộc gọi Signal</string>
   <string name="redphone_call_controls__end_call">kết thúc cuộc gọi</string>
@@ -969,5 +970,7 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <string name="trimmer__old_messages_successfully_deleted">Xóa thành công các tin nhắn cũ</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Biểu tượng chuyển tải</string>
+  <string name="RingtonePreference_ringtone_silent">Không</string>
+  <string name="BucketedThreadMedia_Today">Hôm nay</string>
   <!--EOF-->
 </resources>

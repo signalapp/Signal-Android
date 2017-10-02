@@ -836,6 +836,8 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="recipient_preferences__color">Kleur</string>
   <string name="recipient_preferences__color_for_this_contact">Kleur voor dit contact</string>
   <string name="recipient_preferences__view_safety_number">Veiligheidsnummer weergeven</string>
+  <string name="recipient_preferences__chat_settings">Gespreksinstellingen</string>
+  <string name="recipient_preferences__privacy">Privacy</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal oproep</string>
   <string name="redphone_call_controls__end_call">Oproep beëindigen</string>
@@ -1218,5 +1220,25 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="trimmer__old_messages_successfully_deleted">Oude berichten succesvol verwijderd</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportkanaalpictogram</string>
+  <string name="conversation_item_sent__message_read">Bericht gelezen</string>
+  <string name="preferences__read_receipts">Leesbevestigingen</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Als je leesbevestigingen uitgeschakeld zijn, zal je leesbevestigingen van anderen ook niet kunnen zien.</string>
+  <string name="RingtonePreference_ringtone_default">Standaardbeltoon</string>
+  <string name="RingtonePreference_ringtone_silent">Geen</string>
+  <string name="RingtonePreference_ringtone_picker_title">Beltonen</string>
+  <string name="RingtonePreference_notification_sound_default">Standaardmeldingsgeluid</string>
+  <string name="RingtonePreference_alarm_sound_default">Standaardwekkergeluid</string>
+  <string name="RingtonePreference_add_ringtone_text">Beltoon toevoegen</string>
+  <string name="RingtonePreference_unable_to_add_ringtone">Kan aangepaste beltoon niet toevoegen</string>
+  <string name="BucketedThreadMedia_Today">Vandaag</string>
+  <string name="BucketedThreadMedia_Yesterday">Gisteren</string>
+  <string name="BucketedThreadMedia_This_week">Deze week</string>
+  <string name="BucketedThreadMedia_This_month">Deze maand</string>
+  <string name="MediaOverviewActivity_Media">Media</string>
+  <string name="MediaOverviewActivity_Documents">Documenten</string>
+  <string name="media_overview_documents_fragment__no_documents_found">Geen documenten gevonden</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Leesbevestigingen zijn nu beschikbaar</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Een nieuwe optie om te zien en te delen wanneer berichten gelezen zijn</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Schakel leesbevestigingen in</string>
   <!--EOF-->
 </resources>

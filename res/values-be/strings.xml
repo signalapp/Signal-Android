@@ -569,5 +569,6 @@
   <string name="trimmer__old_messages_successfully_deleted">Старыя паведамленні паспяхова выдалены</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Транспартны значок</string>
+  <string name="RingtonePreference_ringtone_silent">Няма</string>
   <!--EOF-->
 </resources>

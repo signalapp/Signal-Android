@@ -550,7 +550,7 @@
   <string name="ThreadRecord_left_the_group">غادر المجموعة</string>
   <string name="ThreadRecord_secure_session_reset">إعادة ضبط جلسة آمنة.</string>
   <string name="ThreadRecord_draft">مسودة:</string>
-  <string name="ThreadRecord_called">مكالمات صاردة</string>
+  <string name="ThreadRecord_called">مكالمات صادرة</string>
   <string name="ThreadRecord_called_you">مكالمات واردة</string>
   <string name="ThreadRecord_missed_call">مكالمة فائتة</string>
   <string name="ThreadRecord_media_message">رسالة وسائط متعددة</string>
@@ -836,6 +836,7 @@
   <string name="recipient_preferences__block">حظر</string>
   <string name="recipient_preferences__color">اللون</string>
   <string name="recipient_preferences__color_for_this_contact">اللون المخصص لجهة الاتصال</string>
+  <string name="recipient_preferences__privacy">الخصوصية</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">مكالمة سيجنال</string>
   <string name="redphone_call_controls__end_call">إنهاء المكالمة</string>
@@ -1207,5 +1208,9 @@
   <string name="trimmer__old_messages_successfully_deleted">تم حذف الرسائل القديمة بنجاح</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">أيقونة النقل.</string>
+  <string name="RingtonePreference_ringtone_silent">لا شيء </string>
+  <string name="BucketedThreadMedia_Today">اليوم</string>
+  <string name="BucketedThreadMedia_Yesterday">البارحة</string>
+  <string name="MediaOverviewActivity_Documents">الوثائق</string>
   <!--EOF-->
 </resources>

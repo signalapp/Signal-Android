@@ -777,6 +777,7 @@
   <string name="recipient_preferences__color">色</string>
   <string name="recipient_preferences__color_for_this_contact">この連絡先の色</string>
   <string name="recipient_preferences__view_safety_number">安全番号を見る</string>
+  <string name="recipient_preferences__privacy">プライバシー</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal通話</string>
   <string name="redphone_call_controls__end_call">通話を終了</string>
@@ -1137,5 +1138,9 @@
   <string name="trimmer__old_messages_successfully_deleted">古いメッセージの削除に成功</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">転送アイコン</string>
+  <string name="RingtonePreference_ringtone_silent">なし</string>
+  <string name="BucketedThreadMedia_Today">今日</string>
+  <string name="BucketedThreadMedia_Yesterday">昨日</string>
+  <string name="MediaOverviewActivity_Documents">文書</string>
   <!--EOF-->
 </resources>

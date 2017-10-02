@@ -841,6 +841,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="recipient_preferences__color">Väri</string>
   <string name="recipient_preferences__color_for_this_contact">Tämän yhteystiedon väri</string>
   <string name="recipient_preferences__view_safety_number">Näytä turvanumero</string>
+  <string name="recipient_preferences__chat_settings">Keskustelun asetukset</string>
+  <string name="recipient_preferences__privacy">Yksityisyys</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal-puhelu</string>
   <string name="redphone_call_controls__end_call">lopeta puhelu</string>
@@ -1220,5 +1222,25 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="trimmer__old_messages_successfully_deleted">Vanhojen viestien poisto onnistui</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Tyypin kuvake</string>
+  <string name="conversation_item_sent__message_read">Viesti luettu</string>
+  <string name="preferences__read_receipts">Lukukuittaukset</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Jos et ole ottanut käyttöön lukukuittauksia, et tule näkemään lukukuittauksia muilta.</string>
+  <string name="RingtonePreference_ringtone_default">Oletussoittoääni</string>
+  <string name="RingtonePreference_ringtone_silent">Ei mitään</string>
+  <string name="RingtonePreference_ringtone_picker_title">Soittoäänet</string>
+  <string name="RingtonePreference_notification_sound_default">Oletuksena oleva ilmoitusääni</string>
+  <string name="RingtonePreference_alarm_sound_default">Oletuksena oleva ilmoitusääni</string>
+  <string name="RingtonePreference_add_ringtone_text">Lisää soittoääni</string>
+  <string name="RingtonePreference_unable_to_add_ringtone">Soittoäänen lisäys epäonnistui</string>
+  <string name="BucketedThreadMedia_Today">tänään</string>
+  <string name="BucketedThreadMedia_Yesterday">eilen</string>
+  <string name="BucketedThreadMedia_This_week">Tällä viikolla</string>
+  <string name="BucketedThreadMedia_This_month">Tässä kuussa</string>
+  <string name="MediaOverviewActivity_Media">Media</string>
+  <string name="MediaOverviewActivity_Documents">Dokumentit</string>
+  <string name="media_overview_documents_fragment__no_documents_found">Tiedostoja ei löytynyt</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Lukukuittaukset ovat täällä</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Voit halutessasi nähdä ja jakaa milloin viestit on luettu</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Ota lukukuittaukset käyttöön</string>
   <!--EOF-->
 </resources>

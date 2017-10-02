@@ -188,7 +188,7 @@
   </plurals>
   <string name="ConversationFragment_collecting_attahments">Shromažďuji přílohy...</string>
   <string name="ConversationFragment_pending">Probíhající:</string>
-  <string name="ConversationFragment_push">Data(Signal)</string>
+  <string name="ConversationFragment_push">Data (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Mažu</string>
@@ -259,7 +259,7 @@
   <string name="DocumentView_unknown_file">Neznámý soubor</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimlizovat pro chybějící Google Play službu</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Toto zařízení nepodporuje službu Google Play. Kliknutím zakážete optimalizaci výdrže baterie systémem která způsobuje nemožnost Signulu přijímat zpravy v době nečinnosti.</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Toto zařízení nepodporuje službu Google Play. Kliknutím zakážete systémové optimalizace baterie, které způsobují nemožnost Signalu přijímat zprávy v době nečinnosti.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Sdílet s</string>
   <!--ExperienceUpgradeActivity-->
@@ -269,11 +269,11 @@
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure je nyní Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure a RedPhone jsou nyní jednou aplikací: Signal. Dotkněte se a prozkoumejte.</string>
   <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Přivítejte šifrované video hovory.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signál nyní podporuje šifrované video hovory. Začněte volat přes Signál jako obvykle, klikněte na video tlačítko a zamávejte na pozdrav.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signál nyní podporuje šifrované video hovory.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signál nyní podporuje šifrované video hovory. Klikněte pro prozkoumání.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal nyní podporuje šifrované video hovory. Začněte volat přes Signal jako obvykle, klikněte na video tlačítko a zamávejte na pozdrav.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal nyní podporuje šifrované video hovory.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal nyní podporuje šifrované video hovory. Klikněte pro prozkoumání.</string>
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Připraven na portrét?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Teď můžete sdílet vaši profilovou fotografii a jméno s vašimi přáteli na Signálu.</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Teď můžete sdílet vaši profilovou fotografii a jméno s vašimi přáteli na Signalu.</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Profily jsou tady</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Export</string>
@@ -289,7 +289,7 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trvalá chyba komunikace Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal se nemůže registrovat k službě Google Play. Zprávy a volání jsou proto zakázány: Prosím zkuste se znovu registrovat v menu Nastavení &gt; Rozšířené.</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Chyba při získávání GIF v pleném rozlišení</string>
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Chyba při získávání GIF v plném rozlišení</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIFy</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Nálepky</string>
@@ -393,9 +393,9 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Stahuji MMS zprávu</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Chyba při stahování MMS zprávy, ťukněte pro opakování</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Přijata zpráva šifrovaná starou a verzí Signal, který již není podporována. Prosím požádejte odesílatele, aby si zaktualizoval aplikaci na nejnovější verzi a poté poslal zprávu znovu.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Přijata zpráva šifrovaná starou verzí Signal, která již není podporována. Prosím požádejte odesílatele, aby si zaktualizoval aplikaci na nejnovější verzi a poté poslal zprávu znovu.</string>
   <string name="MessageRecord_left_group">Opustil(a) jste skupinu</string>
-  <string name="MessageRecord_you_updated_group">Upravil(a) jset skupinu.</string>
+  <string name="MessageRecord_you_updated_group">Upravil(a) jste skupinu.</string>
   <string name="MessageRecord_s_updated_group">%s upravil(a) skupinu.</string>
   <string name="MessageRecord_s_called_you">%s vám volal</string>
   <string name="MessageRecord_called_s">Volán %s</string>
@@ -430,7 +430,7 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Omlouváme se, ale máte provázáno příliš mnoho zařízení, pokuste se některé odpojit</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Omlouváme se, ale toto není platný QR kód pro provázání zařízení</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Provázat zařízení Signal?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Zdá se se snažíte provázat zařízení Signal použitím jiné skennovací aplikace. Pro vaši ochranu, prosím oskenujete kód ještě jednou z aplikace Signal.</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Zdá se, že se snažíte propojit zařízení Signal použitím jiné skenovací aplikace. Pro vaši ochranu, prosím oskenujete kód ještě jednou z aplikace Signal.</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Zmizení zpráv</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Platnost zprávy neskončí.</string>
@@ -441,7 +441,7 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="PassphrasePromptActivity_ok_button_content_description">Zadejte heslo</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Chybné heslo!</string>
   <!--PlayServicesProblemFragment-->
-  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Verze služby Google Play, kterou máte nainstalovánu, nepracuje správně. Prosím přeinstalujete službu Google Play a zkuste to znovu.</string>
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Verze služby Google Play, kterou máte nainstalovánu, nepracuje správně. Prosím, přeinstalujte službu Google Play a zkuste to znovu.</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Ohodnotit tuto aplikaci</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Pokud jste s aplikací spokojeni, prosím věnujte chvilku jejímu ohodnocení. Pomůže nám to.</string>
@@ -483,7 +483,7 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Volané číslo nepodporuje šifrované hovory!</string>
   <string name="RedPhone_got_it">Mám to.</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_signal">Připojení pomocí Signál</string>
+  <string name="RegistrationActivity_connect_with_signal">Připojení pomocí Signal</string>
   <string name="RegistrationActivity_select_your_country">Zvolte svou zemi</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Zadejte kód
 vaší země</string>
@@ -495,7 +495,7 @@ telefonní číslo</string>
   <string name="RegistrationActivity_continue">Pokračovat</string>
   <string name="RegistrationActivity_edit">Upravit</string>
   <string name="RegistrationActivity_missing_google_play_services">Chybí Google Play služba</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Toto zařízení nepodporuje službu Google Play. Můžete stále používat Signal, ale tato konfigurace může mít za náísledek snížení spolehlivosti nebo výkonu.\n\n Jestli nejste zkušený uživatel, nepoužíváte alternativní Android ROM nebo si myslíte, že je to chyba, kontaktujte support@whispersystems.org aby vám pohmoli vyřešit tento problém.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Toto zařízení nepodporuje službu Google Play. Můžete stále používat Signal, ale tato konfigurace může mít za náísledek snížení spolehlivosti nebo výkonu.\n\n Jestli nejste zkušený uživatel, nepoužíváte alternativní Android ROM nebo si myslíte, že je to chyba, kontaktujte support@whispersystems.org aby vám pomohli vyřešit tento problém.</string>
   <string name="RegistrationActivity_i_understand">Rozumím</string>
   <string name="RegistrationActivity_play_services_error">Chyba Google Play </string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Služba Google Play se aktulizuje nebo je dočasně nedostupná. Zkuste to prosím znovu.</string>
@@ -573,10 +573,10 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="UnverifiedSendDialog_send_message">Odeslat zprávu?</string>
   <string name="UnverifiedSendDialog_send">Odeslat</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Váš kontakt používá starou verzi aplikace Singál. Před kontrolou bezpečnostních kódů je porím požádejte aby si aplikaci aktualizoval.</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Váš kontakt používá novější verzi Signal s nekompatibilním formátem QR kódu. Prosím aktualizujte svou verzi abyste mohli QR kódy porovnat.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Váš kontakt používá starou verzi aplikace Signal. Před kontrolou bezpečnostních kódů jej prosím požádejte, aby si aplikaci aktualizoval.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Váš kontakt používá novější verzi Signal s nekompatibilním formátem QR kódu. Prosím, aktualizujte svou verzi, abyste mohli QR kódy porovnat.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Naskenovaný QR kód nemá správný formát bezpečnostního kódu. Prosím naskenujte QR kód znovu.</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">Sdílet bezpečnostní ḱod prostřednictvím ...</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Sdílet bezpečnostní kód prostřednictvím ...</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Vaš Signal bezpečnostní kód:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Zdá se, že nemáte žádnou aplikaci pro sdílení.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Ve schránce nebyl nalezen žádný bezpečnostní kód pro porovnání.</string>
@@ -642,7 +642,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="MmsPreferencesFragment__invalid_uri">Zadaný text není platné URI</string>
   <string name="MmsPreferencesFragment__invalid_host">Zadaný text není platné jméno počítače</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Rychlá odpověď není dostupná pokud je Signal uzamčen!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Rychlá odpověď není dostupná, pokud je Signal uzamčen!</string>
   <string name="QuickResponseService_problem_sending_message">Problém při odesílání zprávy!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Otevřít adresář</string>
@@ -652,7 +652,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Chyba při přehrávání videa</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">Bezpečnostní kódy pro konverzaci s %1$s se změnily. To může znamenat, že se někdo pokouší zachytit vaši konverzaci, nebo jen že si  %2$s jednoduše jen přeinstaloval Signal </string>
+  <string name="WebRtcCallScreen_new_safety_numbers">Bezpečnostní kódy pro konverzaci s %1$s se změnily. To může znamenat, že se někdo pokouší zachytit vaši konverzaci, nebo že %2$s si jednoduše jen přeinstaloval Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Možná budete chtít zkontrolovat vaše bezpečnostní kódy pro tento kontakt.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Nové bezpečnostní kódy</string>
   <!--WebRtcCallControls-->
@@ -705,7 +705,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="conversation_activity__attachment_thumbnail">Připojený náhled</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Vytvořit rychlou přílohu kamerou</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Nahrát a poslat zvukovou přílohu</string>
-  <string name="conversation_activity__enable_signal_for_sms">Povolit aplikaci Signál SMS</string>
+  <string name="conversation_activity__enable_signal_for_sms">Povolit aplikaci Signal pro SMS</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">PŘESUŇTE PRO ZRUŠENÍ</string>
   <!--conversation_item-->
@@ -720,7 +720,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="conversation_item_sent__delivered_description">Doručeno</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__download">Stažení</string>
-  <string name="conversation_item_received__contact_photo_description">Fotografie kotaktu</string>
+  <string name="conversation_item_received__contact_photo_description">Fotografie kontaktu</string>
   <string name="conversation_item_received__downloading">Stahuji</string>
   <!--audio_view-->
   <string name="audio_view__play_accessibility_description">Přehrát</string>
@@ -781,7 +781,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="IdentityUtil_unverified_banner_many">Vaše bezpečnostní kódy pro komunikaci s %1$s, %2$s a %3$s již nejsou ověřené.</string>
   <string name="IdentityUtil_unverified_dialog_one">Vaše bezpečnostní kódy pro komunikaci s %1$s již nejsou ověřené. To může znamenat, že se někdo pokouší zachytit vaši konverzaci, nebo že si jen %1$s přeinstaloval Signal.</string>
   <string name="IdentityUtil_unverified_dialog_two">Vaše bezpečnostní kódy pro komunikaci s %1$s a %2$s již nejsou ověřené. To může znamenat, že se někdo pokouší zachytit vaši konverzaci, nebo jen že si přeinstalovali Signal.</string>
-  <string name="IdentityUtil_unverified_dialog_many">Vaše bezpečnostní kódy pro komunikaci s %1$s, %2$s a %3$s již nejsou ověřené. To může znamenat, že se někdo pokouší zachytit vaši konverzaci, nebo jen že si přeinstalovali Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Vaše bezpečnostní kódy pro komunikaci s %1$s, %2$s a %3$s již nejsou ověřené. To může znamenat, že se někdo pokouší zachytit vaši konverzaci, nebo že si jen přeinstalovali Signal.</string>
   <string name="IdentityUtil_untrusted_dialog_one">Váš bezpečnostní kód s %s se právě změnil</string>
   <string name="IdentityUtil_untrusted_dialog_two">Váš bezpečnostní kódy pro komunikaci s %1$s a %2$s se právě změnily</string>
   <string name="IdentityUtil_untrusted_dialog_many">Váš bezpečnostní kódy pro komunikaci s %1$s, %2$s a %3$s se právě změnily</string>
@@ -858,6 +858,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="recipient_preferences__color">Barva</string>
   <string name="recipient_preferences__color_for_this_contact">Barva tohoto kontaktu</string>
   <string name="recipient_preferences__view_safety_number">Zobrazit bezpečnostní kód</string>
+  <string name="recipient_preferences__chat_settings">Nastavení konverzace</string>
+  <string name="recipient_preferences__privacy">Soukromí</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal volání</string>
   <string name="redphone_call_controls__end_call">ukončit hovor</string>
@@ -873,13 +875,13 @@ Ověření vašeho telefonního čísla pro připojení k Signal</string>
     </string>
   <string name="registration_activity__phone_number">Telefonní číslo</string>
   <string name="registration_activity__register">Zaregistrovat</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signál umožňuje snadnou komunikaci použitím vašeho telefonního čísla a kontktů. Přátelé a ostatní kteří vědí jak vás kontaktovat prostřednictvím telefonu budou moct snadno kontaktovat i pomocí aplikace Signal.\n\nRegistrace odesílá některé kontaktní údaje na server, kde ale nejsou uloženy.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal umožňuje snadnou komunikaci použitím vašeho telefonního čísla a kontaktů. Přátelé a ostatní, kteří vědí, jak vás kontaktovat prostřednictvím telefonu, Vás budou moci snadno kontaktovat i pomocí aplikace Signal.\n\nRegistrace odesílá některé kontaktní údaje na server, kde ale nejsou uloženy.</string>
   <string name="registration_activity__powered_by_twilio">Powered by twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Možné příčiny jsou:</string>
   <string name="registration_problems__sms_interceptors">Přijemci SMS</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
-Některé aplikace třetích stran pro posílání zpráv jako Handcent nebo GoSMS fungují špatně a přijímají veškeré textové zprávy. Zkontrolujte zda jste přijali zprávu která začíná \'Your Signal verification code:\'. V takovém případě nakonfigurujte vaši aplikaci aby propouštěla SMS zprávy.</string>
+Některé aplikace třetích stran pro posílání zpráv jako Handcent nebo GoSMS fungují špatně a přijímají veškeré textové zprávy. Zkontrolujte, zda jste přijali zprávu, která začíná \'Your Signal verification code:\'. V takovém případě nakonfigurujte vaši aplikaci aby propouštěla SMS zprávy.</string>
   <string name="registration_problems__incorrect_number">Nesprávné číslo.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
         Prosím ověřte, že Vaše číslo je zadáno správně a ve správném
@@ -902,10 +904,10 @@ Je možné také použít telefonní ověření. Signal vám může zavolat a ov
         k síti.
     </string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">Abyste mohli použít tuto funkci Signal, musíte být připojeni k internetu.
-Zkontrolujte, zda jste připojeni přes obilním data nebo Wifi.</string>
+Zkontrolujte, zda jste připojeni přes mobilní data nebo Wifi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Firewall</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
-Jste-li připojeni přes Wifi, je možné, že existuje firewall který blokuje přístup k Signal serverům. Zkuste jinou síť, nebo mobilní data.</string>
+Jste-li připojeni přes Wifi, je možné, že existuje firewall, který blokuje přístup k Signal serverům. Zkuste jinou síť nebo mobilní data.</string>
   <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
 Signal nyní automaticky ověří vaše telefonní číslo pomocí potvrzovací SMS zprávy.</string>
   <string name="registration_progress_activity__connecting">Probíhá připojování...</string>
@@ -931,7 +933,7 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <!--unknown_sender_view-->
   <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">Odesílatel není v seznamu vašich konktů</string>
   <string name="unknown_sender_view__block">BLOKOVAT</string>
-  <string name="unknown_sender_view__add_to_contacts">PŘIDAT DO KOTAKTŮ</string>
+  <string name="unknown_sender_view__add_to_contacts">PŘIDAT DO KONTAKTŮ</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NEPŘIDÁVAT, ALE PONECHAT MŮJ PROFIL VIDITELNÝ</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Pokud chcete zkontrolovat bezpečnost šifrované komunikace s %s, porovnejte čísla nahoře na vašem zařízení s čísly na zařízení vašeho kontaktu. Můžete také oskenovat kód na jeho telefonu, nebo jej požádat, aby oskenoval kód na vašem zařízení. <a href="https://whispersystems.org/redirect/safety-numbers">Zjistěte více o kontrolních kódech.</a>.]]></string>
@@ -1092,18 +1094,18 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Povolit pokud vaše zařízení používá doručování SMS/MMS přes Wifi (povoleno pouze když je na zařízení povoleno \'Wifi volání\')</string>
   <string name="preferences_app_protection__blocked_contacts">Blokované kontakty</string>
   <string name="preferences_app_protection__safety_numbers_approval">Schválení bezpečnostních kódů</string>
-  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Vyžadovat schválení nových bezpečnostních kódů pokud se změní.</string>
+  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Vyžadovat schválení nových bezpečnostních kódů, pokud se změní</string>
   <string name="preferences_notifications__display_in_notifications">Zobrazit v upozornění</string>
   <string name="preferences_chats__when_using_mobile_data">Při použití mobilních datových přenosů</string>
   <string name="preferences_chats__when_using_wifi">Při použití Wifi</string>
   <string name="preferences_chats__when_roaming">Při roamingu</string>
-  <string name="preferences_chats__media_auto_download">Automatické stahování multimedií</string>
+  <string name="preferences_chats__media_auto_download">Automatické stahování multimédií</string>
   <string name="preferences_chats__message_trimming">Ořezávání práv</string>
   <string name="preferences_advanced__use_system_emoji">Použít systémové smajlíky</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Zakázat použití interních smajlíků aplikace Signal </string>
   <string name="preferences_advanced__video_calling_beta">Video volaní beta</string>
-  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Podpora pro novu generace video a hlasového volání pokud je povolena oběma účastníky. Tato tunkce je beta verze.</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Opravdu všechna volání přes servery Signál, aby nedošlo k odhalení vaší IP adresy volanému. Povolením dojde ke zhoršení kvality hovoru.</string>
+  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Podpora pro novou generaci video a hlasového volání, pokud je povolena oběma účastníky. Tato tunkce je beta verze.</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Přenášet všechna volání přes servery Signal, aby nedošlo k odhalení vaší IP adresy volanému. Povolením dojde ke zhoršení kvality hovoru.</string>
   <string name="preferences_advanced__always_relay_calls">Vždy předávat hovory</string>
   <string name="preferences_app_protection__app_access">Přístup aplikace</string>
   <string name="preferences_app_protection__communication">Komunikace</string>
@@ -1113,7 +1115,7 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="preferences_notifications__in_chat_sounds">Zvuk během konverzace</string>
   <string name="preferences_notifications__show">Zobrazit</string>
   <string name="preferences_chats__show_invitation_prompts">Zobrazovat pozvánky</string>
-  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Zobrazovat pozvánky prokontakty které nemají Signal</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Zobrazovat pozvánky pro kontakty bez aplikace Signal</string>
   <string name="preferences_chats__message_text_size">Velikost písma zprávy</string>
   <string name="preferences_events__contact_joined_signal">Kontakt se připojil k Signalu</string>
   <string name="preferences_notifications__priority">Priorita</string>
@@ -1247,5 +1249,25 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="trimmer__old_messages_successfully_deleted">Staré zprávy byly úspěšně smazány.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona přenosu</string>
+  <string name="conversation_item_sent__message_read">Zpráva přečtena</string>
+  <string name="preferences__read_receipts">Info o přečtení</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Jestliže jsou info o přečtení zakázány, nebudou se vám zobrazovat informace o přečtení od ostatních.</string>
+  <string name="RingtonePreference_ringtone_default">Výchozí vyzváněcí tón</string>
+  <string name="RingtonePreference_ringtone_silent">Nic</string>
+  <string name="RingtonePreference_ringtone_picker_title">Vyzváněcí tóny</string>
+  <string name="RingtonePreference_notification_sound_default">Výchozí zvuk upozornění</string>
+  <string name="RingtonePreference_alarm_sound_default">Výchozí zvuk alarmu</string>
+  <string name="RingtonePreference_add_ringtone_text">Přidat vyzvánění</string>
+  <string name="RingtonePreference_unable_to_add_ringtone">Nelze přidat uživatelské vyzvánění</string>
+  <string name="BucketedThreadMedia_Today">Dnes</string>
+  <string name="BucketedThreadMedia_Yesterday">Včera</string>
+  <string name="BucketedThreadMedia_This_week">Tento týden</string>
+  <string name="BucketedThreadMedia_This_month">Tento měsíc</string>
+  <string name="MediaOverviewActivity_Media">Media</string>
+  <string name="MediaOverviewActivity_Documents">Dokumenty</string>
+  <string name="media_overview_documents_fragment__no_documents_found">Nenalezeny žádné dokumenty</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Info o přečtení jsou zde</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Můžete zobrazit a sdílet informaci, že byly zprávy přečteny</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Povolit info o přečtení</string>
   <!--EOF-->
 </resources>

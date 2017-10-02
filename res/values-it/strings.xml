@@ -383,7 +383,7 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="MessageRecord_s_called_you">%s ti ha chiamato</string>
   <string name="MessageRecord_called_s">Hai chiamato %s</string>
   <string name="MessageRecord_missed_call_from">Chiamata persa da %s</string>
-  <string name="MessageRecord_s_joined_signal">%sè su Signal!</string>
+  <string name="MessageRecord_s_joined_signal">%s è su Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Hai settato i messaggi a scomparsa a %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ha settato i messaggi a scomparsa a %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Il tuo codice di sicurezza con %s è cambiato.</string>
@@ -838,6 +838,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="recipient_preferences__color">Colore</string>
   <string name="recipient_preferences__color_for_this_contact">Colore per questo contatto</string>
   <string name="recipient_preferences__view_safety_number">Mostra codice di sicurezza</string>
+  <string name="recipient_preferences__privacy">Privacy</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Chiamata Signal</string>
   <string name="redphone_call_controls__end_call">termina chiamata</string>
@@ -1229,5 +1230,9 @@ non riuscita.
   <string name="trimmer__old_messages_successfully_deleted">Vecchi messaggi cancellati con successo</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona trasporto</string>
+  <string name="RingtonePreference_ringtone_silent">Nessuna</string>
+  <string name="BucketedThreadMedia_Today">Oggi</string>
+  <string name="BucketedThreadMedia_Yesterday">Ieri</string>
+  <string name="MediaOverviewActivity_Documents">Documenti</string>
   <!--EOF-->
 </resources>

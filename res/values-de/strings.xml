@@ -215,7 +215,7 @@
   <string name="CreateProfileActivity_updating_profile">Profil wird aktualisiert</string>
   <string name="CreateProfileActivity_updating_and_encrypting_profile">Profil wird aktualisiert und verschlüsselt</string>
   <string name="CreateProfileActivity_profile_photo">Profilfoto</string>
-  <string name="CreateProfileActivity_too_long">Profilname zu lang</string>
+  <string name="CreateProfileActivity_too_long">Zu lang</string>
   <string name="CreateProfileActivity_error_capturing_photo_camera_did_not_return_image">Fehler beim Fotografieren: Kamera hat kein Bild zurückgegeben</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Benutzerdefiniert: %s</string>
@@ -542,7 +542,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Blockierte Kontakte werden dir keine Nachrichten mehr senden oder dich anrufen können.</string>
   <string name="UnknownSenderView_block">Blockieren</string>
   <string name="UnknownSenderView_share_profile_with_s">Profil mit %s teilen?</string>
-  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Der einfachste Weg zum Teilen deiner Profilinformationen ist das Hinzufügen des Absenders zu deinen Kontakten. Falls du das nicht willst, kannst du deine Profilinformationen immer noch auf diese Weise teilen.</string>
+  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Der einfachste Weg zum Teilen deiner Profilinformationen ist das Hinzufügen des Absenders zu deinen Kontakten. Falls du das nicht möchtest, kannst du deine Profilinformationen immer noch auf diese Weise teilen.</string>
   <string name="UnknownSenderView_share_profile">Profil teilen</string>
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Nachricht senden?</string>
@@ -829,6 +829,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="recipient_preferences__color">Farbe</string>
   <string name="recipient_preferences__color_for_this_contact">Farbe für diesen Kontakt</string>
   <string name="recipient_preferences__view_safety_number">Sicherheitsnummer anzeigen</string>
+  <string name="recipient_preferences__chat_settings">Unterhaltungseinstellungen</string>
+  <string name="recipient_preferences__privacy">Datenschutz</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal-Anruf</string>
   <string name="redphone_call_controls__end_call">Anruf beenden</string>
@@ -1203,5 +1205,25 @@ Das Warten auf eine Verifikations-SMS hat zu lange gedauert.</string>
   <string name="trimmer__old_messages_successfully_deleted">Alte Nachrichten wurden erfolgreich gelöscht</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Übertragungssymbol</string>
+  <string name="conversation_item_sent__message_read">Nachricht gelesen</string>
+  <string name="preferences__read_receipts">Lesebestätigungen</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Bei deaktivierten Lesebestätigungen wirst du auch die von anderen nicht sehen können.</string>
+  <string name="RingtonePreference_ringtone_default">Standard-Klingelton</string>
+  <string name="RingtonePreference_ringtone_silent">Keinen</string>
+  <string name="RingtonePreference_ringtone_picker_title">Klingeltöne</string>
+  <string name="RingtonePreference_notification_sound_default">Standard-Benachrichtigungston</string>
+  <string name="RingtonePreference_alarm_sound_default">Standard-Weckerton</string>
+  <string name="RingtonePreference_add_ringtone_text">Klingelton hinzufügen</string>
+  <string name="RingtonePreference_unable_to_add_ringtone">Klingelton kann nicht hinzugefügt werden</string>
+  <string name="BucketedThreadMedia_Today">Heute</string>
+  <string name="BucketedThreadMedia_Yesterday">Gestern</string>
+  <string name="BucketedThreadMedia_This_week">Diese Woche</string>
+  <string name="BucketedThreadMedia_This_month">Diesen Monat</string>
+  <string name="MediaOverviewActivity_Media">Medieninhalte</string>
+  <string name="MediaOverviewActivity_Documents">Dokumente</string>
+  <string name="media_overview_documents_fragment__no_documents_found">Keine Dokumente gefunden</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Lesebestätigungen sind da</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Optional sehen und teilen, wann Nachrichten gelesen wurden</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Lesebestätigungen aktivieren</string>
   <!--EOF-->
 </resources>

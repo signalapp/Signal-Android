@@ -842,6 +842,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="recipient_preferences__color">Farge</string>
   <string name="recipient_preferences__color_for_this_contact">Farge for denne kontakten</string>
   <string name="recipient_preferences__view_safety_number">Vis tryggleiksnummer</string>
+  <string name="recipient_preferences__chat_settings">Samtaleinnstillingar</string>
+  <string name="recipient_preferences__privacy">Personvern</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal-samtale</string>
   <string name="redphone_call_controls__end_call">avslutt samtale</string>
@@ -1097,7 +1099,7 @@ Signal fekk tidsavbrot ved venting på stadfestingsmeldinga.</string>
   <string name="preferences_chats__chats">Samtalar</string>
   <string name="preferences_notifications__messages">Meldingar</string>
   <string name="preferences_notifications__events">Hendingar</string>
-  <string name="preferences_notifications__in_chat_sounds">Lydar i chat</string>
+  <string name="preferences_notifications__in_chat_sounds">Lydar i samtalar</string>
   <string name="preferences_notifications__show">Vis</string>
   <string name="preferences_chats__show_invitation_prompts">Oppfordring om invitering</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Vis oppfordring om å invitera kontaktar som ikkje har Signal</string>
@@ -1233,5 +1235,25 @@ Signal fekk tidsavbrot ved venting på stadfestingsmeldinga.</string>
   <string name="trimmer__old_messages_successfully_deleted">Gamle meldingar vart sletta</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
+  <string name="conversation_item_sent__message_read">Melding lesen</string>
+  <string name="preferences__read_receipts">Lesekvitteringar</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Viss du ikkje skrur på lesekvitteringar, så kan du ikkje sjå lesekvitteringane frå andre.</string>
+  <string name="RingtonePreference_ringtone_default">Standard ringelyd</string>
+  <string name="RingtonePreference_ringtone_silent">Inga</string>
+  <string name="RingtonePreference_ringtone_picker_title">Ringelyd</string>
+  <string name="RingtonePreference_notification_sound_default">Standard meldingslyd</string>
+  <string name="RingtonePreference_alarm_sound_default">Standard alarmlyd</string>
+  <string name="RingtonePreference_add_ringtone_text">Legg til ringelyd</string>
+  <string name="RingtonePreference_unable_to_add_ringtone">Klarte ikkje legga til eigen ringelyd</string>
+  <string name="BucketedThreadMedia_Today">I dag</string>
+  <string name="BucketedThreadMedia_Yesterday">I går</string>
+  <string name="BucketedThreadMedia_This_week">Denne veka</string>
+  <string name="BucketedThreadMedia_This_month">Neste månad</string>
+  <string name="MediaOverviewActivity_Media">Media</string>
+  <string name="MediaOverviewActivity_Documents">Dokument</string>
+  <string name="media_overview_documents_fragment__no_documents_found">Fann inga dokument</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Lesekvitteringar er her</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Valfritt sjå og del om meldingar er lesne</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Skru på lesekvitteringar</string>
   <!--EOF-->
 </resources>
