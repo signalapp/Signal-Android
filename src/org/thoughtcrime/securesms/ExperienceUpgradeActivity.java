@@ -65,9 +65,9 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity {
     READ_RECEIPTS(299,
                   new IntroPage(0xFF2090EA,
                                 ReadReceiptsIntroFragment.newInstance()),
-                  R.string.ExperienceUpgradeActivity_signal_profiles_are_here,
-                  R.string.ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal,
-                  R.string.ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal,
+                  R.string.experience_upgrade_preference_fragment__read_receipts_are_here,
+                  R.string.experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read,
+                  R.string.experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read,
                   null);
 
     private            int             version;
