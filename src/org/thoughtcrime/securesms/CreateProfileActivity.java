@@ -1,27 +1,33 @@
 package org.thoughtcrime.securesms;
 
 
+import android.animation.Animator;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Pair;
 import android.view.KeyEvent;
+import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dd.CircularProgressButton;
 import com.soundcloud.android.crop.Crop;
 
 import org.thoughtcrime.securesms.components.InputAwareLayout;
@@ -43,7 +49,6 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
-import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.util.StreamDetails;
@@ -70,12 +75,13 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
 
   @Inject SignalServiceAccountManager accountManager;
 
-  private InputAwareLayout container;
-  private ImageView        avatar;
-  private Button           finishButton;
-  private EditText         name;
-  private EmojiToggle      emojiToggle;
-  private EmojiDrawer      emojiDrawer;
+  private InputAwareLayout       container;
+  private ImageView              avatar;
+  private CircularProgressButton finishButton;
+  private EditText               name;
+  private EmojiToggle            emojiToggle;
+  private EmojiDrawer            emojiDrawer;
+  private View                   reveal;
 
   private Intent nextIntent;
   private byte[] avatarBytes;
@@ -161,6 +167,7 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
     this.emojiDrawer  = ViewUtil.findById(this, R.id.emoji_drawer);
     this.container    = ViewUtil.findById(this, R.id.container);
     this.finishButton = ViewUtil.findById(this, R.id.finish_button);
+    this.reveal       = ViewUtil.findById(this, R.id.reveal);
     this.nextIntent   = getIntent().getParcelableExtra(NEXT_INTENT);
 
     this.avatar.setImageDrawable(ContactPhotoFactory.getResourceContactPhoto(R.drawable.ic_camera_alt_white_24dp)
@@ -196,6 +203,8 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
     });
 
     this.finishButton.setOnClickListener(view -> {
+      this.finishButton.setIndeterminateProgressMode(true);
+      this.finishButton.setProgress(50);
       handleUpload();
     });
 
@@ -350,17 +359,15 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
     else                                                avatar = new StreamDetails(new ByteArrayInputStream(avatarBytes),
                                                                                    "image/jpeg", avatarBytes.length);
 
-    new ProgressDialogAsyncTask<Void, Void, Boolean>(this,
-                                                     getString(R.string.CreateProfileActivity_updating_and_encrypting_profile),
-                                                     getString(R.string.CreateProfileActivity_updating_profile))
-    {
+    new AsyncTask<Void, Void, Boolean>() {
       @Override
       protected Boolean doInBackground(Void... params) {
-        byte[] profileKey = ProfileKeyUtil.getProfileKey(CreateProfileActivity.this);
+        Context context    = CreateProfileActivity.this;
+        byte[]  profileKey = ProfileKeyUtil.getProfileKey(CreateProfileActivity.this);
 
         try {
           accountManager.setProfileName(profileKey, name);
-          TextSecurePreferences.setProfileName(getContext(), name);
+          TextSecurePreferences.setProfileName(context, name);
         } catch (IOException e) {
           Log.w(TAG, e);
           return false;
@@ -368,13 +375,13 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
 
         try {
           accountManager.setProfileAvatar(profileKey, avatar);
-          AvatarHelper.setAvatar(getContext(), Address.fromSerialized(TextSecurePreferences.getLocalNumber(getContext())), avatarBytes);
+          AvatarHelper.setAvatar(CreateProfileActivity.this, Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)), avatarBytes);
         } catch (IOException e) {
           Log.w(TAG, e);
           return false;
         }
 
-        ApplicationContext.getInstance(getContext()).getJobManager().add(new MultiDeviceProfileKeyUpdateJob(getContext()));
+        ApplicationContext.getInstance(context).getJobManager().add(new MultiDeviceProfileKeyUpdateJob(context));
 
         return true;
       }
@@ -385,14 +392,56 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
 
         if (result) {
           if (captureFile != null) captureFile.delete();
-          if (nextIntent != null)  startActivity(nextIntent);
-
-          finish();
+          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) handleFinishedLollipop();
+          else                                                       handleFinishedLegacy();
         } else        {
           Toast.makeText(CreateProfileActivity.this, R.string.CreateProfileActivity_problem_setting_profile, Toast.LENGTH_LONG).show();
         }
       }
     }.execute();
+  }
+
+  private void handleFinishedLegacy() {
+    finishButton.setProgress(0);
+    if (nextIntent != null) startActivity(nextIntent);
+    finish();
+  }
+
+  @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+  private void handleFinishedLollipop() {
+    int[] finishButtonLocation = new int[2];
+    int[] revealLocation       = new int[2];
+
+    finishButton.getLocationInWindow(finishButtonLocation);
+    reveal.getLocationInWindow(revealLocation);
+
+    int finishX = finishButtonLocation[0] - revealLocation[0];
+    int finishY = finishButtonLocation[1] - revealLocation[1];
+
+    finishX += finishButton.getWidth() / 2;
+    finishY += finishButton.getHeight() / 2;
+
+    Animator animation = ViewAnimationUtils.createCircularReveal(reveal, finishX, finishY, 0f, (float) Math.max(reveal.getWidth(), reveal.getHeight()));
+    animation.setDuration(500);
+    animation.addListener(new Animator.AnimatorListener() {
+      @Override
+      public void onAnimationStart(Animator animation) {}
+
+      @Override
+      public void onAnimationEnd(Animator animation) {
+        finishButton.setProgress(0);
+        if (nextIntent != null)  startActivity(nextIntent);
+        finish();
+      }
+
+      @Override
+      public void onAnimationCancel(Animator animation) {}
+      @Override
+      public void onAnimationRepeat(Animator animation) {}
+    });
+
+    reveal.setVisibility(View.VISIBLE);
+    animation.start();
   }
 
 

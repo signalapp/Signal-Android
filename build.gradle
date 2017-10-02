@@ -106,6 +106,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'recyclerview-v7'
     }
     compile 'com.codewaves.stickyheadergrid:stickyheadergrid:0.9.4'
+    compile 'com.github.dmytrodanylyk.circular-progress-button:library:1.1.3'
 
 
     testCompile 'junit:junit:4.12'
@@ -173,6 +174,7 @@ dependencyVerification {
         'com.annimon:stream:5da6e2e3e0551d61a3ea7014f04312276549e3dd739cf637996e4cf43c5535b9',
         'com.takisoft.fix:colorpicker:f5d0dbabe406a1800498ca9c1faf34db36e021d8488bf10360f29961fe3ab0d1',
         'com.codewaves.stickyheadergrid:stickyheadergrid:5b4aa6a52a957cfd55f60f4220c11c0c371385a3cb9786cae03c260dcdef5794',
+        'com.github.dmytrodanylyk.circular-progress-button:library:635882453475181d737719b2adef658d80f9f85c9bdaf022f06cd22f387cdb16',
         'com.android.support:support-annotations:a774272036941b4e912eb426d70c848bde7f06a3bf5fb491f75a427dc6595270',
         'com.android.support:support-v4:ee44c481a1f4d6978568e223e8125379b52b2ececdd53450e09ebae144bd377d',
         'com.android.support:support-vector-drawable:077009d13882ee96f061e4bc2dbe7cce7ae1762d8297592a787ff741afbfb1f2',

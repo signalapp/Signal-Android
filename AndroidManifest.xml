@@ -387,6 +387,7 @@
 
     <activity android:name=".CreateProfileActivity"
               android:theme="@style/TextSecure.LightTheme"
+              android:windowSoftInputMode="stateVisible"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".ClearProfileAvatarActivity"
