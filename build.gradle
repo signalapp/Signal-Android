@@ -63,7 +63,7 @@ dependencies {
 
     compile 'org.whispersystems:jobmanager:1.0.2'
     compile 'org.whispersystems:libpastelog:1.0.7'
-    compile 'org.whispersystems:signal-service-android:2.6.8'
+    compile 'org.whispersystems:signal-service-android:2.6.9'
     compile 'org.whispersystems:webrtc-android:M59-S1'
 
     compile "me.leolin:ShortcutBadger:1.1.16"
@@ -147,7 +147,7 @@ dependencyVerification {
         'com.google.android.exoplayer:exoplayer:955085aa611a8f7cf6c61b88ae03d1a392f4ad94c9bfbc153f3dedb9ffb14718',
         'org.whispersystems:jobmanager:506f679fc2fcf7bb6d10f00f41d6f6ea0abf75c70dc95b913398661ad538a181',
         'org.whispersystems:libpastelog:bb331d9a98240fc139101128ba836c1edec3c40e000597cdbb29ebf4cbf34d88',
-        'org.whispersystems:signal-service-android:d09045c60d2e8f58fc9c740d30610c65b910408f3287bff529f0854eb6b4e0e7',
+        'org.whispersystems:signal-service-android:d7901f6db439590eeb53c50f339043e2513ac88379ae76d5da375170723d7db6',
         'org.whispersystems:webrtc-android:de647643afbbea45a26a4f24db75aa10bc8de45426e8eb0d9d563cc10af4f582',
         'me.leolin:ShortcutBadger:e3cb3e7625892129b0c92dd5e4bc649faffdd526d5af26d9c45ee31ff8851774',
         'se.emilsjolander:stickylistheaders:a08ca948aa6b220f09d82f16bbbac395f6b78897e9eeac6a9f0b0ba755928eeb',
@@ -186,7 +186,7 @@ dependencyVerification {
         'com.google.android.gms:play-services-basement:95dd882c5ffba15b9a99de3fefb05d3a01946623af67454ca00055d222f85a8d',
         'com.google.android.gms:play-services-iid:54e919f9957b8b7820da7ee9b83471d00d0cac1cf08ddea8b5b41aea80bb1a70',
         'org.whispersystems:signal-protocol-android:5b8acded7f2a40178eb90ab8e8cbfec89d170d91b3ff5e78487d1098df6185a1',
-        'org.whispersystems:signal-service-java:fed0f00804cf7340775d12bf6996afe9fe2bbd34dea17cd7d36525fad6099311',
+        'org.whispersystems:signal-service-java:bc0200c10c09a1535f19c44ae7c315507f1a6e391e40815851bd29f027a37676',
         'com.nineoldandroids:library:68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a',
         'javax.inject:javax.inject:91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff',
         'com.klinkerapps:logger:177e325259a8b111ad6745ec10db5861723c99f402222b80629f576f49408541',

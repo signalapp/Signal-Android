@@ -475,6 +475,12 @@ public class PushDecryptJob extends ContextJob {
                         .getJobManager()
                         .add(new MultiDeviceBlockedUpdateJob(getContext()));
     }
+
+    if (message.isConfigurationRequest()) {
+      ApplicationContext.getInstance(context)
+                        .getJobManager()
+                        .add(new MultiDeviceReadReceiptUpdateJob(getContext(), TextSecurePreferences.isReadReceiptsEnabled(getContext())));
+    }
   }
 
   private void handleSynchronizeReadMessage(@NonNull MasterSecretUnion masterSecret,
