@@ -72,6 +72,7 @@ import java.security.SecureRandom;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class MmsDatabase extends MessagingDatabase {
@@ -338,6 +339,7 @@ public class MmsDatabase extends MessagingDatabase {
     notifyConversationListeners(threadId);
   }
 
+  @Override
   public void markAsSent(long messageId, boolean secure) {
     long threadId = getThreadIdForMessage(messageId);
     updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_SENT_TYPE | (secure ? Types.PUSH_MESSAGE_BIT | Types.SECURE_MESSAGE_BIT : 0), Optional.of(threadId));
@@ -385,10 +387,12 @@ public class MmsDatabase extends MessagingDatabase {
     notifyConversationListeners(threadId);
   }
 
+  @Override
   public void markExpireStarted(long messageId) {
     markExpireStarted(messageId, System.currentTimeMillis());
   }
 
+  @Override
   public void markExpireStarted(long messageId, long startedTimestamp) {
     ContentValues contentValues = new ContentValues();
     contentValues.put(EXPIRE_STARTED, startedTimestamp);
@@ -781,7 +785,7 @@ public class MmsDatabase extends MessagingDatabase {
   public long insertMessageOutbox(@NonNull MasterSecretUnion masterSecret,
                                   @NonNull OutgoingMediaMessage message,
                                   long threadId, boolean forceSms,
-                                  SmsDatabase.InsertListener insertListener)
+                                  @Nullable SmsDatabase.InsertListener insertListener)
       throws MmsException
   {
     long type = Types.BASE_SENDING_TYPE;
@@ -801,6 +805,9 @@ public class MmsDatabase extends MessagingDatabase {
       type |= Types.EXPIRATION_TIMER_UPDATE_BIT;
     }
 
+    Map<Address, Long> earlyDeliveryReceipts = earlyDeliveryReceiptCache.remove(message.getSentTimeMillis());
+    Map<Address, Long> earlyReadReceipts     = earlyReadReceiptCache.remove(message.getSentTimeMillis());
+
     ContentValues contentValues = new ContentValues();
     contentValues.put(DATE_SENT, message.getSentTimeMillis());
     contentValues.put(MESSAGE_TYPE, PduHeaders.MESSAGE_TYPE_SEND_REQ);
@@ -812,8 +819,8 @@ public class MmsDatabase extends MessagingDatabase {
     contentValues.put(SUBSCRIPTION_ID, message.getSubscriptionId());
     contentValues.put(EXPIRES_IN, message.getExpiresIn());
     contentValues.put(ADDRESS, message.getRecipient().getAddress().serialize());
-    contentValues.put(DELIVERY_RECEIPT_COUNT, earlyDeliveryReceiptCache.remove(message.getSentTimeMillis(), message.getRecipient().getAddress()));
-    contentValues.put(READ_RECEIPT_COUNT, earlyReadReceiptCache.remove(message.getSentTimeMillis(), message.getRecipient().getAddress()));
+    contentValues.put(DELIVERY_RECEIPT_COUNT, Stream.of(earlyDeliveryReceipts.values()).mapToLong(Long::longValue).sum());
+    contentValues.put(READ_RECEIPT_COUNT, Stream.of(earlyReadReceipts.values()).mapToLong(Long::longValue).sum());
 
     long messageId = insertMediaMessage(masterSecret, message.getBody(), message.getAttachments(), contentValues, insertListener);
 
@@ -823,6 +830,9 @@ public class MmsDatabase extends MessagingDatabase {
 
       receiptDatabase.insert(Stream.of(members).map(Recipient::getAddress).toList(),
                              messageId, GroupReceiptDatabase.STATUS_UNDELIVERED, message.getSentTimeMillis());
+
+      for (Address address : earlyDeliveryReceipts.keySet()) receiptDatabase.update(address, messageId, GroupReceiptDatabase.STATUS_DELIVERED, -1);
+      for (Address address : earlyReadReceipts.keySet())     receiptDatabase.update(address, messageId, GroupReceiptDatabase.STATUS_READ, -1);
     }
 
     DatabaseFactory.getThreadDatabase(context).setLastSeen(threadId);

@@ -27,6 +27,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
 
+import com.annimon.stream.Stream;
+
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchList;
@@ -48,6 +50,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -230,6 +233,7 @@ public class SmsDatabase extends MessagingDatabase {
     updateTypeBitmask(id, Types.BASE_TYPE_MASK, Types.BASE_PENDING_INSECURE_SMS_FALLBACK);
   }
 
+  @Override
   public void markAsSent(long id, boolean isSecure) {
     updateTypeBitmask(id, Types.BASE_TYPE_MASK, Types.BASE_SENT_TYPE | (isSecure ? Types.PUSH_MESSAGE_BIT | Types.SECURE_MESSAGE_BIT : 0));
   }
@@ -238,10 +242,12 @@ public class SmsDatabase extends MessagingDatabase {
     updateTypeBitmask(id, Types.TOTAL_MASK, Types.MISSED_CALL_TYPE);
   }
 
+  @Override
   public void markExpireStarted(long id) {
     markExpireStarted(id, System.currentTimeMillis());
   }
 
+  @Override
   public void markExpireStarted(long id, long startedAtTimestamp) {
     ContentValues contentValues = new ContentValues();
     contentValues.put(EXPIRE_STARTED, startedAtTimestamp);
@@ -594,7 +600,9 @@ public class SmsDatabase extends MessagingDatabase {
     if      (message.isIdentityVerified()) type |= Types.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT;
     else if (message.isIdentityDefault())  type |= Types.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT;
 
-    Address address = message.getRecipient().getAddress();
+    Address            address               = message.getRecipient().getAddress();
+    Map<Address, Long> earlyDeliveryReceipts = earlyDeliveryReceiptCache.remove(date);
+    Map<Address, Long> earlyReadReceipts     = earlyReadReceiptCache.remove(date);
 
     ContentValues contentValues = new ContentValues(6);
     contentValues.put(ADDRESS, address.serialize());
@@ -606,8 +614,8 @@ public class SmsDatabase extends MessagingDatabase {
     contentValues.put(TYPE, type);
     contentValues.put(SUBSCRIPTION_ID, message.getSubscriptionId());
     contentValues.put(EXPIRES_IN, message.getExpiresIn());
-    contentValues.put(DELIVERY_RECEIPT_COUNT, earlyDeliveryReceiptCache.remove(date, address));
-    contentValues.put(READ_RECEIPT_COUNT, earlyReadReceiptCache.remove(date, address));
+    contentValues.put(DELIVERY_RECEIPT_COUNT, Stream.of(earlyDeliveryReceipts.values()).mapToLong(Long::longValue).sum());
+    contentValues.put(READ_RECEIPT_COUNT, Stream.of(earlyReadReceipts.values()).mapToLong(Long::longValue).sum());
 
     SQLiteDatabase db        = databaseHelper.getWritableDatabase();
     long           messageId = db.insert(TABLE_NAME, ADDRESS, contentValues);

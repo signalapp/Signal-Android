@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.MessagingDatabase;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -34,6 +35,7 @@ import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
+import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
@@ -42,6 +44,7 @@ import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.IncomingPreKeyBundleMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
+import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.Base64;
@@ -173,7 +176,7 @@ public class PushDecryptJob extends ContextJob {
       } else if (content.getSyncMessage().isPresent()) {
         SignalServiceSyncMessage syncMessage = content.getSyncMessage().get();
 
-        if      (syncMessage.getSent().isPresent())     handleSynchronizeSentMessage(masterSecret, envelope, syncMessage.getSent().get(), smsMessageId);
+        if      (syncMessage.getSent().isPresent())     handleSynchronizeSentMessage(masterSecret, envelope, syncMessage.getSent().get());
         else if (syncMessage.getRequest().isPresent())  handleSynchronizeRequestMessage(masterSecret, syncMessage.getRequest().get());
         else if (syncMessage.getRead().isPresent())     handleSynchronizeReadMessage(masterSecret, syncMessage.getRead().get(), envelope.getTimestamp());
         else if (syncMessage.getVerified().isPresent()) handleSynchronizeVerifiedMessage(masterSecret, syncMessage.getVerified().get());
@@ -328,8 +331,7 @@ public class PushDecryptJob extends ContextJob {
   }
 
   private long handleSynchronizeSentEndSessionMessage(@NonNull MasterSecretUnion     masterSecret,
-                                                      @NonNull SentTranscriptMessage message,
-                                                      @NonNull Optional<Long>        smsMessageId)
+                                                      @NonNull SentTranscriptMessage message)
   {
     EncryptingSmsDatabase     database                  = DatabaseFactory.getEncryptingSmsDatabase(context);
     Recipient                 recipient                 = getSyncMessageDestination(message);
@@ -347,10 +349,6 @@ public class PushDecryptJob extends ContextJob {
       long messageId = database.insertMessageOutbox(masterSecret, threadId, outgoingEndSessionMessage,
                                                     false, message.getTimestamp(), null);
       database.markAsSent(messageId, true);
-    }
-
-    if (smsMessageId.isPresent()) {
-      database.deleteMessage(smsMessageId.get());
     }
 
     return threadId;
@@ -411,8 +409,7 @@ public class PushDecryptJob extends ContextJob {
 
   private void handleSynchronizeSentMessage(@NonNull MasterSecretUnion masterSecret,
                                             @NonNull SignalServiceEnvelope envelope,
-                                            @NonNull SentTranscriptMessage message,
-                                            @NonNull Optional<Long> smsMessageId)
+                                            @NonNull SentTranscriptMessage message)
       throws MmsException
   {
     GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
@@ -420,15 +417,15 @@ public class PushDecryptJob extends ContextJob {
     Long threadId;
 
     if (message.getMessage().isEndSession()) {
-      threadId = handleSynchronizeSentEndSessionMessage(masterSecret, message, smsMessageId);
+      threadId = handleSynchronizeSentEndSessionMessage(masterSecret, message);
     } else if (message.getMessage().isGroupUpdate()) {
       threadId = GroupMessageProcessor.process(context, masterSecret, envelope, message.getMessage(), true);
     } else if (message.getMessage().isExpirationUpdate()) {
-      threadId = handleSynchronizeSentExpirationUpdate(masterSecret, message, smsMessageId);
+      threadId = handleSynchronizeSentExpirationUpdate(masterSecret, message);
     } else if (message.getMessage().getAttachments().isPresent()) {
-      threadId = handleSynchronizeSentMediaMessage(masterSecret, message, smsMessageId);
+      threadId = handleSynchronizeSentMediaMessage(masterSecret, message);
     } else {
-      threadId = handleSynchronizeSentTextMessage(masterSecret, message, smsMessageId);
+      threadId = handleSynchronizeSentTextMessage(masterSecret, message);
     }
 
     if (message.getMessage().getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get().getGroupId(), false))) {
@@ -556,8 +553,7 @@ public class PushDecryptJob extends ContextJob {
   }
 
   private long handleSynchronizeSentExpirationUpdate(@NonNull MasterSecretUnion masterSecret,
-                                                     @NonNull SentTranscriptMessage message,
-                                                     @NonNull Optional<Long> smsMessageId)
+                                                     @NonNull SentTranscriptMessage message)
       throws MmsException
   {
     MmsDatabase database   = DatabaseFactory.getMmsDatabase(context);
@@ -574,16 +570,11 @@ public class PushDecryptJob extends ContextJob {
 
     DatabaseFactory.getRecipientDatabase(context).setExpireMessages(recipient, message.getMessage().getExpiresInSeconds());
 
-    if (smsMessageId.isPresent()) {
-      DatabaseFactory.getSmsDatabase(context).deleteMessage(smsMessageId.get());
-    }
-
     return threadId;
   }
 
   private long handleSynchronizeSentMediaMessage(@NonNull MasterSecretUnion masterSecret,
-                                                 @NonNull SentTranscriptMessage message,
-                                                 @NonNull Optional<Long> smsMessageId)
+                                                 @NonNull SentTranscriptMessage message)
       throws MmsException
   {
     MmsDatabase           database     = DatabaseFactory.getMmsDatabase(context);
@@ -597,7 +588,7 @@ public class PushDecryptJob extends ContextJob {
     mediaMessage = new OutgoingSecureMediaMessage(mediaMessage);
 
     if (recipients.getExpireMessages() != message.getMessage().getExpiresInSeconds()) {
-      handleSynchronizeSentExpirationUpdate(masterSecret, message, Optional.<Long>absent());
+      handleSynchronizeSentExpirationUpdate(masterSecret, message);
     }
 
     long threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
@@ -609,10 +600,6 @@ public class PushDecryptJob extends ContextJob {
       ApplicationContext.getInstance(context)
                         .getJobManager()
                         .add(new AttachmentDownloadJob(context, messageId, attachment.getAttachmentId(), false));
-    }
-
-    if (smsMessageId.isPresent()) {
-      DatabaseFactory.getSmsDatabase(context).deleteMessage(smsMessageId.get());
     }
 
     if (message.getMessage().getExpiresInSeconds() > 0) {
@@ -667,28 +654,37 @@ public class PushDecryptJob extends ContextJob {
   }
 
   private long handleSynchronizeSentTextMessage(@NonNull MasterSecretUnion masterSecret,
-                                                @NonNull SentTranscriptMessage message,
-                                                @NonNull Optional<Long> smsMessageId)
+                                                @NonNull SentTranscriptMessage message)
       throws MmsException
   {
-    EncryptingSmsDatabase database            = DatabaseFactory.getEncryptingSmsDatabase(context);
-    Recipient             recipient           = getSyncMessageDestination(message);
-    String                body                = message.getMessage().getBody().or("");
-    long                  expiresInMillis     = message.getMessage().getExpiresInSeconds() * 1000;
-    OutgoingTextMessage   outgoingTextMessage = new OutgoingTextMessage(recipient, body, expiresInMillis, -1);
+
+    Recipient recipient       = getSyncMessageDestination(message);
+    String    body            = message.getMessage().getBody().or("");
+    long      expiresInMillis = message.getMessage().getExpiresInSeconds() * 1000;
 
     if (recipient.getExpireMessages() != message.getMessage().getExpiresInSeconds()) {
-      handleSynchronizeSentExpirationUpdate(masterSecret, message, Optional.<Long>absent());
+      handleSynchronizeSentExpirationUpdate(masterSecret, message);
     }
 
     long threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
-    long messageId = database.insertMessageOutbox(masterSecret, threadId, outgoingTextMessage, false, message.getTimestamp(), null);
+
+    MessagingDatabase database;
+    long              messageId;
+
+    if (recipient.getAddress().isGroup()) {
+      OutgoingMediaMessage outgoingMediaMessage = new OutgoingMediaMessage(recipient, new SlideDeck(), body, message.getTimestamp(), -1, expiresInMillis, ThreadDatabase.DistributionTypes.DEFAULT);
+      outgoingMediaMessage = new OutgoingSecureMediaMessage(outgoingMediaMessage);
+
+      messageId = DatabaseFactory.getMmsDatabase(context).insertMessageOutbox(masterSecret, outgoingMediaMessage, threadId, false, null);
+      database  = DatabaseFactory.getMmsDatabase(context);
+    } else {
+      OutgoingTextMessage outgoingTextMessage = new OutgoingEncryptedMessage(recipient, body, expiresInMillis);
+
+      messageId = DatabaseFactory.getEncryptingSmsDatabase(context).insertMessageOutbox(masterSecret, threadId, outgoingTextMessage, false, message.getTimestamp(), null);
+      database  = DatabaseFactory.getSmsDatabase(context);
+    }
 
     database.markAsSent(messageId, true);
-
-    if (smsMessageId.isPresent()) {
-      database.deleteMessage(smsMessageId.get());
-    }
 
     if (expiresInMillis > 0) {
       database.markExpireStarted(messageId, message.getExpirationStartTimestamp());

@@ -122,17 +122,21 @@ public class MessageRecipientListItem extends RelativeLayout
         new ResendAsyncTask(masterSecret, record, networkFailure).execute();
       });
     } else {
-      if (member.getDeliveryStatus() == RecipientDeliveryStatus.Status.PENDING || member.getDeliveryStatus() == RecipientDeliveryStatus.Status.UNKNOWN) {
+      if (record.isOutgoing()) {
+        if (member.getDeliveryStatus() == RecipientDeliveryStatus.Status.PENDING || member.getDeliveryStatus() == RecipientDeliveryStatus.Status.UNKNOWN) {
+          deliveryStatusView.setVisibility(View.GONE);
+        } else if (member.getDeliveryStatus() == RecipientDeliveryStatus.Status.READ) {
+          deliveryStatusView.setRead();
+          deliveryStatusView.setVisibility(View.VISIBLE);
+        } else if (member.getDeliveryStatus() == RecipientDeliveryStatus.Status.DELIVERED) {
+          deliveryStatusView.setDelivered();
+          deliveryStatusView.setVisibility(View.VISIBLE);
+        } else if (member.getDeliveryStatus() == RecipientDeliveryStatus.Status.SENT) {
+          deliveryStatusView.setSent();
+          deliveryStatusView.setVisibility(View.VISIBLE);
+        }
+      } else {
         deliveryStatusView.setVisibility(View.GONE);
-      } else if (member.getDeliveryStatus() == RecipientDeliveryStatus.Status.READ) {
-        deliveryStatusView.setRead();
-        deliveryStatusView.setVisibility(View.VISIBLE);
-      } else if (member.getDeliveryStatus() == RecipientDeliveryStatus.Status.DELIVERED) {
-        deliveryStatusView.setDelivered();
-        deliveryStatusView.setVisibility(View.VISIBLE);
-      } else if (member.getDeliveryStatus() == RecipientDeliveryStatus.Status.SENT) {
-        deliveryStatusView.setSent();
-        deliveryStatusView.setVisibility(View.VISIBLE);
       }
 
       resendButton.setVisibility(View.GONE);

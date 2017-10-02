@@ -29,6 +29,11 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
 
   protected abstract String getTableName();
 
+  public abstract void markExpireStarted(long messageId);
+  public abstract void markExpireStarted(long messageId, long startTime);
+
+  public abstract void markAsSent(long messageId, boolean secure);
+
   public void setMismatchedIdentity(long messageId, final Address address, final IdentityKey identityKey) {
     List<IdentityKeyMismatch> items = new ArrayList<IdentityKeyMismatch>() {{
       add(new IdentityKeyMismatch(address, identityKey));
