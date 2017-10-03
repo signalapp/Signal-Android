@@ -613,7 +613,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleConversationSettings() {
-    titleView.performClick();
+    Intent intent = new Intent(ConversationActivity.this, RecipientPreferenceActivity.class);
+    intent.putExtra(RecipientPreferenceActivity.ADDRESS_EXTRA, recipient.getAddress());
+    intent.putExtra(RecipientPreferenceActivity.CAN_HAVE_SAFETY_NUMBER_EXTRA,
+                    isSecureText && !isSelfConversation());
+
+    startActivitySceneTransition(intent, titleView.findViewById(R.id.contact_photo_image), "avatar");
   }
 
   private void handleUnmuteNotifications() {
@@ -1200,15 +1205,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       }
     });
 
-    titleView.setOnClickListener(v -> {
-      Intent intent = new Intent(ConversationActivity.this, RecipientPreferenceActivity.class);
-      intent.putExtra(RecipientPreferenceActivity.ADDRESS_EXTRA, recipient.getAddress());
-      intent.putExtra(RecipientPreferenceActivity.CAN_HAVE_SAFETY_NUMBER_EXTRA,
-                      isSecureText && !isSelfConversation());
-
-      startActivitySceneTransition(intent, titleView.findViewById(R.id.contact_photo_image), "avatar");
-    });
-
+    titleView.setOnClickListener(v -> handleConversationSettings());
     titleView.setOnBackClickedListener(view -> onBackPressed());
     unblockButton.setOnClickListener(v -> handleUnblock());
     makeDefaultSmsButton.setOnClickListener(v -> handleMakeDefaultSms());
