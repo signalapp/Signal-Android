@@ -343,6 +343,7 @@
     <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Share your profile name and photo with this group?</string>
     <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Do you want to make your profile name and photo visible to all current and future members of this group?</string>
     <string name="GroupShareProfileView_make_visible">Make visible</string>
+    <string name="GroupShareProfileView_never_ask_again">Never ask again</string>
 
     <!-- GroupMembersDialog -->
     <string name="GroupMembersDialog_me">Me</string>

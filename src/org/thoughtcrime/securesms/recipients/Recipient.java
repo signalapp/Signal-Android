@@ -78,6 +78,7 @@ public class Recipient implements RecipientModifiedListener {
   private @Nullable String         profileName;
   private @Nullable String         profileAvatar;
   private           boolean        profileSharing;
+  private           boolean        profileSharingRefused;
   private           boolean        isSystemContact;
 
 
@@ -124,6 +125,7 @@ public class Recipient implements RecipientModifiedListener {
       this.profileName           = stale.profileName;
       this.profileAvatar         = stale.profileAvatar;
       this.profileSharing        = stale.profileSharing;
+      this.profileSharingRefused = stale.profileSharingRefused;
       this.isSystemContact       = stale.isSystemContact;
       this.participants.clear();
       this.participants.addAll(stale.participants);
@@ -172,6 +174,7 @@ public class Recipient implements RecipientModifiedListener {
             Recipient.this.profileName           = result.profileName;
             Recipient.this.profileAvatar         = result.profileAvatar;
             Recipient.this.profileSharing        = result.profileSharing;
+            Recipient.this.profileSharingRefused = result.profileSharingRefused;
             Recipient.this.profileName           = result.profileName;
             Recipient.this.isSystemContact       = result.systemContact;
 
@@ -216,6 +219,7 @@ public class Recipient implements RecipientModifiedListener {
     this.profileName           = details.profileName;
     this.profileAvatar         = details.profileAvatar;
     this.profileSharing        = details.profileSharing;
+    this.profileSharingRefused = details.profileSharingRefused;
     this.isSystemContact       = details.systemContact;
     this.participants.addAll(details.participants);
     this.resolving    = false;
@@ -305,6 +309,18 @@ public class Recipient implements RecipientModifiedListener {
   public void setProfileSharing(boolean value) {
     synchronized (this) {
       this.profileSharing = value;
+    }
+
+    notifyListeners();
+  }
+  
+  public synchronized boolean isProfileSharingRefused() {
+    return profileSharingRefused;
+  }
+  
+  public void setProfileSharingRefused(boolean value) {
+    synchronized (this) {
+      this.profileSharingRefused = value;
     }
 
     notifyListeners();

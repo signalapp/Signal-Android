@@ -47,10 +47,11 @@ public class RecipientDatabase extends Database {
   private static final String SIGNAL_PROFILE_NAME     = "signal_profile_name";
   private static final String SIGNAL_PROFILE_AVATAR   = "signal_profile_avatar";
   private static final String PROFILE_SHARING         = "profile_sharing_approval";
+  private static final String PROFILE_SHARING_REFUSED = "profile_sharing_refused";
 
   private static final String[] RECIPIENT_PROJECTION = new String[] {
       BLOCK, NOTIFICATION, VIBRATE, MUTE_UNTIL, COLOR, SEEN_INVITE_REMINDER, DEFAULT_SUBSCRIPTION_ID, EXPIRE_MESSAGES, REGISTERED,
-      PROFILE_KEY, SYSTEM_DISPLAY_NAME, SIGNAL_PROFILE_NAME, SIGNAL_PROFILE_AVATAR, PROFILE_SHARING
+      PROFILE_KEY, SYSTEM_DISPLAY_NAME, SIGNAL_PROFILE_NAME, SIGNAL_PROFILE_AVATAR, PROFILE_SHARING, PROFILE_SHARING_REFUSED
   };
 
   static final List<String> TYPED_RECIPIENT_PROJECTION = Stream.of(RECIPIENT_PROJECTION)
@@ -110,7 +111,8 @@ public class RecipientDatabase extends Database {
           PROFILE_KEY + " TEXT DEFAULT NULL, " +
           SIGNAL_PROFILE_NAME + " TEXT DEFAULT NULL, " +
           SIGNAL_PROFILE_AVATAR + " TEXT DEFAULT NULL, " +
-          PROFILE_SHARING + " INTEGER DEFAULT 0);";
+          PROFILE_SHARING + " INTEGER DEFAULT 0, " +
+          PROFILE_SHARING_REFUSED + " INTEGER DEFAULT 0);";
 
   public RecipientDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -149,13 +151,13 @@ public class RecipientDatabase extends Database {
   }
 
   Optional<RecipientSettings> getRecipientSettings(@NonNull Cursor cursor) {
-    boolean blocked               = cursor.getInt(cursor.getColumnIndexOrThrow(BLOCK))                == 1;
+    boolean blocked               = cursor.getInt(cursor.getColumnIndexOrThrow(BLOCK))                   == 1;
     String  notification          = cursor.getString(cursor.getColumnIndexOrThrow(NOTIFICATION));
     int     vibrateState          = cursor.getInt(cursor.getColumnIndexOrThrow(VIBRATE));
     long    muteUntil             = cursor.getLong(cursor.getColumnIndexOrThrow(MUTE_UNTIL));
     String  serializedColor       = cursor.getString(cursor.getColumnIndexOrThrow(COLOR));
     Uri     notificationUri       = notification == null ? null : Uri.parse(notification);
-    boolean seenInviteReminder    = cursor.getInt(cursor.getColumnIndexOrThrow(SEEN_INVITE_REMINDER)) == 1;
+    boolean seenInviteReminder    = cursor.getInt(cursor.getColumnIndexOrThrow(SEEN_INVITE_REMINDER))    == 1;
     int     defaultSubscriptionId = cursor.getInt(cursor.getColumnIndexOrThrow(DEFAULT_SUBSCRIPTION_ID));
     int     expireMessages        = cursor.getInt(cursor.getColumnIndexOrThrow(EXPIRE_MESSAGES));
     int     registeredState       = cursor.getInt(cursor.getColumnIndexOrThrow(REGISTERED));
@@ -163,7 +165,8 @@ public class RecipientDatabase extends Database {
     String  systemDisplayName     = cursor.getString(cursor.getColumnIndexOrThrow(SYSTEM_DISPLAY_NAME));
     String  signalProfileName     = cursor.getString(cursor.getColumnIndexOrThrow(SIGNAL_PROFILE_NAME));
     String  signalProfileAvatar   = cursor.getString(cursor.getColumnIndexOrThrow(SIGNAL_PROFILE_AVATAR));
-    boolean profileSharing        = cursor.getInt(cursor.getColumnIndexOrThrow(PROFILE_SHARING))      == 1;
+    boolean profileSharing        = cursor.getInt(cursor.getColumnIndexOrThrow(PROFILE_SHARING))         == 1;
+    boolean profileSharingRefused = cursor.getInt(cursor.getColumnIndexOrThrow(PROFILE_SHARING_REFUSED)) == 1;
 
     MaterialColor color;
     byte[]        profileKey = null;
@@ -190,7 +193,7 @@ public class RecipientDatabase extends Database {
                                              defaultSubscriptionId, expireMessages,
                                              RegisteredState.fromId(registeredState),
                                              profileKey, systemDisplayName, signalProfileName,
-                                             signalProfileAvatar, profileSharing));
+                                             signalProfileAvatar, profileSharing, profileSharingRefused));
   }
 
   public BulkOperationsHandle resetAllDisplayNames() {
@@ -289,6 +292,13 @@ public class RecipientDatabase extends Database {
     contentValues.put(PROFILE_SHARING, enabled ? 1 : 0);
     updateOrInsert(recipient.getAddress(), contentValues);
     recipient.setProfileSharing(enabled);
+  }
+  
+  public void setProfileSharingRefused(@NonNull Recipient recipient, boolean refused) {
+    ContentValues contentValues = new ContentValues(1);
+    contentValues.put(PROFILE_SHARING_REFUSED, refused ? 1 : 0);
+    updateOrInsert(recipient.getAddress(), contentValues);
+    recipient.setProfileSharingRefused(refused);
   }
 
   public Set<Recipient> getAllRecipients() {
@@ -411,6 +421,7 @@ public class RecipientDatabase extends Database {
     private final String          signalProfileName;
     private final String          signalProfileAvatar;
     private final boolean         profileSharing;
+    private final boolean         profileSharingRefused;
 
     RecipientSettings(boolean blocked, long muteUntil,
                       @NonNull VibrateState vibrateState,
@@ -424,7 +435,8 @@ public class RecipientDatabase extends Database {
                       @Nullable String systemDisplayName,
                       @Nullable String signalProfileName,
                       @Nullable String signalProfileAvatar,
-                      boolean profileSharing)
+                      boolean profileSharing,
+                      boolean profileSharingRefused)
     {
       this.blocked               = blocked;
       this.muteUntil             = muteUntil;
@@ -440,6 +452,7 @@ public class RecipientDatabase extends Database {
       this.signalProfileName     = signalProfileName;
       this.signalProfileAvatar   = signalProfileAvatar;
       this.profileSharing        = profileSharing;
+      this.profileSharingRefused = profileSharingRefused;
     }
 
     public @Nullable MaterialColor getColor() {
@@ -496,6 +509,10 @@ public class RecipientDatabase extends Database {
 
     public boolean isProfileSharing() {
       return profileSharing;
+    }
+    
+    public boolean isProfileSharingRefused() {
+      return profileSharingRefused;
     }
   }
 
