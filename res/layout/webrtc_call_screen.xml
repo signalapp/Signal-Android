@@ -43,11 +43,10 @@
             <ImageView android:id="@+id/photo"
                        android:layout_width="match_parent"
                        android:layout_height="match_parent"
-                       android:background="@android:color/black"
                        android:scaleType="centerCrop"
                        android:visibility="visible"
                        android:clickable="true"
-                       tools:src="@drawable/ic_contact_picture_large"
+                       tools:src="@drawable/ic_person_large"
                     />
 
             <LinearLayout android:id="@+id/untrusted_layout"

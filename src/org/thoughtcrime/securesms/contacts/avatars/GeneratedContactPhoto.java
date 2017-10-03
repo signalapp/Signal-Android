@@ -48,7 +48,7 @@ public class GeneratedContactPhoto implements ContactPhoto {
 
   @Override
   public Drawable asCallCard(Context context) {
-    return ContextCompat.getDrawable(context, R.drawable.ic_contact_picture_large);
+    return ContextCompat.getDrawable(context, R.drawable.ic_person_large);
   }
 
   @Override

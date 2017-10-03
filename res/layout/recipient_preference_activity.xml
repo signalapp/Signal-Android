@@ -26,7 +26,6 @@
                        android:layout_width="match_parent"
                        android:layout_height="match_parent"
                        android:scaleType="centerCrop"
-                       android:background="@color/black"
                        android:transitionName="avatar"
                        app:layout_collapseMode="parallax"
                        app:layout_collapseParallaxMultiplier="0.7"/>

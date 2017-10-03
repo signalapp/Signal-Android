@@ -39,7 +39,7 @@ public class ContactPhotoFactory {
   }
 
   public static ContactPhoto getDefaultGroupPhoto() {
-    return new ResourceContactPhoto(R.drawable.ic_group_white_24dp);
+    return new ResourceContactPhoto(R.drawable.ic_group_white_24dp, R.drawable.ic_group_large);
   }
 
   public static ContactPhoto getContactPhoto(@NonNull Context context, @Nullable Uri uri, @NonNull Address address, @Nullable String name) {

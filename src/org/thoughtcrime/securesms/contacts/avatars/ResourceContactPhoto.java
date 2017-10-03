@@ -16,9 +16,15 @@ import com.makeramen.roundedimageview.RoundedDrawable;
 public class ResourceContactPhoto implements ContactPhoto {
 
   private final int resourceId;
+  private final int callCardResourceId;
 
   ResourceContactPhoto(@DrawableRes int resourceId) {
-    this.resourceId = resourceId;
+    this(resourceId, resourceId);
+  }
+
+  ResourceContactPhoto(@DrawableRes int resourceId, @DrawableRes int callCardResourceId) {
+    this.resourceId         = resourceId;
+    this.callCardResourceId = callCardResourceId;
   }
 
   @Override
@@ -42,7 +48,7 @@ public class ResourceContactPhoto implements ContactPhoto {
 
   @Override
   public Drawable asCallCard(Context context) {
-    return context.getResources().getDrawable(resourceId);
+    return context.getResources().getDrawable(callCardResourceId);
   }
 
   @Override
