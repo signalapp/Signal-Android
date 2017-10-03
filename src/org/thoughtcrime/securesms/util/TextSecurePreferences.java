@@ -10,9 +10,8 @@ import android.support.annotation.ArrayRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.SharedPreferencesCompat;
 import android.util.Log;
-
-import com.h6ah4i.android.compat.content.SharedPreferenceCompat;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
@@ -692,9 +691,7 @@ public class TextSecurePreferences {
   private static Set<String> getStringSetPreference(Context context, String key, Set<String> defaultValues) {
     final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
     if (prefs.contains(key)) {
-      return SharedPreferenceCompat.getStringSet(PreferenceManager.getDefaultSharedPreferences(context),
-                                                 key,
-                                                 Collections.<String>emptySet());
+      return prefs.getStringSet(key, Collections.<String>emptySet());
     } else {
       return defaultValues;
     }

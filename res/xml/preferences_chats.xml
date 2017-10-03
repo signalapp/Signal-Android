@@ -2,7 +2,7 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:key="media_download" android:title="@string/preferences_chats__media_auto_download">
-        <com.h6ah4i.android.compat.preference.MultiSelectListPreferenceCompat
+        <MultiSelectListPreference
                 android:title="@string/preferences_chats__when_using_mobile_data"
                 android:key="pref_media_download_mobile"
                 android:defaultValue="@array/pref_media_download_mobile_data_default"
@@ -10,7 +10,7 @@
                 android:entries="@array/pref_media_download_values"
                 android:entryValues="@array/pref_media_download_entries" />
 
-        <com.h6ah4i.android.compat.preference.MultiSelectListPreferenceCompat
+        <MultiSelectListPreference
                 android:title="@string/preferences_chats__when_using_wifi"
                 android:key="pref_media_download_wifi"
                 android:defaultValue="@array/pref_media_download_wifi_default"
@@ -18,7 +18,7 @@
                 android:entries="@array/pref_media_download_values"
                 android:entryValues="@array/pref_media_download_entries" />
 
-        <com.h6ah4i.android.compat.preference.MultiSelectListPreferenceCompat
+        <MultiSelectListPreference
                 android:title="@string/preferences_chats__when_roaming"
                 android:key="pref_media_download_roaming"
                 android:defaultValue="@array/pref_media_download_roaming_default"
