@@ -218,7 +218,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
-            android:layout_gravity="bottom"
+            android:layout_gravity="bottom|center_horizontal"
             android:src="@drawable/ic_call_end_white_48dp"
             android:focusable="true"
             app:backgroundTint="@color/red_500"
