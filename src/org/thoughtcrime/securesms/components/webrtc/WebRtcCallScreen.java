@@ -27,6 +27,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewCompat;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -304,7 +305,12 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
     }.execute();
 
     this.name.setText(recipient.getName());
-    this.phoneNumber.setText(recipient.getAddress().serialize());
+
+    if (recipient.getName() == null && !TextUtils.isEmpty(recipient.getProfileName())) {
+      this.phoneNumber.setText(recipient.getAddress().serialize() + " (~" + recipient.getProfileName() + ")");
+    } else {
+      this.phoneNumber.setText(recipient.getAddress().serialize());
+    }
   }
 
   private void setCard(Recipient recipient, String status) {
