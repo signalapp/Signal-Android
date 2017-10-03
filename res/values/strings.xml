@@ -1479,6 +1479,7 @@
     <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Read receipts are here</string>
     <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Optionally see and share when messages have been read</string>
     <string name="experience_upgrade_preference_fragment__enable_read_receipts">Enable read receipts</string>
+    <string name="recipient_preference_activity__shared_media">Shared media</string>
 
 
     <!-- EOF -->

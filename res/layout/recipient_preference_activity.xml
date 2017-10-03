@@ -74,7 +74,7 @@
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:padding="16dp"
-                      android:text="Shared media"
+                      android:text="@string/recipient_preference_activity__shared_media"
                       android:visibility="gone"
                       android:textColor="?attr/colorPrimary"/>
 
