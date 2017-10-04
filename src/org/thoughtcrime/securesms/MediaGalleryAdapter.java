@@ -129,6 +129,7 @@ public class MediaGalleryAdapter extends StickyHeaderGridAdapter {
         intent.putExtra(MediaPreviewActivity.DATE_EXTRA, mediaRecord.getDate());
         intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, mediaRecord.getAttachment().getSize());
         intent.putExtra(MediaPreviewActivity.ADDRESS_EXTRA, address);
+        intent.putExtra(MediaPreviewActivity.OUTGOING_EXTRA, mediaRecord.isOutgoing());
 
         if (mediaRecord.getAddress() != null) {
           intent.putExtra(MediaPreviewActivity.ADDRESS_EXTRA, mediaRecord.getAddress());

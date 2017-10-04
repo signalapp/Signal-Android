@@ -53,9 +53,10 @@ import java.io.IOException;
 public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity implements RecipientModifiedListener {
   private final static String TAG = MediaPreviewActivity.class.getSimpleName();
 
-  public static final String ADDRESS_EXTRA   = "address";
-  public static final String DATE_EXTRA      = "date";
-  public static final String SIZE_EXTRA      = "size";
+  public static final String ADDRESS_EXTRA  = "address";
+  public static final String DATE_EXTRA     = "date";
+  public static final String SIZE_EXTRA     = "size";
+  public static final String OUTGOING_EXTRA = "outgoing";
 
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
@@ -69,6 +70,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   private Recipient recipient;
   private long      date;
   private long      size;
+  private boolean   outgoing;
 
   @Override
   protected void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
@@ -102,13 +104,16 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
   private void initializeActionBar() {
     final CharSequence relativeTimeSpan;
+
     if (date > 0) {
       relativeTimeSpan = DateUtils.getExtendedRelativeTimeSpanString(this,dynamicLanguage.getCurrentLocale(),date);
     } else {
       relativeTimeSpan = getString(R.string.MediaPreviewActivity_draft);
     }
-    getSupportActionBar().setTitle(recipient == null ? getString(R.string.MediaPreviewActivity_you)
-                                                     : recipient.toShortString());
+
+    if (outgoing) getSupportActionBar().setTitle(getString(R.string.MediaPreviewActivity_you));
+    else          getSupportActionBar().setTitle(recipient.toShortString());
+
     getSupportActionBar().setSubtitle(relativeTimeSpan);
   }
 
@@ -144,10 +149,11 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   private void initializeResources() {
     Address address = getIntent().getParcelableExtra(ADDRESS_EXTRA);
 
-    mediaUri     = getIntent().getData();
-    mediaType    = getIntent().getType();
-    date         = getIntent().getLongExtra(DATE_EXTRA, -1);
-    size         = getIntent().getLongExtra(SIZE_EXTRA, 0);
+    mediaUri  = getIntent().getData();
+    mediaType = getIntent().getType();
+    date      = getIntent().getLongExtra(DATE_EXTRA, -1);
+    size      = getIntent().getLongExtra(SIZE_EXTRA, 0);
+    outgoing  = getIntent().getBooleanExtra(OUTGOING_EXTRA, false);
 
     if (address != null) {
       recipient = Recipient.from(this, address, true);

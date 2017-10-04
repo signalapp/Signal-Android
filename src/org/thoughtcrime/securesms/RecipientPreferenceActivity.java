@@ -161,6 +161,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     this.threadPhotoRailView.setListener(mediaRecord -> {
       Intent intent = new Intent(RecipientPreferenceActivity.this, MediaPreviewActivity.class);
       intent.putExtra(MediaPreviewActivity.ADDRESS_EXTRA, address);
+      intent.putExtra(MediaPreviewActivity.OUTGOING_EXTRA, mediaRecord.isOutgoing());
       intent.putExtra(MediaPreviewActivity.DATE_EXTRA, mediaRecord.getDate());
       intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, mediaRecord.getAttachment().getSize());
       intent.setDataAndType(mediaRecord.getAttachment().getDataUri(), mediaRecord.getContentType());

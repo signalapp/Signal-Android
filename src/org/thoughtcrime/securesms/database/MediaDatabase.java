@@ -67,17 +67,20 @@ public class MediaDatabase extends Database {
     private final DatabaseAttachment attachment;
     private final Address            address;
     private final long               date;
+    private final boolean            outgoing;
 
-    private MediaRecord(DatabaseAttachment attachment, @Nullable Address address, long date) {
+    private MediaRecord(DatabaseAttachment attachment, @Nullable Address address, long date, boolean outgoing) {
       this.attachment = attachment;
       this.address    = address;
       this.date       = date;
+      this.outgoing   = outgoing;
     }
 
     public static MediaRecord from(@NonNull Context context, @NonNull MasterSecret masterSecret, @NonNull Cursor cursor) {
       AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
       DatabaseAttachment attachment         = attachmentDatabase.getAttachment(masterSecret, cursor);
       String             serializedAddress  = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS));
+      boolean            outgoing           = MessagingDatabase.Types.isOutgoingMessageType(cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.MESSAGE_BOX)));
       Address            address            = null;
 
       if (serializedAddress != null) {
@@ -92,7 +95,7 @@ public class MediaDatabase extends Database {
         date = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.DATE_RECEIVED));
       }
 
-      return new MediaRecord(attachment, address, date);
+      return new MediaRecord(attachment, address, date, outgoing);
     }
 
     public Attachment getAttachment() {
@@ -109,6 +112,10 @@ public class MediaDatabase extends Database {
 
     public long getDate() {
       return date;
+    }
+
+    public boolean isOutgoing() {
+      return outgoing;
     }
 
   }
