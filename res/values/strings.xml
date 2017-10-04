@@ -70,6 +70,12 @@
     <!-- BlockedContactsActivity -->
     <string name="BlockedContactsActivity_blocked_contacts">Blocked contacts</string>
 
+    <!-- BucketedThreadMedia -->
+    <string name="BucketedThreadMedia_Today">Today</string>
+    <string name="BucketedThreadMedia_Yesterday">Yesterday</string>
+    <string name="BucketedThreadMedia_This_week">This week</string>
+    <string name="BucketedThreadMedia_This_month">This month</string>
+
     <!-- CallScreen -->
     <string name="CallScreen_Incoming_call">Incoming call</string>
 
@@ -416,6 +422,10 @@
     <string name="MmsDownloader_error_connecting_to_mms_provider">Error connecting to MMS provider</string>
     <string name="MmsDownloader_error_reading_mms_settings">Error reading wireless provider MMS settings</string>
 
+    <!-- MediaOverviewActivity -->
+    <string name="MediaOverviewActivity_Media">Media</string>
+    <string name="MediaOverviewActivity_Documents">Documents</string>
+
     <!--- NotificationBarManager -->
     <string name="NotificationBarManager_signal_call_in_progress">Signal call in progress</string>
     <string name="NotificationBarManager_missed_call_from_s">Missed call from %s</string>
@@ -590,6 +600,15 @@
     <string name="RegistrationService_signal_registration_has_successfully_completed">Signal registration has successfully completed.</string>
     <string name="RegistrationService_registration_error">Registration error</string>
     <string name="RegistrationService_signal_registration_has_encountered_a_problem">Signal registration has encountered a problem.</string>
+
+    <!-- RingtonePreference -->
+    <string name="RingtonePreference_ringtone_default">Default ringtone</string>
+    <string name="RingtonePreference_ringtone_silent">None</string>
+    <string name="RingtonePreference_ringtone_picker_title">Ringtones</string>
+    <string name="RingtonePreference_notification_sound_default">Default notification sound</string>
+    <string name="RingtonePreference_alarm_sound_default">Default alarm sound</string>
+    <string name="RingtonePreference_add_ringtone_text">Add ringtone</string>
+    <string name="RingtonePreference_unable_to_add_ringtone">Unable to add custom ringtone</string>
 
     <!-- Slide -->
     <string name="Slide_image">Image</string>
@@ -1269,6 +1288,10 @@
     <string name="preferences__submit_debug_log">Submit debug log</string>
     <string name="preferences__support_wifi_calling">\'WiFi Calling\' compatibility mode</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Enable if your device uses SMS/MMS delivery over WiFi (only enable when \'WiFi Calling\' is enabled on your device)</string>
+    <string name="preferences__incognito_keyboard">Incognito keyboard</string>
+    <string name="preferences__use_keyboard_without_suggestions_or_auto_correct">Use keyboard without suggestions or auto-correct</string>
+    <string name="preferences__read_receipts">Read receipts</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">If read receipts are disabled, you won\'t be able to see read receipts from others.</string>
     <string name="preferences_app_protection__blocked_contacts">Blocked contacts</string>
     <string name="preferences_app_protection__safety_numbers_approval">Safety numbers approval</string>
     <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Require approval of new safety numbers when they change</string>
@@ -1459,22 +1482,7 @@
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
     <string name="conversation_item_sent__message_read">Message read</string>
-    <string name="preferences__read_receipts">Read receipts</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">If read receipts are disabled, you won\'t be able to see read receipts from others.</string>
 
-    <string name="RingtonePreference_ringtone_default">Default ringtone</string>
-    <string name="RingtonePreference_ringtone_silent">None</string>
-    <string name="RingtonePreference_ringtone_picker_title">Ringtones</string>
-    <string name="RingtonePreference_notification_sound_default">Default notification sound</string>
-    <string name="RingtonePreference_alarm_sound_default">Default alarm sound</string>
-    <string name="RingtonePreference_add_ringtone_text">Add ringtone</string>
-    <string name="RingtonePreference_unable_to_add_ringtone">Unable to add custom ringtone</string>
-    <string name="BucketedThreadMedia_Today">Today</string>
-    <string name="BucketedThreadMedia_Yesterday">Yesterday</string>
-    <string name="BucketedThreadMedia_This_week">This week</string>
-    <string name="BucketedThreadMedia_This_month">This month</string>
-    <string name="MediaOverviewActivity_Media">Media</string>
-    <string name="MediaOverviewActivity_Documents">Documents</string>
     <string name="media_overview_documents_fragment__no_documents_found">No documents found</string>
     <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Read receipts are here</string>
     <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Optionally see and share when messages have been read</string>

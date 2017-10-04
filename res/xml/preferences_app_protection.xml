@@ -25,10 +25,16 @@
                     android:dependency="pref_timeout_passphrase"/>
 
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
-                            android:defaultValue="true"
+                            android:defaultValue="false"
                             android:key="pref_screen_security"
                             android:title="@string/preferences__screen_security"
                             android:summary="@string/preferences__disable_screen_security_to_allow_screen_shots" />
+
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="pref_incognito_keyboard"
+            android:title="@string/preferences__incognito_keyboard"
+            android:summary="@string/preferences_use_keyboard_without_suggestions_or_auto_correct"/>
     </PreferenceCategory>
 
     <PreferenceCategory android:layout="@layout/preference_divider"/>

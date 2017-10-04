@@ -113,6 +113,11 @@ public class TextSecurePreferences {
   private static final String PROFILE_KEY_PREF                 = "pref_profile_key";
   private static final String PROFILE_NAME_PREF                = "pref_profile_name";
   public  static final String READ_RECEIPTS_PREF               = "pref_read_receipts";
+  public  static final String INCOGNITO_KEYBORAD_PREF          = "pref_incognito_keyboard";
+
+  public static boolean isIncognitoKeyboardEnabled(Context context) {
+    return getBooleanPreference(context, INCOGNITO_KEYBORAD_PREF, false);
+  }
 
   public static boolean isReadReceiptsEnabled(Context context) {
     return getBooleanPreference(context, READ_RECEIPTS_PREF, false);
@@ -471,8 +476,12 @@ public class TextSecurePreferences {
     setStringPreference(context, IDENTITY_PREF, identityUri);
   }
 
+  public static void setScreenSecurityEnabled(Context context, boolean value) {
+    setBooleanPreference(context, SCREEN_SECURITY_PREF, value);
+  }
+
   public static boolean isScreenSecurityEnabled(Context context) {
-    return getBooleanPreference(context, SCREEN_SECURITY_PREF, true);
+    return getBooleanPreference(context, SCREEN_SECURITY_PREF, false);
   }
 
   public static boolean isLegacyUseLocalApnsEnabled(Context context) {
