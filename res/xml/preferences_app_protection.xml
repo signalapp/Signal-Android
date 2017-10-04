@@ -34,7 +34,7 @@
             android:defaultValue="false"
             android:key="pref_incognito_keyboard"
             android:title="@string/preferences__incognito_keyboard"
-            android:summary="@string/preferences__use_keyboard_without_suggestions_or_auto_correct"/>
+            android:summary="@string/preferences__request_keyboard_to_disable_personalized_learning"/>
     </PreferenceCategory>
 
     <PreferenceCategory android:layout="@layout/preference_divider"/>
