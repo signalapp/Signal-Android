@@ -25,6 +25,7 @@ import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.security.MessageDigest;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 import java.util.StringTokenizer;
@@ -63,7 +64,7 @@ public class AttachmentServer implements Runnable {
   }
 
   public Uri getUri() {
-    return Uri.parse(String.format("http://127.0.0.1:%d/%s", port, auth));
+    return Uri.parse(String.format(Locale.ROOT, "http://127.0.0.1:%d/%s", port, auth));
   }
 
   public void start() {
