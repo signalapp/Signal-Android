@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -15,7 +16,9 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
-public class AvatarImageView extends android.support.v7.widget.AppCompatImageView {
+public class AvatarImageView extends ImageView {
+
+  private static final String TAG = AvatarImageView.class.getSimpleName();
 
   private boolean inverted;
   private OnClickListener listener = null;

@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.contacts;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
@@ -13,9 +14,12 @@ import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class ContactSelectionListItem extends LinearLayout implements RecipientModifiedListener {
+
+  private static final String TAG = ContactSelectionListItem.class.getSimpleName();
 
   private AvatarImageView contactPhotoImage;
   private TextView        numberView;
@@ -57,12 +61,11 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientM
     } else if (!TextUtils.isEmpty(number)) {
       Address address = Address.fromExternal(getContext(), number);
       this.recipient = Recipient.from(getContext(), address, true);
+      this.recipient.addListener(this);
 
       if (this.recipient.getName() != null) {
         name = this.recipient.getName();
       }
-
-      this.recipient.addListener(this);
     }
 
     this.nameView.setTextColor(color);
@@ -116,12 +119,9 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientM
   @Override
   public void onModified(final Recipient recipient) {
     if (this.recipient == recipient) {
-      this.contactPhotoImage.post(new Runnable() {
-        @Override
-        public void run() {
-          contactPhotoImage.setAvatar(recipient, false);
-          nameView.setText(recipient.toShortString());
-        }
+      Util.runOnMain(() -> {
+        contactPhotoImage.setAvatar(recipient, false);
+        nameView.setText(recipient.toShortString());
       });
     }
   }
