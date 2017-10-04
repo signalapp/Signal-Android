@@ -15,9 +15,10 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
-public class AvatarImageView extends ImageView {
+public class AvatarImageView extends android.support.v7.widget.AppCompatImageView {
 
   private boolean inverted;
+  private OnClickListener listener = null;
 
   public AvatarImageView(Context context) {
     super(context);
@@ -35,6 +36,12 @@ public class AvatarImageView extends ImageView {
     }
   }
 
+  @Override
+  public void setOnClickListener(OnClickListener listener) {
+    this.listener = listener;
+    super.setOnClickListener(listener);
+  }
+
   public void setAvatar(final @Nullable Recipient recipient, boolean quickContactEnabled) {
     if (recipient != null) {
       MaterialColor backgroundColor = recipient.getColor();
@@ -42,7 +49,7 @@ public class AvatarImageView extends ImageView {
       setAvatarClickHandler(recipient, quickContactEnabled);
     } else {
       setImageDrawable(ContactPhotoFactory.getDefaultContactPhoto(null).asDrawable(getContext(), ContactColors.UNKNOWN_COLOR.toConversationColor(getContext()), inverted));
-      setOnClickListener(null);
+      super.setOnClickListener(listener);
     }
   }
 
@@ -66,7 +73,7 @@ public class AvatarImageView extends ImageView {
         }
       });
     } else {
-      setOnClickListener(null);
+      super.setOnClickListener(listener);
     }
   }
 }

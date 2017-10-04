@@ -13,6 +13,8 @@
                android:layout_height="wrap_content"
                android:src="@drawable/ic_arrow_back_white_24dp"
                android:clickable="true"
+               android:paddingRight="15dp"
+               android:paddingEnd="15dp"
                android:layout_marginRight="15dp"
                android:layout_marginEnd="15dp"
                android:layout_alignParentLeft="true"
@@ -32,6 +34,7 @@
             android:layout_marginEnd="10dp"
             android:cropToPadding="true"
             android:transitionName="contact_photo"
+            android:clickable="true"
             app:inverted="true"
             tools:src="@drawable/ic_contact_picture"
             android:contentDescription="@string/conversation_list_item_view__contact_photo_image"/>
