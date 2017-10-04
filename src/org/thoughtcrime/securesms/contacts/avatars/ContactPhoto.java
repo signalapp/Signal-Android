@@ -9,5 +9,6 @@ public interface ContactPhoto {
   public Drawable asDrawable(Context context, int color, boolean inverted);
   public Drawable asCallCard(Context context);
   public boolean  isGenerated();
+  public boolean  isResource();
 
 }

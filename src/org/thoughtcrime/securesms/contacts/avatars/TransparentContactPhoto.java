@@ -31,4 +31,9 @@ public class TransparentContactPhoto implements ContactPhoto {
   public boolean isGenerated() {
     return false;
   }
+
+  @Override
+  public boolean isResource() {
+    return false;
+  }
 }

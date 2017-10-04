@@ -55,4 +55,9 @@ public class GeneratedContactPhoto implements ContactPhoto {
   public boolean isGenerated() {
     return true;
   }
+
+  @Override
+  public boolean isResource() {
+    return false;
+  }
 }

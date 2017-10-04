@@ -56,6 +56,11 @@ public class ResourceContactPhoto implements ContactPhoto {
     return false;
   }
 
+  @Override
+  public boolean isResource() {
+    return true;
+  }
+
   private static class ExpandingLayerDrawable extends LayerDrawable {
     public ExpandingLayerDrawable(Drawable[] layers) {
       super(layers);

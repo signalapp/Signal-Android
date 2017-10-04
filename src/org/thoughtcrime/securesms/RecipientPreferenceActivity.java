@@ -36,6 +36,7 @@ import android.widget.TextView;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.color.MaterialColors;
 import org.thoughtcrime.securesms.components.ThreadPhotoRailView;
+import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
@@ -203,7 +204,13 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   }
 
   private void setHeader(@NonNull Recipient recipient) {
-    this.avatar.setImageDrawable(recipient.getContactPhoto().asCallCard(this));
+    ContactPhoto contactPhoto = recipient.getContactPhoto();
+
+    if (contactPhoto.isGenerated() || contactPhoto.isResource()) this.avatar.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+    else                                                         this.avatar.setScaleType(ImageView.ScaleType.CENTER_CROP);
+
+    this.avatar.setImageDrawable(contactPhoto.asCallCard(this));
+    this.avatar.setBackgroundColor(recipient.getColor().toActionBarColor(this));
     this.toolbarLayout.setTitle(recipient.toShortString());
     this.toolbarLayout.setContentScrimColor(recipient.getColor().toActionBarColor(this));
   }
