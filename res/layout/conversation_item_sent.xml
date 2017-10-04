@@ -167,7 +167,7 @@
                            android:visibility="gone"
                            android:layout_gravity="center_vertical|end"
                            android:alpha=".6"
-                           android:tint="@color/black"
+                           android:tint="?attr/conversation_item_sent_text_secondary_color"
                            android:layout_marginLeft="3dp"
                            android:layout_marginStart="3dp"
                            android:tintMode="multiply"
