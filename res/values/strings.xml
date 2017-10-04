@@ -1291,7 +1291,7 @@
     <string name="preferences__incognito_keyboard">Incognito keyboard</string>
     <string name="preferences__read_receipts">Read receipts</string>
     <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">If read receipts are disabled, you won\'t be able to see read receipts from others.</string>
-    <string name="preferences__request_keyboard_to_disable_personalized_learning"/>
+    <string name="preferences__request_keyboard_to_disable_personalized_learning">Request keyboard to disable personalized learning</string>
     <string name="preferences_app_protection__blocked_contacts">Blocked contacts</string>
     <string name="preferences_app_protection__safety_numbers_approval">Safety numbers approval</string>
     <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Require approval of new safety numbers when they change</string>
