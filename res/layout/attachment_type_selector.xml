@@ -4,8 +4,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:background="?attachment_type_selector_background"
-              android:elevation="4dp">
+              android:background="?attachment_type_selector_background">
 
     <org.thoughtcrime.securesms.components.RecentPhotoViewRail
             android:id="@+id/recent_photos"
