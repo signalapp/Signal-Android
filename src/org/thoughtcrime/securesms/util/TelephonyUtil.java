@@ -6,6 +6,8 @@ import android.net.ConnectivityManager;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import java.util.Locale;
+
 public class TelephonyUtil {
   private static final String TAG = TelephonyUtil.class.getSimpleName();
 
@@ -25,7 +27,7 @@ public class TelephonyUtil {
       return tm.getNetworkOperator();
     } else if (configMcc != 0 && configMnc != 0) {
       Log.w(TAG, "Choosing MCC+MNC info from current context's Configuration");
-      return String.format("%03d%d",
+      return String.format(Locale.ROOT, "%03d%d",
           configMcc,
           configMnc == Configuration.MNC_ZERO ? 0 : configMnc);
     } else {
