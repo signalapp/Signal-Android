@@ -38,7 +38,7 @@
                 app:numColumns="5" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:layout="@layout/preference_divider"/>
+    <PreferenceCategory android:key="divider" android:layout="@layout/preference_divider"/>
 
     <PreferenceCategory android:key="privacy_settings" android:title="@string/recipient_preferences__privacy">
 

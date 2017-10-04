@@ -24,6 +24,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.CheckBoxPreference;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
+import android.support.v7.preference.PreferenceCategory;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
@@ -270,6 +271,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
     @Override
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, String rootKey) {
+      Log.w(TAG, "onCreatePreferences...");
       addPreferencesFromResource(R.xml.recipient_preferences);
     }
 
@@ -316,6 +318,8 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       ColorPickerPreference      colorPreference    = (ColorPickerPreference) this.findPreference(PREFERENCE_COLOR);
       Preference                 blockPreference    = this.findPreference(PREFERENCE_BLOCK);
       Preference                 identityPreference = this.findPreference(PREFERENCE_IDENTITY);
+      PreferenceCategory         privacyCategory    = (PreferenceCategory)this.findPreference("privacy_settings");
+      PreferenceCategory         divider            = (PreferenceCategory)this.findPreference("divider");
 
       mutePreference.setChecked(recipient.isMuted());
 
@@ -348,9 +352,11 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       }
 
       if (recipient.isGroupRecipient()) {
-        if (colorPreference    != null) getPreferenceScreen().removePreference(colorPreference);
-        if (blockPreference    != null) getPreferenceScreen().removePreference(blockPreference);
-        if (identityPreference != null) getPreferenceScreen().removePreference(identityPreference);
+        if (colorPreference    != null) colorPreference.setVisible(false);
+        if (blockPreference    != null) blockPreference.setVisible(false);
+        if (identityPreference != null) identityPreference.setVisible(false);
+        if (privacyCategory    != null) privacyCategory.setVisible(false);
+        if (divider            != null) divider.setVisible(false);
       } else {
         colorPreference.setColors(MaterialColors.CONVERSATION_PALETTE.asConversationColorArray(getActivity()));
         colorPreference.setColor(recipient.getColor().toActionBarColor(getActivity()));
