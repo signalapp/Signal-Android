@@ -76,7 +76,8 @@
                       android:padding="16dp"
                       android:text="@string/recipient_preference_activity__shared_media"
                       android:visibility="gone"
-                      android:textColor="?attr/colorPrimary"/>
+                      style="?android:attr/preferenceCategoryStyle"
+                      android:textColor="@color/textsecure_primary"/>
 
             <org.thoughtcrime.securesms.components.ThreadPhotoRailView
                     android:id="@+id/recent_photos"
