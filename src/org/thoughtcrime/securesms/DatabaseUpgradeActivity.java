@@ -23,6 +23,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -244,7 +245,8 @@ public class DatabaseUpgradeActivity extends BaseActivity {
       }
 
       if (params[0] < SCREENSHOTS) {
-        TextSecurePreferences.setScreenSecurityEnabled(getApplicationContext(), true);
+        boolean screenSecurity = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(TextSecurePreferences.SCREEN_SECURITY_PREF, true);
+        TextSecurePreferences.setScreenSecurityEnabled(getApplicationContext(), screenSecurity);
       }
 
       return null;
