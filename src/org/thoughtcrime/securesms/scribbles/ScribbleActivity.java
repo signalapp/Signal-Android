@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.scribbles.widget.entity.ImageEntity;
 import org.thoughtcrime.securesms.scribbles.widget.entity.MotionEntity;
 import org.thoughtcrime.securesms.scribbles.widget.entity.TextEntity;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 
 import java.io.ByteArrayOutputStream;
@@ -74,14 +75,11 @@ public class ScribbleActivity extends PassphraseRequiredActionBarActivity implem
   }
 
   private void addSticker(final Bitmap pica) {
-    scribbleView.post(new Runnable() {
-      @Override
-      public void run() {
-        Layer       layer  = new Layer();
-        ImageEntity entity = new ImageEntity(layer, pica, scribbleView.getWidth(), scribbleView.getHeight());
+    Util.runOnMain(() -> {
+      Layer       layer  = new Layer();
+      ImageEntity entity = new ImageEntity(layer, pica, scribbleView.getWidth(), scribbleView.getHeight());
 
-        scribbleView.addEntityAndPosition(entity);
-      }
+      scribbleView.addEntityAndPosition(entity);
     });
   }
 

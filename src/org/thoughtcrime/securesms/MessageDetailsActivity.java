@@ -223,7 +223,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     }
 
     expiresContainer.setVisibility(View.VISIBLE);
-    expiresInText.post(new Runnable() {
+    Util.runOnMain(new Runnable() {
       @Override
       public void run() {
         long elapsed   = System.currentTimeMillis() - messageRecord.getExpireStarted();
@@ -233,7 +233,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
         expiresInText.setText(duration);
 
         if (running) {
-          expiresInText.postDelayed(this, 500);
+          Util.runOnMainDelayed(this, 500);
         }
       }
     });

@@ -1262,19 +1262,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onModified(final Recipient recipient) {
-    titleView.post(new Runnable() {
-      @Override
-      public void run() {
-        titleView.setTitle(recipient);
-        titleView.setVerified(identityRecords.isVerified());
-        setBlockedUserState(recipient, isSecureText, isDefaultSms);
-        setActionBarColor(recipient.getColor());
-        setGroupShareProfileReminder(recipient);
-        updateInviteReminder(recipient.hasSeenInviteReminder());
-        updateDefaultSubscriptionId(recipient.getDefaultSubscriptionId());
-        initializeSecurity(isSecureText, isDefaultSms);
-        invalidateOptionsMenu();
-      }
+    Util.runOnMain(() -> {
+      titleView.setTitle(recipient);
+      titleView.setVerified(identityRecords.isVerified());
+      setBlockedUserState(recipient, isSecureText, isDefaultSms);
+      setActionBarColor(recipient.getColor());
+      setGroupShareProfileReminder(recipient);
+      updateInviteReminder(recipient.hasSeenInviteReminder());
+      updateDefaultSubscriptionId(recipient.getDefaultSubscriptionId());
+      initializeSecurity(isSecureText, isDefaultSms);
+      invalidateOptionsMenu();
     });
   }
 

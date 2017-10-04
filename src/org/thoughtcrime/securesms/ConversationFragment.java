@@ -69,6 +69,7 @@ import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 
@@ -491,12 +492,7 @@ public class ConversationFragment extends Fragment
 
   private void scrollToLastSeenPosition(final int lastSeenPosition) {
     if (lastSeenPosition > 0) {
-      list.post(new Runnable() {
-        @Override
-        public void run() {
-          ((LinearLayoutManager)list.getLayoutManager()).scrollToPositionWithOffset(lastSeenPosition, list.getHeight());
-        }
-      });
+      Util.runOnMain(() -> ((LinearLayoutManager)list.getLayoutManager()).scrollToPositionWithOffset(lastSeenPosition, list.getHeight()));
     }
   }
 
