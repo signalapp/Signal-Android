@@ -148,7 +148,7 @@
                         android:id="@+id/expiration_indicator"
                         app:empty="@drawable/ic_hourglass_empty_white_18dp"
                         app:full="@drawable/ic_hourglass_full_white_18dp"
-                        app:tint="@color/black"
+                        app:tint="?conversation_item_sent_text_secondary_color"
                         app:percentage="0"
                         app:offset="0"
                         android:layout_gravity="center_vertical|end"
