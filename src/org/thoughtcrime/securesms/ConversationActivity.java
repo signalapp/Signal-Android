@@ -856,6 +856,18 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
+  private boolean handleDisplayQuickContact() {
+    if (recipient.getAddress().isGroup()) return false;
+
+    if (recipient.getContactUri() != null) {
+      ContactsContract.QuickContact.showQuickContact(ConversationActivity.this, titleView, recipient.getContactUri(), ContactsContract.QuickContact.MODE_LARGE, null);
+    } else {
+      handleAddToContacts();
+    }
+
+    return true;
+  }
+
   private void handleAddAttachment() {
     if (this.isMmsEnabled || isSecureText) {
       if (attachmentTypeSelector == null) {
@@ -1209,6 +1221,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     });
 
     titleView.setOnClickListener(v -> handleConversationSettings());
+    titleView.setOnLongClickListener(v -> handleDisplayQuickContact());
     titleView.setOnBackClickedListener(view -> super.onBackPressed());
     unblockButton.setOnClickListener(v -> handleUnblock());
     makeDefaultSmsButton.setOnClickListener(v -> handleMakeDefaultSms());
