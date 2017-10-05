@@ -84,6 +84,12 @@ public class ConversationTitleView extends RelativeLayout {
     this.avatar.setOnClickListener(listener);
   }
 
+  @Override
+  public void setOnLongClickListener(@Nullable OnLongClickListener listener) {
+    this.content.setOnLongClickListener(listener);
+    this.avatar.setOnLongClickListener(listener);
+  }
+
   public void setOnBackClickedListener(@Nullable OnClickListener listener) {
     this.back.setOnClickListener(listener);
   }
