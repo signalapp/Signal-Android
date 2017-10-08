@@ -189,6 +189,7 @@ public class MessageRetrievalService extends Service implements InjectableType, 
     private AtomicBoolean stopThread = new AtomicBoolean(false);
 
     MessageRetrievalThread() {
+      super("MessageRetrievalService");
       setUncaughtExceptionHandler(this);
     }
 
