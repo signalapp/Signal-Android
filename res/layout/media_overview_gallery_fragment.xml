@@ -16,7 +16,6 @@
               android:layout_height="match_parent"
               android:textSize="24sp"
               android:gravity="center"
-              android:paddingTop="30dp"
               android:visibility="gone"
               android:text="@string/media_overview_activity__no_media" />
 
