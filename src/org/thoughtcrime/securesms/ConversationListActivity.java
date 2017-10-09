@@ -212,7 +212,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
         MessageNotifier.updateNotification(context, masterSecret);
         MarkReadReceiver.process(context, messageIds);
-        
+
         return null;
       }
     }.execute();

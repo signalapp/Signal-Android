@@ -32,8 +32,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.ArrayAdapter;
 import android.widget.CursorAdapter;
 import android.widget.HeaderViewListAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -47,6 +49,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.security.SecureRandom;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import static android.app.Activity.RESULT_OK;
@@ -58,7 +62,7 @@ public class RingtonePreferenceDialogFragmentCompat extends PreferenceDialogFrag
   private static final String CURSOR_NONE_ID = "-1";
 
   private int selectedIndex = -1;
-  private Cursor cursor;
+  private String[] data;
 
   private RingtoneManager ringtoneManager;
   private Ringtone defaultRingtone;
@@ -87,7 +91,6 @@ public class RingtonePreferenceDialogFragmentCompat extends PreferenceDialogFrag
     stopPlaying();
   }
 
-
   private void stopPlaying() {
     if (defaultRingtone != null && defaultRingtone.isPlaying()) {
       defaultRingtone.stop();
@@ -104,9 +107,7 @@ public class RingtonePreferenceDialogFragmentCompat extends PreferenceDialogFrag
 
     RingtonePreference ringtonePreference = getRingtonePreference();
 
-    createCursor(ringtonePreference.getRingtone());
-
-    String colTitle = cursor.getColumnName(RingtoneManager.TITLE_COLUMN_INDEX);
+    createRingtoneList(ringtonePreference.getRingtone());
 
     final Context context = getContext();
 
@@ -122,10 +123,10 @@ public class RingtonePreferenceDialogFragmentCompat extends PreferenceDialogFrag
     }
 
     builder
-        .setSingleChoiceItems(cursor, selectedIndex, colTitle, new DialogInterface.OnClickListener() {
+        .setSingleChoiceItems(data, selectedIndex, new DialogInterface.OnClickListener() {
           @Override
           public void onClick(DialogInterface dialogInterface, int i) {
-            if (i < cursor.getCount()) {
+            if (i < data.length) {
               selectedIndex = i;
 
               int realIdx = i - (showDefault ? 1 : 0) - (showSilent ? 1 : 0);
@@ -208,23 +209,24 @@ public class RingtonePreferenceDialogFragmentCompat extends PreferenceDialogFrag
   }
 
   @NonNull
-  private Cursor createCursor(Uri ringtoneUri) {
+  private String[] createRingtoneList(Uri ringtoneUri) {
     RingtonePreference ringtonePreference = getRingtonePreference();
-    ringtoneManager = new RingtoneManager(getContext());
+    List<String>       results            = new LinkedList<>();
 
+    ringtoneManager = new RingtoneManager(getContext());
     ringtoneManager.setType(ringtonePreference.getRingtoneType());
     ringtoneManager.setStopPreviousRingtone(true);
 
     Cursor ringtoneCursor = ringtoneManager.getCursor();
 
-    String colId = ringtoneCursor.getColumnName(RingtoneManager.ID_COLUMN_INDEX);
+    String colId    = ringtoneCursor.getColumnName(RingtoneManager.ID_COLUMN_INDEX);
     String colTitle = ringtoneCursor.getColumnName(RingtoneManager.TITLE_COLUMN_INDEX);
 
     MatrixCursor extras = new MatrixCursor(new String[]{colId, colTitle});
 
-    final int ringtoneType = ringtonePreference.getRingtoneType();
-    final boolean showDefault = ringtonePreference.getShowDefault();
-    final boolean showSilent = ringtonePreference.getShowSilent();
+    final int     ringtoneType = ringtonePreference.getRingtoneType();
+    final boolean showDefault  = ringtonePreference.getShowDefault();
+    final boolean showSilent   = ringtonePreference.getShowSilent();
 
     if (showDefault) {
       switch (ringtoneType) {
@@ -262,7 +264,13 @@ public class RingtonePreferenceDialogFragmentCompat extends PreferenceDialogFrag
     }
 
     Cursor[] cursors = {extras, ringtoneCursor};
-    return this.cursor = new MergeCursor(cursors);
+    Cursor   cursor  = new MergeCursor(cursors);
+
+    while (cursor != null && cursor.moveToNext()) {
+      results.add(cursor.getString(1));
+    }
+
+    return data = results.toArray(new String[0]);
   }
 
   @Override
@@ -276,13 +284,13 @@ public class RingtonePreferenceDialogFragmentCompat extends PreferenceDialogFrag
         final int ringtoneType = ringtonePreference.getRingtoneType();
 
         // FIXME static field leak
-        @SuppressLint("StaticFieldLeak") final AsyncTask<Uri, Void, Cursor> installTask = new AsyncTask<Uri, Void, Cursor>() {
+        @SuppressLint("StaticFieldLeak") final AsyncTask<Uri, Void, String[]> installTask = new AsyncTask<Uri, Void, String[]>() {
           @Override
-          protected Cursor doInBackground(Uri... params) {
+          protected String[] doInBackground(Uri... params) {
             try {
               Uri newUri = addCustomExternalRingtone(context, params[0], ringtoneType);
 
-              return createCursor(newUri);
+              return createRingtoneList(newUri);
             } catch (IOException | IllegalArgumentException e) {
               Log.e(TAG, "Unable to add new ringtone: ", e);
             }
@@ -290,11 +298,13 @@ public class RingtonePreferenceDialogFragmentCompat extends PreferenceDialogFrag
           }
 
           @Override
-          protected void onPostExecute(final Cursor newCursor) {
-            if (newCursor != null) {
+          protected void onPostExecute(final String[] newData) {
+            if (newData != null) {
               final ListView listView = ((AlertDialog) getDialog()).getListView();
-              final CursorAdapter adapter = ((CursorAdapter) ((HeaderViewListAdapter) listView.getAdapter()).getWrappedAdapter());
-              adapter.changeCursor(newCursor);
+              ArrayAdapter<String> adapter = (ArrayAdapter<String>)((HeaderViewListAdapter)listView.getAdapter()).getWrappedAdapter();
+
+              adapter.clear();
+              adapter.addAll(newData);
 
               listView.setItemChecked(selectedIndex, true);
               listView.setSelection(selectedIndex);

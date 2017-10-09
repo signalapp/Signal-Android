@@ -58,6 +58,7 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.IdentityUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
@@ -335,7 +336,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
       if (toneUri == null) {
         ringtonePreference.setSummary(R.string.preferences__default);
-        ringtonePreference.setCurrentRingtone(Settings.System.DEFAULT_NOTIFICATION_URI);
+        ringtonePreference.setCurrentRingtone(Uri.parse(TextSecurePreferences.getNotificationRingtone(getContext())));
       } else if (toneUri.toString().isEmpty()) {
         ringtonePreference.setSummary(R.string.preferences__silent);
         ringtonePreference.setCurrentRingtone(null);
