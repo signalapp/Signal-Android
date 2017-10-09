@@ -1206,7 +1206,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     });
 
     titleView.setOnClickListener(v -> handleConversationSettings());
-    titleView.setOnBackClickedListener(view -> onBackPressed());
+    titleView.setOnBackClickedListener(view -> super.onBackPressed());
     unblockButton.setOnClickListener(v -> handleUnblock());
     makeDefaultSmsButton.setOnClickListener(v -> handleMakeDefaultSms());
 
