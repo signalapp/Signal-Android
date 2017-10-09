@@ -1483,7 +1483,7 @@
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
     <string name="conversation_item_sent__message_read">Message read</string>
 
-    <string name="media_overview_documents_fragment__no_documents_found">No documents found</string>
+    <string name="media_overview_documents_fragment__no_documents_found">No documents</string>
     <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Read receipts are here</string>
     <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Optionally see and share when messages have been read</string>
     <string name="experience_upgrade_preference_fragment__enable_read_receipts">Enable read receipts</string>
