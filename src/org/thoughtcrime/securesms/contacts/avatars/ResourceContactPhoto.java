@@ -2,12 +2,11 @@ package org.thoughtcrime.securesms.contacts.avatars;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.support.annotation.DrawableRes;
-import android.support.v4.graphics.ColorUtils;
+import android.support.v7.content.res.AppCompatResources;
 import android.widget.ImageView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
@@ -48,7 +47,7 @@ public class ResourceContactPhoto implements ContactPhoto {
 
   @Override
   public Drawable asCallCard(Context context) {
-    return context.getResources().getDrawable(callCardResourceId);
+    return AppCompatResources.getDrawable(context, callCardResourceId);
   }
 
   @Override

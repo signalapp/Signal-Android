@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.content.res.AppCompatResources;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 
@@ -48,7 +49,8 @@ public class GeneratedContactPhoto implements ContactPhoto {
 
   @Override
   public Drawable asCallCard(Context context) {
-    return ContextCompat.getDrawable(context, R.drawable.ic_person_large);
+    return AppCompatResources.getDrawable(context, R.drawable.ic_person_large);
+
   }
 
   @Override
