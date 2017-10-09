@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms;
 
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.database.ContentObserver;
 import android.net.Uri;
@@ -36,12 +37,17 @@ import android.widget.Toast;
 import org.thoughtcrime.securesms.components.RatingManager;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.MessagingDatabase;
+import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
+import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+
+import java.util.List;
 
 public class ConversationListActivity extends PassphraseRequiredActionBarActivity
     implements ConversationListFragment.ConversationSelectedListener
@@ -201,8 +207,12 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     new AsyncTask<Void, Void, Void>() {
       @Override
       protected Void doInBackground(Void... params) {
-        DatabaseFactory.getThreadDatabase(ConversationListActivity.this).setAllThreadsRead();
-        MessageNotifier.updateNotification(ConversationListActivity.this, masterSecret);
+        Context                 context    = ConversationListActivity.this;
+        List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setAllThreadsRead();
+
+        MessageNotifier.updateNotification(context, masterSecret);
+        MarkReadReceiver.process(context, messageIds);
+        
         return null;
       }
     }.execute();

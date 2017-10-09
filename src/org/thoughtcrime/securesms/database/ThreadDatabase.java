@@ -244,16 +244,22 @@ public class ThreadDatabase extends Database {
     }
   }
 
-  public void setAllThreadsRead() {
+  public List<MarkedMessageInfo> setAllThreadsRead() {
     SQLiteDatabase db           = databaseHelper.getWritableDatabase();
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(READ, 1);
 
     db.update(TABLE_NAME, contentValues, null, null);
 
-    DatabaseFactory.getSmsDatabase(context).setAllMessagesRead();
-    DatabaseFactory.getMmsDatabase(context).setAllMessagesRead();
+    final List<MarkedMessageInfo> smsRecords = DatabaseFactory.getSmsDatabase(context).setAllMessagesRead();
+    final List<MarkedMessageInfo> mmsRecords = DatabaseFactory.getMmsDatabase(context).setAllMessagesRead();
+
     notifyConversationListListeners();
+
+    return new LinkedList<MarkedMessageInfo>() {{
+      addAll(smsRecords);
+      addAll(mmsRecords);
+    }};
   }
 
   public List<MarkedMessageInfo> setRead(long threadId, boolean lastSeen) {

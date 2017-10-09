@@ -329,39 +329,6 @@ public class SmsDatabase extends MessagingDatabase {
     }
   }
 
-  public List<MarkedMessageInfo> setMessagesRead(long threadId) {
-    SQLiteDatabase          database  = databaseHelper.getWritableDatabase();
-    String                  where     = THREAD_ID + " = ? AND " + READ + " = 0";
-    String[]                selection = new String[]{String.valueOf(threadId)};
-    List<MarkedMessageInfo> results   = new LinkedList<>();
-    Cursor                  cursor    = null;
-
-    database.beginTransaction();
-    try {
-      cursor = database.query(TABLE_NAME, new String[] {ID, ADDRESS, DATE_SENT, TYPE, EXPIRES_IN, EXPIRE_STARTED}, where, selection, null, null, null);
-
-      while (cursor != null && cursor.moveToNext()) {
-        if (Types.isSecureType(cursor.getLong(3))) {
-          SyncMessageId  syncMessageId  = new SyncMessageId(Address.fromSerialized(cursor.getString(1)), cursor.getLong(2));
-          ExpirationInfo expirationInfo = new ExpirationInfo(cursor.getLong(0), cursor.getLong(4), cursor.getLong(5), false);
-
-          results.add(new MarkedMessageInfo(syncMessageId, expirationInfo));
-        }
-      }
-
-      ContentValues contentValues = new ContentValues();
-      contentValues.put(READ, 1);
-
-      database.update(TABLE_NAME, contentValues, where, selection);
-      database.setTransactionSuccessful();
-    } finally {
-      if (cursor != null) cursor.close();
-      database.endTransaction();
-    }
-
-    return results;
-  }
-
   public List<Pair<Long, Long>> setTimestampRead(SyncMessageId messageId, long expireStarted) {
     SQLiteDatabase         database = databaseHelper.getWritableDatabase();
     List<Pair<Long, Long>> expiring = new LinkedList<>();
@@ -403,12 +370,43 @@ public class SmsDatabase extends MessagingDatabase {
     return expiring;
   }
 
-  public void setAllMessagesRead() {
-    SQLiteDatabase database     = databaseHelper.getWritableDatabase();
-    ContentValues contentValues = new ContentValues();
-    contentValues.put(READ, 1);
+  public List<MarkedMessageInfo> setMessagesRead(long threadId) {
+    return setMessagesRead(THREAD_ID + " = ? AND " + READ + " = 0", new String[] {String.valueOf(threadId)});
+  }
 
-    database.update(TABLE_NAME, contentValues, null, null);
+  public List<MarkedMessageInfo> setAllMessagesRead() {
+    return setMessagesRead(READ + " = 0", null);
+  }
+
+  private List<MarkedMessageInfo> setMessagesRead(String where, String[] arguments) {
+    SQLiteDatabase          database  = databaseHelper.getWritableDatabase();
+    List<MarkedMessageInfo> results   = new LinkedList<>();
+    Cursor                  cursor    = null;
+
+    database.beginTransaction();
+    try {
+      cursor = database.query(TABLE_NAME, new String[] {ID, ADDRESS, DATE_SENT, TYPE, EXPIRES_IN, EXPIRE_STARTED}, where, arguments, null, null, null);
+
+      while (cursor != null && cursor.moveToNext()) {
+        if (Types.isSecureType(cursor.getLong(3))) {
+          SyncMessageId  syncMessageId  = new SyncMessageId(Address.fromSerialized(cursor.getString(1)), cursor.getLong(2));
+          ExpirationInfo expirationInfo = new ExpirationInfo(cursor.getLong(0), cursor.getLong(4), cursor.getLong(5), false);
+
+          results.add(new MarkedMessageInfo(syncMessageId, expirationInfo));
+        }
+      }
+
+      ContentValues contentValues = new ContentValues();
+      contentValues.put(READ, 1);
+
+      database.update(TABLE_NAME, contentValues, where, arguments);
+      database.setTransactionSuccessful();
+    } finally {
+      if (cursor != null) cursor.close();
+      database.endTransaction();
+    }
+
+    return results;
   }
 
   protected Pair<Long, Long> updateMessageBodyAndType(long messageId, String body, long maskOff, long maskOn) {

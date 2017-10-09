@@ -413,17 +413,24 @@ public class MmsDatabase extends MessagingDatabase {
     database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {String.valueOf(id)});
   }
 
+
   public List<MarkedMessageInfo> setMessagesRead(long threadId) {
-    SQLiteDatabase          database  = databaseHelper.getWritableDatabase();
-    String                  where     = THREAD_ID + " = ? AND " + READ + " = 0";
-    String[]                selection = new String[]{String.valueOf(threadId)};
-    List<MarkedMessageInfo> result    = new LinkedList<>();
-    Cursor                  cursor    = null;
+    return setMessagesRead(THREAD_ID + " = ? AND " + READ + " = 0", new String[] {String.valueOf(threadId)});
+  }
+
+  public List<MarkedMessageInfo> setAllMessagesRead() {
+    return setMessagesRead(READ + " = 0", null);
+  }
+
+  private List<MarkedMessageInfo> setMessagesRead(String where, String[] arguments) {
+    SQLiteDatabase          database = databaseHelper.getWritableDatabase();
+    List<MarkedMessageInfo> result   = new LinkedList<>();
+    Cursor                  cursor   = null;
 
     database.beginTransaction();
 
     try {
-      cursor = database.query(TABLE_NAME, new String[] {ID, ADDRESS, DATE_SENT, MESSAGE_BOX, EXPIRES_IN, EXPIRE_STARTED}, where, selection, null, null, null);
+      cursor = database.query(TABLE_NAME, new String[] {ID, ADDRESS, DATE_SENT, MESSAGE_BOX, EXPIRES_IN, EXPIRE_STARTED}, where, arguments, null, null, null);
 
       while(cursor != null && cursor.moveToNext()) {
         if (Types.isSecureType(cursor.getLong(3))) {
@@ -437,7 +444,7 @@ public class MmsDatabase extends MessagingDatabase {
       ContentValues contentValues = new ContentValues();
       contentValues.put(READ, 1);
 
-      database.update(TABLE_NAME, contentValues, where, selection);
+      database.update(TABLE_NAME, contentValues, where, arguments);
       database.setTransactionSuccessful();
     } finally {
       if (cursor != null) cursor.close();
@@ -485,14 +492,6 @@ public class MmsDatabase extends MessagingDatabase {
     }
 
     return expiring;
-  }
-
-  public void setAllMessagesRead() {
-    SQLiteDatabase database     = databaseHelper.getWritableDatabase();
-    ContentValues contentValues = new ContentValues();
-    contentValues.put(READ, 1);
-
-    database.update(TABLE_NAME, contentValues, null, null);
   }
 
   public void updateMessageBody(MasterSecretUnion masterSecret, long messageId, String body) {
