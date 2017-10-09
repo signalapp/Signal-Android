@@ -8,6 +8,6 @@
             android:paddingLeft="16dp"
             android:paddingStart="16dp"
             android:clipToPadding="false"
-            android:nestedScrollingEnabled="true"
+            android:nestedScrollingEnabled="false"
             android:scrollbars="none"/>
 </merge>

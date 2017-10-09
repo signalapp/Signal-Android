@@ -51,7 +51,7 @@ public class ThreadPhotoRailView extends FrameLayout {
     this.recyclerView = ViewUtil.findById(this, R.id.photo_list);
     this.recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
     this.recyclerView.setItemAnimator(new DefaultItemAnimator());
-    this.recyclerView.setNestedScrollingEnabled(true);
+    this.recyclerView.setNestedScrollingEnabled(false);
   }
 
   public void setListener(@Nullable OnItemClickedListener listener) {
