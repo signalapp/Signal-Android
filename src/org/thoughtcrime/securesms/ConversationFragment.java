@@ -492,7 +492,7 @@ public class ConversationFragment extends Fragment
 
   private void scrollToLastSeenPosition(final int lastSeenPosition) {
     if (lastSeenPosition > 0) {
-      Util.runOnMain(() -> ((LinearLayoutManager)list.getLayoutManager()).scrollToPositionWithOffset(lastSeenPosition, list.getHeight()));
+      list.post(() -> ((LinearLayoutManager)list.getLayoutManager()).scrollToPositionWithOffset(lastSeenPosition, list.getHeight()));
     }
   }
 
