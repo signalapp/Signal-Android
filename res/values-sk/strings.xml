@@ -64,6 +64,9 @@
   <string name="AudioSlidePlayer_error_playing_audio">Chyba prehrávania zvuku!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Blokované kontakty</string>
+  <!--BucketedThreadMedia-->
+  <string name="BucketedThreadMedia_Today">Dnes</string>
+  <string name="BucketedThreadMedia_Yesterday">Včera</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Prichádzajúce volanie</string>
   <!--ClearProfileActivity-->
@@ -368,6 +371,8 @@ opätovným importom zduplikujete správy.
   <string name="MmsDownloader_error_storing_mms">Chyba pri ukladaní MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Chyba pripájania k poskytovateľovi MMS</string>
   <string name="MmsDownloader_error_reading_mms_settings">Chyba načítavania MMS nastavení poskytovateľa</string>
+  <!--MediaOverviewActivity-->
+  <string name="MediaOverviewActivity_Documents">Dokumenty</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Prebieha hovor Signal</string>
   <string name="NotificationBarManager_missed_call_from_s">Zmeškaný hovor od %s</string>
@@ -523,6 +528,8 @@ Skontrolujte pre istotu znovu, že ste správne zadali Vaše telefónne číslo!
   <string name="RegistrationService_signal_registration_has_successfully_completed">Registrácia Signal úspešne dokončená.</string>
   <string name="RegistrationService_registration_error">Chyba pri registrácii</string>
   <string name="RegistrationService_signal_registration_has_encountered_a_problem">Pri registrácii Signal sa vyskytol problém.</string>
+  <!--RingtonePreference-->
+  <string name="RingtonePreference_ringtone_silent">Žiadne</string>
   <!--Slide-->
   <string name="Slide_image">Obrázok</string>
   <string name="Slide_audio">Zvuk</string>
@@ -1236,9 +1243,5 @@ zlyhalo.
   <string name="trimmer__old_messages_successfully_deleted">Staré správy úspešne vymazané</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona prenosu</string>
-  <string name="RingtonePreference_ringtone_silent">Žiadne</string>
-  <string name="BucketedThreadMedia_Today">Dnes</string>
-  <string name="BucketedThreadMedia_Yesterday">Včera</string>
-  <string name="MediaOverviewActivity_Documents">Dokumenty</string>
   <!--EOF-->
 </resources>

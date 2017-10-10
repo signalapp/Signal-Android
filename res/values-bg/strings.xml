@@ -61,6 +61,11 @@
   <string name="AudioSlidePlayer_error_playing_audio">Грешка при възпроизвеждане на аудио!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Блокирани контакти</string>
+  <!--BucketedThreadMedia-->
+  <string name="BucketedThreadMedia_Today">Днес</string>
+  <string name="BucketedThreadMedia_Yesterday">Вчера</string>
+  <string name="BucketedThreadMedia_This_week">Тази седмица</string>
+  <string name="BucketedThreadMedia_This_month">Този месец</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Входящо обаждане</string>
   <!--ClearProfileActivity-->
@@ -363,6 +368,9 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="MmsDownloader_error_storing_mms">Грешка при съхраняване на MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Грешка при свързването с MMS доставчика</string>
   <string name="MmsDownloader_error_reading_mms_settings">Грешка при четенето на MMS настройките на доставчика</string>
+  <!--MediaOverviewActivity-->
+  <string name="MediaOverviewActivity_Media">Медия</string>
+  <string name="MediaOverviewActivity_Documents">Документи</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Протича Сигнал разговор</string>
   <string name="NotificationBarManager_missed_call_from_s">Пропуснато обаждане от %s</string>
@@ -517,6 +525,14 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="RegistrationService_signal_registration_has_successfully_completed">Сигнал регистрацията е успешно завършена.</string>
   <string name="RegistrationService_registration_error">Грешка при регистрацията</string>
   <string name="RegistrationService_signal_registration_has_encountered_a_problem">Сигнал регистрацията се натъкна на проблем.</string>
+  <!--RingtonePreference-->
+  <string name="RingtonePreference_ringtone_default">Мелодия за прозвъняване по подразбиране</string>
+  <string name="RingtonePreference_ringtone_silent">Нищо</string>
+  <string name="RingtonePreference_ringtone_picker_title">Мелодия за прозвъняване</string>
+  <string name="RingtonePreference_notification_sound_default">Мелодия за известие по подразбиране</string>
+  <string name="RingtonePreference_alarm_sound_default">Мелодия на аларма по подразбиране</string>
+  <string name="RingtonePreference_add_ringtone_text">Добавяне на мелодия за прозвъняване</string>
+  <string name="RingtonePreference_unable_to_add_ringtone">Неуспешно добавяне на нов звук за прозвъняване</string>
   <!--Slide-->
   <string name="Slide_image">Изображение</string>
   <string name="Slide_audio">Аудио</string>
@@ -841,6 +857,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="recipient_preferences__color">Цвят</string>
   <string name="recipient_preferences__color_for_this_contact">Цвят за този контакт</string>
   <string name="recipient_preferences__view_safety_number">Преглеждане на числото за сигурност</string>
+  <string name="recipient_preferences__chat_settings">Настройки на чата</string>
   <string name="recipient_preferences__privacy">Лично пространство</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Обаждане през Сигнал</string>
@@ -1074,6 +1091,10 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="preferences__submit_debug_log">Изпращане на доклад</string>
   <string name="preferences__support_wifi_calling">Съвместим режим \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Включи ако устройството ти използва WiFi за SMS/MMS(само ако \'Wifi Calling\' е включен на устройството ти)</string>
+  <string name="preferences__incognito_keyboard">Тайна клавиатура</string>
+  <string name="preferences__read_receipts">Потвърждения за прочитане</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ако Вашите потвърждения за прочитане са деактивирани няма да можете да видите потвържденията за прочитане от други.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Поискване на клавиатурата да деактивира персонализрано научаване</string>
   <string name="preferences_app_protection__blocked_contacts">Блокирани контакти</string>
   <string name="preferences_app_protection__safety_numbers_approval">Одобряване на числата за сигурност</string>
   <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Изискай удобряване на новите числа, когато бъдат променени</string>
@@ -1230,9 +1251,11 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="trimmer__old_messages_successfully_deleted">Старите съобщения бяха успешно изтрити</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Икона за транспорт</string>
-  <string name="RingtonePreference_ringtone_silent">Нищо</string>
-  <string name="BucketedThreadMedia_Today">Днес</string>
-  <string name="BucketedThreadMedia_Yesterday">Вчера</string>
-  <string name="MediaOverviewActivity_Documents">Документи</string>
+  <string name="conversation_item_sent__message_read">Съобщението е прочетено</string>
+  <string name="media_overview_documents_fragment__no_documents_found">Не са открити документи</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Потвърждения за прочитане са вече тук</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Пожелание вижте и споделете, когато съобщенията са прочетени</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Активиране на потвърждения за прочитане</string>
+  <string name="recipient_preference_activity__shared_media">Споделена медия</string>
   <!--EOF-->
 </resources>

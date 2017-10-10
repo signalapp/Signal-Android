@@ -58,6 +58,9 @@
   <string name="AudioSlidePlayer_error_playing_audio">오디오 재생 오류 발생</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">차단된 사용자</string>
+  <!--BucketedThreadMedia-->
+  <string name="BucketedThreadMedia_Today">오늘</string>
+  <string name="BucketedThreadMedia_Yesterday">어제</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">수신통화</string>
   <!--ClearProfileActivity-->
@@ -305,6 +308,7 @@
   <string name="MmsDownloader_error_storing_mms">MMS 메시지를 저장 오류 발생</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">MMS 제공자(이동통신사)에 연결 오류 발생</string>
   <string name="MmsDownloader_error_reading_mms_settings">이동통신사 MMS 설정 읽기 오류 발생</string>
+  <!--MediaOverviewActivity-->
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal 통화 중</string>
   <string name="NotificationBarManager_missed_call_from_s">%s님의 부재중 Signal 통화</string>
@@ -425,6 +429,8 @@
   <string name="RegistrationService_signal_registration_has_successfully_completed">Signal 가입이 완료되었습니다.</string>
   <string name="RegistrationService_registration_error">가입 오류 발생</string>
   <string name="RegistrationService_signal_registration_has_encountered_a_problem">Signal 가입에 문제가 발생했습니다.</string>
+  <!--RingtonePreference-->
+  <string name="RingtonePreference_ringtone_silent">없음</string>
   <!--Slide-->
   <string name="Slide_image">이미지</string>
   <string name="Slide_audio">오디오</string>
@@ -981,8 +987,5 @@
   <string name="trimmer__old_messages_successfully_deleted">이전 메시지 삭제됨</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">전송 아이콘</string>
-  <string name="RingtonePreference_ringtone_silent">없음</string>
-  <string name="BucketedThreadMedia_Today">오늘</string>
-  <string name="BucketedThreadMedia_Yesterday">어제</string>
   <!--EOF-->
 </resources>

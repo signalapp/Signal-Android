@@ -35,6 +35,7 @@
   <string name="AttachmentTypeSelectorAdapter_contact">Кантактная інфармацыя</string>
   <!--AudioSlidePlayer-->
   <!--BlockedContactsActivity-->
+  <!--BucketedThreadMedia-->
   <!--CallScreen-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Выдаліць</string>
@@ -154,6 +155,7 @@
   <!--MessageRetrievalService-->
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Памылка захавання MMS!</string>
+  <!--MediaOverviewActivity-->
   <!--- NotificationBarManager-->
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Мультымедыя паведамленне</string>
@@ -215,6 +217,8 @@
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Рэгістрацыя ваканана</string>
   <string name="RegistrationService_registration_error">Памылка рэгістрацыі</string>
+  <!--RingtonePreference-->
+  <string name="RingtonePreference_ringtone_silent">Няма</string>
   <!--Slide-->
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Атрыманы пашкоджаны ключ абмену паведамленнямі!</string>
@@ -569,6 +573,5 @@
   <string name="trimmer__old_messages_successfully_deleted">Старыя паведамленні паспяхова выдалены</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Транспартны значок</string>
-  <string name="RingtonePreference_ringtone_silent">Няма</string>
   <!--EOF-->
 </resources>

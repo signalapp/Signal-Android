@@ -47,20 +47,25 @@
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(bild)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(ljud)</string>
-  <string name="DraftDatabase_Draft_video_snippet">(video)</string>
+  <string name="DraftDatabase_Draft_video_snippet">(film)</string>
   <string name="DraftDatabase_Draft_location_snippet">(plats)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Kan ej hitta app för att välja media.</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_camera">Kamera</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Bild</string>
-  <string name="AttachmentTypeSelectorAdapter_video">Video</string>
+  <string name="AttachmentTypeSelectorAdapter_video">Filmer</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Ljud</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Kontaktinformation</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Fel vid uppspelning av ljud!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Blockerade kontakter</string>
+  <!--BucketedThreadMedia-->
+  <string name="BucketedThreadMedia_Today">Idag</string>
+  <string name="BucketedThreadMedia_Yesterday">Igår</string>
+  <string name="BucketedThreadMedia_This_week">Denna vecka</string>
+  <string name="BucketedThreadMedia_This_month">Denna månad</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Inkommande samtal</string>
   <!--ClearProfileActivity-->
@@ -102,7 +107,7 @@
   <string name="ConversationActivity_compose_message">Skriv meddelande</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Tyvärr uppstod det ett fel vid bifogning av din fil.</string>
   <string name="ConversationActivity_the_gif_you_selected_was_too_big">Gifen du valde är för stor!</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Tyvärr, den valda videon överskrider gränsen för meddelandestorlek (%1$skB).</string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Tyvärr, den valda filmen överskrider gränsen för meddelandestorlek (%1$skB).</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Tyvärr, den valda ljudfilen överskrider gränsen för meddelandestorlek (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Mottagaren är inte en giltig SMS eller e-postadress!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Meddelandet är tomt!</string>
@@ -362,6 +367,9 @@ som inte finns i säkerhetskopian.</string>
   <string name="MmsDownloader_error_storing_mms">Fel vid lagring av MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Fel vid anslutning till MMS-leverantör</string>
   <string name="MmsDownloader_error_reading_mms_settings">Fel vid läsningen av trådlös leverantör MMS-inställningar</string>
+  <!--MediaOverviewActivity-->
+  <string name="MediaOverviewActivity_Media">Media</string>
+  <string name="MediaOverviewActivity_Documents">Dokument</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signalsamtal pågår</string>
   <string name="NotificationBarManager_missed_call_from_s">Missat samtal från %s</string>
@@ -515,10 +523,18 @@ Dubbelkolla att det här är ditt nummer! Vi ska nu verifiera det med ett SMS.</
   <string name="RegistrationService_signal_registration_has_successfully_completed">Signal-registrering har lyckats.</string>
   <string name="RegistrationService_registration_error">Registreringsfel</string>
   <string name="RegistrationService_signal_registration_has_encountered_a_problem">Signal-registreringen har drabbats av ett problem.</string>
+  <!--RingtonePreference-->
+  <string name="RingtonePreference_ringtone_default">Standardringsignal</string>
+  <string name="RingtonePreference_ringtone_silent">Inga</string>
+  <string name="RingtonePreference_ringtone_picker_title">Ringsignal</string>
+  <string name="RingtonePreference_notification_sound_default">Standardljud för avisering</string>
+  <string name="RingtonePreference_alarm_sound_default">Standardalarmljud</string>
+  <string name="RingtonePreference_add_ringtone_text">Lägg till ringsignal</string>
+  <string name="RingtonePreference_unable_to_add_ringtone">Kunde inte lägga till egen ringsignal</string>
   <!--Slide-->
   <string name="Slide_image">Bilder</string>
   <string name="Slide_audio">Ljud</string>
-  <string name="Slide_video">Video</string>
+  <string name="Slide_video">Filmer</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Tog emot skadat meddelande
 för nyckelutbyte!</string>
@@ -655,7 +671,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="attachment_type_selector__location_description">Plats</string>
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
-  <string name="attachment_type_selector__gallery_description">Bild eller video</string>
+  <string name="attachment_type_selector__gallery_description">Bild eller film</string>
   <string name="attachment_type_selector__file_description">Fil</string>
   <string name="attachment_type_selector__gallery">Galleri</string>
   <string name="attachment_type_selector__file">Fil</string>
@@ -838,6 +854,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="recipient_preferences__color">Färg</string>
   <string name="recipient_preferences__color_for_this_contact">Färg för denna kontakt</string>
   <string name="recipient_preferences__view_safety_number">Visa säkerhetsnummer</string>
+  <string name="recipient_preferences__chat_settings">Chattinställningar</string>
   <string name="recipient_preferences__privacy">Integritet</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signalsamtal</string>
@@ -957,7 +974,7 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="arrays__no_name_or_message">Inget namn eller meddelande</string>
   <string name="arrays__images">Bilder</string>
   <string name="arrays__audio">Ljud</string>
-  <string name="arrays__video">Video</string>
+  <string name="arrays__video">Filmer</string>
   <string name="arrays__documents">Dokument</string>
   <string name="arrays__small">Liten</string>
   <string name="arrays__normal">Normal</string>
@@ -1064,6 +1081,10 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="preferences__submit_debug_log">Skicka in loggfilen för felsökning</string>
   <string name="preferences__support_wifi_calling">\'WiFi Calling\' kompatibilitetsläge</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivera om din enhet använder SMS/MMS sändning över WiFi (aktivera endast när \'WiFi Calling\' är aktiverat på din enhet)</string>
+  <string name="preferences__incognito_keyboard">Inkognito-tangentbord</string>
+  <string name="preferences__read_receipts">Läskvittenser</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Om läskvittenser är avstängda kan du inte se läskvittenser från andra.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Begär att tangentbordet stänger av personlig inlärning</string>
   <string name="preferences_app_protection__blocked_contacts">Blockerade kontakter</string>
   <string name="preferences_app_protection__safety_numbers_approval">Godkännande av säkerhetsnummer</string>
   <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Kräv godkännande av nya säkerhetsnummer när de ändras</string>
@@ -1220,9 +1241,11 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="trimmer__old_messages_successfully_deleted">Gamla meddelanden har raderats</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportikon</string>
-  <string name="RingtonePreference_ringtone_silent">Inga</string>
-  <string name="BucketedThreadMedia_Today">Idag</string>
-  <string name="BucketedThreadMedia_Yesterday">Igår</string>
-  <string name="MediaOverviewActivity_Documents">Dokument</string>
+  <string name="conversation_item_sent__message_read">Meddelande läst</string>
+  <string name="media_overview_documents_fragment__no_documents_found">Inga dokument hittades</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Lässkvittenser är här</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Om du vill kan du se och dela när ett meddelande har lästs</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Slå på läskvittenser</string>
+  <string name="recipient_preference_activity__shared_media">Delad media</string>
   <!--EOF-->
 </resources>

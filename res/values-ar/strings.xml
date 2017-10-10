@@ -73,10 +73,16 @@
   <string name="AudioSlidePlayer_error_playing_audio">خطأ في تشغيل الصوت!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">جهات الاتصال المحظورة</string>
+  <!--BucketedThreadMedia-->
+  <string name="BucketedThreadMedia_Today">اليوم</string>
+  <string name="BucketedThreadMedia_Yesterday">البارحة</string>
+  <string name="BucketedThreadMedia_This_week">هذا الأسبوع</string>
+  <string name="BucketedThreadMedia_This_month">هذا الشهر</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">مكالمة واردة</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">إزالة</string>
+  <string name="ClearProfileActivity_remove_profile_photo">هل تود حذف سورة ملفك الشخصي ؟</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">لقد تغير رقم الأمان الخاص بك وبـ %1$s. هذا إما يعني أن أحداً يحاول اعتراض اتصالكما ، أو أن %2$s ببساطة أعاد تنصيب تطبيق سيقنـال مرة آخرى.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">لربما ترغب بالتحقق من رقم الأمان مع هذا المتصل.</string>
@@ -151,6 +157,14 @@
   <string name="ConversationActivity_error_sending_voice_message">خطأ في إرسال الرسالة الصوتية</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">لا يوجد تطبيق على الجهاز لمعالجة الرابط.</string>
   <!--ConversationAdapter-->
+  <plurals name="ConversationAdapter_n_unread_messages">
+    <item quantity="zero">رسالة %d غير مقرؤة</item>
+    <item quantity="one">رسالة %d غير مقرؤة</item>
+    <item quantity="two">رسالتين %d غير مقرؤة</item>
+    <item quantity="few">%dرسائل غير مقرؤة </item>
+    <item quantity="many">%dرسائل غير مقرؤة </item>
+    <item quantity="other">%dرسائل غير مقرؤة</item>
+  </plurals>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">تفاصيل الرسالة</string>
   <string name="ConversationFragment_transport_s_sent_received_s">نقل: %1$s\nSent/Received: %2$s</string>
@@ -187,6 +201,14 @@
     <item quantity="few">وقع خطأ أثناء حفظ المرفقات في مساحة التخزين!</item>
     <item quantity="many">وقع خطأ أثناء حفظ المرفقات في مساحة التخزين!</item>
     <item quantity="other">وقع خطأ أثناء حفظ المرفقات في مساحة التخزين!</item>
+  </plurals>
+  <plurals name="ConversationFragment_files_saved_successfully">
+    <item quantity="zero">تمت عملية تسجيل الملفات بنجاح.</item>
+    <item quantity="one">تمت عملية تسجيل الملف بنجاح.</item>
+    <item quantity="two">تمت عملية تسجيل الملفات بنجاح.</item>
+    <item quantity="few">تمت عملية تسجيل الملفات بنجاح.</item>
+    <item quantity="many">تمت عملية تسجيل الملفات بنجاح.</item>
+    <item quantity="other">تمت عملية تسجيل الملفات بنجاح.</item>
   </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">تعذر الإضافة إلى الذاكرة!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
@@ -256,6 +278,13 @@
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">أرشيف المحادثات (%d)</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity_your_profile_info">معلومات حول ملفك الشخصي</string>
+  <string name="CreateProfileActivity_error_setting_profile_photo">خطأ في إعداد صورة الملف الشخصي</string>
+  <string name="CreateProfileActivity_problem_setting_profile">خطأ في إعداد الملف الشخصي</string>
+  <string name="CreateProfileActivity_updating_profile">تحديث الملف الشخصي</string>
+  <string name="CreateProfileActivity_updating_and_encrypting_profile">تحديث و تشفير الملف الشخصي</string>
+  <string name="CreateProfileActivity_profile_photo">الصورة الشخصية</string>
+  <string name="CreateProfileActivity_too_long">طويل جدا</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">استخدام التخصيص: %s</string>
   <string name="CustomDefaultPreference_using_default">الاستخدام الافتراضي: %s</string>
@@ -291,7 +320,8 @@
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">تم دمج تيكست سيكيور وريدفون في تطبيق واحد الآن: سيجنال</string>
   <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">أهلاً بالاتصالات الفيديوية الآمنة.</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">تدعم Signal حالياً الاتصالات الفيديوية الآمنة.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">تدعم Signal حالياً الاتصالات الفيديوية الآمنة. انقر لمعرفة المزيد.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">سيجنال يدعم حالياً الإتصالات الآمنة عبر الفيديو. انقر لمعرفة المزيد.</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">بإمكانكم الآن مشاركة صورة ملفكم الشخصي و اسمكم مع أصدقائكم على سيجنال</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">تصدير</string>
   <string name="ExportFragment_export_plaintext_to_storage">تصدير نسخة احتياطية غير مشفرة إلى الذاكرة؟</string>
@@ -389,6 +419,9 @@
   <string name="MmsDownloader_error_storing_mms">خطأ بتخزين رسالة الوسائط المتعددة!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">خطأ في الاتصال بمزود خدمة رسالة الوسائط المتعددة</string>
   <string name="MmsDownloader_error_reading_mms_settings">خطأ في قراءة إعدادات مزود خدمة رسالة الوسائط المتعددة اللاسلكي</string>
+  <!--MediaOverviewActivity-->
+  <string name="MediaOverviewActivity_Media">الوسائط</string>
+  <string name="MediaOverviewActivity_Documents">الوثائق</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">مكالمة سيجنال</string>
   <string name="NotificationBarManager_missed_call_from_s">مكالمة فائتة من %s</string>
@@ -411,9 +444,10 @@
   <string name="MessageRecord_s_called_you">%s قام بالاتصال</string>
   <string name="MessageRecord_called_s">%s قام بالاتصال</string>
   <string name="MessageRecord_missed_call_from">مكالمة فائتة من %s</string>
+  <string name="MessageRecord_s_joined_signal">%sمتواجد على سيجنال !</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">لقد قمت بتحديد توقيت اختفاء الرسالة ليكون %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">حدد %1$s توقيت اختفاء الرسالة ليكون %2$s.</string>
-  <string name="MessageRecord_your_safety_number_with_s_has_changed">تم تغيير رقم الأمان الخاص بك وبـ%s.</string>
+  <string name="MessageRecord_your_safety_number_with_s_has_changed">تم تغيير رقم الأمان الخاص بك وبـ %s.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">العبارات السرية غير متطابقة!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">العبارة السرية القديمة غير صحيحة!</string>
@@ -454,7 +488,7 @@
   <string name="RatingManager_rate_now">قَيّم الآن</string>
   <string name="RatingManager_no_thanks">لا، شكرا</string>
   <string name="RatingManager_later">فيما بعد</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">أوبس، تطبيق المتجر ﻻ يظهر على أنه مثبت على جهازك </string>
+  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">ويحي ، تطبيق المتجر ﻻ يظهر على أنه مثبت على جهازك </string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">حظر جهة الاتصال؟</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">لن تتلقى الرسائل أو المكالمات من هذا المستخدم مستقبلا.</string>
@@ -533,6 +567,13 @@
   <string name="RegistrationService_signal_registration_has_successfully_completed">عملية التسجيل في سيجنال تمت بنجاح.</string>
   <string name="RegistrationService_registration_error">خطأ في التسجيل</string>
   <string name="RegistrationService_signal_registration_has_encountered_a_problem">عملية التسجيل في سيجنال واجهة مشكلة.</string>
+  <!--RingtonePreference-->
+  <string name="RingtonePreference_ringtone_default">النغمة الإفتراضية</string>
+  <string name="RingtonePreference_ringtone_silent">لا شيء </string>
+  <string name="RingtonePreference_ringtone_picker_title">الرنين</string>
+  <string name="RingtonePreference_notification_sound_default">نغمة الإخطارات الإفتراضية</string>
+  <string name="RingtonePreference_alarm_sound_default">نغمة التنبيه الإفتراضية</string>
+  <string name="RingtonePreference_add_ringtone_text">إضافة نغمة</string>
   <!--Slide-->
   <string name="Slide_image">صورة</string>
   <string name="Slide_audio">صوت</string>
@@ -554,15 +595,22 @@
   <string name="ThreadRecord_called_you">مكالمات واردة</string>
   <string name="ThreadRecord_missed_call">مكالمة فائتة</string>
   <string name="ThreadRecord_media_message">رسالة وسائط متعددة</string>
+  <string name="ThreadRecord_s_is_on_signal">%sمتواجد على سيجنال !</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">ضبط توقيت إخفاء الرسائل إلى %s</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">تم تغيير رقم الأمان الخاص بك وبـ%s.</string>
   <!--UpdateApkReadyListener-->
-  <string name="UpdateApkReadyListener_Signal_update">تحديث Signal </string>
+  <string name="UpdateApkReadyListener_Signal_update">تحديث سيجنال</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">يتوفر الاصدار الجديد لـ Signal، انقر للتحديث</string>
   <!--UnknownSenderView-->
+  <string name="UnknownSenderView_block_s">هل تود حظر %s ؟</string>
   <string name="UnknownSenderView_block">حظر</string>
+  <string name="UnknownSenderView_share_profile_with_s">هل تود مشاركة الملف الشخصي بواسطة %s ؟</string>
   <!--UntrustedSendDialog-->
+  <string name="UntrustedSendDialog_send_message">هل تود إرسال الرسالة ؟</string>
+  <string name="UntrustedSendDialog_send">إرسل</string>
   <!--UnverifiedSendDialog-->
+  <string name="UnverifiedSendDialog_send_message">هل تود إرسال الرسالة ؟</string>
+  <string name="UnverifiedSendDialog_send">إرسل</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">متصلك يستعمل نسخة قديمة من تطبيق سيقنال. من فضلك اطلب منه تحديث التطبيق ليتسنى لك التحقق من رقم الأمان.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">إن متصلك هذا يستعمل نسخة تطبيق سيقنـال أحدث ورمز QR فيها لا يتوافق مع نسختك.
@@ -624,6 +672,7 @@
   <string name="MessageNotifier_mark_read">اعتبرها مقروءة</string>
   <string name="MessageNotifier_media_message">رسالة وسائط متعددة</string>
   <string name="MessageNotifier_reply">رَدّ</string>
+  <string name="MessageNotifier_pending_signal_messages">رسائل سيجنال المعلقة</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">إعدادات يدوية لرسائل الوسائط المتعددة مطلوبة لهاتفك.</string>
   <string name="MmsPreferencesFragment__enabled">مفعل</string>
@@ -660,7 +709,7 @@
   <string name="attachment_type_selector__gallery_description">صورة أو فيديو</string>
   <string name="attachment_type_selector__file_description">ملف</string>
   <string name="attachment_type_selector__gallery">عرض الصور</string>
-  <string name="attachment_type_selector__file">ملفملف</string>
+  <string name="attachment_type_selector__file">ملف</string>
   <string name="attachment_type_selector__drawer_description">تفعيل أو تثبيط درج المرفقات</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">العبارة السرية القديمة</string>
@@ -682,7 +731,7 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">إخطارات المحادثة مكتومة</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">رسالة من Signal</string>
+  <string name="conversation_activity__type_message_push">رسالة من سيجنال</string>
   <string name="conversation_activity__type_message_sms_insecure">رسائل نصية غير آمنة</string>
   <string name="conversation_activity__type_message_mms_insecure">رسائل وسائط متعددة غير آمنة</string>
   <string name="conversation_activity__from_sim_name">من %1$s</string>
@@ -826,6 +875,8 @@
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">يتطلب سيجنال إعدادات خدمة الوسائط المتعددة من أجل تسليم رسائل الوسائط المتعددة والمجموعات عبر شبكة الجوال. في بعض الأحوال لا تتاح هذه المعلومات مع الهواتف المقفولة أو ذات الإعدادات المقيدة.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">من اجل إرسال وسائط متعددة ورسائل إلى مجموعات أضغط على \"تم\" وأكمل الإعدادات المطلوبة. يمكن العثور على إعدادات رسائل الوسائط المتعددة الخاصة بمشغل شبكة الجوال الخاصة بك بالبحث عن \"أسم المشغل APN\". سوف تحتاج إلى القيام بهذه الخطوة مرة واحدة.</string>
   <!--profile_create_activity-->
+  <string name="profile_create_activity__who_can_see_this_information">من بإمكانه الإطلاع على هذه المعلومة ؟</string>
+  <string name="profile_create_activity__your_name">إسمك</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">جهة الاتصال محظورة</string>
   <!--recipient_preferences-->
@@ -836,6 +887,8 @@
   <string name="recipient_preferences__block">حظر</string>
   <string name="recipient_preferences__color">اللون</string>
   <string name="recipient_preferences__color_for_this_contact">اللون المخصص لجهة الاتصال</string>
+  <string name="recipient_preferences__view_safety_number">عرض رقم الأمان</string>
+  <string name="recipient_preferences__chat_settings">إعدادات الدردشة</string>
   <string name="recipient_preferences__privacy">الخصوصية</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">مكالمة سيجنال</string>
@@ -895,8 +948,11 @@
   <string name="recipients_panel__to"><small>أدخل اسم أو رقم</small></string>
   <string name="recipients_panel__add_members">إضافة أعضاء</string>
   <!--unknown_sender_view-->
+  <string name="unknown_sender_view__block">حظر</string>
+  <string name="unknown_sender_view__add_to_contacts">أضف إلى قائمة جهات الإتصال</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__tap_to_scan">المس للمسح</string>
+  <string name="verify_display_fragment__loading">جاري التحميل ...</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">شارك رقم الأمان</string>
   <!--message_details_header-->
@@ -923,6 +979,7 @@
   <string name="AndroidManifest__linked_devices">الأجهزة المتصلة</string>
   <string name="AndroidManifest__invite_friends">دعوة الأصدقاء</string>
   <string name="AndroidManifest_archived_conversations">أرشيف المحادثة</string>
+  <string name="AndroidManifest_remove_photo">حذف الصورة</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">استيراد / تصدير</string>
   <string name="arrays__use_default">استخدم الافتراضي</string>
@@ -1051,6 +1108,8 @@
   <string name="preferences__submit_debug_log">إرسال سجل التصحيح</string>
   <string name="preferences__support_wifi_calling">وضع التوافق مع \'مكالمات الواي فاي\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">يمكنك تفعيل الخاصية إذا كان هاتفك يدعم خاصية WiFi Calling لتسليم الرسائل النصية والوسائط المتعددة ( قم بالتفعيل فقط في حال تفعيل WiFi Calling بهاتفك)</string>
+  <string name="preferences__incognito_keyboard">وضع التستّر للوحة المفاتيح</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">الطلب من لوحة المفاتيح تعطيل التعلم الذاتي</string>
   <string name="preferences_app_protection__blocked_contacts">جهات الاتصال المحظورة</string>
   <string name="preferences_app_protection__safety_numbers_approval">التأكد من أرقام الأمان</string>
   <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">طلب التصديق عند تغير بصمة الهوية.</string>
@@ -1067,6 +1126,7 @@
   <string name="preferences_app_protection__app_access">دخول البرنامج</string>
   <string name="preferences_app_protection__communication">اتصال</string>
   <string name="preferences_chats__chats">دردشة</string>
+  <string name="preferences_notifications__messages">الرسائل</string>
   <string name="preferences_notifications__events">الأحداث</string>
   <string name="preferences_notifications__in_chat_sounds">أصوات خلال الدردشة</string>
   <string name="preferences_notifications__show">اظهار</string>
@@ -1208,9 +1268,8 @@
   <string name="trimmer__old_messages_successfully_deleted">تم حذف الرسائل القديمة بنجاح</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">أيقونة النقل.</string>
-  <string name="RingtonePreference_ringtone_silent">لا شيء </string>
-  <string name="BucketedThreadMedia_Today">اليوم</string>
-  <string name="BucketedThreadMedia_Yesterday">البارحة</string>
-  <string name="MediaOverviewActivity_Documents">الوثائق</string>
+  <string name="media_overview_documents_fragment__no_documents_found">لم يتم العثور على أي ملف</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">تفعيل قراءة  تقارير الإستلام</string>
+  <string name="recipient_preference_activity__shared_media">الوسائط التي تم مشاركتها</string>
   <!--EOF-->
 </resources>

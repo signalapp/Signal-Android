@@ -49,6 +49,7 @@
   <!--AudioSlidePlayer-->
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Блокирани контакти</string>
+  <!--BucketedThreadMedia-->
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Доаѓачки повик</string>
   <!--ClearProfileActivity-->
@@ -184,6 +185,7 @@
   <string name="MessageRetrievalService_signal">Signal</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Грешка при снимањето на MMS!</string>
+  <!--MediaOverviewActivity-->
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_missed_call_from_s">Пропуштен повик од %s</string>
   <string name="NotificationBarManager_missed_signal_call">Пропуштен Signal повик</string>
@@ -294,6 +296,8 @@
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Регистрацијата е завршена</string>
   <string name="RegistrationService_registration_error">Грешка при регистрацијата</string>
+  <!--RingtonePreference-->
+  <string name="RingtonePreference_ringtone_silent">Ниедна</string>
   <!--Slide-->
   <string name="Slide_audio">Звук</string>
   <!--SmsMessageRecord-->
@@ -697,6 +701,5 @@
   <string name="trimmer__old_messages_successfully_deleted">Старите пораки се успешно избришани</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Симбол за транспорт</string>
-  <string name="RingtonePreference_ringtone_silent">Ниедна</string>
   <!--EOF-->
 </resources>

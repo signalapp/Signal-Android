@@ -61,6 +61,9 @@
   <string name="AudioSlidePlayer_error_playing_audio">שגיאה בהשמעת צליל!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">אנשי קשר חסומים</string>
+  <!--BucketedThreadMedia-->
+  <string name="BucketedThreadMedia_Today">היום</string>
+  <string name="BucketedThreadMedia_Yesterday">אתמול</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">שיחה נכנסת</string>
   <!--ClearProfileActivity-->
@@ -350,6 +353,8 @@
   <string name="MmsDownloader_error_storing_mms">שגיאה באחסון ה־MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">שגיאה בהתחברות לספק MMS</string>
   <string name="MmsDownloader_error_reading_mms_settings">שגיאה בקריאת הגדרות MMS של ספק התקשורת האלחוטית</string>
+  <!--MediaOverviewActivity-->
+  <string name="MediaOverviewActivity_Documents">מסמכים</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">שיחת סיגנל נערכת עכשיו</string>
   <string name="NotificationBarManager_missed_call_from_s">שיחה שלא נענתה מאת %s</string>
@@ -503,6 +508,8 @@
   <string name="RegistrationService_signal_registration_has_successfully_completed">רישום בסיגנל הושלם בהצלחה.</string>
   <string name="RegistrationService_registration_error">שגיאת רישום</string>
   <string name="RegistrationService_signal_registration_has_encountered_a_problem">רישום בסיגנל גילה בעיה.</string>
+  <!--RingtonePreference-->
+  <string name="RingtonePreference_ringtone_silent">אין</string>
   <!--Slide-->
   <string name="Slide_image">תמונה</string>
   <string name="Slide_audio">קול</string>
@@ -1194,9 +1201,5 @@
   <string name="trimmer__old_messages_successfully_deleted">מסרים ישנים נמחקו</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">סמל תעבורה</string>
-  <string name="RingtonePreference_ringtone_silent">אין</string>
-  <string name="BucketedThreadMedia_Today">היום</string>
-  <string name="BucketedThreadMedia_Yesterday">אתמול</string>
-  <string name="MediaOverviewActivity_Documents">מסמכים</string>
   <!--EOF-->
 </resources>

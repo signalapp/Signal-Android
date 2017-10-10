@@ -61,6 +61,11 @@
   <string name="AudioSlidePlayer_error_playing_audio">Erro ao tocar áudio!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Contatos bloqueados</string>
+  <!--BucketedThreadMedia-->
+  <string name="BucketedThreadMedia_Today">Hoje</string>
+  <string name="BucketedThreadMedia_Yesterday">Ontem</string>
+  <string name="BucketedThreadMedia_This_week">Esta semana</string>
+  <string name="BucketedThreadMedia_This_month">Este mês</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Recebendo chamada</string>
   <!--ClearProfileActivity-->
@@ -367,6 +372,9 @@
   <string name="MmsDownloader_error_storing_mms">Erro ao armazenar MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Erro de conexão com provedor de MMS</string>
   <string name="MmsDownloader_error_reading_mms_settings">Erro ao ler configuracoes de MMS do provedor sem fio </string>
+  <!--MediaOverviewActivity-->
+  <string name="MediaOverviewActivity_Media">Mídia</string>
+  <string name="MediaOverviewActivity_Documents">Documentos</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chamada Signal em andamento</string>
   <string name="NotificationBarManager_missed_call_from_s">Chamada perdida de %s</string>
@@ -525,6 +533,14 @@
   <string name="RegistrationService_signal_registration_has_successfully_completed">Cadastro no Signal efetuado com sucesso.</string>
   <string name="RegistrationService_registration_error">Erro de cadastro</string>
   <string name="RegistrationService_signal_registration_has_encountered_a_problem">Signal encontrou um problema no registro.</string>
+  <!--RingtonePreference-->
+  <string name="RingtonePreference_ringtone_default">Toque padrão</string>
+  <string name="RingtonePreference_ringtone_silent">Nenhum</string>
+  <string name="RingtonePreference_ringtone_picker_title">Toques</string>
+  <string name="RingtonePreference_notification_sound_default">Som padrão de notificação</string>
+  <string name="RingtonePreference_alarm_sound_default">Som padrão de alarme</string>
+  <string name="RingtonePreference_add_ringtone_text">Adicionar toque</string>
+  <string name="RingtonePreference_unable_to_add_ringtone">Não foi possível adicionar toque personalizado</string>
   <!--Slide-->
   <string name="Slide_image">Imagem</string>
   <string name="Slide_audio">Áudio</string>
@@ -1087,6 +1103,10 @@ falhou.</string>
   <string name="preferences__submit_debug_log">Enviar log de depuração</string>
   <string name="preferences__support_wifi_calling">Modo de compatibilidade \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Habilite se o seu dispositivo usa entrega de SMS/MMS via WiFi (somente habilite quando \'WiFi Calling\' estiver habilitado no seu dispositivo)</string>
+  <string name="preferences__incognito_keyboard">Teclado incógnito</string>
+  <string name="preferences__read_receipts">Confirmações de leitura</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Se as confirmações de leitura estiverem desabilitadas, você não verá as confirmações de leitura dos outros.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Solicitar ao teclado que desabilite o aprendizado personalizado</string>
   <string name="preferences_app_protection__blocked_contacts">Contatos bloqueados</string>
   <string name="preferences_app_protection__safety_numbers_approval">Aprovação de números de segurança</string>
   <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Exigir aprovação de novos números de segurança quando houver mudança</string>
@@ -1245,24 +1265,10 @@ falhou.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ícone do transporte</string>
   <string name="conversation_item_sent__message_read">Mensagem lida</string>
-  <string name="preferences__read_receipts">Confirmações de leitura</string>
-  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Se as suas confirmações de leitura estiverem desabilitadas, você não verá as confirmações de leitura dos outros.</string>
-  <string name="RingtonePreference_ringtone_default">Toque padrão</string>
-  <string name="RingtonePreference_ringtone_silent">Nenhum</string>
-  <string name="RingtonePreference_ringtone_picker_title">Toques</string>
-  <string name="RingtonePreference_notification_sound_default">Som padrão de notificação</string>
-  <string name="RingtonePreference_alarm_sound_default">Som padrão de alarme</string>
-  <string name="RingtonePreference_add_ringtone_text">Adicionar toque</string>
-  <string name="RingtonePreference_unable_to_add_ringtone">Não foi possível adicionar toque personalizado</string>
-  <string name="BucketedThreadMedia_Today">Hoje</string>
-  <string name="BucketedThreadMedia_Yesterday">Ontem</string>
-  <string name="BucketedThreadMedia_This_week">Esta semana</string>
-  <string name="BucketedThreadMedia_This_month">Este mês</string>
-  <string name="MediaOverviewActivity_Media">Mídia</string>
-  <string name="MediaOverviewActivity_Documents">Documentos</string>
   <string name="media_overview_documents_fragment__no_documents_found">Nenhum documento encontrado</string>
   <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Aqui estão as confirmações de leitura </string>
   <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Opcionalmente ver e compartilhar quando as mensagens tiverem sido lidas</string>
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">Habilitar confirmações de leitura</string>
+  <string name="recipient_preference_activity__shared_media">Mídia compartilhada</string>
   <!--EOF-->
 </resources>

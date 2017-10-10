@@ -64,6 +64,11 @@
   <string name="AudioSlidePlayer_error_playing_audio">Klaida atkuriant garso įrašą!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Užblokuoti kontaktai</string>
+  <!--BucketedThreadMedia-->
+  <string name="BucketedThreadMedia_Today">Šiandien</string>
+  <string name="BucketedThreadMedia_Yesterday">Vakar</string>
+  <string name="BucketedThreadMedia_This_week">Ši savaitė</string>
+  <string name="BucketedThreadMedia_This_month">Šis mėnuo</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Gaunamasis skambutis</string>
   <!--ClearProfileActivity-->
@@ -385,6 +390,9 @@
   <string name="MmsDownloader_error_storing_mms">Klaida, talpinant MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Nepavyko prisijungti prie MMS tiekėjo</string>
   <string name="MmsDownloader_error_reading_mms_settings">Klaida, skaitant belaidžio tiekėjo MMS nustatymus</string>
+  <!--MediaOverviewActivity-->
+  <string name="MediaOverviewActivity_Media">Medija</string>
+  <string name="MediaOverviewActivity_Documents">Dokumentai</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal skambutis yra eigoje</string>
   <string name="NotificationBarManager_missed_call_from_s">Praleistas skambutis nuo %s</string>
@@ -543,6 +551,14 @@
   <string name="RegistrationService_signal_registration_has_successfully_completed">Signal registracija sėkmingai užbaigta.</string>
   <string name="RegistrationService_registration_error">Registracijos klaida</string>
   <string name="RegistrationService_signal_registration_has_encountered_a_problem">Signal registracija susidūrė su problema.</string>
+  <!--RingtonePreference-->
+  <string name="RingtonePreference_ringtone_default">Numatytoji skambučio melodija</string>
+  <string name="RingtonePreference_ringtone_silent">Nėra</string>
+  <string name="RingtonePreference_ringtone_picker_title">Skambučio melodijos</string>
+  <string name="RingtonePreference_notification_sound_default">Numatytasis pranešimo garsas</string>
+  <string name="RingtonePreference_alarm_sound_default">Numatytasis signalo garsas</string>
+  <string name="RingtonePreference_add_ringtone_text">Pridėti skambučio melodiją</string>
+  <string name="RingtonePreference_unable_to_add_ringtone">Nepavyksta pridėti tinkintos skambučio melodijos</string>
   <!--Slide-->
   <string name="Slide_image">Paveikslas</string>
   <string name="Slide_audio">Garsas</string>
@@ -1128,6 +1144,9 @@ yra prisijungęs prie belaidžio (Wi-Fi) arba duomenų perdavimo tinklo.
   <string name="preferences__submit_debug_log">Pateikti derinimo žurnalą</string>
   <string name="preferences__support_wifi_calling">„Wi-Fi skambučių“ suderinamumo veiksena</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Įjunkite jeigu jūsų įrenginys siunčia SMS/MMS per WiFi tinklą (įjunkite tik tuo atveju jeigu jūsų įrenginyje yra aktyvuota \"WiFi skambučių\" funkcija)</string>
+  <string name="preferences__incognito_keyboard">Incognito klaviatūra</string>
+  <string name="preferences__read_receipts">Pranešimai apie žinučių skaitymą</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Jeigu pranešimai apie žinučių skaitymą yra išjungti, jūs negalėsite matyti kitų žmonių pranešimų apie žinučių skaitymą.</string>
   <string name="preferences_app_protection__blocked_contacts">Užblokuoti kontaktai</string>
   <string name="preferences_app_protection__safety_numbers_approval">Saugumo numerių patvirtinimas</string>
   <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Reikalauti naujų saugumo numerių patvirtinimo, jiems pasikeitus</string>
@@ -1286,21 +1305,6 @@ yra prisijungęs prie belaidžio (Wi-Fi) arba duomenų perdavimo tinklo.
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Perdavimo piktograma</string>
   <string name="conversation_item_sent__message_read">Žinutė perskaityta</string>
-  <string name="preferences__read_receipts">Pranešimai apie žinučių skaitymą</string>
-  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Jeigu jūsų pranešimai apie žinučių skaitymą yra išjungti, jūs negalėsite matyti kitų žmonių pranešimų apie žinučių skaitymą</string>
-  <string name="RingtonePreference_ringtone_default">Numatytoji skambučio melodija</string>
-  <string name="RingtonePreference_ringtone_silent">Nėra</string>
-  <string name="RingtonePreference_ringtone_picker_title">Skambučio melodijos</string>
-  <string name="RingtonePreference_notification_sound_default">Numatytasis pranešimo garsas</string>
-  <string name="RingtonePreference_alarm_sound_default">Numatytasis signalo garsas</string>
-  <string name="RingtonePreference_add_ringtone_text">Pridėti skambučio melodiją</string>
-  <string name="RingtonePreference_unable_to_add_ringtone">Nepavyksta pridėti tinkintos skambučio melodijos</string>
-  <string name="BucketedThreadMedia_Today">Šiandien</string>
-  <string name="BucketedThreadMedia_Yesterday">Vakar</string>
-  <string name="BucketedThreadMedia_This_week">Ši savaitė</string>
-  <string name="BucketedThreadMedia_This_month">Šis mėnuo</string>
-  <string name="MediaOverviewActivity_Media">Medija</string>
-  <string name="MediaOverviewActivity_Documents">Dokumentai</string>
   <string name="media_overview_documents_fragment__no_documents_found">Dokumentų nerasta</string>
   <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Pranešimai apie žinučių skaitymą jau čia</string>
   <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Pasirinktinai matyti kada žinutės būna perskaitomos ir rodyti tai kitiems</string>
