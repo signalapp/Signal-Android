@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.WorkerThread;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -92,6 +93,10 @@ public class ContactPhotoFactory {
                            .get();
 
       return new BitmapContactPhoto(bitmap);
+    } catch (IllegalArgumentException e) {
+      Log.w(TAG, e);
+      // XXX This is a temporary fix for #7016 until we upgrade to Glide 4 as a next step 
+      return getDefaultContactPhoto(name);
     } catch (ExecutionException e) {
       return getDefaultContactPhoto(name);
     } catch (InterruptedException e) {
