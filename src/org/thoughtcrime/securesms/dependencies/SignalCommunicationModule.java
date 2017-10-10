@@ -105,7 +105,9 @@ public class SignalCommunicationModule {
                                                           new SignalProtocolStoreImpl(context),
                                                           BuildConfig.USER_AGENT,
                                                           Optional.fromNullable(MessageRetrievalService.getPipe()),
-                                                          Optional.<SignalServiceMessageSender.EventListener>of(new SecurityEventListener(context)));
+                                                          Optional.of(new SecurityEventListener(context)));
+    } else {
+      this.messageSender.setMessagePipe(MessageRetrievalService.getPipe());
     }
 
     return this.messageSender;
