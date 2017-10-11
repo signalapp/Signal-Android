@@ -217,7 +217,7 @@ dependencyVerification {
 
 android {
     compileSdkVersion 26
-    buildToolsVersion '25.0.2'
+    buildToolsVersion '25.0.3'
     useLibrary 'org.apache.http.legacy'
 
     dexOptions {
