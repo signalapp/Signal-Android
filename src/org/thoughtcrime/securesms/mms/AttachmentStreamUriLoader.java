@@ -1,39 +1,38 @@
 package org.thoughtcrime.securesms.mms;
 
-import android.content.Context;
-import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
-import com.bumptech.glide.load.data.DataFetcher;
-import com.bumptech.glide.load.model.GenericLoaderFactory;
+import com.bumptech.glide.load.Key;
+import com.bumptech.glide.load.Options;
 import com.bumptech.glide.load.model.ModelLoader;
 import com.bumptech.glide.load.model.ModelLoaderFactory;
-import com.bumptech.glide.load.model.stream.StreamModelLoader;
+import com.bumptech.glide.load.model.MultiModelLoaderFactory;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.AttachmentStreamUriLoader.AttachmentModel;
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
-import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 
 import java.io.File;
 import java.io.InputStream;
+import java.security.MessageDigest;
 
-/**
- * A {@link ModelLoader} for translating uri models into {@link InputStream} data. Capable of handling 'http',
- * 'https', 'android.resource', 'content', and 'file' schemes. Unsupported schemes will throw an exception in
- * {@link #getResourceFetcher(Uri, int, int)}.
- */
-public class AttachmentStreamUriLoader implements StreamModelLoader<AttachmentModel> {
-  private final Context context;
+public class AttachmentStreamUriLoader implements ModelLoader<AttachmentModel, InputStream> {
 
-  /**
-   * THe default factory for {@link com.bumptech.glide.load.model.stream.StreamUriLoader}s.
-   */
-  public static class Factory implements ModelLoaderFactory<AttachmentModel, InputStream> {
+  @Nullable
+  @Override
+  public LoadData<InputStream> buildLoadData(AttachmentModel attachmentModel, int width, int height, Options options) {
+    return new LoadData<>(attachmentModel, new AttachmentStreamLocalUriFetcher(attachmentModel.attachment, attachmentModel.key));
+  }
+
+  @Override
+  public boolean handles(AttachmentModel attachmentModel) {
+    return true;
+  }
+
+  static class Factory implements ModelLoaderFactory<AttachmentModel, InputStream> {
 
     @Override
-    public StreamModelLoader<AttachmentModel> build(Context context, GenericLoaderFactory factories) {
-      return new AttachmentStreamUriLoader(context);
+    public ModelLoader<AttachmentModel, InputStream> build(MultiModelLoaderFactory multiFactory) {
+      return new AttachmentStreamUriLoader();
     }
 
     @Override
@@ -42,22 +41,18 @@ public class AttachmentStreamUriLoader implements StreamModelLoader<AttachmentMo
     }
   }
 
-  public AttachmentStreamUriLoader(Context context) {
-    this.context = context;
-  }
-
-  @Override
-  public DataFetcher<InputStream> getResourceFetcher(AttachmentModel model, int width, int height) {
-    return new AttachmentStreamLocalUriFetcher(model.attachment, model.key);
-  }
-
-  public static class AttachmentModel {
+  public static class AttachmentModel implements Key {
     public @NonNull File   attachment;
     public @NonNull byte[] key;
 
     public AttachmentModel(@NonNull File attachment, @NonNull byte[] key) {
       this.attachment = attachment;
       this.key        = key;
+    }
+
+    @Override
+    public void updateDiskCacheKey(MessageDigest messageDigest) {
+      messageDigest.update(attachment.toString().getBytes());
     }
 
     @Override

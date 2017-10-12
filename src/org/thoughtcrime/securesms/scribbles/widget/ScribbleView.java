@@ -30,13 +30,13 @@ import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.Target;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
+import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.scribbles.widget.entity.MotionEntity;
 import org.thoughtcrime.securesms.scribbles.widget.entity.TextEntity;
 import org.thoughtcrime.securesms.util.Util;
@@ -81,11 +81,11 @@ public class ScribbleView extends FrameLayout {
     this.imageUri     = uri;
     this.masterSecret = masterSecret;
 
-    Glide.with(getContext())
-         .load(new DecryptableUri(masterSecret, uri))
-         .diskCacheStrategy(DiskCacheStrategy.NONE)
-         .fitCenter()
-         .into(imageView);
+    GlideApp.with(getContext())
+            .load(new DecryptableUri(masterSecret, uri))
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .fitCenter()
+            .into(imageView);
   }
 
   public @NonNull ListenableFuture<Bitmap> getRenderedImage() {
@@ -110,13 +110,13 @@ public class ScribbleView extends FrameLayout {
             height = 768;
           }
 
-          return Glide.with(context)
-                      .load(new DecryptableUri(masterSecret, imageUri))
-                      .asBitmap()
-                      .diskCacheStrategy(DiskCacheStrategy.NONE)
-                      .skipMemoryCache(true)
-                      .into(width, height)
-                      .get();
+          return GlideApp.with(context)
+                         .asBitmap()
+                         .load(new DecryptableUri(masterSecret, imageUri))
+                         .diskCacheStrategy(DiskCacheStrategy.NONE)
+                         .skipMemoryCache(true)
+                         .into(width, height)
+                         .get();
         } catch (InterruptedException | ExecutionException e) {
           Log.w(TAG, e);
           return null;

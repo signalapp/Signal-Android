@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2016 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -31,10 +31,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.mms.GlideApp;
 
 public class StickerSelectFragment extends Fragment implements LoaderManager.LoaderCallbacks<String[]> {
 
@@ -58,7 +58,7 @@ public class StickerSelectFragment extends Fragment implements LoaderManager.Loa
                            @Nullable Bundle savedInstanceState)
   {
     View view = inflater.inflate(R.layout.scribble_select_sticker_fragment, container, false);
-    this.recyclerView = (RecyclerView)view.findViewById(R.id.stickers_recycler_view);
+    this.recyclerView = view.findViewById(R.id.stickers_recycler_view);
 
     return view;
   }
@@ -113,10 +113,10 @@ public class StickerSelectFragment extends Fragment implements LoaderManager.Loa
     public void onBindViewHolder(StickerViewHolder holder, int position) {
       holder.fileName = stickerFiles[position];
 
-      Glide.with(context)
-           .load(Uri.parse("file:///android_asset/" + holder.fileName))
-           .diskCacheStrategy(DiskCacheStrategy.NONE)
-           .into(holder.image);
+      GlideApp.with(context)
+              .load(Uri.parse("file:///android_asset/" + holder.fileName))
+              .diskCacheStrategy(DiskCacheStrategy.NONE)
+              .into(holder.image);
     }
 
     @Override
@@ -127,7 +127,7 @@ public class StickerSelectFragment extends Fragment implements LoaderManager.Loa
     @Override
     public void onViewRecycled(StickerViewHolder holder) {
       super.onViewRecycled(holder);
-      Glide.clear(holder.image);
+      GlideApp.with(context).clear(holder.image);
     }
 
     private void onStickerSelected(String fileName) {
@@ -141,22 +141,19 @@ public class StickerSelectFragment extends Fragment implements LoaderManager.Loa
 
       StickerViewHolder(View itemView) {
         super(itemView);
-        image = (ImageView) itemView.findViewById(R.id.sticker_image);
-        itemView.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
-            int pos = getAdapterPosition();
-            if (pos >= 0) {
-              onStickerSelected(fileName);
-            }
+        image = itemView.findViewById(R.id.sticker_image);
+        itemView.setOnClickListener(view -> {
+          int pos = getAdapterPosition();
+          if (pos >= 0) {
+            onStickerSelected(fileName);
           }
         });
       }
     }
   }
 
-  public interface StickerSelectionListener {
-    public void onStickerSelected(String name);
+  interface StickerSelectionListener {
+    void onStickerSelected(String name);
   }
 
 

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2014 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -40,8 +40,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.soundcloud.android.crop.Crop;
 
 import org.thoughtcrime.securesms.components.PushRecipientsPanel;
@@ -58,7 +59,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.GroupManager.GroupActionResult;
-import org.thoughtcrime.securesms.mms.RoundedCorners;
+import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
@@ -306,16 +307,19 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
         new Crop(data.getData()).output(outputFile).asSquare().start(this);
         break;
       case Crop.REQUEST_CROP:
-        Glide.with(this).load(Crop.getOutput(data)).asBitmap()
-             .skipMemoryCache(true)
-             .diskCacheStrategy(DiskCacheStrategy.NONE)
-             .centerCrop().override(AVATAR_SIZE, AVATAR_SIZE)
-             .into(new SimpleTarget<Bitmap>() {
-               @Override
-               public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                 setAvatar(Crop.getOutput(data), resource);
-               }
-             });
+        GlideApp.with(this)
+                .asBitmap()
+                .load(Crop.getOutput(data))
+                .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .centerCrop()
+                .override(AVATAR_SIZE, AVATAR_SIZE)
+                .into(new SimpleTarget<Bitmap>() {
+                  @Override
+                  public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
+                    setAvatar(Crop.getOutput(data), resource);
+                  }
+                });
     }
   }
 
@@ -573,12 +577,12 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
 
   private <T> void setAvatar(T model, Bitmap bitmap) {
     avatarBmp = bitmap;
-    Glide.with(this)
-         .load(model)
-         .skipMemoryCache(true)
-         .diskCacheStrategy(DiskCacheStrategy.NONE)
-         .transform(new RoundedCorners(this, avatar.getWidth() / 2))
-         .into(avatar);
+    GlideApp.with(this)
+            .load(model)
+            .circleCrop()
+            .skipMemoryCache(true)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .into(avatar);
   }
 
   private static class GroupData {

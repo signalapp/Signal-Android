@@ -14,7 +14,6 @@ import android.support.v4.app.NotificationCompat.Action;
 import android.support.v4.app.RemoteInput;
 import android.text.SpannableStringBuilder;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.thoughtcrime.securesms.R;
@@ -22,6 +21,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
+import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
@@ -225,12 +225,12 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
       @SuppressWarnings("ConstantConditions")
       Uri uri = slideDeck.getThumbnailSlide().getThumbnailUri();
 
-      return Glide.with(context)
-                  .load(new DecryptableStreamUriLoader.DecryptableUri(masterSecret, uri))
-                  .asBitmap()
-                  .diskCacheStrategy(DiskCacheStrategy.NONE)
-                  .into(500, 500)
-                  .get();
+      return GlideApp.with(context)
+                     .asBitmap()
+                     .load(new DecryptableStreamUriLoader.DecryptableUri(masterSecret, uri))
+                     .diskCacheStrategy(DiskCacheStrategy.NONE)
+                     .submit(500, 500)
+                     .get();
     } catch (InterruptedException | ExecutionException e) {
       throw new AssertionError(e);
     }

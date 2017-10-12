@@ -1,40 +1,45 @@
 package org.thoughtcrime.securesms.mms;
 
-import android.content.ContentResolver;
-import android.content.Context;
-import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.data.DataFetcher;
-import com.bumptech.glide.load.data.StreamLocalUriFetcher;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class AttachmentStreamLocalUriFetcher implements DataFetcher<InputStream> {
+class AttachmentStreamLocalUriFetcher implements DataFetcher<InputStream> {
+
   private static final String TAG = AttachmentStreamLocalUriFetcher.class.getSimpleName();
+
   private File        attachment;
   private byte[]      key;
   private InputStream is;
 
-  public AttachmentStreamLocalUriFetcher(File attachment, byte[] key) {
+  AttachmentStreamLocalUriFetcher(File attachment, byte[] key) {
     this.attachment = attachment;
     this.key        = key;
   }
 
-  @Override public InputStream loadData(Priority priority) throws Exception {
-    is = new AttachmentCipherInputStream(attachment, key, Optional.<byte[]>absent());
-    return is;
+  @Override
+  public void loadData(Priority priority, DataCallback<? super InputStream> callback) {
+    try {
+      is = new AttachmentCipherInputStream(attachment, key, Optional.absent());
+      callback.onDataReady(is);
+    } catch (IOException | InvalidMessageException e) {
+      callback.onLoadFailed(e);
+    }
   }
 
-  @Override public void cleanup() {
+  @Override
+  public void cleanup() {
     try {
       if (is != null) is.close();
       is = null;
@@ -43,11 +48,20 @@ public class AttachmentStreamLocalUriFetcher implements DataFetcher<InputStream>
     }
   }
 
-  @Override public String getId() {
-    return AttachmentStreamLocalUriFetcher.class.getCanonicalName() + "::" + attachment.getAbsolutePath();
+  @Override
+  public void cancel() {}
+
+  @NonNull
+  @Override
+  public Class<InputStream> getDataClass() {
+    return InputStream.class;
   }
 
-  @Override public void cancel() {
-
+  @NonNull
+  @Override
+  public DataSource getDataSource() {
+    return DataSource.LOCAL;
   }
+
+
 }

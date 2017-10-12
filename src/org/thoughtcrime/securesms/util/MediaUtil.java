@@ -11,8 +11,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
 
-import com.bumptech.glide.Glide;
-
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -20,6 +18,7 @@ import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.DocumentSlide;
 import org.thoughtcrime.securesms.mms.GifSlide;
+import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.MmsSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -67,12 +66,12 @@ public class MediaUtil {
   {
     try {
       int maxSize = context.getResources().getDimensionPixelSize(R.dimen.media_bubble_height);
-      return Glide.with(context)
-                  .load(new DecryptableUri(masterSecret, uri))
-                  .asBitmap()
-                  .centerCrop()
-                  .into(maxSize, maxSize)
-                  .get();
+      return GlideApp.with(context)
+                     .asBitmap()
+                     .load(new DecryptableUri(masterSecret, uri))
+                     .centerCrop()
+                     .into(maxSize, maxSize)
+                     .get();
     } catch (InterruptedException | ExecutionException e) {
       Log.w(TAG, e);
       throw new BitmapDecodingException(e);

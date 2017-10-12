@@ -15,14 +15,9 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.util.Pair;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.Priority;
-import com.bumptech.glide.load.DecodeFormat;
-import com.bumptech.glide.load.engine.Resource;
-import com.bumptech.glide.load.resource.bitmap.BitmapResource;
-import com.bumptech.glide.load.resource.bitmap.Downsampler;
-import com.bumptech.glide.load.resource.bitmap.FitCenter;
+import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy;
 
+import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 
 import java.io.BufferedInputStream;
@@ -30,6 +25,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.microedition.khronos.egl.EGL10;
@@ -49,90 +45,80 @@ public class BitmapUtil {
   public static <T> byte[] createScaledBytes(Context context, T model, MediaConstraints constraints)
       throws BitmapDecodingException
   {
-    int    quality  = MAX_COMPRESSION_QUALITY;
-    int    attempts = 0;
-    byte[] bytes;
-
-    Bitmap scaledBitmap =  Downsampler.AT_MOST.decode(getInputStreamForModel(context, model),
-                                                      Glide.get(context).getBitmapPool(),
-                                                      constraints.getImageMaxWidth(context),
-                                                      constraints.getImageMaxHeight(context),
-                                                      DecodeFormat.PREFER_RGB_565);
-
-    if (scaledBitmap == null) {
-      throw new BitmapDecodingException("Unable to decode image");
-    }
-    
     try {
-      do {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        scaledBitmap.compress(CompressFormat.JPEG, quality, baos);
-        bytes = baos.toByteArray();
+      int    quality  = MAX_COMPRESSION_QUALITY;
+      int    attempts = 0;
+      byte[] bytes;
 
-        Log.w(TAG, "iteration with quality " + quality + " size " + (bytes.length / 1024) + "kb");
-        if (quality == MIN_COMPRESSION_QUALITY) break;
+      Bitmap scaledBitmap = GlideApp.with(context)
+                                    .asBitmap()
+                                    .load(model)
+                                    .downsample(DownsampleStrategy.AT_MOST)
+                                    .submit(constraints.getImageMaxWidth(context),
+                                            constraints.getImageMaxWidth(context))
+                                    .get();
+      
+      if (scaledBitmap == null) {
+        throw new BitmapDecodingException("Unable to decode image");
+      }
 
-        int nextQuality = (int)Math.floor(quality * Math.sqrt((double)constraints.getImageMaxSize(context) / bytes.length));
-        if (quality - nextQuality < MIN_COMPRESSION_QUALITY_DECREASE) {
-          nextQuality = quality - MIN_COMPRESSION_QUALITY_DECREASE;
+      try {
+        do {
+          ByteArrayOutputStream baos = new ByteArrayOutputStream();
+          scaledBitmap.compress(CompressFormat.JPEG, quality, baos);
+          bytes = baos.toByteArray();
+
+          Log.w(TAG, "iteration with quality " + quality + " size " + (bytes.length / 1024) + "kb");
+          if (quality == MIN_COMPRESSION_QUALITY) break;
+
+          int nextQuality = (int)Math.floor(quality * Math.sqrt((double)constraints.getImageMaxSize(context) / bytes.length));
+          if (quality - nextQuality < MIN_COMPRESSION_QUALITY_DECREASE) {
+            nextQuality = quality - MIN_COMPRESSION_QUALITY_DECREASE;
+          }
+          quality = Math.max(nextQuality, MIN_COMPRESSION_QUALITY);
         }
-        quality = Math.max(nextQuality, MIN_COMPRESSION_QUALITY);
+        while (bytes.length > constraints.getImageMaxSize(context) && attempts++ < MAX_COMPRESSION_ATTEMPTS);
+        if (bytes.length > constraints.getImageMaxSize(context)) {
+          throw new BitmapDecodingException("Unable to scale image below: " + bytes.length);
+        }
+        Log.w(TAG, "createScaledBytes(" + model.toString() + ") -> quality " + Math.min(quality, MAX_COMPRESSION_QUALITY) + ", " + attempts + " attempt(s)");
+        return bytes;
+      } finally {
+        if (scaledBitmap != null) scaledBitmap.recycle();
       }
-      while (bytes.length > constraints.getImageMaxSize(context) && attempts++ < MAX_COMPRESSION_ATTEMPTS);
-      if (bytes.length > constraints.getImageMaxSize(context)) {
-        throw new BitmapDecodingException("Unable to scale image below: " + bytes.length);
-      }
-      Log.w(TAG, "createScaledBytes(" + model.toString() + ") -> quality " + Math.min(quality, MAX_COMPRESSION_QUALITY) + ", " + attempts + " attempt(s)");
-      return bytes;
-    } finally {
-      if (scaledBitmap != null) scaledBitmap.recycle();
+    } catch (InterruptedException | ExecutionException e) {
+      throw new BitmapDecodingException(e);
     }
   }
 
   public static <T> Bitmap createScaledBitmap(Context context, T model, int maxWidth, int maxHeight)
       throws BitmapDecodingException
   {
-    final Pair<Integer, Integer> dimensions = getDimensions(getInputStreamForModel(context, model));
-    final Pair<Integer, Integer> clamped    = clampDimensions(dimensions.first, dimensions.second,
-                                                              maxWidth, maxHeight);
-    return createScaledBitmapInto(context, model, clamped.first, clamped.second);
-  }
-
-  private static <T> InputStream getInputStreamForModel(Context context, T model)
-      throws BitmapDecodingException
-  {
     try {
-      return Glide.buildStreamModelLoader(model, context)
-                  .getResourceFetcher(model, -1, -1)
-                  .loadData(Priority.NORMAL);
-    } catch (Exception e) {
+      return GlideApp.with(context)
+                     .asBitmap()
+                     .load(model)
+                     .downsample(DownsampleStrategy.AT_MOST)
+                     .submit(maxWidth, maxHeight)
+                     .get();
+    } catch (InterruptedException | ExecutionException e) {
       throw new BitmapDecodingException(e);
     }
-  }
-
-  private static <T> Bitmap createScaledBitmapInto(Context context, T model, int width, int height)
-      throws BitmapDecodingException
-  {
-    final Bitmap rough = Downsampler.AT_LEAST.decode(getInputStreamForModel(context, model),
-                                                     Glide.get(context).getBitmapPool(),
-                                                     width, height,
-                                                     DecodeFormat.PREFER_RGB_565);
-
-    final Resource<Bitmap> resource = BitmapResource.obtain(rough, Glide.get(context).getBitmapPool());
-    final Resource<Bitmap> result   = new FitCenter(context).transform(resource, width, height);
-
-    if (result == null) {
-      throw new BitmapDecodingException("unable to transform Bitmap");
-    }
-    return result.get();
   }
 
   public static <T> Bitmap createScaledBitmap(Context context, T model, float scale)
       throws BitmapDecodingException
   {
-    Pair<Integer, Integer> dimens = getDimensions(getInputStreamForModel(context, model));
-    return createScaledBitmapInto(context, model,
-                                  (int)(dimens.first * scale), (int)(dimens.second * scale));
+    try {
+      return GlideApp.with(context)
+                     .asBitmap()
+                     .load(model)
+                     .sizeMultiplier(scale)
+                     .submit()
+                     .get();
+    } catch (InterruptedException | ExecutionException e) {
+      throw new BitmapDecodingException(e);
+    }
   }
 
   private static BitmapFactory.Options getImageDimensions(InputStream inputStream)
@@ -251,27 +237,6 @@ public class BitmapUtil {
       }
     }
     return output;
-  }
-
-  private static Pair<Integer, Integer> clampDimensions(int inWidth, int inHeight, int maxWidth, int maxHeight) {
-    if (inWidth > maxWidth || inHeight > maxHeight) {
-      final float aspectWidth, aspectHeight;
-
-      if (inWidth == 0 || inHeight == 0) {
-        aspectWidth  = maxWidth;
-        aspectHeight = maxHeight;
-      } else if (inWidth >= inHeight) {
-        aspectWidth  = maxWidth;
-        aspectHeight = (aspectWidth / inWidth) * inHeight;
-      } else {
-        aspectHeight = maxHeight;
-        aspectWidth  = (aspectHeight / inHeight) * inWidth;
-      }
-
-      return new Pair<>(Math.round(aspectWidth), Math.round(aspectHeight));
-    } else {
-      return new Pair<>(inWidth, inHeight);
-    }
   }
 
   public static Bitmap createFromDrawable(final Drawable drawable, final int width, final int height) {

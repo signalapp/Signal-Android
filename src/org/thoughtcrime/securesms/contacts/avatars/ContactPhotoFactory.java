@@ -11,13 +11,12 @@ import android.support.annotation.WorkerThread;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.mms.ContactPhotoUriLoader.ContactPhotoUri;
-import org.thoughtcrime.securesms.profiles.AvatarPhotoUriLoader;
+import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.profiles.AvatarPhotoUriLoader.AvatarPhotoUri;
 
 import java.util.concurrent.ExecutionException;
@@ -58,10 +57,13 @@ public class ContactPhotoFactory {
     if (uri == null) return getSignalAvatarContactPhoto(context, address, name, targetSize);
 
     try {
-      Bitmap bitmap = Glide.with(context)
-                           .load(new ContactPhotoUri(uri)).asBitmap()
-                           .diskCacheStrategy(DiskCacheStrategy.NONE)
-                           .centerCrop().into(targetSize, targetSize).get();
+      Bitmap bitmap = GlideApp.with(context)
+                              .asBitmap()
+                              .load(new ContactPhotoUri(uri))
+                              .diskCacheStrategy(DiskCacheStrategy.NONE)
+                              .centerCrop()
+                              .submit(targetSize, targetSize)
+                              .get();
       return new BitmapContactPhoto(bitmap);
     } catch (ExecutionException e) {
       return getSignalAvatarContactPhoto(context, address, name, targetSize);
@@ -83,14 +85,14 @@ public class ContactPhotoFactory {
                                                          int       targetSize)
   {
     try {
-      Bitmap bitmap = Glide.with(context)
-                           .load(new AvatarPhotoUri(address))
-                           .asBitmap()
-                           .diskCacheStrategy(DiskCacheStrategy.NONE)
-                           .skipMemoryCache(true)
-                           .centerCrop()
-                           .into(targetSize, targetSize)
-                           .get();
+      Bitmap bitmap = GlideApp.with(context)
+                              .asBitmap()
+                              .load(new AvatarPhotoUri(address))
+                              .diskCacheStrategy(DiskCacheStrategy.NONE)
+                              .skipMemoryCache(true)
+                              .centerCrop()
+                              .submit(targetSize, targetSize)
+                              .get();
 
       return new BitmapContactPhoto(bitmap);
     } catch (IllegalArgumentException e) {

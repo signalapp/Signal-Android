@@ -20,7 +20,6 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.Key;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.signature.MediaStoreSignature;
@@ -28,6 +27,7 @@ import com.bumptech.glide.signature.MediaStoreSignature;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.loaders.RecentPhotosLoader;
+import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.LoaderCallbacks<Cursor> {
@@ -111,12 +111,11 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
 
       Key signature = new MediaStoreSignature(mimeType, dateModified, orientation);
 
-      Glide.with(getContext())
-           .fromMediaStore()
-           .load(uri)
-           .signature(signature)
-           .diskCacheStrategy(DiskCacheStrategy.NONE)
-           .into(viewHolder.imageView);
+      GlideApp.with(getContext())
+              .load(uri)
+              .signature(signature)
+              .diskCacheStrategy(DiskCacheStrategy.NONE)
+              .into(viewHolder.imageView);
 
       viewHolder.imageView.setOnClickListener(new OnClickListener() {
         @Override

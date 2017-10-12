@@ -5,32 +5,34 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.data.DataFetcher;
 
 import org.thoughtcrime.securesms.database.Address;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class AvatarPhotoUriFetcher implements DataFetcher<InputStream> {
+class AvatarPhotoUriFetcher implements DataFetcher<InputStream> {
 
   private final Context context;
   private final Address address;
 
   private InputStream inputStream;
 
-  public AvatarPhotoUriFetcher(@NonNull Context context, @NonNull Address address) {
+  AvatarPhotoUriFetcher(@NonNull Context context, @NonNull Address address) {
     this.context = context.getApplicationContext();
     this.address = address;
   }
 
   @Override
-  public InputStream loadData(Priority priority) throws IOException {
-    inputStream = AvatarHelper.getInputStreamFor(context, address);
-    return inputStream;
+  public void loadData(Priority priority, DataCallback<? super InputStream> callback) {
+    try {
+      inputStream = AvatarHelper.getInputStreamFor(context, address);
+      callback.onDataReady(inputStream);
+    } catch (IOException e) {
+      callback.onLoadFailed(e);
+    }
   }
 
   @Override
@@ -41,12 +43,19 @@ public class AvatarPhotoUriFetcher implements DataFetcher<InputStream> {
   }
 
   @Override
-  public String getId() {
-    return address.serialize();
-  }
-
-  @Override
   public void cancel() {
 
+  }
+
+  @NonNull
+  @Override
+  public Class<InputStream> getDataClass() {
+    return InputStream.class;
+  }
+
+  @NonNull
+  @Override
+  public DataSource getDataSource() {
+    return DataSource.LOCAL;
   }
 }

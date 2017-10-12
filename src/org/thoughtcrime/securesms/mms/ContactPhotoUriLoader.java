@@ -3,26 +3,49 @@ package org.thoughtcrime.securesms.mms;
 import android.content.Context;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
-import com.bumptech.glide.load.data.DataFetcher;
-import com.bumptech.glide.load.model.GenericLoaderFactory;
+import com.bumptech.glide.load.Key;
+import com.bumptech.glide.load.Options;
+import com.bumptech.glide.load.data.StreamLocalUriFetcher;
+import com.bumptech.glide.load.model.ModelLoader;
 import com.bumptech.glide.load.model.ModelLoaderFactory;
-import com.bumptech.glide.load.model.stream.StreamModelLoader;
+import com.bumptech.glide.load.model.MultiModelLoaderFactory;
 
 import org.thoughtcrime.securesms.mms.ContactPhotoUriLoader.ContactPhotoUri;
 
 import java.io.InputStream;
+import java.security.MessageDigest;
 
-public class ContactPhotoUriLoader implements StreamModelLoader<ContactPhotoUri> {
+public class ContactPhotoUriLoader implements ModelLoader<ContactPhotoUri, InputStream> {
+
   private final Context context;
 
-  /**
-   * THe default factory for {@link com.bumptech.glide.load.model.stream.StreamUriLoader}s.
-   */
-  public static class Factory implements ModelLoaderFactory<ContactPhotoUri, InputStream> {
+  private ContactPhotoUriLoader(Context context) {
+    this.context = context;
+  }
+
+  @Nullable
+  @Override
+  public LoadData<InputStream> buildLoadData(ContactPhotoUri contactPhotoUri, int width, int height, Options options) {
+    return new LoadData<>(contactPhotoUri, new StreamLocalUriFetcher(context.getContentResolver(), contactPhotoUri.uri));
+  }
+
+  @Override
+  public boolean handles(ContactPhotoUri contactPhotoUri) {
+    return true;
+  }
+
+  static class Factory implements ModelLoaderFactory<ContactPhotoUri, InputStream> {
+
+    private final Context context;
+
+    Factory(Context context) {
+      this.context = context.getApplicationContext();
+    }
 
     @Override
-    public StreamModelLoader<ContactPhotoUri> build(Context context, GenericLoaderFactory factories) {
+    public ModelLoader<ContactPhotoUri, InputStream> build(MultiModelLoaderFactory multiFactory) {
       return new ContactPhotoUriLoader(context);
     }
 
@@ -32,20 +55,27 @@ public class ContactPhotoUriLoader implements StreamModelLoader<ContactPhotoUri>
     }
   }
 
-  public ContactPhotoUriLoader(Context context) {
-    this.context = context;
-  }
-
-  @Override
-  public DataFetcher<InputStream> getResourceFetcher(ContactPhotoUri model, int width, int height) {
-    return new ContactPhotoLocalUriFetcher(context, model.uri);
-  }
-
-  public static class ContactPhotoUri {
+  public static class ContactPhotoUri implements Key {
     public @NonNull Uri uri;
 
     public ContactPhotoUri(@NonNull Uri uri) {
       this.uri = uri;
+    }
+
+    @Override
+    public void updateDiskCacheKey(MessageDigest messageDigest) {
+      messageDigest.update(uri.toString().getBytes());
+    }
+
+    @Override
+    public boolean equals(Object other) {
+      if (other == null || !(other instanceof ContactPhotoUri)) return false;
+
+      return this.uri.equals(((ContactPhotoUri)other).uri);
+    }
+
+    public int hashCode() {
+      return uri.hashCode();
     }
   }
 }
