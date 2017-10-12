@@ -63,7 +63,7 @@ dependencies {
 
     compile 'org.whispersystems:jobmanager:1.0.2'
     compile 'org.whispersystems:libpastelog:1.0.7'
-    compile 'org.whispersystems:signal-service-android:2.6.10'
+    compile 'org.whispersystems:signal-service-android:2.6.11'
     compile 'org.whispersystems:webrtc-android:M59-S1'
 
     compile "me.leolin:ShortcutBadger:1.1.16"
@@ -147,7 +147,7 @@ dependencyVerification {
         'com.google.android.exoplayer:exoplayer:955085aa611a8f7cf6c61b88ae03d1a392f4ad94c9bfbc153f3dedb9ffb14718',
         'org.whispersystems:jobmanager:506f679fc2fcf7bb6d10f00f41d6f6ea0abf75c70dc95b913398661ad538a181',
         'org.whispersystems:libpastelog:bb331d9a98240fc139101128ba836c1edec3c40e000597cdbb29ebf4cbf34d88',
-        'org.whispersystems:signal-service-android:784b748c15cb3d2824b8fa2b0f9d8fd8b990b39e7a50259bac27bdcad845ce20',
+        'org.whispersystems:signal-service-android:89f8630cc1737c3d52178dc46926f0755d75fed3ac9b94d067c0a42e4e3169c9',
         'org.whispersystems:webrtc-android:de647643afbbea45a26a4f24db75aa10bc8de45426e8eb0d9d563cc10af4f582',
         'me.leolin:ShortcutBadger:e3cb3e7625892129b0c92dd5e4bc649faffdd526d5af26d9c45ee31ff8851774',
         'se.emilsjolander:stickylistheaders:a08ca948aa6b220f09d82f16bbbac395f6b78897e9eeac6a9f0b0ba755928eeb',
@@ -185,7 +185,7 @@ dependencyVerification {
         'com.google.android.gms:play-services-basement:95dd882c5ffba15b9a99de3fefb05d3a01946623af67454ca00055d222f85a8d',
         'com.google.android.gms:play-services-iid:54e919f9957b8b7820da7ee9b83471d00d0cac1cf08ddea8b5b41aea80bb1a70',
         'org.whispersystems:signal-protocol-android:5b8acded7f2a40178eb90ab8e8cbfec89d170d91b3ff5e78487d1098df6185a1',
-        'org.whispersystems:signal-service-java:308d9e61b753760d0f3828eb3181db58469e75c763bdce5a8335df6c4af47695',
+        'org.whispersystems:signal-service-java:ef89da56b915490bb907d848eae79efdf1218e985763e7dd2e8047c7ccb03c0c',
         'com.github.bumptech.glide:gifdecoder:217da4520c568a93aea9c7ce3b3cac2c61fabed5113b07ae38698054f6d2d8b6',
         'com.github.bumptech.glide:disklrucache:795c13245498c0cd806c3af71ee57b3f179cbd1609440a3021c211c364ef74d3',
         'com.github.bumptech.glide:annotations:057927a236f3229e72cfbac8bed0e9fb398473daf7d933390f59ea4cb79c137b',

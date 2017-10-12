@@ -19,19 +19,25 @@ class AttachmentStreamLocalUriFetcher implements DataFetcher<InputStream> {
 
   private static final String TAG = AttachmentStreamLocalUriFetcher.class.getSimpleName();
 
-  private File        attachment;
-  private byte[]      key;
+  private final File             attachment;
+  private final byte[]           key;
+  private final Optional<byte[]> digest;
+  private final long             plaintextLength;
+
   private InputStream is;
 
-  AttachmentStreamLocalUriFetcher(File attachment, byte[] key) {
-    this.attachment = attachment;
-    this.key        = key;
+  AttachmentStreamLocalUriFetcher(File attachment, long plaintextLength, byte[] key, Optional<byte[]> digest) {
+    this.attachment      = attachment;
+    this.plaintextLength = plaintextLength;
+    this.digest          = digest;
+    this.key             = key;
   }
 
   @Override
   public void loadData(Priority priority, DataCallback<? super InputStream> callback) {
     try {
-      is = new AttachmentCipherInputStream(attachment, key, Optional.absent());
+      if (!digest.isPresent()) throw new InvalidMessageException("No attachment digest!");
+      is = AttachmentCipherInputStream.createFor(attachment, plaintextLength, key, digest.get());
       callback.onDataReady(is);
     } catch (IOException | InvalidMessageException e) {
       callback.onLoadFailed(e);

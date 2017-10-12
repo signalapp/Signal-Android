@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
 import org.thoughtcrime.securesms.util.Hex;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libsignal.InvalidMessageException;
@@ -165,8 +166,13 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
         Log.w(TAG, "Downloading attachment with no digest...");
       }
 
-      return new SignalServiceAttachmentPointer(id, null, key, relay, Optional.fromNullable(attachment.getDigest()), Optional.fromNullable(attachment.getFileName()), attachment.isVoiceNote());
-    } catch (InvalidMessageException | IOException e) {
+      return new SignalServiceAttachmentPointer(id, null, key, relay,
+                                                Optional.of(Util.toIntExact(attachment.getSize())),
+                                                Optional.absent(),
+                                                Optional.fromNullable(attachment.getDigest()),
+                                                Optional.fromNullable(attachment.getFileName()),
+                                                attachment.isVoiceNote());
+    } catch (InvalidMessageException | IOException | ArithmeticException e) {
       Log.w(TAG, e);
       throw new InvalidPartException(e);
     }
