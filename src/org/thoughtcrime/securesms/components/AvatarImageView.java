@@ -58,21 +58,18 @@ public class AvatarImageView extends ImageView {
 
   private void setAvatarClickHandler(final Recipient recipient, boolean quickContactEnabled) {
     if (!recipient.isGroupRecipient() && quickContactEnabled) {
-      setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          if (recipient.getContactUri() != null) {
-            ContactsContract.QuickContact.showQuickContact(getContext(), AvatarImageView.this, recipient.getContactUri(), ContactsContract.QuickContact.MODE_LARGE, null);
+      super.setOnClickListener(v -> {
+        if (recipient.getContactUri() != null) {
+          ContactsContract.QuickContact.showQuickContact(getContext(), AvatarImageView.this, recipient.getContactUri(), ContactsContract.QuickContact.MODE_LARGE, null);
+        } else {
+          final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
+          if (recipient.getAddress().isEmail()) {
+            intent.putExtra(ContactsContract.Intents.Insert.EMAIL, recipient.getAddress().toEmailString());
           } else {
-            final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
-            if (recipient.getAddress().isEmail()) {
-              intent.putExtra(ContactsContract.Intents.Insert.EMAIL, recipient.getAddress().toEmailString());
-            } else {
-              intent.putExtra(ContactsContract.Intents.Insert.PHONE, recipient.getAddress().toPhoneString());
-            }
-            intent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
-            getContext().startActivity(intent);
+            intent.putExtra(ContactsContract.Intents.Insert.PHONE, recipient.getAddress().toPhoneString());
           }
+          intent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
+          getContext().startActivity(intent);
         }
       });
     } else {
