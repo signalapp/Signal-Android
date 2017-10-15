@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -26,6 +27,7 @@ import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceCategory;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,6 +39,7 @@ import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.color.MaterialColors;
 import org.thoughtcrime.securesms.components.ThreadPhotoRailView;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
@@ -205,15 +208,29 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   }
 
   private void setHeader(@NonNull Recipient recipient) {
-    ContactPhoto contactPhoto = recipient.getContactPhoto();
+    new AsyncTask<Void, Void, ContactPhoto>() {
+      @Override
+      protected @NonNull ContactPhoto doInBackground(Void... params) {
+        DisplayMetrics metrics       = new DisplayMetrics();
+        WindowManager  windowManager = (WindowManager)getSystemService(Context.WINDOW_SERVICE);
+        Uri            contentUri    = ContactsContract.Contacts.lookupContact(getContentResolver(), recipient.getContactUri());
+        windowManager.getDefaultDisplay().getMetrics(metrics);
 
-    if (contactPhoto.isGenerated() || contactPhoto.isResource()) this.avatar.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-    else                                                         this.avatar.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        return ContactPhotoFactory.getContactPhoto(RecipientPreferenceActivity.this, contentUri,
+                                                   recipient.getAddress(), recipient.getName(),
+                                                   metrics.widthPixels);
+      }
 
-    this.avatar.setImageDrawable(contactPhoto.asCallCard(this));
-    this.avatar.setBackgroundColor(recipient.getColor().toActionBarColor(this));
-    this.toolbarLayout.setTitle(recipient.toShortString());
-    this.toolbarLayout.setContentScrimColor(recipient.getColor().toActionBarColor(this));
+      protected void onPostExecute(@NonNull ContactPhoto contactPhoto) {
+        if (contactPhoto.isGenerated() || contactPhoto.isResource()) avatar.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        else                                                         avatar.setScaleType(ImageView.ScaleType.CENTER_CROP);
+
+        avatar.setImageDrawable(contactPhoto.asCallCard(RecipientPreferenceActivity.this));
+        avatar.setBackgroundColor(recipient.getColor().toActionBarColor(RecipientPreferenceActivity.this));
+        toolbarLayout.setTitle(recipient.toShortString());
+        toolbarLayout.setContentScrimColor(recipient.getColor().toActionBarColor(RecipientPreferenceActivity.this));
+      }
+    }.execute();
   }
 
   @Override
