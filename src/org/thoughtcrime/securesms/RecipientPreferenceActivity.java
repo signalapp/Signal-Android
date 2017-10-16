@@ -216,9 +216,19 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         Uri            contentUri    = ContactsContract.Contacts.lookupContact(getContentResolver(), recipient.getContactUri());
         windowManager.getDefaultDisplay().getMetrics(metrics);
 
-        return ContactPhotoFactory.getContactPhoto(RecipientPreferenceActivity.this, contentUri,
-                                                   recipient.getAddress(), recipient.getName(),
-                                                   metrics.widthPixels);
+        if (recipient.isGroupRecipient()) {
+          Optional<GroupDatabase.GroupRecord> groupRecord = DatabaseFactory.getGroupDatabase(RecipientPreferenceActivity.this).getGroup(recipient.getAddress().toGroupString());
+
+          if (groupRecord.isPresent() && groupRecord.get().getAvatar() != null) {
+            return ContactPhotoFactory.getGroupContactPhoto(groupRecord.get().getAvatar());
+          } else {
+            return ContactPhotoFactory.getDefaultGroupPhoto();
+          }
+        } else {
+          return ContactPhotoFactory.getContactPhoto(RecipientPreferenceActivity.this, contentUri,
+                                                     recipient.getAddress(), recipient.getName(),
+                                                     metrics.widthPixels);
+        }
       }
 
       protected void onPostExecute(@NonNull ContactPhoto contactPhoto) {
