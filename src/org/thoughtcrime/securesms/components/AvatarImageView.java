@@ -4,19 +4,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
+
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
-import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
+import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
-public class AvatarImageView extends ImageView {
+public class AvatarImageView extends AppCompatImageView {
 
   private static final String TAG = AvatarImageView.class.getSimpleName();
 
@@ -45,15 +47,22 @@ public class AvatarImageView extends ImageView {
     super.setOnClickListener(listener);
   }
 
-  public void setAvatar(final @Nullable Recipient recipient, boolean quickContactEnabled) {
+  public void setAvatar(@NonNull GlideRequests requestManager, @Nullable Recipient recipient, boolean quickContactEnabled) {
     if (recipient != null) {
-      MaterialColor backgroundColor = recipient.getColor();
-      setImageDrawable(recipient.getContactPhoto().asDrawable(getContext(), backgroundColor.toConversationColor(getContext()), inverted));
+      requestManager.load(recipient.getContactPhoto())
+                    .fallback(recipient.getFallbackContactPhotoDrawable(getContext(), inverted))
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .circleCrop()
+                    .into(this);
       setAvatarClickHandler(recipient, quickContactEnabled);
     } else {
-      setImageDrawable(ContactPhotoFactory.getDefaultContactPhoto(null).asDrawable(getContext(), ContactColors.UNKNOWN_COLOR.toConversationColor(getContext()), inverted));
+      setImageDrawable(new GeneratedContactPhoto("#").asDrawable(getContext(), ContactColors.UNKNOWN_COLOR.toConversationColor(getContext()), inverted));
       super.setOnClickListener(listener);
     }
+  }
+
+  public void clear(@NonNull GlideRequests glideRequests) {
+    glideRequests.clear(this);
   }
 
   private void setAvatarClickHandler(final Recipient recipient, boolean quickContactEnabled) {
@@ -76,4 +85,5 @@ public class AvatarImageView extends ImageView {
       super.setOnClickListener(listener);
     }
   }
+
 }

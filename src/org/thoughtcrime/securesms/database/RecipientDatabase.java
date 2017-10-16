@@ -13,7 +13,6 @@ import android.util.Log;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.color.MaterialColor;
-import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libsignal.util.Pair;
@@ -467,7 +466,7 @@ public class RecipientDatabase extends Database {
     }
 
     public Optional<Integer> getDefaultSubscriptionId() {
-      return defaultSubscriptionId != -1 ? Optional.of(defaultSubscriptionId) : Optional.<Integer>absent();
+      return defaultSubscriptionId != -1 ? Optional.of(defaultSubscriptionId) : Optional.absent();
     }
 
     public int getExpireMessages() {

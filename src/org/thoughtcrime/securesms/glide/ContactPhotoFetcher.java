@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.profiles;
+package org.thoughtcrime.securesms.glide;
 
 
 import android.content.Context;
@@ -8,27 +8,27 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.data.DataFetcher;
 
-import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-class AvatarPhotoUriFetcher implements DataFetcher<InputStream> {
+class ContactPhotoFetcher implements DataFetcher<InputStream> {
 
-  private final Context context;
-  private final Address address;
+  private final Context   context;
+  private final ContactPhoto contactPhoto;
 
   private InputStream inputStream;
 
-  AvatarPhotoUriFetcher(@NonNull Context context, @NonNull Address address) {
-    this.context = context.getApplicationContext();
-    this.address = address;
+  ContactPhotoFetcher(@NonNull Context context, @NonNull ContactPhoto contactPhoto) {
+    this.context      = context.getApplicationContext();
+    this.contactPhoto = contactPhoto;
   }
 
   @Override
   public void loadData(Priority priority, DataCallback<? super InputStream> callback) {
     try {
-      inputStream = AvatarHelper.getInputStreamFor(context, address);
+      inputStream = contactPhoto.openInputStream(context);
       callback.onDataReady(inputStream);
     } catch (IOException e) {
       callback.onLoadFailed(e);

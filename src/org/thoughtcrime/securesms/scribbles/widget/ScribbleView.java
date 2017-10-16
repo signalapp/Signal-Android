@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2016 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -36,7 +36,7 @@ import com.bumptech.glide.request.target.Target;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
-import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.scribbles.widget.entity.MotionEntity;
 import org.thoughtcrime.securesms.scribbles.widget.entity.TextEntity;
 import org.thoughtcrime.securesms.util.Util;
@@ -77,18 +77,17 @@ public class ScribbleView extends FrameLayout {
     initialize(context);
   }
 
-  public void setImage(@NonNull Uri uri, @NonNull MasterSecret masterSecret) {
+  public void setImage(@NonNull MasterSecret masterSecret, @NonNull GlideRequests glideRequests, @NonNull Uri uri) {
     this.imageUri     = uri;
     this.masterSecret = masterSecret;
 
-    GlideApp.with(getContext())
-            .load(new DecryptableUri(masterSecret, uri))
-            .diskCacheStrategy(DiskCacheStrategy.NONE)
-            .fitCenter()
-            .into(imageView);
+    glideRequests.load(new DecryptableUri(masterSecret, uri))
+                 .diskCacheStrategy(DiskCacheStrategy.NONE)
+                 .fitCenter()
+                 .into(imageView);
   }
 
-  public @NonNull ListenableFuture<Bitmap> getRenderedImage() {
+  public @NonNull ListenableFuture<Bitmap> getRenderedImage(@NonNull GlideRequests glideRequests) {
     final SettableFuture<Bitmap> future      = new SettableFuture<>();
     final Context                context     = getContext();
     final boolean                isLowMemory = Util.isLowMemory(context);
@@ -110,13 +109,12 @@ public class ScribbleView extends FrameLayout {
             height = 768;
           }
 
-          return GlideApp.with(context)
-                         .asBitmap()
-                         .load(new DecryptableUri(masterSecret, imageUri))
-                         .diskCacheStrategy(DiskCacheStrategy.NONE)
-                         .skipMemoryCache(true)
-                         .into(width, height)
-                         .get();
+          return glideRequests.asBitmap()
+                              .load(new DecryptableUri(masterSecret, imageUri))
+                              .diskCacheStrategy(DiskCacheStrategy.NONE)
+                              .skipMemoryCache(true)
+                              .into(width, height)
+                              .get();
         } catch (InterruptedException | ExecutionException e) {
           Log.w(TAG, e);
           return null;
@@ -143,9 +141,9 @@ public class ScribbleView extends FrameLayout {
   private void initialize(@NonNull Context context) {
     inflate(context, R.layout.scribble_view, this);
 
-    this.imageView  = (ImageView) findViewById(R.id.image_view);
-    this.motionView = (MotionView) findViewById(R.id.motion_view);
-    this.canvasView = (CanvasView) findViewById(R.id.canvas_view);
+    this.imageView  = findViewById(R.id.image_view);
+    this.motionView = findViewById(R.id.motion_view);
+    this.canvasView = findViewById(R.id.canvas_view);
   }
 
   public void setMotionViewCallback(MotionView.MotionViewCallback callback) {

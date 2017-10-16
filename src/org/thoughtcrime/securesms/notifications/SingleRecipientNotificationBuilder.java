@@ -13,12 +13,15 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.Action;
 import android.support.v4.app.RemoteInput;
 import android.text.SpannableStringBuilder;
+import android.util.Log;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
-import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
+import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -64,13 +67,29 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
         addPerson(recipient.getContactUri().toString());
       }
 
-      setLargeIcon(recipient.getContactPhoto()
-                            .asDrawable(context, recipient.getColor()
-                                                          .toConversationColor(context)));
+      ContactPhoto         contactPhoto         = recipient.getContactPhoto();
+      FallbackContactPhoto fallbackContactPhoto = recipient.getFallbackContactPhoto();
+
+      if (contactPhoto != null) {
+        try {
+          setLargeIcon(GlideApp.with(context.getApplicationContext())
+                               .load(contactPhoto)
+                               .diskCacheStrategy(DiskCacheStrategy.ALL)
+                               .circleCrop()
+                               .submit(context.getResources().getDimensionPixelSize(android.R.dimen.notification_large_icon_width),
+                                       context.getResources().getDimensionPixelSize(android.R.dimen.notification_large_icon_height))
+                               .get());
+        } catch (InterruptedException | ExecutionException e) {
+          Log.w(TAG, e);
+          setLargeIcon(fallbackContactPhoto.asDrawable(context, recipient.getColor().toConversationColor(context)));
+        }
+      } else {
+        setLargeIcon(fallbackContactPhoto.asDrawable(context, recipient.getColor().toConversationColor(context)));
+      }
+
     } else {
       setContentTitle(context.getString(R.string.SingleRecipientNotificationBuilder_signal));
-      setLargeIcon(ContactPhotoFactory.getDefaultContactPhoto("Unknown")
-                                      .asDrawable(context, ContactColors.UNKNOWN_COLOR.toConversationColor(context)));
+      setLargeIcon(new GeneratedContactPhoto("Unknown").asDrawable(context, ContactColors.UNKNOWN_COLOR.toConversationColor(context)));
     }
   }
 
@@ -225,7 +244,7 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
       @SuppressWarnings("ConstantConditions")
       Uri uri = slideDeck.getThumbnailSlide().getThumbnailUri();
 
-      return GlideApp.with(context)
+      return GlideApp.with(context.getApplicationContext())
                      .asBitmap()
                      .load(new DecryptableStreamUriLoader.DecryptableUri(masterSecret, uri))
                      .diskCacheStrategy(DiskCacheStrategy.NONE)

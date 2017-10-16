@@ -2,26 +2,23 @@ package org.thoughtcrime.securesms.preferences.widgets;
 
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Build;
-import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceViewHolder;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
+import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.database.Address;
-import org.thoughtcrime.securesms.profiles.AvatarHelper;
+import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class ProfilePreference extends Preference {
 
@@ -70,24 +67,12 @@ public class ProfilePreference extends Preference {
     final Address localAddress = Address.fromSerialized(TextSecurePreferences.getLocalNumber(getContext()));
     final String  profileName  = TextSecurePreferences.getProfileName(getContext());
 
-    new AsyncTask<Void, Void, Drawable>() {
-      @Override
-      protected @NonNull Drawable doInBackground(Void... params) {
-        if (AvatarHelper.getAvatarFile(getContext(), localAddress).exists()) {
-          return ContactPhotoFactory.getSignalAvatarContactPhoto(getContext(), localAddress, profileName,
-                                                                 getContext().getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size))
-                                    .asDrawable(getContext(), 0);
-        } else {
-          return ContactPhotoFactory.getResourceContactPhoto(R.drawable.ic_camera_alt_white_24dp)
-                                    .asDrawable(getContext(), getContext().getResources().getColor(R.color.grey_400));
-        }
-      }
-
-      @Override
-      protected void onPostExecute(@NonNull Drawable contactPhoto) {
-        avatarView.setImageDrawable(contactPhoto);
-      }
-    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    GlideApp.with(getContext().getApplicationContext())
+            .load(new ProfileContactPhoto(localAddress, String.valueOf(TextSecurePreferences.getProfileAvatarId(getContext()))))
+            .error(new ResourceContactPhoto(R.drawable.ic_camera_alt_white_24dp).asDrawable(getContext(), getContext().getResources().getColor(R.color.grey_400)))
+            .circleCrop()
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .into(avatarView);
 
     if (!TextUtils.isEmpty(profileName)) {
       profileNameView.setText(profileName);

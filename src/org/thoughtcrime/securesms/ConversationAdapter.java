@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2011 Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Conversions;
@@ -92,6 +93,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
 
   private final @Nullable ItemClickListener clickListener;
   private final @NonNull  MasterSecret      masterSecret;
+  private final @NonNull  GlideRequests     glideRequests;
   private final @NonNull  Locale            locale;
   private final @NonNull  Recipient         recipient;
   private final @NonNull  MmsSmsDatabase    db;
@@ -130,7 +132,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   }
 
 
-  public interface ItemClickListener {
+  interface ItemClickListener {
     void onItemClick(MessageRecord item);
     void onItemLongClick(MessageRecord item);
   }
@@ -141,6 +143,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     super(context, cursor);
     try {
       this.masterSecret  = null;
+      this.glideRequests = null;
       this.locale        = null;
       this.clickListener = null;
       this.recipient     = null;
@@ -155,6 +158,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
 
   public ConversationAdapter(@NonNull Context context,
                              @NonNull MasterSecret masterSecret,
+                             @NonNull GlideRequests glideRequests,
                              @NonNull Locale locale,
                              @Nullable ItemClickListener clickListener,
                              @Nullable Cursor cursor,
@@ -164,6 +168,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
 
     try {
       this.masterSecret  = masterSecret;
+      this.glideRequests = glideRequests;
       this.locale        = locale;
       this.clickListener = clickListener;
       this.recipient     = recipient;
@@ -188,7 +193,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   @Override
   protected void onBindItemViewHolder(ViewHolder viewHolder, @NonNull MessageRecord messageRecord) {
     long start = System.currentTimeMillis();
-    viewHolder.getView().bind(masterSecret, messageRecord, locale, batchSelected, recipient);
+    viewHolder.getView().bind(masterSecret, messageRecord, glideRequests, locale, batchSelected, recipient);
     Log.w(TAG, "Bind time: " + (System.currentTimeMillis() - start));
   }
 
@@ -196,22 +201,16 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   public ViewHolder onCreateItemViewHolder(ViewGroup parent, int viewType) {
     long start = System.currentTimeMillis();
     final V itemView = ViewUtil.inflate(inflater, parent, getLayoutForViewType(viewType));
-    itemView.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        if (clickListener != null) {
-          clickListener.onItemClick(itemView.getMessageRecord());
-        }
+    itemView.setOnClickListener(view -> {
+      if (clickListener != null) {
+        clickListener.onItemClick(itemView.getMessageRecord());
       }
     });
-    itemView.setOnLongClickListener(new OnLongClickListener() {
-      @Override
-      public boolean onLongClick(View view) {
-        if (clickListener != null) {
-          clickListener.onItemLongClick(itemView.getMessageRecord());
-        }
-        return true;
+    itemView.setOnLongClickListener(view -> {
+      if (clickListener != null) {
+        clickListener.onItemLongClick(itemView.getMessageRecord());
       }
+      return true;
     });
     Log.w(TAG, "Inflate time: " + (System.currentTimeMillis() - start));
     return new ViewHolder(itemView);

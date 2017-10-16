@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2011 Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -117,6 +117,8 @@ import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.AttachmentManager.MediaType;
 import org.thoughtcrime.securesms.mms.AudioSlide;
+import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.LocationSlide;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
@@ -208,6 +210,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private static final int SMS_DEFAULT       = 10;
 
   private   MasterSecret                masterSecret;
+  private   GlideRequests               glideRequests;
   protected ComposeText                 composeText;
   private   AnimatingToggle             buttonToggle;
   private   SendButton                  sendButton;
@@ -287,7 +290,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (!Util.isEmpty(composeText) || attachmentManager.isAttachmentPresent()) {
       saveDraft();
-      attachmentManager.clear(false);
+      attachmentManager.clear(glideRequests, false);
       composeText.setText("");
     }
 
@@ -323,7 +326,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     initializeIdentityRecords();
     composeText.setTransport(sendButton.getSelectedTransport());
 
-    titleView.setTitle(recipient);
+    titleView.setTitle(glideRequests, recipient);
     setActionBarColor(recipient.getColor());
     setBlockedUserState(recipient, isSecureText, isDefaultSms);
     setGroupShareProfileReminder(recipient);
@@ -409,9 +412,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       addAttachmentContactInfo(data.getData());
       break;
     case GROUP_EDIT:
-      recipient = Recipient.from(this, (Address)data.getParcelableExtra(GroupCreateActivity.GROUP_ADDRESS_EXTRA), true);
+      recipient = Recipient.from(this, data.getParcelableExtra(GroupCreateActivity.GROUP_ADDRESS_EXTRA), true);
       recipient.addListener(this);
-      titleView.setTitle(recipient);
+      titleView.setTitle(glideRequests, recipient);
       setBlockedUserState(recipient, isSecureText, isDefaultSms);
       supportInvalidateOptionsMenu();
       break;
@@ -1239,6 +1242,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     threadId         = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
     archived         = getIntent().getBooleanExtra(IS_ARCHIVED_EXTRA, false);
     distributionType = getIntent().getIntExtra(DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
+    glideRequests    = GlideApp.with(this);
 
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
       LinearLayout conversationContainer = ViewUtil.findById(this, R.id.conversation_container);
@@ -1263,7 +1267,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   public void onModified(final Recipient recipient) {
     Util.runOnMain(() -> {
-      titleView.setTitle(recipient);
+      titleView.setTitle(glideRequests, recipient);
       titleView.setVerified(identityRecords.isVerified());
       setBlockedUserState(recipient, isSecureText, isDefaultSms);
       setActionBarColor(recipient.getColor());
@@ -1338,7 +1342,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void setMedia(@Nullable Uri uri, @NonNull MediaType mediaType) {
     if (uri == null) return;
-    attachmentManager.setMedia(masterSecret, uri, mediaType, getCurrentMediaConstraints());
+    attachmentManager.setMedia(masterSecret, glideRequests, uri, mediaType, getCurrentMediaConstraints());
   }
 
   private void addAttachmentContactInfo(Uri contactUri) {
@@ -1631,7 +1635,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       outgoingMessage = new OutgoingSecureMediaMessage(outgoingMessage);
     }
 
-    attachmentManager.clear(false);
+    attachmentManager.clear(glideRequests, false);
     composeText.setText("");
     final long id = fragment.stageOutgoingMessage(outgoingMessage);
 

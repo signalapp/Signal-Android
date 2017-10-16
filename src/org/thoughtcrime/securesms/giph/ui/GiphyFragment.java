@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.giph.model.GiphyImage;
 import org.thoughtcrime.securesms.giph.net.GiphyLoader;
 import org.thoughtcrime.securesms.giph.util.InfiniteScrollListener;
+import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.LinkedList;
@@ -52,7 +53,7 @@ public abstract class GiphyFragment extends Fragment implements LoaderManager.Lo
   public void onActivityCreated(Bundle bundle) {
     super.onActivityCreated(bundle);
 
-    this.giphyAdapter = new GiphyAdapter(getActivity(), new LinkedList<GiphyImage>());
+    this.giphyAdapter = new GiphyAdapter(getActivity(), GlideApp.with(this), new LinkedList<>());
     this.giphyAdapter.setListener(this);
 
     this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

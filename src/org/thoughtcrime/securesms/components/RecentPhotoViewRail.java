@@ -111,7 +111,7 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
 
       Key signature = new MediaStoreSignature(mimeType, dateModified, orientation);
 
-      GlideApp.with(getContext())
+      GlideApp.with(getContext().getApplicationContext())
               .load(uri)
               .signature(signature)
               .diskCacheStrategy(DiskCacheStrategy.NONE)

@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -51,6 +52,7 @@ public class MessageRecipientListItem extends RelativeLayout
   private final static String TAG = MessageRecipientListItem.class.getSimpleName();
 
   private RecipientDeliveryStatus member;
+  private GlideRequests           glideRequests;
   private FromTextView            fromView;
   private TextView                errorDescription;
   private TextView                actionDescription;
@@ -70,25 +72,27 @@ public class MessageRecipientListItem extends RelativeLayout
   @Override
   protected void onFinishInflate() {
     super.onFinishInflate();
-    this.fromView           = (FromTextView)       findViewById(R.id.from);
-    this.errorDescription   = (TextView)           findViewById(R.id.error_description);
-    this.actionDescription  = (TextView)           findViewById(R.id.action_description);
-    this.contactPhotoImage  = (AvatarImageView)    findViewById(R.id.contact_photo_image);
-    this.conflictButton     = (Button)             findViewById(R.id.conflict_button);
-    this.resendButton       = (Button)             findViewById(R.id.resend_button);
-    this.deliveryStatusView = (DeliveryStatusView) findViewById(R.id.delivery_status);
+    this.fromView           = findViewById(R.id.from);
+    this.errorDescription   = findViewById(R.id.error_description);
+    this.actionDescription  = findViewById(R.id.action_description);
+    this.contactPhotoImage  = findViewById(R.id.contact_photo_image);
+    this.conflictButton     = findViewById(R.id.conflict_button);
+    this.resendButton       = findViewById(R.id.resend_button);
+    this.deliveryStatusView = findViewById(R.id.delivery_status);
   }
 
   public void set(final MasterSecret masterSecret,
+                  final GlideRequests glideRequests,
                   final MessageRecord record,
                   final RecipientDeliveryStatus member,
                   final boolean isPushGroup)
   {
-    this.member = member;
+    this.glideRequests = glideRequests;
+    this.member        = member;
 
     member.getRecipient().addListener(this);
     fromView.setText(member.getRecipient());
-    contactPhotoImage.setAvatar(member.getRecipient(), false);
+    contactPhotoImage.setAvatar(glideRequests, member.getRecipient(), false);
     setIssueIndicators(masterSecret, record, isPushGroup);
   }
 
@@ -177,7 +181,7 @@ public class MessageRecipientListItem extends RelativeLayout
   public void onModified(final Recipient recipient) {
     Util.runOnMain(() -> {
       fromView.setText(recipient);
-      contactPhotoImage.setAvatar(recipient, false);
+      contactPhotoImage.setAvatar(glideRequests, recipient, false);
     });
   }
 
@@ -187,7 +191,7 @@ public class MessageRecipientListItem extends RelativeLayout
     private final MessageRecord  record;
     private final NetworkFailure failure;
 
-    public ResendAsyncTask(MasterSecret masterSecret, MessageRecord record, NetworkFailure failure) {
+    ResendAsyncTask(MasterSecret masterSecret, MessageRecord record, NetworkFailure failure) {
       this.context      = getContext().getApplicationContext();
       this.masterSecret = masterSecret;
       this.record       = record;

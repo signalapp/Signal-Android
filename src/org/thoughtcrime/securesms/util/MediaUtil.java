@@ -66,7 +66,7 @@ public class MediaUtil {
   {
     try {
       int maxSize = context.getResources().getDimensionPixelSize(R.dimen.media_bubble_height);
-      return GlideApp.with(context)
+      return GlideApp.with(context.getApplicationContext())
                      .asBitmap()
                      .load(new DecryptableUri(masterSecret, uri))
                      .centerCrop()

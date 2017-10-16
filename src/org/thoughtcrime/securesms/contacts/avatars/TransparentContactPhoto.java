@@ -8,9 +8,9 @@ import com.makeramen.roundedimageview.RoundedDrawable;
 
 import org.thoughtcrime.securesms.R;
 
-public class TransparentContactPhoto implements ContactPhoto {
+public class TransparentContactPhoto implements FallbackContactPhoto {
 
-  TransparentContactPhoto() {}
+  public TransparentContactPhoto() {}
 
   @Override
   public Drawable asDrawable(Context context, int color) {
@@ -27,13 +27,4 @@ public class TransparentContactPhoto implements ContactPhoto {
     return ContextCompat.getDrawable(context, R.drawable.ic_contact_picture_large);
   }
 
-  @Override
-  public boolean isGenerated() {
-    return false;
-  }
-
-  @Override
-  public boolean isResource() {
-    return false;
-  }
 }

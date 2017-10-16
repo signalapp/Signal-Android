@@ -13,7 +13,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -27,7 +26,6 @@ import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceCategory;
 import android.support.v7.widget.Toolbar;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,11 +33,11 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.color.MaterialColors;
 import org.thoughtcrime.securesms.components.ThreadPhotoRailView;
-import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
-import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
@@ -52,9 +50,11 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
 import org.thoughtcrime.securesms.database.loaders.ThreadMediaLoader;
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
+import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.mms.GlideRequests;
+import org.thoughtcrime.securesms.preferences.CorrectedPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.widgets.AdvancedRingtonePreference;
 import org.thoughtcrime.securesms.preferences.widgets.ColorPickerPreference;
-import org.thoughtcrime.securesms.preferences.CorrectedPreferenceFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
@@ -88,6 +88,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
   private ImageView               avatar;
   private MasterSecret            masterSecret;
+  private GlideRequests           glideRequests;
   private Address                 address;
   private TextView                threadPhotoRailLabel;
   private ThreadPhotoRailView     threadPhotoRailView;
@@ -103,8 +104,9 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   @Override
   public void onCreate(Bundle instanceState, @NonNull MasterSecret masterSecret) {
     setContentView(R.layout.recipient_preference_activity);
-    this.masterSecret = masterSecret;
-    this.address      = getIntent().getParcelableExtra(ADDRESS_EXTRA);
+    this.masterSecret  = masterSecret;
+    this.glideRequests = GlideApp.with(this);
+    this.address       = getIntent().getParcelableExtra(ADDRESS_EXTRA);
 
     Recipient recipient = Recipient.from(this, address, true);
 
@@ -208,39 +210,17 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   }
 
   private void setHeader(@NonNull Recipient recipient) {
-    new AsyncTask<Void, Void, ContactPhoto>() {
-      @Override
-      protected @NonNull ContactPhoto doInBackground(Void... params) {
-        DisplayMetrics metrics       = new DisplayMetrics();
-        WindowManager  windowManager = (WindowManager)getSystemService(Context.WINDOW_SERVICE);
-        Uri            contentUri    = ContactsContract.Contacts.lookupContact(getContentResolver(), recipient.getContactUri());
-        windowManager.getDefaultDisplay().getMetrics(metrics);
+    glideRequests.load(recipient.getContactPhoto())
+                 .fallback(recipient.getFallbackContactPhoto().asCallCard(this))
+                 .diskCacheStrategy(DiskCacheStrategy.ALL)
+                 .into(this.avatar);
 
-        if (recipient.isGroupRecipient()) {
-          Optional<GroupDatabase.GroupRecord> groupRecord = DatabaseFactory.getGroupDatabase(RecipientPreferenceActivity.this).getGroup(recipient.getAddress().toGroupString());
+    if (recipient.getContactPhoto() == null) this.avatar.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+    else                                     this.avatar.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
-          if (groupRecord.isPresent() && groupRecord.get().getAvatar() != null) {
-            return ContactPhotoFactory.getGroupContactPhoto(groupRecord.get().getAvatar());
-          } else {
-            return ContactPhotoFactory.getDefaultGroupPhoto();
-          }
-        } else {
-          return ContactPhotoFactory.getContactPhoto(RecipientPreferenceActivity.this, contentUri,
-                                                     recipient.getAddress(), recipient.getName(),
-                                                     metrics.widthPixels);
-        }
-      }
-
-      protected void onPostExecute(@NonNull ContactPhoto contactPhoto) {
-        if (contactPhoto.isGenerated() || contactPhoto.isResource()) avatar.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-        else                                                         avatar.setScaleType(ImageView.ScaleType.CENTER_CROP);
-
-        avatar.setImageDrawable(contactPhoto.asCallCard(RecipientPreferenceActivity.this));
-        avatar.setBackgroundColor(recipient.getColor().toActionBarColor(RecipientPreferenceActivity.this));
-        toolbarLayout.setTitle(recipient.toShortString());
-        toolbarLayout.setContentScrimColor(recipient.getColor().toActionBarColor(RecipientPreferenceActivity.this));
-      }
-    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    this.avatar.setBackgroundColor(recipient.getColor().toActionBarColor(this));
+    this.toolbarLayout.setTitle(recipient.toShortString());
+    this.toolbarLayout.setContentScrimColor(recipient.getColor().toActionBarColor(this));
   }
 
   @Override
@@ -263,7 +243,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       this.threadPhotoRailView.setVisibility(View.GONE);
     }
 
-    this.threadPhotoRailView.setCursor(data, masterSecret);
+    this.threadPhotoRailView.setCursor(masterSecret, glideRequests, data);
 
     Bundle bundle = new Bundle();
     bundle.putParcelable(ADDRESS_EXTRA, address);
@@ -272,7 +252,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
   @Override
   public void onLoaderReset(Loader<Cursor> loader) {
-    this.threadPhotoRailView.setCursor(null, masterSecret);
+    this.threadPhotoRailView.setCursor(masterSecret, glideRequests, null);
   }
 
   public static class RecipientPreferenceFragment
@@ -325,9 +305,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     }
 
     private void initializeRecipients() {
-      this.recipient = Recipient.from(getActivity(),
-                                      (Address)getArguments().getParcelable(ADDRESS_EXTRA),
-                                      true);
+      this.recipient = Recipient.from(getActivity(), getArguments().getParcelable(ADDRESS_EXTRA), true);
 
       this.recipient.addListener(this);
 
@@ -335,7 +313,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         @Override
         public void onReceive(Context context, Intent intent) {
           recipient.removeListener(RecipientPreferenceFragment.this);
-          recipient = Recipient.from(getActivity(), (Address)getArguments().getParcelable(ADDRESS_EXTRA), true);
+          recipient = Recipient.from(getActivity(), getArguments().getParcelable(ADDRESS_EXTRA), true);
           onModified(recipient);
         }
       };
@@ -508,12 +486,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       }
 
       private void handleMute() {
-        MuteDialog.show(getActivity(), new MuteDialog.MuteSelectionListener() {
-          @Override
-          public void onMuted(long until) {
-            setMuted(recipient, until);
-          }
-        });
+        MuteDialog.show(getActivity(), until -> setMuted(recipient, until));
 
         setSummaries(recipient);
       }

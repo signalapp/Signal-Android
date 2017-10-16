@@ -1,13 +1,9 @@
 package org.thoughtcrime.securesms.components;
 
-import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.net.Uri;
-import android.os.Build.VERSION;
-import android.os.Build.VERSION_CODES;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -15,7 +11,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
@@ -25,7 +20,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
-import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.util.Util;
@@ -102,7 +97,9 @@ public class ThumbnailView extends FrameLayout {
     this.backgroundColorHint = color;
   }
 
-  public void setImageResource(@NonNull MasterSecret masterSecret, @NonNull Slide slide, boolean showControls, boolean isPreview) {
+  public void setImageResource(@NonNull MasterSecret masterSecret, @NonNull GlideRequests glideRequests,
+                               @NonNull Slide slide, boolean showControls, boolean isPreview)
+  {
     if (showControls) {
       getTransferControls().setSlide(slide);
       getTransferControls().setDownloadClickListener(new DownloadClickDispatcher());
@@ -131,31 +128,25 @@ public class ThumbnailView extends FrameLayout {
       return;
     }
 
-    if (!isContextValid()) {
-      Log.w(TAG, "Not loading slide, context is invalid");
-      return;
-    }
-
     Log.w(TAG, "loading part with id " + slide.asAttachment().getDataUri()
                + ", progress " + slide.getTransferState() + ", fast preflight id: " +
                slide.asAttachment().getFastPreflightId());
 
     this.slide = slide;
 
-    if      (slide.getThumbnailUri() != null) buildThumbnailGlideRequest(slide, masterSecret).into(image);
-    else if (slide.hasPlaceholder())          buildPlaceholderGlideRequest(slide).into(image);
-    else                                      Glide.with(getContext()).clear(image);
+    if      (slide.getThumbnailUri() != null) buildThumbnailGlideRequest(masterSecret, glideRequests, slide).into(image);
+    else if (slide.hasPlaceholder())          buildPlaceholderGlideRequest(glideRequests, slide).into(image);
+    else                                      glideRequests.clear(image);
   }
 
-  public void setImageResource(@NonNull MasterSecret masterSecret, @NonNull Uri uri) {
+  public void setImageResource(@NonNull MasterSecret masterSecret, @NonNull GlideRequests glideRequests, @NonNull Uri uri) {
     if (transferControls.isPresent()) getTransferControls().setVisibility(View.GONE);
 
-    GlideApp.with(getContext())
-            .load(new DecryptableUri(masterSecret, uri))
-            .diskCacheStrategy(DiskCacheStrategy.NONE)
-            .transform(new RoundedCorners(radius))
-            .transition(withCrossFade())
-            .into(image);
+    glideRequests.load(new DecryptableUri(masterSecret, uri))
+                 .diskCacheStrategy(DiskCacheStrategy.NONE)
+                 .transform(new RoundedCorners(radius))
+                 .transition(withCrossFade())
+                 .into(image);
   }
 
   public void setThumbnailClickListener(SlideClickListener listener) {
@@ -166,9 +157,12 @@ public class ThumbnailView extends FrameLayout {
     this.downloadClickListener = listener;
   }
 
-  public void clear() {
-    if (isContextValid())             Glide.with(getContext()).clear(image);
-    if (transferControls.isPresent()) getTransferControls().clear();
+  public void clear(GlideRequests glideRequests) {
+    glideRequests.clear(image);
+
+    if (transferControls.isPresent()) {
+      getTransferControls().clear();
+    }
 
     slide = null;
   }
@@ -177,30 +171,21 @@ public class ThumbnailView extends FrameLayout {
     getTransferControls().showProgressSpinner();
   }
 
-  @TargetApi(VERSION_CODES.JELLY_BEAN_MR1)
-  private boolean isContextValid() {
-    return !(getContext() instanceof Activity)            ||
-           VERSION.SDK_INT < VERSION_CODES.JELLY_BEAN_MR1 ||
-           !((Activity)getContext()).isDestroyed();
-  }
-
-  private RequestBuilder buildThumbnailGlideRequest(@NonNull Slide slide, @NonNull MasterSecret masterSecret) {
-    RequestBuilder builder = GlideApp.with(getContext())
-                                     .load(new DecryptableUri(masterSecret, slide.getThumbnailUri()))
-                                     .diskCacheStrategy(DiskCacheStrategy.NONE)
-                                     .transform(new RoundedCorners(radius))
-                                     .transition(withCrossFade());
+  private RequestBuilder buildThumbnailGlideRequest(@NonNull MasterSecret masterSecret, @NonNull GlideRequests glideRequests, @NonNull Slide slide) {
+    RequestBuilder builder = glideRequests.load(new DecryptableUri(masterSecret, slide.getThumbnailUri()))
+                                          .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                          .transform(new RoundedCorners(radius))
+                                          .transition(withCrossFade());
 
     if (slide.isInProgress()) return builder;
     else                      return builder.apply(RequestOptions.errorOf(R.drawable.ic_missing_thumbnail_picture));
   }
 
-  private RequestBuilder buildPlaceholderGlideRequest(Slide slide) {
-    return GlideApp.with(getContext())
-                   .asBitmap()
-                   .load(slide.getPlaceholderRes(getContext().getTheme()))
-                   .diskCacheStrategy(DiskCacheStrategy.NONE)
-                   .fitCenter();
+  private RequestBuilder buildPlaceholderGlideRequest(@NonNull GlideRequests glideRequests, @NonNull Slide slide) {
+    return glideRequests.asBitmap()
+                        .load(slide.getPlaceholderRes(getContext().getTheme()))
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .fitCenter();
   }
 
   private class ThumbnailClickDispatcher implements View.OnClickListener {

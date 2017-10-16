@@ -12,12 +12,11 @@ import com.bumptech.glide.load.engine.cache.DiskCacheAdapter;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.module.AppGlideModule;
 
+import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
+import org.thoughtcrime.securesms.glide.ContactPhotoLoader;
 import org.thoughtcrime.securesms.glide.OkHttpUrlLoader;
 import org.thoughtcrime.securesms.mms.AttachmentStreamUriLoader.AttachmentModel;
-import org.thoughtcrime.securesms.mms.ContactPhotoUriLoader.ContactPhotoUri;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
-import org.thoughtcrime.securesms.profiles.AvatarPhotoUriLoader;
-import org.thoughtcrime.securesms.profiles.AvatarPhotoUriLoader.AvatarPhotoUri;
 
 import java.io.InputStream;
 
@@ -37,11 +36,10 @@ public class SignalGlideModule extends AppGlideModule {
 
   @Override
   public void registerComponents(Context context, Glide glide, Registry registry) {
+    registry.append(ContactPhoto.class, InputStream.class, new ContactPhotoLoader.Factory(context));
     registry.append(DecryptableUri.class, InputStream.class, new DecryptableStreamUriLoader.Factory(context));
-    registry.append(ContactPhotoUri.class, InputStream.class, new ContactPhotoUriLoader.Factory(context));
     registry.append(AttachmentModel.class, InputStream.class, new AttachmentStreamUriLoader.Factory());
     registry.replace(GlideUrl.class, InputStream.class, new OkHttpUrlLoader.Factory());
-    registry.append(AvatarPhotoUri.class, InputStream.class, new AvatarPhotoUriLoader.Factory(context));
   }
 
   public static class NoopDiskCacheFactory implements DiskCache.Factory {

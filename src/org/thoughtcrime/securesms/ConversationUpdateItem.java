@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.DateUtils;
@@ -69,6 +70,7 @@ public class ConversationUpdateItem extends LinearLayout
   @Override
   public void bind(@NonNull MasterSecret masterSecret,
                    @NonNull MessageRecord messageRecord,
+                   @NonNull GlideRequests glideRequests,
                    @NonNull Locale locale,
                    @NonNull Set<MessageRecord> batchSelected,
                    @NonNull Recipient conversationRecipient)

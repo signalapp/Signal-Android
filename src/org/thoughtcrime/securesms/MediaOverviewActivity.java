@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.loaders.BucketedThreadMediaLoader;
 import org.thoughtcrime.securesms.database.loaders.BucketedThreadMediaLoader.BucketedThreadMedia;
 import org.thoughtcrime.securesms.database.loaders.ThreadMediaLoader;
+import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
@@ -204,7 +205,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity  
       this.noMedia      = ViewUtil.findById(view, R.id.no_images);
       this.gridManager  = new StickyHeaderGridLayoutManager(getResources().getInteger(R.integer.media_overview_cols));
 
-      this.recyclerView.setAdapter(new MediaGalleryAdapter(getContext(), masterSecret, new BucketedThreadMedia(getContext()), locale, recipient.getAddress()));
+      this.recyclerView.setAdapter(new MediaGalleryAdapter(getContext(), masterSecret, GlideApp.with(this), new BucketedThreadMedia(getContext()), locale, recipient.getAddress()));
       this.recyclerView.setLayoutManager(gridManager);
       this.recyclerView.setHasFixedSize(true);
 

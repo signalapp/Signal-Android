@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -21,7 +22,7 @@ import org.thoughtcrime.securesms.components.subsampling.AttachmentBitmapDecoder
 import org.thoughtcrime.securesms.components.subsampling.AttachmentRegionDecoder;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
-import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
@@ -59,7 +60,9 @@ public class ZoomingImageView extends FrameLayout {
     this.subsamplingImageView.setOrientation(SubsamplingScaleImageView.ORIENTATION_USE_EXIF);
   }
 
-  public void setImageUri(final MasterSecret masterSecret, final Uri uri, final String contentType) {
+  public void setImageUri(@NonNull MasterSecret masterSecret, @NonNull GlideRequests glideRequests,
+                          @NonNull Uri uri, @NonNull String contentType)
+  {
     final Context context        = getContext();
     final int     maxTextureSize = BitmapUtil.getMaxTextureSize();
 
@@ -84,7 +87,7 @@ public class ZoomingImageView extends FrameLayout {
 
         if (dimensions == null || (dimensions.first <= maxTextureSize && dimensions.second <= maxTextureSize)) {
           Log.w(TAG, "Loading in standard image view...");
-          setImageViewUri(masterSecret, uri);
+          setImageViewUri(masterSecret, glideRequests, uri);
         } else {
           Log.w(TAG, "Loading in subsampling image view...");
           setSubsamplingImageViewUri(uri);
@@ -93,19 +96,18 @@ public class ZoomingImageView extends FrameLayout {
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
-  private void setImageViewUri(MasterSecret masterSecret, Uri uri) {
+  private void setImageViewUri(@NonNull MasterSecret masterSecret, @NonNull GlideRequests glideRequests, @NonNull Uri uri) {
     photoView.setVisibility(View.VISIBLE);
     subsamplingImageView.setVisibility(View.GONE);
 
-    GlideApp.with(getContext())
-            .load(new DecryptableUri(masterSecret, uri))
-            .diskCacheStrategy(DiskCacheStrategy.NONE)
-            .dontTransform()
-            .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
-            .into(photoView);
+    glideRequests.load(new DecryptableUri(masterSecret, uri))
+                 .diskCacheStrategy(DiskCacheStrategy.NONE)
+                 .dontTransform()
+                 .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
+                 .into(photoView);
   }
 
-  private void setSubsamplingImageViewUri(Uri uri) {
+  private void setSubsamplingImageViewUri(@NonNull Uri uri) {
     subsamplingImageView.setVisibility(View.VISIBLE);
     photoView.setVisibility(View.GONE);
 

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2011 Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -108,14 +108,14 @@ public class AttachmentManager {
 
   }
 
-  public void clear(boolean animate) {
+  public void clear(@NonNull GlideRequests glideRequests, boolean animate) {
     if (attachmentViewStub.resolved()) {
 
       if (animate) {
         ViewUtil.fadeOut(attachmentViewStub.get(), 200).addListener(new Listener<Boolean>() {
           @Override
           public void onSuccess(Boolean result) {
-            thumbnail.clear();
+            thumbnail.clear(glideRequests);
             attachmentViewStub.get().setVisibility(View.GONE);
             attachmentListener.onAttachmentChanged();
           }
@@ -125,7 +125,7 @@ public class AttachmentManager {
           }
         });
       } else {
-        thumbnail.clear();
+        thumbnail.clear(glideRequests);
         attachmentViewStub.get().setVisibility(View.GONE);
         attachmentListener.onAttachmentChanged();
       }
@@ -200,6 +200,7 @@ public class AttachmentManager {
   }
 
   public void setMedia(@NonNull final MasterSecret masterSecret,
+                       @NonNull final GlideRequests glideRequests,
                        @NonNull final Uri uri,
                        @NonNull final MediaType mediaType,
                        @NonNull final MediaConstraints constraints)
@@ -209,7 +210,7 @@ public class AttachmentManager {
             new AsyncTask<Void, Void, Slide>() {
       @Override
       protected void onPreExecute() {
-        thumbnail.clear();
+        thumbnail.clear(glideRequests);
         thumbnail.showProgressSpinner();
         attachmentViewStub.get().setVisibility(View.VISIBLE);
       }
@@ -254,7 +255,7 @@ public class AttachmentManager {
             documentView.setDocument((DocumentSlide) slide, false);
             removableMediaView.display(documentView, false);
           } else {
-            thumbnail.setImageResource(masterSecret, slide, false, true);
+            thumbnail.setImageResource(masterSecret, glideRequests, slide, false, true);
             removableMediaView.display(thumbnail, mediaType == MediaType.IMAGE);
           }
 
@@ -433,7 +434,7 @@ public class AttachmentManager {
     @Override
     public void onClick(View v) {
       cleanup();
-      clear(true);
+      clear(GlideApp.with(context.getApplicationContext()), true);
     }
   }
 

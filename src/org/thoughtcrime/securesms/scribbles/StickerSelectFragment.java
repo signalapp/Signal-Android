@@ -35,11 +35,13 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 
 public class StickerSelectFragment extends Fragment implements LoaderManager.LoaderCallbacks<String[]> {
 
-  private RecyclerView recyclerView;
-  private String assetDirectory;
+  private RecyclerView             recyclerView;
+  private GlideRequests            glideRequests;
+  private String                   assetDirectory;
   private StickerSelectionListener listener;
 
   public static StickerSelectFragment newInstance(String assetDirectory) {
@@ -67,6 +69,7 @@ public class StickerSelectFragment extends Fragment implements LoaderManager.Loa
   public void onActivityCreated(Bundle bundle) {
     super.onActivityCreated(bundle);
 
+    this.glideRequests  = GlideApp.with(this);
     this.assetDirectory = getArguments().getString("assetDirectory");
 
     getLoaderManager().initLoader(0, null, this);
@@ -80,7 +83,7 @@ public class StickerSelectFragment extends Fragment implements LoaderManager.Loa
 
   @Override
   public void onLoadFinished(Loader<String[]> loader, String[] data) {
-    recyclerView.setAdapter(new StickersAdapter(getActivity(), data));
+    recyclerView.setAdapter(new StickersAdapter(getActivity(), glideRequests, data));
   }
 
   @Override
@@ -94,12 +97,12 @@ public class StickerSelectFragment extends Fragment implements LoaderManager.Loa
 
   class StickersAdapter extends RecyclerView.Adapter<StickersAdapter.StickerViewHolder> {
 
-    private final Context context;
+    private final GlideRequests  glideRequests;
     private final String[]       stickerFiles;
     private final LayoutInflater layoutInflater;
 
-    StickersAdapter(@NonNull Context context, @NonNull String[] stickerFiles) {
-      this.context        = context;
+    StickersAdapter(@NonNull Context context, @NonNull GlideRequests glideRequests, @NonNull String[] stickerFiles) {
+      this.glideRequests  = glideRequests;
       this.stickerFiles   = stickerFiles;
       this.layoutInflater = LayoutInflater.from(context);
     }
@@ -113,10 +116,9 @@ public class StickerSelectFragment extends Fragment implements LoaderManager.Loa
     public void onBindViewHolder(StickerViewHolder holder, int position) {
       holder.fileName = stickerFiles[position];
 
-      GlideApp.with(context)
-              .load(Uri.parse("file:///android_asset/" + holder.fileName))
-              .diskCacheStrategy(DiskCacheStrategy.NONE)
-              .into(holder.image);
+      glideRequests.load(Uri.parse("file:///android_asset/" + holder.fileName))
+                   .diskCacheStrategy(DiskCacheStrategy.NONE)
+                   .into(holder.image);
     }
 
     @Override
@@ -127,7 +129,7 @@ public class StickerSelectFragment extends Fragment implements LoaderManager.Loa
     @Override
     public void onViewRecycled(StickerViewHolder holder) {
       super.onViewRecycled(holder);
-      GlideApp.with(context).clear(holder.image);
+      glideRequests.clear(holder.image);
     }
 
     private void onStickerSelected(String fileName) {

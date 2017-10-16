@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2015 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,16 +31,19 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;
 import org.thoughtcrime.securesms.database.loaders.BucketedThreadMediaLoader.BucketedThreadMedia;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
 import java.util.Locale;
 
-public class MediaGalleryAdapter extends StickyHeaderGridAdapter {
+class MediaGalleryAdapter extends StickyHeaderGridAdapter {
+
   private static final String TAG = MediaGalleryAdapter.class.getSimpleName();
 
   private final Context             context;
   private final MasterSecret        masterSecret;
+  private final GlideRequests       glideRequests;
   private final Locale              locale;
   private final Address             address;
 
@@ -50,7 +54,7 @@ public class MediaGalleryAdapter extends StickyHeaderGridAdapter {
 
     ViewHolder(View v) {
       super(v);
-      imageView = (ThumbnailView) v.findViewById(R.id.image);
+      imageView = v.findViewById(R.id.image);
     }
   }
 
@@ -59,16 +63,19 @@ public class MediaGalleryAdapter extends StickyHeaderGridAdapter {
 
     HeaderHolder(View itemView) {
       super(itemView);
-      textView = (TextView) itemView.findViewById(R.id.text);
+      textView = itemView.findViewById(R.id.text);
     }
   }
 
-  public MediaGalleryAdapter(Context context, MasterSecret masterSecret, BucketedThreadMedia media, Locale locale, Address address) {
-    this.context      = context;
-    this.masterSecret = masterSecret;
-    this.locale       = locale;
-    this.media        = media;
-    this.address      = address;
+  MediaGalleryAdapter(@NonNull Context context, @NonNull MasterSecret masterSecret, @NonNull GlideRequests glideRequests,
+                      BucketedThreadMedia media, Locale locale, Address address)
+  {
+    this.context       = context;
+    this.masterSecret  = masterSecret;
+    this.glideRequests = glideRequests;
+    this.locale        = locale;
+    this.media         = media;
+    this.address       = address;
   }
 
   public void setMedia(BucketedThreadMedia media) {
@@ -98,7 +105,7 @@ public class MediaGalleryAdapter extends StickyHeaderGridAdapter {
     Slide slide = MediaUtil.getSlideForAttachment(context, mediaRecord.getAttachment());
 
     if (slide != null) {
-      thumbnailView.setImageResource(masterSecret, slide, false, false);
+      thumbnailView.setImageResource(masterSecret, glideRequests, slide, false, false);
     }
 
     thumbnailView.setOnClickListener(new OnMediaClickListener(mediaRecord));

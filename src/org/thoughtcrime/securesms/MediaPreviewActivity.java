@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2014 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,7 +17,6 @@
 package org.thoughtcrime.securesms;
 
 import android.annotation.TargetApi;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -36,6 +35,7 @@ import android.widget.Toast;
 import org.thoughtcrime.securesms.components.ZoomingImageView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
@@ -143,8 +143,8 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   }
 
   private void initializeViews() {
-    image = (ZoomingImageView) findViewById(R.id.image);
-    video = (VideoPlayer) findViewById(R.id.video_player);
+    image = findViewById(R.id.image);
+    video = findViewById(R.id.video_player);
   }
 
   private void initializeResources() {
@@ -177,7 +177,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
       if (mediaType != null && mediaType.startsWith("image/")) {
         image.setVisibility(View.VISIBLE);
         video.setVisibility(View.GONE);
-        image.setImageUri(masterSecret, mediaUri, mediaType);
+        image.setImageUri(masterSecret, GlideApp.with(this), mediaUri, mediaType);
       } else if (mediaType != null && mediaType.startsWith("video/")) {
         image.setVisibility(View.GONE);
         video.setVisibility(View.VISIBLE);
@@ -210,13 +210,10 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   }
 
   private void saveToDisk() {
-    SaveAttachmentTask.showWarningDialog(this, new DialogInterface.OnClickListener() {
-      @Override
-      public void onClick(DialogInterface dialogInterface, int i) {
-        SaveAttachmentTask saveTask = new SaveAttachmentTask(MediaPreviewActivity.this, masterSecret, image);
-        long saveDate = (date > 0) ? date : System.currentTimeMillis();
-        saveTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, new Attachment(mediaUri, mediaType, saveDate, null));
-      }
+    SaveAttachmentTask.showWarningDialog(this, (dialogInterface, i) -> {
+      SaveAttachmentTask saveTask = new SaveAttachmentTask(MediaPreviewActivity.this, masterSecret, image);
+      long saveDate = (date > 0) ? date : System.currentTimeMillis();
+      saveTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, new Attachment(mediaUri, mediaType, saveDate, null));
     });
   }
 

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2011 Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.components.FromTextView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.DateUtils;
@@ -68,6 +69,7 @@ public class ConversationListItem extends RelativeLayout
   private Set<Long>          selectedThreads;
   private Recipient          recipient;
   private long               threadId;
+  private GlideRequests      glideRequests;
   private TextView           subjectView;
   private FromTextView       fromView;
   private TextView           dateView;
@@ -98,13 +100,13 @@ public class ConversationListItem extends RelativeLayout
   @Override
   protected void onFinishInflate() {
     super.onFinishInflate();
-    this.subjectView             = (TextView)           findViewById(R.id.subject);
-    this.fromView                = (FromTextView)       findViewById(R.id.from);
-    this.dateView                = (TextView)           findViewById(R.id.date);
-    this.deliveryStatusIndicator = (DeliveryStatusView) findViewById(R.id.delivery_status);
-    this.alertView               = (AlertView)          findViewById(R.id.indicators_parent);
-    this.contactPhotoImage       = (AvatarImageView)    findViewById(R.id.contact_photo_image);
-    this.thumbnailView           = (ThumbnailView)      findViewById(R.id.thumbnail);
+    this.subjectView             = findViewById(R.id.subject);
+    this.fromView                = findViewById(R.id.from);
+    this.dateView                = findViewById(R.id.date);
+    this.deliveryStatusIndicator = findViewById(R.id.delivery_status);
+    this.alertView               = findViewById(R.id.indicators_parent);
+    this.contactPhotoImage       = findViewById(R.id.contact_photo_image);
+    this.thumbnailView           = findViewById(R.id.thumbnail);
     this.archivedView            = ViewUtil.findById(this, R.id.archived);
     thumbnailView.setClickable(false);
 
@@ -112,12 +114,15 @@ public class ConversationListItem extends RelativeLayout
     ViewUtil.setTextViewGravityStart(this.subjectView, getContext());
   }
 
+  @Override
   public void bind(@NonNull MasterSecret masterSecret, @NonNull ThreadRecord thread,
-                   @NonNull Locale locale, @NonNull Set<Long> selectedThreads, boolean batchMode)
+                   @NonNull GlideRequests glideRequests, @NonNull Locale locale,
+                   @NonNull Set<Long> selectedThreads, boolean batchMode)
   {
     this.selectedThreads  = selectedThreads;
     this.recipient        = thread.getRecipient();
     this.threadId         = thread.getThreadId();
+    this.glideRequests    = glideRequests;
     this.read             = thread.isRead();
     this.distributionType = thread.getDistributionType();
     this.lastSeen         = thread.getLastSeen();
@@ -145,7 +150,7 @@ public class ConversationListItem extends RelativeLayout
     setBatchState(batchMode);
     setBackground(thread);
     setRippleColor(recipient);
-    this.contactPhotoImage.setAvatar(recipient, true);
+    this.contactPhotoImage.setAvatar(glideRequests, recipient, true);
   }
 
   @Override
@@ -180,7 +185,7 @@ public class ConversationListItem extends RelativeLayout
   private void setThumbnailSnippet(MasterSecret masterSecret, ThreadRecord thread) {
     if (thread.getSnippetUri() != null) {
       this.thumbnailView.setVisibility(View.VISIBLE);
-      this.thumbnailView.setImageResource(masterSecret, thread.getSnippetUri());
+      this.thumbnailView.setImageResource(masterSecret, glideRequests, thread.getSnippetUri());
 
       LayoutParams subjectParams = (RelativeLayout.LayoutParams)this.subjectView.getLayoutParams();
       subjectParams.addRule(RelativeLayout.LEFT_OF, R.id.thumbnail);
@@ -238,7 +243,7 @@ public class ConversationListItem extends RelativeLayout
   public void onModified(final Recipient recipient) {
     Util.runOnMain(() -> {
       fromView.setText(recipient, read);
-      contactPhotoImage.setAvatar(recipient, true);
+      contactPhotoImage.setAvatar(glideRequests, recipient, true);
       setRippleColor(recipient);
     });
   }
@@ -250,7 +255,7 @@ public class ConversationListItem extends RelativeLayout
     private final View deliveryStatusView;
     private final View dateView;
 
-    public ThumbnailPositioner(View thumbnailView, View archivedView, View deliveryStatusView, View dateView) {
+    ThumbnailPositioner(View thumbnailView, View archivedView, View deliveryStatusView, View dateView) {
       this.thumbnailView      = thumbnailView;
       this.archivedView       = archivedView;
       this.deliveryStatusView = deliveryStatusView;

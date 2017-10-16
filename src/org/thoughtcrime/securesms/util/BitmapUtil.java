@@ -10,8 +10,8 @@ import android.graphics.Rect;
 import android.graphics.YuvImage;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import android.support.annotation.*;
+import android.support.annotation.WorkerThread;
 import android.util.Log;
 import android.util.Pair;
 
@@ -42,6 +42,7 @@ public class BitmapUtil {
   private static final int MAX_COMPRESSION_ATTEMPTS         = 5;
   private static final int MIN_COMPRESSION_QUALITY_DECREASE = 5;
 
+  @android.support.annotation.WorkerThread
   public static <T> byte[] createScaledBytes(Context context, T model, MediaConstraints constraints)
       throws BitmapDecodingException
   {
@@ -50,7 +51,7 @@ public class BitmapUtil {
       int    attempts = 0;
       byte[] bytes;
 
-      Bitmap scaledBitmap = GlideApp.with(context)
+      Bitmap scaledBitmap = GlideApp.with(context.getApplicationContext())
                                     .asBitmap()
                                     .load(model)
                                     .downsample(DownsampleStrategy.AT_MOST)
@@ -91,11 +92,12 @@ public class BitmapUtil {
     }
   }
 
+  @WorkerThread
   public static <T> Bitmap createScaledBitmap(Context context, T model, int maxWidth, int maxHeight)
       throws BitmapDecodingException
   {
     try {
-      return GlideApp.with(context)
+      return GlideApp.with(context.getApplicationContext())
                      .asBitmap()
                      .load(model)
                      .downsample(DownsampleStrategy.AT_MOST)
@@ -106,11 +108,12 @@ public class BitmapUtil {
     }
   }
 
+  @WorkerThread
   public static <T> Bitmap createScaledBitmap(Context context, T model, float scale)
       throws BitmapDecodingException
   {
     try {
-      return GlideApp.with(context)
+      return GlideApp.with(context.getApplicationContext())
                      .asBitmap()
                      .load(model)
                      .sizeMultiplier(scale)

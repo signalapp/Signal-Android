@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2014 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,13 +18,14 @@ package org.thoughtcrime.securesms;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.FromTextView;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.Util;
@@ -39,10 +40,11 @@ public class ShareListItem extends RelativeLayout
 {
   private final static String TAG = ShareListItem.class.getSimpleName();
 
-  private Context      context;
-  private Recipient    recipient;
-  private long         threadId;
-  private FromTextView fromView;
+  private Context       context;
+  private GlideRequests glideRequests;
+  private Recipient     recipient;
+  private long          threadId;
+  private FromTextView  fromView;
 
   private AvatarImageView contactPhotoImage;
 
@@ -61,11 +63,12 @@ public class ShareListItem extends RelativeLayout
   @Override
   protected void onFinishInflate() {
     super.onFinishInflate();
-    this.fromView          = (FromTextView)    findViewById(R.id.from);
-    this.contactPhotoImage = (AvatarImageView) findViewById(R.id.contact_photo_image);
+    this.fromView          = findViewById(R.id.from);
+    this.contactPhotoImage = findViewById(R.id.contact_photo_image);
   }
 
-  public void set(ThreadRecord thread) {
+  public void set(@NonNull GlideRequests glideRequests, @NonNull ThreadRecord thread) {
+    this.glideRequests    = glideRequests;
     this.recipient        = thread.getRecipient();
     this.threadId         = thread.getThreadId();
     this.distributionType = thread.getDistributionType();
@@ -74,7 +77,7 @@ public class ShareListItem extends RelativeLayout
     this.fromView.setText(recipient);
 
     setBackground();
-    this.contactPhotoImage.setAvatar(this.recipient, false);
+    this.contactPhotoImage.setAvatar(glideRequests, this.recipient, false);
   }
 
   public void unbind() {
@@ -106,7 +109,7 @@ public class ShareListItem extends RelativeLayout
   public void onModified(final Recipient recipient) {
     Util.runOnMain(() -> {
       fromView.setText(recipient);
-      contactPhotoImage.setAvatar(recipient, false);
+      contactPhotoImage.setAvatar(glideRequests, recipient, false);
     });
   }
 }

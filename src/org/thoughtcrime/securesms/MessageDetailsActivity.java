@@ -47,6 +47,8 @@ import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.loaders.MessageDetailsLoader;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
@@ -78,6 +80,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   public final static String ADDRESS_EXTRA        = "address";
 
   private MasterSecret     masterSecret;
+  private GlideRequests    glideRequests;
   private long             threadId;
   private boolean          isPushGroup;
   private ConversationItem conversationItem;
@@ -166,6 +169,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     masterSecret      = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
     threadId          = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
     isPushGroup       = getIntent().getBooleanExtra(IS_PUSH_GROUP_EXTRA, false);
+    glideRequests     = GlideApp.with(this);
     itemParent        = (ViewGroup) header.findViewById(R.id.item_container);
     recipientsList    = (ListView ) findViewById(R.id.recipients_list);
     metadataContainer =             header.findViewById(R.id.metadata_container);
@@ -249,9 +253,8 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
       toFromRes = R.string.message_details_header__from;
     }
     toFrom.setText(toFromRes);
-    conversationItem.bind(masterSecret, messageRecord, dynamicLanguage.getCurrentLocale(), new HashSet<>(), recipient);
-    recipientsList.setAdapter(new MessageDetailsRecipientAdapter(this, masterSecret, messageRecord,
-                                                                 recipients, isPushGroup));
+    conversationItem.bind(masterSecret, messageRecord, glideRequests, dynamicLanguage.getCurrentLocale(), new HashSet<>(), recipient);
+    recipientsList.setAdapter(new MessageDetailsRecipientAdapter(this, masterSecret, glideRequests, messageRecord, recipients, isPushGroup));
   }
 
   private void inflateMessageViewIfAbsent(MessageRecord messageRecord) {

@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.giph.model.GiphyImage;
 import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -33,12 +34,14 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 
-public class GiphyAdapter extends RecyclerView.Adapter<GiphyAdapter.GiphyViewHolder> {
+class GiphyAdapter extends RecyclerView.Adapter<GiphyAdapter.GiphyViewHolder> {
 
   private static final String TAG = GiphyAdapter.class.getSimpleName();
 
+  private final Context       context;
+  private final GlideRequests glideRequests;
+
   private List<GiphyImage>     images;
-  private Context              context;
   private OnItemClickListener  listener;
 
   class GiphyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, RequestListener<Drawable> {
@@ -73,7 +76,6 @@ public class GiphyAdapter extends RecyclerView.Adapter<GiphyAdapter.GiphyViewHol
       }
 
       return false;
-
     }
 
     @Override
@@ -108,9 +110,10 @@ public class GiphyAdapter extends RecyclerView.Adapter<GiphyAdapter.GiphyViewHol
     }
   }
 
-  GiphyAdapter(Context context, List<GiphyImage> images) {
-    this.context = context.getApplicationContext();
-    this.images  = images;
+  GiphyAdapter(@NonNull Context context, @NonNull GlideRequests glideRequests, @NonNull List<GiphyImage> images) {
+    this.context       = context.getApplicationContext();
+    this.glideRequests = glideRequests;
+    this.images        = images;
   }
 
   public void setImages(@NonNull List<GiphyImage> images) {
@@ -145,21 +148,19 @@ public class GiphyAdapter extends RecyclerView.Adapter<GiphyAdapter.GiphyViewHol
                                                         .diskCacheStrategy(DiskCacheStrategy.ALL);
 
     if (Util.isLowMemory(context)) {
-      GlideApp.with(context)
-              .load(image.getStillUrl())
-              .placeholder(new ColorDrawable(Util.getRandomElement(MaterialColor.values()).toConversationColor(context)))
-              .diskCacheStrategy(DiskCacheStrategy.ALL)
-              .into(holder.thumbnail);
+      glideRequests.load(image.getStillUrl())
+                   .placeholder(new ColorDrawable(Util.getRandomElement(MaterialColor.values()).toConversationColor(context)))
+                   .diskCacheStrategy(DiskCacheStrategy.ALL)
+                   .into(holder.thumbnail);
 
       holder.setModelReady();
     } else {
-      GlideApp.with(context)
-              .load(image.getGifUrl())
-              .thumbnail(thumbnailRequest)
-              .placeholder(new ColorDrawable(Util.getRandomElement(MaterialColor.values()).toConversationColor(context)))
-              .diskCacheStrategy(DiskCacheStrategy.ALL)
-              .listener(holder)
-              .into(holder.thumbnail);
+      glideRequests.load(image.getGifUrl())
+                   .thumbnail(thumbnailRequest)
+                   .placeholder(new ColorDrawable(Util.getRandomElement(MaterialColor.values()).toConversationColor(context)))
+                   .diskCacheStrategy(DiskCacheStrategy.ALL)
+                   .listener(holder)
+                   .into(holder.thumbnail);
     }
   }
 

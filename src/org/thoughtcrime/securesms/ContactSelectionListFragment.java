@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2015 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListItem;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
+import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -119,6 +120,7 @@ public class ContactSelectionListFragment extends    Fragment
 
   private void initializeCursor() {
     ContactSelectionListAdapter adapter = new ContactSelectionListAdapter(getActivity(),
+                                                                          GlideApp.with(this),
                                                                           null,
                                                                           new ListClickListener(),
                                                                           isMulti());

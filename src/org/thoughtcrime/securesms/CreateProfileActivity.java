@@ -17,7 +17,6 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.util.Pair;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewAnimationUtils;
@@ -33,12 +32,12 @@ import com.soundcloud.android.crop.Crop;
 import org.thoughtcrime.securesms.components.InputAwareLayout;
 import org.thoughtcrime.securesms.components.emoji.EmojiDrawer;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
-import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
-import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
+import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileKeyUpdateJob;
+import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.ProfileMediaConstraints;
 import org.thoughtcrime.securesms.profiles.SystemProfileUtil;
@@ -56,6 +55,7 @@ import org.whispersystems.signalservice.api.util.StreamDetails;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -135,8 +135,7 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
 
           if (data != null && data.getBooleanExtra("delete", false)) {
             avatarBytes = null;
-            avatar.setImageDrawable(ContactPhotoFactory.getResourceContactPhoto(R.drawable.ic_camera_alt_white_24dp)
-                                                       .asDrawable(this, getResources().getColor(R.color.grey_400)));
+            avatar.setImageDrawable(new ResourceContactPhoto(R.drawable.ic_camera_alt_white_24dp).asDrawable(this, getResources().getColor(R.color.grey_400)));
           } else {
             new Crop(inputFile).output(outputFile).asSquare().start(this);
           }
@@ -145,13 +144,30 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
         break;
       case Crop.REQUEST_CROP:
         if (resultCode == Activity.RESULT_OK) {
-          try {
-            avatarBytes = BitmapUtil.createScaledBytes(this, Crop.getOutput(data), new ProfileMediaConstraints());
-            avatar.setImageDrawable(ContactPhotoFactory.getGroupContactPhoto(avatarBytes).asDrawable(this, 0));
-          } catch (BitmapDecodingException e) {
-            Log.w(TAG, e);
-            Toast.makeText(this, R.string.CreateProfileActivity_error_setting_profile_photo, Toast.LENGTH_LONG).show();
-          }
+          new AsyncTask<Void, Void, byte[]>() {
+            @Override
+            protected byte[] doInBackground(Void... params) {
+              try {
+                return BitmapUtil.createScaledBytes(CreateProfileActivity.this, Crop.getOutput(data), new ProfileMediaConstraints());
+              } catch (BitmapDecodingException e) {
+                Log.w(TAG, e);
+                return null;
+              }
+            }
+
+            @Override
+            protected void onPostExecute(byte[] result) {
+              if (result != null) {
+                avatarBytes = result;
+                GlideApp.with(CreateProfileActivity.this)
+                        .load(avatarBytes)
+                        .circleCrop()
+                        .into(avatar);
+              } else {
+                Toast.makeText(CreateProfileActivity.this, R.string.CreateProfileActivity_error_setting_profile_photo, Toast.LENGTH_LONG).show();
+              }
+            }
+          }.execute();
         }
         break;
     }
@@ -170,8 +186,7 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
     this.reveal       = ViewUtil.findById(this, R.id.reveal);
     this.nextIntent   = getIntent().getParcelableExtra(NEXT_INTENT);
 
-    this.avatar.setImageDrawable(ContactPhotoFactory.getResourceContactPhoto(R.drawable.ic_camera_alt_white_24dp)
-                                                    .asDrawable(this, getResources().getColor(R.color.grey_400)));
+    this.avatar.setImageDrawable(new ResourceContactPhoto(R.drawable.ic_camera_alt_white_24dp).asDrawable(this, getResources().getColor(R.color.grey_400)));
 
     this.avatar.setOnClickListener(view -> {
       try {
@@ -251,12 +266,11 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
     Address ourAddress = Address.fromSerialized(TextSecurePreferences.getLocalNumber(this));
 
     if (AvatarHelper.getAvatarFile(this, ourAddress).exists() && AvatarHelper.getAvatarFile(this, ourAddress).length() > 0) {
-      new AsyncTask<Void, Void, Pair<byte[], ContactPhoto>>() {
+      new AsyncTask<Void, Void, byte[]>() {
         @Override
-        protected Pair<byte[], ContactPhoto> doInBackground(Void... params) {
+        protected byte[] doInBackground(Void... params) {
           try {
-            byte[] data =Util.readFully(AvatarHelper.getInputStreamFor(CreateProfileActivity.this, ourAddress));
-            return new Pair<>(data, ContactPhotoFactory.getSignalAvatarContactPhoto(CreateProfileActivity.this, ourAddress, null, getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size)));
+            return Util.readFully(AvatarHelper.getInputStreamFor(CreateProfileActivity.this, ourAddress));
           } catch (IOException e) {
             Log.w(TAG, e);
             return null;
@@ -264,10 +278,13 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
         }
 
         @Override
-        protected void onPostExecute(Pair<byte[], ContactPhoto> result) {
+        protected void onPostExecute(byte[] result) {
           if (result != null) {
-            avatarBytes = result.first;
-            avatar.setImageDrawable(result.second.asDrawable(CreateProfileActivity.this, 0));
+            avatarBytes = result;
+            GlideApp.with(CreateProfileActivity.this)
+                    .load(result)
+                    .circleCrop()
+                    .into(avatar);
           }
         }
       }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -277,7 +294,10 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
         public void onSuccess(byte[] result) {
           if (result != null) {
             avatarBytes = result;
-            avatar.setImageDrawable(ContactPhotoFactory.getGroupContactPhoto(result).asDrawable(CreateProfileActivity.this, 0));
+            GlideApp.with(CreateProfileActivity.this)
+                    .load(result)
+                    .circleCrop()
+                    .into(avatar);
           }
         }
 
@@ -376,6 +396,7 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
         try {
           accountManager.setProfileAvatar(profileKey, avatar);
           AvatarHelper.setAvatar(CreateProfileActivity.this, Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)), avatarBytes);
+          TextSecurePreferences.setProfileAvatarId(CreateProfileActivity.this, new SecureRandom().nextInt());
         } catch (IOException e) {
           Log.w(TAG, e);
           return false;

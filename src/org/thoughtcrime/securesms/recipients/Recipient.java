@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.recipients;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -26,7 +27,8 @@ import android.util.Log;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
-import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
+import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.TransparentContactPhoto;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
@@ -62,15 +64,16 @@ public class Recipient implements RecipientModifiedListener {
   private           boolean stale;
   private           boolean resolving;
 
-  private           ContactPhoto      contactPhoto;
-  private           Uri               contactUri;
-  private @Nullable Uri               ringtone              = null;
-  private           long              mutedUntil            = 0;
-  private           boolean           blocked               = false;
-  private           VibrateState      vibrate               = VibrateState.DEFAULT;
-  private           int               expireMessages        = 0;
-  private           Optional<Integer> defaultSubscriptionId = Optional.absent();
-  private @NonNull  RegisteredState   registered            = RegisteredState.UNKNOWN;
+  private @Nullable ContactPhoto         contactPhoto;
+  private @NonNull  FallbackContactPhoto fallbackContactPhoto;
+  private           Uri                  contactUri;
+  private @Nullable Uri                  ringtone              = null;
+  private           long                 mutedUntil            = 0;
+  private           boolean              blocked               = false;
+  private           VibrateState         vibrate               = VibrateState.DEFAULT;
+  private           int                  expireMessages        = 0;
+  private           Optional<Integer>    defaultSubscriptionId = Optional.absent();
+  private @NonNull  RegisteredState      registered            = RegisteredState.UNKNOWN;
 
   private @Nullable MaterialColor  color;
   private           boolean        seenInviteReminder;
@@ -101,15 +104,16 @@ public class Recipient implements RecipientModifiedListener {
             @NonNull  Optional<RecipientDetails> details,
             @NonNull  ListenableFutureTask<RecipientDetails> future)
   {
-    this.address      = address;
-    this.contactPhoto = ContactPhotoFactory.getLoadingPhoto();
-    this.color        = null;
-    this.resolving    = true;
+    this.address              = address;
+    this.fallbackContactPhoto = new TransparentContactPhoto();
+    this.color                = null;
+    this.resolving            = true;
 
     if (stale != null) {
       this.name                  = stale.name;
       this.contactUri            = stale.contactUri;
       this.contactPhoto          = stale.contactPhoto;
+      this.fallbackContactPhoto  = stale.fallbackContactPhoto;
       this.color                 = stale.color;
       this.customLabel           = stale.customLabel;
       this.ringtone              = stale.ringtone;
@@ -132,6 +136,7 @@ public class Recipient implements RecipientModifiedListener {
     if (details.isPresent()) {
       this.name                  = details.get().name;
       this.contactPhoto          = details.get().avatar;
+      this.fallbackContactPhoto  = details.get().fallbackAvatar;
       this.color                 = details.get().color;
       this.ringtone              = details.get().ringtone;
       this.mutedUntil            = details.get().mutedUntil;
@@ -158,6 +163,7 @@ public class Recipient implements RecipientModifiedListener {
             Recipient.this.name                  = result.name;
             Recipient.this.contactUri            = result.contactUri;
             Recipient.this.contactPhoto          = result.avatar;
+            Recipient.this.fallbackContactPhoto  = result.fallbackAvatar;
             Recipient.this.color                 = result.color;
             Recipient.this.customLabel           = result.customLabel;
             Recipient.this.ringtone              = result.ringtone;
@@ -202,6 +208,7 @@ public class Recipient implements RecipientModifiedListener {
     this.contactUri            = details.contactUri;
     this.name                  = details.name;
     this.contactPhoto          = details.avatar;
+    this.fallbackContactPhoto  = details.fallbackAvatar;
     this.color                 = details.color;
     this.customLabel           = details.customLabel;
     this.ringtone              = details.ringtone;
@@ -345,7 +352,15 @@ public class Recipient implements RecipientModifiedListener {
     return (getName() == null ? address.serialize() : getName());
   }
 
-  public synchronized @NonNull ContactPhoto getContactPhoto() {
+  public synchronized @NonNull Drawable getFallbackContactPhotoDrawable(Context context, boolean inverted) {
+    return getFallbackContactPhoto().asDrawable(context, getColor().toConversationColor(context), inverted);
+  }
+
+  public synchronized @NonNull FallbackContactPhoto getFallbackContactPhoto() {
+    return fallbackContactPhoto;
+  }
+
+  public synchronized @Nullable ContactPhoto getContactPhoto() {
     return contactPhoto;
   }
 
@@ -361,7 +376,7 @@ public class Recipient implements RecipientModifiedListener {
     return ringtone;
   }
 
-  public void setRingtone(Uri ringtone) {
+  public void setRingtone(@Nullable Uri ringtone) {
     synchronized (this) {
       this.ringtone = ringtone;
     }

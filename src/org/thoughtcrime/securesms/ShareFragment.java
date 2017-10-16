@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2014 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -30,6 +30,7 @@ import android.widget.ListView;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
+import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 /**
@@ -78,7 +79,7 @@ public class ShareFragment extends ListFragment implements LoaderManager.LoaderC
   }
 
   private void initializeListAdapter() {
-    this.setListAdapter(new ShareListAdapter(getActivity(), null, masterSecret));
+    this.setListAdapter(new ShareListAdapter(getActivity(), masterSecret, GlideApp.with(this), null));
     getListView().setRecyclerListener((ShareListAdapter) getListAdapter());
     getLoaderManager().restartLoader(0, null, this);
   }

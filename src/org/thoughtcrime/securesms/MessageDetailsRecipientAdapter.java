@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.BaseAdapter;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Conversions;
 
@@ -20,18 +22,21 @@ class MessageDetailsRecipientAdapter extends BaseAdapter implements AbsListView.
 
   private final Context                       context;
   private final MasterSecret                  masterSecret;
+  private final GlideRequests                 glideRequests;
   private final MessageRecord                 record;
   private final List<RecipientDeliveryStatus> members;
   private final boolean                       isPushGroup;
 
-  MessageDetailsRecipientAdapter(Context context, MasterSecret masterSecret, MessageRecord record,
-                                 List<RecipientDeliveryStatus> members, boolean isPushGroup)
+  MessageDetailsRecipientAdapter(@NonNull Context context, @NonNull MasterSecret masterSecret,
+                                 @NonNull GlideRequests glideRequests, @NonNull MessageRecord record,
+                                 @NonNull List<RecipientDeliveryStatus> members, boolean isPushGroup)
   {
-    this.context      = context;
-    this.masterSecret = masterSecret;
-    this.record       = record;
-    this.isPushGroup  = isPushGroup;
-    this.members      = members;
+    this.context       = context;
+    this.masterSecret  = masterSecret;
+    this.glideRequests = glideRequests;
+    this.record        = record;
+    this.isPushGroup   = isPushGroup;
+    this.members       = members;
   }
 
   @Override
@@ -61,7 +66,7 @@ class MessageDetailsRecipientAdapter extends BaseAdapter implements AbsListView.
 
     RecipientDeliveryStatus member = members.get(position);
 
-    ((MessageRecipientListItem)convertView).set(masterSecret, record, member, isPushGroup);
+    ((MessageRecipientListItem)convertView).set(masterSecret, glideRequests, record, member, isPushGroup);
     return convertView;
   }
 

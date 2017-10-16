@@ -12,16 +12,16 @@ import android.widget.ImageView;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.makeramen.roundedimageview.RoundedDrawable;
 
-public class ResourceContactPhoto implements ContactPhoto {
+public class ResourceContactPhoto implements FallbackContactPhoto {
 
   private final int resourceId;
   private final int callCardResourceId;
 
-  ResourceContactPhoto(@DrawableRes int resourceId) {
+  public ResourceContactPhoto(@DrawableRes int resourceId) {
     this(resourceId, resourceId);
   }
 
-  ResourceContactPhoto(@DrawableRes int resourceId, @DrawableRes int callCardResourceId) {
+  public ResourceContactPhoto(@DrawableRes int resourceId, @DrawableRes int callCardResourceId) {
     this.resourceId         = resourceId;
     this.callCardResourceId = callCardResourceId;
   }
@@ -48,16 +48,6 @@ public class ResourceContactPhoto implements ContactPhoto {
   @Override
   public Drawable asCallCard(Context context) {
     return AppCompatResources.getDrawable(context, callCardResourceId);
-  }
-
-  @Override
-  public boolean isGenerated() {
-    return false;
-  }
-
-  @Override
-  public boolean isResource() {
-    return true;
   }
 
   private static class ExpandingLayerDrawable extends LayerDrawable {

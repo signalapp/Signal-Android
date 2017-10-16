@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2011 Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -39,7 +39,6 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewStub;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -67,6 +66,7 @@ import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.jobs.MmsDownloadJob;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
@@ -107,6 +107,7 @@ public class ConversationItem extends LinearLayout
   private Locale        locale;
   private boolean       groupThread;
   private Recipient     recipient;
+  private GlideRequests glideRequests;
 
   protected View             bodyBubble;
   private TextView           bodyText;
@@ -155,22 +156,22 @@ public class ConversationItem extends LinearLayout
 
     initializeAttributes();
 
-    this.bodyText                = (TextView)           findViewById(R.id.conversation_item_body);
-    this.dateText                = (TextView)           findViewById(R.id.conversation_item_date);
-    this.simInfoText             = (TextView)           findViewById(R.id.sim_info);
-    this.indicatorText           = (TextView)           findViewById(R.id.indicator_text);
-    this.groupSender             = (TextView)           findViewById(R.id.group_message_sender);
-    this.groupSenderProfileName  = (TextView)           findViewById(R.id.group_message_sender_profile);
-    this.insecureImage           = (ImageView)          findViewById(R.id.insecure_indicator);
-    this.deliveryStatusIndicator = (DeliveryStatusView) findViewById(R.id.delivery_status);
-    this.alertView               = (AlertView)          findViewById(R.id.indicators_parent);
-    this.contactPhoto            = (AvatarImageView)    findViewById(R.id.contact_photo);
-    this.bodyBubble              =                      findViewById(R.id.body_bubble);
-    this.mediaThumbnailStub      = new Stub<>((ViewStub) findViewById(R.id.image_view_stub));
-    this.audioViewStub           = new Stub<>((ViewStub) findViewById(R.id.audio_view_stub));
-    this.documentViewStub        = new Stub<>((ViewStub) findViewById(R.id.document_view_stub));
-    this.expirationTimer         = (ExpirationTimerView) findViewById(R.id.expiration_indicator);
-    this.groupSenderHolder       =                       findViewById(R.id.group_sender_holder);
+    this.bodyText                =            findViewById(R.id.conversation_item_body);
+    this.dateText                =            findViewById(R.id.conversation_item_date);
+    this.simInfoText             =            findViewById(R.id.sim_info);
+    this.indicatorText           =            findViewById(R.id.indicator_text);
+    this.groupSender             =            findViewById(R.id.group_message_sender);
+    this.groupSenderProfileName  =            findViewById(R.id.group_message_sender_profile);
+    this.insecureImage           =            findViewById(R.id.insecure_indicator);
+    this.deliveryStatusIndicator =            findViewById(R.id.delivery_status);
+    this.alertView               =            findViewById(R.id.indicators_parent);
+    this.contactPhoto            =            findViewById(R.id.contact_photo);
+    this.bodyBubble              =            findViewById(R.id.body_bubble);
+    this.mediaThumbnailStub      = new Stub<>(findViewById(R.id.image_view_stub));
+    this.audioViewStub           = new Stub<>(findViewById(R.id.audio_view_stub));
+    this.documentViewStub        = new Stub<>(findViewById(R.id.document_view_stub));
+    this.expirationTimer         =            findViewById(R.id.expiration_indicator);
+    this.groupSenderHolder       =            findViewById(R.id.group_sender_holder);
 
     setOnClickListener(new ClickListener(null));
 
@@ -183,6 +184,7 @@ public class ConversationItem extends LinearLayout
   @Override
   public void bind(@NonNull MasterSecret       masterSecret,
                    @NonNull MessageRecord      messageRecord,
+                   @NonNull GlideRequests      glideRequests,
                    @NonNull Locale             locale,
                    @NonNull Set<MessageRecord> batchSelected,
                    @NonNull Recipient          conversationRecipient)
@@ -190,6 +192,7 @@ public class ConversationItem extends LinearLayout
     this.masterSecret           = masterSecret;
     this.messageRecord          = messageRecord;
     this.locale                 = locale;
+    this.glideRequests          = glideRequests;
     this.batchSelected          = batchSelected;
     this.conversationRecipient  = conversationRecipient;
     this.groupThread            = conversationRecipient.isGroupRecipient();
@@ -386,7 +389,7 @@ public class ConversationItem extends LinearLayout
       if (documentViewStub.resolved()) documentViewStub.get().setVisibility(View.GONE);
 
       //noinspection ConstantConditions
-      mediaThumbnailStub.get().setImageResource(masterSecret,
+      mediaThumbnailStub.get().setImageResource(masterSecret, glideRequests,
                                                 ((MmsMessageRecord)messageRecord).getSlideDeck().getThumbnailSlide(),
                                                 showControls, false);
       mediaThumbnailStub.get().setThumbnailClickListener(new ThumbnailClickListener());
@@ -409,7 +412,7 @@ public class ConversationItem extends LinearLayout
     if (messageRecord.isOutgoing() || !groupThread) {
       contactPhoto.setVisibility(View.GONE);
     } else {
-      contactPhoto.setAvatar(recipient, true);
+      contactPhoto.setAvatar(glideRequests, recipient, true);
       contactPhoto.setVisibility(View.VISIBLE);
     }
   }

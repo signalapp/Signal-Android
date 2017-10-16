@@ -5,8 +5,7 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
+import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
@@ -85,8 +84,8 @@ public class RetrieveProfileAvatarJob extends ContextJob implements InjectableTy
 
     database.setProfileAvatar(recipient, profileAvatar);
 
-    if (recipient.resolve().getContactPhoto().isGenerated()) {
-      recipient.setContactPhoto(ContactPhotoFactory.getSignalAvatarContactPhoto(context, recipient.getAddress(), recipient.getName(), context.getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size)));
+    if (recipient.resolve().getContactPhoto() == null) {
+      recipient.setContactPhoto(new ProfileContactPhoto(recipient.getAddress(), profileAvatar));
     }
   }
 
