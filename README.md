@@ -36,11 +36,6 @@ For larger changes and feature ideas, we ask that you propose it on the [unoffic
 ## Contributing Ideas
 Have something you want to say about Open Whisper Systems projects or want to be part of the conversation? Get involved in the [community forum](https://whispersystems.discoursehosting.net).
 
-## Contributing Funds
-[![Donate](https://cloud.githubusercontent.com/assets/3121306/11278543/d46e03d0-8eeb-11e5-9691-0da1bf643192.png)](https://www.coinbase.com/checkouts/51dac699e660a4d773216b5ad94d6a0b)
-
-You can add funds to BitHub to directly help further development efforts.
-
 Help
 ====
 ## Support
