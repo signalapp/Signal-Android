@@ -202,8 +202,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       }
     };
 
-    if (Build.VERSION.SDK_INT >= 11) task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-    else                             task.execute();
+    task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
 }

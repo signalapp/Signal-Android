@@ -493,7 +493,7 @@ public class ConversationItem extends LinearLayout
             expirationManager.scheduleDeletion(id, mms, messageRecord.getExpiresIn());
             return null;
           }
-        }.execute();
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
       }
     } else {
       this.expirationTimer.setVisibility(View.GONE);

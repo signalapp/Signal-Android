@@ -5,6 +5,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
@@ -116,8 +117,9 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
 
   private void sendSmsInvites() {
     new SendSmsInvitesAsyncTask(this, inviteText.getText().toString())
-        .execute(contactsFragment.getSelectedContacts()
-                                 .toArray(new String[contactsFragment.getSelectedContacts().size()]));
+        .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,
+                           contactsFragment.getSelectedContacts()
+                                           .toArray(new String[contactsFragment.getSelectedContacts().size()]));
   }
 
   private void updateSmsButtonText() {

@@ -106,7 +106,7 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
           MessageNotifier.updateNotification(getActivity(), masterSecret);
           return null;
         }
-      }.execute();
+      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
       return super.onPreferenceChange(preference, value);
     }

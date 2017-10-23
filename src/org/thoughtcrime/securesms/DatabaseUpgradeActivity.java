@@ -105,7 +105,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
       ProgressBar determinateProgress   = (ProgressBar)findViewById(R.id.determinate_progress);
 
       new DatabaseUpgradeTask(indeterminateProgress, determinateProgress)
-          .execute(VersionTracker.getLastSeenVersion(this));
+          .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, VersionTracker.getLastSeenVersion(this));
     } else {
       VersionTracker.updateLastSeenVersion(this);
       updateNotifications(this, masterSecret);
@@ -150,7 +150,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
         MessageNotifier.updateNotification(context, masterSecret);
         return null;
       }
-    }.execute();
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   public interface DatabaseUpgradeListener {

@@ -126,7 +126,7 @@ public class GiphyActivity extends PassphraseRequiredActionBarActivity
           Log.w(TAG, "Resolved Uri is no longer the selected element...");
         }
       }
-    }.execute();
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   private static class GiphyFragmentPagerAdapter extends FragmentPagerAdapter {

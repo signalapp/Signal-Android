@@ -54,7 +54,7 @@ public class UnknownSenderView extends FrameLayout {
               if (threadId != -1) DatabaseFactory.getThreadDatabase(context).setHasSent(threadId, true);
               return null;
             }
-          }.execute();
+          }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         })
         .setNegativeButton(android.R.string.cancel, null)
         .show();
@@ -95,7 +95,7 @@ public class UnknownSenderView extends FrameLayout {
               if (threadId != -1) DatabaseFactory.getThreadDatabase(context).setHasSent(threadId, true);
               return null;
             }
-          }.execute();
+          }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         })
         .setNegativeButton(android.R.string.cancel, null)
         .show();

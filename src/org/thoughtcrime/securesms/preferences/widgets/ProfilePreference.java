@@ -87,7 +87,7 @@ public class ProfilePreference extends Preference {
       protected void onPostExecute(@NonNull Drawable contactPhoto) {
         avatarView.setImageDrawable(contactPhoto);
       }
-    }.execute();
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
     if (!TextUtils.isEmpty(profileName)) {
       profileNameView.setText(profileName);

@@ -115,7 +115,7 @@ public class KeyCachingService extends Service {
           }
           return null;
         }
-      }.execute();
+      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
   }
 
@@ -204,7 +204,7 @@ public class KeyCachingService extends Service {
         MessageNotifier.updateNotification(KeyCachingService.this, null);
         return null;
       }
-    }.execute();
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   private void handleDisableService() {

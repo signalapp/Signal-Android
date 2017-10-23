@@ -36,7 +36,7 @@ public class GiphyProxySelector extends ProxySelector {
           }
           return null;
         }
-      }.execute();
+      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     } else {
       initializeGiphyProxy();
     }

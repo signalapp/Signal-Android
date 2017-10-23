@@ -347,7 +347,7 @@ public class ConversationFragment extends Fragment
 
             return null;
           }
-        }.execute(messageRecords.toArray(new MessageRecord[messageRecords.size()]));
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, messageRecords.toArray(new MessageRecord[messageRecords.size()]));
       }
     });
 
@@ -388,7 +388,7 @@ public class ConversationFragment extends Fragment
         MessageSender.resend(context, masterSecret, messageRecords[0]);
         return null;
       }
-    }.execute(message);
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, message);
   }
 
   private void handleSaveAttachment(final MediaMmsMessageRecord message) {
@@ -397,7 +397,7 @@ public class ConversationFragment extends Fragment
         for (Slide slide : message.getSlideDeck().getSlides()) {
           if ((slide.hasImage() || slide.hasVideo() || slide.hasAudio() || slide.hasDocument()) && slide.getUri() != null) {
             SaveAttachmentTask saveTask = new SaveAttachmentTask(getActivity(), masterSecret, list);
-            saveTask.execute(new Attachment(slide.getUri(), slide.getContentType(), message.getDateReceived(), slide.getFileName().orNull()));
+            saveTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, new Attachment(slide.getUri(), slide.getContentType(), message.getDateReceived(), slide.getFileName().orNull()));
             return;
           }
         }

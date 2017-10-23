@@ -53,7 +53,7 @@ public class MmsPreferencesFragment extends CorrectedPreferenceFragment {
   @Override
   public void onResume() {
     super.onResume();
-    new LoadApnDefaultsTask().execute();
+    new LoadApnDefaultsTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   private class LoadApnDefaultsTask extends AsyncTask<Void, Void, LegacyMmsConnection.Apn> {

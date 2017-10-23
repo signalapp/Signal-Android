@@ -197,7 +197,7 @@ public class ConversationListFragment extends Fragment
           reminderView.showReminder(reminder.get());
         }
       }
-    }.execute(getActivity());
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, getActivity());
   }
 
   private void initializeListAdapter() {
@@ -248,7 +248,7 @@ public class ConversationListFragment extends Fragment
           else          DatabaseFactory.getThreadDatabase(getActivity()).archiveConversation(threadId);
         }
       }
-    }.execute();
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   private void handleDeleteAllSelected() {
@@ -294,7 +294,7 @@ public class ConversationListFragment extends Fragment
                 actionMode = null;
               }
             }
-          }.execute();
+          }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         }
       }
     });
@@ -463,7 +463,7 @@ public class ConversationListFragment extends Fragment
           protected void reverseAction(@Nullable Long parameter) {
             DatabaseFactory.getThreadDatabase(getActivity()).archiveConversation(threadId);
           }
-        }.execute(threadId);
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, threadId);
       } else {
         new SnackbarAsyncTask<Long>(getView(),
                                     getResources().getQuantityString(R.plurals.ConversationListFragment_conversations_archived, 1, 1),
@@ -491,7 +491,7 @@ public class ConversationListFragment extends Fragment
               MessageNotifier.updateNotification(getActivity(), masterSecret);
             }
           }
-        }.execute(threadId);
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, threadId);
       }
     }
 

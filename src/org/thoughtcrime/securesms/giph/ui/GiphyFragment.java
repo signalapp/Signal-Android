@@ -117,7 +117,7 @@ public abstract class GiphyFragment extends Fragment implements LoaderManager.Lo
         protected void onPostExecute(List<GiphyImage> images) {
           giphyAdapter.addImages(images);
         }
-      }.execute();
+      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
   }
 }

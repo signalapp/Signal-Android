@@ -119,7 +119,7 @@ public class MessageRecipientListItem extends RelativeLayout
         errorDescription.setVisibility(View.GONE);
         actionDescription.setVisibility(View.VISIBLE);
         actionDescription.setText(R.string.message_recipients_list_item__resending);
-        new ResendAsyncTask(masterSecret, record, networkFailure).execute();
+        new ResendAsyncTask(masterSecret, record, networkFailure).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
       });
     } else {
       if (record.isOutgoing()) {

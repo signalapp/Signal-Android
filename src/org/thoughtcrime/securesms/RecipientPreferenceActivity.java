@@ -240,7 +240,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         toolbarLayout.setTitle(recipient.toShortString());
         toolbarLayout.setContentScrimColor(recipient.getColor().toActionBarColor(RecipientPreferenceActivity.this));
       }
-    }.execute();
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   @Override
@@ -443,7 +443,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
                            .setRingtone(recipient, params[0]);
             return null;
           }
-        }.execute(value);
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, value);
 
         return false;
       }
@@ -462,7 +462,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
                            .setVibrate(recipient, vibrateState);
             return null;
           }
-        }.execute();
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
         return false;
       }
@@ -492,7 +492,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
               }
               return null;
             }
-          }.execute();
+          }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         }
         return true;
       }
@@ -532,7 +532,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
                            .setMuted(recipient, until);
             return null;
           }
-        }.execute();
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
       }
     }
 
@@ -608,7 +608,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
                               .add(new MultiDeviceBlockedUpdateJob(context));
             return null;
           }
-        }.execute();
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
       }
     }
   }

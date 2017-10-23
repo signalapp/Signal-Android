@@ -62,7 +62,7 @@ public class EmojiPageBitmap {
         @Override protected void onPostExecute(Void aVoid) {
           task = null;
         }
-      }.execute();
+      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
     return task;
   }

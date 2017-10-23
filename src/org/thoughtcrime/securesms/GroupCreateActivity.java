@@ -18,6 +18,7 @@
 package org.thoughtcrime.securesms;
 
 import android.app.Activity;
+import android.content.AsyncTaskLoader;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -171,7 +172,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void addSelectedContacts(@NonNull Recipient... recipients) {
-    new AddMembersTask(this).execute(recipients);
+    new AddMembersTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, recipients);
   }
 
   private void addSelectedContacts(@NonNull Collection<Recipient> recipients) {
@@ -205,7 +206,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     final Address groupAddress = getIntent().getParcelableExtra(GROUP_ADDRESS_EXTRA);
 
     if (groupAddress != null) {
-      new FillExistingGroupInfoAsyncTask(this).execute(groupAddress.toGroupString());
+      new FillExistingGroupInfoAsyncTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, groupAddress.toGroupString());
     }
   }
 
@@ -253,15 +254,15 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
       return;
     }
     if (isSignalGroup()) {
-      new CreateSignalGroupTask(this, masterSecret, avatarBmp, getGroupName(), getAdapter().getRecipients()).execute();
+      new CreateSignalGroupTask(this, masterSecret, avatarBmp, getGroupName(), getAdapter().getRecipients()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     } else {
-      new CreateMmsGroupTask(this, masterSecret, getAdapter().getRecipients()).execute();
+      new CreateMmsGroupTask(this, masterSecret, getAdapter().getRecipients()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
   }
 
   private void handleGroupUpdate() {
     new UpdateSignalGroupTask(this, masterSecret, groupToUpdate.get().id, avatarBmp,
-                              getGroupName(), getAdapter().getRecipients()).execute();
+                              getGroupName(), getAdapter().getRecipients()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   private void handleOpenConversation(long threadId, Recipient recipient) {

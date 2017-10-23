@@ -86,7 +86,7 @@ public class RemoteReplyReceiver extends MasterSecretBroadcastReceiver {
 
           return null;
         }
-      }.execute();
+      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
   }

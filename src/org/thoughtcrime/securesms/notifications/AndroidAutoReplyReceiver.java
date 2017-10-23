@@ -93,7 +93,7 @@ public class AndroidAutoReplyReceiver extends MasterSecretBroadcastReceiver {
 
           return null;
         }
-      }.execute();
+      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
   }
 

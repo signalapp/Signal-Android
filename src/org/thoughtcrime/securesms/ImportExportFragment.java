@@ -112,7 +112,7 @@ public class ImportExportFragment extends Fragment {
     builder.setPositiveButton(getActivity().getString(R.string.ImportFragment_import), new AlertDialog.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
-        new ImportPlaintextBackupTask().execute();
+        new ImportPlaintextBackupTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
       }
     });
     builder.setNegativeButton(getActivity().getString(R.string.ImportFragment_cancel), null);
@@ -127,7 +127,7 @@ public class ImportExportFragment extends Fragment {
     builder.setPositiveButton(getActivity().getString(R.string.ExportFragment_export), new Dialog.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
-        new ExportPlaintextTask().execute();
+        new ExportPlaintextTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
       }
     });
     builder.setNegativeButton(getActivity().getString(R.string.ExportFragment_cancel), null);

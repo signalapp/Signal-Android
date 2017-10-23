@@ -56,7 +56,7 @@ public class SystemProfileUtil {
         future.set(result);
       }
 
-    }.execute();
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
     return future;
   }
@@ -101,7 +101,7 @@ public class SystemProfileUtil {
       protected void onPostExecute(@Nullable String result) {
         future.set(result);
       }
-    }.execute();
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
     return future;
   }

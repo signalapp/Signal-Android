@@ -215,7 +215,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
         return null;
       }
-    }.execute();
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   private void handleInvite() {

@@ -134,7 +134,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     } else {
       fragmentContainer.setVisibility(View.GONE);
       progressWheel.setVisibility(View.VISIBLE);
-      new ResolveMediaTask(context).execute(streamExtra);
+      new ResolveMediaTask(context).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, streamExtra);
     }
   }
 

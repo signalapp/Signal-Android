@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -210,6 +211,6 @@ public class DeviceActivity extends PassphraseRequiredActionBarActivity
 
         getSupportFragmentManager().popBackStackImmediate();
       }
-    }.execute();
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 }

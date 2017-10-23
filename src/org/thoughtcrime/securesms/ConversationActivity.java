@@ -588,7 +588,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             invalidateOptionsMenu();
             if (fragment != null) fragment.setLastSeen(0);
           }
-        }.execute();
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
       }
     });
   }
@@ -607,7 +607,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
             return null;
           }
-        }.execute();
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
       }
     });
   }
@@ -632,7 +632,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
         return null;
       }
-    }.execute();
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   private void handleUnblock() {
@@ -655,7 +655,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
                 return null;
               }
-            }.execute();
+            }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
           }
         }).show();
   }
@@ -714,7 +714,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             protected void onPostExecute(Long result) {
               sendComplete(result);
             }
-          }.execute(endSessionMessage);
+          }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, endSessionMessage);
         }
       }
     });
@@ -786,7 +786,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                          .setDistributionType(threadId, ThreadDatabase.DistributionTypes.BROADCAST);
           return null;
         }
-      }.execute();
+      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
   }
 
@@ -802,7 +802,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                          .setDistributionType(threadId, ThreadDatabase.DistributionTypes.CONVERSATION);
           return null;
         }
-      }.execute();
+      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
   }
 
@@ -1005,7 +1005,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
         updateToggleButtonState();
       }
-    }.execute();
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   private ListenableFuture<Boolean> initializeSecurity(final boolean currentSecureText,
@@ -1043,7 +1043,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         future.set(true);
         onSecurityUpdated();
       }
-    }.execute(recipient);
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, recipient);
 
     return future;
   }
@@ -1091,7 +1091,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       protected void onPostExecute(Boolean isMmsEnabled) {
         ConversationActivity.this.isMmsEnabled = isMmsEnabled;
       }
-    }.execute();
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   private ListenableFuture<Boolean> initializeIdentityRecords() {
@@ -1145,7 +1145,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         future.set(true);
       }
 
-    }.execute(recipient);
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, recipient);
 
     return future;
   }
@@ -1427,7 +1427,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         future.set(result);
       }
 
-    }.execute(thisThreadId);
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, thisThreadId);
 
     return future;
   }
@@ -1537,7 +1537,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
         return null;
       }
-    }.execute(threadId);
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, threadId);
   }
 
   private void markLastSeen() {
@@ -1547,7 +1547,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         DatabaseFactory.getThreadDatabase(ConversationActivity.this).setLastSeen(params[0]);
         return null;
       }
-    }.execute(threadId);
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, threadId);
   }
 
   protected void sendComplete(long threadId) {
@@ -1655,7 +1655,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         sendComplete(result);
         future.set(null);
       }
-    }.execute(outgoingMessage);
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, outgoingMessage);
 
     return future;
   }
@@ -1694,7 +1694,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       protected void onPostExecute(Long result) {
         sendComplete(result);
       }
-    }.execute(message);
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, message);
   }
 
   private void updateToggleButtonState() {
@@ -1715,7 +1715,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                        .setDefaultSubscriptionId(recipient, subscriptionId.or(-1));
         return null;
       }
-    }.execute();
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   @Override
@@ -1789,7 +1789,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                   PersistentBlobProvider.getInstance(ConversationActivity.this).delete(result.first);
                   return null;
                 }
-              }.execute();
+              }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             }
           });
         } catch (InvalidMessageException e) {
@@ -1821,7 +1821,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             PersistentBlobProvider.getInstance(ConversationActivity.this).delete(result.first);
             return null;
           }
-        }.execute();
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
       }
 
       @Override
@@ -1999,7 +1999,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         protected void onPostExecute(Void result) {
           initializeIdentityRecords();
         }
-      }.execute();
+      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
   }
 

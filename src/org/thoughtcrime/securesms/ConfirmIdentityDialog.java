@@ -183,7 +183,7 @@ public class ConfirmIdentityDialog extends AlertDialog {
           }
         }
 
-      }.execute();
+      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
       if (callback != null) callback.onClick(null, 0);
     }

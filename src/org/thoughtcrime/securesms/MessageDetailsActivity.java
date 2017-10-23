@@ -296,7 +296,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     if (messageRecord == null) {
       finish();
     } else {
-      new MessageRecipientAsyncTask(this, messageRecord).execute();
+      new MessageRecipientAsyncTask(this, messageRecord).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
   }
 

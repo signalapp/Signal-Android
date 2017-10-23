@@ -96,7 +96,7 @@ public class ZoomingImageView extends FrameLayout {
           setSubsamplingImageViewUri(uri);
         }
       }
-    }.execute();
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   private void setImageViewUri(MasterSecret masterSecret, Uri uri) {

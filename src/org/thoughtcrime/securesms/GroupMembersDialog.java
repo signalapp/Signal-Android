@@ -49,7 +49,7 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, List<Recipient>> {
   }
 
   public void display() {
-    execute();
+    executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   private static class GroupMembersOnClickListener implements DialogInterface.OnClickListener {

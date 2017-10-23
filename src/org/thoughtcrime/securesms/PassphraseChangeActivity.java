@@ -108,7 +108,7 @@ public class PassphraseChangeActivity extends PassphraseActivity {
       this.newPassphrase.setError(getString(R.string.PassphraseChangeActivity_enter_new_passphrase_exclamation));
       this.newPassphrase.requestFocus();
     } else {
-      new ChangePassphraseTask(this).execute(original, passphrase);
+      new ChangePassphraseTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, original, passphrase);
     }
   }
 

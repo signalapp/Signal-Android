@@ -165,7 +165,7 @@ public class ScribbleActivity extends PassphraseRequiredActionBarActivity implem
             protected void onPostExecute(@Nullable Bitmap bitmap) {
               addSticker(bitmap);
             }
-          }.execute();
+          }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         }
       }
     }

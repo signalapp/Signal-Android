@@ -314,7 +314,7 @@ public class RingtonePreferenceDialogFragmentCompat extends PreferenceDialogFrag
             }
           }
         };
-        installTask.execute(fileUri);
+        installTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, fileUri);
       } else {
         ListView listView = ((AlertDialog) getDialog()).getListView();
         listView.setItemChecked(selectedIndex, true);

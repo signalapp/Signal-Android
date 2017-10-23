@@ -135,7 +135,7 @@ public class ScribbleView extends FrameLayout {
         canvasView.render(canvas);
         future.set(bitmap);
       }
-    }.execute();
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
     return future;
   }

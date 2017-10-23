@@ -302,7 +302,7 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
       protected void onPostExecute(final ContactPhoto contactPhoto) {
         WebRtcCallScreen.this.photo.setImageDrawable(contactPhoto.asCallCard(context));
       }
-    }.execute();
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
     this.name.setText(recipient.getName());
 

@@ -557,7 +557,7 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
             return NETWORK_ERROR;
           }
         }
-      }.execute();
+      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
   }
 
@@ -646,7 +646,7 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
             return NETWORK_ERROR;
           }
         }
-      }.execute();
+      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
   }

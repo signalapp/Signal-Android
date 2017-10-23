@@ -288,7 +288,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
           setFingerprintViews(fingerprint, true);
           getActivity().supportInvalidateOptionsMenu();
         }
-      }.execute();
+      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
       setHasOptionsMenu(true);
     }
@@ -617,7 +617,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
           }
           return null;
         }
-      }.execute(recipient);
+      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, recipient);
     }
   }
 

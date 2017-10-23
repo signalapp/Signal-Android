@@ -270,7 +270,7 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
             avatar.setImageDrawable(result.second.asDrawable(CreateProfileActivity.this, 0));
           }
         }
-      }.execute();
+      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     } else if (!excludeSystem) {
       SystemProfileUtil.getSystemProfileAvatar(this, new ProfileMediaConstraints()).addListener(new ListenableFuture.Listener<byte[]>() {
         @Override
@@ -398,7 +398,7 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
           Toast.makeText(CreateProfileActivity.this, R.string.CreateProfileActivity_problem_setting_profile, Toast.LENGTH_LONG).show();
         }
       }
-    }.execute();
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   private void handleFinishedLegacy() {

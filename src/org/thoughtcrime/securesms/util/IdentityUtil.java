@@ -62,7 +62,7 @@ public class IdentityUtil {
       protected void onPostExecute(Optional<IdentityRecord> result) {
         future.set(result);
       }
-    }.execute(recipient);
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, recipient);
 
     return future;
   }
