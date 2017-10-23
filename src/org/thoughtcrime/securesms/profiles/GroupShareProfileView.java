@@ -57,7 +57,10 @@ public class GroupShareProfileView extends FrameLayout {
             .setPositiveButton(R.string.GroupShareProfileView_make_visible, (dialog, which) -> {
               DatabaseFactory.getRecipientDatabase(getContext()).setProfileSharing(recipient, true);
             })
-            .setNegativeButton(android.R.string.cancel, null)
+            .setNegativeButton(R.string.GroupShareProfileView_never_ask_again, (dialog, which) -> {
+              DatabaseFactory.getRecipientDatabase(getContext()).setProfileSharingRefused(recipient, true);
+            })
+            .setNeutralButton(android.R.string.cancel, null)
             .show();
       }
     });

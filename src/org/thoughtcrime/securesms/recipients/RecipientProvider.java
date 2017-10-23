@@ -208,6 +208,7 @@ class RecipientProvider {
     @Nullable public final byte[]            profileKey;
     @Nullable public final String            profileAvatar;
               public final boolean           profileSharing;
+              public final boolean           profileSharingRefused;
               public final boolean           systemContact;
 
     public RecipientDetails(@Nullable String name, @Nullable String customLabel,
@@ -232,6 +233,7 @@ class RecipientProvider {
       this.profileKey            = settings     != null ? settings.getProfileKey() : null;
       this.profileAvatar         = settings     != null ? settings.getProfileAvatar() : null;
       this.profileSharing        = settings != null && settings.isProfileSharing();
+      this.profileSharingRefused = settings != null && settings.isProfileSharingRefused();
       this.systemContact         = systemContact;
 
       if (name == null && settings != null) this.name = settings.getSystemDisplayName();
