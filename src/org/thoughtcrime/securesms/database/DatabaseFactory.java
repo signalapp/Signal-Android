@@ -56,6 +56,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.security.SecureRandom;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -1240,6 +1241,8 @@ public class DatabaseFactory {
             }
 
             members.add(DelimiterUtil.escape(TextSecurePreferences.getLocalNumber(context), ','));
+
+            Collections.sort(members);
 
             String        encodedGroupId = "__signal_mms_group__!" + Hex.toStringCondensed(groupId);
             ContentValues groupValues    = new ContentValues();
