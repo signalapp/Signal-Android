@@ -38,7 +38,7 @@
                android:paddingBottom="2dp"
                android:visibility="gone"
                android:contentDescription="@string/conversation_item_sent__message_read"
-               android:tint="@color/blue_800"
+               android:tint="#79E857"
                tools:visibility="visible"/>
 
 </merge>
