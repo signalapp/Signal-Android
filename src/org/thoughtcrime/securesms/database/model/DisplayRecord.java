@@ -144,6 +144,10 @@ public abstract class DisplayRecord {
     return SmsDatabase.Types.isMissedCall(type);
   }
 
+  public boolean isVerificationStatusChange() {
+    return SmsDatabase.Types.isIdentityDefault(type) || SmsDatabase.Types.isIdentityVerified(type);
+  }
+
   public int getDeliveryStatus() {
     return deliveryStatus;
   }
