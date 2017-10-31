@@ -608,7 +608,7 @@ public class PushDecryptJob extends ContextJob {
                         .getExpiringMessageManager()
                         .scheduleDeletion(messageId, true,
                                           message.getExpirationStartTimestamp(),
-                                          message.getMessage().getExpiresInSeconds());
+                                          message.getMessage().getExpiresInSeconds() * 1000);
     }
 
     return threadId;
