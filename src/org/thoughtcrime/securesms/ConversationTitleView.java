@@ -107,7 +107,7 @@ public class ConversationTitleView extends RelativeLayout {
     this.subtitle.setText(Stream.of(recipient.getParticipants())
                                 .filter(r -> !r.getAddress().serialize().equals(localNumber))
                                 .map(Recipient::toShortString)
-                                .collect(Collectors.joining(",")));
+                                .collect(Collectors.joining(", ")));
 
     this.subtitle.setVisibility(View.VISIBLE);
   }
