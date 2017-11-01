@@ -146,6 +146,7 @@ public class ThumbnailView extends FrameLayout {
                  .diskCacheStrategy(DiskCacheStrategy.NONE)
                  .transform(new RoundedCorners(radius))
                  .transition(withCrossFade())
+                 .centerCrop()
                  .into(image);
   }
 
@@ -175,6 +176,7 @@ public class ThumbnailView extends FrameLayout {
     RequestBuilder builder = glideRequests.load(new DecryptableUri(masterSecret, slide.getThumbnailUri()))
                                           .diskCacheStrategy(DiskCacheStrategy.NONE)
                                           .transform(new RoundedCorners(radius))
+                                          .centerCrop()
                                           .transition(withCrossFade());
 
     if (slide.isInProgress()) return builder;
