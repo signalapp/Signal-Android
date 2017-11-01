@@ -10,6 +10,7 @@ import com.bumptech.glide.load.model.ModelLoaderFactory;
 import com.bumptech.glide.load.model.MultiModelLoaderFactory;
 
 import org.thoughtcrime.securesms.mms.AttachmentStreamUriLoader.AttachmentModel;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.File;
 import java.io.InputStream;
@@ -20,7 +21,7 @@ public class AttachmentStreamUriLoader implements ModelLoader<AttachmentModel, I
   @Nullable
   @Override
   public LoadData<InputStream> buildLoadData(AttachmentModel attachmentModel, int width, int height, Options options) {
-    return new LoadData<>(attachmentModel, new AttachmentStreamLocalUriFetcher(attachmentModel.attachment, attachmentModel.key));
+    return new LoadData<>(attachmentModel, new AttachmentStreamLocalUriFetcher(attachmentModel.attachment, attachmentModel.plaintextLength, attachmentModel.key, attachmentModel.digest));
   }
 
   @Override
@@ -42,12 +43,18 @@ public class AttachmentStreamUriLoader implements ModelLoader<AttachmentModel, I
   }
 
   public static class AttachmentModel implements Key {
-    public @NonNull File   attachment;
-    public @NonNull byte[] key;
+    public @NonNull File             attachment;
+    public @NonNull byte[]           key;
+    public @NonNull Optional<byte[]> digest;
+    public          long             plaintextLength;
 
-    public AttachmentModel(@NonNull File attachment, @NonNull byte[] key) {
-      this.attachment = attachment;
-      this.key        = key;
+    public AttachmentModel(@NonNull File attachment, @NonNull byte[] key,
+                           long plaintextLength, @NonNull Optional<byte[]> digest)
+    {
+      this.attachment      = attachment;
+      this.key             = key;
+      this.digest          = digest;
+      this.plaintextLength = plaintextLength;
     }
 
     @Override
