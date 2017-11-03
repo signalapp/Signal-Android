@@ -646,7 +646,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MessageNotifier_locked_message">Mesaj blocat</string>
   <string name="MessageNotifier_media_message_with_text">Mesaj media: %s</string>
   <string name="MessageNotifier_no_subject">(Fără subiect)</string>
-  <string name="MessageNotifier_message_delivery_failed">Trimiterea mesajului a esuat.</string>
+  <string name="MessageNotifier_message_delivery_failed">Livrarea mesajului a eșuat.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Mesajul nu a putut fi trimis.</string>
   <string name="MessageNotifier_error_delivering_message">A apărut o eroare la trimiterea mesajului.</string>
   <string name="MessageNotifier_mark_all_as_read">Marchează tot ca citit</string>
@@ -1286,7 +1286,7 @@ SMS a eșuat.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Pictogramă transport</string>
   <string name="conversation_item_sent__message_read">Mesaj citit</string>
-  <string name="media_overview_documents_fragment__no_documents_found">Nu a fost gasit nici un document.</string>
+  <string name="media_overview_documents_fragment__no_documents_found">Nici un document</string>
   <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Confirmările de citire sunt aici</string>
   <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Opțional afișează și distribuie când mesajele au fost citite</string>
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">Activează confirmările de citire</string>

@@ -61,6 +61,8 @@
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">今天</string>
   <string name="BucketedThreadMedia_Yesterday">昨天</string>
+  <string name="BucketedThreadMedia_This_week">本週</string>
+  <string name="BucketedThreadMedia_This_month">本月</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">來電</string>
   <!--ClearProfileActivity-->
@@ -351,6 +353,7 @@
   <string name="MmsDownloader_error_connecting_to_mms_provider">連線到MMS供應商時發生錯誤</string>
   <string name="MmsDownloader_error_reading_mms_settings">讀取無線供應商的MMS設定時發生錯誤</string>
   <!--MediaOverviewActivity-->
+  <string name="MediaOverviewActivity_Media">媒體</string>
   <string name="MediaOverviewActivity_Documents">文件</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">正在處理 Signal 通話</string>
@@ -507,7 +510,13 @@
   <string name="RegistrationService_registration_error">註冊失敗</string>
   <string name="RegistrationService_signal_registration_has_encountered_a_problem">Signal 註冊遭遇到了問題。</string>
   <!--RingtonePreference-->
+  <string name="RingtonePreference_ringtone_default">預設鈴聲</string>
   <string name="RingtonePreference_ringtone_silent">無</string>
+  <string name="RingtonePreference_ringtone_picker_title">鈴聲</string>
+  <string name="RingtonePreference_notification_sound_default">預設提示音</string>
+  <string name="RingtonePreference_alarm_sound_default">預設鬧鐘鈴聲</string>
+  <string name="RingtonePreference_add_ringtone_text">加入鈴聲</string>
+  <string name="RingtonePreference_unable_to_add_ringtone">無法加入自訂的鈴聲</string>
   <!--Slide-->
   <string name="Slide_image">圖片</string>
   <string name="Slide_audio">音訊</string>
@@ -826,6 +835,7 @@
   <string name="recipient_preferences__color">顏色</string>
   <string name="recipient_preferences__color_for_this_contact">此聯絡人的顏色</string>
   <string name="recipient_preferences__view_safety_number">檢視安全碼</string>
+  <string name="recipient_preferences__chat_settings">聊天設定</string>
   <string name="recipient_preferences__privacy">隱私</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal 通話</string>
@@ -1058,6 +1068,10 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="preferences__submit_debug_log">送出偵錯紀錄</string>
   <string name="preferences__support_wifi_calling">\"WiFi 呼叫\"相容模式</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">如果您的裝置使用 WiFi 傳送簡訊或多媒體訊息，請啟用此選項 (僅當\"WiFi 語音呼叫\"在您的裝置上啟用的時候才可用)</string>
+  <string name="preferences__incognito_keyboard">隱私鍵盤</string>
+  <string name="preferences__read_receipts">已讀標記</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">如果關閉已讀標記，你將無法看到其他人的已讀標記。</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">要求鍵盤關閉個人化學習</string>
   <string name="preferences_app_protection__blocked_contacts">封鎖聯絡人</string>
   <string name="preferences_app_protection__safety_numbers_approval">驗證安全碼</string>
   <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">當安全碼產生變得時，請求驗證新的安全碼</string>
@@ -1213,5 +1227,11 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="trimmer__old_messages_successfully_deleted">已完成刪除舊訊息</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">傳輸圖示</string>
+  <string name="conversation_item_sent__message_read">訊息已讀</string>
+  <string name="media_overview_documents_fragment__no_documents_found">沒有文件</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">已讀標記在這裡</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">可選擇的查看及分享訊息已被讀取</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">啟動已讀標記</string>
+  <string name="recipient_preference_activity__shared_media">分享的媒體</string>
   <!--EOF-->
 </resources>

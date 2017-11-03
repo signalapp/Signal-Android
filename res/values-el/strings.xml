@@ -64,7 +64,7 @@
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Σήμερα</string>
   <string name="BucketedThreadMedia_Yesterday">Χθες</string>
-  <string name="BucketedThreadMedia_This_week">Αυτήν την εβδομάδα</string>
+  <string name="BucketedThreadMedia_This_week">Αυτή την εβδομάδα</string>
   <string name="BucketedThreadMedia_This_month">Αυτόν τον μήνα</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Εισερχόμενη κλήση</string>
@@ -526,12 +526,12 @@
   <string name="RegistrationService_registration_error">Σφάλμα εγγραφής</string>
   <string name="RegistrationService_signal_registration_has_encountered_a_problem">Υπήρξε κάποιο πρόβλημα κατά την εγγραφή στο Signal.</string>
   <!--RingtonePreference-->
-  <string name="RingtonePreference_ringtone_default">Προκαθορισμένο κουδούνισμα</string>
+  <string name="RingtonePreference_ringtone_default">Προκαθορισμένος ήχος κλήσης</string>
   <string name="RingtonePreference_ringtone_silent">Κανένα</string>
-  <string name="RingtonePreference_ringtone_picker_title">Κουδουνίσματα</string>
+  <string name="RingtonePreference_ringtone_picker_title">Ήχοι κλήσης</string>
   <string name="RingtonePreference_notification_sound_default">Προκαθορισμένος ήχος ειδοποίησης</string>
   <string name="RingtonePreference_alarm_sound_default">Προκαθορισμένος ήχος αφύπνισης</string>
-  <string name="RingtonePreference_add_ringtone_text">Προσθήκη κουδουνίσματος</string>
+  <string name="RingtonePreference_add_ringtone_text">Προσθήκη ήχου κλήσης</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Αποτυχία προσθήκης προσαρμοσμένου ήχου κλήσης</string>
   <!--Slide-->
   <string name="Slide_image">Εικόνα</string>
@@ -943,7 +943,7 @@
   <string name="unknown_sender_view__add_to_contacts">ΠΡΟΣΘΗΚΗ ΣΤΙΣ ΕΠΑΦΕΣ</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">ΝΑ ΜΗΝ ΠΡΟΣΤΕΘΕΙ, ΑΛΛΑ ΝΑ ΓΙΝΕΙ ΤΟ ΠΡΟΦΙΛ ΜΟΥ ΟΡΑΤΟ</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Αν θέλεις να επιβεβαιώσεις την ασφάλεια της κρυπτογραφίας με τον/την %s, σύγκρινε τον παραπάνω αριθμό με τον αριθμό στην συσκευή του/της. Εναλλακτικά, μπορείς να σκανάρεις τον κωδικό στο κινητό του/της, ή να του/της ζητήσεις να σκανάρει τον δικό σου κωδικό.<a href="https://whispersystems.org/redirect/safety-numbers">Μάθε περισσότερα.</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Αν θέλεις να επιβεβαιώσεις την ασφάλεια της κρυπτογραφίας με τον/την %s, σύγκρινε τον παραπάνω αριθμό με τον αριθμό στην συσκευή του/της. Εναλλακτικά, μπορείς να σκανάρεις τον κωδικό στο κινητό του/της, ή να του/της ζητήσεις να σκανάρει τον δικό σου κωδικό. <a href="https://whispersystems.org/redirect/safety-numbers">Μάθε περισσότερα.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Πάτα για σκανάρισμα</string>
   <string name="verify_display_fragment__loading">Φορτώνει...</string>
   <string name="verify_display_fragment__verified">Επιβεβαιωμένο</string>
@@ -1115,7 +1115,7 @@
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Απενεργοποίηση της ενσωματωμένης υποστήριξης για emoji του Signal</string>
   <string name="preferences_advanced__video_calling_beta">Κλήση βίντεο beta</string>
   <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Υποστήριξη για κλήσεις βίντεο και φωνής επόμενης γενιάς, όταν ενεργοποιηθεί και από τις δύο πλευρές. Αυτό το χαρακτηριστικό είναι σε δοκιμαστική λειτουργία beta.</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Αναμετάδοση όλων των κλήσεων μέσω του σέρβερ Signal για να αποφύγεις την αποκάλυψη της IP διεύθυνσής σου στην επαφή σου. Η ενεργοποίηση θα χαλάσει την ποιότητα των κλήσεων.</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Αναμετάδοση όλων των κλήσεων μέσω του σέρβερ Signal για να αποφύγεις την αποκάλυψη της IP διεύθυνσής σου στην επαφή σου. Η ενεργοποίηση θα ρίξει την ποιότητα των κλήσεων.</string>
   <string name="preferences_advanced__always_relay_calls">Πάντα να αναμεταδίδονται οι κλήσεις</string>
   <string name="preferences_app_protection__app_access">Πρόσβαση εφαρμογής</string>
   <string name="preferences_app_protection__communication">Επικοινωνία</string>
@@ -1259,7 +1259,7 @@
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Μεταφορά εικονίδιου</string>
   <string name="conversation_item_sent__message_read">Το μήνυμα διαβάστηκε</string>
-  <string name="media_overview_documents_fragment__no_documents_found">Δεν βρέθηκαν έγγραφα</string>
+  <string name="media_overview_documents_fragment__no_documents_found">Δεν υπάρχουν έγγραφα</string>
   <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Τα αποδεικτικά ανάγνωσης ήρθαν</string>
   <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Προαιρετικά, μπορείς να δεις και να μοιραστείς πότε διαβάστηκαν τα μηνύματα</string>
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">Ενεργοποίηση αποδεικτικών ανάγνωσης</string>

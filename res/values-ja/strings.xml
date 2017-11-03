@@ -245,6 +245,7 @@
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">安全なビデオ通話が可能になりました。通常通りに通話を開始してから，動画ボタンを押してください。</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">安全なビデオ通話が可能になりました</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">安全なビデオ通話が可能になりました。試すにはタップしてください。</string>
+  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">アップの写真を撮りますが，準備はいいですか？</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Signalでプロフィール名と画像が設定できるようになりました。</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal のプロフィールは以下の通りです。</string>
   <!--ExportFragment-->
@@ -534,7 +535,7 @@
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signalの最新版が出ました。タップして更新してください。</string>
   <!--UnknownSenderView-->
   <string name="UnknownSenderView_block_s">%sをブロックしますか？</string>
-  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">ブロックされた連絡先は、あなたにメッセージ・通話を送ることができなくなります。</string>
+  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">ブロックされた相手はあなたにメッセージを送ることも電話を掛けることもできなくなります。</string>
   <string name="UnknownSenderView_block">ブロック</string>
   <string name="UnknownSenderView_share_profile_with_s">%sにプロフィールを公開しますか？</string>
   <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">相手の電話番号を連絡先に追加することが、プロフィール情報を公開する一番簡単な方法です。もし、相手を連絡先に追加したくない場合には、この方法でも公開できます。</string>
@@ -831,7 +832,7 @@
   <string name="registration_activity__your_country_code_and_phone_number">あなたの国番号と電話番号</string>
   <string name="registration_activity__phone_number">電話番号</string>
   <string name="registration_activity__register">登録</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signalはあなたの連絡先の電話番号を利用して、より簡単なコミュニケーションを提供します。たとえば、あなたの友達が初めてSignalに登録した際、友達の連絡先にあなたの電話番号があると、友達があなたを簡単に見つけることが出来ます。\n\n登録の際、一部のデータがサーバーに送信されますが、これらのデータは保存されません。</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">コミュニケーションを簡単にするために、Signalはあなたの連絡先の電話番号を活用します。あなたの電話番号を以前から知っている人はSignalを使って簡単にあなたに連絡することができます。\n\n登録を行うと連絡先に関する情報の一部がサーバーに送信されますが、保存はされません。</string>
   <string name="registration_activity__powered_by_twilio">Powered by twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">いくつかの問題の可能性があります
@@ -1189,7 +1190,7 @@
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">転送アイコン</string>
   <string name="conversation_item_sent__message_read">既読</string>
-  <string name="media_overview_documents_fragment__no_documents_found">見つかりませんでした</string>
+  <string name="media_overview_documents_fragment__no_documents_found">文書が見つかりません</string>
   <string name="experience_upgrade_preference_fragment__read_receipts_are_here">既読機能が追加</string>
   <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">既読機能が利用できるようになりました！</string>
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">既読機能をオンにする</string>

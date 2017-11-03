@@ -1279,7 +1279,7 @@
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona do tráfico</string>
   <string name="conversation_item_sent__message_read">Mensaxe lida</string>
-  <string name="media_overview_documents_fragment__no_documents_found">Ningún documento atopado</string>
+  <string name="media_overview_documents_fragment__no_documents_found">Sen documentos</string>
   <string name="experience_upgrade_preference_fragment__read_receipts_are_here">As confirmacións de lectura xa están aquí</string>
   <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Opcionalmente ve e comparte cando son lidas as mensaxes</string>
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">Activar as confirmacións de lectura</string>

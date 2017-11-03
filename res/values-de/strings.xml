@@ -1226,7 +1226,7 @@ Das Warten auf eine Verifikations-SMS hat zu lange gedauert.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Übertragungssymbol</string>
   <string name="conversation_item_sent__message_read">Nachricht gelesen</string>
-  <string name="media_overview_documents_fragment__no_documents_found">Keine Dokumente gefunden</string>
+  <string name="media_overview_documents_fragment__no_documents_found">Keine Dokumente</string>
   <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Lesebestätigungen sind da</string>
   <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Optional sehen und teilen, wann Nachrichten gelesen wurden</string>
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">Lesebestätigungen aktivieren</string>

@@ -1,0 +1,1230 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">Signal</string>
+  <string name="yes">ဟုတ်ကဲ့</string>
+  <string name="no">မလုပ်ပါ</string>
+  <string name="delete">ဖျက်ပါ</string>
+  <string name="please_wait">ခဏစောင့်ပါ</string>
+  <!--AbstractNotificationBuilder-->
+  <string name="AbstractNotificationBuilder_new_message">စာအသစ်</string>
+  <!--ApplicationPreferencesActivity-->
+  <string name="ApplicationPreferencesActivity_currently_s">လက်ရှိ: %s</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">စကားဝှက်မသတ်မှတ်ရသေးပါ</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="other">ဤစကားဝိုင်းတွင်စာများ %d ပါဝင်သည်</item>
+  </plurals>
+  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">စာအဟောင်းများအားလုံးဖျက်မှာလား?</string>
+  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="other">စာသာအားလုံး နောက်ဆုံးစာ၏ %dသို့ တည်းဖြတ်ပေါင်းပေးသည်။</item>
+  </plurals>
+  <string name="ApplicationPreferencesActivity_delete">ဖျက်ပါ</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">စကားဝှက်ပိတ်မလား?</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Singal ကိုအမြဲဖွင့်ထားပြီး စာတိုဝင်လာပါကအသိပေးပါမည်။</string>
+  <string name="ApplicationPreferencesActivity_disable">ပိတ်ထားပါ</string>
+  <string name="ApplicationPreferencesActivity_unregistering">စာရင်းမသွင်းထားပါ </string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signal စာတိုနှင့် ဖုန်းခေါ်ဆိုခြင်းများ စာရင်းမသွင်းတော့ပါ</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal စာတို နှင့် ဖုန်းခေါ်ဆိုမှုများကို ပိတ်မလား။ </string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Signal စာတိုနှင့် ဖုန်းခေါ်ဆိုမှုများ ပိတ်လိုက်ပါပြီ။ ထပ်မံသုံးစွဲလိုပါက ဖုန်းနံပါတ်ဖြင့် ပြန်လည်စာရင်းသွင်းရန်လိုအပ်ပါလိမ့်မည်။ </string>
+  <string name="ApplicationPreferencesActivity_error_connecting_to_server">ဆာဗာနှင့် ဆက်သွယ်၍မရပါ</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">စာတိုပို့စနစ်လုပ်ဆောင်နိုင်ပါပြီ</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">မူလစာတိုစနစ်သို့ ပြန်လည်ပြောင်းလဲရန်နှိပ်ပါ </string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">စာတိုပို့ခြင်းစနစ် ပိတ်လိုက်ပြီ</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Signal ကိုသင်၏ဖုန်းစာတိုပို့စနစ်အဖြစ်သုံးရန် ဤနေရာကိုနှိပ်ပါ</string>
+  <string name="ApplicationPreferencesActivity_on">ဖွင့်သည်</string>
+  <string name="ApplicationPreferencesActivity_On">ဖွင့်ပါ</string>
+  <string name="ApplicationPreferencesActivity_off">ပိတ်သည်</string>
+  <string name="ApplicationPreferencesActivity_Off">ပိတ်ပါ</string>
+  <string name="ApplicationPreferencesActivity_sms_mms_summary">ဖုန်းစာတို%1$s၊ ရုပ်သံသတင်း%2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">စကားဝှက်%1$s၊  ဖုန်းမျက်နှာပြင်လုံခြုံရေး %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Theme%1$s၊ ဘာသာစကား  %2$s</string>
+  <!--AppProtectionPreferenceFragment-->
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="other">%d မိနစ်</item>
+  </plurals>
+  <!--DraftDatabase-->
+  <string name="DraftDatabase_Draft_image_snippet">(ရုပ်ပုံ) </string>
+  <string name="DraftDatabase_Draft_audio_snippet">(အသံ)</string>
+  <string name="DraftDatabase_Draft_video_snippet">(ဗွီဒီယို) </string>
+  <string name="DraftDatabase_Draft_location_snippet">(တည်နေရာ) </string>
+  <!--AttchmentManager-->
+  <string name="AttachmentManager_cant_open_media_selection">ရုပ်သံကိုဖွင့်ရန်သင့်တော်သည့် app မတွေ့ပါ </string>
+  <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_camera">ကင်မရာ </string>
+  <string name="AttachmentTypeSelectorAdapter_picture">ဓာတ်ပုံ</string>
+  <string name="AttachmentTypeSelectorAdapter_video">ဗွီဒီယို</string>
+  <string name="AttachmentTypeSelectorAdapter_audio">အသံ</string>
+  <string name="AttachmentTypeSelectorAdapter_contact">ဆက်သွယ်ရန်အချက်အလက် </string>
+  <!--AudioSlidePlayer-->
+  <string name="AudioSlidePlayer_error_playing_audio">အသံဖွင့် မရပါ!</string>
+  <!--BlockedContactsActivity-->
+  <string name="BlockedContactsActivity_blocked_contacts">ပိတ်ထားသည့် သူများ </string>
+  <!--BucketedThreadMedia-->
+  <string name="BucketedThreadMedia_Today">ယနေ့ </string>
+  <string name="BucketedThreadMedia_Yesterday">မနေ့က </string>
+  <string name="BucketedThreadMedia_This_week">ဒီအပတ် </string>
+  <string name="BucketedThreadMedia_This_month">ဒီလ </string>
+  <!--CallScreen-->
+  <string name="CallScreen_Incoming_call">အဝင်ဖုန်း​</string>
+  <!--ClearProfileActivity-->
+  <string name="ClearProfileActivity_remove">ဖယ်ရှားသည် </string>
+  <string name="ClearProfileActivity_remove_profile_photo">ဓါတ်ပုံ ဖယ်ရှားမှာလား ?</string>
+  <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$sဖြင့် စိတ်ချရသော ဖုန်းနံပတ်ပြောင်းလဲသွားသည်။ တစ်စုံတစ်ယောက်က သင့်ဆက်သွယ်မှုကို ကြားဖြတ်ခြင်းကြောင့် သို့မဟုတ် %2$s Signal ကို ဖြုတ်လိုက်ခြင်းကြောင့် ဖြစ်နိုင်သည်။</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">ဤလူနှင့် ဆက်သွယ်ရန် စိတ်ချရသောနံပါတ်ကို အတည်ပြုပါမည်လား။ </string>
+  <string name="ConfirmIdentityDialog_accept">လက်ခံသည် </string>
+  <!--ContactsDatabase-->
+  <string name="ContactsDatabase_message_s">စာတို %s </string>
+  <string name="ContactsDatabase_signal_call_s">Signal ခေါ်ဆိုမှု %s </string>
+  <!--ConversationItem-->
+  <string name="ConversationItem_message_size_d_kb">စာတိုအရွယ်အစား: %d KB</string>
+  <string name="ConversationItem_expires_s">သက်တမ်းကုန် %s</string>
+  <string name="ConversationItem_error_not_delivered">မပေးပို့နိုင်ခဲ့ပါ </string>
+  <string name="ConversationItem_view_secure_media_question">လုံခြုံသောမီဒီယာကိုကြည့်မည်လား</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">ယခုရုပ်သံကို သင်္ကေတဖြင့် ပြောင်းလဲသိမ်းဆည်းသောနေရာတွင် ထိန်းသိမ်းထားသည်။ ပြင်ပအခြားမီဒီယာတစ်ခုဖြင့်ကြည့်ရှုလိုပါက သင်္ကေတ ကိုပြန်ဖြည်၍ သိမ်းဆည်းထားရန်လိုပါသည်။ သင်ထိုကဲ့သို့ လုပ်ချင်ပါသလား။  </string>
+  <string name="ConversationItem_error_received_stale_key_exchange_message">ပြဿနာ၊ ရရှိလာတဲ့ အလဲအလှယ်စာသားသော့ လွဲနေပါသည်။</string>
+  <string name="ConversationItem_received_key_exchange_message_tap_to_process">အလဲအလှယ်စာတိုသော့ရရှိပါသည်၊ ဆက်လက်လုပ်ဆောင်ရန် နှိပ်ပါ။ </string>
+  <string name="ConversationItem_group_action_left">%1$s အဖွဲ့မှထွက်သွားသည်။ </string>
+  <string name="ConversationItem_click_for_details">အသေးစိတ်သိရန် နှိပ်ပါ </string>
+  <string name="ConversationItem_click_to_approve_unencrypted">မလုံခြုံသောမူလအခြေအနေသို့ပြန်ပြောင်းရန်နှိပ်ပါ </string>
+  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">မလုံခြုံသောဖုန်းစာတိုပို့စနစ်ကိုပြန်သုံးမလား? </string>
+  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">မလုံခြုံသော ရုပ်သံပုံပါ စာပို့စနစ်ကို ပြန်သုံးမလား? </string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">သင်ပေးပို့သော သူသည် Signal မသုံးတော့သဖြင့် ဤနည်းလမ်းဖြင့် စာတိုကို ပေးပို့၍မရနိုင်ပါ။ \n\n ရိုးရိုးစာတိုစနစ်ဖြင့်ပေးပို့မလား? </string>
+  <string name="ConversationItem_unable_to_open_media">ရုပ်သံ ကိုဖွင့်နိုင်သည့် app မရှိပါ။ </string>
+  <string name="ConversationItem_copied_text">ကူးပြီးပါပြီ %s </string>
+  <string name="ConversationItem_from_s">%s မှ </string>
+  <string name="ConversationItem_to_s">%s သို့ </string>
+  <!--ConversationActivity-->
+  <string name="ConversationActivity_reset_secure_session_question">လုံခြုံသောဆက်ရှင် စပါ</string>
+  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">အကယ်၍ သင့်စကားများကို encrypt လုပ်ရန်အခက်အခဲရှိပါက ဤနည်းက အသုံးဝင်သည်။ သင့်သတင်းစကားကို သိမ်းထားပါမည်။ </string>
+  <string name="ConversationActivity_reset">မူလအတိုင်းပြန်လုပ်မည် </string>
+  <string name="ConversationActivity_delete_thread_question">စကားများကို ဖျက်မလား? </string>
+  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">ပြောထားသည့်စကားများအားလုံးကို အပြီးတိုင် ဖျက်ပစ်လိမ့်မည်။ </string>
+  <string name="ConversationActivity_add_attachment">ပူးတွဲဖိုင် ထည့်ရန်</string>
+  <string name="ConversationActivity_select_contact_info">ဆက်သွယ်မည့်သူအချက်အလက်ရွေးချယ်ပါ </string>
+  <string name="ConversationActivity_compose_message">စာရေးသားမည် </string>
+  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">ပူးတွဲဖိုင်ကို ထည့်ရာတွင် အမှားအယွင်းရှိသည်။ </string>
+  <string name="ConversationActivity_the_gif_you_selected_was_too_big">ရွေးချယ်ထားသည့် gif ကကြီးနေသည်!  </string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">ဝမ်းနည်းပါသည်၊ သင်ရွေးချယ်ထားသည့် ဗွီဒီယိုသည် သတ်မှတ်ထားသည့် အရွယ်အစား (%1$skB) ထက်ကျော်လွန်နေပါသည်။ </string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">ဝမ်းနည်းပါသည်၊ သင်ရွေးချယ်ထားသည့် အသံဖိုင်သည် သတ်မှတ်ထားသည့် အရွယ်အစား (%1$skB) ထက်ကျော်လွန်နေပါသည်။ </string>
+  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">လက်ခံသူထံသို့ပို့၍မရနိုင်ပါ SMS သို့မဟုတ် အီးမေးလိပ်စာ မဟုတ်ပါ!</string>
+  <string name="ConversationActivity_message_is_empty_exclamation">သတင်းစကား မရှိပါ! </string>
+  <string name="ConversationActivity_group_members">အုပ်စုဝင်များ </string>
+  <string name="ConversationActivity_group_conversation">အုပ်စုလိုက် ပြောစကားများ </string>
+  <plurals name="ConversationActivity_d_recipients_in_group">
+    <item quantity="other">%d အဖွဲ့ဝင်များ </item>
+  </plurals>
+  <string name="ConversationActivity_saved_draft">စာကြမ်းသိမ်းထားသည်</string>
+  <string name="ConversationActivity_invalid_recipient">လက်ခံမည့်သူမရှိပါ</string>
+  <string name="ConversationActivity_calls_not_supported">ဖုန်းခေါ်ဆိုမှုများ မပြုလုပ်နိုင်ပါ </string>
+  <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">ဖုန်းနံပါတ်နှိပ် ခေါ်ဆိုမှုကို ယခုစက်တွင်မရပါ။ </string>
+  <string name="ConversationActivity_leave_group">အုပ်စုမှ နှုတ်ထွက်မလား? </string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">ဤအုပ်စုမှ နှုတ်ထွက်ချင်သည်မှာ သေချာပါသလား? </string>
+  <string name="ConversationActivity_transport_insecure_sms">မလုံခြုံသော SMS</string>
+  <string name="ConversationActivity_transport_insecure_mms">မလုံခြုံသော MMS</string>
+  <string name="ConversationActivity_transport_signal">Signal </string>
+  <string name="ConversationActivity_lets_switch_to_signal">Signal %1$s ကိုပြောင်းသုံးကြပါစို့</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">ဒါလေး %1$s သုံးပြီးပြောကြစို့  </string>
+  <string name="ConversationActivity_error_leaving_group">အုပ်စုမှထွက်ခွာရန် အခက်အခဲ ရှိသည် </string>
+  <string name="ConversationActivity_mms_not_supported_title">ရုပ်သံစာပို့စနစ်ကို အထောက်အကူမပြုပါ </string>
+  <string name="ConversationActivity_mms_not_supported_message">သင့်စက်ပစ္စည်းက ရုပ်သံစာပို့စနစ်ကို အထောက်အကူမပြုသဖြင့် သတင်းစကားမပို့နိုင်ပါ။ </string>
+  <string name="ConversationActivity_specify_recipient">ဆက်သွယ်လိုသည့်သူကို ရွေးချယ်ပါ </string>
+  <string name="ConversationActivity_unblock_this_contact_question">ဤသူကို ဘလော့ဖြည်မလား? </string>
+  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">သူ့ထံမှ စာတိုများ ၊ ဖုန်းခေါ်ဆိုမှုများ ပြန်လည်လက်ခံနိုင်လိမ့်မည်။ </string>
+  <string name="ConversationActivity_unblock">ဘလော့ဖြည်ပါ </string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">ပူးတွဲဖိုင်သည် သတ်မှတ်ဖိုင်အရွယ်အစားထက်ကြီးနေသည်။ </string>
+  <string name="ConversationActivity_quick_camera_unavailable">ကင်မရာ သုံးမရပါ </string>
+  <string name="ConversationActivity_unable_to_record_audio">အသံဖမ်း၍ မရနိုင်ပါ!</string>
+  <string name="ConversationActivity_error_sending_voice_message">အသံသတင်းစကားပို့ရန် အခက်အခဲရှိသည်။</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">ယခုလင့်ခ် ကိုဖွင့်နိုင်သည့် app သင့်စက်တွင် မရှိပါ။ </string>
+  <!--ConversationAdapter-->
+  <plurals name="ConversationAdapter_n_unread_messages">
+    <item quantity="other">မဖတ်ရသေးသည့် စာတို %d </item>
+  </plurals>
+  <!--ConversationFragment-->
+  <string name="ConversationFragment_message_details">စာတို အသေးစိတ်အချက်အလက်များ</string>
+  <string name="ConversationFragment_transport_s_sent_received_s">ဆက်သွယ်စီးဆင်းမှု: %1$s \nပို့/လက်ခံ: %2$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">ပို့သူ: %1$s\nဆက်သွယ်စီးဆင်း: %2$s\nပို့: %3$s\nလက်ခံ: %4$s</string>
+  <plurals name="ConversationFragment_delete_selected_messages">
+    <item quantity="other">ရွေးထားသည့်စာတိုများဖျက်မည်လား?</item>
+  </plurals>
+  <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+    <item quantity="other">ရွေးချယ်ထားသည့် စာတိုများ %1$d ကိုအပြီးတိုင်ဖျက်လိမ့်မည်။  </item>
+  </plurals>
+  <string name="ConversationFragment_save_to_sd_card">သိမ်းမည်လား?</string>
+  <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+    <item quantity="other">%1$d ရုပ်သံပုံများကို သိမ်းဆည်းထားခြင်းဖြင့်  သင့်စက်ပစ္စည်းရှိ app များအားလုံးက အသုံးပြုနိုင်သည်။ \n\n ဆက်လက်လုပ်ဆောင်မလား? </item>
+  </plurals>
+  <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+    <item quantity="other">ပူးတွဲဖိုင်ကို သိမ်းဆည်းရာတွင်အခက်အခဲရှိ!</item>
+  </plurals>
+  <plurals name="ConversationFragment_files_saved_successfully">
+    <item quantity="other">အောင်မြင်စွာသိမ်းလိုက်ပြီ </item>
+  </plurals>
+  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">သိမ်းဆည်း၍မရနိုင်ပါ! </string>
+  <plurals name="ConversationFragment_saving_n_attachments">
+    <item quantity="other">ပူးတွဲဖိုင် %1$d ကိုသိမ်းနေသည်  </item>
+  </plurals>
+  <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+    <item quantity="other">ပူးတွဲဖိုင် %1$d ကို ဖုန်း ထဲတွင် သိမ်းနေသည် </item>
+  </plurals>
+  <string name="ConversationFragment_collecting_attahments">ပူးတွဲဖိုင်များကို စုစည်းနေသည် </string>
+  <string name="ConversationFragment_pending">ဆိုင်းငံ့ထားသည်...</string>
+  <string name="ConversationFragment_push">ဒေတာ (Signal)</string>
+  <string name="ConversationFragment_mms">MMS</string>
+  <string name="ConversationFragment_sms">SMS</string>
+  <string name="ConversationFragment_deleting">ဖျက်နေသည်</string>
+  <string name="ConversationFragment_deleting_messages">စာများဖျက်နေသည်</string>
+  <!--ConversationListActivity-->
+  <string name="ConversationListActivity_search">ရှာရန်</string>
+  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ဖုန်းထဲတွင်  browser သွင်းထားခြင်းမရှိပါ</string>
+  <!--ConversationListFragment-->
+  <plurals name="ConversationListFragment_delete_selected_conversations">
+    <item quantity="other">ရွေးထားသည့် စာတိုကိုဖျက်မလား? </item>
+  </plurals>
+  <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
+    <item quantity="other">၎င်းက ရွေးထားသည့် ပြောစကား %1$d ကိုအပြီးတိုင်ဖျက်လိမ့်မည်။ </item>
+  </plurals>
+  <string name="ConversationListFragment_deleting">ဖျက်နေသည်</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">ရွေးထားသည့် ပြောစကားများကို ဖျက်နေသည် </string>
+  <plurals name="ConversationListFragment_conversations_archived">
+    <item quantity="other">မှတ်တမ်းပြုထားသည့် ပြောစကားများ %d</item>
+  </plurals>
+  <string name="ConversationListFragment_undo">မလုပ်တော့ဘူး </string>
+  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <item quantity="other">ပြောစကား %d ကို စာပုံးထဲသို့ရွေ့သည်</item>
+  </plurals>
+  <!--ConversationListItem-->
+  <string name="ConversationListItem_key_exchange_message">ကီးအလဲအလှယ် စာသား</string>
+  <!--ConversationListItemAction-->
+  <string name="ConversationListItemAction_archived_conversations_d">မှတ်တမ်းပြုထားသော ပြောစကား (%d)</string>
+  <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity_your_profile_info">ကိုယ်ရေးအချက်အလက် </string>
+  <string name="CreateProfileActivity_error_setting_profile_photo">ဓါတ်ပုံတင်ရာတွင် အခက်အခဲရှိ </string>
+  <string name="CreateProfileActivity_problem_setting_profile">ကိုယ်ပိုင်အကောင့်ပြုလုပ်ရာတွင် ပြဿနာရှိ </string>
+  <string name="CreateProfileActivity_updating_profile">ကိုယ်ရေးအချက်အလက် ပြင်ဆင်ခြင်း </string>
+  <string name="CreateProfileActivity_updating_and_encrypting_profile">ကိုယ်ရေးအချက်အလက် ပြင်ဆင်ခြင်း နှင့် encrypt လုပ်ခြင်း </string>
+  <string name="CreateProfileActivity_profile_photo">ကိုယ့်ပုံ </string>
+  <string name="CreateProfileActivity_too_long">ရှည်လွန်းသည် </string>
+  <string name="CreateProfileActivity_error_capturing_photo_camera_did_not_return_image">ဓါတ်ပုံရိုက်ရာတွင် အခက်အခဲရှိ၊  ကင်မရာကပုံမပေါ်ပါ </string>
+  <!--CustomDefaultPreference-->
+  <string name="CustomDefaultPreference_using_custom">အထူးပြုသုံး %s</string>
+  <string name="CustomDefaultPreference_using_default">မူရင်းကိုသုံး %s </string>
+  <string name="CustomDefaultPreference_none">လုံးဝ </string>
+  <!--DateUtils-->
+  <string name="DateUtils_just_now">အခုလေးတင် </string>
+  <string name="DateUtils_minutes_ago">%d မိနစ် </string>
+  <string name="DateUtils_today">ယနေ့ </string>
+  <string name="DateUtils_yesterday">မနေ့က </string>
+  <!--DeviceListActivity-->
+  <string name="DeviceListActivity_unlink_s">\'%s\' ကိုမချိတ်တော့ဘူးလား?</string>
+  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">မချိတ်ဆက်တော့သည့်အတွက် စာတိုများကို ပေးပို့ခြင်း သို့မဟုတ် လက်ခံခြင်း မပြုနိုင်တော့ပါ။ </string>
+  <string name="DeviceListActivity_network_connection_failed">ကွန်ယက်ချိတ်ဆက်ခြင်းမအောင်မြင်ပါ </string>
+  <string name="DeviceListActivity_try_again">ထပ်မံကြိုးစားမည် </string>
+  <string name="DeviceListActivity_unlinking_device">ဖုန်းကို မချိတ်ဆက်တော့ </string>
+  <string name="DeviceListActivity_unlinking_device_no_ellipsis">ဖုန်းကို မချိတ်ဆက်တော့ </string>
+  <string name="DeviceListActivity_network_failed">ကွန်ယက် ကျသွားသည်!</string>
+  <!--DeviceListItem-->
+  <string name="DeviceListItem_unnamed_device">အမည်မသိ ဖုန်း </string>
+  <string name="DeviceListItem_linked_s">%s ချိတ်ဆက်သည် </string>
+  <string name="DeviceListItem_last_active_s">%s ကသုံးနေသည် </string>
+  <string name="DeviceListItem_today">ယနေ့ </string>
+  <!--DocumentView-->
+  <string name="DocumentView_unknown_file">အမျိုးအစားမသိဖိုင်</string>
+  <!--DozeReminder-->
+  <string name="DozeReminder_optimize_for_missing_play_services">မပါရှိသေးသော Play Service များကို  ရှာဖွေပါ </string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">ဤဖုန်းသည် Play Services အသုံးပြု၍မရပါ။ Signal အသုံးမပြုသည့်အချိန်တွင် သတင်းစကားများပြန်လည် ထုတ်ယူရာတွင် အနှောက်အယှက်ပြုသည့်အတွက် ဘက်ထရီ အသုံးပြုမှုစောင့် ကြည့်သည့်စနစ်ကို ပိတ်ထားပေးပါ။ </string>
+  <!--ShareActivity-->
+  <string name="ShareActivity_share_with">နှင့် မျှဝေရန်</string>
+  <!--ExperienceUpgradeActivity-->
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Signal မှကြိုဆိုပါသည်။</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure  နှင့် RedPhone တို့ပေါင်း၍ အချိန်တိုင်းအတွက် သတင်းစကားပို့နိုင်သော Signal </string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Signal မှကြိုဆိုပါသည်!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure သည် ယခုတွင် Signal ဖြစ်လာသည်</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure နှင့် RedPhone တို့ပေါင်း၍ Signal ဟုခေါ်သော app ဖြစ်လာသည်။ သုံးကြည့်ရန်နှိပ်ပါ</string>
+  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">လုံခြုံစိတ်ချရသော ဗွီဒီယိုခေါ်ဆိုမှု ကိုသုံးကြည့်ပါ။ </string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal သည်လုံခြုံစိတ်ချရသော ဗွီဒီယိုခေါ်ဆိုမှုကို ထောက်ပံ့ပေးသည်။ ပုံမှန် Signal ​ဖုန်းခေါ်ဆိုမှုပြုလုပ်ပါ၊ ဗွီဒီယိုခလုတ်ကိုနှိပ်ပါ၊ အသုံးပြုလို့ရပါပြီ။ </string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">လုံခြုံစိတ်ချရသော ဗွီဒီယိုခေါ်ဆိုမှုကို Signal တွင်ပြုလုပ်နိုင်ပါ​ပြီ။</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">လုံခြုံစိတ်ချရသော ဗွီဒီယိုခေါ်ဆိုမှုကို Signal တွင်ပြုလုပ်နိုင်ပါ​ပြီ။သုံးကြည့်ရန် နှိပ်ပါ။ </string>
+  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">closeup အတွက်အသင့် ဖြစ်ပြီလား?</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">သင့် ဓါတ်ပုံနှင့် အမည်ကို Signal သုံး၍ သူငယ်ချင်းများနှင့် ဝေမျှနိုင်ပါပြီ။ </string>
+  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal လိပ်စာများ ဒီနေရာတွင်ရှိသည် </string>
+  <!--ExportFragment-->
+  <string name="ExportFragment_export">ထုတ်ယူရန်</string>
+  <string name="ExportFragment_export_plaintext_to_storage">စာသားကို ဖုန်းမှာသိမ်းဖို့ ပို့မလား? </string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">သတိ၊ သင့် Signal က စာတိုစကားများကို ဖုန်းတွင် သိမ်းပါတော့မည်။ </string>
+  <string name="ExportFragment_cancel">မလုပ်တော့ပါ</string>
+  <string name="ExportFragment_exporting">ထုတ်ယူနေသည်</string>
+  <string name="ExportFragment_exporting_plaintext_to_storage">စာသားများကို ဖုန်းတွင် သိမ်းရန် ထုတ်ယူနေသည်။</string>
+  <string name="ExportFragment_error_unable_to_write_to_storage">သတိ၊ သိမ်းဆည်း၍မရနိုင်ပါ </string>
+  <string name="ExportFragment_error_while_writing_to_storage">သိမ်းဆည်းရာတွင် အခက်အခဲတွေ့နေသည်။</string>
+  <string name="ExportFragment_export_successful">ထုပ်ယူခြင်း အောင်မြင်!</string>
+  <!--GcmRefreshJob-->
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal ဆက်သွယ်မှု လုံးဝမလုပ်နိုင်ပါ။</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal ကို Google Play Services ဖြင့် မှတ်ပုံတင်၍မရနိုင်ပါ။ Signal စာတိုနှင့် ဖုန်းခေါ်ဆိုမှု ကိုပိတ်လိုက်သည်။ ပြင်ဆင်ခြင်း &gt; အဆင့်မြင့်တွင် ပြန်လည်မှတ်ပုံတင်ကြည့်ပါ။ </string>
+  <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">GIF ပုံ၏ မူရင်းအရည်အသွေးကို ပြသရန်အခက်အခဲရှိ </string>
+  <!--GiphyFragmentPageAdapter-->
+  <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
+  <string name="GiphyFragmentPagerAdapter_stickers">စတစ်ကာများ </string>
+  <!--GroupCreateActivity-->
+  <string name="GroupCreateActivity_actionbar_title">အဖွဲ့အသစ်</string>
+  <string name="GroupCreateActivity_actionbar_edit_title">အဖွဲ့ကို ပြင်မည်</string>
+  <string name="GroupCreateActivity_group_name_hint">အဖွဲ့နာမည်</string>
+  <string name="GroupCreateActivity_actionbar_mms_title">MMS အဖွဲ့သစ်</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">သင်ရွေးချယ်သောသူကို Signal အဖွဲ့တွင်ထည့်၍မရပါ၊ သို့ကြောင့် MMS အဖွဲ့လုပ်ပါမည်။ </string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">သင်သည် Signal စာတိုများ ၊ ဖုန်းခေါ်ဆိုမှုများ လုပ်ရန် မှတ်ပုံတင်ထားခြင်းမရှိသဖြင့် Signal အဖွဲ့မလုပ်နိုင်ပါ။ ပြင်ဆင်ခြင်း &gt; အဆင့်မြင့်တွင် ပြန်လည် မှတ်ပုံတင်ကြည့်ပါ။ </string>
+  <string name="GroupCreateActivity_contacts_mms_exception">အဖွဲ့ထူထောင်ရာတွင် မမျှော်လင့်သည့် အခက်အခဲပေါ်လာသဖြင့် မအောင်မြင်ပါ။ </string>
+  <string name="GroupCreateActivity_contacts_no_members">အဖွဲ့ဖွဲ့ရန် အနည်းဆုံး အဖွဲ့ဝင်တစ်ယောက်ရှိရမည်! </string>
+  <string name="GroupCreateActivity_contacts_invalid_number">သင့်အဖွဲ့ဝင်တစ်ယောက်၏ ဖုန်းနံပါတ် မှားနေပါသည်။ ယင်းဖုန်းနံပါတ်ကို ပြင်ဆင် သို့မဟုတ် ဖယ်ရှား၍ ပြန်လည်ကြိုးစားကြည့်ပါ။ </string>
+  <string name="GroupCreateActivity_avatar_content_description">အဖွဲ့ကိုယ်စားပြုရုပ်ပုံ </string>
+  <string name="GroupCreateActivity_menu_apply_button">လုပ်မည်</string>
+  <string name="GroupCreateActivity_creating_group">%1$sဖန်တီးနေပါသည်။ </string>
+  <string name="GroupCreateActivity_updating_group">ပြုပြင်နေသည် %1$s</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Signal အသုံးပြုသူမဟုတ်သဖြင့် %1$sထည့်၍မရပါ။ </string>
+  <string name="GroupCreateActivity_loading_group_details">အဖွဲ့အချက်အလက်များ ရှာဖွေနေသည် </string>
+  <string name="GroupCreateActivity_youre_already_in_the_group">သင် အဖွဲ့ထဲရောက်နေပါပြီ။ </string>
+  <!--GroupShareProfileView-->
+  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">သင့် နာမည်နှင့် ဓါတ်ပုံကို ဒီအဖွဲ့နှင့် ဝေမျှလိုပါသလား? </string>
+  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">သင့်နာမည်နှင့် ဓါတ်ပုံ ကိုဤအုပ်စု မှ လက်ရှိနှင့် နောင်တိုးပွားလာမည့် အဖွဲ့ဝင်များ မြင်ခွင့်ပြုလိုပါသလား? </string>
+  <string name="GroupShareProfileView_make_visible">မြင်သာအောင်လုပ်မည်</string>
+  <!--GroupMembersDialog-->
+  <string name="GroupMembersDialog_me">ငါ</string>
+  <!--ImportExportActivity-->
+  <string name="ImportExportActivity_import">သွင်းယူပါ</string>
+  <string name="ImportExportActivity_export">ထုတ်ယူ</string>
+  <!--ImportFragment-->
+  <string name="ImportFragment_import_system_sms_database">SMS အချက်အလက်များကို ထည့်သွင်းမလား? </string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">ယင်းသည်
+ဖုန်းစနစ်၏SMS အချက်အလက်များကို Signal သို့ကူးပြောင်းပေးသည်။ အကယ်၍ ယခင်က
+ကူးပြောင်းခဲ့ဖူးပါက ထပ်မံကူးယူခြင်းကြောင့် စာတိုများအခါခါထပ်နေပါလိမ့်မည်။</string>
+  <string name="ImportFragment_import">သွင်းယူ</string>
+  <string name="ImportFragment_cancel">မလုပ်တော့ပါ</string>
+  <string name="ImportFragment_restore_encrypted_backup">encrypt လုပ်ထားသော အရန်အချက်အလက်များကို ထုတ်ယူသုံးပါမည်လား?</string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
+encrypt လုပ်ထားသောအရန်အချက်အလက်များကိုထုတ်ယူသုံးခြင်းဖြင့် သင့်လက်ရှိအသုံးပြုနေသော သော့များ၊ စိတ်ကြိုက်ဦးစားပေးများနှင့် 
+စာတိုများကို အစားထိုးလိုက်လိမ့်မည်။ လတ်တလောသုံးနေသော Signal စာတိုများ ပျောက်သွားမည်ဖြစ်သော်လည်း 
+အရန်အချက်အလက်များ မပျောက်ဆုံးပါ။</string>
+  <string name="ImportFragment_restore">ပြန်ထည့်သည်</string>
+  <string name="ImportFragment_import_plaintext_backup">စာသားအရန်အချက်အလက်များကို ကူးပြောင်းမလား? </string>
+  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">ယင်းသည်
+ဖုန်းစနစ်၏စာသားအချက်အလက်များကို Signal သို့ကူးပြောင်းပေးသည်။ အကယ်၍ ယခင်က
+ကူးပြောင်းခဲ့ဖူးပါက ထပ်မံကူးယူခြင်းကြောင့် စာသားများအခါခါထပ်နေပါလိမ့်မည်။</string>
+  <string name="ImportFragment_importing">ထည့်သွင်းသည်</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">စာသားအရန်အချက်အလက်များကို ကူးပြောင်းနေသည်...</string>
+  <string name="ImportFragment_no_plaintext_backup_found">စာသားအရန်အချက်အလက်များ မတွေ့ပါ!</string>
+  <string name="ImportFragment_error_importing_backup">သတိ အရန်အချက်အလက်များကူးပြောင်းမရ!</string>
+  <string name="ImportFragment_import_complete">ထည့်သွင်းမှုပြီးပြီ</string>
+  <string name="ImportFragment_restoring">ပြန်ထည့်နေသည်</string>
+  <string name="ImportFragment_restoring_encrypted_backup">encrypt လုပ်ထားသော အရန်အချက်အလက်များကို ပြန်ထည့်နေသည် ...</string>
+  <string name="ImportFragment_no_encrypted_backup_found">encrypt လုပ်ထားသော အရန်အချက်အလက်များမတွေ့!</string>
+  <string name="ImportFragment_restore_complete">ထည့်သွင်းမှုပြီးပြီ</string>
+  <!--InputPanel-->
+  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">အသံဖမ်းရန် ခလုပ်ကိုဖိထားပါ၊ ပို့ရန် ခလုပ်ကိုလွှတ်လိုက်ပါ</string>
+  <!--InviteActivity-->
+  <string name="InviteActivity_share">မျှဝေရန်</string>
+  <string name="InviteActivity_choose_contacts">ဆက်သွယ်ရန်လူရွေးပါ</string>
+  <string name="InviteActivity_cancel">မလုပ်တော့ပါ</string>
+  <string name="InviteActivity_sending">ပို့နေသည်...</string>
+  <string name="InviteActivity_heart_content_description">အသည်းပုံ</string>
+  <string name="InviteActivity_invitations_sent">ဖိတ်ကြားမှု ပြုလုပ်ပြီး!</string>
+  <string name="InviteActivity_invite_to_signal">Signal သုံးဖို့ဖိတ်ရန်</string>
+  <plurals name="InviteActivity_send_sms_to_friends">
+    <item quantity="other">သူငယ်ချင်းအယောက် %d ထံ SMS ပို့ရန်</item>
+  </plurals>
+  <plurals name="InviteActivity_send_sms_invites">
+    <item quantity="other">%dကို SMS အခုပို့မှာလား?</item>
+  </plurals>
+  <string name="InviteActivity_lets_switch_to_signal">Signal ကိုပြောင်းသုံးကြစို့ : %1$s</string>
+  <string name="InviteActivity_no_app_to_share_to">သင့်မှာမျှဝေစရာ app များရှိပုံမရပါ။</string>
+  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">သူငယ်ချင်းမှန်ရင် ကိုယ့်သူငယ်ချင်းကို encrypt လုပ်မထားဘဲ မ chat စေရ။ </string>
+  <!--KeyScanningActivity-->
+  <string name="KeyScanningActivity_no_scanned_key_found_exclamation">စိစစ်ထားသောကီးရှာမတွေ့</string>
+  <string name="KeyScanningActivity_install_barcode_Scanner">Barcode စကန်နာ ထည့်မလား?</string>
+  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal တွင် QR ကုဒ်များကိုဖတ်ရန် Barcode စကန်နာ လိုသည်။ </string>
+  <!--MessageDetailsRecipient-->
+  <string name="MessageDetailsRecipient_failed_to_send">ပို့လွှတ်၍ မရပါ</string>
+  <string name="MessageDetailsRecipient_new_safety_number">လုံခြုံရေးနံပါတ် အသစ်</string>
+  <!--MessageRetrievalService-->
+  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_background_connection_enabled">အင်တာနက်ဆက်သွယ်မှု နောက်ကွယ်တွင် ဖွင့်ထားသည်</string>
+  <!--MmsDownloader-->
+  <string name="MmsDownloader_error_storing_mms">MMS အားသိမ်းဆည်းခြင်းအမှား</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">MMS စနစ်ပံ့ပိုးသူအား ဆက်သွယ်၍မရပါ</string>
+  <string name="MmsDownloader_error_reading_mms_settings">အင်တာနက်ဝန်ဆောင်မှုမှ MMS အပြင်အဆင်များ ဖတ်၍မရပါ</string>
+  <!--MediaOverviewActivity-->
+  <string name="MediaOverviewActivity_Media">ရုပ်၊သံ၊ပုံ များ</string>
+  <string name="MediaOverviewActivity_Documents">စာရွက်စာတမ်းများ</string>
+  <!--- NotificationBarManager-->
+  <string name="NotificationBarManager_signal_call_in_progress">Signal ဖုန်းခေါ်နေသည်</string>
+  <string name="NotificationBarManager_missed_call_from_s">%s ထံမှ ခေါ်ဆိုမှုအားလွတ်သွားခဲ့သည်။</string>
+  <string name="NotificationBarManager_missed_signal_call">Signal မှဖုန်းခေါ်ဆိုမှုအား လွတ်သွားခဲ့သည်</string>
+  <string name="NotificationBarManager__establishing_signal_call">Signal ဖုန်းခေါ်ဆိုမှုစတင်နေသည်</string>
+  <string name="NotificationBarManager__incoming_signal_call">Signal မှဖုန်းဝင်လာသည်</string>
+  <string name="NotificationBarManager__deny_call">ဖုန်းမကိုင်ပါ</string>
+  <string name="NotificationBarManager__answer_call">ဖုန်းကိုင်မည်</string>
+  <string name="NotificationBarManager__end_call">ဖုန်းချမည်</string>
+  <string name="NotificationBarManager__cancel_call">ဖုန်းခေါ်နေခြင်း ရပ်ဆိုင်းမည်</string>
+  <!--NotificationMmsMessageRecord-->
+  <string name="NotificationMmsMessageRecord_multimedia_message">ရုပ်၊သံပါ အချက်အလက်များ</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">MMS များအား ဒေါင်းလုပ်ဆွဲမည်</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">MMS များအားဒေါင်းလုပ်ဆွဲနေစဉ် ရပ်တန့်သွားသည်၊ ပြန်စရန် နှိပ်ပါ</string>
+  <!--MessageRecord-->
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ထပ်မံပံ့ပိုးမှုမရှိတော့သော Signal ဗားရှင်းအဟောင်းဖြင့် encrypt လုပ်ထားသော စာကိုလက်ခံရရှိသည်။ စာပို့သူအား signal နောက်ဆုံးဗားရှင်းကိုမြှင့်ပြီး စာအားပြန်ပို့ခုိင်းပါ။</string>
+  <string name="MessageRecord_left_group">အဖွဲ့မှ သင်ထွက်လိုက်သည်။</string>
+  <string name="MessageRecord_you_updated_group">အဖွဲ့အား သင်ပြောင်းလဲမှုပြုလိုက်သည်။</string>
+  <string name="MessageRecord_s_updated_group">%s မှအဖွဲ့အား ပြောင်းလဲမှု လုပ်လိုက်သည်။</string>
+  <string name="MessageRecord_s_called_you">%s မှဖုန်းခေါ်သည်</string>
+  <string name="MessageRecord_called_s">%s အားဖုန်းခေါ်သည်</string>
+  <string name="MessageRecord_missed_call_from">%s ထံမှ ခေါ်ဆိုမှုအားလွတ်သွားခဲ့သည်</string>
+  <string name="MessageRecord_s_joined_signal">%s က Signal အသုံးပြုသည်!</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">သင်သည် စာများအား %1$s အတောအတွင်းပျက်သွားစေရန် ချိန်ထားသည်။</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s သည် %2$s  အတောအတွင်းစာများကိုပျက်သွားစေရန် ချိန်ထားသည်။</string>
+  <string name="MessageRecord_your_safety_number_with_s_has_changed">သင်နှင့် %s ၏ လုံခြုံရေးနံပါတ် ပြောင်းလဲသွားသည်။</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">သင်နှင့် %s တို့၏ လုံခြုံရေးနံပါတ်များအား အတည်ပြုပြီးဖြစ်သည်။</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">သင်နှင့် %s တို့၏ လုံခြုံရေးနံပါတ်အား အခြားဖုန်း/ကွန်ပျူတာမှ အတည်ပြုထားသည်။</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">သင်နှင့် %s တို့၏ လုံခြုံရေးနံပါတ်များမှာ အတည်မပြုရသေးပါ</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">သင်နှင့် %s တို့၏ လုံခြုံရေးနံပါတ်အား အခြားဖုန်း/ကွန်ပျူတာမှ အတည်ပြုမထားပါ။</string>
+  <!--PassphraseChangeActivity-->
+  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">စကားဝှက်များ မတူညီပါ။</string>
+  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">စကားဝှက်ဟောင်း မမှန်ကန်ပါ</string>
+  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">စသားဝှက်အသစ်ထည့်ပါ</string>
+  <!--DeviceProvisioningActivity-->
+  <string name="DeviceProvisioningActivity_link_this_device">ဒီစက်ကိုချိတ်ပါ</string>
+  <string name="DeviceProvisioningActivity_cancel">ပယ်ဖျက်မည်</string>
+  <string name="DeviceProvisioningActivity_continue">ဆက်လုပ်မည်</string>
+  <string name="DeviceProvisioningActivity_title">ဒီ ဖုန်း/ကွန်ပျူတာကို ချိတ်ဆက်မည်လား?</string>
+  <string name="DeviceProvisioningActivity_content_intro">ဖြစ်နိုင်သည်</string>
+  <string name="DeviceProvisioningActivity_content_bullets">
+• စာများအားလုံးကိုဖတ်ရန်
+\n• သင့်အမည်ဖြင့်စာပို့ရန်</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">ချိတ်ဆက်နေသည့်ဖုန်း/ကွန်ပျူတာ</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">ဖုန်း/ကွန်ပျူတာအသစ်နှင့်ချိတ်ဆက်နေသည်</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">အတည်ပြုပြီးသည့်စက်</string>
+  <string name="DeviceProvisioningActivity_content_progress_no_device">ဘာစက်မှမတွေ့ပါ</string>
+  <string name="DeviceProvisioningActivity_content_progress_network_error">ကွန်ယက်မှားနေသည်</string>
+  <string name="DeviceProvisioningActivity_content_progress_key_error">QR code မှားနေသည်။</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">သင့်ဖုန်းဖြင့် ချိတ်ဆက်ထားသော ဖုန်းများ များနေသည်။ အချို့ချိတ်ဆက်မှုများအား ဖယ်လိုက်ပါ။</string>
+  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">ဝမ်းနည်းပါတယ်။ QR ကုဒ်မှားနေသည်။</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Signal အသုံးပြုသော ဖုန်းအားချိတ်မည်။</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">သင်သည် Signal သုံးသောဖုန်းအား 3rd party scanner ဖြင့်ချိတ်ဆက်အတည်ပြုနေပုံရသည်။ လုံခြုံမှုရှိစေရန် ကုဒ်အား Signal အတွင်းတွင်ပါသော scanner ဖြင့်ပြန်ဖတ်ပါ။</string>
+  <!--ExpirationDialog-->
+  <string name="ExpirationDialog_disappearing_messages">စာများအား ပျောက်သွားစေခြင်း</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">သင့်စာသည် အချိန်သတ်မှတ်ချက်မရှိပါ။</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">ယခုစာတွဲတွင် ပေးပို့၊ရယူသော စာများသည် တွေ့ရှိပြီး %s အတွင်းပျက်သွားပါမည်။</string>
+  <!--PassphrasePromptActivity-->
+  <string name="PassphrasePromptActivity_enter_passphrase">စကားဝှက် ထည့်ပါ။</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Signal ပုံသင်္ကေတ</string>
+  <string name="PassphrasePromptActivity_ok_button_content_description">စကားဝှက် တင်သွင်းပါ</string>
+  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">စကားဝှက် မှားနေသည်</string>
+  <!--PlayServicesProblemFragment-->
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">သင်သွင်းထားသော Google Play ဗားရှင်းသည် ကောင်းကောင်းအလုပ်မလုပ်ပါသဖြင့် အသစ်ပြန်သွင်းပြီး ထပ်မံစမ်းသပ်ကြည့်ပါ။</string>
+  <!--RatingManager-->
+  <string name="RatingManager_rate_this_app">ဒီ app ကို အမှတ်ပေးပါ</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">ဒီ app ကိုကြိုက်လျှင် အချိန်အနည်းငယ်မျှ ပေးပြီး အမှတ်ပေးပေးပါ။</string>
+  <string name="RatingManager_rate_now">ယခုပင် အမှတ်ပေးလိုက်ပါ!</string>
+  <string name="RatingManager_no_thanks">မလုပ်လိုပါ</string>
+  <string name="RatingManager_later">နောက်မှလုပ်မည်</string>
+  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">အမလေး! သင့်ဖုန်းတွင် Play Store app အားထည့်သွင်းထားပုံ မရပါ။</string>
+  <!--RecipientPreferencesActivity-->
+  <string name="RecipientPreferenceActivity_block_this_contact_question">ဒီလူကို Block လုပ်မလား?</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">ဒီလူထံမှ စာများ၊ ဖုန်းများအား လက်ခံရရှိတော့မည် မဟုတ်ပါ။</string>
+  <string name="RecipientPreferenceActivity_block">ဘလော့ လုပ်မည်</string>
+  <string name="RecipientPreferenceActivity_unblock_this_contact_question">ဤသူကို ဘလော့ဖြည်မလား? </string>
+  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">ယင်းသူထံမှ စာတိုများ ၊ ဖုန်းခေါ်ဆိုမှုများ ပြန်လည်လက်ခံနိုင်လိမ့်မည်။ </string>
+  <string name="RecipientPreferenceActivity_unblock">ဘလော့ဖြည်ပါ </string>
+  <string name="RecipientPreferenceActivity_enabled">လုပ်ဆောင်နိုင်သည်</string>
+  <string name="RecipientPreferenceActivity_disabled">မလုပ်ဆောင်နိုင်ပါ။</string>
+  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">စာကို လက်ခံ/ပေးပို့ လိုက်သည်နှင့်တစ်ပြိုင်နက် ရရှိမည်ဖြစ်သည်။</string>
+  <!--RecipientProvider-->
+  <string name="RecipientProvider_unnamed_group">အမည်မရှိသည့် အဖွဲ့</string>
+  <!--RedPhone-->
+  <string name="RedPhone_answering">ဖုန်းကိုင်နေသည်</string>
+  <string name="RedPhone_ending_call">ဖုန်းချလိုက်သည်</string>
+  <string name="RedPhone_dialing">ဖုန်းခေါ်နေသည်</string>
+  <string name="RedPhone_canceling_call">ဖုန်းခေါ်ဆိုခြင်းအား ရပ်ဆိုင်းလိုက်သည်</string>
+  <string name="RedPhone_call_rejected">ဖုန်းခေါ်ဆိုမှုအား ငြင်းဆိုလိုက်သည်</string>
+  <string name="RedPhone_ringing">ဖုန်းသံမြည်နေသေည်</string>
+  <string name="RedPhone_busy">မအားပါ</string>
+  <string name="RedPhone_connected">ချိတ်ဆက်ပြီး</string>
+  <string name="RedPhone_connecting">ချိတ်ဆက်နေသည်</string>
+  <string name="RedPhone_handshake_failed">ချိတ်ဆက်မှု ကျသွားသည်။</string>
+  <string name="RedPhone_recipient_unavailable">ခေါ်ဆိုလိုသည့် တစ်ဖက်လူ မအားပါ</string>
+  <string name="RedPhone_performing_handshake">ချိတ်ဆက်မှု စတင်နေသည်</string>
+  <string name="RedPhone_network_failed">ကွန်ယက် ကျသွားသည်!</string>
+  <string name="RedPhone_client_failed">client ဘက်မှကွန်ယက် ကျနေသည်</string>
+  <string name="RedPhone_fatal_error">လုပ်ဆောင်မှု လုံးဝကျသွားခြင်း</string>
+  <string name="RedPhone_login_failed">ဝင်ရောက်မှု မအောင်မြင်ပါ။</string>
+  <string name="RedPhone_message_from_the_server">ဆာဗာထံမှ အကြောင်းကြားစာ</string>
+  <string name="RedPhone_number_not_registered">ယခု ဖုန်းနံပါတ်မှာ မှတ်ပုံတင်ထားခြင်း မရှိပါ။</string>
+  <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">သင်ခေါ်ဆိုလိုက်သော ဖုန်းနံပါတ်မှာ signal ၏ လုံခြုံစွာဖုန်းခေါ်ဆိုခြင်း စနစ်အား မပံ့ပိုးနိုင်ပါ။</string>
+  <string name="RedPhone_got_it">ရပြီ</string>
+  <!--RegistrationActivity-->
+  <string name="RegistrationActivity_connect_with_signal">Signal ဖြင့်ချိတ်ဆက်ရန်</string>
+  <string name="RegistrationActivity_select_your_country">နိုင်ငံရွေးချယ်ပါ</string>
+  <string name="RegistrationActivity_you_must_specify_your_country_code">နိုင်ငံ၏
+ဖုန်းကုဒ်အားဖော်ပြရမည်</string>
+  <string name="RegistrationActivity_you_must_specify_your_phone_number">သင့်၏
+ဖုန်းနံပါတ် အားဖော်ပြရမည်</string>
+  <string name="RegistrationActivity_invalid_number">နံပါတ် မှားနေသည်</string>
+  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">သင်ထည့်လိုက်သော နံပါတ် ( %s) သည်မှားယွင်းနေသည်။</string>
+  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
+SMS ပို့ပြီး ဖုန်းနံပါတ်အတည်ပြုမှာဖြစ်တဲ့အတွက်၊ သင့်ဖုန်းနံပါတ်ဖြစ်ကြောင်းပြန်စစ်ပေးပါ။</string>
+  <string name="RegistrationActivity_continue">ရှေ့ဆက်ပါ။</string>
+  <string name="RegistrationActivity_edit">ပြင်ဆင်ရန်</string>
+  <string name="RegistrationActivity_missing_google_play_services">Google Play မရှိပါ</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">ဒီဖုန်းတွင် Google Play Service မရှိပါ။ Signal ကိုသုံး၍ရသော်လည်း အကောင်းဆုံးအနေအထားဖြင့်သုံးနိုင်မည်မဟုတ်ပါ။ \n\n သင့်အနေဖြင့် နည်းပညာအဆင့်မြင့် အသုံးပြုသူမဟုတ်၍သော်လည်းကောင်း၊ Andriod aftermarket ROM သုံးမနေ၍သော်လည်းကောင်း၊ မှားယွင်းစွာပေါ်လာတယ်ဟု ယူဆပါက support@whispersystems.org ကိုဆက်သွယ်ပါ။</string>
+  <string name="RegistrationActivity_i_understand">နားလည် လက်ခံပါသည်</string>
+  <string name="RegistrationActivity_play_services_error">Google Play အသုံးပြု၍မရပါ</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Serivice ကို အဆင့်မြှင့်တင်နေခြင်း၊ သို့၊ အသုံးပြု၍ မရခြင်းဖြစ်နေပါသည်။ ပြန်လည် စမ်းသပ်ကြည့်ပါ။</string>
+  <string name="RegistrationActivity_more_information">အကျယ်ချဲ့ပါ</string>
+  <string name="RegistrationActivity_less_information">အကျဉ်းချုံးပါ</string>
+  <!--RegistrationProblemsActivity-->
+  <string name="RegistrationProblemsActivity_possible_problems">ဖြစ်နိုင်ချေရှိသော ပြဿနာများ</string>
+  <!--RegistrationProgressActivity-->
+  <string name="RegistrationProgressActivity_verifying_number">ဖုန်းနံပါတ်ကို အတည်ပြုနေသည်</string>
+  <string name="RegistrationProgressActivity_edit_s">%s ကိုပြင်ဆင်ရန်</string>
+  <string name="RegistrationProgressActivity_registration_complete">ထည့်သွင်းမှုပြီးပြီ</string>
+  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">လက်ခံရရှိသော ကုဒ်ကိုအရင်ထည့်ပါ</string>
+  <string name="RegistrationProgressActivity_connecting">ချိတ်ဆက်နေသည်</string>
+  <string name="RegistrationProgressActivity_connecting_for_verification">အတည်ပြုရန် ချိတ်ဆက်နေသည်...</string>
+  <string name="RegistrationProgressActivity_network_error">ကွန်ယက်မှားနေသည်</string>
+  <string name="RegistrationProgressActivity_unable_to_connect">ချိတ်ဆက်၍မရပါ။ အင်တာနက်ရမရ ပြန်စစ်ပြီး စမ်းကြည့်ပါ။</string>
+  <string name="RegistrationProgressActivity_verification_failed">အတည်ပြုလို့မရပါ။</string>
+  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">သင်ထည့်သွင်းလိုက်သော အတည်ပြုကုဒ်မှာ မှားနေပါသည်။ ထပ်မံစမ်းသပ်ကြည့်ပါ။</string>
+  <string name="RegistrationProgressActivity_too_many_attempts">စမ်းသပ်အကြိမ်ရေ အလွန်များပြားနေပါသည်</string>
+  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">မှားယွင်းသောအတည်ပြုကုဒ်ကို ကြိမ်ရေများစွာထည့်သွင်းနေပါသည်။ ထပ်မံမရေးသွင်းခင် တစ်မိနစ်စောင့်ပါ။</string>
+  <string name="RegistrationProgressActivity_requesting_call">ခေါ်ဆိုပေးပါ</string>
+  <string name="RegistrationProgressActivity_requesting_incoming_call">အတည်ပြုရန်အဝင်ဖုန်းခေါ်ပေးပါ</string>
+  <string name="RegistrationProgressActivity_server_error">ဆာဗာဖြင့် ချိတ်ဆက်၍မရပါ</string>
+  <string name="RegistrationProgressActivity_the_server_encountered_an_error">ဆာဗာဖြင့်ချိတ်ဆက်၍မရပါ။ ထပ်မံစမ်းသပ်ပေးပါ။</string>
+  <string name="RegistrationProgressActivity_too_many_requests">တောင်းဆိုအကြိမ်ရေ အလွန်များပြားနေပါသည်</string>
+  <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">အဝင်ဖုန်းခေါ်ရန် မကြာသေးမှီက တောင်းဆိုထားပါသည်။ ထပ်မံ​တောင်းဆိုရန် မိနစ် 20 စောင့်ပါ။</string>
+  <string name="RegistrationProgressActivity_registration_conflict">မှတ်ပုံတင်မှု မှားယွင်းနေသည်</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">ဒီဖုန်းနံပါတ်ကို အခြား signal ဆာဗာတွင် မှတ်ပုံတင်ထားပြီး​ဖြစ်သဖြင့် ယခုနေရာတွင် ပြန်တင်ရန် ထိုဆာဗာတွင် သွားဖျက်ပါ။</string>
+  <!--RegistrationService-->
+  <string name="RegistrationService_registration_complete">မှတ်ပုံတင်မှု ပြီးစီးခြင်း</string>
+  <string name="RegistrationService_signal_registration_has_successfully_completed">Signal တွင်မှတ်ပုံတင်ခြင်း အောင်မြင်စွာ ပြီးပါပြီ။</string>
+  <string name="RegistrationService_registration_error">မှတ်ပုံတင်မှု မှားယွင်းခြင်း</string>
+  <string name="RegistrationService_signal_registration_has_encountered_a_problem">Signal တွင်မှတ်ပုံတင်ခြင်း မအောင်မြင်ပါ။</string>
+  <!--RingtonePreference-->
+  <string name="RingtonePreference_ringtone_default">မူလ ဖုန်းသံစဉ်</string>
+  <string name="RingtonePreference_ringtone_silent">ဘာမှ</string>
+  <string name="RingtonePreference_ringtone_picker_title">ဖုန်းသံစဉ်များ</string>
+  <string name="RingtonePreference_notification_sound_default">မူလ သတိပေးချက် အသံ</string>
+  <string name="RingtonePreference_alarm_sound_default">မူလ နှိုးစက် အသံ</string>
+  <string name="RingtonePreference_add_ringtone_text">ဖုန်းသံစဉ် ထည့်ရန်</string>
+  <string name="RingtonePreference_unable_to_add_ringtone">စိတ်ကြိုက် ဖုန်းသံစဉ် ထည့်၍မရပါ။</string>
+  <!--Slide-->
+  <string name="Slide_image">ပုံ</string>
+  <string name="Slide_audio">အသံ</string>
+  <string name="Slide_video">ဗီဒီယို</string>
+  <!--SmsMessageRecord-->
+  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">အလဲအလှယ်စာတိုသော့ အလွဲများလက်ခံရရှိပါသည်။</string>
+  <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
+အကျံုးမဝင်သော protocol ဗားရှင်းအသုံးပြုသော အလဲအလှယ်စာတိုသော့များ လက်ခံရရှိပါသည်။</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">လုံခြုံရေးနံပါတ်အသစ်ပါသောစာ လက်ခံရရှိပါသည်။ ကြည့်ရန်နှိပ်ပါ။</string>
+  <string name="SmsMessageRecord_secure_session_reset">သင်သည် လုံခြုံသောဆက်ရှင်များကို ပြန်ညှိလိုက်ပါသည်။</string>
+  <string name="SmsMessageRecord_secure_session_reset_s">%s သည် လုံခြုံသောဆက်ရှင်ကို ပြန်ညှိလိုက်ပါသည်။</string>
+  <string name="SmsMessageRecord_duplicate_message">ဆင်တူဖြစ်နေသောစာ</string>
+  <!--ThreadRecord-->
+  <string name="ThreadRecord_group_updated">အဖွဲ့ကို ပြင်ဆင်ပြီး</string>
+  <string name="ThreadRecord_left_the_group">အဖွဲ့မှထွက်သွားသည်</string>
+  <string name="ThreadRecord_secure_session_reset">လုံခြုံသော ဆက်ရှင်ကိုပြန်ညှိပြီး။</string>
+  <string name="ThreadRecord_draft">မူကြမ်း</string>
+  <string name="ThreadRecord_called">သင်မှခေါ်သည်</string>
+  <string name="ThreadRecord_called_you">သင့်ထံခေါ်သည်</string>
+  <string name="ThreadRecord_missed_call">လွတ်သွားသော ဖုန်းခေါ်ဆိုမှု</string>
+  <string name="ThreadRecord_media_message">ရုပ်/သံ/ပုံပါစာ</string>
+  <string name="ThreadRecord_s_is_on_signal">%s က Signal တွင်ရှိသည်!</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">စာများသည် %s အတွင်းပျောက်သွားရန် ချိန်ညှိထားသည်။</string>
+  <string name="ThreadRecord_safety_number_changed">လုံခြုံရေးနံပါတ် ပြောင်းလဲသွားသည်</string>
+  <string name="ThreadRecord_your_safety_number_with_s_has_changed">သင်နှင့် %s ၏ လုံခြုံရေးနံပါတ် ပြောင်းလဲသွားသည်။</string>
+  <string name="ThreadRecord_you_marked_verified">အတည်ပြုကြောင်း သင်မှတ်လိုက်သည်</string>
+  <string name="ThreadRecord_you_marked_unverified">အတည်မပြုထားဟု သင်မှတ်လိုက်သည်</string>
+  <!--UpdateApkReadyListener-->
+  <string name="UpdateApkReadyListener_Signal_update">Signal ဗားရှင်းအသစ်</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal ဗားရှင်းအသစ်ရပါပြီ၊ အဆင့်မြှင့်ရန် နှိပ်လိုက်ပါ</string>
+  <!--UnknownSenderView-->
+  <string name="UnknownSenderView_block_s">%s ကို ဘလော့လုပ်မလား?</string>
+  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">ဘလော့လုပ်ထားသောလူများအနေဖြင့် သင့်အားစာပို့​ခြင်း၊ ဖုန်းခေါ်ခြင်းများ ​ပြုလုပ်၍မရပါ။</string>
+  <string name="UnknownSenderView_block">ဘလော့ လုပ်မည်</string>
+  <string name="UnknownSenderView_share_profile_with_s">%s ဖြင့်သင့်အချက်အလက်များကို မျှဝေမလား?</string>
+  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">သင့်အချက်အလက်များကိုမျှဝေရန် အလွယ်ဆုံးနည်းလမ်းမှာ စာပို့သောသူကို သင့်လိပ်စာစာရင်းထဲထည့်လိုက်ခြင်းဖြစ်သည်။ မထည့်လိုပါက ယခုကဲ့သို့လည်း မျှဝေနိုင်ပါသည်။</string>
+  <string name="UnknownSenderView_share_profile">အချက်အလက် မျှဝေ​ရန်</string>
+  <!--UntrustedSendDialog-->
+  <string name="UntrustedSendDialog_send_message">စာပို့မလား?</string>
+  <string name="UntrustedSendDialog_send">ပို့ပါ</string>
+  <!--UnverifiedSendDialog-->
+  <string name="UnverifiedSendDialog_send_message">စာပို့မလား?</string>
+  <string name="UnverifiedSendDialog_send">ပို့ပါ</string>
+  <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">သင့်မိတ်ဆွေသည် signal ဗားရှင်းအဟောင်းအသုံးပြုထားပါသည်။ လုံခြုံရေးနံပါတ်များ အတည်မပြုခင် Signal ဗားရှင်းအား မြှင့်တင်ခိုင်းလိုက်ပါ။</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">သင့်မိတ်ဆွေသည်  Signal ဗားရှင်းအသစ်နှင့် သင်နှင့်လိုက်လျောညီထွေမရှိသည့် QR code ပုံစံကိုအသုံးပြုထားပါသည်။ နှိုင်းယှဉ်စစ်ဆေးရန် အဆင့်မြှင့်ပါ။</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">စကန်ဖတ်ထားသော QR ကုဒ်သည် မှန်ကန်သော လုံခြုံရေးနံပါတ်ပုံစံမဟုတ်သဖြင့် ထပ်မံ စကန်ဖတ်လိုက်ပါ။</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">... မှတဆင့် လုံခြုံရေးနံပါတ်ကို မျှဝေမယ်</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">တို့တွေရဲ့ Signal လုံခြုံရေးနံပါတ်:</string>
+  <string name="VerifyIdentityActivity_no_app_to_share_to">သင့်မှာမျှဝေစရာ app များရှိပုံမရပါ။</string>
+  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Clipboard တွင်တိုက်ကြည့်စရာ လုံခြုံရေးနံပါတ်များ မရှိပါ</string>
+  <!--KeyExchangeInitiator-->
+  <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">လတ်တလော တောင်းဆိုနေတာရှိပေမယ့် ဆက်လုပ်မှာလား?</string>
+  <string name="KeyExchangeInitiator_send">ပို့ပါ</string>
+  <!--MessageDisplayHelper-->
+  <string name="MessageDisplayHelper_bad_encrypted_message">မှားယွင်းစွာ encrypt လုပ်ထားသောစာ</string>
+  <string name="MessageDisplayHelper_decrypting_please_wait">ဝှက်စာ ဖော်နေသည်၊ ခေတ္တ စောင့်ပါ။</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">ရှိမနေတော့သည့် ဆက်ရှင်အတွက် စာများကို encrpyt လုပ်ထားပါသည်။</string>
+  <!--EncryptingSmsDatabase-->
+  <string name="EncryptingSmsDatabase_error_decrypting_message">စာဖတ်ရန်အတွက်ဝှက်စာဖော်၍မရပါ။</string>
+  <!--ThreadDatabase-->
+  <string name="ThreadDatabase_error_decrypting_message">စာဖတ်ရန်အတွက်ဝှက်စာဖော်၍မရပါ။</string>
+  <!--MmsDatabase-->
+  <string name="MmsDatabase_connecting_to_mms_server">MMS ဆာဗာသို့ ချိတ်ဆက်နေသည်...</string>
+  <string name="MmsDatabase_downloading_mms">MMS အား ကူးဆွဲနေသည်...</string>
+  <string name="MmsDatabase_mms_download_failed">MMS ဒေါင်းလုပ်ဆွဲ၍မရပါ။</string>
+  <string name="MmsDatabase_downloading">ကူးဆွဲနေသည်...</string>
+  <string name="MmsDatabase_mms_pending_download">ဆက်လက် ဒေါင်းလုပ်ဆွဲရန်အတွက် MMS အပြင်အဆင်များများပြင်ဆင်ရန် နှိပ်ပါ။</string>
+  <string name="MmsDatabase_error_decrypting_message">စာဖတ်ရန်အတွက်ဝှက်စာဖော်၍မရပါ။</string>
+  <!--MmsMessageRecord-->
+  <string name="MmsMessageRecord_decrypting_mms_please_wait">MMS မှ ဝှက်စာ ဖော်နေသည်။ ခေတ္တ စောင့်ပါ...</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">မှားယွင်းစာ encrpyt လုပ်ထားသော MMS စာ</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">ရှိမနေတော့သည့် ဆက်ရှင်အတွက် MMS စာများကို encrypt လုပ်ထားပါသည်။</string>
+  <!--MuteDialog-->
+  <string name="MuteDialog_mute_notifications">အသိပေးချက်ကို ပိတ်ပါ</string>
+  <!--ApplicationMigrationService-->
+  <string name="ApplicationMigrationService_import_in_progress">သွင်းယူနေသည်</string>
+  <string name="ApplicationMigrationService_importing_text_messages">စာများကို သွင်းယူနေသည်</string>
+  <string name="ApplicationMigrationService_import_complete">သွင်းယူမှုပြီးဆုံးပြီ</string>
+  <string name="ApplicationMigrationService_system_database_import_is_complete">System ဒေတာဘေစ့်ကိုသွင်းယူခြင်း ပြီးဆုံးပါပြီ။</string>
+  <!--KeyCachingService-->
+  <string name="KeyCachingService_signal_passphrase_cached">ဖွင့်ရန် နှိပ်ပါ။</string>
+  <string name="KeyCachingService_signal_passphrase_cached_with_lock">ဖွင့်ရန်နှိပ်ပါ။ ပြန်ပိတ်ရန် သော့ခလောက်ပုံကို နှိပ်ပါ။</string>
+  <string name="KeyCachingService_passphrase_cached">Signal ကိုဖွင့်လိုက်ပါပြီ</string>
+  <string name="KeyCachingService_lock">စကားဝှက်​ဖြင့် ပိတ်ထားမည်။</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">သင်</string>
+  <string name="MediaPreviewActivity_cant_display">ယခုပုံကိုကြည့်၍မရပါ</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">ပံ့ပိုးမှုမပြုနိုင်သော ရုပ်၊သံ၊ပုံ ဖိုင်များ</string>
+  <string name="MediaPreviewActivity_draft">မူကြမ်း</string>
+  <!--MessageNotifier-->
+  <string name="MessageNotifier_d_new_messages_in_d_conversations">စကားဝိုင်း %2$d တွင် စာပေါင်း %1$d ရှိသည်။</string>
+  <string name="MessageNotifier_most_recent_from_s">%1$s ထံမှ နောက်ဆုံးစာများ</string>
+  <string name="MessageNotifier_locked_message">ပိတ်ထားသော စာ</string>
+  <string name="MessageNotifier_media_message_with_text">ရုပ်/သံ/ပုံပါစာ %s</string>
+  <string name="MessageNotifier_no_subject">(ခေါင်းစဉ်မရှိ)</string>
+  <string name="MessageNotifier_message_delivery_failed">စာပို့လွှတ်ခြင်း မအောင်မြင်</string>
+  <string name="MessageNotifier_failed_to_deliver_message">စာပို့လွှတ်ရန် မအောင်မြင်။</string>
+  <string name="MessageNotifier_error_delivering_message">စာပို့လွှတ်ခြင်း မှားယွင်းနေ</string>
+  <string name="MessageNotifier_mark_all_as_read">အားလုံး ဖတ်ပြီးသား</string>
+  <string name="MessageNotifier_mark_read">ဖတ်ပြီးသား</string>
+  <string name="MessageNotifier_media_message">ရုပ်/သံ/ပုံပါ စာ</string>
+  <string name="MessageNotifier_reply">အကြောင်းပြန်မည်</string>
+  <string name="MessageNotifier_pending_signal_messages">Signalတွင် စာပေးပို့/လက်ခံမှုကို ဆိုင်းငံ့ထားခြင်း</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">Signalတွင် စာပေးပို့/လက်ခံမှုကို ဆိုင်းငံ့ထားပါသည်၊ ပြန်ဖွင့်ရန် နှိပ်လိုက်ပါ</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">သင်၏ ဖုန်းတွင် Manual MMS အပြင်အဆင်များလိုအပ်နေသည်။</string>
+  <string name="MmsPreferencesFragment__enabled">လုပ်ဆောင်နိုင်သည်</string>
+  <string name="MmsPreferencesFragment__disabled">မလုပ်ဆောင်နိုင်ပါ</string>
+  <string name="MmsPreferencesFragment__not_set">မပြင်ဆင်ရသေး</string>
+  <string name="MmsPreferencesFragment__invalid_uri">ရေးထည့်လိုက်သည့်စာသားများသည် URI တွင် အကျုံးမဝင်ပါ</string>
+  <string name="MmsPreferencesFragment__invalid_host">ရေးထည့်လိုက်သည့်စာသားများသည် host တွင် အကျုံးမ၀င်ပါ</string>
+  <!--QuickResponseService-->
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal လော့ခ်ကျသွားသည့်အခါ ချက်ချင်းမတုံ့ပြန်နိုင်ပါ!</string>
+  <string name="QuickResponseService_problem_sending_message">စာပို့ခြင်းအခက်အခဲ</string>
+  <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_open_directory">ပွင့်လင်းလမ်းညွှန်</string>
+  <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">စာအသစ်</string>
+  <!--VideoPlayer-->
+  <string name="VideoPlayer_error_playing_video">ဗီဒီယိုဖွင့်စဥ်အမှားတစ်ခုခုကြုံသည်</string>
+  <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_new_safety_numbers">%1$sနှင့် သင်၏ပြောစကားများအတွက် လုံခြုံရေးနံပါတ်ပြောင်းလဲလိုက်ပါပြီ။ ယင်းသို့ဖြစ်ရခြင်းမှာ တစ်စုံတစ်ယောက်က သင့်ဆက်သွယ်ရေးလမ်းကြောင်းကို ဝင်ရောက်ရန်ကြိုးစားခြင်း သို့မဟုတ် %2$sက Signal ကိုအသစ်ပြန်သွင်းလိုက်ခြင်းကြောင့်ဖြစ်နိုင်ပါသည်။ </string>
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">ဤလူနှင့် ဆက်သွယ်ရန် စိတ်ချရသောနံပါတ်ကို အတည်ပြုပါမည်လား။ </string>
+  <string name="WebRtcCallScreen_new_safety_number_title">လုံခြုံရေးနံပါတ် အသစ်</string>
+  <!--WebRtcCallControls-->
+  <string name="WebRtcCallControls_tap_to_enable_your_video">ဗီဒီယိုဖွင့်လို့ရရန် နှိပ်ပါ</string>
+  <!--attachment_type_selector-->
+  <string name="attachment_type_selector__audio">အသံ</string>
+  <string name="attachment_type_selector__audio_description">အသံ</string>
+  <string name="attachment_type_selector__contact">လိပ်စာ</string>
+  <string name="attachment_type_selector__contact_description">လိပ်စာ</string>
+  <string name="attachment_type_selector__camera">ကင်မရာ </string>
+  <string name="attachment_type_selector__camera_description">ကင်မရာ </string>
+  <string name="attachment_type_selector__location">တည်နေရာ</string>
+  <string name="attachment_type_selector__location_description">တည်နေရာ</string>
+  <string name="attachment_type_selector__gif">GIF</string>
+  <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__gallery_description">ဓာတ်ပုံ သို့မဟုတ် ဗီဒီယို </string>
+  <string name="attachment_type_selector__file_description">ဖိုင်</string>
+  <string name="attachment_type_selector__gallery">ဓာတ်ပုံနှင့်ဗီဒီယိုများသိမ်းဆည်းရာ</string>
+  <string name="attachment_type_selector__file">ဖိုင်</string>
+  <string name="attachment_type_selector__drawer_description">ပူးတွဲဖိုင် drawer အားတစ်ချက်နှိပ်ပါ </string>
+  <!--change_passphrase_activity-->
+  <string name="change_passphrase_activity__old_passphrase">စကားဝှက်အဟောင်း</string>
+  <string name="change_passphrase_activity__new_passphrase">စကားဝှက်အသစ်</string>
+  <string name="change_passphrase_activity__repeat_new_passphrase">စကားဝှက်အသစ်ကိုထပ်ထည့်ပါ</string>
+  <!--contact_selection_activity-->
+  <string name="contact_selection_activity__enter_name_or_number">နာမည် သို့မဟုတ် နံပါတ်ထည့်ပါ</string>
+  <!--contact_selection_group_activity-->
+  <string name="contact_selection_group_activity__no_contacts">လိပ်စာများ မရှိ။</string>
+  <string name="contact_selection_group_activity__finding_contacts">လိပ်စာများ ရှာဖွေနေသည် ...</string>
+  <!--single_contact_selection_activity-->
+  <string name="SingleContactSelectionActivity_contact_photo">လိပ်စာတွင်ထည့်ရန်ဓာတ်ပုံ</string>
+  <!--ContactSelectionListFragment-->
+  <string name="ContactSelectionlistFragment_select_for">... အတွက်ရွေးချယ်ပါ။</string>
+  <!--blocked_contacts_fragment-->
+  <string name="blocked_contacts_fragment__no_blocked_contacts">တားမြစ်ထားသောလိပ်စာမရှိ</string>
+  <!--contact_selection_recent_activity-->
+  <string name="contact_selection_recent_activity__no_recent_calls">လတ်တလော ခေါ်ဆိုမှုများမရှိ။</string>
+  <!--conversation_title_view-->
+  <string name="conversation_title_view__conversation_muted">စကားဝိုင်းသတိပေးသံပိတ်ထားသည် </string>
+  <!--conversation_activity-->
+  <string name="conversation_activity__type_message_push">Signal ဖြင့် စာပေးပို့ခြင်း</string>
+  <string name="conversation_activity__type_message_sms_insecure">မလုံခြုံသော SMS</string>
+  <string name="conversation_activity__type_message_mms_insecure">မလုံခြုံသော MMS</string>
+  <string name="conversation_activity__from_sim_name">%1$s မှ</string>
+  <string name="conversation_activity__send">ပို့ပါ</string>
+  <string name="conversation_activity__remove">ဖယ်ပစ်ပါ။</string>
+  <string name="conversation_activity__window_description">%1$s နှင့် ပြောစကား</string>
+  <string name="conversation_activity__compose_description">စာအနေအထား</string>
+  <string name="conversation_activity__emoji_toggle_description">ရုပ်စုံကီးဘုတ်အတွက်နှိပ်ပါ </string>
+  <string name="conversation_activity__attachment_thumbnail">ပူးတွဲဖိုင် စီခြင်း </string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">ကင်မရာပူးတွဲဖိုင်စီစဉ်ခြင်း နှိပ်ရန် </string>
+  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">အသံဖမ်းပြီး ပေးပို့လိုက်ပါ</string>
+  <string name="conversation_activity__enable_signal_for_sms">Signal မှာ SMS ပို့လို့ရပါပြီ</string>
+  <!--conversation_input_panel-->
+  <string name="conversation_input_panel__slide_to_cancel">မလုပ်တော့ဘူးဆိုရင် ဘေးသို့ဆွဲပါ</string>
+  <!--conversation_item-->
+  <string name="conversation_item__mms_downloading_description">ပေးပို့ထားသောရုပ်/သံ/ပုံကို ကူးဆွဲခြင်း</string>
+  <string name="conversation_item__mms_image_description">ရုပ်/သံ/ပုံပါစာ</string>
+  <string name="conversation_item__secure_message_description">လုံခြုံသောစာ</string>
+  <!--conversation_item_sent-->
+  <string name="conversation_item_sent__download">ကူးဆွဲသည်</string>
+  <string name="conversation_item_sent__downloading">ကူးဆွဲနေဆဲ</string>
+  <string name="conversation_item_sent__send_failed_indicator_description">ပေးပို့ချက် မအောင်မြင်ပါ</string>
+  <string name="conversation_item_sent__pending_approval_description">ခွင့်ပြုချက်ယူရန် ဆိုင်းငံ့ထားခြင်း</string>
+  <string name="conversation_item_sent__delivered_description">ပေးပို့ပြီး</string>
+  <!--conversation_item_received-->
+  <string name="conversation_item_received__download">ကူးဆွဲရန်</string>
+  <string name="conversation_item_received__contact_photo_description">လိပ်စာပါ ဓာတ်ပုံ</string>
+  <string name="conversation_item_received__downloading">ကူးဆွဲနေဆဲ</string>
+  <!--audio_view-->
+  <string name="audio_view__play_accessibility_description">ဖွင့်သည်</string>
+  <string name="audio_view__pause_accessibility_description">ခဏရပ်သည်</string>
+  <string name="audio_view__download_accessibility_description">ကူးဆွဲသည်</string>
+  <!--conversation_fragment_cab-->
+  <string name="conversation_fragment_cab__batch_selection_mode">အုပ်စုနံပါတ်စဉ်ရွေးချယ်ခြင်း </string>
+  <string name="conversation_fragment_cab__batch_selection_amount">%sရွေးထားသည်</string>
+  <!--conversation_fragment-->
+  <string name="conversation_fragment__scroll_to_the_bottom_content_description">အောက်သို့ ဆွဲလိုက်ပါ</string>
+  <!--country_selection_fragment-->
+  <string name="country_selection_fragment__loading_countries">နိုင်ငံစာရင်းများ ရှာဖွေနေသည် ....</string>
+  <string name="country_selection_fragment__search">ရှာရန်</string>
+  <!--device_add_fragment-->
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">ချိတ်ဆက်မည့် ဖုန်းတွင်ဖော်ပြထားသည့် QR ကုဒ်ကို စကင်န်လုပ်ပါ </string>
+  <!--device_link_fragment-->
+  <string name="device_link_fragment__link_device">ချိတ်ဆက်ထားသော ဖုန်း/ကွန်ပျူတာ</string>
+  <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_linked">ချိတ်ဆက်ထားသော ဖုန်း/ကွန်ပျူတာ မရှိပါ။</string>
+  <string name="device_list_fragment__link_new_device">ဖုန်းအသစ်ကို ချိတ်ရန်</string>
+  <!--experience_upgrade_activity-->
+  <string name="experience_upgrade_activity__continue">ဆက်ရန်</string>
+  <!--expiration-->
+  <string name="expiration_off">ပိတ်သည်</string>
+  <plurals name="expiration_seconds">
+    <item quantity="other">%dစက္ကန့်</item>
+  </plurals>
+  <string name="expiration_seconds_abbreviated">%dစက္ကန့်</string>
+  <plurals name="expiration_minutes">
+    <item quantity="other">%dမိနစ်</item>
+  </plurals>
+  <string name="expiration_minutes_abbreviated">%dမိနစ်</string>
+  <plurals name="expiration_hours">
+    <item quantity="other">%dနာရီ</item>
+  </plurals>
+  <string name="expiration_hours_abbreviated">%dနာရီ</string>
+  <plurals name="expiration_days">
+    <item quantity="other">%dရက်</item>
+  </plurals>
+  <string name="expiration_days_abbreviated">%dရက်</string>
+  <plurals name="expiration_weeks">
+    <item quantity="other">%dပတ်</item>
+  </plurals>
+  <string name="expiration_weeks_abbreviated">%dပတ်</string>
+  <!--unverified safety numbers-->
+  <string name="IdentityUtil_unverified_banner_one">%sဖြင့်စိတ်ချရသောနံပါတ်ပြောင်းလဲသွားပြီး ထပ်မံအတည်မပြုရသေးပါ။</string>
+  <string name="IdentityUtil_unverified_banner_two">%1$sနှင့်%2$sတို့ဖြင့်စိတ်ချရသောနံပါတ်ပြောင်းလဲသွားပြီး ထပ်မံအတည်မပြုရသေးပါ။</string>
+  <string name="IdentityUtil_unverified_banner_many">%1$s၊ %2$s နှင့် %3$s တို့ဖြင့်စိတ်ချရသော နံပါတ်ပြောင်းလဲသွားပြီး ထပ်မံအတည်မပြုရသေးပါ။</string>
+  <string name="IdentityUtil_unverified_dialog_one">%1$s ဖြင့်စိတ်ချရသော ဖုန်းနံပါတ်ပြောင်းလဲသွားပြီး ထပ်မံအတည်မပြုရသေးပါ။ တစ်စုံတယောက်က သင့်ဆက်သွယ်မှုကိုကြားဖြတ်ခြင်းကြောင့် သို့မဟုတ် %1$sက Signal ကိုဖြုတ်လိုက်ခြင်းကြောင့်ဖြစ်နိုင်သည်။ </string>
+  <string name="IdentityUtil_unverified_dialog_two">%1$sနှင့်%2$sတို့ဖြင့်စိတ်ချရသော ဖုန်းနံပါတ်ပြောင်းလဲသွားပြီး ထပ်မံအတည်မပြုရသေးပါ။ တစ်စုံတယောက်က သင့်ဆက်သွယ်မှုကိုကြားဖြတ်ခြင်းကြောင့် သို့မဟုတ် သူတို့ကိုယ်တိုင်က Signal ကိုဖြုတ်လိုက်ခြင်းကြောင့်ဖြစ်နိုင်သည်။ </string>
+  <string name="IdentityUtil_unverified_dialog_many">%1$s၊ %2$s နှင့် %3$sတို့ဖြင့်စိတ်ချရသော ဖုန်းနံပါတ်ပြောင်းလဲသွားပြီး ထပ်မံအတည်မပြုရသေးပါ။ တစ်စုံတယောက်က သင့်ဆက်သွယ်မှုကိုကြားဖြတ်ခြင်းကြောင့် သို့မဟုတ် သူတို့ကိုယ်တိုင်က Signal ကိုဖြုတ်လိုက်ခြင်းကြောင့်ဖြစ်နိုင်သည်။</string>
+  <string name="IdentityUtil_untrusted_dialog_one">%sဖြင့်စိတ်ချရသော ဖုန်းနံပါတ်ပြောင်းလဲသွားသည်။</string>
+  <string name="IdentityUtil_untrusted_dialog_two">%1$sနှင့်%2$sတို့ဖြင့်စိတ်ချရသော ဖုန်းနံပါတ်ပြောင်းလဲသွားသည်။</string>
+  <string name="IdentityUtil_untrusted_dialog_many">%1$s၊ %2$s နှင့် %3$sတို့ဖြင့်စိတ်ချရသော ဖုန်းနံပါတ်ပြောင်းလဲသွားသည်။</string>
+  <plurals name="identity_others">
+    <item quantity="other">%dအခြား</item>
+  </plurals>
+  <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFs နှင့် စတစ်ကာများကိုရှာဖွေခြင်း</string>
+  <!--giphy_fragment-->
+  <string name="giphy_fragment__nothing_found">ဘာမှ မတွေ့ဘူး</string>
+  <!--import_export_fragment-->
+  <string name="import_export_fragment__export">ထုတ်ယူ</string>
+  <string name="import_export_fragment__import">သွင်းယူ</string>
+  <!--log_submit_activity-->
+  <string name="log_submit_activity__log_fetch_failed">သင့်ဖုန်းတွင်မှတ်တမ်းကို ဖတ်၍မရပါ။ မှတ်တမ်းကို ပြန်ထုတ်ယူရန် ADB ကိုအသုံးပြုနိုင်ပါသည်။ </string>
+  <string name="log_submit_activity__thanks">ကူညီပေးတာ ကျေးဇူးပါ။</string>
+  <string name="log_submit_activity__submitting">ပေးပို့တင်ပြခြင်း</string>
+  <string name="log_submit_activity__posting_logs">မှတ်တမ်းများကို gist သို့ပေးပို့ခြင်း </string>
+  <string name="log_submit_activity__no_browser_installed">Browser မတပ်ဆင်ရသေးပါ</string>
+  <!--database_migration_activity-->
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">သင်၏စာသားသတင်းစကားများကို Signal ၏encrypt အချက်အလက်အဖြစ်ကူးပြောင်းချင်ပါသလား?</string>
+  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">မူလဒေတာဘေ့စ်စနစ်ကို ပြောင်းလဲမည် မဟုတ်ပါ။</string>
+  <string name="database_migration_activity__skip">ကျော်ပါ။</string>
+  <string name="database_migration_activity__import">သွင်းယူသည်။</string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">ခေတ္တကြာပါလိမ့်မယ်။ တင်သွင်းမှု ပြီးဆုံးသွားရင် အကြောင်းကြားပေးပါမယ်။</string>
+  <string name="database_migration_activity__importing">သွင်းယူဆဲ</string>
+  <!--database_upgrade_activity-->
+  <string name="database_upgrade_activity__updating_database">အချက်အလက်များကို ထပ်မံထည့်သွင်းနေသည် </string>
+  <string name="export_fragment__export_plaintext_backup">စာသားအရန်အချက်အလက်များကို ကူးပြောင်းသည်</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">စာသားအရန်အချက်အလက်များကို SMS အရန်သိမ်းခြင်း &amp; ဖြင့်အဆင်ပြေအောင်ကူးပြောင်းသည်၊ ပြန်လည်သုံးသည် </string>
+  <string name="import_fragment__import_system_sms_database">ဖုန်းစနစ်၏ SMS အချက်အလက်များကို ထည့်သွင်းသည် </string>
+  <string name="import_fragment__import_the_database_from_the_default_system">မူရင်းစနစ် မက်ဆင်ဂျာ app မှအချက်အလက်များကို တင်ပို့သည် </string>
+  <string name="import_fragment__restore_encrypted_backup">encrypt လုပ်ထားသော အရန်အချက်အလက်များကို ပြန်ထည့်သည်</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">encrypt လုပ်ထားသော အရန်အချက်အလက်များကို ထုတ်ယူသုံးသည် </string>
+  <string name="import_fragment__import_plaintext_backup">စာသားအရန်အချက်အလက်များကို ကူးပြောင်းသည်</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">စာသားအရန်အချက်အလက်များကို ကူးပြောင်းသည်။ SMS အရန်သိမ်းခြင်း &amp; ပြန်သုံးခြင်း တို့ဖြင့် လိုက်လျောညီထွေဖြစ်သည်။ </string>
+  <!--load_more_header-->
+  <string name="load_more_header__see_full_conversation">ပြောစကားအပြည့်အစုံကိုကြည့်သည် </string>
+  <!--media_overview_activity-->
+  <string name="media_overview_activity__no_media">မီဒီယာမရှိပါ </string>
+  <!--message_recipients_list_item-->
+  <string name="message_recipients_list_item__view">​ကြည့်</string>
+  <string name="message_recipients_list_item__resend">ပြန်ပို့သည်</string>
+  <string name="message_recipients_list_item__resending">ပြန်ပို့နေသည်....... </string>
+  <!--GroupUtil-->
+  <plurals name="GroupUtil_joined_the_group">
+    <item quantity="other">အဖွဲ့ထဲ %1$s ၀င်ရောက်လာသည်။</item>
+  </plurals>
+  <string name="GroupUtil_group_name_is_now">အဖွဲ့နာမည်သည် %1$s</string>
+  <!--profile_group_share_view-->
+  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">သင့်နာမည်နှင့် ဓာတ်ပုံကို ဤအုပ်စုက မြင်အောင်လုပ်သည်။</string>
+  <!--prompt_passphrase_activity-->
+  <string name="prompt_passphrase_activity__unlock">ဖွင့်ပါ။</string>
+  <!--prompt_mms_activity-->
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal သည် MMS အပြင်အဆင်ကို သင့်ဖုန်းမှတစ်ဆင့် မီဒီယာနှင့် အဖွဲ့သတင်းစကားများကိုပေးပို့နိုင်အောင်လုပ်ထားရန်လိုအပ်သည်။ ယင်းသို့ပြုလုပ်နိုင်ခြင်းသည် လော့ပိတ်ထားသော ဖုန်းများနှင့် အခြားသော ကန့်သတ်ဒီဇိုင်းပုံစံများအတွက်ပါအကြုံးဝင်သဖြင့် သင့်ဖုန်းကအထူးတလည် မဖော်ပြပါ။ </string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">ရုပ်၊သံ၊ပုံ နှင့်စာများပို့ရန် \'အိုခေ\' နှိပ်ပြီးပြောင်းလိုသော ပြင်ဆင်ချက်များပြုလုပ်ပါ။ ကိုယ်အသုံးပြုသော အော်ပရေတာ၏ MMS ပြင်ဆင်ချက်များကို \'your carrier APN\'  ဟုရေးပြီးရှာဖွေနိုင်ပါသည်။ ယခုပြင်ဆင်ချက်ကို တစ်ကြိမ်တည်းလုပ်ရန်လိုပါသည်။</string>
+  <!--profile_create_activity-->
+  <string name="profile_create_activity__set_later">နောက်မှပြင်မယ် </string>
+  <string name="profile_create_activity__finish">ပြီးပြီ </string>
+  <string name="profile_create_activity__who_can_see_this_information">ဒီအချက်အလက်ကို ဘယ်သူမြင်နိုင်သလဲ? </string>
+  <string name="profile_create_activity__your_name">သင့်အမည်</string>
+  <!--recipient_preferences_activity-->
+  <string name="recipient_preference_activity__blocked">ဘလော့လိုက်ပြီ </string>
+  <!--recipient_preferences-->
+  <string name="recipient_preferences__mute_conversation">စကားဝိုင်း အသိပေးသံပိတ်ထားသည် </string>
+  <string name="recipient_preferences__disable_notifications_for_this_conversation">ဤစကားဝိုင်းအတွက် အသိပေးချက်ကို ပိတ်ထားသည် </string>
+  <string name="recipient_preferences__notification_sound">သတိပေးချက် အသံ</string>
+  <string name="recipient_preferences__vibrate">တုန်ခါသည်</string>
+  <string name="recipient_preferences__block">ဘလော့ လုပ်မည်</string>
+  <string name="recipient_preferences__color">အရောင်</string>
+  <string name="recipient_preferences__color_for_this_contact">ဒီလိပ်စာအတွက်အရောင်</string>
+  <string name="recipient_preferences__view_safety_number">လုံခြုံရေးနံပါတ်ကိုကြည့်မည် </string>
+  <string name="recipient_preferences__chat_settings">စကားပြောအပြင်အဆင်</string>
+  <string name="recipient_preferences__privacy">ကိုယ်ရေးအချက်အလက်များ လုံခြုံမှု</string>
+  <!--- redphone_call_controls-->
+  <string name="redphone_call_card__signal_call">Signal ခေါ်ဆိုမှု</string>
+  <string name="redphone_call_controls__end_call">ခေါ်ဆိုမှုအဆုံးသတ်</string>
+  <string name="redphone_call_controls__audio">အသံ</string>
+  <string name="redphone_call_controls__mute">အသံပိတ်သည်</string>
+  <string name="redphone_call_controls__signal_call">Signal ခေါ်ဆိုမှု</string>
+  <!--registration_activity-->
+  <string name="registration_activity__verify_your_number_to_connect_with_signal">
+Signal နှင့်ဆက်သွယ်ရန်သင့်ဖုန်းနံပါတ်ကိုအတည်ပြုပါ။</string>
+  <string name="registration_activity__your_country">သင့်နိုင်ငံ</string>
+  <string name="registration_activity__your_country_code_and_phone_number">သင့်နိုင်ငံရဲ့ကုဒ်နှင့်
+ဖုန်းနံပါတ်</string>
+  <string name="registration_activity__phone_number">ဖုန်းနံပါတ်</string>
+  <string name="registration_activity__register">စာရင်းသွင်းသည်</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal သည် သင့်လက်ရှိဖုန်းနံပါတ် နှင့် လိပ်စာစာအုပ်ကို အသုံးပြု၍ ဆက်သွယ်နိုင်စေသည်။ သင့်ဖုန်းနံပါတ်နှင့်ဆက်သွယ်မှုရှိသည့် မိတ်ဆွေများနှင့် လူများသည် Signal ဖြင့် သင့်ကို အလွယ်တကူဆက်သွယ်နိုင်ပါသည်။ \n\nစာရင်းသွင်းခြင်း ကသင့်အဆက်အသွယ်များ၏အချက်အလက်ကို ဆာဗာသို့ ပေးပို့သည်။ သိမ်းဆည်းထားခြင်းမရှိပါ။ </string>
+  <string name="registration_activity__powered_by_twilio">twilio မှပံ့ပိုးသည်</string>
+  <!--registration_problems-->
+  <string name="registration_problems__some_possible_problems_include">ဖြစ်နိုင်ချေရှိသောပြဿနာများ
+အပါအဝင်</string>
+  <string name="registration_problems__sms_interceptors">SMS ကြားဖြတ်နားထောင်သူ</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
+SMS ပို့ရန်အသုံးပြုသော တချို့ app များဖြစ်သော Handcent၊ GoSMS စသည်တို့သည် လုပ်ဆောင်မှုညံ့ကာ အဝင် SMS များကိုဝင်ရောက်ဖတ်ရှု့နှောင့်ယှက်ခြင်းများပြုလုပ်နိုင်ပါသည်။ 
+ထို့ကြောင့် အဝင် SMS များထဲမှာ “သင့်၏ အတည်ပြုကုဒ်” ဟုစသော စာရောက်မရောက်ပြန်စစ်ကြည့်ပါ။ 
+ထို SMS app များကိုလည်း အဝင် SMS များဝင်နိုင်အောင် ပြင်ဆင်မှုများပြုလုပ်သင့်ပါသည်။</string>
+  <string name="registration_problems__incorrect_number">နံပါတ်မှားနေသည်</string>
+  <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
+ကျေးဇူးပြု၍ သင်ထည့်ထားသော ဖုန်းနံပါတ် မှန်၊ မမှန်သေချာစစ်ပါ၊ 
+ပြီးလျှင် သင်ထည့်ထားသော နိုင်ငံ မှန်၊ မမှန်စစ်ပါ။​</string>
+  <string name="registration_problems__google_voice">Google Voice</string>
+  <string name="registration_problems__signal_will_not_work_with_google_voice_numbers">
+Signal သည် Google Voice ဖုန်းနံပါတ်များဖြင့် အသုံးပြု၍ မရပါ။</string>
+  <!--registration_progress_activity-->
+  <string name="registration_progress_activity__voice_verification">အသံဖြင့်အတည်ပြုချက်ရယူခြင်း</string>
+  <string name="registration_progress_activity__signal_can_also_call_you_to_verify_your_number">
+သင့်ဖုန်းနံပါတ်အား အတည်ပြုရန် Signal မှ အဝင်ဖုန်းခေါ်ဆိုနိုင်ပါသည်။ “ဒို့ကိုခေါ်ပါ” ကိုနှိပ်ပြီး
+ ကြားရသော ဂဏန်း ၆ လုံးကိုအောက်တွင် ထည့်လိုက်ပါ။</string>
+  <string name="registration_progress_activity__verify">စစ်ဆေးအတည်ပြုသည်</string>
+  <string name="registration_progress_activity__call_me">တို့ကို ဖုန်းခေါ်ပါ</string>
+  <string name="registration_progress_activity__edit_number">နံပါတ်ကို ပြင်ပါ</string>
+  <string name="registration_progress_activity__connectivity_error">ချိတ်ဆက်မှု ပြဿနာ</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal မှ ဆာဗာကို ချိတ်ဆက်လို့ မရနိုင်ပါ။</string>
+  <string name="registration_progress_activity__some_possible_problems_include">ဖြစ်နိုင်ခြေရှိသော
+ပြဿနာများမှာ</string>
+  <string name="registration_progress_activity__no_network_connectivity">အင်တာနက်မရှိပါ
+ချိတ်ဆက်မှု</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">ယခု Signal လုပ်ဆောင်ချက်ကိုအသုံးပြုရန်အတွက် 
+အင်တာနက်ချိတ်ဆက်မှုလိုအပ်သည်။ 
+ဖုန်းအင်တာနက်၊ သို့မဟုတ်၊ ဝိုင်ဖိုင်ချိတ်ဆက်မှုရှိမရှိပြန်စစ်ပါ။</string>
+  <string name="registration_progress_activity__restrictive_firewall">ကန့်သတ်သော firewall </string>
+  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
+အကယ်၍ သင့်ဖုန်းသည် ဝိုင်ဖိုင်ကို ချိတ်ထားပါက firewall မှ Signal ဆာဗာကို မချိတ်ဆက်နိုင်အောင် 
+ပိတ်ထားခြင်း ဖြစ်နိုင်ပါသည်။ တခြားဝိုင်ဖိုင်ကွန်ယက် သို့မဟုတ် ဖုန်းအင်တာနက်ကို ကြိုးစားကြည့်ပါ။</string>
+  <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
+Signal မှ အတည်ပြုသည့် SMS ဖြင့် သင့်ဖုန်းနံပါတ်ကို အလိုအလျောက် အတည်ပြုသွားမည်။</string>
+  <string name="registration_progress_activity__connecting">ချိတ်ဆက်နေသည်</string>
+  <string name="registration_progress_activity__waiting_for_sms_verification">SMS ကို စောင့်နေဆဲ
+အတည်ပြုခြင်း ...</string>
+  <string name="registration_progress_activity__registering_with_server">ဆာဗာသို့ စာရင်းသွင်းနေသည်...</string>
+  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">ဒီဟာက
+အချိန် နည်းနည်း ကြာနိုင်တယ်။ စိတ်ရှည်ပါနော်။ အတည်ပြုတာ ပြီးသွားရင် ပြောပါမယ်။</string>
+  <string name="registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message">
+အတည်ပြုရန် SMS ကိို စောင့်ဆိုင်းချိန် လွန်သွားသည်။</string>
+  <string name="registration_progress_activity__sms_verification_failed">SMS အတည်ပြုချက်မရ။</string>
+  <string name="registration_progress_activity__generating_keys">သော့များကို ထုတ်လုပ်နေသည်...</string>
+  <string name="registration_progress_activity__alert">အချက်ပေးသံ</string>
+  <string name="registration_progress_activity__telephone">တယ်လီဖုန်း</string>
+  <string name="registration_progress_activity__check">စစ်ဆေးပါ</string>
+  <!--recipients_panel-->
+  <string name="recipients_panel__to"><small>နာမည် သို့မဟုတ် နံပါတ် ထည့်ပါ</small></string>
+  <string name="recipients_panel__add_members">အဖွဲ့ဝင်များ ထည့်ပါ</string>
+  <!--unknown_sender_view-->
+  <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">သင်ပို့လိုက်သူသည် သင်၏ လိပ်စာစာရင်းထဲတွင် မရှိပါ</string>
+  <string name="unknown_sender_view__block">ဘလော့</string>
+  <string name="unknown_sender_view__add_to_contacts">လိပ်စာစာရင်းထဲကို ထည့်ပါ</string>
+  <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">မထည့်ပါနဲ့။ အချက်အလက်တွေကို ကြည့်လို့ရအောင်တော့ ထားပါ။</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ %s ဖြင့် သင့်တို့၏  encrypt လုပ်ခြင်းလုံခြုံမှုစနစ်ကို စစ်ဆေးလိုပါက အထက်ပါ နံပါတ်နှင့် သင့်မိတ်ဆွေ၏ နံပါတ်ကို တိုက်ဆိုင်စစ်ဆေးကြည့်ပါ။ သို့တည်းမဟုတ် ထိုသူတို့ဖုန်းမှ ကုဒ်ကို စကန်ဖတ်နိုင်ပါသည်။ <a href="https://whispersystems.org/redirect/safety-numbers">ပိုမိုသိရှိရန်</a> ]]></string>
+  <string name="verify_display_fragment__tap_to_scan">စကန်ဖတ်ရန်နှိပ်ပါ</string>
+  <string name="verify_display_fragment__loading">လုပ်ဆောင်နေသည်...</string>
+  <string name="verify_display_fragment__verified">အသိအမှတ်ပြုပြီးပြီ</string>
+  <!--verify_identity-->
+  <string name="verify_identity__share_safety_number">လုံခြုံရေးနံပါတ်ကို မျှဝေပါ</string>
+  <!--message_details_header-->
+  <string name="message_details_header__issues_need_your_attention">တစ်ချို့ကိစ္စများကို သင်ကြည့်ဖို့ လိုနေသည်။</string>
+  <string name="message_details_header__sent">ပို့ပြီးပြီ</string>
+  <string name="message_details_header__received">လက်ခံရရှိသည်</string>
+  <string name="message_details_header__disappears">ပျောက်သွားမည်</string>
+  <string name="message_details_header__via">တဆင့်</string>
+  <string name="message_details_header__to">သို့</string>
+  <string name="message_details_header__from">မှ</string>
+  <string name="message_details_header__with">နှင့်အတူ</string>
+  <!--AndroidManifest.xml-->
+  <string name="AndroidManifest__create_passphrase">စကားဝှက်ကို ဖန်တီးပါ</string>
+  <string name="AndroidManifest__enter_passphrase">စကားဝှက် ထည့်ပါ။</string>
+  <string name="AndroidManifest__select_contacts">လိပ်စာစာရင်းများကို ရွေးချယ်ပါ</string>
+  <string name="AndroidManifest__signal_detected">Signal ကို ရှာဖွေတွေ့ရှိ</string>
+  <string name="AndroidManifest__change_passphrase">စကားဝှက်ကို ပြောင်းပါ</string>
+  <string name="AndroidManifest__verify_safety_number">စိတ်ချရသောနံပါတ်ကို စစ်ဆေးအတည်ပြုခြင်း</string>
+  <string name="AndroidManifest__log_submit">Debug log ကို တင်ပြပါ</string>
+  <string name="AndroidManifest__media_preview"> ရုပ်/သံ/ပုံပါ စာများကို အစမ်းကြည့်ခြင်း</string>
+  <string name="AndroidManifest__all_media">ရုပ်/သံ/ပုံ စာများအားလုံး</string>
+  <string name="AndroidManifest__all_media_named">%1$s နှင့် ရုပ်/သံ/ပုံ စာများအားလုံး</string>
+  <string name="AndroidManifest__message_details">စာတို အသေးစိတ်အချက်အလက်များ</string>
+  <string name="AndroidManifest__linked_devices">ချိတ်ဆက်ထားသော စက်ပစ္စည်းများ</string>
+  <string name="AndroidManifest__invite_friends">သူငယ်ချင်းများကို ဖိတ်ပါ</string>
+  <string name="AndroidManifest_archived_conversations">စကားဝိုင်းများကို မှတ်တမ်းထဲ ထည့်ပါ</string>
+  <string name="AndroidManifest_remove_photo">ပုံကို ဖယ်ပါ</string>
+  <!--arrays.xml-->
+  <string name="arrays__import_export">တင်သွင်း / ပို့</string>
+  <string name="arrays__use_default">မူလကို သုံးပါ</string>
+  <string name="arrays__use_custom">အထူးပြုကိုသုံးသည် </string>
+  <string name="arrays__mute_for_one_hour">အသံကို ၁ နာရီ ပိတ်ထားပါ။</string>
+  <string name="arrays__mute_for_two_hours">အသံကို ၂ နာရီ ပိတ်ထားပါ။</string>
+  <string name="arrays__mute_for_one_day">အသံကို ၁ ရက် ပိတ်ထားပါ</string>
+  <string name="arrays__mute_for_seven_days">အသံကို ၇ ရက် ပိတ်ထားပါ။</string>
+  <string name="arrays__mute_for_one_year">အသံကို ၁ နှစ် ပိတ်ထားပါ။</string>
+  <string name="arrays__settings_default">အပြင်အဆင်များကို မူလသို့</string>
+  <string name="arrays__enabled">လုပ်ဆောင်နိုင်သည်</string>
+  <string name="arrays__disabled">မလုပ်ဆောင်နိုင်ပါ</string>
+  <string name="arrays__name_and_message">အမည်နှင့် စာ</string>
+  <string name="arrays__name_only">အမည်တစ်ခုတည်းသာ</string>
+  <string name="arrays__no_name_or_message">အမည် သို့မဟုတ် စာ မရှိ</string>
+  <string name="arrays__images">ပုံများ</string>
+  <string name="arrays__audio">အသံ</string>
+  <string name="arrays__video">ဗီဒီယို</string>
+  <string name="arrays__documents">စာရွက်စာတမ်းများ</string>
+  <string name="arrays__small">သေးငယ်သော</string>
+  <string name="arrays__normal">ပုံမှန်</string>
+  <string name="arrays__large">ကြီးသော</string>
+  <string name="arrays__extra_large">အလွန် ကြီးသော</string>
+  <string name="arrays__default">မူလ</string>
+  <string name="arrays__high">မြင့်သော</string>
+  <string name="arrays__max">အများဆုံး</string>
+  <!--plurals.xml-->
+  <plurals name="hours_ago">
+    <item quantity="other">%d နာရီများ</item>
+  </plurals>
+  <!--preferences.xml-->
+  <string name="preferences__general">အ​ထွေထွေ</string>
+  <string name="preferences__sms_mms">SMS နှင့် MMS</string>
+  <string name="preferences__pref_all_sms_title">စာတိုများအားလုံးကို လက်ခံပါ။</string>
+  <string name="preferences__pref_all_mms_title">MMS အားလုံးကို လက်ခံပါ။</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">နောက်ဝင်လာမယ့် စာတွေအားလုံးအတွက် Signal ကို သုံးမယ်။</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">နောက်ဝင်လာမယ့်  ရုပ်၊ သံ၊ ပုံပါစာတွေ အားလုံးအတွက် Signal ကို သုံးမယ်။</string>
+  <string name="preferences__input_settings">ကီးဘုတ်ပုံစံ သတ်မှတ်ချက်များ</string>
+  <string name="preferences__enable_enter_key_title">Enter ကို လုပ်ဆောင်ပါ</string>
+  <string name="preferences__replace_smiley_with_enter_key">Smiley နေရာမှာ Enter နဲ့ အစားထိုးပါ</string>
+  <string name="preferences__pref_enter_sends_title">ထည့်ထားတဲ့ ကီးပို့ပါ</string>
+  <string name="preferences__pressing_the_enter_key_will_send_text_messages">စာပို့ရန်အတွက် Enter ကို နှိပ်ခြင်း</string>
+  <string name="preferences__display_settings">အပြင်အဆင်များ ပြရန်</string>
+  <string name="preferences__choose_identity">အမှတ်အသားရွေးရန်</string>
+  <string name="preferences__choose_your_contact_entry_from_the_contacts_list">အဆက်အသွယ်ကို ဆက်သွယ်မှုစာရင်းမှ ရွေးယူပါ။</string>
+  <string name="preferences__change_passphrase">စကားဝှက်ကို ပြောင်းပါ</string>
+  <string name="preferences__change_your_passphrase">သင့်ရဲ့ စကားဝှက်ကို ပြောင်းပါ</string>
+  <string name="preferences__enable_passphrase">စကားဝှက်ကို လုပ်ဆောင်ပါ</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Signal နှင့် စာအသိပေးချက်များကို စကားဝှက်နှင့် ပိတ်ပါ</string>
+  <string name="preferences__screen_security">အဖွင့်စာမျက်နှာ လုံခြုံရေး</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">မကြာသေးမီ စာရင်းနှင့် app အတွင်း Screenshot များကို တားမြစ်ပါ</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">အချိန်အတိုင်းအတာတစ်ခု အကြာ လှုပ်ရှားမှုမရှိတော့သည့် ကြားချိန်တွင် Signal ကို အလိုအလျောက် ပိတ်ချပါ</string>
+  <string name="preferences__inactivity_timeout_passphrase">လှုပ်ရှားမှုမရှိခြင်းကြာသွားသည့်အတွက် စကားဝှက်</string>
+  <string name="preferences__inactivity_timeout_interval">လှုပ်ရှားမှုမရှိခြင်းကြာသွားသည့် ကြားကာလ</string>
+  <string name="preferences__notifications">အသိပေးချက်များ</string>
+  <string name="preferences__enable_message_notifications">စာသတိပေးချက်များကို လုပ်ဆောင်ပါ</string>
+  <string name="preferences__new_contacts_notifications">လိပ်စာစာရင်းအသစ် အသိပေးချက်များ</string>
+  <string name="preferences__show_a_notification_for_new_signal_contacts">Signal လိပ်စာစာရင်းအသစ်အတွက် အသိပေးချက် ပြပါ</string>
+  <string name="preferences__led_color">LED အရောင်</string>
+  <string name="preferences__led_color_unknown">မသိ</string>
+  <string name="preferences__pref_led_blink_title">LED လင်းမည့်ပုံစံ</string>
+  <string name="preferences__pref_led_blink_custom_pattern_title">စိတ်ကြိုက် LED လင်းမည့်ပုံစံရွေးချယ်ပါ</string>
+  <string name="preferences__pref_led_blink_custom_pattern_on_for">ဖွင့်ရန်</string>
+  <string name="preferences__pref_led_blink_custom_pattern_off_for">ပိတ်ရန်</string>
+  <string name="preferences__pref_led_blink_custom_pattern_set">စိတ်ကြိုက် LED လင်းမည့်ပုံစံရွေးချယ်ပါ</string>
+  <string name="preferences__sound">အသံ</string>
+  <string name="preferences__silent">အသံတိတ်</string>
+  <string name="preferences__in_conversation_notifications">စကားဝိုင်း၏ အသိပေးချက်များ</string>
+  <string name="preferences__play_inthread_notifications">စကား​ဝိုင်းထဲ ပါနေစဥ် အသိပေးချက်အသံကို ဖွင့်ပါ</string>
+  <string name="preferences__repeat_alerts">အသိပေးချက်ကို ထပ်​ပြောပါ</string>
+  <string name="preferences__never">ဘယ်တော့မှ</string>
+  <string name="preferences__one_time">တစ်ကြိမ်</string>
+  <string name="preferences__two_times">နှစ်ကြိမ်</string>
+  <string name="preferences__three_times">သုံးကြိမ်</string>
+  <string name="preferences__five_times">ငါးကြိမ်</string>
+  <string name="preferences__ten_times">ဆယ်ကြိမ်</string>
+  <string name="preferences__vibrate">တုန်ခါသည်</string>
+  <string name="preferences__also_vibrate_when_notified">အချက်ပြစဉ် တုန်ခါမှု ပြုပါ။</string>
+  <string name="preferences__minutes">မိနစ်</string>
+  <string name="preferences__hours">နာရီ</string>
+  <string name="preferences__green">အစိမ်း</string>
+  <string name="preferences__red">အနီ</string>
+  <string name="preferences__blue">အပြာ</string>
+  <string name="preferences__orange">လိမ္မော်</string>
+  <string name="preferences__cyan">ခရမ်း</string>
+  <string name="preferences__magenta">ခရမ်းရင့်</string>
+  <string name="preferences__white">အဖြူ</string>
+  <string name="preferences__none">ဘာမှ</string>
+  <string name="preferences__fast">အမြန်</string>
+  <string name="preferences__normal">ပုံမှန်</string>
+  <string name="preferences__slow">အနှေး</string>
+  <string name="preferences__custom">စိတ်ကြိုက်</string>
+  <string name="preferences__advanced">အဆင့်မြင့်</string>
+  <string name="preferences__privacy">ကိုယ်ရေးအချက်အလက်များ လုံခြုံမှု</string>
+  <string name="preferences__mms_user_agent">MMS သုံးသူကိုယ်စားလှယ်</string>
+  <string name="preferences__advanced_mms_access_point_names">MMS အပြင်အဆင်များကို ကိုယ်တိုင်လုပ်ပါ</string>
+  <string name="preferences__enable_manual_mms">ကိုယ်တိုင်လုပ်ထားသည့် MMS အပြင်အဆင်များကို သုံးပါ</string>
+  <string name="preferences__override_system_mms_settings">လက်ရှိ MMS အပြင်အဆင်စနစ်ကို အောက်ပါ အချက်အလက်များနှင့် အစားထိုးပါ။</string>
+  <string name="preferences__mmsc_url">MMSC URL</string>
+  <string name="preferences__mms_proxy_host">MMS Proxy Host</string>
+  <string name="preferences__mms_proxy_port">MMS Proxy Port</string>
+  <string name="preferences__mmsc_username">MMSC အသုံးပြုသူအမည်</string>
+  <string name="preferences__mmsc_password">MMSC စကားဝှက်</string>
+  <string name="preferences__sms_delivery_reports">SMS ပို့ပြီးကြောင်း အသိပေးခြင်း</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">SMS တစ်ခုပို့ပြီးတိုင်း ပို့ပြီးကြောင်း အသိပေးပါ။</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">စကားဝိုင်းမှ သတ်မှတ်ထားသည့် ပမာဏကျော်သည်နှင့် တစ်ပြိုင်နက် စာအဟောင်းများကို အလိုအလျောက် ဖျက်ပါ</string>
+  <string name="preferences__delete_old_messages">စာတိုအဟောင်းများကို ဖျက်ပါ။</string>
+  <string name="preferences__chats">စကားစမြည်များနှင့် ရုပ်/သံ/ပုံများ</string>
+  <string name="preferences__conversation_length_limit">စာလုံးရေ အကန့်အသတ်</string>
+  <string name="preferences__trim_all_conversations_now">စကားဝိုင်းများအားလုံးကို အခု ညှိပါ</string>
+  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">စကားဝိုင်းများအားလုံးကို သေချာကြည့်ပြီး စကားဝိုင်း၏ အရှည်ကန့်သတ်ချက်ကို အတည်ပြုပါ</string>
+  <string name="preferences__linked_devices">ချိတ်ဆက်ထားသော စက်ပစ္စည်းများ</string>
+  <string name="preferences__light_theme">အလင်း</string>
+  <string name="preferences__dark_theme">အမှောင်</string>
+  <string name="preferences__appearance">ပုံပန်းသဏ္ဌာန်</string>
+  <string name="preferences__theme">Theme</string>
+  <string name="preferences__default">မူလ</string>
+  <string name="preferences__language">ဘာသာစကား</string>
+  <string name="preferences__signal_messages_and_calls">Signal စာများနှင့် ဖုန်းခေါ်ဆိုမှုများ</string>
+  <string name="preferences__free_private_messages_and_calls">Signal အသုံးပြုသူများအတွက် အခမဲ့စာများနှင့် ဖုန်းခေါ်ဆိုမှုများ</string>
+  <string name="preferences__submit_debug_log">Debug log ကို တင်ပြပါ</string>
+  <string name="preferences__support_wifi_calling">\'WiFi Calling\' လိုက်လျောညီထွေမှု ရှိသည့် ပုံစံ</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">သင့်ဖုန်းမှ ဝိုင်ဖိုင် အသုံးပြု၍ SMS/MMS ပေးပို့ခြင်းကို အသုံးပြုပါက လုပ်ဆောင်ချက်ကို ဖွင့်ပါ (\'WiFi Calling\'လုပ်ဆောင်ချက်ကို သင့်ဖုန်းက ဖွင့်ထားမှသာ လုပ်ဆောင်ပါ)</string>
+  <string name="preferences__incognito_keyboard">နောက်ယောင်ခံမှု မရှိသည့် ကီးဘုတ်</string>
+  <string name="preferences__read_receipts">ဖတ်ပြီးပြီ</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">စာဖတ်ပြီး​ကြောင်းပြသည်ကို ပိတ်ထားပါက တခြားသူများထံမှ ဖတ်ပြီး​ကြောင်းပြသည်ကိုလည်း မြင်ရမည်မဟုတ်ပါ။</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">မိမိ၏လုပ်ဆောင်ချက်ပေါ်မူတည်၍ မှတ်သားထားမှုကို မလုပ်ဆောင်ရန် ကီးဘုတ်ကို တောင်းဆိုပါ</string>
+  <string name="preferences_app_protection__blocked_contacts">ပိတ်ထားသည့်လူများ </string>
+  <string name="preferences_app_protection__safety_numbers_approval">လုံခြုံရေးနံပါတ် အတည်ပြုခြင်း</string>
+  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">လုံခြုံရေးနံပါတ်ပြောင်းသွားသည့်အခါ နံပါတ်အသစ်ကို အတည်ပြုရန် လိုသည်။</string>
+  <string name="preferences_notifications__display_in_notifications">အသိပေးချက်များတွင် ပြပါ။</string>
+  <string name="preferences_chats__when_using_mobile_data">မိုဘိုင်းအင်တာနက်ကို အသုံးပြုသည့်အခါ </string>
+  <string name="preferences_chats__when_using_wifi">ဝိုင်ဖိုင်ကို အသုံးပြုသည့်အခါ </string>
+  <string name="preferences_chats__when_roaming">Roaming လုပ်သည့်အခါ</string>
+  <string name="preferences_chats__media_auto_download">ရုပ်/သံ/ပုံကို အလိုအလျောက် ဒေါင်းလုတ်လုပ်ပါ</string>
+  <string name="preferences_chats__message_trimming">စာများကို ညှိခြင်း</string>
+  <string name="preferences_advanced__use_system_emoji">emoji စနစ်ကို သုံးပါ</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal ရဲ့ emoji ကို ပိတ်ပါ</string>
+  <string name="preferences_advanced__video_calling_beta">ဗီဒီယိုခေါ်ဆိုခြင်း စမ်းသပ်ကာလ</string>
+  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">နှစ်ဖက်စလုံးမှ လုပ်ဆောင်ချက်ကို ဖွင့်ထားသည့်အခါ ဗီဒီယိုခေါ်ဆိုမှုများနှင့် ဖုန်းခေါ်ဆိုမှုများအတွက်အထောက်အပံ့ပေးပါ။ ဤလုပ်ဆောင်ချက်သည် စမ်းသပ်ကာလဖြစ်သည်။</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">သင်၏ လိပ်စာစာရင်းတွင် သင့် IP address ပေါ်လာခြင်းကို ရှောင်လွှဲရန်အတွက် ဖုန်းခေါ်ဆိုမှုများ အားလုံးကို Signal ဆာဗာကို လွှဲပြောင်းပါ။ ဤသို့ လွှဲပြောင်းလိုက်ပါက ဖုန်းခေါ်ဆိုမှု အရည်အသွေး ကျသွားနိုင်ပါသည်။</string>
+  <string name="preferences_advanced__always_relay_calls">ဖုန်းခေါ်ဆိုမှုများကို လွှဲပြောင်းပါ</string>
+  <string name="preferences_app_protection__app_access">App ကို အသုံးပြုခြင်း</string>
+  <string name="preferences_app_protection__communication">ဆက်သွယ်ရေး</string>
+  <string name="preferences_chats__chats">စကားစမြည်များ</string>
+  <string name="preferences_notifications__messages">စာများ</string>
+  <string name="preferences_notifications__events">ပွဲများ</string>
+  <string name="preferences_notifications__in_chat_sounds">စကားပြောနေစဥ် အသံ</string>
+  <string name="preferences_notifications__show">ပြပါ</string>
+  <string name="preferences_chats__show_invitation_prompts">ဖိတ်ကြားမှုကို ပြပါ။</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Signal မရှိသည့် လိပ်စာစာရင်းများအတွက် ဖိတ်ကြားမှု ပြပါ</string>
+  <string name="preferences_chats__message_text_size">စာလုံးအရွယ်အစား</string>
+  <string name="preferences_events__contact_joined_signal">Signal ကို လာသုံးနေပြီ</string>
+  <string name="preferences_notifications__priority">ဦးစားပေး</string>
+  <!--****************************************-->
+  <!--menus-->
+  <!--****************************************-->
+  <!--contact_selection_list-->
+  <string name="contact_selection_list__menu_select_all">အားလုံးကို ရွေးပါ</string>
+  <string name="contact_selection_list__menu_unselect_all">အားလုံးကို မရွေးတော့ပါ</string>
+  <string name="contact_selection_list__header_signal_users">SIGNAL အသုံးပြုသူများ</string>
+  <string name="contact_selection_list__header_other">လိပ်စာစာရင်းများ အားလုံး</string>
+  <string name="contact_selection_list__unknown_contact">သို့ စာအသစ် ...</string>
+  <!--contact_selection-->
+  <string name="contact_selection__menu_finished">ပြီးပါပြီ</string>
+  <!--refreshing push directory from menu-->
+  <string name="push_directory__menu_refresh">လိပ်စာစာရင်းကို အသစ်ပြန်စတင်ပါ</string>
+  <!--conversation_callable_insecure-->
+  <string name="conversation_callable_insecure__menu_call">ခေါ်ပါ</string>
+  <!--conversation_callable_secure-->
+  <string name="conversation_callable_secure__menu_call">Signal ဖုန်းခေါ်</string>
+  <!--conversation_context-->
+  <string name="conversation_context__menu_message_details">စာတို အသေးစိတ်အချက်အလက်များ</string>
+  <string name="conversation_context__menu_copy_text">စာသား ကူးပါ။</string>
+  <string name="conversation_context__menu_delete_message">စာတို ဖျက်ရန်</string>
+  <string name="conversation_context__menu_forward_message">စာတို ဆက်ပို့ရန်</string>
+  <string name="conversation_context__menu_resend_message">စာကို ပြန်ပို့ပါ</string>
+  <!--conversation_context_image-->
+  <string name="conversation_context_image__save_attachment">ပူးတွဲဖိုင်ကို သိမ်းပါ</string>
+  <!--conversation_expiring_off-->
+  <string name="conversation_expiring_off__disappearing_messages">စာများအား ပျောက်သွားစေခြင်း</string>
+  <!--conversation_expiring_on-->
+  <string name="menu_conversation_expiring_on__messages_expiring">စာများ သက်တမ်းကုန်ခြင်း</string>
+  <!--conversation_insecure-->
+  <string name="conversation_insecure__invite">ဖိတ်ခေါ်ပါ</string>
+  <!--conversation_insecure_no_push-->
+  <string name="conversation_insecure__security">လုံခြုံရေး</string>
+  <!--conversation_list_batch-->
+  <string name="conversation_list_batch__menu_delete_selected">ရွေးထားတာကို ဖျက်ပါ</string>
+  <string name="conversation_list_batch__menu_select_all">အားလုံးကို ရွေးပါ</string>
+  <string name="conversation_list_batch_archive__menu_archive_selected">မှတ်တမ်းကို ရွေးချယ်ပြီး</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">မှတ်တမ်းမှ ပြန်ထုတ်ခြင်းကို ရွေးချယ်ပြီး</string>
+  <!--conversation_list-->
+  <string name="conversation_list__menu_search">ရှာရန်</string>
+  <!--conversation_list_item_view-->
+  <string name="conversation_list_item_view__contact_photo_image">လိပ်စာစာရင်းအတွက် ပုံ</string>
+  <string name="conversation_list_item_view__error_alert">အခက်အခဲ သတိပေးချက်</string>
+  <string name="conversation_list_item_view__archived">မှတ်တမ်းသိမ်းပြီး</string>
+  <!--conversation_list_fragment-->
+  <string name="conversation_list_fragment__fab_content_description">စကားဝိုင်းအသစ်</string>
+  <!--conversation_secure_verified-->
+  <string name="conversation_secure_verified__menu_reset_secure_session">လုံခြုံသော ဆက်ရှင်များကို ပြန်ညှိပါ</string>
+  <!--conversation_muted-->
+  <string name="conversation_muted__unmute">ပြန်ဖွင့်ပါ</string>
+  <!--conversation_unmuted-->
+  <string name="conversation_unmuted__mute_notifications">အသိပေးချက်ကို ပိတ်ပါ</string>
+  <!--conversation-->
+  <string name="conversation__menu_add_attachment">ပူးတွဲမှုကို ပေါင်းထည့်ရန်</string>
+  <string name="conversation__menu_edit_group">အဖွဲ့ကို ပြင်မည်</string>
+  <string name="conversation__menu_leave_group">အဖွဲ့မှ ထွက်မည်</string>
+  <string name="conversation__menu_delete_thread">စကားဝိုင်းကို ဖျက်မည်</string>
+  <string name="conversation__menu_view_all_media">ရုပ်/သံ/ပုံ စာများအားလုံး</string>
+  <string name="conversation__menu_conversation_settings">စကားဝိုင်း၏ အပြင်အဆင်များ</string>
+  <!--conversation_popup-->
+  <string name="conversation_popup__menu_expand_popup">popup ကို တိုးချဲ့ပါ</string>
+  <!--conversation_callable_insecure-->
+  <string name="conversation_add_to_contacts__menu_add_to_contacts">လိပ်စာစာရင်းထဲ ထည့်ပါ</string>
+  <!--conversation_group_options-->
+  <string name="convesation_group_options__recipients_list">လက်ခံမည့်သူ စာရင်း</string>
+  <string name="conversation_group_options__delivery">ပေးပို့ခြင်း</string>
+  <string name="conversation_group_options__conversation">စကားဝိုင်း</string>
+  <string name="conversation_group_options__broadcast">ထုတ်လွှင့်ပါ</string>
+  <!--key_scanning-->
+  <string name="key_scanning__menu_compare">နှိုင်းယှဉ်ပါ</string>
+  <string name="key_scanning__menu_display_your_qr_code">သင့်ရဲ့ QR code ကို ပြပါ။</string>
+  <string name="key_scanning__menu_scan_contacts_qr_code">သင့်အဆက်အသွယ်ရဲ့ QR ကုတ် ကို စကန် ဖတ်ပါ။</string>
+  <!--text_secure_normal-->
+  <string name="text_secure_normal__menu_new_message">စာအသစ်</string>
+  <string name="text_secure_normal__menu_new_group">အဖွဲ့သစ်</string>
+  <string name="text_secure_normal__menu_settings">ဆက်တင်</string>
+  <string name="text_secure_normal__menu_clear_passphrase">ပိတ်မည်</string>
+  <string name="text_secure_normal__mark_all_as_read">အားလုံးကို ဖတ်ပြီးသားအဖြစ် မှတ်ပါ။</string>
+  <string name="text_secure_normal__invite_friends">သူငယ်ချင်းများကို ဖိတ်ပါ။</string>
+  <string name="text_secure_normal__help">အကူအညီ</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">ကူးယူလိုက်ပါ။</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">clipboard နဲ့ ယှဥ်လိုက်ပါ။</string>
+  <!--reminder_header-->
+  <string name="reminder_header_outdated_build">သင့်ရဲ့ Signal ဗားရှင်းက သက်တမ်းကျော်နေပြီ။</string>
+  <plurals name="reminder_header_outdated_build_details">
+    <item quantity="other">သင့်ရဲ့  Signal ဗားရှင်းက %dရက်နေရင် သက်တမ်းကုန်ပါလိမ့်မယ်။ နောက်ဆုံးဗားရှင်းကို ရရန် နှိပ်ပါ။</item>
+  </plurals>
+  <string name="reminder_header_outdated_build_details_today">သင့်ရဲ့ Signal ဗားရှင်းက ဒီနေ့ သက်တမ်းကုန်ပါလိမ့်မယ်။ နောက်ဆုံးဗားရှင်းကို ရရန် နှိပ်ပါ။</string>
+  <string name="reminder_header_expired_build">သင့်ရဲ့ Signal ဗားရှင်းက သက်တမ်းကုန်နေပြီ!</string>
+  <string name="reminder_header_expired_build_details">စာတွေ ပို့လို့မရနိုင်ပါ။ နောက်ဆုံးဗားရှင်းကို မြှင့်ရန် နှိပ်ပါ။</string>
+  <string name="reminder_header_expired_build_button">မြှင့်တင်ပါ</string>
+  <string name="reminder_header_sms_default_title">ပုံသေ SMS app အဖြစ် သုံးပါ။</string>
+  <string name="reminder_header_sms_default_text">Signal ကို သင့်ရဲ့ ပုံသေ SMS app အဖြစ် လုပ်ဖို့ နှိပ်ပါ။</string>
+  <string name="reminder_header_sms_default_button">ထားပါ</string>
+  <string name="reminder_header_sms_import_title">SMS စနစ်ကို တင်ပို့ပါ</string>
+  <string name="reminder_header_sms_import_text">ဖုန်း SMS များကို Signal ရဲ့ encrypted အချက်အလက် သိမ်းဆည်းရာထဲတွင် ကူးသိမ်းဖို့ရန် နှိပ်ပါ။</string>
+  <string name="reminder_header_sms_import_button">တင်သွင်းပါ။</string>
+  <string name="reminder_header_push_title">စာပို့ခြင်းနှင့် ဖုန်းခေါ်ဆိုမှုများကို Signal ဖြင့် လုပ်ဆောင်ပါ။</string>
+  <string name="reminder_header_push_text">သင့်ဆက်သွယ်မှုအတွေ့အကြုံကို အဆင့်မြှင့်လိုက်ပါ။</string>
+  <string name="reminder_header_push_button">လုပ်ဆောင်ပါ။</string>
+  <string name="reminder_header_invite_title">Signal သုံးဖို့ ဖိတ်ရန်</string>
+  <string name="reminder_header_invite_text">စကားဝိုင်းများကို %1$s သုံးပြီး အဆင့်မြှင့်လိုက်ပါ။</string>
+  <string name="reminder_header_invite_button">ဖိတ်ခေါ်ပါ။</string>
+  <string name="reminder_header_share_title">သူငယ်ချင်းတွေကို ဖိတ်ခေါ်လိုက်ပါ!</string>
+  <string name="reminder_header_share_text">Signal သုံးတဲ့ သူငယ်ချင်းများလာလေ ပိုကောင်းလေ။</string>
+  <string name="reminder_header_share_button">မျှဝေပါ</string>
+  <string name="reminder_header_close_button">ပိတ်ပါ</string>
+  <!--media_preview-->
+  <string name="media_preview__save_title">သိမ်းထားပါ။</string>
+  <string name="media_preview__forward_title">ထပ်ဆင့် ပေးပို့ပါ။</string>
+  <string name="media_preview__all_media_title">ရုပ်/သံ/ပုံ စာများအားလုံး</string>
+  <!--media_overview-->
+  <string name="media_overview__save_all">အကုန်လုံးကို သိမ်းပါ</string>
+  <!--media_preview_activity-->
+  <string name="media_preview_activity__media_content_description"> ရုပ်/သံ/ပုံပါ စာများကို အစမ်းကြည့်ခြင်း</string>
+  <!--new_conversation_activity-->
+  <string name="new_conversation_activity__refresh">အသစ်ပြန်စတင်ပါ</string>
+  <!--redphone_audio_popup_menu-->
+  <string name="redphone_audio_popup_menu__handset">လက်ကိုင်ဖုန်း</string>
+  <string name="redphone_audio_popup_menu__headset">နားကြပ်</string>
+  <string name="redphone_audio_popup_menu__speaker">စပီကာ</string>
+  <!--Trimmer-->
+  <string name="trimmer__deleting">ဖျက်နေဆဲ</string>
+  <string name="trimmer__deleting_old_messages">စာအဟောင်းများကို ဖျက်နေဆဲ ....</string>
+  <string name="trimmer__old_messages_successfully_deleted">စာအဟောင်းများကို အောင်မြင်စွာ ဖျက်ပြီး</string>
+  <!--transport_selection_list_item-->
+  <string name="transport_selection_list_item__transport_icon">ပုံသင်္ကေတကို ပို့ဆောင်ပါ။</string>
+  <string name="conversation_item_sent__message_read">စာဖတ်၍ ပြီးစီး။</string>
+  <string name="media_overview_documents_fragment__no_documents_found">စာရွက်စာတမ်းများ မရှိပါ။ </string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">ဖတ်ပြီးသားများကို ဒီမှာ တွေ့နိုင်ပါသည်</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">စာများကို ဖတ်ပြီးသည့်အခါ မြင်ရခြင်းနှင့် မျှဝေခြင်းကို ရွေးချယ်လိုပါက ရွေးချယ်နိုင်ပါသည်။</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">ဖတ်ပြီးကြောင်း ပြသည့် သင်္ကေတကို လုပ်ဆောင်ပါ။</string>
+  <string name="recipient_preference_activity__shared_media">မျှဝေပြီးသား ရုပ်/သံ/ပုံများ</string>
+  <!--EOF-->
+</resources>

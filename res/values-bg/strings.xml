@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">Сигнал</string>
+  <string name="app_name">Signal</string>
   <string name="yes">Да</string>
   <string name="no">Не</string>
   <string name="delete">Изтрий</string>
-  <string name="please_wait">Моля изчакайте...</string>
+  <string name="please_wait">Моля, изчакайте...</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Ново съобщение</string>
   <!--ApplicationPreferencesActivity-->
@@ -70,7 +70,7 @@
   <string name="CallScreen_Incoming_call">Входящо обаждане</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Премахни</string>
-  <string name="ClearProfileActivity_remove_profile_photo">Премахване на снимката на профила?</string>
+  <string name="ClearProfileActivity_remove_profile_photo">Премахване на снимката от профила?</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Числата Ви за сигурност с %1$s са променени. Това означава, че или някой се опитва да прехване комуникацията Ви, или че %2$s е преинсталирал Сигнал.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Може да желаете да проверите числата за сигурност с този контакт.</string>
@@ -262,8 +262,8 @@
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Сигнал вече поддържа криптирано видео обаждане.</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Сигнал вече поддържа криптирано видео обаждане. Натиснете, за да научите повече.</string>
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Готови за снимка?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Вече може да споделяте профилна снимка и име с приятелите си в Сигнал</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Профилите в Сингал са вече тук</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Вече може да споделяте профилна снимка и името си с приятелите си в Сигнал</string>
+  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Профилите в Сингал пристигнаха</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Изнасяне</string>
   <string name="ExportFragment_export_plaintext_to_storage">Изнасяне в некриптирано състояние на диска?</string>
@@ -301,7 +301,7 @@
   <string name="GroupCreateActivity_youre_already_in_the_group">Вече сте в групата.</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Споделяне на профилното име и снимка с тази група?</string>
-  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Желаете ли да направите профилното си име и снимка видими до всички текущи и бъдещи членове на тази група?</string>
+  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Желаете ли да направите профилното си име и снимка видими за всички текущи и бъдещи членове на тази група?</string>
   <string name="GroupShareProfileView_make_visible">Направи видими</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Аз</string>
@@ -376,7 +376,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="NotificationBarManager_missed_call_from_s">Пропуснато обаждане от %s</string>
   <string name="NotificationBarManager_missed_signal_call">Пропуснато Сигнал обаждане</string>
   <string name="NotificationBarManager__establishing_signal_call">Установяване на Сигнал разговор</string>
-  <string name="NotificationBarManager__incoming_signal_call">Входящо Сигнал обадждане</string>
+  <string name="NotificationBarManager__incoming_signal_call">Входящо Сигнал обаждане</string>
   <string name="NotificationBarManager__deny_call">Отхвърляне на обаждането</string>
   <string name="NotificationBarManager__answer_call">Приеми обаждането</string>
   <string name="NotificationBarManager__end_call">Прекрати обаждането</string>
@@ -934,7 +934,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">Изпращачът не в списъка Ви с контакти</string>
   <string name="unknown_sender_view__block">БЛОКИРАНЕ</string>
   <string name="unknown_sender_view__add_to_contacts">ДОБАВЯНЕ В КОНТАКТИ</string>
-  <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">НЕ ДОБАВЯЙ, НО НАПРАВИ ПРОФИЛЪТ ВИДИМ</string>
+  <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">НЕ ДОБАВЯЙ, НО НАПРАВИ ПРОФИЛА ВИДИМ</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ако желаете да потвърдите сигурността на енкрипцията с %s, сравнете числото по-горе с числото на тяхното устройство. Алтернативно, може да скнирате кода на техният телефон или да ги помолите да сканират Вашия код.. <a href="https://whispersystems.org/redirect/safety-numbers">Повече информация</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Натиснете за сканиране</string>
@@ -1252,7 +1252,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Икона за транспорт</string>
   <string name="conversation_item_sent__message_read">Съобщението е прочетено</string>
-  <string name="media_overview_documents_fragment__no_documents_found">Не са открити документи</string>
+  <string name="media_overview_documents_fragment__no_documents_found">Няма документи</string>
   <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Потвърждения за прочитане са вече тук</string>
   <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Пожелание вижте и споделете, когато съобщенията са прочетени</string>
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">Активиране на потвърждения за прочитане</string>

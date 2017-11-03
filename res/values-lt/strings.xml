@@ -1147,6 +1147,7 @@ yra prisijungęs prie belaidžio (Wi-Fi) arba duomenų perdavimo tinklo.
   <string name="preferences__incognito_keyboard">Incognito klaviatūra</string>
   <string name="preferences__read_receipts">Pranešimai apie žinučių skaitymą</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Jeigu pranešimai apie žinučių skaitymą yra išjungti, jūs negalėsite matyti kitų žmonių pranešimų apie žinučių skaitymą.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Užklausti klaviatūrą, kad būtų išjungtas suasmenintas mokymasis</string>
   <string name="preferences_app_protection__blocked_contacts">Užblokuoti kontaktai</string>
   <string name="preferences_app_protection__safety_numbers_approval">Saugumo numerių patvirtinimas</string>
   <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Reikalauti naujų saugumo numerių patvirtinimo, jiems pasikeitus</string>
@@ -1305,9 +1306,10 @@ yra prisijungęs prie belaidžio (Wi-Fi) arba duomenų perdavimo tinklo.
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Perdavimo piktograma</string>
   <string name="conversation_item_sent__message_read">Žinutė perskaityta</string>
-  <string name="media_overview_documents_fragment__no_documents_found">Dokumentų nerasta</string>
+  <string name="media_overview_documents_fragment__no_documents_found">Nėra dokumentų</string>
   <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Pranešimai apie žinučių skaitymą jau čia</string>
   <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Pasirinktinai matyti kada žinutės būna perskaitomos ir rodyti tai kitiems</string>
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">Įjungti pranešimus apie žinučių skaitymą</string>
+  <string name="recipient_preference_activity__shared_media">Bendrinama medija</string>
   <!--EOF-->
 </resources>

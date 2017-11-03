@@ -29,9 +29,9 @@
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Desative as mensagens e chamadas do Signal eliminando o seu registo do servidor. Vai ser necessário registar novamente o seu número de telefone se pretender utilizar o Signal no futuro.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Erro a establecer a ligação com o servidor!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Ativos</string>
-  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Toque para mudar a sua aplicação de SMS predefinida</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Toque para mudar a sua aplicação de SMS padrão</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS Desativados</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Toque para tornar o Signal a sua aplicação SMS predefinida</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Toque para tornar o Signal a sua aplicação SMS padrão</string>
   <string name="ApplicationPreferencesActivity_on">ligado</string>
   <string name="ApplicationPreferencesActivity_On">Ligado</string>
   <string name="ApplicationPreferencesActivity_off">desligado</string>
@@ -83,7 +83,7 @@
   <string name="ConversationItem_expires_s">Expira: %s</string>
   <string name="ConversationItem_error_not_delivered">Não entregue</string>
   <string name="ConversationItem_view_secure_media_question">Ver ficheiro seguro?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Este ficheiro multimédia está guardado numa base de dados encriptada. Infelizmente, para o visualizar com uma aplicação externa os dados têm que ser temporariamente desencriptados e escritos no dispositivo. Tem a certeza que pretende efetuar esta operação?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Este ficheiro está guardado numa base de dados encriptada. Infelizmente, para o visualizar com uma aplicação externa os dados têm que ser temporariamente desencriptados e escritos no dispositivo. Tem a certeza que pretende efetuar esta operação?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Erro, foi recebida uma mensagem de intercâmbio de chaves desactualizada.</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Foi recebida uma mensagem para intercâmbio de chaves, toque para processar.</string>
   <string name="ConversationItem_group_action_left">%1$s deixou o grupo.</string>
@@ -92,7 +92,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Recorrer a SMS não encriptado?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Recorrer a MMS não encriptado?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Esta mensagem <b>não</b> será encriptada porque o destinatário já não é um utilizador do Signal.\n\nEnviar mensagem de modo não seguro?</string>
-  <string name="ConversationItem_unable_to_open_media">Não foi possível encontrar uma aplicação capaz de abrir esta multimédia.</string>
+  <string name="ConversationItem_unable_to_open_media">Não foi possível encontrar uma aplicação capaz de abrir este ficheiro.</string>
   <string name="ConversationItem_copied_text">Copiado %s</string>
   <string name="ConversationItem_from_s">de %s</string>
   <string name="ConversationItem_to_s">para %s</string>
@@ -160,7 +160,7 @@
   <string name="ConversationFragment_save_to_sd_card">Guardar para o armazenamento local?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
     <item quantity="one">Guardar este ficheiro multimédia para o armazenamento local vai permitir que qualquer outra aplicação lhe possa aceder.\n\nContinuar?</item>
-    <item quantity="other">Guardar estes %1$d ficheiros multimédia para o armazenamento local vai permitir que qualquer outra aplicação os possa aceder.\n\nContinuar?</item>
+    <item quantity="other">Guardar estes %1$d ficheiros no armazenamento local vai permitir que qualquer outra aplicação os possa aceder.\n\nContinuar?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">Erro ao guardar anexo para o armazenamento local!</item>
@@ -224,7 +224,7 @@
   <string name="CreateProfileActivity_error_capturing_photo_camera_did_not_return_image">Erro na captura da foto, a câmara não tirou nenhuma foto.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usar a opção personalizada: %s</string>
-  <string name="CustomDefaultPreference_using_default">Usar a opção por omissão: %s</string>
+  <string name="CustomDefaultPreference_using_default">A usar a opção predefinida: %s</string>
   <string name="CustomDefaultPreference_none">Nenhum</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Agora mesmo</string>
@@ -311,9 +311,9 @@
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Importar a base de dados SMS do sistema?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Esta operação
-irá importar as mensagens da bases de dados SMS do sistema para o Signal.
-Se já fez a importação da base de dados de SMS do sistema,
-Importar novamente poderá resultar em mensagens duplicadas.
+irá importar as mensagens da base de dados de SMS do sistema para o Signal.
+Se já importou a base de dados de SMS do sistema anteriormente,
+fazê-lo de novo poderá resultar em mensagens duplicadas.
 </string>
   <string name="ImportFragment_import">Importar</string>
   <string name="ImportFragment_cancel">Cancelar</string>
@@ -373,7 +373,7 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Erro ao ligar ao servidor de MMS</string>
   <string name="MmsDownloader_error_reading_mms_settings">Erro ao ler as configurações do operador MMS</string>
   <!--MediaOverviewActivity-->
-  <string name="MediaOverviewActivity_Media">Média</string>
+  <string name="MediaOverviewActivity_Media">Multimédia</string>
   <string name="MediaOverviewActivity_Documents">Documentos</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chamada do Signal em curso</string>
@@ -386,9 +386,9 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="NotificationBarManager__end_call">Terminar chamada</string>
   <string name="NotificationBarManager__cancel_call">Cancelar chamada</string>
   <!--NotificationMmsMessageRecord-->
-  <string name="NotificationMmsMessageRecord_multimedia_message">Mensagem multimedia</string>
-  <string name="NotificationMmsMessageRecord_downloading_mms_message">A transferir MMS</string>
-  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Erro a transferir MMS, toque para repetir</string>
+  <string name="NotificationMmsMessageRecord_multimedia_message">Mensagem multimédia</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">A descarregar MMS</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Erro a descarregar MMS, toque para repetir</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Recebeu uma mensagem encriptada com uma versão anterior do Signal, que já não é suportada. Por favor peça ao remetente para actualizar para a versão mais recente e reenviar a mensagem.</string>
   <string name="MessageRecord_left_group">Abandonou o grupo.</string>
@@ -440,12 +440,12 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">A sua versão de Google Play Services não está a funcionar correctamente. Por favor reinstale Google Play Services e tente novamente.</string>
   <!--RatingManager-->
-  <string name="RatingManager_rate_this_app">Avalie esta aplicação</string>
-  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Se gosotu desta aplicação, por favor ajude-nos avaliando-a.</string>
+  <string name="RatingManager_rate_this_app">Avalie esta app</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Se gostou desta aplicação, ajude-nos avaliando-a na Play Store.</string>
   <string name="RatingManager_rate_now">Avalie agora!</string>
   <string name="RatingManager_no_thanks">Não, obrigado</string>
   <string name="RatingManager_later">Mais tarde</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Oops, a Play Store aparenta não estar instalada neste dispositivo.</string>
+  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Oops, a Play Store parece não estar instalada neste dispositivo.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Bloquear este contacto?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Não irá receber mensagens ou chamadas adicionais deste contacto.</string>
@@ -530,13 +530,13 @@ Verifique que este é o seu número! Estamos prestes a confirmá-lo com uma SMS.
   <string name="RegistrationService_registration_error">Erro de registo</string>
   <string name="RegistrationService_signal_registration_has_encountered_a_problem">O registo do Signal deparou-se com um problema.</string>
   <!--RingtonePreference-->
-  <string name="RingtonePreference_ringtone_default">Toque por omissão</string>
+  <string name="RingtonePreference_ringtone_default">Toque padrão</string>
   <string name="RingtonePreference_ringtone_silent">Nenhum</string>
   <string name="RingtonePreference_ringtone_picker_title">Toques</string>
-  <string name="RingtonePreference_notification_sound_default">Som de notificação por omissão</string>
-  <string name="RingtonePreference_alarm_sound_default">Som de alarme por omissão</string>
+  <string name="RingtonePreference_notification_sound_default">Som de notificação padrão</string>
+  <string name="RingtonePreference_alarm_sound_default">Som de alarme padrão</string>
   <string name="RingtonePreference_add_ringtone_text">Adicionar toque</string>
-  <string name="RingtonePreference_unable_to_add_ringtone">Não é possível adicionar um toque costumizado</string>
+  <string name="RingtonePreference_unable_to_add_ringtone">Não é possível adicionar um toque personalizado</string>
   <!--Slide-->
   <string name="Slide_image">Imagem</string>
   <string name="Slide_audio">Áudio</string>
@@ -560,9 +560,9 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="ThreadRecord_called">Você ligou</string>
   <string name="ThreadRecord_called_you">Ligou-lhe</string>
   <string name="ThreadRecord_missed_call">Chamada perdida</string>
-  <string name="ThreadRecord_media_message">Mensagem media</string>
+  <string name="ThreadRecord_media_message">Mensagem multimédia</string>
   <string name="ThreadRecord_s_is_on_signal">%s está no Signal!</string>
-  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tempo de mensagens a desaparecer definido para %s</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tempo das mensagens que desaparecem definido como %s</string>
   <string name="ThreadRecord_safety_number_changed">Número de segurança alterado</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">O seu número de segurança com %s mudou.</string>
   <string name="ThreadRecord_you_marked_verified">Marcou como verificado</string>
@@ -604,10 +604,10 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="ThreadDatabase_error_decrypting_message">Erro a decifrar a mensagem.</string>
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server">A ligar ao servidor de MMS...</string>
-  <string name="MmsDatabase_downloading_mms">A transferir MMS...</string>
-  <string name="MmsDatabase_mms_download_failed">Transferência de MMS falhou!</string>
-  <string name="MmsDatabase_downloading">A transferir...</string>
-  <string name="MmsDatabase_mms_pending_download">Clique para definir as configurações MMS para continuar o download.</string>
+  <string name="MmsDatabase_downloading_mms">A descarregar MMS...</string>
+  <string name="MmsDatabase_mms_download_failed">O download do MMS falhou!</string>
+  <string name="MmsDatabase_downloading">A descarregar...</string>
+  <string name="MmsDatabase_mms_pending_download">Toque e defina as configurações MMS para continuar o download.</string>
   <string name="MmsDatabase_error_decrypting_message">Erro a decifrar a mensagem.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">A decifrar MMS, por favor, aguarde...</string>
@@ -628,13 +628,13 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Você</string>
   <string name="MediaPreviewActivity_cant_display">A antevisão desta imagem falhou</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Tipo de média não suportado</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Tipo de multimédia não suportado</string>
   <string name="MediaPreviewActivity_draft">Rascunho</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d novas mensagens em %2$d conversas</string>
   <string name="MessageNotifier_most_recent_from_s">Mais recente de: %1$s</string>
   <string name="MessageNotifier_locked_message">Mensagem bloqueada</string>
-  <string name="MessageNotifier_media_message_with_text">Mensagem media: %s</string>
+  <string name="MessageNotifier_media_message_with_text">Mensagem multimédia: %s</string>
   <string name="MessageNotifier_no_subject">(Sem Assunto)</string>
   <string name="MessageNotifier_message_delivery_failed">A entrega de mensagem falhou.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Não foi possível entregar a mensagem.</string>
@@ -720,19 +720,19 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">DESLIZE PARA CANCELAR</string>
   <!--conversation_item-->
-  <string name="conversation_item__mms_downloading_description">A descarregar mensagem media</string>
+  <string name="conversation_item__mms_downloading_description">A descarregar mensagem multimédia</string>
   <string name="conversation_item__mms_image_description">Mensagem multimédia</string>
   <string name="conversation_item__secure_message_description">Mensagem segura</string>
   <!--conversation_item_sent-->
-  <string name="conversation_item_sent__download">Transferir</string>
-  <string name="conversation_item_sent__downloading">A transferir</string>
+  <string name="conversation_item_sent__download">Download</string>
+  <string name="conversation_item_sent__downloading">A descarregar</string>
   <string name="conversation_item_sent__send_failed_indicator_description">O envio falhou</string>
-  <string name="conversation_item_sent__pending_approval_description">Pendente de aprovação</string>
+  <string name="conversation_item_sent__pending_approval_description">Aprovação Pendente</string>
   <string name="conversation_item_sent__delivered_description">Entregue</string>
   <!--conversation_item_received-->
-  <string name="conversation_item_received__download">Transferir</string>
+  <string name="conversation_item_received__download">Download</string>
   <string name="conversation_item_received__contact_photo_description">Foto de Contacto</string>
-  <string name="conversation_item_received__downloading">A transferir</string>
+  <string name="conversation_item_received__downloading">A descarregar</string>
   <!--audio_view-->
   <string name="audio_view__play_accessibility_description">Reproduzir</string>
   <string name="audio_view__pause_accessibility_description">Pausar</string>
@@ -828,7 +828,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Ver conversa integral</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_media">Sem média</string>
+  <string name="media_overview_activity__no_media">Sem multimédia</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">VER</string>
   <string name="message_recipients_list_item__resend">REENVIAR</string>
@@ -844,8 +844,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Desbloquear</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">O Signal requer configurações MMS para transmitir multimédia e mensagens de grupo através da sua operadora. O seu aparelho não disponibiliza essa informação, o que pode ocorrer em aparelhos bloqueados ou com configurações restritivas.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Para enviar ficheiros multimédia e mensagens em grupo carregue \"OK\" e complete as definições solicitadas. As definições de MMS para a sua operadora podem ser encontradas ao pesquisar por \"operador APN\". Apenas é necessário efectuar isto uma vez.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">O Signal precisa de configurações MMS para transmitir multimédia e mensagens de grupo através da sua operadora. O seu aparelho não disponibiliza essa informação, o que pode ocorrer em aparelhos bloqueados ou com configurações restritivas.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Para enviar ficheiros multimédia e mensagens de grupo toque em \"OK\" e complete as definições solicitadas. As definições de MMS para a sua operadora podem normalmente ser encontradas ao pesquisar na internet por \"[nome do operador] APN\". Apenas é necessário efectuar isto uma vez.</string>
   <!--profile_create_activity-->
   <string name="profile_create_activity__set_later">Definir mais tarde</string>
   <string name="profile_create_activity__finish">TERMINAR</string>
@@ -933,7 +933,9 @@ O Signal vai agora verificar automaticamente o seu número com uma mensagem SMS 
 verificação sms...
 </string>
   <string name="registration_progress_activity__registering_with_server">A registar com o servidor...</string>
-  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Isto pode demorar um pouco. Por favor seja paciente, será notificado quanto a verificação estiver completa.</string>
+  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Isto
+        pode demorar um pouco. Por favor seja paciente, será notificado quanto a verificação estiver completa.
+</string>
   <string name="registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message">
 O tempo de espera da mensagem SMS de verificação do Signal expirou.
 </string>
@@ -976,9 +978,9 @@ falhou.
   <string name="AndroidManifest__change_passphrase">Alterar frase-chave</string>
   <string name="AndroidManifest__verify_safety_number">Verificar número de segurança</string>
   <string name="AndroidManifest__log_submit">Submeter registo de depuração</string>
-  <string name="AndroidManifest__media_preview">Antevisão de média</string>
-  <string name="AndroidManifest__all_media">Toda a média</string>
-  <string name="AndroidManifest__all_media_named">Toda a média com %1$s</string>
+  <string name="AndroidManifest__media_preview">Previsualisação de multimédia</string>
+  <string name="AndroidManifest__all_media">Toda a multimédia</string>
+  <string name="AndroidManifest__all_media_named">Toda a multimédia com %1$s</string>
   <string name="AndroidManifest__message_details">Detalhes da mensagem</string>
   <string name="AndroidManifest__linked_devices">Dispositivos associados</string>
   <string name="AndroidManifest__invite_friends">Convidar amigos</string>
@@ -986,14 +988,14 @@ falhou.
   <string name="AndroidManifest_remove_photo">Remover fotografia</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar / Exportar</string>
-  <string name="arrays__use_default">Usar a opção por omissão</string>
+  <string name="arrays__use_default">Usar a opção predefinida</string>
   <string name="arrays__use_custom">Usar a opção personalizada</string>
   <string name="arrays__mute_for_one_hour">Silenciar por 1 hora</string>
   <string name="arrays__mute_for_two_hours">Silenciar por 2 horas</string>
   <string name="arrays__mute_for_one_day">Silenciar por 1 dia</string>
   <string name="arrays__mute_for_seven_days">Silenciar por 7 dias</string>
   <string name="arrays__mute_for_one_year">Silenciar por 1 ano</string>
-  <string name="arrays__settings_default">Configurações por omissão</string>
+  <string name="arrays__settings_default">Configurações padrão</string>
   <string name="arrays__enabled">Ativo/a</string>
   <string name="arrays__disabled">Desativado/a</string>
   <string name="arrays__name_and_message">Nome e mensagem</string>
@@ -1007,7 +1009,7 @@ falhou.
   <string name="arrays__normal">Normal</string>
   <string name="arrays__large">Grande</string>
   <string name="arrays__extra_large">Extra grande</string>
-  <string name="arrays__default">Opção por omissão</string>
+  <string name="arrays__default">Predefinição</string>
   <string name="arrays__high">Elevada</string>
   <string name="arrays__max">Máxima</string>
   <!--plurals.xml-->
@@ -1021,7 +1023,7 @@ falhou.
   <string name="preferences__pref_all_sms_title">Receber todas as SMS</string>
   <string name="preferences__pref_all_mms_title">Receber todas as MMS</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Utilizar o Signal para receber todas as mensagens de texto </string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Utilizar Signal para receber todas as mensagens multimédia </string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Utilizar o Signal para receber todas as mensagens multimédia </string>
   <string name="preferences__input_settings">Configurações de introdução</string>
   <string name="preferences__enable_enter_key_title">Ativar a tecla Enter</string>
   <string name="preferences__replace_smiley_with_enter_key">Substituir a tecla \'smiley\' por uma tecla \'Enter\'</string>
@@ -1035,7 +1037,7 @@ falhou.
   <string name="preferences__enable_passphrase">Ativar frase-chave</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Bloquear o Signal e as notificações de mensagens com uma frase-chave</string>
   <string name="preferences__screen_security">Segurança de ecrã</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">Bloquear captura de ecrã na lista de recentes e dentro da aplicação</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Bloquear captura de ecrã na lista de apps abertas e dentro da aplicação</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Bloquear automaticamente o Signal ao fim de um certo tempo de inactividade</string>
   <string name="preferences__inactivity_timeout_passphrase">Expirar frase-chave ao fim de dado período</string>
   <string name="preferences__inactivity_timeout_interval">Intervalo de expiração por inactividade</string>
@@ -1092,7 +1094,7 @@ falhou.
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Pedir um aviso de entrega para cada SMS enviado</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Apagar automaticamente as mensagens mais antigas quando uma conversa exceder o tamanho especificado</string>
   <string name="preferences__delete_old_messages">Apagar mensagens antigas</string>
-  <string name="preferences__chats">Conversas e media</string>
+  <string name="preferences__chats">Conversas e multimédia</string>
   <string name="preferences__conversation_length_limit">Tamanho máximo das conversas</string>
   <string name="preferences__trim_all_conversations_now">Aparar todas as conversas agora</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Verificar todas as conversas e limitá-las ao tamanho máximo das conversas</string>
@@ -1101,7 +1103,7 @@ falhou.
   <string name="preferences__dark_theme">Escuro</string>
   <string name="preferences__appearance">Aspecto</string>
   <string name="preferences__theme">Tema</string>
-  <string name="preferences__default">Opção por omissão</string>
+  <string name="preferences__default">Predefinição</string>
   <string name="preferences__language">Língua</string>
   <string name="preferences__signal_messages_and_calls">Mensagens e chamadas do Signal</string>
   <string name="preferences__free_private_messages_and_calls">Mensagens e chamadas privadas gratuitas para utilizadores Signal</string>
@@ -1110,7 +1112,7 @@ falhou.
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Ative se o seu dispositivo utiliza entrega de SMS/MMS por WiFi (ative apenas se o \'WiFi Calling\' está ativo neste dispositivo)</string>
   <string name="preferences__incognito_keyboard">Teclado incógnito</string>
   <string name="preferences__read_receipts">Recibos de leitura</string>
-  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Se os recibos de leitura estão inactivos, não vai poder ver os recibos enviados por outros.</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Se os recibos de leitura forem desativados, não vai poder ver os recibos enviados por outros.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Pedir ao teclado para desligar a aprendizagem de palavras</string>
   <string name="preferences_app_protection__blocked_contacts">Contactos bloqueados</string>
   <string name="preferences_app_protection__safety_numbers_approval">Aprovação de números de segurança</string>
@@ -1119,7 +1121,7 @@ falhou.
   <string name="preferences_chats__when_using_mobile_data">Quando utilizar dados móveis</string>
   <string name="preferences_chats__when_using_wifi">Quando utilizar Wi-Fi</string>
   <string name="preferences_chats__when_roaming">Quando em roaming</string>
-  <string name="preferences_chats__media_auto_download">Descarregar media automaticamente</string>
+  <string name="preferences_chats__media_auto_download">Descarregar multimédia automaticamente</string>
   <string name="preferences_chats__message_trimming">Abreviação da mensagem</string>
   <string name="preferences_advanced__use_system_emoji">Utilizar emojis do sistema</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Desativar o suporte de emojis próprios do Signal</string>
@@ -1196,7 +1198,7 @@ falhou.
   <string name="conversation__menu_edit_group">Editar o grupo</string>
   <string name="conversation__menu_leave_group">Deixar grupo</string>
   <string name="conversation__menu_delete_thread">Eliminar conversa</string>
-  <string name="conversation__menu_view_all_media">Toda a média</string>
+  <string name="conversation__menu_view_all_media">Toda a multimédia</string>
   <string name="conversation__menu_conversation_settings">Configurações de conversa</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Expandir alerta</string>
@@ -1232,8 +1234,8 @@ falhou.
   <string name="reminder_header_expired_build">A sua versão de Signal expirou!</string>
   <string name="reminder_header_expired_build_details">As mensagens deixarão de ser enviadas com sucesso. Toque para actualizar para a versão mais recente.</string>
   <string name="reminder_header_expired_build_button">ACTUALIZAR</string>
-  <string name="reminder_header_sms_default_title">Definir como aplicação SMS por omissão</string>
-  <string name="reminder_header_sms_default_text">Toque para tornar o Signal a sua applicação de SMS por defeito</string>
+  <string name="reminder_header_sms_default_title">Definir como aplicação SMS padrão</string>
+  <string name="reminder_header_sms_default_text">Toque para tornar o Signal a sua applicação de SMS padrão</string>
   <string name="reminder_header_sms_default_button">DEFINIR</string>
   <string name="reminder_header_sms_import_title">Importar as SMS do sistema</string>
   <string name="reminder_header_sms_import_text">Toque para copiar as mensagens SMS do seu telefone para a base de dados encriptada do Signal.</string>
@@ -1251,11 +1253,11 @@ falhou.
   <!--media_preview-->
   <string name="media_preview__save_title">Gravar</string>
   <string name="media_preview__forward_title">Reencaminhar</string>
-  <string name="media_preview__all_media_title">Toda a média</string>
+  <string name="media_preview__all_media_title">Toda a multimédia</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Guardar todos</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__media_content_description">Antevisão de média</string>
+  <string name="media_preview_activity__media_content_description">Previsualização de multimédia</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Recarregar</string>
   <!--redphone_audio_popup_menu-->
@@ -1269,10 +1271,10 @@ falhou.
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icon de transporte</string>
   <string name="conversation_item_sent__message_read">Mensagem lida</string>
-  <string name="media_overview_documents_fragment__no_documents_found">Nenhum documento encontrado</string>
+  <string name="media_overview_documents_fragment__no_documents_found">Sem documentos</string>
   <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Os recibos de leitura chegaram</string>
-  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Opcionalmente, leia e partilhe quando as mensagens tiverem sido lidas.</string>
-  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Activar recibos de leitura</string>
-  <string name="recipient_preference_activity__shared_media">Média partilhada</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Opcionalmente, veja e partilhe quando as mensagens tiverem sido lidas.</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Ativar recibos de leitura</string>
+  <string name="recipient_preference_activity__shared_media">Ficheiros partilhados</string>
   <!--EOF-->
 </resources>

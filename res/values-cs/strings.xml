@@ -1270,7 +1270,7 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona přenosu</string>
   <string name="conversation_item_sent__message_read">Zpráva přečtena</string>
-  <string name="media_overview_documents_fragment__no_documents_found">Nenalezeny žádné dokumenty</string>
+  <string name="media_overview_documents_fragment__no_documents_found">Žádné dokumenty</string>
   <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Info o přečtení jsou zde</string>
   <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Můžete zobrazit a sdílet informaci, že byly zprávy přečteny</string>
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">Povolit info o přečtení</string>
