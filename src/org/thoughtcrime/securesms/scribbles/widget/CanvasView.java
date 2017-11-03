@@ -22,6 +22,7 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -33,6 +34,8 @@ import java.util.List;
  * This class defines fields and methods for drawing.
  */
 public class CanvasView extends View {
+
+  private static final String TAG = CanvasView.class.getSimpleName();
 
   // Enumeration for Mode
   public enum Mode {
@@ -52,9 +55,9 @@ public class CanvasView extends View {
     QUBIC_BEZIER;
   }
 
-  private Context context = null;
-  private Canvas canvas   = null;
-  private Bitmap bitmap   = null;
+  private int    canvasWidth  = 1;
+  private int    canvasHeight = 1;
+  private Bitmap bitmap       = null;
 
   private List<Path> pathLists  = new ArrayList<Path>();
   private List<Paint> paintLists = new ArrayList<Paint>();
@@ -80,15 +83,6 @@ public class CanvasView extends View {
   private float blur             = 0F;
   private Paint.Cap lineCap      = Paint.Cap.ROUND;
 
-  // for Text
-  private String text           = "";
-  private Typeface fontFamily   = Typeface.DEFAULT;
-  private float fontSize        = 32F;
-  private Paint.Align textAlign = Paint.Align.RIGHT;  // fixed
-  private Paint textPaint       = new Paint();
-  private float textX           = 0F;
-  private float textY           = 0F;
-
   // for Drawer
   private float startX   = 0F;
   private float startY   = 0F;
@@ -106,7 +100,7 @@ public class CanvasView extends View {
    */
   public CanvasView(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
-    this.setup(context);
+    this.setup();
   }
 
   /**
@@ -117,7 +111,7 @@ public class CanvasView extends View {
    */
   public CanvasView(Context context, AttributeSet attrs) {
     super(context, attrs);
-    this.setup(context);
+    this.setup();
   }
 
   /**
@@ -127,22 +121,13 @@ public class CanvasView extends View {
    */
   public CanvasView(Context context) {
     super(context);
-    this.setup(context);
   }
 
-  /**
-   * Common initialization.
-   *
-   * @param context
-   */
-  private void setup(Context context) {
-    this.context = context;
 
+  private void setup() {
     this.pathLists.add(new Path());
     this.paintLists.add(this.createPaint());
     this.historyPointer++;
-
-    this.textPaint.setARGB(0, 255, 255, 255);
   }
 
   /**
@@ -159,14 +144,6 @@ public class CanvasView extends View {
     paint.setStrokeWidth(this.paintStrokeWidth);
     paint.setStrokeCap(this.lineCap);
     paint.setStrokeJoin(Paint.Join.MITER);  // fixed
-
-    // for Text
-    if (this.mode == Mode.TEXT) {
-      paint.setTypeface(this.fontFamily);
-      paint.setTextSize(this.fontSize);
-      paint.setTextAlign(this.textAlign);
-      paint.setStrokeWidth(0F);
-    }
 
     if (this.mode == Mode.ERASER) {
       // Eraser
@@ -236,51 +213,6 @@ public class CanvasView extends View {
    */
   private Path getCurrentPath() {
     return this.pathLists.get(this.historyPointer - 1);
-  }
-
-  /**
-   * This method draws text.
-   *
-   * @param canvas the instance of Canvas
-   */
-  private void drawText(Canvas canvas) {
-    if (this.text.length() <= 0) {
-      return;
-    }
-
-    if (this.mode == Mode.TEXT) {
-      this.textX = this.startX;
-      this.textY = this.startY;
-
-      this.textPaint = this.createPaint();
-    }
-
-    float textX = this.textX;
-    float textY = this.textY;
-
-    Paint paintForMeasureText = new Paint();
-
-    // Line break automatically
-    float textLength   = paintForMeasureText.measureText(this.text);
-    float lengthOfChar = textLength / (float)this.text.length();
-    float restWidth    = this.canvas.getWidth() - textX;  // text-align : right
-    int numChars       = (lengthOfChar <= 0) ? 1 : (int) Math.floor((double)(restWidth / lengthOfChar));  // The number of characters at 1 line
-    int modNumChars    = (numChars < 1) ? 1 : numChars;
-    float y            = textY;
-
-    for (int i = 0, len = this.text.length(); i < len; i += modNumChars) {
-      String substring = "";
-
-      if ((i + modNumChars) < len) {
-        substring = this.text.substring(i, (i + modNumChars));
-      } else {
-        substring = this.text.substring(i, len);
-      }
-
-      y += this.fontSize;
-
-      canvas.drawText(substring, textX, y, this.textPaint);
-    }
   }
 
   /**
@@ -433,17 +365,18 @@ public class CanvasView extends View {
 
       canvas.drawPath(path, paint);
     }
+  }
 
-    this.drawText(canvas);
-
-    this.canvas = canvas;
+  @Override
+  protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+    super.onSizeChanged(w, h, oldw, oldh);
+    this.canvasWidth = w;
+    this.canvasHeight = h;
   }
 
   public void render(Canvas canvas) {
-    if (this.canvas == null) return;
-
-    float scaleX = 1.0F * canvas.getWidth() / this.canvas.getWidth();
-    float scaleY = 1.0F * canvas.getHeight() / this.canvas.getHeight();
+    float scaleX = 1.0F * canvas.getWidth() / canvasWidth;
+    float scaleY = 1.0F * canvas.getHeight() / canvasHeight;
 
     Matrix matrix = new Matrix();
     matrix.setScale(scaleX, scaleY);
@@ -591,8 +524,6 @@ public class CanvasView extends View {
       }
     }
 
-    this.text = "";
-
     // Clear
     this.invalidate();
   }
@@ -613,24 +544,6 @@ public class CanvasView extends View {
    */
   public void setBaseColor(int color) {
     this.baseColor = color;
-  }
-
-  /**
-   * This method is getter for drawn text.
-   *
-   * @return
-   */
-  public String getText() {
-    return this.text;
-  }
-
-  /**
-   * This method is setter for drawn text.
-   *
-   * @param text
-   */
-  public void setText(String text) {
-    this.text = text;
   }
 
   /**
@@ -773,47 +686,6 @@ public class CanvasView extends View {
    */
   public void setLineCap(Paint.Cap cap) {
     this.lineCap = cap;
-  }
-
-  /**
-   * This method is getter for font size,
-   *
-   * @return
-   */
-  public float getFontSize() {
-    return this.fontSize;
-  }
-
-  /**
-   * This method is setter for font size.
-   * The 1st argument is greater than or equal to 0.0.
-   *
-   * @param size
-   */
-  public void setFontSize(float size) {
-    if (size >= 0F) {
-      this.fontSize = size;
-    } else {
-      this.fontSize = 32F;
-    }
-  }
-
-  /**
-   * This method is getter for font-family.
-   *
-   * @return
-   */
-  public Typeface getFontFamily() {
-    return this.fontFamily;
-  }
-
-  /**
-   * This method is setter for font-family.
-   *
-   * @param face
-   */
-  public void setFontFamily(Typeface face) {
-    this.fontFamily = face;
   }
 
   /**
