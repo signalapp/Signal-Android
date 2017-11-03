@@ -101,11 +101,10 @@ class GiphyAdapter extends RecyclerView.Adapter<GiphyAdapter.GiphyViewHolder> {
         }
       }
 
-      return Glide.with(context)
-                  .load(forMms ? new GiphyPaddedUrl(image.getGifMmsUrl(), image.getMmsGifSize()) :
-                                 new GiphyPaddedUrl(image.getGifUrl(), image.getGifSize()))
-                  .downloadOnly(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
-                  .get();
+      return glideRequests.load(forMms ? new GiphyPaddedUrl(image.getGifMmsUrl(), image.getMmsGifSize()) :
+                                         new GiphyPaddedUrl(image.getGifUrl(), image.getGifSize()))
+                          .downloadOnly(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
+                          .get();
     }
 
     public synchronized void setModelReady() {
@@ -172,7 +171,7 @@ class GiphyAdapter extends RecyclerView.Adapter<GiphyAdapter.GiphyViewHolder> {
   @Override
   public void onViewRecycled(GiphyViewHolder holder) {
     super.onViewRecycled(holder);
-    Glide.with(context).clear(holder.thumbnail);
+    glideRequests.clear(holder.thumbnail);
   }
 
   @Override
