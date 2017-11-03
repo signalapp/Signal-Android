@@ -73,6 +73,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   public static final int NO_MORE_CANONICAL_DB_VERSION         = 276;
   public static final int PROFILES                             = 289;
   public static final int SCREENSHOTS                          = 300;
+  public static final int PERSISTENT_BLOBS                     = 307;
 
   private static final SortedSet<Integer> UPGRADE_VERSIONS = new TreeSet<Integer>() {{
     add(NO_MORE_KEY_EXCHANGE_PREFIX_VERSION);
@@ -247,6 +248,16 @@ public class DatabaseUpgradeActivity extends BaseActivity {
       if (params[0] < SCREENSHOTS) {
         boolean screenSecurity = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(TextSecurePreferences.SCREEN_SECURITY_PREF, true);
         TextSecurePreferences.setScreenSecurityEnabled(getApplicationContext(), screenSecurity);
+      }
+
+      if (params[0] < PERSISTENT_BLOBS) {
+        File externalDir = context.getExternalFilesDir(null);
+
+        if (externalDir != null && externalDir.isDirectory() && externalDir.exists()) {
+          for (File blob : externalDir.listFiles()) {
+            if (blob.exists() && blob.isFile()) blob.delete();
+          }
+        }
       }
 
       return null;

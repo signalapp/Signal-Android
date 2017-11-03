@@ -141,6 +141,10 @@ public class PersistentBlobProvider {
       return getFile(ContentUris.parseId(uri)).delete();
     }
 
+    if (isExternalBlobUri(context, uri)) {
+      return new File(uri.getPath()).delete();
+    }
+
     return false;
   }
 
@@ -219,7 +223,7 @@ public class PersistentBlobProvider {
   }
 
   private static @NonNull File getExternalDir(Context context) throws IOException {
-    final File externalDir = context.getExternalFilesDir(null);
+    final File externalDir = context.getExternalCacheDir();
     if (externalDir == null) throw new IOException("no external files directory");
     return externalDir;
   }
