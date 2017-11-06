@@ -7,14 +7,14 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.components.emoji.EmojiPageModel;
-import org.thoughtcrime.securesms.util.BitmapDecodingException;
-import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
 import java.lang.ref.SoftReference;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 
 public class EmojiPageBitmap {
 
@@ -41,16 +41,14 @@ public class EmojiPageBitmap {
     } else if (task != null) {
       return task;
     } else {
-      Callable<Bitmap> callable = new Callable<Bitmap>() {
-        @Override public Bitmap call() throws Exception {
-          try {
-            Log.w(TAG, "loading page " + model.getSprite());
-            return loadPage();
-          } catch (IOException ioe) {
-            Log.w(TAG, ioe);
-          }
-          return null;
+      Callable<Bitmap> callable = () -> {
+        try {
+          Log.w(TAG, "loading page " + model.getSprite());
+          return loadPage();
+        } catch (IOException ioe) {
+          Log.w(TAG, ioe);
         }
+        return null;
       };
       task = new ListenableFutureTask<>(callable);
       new AsyncTask<Void, Void, Void>() {
@@ -71,13 +69,21 @@ public class EmojiPageBitmap {
     if (bitmapReference != null && bitmapReference.get() != null) return bitmapReference.get();
 
     try {
-      final Bitmap bitmap = BitmapUtil.createScaledBitmap(context,
-                                                          "file:///android_asset/" + model.getSprite(),
-                                                          decodeScale);
-      bitmapReference = new SoftReference<>(bitmap);
+      Bitmap originalBitmap = GlideApp.with(context.getApplicationContext())
+                                      .asBitmap()
+                                      .load("file:///android_asset/" + model.getSprite())
+                                      .submit()
+                                      .get();
+
+      Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, (int)(originalBitmap.getWidth() * decodeScale), (int)(originalBitmap.getHeight() * decodeScale), false);
+
+      bitmapReference = new SoftReference<>(scaledBitmap);
       Log.w(TAG, "onPageLoaded(" + model.getSprite() + ")");
-      return bitmap;
-    } catch (BitmapDecodingException e) {
+      return scaledBitmap;
+    } catch (InterruptedException e) {
+      Log.w(TAG, e);
+      throw new IOException(e);
+    } catch (ExecutionException e) {
       Log.w(TAG, e);
       throw new IOException(e);
     }

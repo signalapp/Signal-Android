@@ -110,11 +110,7 @@ class EmojiProvider {
     final EmojiDrawable drawable = new EmojiDrawable(drawInfo, decodeScale);
     drawInfo.getPage().get().addListener(new FutureTaskListener<Bitmap>() {
       @Override public void onSuccess(final Bitmap result) {
-        Util.runOnMain(new Runnable() {
-          @Override public void run() {
-            drawable.setBitmap(result);
-          }
-        });
+        Util.runOnMain(() -> drawable.setBitmap(result));
       }
 
       @Override public void onFailure(ExecutionException error) {
