@@ -6,17 +6,19 @@ buildscript {
             url "https://repo1.maven.org/maven2"
             jcenter()
         }
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0'
+        classpath 'com.android.tools.build:gradle:3.0.0'
         classpath files('libs/gradle-witness.jar')
-        classpath 'me.tatarka:gradle-retrolambda:3.7.0'
     }
 }
 
 apply plugin: 'com.android.application'
 apply plugin: 'witness'
-apply plugin: 'me.tatarka.retrolambda'
 
 repositories {
     maven {
@@ -42,6 +44,10 @@ repositories {
     }
     jcenter()
     mavenLocal()
+    maven {
+        url 'https://maven.google.com/'
+        name 'Google'
+    }
 }
 
 dependencies {
@@ -81,6 +87,7 @@ dependencies {
     compile 'com.melnykov:floatingactionbutton:1.3.0'
     compile 'com.google.zxing:android-integration:3.1.0'
     compile 'com.squareup.dagger:dagger:1.2.2'
+    annotationProcessor 'com.squareup.dagger:dagger-compiler:1.2.2'
     compile ("com.doomonafireball.betterpickers:library:1.5.3") {
         exclude group: 'com.android.support', module: 'support-v4'
     }
@@ -216,8 +223,9 @@ dependencyVerification {
 }
 
 android {
+    flavorDimensions "none"
     compileSdkVersion 26
-    buildToolsVersion '25.0.2'
+    buildToolsVersion '26.0.2'
     useLibrary 'org.apache.http.legacy'
 
     dexOptions {
@@ -295,23 +303,23 @@ android {
 
     productFlavors {
         play {
+            dimension "none"
             ext.websiteUpdateUrl = "null"
             buildConfigField "boolean", "PLAY_STORE_DISABLED", "false"
             buildConfigField "String", "NOPLAY_UPDATE_URL", "$ext.websiteUpdateUrl"
         }
 
         website {
+            dimension "none"
             ext.websiteUpdateUrl = "https://updates.signal.org/android"
             buildConfigField "boolean", "PLAY_STORE_DISABLED", "true"
             buildConfigField "String", "NOPLAY_UPDATE_URL", "\"$ext.websiteUpdateUrl\""
         }
     }
 
-    applicationVariants.all { variant ->
-        variant.outputs.each { output ->
-            output.outputFile = new File(
-                    output.outputFile.parent,
-                    output.outputFile.name.replace(".apk", "-${variant.versionName}.apk"))
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = outputFileName.replace(".apk", "-${variant.versionName}.apk")
         }
     }
 
