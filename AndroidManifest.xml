@@ -289,10 +289,9 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".RegistrationActivity"
+              android:launchMode="singleTask"
+              android:theme="@style/TextSecure.LightNoActionBar"
               android:windowSoftInputMode="stateUnchanged"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
-
-    <activity android:name=".RegistrationProgressActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
      <activity android:name=".DeviceActivity"
@@ -400,10 +399,8 @@
     </activity>
 
     <service android:enabled="true" android:name="org.thoughtcrime.securesms.service.WebRtcCallService"/>
-
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>
     <service android:enabled="true" android:name=".service.KeyCachingService"/>
-    <service android:enabled="true" android:name=".service.RegistrationService"/>
     <service android:enabled="true" android:name=".service.MessageRetrievalService"/>
 
     <service android:name=".service.QuickResponseService"

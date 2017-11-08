@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
+        android:keyWidth="33.3%p"
+        android:keyHeight="10%p">
+
+    <Row>
+        <Key android:codes="1"    android:keyLabel="1"  android:keyEdgeFlags="left" />
+        <Key android:codes="2"    android:keyLabel="2" />
+        <Key android:codes="3"    android:keyLabel="3" />
+    </Row>
+
+    <Row>
+        <Key android:codes="4"    android:keyLabel="4" android:keyEdgeFlags="left"  />
+        <Key android:codes="5"    android:keyLabel="5" />
+        <Key android:codes="6"    android:keyLabel="6" />
+    </Row>
+
+    <Row>
+        <Key android:codes="7"    android:keyLabel="7" android:keyEdgeFlags="left" />
+        <Key android:codes="8"    android:keyLabel="8" />
+        <Key android:codes="9"    android:keyLabel="9" />
+    </Row>
+    <Row>
+        <Key android:codes="0"    android:keyLabel="0" android:horizontalGap="33.3%p"/>
+        <Key android:codes="-1"    android:keyIcon="@drawable/ic_backspace_grey600_24dp" android:isRepeatable="true"/>
+    </Row>
+</Keyboard>

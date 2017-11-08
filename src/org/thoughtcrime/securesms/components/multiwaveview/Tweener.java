@@ -76,7 +76,7 @@ class Tweener {
                 interpolator = (TimeInterpolator) value; // TODO: multiple interpolators?
             } else if ("onUpdate".equals(key) || "onUpdateListener".equals(key)) {
                 updateListener = (AnimatorUpdateListener) value;
-            } else if ("onComplete".equals(key) || "onCompleteListener".equals(key)) {
+            } else if ("onCodeComplete".equals(key) || "onCompleteListener".equals(key)) {
                 listener = (AnimatorListener) value;
             } else if ("delay".equals(key)) {
                 delay = ((Number) value).longValue();

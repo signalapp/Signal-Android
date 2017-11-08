@@ -227,4 +227,14 @@
         </attr>
     </declare-styleable>
 
+    <declare-styleable name="VerificationCodeView">
+        <attr name="vcv_spacing" format="dimension"/>
+        <attr name="vcv_inputWidth" format="dimension"/>
+        <attr name="vcv_inputHeight" format="dimension"/>
+        <attr name="vcv_inputColor" format="color"/>
+        <attr name="vcv_textSize" format="dimension"/>
+        <attr name="vcv_textColor" format="color"/>
+    </declare-styleable>
+
+
 </resources>
