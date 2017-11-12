@@ -1,12 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <android.support.design.widget.CoordinatorLayout
-              xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              xmlns:fab="http://schemas.android.com/apk/res-auto"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:orientation="vertical">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+    <FrameLayout android:id="@+id/empty_state"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:visibility="gone">
+
+        <ImageView android:id="@+id/empty"
+                   android:src="@drawable/conversation_list_empty_state"
+                   android:scaleType="centerCrop"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"/>
+
+        <TextView android:text="@string/conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend"
+                  android:textSize="20sp"
+                  android:padding="16dp"
+                  android:gravity="center"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"/>
+
+    </FrameLayout>
 
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="match_parent"
@@ -28,7 +47,8 @@
 
     </LinearLayout>
 
-    <android.support.design.widget.FloatingActionButton
+
+    <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,5 +57,6 @@
             android:src="@drawable/ic_create_white_24dp"
             android:focusable="true"
             android:contentDescription="@string/conversation_list_fragment__fab_content_description"/>
+
 
 </android.support.design.widget.CoordinatorLayout>

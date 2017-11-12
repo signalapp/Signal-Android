@@ -16,9 +16,9 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.database.Cursor;
@@ -31,7 +31,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
@@ -48,11 +47,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
 import org.thoughtcrime.securesms.ConversationListAdapter.ItemClickListener;
 import org.thoughtcrime.securesms.components.recyclerview.DeleteItemAnimator;
+import org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton;
 import org.thoughtcrime.securesms.components.reminder.DefaultSmsReminder;
 import org.thoughtcrime.securesms.components.reminder.DozeReminder;
 import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder;
@@ -60,7 +59,6 @@ import org.thoughtcrime.securesms.components.reminder.OutdatedBuildReminder;
 import org.thoughtcrime.securesms.components.reminder.PushRegistrationReminder;
 import org.thoughtcrime.securesms.components.reminder.Reminder;
 import org.thoughtcrime.securesms.components.reminder.ReminderView;
-import org.thoughtcrime.securesms.components.reminder.ReminderView.OnDismissListener;
 import org.thoughtcrime.securesms.components.reminder.ShareReminder;
 import org.thoughtcrime.securesms.components.reminder.SystemSmsImportReminder;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -88,14 +86,15 @@ public class ConversationListFragment extends Fragment
 
   public static final String ARCHIVE = "archive";
 
-  private MasterSecret         masterSecret;
-  private ActionMode           actionMode;
-  private RecyclerView         list;
-  private ReminderView         reminderView;
-  private FloatingActionButton fab;
-  private Locale               locale;
-  private String               queryFilter  = "";
-  private boolean              archive;
+  private MasterSecret                masterSecret;
+  private ActionMode                  actionMode;
+  private RecyclerView                list;
+  private ReminderView                reminderView;
+  private View                        emptyState;
+  private PulsingFloatingActionButton fab;
+  private Locale                      locale;
+  private String                      queryFilter  = "";
+  private boolean                     archive;
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -112,16 +111,12 @@ public class ConversationListFragment extends Fragment
     reminderView = ViewUtil.findById(view, R.id.reminder);
     list         = ViewUtil.findById(view, R.id.list);
     fab          = ViewUtil.findById(view, R.id.fab);
+    emptyState   = ViewUtil.findById(view, R.id.empty_state);
 
     if (archive) fab.setVisibility(View.GONE);
     else         fab.setVisibility(View.VISIBLE);
 
-    reminderView.setOnDismissListener(new OnDismissListener() {
-      @Override
-      public void onDismiss() {
-        updateReminders();
-      }
-    });
+    reminderView.setOnDismissListener(this::updateReminders);
 
     list.setHasFixedSize(true);
     list.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -137,12 +132,7 @@ public class ConversationListFragment extends Fragment
     super.onActivityCreated(bundle);
 
     setHasOptionsMenu(true);
-    fab.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        startActivity(new Intent(getActivity(), NewConversationActivity.class));
-      }
-    });
+    fab.setOnClickListener(v -> startActivity(new Intent(getActivity(), NewConversationActivity.class)));
     initializeListAdapter();
   }
 
@@ -152,6 +142,13 @@ public class ConversationListFragment extends Fragment
 
     updateReminders();
     list.getAdapter().notifyDataSetChanged();
+  }
+
+  @Override
+  public void onPause() {
+    super.onPause();
+
+    fab.stopPulse();
   }
 
   public ConversationListAdapter getListAdapter() {
@@ -169,6 +166,7 @@ public class ConversationListFragment extends Fragment
     }
   }
 
+  @SuppressLint("StaticFieldLeak")
   private void updateReminders() {
     reminderView.hide();
     new AsyncTask<Context, Void, Optional<? extends Reminder>>() {
@@ -206,6 +204,7 @@ public class ConversationListFragment extends Fragment
     getLoaderManager().restartLoader(0, null, this);
   }
 
+  @SuppressLint("StaticFieldLeak")
   private void handleArchiveAllSelected() {
     final Set<Long> selectedConversations = new HashSet<>(getListAdapter().getBatchSelections());
     final boolean   archive               = this.archive;
@@ -252,6 +251,7 @@ public class ConversationListFragment extends Fragment
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
+  @SuppressLint("StaticFieldLeak")
   private void handleDeleteAllSelected() {
     int                 conversationsCount = getListAdapter().getBatchSelections().size();
     AlertDialog.Builder alert              = new AlertDialog.Builder(getActivity());
@@ -262,41 +262,38 @@ public class ConversationListFragment extends Fragment
                                                                     conversationsCount, conversationsCount));
     alert.setCancelable(true);
 
-    alert.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
-      @Override
-      public void onClick(DialogInterface dialog, int which) {
-        final Set<Long> selectedConversations = (getListAdapter())
-            .getBatchSelections();
+    alert.setPositiveButton(R.string.delete, (dialog, which) -> {
+      final Set<Long> selectedConversations = (getListAdapter())
+          .getBatchSelections();
 
-        if (!selectedConversations.isEmpty()) {
-          new AsyncTask<Void, Void, Void>() {
-            private ProgressDialog dialog;
+      if (!selectedConversations.isEmpty()) {
+        new AsyncTask<Void, Void, Void>() {
+          private ProgressDialog dialog;
 
-            @Override
-            protected void onPreExecute() {
-              dialog = ProgressDialog.show(getActivity(),
-                                           getActivity().getString(R.string.ConversationListFragment_deleting),
-                                           getActivity().getString(R.string.ConversationListFragment_deleting_selected_conversations),
-                                           true, false);
+          @Override
+          protected void onPreExecute() {
+            dialog = ProgressDialog.show(getActivity(),
+                                         getActivity().getString(R.string.ConversationListFragment_deleting),
+                                         getActivity().getString(R.string.ConversationListFragment_deleting_selected_conversations),
+                                         true, false);
+          }
+
+          @Override
+          protected Void doInBackground(Void... params) {
+            DatabaseFactory.getThreadDatabase(getActivity()).deleteConversations(selectedConversations);
+            MessageNotifier.updateNotification(getActivity(), masterSecret);
+            return null;
+          }
+
+          @Override
+          protected void onPostExecute(Void result) {
+            dialog.dismiss();
+            if (actionMode != null) {
+              actionMode.finish();
+              actionMode = null;
             }
-
-            @Override
-            protected Void doInBackground(Void... params) {
-              DatabaseFactory.getThreadDatabase(getActivity()).deleteConversations(selectedConversations);
-              MessageNotifier.updateNotification(getActivity(), masterSecret);
-              return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void result) {
-              dialog.dismiss();
-              if (actionMode != null) {
-                actionMode.finish();
-                actionMode = null;
-              }
-            }
-          }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-        }
+          }
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
       }
     });
 
@@ -307,7 +304,7 @@ public class ConversationListFragment extends Fragment
   private void handleSelectAllThreads() {
     getListAdapter().selectAllThreads();
     actionMode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount,
-                                     getListAdapter().getBatchSelections().size()));
+                                     String.valueOf(getListAdapter().getBatchSelections().size())));
   }
 
   private void handleCreateConversation(long threadId, Recipient recipient, int distributionType, long lastSeen) {
@@ -321,6 +318,16 @@ public class ConversationListFragment extends Fragment
 
   @Override
   public void onLoadFinished(Loader<Cursor> arg0, Cursor cursor) {
+    if (cursor == null || cursor.getCount() <= 0) {
+      list.setVisibility(View.INVISIBLE);
+      emptyState.setVisibility(View.VISIBLE);
+      fab.startPulse(3 * 1000);
+    } else {
+      list.setVisibility(View.VISIBLE);
+      emptyState.setVisibility(View.GONE);
+      fab.stopPulse();
+    }
+
     getListAdapter().changeCursor(cursor);
   }
 
@@ -342,7 +349,7 @@ public class ConversationListFragment extends Fragment
         actionMode.finish();
       } else {
         actionMode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount,
-                                         adapter.getBatchSelections().size()));
+                                         String.valueOf(adapter.getBatchSelections().size())));
       }
 
       adapter.notifyDataSetChanged();
@@ -378,7 +385,7 @@ public class ConversationListFragment extends Fragment
     inflater.inflate(R.menu.conversation_list_batch, menu);
 
     mode.setTitle(R.string.conversation_fragment_cab__batch_selection_mode);
-    mode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount, 1));
+    mode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount, "1"));
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
       getActivity().getWindow().setStatusBarColor(getResources().getColor(R.color.action_mode_status_bar));
@@ -418,7 +425,7 @@ public class ConversationListFragment extends Fragment
 
   private class ArchiveListenerCallback extends ItemTouchHelper.SimpleCallback {
 
-    public ArchiveListenerCallback() {
+    ArchiveListenerCallback() {
       super(0, ItemTouchHelper.RIGHT);
     }
 
@@ -443,6 +450,7 @@ public class ConversationListFragment extends Fragment
       return super.getSwipeDirs(recyclerView, viewHolder);
     }
 
+    @SuppressLint("StaticFieldLeak")
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
       final long    threadId = ((ConversationListItem)viewHolder.itemView).getThreadId();
@@ -524,11 +532,9 @@ public class ConversationListFragment extends Fragment
                        p);
         }
 
-        if (Build.VERSION.SDK_INT >= 11) {
-          float alpha = 1.0f - Math.abs(dX) / (float) viewHolder.itemView.getWidth();
-          viewHolder.itemView.setAlpha(alpha);
-          viewHolder.itemView.setTranslationX(dX);
-        }
+        float alpha = 1.0f - Math.abs(dX) / (float) viewHolder.itemView.getWidth();
+        viewHolder.itemView.setAlpha(alpha);
+        viewHolder.itemView.setTranslationX(dX);
 
       } else {
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
