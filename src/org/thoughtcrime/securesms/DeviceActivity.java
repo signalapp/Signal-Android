@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -132,6 +133,7 @@ public class DeviceActivity extends PassphraseRequiredActionBarActivity
     });
   }
 
+  @SuppressLint("StaticFieldLeak")
   @Override
   public void onLink(final Uri uri) {
     new ProgressDialogAsyncTask<Void, Void, Integer>(this,
@@ -147,6 +149,8 @@ public class DeviceActivity extends PassphraseRequiredActionBarActivity
 
       @Override
       protected Integer doInBackground(Void... params) {
+        boolean isMultiDevice = TextSecurePreferences.isMultiDevice(DeviceActivity.this);
+
         try {
           Context                     context          = DeviceActivity.this;
           SignalServiceAccountManager accountManager   = AccountManagerFactory.createManager(context);
@@ -163,20 +167,25 @@ public class DeviceActivity extends PassphraseRequiredActionBarActivity
           IdentityKeyPair  identityKeyPair   = IdentityKeyUtil.getIdentityKeyPair(context);
           Optional<byte[]> profileKey        = Optional.of(ProfileKeyUtil.getProfileKey(getContext()));
 
+          TextSecurePreferences.setMultiDevice(DeviceActivity.this, true);
           accountManager.addDevice(ephemeralId, publicKey, identityKeyPair, profileKey, verificationCode);
-          TextSecurePreferences.setMultiDevice(context, true);
+
           return SUCCESS;
         } catch (NotFoundException e) {
           Log.w(TAG, e);
+          TextSecurePreferences.setMultiDevice(DeviceActivity.this, isMultiDevice);
           return NO_DEVICE;
         } catch (DeviceLimitExceededException e) {
           Log.w(TAG, e);
+          TextSecurePreferences.setMultiDevice(DeviceActivity.this, isMultiDevice);
           return LIMIT_EXCEEDED;
         } catch (IOException e) {
           Log.w(TAG, e);
+          TextSecurePreferences.setMultiDevice(DeviceActivity.this, isMultiDevice);
           return NETWORK_ERROR;
         } catch (InvalidKeyException e) {
           Log.w(TAG, e);
+          TextSecurePreferences.setMultiDevice(DeviceActivity.this, isMultiDevice);
           return KEY_ERROR;
         }
       }
