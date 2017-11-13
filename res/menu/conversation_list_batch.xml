@@ -2,6 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item android:title="@string/conversation_list_batch_archive__menu_archive_selected"
+          android:id="@+id/menu_archive_selected"
+          android:icon="@drawable/ic_archive_white_24dp"
+          app:showAsAction="always"/>
+
+    <item android:title="@string/conversation_list_batch_unarchive__menu_unarchive_selected"
+          android:id="@+id/menu_unarchive_selected"
+          android:icon="@drawable/ic_unarchive_white_24dp"
+          app:showAsAction="always"/>
+
     <item android:title="@string/conversation_list_batch__menu_delete_selected"
           android:id="@+id/menu_delete_selected"
           android:icon="?menu_trash_icon"

@@ -79,6 +79,7 @@ public class ConversationListItem extends RelativeLayout
   private long               lastSeen;
 
   private boolean         read;
+  private boolean         archived;
   private AvatarImageView contactPhotoImage;
   private ThumbnailView   thumbnailView;
 
@@ -124,6 +125,7 @@ public class ConversationListItem extends RelativeLayout
     this.threadId         = thread.getThreadId();
     this.glideRequests    = glideRequests;
     this.read             = thread.isRead();
+    this.archived         = thread.isArchived();
     this.distributionType = thread.getDistributionType();
     this.lastSeen         = thread.getLastSeen();
 
@@ -172,6 +174,10 @@ public class ConversationListItem extends RelativeLayout
 
   public boolean getRead() {
     return read;
+  }
+
+  public boolean getArchived() {
+    return archived;
   }
 
   public int getDistributionType() {
