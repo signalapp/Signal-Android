@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.support.v4.view.ViewCompat;
 import android.text.Spannable;
@@ -9,7 +8,6 @@ import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
-import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.text.style.TypefaceSpan;
@@ -18,7 +16,6 @@ import android.util.AttributeSet;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.ResUtil;
 import org.thoughtcrime.securesms.util.spans.CenterAlignedRelativeSizeSpan;
 
@@ -39,9 +36,7 @@ public class FromTextView extends EmojiTextView {
   }
 
   public void setText(Recipient recipient, boolean read) {
-    int        attributes[] = new int[]{R.attr.conversation_list_item_count_color};
-    TypedArray colors       = getContext().obtainStyledAttributes(attributes);
-    String     fromString   = recipient.toShortString();
+    String fromString = recipient.toShortString();
 
     int typeface;
 
@@ -73,8 +68,6 @@ public class FromTextView extends EmojiTextView {
     } else {
       builder.append(fromSpan);
     }
-
-    colors.recycle();
 
     setText(builder);
 

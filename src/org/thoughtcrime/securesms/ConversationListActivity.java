@@ -28,10 +28,12 @@ import android.support.annotation.NonNull;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.components.RatingManager;
@@ -44,6 +46,7 @@ import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
+import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -54,7 +57,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 {
   private static final String TAG = ConversationListActivity.class.getSimpleName();
 
-  private final DynamicTheme    dynamicTheme    = new DynamicTheme   ();
+  private final DynamicTheme    dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private ConversationListFragment fragment;
@@ -71,9 +74,12 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   protected void onCreate(Bundle icicle, @NonNull MasterSecret masterSecret) {
     this.masterSecret = masterSecret;
 
-    getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
-    getSupportActionBar().setTitle(R.string.app_name);
-    fragment = initFragment(android.R.id.content, new ConversationListFragment(), masterSecret, dynamicLanguage.getCurrentLocale());
+    setContentView(R.layout.conversation_list_activity);
+
+    Toolbar toolbar = findViewById(R.id.toolbar);
+    setSupportActionBar(toolbar);
+
+    fragment = initFragment(R.id.fragment_container, new ConversationListFragment(), masterSecret, dynamicLanguage.getCurrentLocale());
 
     initializeContactUpdatesReceiver();
 

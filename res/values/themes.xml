@@ -2,25 +2,20 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="TextSecure.LightNoActionBar" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <style name="TextSecure.LightNoActionBar" parent="@style/TextSecure.LightTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
         <item name="theme_type">light</item>
-        <item name="actionBarStyle">@style/TextSecure.LightActionBar</item>
-        <item name="actionBarTabBarStyle">@style/TextSecure.LightActionBar.TabBar</item>
         <item name="colorPrimary">@color/textsecure_primary</item>
         <item name="colorPrimaryDark">@color/textsecure_primary_dark</item>
         <item name="colorAccent">@color/textsecure_primary_dark</item>
-        <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleLight</item>
-        <item name="android:alertDialogTheme">@style/AppCompatDialogStyleLight</item>
-        <item name="android:windowBackground">@color/gray5</item>
 
         <item name="recipient_preference_blocked">#d00000</item>
         <item name="contact_selection_label_text">#66000000</item>
         <item name="contact_selection_push_user">#ff000000</item>
         <item name="contact_selection_lay_user">#a0000000</item>
         <item name="contact_selection_header_text">@color/textsecure_primary_dark</item>
-        <item name="dialog_background_color">@color/background_material_light</item>
-        <item name="pref_divider">@drawable/preference_divider_light</item>
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
 
         <item name="media_overview_toolbar_background">@color/white</item>
         <item name="media_overview_toolbar_foreground">@color/gray70</item>
@@ -29,26 +24,21 @@
         <item name="media_overview_document_background">@color/white</item>
     </style>
 
-    <style name="TextSecure.DarkNoActionBar" parent="@style/Theme.AppCompat.NoActionBar">
+    <style name="TextSecure.DarkNoActionBar" parent="@style/TextSecure.DarkTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
         <item name="theme_type">dark</item>
-        <item name="actionBarStyle">@style/TextSecure.DarkActionBar</item>
-        <item name="actionBarTabBarStyle">@style/TextSecure.DarkActionBar.TabBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
         <item name="colorPrimary">@color/gray95</item>
         <item name="colorAccent">@color/signal_primary_dark</item>
         <item name="android:colorControlActivated">@color/signal_primary_dark</item>
-        <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleDark</item>
-        <item name="android:alertDialogTheme">@style/AppCompatDialogStyleDark</item>
-        <item name="android:windowBackground">@color/black</item>
 
         <item name="recipient_preference_blocked">#d00000</item>
         <item name="contact_selection_label_text">#66eeeeee</item>
         <item name="contact_selection_push_user">#ffeeeeee</item>
         <item name="contact_selection_lay_user">#afeeeeee</item>
         <item name="contact_selection_header_text">#66eeeeee</item>
-        <item name="dialog_background_color">@color/background_material_dark</item>
-        <item name="pref_divider">@drawable/preference_divider_dark</item>
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
 
         <item name="media_overview_toolbar_background">@color/black</item>
         <item name="media_overview_toolbar_foreground">@color/white</item>

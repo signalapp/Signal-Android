@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@id/container"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:minHeight="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:theme="?attr/actionBarStyle">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+            <ImageView android:layout_width="36dp"
+                       android:layout_height="36dp"
+                       android:layout_marginLeft="8dp"
+                       android:src="@drawable/icon_transparent"
+                       android:layout_alignParentLeft="true"
+                       android:layout_alignParentStart="true"
+                       android:layout_centerVertical="true"/>
+
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="@string/app_name"
+                      android:textColor="@color/white"
+                      android:textSize="25sp"
+                      android:layout_alignParentStart="true"
+                      android:layout_alignParentLeft="true"
+                      android:layout_centerVertical="true"
+                      android:layout_marginLeft="66dp"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <FrameLayout android:id="@+id/fragment_container"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"/>
+
+    <!--<fragment android:id="@+id/fragment"-->
+              <!--android:name="org.thoughtcrime.securesms.ConversationListFragment"-->
+              <!--android:layout_width="match_parent"-->
+              <!--android:layout_height="match_parent"-->
+              <!--tools:layout="@layout/conversation_list_fragment"/>-->
+
+</LinearLayout>

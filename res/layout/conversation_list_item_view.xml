@@ -23,6 +23,8 @@
         tools:src="@drawable/ic_contact_picture"
         android:contentDescription="@string/conversation_list_item_view__contact_photo_image"
         android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="14dp"
         android:layout_marginLeft="14dp" />
 
     <RelativeLayout android:layout_width="match_parent"
