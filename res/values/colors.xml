@@ -32,8 +32,8 @@
     <color name="conversation_list_item_background_read_dark">#ff000000</color>
     <color name="conversation_list_item_background_unread_dark">#ff333333</color>
 
-    <color name="conversation_list_divider_light">#15000000</color>
-    <color name="conversation_list_divider_dark">#22ffffff</color>
+    <!--<color name="conversation_list_divider_light">#15000000</color>-->
+    <!--<color name="conversation_list_divider_dark">#22ffffff</color>-->
 
     <color name="textsecure_holo_blue_light">#ff33b5e5</color>
 

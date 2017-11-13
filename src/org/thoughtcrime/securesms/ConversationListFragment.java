@@ -27,6 +27,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -38,6 +39,7 @@ import android.support.v4.content.Loader;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -124,6 +126,13 @@ public class ConversationListFragment extends Fragment
     list.setHasFixedSize(true);
     list.setLayoutManager(new LinearLayoutManager(getActivity()));
     list.setItemAnimator(new DeleteItemAnimator());
+
+    TypedArray            typedArray     = getContext().obtainStyledAttributes(new int[]{R.attr.conversation_list_item_divider});
+    Drawable              itemDrawable   = typedArray.getDrawable(0);
+    DividerItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL);
+    itemDecoration.setDrawable(itemDrawable);
+    list.addItemDecoration(itemDecoration);
+    typedArray.recycle();
 
     new ItemTouchHelper(new ArchiveListenerCallback()).attachToRecyclerView(list);
 
@@ -551,7 +560,7 @@ public class ConversationListFragment extends Fragment
       }
     }
   }
-
+  
 }
 
 
