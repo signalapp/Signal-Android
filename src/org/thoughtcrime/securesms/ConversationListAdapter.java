@@ -50,6 +50,7 @@ class ConversationListAdapter extends CursorRecyclerViewAdapter<ConversationList
 
   private static final int MESSAGE_TYPE_SWITCH_ARCHIVE = 1;
   private static final int MESSAGE_TYPE_THREAD         = 2;
+  private static final int MESSAGE_TYPE_INBOX_ZERO     = 3;
 
   private final @NonNull  ThreadDatabase    threadDatabase;
   private final @NonNull  MasterSecret      masterSecret;
@@ -107,14 +108,16 @@ class ConversationListAdapter extends CursorRecyclerViewAdapter<ConversationList
   @Override
   public ViewHolder onCreateItemViewHolder(ViewGroup parent, int viewType) {
     if (viewType == MESSAGE_TYPE_SWITCH_ARCHIVE) {
-      ConversationListItemAction action = (ConversationListItemAction)inflater.inflate(R.layout.conversation_list_item_action,
-                                                                                       parent, false);
+      ConversationListItemAction action = (ConversationListItemAction) inflater.inflate(R.layout.conversation_list_item_action,
+                                                                                        parent, false);
 
       action.setOnClickListener(v -> {
         if (clickListener != null) clickListener.onSwitchToArchive();
       });
 
       return new ViewHolder(action);
+    } else if (viewType == MESSAGE_TYPE_INBOX_ZERO) {
+      return new ViewHolder((ConversationListItemInboxZero)inflater.inflate(R.layout.conversation_list_item_inbox_zero, parent, false));
     } else {
       final ConversationListItem item = (ConversationListItem)inflater.inflate(R.layout.conversation_list_item_view,
                                                                                parent, false);
@@ -148,6 +151,8 @@ class ConversationListAdapter extends CursorRecyclerViewAdapter<ConversationList
 
     if (threadRecord.getDistributionType() == ThreadDatabase.DistributionTypes.ARCHIVE) {
       return MESSAGE_TYPE_SWITCH_ARCHIVE;
+    } else if (threadRecord.getDistributionType() == ThreadDatabase.DistributionTypes.INBOX_ZERO) {
+      return MESSAGE_TYPE_INBOX_ZERO;
     } else {
       return MESSAGE_TYPE_THREAD;
     }

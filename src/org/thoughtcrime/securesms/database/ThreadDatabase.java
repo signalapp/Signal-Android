@@ -608,6 +608,7 @@ public class ThreadDatabase extends Database {
     public static final int BROADCAST    = 1;
     public static final int CONVERSATION = 2;
     public static final int ARCHIVE      = 3;
+    public static final int INBOX_ZERO   = 4;
   }
 
   public class Reader {
@@ -635,7 +636,7 @@ public class ThreadDatabase extends Database {
       Optional<RecipientSettings> settings;
       Optional<GroupRecord>       groupRecord;
 
-      if (distributionType != DistributionTypes.ARCHIVE) {
+      if (distributionType != DistributionTypes.ARCHIVE && distributionType != DistributionTypes.INBOX_ZERO) {
         settings    = DatabaseFactory.getRecipientDatabase(context).getRecipientSettings(cursor);
         groupRecord = DatabaseFactory.getGroupDatabase(context).getGroup(cursor);
       } else {
