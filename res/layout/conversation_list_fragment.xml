@@ -7,6 +7,16 @@
         android:layout_height="fill_parent"
         android:orientation="vertical">
 
+    <TextView android:id="@+id/empty_search"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="100dp"
+              android:gravity="center"
+              android:textSize="18sp"
+              android:padding="16dp"
+              android:visibility="invisible"
+              tools:text="No results found for 'foo'"/>
+
     <FrameLayout android:id="@+id/empty_state"
                  android:layout_width="match_parent"
                  android:layout_height="match_parent"

@@ -1493,6 +1493,7 @@
     <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Give your inbox something to write home about. Get started by messaging a friend.</string>
     <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Inbox zeeerrro</string>
     <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Zip. Zilch. Zero. Nada. You\'re all caught up!</string>
+    <string name="ConversationListFragment_no_results_found_for_s_">No results found for \'%s\'</string>
 
 
     <!-- EOF -->

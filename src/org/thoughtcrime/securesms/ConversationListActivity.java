@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -209,6 +210,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     startActivity(new Intent(this, ImportExportActivity.class));
   }
 
+  @SuppressLint("StaticFieldLeak")
   private void handleMarkAllRead() {
     new AsyncTask<Void, Void, Void>() {
       @Override

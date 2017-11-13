@@ -48,6 +48,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import org.thoughtcrime.securesms.ConversationListAdapter.ItemClickListener;
 import org.thoughtcrime.securesms.components.recyclerview.DeleteItemAnimator;
@@ -91,6 +92,7 @@ public class ConversationListFragment extends Fragment
   private RecyclerView                list;
   private ReminderView                reminderView;
   private View                        emptyState;
+  private TextView                    emptySearch;
   private PulsingFloatingActionButton fab;
   private Locale                      locale;
   private String                      queryFilter  = "";
@@ -112,6 +114,7 @@ public class ConversationListFragment extends Fragment
     list         = ViewUtil.findById(view, R.id.list);
     fab          = ViewUtil.findById(view, R.id.fab);
     emptyState   = ViewUtil.findById(view, R.id.empty_state);
+    emptySearch  = ViewUtil.findById(view, R.id.empty_search);
 
     if (archive) fab.setVisibility(View.GONE);
     else         fab.setVisibility(View.VISIBLE);
@@ -318,13 +321,20 @@ public class ConversationListFragment extends Fragment
 
   @Override
   public void onLoadFinished(Loader<Cursor> arg0, Cursor cursor) {
-    if (cursor == null || cursor.getCount() <= 0) {
+    if ((cursor == null || cursor.getCount() <= 0) && TextUtils.isEmpty(queryFilter) && !archive) {
       list.setVisibility(View.INVISIBLE);
       emptyState.setVisibility(View.VISIBLE);
+      emptySearch.setVisibility(View.INVISIBLE);
       fab.startPulse(3 * 1000);
+    } else if ((cursor == null || cursor.getCount() <= 0) && !TextUtils.isEmpty(queryFilter)) {
+      list.setVisibility(View.INVISIBLE);
+      emptyState.setVisibility(View.GONE);
+      emptySearch.setVisibility(View.VISIBLE);
+      emptySearch.setText(getString(R.string.ConversationListFragment_no_results_found_for_s_, queryFilter));
     } else {
       list.setVisibility(View.VISIBLE);
       emptyState.setVisibility(View.GONE);
+      emptySearch.setVisibility(View.INVISIBLE);
       fab.stopPulse();
     }
 
