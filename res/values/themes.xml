@@ -21,6 +21,7 @@
         <item name="dialog_background_color">@color/background_material_light</item>
         <item name="pref_divider">@drawable/preference_divider_light</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
+        <item name="placeholder_play_overlay_tint">#77ffffff</item>
 
         <item name="media_overview_toolbar_background">@color/white</item>
         <item name="media_overview_toolbar_foreground">@color/gray70</item>
@@ -49,6 +50,7 @@
         <item name="dialog_background_color">@color/background_material_dark</item>
         <item name="pref_divider">@drawable/preference_divider_dark</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
+        <item name="placeholder_play_overlay_tint">#77000000</item>
 
         <item name="media_overview_toolbar_background">@color/black</item>
         <item name="media_overview_toolbar_foreground">@color/white</item>
@@ -234,6 +236,8 @@
 
         <item name="group_members_dialog_icon">@drawable/ic_group_grey600_24dp</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
+
+        <item name="placeholder_play_overlay_tint">#77ffffff</item>
     </style>
 
     <style name="TextSecure.DarkTheme" parent="@style/Theme.AppCompat">
@@ -358,5 +362,7 @@
 
         <item name="group_members_dialog_icon">@drawable/ic_group_white_24dp</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
+
+        <item name="placeholder_play_overlay_tint">#77000000</item>
     </style>
 </resources>

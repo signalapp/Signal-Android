@@ -18,7 +18,7 @@
                android:clickable="false"
                android:longClickable="false"
                android:src="@drawable/ic_play_circle_outline_white_48dp"
-               android:tint="#77ffffff"
+               android:tint="?attr/placeholder_play_overlay_tint"
                android:tintMode="src_in"
                android:visibility="gone"/>
 

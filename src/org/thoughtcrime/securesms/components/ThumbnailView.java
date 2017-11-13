@@ -5,6 +5,8 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -107,9 +109,14 @@ public class ThumbnailView extends FrameLayout {
       getTransferControls().setVisibility(View.GONE);
     }
 
-    if (slide.getThumbnailUri() != null && slide.hasPlayOverlay() &&
-        (slide.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_DONE || isPreview))
-    {
+    if ((slide.getThumbnailUri() != null || slide.hasPlaceholder()) &&
+        slide.hasPlayOverlay()                                      &&
+        (slide.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_DONE || isPreview)) {
+      if (slide.getThumbnailUri() != null) {
+        DrawableCompat.setTint(this.playOverlay.getDrawable(),
+                               ContextCompat.getColor(getContext(),
+                                                      R.color.thumbnail_play_overlay_tint));
+      }
       this.playOverlay.setVisibility(View.VISIBLE);
     } else {
       this.playOverlay.setVisibility(View.GONE);
