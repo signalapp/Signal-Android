@@ -20,7 +20,7 @@
                       android:background="@android:color/transparent"
                       android:layout_gravity="center_vertical"
                       android:gravity="center_vertical"
-                      android:textCursorDrawable="@drawable/actionbar_cursor"
+                      android:textCursorDrawable="@null"
                       android:textSize="18sp"
                       android:fontFamily="sans-serif"/>
 
