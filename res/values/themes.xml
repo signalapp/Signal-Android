@@ -224,6 +224,8 @@
 
         <item name="group_members_dialog_icon">@drawable/ic_group_grey600_24dp</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
+
+        <item name="search_toolbar_background">@color/white</item>
     </style>
 
     <style name="TextSecure.DarkTheme" parent="@style/Theme.AppCompat">
@@ -348,5 +350,6 @@
 
         <item name="group_members_dialog_icon">@drawable/ic_group_white_24dp</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
+        <item name="search_toolbar_background">@color/black</item>
     </style>
 </resources>

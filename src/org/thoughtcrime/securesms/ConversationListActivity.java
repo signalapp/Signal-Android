@@ -26,21 +26,19 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.components.RatingManager;
+import org.thoughtcrime.securesms.components.SearchToolbar;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MessagingDatabase;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -62,8 +60,10 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private ConversationListFragment fragment;
-  private ContentObserver observer;
-  private MasterSecret masterSecret;
+  private ContentObserver          observer;
+  private MasterSecret             masterSecret;
+  private SearchToolbar            searchToolbar;
+  private ImageView                searchAction;
 
   @Override
   protected void onPreCreate() {
@@ -80,9 +80,12 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
 
-    fragment = initFragment(R.id.fragment_container, new ConversationListFragment(), masterSecret, dynamicLanguage.getCurrentLocale());
+    searchToolbar = findViewById(R.id.search_toolbar);
+    searchAction  = findViewById(R.id.search_action);
+    fragment      = initFragment(R.id.fragment_container, new ConversationListFragment(), masterSecret, dynamicLanguage.getCurrentLocale());
 
     initializeContactUpdatesReceiver();
+    initializeSearchListener();
 
     RatingManager.showRatingDialogIfNecessary(this);
   }
@@ -109,47 +112,28 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
     menu.findItem(R.id.menu_clear_passphrase).setVisible(!TextSecurePreferences.isPasswordDisabled(this));
 
-    inflater.inflate(R.menu.conversation_list, menu);
-    MenuItem menuItem = menu.findItem(R.id.menu_search);
-    initializeSearch(menuItem);
-
     super.onPrepareOptionsMenu(menu);
     return true;
   }
 
-  private void initializeSearch(MenuItem searchViewItem) {
-    SearchView searchView = (SearchView)MenuItemCompat.getActionView(searchViewItem);
-    searchView.setQueryHint(getString(R.string.ConversationListActivity_search));
-    searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-      @Override
-      public boolean onQueryTextSubmit(String query) {
-        if (fragment != null) {
-          fragment.setQueryFilter(query);
-          return true;
-        }
-
-        return false;
-      }
-
-      @Override
-      public boolean onQueryTextChange(String newText) {
-        return onQueryTextSubmit(newText);
-      }
+  private void initializeSearchListener() {
+    searchAction.setOnClickListener(v -> {
+      searchToolbar.display(searchAction.getX() + (searchAction.getWidth() / 2), searchAction.getY() + (searchAction.getHeight() / 2));
     });
 
-    MenuItemCompat.setOnActionExpandListener(searchViewItem, new MenuItemCompat.OnActionExpandListener() {
+    searchToolbar.setListener(new SearchToolbar.SearchListener() {
       @Override
-      public boolean onMenuItemActionExpand(MenuItem menuItem) {
-        return true;
+      public void onSearchTextChange(String text) {
+        if (fragment != null) {
+          fragment.setQueryFilter(text);
+        }
       }
 
       @Override
-      public boolean onMenuItemActionCollapse(MenuItem menuItem) {
+      public void onSearchReset() {
         if (fragment != null) {
           fragment.resetQueryFilter();
         }
-
-        return true;
       }
     });
   }
@@ -188,6 +172,12 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   public void onSwitchToArchive() {
     Intent intent = new Intent(this, ConversationListArchiveActivity.class);
     startActivity(intent);
+  }
+
+  @Override
+  public void onBackPressed() {
+    if (searchToolbar.isVisible()) searchToolbar.collapse();
+    else                           super.onBackPressed();
   }
 
   private void createGroup() {
