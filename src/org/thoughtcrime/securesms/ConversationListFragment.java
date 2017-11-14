@@ -27,6 +27,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -39,7 +40,6 @@ import android.support.v4.content.Loader;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -126,13 +126,7 @@ public class ConversationListFragment extends Fragment
     list.setHasFixedSize(true);
     list.setLayoutManager(new LinearLayoutManager(getActivity()));
     list.setItemAnimator(new DeleteItemAnimator());
-
-    TypedArray            typedArray     = getContext().obtainStyledAttributes(new int[]{R.attr.conversation_list_item_divider});
-    Drawable              itemDrawable   = typedArray.getDrawable(0);
-    DividerItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL);
-    if (itemDrawable != null) itemDecoration.setDrawable(itemDrawable);
-    list.addItemDecoration(itemDecoration);
-    typedArray.recycle();
+    list.addItemDecoration(new InsetDividerItemDecoration(getActivity()));
 
     new ItemTouchHelper(new ArchiveListenerCallback()).attachToRecyclerView(list);
 
@@ -558,6 +552,62 @@ public class ConversationListFragment extends Fragment
       } else {
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
       }
+    }
+  }
+
+  private static class InsetDividerItemDecoration extends RecyclerView.ItemDecoration {
+
+    private Drawable divider;
+    private final Rect bounds = new Rect();
+    
+    InsetDividerItemDecoration(Context context) {
+      TypedArray typedArray = context.obtainStyledAttributes(new int[]{R.attr.conversation_list_item_divider});
+      this.divider = typedArray.getDrawable(0);
+      typedArray.recycle();
+    }
+
+    @Override
+    public void onDraw(Canvas canvas, RecyclerView parent, RecyclerView.State state) {
+      if (parent.getLayoutManager() == null) {
+        return;
+      }
+
+      canvas.save();
+
+      final int left;
+      final int right;
+
+      if (parent.getClipToPadding()) {
+        left  = parent.getPaddingLeft();
+        right = parent.getWidth() - parent.getPaddingRight();
+        canvas.clipRect(left, parent.getPaddingTop(), right, parent.getHeight() - parent.getPaddingBottom());
+      } else {
+        left = 0;
+        right = parent.getWidth();
+      }
+
+      final int childCount = parent.getChildCount();
+
+      for (int i = 0; i < childCount-1; i++) {
+        final View child = parent.getChildAt(i);
+        parent.getDecoratedBoundsWithMargins(child, bounds);
+        final int bottom = bounds.bottom + Math.round(child.getTranslationY());
+        final int top = bottom - divider.getIntrinsicHeight();
+        divider.setBounds(left, top, right, bottom);
+        divider.draw(canvas);
+      }
+
+      canvas.restore();
+    }
+
+    @Override
+    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+      if (divider == null) {
+        outRect.set(0, 0, 0, 0);
+        return;
+      }
+
+      outRect.set(0, 0, 0, divider.getIntrinsicHeight());
     }
   }
 
