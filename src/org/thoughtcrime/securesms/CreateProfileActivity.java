@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms;
 
 
 import android.animation.Animator;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -66,6 +67,7 @@ import javax.inject.Inject;
 
 import static android.provider.MediaStore.EXTRA_OUTPUT;
 
+@SuppressLint("StaticFieldLeak")
 public class CreateProfileActivity extends BaseActionBarActivity implements InjectableType {
 
   private static final String TAG = CreateProfileActivity.class.getSimpleName();
