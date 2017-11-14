@@ -1,5 +1,6 @@
-/**
+/*
  * Copyright (C) 2011 Whisper Systems
+ * Copyright (C) 2013-2017 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -58,6 +59,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarActivity
     implements SharedPreferences.OnSharedPreferenceChangeListener
 {
+  @SuppressWarnings("unused")
   private static final String TAG = ApplicationPreferencesActivity.class.getSimpleName();
 
   private static final String PREFERENCE_CATEGORY_PROFILE        = "preference_category_profile";
@@ -80,6 +82,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
 
   @Override
   protected void onCreate(Bundle icicle, @NonNull MasterSecret masterSecret) {
+    //noinspection ConstantConditions
     this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     if (icicle == null) {
@@ -119,11 +122,9 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
   @Override
   public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
     if (key.equals(TextSecurePreferences.THEME_PREF)) {
-      if (VERSION.SDK_INT >= 11) recreate();
-      else                       dynamicTheme.onResume(this);
+      recreate();
     } else if (key.equals(TextSecurePreferences.LANGUAGE_PREF)) {
-      if (VERSION.SDK_INT >= 11) recreate();
-      else                       dynamicLanguage.onResume(this);
+      recreate();
 
       Intent intent = new Intent(this, KeyCachingService.class);
       intent.setAction(KeyCachingService.LOCALE_CHANGE_EVENT);
@@ -155,7 +156,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       this.findPreference(PREFERENCE_CATEGORY_ADVANCED)
         .setOnPreferenceClickListener(new CategoryClickListener(masterSecret, PREFERENCE_CATEGORY_ADVANCED));
 
-      if (VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP && VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+      if (VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
         tintIcons(getActivity());
       }
     }
@@ -168,6 +169,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
     @Override
     public void onResume() {
       super.onResume();
+      //noinspection ConstantConditions
       ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.text_secure_normal__menu_settings);
       setCategorySummaries();
       setCategoryVisibility();
@@ -231,7 +233,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       private MasterSecret masterSecret;
       private String       category;
 
-      public CategoryClickListener(MasterSecret masterSecret, String category) {
+      CategoryClickListener(MasterSecret masterSecret, String category) {
         this.masterSecret = masterSecret;
         this.category     = category;
       }

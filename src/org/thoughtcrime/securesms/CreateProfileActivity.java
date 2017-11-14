@@ -27,6 +27,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.dd.CircularProgressButton;
 import com.soundcloud.android.crop.Crop;
 
@@ -178,6 +179,8 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
                 avatarBytes = result;
                 GlideApp.with(CreateProfileActivity.this)
                         .load(avatarBytes)
+                        .skipMemoryCache(true)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
                         .circleCrop()
                         .into(avatar);
               } else {
