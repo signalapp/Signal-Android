@@ -240,9 +240,7 @@ public class ConversationItem extends LinearLayout
   }
 
   private void initializeAttributes() {
-    final int[]      attributes = new int[] {R.attr.conversation_item_bubble_background,
-                                             R.attr.conversation_list_item_background_selected,
-                                             R.attr.conversation_item_background};
+    final int[]      attributes = new int[] {R.attr.conversation_item_bubble_background};
     final TypedArray attrs      = context.obtainStyledAttributes(attributes);
 
     defaultBubbleColor = attrs.getColor(0, Color.WHITE);

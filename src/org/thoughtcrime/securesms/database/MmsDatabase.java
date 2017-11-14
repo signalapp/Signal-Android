@@ -677,7 +677,7 @@ public class MmsDatabase extends MessagingDatabase {
     long messageId = insertMediaMessage(masterSecret, retrieved.getBody(), retrieved.getAttachments(), contentValues, null);
 
     if (!Types.isExpirationTimerUpdate(mailbox)) {
-      DatabaseFactory.getThreadDatabase(context).setUnread(threadId);
+      DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
       DatabaseFactory.getThreadDatabase(context).update(threadId, true);
     }
 
@@ -775,7 +775,7 @@ public class MmsDatabase extends MessagingDatabase {
     DatabaseFactory.getThreadDatabase(context).update(threadId, true);
 
     if (org.thoughtcrime.securesms.util.Util.isDefaultSmsProvider(context)) {
-      DatabaseFactory.getThreadDatabase(context).setUnread(threadId);
+      DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
     }
 
     jobManager.add(new TrimThreadJob(context, threadId));

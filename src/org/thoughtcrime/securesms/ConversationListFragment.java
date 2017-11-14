@@ -130,7 +130,7 @@ public class ConversationListFragment extends Fragment
     TypedArray            typedArray     = getContext().obtainStyledAttributes(new int[]{R.attr.conversation_list_item_divider});
     Drawable              itemDrawable   = typedArray.getDrawable(0);
     DividerItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL);
-    itemDecoration.setDrawable(itemDrawable);
+    if (itemDrawable != null) itemDecoration.setDrawable(itemDrawable);
     list.addItemDecoration(itemDecoration);
     typedArray.recycle();
 
@@ -472,8 +472,8 @@ public class ConversationListFragment extends Fragment
     @SuppressLint("StaticFieldLeak")
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-      final long    threadId = ((ConversationListItem)viewHolder.itemView).getThreadId();
-      final boolean read     = ((ConversationListItem)viewHolder.itemView).getRead();
+      final long threadId    = ((ConversationListItem)viewHolder.itemView).getThreadId();
+      final int  unreadCount = ((ConversationListItem)viewHolder.itemView).getUnreadCount();
 
       if (archive) {
         new SnackbarAsyncTask<Long>(getView(),
@@ -503,7 +503,7 @@ public class ConversationListFragment extends Fragment
           protected void executeAction(@Nullable Long parameter) {
             DatabaseFactory.getThreadDatabase(getActivity()).archiveConversation(threadId);
 
-            if (!read) {
+            if (unreadCount > 0) {
               List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(getActivity()).setRead(threadId, false);
               MessageNotifier.updateNotification(getActivity(), masterSecret);
               MarkReadReceiver.process(getActivity(), messageIds);
@@ -514,8 +514,8 @@ public class ConversationListFragment extends Fragment
           protected void reverseAction(@Nullable Long parameter) {
             DatabaseFactory.getThreadDatabase(getActivity()).unarchiveConversation(threadId);
 
-            if (!read) {
-              DatabaseFactory.getThreadDatabase(getActivity()).setUnread(threadId);
+            if (unreadCount > 0) {
+              DatabaseFactory.getThreadDatabase(getActivity()).incrementUnread(threadId, unreadCount);
               MessageNotifier.updateNotification(getActivity(), masterSecret);
             }
           }
@@ -560,7 +560,7 @@ public class ConversationListFragment extends Fragment
       }
     }
   }
-  
+
 }
 
 

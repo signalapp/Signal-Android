@@ -265,6 +265,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     supportRequestWindowFeature(WindowCompat.FEATURE_ACTION_BAR_OVERLAY);
     setContentView(R.layout.conversation_activity);
 
+    TypedArray typedArray = obtainStyledAttributes(new int[] {R.attr.conversation_background});
+    int color = typedArray.getColor(0, Color.WHITE);
+    typedArray.recycle();
+
+    getWindow().getDecorView().setBackgroundColor(color);
+
     fragment = initFragment(R.id.fragment_content, new ConversationFragment(),
                             masterSecret, dynamicLanguage.getCurrentLocale());
 

@@ -2,10 +2,7 @@
 <resources>
     <attr name="theme_type" format="string"/>
     <attr name="attachment_type_selector_background" format="color"/>
-    <attr name="conversation_list_item_background_selected" format="reference"/>
-    <attr name="conversation_list_item_background_read" format="reference"/>
-    <attr name="conversation_list_item_background_unread" format="reference"/>
-    <attr name="conversation_list_item_count_color" format="reference|color"/>
+    <attr name="conversation_list_item_background" format="reference"/>
     <attr name="conversation_list_item_contact_color" format="reference|color"/>
     <attr name="conversation_list_item_subject_color" format="reference|color"/>
     <attr name="conversation_list_item_date_color" format="reference|color"/>

@@ -85,7 +85,7 @@ public class ShareListItem extends RelativeLayout
   }
 
   private void setBackground() {
-    int[]      attributes = new int[]{R.attr.conversation_list_item_background_read};
+    int[]      attributes = new int[]{R.attr.conversation_list_item_background};
     TypedArray drawables  = context.obtainStyledAttributes(attributes);
 
     setBackgroundDrawable(drawables.getDrawable(0));

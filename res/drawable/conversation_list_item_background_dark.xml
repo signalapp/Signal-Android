@@ -3,5 +3,4 @@
     <item android:drawable="@color/textsecure_primary_alpha33" android:state_selected="true" />
     <item android:drawable="@color/textsecure_primary_alpha33" android:state_pressed="true" />
     <item android:drawable="@color/signal_primary_alpha_focus" android:state_focused="true" />
-    <item android:drawable="@color/conversation_list_item_background_unread_light" />
 </selector>

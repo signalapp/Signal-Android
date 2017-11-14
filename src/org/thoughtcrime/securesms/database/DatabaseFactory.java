@@ -109,7 +109,8 @@ public class DatabaseFactory {
   private static final int UNSEEN_NUMBER_OFFER                             = 43;
   private static final int READ_RECEIPTS                                   = 44;
   private static final int GROUP_RECEIPT_TRACKING                          = 45;
-  private static final int DATABASE_VERSION                                = 45;
+  private static final int UNREAD_COUNT_VERSION                            = 46;
+  private static final int DATABASE_VERSION                                = 46;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -1344,6 +1345,33 @@ public class DatabaseFactory {
       if (oldVersion < GROUP_RECEIPT_TRACKING) {
         db.execSQL("CREATE TABLE group_receipts (_id INTEGER PRIMARY KEY, mms_id  INTEGER, address TEXT, status INTEGER, timestamp INTEGER)");
         db.execSQL("CREATE INDEX IF NOT EXISTS group_receipt_mms_id_index ON group_receipts (mms_id)");
+      }
+
+      if (oldVersion < UNREAD_COUNT_VERSION) {
+        db.execSQL("ALTER TABLE thread ADD COLUMN unread_count INTEGER DEFAULT 0");
+
+        try (Cursor cursor = db.query("thread", new String[] {"_id"}, "read = 0", null, null, null, null)) {
+          while (cursor != null && cursor.moveToNext()) {
+            long threadId    = cursor.getLong(0);
+            int  unreadCount = 0;
+
+            try (Cursor smsCursor = db.rawQuery("SELECT COUNT(*) FROM sms WHERE thread_id = ? AND read = '0'", new String[] {String.valueOf(threadId)})) {
+              if (smsCursor != null && smsCursor.moveToFirst()) {
+                unreadCount += smsCursor.getInt(0);
+              }
+            }
+
+            try (Cursor mmsCursor = db.rawQuery("SELECT COUNT(*) FROM mms WHERE thread_id = ? AND read = '0'", new String[] {String.valueOf(threadId)})) {
+              if (mmsCursor != null && mmsCursor.moveToFirst()) {
+                unreadCount += mmsCursor.getInt(0);
+              }
+            }
+
+            db.execSQL("UPDATE thread SET unread_count = ? WHERE _id = ?",
+                       new String[] {String.valueOf(unreadCount),
+                                     String.valueOf(threadId)});
+          }
+        }
       }
 
       db.setTransactionSuccessful();

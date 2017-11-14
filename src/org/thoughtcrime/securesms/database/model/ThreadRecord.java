@@ -1,5 +1,6 @@
-/**
+/*
  * Copyright (C) 2012 Moxie Marlinspike
+ * Copyright (C) 2013-2017 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -42,14 +43,14 @@ public class ThreadRecord extends DisplayRecord {
   private @NonNull  final Context context;
   private @Nullable final Uri     snippetUri;
   private           final long    count;
-  private           final boolean read;
+  private           final int     unreadCount;
   private           final int     distributionType;
   private           final boolean archived;
   private           final long    expiresIn;
   private           final long    lastSeen;
 
   public ThreadRecord(@NonNull Context context, @NonNull Body body, @Nullable Uri snippetUri,
-                      @NonNull Recipient recipient, long date, long count, boolean read,
+                      @NonNull Recipient recipient, long date, long count, int unreadCount,
                       long threadId, int deliveryReceiptCount, int status, long snippetType,
                       int distributionType, boolean archived, long expiresIn, long lastSeen,
                       int readReceiptCount)
@@ -58,7 +59,7 @@ public class ThreadRecord extends DisplayRecord {
     this.context          = context.getApplicationContext();
     this.snippetUri       = snippetUri;
     this.count            = count;
-    this.read             = read;
+    this.unreadCount      = unreadCount;
     this.distributionType = distributionType;
     this.archived         = archived;
     this.expiresIn        = expiresIn;
@@ -134,8 +135,8 @@ public class ThreadRecord extends DisplayRecord {
     return count;
   }
 
-  public boolean isRead() {
-    return read;
+  public int getUnreadCount() {
+    return unreadCount;
   }
 
   public long getDate() {

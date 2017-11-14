@@ -1,5 +1,6 @@
-/**
+/*
  * Copyright (C) 2011 Whisper Systems
+ * Copyright (C) 2013 - 2017 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -486,7 +487,7 @@ public class SmsDatabase extends MessagingDatabase {
     jobManager.add(new TrimThreadJob(context, threadId));
 
     if (unread) {
-      DatabaseFactory.getThreadDatabase(context).setUnread(threadId);
+      DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
     }
 
     return new Pair<>(messageId, threadId);
@@ -561,7 +562,7 @@ public class SmsDatabase extends MessagingDatabase {
       long           messageId = db.insert(TABLE_NAME, null, values);
 
       if (unread) {
-        DatabaseFactory.getThreadDatabase(context).setUnread(threadId);
+        DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
       }
 
       if (!message.isIdentityUpdate() && !message.isIdentityVerified() && !message.isIdentityDefault()) {

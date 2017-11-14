@@ -1,5 +1,5 @@
-/**
- * Copyright (C) 2014 Open Whisper Systems
+/*
+ * Copyright (C) 2014-2017 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,7 +31,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -117,9 +116,8 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   }
 
   private void initializeSearchListener() {
-    searchAction.setOnClickListener(v -> {
-      searchToolbar.display(searchAction.getX() + (searchAction.getWidth() / 2), searchAction.getY() + (searchAction.getHeight() / 2));
-    });
+    searchAction.setOnClickListener(v -> searchToolbar.display(searchAction.getX() + (searchAction.getWidth() / 2),
+                                                               searchAction.getY() + (searchAction.getHeight() / 2)));
 
     searchToolbar.setListener(new SearchToolbar.SearchListener() {
       @Override
@@ -235,12 +233,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         super.onChange(selfChange);
         Log.w(TAG, "Detected android contact data changed, refreshing cache");
         Recipient.clearCache(ConversationListActivity.this);
-        ConversationListActivity.this.runOnUiThread(new Runnable() {
-          @Override
-          public void run() {
-            fragment.getListAdapter().notifyDataSetChanged();
-          }
-        });
+        ConversationListActivity.this.runOnUiThread(() -> fragment.getListAdapter().notifyDataSetChanged());
       }
     };
 

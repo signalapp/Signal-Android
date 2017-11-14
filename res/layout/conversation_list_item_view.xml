@@ -3,6 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:background="?attr/conversation_list_item_background"
         android:layout_width="match_parent"
         android:focusable="true"
         android:nextFocusRight="@+id/fab"
@@ -143,6 +144,14 @@
                   android:layout_toStartOf="@+id/archived"
                   android:layout_alignWithParentIfMissing="true"
                   app:iconColor="?attr/conversation_list_item_subject_color"/>
+
+        <ImageView android:id="@+id/unread_indicator"
+                   android:layout_width="24dp"
+                   android:layout_height="24dp"
+                   android:layout_below="@id/date"
+                   android:layout_toLeftOf="@id/archived"
+                   android:layout_toStartOf="@id/archived"
+                   android:layout_alignWithParentIfMissing="true"/>
 
     </RelativeLayout>
 </org.thoughtcrime.securesms.ConversationListItem>
