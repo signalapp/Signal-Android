@@ -49,12 +49,7 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">មិនអាចស្វែងរកកម្មវិធីដើម្បីជ្រើសរើសព័ត៌មាន</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_camera">កាមេរ៉ា</string>
-  <string name="AttachmentTypeSelectorAdapter_picture">រូបភាព</string>
-  <string name="AttachmentTypeSelectorAdapter_video">វីដេអូ</string>
-  <string name="AttachmentTypeSelectorAdapter_audio">សំឡេង</string>
-  <string name="AttachmentTypeSelectorAdapter_contact">ព័ត៌មានទាក់ទង</string>
-  <!--AudioSlidePlayer-->
+    <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">បញ្ហាចាក់សំឡេង!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">បិទលេខទំនាក់ទំនង</string>
@@ -76,13 +71,8 @@
   <string name="ContactsDatabase_message_s">សារ %s</string>
   <string name="ContactsDatabase_signal_call_s">ការហៅចេញរបស់ស៊ីហ្គណល  %s</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_message_size_d_kb">ទំហំសារ៖ %d KB</string>
-  <string name="ConversationItem_expires_s">ផុតកំណត់៖ %s</string>
-  <string name="ConversationItem_error_not_delivered">មិនបានបញ្ជូន</string>
-  <string name="ConversationItem_view_secure_media_question">ពិនិត្យព័ត៌មានសុវត្ថិភាពឡើងវិញ?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">ព័ត៌មាននេះត្រូវបានរក្សាទុកក្នុងមូលដ្ឋានទិន្នន័យដែលបានកាណាល់កូដសម្ងាត់។ ប៉ុន្តែ ដើម្បីបើកមើលខ្លឹមសារលើកម្មវិធីបើកខាងក្រៅ តម្រូវអោយវិកូដនីយកម្មព័ត៌មានរនេះជាបណ្តោះអាសន្ន និងរក្សាទុកក្នុងថាសផ្ទុក។ តើអ្នកប្រាកដថាចង់ធ្វើដូច្នេះ?</string>
-  <string name="ConversationItem_error_received_stale_key_exchange_message">បញ្ហា ទទួលបានសារ ផ្លាស់ប្តូរសោរចាស់។</string>
-  <string name="ConversationItem_received_key_exchange_message_tap_to_process">ទទួលបានសារ ផ្លាស់ប្តូរសោរ សូមចុច ដើម្បីដំណើរការ។</string>
+    <string name="ConversationItem_error_not_delivered">មិនបានបញ្ជូន</string>
+    <string name="ConversationItem_received_key_exchange_message_tap_to_process">ទទួលបានសារ ផ្លាស់ប្តូរសោរ សូមចុច ដើម្បីដំណើរការ។</string>
   <string name="ConversationItem_group_action_left">%1$s នាក់បានចាកចេញពីក្រុម។</string>
   <string name="ConversationItem_click_for_details">ចុច សម្រាប់ព័ត៌មានលម្អិត</string>
   <string name="ConversationItem_click_to_approve_unencrypted">ចុច សម្រាប់ជំនួសគ្មានសុវត្ថិភាព</string>
@@ -97,24 +87,14 @@
   <string name="ConversationActivity_reset_secure_session_question">កំណត់ការប្រើប្រាស់សុវត្ថិភាពឡើងវិញ?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">នេះប្រហែលអាចជួយបាន បើអ្នកមានបញ្ហាកាណាល់កូដក្នុងការសន្ទនានេះ។ សាររបស់អ្នកនឹងត្រូវរក្សាទុក។</string>
   <string name="ConversationActivity_reset">កំណត់ឡើងវិញ</string>
-  <string name="ConversationActivity_delete_thread_question">លុបការសន្ទនា?</string>
-  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">វានឹងលុបសារទាំងអស់ដែលមាននៅក្នុងការសន្ទនានេះ។</string>
-  <string name="ConversationActivity_add_attachment">ភ្ជាប់ឯកសារ?</string>
+    <string name="ConversationActivity_add_attachment">ភ្ជាប់ឯកសារ?</string>
   <string name="ConversationActivity_select_contact_info">ជ្រើសរើសព័ត៌មានទំនាក់ទំនង</string>
   <string name="ConversationActivity_compose_message">បង្កើតសារថ្មី</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">សុំទោស, មានបញ្ហក្នុងការកំណត់ឯកសារភ្ជាប់របស់អ្នក។</string>
-  <string name="ConversationActivity_the_gif_you_selected_was_too_big">រូបភាព gif ដែលអ្នកជ្រើសរើស គឺធំពេកហើយ!</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">សុំទោស វីដេអូដែលបានជ្រើសរើសលើសពីទំហំកំណត់ (%1$skB)។</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">សុំទោស សំឡេងដែលបានជ្រើសរើសលើសពីទំហំកំណត់ (%1$skB)។</string>
-  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">អ្នកទទួល មិនមានSMS ឬ អ៊ីម៉ែល ត្រឹមត្រូវ!</string>
+    <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">អ្នកទទួល មិនមានSMS ឬ អ៊ីម៉ែល ត្រឹមត្រូវ!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">សារទទេ!</string>
   <string name="ConversationActivity_group_members">សមាជិកក្រុម</string>
-  <string name="ConversationActivity_group_conversation">សន្ទនាជាក្រុម</string>
-  <plurals name="ConversationActivity_d_recipients_in_group">
-    <item quantity="other">សមាជិក %d </item>
-  </plurals>
-  <string name="ConversationActivity_saved_draft">រក្សាទុកព្រាង</string>
-  <string name="ConversationActivity_invalid_recipient">អ្នកទទួលមិនត្រឹមត្រូវ!</string>
+    <string name="ConversationActivity_invalid_recipient">អ្នកទទួលមិនត្រឹមត្រូវ!</string>
   <string name="ConversationActivity_calls_not_supported">មិនគាំទ្រការហៅចេញ</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">ឧបករណ៍នេះមិនបង្ហាញដើម្បីគាំទ្រសកម្មភាពការហៅ។</string>
   <string name="ConversationActivity_leave_group">ចាកចេញពីក្រុម?</string>
@@ -125,9 +105,7 @@
   <string name="ConversationActivity_lets_switch_to_signal">តោះដូរទៅកាន់ ស៊ីហ្គណល %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">តោះសូមប្រើនេះ ដើម្បីជជែកគ្នា៖ %1$s</string>
   <string name="ConversationActivity_error_leaving_group">បញ្ហាចាកចេញពីក្រុម</string>
-  <string name="ConversationActivity_mms_not_supported_title">មិនគាំទ្រMMS</string>
-  <string name="ConversationActivity_mms_not_supported_message">សារនេះមិនអាចផ្ញើបាន ដោយប្រព័ន្ធទូរស័ព្ទរបស់អ្នកមិនគាំទ្រMMSទេ។</string>
-  <string name="ConversationActivity_specify_recipient">សូមជ្រើសរើសលេខទំនាក់ទំនង១</string>
+    <string name="ConversationActivity_specify_recipient">សូមជ្រើសរើសលេខទំនាក់ទំនង១</string>
   <string name="ConversationActivity_unblock_this_contact_question">បើកលេខទំនាក់ទំនងនេះ?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">អ្នកនឹងទទួលបានសារ និងការហៅចូលពីលេខទំនាក់ទំនងនេះម្តងទៀត។</string>
   <string name="ConversationActivity_unblock">បើកវិញ</string>
@@ -141,10 +119,7 @@
     <item quantity="other">%d សារមិនទាន់អាន</item>
   </plurals>
   <!--ConversationFragment-->
-  <string name="ConversationFragment_message_details">សារលម្អិត</string>
-  <string name="ConversationFragment_transport_s_sent_received_s">បញ្ជូន៖ %1$s\nបានផ្ញើ/បានទទួល៖ %2$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">អ្នកផ្ញើ៖ %1$s\nបញ្ជូន៖ %2$s\nបានផ្ញើ៖ %3$s\nបានទទួល៖ %4$s</string>
-  <plurals name="ConversationFragment_delete_selected_messages">
+    <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="other">លុបសារដែលបានជ្រើសរើស?</item>
   </plurals>
   <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
@@ -167,16 +142,12 @@
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
     <item quantity="other">កំពុងរក្សា %1$d ឯកសារភ្ជាប់ទៅកាន់ថាសផ្ទុក...</item>
   </plurals>
-  <string name="ConversationFragment_collecting_attahments">កំពុងប្រមូលឯកសារភ្ជាប់...</string>
-  <string name="ConversationFragment_pending">មិនទាន់សម្រេច...</string>
+    <string name="ConversationFragment_pending">មិនទាន់សម្រេច...</string>
   <string name="ConversationFragment_push">ទិន្នន័យ (ស៊ីហ្គណល)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
-  <string name="ConversationFragment_deleting">កំពុងលុប</string>
-  <string name="ConversationFragment_deleting_messages">កំពុងលុបសារ...</string>
-  <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">ស្វែងរក</string>
-  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ពំុមានកម្មវិធីរុករកបានដំឡើងនៅលើឧបករណ៍របស់អ្នកទេ។</string>
+    <!--ConversationListActivity-->
+    <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ពំុមានកម្មវិធីរុករកបានដំឡើងនៅលើឧបករណ៍របស់អ្នកទេ។</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="other">លុបការសន្ទនាដែលបានជ្រើសរើសនេះ?</item>
@@ -189,8 +160,7 @@
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="other">%d សន្ទនារក្សាទុកក្នុងបណ្ណាសារ</item>
   </plurals>
-  <string name="ConversationListFragment_undo">ត្រលប់មកដើមវិញ</string>
-  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">ផ្លាស់ប្តូរការសន្ទនា %d ទៅកាន់ប្រអប់ទទួល</item>
   </plurals>
   <!--ConversationListItem-->
@@ -201,12 +171,9 @@
   <string name="CreateProfileActivity_your_profile_info">ព័ត៌មានអំពីខ្លួនអ្នក</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">ការកំណត់រូបថតប្រវត្តរូបមានបញ្ហា</string>
   <string name="CreateProfileActivity_problem_setting_profile">បញ្ហាក្នុងការកំណត់ប្រវត្តិរូប</string>
-  <string name="CreateProfileActivity_updating_profile">ធ្វើបច្ចុប្បន្នភាពអំពីព័ត៌មានខ្លួនអ្នក</string>
-  <string name="CreateProfileActivity_updating_and_encrypting_profile">ធ្វើបច្ចុប្បន្នភាព និងកាណាល់កូដសម្ងាត់ លើប្រវត្តិរូប</string>
-  <string name="CreateProfileActivity_profile_photo">រូបថតប្រវត្តិរូប</string>
+    <string name="CreateProfileActivity_profile_photo">រូបថតប្រវត្តិរូប</string>
   <string name="CreateProfileActivity_too_long">វែងពេក</string>
-  <string name="CreateProfileActivity_error_capturing_photo_camera_did_not_return_image">បញ្ហាក្នុងការថតរូបភាព, កាមេរ៉ាមិនអាចចាប់រូបភាព</string>
-  <!--CustomDefaultPreference-->
+    <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">ប្រើផ្សេងៗ៖ %s</string>
   <string name="CustomDefaultPreference_using_default">ប្រើលំនាំដើម៖ %s</string>
   <string name="CustomDefaultPreference_none">គ្មាន</string>
@@ -220,9 +187,7 @@
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">ពេលផ្តាច់តំណភ្ជាប់ឧបករណ៍នេះ អ្នកនឹងមិនអាចផ្ញើ និងទទួលសារទៀតទេ។ </string>
   <string name="DeviceListActivity_network_connection_failed">ការតភ្ជាប់បណ្តាញបរាជ័យ</string>
   <string name="DeviceListActivity_try_again">ព្យាយាមម្តងទៀត</string>
-  <string name="DeviceListActivity_unlinking_device">កំពុងផ្តាច់ឧបករណ៍...</string>
-  <string name="DeviceListActivity_unlinking_device_no_ellipsis">កំពុងផ្តាច់ឧបករណ៍</string>
-  <string name="DeviceListActivity_network_failed">បណ្តាញបរាជ័យ!</string>
+    <string name="DeviceListActivity_network_failed">បណ្តាញបរាជ័យ!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">ឧបករណ៍មិនមានឈ្មោះ</string>
   <string name="DeviceListItem_linked_s">បានភ្ជាប់ %s</string>
@@ -273,8 +238,7 @@
   <string name="GroupCreateActivity_actionbar_mms_title">ក្រុមMMSថ្មី</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">អ្នកបានជ្រើសរើសលេខទំនាក់ទំនងមួយ ដែលមិនស្គាល់ ក្រុមស៊ីហ្គណល។ ដូច្នេះ ក្រុមនេះនឹងទៅជា MMS។</string>
   <string name="GroupCreateActivity_youre_not_registered_for_signal">អ្នកមិនបានចុះឈ្មោះសម្រាប់ប្រើ ផ្ញើសារ និងការហៅចេញស៊ីហ្គណល ដូច្នេះក្រុមស៊ីហ្គណល ត្រូវបានបិទ។ សូមព្យាយាមចុះឈ្មោះសារជាថ្មីក្នុង ការកំណត់ &gt; កម្រិតខ្ពស់។</string>
-  <string name="GroupCreateActivity_contacts_mms_exception">មានបញ្ហាដែលមិនបានរំពឹងទុកកើតឡើង ធ្វើអោយការបង្កើតក្រុមបរាជ័យ។</string>
-  <string name="GroupCreateActivity_contacts_no_members">អ្នកត្រូវមានសមាជិកយ៉ាងហោច១នាក់ នៅក្នុងក្រុម!</string>
+    <string name="GroupCreateActivity_contacts_no_members">អ្នកត្រូវមានសមាជិកយ៉ាងហោច១នាក់ នៅក្នុងក្រុម!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">សមាជិក១ក្នុងក្រុមរបស់អ្នក មានលេខទំនាក់ទំនងមិនត្រឹមត្រូវ។ សូមកែ ឬលុប លេខទំនាក់ទំនងនោះ ហើយព្យាយាមម្តងទៀត។</string>
   <string name="GroupCreateActivity_avatar_content_description">រូបតំណាងក្រុម</string>
   <string name="GroupCreateActivity_menu_apply_button">អនុវត្ត</string>
@@ -299,12 +263,7 @@
 នាំចូលម្តងទៀតនឹងធ្វើឲ្យមានសារស្ទួនគ្នា។</string>
   <string name="ImportFragment_import">នាំចូល</string>
   <string name="ImportFragment_cancel">បោះបង់</string>
-  <string name="ImportFragment_restore_encrypted_backup">ស្ដារការបម្រុងទុកដែលបានកាណាល់កូដសម្ងាត់?</string>
-  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
-ការស្តារឡើងវិញការបម្រុងទុកមួយ នឹងលុបចោលទាំងស្រុងលើសោរ កំណត់នានា និង
-សារ ដែលមានស្រាប់របស់អ្នក។ អ្នកនឹងបាត់បង់ព័ត៌មានដែលមានក្នុងកម្មវិធី ស៊ីហ្គណល ឥឡូវនេះ ប៉ុន្តែមិនប៉ះពាល់ដល់ការបម្រុងទេ។</string>
-  <string name="ImportFragment_restore">ស្តារឡើងវិញ</string>
-  <string name="ImportFragment_import_plaintext_backup">នាំចូលការបម្រុងទុកជាអក្សរ?</string>
+    <string name="ImportFragment_import_plaintext_backup">នាំចូលការបម្រុងទុកជាអក្សរ?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">នេះនឹងនាំចូល
 សារពីការបម្រុងទុកជាអក្សរ។ បើអ្នកធ្លាប់បាននាំចូលការបម្រុងទុកនេះពីមុនហើយ 
 នាំចូលម្តងទៀតនឹងធ្វើអោយមានសារស្ទួនគ្នា។
@@ -314,11 +273,7 @@
   <string name="ImportFragment_no_plaintext_backup_found">រកមិនឃើញការបម្រុងទុកជាអក្សរ!</string>
   <string name="ImportFragment_error_importing_backup">មានបញ្ហានាំចូលការបម្រុងទុក!</string>
   <string name="ImportFragment_import_complete">បម្រុងទុកជោគជ័យ!</string>
-  <string name="ImportFragment_restoring">កំពុងស្តារឡើងវិញ</string>
-  <string name="ImportFragment_restoring_encrypted_backup">កំពុងស្ដារការបម្រុងទុកដែលបានកាណាល់កូដសម្ងាត់...</string>
-  <string name="ImportFragment_no_encrypted_backup_found">រកមិនឃើញការបម្រុងទុកកាណាល់កូដសម្ងាត់!</string>
-  <string name="ImportFragment_restore_complete">ស្តារឡើងវិញបានជោគជ័យ!</string>
-  <!--InputPanel-->
+    <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">ចុចអោយជាប់ដើម្បីថតសំឡេងជាសារ ដកដៃចេញដើម្បីផ្ញើ</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">ចែករំលែក</string>
@@ -338,27 +293,20 @@
   <string name="InviteActivity_no_app_to_share_to">វាហាក់ដូចជាមិនមានកម្មវិធីណាមួយដើម្បីចែករំលែក។</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">មិត្តភក្តិមិនអោយមិត្តភក្តិជជែកដោយមិនកាណាល់កូដសម្ងាត់។</string>
   <!--KeyScanningActivity-->
-  <string name="KeyScanningActivity_no_scanned_key_found_exclamation">រកមិនឃើញសោរដែលស្កេន!</string>
-  <string name="KeyScanningActivity_install_barcode_Scanner">បញ្ចូលកម្មវិធីអានបាកូដ?</string>
-  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it"> ស៊ីហ្គណល ត្រូវការកម្មវិធីស្កែនបាកូដ សម្រាប់កូដQR</string>
-  <!--MessageDetailsRecipient-->
+    <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">ផ្ញើបរាជ័យ</string>
   <string name="MessageDetailsRecipient_new_safety_number">លេខសុវត្ថិភាពថ្មី</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal"> ស៊ីហ្គណល</string>
   <string name="MessageRetrievalService_background_connection_enabled">បានបើកការតភ្ជាប់ពីក្រោយ</string>
   <!--MmsDownloader-->
-  <string name="MmsDownloader_error_storing_mms">មានបញ្ហារក្សាទុក MMS!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">មានបញ្ហាតភ្ជាប់ទៅកាន់ក្រុមហ៊ុន MMS</string>
-  <string name="MmsDownloader_error_reading_mms_settings">មានបញ្ហាអាននៅក្នុងការកំណត់របស់ក្រុមហ៊ុន​ MMS</string>
+    <string name="MmsDownloader_error_reading_mms_settings">មានបញ្ហាអាននៅក្នុងការកំណត់របស់ក្រុមហ៊ុន​ MMS</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">ព័ត៌មាន</string>
   <string name="MediaOverviewActivity_Documents">ឯកសារ</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">ការហៅចេញស៊ីហ្គណល កំពុងដំណើរការ</string>
-  <string name="NotificationBarManager_missed_call_from_s">ការហៅមិនបានទទួលពី %s</string>
-  <string name="NotificationBarManager_missed_signal_call">ហៅតាមស៊ីហ្គណល មិនបានទទួល</string>
-  <string name="NotificationBarManager__establishing_signal_call">ការហៅចេញ តាមស៊ីហ្គណល</string>
+    <string name="NotificationBarManager__establishing_signal_call">ការហៅចេញ តាមស៊ីហ្គណល</string>
   <string name="NotificationBarManager__incoming_signal_call">ការហៅចូលតាម ស៊ីហ្គណល </string>
   <string name="NotificationBarManager__deny_call">បដិសេធការហៅចូល</string>
   <string name="NotificationBarManager__answer_call">ទទួលការហៅចូល</string>
@@ -392,14 +340,11 @@
   <string name="DeviceProvisioningActivity_link_this_device">ភ្ជាប់ឧបករណ៍នេះ?</string>
   <string name="DeviceProvisioningActivity_cancel">បោះបង់</string>
   <string name="DeviceProvisioningActivity_continue">បន្ត</string>
-  <string name="DeviceProvisioningActivity_title">ភ្ជាប់ឧបករណ៍នេះ?</string>
-  <string name="DeviceProvisioningActivity_content_intro">វានឹងអាច</string>
+    <string name="DeviceProvisioningActivity_content_intro">វានឹងអាច</string>
   <string name="DeviceProvisioningActivity_content_bullets">
 • អានសារទាំងអស់របស់អ្នក
 \n• ផ្ញើសារជាឈ្មោះអ្នក</string>
-  <string name="DeviceProvisioningActivity_content_progress_title">កំពុងភ្ជាប់ឧបករណ៍</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">កំពុងភ្ជាប់ឧបករណ៍ថ្មី</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">ឧបករណ៍ត្រូវបានទទួលស្គាល់!</string>
+    <string name="DeviceProvisioningActivity_content_progress_success">ឧបករណ៍ត្រូវបានទទួលស្គាល់!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">ឧបករណ៍រកមិនឃើញ។</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">បណ្តាញមានបញ្ហា។</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">កូដQRមិនត្រឹមត្រូវ។</string>
@@ -441,26 +386,16 @@
   <string name="RedPhone_answering">កំពុងឆ្លើយ</string>
   <string name="RedPhone_ending_call">កំពុងបិទការហៅចេញ</string>
   <string name="RedPhone_dialing">កំពុងហៅចេញ</string>
-  <string name="RedPhone_canceling_call">កំពុងផ្តាច់ការហៅ</string>
-  <string name="RedPhone_call_rejected">ការហៅត្រូវបានច្រានចោល</string>
-  <string name="RedPhone_ringing">កំពុងរោទិ៍</string>
+    <string name="RedPhone_ringing">កំពុងរោទិ៍</string>
   <string name="RedPhone_busy">រវល់</string>
   <string name="RedPhone_connected">បានភ្ជាប់</string>
-  <string name="RedPhone_connecting">កំពុងភ្ជាប់</string>
-  <string name="RedPhone_handshake_failed">ការចាប់ដៃបរាជ័យ!</string>
-  <string name="RedPhone_recipient_unavailable">អ្នកទទួលមិនទំនេរ</string>
-  <string name="RedPhone_performing_handshake">កុំពុងចាប់ផ្តើមការចាប់ដៃ</string>
-  <string name="RedPhone_network_failed">បណ្តាញបរាជ័យ!</string>
-  <string name="RedPhone_client_failed">អ្នកប្រើបរាជ័យ</string>
-  <string name="RedPhone_fatal_error">បញ្ហាធ្ងន់ធ្ងរ</string>
-  <string name="RedPhone_login_failed">បញ្ជប់ចូលបរជ័យ!</string>
-  <string name="RedPhone_message_from_the_server">សារពីម៉ាស៊ីនមេ</string>
-  <string name="RedPhone_number_not_registered">លេខមិនទាន់ចុះឈ្មោះ!</string>
+    <string name="RedPhone_recipient_unavailable">អ្នកទទួលមិនទំនេរ</string>
+    <string name="RedPhone_network_failed">បណ្តាញបរាជ័យ!</string>
+    <string name="RedPhone_number_not_registered">លេខមិនទាន់ចុះឈ្មោះ!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">លេខដែលអ្នកកំពុងហៅ មិនគាំទ្រសំឡេងសុវត្ថិភាពទេ!</string>
   <string name="RedPhone_got_it">ទទួលបាន</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_signal">ភ្ជាប់ជាមួយ ស៊ីហ្គណល </string>
-  <string name="RegistrationActivity_select_your_country">ជ្រើសរើសប្រទេសរបស់អ្នក</string>
+    <string name="RegistrationActivity_select_your_country">ជ្រើសរើសប្រទេសរបស់អ្នក</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">អ្នកត្រូវបញ្ជាក់
 លេខកូដប្រទេសរបស់អ្នក</string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">អ្នកត្រូវបញ្ជាក់
@@ -468,12 +403,7 @@
   <string name="RegistrationActivity_invalid_number">លេខទូរស័ព្ទមិនត្រឹមត្រូវ</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">លេខរបស់អ្នក
 ដែលបានបញ្ជាក់(%s) មិនត្រឹមត្រូវ</string>
-  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
-សូមត្រួតពិនិត្យម្តងទៀតថានេះជាលេខទូរស័ព្ទរបស់អ្នក! យើងនឹងផ្ទៀងផ្ទាត់វាជាមួយសារ SMS។
-​</string>
-  <string name="RegistrationActivity_continue">បន្ត</string>
-  <string name="RegistrationActivity_edit">កែប្រែ</string>
-  <string name="RegistrationActivity_missing_google_play_services">រកមិនឃើញ Google Play Services</string>
+    <string name="RegistrationActivity_missing_google_play_services">រកមិនឃើញ Google Play Services</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">ឧបករណ៍នេះរកមិនមាន Google Play Services។ អ្នកនៅតែអាចប្រើប្រាស់ ស៊ីហ្គណល ប៉ុន្តែការកំណត់នេះ អាចកាត់បន្ថយទំនុកចិត្ត ឬល្បឿនដំណើរការ.\n\nប្រសិនបើអ្នក មិនមែនជាអ្នកប្រើកម្រិតខ្ពស់ មិនដំណើរការប្រព័ន្ធប្រតិបត្តិការ Android ROM ឬបានឃើញបញ្ហានេះ សូមទាក់ទង support@whispersystems.org សម្រាប់ជំនួយ។</string>
   <string name="RegistrationActivity_i_understand">ខ្ញុំយល់</string>
   <string name="RegistrationActivity_play_services_error">Play Services មានបញ្ហាា</string>
@@ -481,29 +411,8 @@
   <string name="RegistrationActivity_more_information">ព័ត៌មានបន្ថែម</string>
   <string name="RegistrationActivity_less_information">ខ្វះព័ត៌មាន</string>
   <!--RegistrationProblemsActivity-->
-  <string name="RegistrationProblemsActivity_possible_problems">បញ្ហាដែលអាចកើតមាន</string>
-  <!--RegistrationProgressActivity-->
-  <string name="RegistrationProgressActivity_verifying_number">កំពុងផ្ទៀងផ្ទាត់លេខទូរស័ព្ទ</string>
-  <string name="RegistrationProgressActivity_edit_s">កែប្រែ %s</string>
-  <string name="RegistrationProgressActivity_registration_complete">ការចុះឈ្មោះជោគជ័យ!</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">អ្នកត្រូវបញ្ចូលលេខកូដដែលអ្នកបានទទួលជាមុនសិន</string>
-  <string name="RegistrationProgressActivity_connecting">កំពុងភ្ជាប់</string>
-  <string name="RegistrationProgressActivity_connecting_for_verification">កំពុងភ្ជាប់ដើម្បីផ្ទៀងផ្ទាត់...</string>
-  <string name="RegistrationProgressActivity_network_error">បញ្ហាបណ្តាញ!</string>
-  <string name="RegistrationProgressActivity_unable_to_connect">មិនអាចភ្ជាប់បាន។ សូមត្រួតពិនិត្យការតភ្ជាប់បណ្តាញ និងព្យាយាមម្តងទៀត។</string>
-  <string name="RegistrationProgressActivity_verification_failed">ការផ្ទៀងផ្ទាត់បរាជ័យ!</string>
-  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">លេខកូដផ្ទៀងផ្ទាត់មិនត្រឹមត្រូវ។ សូមព្យាយាមម្តងទៀត។</string>
-  <string name="RegistrationProgressActivity_too_many_attempts">ការព្យាយាមច្រើនដងពេក</string>
-  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">អ្នកបានបញ្ជូនលេខកូដផ្ទៀងផ្ទាត់ខុសច្រើនដងពេកហើយ។ សូមរង់ចាំបន្តិចសិន មុននឹងព្យាយាមម្តងទៀត។</string>
-  <string name="RegistrationProgressActivity_requesting_call">កំពុងស្នើការហៅ</string>
-  <string name="RegistrationProgressActivity_requesting_incoming_call">កំពុងស្នើសុំការផ្ទៀងផ្ទាត់ហៅចូល</string>
-  <string name="RegistrationProgressActivity_server_error">ម៉ាស៊ីនមេមានបញ្ហា</string>
-  <string name="RegistrationProgressActivity_the_server_encountered_an_error">ម៉ាស៊ីនមេមានបញ្ហា។ សូមព្យាយាមម្តងទៀត។</string>
-  <string name="RegistrationProgressActivity_too_many_requests">មានការស្នើសុំច្រើនពេក!</string>
-  <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">អ្នកបានស្នើសុំការហៅចូលម្តងហើយ។ អ្នកអាចស្នើសុំម្តងទៀត ក្នុងពេល20នាទី។ </string>
-  <string name="RegistrationProgressActivity_registration_conflict">ការចុះឈ្មោះស្ទួន</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">លេខនេះបានចុះឈ្មោះលើម៉ាស៊ីនមេផ្សេងរួចហើយ។ អ្នកត្រូវលុបឈ្មោះ នៅទីនោះសិន មុនពេលចុះឈ្មោះនៅទីនេះ។</string>
-  <!--RegistrationService-->
+    <!--RegistrationProgressActivity-->
+    <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">ការចុះឈ្មោះជោគជ័យ</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">ការចុះឈ្មោះ ស៊ីហ្គណល បានជោគជ័យ។</string>
   <string name="RegistrationService_registration_error">ការចុះឈ្មោះមានបញ្ហា</string>
@@ -511,8 +420,7 @@
   <!--RingtonePreference-->
   <string name="RingtonePreference_ringtone_default">សំឡេងរោទិ៍ដើម</string>
   <string name="RingtonePreference_ringtone_silent">គ្មាន</string>
-  <string name="RingtonePreference_ringtone_picker_title">សំឡេងរោទិ៍</string>
-  <string name="RingtonePreference_notification_sound_default">សំឡេងសារជូនដំណឹងដើម</string>
+    <string name="RingtonePreference_notification_sound_default">សំឡេងសារជូនដំណឹងដើម</string>
   <string name="RingtonePreference_alarm_sound_default">សំឡេងរោទិ៍ដើម</string>
   <string name="RingtonePreference_add_ringtone_text">បន្ថែមសំឡេងរោទិ៍</string>
   <string name="RingtonePreference_unable_to_add_ringtone">មិនអាចបន្ថែមសំឡេងរោទិ៍ផ្សេងបាន</string>
@@ -569,9 +477,7 @@
   <string name="VerifyIdentityActivity_no_app_to_share_to">អ្នកហាក់ដូចជាមិនមានកម្មវិធីណាមួយដើម្បីចែករំលែក។</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">គ្មានលេខសុវត្ថិភាព ដើម្បីប្រៀបធៀបក្នុងclipboard</string>
   <!--KeyExchangeInitiator-->
-  <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">ផ្តួចផ្តើមទោះបីជាការស្នើរសុំមានស្រាប់?</string>
-  <string name="KeyExchangeInitiator_send">ផ្ញើ</string>
-  <!--MessageDisplayHelper-->
+    <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">សារដែលបានកាណាលកូដសម្ងាត់មិនត្រឹមត្រូវ</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">កំពុងកាណាលកូដសំម្ងត់ សូមរង់ចាំ...</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">សារអ៊ិនគ្រីបសម្រាប់មិនមានក្នុងកំឡុងពេលប្រើប្រាស់</string>
@@ -580,12 +486,7 @@
   <!--ThreadDatabase-->
   <string name="ThreadDatabase_error_decrypting_message">សារកាណាល់កូដសម្ងាត់មានបញ្ហា</string>
   <!--MmsDatabase-->
-  <string name="MmsDatabase_connecting_to_mms_server">តភ្ជាប់ទៅកាន់ម៉ាស៊ីនមេ MMS </string>
-  <string name="MmsDatabase_downloading_mms">កំពុងទាញយក MMS...</string>
-  <string name="MmsDatabase_mms_download_failed">ការទាញយក MMS បរាជ័យ!</string>
-  <string name="MmsDatabase_downloading">កំពុងទាញយក...</string>
-  <string name="MmsDatabase_mms_pending_download">ចុច និងកែតម្រូវការកំណត់ MMS ដើម្បីបន្តការទាញយក។</string>
-  <string name="MmsDatabase_error_decrypting_message">សារកាណាល់កូដសម្ងាត់មានបញ្ហា</string>
+    <string name="MmsDatabase_error_decrypting_message">សារកាណាល់កូដសម្ងាត់មានបញ្ហា</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">កំពុងវិកូដនីយកម្មMMS  សូមរងចាំ</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">ការណាល់កូដសម្ងាត់សារMMS​ មិនត្រឹមត្រូវ</string>
@@ -604,16 +505,14 @@
   <string name="KeyCachingService_lock">ចាក់សោរជាមួយឃ្លាសម្ងាត់</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">អ្នក</string>
-  <string name="MediaPreviewActivity_cant_display">មិនអាចបង្ហាញរូបភាពនេះ</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">ប្រភេទឯកសារមិនគាំទ្រ</string>
+    <string name="MediaPreviewActivity_unssuported_media_type">ប្រភេទឯកសារមិនគាំទ្រ</string>
   <string name="MediaPreviewActivity_draft">ព្រាង</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d សារថ្មីក្នុង %2$d សន្ទនា</string>
   <string name="MessageNotifier_most_recent_from_s">ថ្មីៗភាពច្រើនមកពី៖ %1$s</string>
   <string name="MessageNotifier_locked_message">សារចាក់សោរ</string>
   <string name="MessageNotifier_media_message_with_text">សារមេឌៀ៖​ %s</string>
-  <string name="MessageNotifier_no_subject">(គ្មានចំណងជើង)</string>
-  <string name="MessageNotifier_message_delivery_failed">សារបញ្ជូនបរាជ័យ។</string>
+    <string name="MessageNotifier_message_delivery_failed">សារបញ្ជូនបរាជ័យ។</string>
   <string name="MessageNotifier_failed_to_deliver_message">បរាជ័យបញ្ជូនសារ។</string>
   <string name="MessageNotifier_error_delivering_message">បញ្ហាបញ្ជូនសារ។</string>
   <string name="MessageNotifier_mark_all_as_read">សម្គាល់ថាបានអានទាំងអស់</string>
@@ -623,13 +522,7 @@
   <string name="MessageNotifier_pending_signal_messages">សារ ស៊ីហ្គណល បញ្ចូនមិនទាន់សម្រេច</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">អ្នកមានសារស៊ីហ្គណល មិនទាន់បញ្ចូនសម្រេច ចុចបើក និងទាញយកមកវិញ</string>
   <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">អ្នកត្រូវកំណត់ MMS លើឧបករណ៍ដោយខ្លួនឯង។</string>
-  <string name="MmsPreferencesFragment__enabled">បានបើក</string>
-  <string name="MmsPreferencesFragment__disabled">បានបិទ</string>
-  <string name="MmsPreferencesFragment__not_set">មិនទាន់កំណត់</string>
-  <string name="MmsPreferencesFragment__invalid_uri">អក្សរដែលវាយបញ្ចូលជាURI មិនត្រឹមត្រូវ</string>
-  <string name="MmsPreferencesFragment__invalid_host">អក្សរដែលវាយបញ្ចូលជាhost មិនត្រឹមត្រូវ</string>
-  <!--QuickResponseService-->
+    <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">មិនមានការឆ្លើយតបភ្លាមៗ នៅពេល ស៊ីហ្គណល ត្រូវបានចាក់សោរ!</string>
   <string name="QuickResponseService_problem_sending_message">សារដែលបានបញ្ជូនមានបញ្ហា!</string>
   <!--SaveAttachmentTask-->
@@ -673,22 +566,17 @@
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">រូបភាពទំនាក់ទំនង</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionlistFragment_select_for">ជ្រើសរើសសម្រាប់</string>
-  <!--blocked_contacts_fragment-->
+    <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">ពុំមានលេខដែលបានបិទ</string>
   <!--contact_selection_recent_activity-->
-  <string name="contact_selection_recent_activity__no_recent_calls">ពុំមានការហៅចេញថ្មីៗ</string>
-  <!--conversation_title_view-->
-  <string name="conversation_title_view__conversation_muted">បិទសំឡេងការសន្ទនា</string>
-  <!--conversation_activity-->
+    <!--conversation_title_view-->
+    <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">សារ ស៊ីហ្គណល</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS គ្មានសុវត្ថិភាព</string>
   <string name="conversation_activity__type_message_mms_insecure">MMS គ្មានសុវត្ថិភាព</string>
   <string name="conversation_activity__from_sim_name">មកពី %1$s</string>
   <string name="conversation_activity__send">ផ្ញើ</string>
-  <string name="conversation_activity__remove">លុប</string>
-  <string name="conversation_activity__window_description">សន្ទនាជាមួយ %1$s</string>
-  <string name="conversation_activity__compose_description">ការបង្កើតសារថ្មី</string>
+    <string name="conversation_activity__compose_description">ការបង្កើតសារថ្មី</string>
   <string name="conversation_activity__emoji_toggle_description">បិទបើកក្តារចុចរូបអារម្មណ៍emoji</string>
   <string name="conversation_activity__attachment_thumbnail">ភ្ជាប់រូបភាពឯកសារ</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">បិទបើកថតឯកសារភ្ជាប់កាមេរ៉ារហ័ស</string>
@@ -697,20 +585,15 @@
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">អូសដើម្បីបោះបង់</string>
   <!--conversation_item-->
-  <string name="conversation_item__mms_downloading_description">សារជាព័ត៌មានកុំពុងទាញយក</string>
-  <string name="conversation_item__mms_image_description">សារជាព័ត៌មាន</string>
+    <string name="conversation_item__mms_image_description">សារជាព័ត៌មាន</string>
   <string name="conversation_item__secure_message_description">សារសុវត្ថិភាព</string>
   <!--conversation_item_sent-->
-  <string name="conversation_item_sent__download">ទាញយក</string>
-  <string name="conversation_item_sent__downloading">កំពុងទាញយក</string>
-  <string name="conversation_item_sent__send_failed_indicator_description">ផ្ញើបរាជ័យ</string>
+    <string name="conversation_item_sent__send_failed_indicator_description">ផ្ញើបរាជ័យ</string>
   <string name="conversation_item_sent__pending_approval_description">រង់ចាំការអនុម័ត</string>
   <string name="conversation_item_sent__delivered_description">បានបញ្ចូន</string>
   <!--conversation_item_received-->
-  <string name="conversation_item_received__download">ទាញយក</string>
-  <string name="conversation_item_received__contact_photo_description">រូបភាពទំនាក់ទំនង</string>
-  <string name="conversation_item_received__downloading">កំពុងទាញយក</string>
-  <!--audio_view-->
+    <string name="conversation_item_received__contact_photo_description">រូបភាពទំនាក់ទំនង</string>
+    <!--audio_view-->
   <string name="audio_view__play_accessibility_description">បើក</string>
   <string name="audio_view__pause_accessibility_description">ផ្អាក់</string>
   <string name="audio_view__download_accessibility_description">ទាញយក</string>
@@ -771,14 +654,11 @@
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">ពុំរកមិនឃើញអ្វីទេ</string>
   <!--import_export_fragment-->
-  <string name="import_export_fragment__export">នាំចេញ</string>
-  <string name="import_export_fragment__import">នាំចូល</string>
-  <!--log_submit_activity-->
+    <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">មិនអាចអានកំណត់ត្រាដែលមានលើឧបករណ៍អ្នកបាន។ អ្នកនៅតែអាចប្រើ ADB ដើម្បីទាញយកកំណត់ត្រាកំហុសជំនួសវិញ។​</string>
   <string name="log_submit_activity__thanks">អរគុណសម្រាប់ការជួយរបស់អ្នក!</string>
   <string name="log_submit_activity__submitting">កំពុងបញ្ជូន</string>
-  <string name="log_submit_activity__posting_logs">ប្រកាសកំណត់ហេតុទៅកាន់ gist...</string>
-  <string name="log_submit_activity__no_browser_installed">ពុំមានកម្មវិធីរុករកបានដំឡើងទេ</string>
+    <string name="log_submit_activity__no_browser_installed">ពុំមានកម្មវិធីរុករកបានដំឡើងទេ</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">តើអ្នកចង់នាំចូលសារជាអក្សរដែលមានស្រាប់ ចូលក្នុងមូលដ្ឋានទិន្នន័យដែលមានកាណាល់កូដសម្ងាត់របស់ស៊ីហ្គណលទេ?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">ប្រព័ន្ទទិន្នន័យលំនាំដើម នឹងមិនត្រូវបានកែប្រែ ឬផ្លាស់ប្តូរ ដោយគ្រប់វិធី។ </string>
@@ -792,9 +672,7 @@
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">នាំចេញការបម្រុងទុក ដែលគាំទ្រ ‘ការបម្រុង និងស្តារ SMS’ ទៅកាន់ថាសផ្ទុក</string>
   <string name="import_fragment__import_system_sms_database">នាំចូលប្រព័ន្ធទិន្នន័យ​ SMS</string>
   <string name="import_fragment__import_the_database_from_the_default_system">នាំចូលទិន្នន័យពីកម្មវិធីផ្ញើសារលំនាំដើម</string>
-  <string name="import_fragment__restore_encrypted_backup">ស្ដារការបម្រុងទុកដែលបានអ៊ិនគ្រីប</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">ស្តារការបម្រុងទុក ស៊ីហ្គណលដែលបានកាណាល់កូដសម្ងាត់នំាចេញមកប្រើ</string>
-  <string name="import_fragment__import_plaintext_backup">នាំចូលការបម្រុងទុកជាអក្សរ</string>
+    <string name="import_fragment__import_plaintext_backup">នាំចូលការបម្រុងទុកជាអក្សរ</string>
   <string name="import_fragment__import_a_plaintext_backup_file">នាំចូលការបម្រុងទុក ដែលគាំទ្រ ‘ការបម្រុង និងស្តារ SMS’ ។</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">មើលសារសន្ទនាទាំងស្រុង</string>
@@ -822,93 +700,25 @@
   <string name="profile_create_activity__who_can_see_this_information">នរណាខ្លះអាចឃើញព័ត៌មាននេះ?</string>
   <string name="profile_create_activity__your_name">ឈ្មោះរបស់អ្នក</string>
   <!--recipient_preferences_activity-->
-  <string name="recipient_preference_activity__blocked">បាន​បិទ</string>
-  <!--recipient_preferences-->
+    <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">បិទសំឡេងការសន្ទនា</string>
-  <string name="recipient_preferences__disable_notifications_for_this_conversation">បិទសារជូនដំណឺងសម្រាប់ការសន្ទនានេះ</string>
-  <string name="recipient_preferences__notification_sound">សំឡេងសារជូនដំណឹង</string>
+    <string name="recipient_preferences__notification_sound">សំឡេងសារជូនដំណឹង</string>
   <string name="recipient_preferences__vibrate">ញ័រ</string>
   <string name="recipient_preferences__block">បិទ</string>
   <string name="recipient_preferences__color">ពណ៌</string>
-  <string name="recipient_preferences__color_for_this_contact">ដាក់ពណ៌សម្រាប់ការទំនាក់ទំនងនេះ</string>
-  <string name="recipient_preferences__view_safety_number">មើលលេខសុវត្ថិភាព</string>
+    <string name="recipient_preferences__view_safety_number">មើលលេខសុវត្ថិភាព</string>
   <string name="recipient_preferences__chat_settings">ការកំណត់សារសន្ទនា</string>
   <string name="recipient_preferences__privacy">ឯកជនភាព</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">ការហៅស៊ីហ្គណល</string>
-  <string name="redphone_call_controls__end_call">បញ្ចប់ការហៅ</string>
-  <string name="redphone_call_controls__audio">សំឡេង</string>
-  <string name="redphone_call_controls__mute">បិទសំឡេង</string>
+    <string name="redphone_call_controls__mute">បិទសំឡេង</string>
   <string name="redphone_call_controls__signal_call">ការហៅស៊ីហ្គណល</string>
   <!--registration_activity-->
-  <string name="registration_activity__verify_your_number_to_connect_with_signal">
-ផ្ទៀងផ្ទាត់លេខទូរស័ព្ទអ្នក ដើម្បីភ្ជាប់ទៅកាន់ស៊ីហ្គណល។
- </string>
-  <string name="registration_activity__your_country">ប្រទេសរបស់អ្នក</string>
-  <string name="registration_activity__your_country_code_and_phone_number">លេខកូដប្រទេសអ្នក និង
-លេខទូរស័ព្ទ
-​</string>
-  <string name="registration_activity__phone_number">លេខទូរស័ព្ទ</string>
-  <string name="registration_activity__register">ចុះឈ្មោះ</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">ស៊ីហ្គណល បានធ្វើឲ្យការទំនាក់ទំនងងាយស្រួល ដោយប្រើប្រាស់លេខទូរស័ព្ទ និងបញ្ជីទំនាក់ទំនងរបស់អ្នក។ មិត្តភក្តិ និងលេខទំនាក់ទំនង ដែលដឹងពីរបៀបទាក់ទងអ្នកតាមលេខទូរស័ព្ទ គឺអាចទាក់ទងអ្នក យ៉ាងងាយស្រួលតាម ស៊ីហ្គណល.\n\nការចុះឈ្មោះ នឹងបញ្ជូនព័ត៌មានទំនាក់ទំនងមួយចំនួនទៅកាន់ម៉ាស៊ីនមេ។ តែវាមិនរក្សាទុកអ្វីឡើយ។</string>
-  <string name="registration_activity__powered_by_twilio">ឧបត្ថម្ភដោយ twilio</string>
-  <!--registration_problems-->
-  <string name="registration_problems__some_possible_problems_include">បញ្ហាដែលអាចកើតឡើង
-មួយចំនួន រួមមាន៖</string>
-  <string name="registration_problems__sms_interceptors">ស្ទាក់ចាប់SMS។</string>
-  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
-កម្មវិធីផ្ញើសារមួយចំនួន ដូចជា Handcent ឬ GoSMS មានឥរិយាបថមិនល្អ និងរារាំងការផ្ញើចូល​SMSទាំងអស់។ សូមត្រួតពិនិត្យមើល ថាតើអ្នកទទួលបានសារដែលចាប់ផ្តើមពីឃ្លា 
-\'លេខកូដផ្ទៀងផ្ទាត់ស៊ីហ្គណលរបស់អ្នក:\' ក្នុងករណីខ្លះ អ្នកត្រូវកំណត់កម្មវិធីផ្ញើសាររបស់អ្នក 
-ដើម្បីអនុញ្ញាតទទួលសារបាន។</string>
-  <string name="registration_problems__incorrect_number">លេខមិនត្រឹមត្រូវ។</string>
-  <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
-សូមត្រួតពិនិត្យដើម្បីបញ្ជាក់ថាលេខទូរស័ព្ទ
-និងទម្រង់តំបន់របស់អ្នក
-អោយបានត្រឹមត្រូវ។</string>
-  <string name="registration_problems__google_voice">សំឡេងGoogle</string>
-  <string name="registration_problems__signal_will_not_work_with_google_voice_numbers">
- ស៊ីហ្គណល មិនដំណើរការជាមួយ ​Google លេខសំឡេងទេ។
- </string>
-  <!--registration_progress_activity-->
-  <string name="registration_progress_activity__voice_verification">ការផ្ទៀងផ្ទាត់សំឡេង</string>
-  <string name="registration_progress_activity__signal_can_also_call_you_to_verify_your_number">
-ស៊ីហ្គណល អាចហៅទៅលេខទូរសព្ទអ្នកដើម្បីផ្ទៀងផ្ទាត់។ ចុច \'ហៅខ្ញុំ\' និងបញ្ចូលលេខកូដ៦ខ្ទង់
-ដែលអ្នកបានលឺខាងក្រោម។</string>
-  <string name="registration_progress_activity__verify">ផ្ទៀងផ្ទាត់</string>
-  <string name="registration_progress_activity__call_me">ហៅខ្ញុំ</string>
-  <string name="registration_progress_activity__edit_number">កែលេខ</string>
-  <string name="registration_progress_activity__connectivity_error">បញ្ហាការតភ្ជាប់</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server"> ស៊ីហ្គណល មិនអាចភ្ជាប់ទៅកាន់ម៉ាស៊ីនមេទេ។</string>
-  <string name="registration_progress_activity__some_possible_problems_include">បញ្ហាដែលអាចកើតឡើង
-មួយចំនួន រួមមាន៖</string>
-  <string name="registration_progress_activity__no_network_connectivity">គ្មានការតភ្ជាប់
-បណ្តាញ</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">ឧបករណ៍អ្នក
-ត្រូវការភ្ជាប់បណ្តាញអីុធឺណែតដើម្បីប្រើប្រាស់មុខងារ ស៊ីហ្គណល។ សូមត្រួតពិនិត្យថា 
-ឧបករណ៍បានភ្ជាប់ជាមួយ​ទិន្នន័យទូរស័ព្ទ ឬក៏ Wi-Fi។
-​</string>
-  <string name="registration_progress_activity__restrictive_firewall">របាំង firewall តឹងរ៉ឹង។</string>
-  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
-បើអ្នកភ្ជាប់តាម Wi-Fi អ្នកអាចត្រូវបានគេបិទមិនអោយភ្ជាប់ទៅកាន់ម៉ាស៊ីនមេ Signal ។ សូមសាកល្បងបណ្តាញផ្សេង ឬ ទិន្នន័យទូរស័ព្ទ។</string>
-  <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
- ស៊ីហ្គណល នឹងផ្ទៀងផ្ទាត់លេខរបស់អ្នក ជាមួយសារផ្ទៀងផ្ទាត់SMS។
-​</string>
-  <string name="registration_progress_activity__connecting">កំពុងតភ្ជាប់...</string>
-  <string name="registration_progress_activity__waiting_for_sms_verification">កំពុងរង់ចាំ SMS
-ផ្ទៀងផ្ទាត់</string>
-  <string name="registration_progress_activity__registering_with_server">កំពុងចុះឈ្មោះជាមួយម៉ាស៊ីនមេ...</string>
-  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">នេះ
-អាចចំណាយពេលខ្លះ។ សូមអត់ធ្មត់ យើងនឹងជូនដំណឹងដល់អ្នកនៅពេលការផ្ទៀងផ្ទាត់បានបញ្ចប់។</string>
-  <string name="registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message">
- ស៊ីហ្គណលហួសពេល ខណៈពេលរង់ចាំផ្ទៀងផ្ទាត់សារSMS។
-​ </string>
-  <string name="registration_progress_activity__sms_verification_failed">សារ SMS ផ្ទៀងផ្ទាត់
-បរាជ័យ។</string>
-  <string name="registration_progress_activity__generating_keys">កំពុងបង្កើតសោរ...</string>
-  <string name="registration_progress_activity__alert">ដំណឹង</string>
-  <string name="registration_progress_activity__telephone">ទូរស័ព្ទ</string>
-  <string name="registration_progress_activity__check">ត្រួតពិនិត្យ</string>
-  <!--recipients_panel-->
+    <string name="registration_activity__phone_number">លេខទូរស័ព្ទ</string>
+    <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">ស៊ីហ្គណល បានធ្វើឲ្យការទំនាក់ទំនងងាយស្រួល ដោយប្រើប្រាស់លេខទូរស័ព្ទ និងបញ្ជីទំនាក់ទំនងរបស់អ្នក។ មិត្តភក្តិ និងលេខទំនាក់ទំនង ដែលដឹងពីរបៀបទាក់ទងអ្នកតាមលេខទូរស័ព្ទ គឺអាចទាក់ទងអ្នក យ៉ាងងាយស្រួលតាម ស៊ីហ្គណល.\n\nការចុះឈ្មោះ នឹងបញ្ជូនព័ត៌មានទំនាក់ទំនងមួយចំនួនទៅកាន់ម៉ាស៊ីនមេ។ តែវាមិនរក្សាទុកអ្វីឡើយ។</string>
+    <!--registration_problems-->
+    <!--registration_progress_activity-->
+    <!--recipients_panel-->
   <string name="recipients_panel__to"><small>បញ្ចូលឈ្មោះ និងលេខទូរស័ព្ទ</small></string>
   <string name="recipients_panel__add_members">ថែមសមាជិក</string>
   <!--unknown_sender_view-->
@@ -936,14 +746,11 @@
   <string name="AndroidManifest__create_passphrase">បង្កើតឃ្លាសម្ងាត់</string>
   <string name="AndroidManifest__enter_passphrase">បញ្ចូលឃ្លាសម្ងាត់</string>
   <string name="AndroidManifest__select_contacts">ជ្រើសរើសលេខទំនាក់ទំនង</string>
-  <string name="AndroidManifest__signal_detected">ស៊ីហ្គណលបានរកឃើញ</string>
-  <string name="AndroidManifest__change_passphrase">ផ្លាស់ប្តូរឃ្លាសម្ងាត់</string>
+    <string name="AndroidManifest__change_passphrase">ផ្លាស់ប្តូរឃ្លាសម្ងាត់</string>
   <string name="AndroidManifest__verify_safety_number">ផ្ទៀងផ្ទាត់លេខសុវត្ថិភាព</string>
   <string name="AndroidManifest__log_submit">បញ្ជូនកំណត់ហេតុកំហុស</string>
   <string name="AndroidManifest__media_preview">ការបង្ហាញសារ</string>
-  <string name="AndroidManifest__all_media">ព័ត៌មានទាំងអស់</string>
-  <string name="AndroidManifest__all_media_named">ព័ត៌មានទាំងអស់ជាមួយ %1$s</string>
-  <string name="AndroidManifest__message_details">សារលម្អិត</string>
+    <string name="AndroidManifest__message_details">សារលម្អិត</string>
   <string name="AndroidManifest__linked_devices">ភ្ជាប់ឧបករណ៍</string>
   <string name="AndroidManifest__invite_friends">អញ្ជើញមិត្តភក្តិ</string>
   <string name="AndroidManifest_archived_conversations">សន្ទនាក្នុងបណ្ណសារ</string>
@@ -979,19 +786,14 @@
     <item quantity="other">%d ម៉ោង</item>
   </plurals>
   <!--preferences.xml-->
-  <string name="preferences__general">ទូទៅ</string>
-  <string name="preferences__sms_mms">SMS និង MMS</string>
+    <string name="preferences__sms_mms">SMS និង MMS</string>
   <string name="preferences__pref_all_sms_title">ទទួល SMS ទាំងអស់</string>
   <string name="preferences__pref_all_mms_title">ទទួល MMS ទាំងអស់</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">ប្រើ ស៊ីហ្គណល សម្រាប់សារជាអក្សរដែលចូលមកទាំងអស់</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">ប្រើ ស៊ីហ្គណលសម្រាប់សារពហុមេឌៀដែលចូលមកទាំងអស់</string>
-  <string name="preferences__input_settings">ការកំណត់ការបញ្ចូល</string>
-  <string name="preferences__enable_enter_key_title">បើកប្រើ Enter </string>
-  <string name="preferences__replace_smiley_with_enter_key">ជំនួសក្តារចុចញញឹម ជាមួយ Enter </string>
-  <string name="preferences__pref_enter_sends_title">ចុច Enter ដើម្បីផ្ញើ</string>
+    <string name="preferences__pref_enter_sends_title">ចុច Enter ដើម្បីផ្ញើ</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">ចុច Enter នឹងផ្ញើសារអក្សរ</string>
-  <string name="preferences__display_settings">ការកំណត់ការបង្ហាញ</string>
-  <string name="preferences__choose_identity">ជ្រើសរើសអត្តសញ្ញាណ</string>
+    <string name="preferences__choose_identity">ជ្រើសរើសអត្តសញ្ញាណ</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">ជ្រើសរើសលេខទំនាក់ទំនងពីបញ្ជីទំនាក់ទំនង។</string>
   <string name="preferences__change_passphrase">ផ្លាស់ប្តូរឃ្លាសម្ងាត់</string>
   <string name="preferences__change_your_passphrase">ផ្លាស់ប្តូរឃ្លាសម្ងាត់របស់អ្នក</string>
@@ -1003,21 +805,12 @@
   <string name="preferences__inactivity_timeout_passphrase">ឃ្លាសម្ងាត់ពេលទុកចោល</string>
   <string name="preferences__inactivity_timeout_interval">ចន្លោះម៉ោងពេលទុកចោល</string>
   <string name="preferences__notifications">សារជូនដំណឹង</string>
-  <string name="preferences__enable_message_notifications">បើកសារជូនដំណឹង</string>
-  <string name="preferences__new_contacts_notifications">សារដំណឹងពីលេខទំនាក់ទំនងថ្មី</string>
-  <string name="preferences__show_a_notification_for_new_signal_contacts">បង្ហាញសារដំណឹងសម្រាប់លេខទំនាក់ទំនង ស៊ីហ្គណលថ្មីៗ</string>
-  <string name="preferences__led_color">ពណ៌​LED</string>
+    <string name="preferences__led_color">ពណ៌​LED</string>
   <string name="preferences__led_color_unknown">មិនដឹង</string>
   <string name="preferences__pref_led_blink_title">លំនាំលោតភ្លើង LED</string>
-  <string name="preferences__pref_led_blink_custom_pattern_title">ដាក់លំនាំលោតភ្លើង LED ផ្សេង</string>
-  <string name="preferences__pref_led_blink_custom_pattern_on_for">បើកសម្រាប់៖</string>
-  <string name="preferences__pref_led_blink_custom_pattern_off_for">បិទសម្រាប់៖</string>
-  <string name="preferences__pref_led_blink_custom_pattern_set">លំនាំលោតភ្លើង LED ផ្សេងត្រូវបានកំណត់!</string>
-  <string name="preferences__sound">សំឡេង</string>
+    <string name="preferences__sound">សំឡេង</string>
   <string name="preferences__silent">ស្ងាត់</string>
-  <string name="preferences__in_conversation_notifications">សារជូនដំណឹងក្នុងការសន្ទនា</string>
-  <string name="preferences__play_inthread_notifications">ដាក់សំឡេងផ្តល់ព័ត៌មាន នៅពេលអ្នកចូលមើលការសន្ទនា </string>
-  <string name="preferences__repeat_alerts">ជូនដំណឹងច្រើនដង</string>
+    <string name="preferences__repeat_alerts">ជូនដំណឹងច្រើនដង</string>
   <string name="preferences__never">មិនដែល</string>
   <string name="preferences__one_time">ម្តង</string>
   <string name="preferences__two_times">២ដង</string>
@@ -1025,10 +818,7 @@
   <string name="preferences__five_times">៥ដង</string>
   <string name="preferences__ten_times">១០ដង</string>
   <string name="preferences__vibrate">ញ័រ</string>
-  <string name="preferences__also_vibrate_when_notified">ដាក់ញ័រពេលទទួលដំណឹង</string>
-  <string name="preferences__minutes">នាទី</string>
-  <string name="preferences__hours">ម៉ោង</string>
-  <string name="preferences__green">បៃតង</string>
+    <string name="preferences__green">បៃតង</string>
   <string name="preferences__red">ក្រហម</string>
   <string name="preferences__blue">ខៀវ</string>
   <string name="preferences__orange">ទឹកក្រូច</string>
@@ -1039,14 +829,11 @@
   <string name="preferences__fast">លឿន</string>
   <string name="preferences__normal">ធម្មតា</string>
   <string name="preferences__slow">យឺត</string>
-  <string name="preferences__custom">ផ្សេងៗ</string>
-  <string name="preferences__advanced">កម្រិតខ្ពស់</string>
+    <string name="preferences__advanced">កម្រិតខ្ពស់</string>
   <string name="preferences__privacy">ឯកជនភាព</string>
   <string name="preferences__mms_user_agent">ភ្នាក់ងារអ្នកប្រើប្រាស់ MMS </string>
   <string name="preferences__advanced_mms_access_point_names">កំណត់ MMS ដោយខ្លួនឯង</string>
-  <string name="preferences__enable_manual_mms">ប្រើការកំណត់ MMS ដោយខ្លួនឯង</string>
-  <string name="preferences__override_system_mms_settings">បដិសេធការកំណត់MMS ជាមួយព័ត៌មានខាងក្រោម។</string>
-  <string name="preferences__mmsc_url">MMSC URL</string>
+    <string name="preferences__mmsc_url">MMSC URL</string>
   <string name="preferences__mms_proxy_host">MMS Proxy Host</string>
   <string name="preferences__mms_proxy_port">ច្រកប៉្រូស៊ី MMS </string>
   <string name="preferences__mmsc_username">ឈ្មោះអ្នកប្រើ MMSC </string>
@@ -1076,19 +863,14 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">បើការបានទទួលអាចត្រូវបានបិទ អ្នកនឹងមិនអាចមើលការទទួលអានពីអ្នកផ្សេងទេ។</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">ការស្នើសុំក្តារចុច ដើម្បីបិទការសិក្សាផ្ទាល់ខ្លួន</string>
   <string name="preferences_app_protection__blocked_contacts">បិទលេខទំនាក់ទំនង</string>
-  <string name="preferences_app_protection__safety_numbers_approval">ការអនុម័តលេខសុវត្ថិភាព</string>
-  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">ទាមទារការអនុម័តនៅពេលផ្លាស់ប្តូរលេខសុវត្ថិភាពថ្មី</string>
-  <string name="preferences_notifications__display_in_notifications">បង្ហាញនៅក្នុងសារជូនដំណឹង</string>
-  <string name="preferences_chats__when_using_mobile_data">នៅពេលប្រើប្រាស់ទិន្នន័យទូរសព្ទ</string>
+    <string name="preferences_chats__when_using_mobile_data">នៅពេលប្រើប្រាស់ទិន្នន័យទូរសព្ទ</string>
   <string name="preferences_chats__when_using_wifi">នៅពេលប្រើប្រាស់Wi-Fi</string>
   <string name="preferences_chats__when_roaming">នៅពេលរ៉ូមីង</string>
   <string name="preferences_chats__media_auto_download">ឯកសារទាញយកដោយស្វ័យប្រវត្តិ</string>
   <string name="preferences_chats__message_trimming">តម្រឹមសារ</string>
   <string name="preferences_advanced__use_system_emoji">ប្រើរូបអារម្មណ៍emoji នៅក្នុងប្រព័ន្ធ</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">បិទមិនប្រើរូបអារម្មណ៍emoji របស់ ស៊ីហ្គណល</string>
-  <string name="preferences_advanced__video_calling_beta">សាកល្បងការហៅវីដេអូ</string>
-  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">គាំទ្រការហៅវីដេអូនិងសំឡេង សម្រាប់ជំនាន់ក្រោយ នៅពេលត្រូវបានបើកដោយភាគីទាំងពីរ។ នេះជាមុខងារសាកល្បង។</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">បញ្ជូនការហៅទាំងអស់តាមរយៈម៉ាស៊ីនមេ ស៊ីហ្គណល ដើម្បីជៀសវាងការបង្ហាញអាសយដ្ឋាន អាយភី របស់អ្នក ទៅកាន់លេខទំនាក់ទំនងរបស់អ្នក។ ការអនុញ្ញាតនេះនឹងកាត់បន្ថយគុណភាពការហៅ។</string>
+    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">បញ្ជូនការហៅទាំងអស់តាមរយៈម៉ាស៊ីនមេ ស៊ីហ្គណល ដើម្បីជៀសវាងការបង្ហាញអាសយដ្ឋាន អាយភី របស់អ្នក ទៅកាន់លេខទំនាក់ទំនងរបស់អ្នក។ ការអនុញ្ញាតនេះនឹងកាត់បន្ថយគុណភាពការហៅ។</string>
   <string name="preferences_advanced__always_relay_calls">តែងតែបញ្ជូនការហៅចេញ</string>
   <string name="preferences_app_protection__app_access">ចូលប្រើប្រាស់កម្មវិធី</string>
   <string name="preferences_app_protection__communication">ការទំនាក់ទំនង</string>
@@ -1106,16 +888,10 @@
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__menu_select_all">ជ្រើសរើសទាំងអស់</string>
-  <string name="contact_selection_list__menu_unselect_all">មិនជ្រើសរើសទាំងអស់</string>
-  <string name="contact_selection_list__header_signal_users">អ្នកប្រើប្រាស់ស៊ីហ្គណល</string>
-  <string name="contact_selection_list__header_other">លេខទំនាក់ទំនងទាំងអស់</string>
-  <string name="contact_selection_list__unknown_contact">ផ្ញើសារថ្មីទៅកាន់...</string>
+    <string name="contact_selection_list__unknown_contact">ផ្ញើសារថ្មីទៅកាន់...</string>
   <!--contact_selection-->
-  <string name="contact_selection__menu_finished">បានបញ្ចប់</string>
-  <!--refreshing push directory from menu-->
-  <string name="push_directory__menu_refresh">បើកបញ្ជីទំនាក់ទំនងសារជាថ្មី</string>
-  <!--conversation_callable_insecure-->
+    <!--refreshing push directory from menu-->
+    <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">ហៅចេញ</string>
   <!--conversation_callable_secure-->
   <string name="conversation_callable_secure__menu_call">ការហៅចេញស៊ីហ្គណល</string>
@@ -1134,18 +910,15 @@
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">អញ្ជើញ</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__security">សុវត្ថិភាព</string>
-  <!--conversation_list_batch-->
+    <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">លុបការជ្រើសរើស</string>
   <string name="conversation_list_batch__menu_select_all">ជ្រើសរើសទាំងអស់</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">ដាក់បណ្ណសារដែលបានជ្រើសរើស</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">ដកបណ្ណសារមិនបានជ្រើសរើស</string>
   <!--conversation_list-->
-  <string name="conversation_list__menu_search">ស្វែងរក</string>
-  <!--conversation_list_item_view-->
+    <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">រូបថតទំនាក់ទំនង</string>
-  <string name="conversation_list_item_view__error_alert">បញ្ហាក្នុងការជូនដំណឹង</string>
-  <string name="conversation_list_item_view__archived">បានដាក់ទុកបណ្ណសារ   </string>
+    <string name="conversation_list_item_view__archived">បានដាក់ទុកបណ្ណសារ   </string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">ការសន្ទនាថ្មី</string>
   <!--conversation_secure_verified-->
@@ -1158,8 +931,7 @@
   <string name="conversation__menu_add_attachment">ភ្ជាប់ឯកសារបន្ថែម</string>
   <string name="conversation__menu_edit_group">កែប្រែក្រុម</string>
   <string name="conversation__menu_leave_group">ចាកចេញពីក្រុម</string>
-  <string name="conversation__menu_delete_thread">លុបការសន្ទនា</string>
-  <string name="conversation__menu_view_all_media">ព័ត៌មានទាំងអស់</string>
+    <string name="conversation__menu_view_all_media">ព័ត៌មានទាំងអស់</string>
   <string name="conversation__menu_conversation_settings">កំណត់ការសន្ទនា</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">ពង្រីកការផុសឡើង</string>
@@ -1171,10 +943,7 @@
   <string name="conversation_group_options__conversation">សន្ទនា</string>
   <string name="conversation_group_options__broadcast">ផ្សព្វផ្សាយ</string>
   <!--key_scanning-->
-  <string name="key_scanning__menu_compare">ប្រៀបធៀប</string>
-  <string name="key_scanning__menu_display_your_qr_code">បង្ហាញកូដQRរបស់អ្នក</string>
-  <string name="key_scanning__menu_scan_contacts_qr_code">ស្កែនកូដQRរបស់អ្នកទំនាក់ទំនង</string>
-  <!--text_secure_normal-->
+    <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">សារថ្មី</string>
   <string name="text_secure_normal__menu_new_group">ក្រុមថ្មី</string>
   <string name="text_secure_normal__menu_settings">ការកំណត់</string>
@@ -1193,38 +962,27 @@
   <string name="reminder_header_outdated_build_details_today">កំណែស៊ីហ្គណលរបស់អ្នកនឹងផុតកំណត់ថ្ងៃនេះ។ ចុច បច្ចុប្បន្នភាពទៅកាន់កំណែចុងក្រោយបំផុត។</string>
   <string name="reminder_header_expired_build">កំណែស៊ីហ្គណ​លរបស់អ្នកបានផុតកំណត់!</string>
   <string name="reminder_header_expired_build_details">សារនឹងបញ្ជូនទៅដោយបានមិនជោគជ័យ។ ចុចធ្វើបច្ចុប្បន្នភាពទៅកាន់កំណែចុងក្រោយបំផុត។</string>
-  <string name="reminder_header_expired_build_button">បច្ចុប្បន្នភាព</string>
-  <string name="reminder_header_sms_default_title">ប្រើជាកម្មវិធីផ្ញើសារ</string>
+    <string name="reminder_header_sms_default_title">ប្រើជាកម្មវិធីផ្ញើសារ</string>
   <string name="reminder_header_sms_default_text">ចុច ដើម្បីដាក់ ស៊ីហ្គណល ជាកម្មវិធី​ផ្ញើសាររបស់អ្នក​</string>
-  <string name="reminder_header_sms_default_button">កំណត់</string>
-  <string name="reminder_header_sms_import_title">នាំចូលប្រព័ន្ធ SMS</string>
+    <string name="reminder_header_sms_import_title">នាំចូលប្រព័ន្ធ SMS</string>
   <string name="reminder_header_sms_import_text">ចុចដើម្បីចម្លងសារក្នុងទូរសព្ទដៃរបស់អ្នកចូលទៅក្នុងមូលដ្ឋានទិន្នន័យដែលកាណាល់កូដសម្ងាត់របស់ស៊ីហ្គណល។</string>
-  <string name="reminder_header_sms_import_button">នាំចូល</string>
-  <string name="reminder_header_push_title">បើកការផ្ញើសារ និងការហៅចេញតាមស៊ីហ្គណល</string>
+    <string name="reminder_header_push_title">បើកការផ្ញើសារ និងការហៅចេញតាមស៊ីហ្គណល</string>
   <string name="reminder_header_push_text">ធ្វើឲ្យបទពិសោធន៍ទំនាក់ទំនងប្រសើរឡើង។</string>
-  <string name="reminder_header_push_button">បើក</string>
-  <string name="reminder_header_invite_title">អញ្ជើញចូលប្រើស៊ីហ្គណល</string>
+    <string name="reminder_header_invite_title">អញ្ជើញចូលប្រើស៊ីហ្គណល</string>
   <string name="reminder_header_invite_text">ការសន្ទនាជាមួយ %1$s ឈានទៅកាន់១កម្រិតទៀត។</string>
-  <string name="reminder_header_invite_button">អញ្ជើញ</string>
-  <string name="reminder_header_share_title">អញ្ជើញមិត្តរបស់អ្នក!</string>
+    <string name="reminder_header_share_title">អញ្ជើញមិត្តរបស់អ្នក!</string>
   <string name="reminder_header_share_text">មានមិត្តភក្តិកាន់តែច្រើនប្រើប្រាស់ស៊ីហ្គណល នោះវាកាន់តែប្រសើរឡើង</string>
-  <string name="reminder_header_share_button">ចែករំលែក</string>
-  <string name="reminder_header_close_button">បិទ</string>
-  <!--media_preview-->
+    <!--media_preview-->
   <string name="media_preview__save_title">រក្សាទុក</string>
   <string name="media_preview__forward_title">បញ្ជូនបន្ត</string>
   <string name="media_preview__all_media_title">ព័ត៌មានទាំងអស់</string>
   <!--media_overview-->
-  <string name="media_overview__save_all">រក្សាទុកទាំងអស់</string>
-  <!--media_preview_activity-->
+    <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">មើលព័ត៌មានជាមុន</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">បន្សុតថ្មី</string>
   <!--redphone_audio_popup_menu-->
-  <string name="redphone_audio_popup_menu__handset">ទូរស័ព្ទ</string>
-  <string name="redphone_audio_popup_menu__headset">កាសស្តាប់</string>
-  <string name="redphone_audio_popup_menu__speaker">ឧបករណ៍បំពងសំឡេង</string>
-  <!--Trimmer-->
+    <!--Trimmer-->
   <string name="trimmer__deleting">កំពុងលុប</string>
   <string name="trimmer__deleting_old_messages">កំពុងលុបសារចាស់ៗ...</string>
   <string name="trimmer__old_messages_successfully_deleted">សារចាស់ៗត្រូវបានលុបចេញដោយជោគជ័យ</string>

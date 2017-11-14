@@ -52,12 +52,7 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nuk mund të gjëndet një aplikacion për të përzgjedhur median. </string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_camera">Kamera</string>
-  <string name="AttachmentTypeSelectorAdapter_picture">Foto</string>
-  <string name="AttachmentTypeSelectorAdapter_video">Video</string>
-  <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
-  <string name="AttachmentTypeSelectorAdapter_contact">Informacion mbi kontaktin</string>
-  <!--AudioSlidePlayer-->
+    <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Gabim në luajtjën e audios!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Kontaktet e bllokuara</string>
@@ -76,13 +71,8 @@
   <string name="ContactsDatabase_message_s">Lajmi %s</string>
   <string name="ContactsDatabase_signal_call_s">Thirrje përmes Signal %s</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_message_size_d_kb">Madhësia e lajmit: %d KB</string>
-  <string name="ConversationItem_expires_s">Skadon: %s</string>
-  <string name="ConversationItem_error_not_delivered">Nuk u dërgua</string>
-  <string name="ConversationItem_view_secure_media_question">Shiko medium të sigurt?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Kjo media është ruajtur në bazë të enkriptuar të të dhënave. Fatkeqësisht, për ta hapur me një aplikacion të jashtëm, duhet që të dhënat të dekriptohen dhe të shkruhen në kujtesë. A jeni të sigurt se e dëshironi këtë?</string>
-  <string name="ConversationItem_error_received_stale_key_exchange_message">Gabim, u pranua porosi me çelës të shkëmbyer të ndenjur.</string>
-  <string name="ConversationItem_received_key_exchange_message_tap_to_process">U pranua porosi për shkëmbimin e çelësit, prek për të procesuar.</string>
+    <string name="ConversationItem_error_not_delivered">Nuk u dërgua</string>
+    <string name="ConversationItem_received_key_exchange_message_tap_to_process">U pranua porosi për shkëmbimin e çelësit, prek për të procesuar.</string>
   <string name="ConversationItem_group_action_left">%1$s e ka lëshuar grupin.</string>
   <string name="ConversationItem_click_for_details">Shtypni për më shumë detaje</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Shtypni për zbrapsje të pasiguruar</string>
@@ -97,25 +87,14 @@
   <string name="ConversationActivity_reset_secure_session_question">Reseto sesionin e sigurt?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Kjo mund të ndihmojë në qoftë se keni probleme me enkriptimin në këtë bisedë. Porositë e juaja do të ruhen.</string>
   <string name="ConversationActivity_reset">Reseto</string>
-  <string name="ConversationActivity_delete_thread_question">Fshij bisedën?</string>
-  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">Kjo do të fshijë përgjithmonë të gjitha porositë në këtë bisedë.</string>
-  <string name="ConversationActivity_add_attachment">Shto shtojcë</string>
+    <string name="ConversationActivity_add_attachment">Shto shtojcë</string>
   <string name="ConversationActivity_select_contact_info">Përzgjedh informacionin e kontaktit</string>
   <string name="ConversationActivity_compose_message">Krijo porosi</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Na vjen keq, kishte një gabim në vendosjen e shtojcës suaj.</string>
-  <string name="ConversationActivity_the_gif_you_selected_was_too_big">Gifin zë përzgjodhët është shumë i madh!</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Kërkimfalje, videoja e përzgjedhur i tejkalon kufizimet për madhesinë e porosive (%1$skB).</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Kërkimfalje, audioja e përzgjedhur i tejkalon kufizimet për madhësinë e porosive (%1$skB).</string>
-  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Pranuesi nuk është një SMS ose adresë emaili i vlefshëm!</string>
+    <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Pranuesi nuk është një SMS ose adresë emaili i vlefshëm!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Porosia është e zbrazët!</string>
   <string name="ConversationActivity_group_members">Anëtarët e grupit</string>
-  <string name="ConversationActivity_group_conversation">Bisedë në grup</string>
-  <plurals name="ConversationActivity_d_recipients_in_group">
-    <item quantity="one">1 anëtar</item>
-    <item quantity="other">%d anëtarë</item>
-  </plurals>
-  <string name="ConversationActivity_saved_draft">Hartim i ruajtur</string>
-  <string name="ConversationActivity_invalid_recipient">Pranues jovalid!</string>
+    <string name="ConversationActivity_invalid_recipient">Pranues jovalid!</string>
   <string name="ConversationActivity_calls_not_supported">Thirrjet nuk mbështetën</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Si po duket, kjo paisje nuk mbështet thirje.</string>
   <string name="ConversationActivity_leave_group">Largohu nga grupi?</string>
@@ -126,9 +105,7 @@
   <string name="ConversationActivity_lets_switch_to_signal">Të kalojmë në Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Ta përdorim këtë për të biseduar: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Gabim lënia e grupit</string>
-  <string name="ConversationActivity_mms_not_supported_title">MMS nuk mbështetet</string>
-  <string name="ConversationActivity_mms_not_supported_message">Kjo porosi nuk mund të dërgohet pasi që operatori i juaj nuk mbështet MMS.</string>
-  <string name="ConversationActivity_specify_recipient">Ju lutem, përzgjedhni një kontakt</string>
+    <string name="ConversationActivity_specify_recipient">Ju lutem, përzgjedhni një kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Zhblloko këtë kontakt?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Tani mund sërish të pranoni porosi dhe telefonata nga ky kontakt.</string>
   <string name="ConversationActivity_unblock">Zhblloko</string>
@@ -143,10 +120,7 @@
     <item quantity="other">%d porosi të palexuara</item>
   </plurals>
   <!--ConversationFragment-->
-  <string name="ConversationFragment_message_details">Hollësitë e porosisë</string>
-  <string name="ConversationFragment_transport_s_sent_received_s">Transportur me: %1$s\nDërguar/Pranuar: %2$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Dërguesi: %1$s\nTransportur me: %2$s\nNisur: %3$s\nMarrë: %4$s</string>
-  <plurals name="ConversationFragment_delete_selected_messages">
+    <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Fshij porosinë e zgjedhur?</item>
     <item quantity="other">Fshij porositë e zgjedhura?</item>
   </plurals>
@@ -176,16 +150,12 @@
     <item quantity="one">Duke ruar shtojcën në memorie</item>
     <item quantity="other">Duke ruar %1$d shtojca në memorie</item>
   </plurals>
-  <string name="ConversationFragment_collecting_attahments">Duke mbledhë shtojcat...</string>
-  <string name="ConversationFragment_pending">Po bëhet...</string>
+    <string name="ConversationFragment_pending">Po bëhet...</string>
   <string name="ConversationFragment_push">Data (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
-  <string name="ConversationFragment_deleting">Duke fshirë</string>
-  <string name="ConversationFragment_deleting_messages">Duke fshirë lajmet...</string>
-  <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">Kërko</string>
-  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nuk keni instaluar shfletues në celularin tuaj.</string>
+    <!--ConversationListActivity-->
+    <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nuk keni instaluar shfletues në celularin tuaj.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Fshij bisedën e zgjedhur?</item>
@@ -201,8 +171,7 @@
     <item quantity="one">Biseda u arkivuar</item>
     <item quantity="other">%d biseda të arkivuara</item>
   </plurals>
-  <string name="ConversationListFragment_undo">ÇBËJE</string>
-  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">Biseda u zhvendos në inbox</item>
     <item quantity="other">%d biseda u zhvendosën në inbox</item>
   </plurals>
@@ -225,9 +194,7 @@
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Nëse e shkëputni këtë pajisje, nuk do të mund të dërgojë apo pranojë porosi.</string>
   <string name="DeviceListActivity_network_connection_failed">Dështoi rrjeti</string>
   <string name="DeviceListActivity_try_again">Provo prap</string>
-  <string name="DeviceListActivity_unlinking_device">Po shkëputet pajisja...</string>
-  <string name="DeviceListActivity_unlinking_device_no_ellipsis">Po shkëputet pajisja</string>
-  <string name="DeviceListActivity_network_failed">Dështoi rrjeti!</string>
+    <string name="DeviceListActivity_network_failed">Dështoi rrjeti!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Pajisje e paemruar</string>
   <string name="DeviceListItem_linked_s">U lidh %s</string>
@@ -275,8 +242,7 @@
   <string name="GroupCreateActivity_actionbar_mms_title">Grup MMS i ri</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Keni përzgjedhur kontakt që nuk mbështet Signal grupe, prandaj ky grup do të jetë MMS.Service</string>
   <string name="GroupCreateActivity_youre_not_registered_for_signal">Ju nuk jeni të regjistruar për porosi dhe thirrje Signal, prandaj grupet Signal janë të pamundësuara. Ju lutemi regjistroheni duke shkuar në Rregullimet &gt; Të avancuara.</string>
-  <string name="GroupCreateActivity_contacts_mms_exception">Ndodhi një gabim i paparashikueshëm që e dështoi krijimin e grupit.</string>
-  <string name="GroupCreateActivity_contacts_no_members">Duhet të kesh së paku një person në grup!</string>
+    <string name="GroupCreateActivity_contacts_no_members">Duhet të kesh së paku një person në grup!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Një pjesëmarrës i grupit tuaj ka numër që nuk mund të lexohet në mënyrë korrekte. Ju lutemi riparoni ose fshini kontaktin dhe provoni sërisht.</string>
   <string name="GroupCreateActivity_avatar_content_description">Avatari i grupit</string>
   <string name="GroupCreateActivity_menu_apply_button">Apliko</string>
@@ -301,14 +267,7 @@ keni importuar SMS bazën e të dhënave të sistemit, importimi
 i sërishëm do të rezultojë në mesazhe duplikate.</string>
   <string name="ImportFragment_import">Importo</string>
   <string name="ImportFragment_cancel">Anulo</string>
-  <string name="ImportFragment_restore_encrypted_backup">Kthe kopjen rezervë?</string>
-  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
-Restaurimi i rezervës të enkriptuar do të zëvendësoje plotësisht çelsat, preferencat dhe
-mesazhet tuaja. Do të humbni çdo informatë nga instalimi
-aktual i Signal-it
-por jo ato që i keni në rezervë.</string>
-  <string name="ImportFragment_restore">Kthe</string>
-  <string name="ImportFragment_import_plaintext_backup">Kthe kopjen rezervë tekstuale?</string>
+    <string name="ImportFragment_import_plaintext_backup">Kthe kopjen rezervë tekstuale?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Kjo do të importojë
 mesazhet nga një rezervë të paenkriptuar. Nëse më parë
 keni importuar këtë rezervë
@@ -318,11 +277,7 @@ importimi i sërishëm do të rezultojë ne mesazhe duplikate.</string>
   <string name="ImportFragment_no_plaintext_backup_found">Nuk u gjetë kopje rezervë tekst i pastër!</string>
   <string name="ImportFragment_error_importing_backup">Gabim në importimin e kopjes rezervë!</string>
   <string name="ImportFragment_import_complete">Importimi u krye!</string>
-  <string name="ImportFragment_restoring">Po kthehet</string>
-  <string name="ImportFragment_restoring_encrypted_backup">Po kthehet kopje rezervë e enkriptuar...</string>
-  <string name="ImportFragment_no_encrypted_backup_found">Nuk u gjetë kopje rezervë e shifruar!</string>
-  <string name="ImportFragment_restore_complete">Kthimi u krye!</string>
-  <!--InputPanel-->
+    <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Prek dhe mbaja për të regjistruar një porosi zanore, liroje për ta dërguar</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Ndaje</string>
@@ -344,26 +299,19 @@ importimi i sërishëm do të rezultojë ne mesazhe duplikate.</string>
   <string name="InviteActivity_no_app_to_share_to">Duket që nuk keni epa me të cilat të ndani.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Miqtë nuk lëjnë miqtë të bisedojnë pa shifrim.</string>
   <!--KeyScanningActivity-->
-  <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Nuk u gjetë qelësi i skanerit!</string>
-  <string name="KeyScanningActivity_install_barcode_Scanner">Instalo Barcode Scanner?</string>
-  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal-it i duhet Barcode Scanner për kodet QR.</string>
-  <!--MessageDetailsRecipient-->
+    <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Dështoj dërgimi</string>
   <string name="MessageDetailsRecipient_new_safety_number">Numër sigurie i ri</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Lidhja në prapavijë aktivizuar</string>
   <!--MmsDownloader-->
-  <string name="MmsDownloader_error_storing_mms">Gabim në ruajtjën e MMS!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Gabim lidhja me shërbyesin e MMS</string>
-  <string name="MmsDownloader_error_reading_mms_settings">Gabim në lexim të MMS rregullimeve të ofruesit të rrjetit</string>
+    <string name="MmsDownloader_error_reading_mms_settings">Gabim në lexim të MMS rregullimeve të ofruesit të rrjetit</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Documents">Dokumente</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Thirrje aktive me Signal</string>
-  <string name="NotificationBarManager_missed_call_from_s">Thirrje e humbur nga %s</string>
-  <string name="NotificationBarManager_missed_signal_call">U humb thirrje Signal</string>
-  <string name="NotificationBarManager__establishing_signal_call">Po lidhjet thirrja Signal</string>
+    <string name="NotificationBarManager__establishing_signal_call">Po lidhjet thirrja Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Thirrje ardhëse Signal</string>
   <string name="NotificationBarManager__deny_call">Refuzo thirrjen</string>
   <string name="NotificationBarManager__answer_call">Përgjigjiu thirrjes</string>
@@ -392,14 +340,11 @@ importimi i sërishëm do të rezultojë ne mesazhe duplikate.</string>
   <string name="DeviceProvisioningActivity_link_this_device">Lidh këtë pajisje?</string>
   <string name="DeviceProvisioningActivity_cancel">ANULO</string>
   <string name="DeviceProvisioningActivity_continue">VAZHDO</string>
-  <string name="DeviceProvisioningActivity_title">Lidh këtë pajisje?</string>
-  <string name="DeviceProvisioningActivity_content_intro">Do të jetë në gjëndje të</string>
+    <string name="DeviceProvisioningActivity_content_intro">Do të jetë në gjëndje të</string>
   <string name="DeviceProvisioningActivity_content_bullets">
 • Lexoni të gjitha mesazhet.
 \n• Dërgoni mesazhe në emrin tuaj.</string>
-  <string name="DeviceProvisioningActivity_content_progress_title">Pajisje lidhëse</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Lidhje e pajisjes së re...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Pajisja u aprovua!</string>
+    <string name="DeviceProvisioningActivity_content_progress_success">Pajisja u aprovua!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Asnjë pajisje nuk u gjetë.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Gabim rrjeti.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Kod QR i gabuar.</string>
@@ -441,26 +386,16 @@ importimi i sërishëm do të rezultojë ne mesazhe duplikate.</string>
   <string name="RedPhone_answering">Duke u përgjigjur</string>
   <string name="RedPhone_ending_call">Duke përfunduar thirrjen</string>
   <string name="RedPhone_dialing">Duke thirrë</string>
-  <string name="RedPhone_canceling_call">Duke anuluar thirrjen</string>
-  <string name="RedPhone_call_rejected">Thirrja u anuluar</string>
-  <string name="RedPhone_ringing">Duke cingrruar</string>
+    <string name="RedPhone_ringing">Duke cingrruar</string>
   <string name="RedPhone_busy">Zënë</string>
   <string name="RedPhone_connected">Lidhur</string>
-  <string name="RedPhone_connecting">Po lidhet</string>
-  <string name="RedPhone_handshake_failed">Dorështrëngimi dështoi!</string>
-  <string name="RedPhone_recipient_unavailable">Marrsi s\'është në dispozicion</string>
-  <string name="RedPhone_performing_handshake">Duke shtrënguar dorën</string>
-  <string name="RedPhone_network_failed">Dështoi rrjeti!</string>
-  <string name="RedPhone_client_failed">Klienti dështoi</string>
-  <string name="RedPhone_fatal_error">Gabim fatal</string>
-  <string name="RedPhone_login_failed">Kyçja dështoi!</string>
-  <string name="RedPhone_message_from_the_server">Porosi nga shërbyesi</string>
-  <string name="RedPhone_number_not_registered">Numri i pa regjistruar</string>
+    <string name="RedPhone_recipient_unavailable">Marrsi s\'është në dispozicion</string>
+    <string name="RedPhone_network_failed">Dështoi rrjeti!</string>
+    <string name="RedPhone_number_not_registered">Numri i pa regjistruar</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Numri që thirrët nuk mbështetë zërin e sigurtë!</string>
   <string name="RedPhone_got_it">U bë</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_signal">Lidhu me Signal</string>
-  <string name="RegistrationActivity_select_your_country">Përzgjedh shtetin tënd</string>
+    <string name="RegistrationActivity_select_your_country">Përzgjedh shtetin tënd</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Duhet ta specifikoni
 kodin e shtetit tuaj
     </string>
@@ -470,11 +405,7 @@ numrin tuaj të telefonit
   <string name="RegistrationActivity_invalid_number">Numër jo-valid</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numri që
 e zgjodhët (%s) nuk është korrekt.</string>
-  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
-Kontrolloni/sigurohuni nëse ky është numri juaj! Do ta verifikojmë me një SMS.</string>
-  <string name="RegistrationActivity_continue">Vazhdo</string>
-  <string name="RegistrationActivity_edit">Ndrysho</string>
-  <string name="RegistrationActivity_missing_google_play_services">Mungojnë Shërbimet Google Play</string>
+    <string name="RegistrationActivity_missing_google_play_services">Mungojnë Shërbimet Google Play</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Kësaj pajisje i mungojnë Shërbimet Google Play. Ju ende mund të përdorni Signal, por ky konfigurim mund të rezultojë në uljen e stabilitetit apo të performancës.\n\nNëse ju nuk jeni përdorues i përparuar, nuk po operoni një ROM të Android-it, apo beosni se jeni duke e parë këtë gabimisht, ju lutemi kontaktoni mbështetjen support@whispersystems.org për ndihmë në zgjidhjen e problemit.</string>
   <string name="RegistrationActivity_i_understand">E kuptoj</string>
   <string name="RegistrationActivity_play_services_error">Gabim i Shërbimeve Play</string>
@@ -482,29 +413,8 @@ Kontrolloni/sigurohuni nëse ky është numri juaj! Do ta verifikojmë me një S
   <string name="RegistrationActivity_more_information">Më shumë informacion</string>
   <string name="RegistrationActivity_less_information">Më pak informacion</string>
   <!--RegistrationProblemsActivity-->
-  <string name="RegistrationProblemsActivity_possible_problems">Probleme të mundshme</string>
-  <!--RegistrationProgressActivity-->
-  <string name="RegistrationProgressActivity_verifying_number">Duke verifikuar numrin</string>
-  <string name="RegistrationProgressActivity_edit_s">Ndrysho %s</string>
-  <string name="RegistrationProgressActivity_registration_complete">U përfundua regjistrimi!</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Duhet ta futni kodin që keni marrë së pari</string>
-  <string name="RegistrationProgressActivity_connecting">Duke u lidhur</string>
-  <string name="RegistrationProgressActivity_connecting_for_verification">Duke u lidhur për verifikim...</string>
-  <string name="RegistrationProgressActivity_network_error">Gabim rrjeti!</string>
-  <string name="RegistrationProgressActivity_unable_to_connect">Lidhja nuk është e mundur. Ju lutemi kontrolloni nëse jeni lidhur në rrjetë dhe provoni sërisht.</string>
-  <string name="RegistrationProgressActivity_verification_failed">Dështoi verifkimi!</string>
-  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">Kodi i verifikimit është i gabuar. Ju lutemi provoni sërisht.</string>
-  <string name="RegistrationProgressActivity_too_many_attempts">Përpjekje të tepruara</string>
-  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Keni futur kod të gabuar verifikimi shumë herë. Ju lutemi prisni një minute para se të provoni sërish.</string>
-  <string name="RegistrationProgressActivity_requesting_call">Duke kërkuar thirrjen</string>
-  <string name="RegistrationProgressActivity_requesting_incoming_call">Duke kërkuar thirrje për verifikim...</string>
-  <string name="RegistrationProgressActivity_server_error">Gabim serveri</string>
-  <string name="RegistrationProgressActivity_the_server_encountered_an_error">Serveri hasi në gabim. Të lutem provo prap.</string>
-  <string name="RegistrationProgressActivity_too_many_requests">Përpjekje të tepruara!</string>
-  <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Veç më keni kërkuar një thirje. Mund të kërkoni një tjetër pas 20 minutash.</string>
-  <string name="RegistrationProgressActivity_registration_conflict">Konflikt regjistrimi</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Ky numër është regjistruar tashmë në një server tjetër Signal. Duhet të çregjistroni atje përpara se të regjistroheni këtu.</string>
-  <!--RegistrationService-->
+    <!--RegistrationProgressActivity-->
+    <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">U përfundua regjistrimi</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Signal regjistrimi u kompletua me sukses.</string>
   <string name="RegistrationService_registration_error">Gabim regjistrimi</string>
@@ -551,9 +461,7 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <string name="VerifyIdentityActivity_no_app_to_share_to">Duket që nuk keni epa me të cilat të ndani.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Asnjë numër sigurie për të krahasuar nuk është gjetur në kujtesen e përkohshme</string>
   <!--KeyExchangeInitiator-->
-  <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Inico përkurndër kërkesës ekzistuese?</string>
-  <string name="KeyExchangeInitiator_send">Dërgo</string>
-  <!--MessageDisplayHelper-->
+    <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Porosi e enkriptuar keq</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Duke deshifruar, të lutëm prit...</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Porosia e shifruar për sesionin jo-ekzistues</string>
@@ -562,12 +470,7 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <!--ThreadDatabase-->
   <string name="ThreadDatabase_error_decrypting_message">Gabim gjatë dekriptimit të porosisë.</string>
   <!--MmsDatabase-->
-  <string name="MmsDatabase_connecting_to_mms_server">Duke u lidhur me shërbyes MMS...</string>
-  <string name="MmsDatabase_downloading_mms">Duke shkarkuar MMS...</string>
-  <string name="MmsDatabase_mms_download_failed">Shkarkimi i MMS dështoi!</string>
-  <string name="MmsDatabase_downloading">Duke shkarkuar...</string>
-  <string name="MmsDatabase_mms_pending_download">Shtypni dhe konfiguroni MMS rregullimet për të vazhduar shkarkuar.</string>
-  <string name="MmsDatabase_error_decrypting_message">Gabim gjatë dekptimit të porosisë.</string>
+    <string name="MmsDatabase_error_decrypting_message">Gabim gjatë dekptimit të porosisë.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Duke dekriptuar MMS, ju lutem prisni...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Porosi MMS e enkriptuar keq</string>
@@ -586,16 +489,14 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <string name="KeyCachingService_lock">Kyçe me fjalëkalim</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Ti</string>
-  <string name="MediaPreviewActivity_cant_display">Dështoi në parashikimin e porosisë.</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Tip i medias i pambështetur</string>
+    <string name="MediaPreviewActivity_unssuported_media_type">Tip i medias i pambështetur</string>
   <string name="MediaPreviewActivity_draft">Draft:</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d porosi të reja në %2$d biseda</string>
   <string name="MessageNotifier_most_recent_from_s">Më të fundit nga: %1$s</string>
   <string name="MessageNotifier_locked_message">Porosi e mbyllur</string>
   <string name="MessageNotifier_media_message_with_text">Porosi mediale: %s</string>
-  <string name="MessageNotifier_no_subject">(Pa subjekt)</string>
-  <string name="MessageNotifier_message_delivery_failed">Dështoi dërgimi i porosisë.</string>
+    <string name="MessageNotifier_message_delivery_failed">Dështoi dërgimi i porosisë.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Dështoi dërgimi i porosisë.</string>
   <string name="MessageNotifier_error_delivering_message">Gabim në dërgimin e perosisë.</string>
   <string name="MessageNotifier_mark_all_as_read">Shëno të gjithë si të lexuar</string>
@@ -603,13 +504,7 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <string name="MessageNotifier_media_message">Porosi mediale</string>
   <string name="MessageNotifier_reply">Përgjigju</string>
   <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Për celularin tuaj duhen rregullime manuale MMS.</string>
-  <string name="MmsPreferencesFragment__enabled">Aktivizuar</string>
-  <string name="MmsPreferencesFragment__disabled">Çaktivizar</string>
-  <string name="MmsPreferencesFragment__not_set">Pavendosur</string>
-  <string name="MmsPreferencesFragment__invalid_uri">Teksti i futur nuk ishte URI i vlefshëm</string>
-  <string name="MmsPreferencesFragment__invalid_host">Teksti i futur nuk ishte adresë e vlefshme</string>
-  <!--QuickResponseService-->
+    <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Përgjigja e shpejtë nuk është në dispozicion kur Signal është i mbyllur!</string>
   <string name="QuickResponseService_problem_sending_message">Problem në dërgimin e porosisë!</string>
   <!--SaveAttachmentTask-->
@@ -653,22 +548,17 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Foto e Kontaktit</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionlistFragment_select_for">Zgjedhë për</string>
-  <!--blocked_contacts_fragment-->
+    <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">S\'ka kontakte të bllokuara</string>
   <!--contact_selection_recent_activity-->
-  <string name="contact_selection_recent_activity__no_recent_calls">Nuk ka thirrje së voni.</string>
-  <!--conversation_title_view-->
-  <string name="conversation_title_view__conversation_muted">Biseda u hesht</string>
-  <!--conversation_activity-->
+    <!--conversation_title_view-->
+    <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Porosi në Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS i pambrojtur</string>
   <string name="conversation_activity__type_message_mms_insecure">MMS i pambrojtur</string>
   <string name="conversation_activity__from_sim_name">Nga %1$s</string>
   <string name="conversation_activity__send">Dërgo</string>
-  <string name="conversation_activity__remove">Hiç</string>
-  <string name="conversation_activity__window_description">Bisedë me %1$s</string>
-  <string name="conversation_activity__compose_description">Shkrimi i porosisë</string>
+    <string name="conversation_activity__compose_description">Shkrimi i porosisë</string>
   <string name="conversation_activity__emoji_toggle_description">Shfaq tastaturën emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Foto e shtojcës</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Ndërroje vizatuesin e shtojcave të shpejta te kameres</string>
@@ -677,20 +567,15 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">RRQITË PËR TË ANULUAR</string>
   <!--conversation_item-->
-  <string name="conversation_item__mms_downloading_description">Porosia mediale po shkarkohet</string>
-  <string name="conversation_item__mms_image_description">Porosi mediale</string>
+    <string name="conversation_item__mms_image_description">Porosi mediale</string>
   <string name="conversation_item__secure_message_description">Porosi e sigurtë</string>
   <!--conversation_item_sent-->
-  <string name="conversation_item_sent__download">Shkarko</string>
-  <string name="conversation_item_sent__downloading">Duke u shkarkuar</string>
-  <string name="conversation_item_sent__send_failed_indicator_description">Dërgimi Dështoi</string>
+    <string name="conversation_item_sent__send_failed_indicator_description">Dërgimi Dështoi</string>
   <string name="conversation_item_sent__pending_approval_description">Pritet Aprovimi</string>
   <string name="conversation_item_sent__delivered_description">U dërgua</string>
   <!--conversation_item_received-->
-  <string name="conversation_item_received__download">Shkarko</string>
-  <string name="conversation_item_received__contact_photo_description">Foto e kontaktit</string>
-  <string name="conversation_item_received__downloading">Duke u shkarkuar</string>
-  <!--audio_view-->
+    <string name="conversation_item_received__contact_photo_description">Foto e kontaktit</string>
+    <!--audio_view-->
   <string name="audio_view__play_accessibility_description">Luaj</string>
   <string name="audio_view__pause_accessibility_description">Ndërprerje</string>
   <string name="audio_view__download_accessibility_description">Shkarko</string>
@@ -744,14 +629,11 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Asgjë nuk u gjetë</string>
   <!--import_export_fragment-->
-  <string name="import_export_fragment__export">Eksporto</string>
-  <string name="import_export_fragment__import">Importo</string>
-  <!--log_submit_activity-->
+    <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Historia në pajisjen tuaj nuk mund të lexohet. Mund të përdorni ADB për ta lexuar historinë e gabimeve të përmirsuara.</string>
   <string name="log_submit_activity__thanks">Faleminderit për ndihmën!</string>
   <string name="log_submit_activity__submitting">Duke dorëzuar</string>
-  <string name="log_submit_activity__posting_logs">Duke postuar logun në gist...</string>
-  <string name="log_submit_activity__no_browser_installed">Nuk ka shfletues të instaluar</string>
+    <string name="log_submit_activity__no_browser_installed">Nuk ka shfletues të instaluar</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">A dëshironi t\'i importoni porositë tekstuale në bazën e enkriptuar të të dhënave të Signal-it?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Baza e të dhënave e parazgjedhur nuk do të modifikohet në asnjë mënyrë.</string>
@@ -765,9 +647,7 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">Eksporto një rezervë në tekst të thjeshtë që është kompatibil me \'SMS Rezerv &amp; Restauro\' në memorje.</string>
   <string name="import_fragment__import_system_sms_database">Importo databazën SMS të sistemit</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importo bazën e të dhënave nga aplikacioni i parazgjedhur i sistemit.</string>
-  <string name="import_fragment__restore_encrypted_backup">Kthe kopjen rezervë</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">Kthe Signal kopjen  të enkriptuar rezervë të eksportuar më parë</string>
-  <string name="import_fragment__import_plaintext_backup">Importo kopjen rezervë me tekst të pastër</string>
+    <string name="import_fragment__import_plaintext_backup">Importo kopjen rezervë me tekst të pastër</string>
   <string name="import_fragment__import_a_plaintext_backup_file">Importo një kopje rezervë në teks të thjeshtë. Kompatibil me \'SMS Rezervë &amp; Restauro.\' </string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Shiko bisedën e plotë</string>
@@ -790,86 +670,23 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Shtypni \'OK\' për të dërguar media, porosi në grup,  dhe për të kompletuar rregullimet e kërkuara. Rregullimet MMS për ofruesin e rrjetit tuaj mund t\'i gjeni duke kërkuar \'APN-nën e ofruesit tuaj\'. Do të duhet ta bëni këtë vetëm një herë.</string>
   <!--profile_create_activity-->
   <!--recipient_preferences_activity-->
-  <string name="recipient_preference_activity__blocked">BLLOKUAR</string>
-  <!--recipient_preferences-->
+    <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Shurdho bisedën</string>
-  <string name="recipient_preferences__disable_notifications_for_this_conversation">Çaktivizo lajmërimet për këtë bisedë</string>
-  <string name="recipient_preferences__notification_sound">Zëri i lajmrimit</string>
+    <string name="recipient_preferences__notification_sound">Zëri i lajmrimit</string>
   <string name="recipient_preferences__vibrate">Vibro</string>
   <string name="recipient_preferences__block">Blloko</string>
   <string name="recipient_preferences__color">Ngjyra</string>
-  <string name="recipient_preferences__color_for_this_contact">Ngjyra për këtë kontakt</string>
-  <string name="recipient_preferences__privacy">Privatsi</string>
+    <string name="recipient_preferences__privacy">Privatsi</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Thirrje përmes Signal</string>
-  <string name="redphone_call_controls__end_call">përfundo thirrjen</string>
-  <string name="redphone_call_controls__audio">Audio</string>
-  <string name="redphone_call_controls__mute">Hesht</string>
+    <string name="redphone_call_controls__mute">Hesht</string>
   <string name="redphone_call_controls__signal_call">Thirrje përmes Signal</string>
   <!--registration_activity-->
-  <string name="registration_activity__verify_your_number_to_connect_with_signal">
-        Verifiko numrin tënd të telefonit për t\'u lidhur me Signal.
-    </string>
-  <string name="registration_activity__your_country">SHTETI YT</string>
-  <string name="registration_activity__your_country_code_and_phone_number">PREFIKSI I SHTETIT DHE
-NUMRI I TELEFONIT</string>
-  <string name="registration_activity__phone_number">NUMRI I TELEFONIT</string>
-  <string name="registration_activity__register">Regjistrohu</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal lehtëson komunikimin duke përdorur numrin tuaj ekzistues të telefonit dhe adresarin. Miqtë dhe kontaktet të cilët tashmë e dinë se si të lidhen me ju me telefon do të jenë në gjendje lehtë të ju kontaktojnë në Signal.\n\nRegjistrimi i dërgon disa informacione të kontaktit në shërbyes. Informacioni nuk ruhet.</string>
-  <string name="registration_activity__powered_by_twilio">Fuqizuar nga twilio</string>
-  <!--registration_problems-->
-  <string name="registration_problems__some_possible_problems_include">Disa probleme
-        përfshijnë:
-    </string>
-  <string name="registration_problems__sms_interceptors">Interceptorët e SMS.</string>
-  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
-Disa aplikacione të tjera, siç janë Handcent apo GoSMS,  sjellen keq duke i kapur të gjitha mesazhet ardhëse. Kontrolloni nëse keni pranuar porosi tekstuale që fillon me
-\'Kodi juaj i verifikimit Signal:\', në të cilin rast ju duhet të konfiguroni
-aplikacionin tjetër që t\'i lëshojë porositë t\'ju vijnë në Signal.</string>
-  <string name="registration_problems__incorrect_number">Numër jo i saktë.</string>
-  <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
-Ju lutemi kontrolloni dhe sigurohuni nëse keni futur numrin tuaj në mënyrë të saktë, dhe nëse e keni formatuar saktësisht për regjionin ku ndodheni.</string>
-  <string name="registration_problems__google_voice">Google Voice.</string>
-  <string name="registration_problems__signal_will_not_work_with_google_voice_numbers">
-        Signal nuk do të punoj me numra Google Voice.
-    </string>
-  <!--registration_progress_activity-->
-  <string name="registration_progress_activity__voice_verification">Verifikim me zë</string>
-  <string name="registration_progress_activity__signal_can_also_call_you_to_verify_your_number">
-Signal mund tju bëjë thirrje për të verifikuar numrin tuaj. Shtypni \'Bëj thirrje\' dhe më poshtë futni kodin gjashtë-shiifror që do ta dëgjoni.</string>
-  <string name="registration_progress_activity__verify">Verifiko</string>
-  <string name="registration_progress_activity__call_me">Më thirr</string>
-  <string name="registration_progress_activity__edit_number">Modifiko numrin</string>
-  <string name="registration_progress_activity__connectivity_error">Gabim në lidhje.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal e kishte të pamundur të lidhet me shërbyes.</string>
-  <string name="registration_progress_activity__some_possible_problems_include">Disa probleme
-        të mundshme përfshijnë:
-    </string>
-  <string name="registration_progress_activity__no_network_connectivity">Nuk ka lidhje
-        me rrjet.
-    </string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Paisja juaj duhet të ketë lidhje në rrjet që të mund ta përdor këtë funksion të Signal-it. Sigurohuni nëse jeni lidhur në lidhje celulari apo Wi-Fi.</string>
-  <string name="registration_progress_activity__restrictive_firewall">Murzjarrë kufizues.
-    </string>
-  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
-Nëse jeni lidhur përmes Wi-Fi, është e mundur që qasja te Signal serveri është i bllokuar nga firewall. Provoni një rrjetë tjetër apo lidhuni përmes rrjetit të të dhënave nga celulari.</string>
-  <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-Signal tani do të verifikojë numrin tuaj automatikisht me një SMS konfirmimi.</string>
-  <string name="registration_progress_activity__connecting">Duke u lidhur...</string>
-  <string name="registration_progress_activity__waiting_for_sms_verification">Duke pritur SMS-in
-verifikues...</string>
-  <string name="registration_progress_activity__registering_with_server">Regjistrohet me shërbyes...</string>
-  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Kjo mund të zgjas pak. Ju lutemi për durim, do tju njoftojmë pas kompletimit të verifikimit.</string>
-  <string name="registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message">
-Signal u ndal derisa pritej SMSi për verifikim.</string>
-  <string name="registration_progress_activity__sms_verification_failed">Verifikimi i SMS
-        dështoi.
-    </string>
-  <string name="registration_progress_activity__generating_keys">Duke krijuar çelësat...</string>
-  <string name="registration_progress_activity__alert">Vëmendje</string>
-  <string name="registration_progress_activity__telephone">Telefon</string>
-  <string name="registration_progress_activity__check">Kontrollo</string>
-  <!--recipients_panel-->
+    <string name="registration_activity__phone_number">NUMRI I TELEFONIT</string>
+    <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal lehtëson komunikimin duke përdorur numrin tuaj ekzistues të telefonit dhe adresarin. Miqtë dhe kontaktet të cilët tashmë e dinë se si të lidhen me ju me telefon do të jenë në gjendje lehtë të ju kontaktojnë në Signal.\n\nRegjistrimi i dërgon disa informacione të kontaktit në shërbyes. Informacioni nuk ruhet.</string>
+    <!--registration_problems-->
+    <!--registration_progress_activity-->
+    <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Shkruaj një emër ose numër</small></string>
   <string name="recipients_panel__add_members">Shto pjesëmarrës</string>
   <!--unknown_sender_view-->
@@ -890,14 +707,11 @@ Signal u ndal derisa pritej SMSi për verifikim.</string>
   <string name="AndroidManifest__create_passphrase">Krijo fjalëkalimin</string>
   <string name="AndroidManifest__enter_passphrase">Fut fjalëkalimin</string>
   <string name="AndroidManifest__select_contacts">Përzgjedh kontaktet</string>
-  <string name="AndroidManifest__signal_detected">Signal u detektua</string>
-  <string name="AndroidManifest__change_passphrase">Ndrysho fjalëkalimin</string>
+    <string name="AndroidManifest__change_passphrase">Ndrysho fjalëkalimin</string>
   <string name="AndroidManifest__verify_safety_number">Verifiko numrin sigurie</string>
   <string name="AndroidManifest__log_submit">Dërgo logun e gabimeve</string>
   <string name="AndroidManifest__media_preview">Parapamje e medias</string>
-  <string name="AndroidManifest__all_media">Gjithë mediat</string>
-  <string name="AndroidManifest__all_media_named">Gjitha mediat me %1$s</string>
-  <string name="AndroidManifest__message_details">Hollësitë e porosisë</string>
+    <string name="AndroidManifest__message_details">Hollësitë e porosisë</string>
   <string name="AndroidManifest__linked_devices">Pajisjet e lidhura</string>
   <string name="AndroidManifest__invite_friends">Fto shokët</string>
   <string name="AndroidManifest_archived_conversations">Bisedat e arkivuara</string>
@@ -933,19 +747,14 @@ Signal u ndal derisa pritej SMSi për verifikim.</string>
     <item quantity="other">%d orë</item>
   </plurals>
   <!--preferences.xml-->
-  <string name="preferences__general">Përgjithshëm</string>
-  <string name="preferences__sms_mms">SMS dhe MMS</string>
+    <string name="preferences__sms_mms">SMS dhe MMS</string>
   <string name="preferences__pref_all_sms_title">Merr gjithë SMS</string>
   <string name="preferences__pref_all_mms_title">Merr gjithë MMS</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Përdor Signal për të gjitha SMS-të</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Përdor Signal për të gjitha porositë ardhëse multimediale</string>
-  <string name="preferences__input_settings">Rregullimet Hyrëse</string>
-  <string name="preferences__enable_enter_key_title">Aktivizo butonin Enter</string>
-  <string name="preferences__replace_smiley_with_enter_key">Zëvendëso butonin smiley me Enter</string>
-  <string name="preferences__pref_enter_sends_title">Butoni Enter dërgon</string>
+    <string name="preferences__pref_enter_sends_title">Butoni Enter dërgon</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Prekja e butonin Enter do të dërgoj porosi tekstuale</string>
-  <string name="preferences__display_settings">Trego rregullimet</string>
-  <string name="preferences__choose_identity">Zgjedh identitetin</string>
+    <string name="preferences__choose_identity">Zgjedh identitetin</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Zgjidhni kontaktin tuaj nga lista e kontakteve.</string>
   <string name="preferences__change_passphrase">Ndrysho fjalëkalimin</string>
   <string name="preferences__change_your_passphrase">Ndrysho fjalëkalimin</string>
@@ -957,21 +766,12 @@ Signal u ndal derisa pritej SMSi për verifikim.</string>
   <string name="preferences__inactivity_timeout_passphrase">Fjalëkalim pas një kohe mosveprimi</string>
   <string name="preferences__inactivity_timeout_interval">Interval kohor kur nuk ka aktivitet</string>
   <string name="preferences__notifications">Njoftimet</string>
-  <string name="preferences__enable_message_notifications">Aktivizo njoftimet me porosi</string>
-  <string name="preferences__new_contacts_notifications">Lajmërimet për njoftime të reja</string>
-  <string name="preferences__show_a_notification_for_new_signal_contacts">Shfaq një njotim për kontakte të reja Signal</string>
-  <string name="preferences__led_color">Ngjyra LED</string>
+    <string name="preferences__led_color">Ngjyra LED</string>
   <string name="preferences__led_color_unknown">Panjohur</string>
   <string name="preferences__pref_led_blink_title">Lloji i vezullimit LED</string>
-  <string name="preferences__pref_led_blink_custom_pattern_title">Vendos llojin e vezullimit LED</string>
-  <string name="preferences__pref_led_blink_custom_pattern_on_for">Ndezur për.</string>
-  <string name="preferences__pref_led_blink_custom_pattern_off_for">Ndalur për:</string>
-  <string name="preferences__pref_led_blink_custom_pattern_set">Lloji i vezullimit lend u vendos!</string>
-  <string name="preferences__sound">Zë</string>
+    <string name="preferences__sound">Zë</string>
   <string name="preferences__silent">Heshtur</string>
-  <string name="preferences__in_conversation_notifications">Njoftimet gjatë bisedës</string>
-  <string name="preferences__play_inthread_notifications">Luaj zërin e njoftimit gjatë shikimit të një bisede aktive</string>
-  <string name="preferences__repeat_alerts">Lajmërime të përsëritura</string>
+    <string name="preferences__repeat_alerts">Lajmërime të përsëritura</string>
   <string name="preferences__never">Kurr</string>
   <string name="preferences__one_time">Një herë</string>
   <string name="preferences__two_times">Dy herë</string>
@@ -979,10 +779,7 @@ Signal u ndal derisa pritej SMSi për verifikim.</string>
   <string name="preferences__five_times">Pesë herë</string>
   <string name="preferences__ten_times">Dhjetë herë</string>
   <string name="preferences__vibrate">Vibro</string>
-  <string name="preferences__also_vibrate_when_notified">Poashtu vibro kur të lajmërohet</string>
-  <string name="preferences__minutes">minuta</string>
-  <string name="preferences__hours">horë</string>
-  <string name="preferences__green">Gjelbërt</string>
+    <string name="preferences__green">Gjelbërt</string>
   <string name="preferences__red">Kuq</string>
   <string name="preferences__blue">Kaltër</string>
   <string name="preferences__orange">Portokall</string>
@@ -993,14 +790,11 @@ Signal u ndal derisa pritej SMSi për verifikim.</string>
   <string name="preferences__fast">Shpejt</string>
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Ngadal</string>
-  <string name="preferences__custom">Rregullo</string>
-  <string name="preferences__advanced">Avancuar</string>
+    <string name="preferences__advanced">Avancuar</string>
   <string name="preferences__privacy">Privatsi</string>
   <string name="preferences__mms_user_agent">Agjenti i Përdoruesit MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Rregullimet manuale për MMS</string>
-  <string name="preferences__enable_manual_mms">Përdor rregullimet manuale për MMS</string>
-  <string name="preferences__override_system_mms_settings">Zëvendësoni rregullimet sistemore për MMS me informatat më poshtë.</string>
-  <string name="preferences__mmsc_url">MMSC URL</string>
+    <string name="preferences__mmsc_url">MMSC URL</string>
   <string name="preferences__mms_proxy_host">Host proxy MMS</string>
   <string name="preferences__mms_proxy_port">Port Proxy MMS</string>
   <string name="preferences__mmsc_username">Emri i përdoruesit MMSC</string>
@@ -1026,19 +820,14 @@ Signal u ndal derisa pritej SMSi për verifikim.</string>
   <string name="preferences__support_wifi_calling">Manyra kompatibile \'Thirrje Wifi\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Mundëso nëse pajisja juaj përdor SMS/MMS dorëzim të porosive nëpërmjet WiFi (mundëso vetëm kur \'Thirrje Wifi\' është e mundësuar në pajisje).</string>
   <string name="preferences_app_protection__blocked_contacts">Kontaktet e bllokuara</string>
-  <string name="preferences_app_protection__safety_numbers_approval">Miratim i numrave për siguri</string>
-  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Kërkoni miratim të numrave të rinj të sigurimit në rast se ndryshohen</string>
-  <string name="preferences_notifications__display_in_notifications">Shfaq në lajmërime</string>
-  <string name="preferences_chats__when_using_mobile_data">Kur përdor rrjetin celular</string>
+    <string name="preferences_chats__when_using_mobile_data">Kur përdor rrjetin celular</string>
   <string name="preferences_chats__when_using_wifi">Kur përdor Wi-Fi</string>
   <string name="preferences_chats__when_roaming">Në roaming</string>
   <string name="preferences_chats__media_auto_download">Vetshkarkim i medias</string>
   <string name="preferences_chats__message_trimming">Shkurtimi i porosive</string>
   <string name="preferences_advanced__use_system_emoji">Përdor emoji të sistemit</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Çaktivizo mbështetjen emoji të ndërtuar në Signal</string>
-  <string name="preferences_advanced__video_calling_beta">Beta thirrje video </string>
-  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Përkrahje për thirrjet e gjeneratës së re me video dhe zë kur të aktivizohet nga të dyja palët. Kjo veçori është në beta.</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Drejtoj të gjitha thirrjet përmes shërbyesit Signal për të shmangur zbulimin e adresës së IP-së tuaj gjatë thirrjes. Aktivizimi do të zvogëlojë cilësinë e telefonatës.</string>
+    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Drejtoj të gjitha thirrjet përmes shërbyesit Signal për të shmangur zbulimin e adresës së IP-së tuaj gjatë thirrjes. Aktivizimi do të zvogëlojë cilësinë e telefonatës.</string>
   <string name="preferences_advanced__always_relay_calls">Gjithmonë ndërlidh thirrjet</string>
   <string name="preferences_app_protection__app_access">Qasja e aplikacionit</string>
   <string name="preferences_app_protection__communication">Komunikim</string>
@@ -1055,16 +844,10 @@ Signal u ndal derisa pritej SMSi për verifikim.</string>
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__menu_select_all">Përzgjedhë të gjitha</string>
-  <string name="contact_selection_list__menu_unselect_all">Mos zgjedhë asnjë</string>
-  <string name="contact_selection_list__header_signal_users">PËRDORUESIT E SIGNAL</string>
-  <string name="contact_selection_list__header_other">TË GJITHË KONTAKTET</string>
-  <string name="contact_selection_list__unknown_contact">Porosi e re për...</string>
+    <string name="contact_selection_list__unknown_contact">Porosi e re për...</string>
   <!--contact_selection-->
-  <string name="contact_selection__menu_finished">Përfundoi</string>
-  <!--refreshing push directory from menu-->
-  <string name="push_directory__menu_refresh">Rifresko listën e kontakteve</string>
-  <!--conversation_callable_insecure-->
+    <!--refreshing push directory from menu-->
+    <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Thirre</string>
   <!--conversation_callable_secure-->
   <string name="conversation_callable_secure__menu_call">Thirrje përmes Signal</string>
@@ -1083,18 +866,15 @@ Signal u ndal derisa pritej SMSi për verifikim.</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Fto</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__security">Siguria</string>
-  <!--conversation_list_batch-->
+    <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Fshij të përzgjedhurit</string>
   <string name="conversation_list_batch__menu_select_all">Përzgjedhë të gjitha</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arkiva u përzgjodh</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Çarkivimi i zgjedhur</string>
   <!--conversation_list-->
-  <string name="conversation_list__menu_search">Kërko</string>
-  <!--conversation_list_item_view-->
+    <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Photo e kontaktit</string>
-  <string name="conversation_list_item_view__error_alert">Lajmrim për gabim</string>
-  <string name="conversation_list_item_view__archived">Arkivuar</string>
+    <string name="conversation_list_item_view__archived">Arkivuar</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Lidhje e re</string>
   <!--conversation_secure_verified-->
@@ -1107,8 +887,7 @@ Signal u ndal derisa pritej SMSi për verifikim.</string>
   <string name="conversation__menu_add_attachment">Shto bashkëngjitje</string>
   <string name="conversation__menu_edit_group">Edito grupin</string>
   <string name="conversation__menu_leave_group">Lëre grupin</string>
-  <string name="conversation__menu_delete_thread">Fshij bisedën</string>
-  <string name="conversation__menu_view_all_media">Gjithë mediat</string>
+    <string name="conversation__menu_view_all_media">Gjithë mediat</string>
   <string name="conversation__menu_conversation_settings">Përzgjedhjet e bisedës</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Zgjero balonën</string>
@@ -1120,10 +899,7 @@ Signal u ndal derisa pritej SMSi për verifikim.</string>
   <string name="conversation_group_options__conversation">Biseda</string>
   <string name="conversation_group_options__broadcast">Transmetim</string>
   <!--key_scanning-->
-  <string name="key_scanning__menu_compare">Krahaso</string>
-  <string name="key_scanning__menu_display_your_qr_code">Shfaq kodin tënd QR</string>
-  <string name="key_scanning__menu_scan_contacts_qr_code">Skano kodin QR të kontaktit</string>
-  <!--text_secure_normal-->
+    <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Porosi e re</string>
   <string name="text_secure_normal__menu_new_group">Grup i ri</string>
   <string name="text_secure_normal__menu_settings">Rregullimet</string>
@@ -1143,38 +919,27 @@ Signal u ndal derisa pritej SMSi për verifikim.</string>
   <string name="reminder_header_outdated_build_details_today">Verzioni i juaj i Signal-it do të skadojë sot. Shtyp për të mar versionin më të ri.</string>
   <string name="reminder_header_expired_build">Versioni yt i Signal-it ka skaduar!</string>
   <string name="reminder_header_expired_build_details">Porositë nuk do të dërgohen me sukses. Shtyp për të marr versionin më të ri.</string>
-  <string name="reminder_header_expired_build_button">FRESKO</string>
-  <string name="reminder_header_sms_default_title">Përdor si ep të parazgjedhur për SMS</string>
+    <string name="reminder_header_sms_default_title">Përdor si ep të parazgjedhur për SMS</string>
   <string name="reminder_header_sms_default_text">Prek për të bërë Signal-in epin tënd SMS të parazgjedhur.</string>
-  <string name="reminder_header_sms_default_button">VENDOS</string>
-  <string name="reminder_header_sms_import_title">Importo SMS-të e sistemit</string>
+    <string name="reminder_header_sms_import_title">Importo SMS-të e sistemit</string>
   <string name="reminder_header_sms_import_text">Shtyp për të kopjuar porositë SMS në bazën e enkriptuar të të dhënave të Signal-it.</string>
-  <string name="reminder_header_sms_import_button">IMPORTO</string>
-  <string name="reminder_header_push_title">Aktivizo porositë dhe thirrjet e Sgnal</string>
+    <string name="reminder_header_push_title">Aktivizo porositë dhe thirrjet e Sgnal</string>
   <string name="reminder_header_push_text">Ngrit përvojën tënde të komunkimit.</string>
-  <string name="reminder_header_push_button">AKTIVIZO</string>
-  <string name="reminder_header_invite_title">Fto në Signal</string>
+    <string name="reminder_header_invite_title">Fto në Signal</string>
   <string name="reminder_header_invite_text">Shëndro bisedën me %1$s në një nivel tjetër.</string>
-  <string name="reminder_header_invite_button">FTO</string>
-  <string name="reminder_header_share_title">Fto miqtë!</string>
+    <string name="reminder_header_share_title">Fto miqtë!</string>
   <string name="reminder_header_share_text">Sa më shumë shokë që përdorin Signal, aq më i mirë bëhet</string>
-  <string name="reminder_header_share_button">NDAJ</string>
-  <string name="reminder_header_close_button">MBYLL</string>
-  <!--media_preview-->
+    <!--media_preview-->
   <string name="media_preview__save_title">Ruaj</string>
   <string name="media_preview__forward_title">Përpara</string>
   <string name="media_preview__all_media_title">Gjithë mediat</string>
   <!--media_overview-->
-  <string name="media_overview__save_all">Ruaj të gjitha</string>
-  <!--media_preview_activity-->
+    <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Parapamje e medias</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">FRESKO</string>
   <!--redphone_audio_popup_menu-->
-  <string name="redphone_audio_popup_menu__handset">Receptor</string>
-  <string name="redphone_audio_popup_menu__headset">Kufjet</string>
-  <string name="redphone_audio_popup_menu__speaker">Altoparlant</string>
-  <!--Trimmer-->
+    <!--Trimmer-->
   <string name="trimmer__deleting">Duke fshirë</string>
   <string name="trimmer__deleting_old_messages">Po fshihet porositë e vjetra...</string>
   <string name="trimmer__old_messages_successfully_deleted">Porositë e vjetra u fshinë</string>

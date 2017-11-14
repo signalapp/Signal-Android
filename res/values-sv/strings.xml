@@ -52,12 +52,7 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Kan ej hitta app för att välja media.</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_camera">Kamera</string>
-  <string name="AttachmentTypeSelectorAdapter_picture">Bild</string>
-  <string name="AttachmentTypeSelectorAdapter_video">Filmer</string>
-  <string name="AttachmentTypeSelectorAdapter_audio">Ljud</string>
-  <string name="AttachmentTypeSelectorAdapter_contact">Kontaktinformation</string>
-  <!--AudioSlidePlayer-->
+    <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Fel vid uppspelning av ljud!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Blockerade kontakter</string>
@@ -79,13 +74,8 @@
   <string name="ContactsDatabase_message_s">Meddelande %s</string>
   <string name="ContactsDatabase_signal_call_s">Signalsamtal %s</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_message_size_d_kb">Meddelandestorlek: %d kB</string>
-  <string name="ConversationItem_expires_s">Går ut: %s</string>
-  <string name="ConversationItem_error_not_delivered">Inte levererad</string>
-  <string name="ConversationItem_view_secure_media_question">Visa skyddad fil?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Denna fil har lagrats i en krypterad databas. Dessvärre måste du använda en extern app för att visa denna fil vilket innebär att datan måste avkrypteras och skrivas till lagringen. Är du säker på att du vill göra detta?</string>
-  <string name="ConversationItem_error_received_stale_key_exchange_message">Ett fel uppstod. Mottog ett gammalt meddelande för nyckelutbyte.</string>
-  <string name="ConversationItem_received_key_exchange_message_tap_to_process">Tog emot meddelande för nyckelutbyte, tryck för att behandla.</string>
+    <string name="ConversationItem_error_not_delivered">Inte levererad</string>
+    <string name="ConversationItem_received_key_exchange_message_tap_to_process">Tog emot meddelande för nyckelutbyte, tryck för att behandla.</string>
   <string name="ConversationItem_group_action_left">%1$s har lämnat gruppen.</string>
   <string name="ConversationItem_click_for_details">Tryck för detaljer</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Tryck för oskyddad fallback</string>
@@ -100,25 +90,14 @@
   <string name="ConversationActivity_reset_secure_session_question">Starta om säker session?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Detta kan hjälpa om du har krypteringsproblem i den här konversationen. Dina meddelanden kommer behållas.</string>
   <string name="ConversationActivity_reset">Starta om</string>
-  <string name="ConversationActivity_delete_thread_question">Radera konversation?</string>
-  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">Detta kommer permanent radera alla meddelanden i den här konversationen.</string>
-  <string name="ConversationActivity_add_attachment">Bifoga fil</string>
+    <string name="ConversationActivity_add_attachment">Bifoga fil</string>
   <string name="ConversationActivity_select_contact_info">Välj kontaktinformation</string>
   <string name="ConversationActivity_compose_message">Skriv meddelande</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Tyvärr uppstod det ett fel vid bifogning av din fil.</string>
-  <string name="ConversationActivity_the_gif_you_selected_was_too_big">Gifen du valde är för stor!</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Tyvärr, den valda filmen överskrider gränsen för meddelandestorlek (%1$skB).</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Tyvärr, den valda ljudfilen överskrider gränsen för meddelandestorlek (%1$skB).</string>
-  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Mottagaren är inte en giltig SMS eller e-postadress!</string>
+    <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Mottagaren är inte en giltig SMS eller e-postadress!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Meddelandet är tomt!</string>
   <string name="ConversationActivity_group_members">Gruppmedlemmar</string>
-  <string name="ConversationActivity_group_conversation">Gruppkonversation</string>
-  <plurals name="ConversationActivity_d_recipients_in_group">
-    <item quantity="one">1 medlem</item>
-    <item quantity="other">%d medlemmar</item>
-  </plurals>
-  <string name="ConversationActivity_saved_draft">Sparade utkast</string>
-  <string name="ConversationActivity_invalid_recipient">Ogiltig mottagare!</string>
+    <string name="ConversationActivity_invalid_recipient">Ogiltig mottagare!</string>
   <string name="ConversationActivity_calls_not_supported">Samtal stöds ej</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Denna enhet verkar inte stödja ringa upp-handlingar.</string>
   <string name="ConversationActivity_leave_group">Lämna grupp?</string>
@@ -129,9 +108,7 @@
   <string name="ConversationActivity_lets_switch_to_signal">Byt till Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Låt oss använda detta för att chatta: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Fel vid lämna grupp</string>
-  <string name="ConversationActivity_mms_not_supported_title">MMS stöds ej</string>
-  <string name="ConversationActivity_mms_not_supported_message">Det här meddelandet kan inte skickas eftersom din operatör inte stödjer MMS.</string>
-  <string name="ConversationActivity_specify_recipient">Vänligen välj en kontakt</string>
+    <string name="ConversationActivity_specify_recipient">Vänligen välj en kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Avblockera denna kontakt?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Du kommer nu åter få meddelanden och samtal från denna kontakt.</string>
   <string name="ConversationActivity_unblock">Avblockera</string>
@@ -146,10 +123,7 @@
     <item quantity="other">%d olästa meddelanden</item>
   </plurals>
   <!--ConversationFragment-->
-  <string name="ConversationFragment_message_details">Meddelandedetaljer</string>
-  <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nSkickat/Mottagits: %2$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Avsändare: %1$s\nTransport: %2$s\nSkickat: %3$s\nMottagits: %4$s</string>
-  <plurals name="ConversationFragment_delete_selected_messages">
+    <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Radera valt meddelande?</item>
     <item quantity="other">Radera valda meddelanden?</item>
   </plurals>
@@ -179,16 +153,12 @@
     <item quantity="one">Sparar bifogad fil till lagring...</item>
     <item quantity="other">Sparar %1$d bifogade filer till lagring...</item>
   </plurals>
-  <string name="ConversationFragment_collecting_attahments">Samlar bifogade filer...</string>
-  <string name="ConversationFragment_pending">Väntar...</string>
+    <string name="ConversationFragment_pending">Väntar...</string>
   <string name="ConversationFragment_push">Data (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
-  <string name="ConversationFragment_deleting">Raderar</string>
-  <string name="ConversationFragment_deleting_messages">Raderar meddelanden...</string>
-  <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">Sök</string>
-  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Det finns ingen webbläsare installerad på din enhet.</string>
+    <!--ConversationListActivity-->
+    <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Det finns ingen webbläsare installerad på din enhet.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Radera markerad konversation?</item>
@@ -204,8 +174,7 @@
     <item quantity="one">Konversation arkiverad</item>
     <item quantity="other">%d konversationer arkiverade</item>
   </plurals>
-  <string name="ConversationListFragment_undo">ÅNGRA</string>
-  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">Flyttade konversation till inkorgen</item>
     <item quantity="other">Flyttade %d konversationer till inkorgen</item>
   </plurals>
@@ -217,12 +186,9 @@
   <string name="CreateProfileActivity_your_profile_info">Din profilinfo</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Gick ej att välja profilbild</string>
   <string name="CreateProfileActivity_problem_setting_profile">Gick inte välja profil</string>
-  <string name="CreateProfileActivity_updating_profile">Uppdaterar profil</string>
-  <string name="CreateProfileActivity_updating_and_encrypting_profile">Uppdaterar och krypterar profil</string>
-  <string name="CreateProfileActivity_profile_photo">Profilbild</string>
+    <string name="CreateProfileActivity_profile_photo">Profilbild</string>
   <string name="CreateProfileActivity_too_long">För långt</string>
-  <string name="CreateProfileActivity_error_capturing_photo_camera_did_not_return_image">Gick inte att ta bild, kameran gav inte Signal någon bild</string>
-  <!--CustomDefaultPreference-->
+    <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Använder anpassade: %s</string>
   <string name="CustomDefaultPreference_using_default">Använder standard: %s</string>
   <string name="CustomDefaultPreference_none">Inga</string>
@@ -236,9 +202,7 @@
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Genom att koppla bort denna enhet kommer den inte längre kunna skicka eller få meddelanden.</string>
   <string name="DeviceListActivity_network_connection_failed">Nätverksanslutningen misslyckades</string>
   <string name="DeviceListActivity_try_again">Försök igen</string>
-  <string name="DeviceListActivity_unlinking_device">Kopplar bort enhet...</string>
-  <string name="DeviceListActivity_unlinking_device_no_ellipsis">Kopplar bort enhet</string>
-  <string name="DeviceListActivity_network_failed">Nätverket misslyckades</string>
+    <string name="DeviceListActivity_network_failed">Nätverket misslyckades</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Namnlös enhet</string>
   <string name="DeviceListItem_linked_s">Länkade %s</string>
@@ -289,8 +253,7 @@
   <string name="GroupCreateActivity_actionbar_mms_title">Ny MMS-grupp</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Du har valt en kontakt som inte har stöd för Signalgrupper, så denna grupp kommer använda MMS.</string>
   <string name="GroupCreateActivity_youre_not_registered_for_signal">Du är inte registrerad för samtal och meddelanden med Signal, så Signalgrupper är inaktiverat. Försök registrera i Inställningar &gt; Avancerat.</string>
-  <string name="GroupCreateActivity_contacts_mms_exception">Ett oförutsett fel inträffade som gjort att gruppen inte kunde skapas.</string>
-  <string name="GroupCreateActivity_contacts_no_members">Du behöver åtminstone en person i din grupp!</string>
+    <string name="GroupCreateActivity_contacts_no_members">Du behöver åtminstone en person i din grupp!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">En av deltagarna i din grupp har ett nummer som inte kan läsas ordentligt. Vänligen åtgärda eller ta bort kontakten och försök igen.</string>
   <string name="GroupCreateActivity_avatar_content_description">Gruppavatar</string>
   <string name="GroupCreateActivity_menu_apply_button">Tillämpa</string>
@@ -315,24 +278,14 @@ att importera meddelanden från systemets standardapp. Om du tidigare har import
 via denna metod kommer samtliga SMS bli duplicerade.</string>
   <string name="ImportFragment_import">Importera</string>
   <string name="ImportFragment_cancel">Avbryt</string>
-  <string name="ImportFragment_restore_encrypted_backup">Återställ krypterad säkerhetskopia?</string>
-  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
-Återställandet av en krypterad säkerhetskopia kommer helt ersätta dina existerande nycklar, inställningar och
- meddelanden. Du kommer förlora all information som finns i din nuvarande Signal installation
-som inte finns i säkerhetskopian.</string>
-  <string name="ImportFragment_restore">Återställ</string>
-  <string name="ImportFragment_import_plaintext_backup">Importera okrypterad säkerhetskopia?</string>
+    <string name="ImportFragment_import_plaintext_backup">Importera okrypterad säkerhetskopia?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Denna åtgärd importerar meddelanden från en säkerhetskopia i klartext. Om du redan har importerat denna säkerhetskopia och importerar igen kommer du att få duplicerade meddelanden.</string>
   <string name="ImportFragment_importing">Importerar</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">Importerar okrypterad säkerhetskopia...</string>
   <string name="ImportFragment_no_plaintext_backup_found">Ingen okrypterad säkerhetskopia kunde hittas!</string>
   <string name="ImportFragment_error_importing_backup">Ett fel inträffade vid importering av säkerhetskopian.</string>
   <string name="ImportFragment_import_complete">Importeringen lyckades!</string>
-  <string name="ImportFragment_restoring">Återställer</string>
-  <string name="ImportFragment_restoring_encrypted_backup">Återställer krypterad säkerhetskopia...</string>
-  <string name="ImportFragment_no_encrypted_backup_found">Ingen krypterad säkerhetskopia kunde hittas!</string>
-  <string name="ImportFragment_restore_complete">Återställningen lyckades!</string>
-  <!--InputPanel-->
+    <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tryck och håll in för att spela in ett röstmeddelande, släpp för att skicka</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Dela</string>
@@ -354,27 +307,20 @@ som inte finns i säkerhetskopian.</string>
   <string name="InviteActivity_no_app_to_share_to">Verkar som att du inte har några appar att dela till.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Vänner låter inte varandra chatta okrypterat.</string>
   <!--KeyScanningActivity-->
-  <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Ingen skannad nyckel funnen!</string>
-  <string name="KeyScanningActivity_install_barcode_Scanner">Installera Barcode Scanner?</string>
-  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal behöver Barcode Scanner för QR-koder.</string>
-  <!--MessageDetailsRecipient-->
+    <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Misslyckades att skicka</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nytt säkerhetsnummer</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Bakgrundsanslutning etablerad</string>
   <!--MmsDownloader-->
-  <string name="MmsDownloader_error_storing_mms">Fel vid lagring av MMS!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Fel vid anslutning till MMS-leverantör</string>
-  <string name="MmsDownloader_error_reading_mms_settings">Fel vid läsningen av trådlös leverantör MMS-inställningar</string>
+    <string name="MmsDownloader_error_reading_mms_settings">Fel vid läsningen av trådlös leverantör MMS-inställningar</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Media</string>
   <string name="MediaOverviewActivity_Documents">Dokument</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signalsamtal pågår</string>
-  <string name="NotificationBarManager_missed_call_from_s">Missat samtal från %s</string>
-  <string name="NotificationBarManager_missed_signal_call">Missat Signalsamtal</string>
-  <string name="NotificationBarManager__establishing_signal_call">Upprättar Signalsamtal</string>
+    <string name="NotificationBarManager__establishing_signal_call">Upprättar Signalsamtal</string>
   <string name="NotificationBarManager__incoming_signal_call">Inkommande Signalsamtal</string>
   <string name="NotificationBarManager__deny_call">Neka samtal</string>
   <string name="NotificationBarManager__answer_call">Svara på samtal</string>
@@ -408,14 +354,11 @@ som inte finns i säkerhetskopian.</string>
   <string name="DeviceProvisioningActivity_link_this_device">Länka den här enheten?</string>
   <string name="DeviceProvisioningActivity_cancel">AVBRYT</string>
   <string name="DeviceProvisioningActivity_continue">FORTSÄTT</string>
-  <string name="DeviceProvisioningActivity_title">Länka den här enheten?</string>
-  <string name="DeviceProvisioningActivity_content_intro">Den kommer att kunna</string>
+    <string name="DeviceProvisioningActivity_content_intro">Den kommer att kunna</string>
   <string name="DeviceProvisioningActivity_content_bullets">
         • Läsa alla dina meddelanden
         \n• Skicka meddelanden i ditt namn</string>
-  <string name="DeviceProvisioningActivity_content_progress_title">Länkar enhet</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Länkar ny enhet...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Enhet tillåten!</string>
+    <string name="DeviceProvisioningActivity_content_progress_success">Enhet tillåten!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Ingen enhet hittades.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Nätverksfel.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ogiltig QR-kod.</string>
@@ -457,26 +400,16 @@ som inte finns i säkerhetskopian.</string>
   <string name="RedPhone_answering">Svarar</string>
   <string name="RedPhone_ending_call">Avslutar samtal</string>
   <string name="RedPhone_dialing">Ringer</string>
-  <string name="RedPhone_canceling_call">Avbryter samtal</string>
-  <string name="RedPhone_call_rejected">Samtal avvisat</string>
-  <string name="RedPhone_ringing">Ringer</string>
+    <string name="RedPhone_ringing">Ringer</string>
   <string name="RedPhone_busy">Upptaget</string>
   <string name="RedPhone_connected">Ansluten</string>
-  <string name="RedPhone_connecting">Ansluter</string>
-  <string name="RedPhone_handshake_failed">Handskakning misslyckades!</string>
-  <string name="RedPhone_recipient_unavailable">Mottagaren ej tillgänglig</string>
-  <string name="RedPhone_performing_handshake">Utför handskakning</string>
-  <string name="RedPhone_network_failed">Nätverket misslyckades</string>
-  <string name="RedPhone_client_failed">Klienten misslyckades</string>
-  <string name="RedPhone_fatal_error">Fatalt fel</string>
-  <string name="RedPhone_login_failed">Inloggning misslyckades!</string>
-  <string name="RedPhone_message_from_the_server">Meddelande från servern</string>
-  <string name="RedPhone_number_not_registered">Numret är inte registrerat!</string>
+    <string name="RedPhone_recipient_unavailable">Mottagaren ej tillgänglig</string>
+    <string name="RedPhone_network_failed">Nätverket misslyckades</string>
+    <string name="RedPhone_number_not_registered">Numret är inte registrerat!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Numret du ringde har inte stöd för säkra röstsamtal!</string>
   <string name="RedPhone_got_it">Uppfattat</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_signal">Anslut med Signal</string>
-  <string name="RegistrationActivity_select_your_country">Välj ditt land</string>
+    <string name="RegistrationActivity_select_your_country">Välj ditt land</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Du måste ange din 
 landskod</string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">Du måste ange ditt
@@ -484,11 +417,7 @@ telefonnummer</string>
   <string name="RegistrationActivity_invalid_number">Ogiltigt nummer</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numret du
 angav (%s) är ogiltigt.</string>
-  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
-Dubbelkolla att det här är ditt nummer! Vi ska nu verifiera det med ett SMS.</string>
-  <string name="RegistrationActivity_continue">Fortsätt</string>
-  <string name="RegistrationActivity_edit">Ändra</string>
-  <string name="RegistrationActivity_missing_google_play_services">Saknar Google Play-tjänster</string>
+    <string name="RegistrationActivity_missing_google_play_services">Saknar Google Play-tjänster</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Denna enhet saknar Google Play-tjänster. Du kan fortfarande använda Signal, men denna konfiguration kan medföra nedsatt tillförlitlighet och prestanda.\n\nOm du inte är en avancerad användare, inte kör en eftermarknads Android ROM, eller tror att du felaktigt ser detta, vänligen kontakta support@whispersystems.org för hjälp med felsökning. </string>
   <string name="RegistrationActivity_i_understand">Jag förstår</string>
   <string name="RegistrationActivity_play_services_error">Play-tjänstfel</string>
@@ -496,29 +425,8 @@ Dubbelkolla att det här är ditt nummer! Vi ska nu verifiera det med ett SMS.</
   <string name="RegistrationActivity_more_information">Mer information</string>
   <string name="RegistrationActivity_less_information">Mindre information</string>
   <!--RegistrationProblemsActivity-->
-  <string name="RegistrationProblemsActivity_possible_problems">Potentiella problem</string>
-  <!--RegistrationProgressActivity-->
-  <string name="RegistrationProgressActivity_verifying_number">Verifierar nummer</string>
-  <string name="RegistrationProgressActivity_edit_s">Ändra %s</string>
-  <string name="RegistrationProgressActivity_registration_complete">Registrering klar!</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Du måste ange koden du fick först</string>
-  <string name="RegistrationProgressActivity_connecting">Ansluter</string>
-  <string name="RegistrationProgressActivity_connecting_for_verification">Ansluter för verifiering...</string>
-  <string name="RegistrationProgressActivity_network_error">Nätverksfel!</string>
-  <string name="RegistrationProgressActivity_unable_to_connect">Kan inte ansluta. Kontrollera din nätverksanslutning och försök igen.</string>
-  <string name="RegistrationProgressActivity_verification_failed">Verifiering misslyckades!</string>
-  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">Verifieringskoden du angav är fel. Försök igen.</string>
-  <string name="RegistrationProgressActivity_too_many_attempts">För många försök</string>
-  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Du har angivit en felaktig verifieringskod för många gånger. Vänta en minut innan du försöker igen.</string>
-  <string name="RegistrationProgressActivity_requesting_call">Begär samtal</string>
-  <string name="RegistrationProgressActivity_requesting_incoming_call">Begär inkommande verifieringssamtal...</string>
-  <string name="RegistrationProgressActivity_server_error">Serverfel</string>
-  <string name="RegistrationProgressActivity_the_server_encountered_an_error">Servern drabbades av ett fel. Försök igen.</string>
-  <string name="RegistrationProgressActivity_too_many_requests">För många förfrågningar!</string>
-  <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Du har redan begärt ett röstsamtal. Du kan begära ett nytt om 20 minuter.</string>
-  <string name="RegistrationProgressActivity_registration_conflict">Registreringskonflikt</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Detta nummer är redan registrerat på en annan Signalserver. Du måste avregistrera ditt nummer därifrån innan du registrerar dig här.</string>
-  <!--RegistrationService-->
+    <!--RegistrationProgressActivity-->
+    <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registrering klar</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Signal-registrering har lyckats.</string>
   <string name="RegistrationService_registration_error">Registreringsfel</string>
@@ -526,8 +434,7 @@ Dubbelkolla att det här är ditt nummer! Vi ska nu verifiera det med ett SMS.</
   <!--RingtonePreference-->
   <string name="RingtonePreference_ringtone_default">Standardringsignal</string>
   <string name="RingtonePreference_ringtone_silent">Inga</string>
-  <string name="RingtonePreference_ringtone_picker_title">Ringsignal</string>
-  <string name="RingtonePreference_notification_sound_default">Standardljud för avisering</string>
+    <string name="RingtonePreference_notification_sound_default">Standardljud för avisering</string>
   <string name="RingtonePreference_alarm_sound_default">Standardalarmljud</string>
   <string name="RingtonePreference_add_ringtone_text">Lägg till ringsignal</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Kunde inte lägga till egen ringsignal</string>
@@ -584,9 +491,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Verkar som att du inte har några appar att dela till.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Inga säkerhetsnummer att jämföra med hittades i urklipp</string>
   <!--KeyExchangeInitiator-->
-  <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Påbörja ny nyckelutbytesförfrågan trots redan existerande?</string>
-  <string name="KeyExchangeInitiator_send">Skicka</string>
-  <!--MessageDisplayHelper-->
+    <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Dåligt krypterat meddelande</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Dekrypterar, var vänlig vänta...</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Meddelande som krypterats för icke-befintlig session</string>
@@ -595,12 +500,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--ThreadDatabase-->
   <string name="ThreadDatabase_error_decrypting_message">Fel vid dekryptering av meddelande.</string>
   <!--MmsDatabase-->
-  <string name="MmsDatabase_connecting_to_mms_server">Ansluter till MMS-server...</string>
-  <string name="MmsDatabase_downloading_mms">Laddar ner MMS...</string>
-  <string name="MmsDatabase_mms_download_failed">MMS-nedladdning misslyckades!</string>
-  <string name="MmsDatabase_downloading">Laddar ner...</string>
-  <string name="MmsDatabase_mms_pending_download">Tryck och ställ in MMS-inställningar för att fortsätta nedladdning.</string>
-  <string name="MmsDatabase_error_decrypting_message">Fel vid dekryptering av meddelande.</string>
+    <string name="MmsDatabase_error_decrypting_message">Fel vid dekryptering av meddelande.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Dekrypterar MMS, var vänlig vänta...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Dåligt krypterat MMS-meddelande</string>
@@ -619,16 +519,14 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="KeyCachingService_lock">Lås med lösenord</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Du</string>
-  <string name="MediaPreviewActivity_cant_display">Misslyckades med att förhandsgranska bilden</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Mediatypen stöds ej</string>
+    <string name="MediaPreviewActivity_unssuported_media_type">Mediatypen stöds ej</string>
   <string name="MediaPreviewActivity_draft">Utkast</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nya meddelanden i %2$d konversationer</string>
   <string name="MessageNotifier_most_recent_from_s">Senaste från %1$s</string>
   <string name="MessageNotifier_locked_message">Låst meddelande</string>
   <string name="MessageNotifier_media_message_with_text">Mediameddelande: %s</string>
-  <string name="MessageNotifier_no_subject">(Inget ämne)</string>
-  <string name="MessageNotifier_message_delivery_failed">Meddelandeleverans misslyckades.</string>
+    <string name="MessageNotifier_message_delivery_failed">Meddelandeleverans misslyckades.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Kunde inte leverera meddelande.</string>
   <string name="MessageNotifier_error_delivering_message">Fel vid leverans av meddelande.</string>
   <string name="MessageNotifier_mark_all_as_read">Markera alla som lästa</string>
@@ -638,13 +536,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MessageNotifier_pending_signal_messages">Väntande Signal-meddelanden</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Du har väntande Signal-meddelanden, tryck för att öppna och hämta</string>
   <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Manuella MMS-inställningar krävs för din telefon.</string>
-  <string name="MmsPreferencesFragment__enabled">Aktiverad</string>
-  <string name="MmsPreferencesFragment__disabled">Inaktiverad</string>
-  <string name="MmsPreferencesFragment__not_set">Inte satt</string>
-  <string name="MmsPreferencesFragment__invalid_uri">Texten var inte en giltig URI</string>
-  <string name="MmsPreferencesFragment__invalid_host">Texten var inte ett giltigt värdnamn</string>
-  <!--QuickResponseService-->
+    <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Snabbsvar är ej tillgängligt när Signal är låst!</string>
   <string name="QuickResponseService_problem_sending_message">Problem med att skicka meddelandet!</string>
   <!--SaveAttachmentTask-->
@@ -688,22 +580,17 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Kontaktfoto</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionlistFragment_select_for">Välj för</string>
-  <!--blocked_contacts_fragment-->
+    <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Inga blockerade kontakter</string>
   <!--contact_selection_recent_activity-->
-  <string name="contact_selection_recent_activity__no_recent_calls">Inga nyliga samtal.</string>
-  <!--conversation_title_view-->
-  <string name="conversation_title_view__conversation_muted">Konversation tystad</string>
-  <!--conversation_activity-->
+    <!--conversation_title_view-->
+    <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signalmeddelande</string>
   <string name="conversation_activity__type_message_sms_insecure">Osäkert SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Osäkert MMS</string>
   <string name="conversation_activity__from_sim_name">Från %1$s</string>
   <string name="conversation_activity__send">Skicka</string>
-  <string name="conversation_activity__remove">Ta bort</string>
-  <string name="conversation_activity__window_description">Meddelanden med %1$s</string>
-  <string name="conversation_activity__compose_description">Skapa meddelande</string>
+    <string name="conversation_activity__compose_description">Skapa meddelande</string>
   <string name="conversation_activity__emoji_toggle_description">Växla till emoji-tangentbord</string>
   <string name="conversation_activity__attachment_thumbnail">Bifogad miniatyrbild</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Dölj/Visa snabbpanel för kamerabilaga</string>
@@ -712,20 +599,15 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">SVEP FÖR ATT AVBRYTA</string>
   <!--conversation_item-->
-  <string name="conversation_item__mms_downloading_description">Laddar ner mediameddelande</string>
-  <string name="conversation_item__mms_image_description">Mediameddelande</string>
+    <string name="conversation_item__mms_image_description">Mediameddelande</string>
   <string name="conversation_item__secure_message_description">Säkert meddelande</string>
   <!--conversation_item_sent-->
-  <string name="conversation_item_sent__download">Ladda ner</string>
-  <string name="conversation_item_sent__downloading">Laddar ner</string>
-  <string name="conversation_item_sent__send_failed_indicator_description">Sändningen misslyckades</string>
+    <string name="conversation_item_sent__send_failed_indicator_description">Sändningen misslyckades</string>
   <string name="conversation_item_sent__pending_approval_description">Avvaktar godkännande</string>
   <string name="conversation_item_sent__delivered_description">Levererat</string>
   <!--conversation_item_received-->
-  <string name="conversation_item_received__download">Ladda ner</string>
-  <string name="conversation_item_received__contact_photo_description">Kontaktfoto</string>
-  <string name="conversation_item_received__downloading">Laddar ner</string>
-  <!--audio_view-->
+    <string name="conversation_item_received__contact_photo_description">Kontaktfoto</string>
+    <!--audio_view-->
   <string name="audio_view__play_accessibility_description">Spela</string>
   <string name="audio_view__pause_accessibility_description">Pausa</string>
   <string name="audio_view__download_accessibility_description">Ladda ner</string>
@@ -792,14 +674,11 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Inget hittat</string>
   <!--import_export_fragment-->
-  <string name="import_export_fragment__export">Exportera</string>
-  <string name="import_export_fragment__import">Importera</string>
-  <!--log_submit_activity-->
+    <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Kunde inte läsa loggen från din enhet. Du kan fortfarande använda ADB för att få en logg.</string>
   <string name="log_submit_activity__thanks">Tack för din hjälp!</string>
   <string name="log_submit_activity__submitting">Skickar</string>
-  <string name="log_submit_activity__posting_logs">Skickar loggar till gist...</string>
-  <string name="log_submit_activity__no_browser_installed">Ingen webbläsare installerad</string>
+    <string name="log_submit_activity__no_browser_installed">Ingen webbläsare installerad</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vill du importera dina existerande SMS-meddelanden till Signals krypterade databas?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Systemets standarddatabas kommer på intet sätt att modifieras eller ändras.</string>
@@ -813,9 +692,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">Exportera en okrypterad säkerhetskopia kompatibel med \'SMS Backup &amp; Restore\' till lagringen</string>
   <string name="import_fragment__import_system_sms_database">Importera systemets SMS-databas</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importera databasen från standardappen för meddelanden</string>
-  <string name="import_fragment__restore_encrypted_backup">Återställ krypterad säkerhetskopia</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">Återställ en tidigare exporterad krypterad säkerhetskopia av Signal</string>
-  <string name="import_fragment__import_plaintext_backup">Importera okrypterad backup</string>
+    <string name="import_fragment__import_plaintext_backup">Importera okrypterad backup</string>
   <string name="import_fragment__import_a_plaintext_backup_file">Importera en okrypterad säkerhetskopia. Kompatibel med \'SMSBackup &amp; Restore.\'</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Se hela konversationen</string>
@@ -844,80 +721,25 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="profile_create_activity__who_can_see_this_information">Vem kan se denna information?</string>
   <string name="profile_create_activity__your_name">Ditt namn</string>
   <!--recipient_preferences_activity-->
-  <string name="recipient_preference_activity__blocked">BLOCKERAD</string>
-  <!--recipient_preferences-->
+    <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Tysta konversation</string>
-  <string name="recipient_preferences__disable_notifications_for_this_conversation">Inaktivera aviseringar för denna konversation</string>
-  <string name="recipient_preferences__notification_sound">Aviseringsljud</string>
+    <string name="recipient_preferences__notification_sound">Aviseringsljud</string>
   <string name="recipient_preferences__vibrate">Vibrera</string>
   <string name="recipient_preferences__block">Blockera</string>
   <string name="recipient_preferences__color">Färg</string>
-  <string name="recipient_preferences__color_for_this_contact">Färg för denna kontakt</string>
-  <string name="recipient_preferences__view_safety_number">Visa säkerhetsnummer</string>
+    <string name="recipient_preferences__view_safety_number">Visa säkerhetsnummer</string>
   <string name="recipient_preferences__chat_settings">Chattinställningar</string>
   <string name="recipient_preferences__privacy">Integritet</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signalsamtal</string>
-  <string name="redphone_call_controls__end_call">avsluta samtal</string>
-  <string name="redphone_call_controls__audio">Ljud</string>
-  <string name="redphone_call_controls__mute">Tysta</string>
+    <string name="redphone_call_controls__mute">Tysta</string>
   <string name="redphone_call_controls__signal_call">Signalsamtal</string>
   <!--registration_activity-->
-  <string name="registration_activity__verify_your_number_to_connect_with_signal">
-Verifiera ditt telefonnummer för att ansluta till Signal.</string>
-  <string name="registration_activity__your_country">DITT LAND</string>
-  <string name="registration_activity__your_country_code_and_phone_number">DIN LANDSKOD OCH 
-TELEFONNUMMER</string>
-  <string name="registration_activity__phone_number">TELEFONNUMMER</string>
-  <string name="registration_activity__register">Registrera</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal gör det lätt att kommunicera genom att använda ditt mobilnummer och din kontaktbok. Vänner och kontakter som redan har ditt nummer kommer lätt kunna kontakta dig med Signal.\n\nRegistreringen skickar viss kontaktinformation till servern. Informationen lagras ej.</string>
-  <string name="registration_activity__powered_by_twilio">Powered by twilio</string>
-  <!--registration_problems-->
-  <string name="registration_problems__some_possible_problems_include">Några möjliga orsaker:</string>
-  <string name="registration_problems__sms_interceptors">SMS-interceptorer</string>
-  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
-Vissa SMS-appar av tredje part så som Handcent eller GoSMS beter sig dåligt och
-fångar upp alla inkommande SMS-meddelanden. Kolla om du fick ett meddelande som börjar 
-med \'Your Signal verification code:\', då detta innebär att du måste ändra din SMS-app för att tillåta meddelanden att passera.</string>
-  <string name="registration_problems__incorrect_number">Felaktigt nummer.</string>
-  <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
-Kontrollera att du angav telefonnumret rätt och att det är rätt formaterat för ditt område.</string>
-  <string name="registration_problems__google_voice">Google Voice.</string>
-  <string name="registration_problems__signal_will_not_work_with_google_voice_numbers">
-Signal fungerar inte med Google Voice-nummer.</string>
-  <!--registration_progress_activity-->
-  <string name="registration_progress_activity__voice_verification">Röstverifiering</string>
-  <string name="registration_progress_activity__signal_can_also_call_you_to_verify_your_number">
-Signal kan också ringa upp dig för att verifiera ditt telefonnummer. Tryck \'Ring mig\'
- och fyll i den sexsiffriga koden som du hör nedan.</string>
-  <string name="registration_progress_activity__verify">Verifiera</string>
-  <string name="registration_progress_activity__call_me">Ring mig</string>
-  <string name="registration_progress_activity__edit_number">Ändra nummer</string>
-  <string name="registration_progress_activity__connectivity_error">Anslutningsfel.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal kunde inte ansluta till servern.</string>
-  <string name="registration_progress_activity__some_possible_problems_include">Några möjliga orsaker:</string>
-  <string name="registration_progress_activity__no_network_connectivity">Ingen nätverksanslutning.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Din
-enhet behöver en nätverksuppkoppling för att använda denna funktion i Signal. Vänligen kolla
-så att du är uppkopplad med mobildata eller Wi-Fi.</string>
-  <string name="registration_progress_activity__restrictive_firewall">Restriktiv brandvägg.</string>
-  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
-Om du är uppkopplad med Wi-Fi är det möjligt att en brandvägg blockerat tillgång
-till Signalservern. Försök med ett annat nätverk eller med mobildata.</string>
-  <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-Signal kommer nu att automatiskt verifiera ditt telefonnummer med ett sms.</string>
-  <string name="registration_progress_activity__connecting">Ansluter...</string>
-  <string name="registration_progress_activity__waiting_for_sms_verification">Väntar på SMS-verifiering...</string>
-  <string name="registration_progress_activity__registering_with_server">Registrerar på server...</string>
-  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Detta kan ta en stund. Vi notifierar dig när verifieringen är klar.</string>
-  <string name="registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message">
-Signal uppnådde tidsgränsen för SMS-verifiering.</string>
-  <string name="registration_progress_activity__sms_verification_failed">SMS-verifiering misslyckades.</string>
-  <string name="registration_progress_activity__generating_keys">Skapar nycklar...</string>
-  <string name="registration_progress_activity__alert">Notifiera</string>
-  <string name="registration_progress_activity__telephone">Telefon</string>
-  <string name="registration_progress_activity__check">Kontrollera</string>
-  <!--recipients_panel-->
+    <string name="registration_activity__phone_number">TELEFONNUMMER</string>
+    <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal gör det lätt att kommunicera genom att använda ditt mobilnummer och din kontaktbok. Vänner och kontakter som redan har ditt nummer kommer lätt kunna kontakta dig med Signal.\n\nRegistreringen skickar viss kontaktinformation till servern. Informationen lagras ej.</string>
+    <!--registration_problems-->
+    <!--registration_progress_activity-->
+    <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Fyll i ett namn eller nummer</small></string>
   <string name="recipients_panel__add_members">Lägg till medlemmar</string>
   <!--unknown_sender_view-->
@@ -945,14 +767,11 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="AndroidManifest__create_passphrase">Skapa lösenord</string>
   <string name="AndroidManifest__enter_passphrase">Ange lösenord</string>
   <string name="AndroidManifest__select_contacts">Välj kontakter</string>
-  <string name="AndroidManifest__signal_detected">Signal hittad</string>
-  <string name="AndroidManifest__change_passphrase">Ändra lösenord</string>
+    <string name="AndroidManifest__change_passphrase">Ändra lösenord</string>
   <string name="AndroidManifest__verify_safety_number">Verifiera säkerhetsnummer</string>
   <string name="AndroidManifest__log_submit">Skicka in felsökningslogg</string>
   <string name="AndroidManifest__media_preview">Mediaförhandsgranskning</string>
-  <string name="AndroidManifest__all_media">All media</string>
-  <string name="AndroidManifest__all_media_named">All media med %1$s</string>
-  <string name="AndroidManifest__message_details">Meddelandedetaljer</string>
+    <string name="AndroidManifest__message_details">Meddelandedetaljer</string>
   <string name="AndroidManifest__linked_devices">Länkade enheter</string>
   <string name="AndroidManifest__invite_friends">Bjud in vänner</string>
   <string name="AndroidManifest_archived_conversations">Arkiverade konversationer</string>
@@ -989,19 +808,14 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
     <item quantity="other">%d timmar</item>
   </plurals>
   <!--preferences.xml-->
-  <string name="preferences__general">Allmänt</string>
-  <string name="preferences__sms_mms">SMS och MMS</string>
+    <string name="preferences__sms_mms">SMS och MMS</string>
   <string name="preferences__pref_all_sms_title">Använd för alla SMS</string>
   <string name="preferences__pref_all_mms_title">Använd för alla MMS</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Använd Signal för alla inkommande SMS-meddelanden</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Använd Signal för alla inkommande multimedia-meddelanden</string>
-  <string name="preferences__input_settings">Inputinställningar</string>
-  <string name="preferences__enable_enter_key_title">Aktivera returtangenten</string>
-  <string name="preferences__replace_smiley_with_enter_key">Ersätt tangenten för uttryckssymboler med Retur</string>
-  <string name="preferences__pref_enter_sends_title">Entertangenten skickar</string>
+    <string name="preferences__pref_enter_sends_title">Entertangenten skickar</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter-tangenten skickar textmeddelanden</string>
-  <string name="preferences__display_settings">Skärminställningar</string>
-  <string name="preferences__choose_identity">Välj identitet</string>
+    <string name="preferences__choose_identity">Välj identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Välj din kontakt från kontaktlistan.</string>
   <string name="preferences__change_passphrase">Ändra lösenord</string>
   <string name="preferences__change_your_passphrase">Ändra ditt lösenord</string>
@@ -1013,21 +827,12 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="preferences__inactivity_timeout_passphrase">Inaktivitetsperiod för lösenord</string>
   <string name="preferences__inactivity_timeout_interval">Tidsintervall för inaktivitet</string>
   <string name="preferences__notifications">Aviseringar</string>
-  <string name="preferences__enable_message_notifications">Slå på meddelandeaviseringar</string>
-  <string name="preferences__new_contacts_notifications">Avisering om nya kontakter</string>
-  <string name="preferences__show_a_notification_for_new_signal_contacts">Visa avisering för nya kontakter i Signal</string>
-  <string name="preferences__led_color">Färg på ljusindikator</string>
+    <string name="preferences__led_color">Färg på ljusindikator</string>
   <string name="preferences__led_color_unknown">Okänd</string>
   <string name="preferences__pref_led_blink_title">Blinkmönster på ljusindikator</string>
-  <string name="preferences__pref_led_blink_custom_pattern_title">Specialanpassa LED-blinkningsmönstret</string>
-  <string name="preferences__pref_led_blink_custom_pattern_on_for">På under:</string>
-  <string name="preferences__pref_led_blink_custom_pattern_off_for">Av under:</string>
-  <string name="preferences__pref_led_blink_custom_pattern_set">Specialanpassat LED-blinkningsmönster valt!</string>
-  <string name="preferences__sound">Ljud</string>
+    <string name="preferences__sound">Ljud</string>
   <string name="preferences__silent">Tyst</string>
-  <string name="preferences__in_conversation_notifications">Aviseringar inom konversationer</string>
-  <string name="preferences__play_inthread_notifications">Spela aviseringsljud när du tittar på en aktiv konversation</string>
-  <string name="preferences__repeat_alerts">Upprepa aviseringar</string>
+    <string name="preferences__repeat_alerts">Upprepa aviseringar</string>
   <string name="preferences__never">Aldrig</string>
   <string name="preferences__one_time">En gång</string>
   <string name="preferences__two_times">Två gånger</string>
@@ -1035,10 +840,7 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="preferences__five_times">Fem gånger</string>
   <string name="preferences__ten_times">Tio gånger</string>
   <string name="preferences__vibrate">Vibrera</string>
-  <string name="preferences__also_vibrate_when_notified">Vibrera också vid avisering</string>
-  <string name="preferences__minutes">minuter</string>
-  <string name="preferences__hours">timmar</string>
-  <string name="preferences__green">Grön</string>
+    <string name="preferences__green">Grön</string>
   <string name="preferences__red">Röd</string>
   <string name="preferences__blue">Blå</string>
   <string name="preferences__orange">Orange</string>
@@ -1049,14 +851,11 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="preferences__fast">Snabb</string>
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Långsam</string>
-  <string name="preferences__custom">Skräddarsydd</string>
-  <string name="preferences__advanced">Avancerat</string>
+    <string name="preferences__advanced">Avancerat</string>
   <string name="preferences__privacy">Integritet</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuella MMS-inställningar</string>
-  <string name="preferences__enable_manual_mms">Använd manuella MMS-inställningar</string>
-  <string name="preferences__override_system_mms_settings">Åsidosätt systemets MMS-inställningar med nedanstående.</string>
-  <string name="preferences__mmsc_url">MMSC URL</string>
+    <string name="preferences__mmsc_url">MMSC URL</string>
   <string name="preferences__mms_proxy_host">MMS Proxyvärd</string>
   <string name="preferences__mms_proxy_port">MMS Proxyport</string>
   <string name="preferences__mmsc_username">MMSC Användarnamn</string>
@@ -1086,19 +885,14 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Om läskvittenser är avstängda kan du inte se läskvittenser från andra.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Begär att tangentbordet stänger av personlig inlärning</string>
   <string name="preferences_app_protection__blocked_contacts">Blockerade kontakter</string>
-  <string name="preferences_app_protection__safety_numbers_approval">Godkännande av säkerhetsnummer</string>
-  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Kräv godkännande av nya säkerhetsnummer när de ändras</string>
-  <string name="preferences_notifications__display_in_notifications">Visa i aviseringar</string>
-  <string name="preferences_chats__when_using_mobile_data">Vid användande av mobildata</string>
+    <string name="preferences_chats__when_using_mobile_data">Vid användande av mobildata</string>
   <string name="preferences_chats__when_using_wifi">Vid användande av Wi-Fi</string>
   <string name="preferences_chats__when_roaming">Vid roaming</string>
   <string name="preferences_chats__media_auto_download">Autonedladdning av media</string>
   <string name="preferences_chats__message_trimming">Trimma meddelanden</string>
   <string name="preferences_advanced__use_system_emoji">Använd systemets emojis</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Stäng av Signals inbyggda emojistöd</string>
-  <string name="preferences_advanced__video_calling_beta">Videosamtal beta</string>
-  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Stöd för nästa generations video- och röstsamtal om det aktiverats av båda parter. Denna funktion är i beta.</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Slussa alla samtal via Signal-servern för att undvika att avslöja din IP-adress för din kontakt. Aktivering innebär försämrad samtalskvalité.</string>
+    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Slussa alla samtal via Signal-servern för att undvika att avslöja din IP-adress för din kontakt. Aktivering innebär försämrad samtalskvalité.</string>
   <string name="preferences_advanced__always_relay_calls">Slussa alltid samtal</string>
   <string name="preferences_app_protection__app_access">Appåtkomst</string>
   <string name="preferences_app_protection__communication">Kommunikation</string>
@@ -1116,16 +910,10 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__menu_select_all">Markera alla</string>
-  <string name="contact_selection_list__menu_unselect_all">Avmarkera alla</string>
-  <string name="contact_selection_list__header_signal_users">SIGNALANVÄNDARE</string>
-  <string name="contact_selection_list__header_other">ALLA KONTAKTER</string>
-  <string name="contact_selection_list__unknown_contact">Nytt meddelande till...</string>
+    <string name="contact_selection_list__unknown_contact">Nytt meddelande till...</string>
   <!--contact_selection-->
-  <string name="contact_selection__menu_finished">Färdig</string>
-  <!--refreshing push directory from menu-->
-  <string name="push_directory__menu_refresh">Uppdaterar kontaktlistan</string>
-  <!--conversation_callable_insecure-->
+    <!--refreshing push directory from menu-->
+    <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Ring</string>
   <!--conversation_callable_secure-->
   <string name="conversation_callable_secure__menu_call">Signalsamtal</string>
@@ -1144,18 +932,15 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Bjud in</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__security">Säkerhet</string>
-  <!--conversation_list_batch-->
+    <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Radera markerade</string>
   <string name="conversation_list_batch__menu_select_all">Markera alla</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arkiv valt</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Avarkivera markerade</string>
   <!--conversation_list-->
-  <string name="conversation_list__menu_search">Sök</string>
-  <!--conversation_list_item_view-->
+    <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontaktfoto</string>
-  <string name="conversation_list_item_view__error_alert">Felmeddelande</string>
-  <string name="conversation_list_item_view__archived">Arkiverad</string>
+    <string name="conversation_list_item_view__archived">Arkiverad</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Ny konversation</string>
   <!--conversation_secure_verified-->
@@ -1168,8 +953,7 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="conversation__menu_add_attachment">Bifoga fil</string>
   <string name="conversation__menu_edit_group">Ändra grupp</string>
   <string name="conversation__menu_leave_group">Lämna grupp</string>
-  <string name="conversation__menu_delete_thread">Radera konversation</string>
-  <string name="conversation__menu_view_all_media">All media</string>
+    <string name="conversation__menu_view_all_media">All media</string>
   <string name="conversation__menu_conversation_settings">Konversationsinställningar</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Expandera popup</string>
@@ -1181,10 +965,7 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="conversation_group_options__conversation">Konversation</string>
   <string name="conversation_group_options__broadcast">Sändning</string>
   <!--key_scanning-->
-  <string name="key_scanning__menu_compare">Jämför</string>
-  <string name="key_scanning__menu_display_your_qr_code">Visa din QR-kod</string>
-  <string name="key_scanning__menu_scan_contacts_qr_code">Skanna kontakts QR-kod</string>
-  <!--text_secure_normal-->
+    <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Nytt meddelande</string>
   <string name="text_secure_normal__menu_new_group">Ny grupp</string>
   <string name="text_secure_normal__menu_settings">Inställningar</string>
@@ -1204,38 +985,27 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="reminder_header_outdated_build_details_today">Din version av Signal kommer att gå ut idag. Tryck för att uppdatera till senaste versionen.</string>
   <string name="reminder_header_expired_build">Din version av Signal har gått ut!</string>
   <string name="reminder_header_expired_build_details">Meddelanden kommer inte längre att kunna skickas. Tryck för att uppdatera till senaste versionen.</string>
-  <string name="reminder_header_expired_build_button">UPPDATERA</string>
-  <string name="reminder_header_sms_default_title">Använd som standardapp för SMS</string>
+    <string name="reminder_header_sms_default_title">Använd som standardapp för SMS</string>
   <string name="reminder_header_sms_default_text">Tryck för att göra Signal till din standardapp för SMS.</string>
-  <string name="reminder_header_sms_default_button">STÄLL IN</string>
-  <string name="reminder_header_sms_import_title">Importera systemets SMS</string>
+    <string name="reminder_header_sms_import_title">Importera systemets SMS</string>
   <string name="reminder_header_sms_import_text">Tryck för att kopiera din telefons SMS-meddelanden till Signals krypterade databas.</string>
-  <string name="reminder_header_sms_import_button">IMPORTERA</string>
-  <string name="reminder_header_push_title">Aktivera Signalmeddelanden och samtal</string>
+    <string name="reminder_header_push_title">Aktivera Signalmeddelanden och samtal</string>
   <string name="reminder_header_push_text">Uppgradera din kommunikationsupplevelse.</string>
-  <string name="reminder_header_push_button">AKTIVERA</string>
-  <string name="reminder_header_invite_title">Bjud in till Signal</string>
+    <string name="reminder_header_invite_title">Bjud in till Signal</string>
   <string name="reminder_header_invite_text">Ta din konversation med %1$s till nästa nivå.</string>
-  <string name="reminder_header_invite_button">BJUD IN</string>
-  <string name="reminder_header_share_title">Bjud in dina vänner!</string>
+    <string name="reminder_header_share_title">Bjud in dina vänner!</string>
   <string name="reminder_header_share_text">Ju fler av dina vänner som använder Signal, desto bättre blir det.</string>
-  <string name="reminder_header_share_button">DELA</string>
-  <string name="reminder_header_close_button">STÄNG</string>
-  <!--media_preview-->
+    <!--media_preview-->
   <string name="media_preview__save_title">Spara</string>
   <string name="media_preview__forward_title">Vidarebefordra</string>
   <string name="media_preview__all_media_title">All media</string>
   <!--media_overview-->
-  <string name="media_overview__save_all">Spara alla</string>
-  <!--media_preview_activity-->
+    <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Mediaförhandsgranskning</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Uppdatera</string>
   <!--redphone_audio_popup_menu-->
-  <string name="redphone_audio_popup_menu__handset">Mobiltelefon</string>
-  <string name="redphone_audio_popup_menu__headset">Hörlurar</string>
-  <string name="redphone_audio_popup_menu__speaker">Högtalare</string>
-  <!--Trimmer-->
+    <!--Trimmer-->
   <string name="trimmer__deleting">Raderar</string>
   <string name="trimmer__deleting_old_messages">Raderar gamla meddelanden...</string>
   <string name="trimmer__old_messages_successfully_deleted">Gamla meddelanden har raderats</string>
