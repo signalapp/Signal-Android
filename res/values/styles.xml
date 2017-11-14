@@ -91,18 +91,6 @@
         <item name="colorButtonNormal">@color/textsecure_primary</item>
     </style>
 
-    <style name="transparent_progress">
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowTitleStyle">@null</item>
-        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
-        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
-        <item name="android:backgroundDimEnabled">false</item>
-        <item name="android:background">@android:color/transparent</item>
-    </style>
-
     <style name="NotificationText">
       <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
@@ -156,30 +144,8 @@
     </style>
 
     <!-- For Holo Light Dialog Activity Styling Emulation -->
-    <style name="TextSecureDialogWindowTitle">
-        <item name="android:textSize">22sp</item>
-        <item name="android:textColor">@color/textsecure_holo_blue_light</item>
-    </style>
-
-    <style name="TextSecureDialogButtonBar"
-           tools:ignore="NewApi">
-        <item name="android:background">@null</item>
-        <item name="android:dividerPadding">0dp</item>
-    </style>
-
-    <style name="TextSecureBorderlessButtonSmall">
-        <item name="android:textSize">14sp</item>
-    </style>
 
     <style name="Widget.ProgressBar.Horizontal" parent="@android:style/Widget.ProgressBar.Horizontal">
-    </style>
-
-    <style name="TextSecureDialogPrimaryText">
-        <item name="android:textColor">@color/white</item>
-    </style>
-
-    <style name="TextSecureDialogSecondaryText">
-        <item name="android:textColor">#ff999999</item>
     </style>
 
     <style name="MaterialButton">
@@ -219,22 +185,12 @@
     <!-- RedPhone -->
 
     <!-- Buttons in the main "button row" of the in-call onscreen touch UI. -->
-    <style name="InCallButton">
-        <item name="android:layout_width">0px</item>
-        <item name="android:layout_height">@dimen/in_call_button_height</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:background">?android:attr/selectableItemBackground</item>
-    </style>
 
     <!-- "Compound button" variation of InCallButton.
            These buttons have the concept of two states: checked and unchecked.
            (This style is just like "InCallButton" except that we also
            clear out android:textOn and android:textOff, to avoid the default
            text label behavior of the ToggleButton class.) -->
-    <style name="InCallCompoundButton" parent="InCallButton">
-        <item name="android:textOn">@null</item>
-        <item name="android:textOff">@null</item>
-    </style>
 
     <style name="WebRtcCallCompoundButton">
         <item name="android:layout_height">31dp</item>
