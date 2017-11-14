@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:orientation="vertical"
+  android:paddingLeft="5sp"
+  android:paddingRight="5sp"
+  android:id="@+id/CustomLedBlinkLinearLayout">
+  <ScrollView
+    android:layout_height="wrap_content"
+    android:layout_width="fill_parent"
+    android:id="@+id/CustomLedBlinkScrollView">
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:id="@+id/ScrollViewLinearLayout"
+        android:paddingLeft="5sp"
+        android:paddingRight="5sp"
+        android:paddingBottom="2sp"
+        android:paddingTop="2sp">
+        <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="left"
+        android:layout_weight="1">
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/SeekBarOnLabel"
+          android:text="@string/preferences__pref_led_blink_custom_pattern_on_for"
+          android:paddingTop="5sp" />
+        <TextView
+          android:id="@+id/SeekBarOnMsLabel"
+          android:layout_width="40dip"
+          android:layout_height="wrap_content"
+          android:text="0"
+          android:gravity="right" />
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_margin="0dip"
+          android:text="ms" />
+      </LinearLayout>
+      <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="left"
+        android:layout_weight="1">
+      <SeekBar
+        android:id="@+id/SeekBarOn"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:max="5000" />
+      </LinearLayout>
+      <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="left"
+        android:layout_weight="1">
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/SeekBarOffLabel"
+        android:text="@string/preferences__pref_led_blink_custom_pattern_off_for"
+        android:paddingTop="5sp" />
+      <TextView
+        android:id="@+id/SeekBarOffMsLabel"
+        android:layout_width="40dip"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:gravity="right" />
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dip"
+        android:text="ms" />
+      </LinearLayout>
+      <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="left"
+        android:layout_weight="1">
+      <SeekBar
+        android:id="@+id/SeekBarOff"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:max="5000" />
+        </LinearLayout>
+    </LinearLayout>
+  </ScrollView>
+</LinearLayout>
