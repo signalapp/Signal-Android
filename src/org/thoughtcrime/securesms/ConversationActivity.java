@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
@@ -179,6 +180,7 @@ import static org.whispersystems.signalservice.internal.push.SignalServiceProtos
  * @author Moxie Marlinspike
  *
  */
+@SuppressLint("StaticFieldLeak")
 public class ConversationActivity extends PassphraseRequiredActionBarActivity
     implements ConversationFragment.ConversationFragmentListener,
                AttachmentManager.AttachmentListener,
@@ -938,6 +940,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleSecurityChange(boolean isSecureText, boolean isDefaultSms) {
+    Log.w(TAG, "handleSecurityChange(" + isSecureText + ", " + isDefaultSms + ")");
     if (isSecurityInitialized && isSecureText == this.isSecureText && isDefaultSms == this.isDefaultSms) {
       return;
     }
@@ -1035,17 +1038,21 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       protected boolean[] doInBackground(Recipient... params) {
         Context           context         = ConversationActivity.this;
         Recipient         recipient       = params[0];
+        Log.w(TAG, "Resolving registered state...");
         RegisteredState   registeredState = recipient.resolve().getRegistered();
+        Log.w(TAG, "Resolved registered state: " + registeredState);
         boolean           signalEnabled   = TextSecurePreferences.isPushRegistered(context);
 
         if (registeredState == RegisteredState.UNKNOWN) {
           try {
+            Log.w(TAG, "Refreshing directory for user: " + recipient.getAddress().serialize());
             registeredState = DirectoryHelper.refreshDirectoryFor(context, masterSecret, recipient);
           } catch (IOException e) {
             Log.w(TAG, e);
           }
         }
 
+        Log.w(TAG, "Returning registered state...");
         return new boolean[] {registeredState == RegisteredState.REGISTERED && signalEnabled,
                               Util.isDefaultSmsProvider(context)};
       }
@@ -1053,6 +1060,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       @Override
       protected void onPostExecute(boolean[] result) {
         if (result[0] != currentSecureText || result[1] != currentIsDefaultSms) {
+          Log.w(TAG, "onPostExecute() handleSecurityChange: " + result[0] + " , " + result[1]);
           handleSecurityChange(result[0], result[1]);
         }
         future.set(true);
@@ -1064,6 +1072,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void onSecurityUpdated() {
+    Log.w(TAG, "onSecurityUpdated()");
     updateInviteReminder(recipient.hasSeenInviteReminder());
     updateDefaultSubscriptionId(recipient.getDefaultSubscriptionId());
   }
@@ -1279,7 +1288,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onModified(final Recipient recipient) {
+    Log.w(TAG, "onModified(" + recipient.getAddress().serialize() + ")");
     Util.runOnMain(() -> {
+      Log.w(TAG, "onModifiedRun(): " + recipient.getRegistered());
       titleView.setTitle(glideRequests, recipient);
       titleView.setVerified(identityRecords.isVerified());
       setBlockedUserState(recipient, isSecureText, isDefaultSms);
