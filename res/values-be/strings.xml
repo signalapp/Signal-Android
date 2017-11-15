@@ -29,7 +29,7 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Не атрымліваецца знайсці праграму для выбара медыя.</string>
   <!--AttachmentTypeSelectorAdapter-->
-    <!--AudioSlidePlayer-->
+  <!--AudioSlidePlayer-->
   <!--BlockedContactsActivity-->
   <!--BucketedThreadMedia-->
   <!--CallScreen-->
@@ -38,8 +38,8 @@
   <!--ConfirmIdentityDialog-->
   <!--ContactsDatabase-->
   <!--ConversationItem-->
-    <string name="ConversationItem_error_not_delivered">Не было дастаўлена</string>
-    <string name="ConversationItem_group_action_left">%1$s пакінуў групавую гутарку.</string>
+  <string name="ConversationItem_error_not_delivered">Не было дастаўлена</string>
+  <string name="ConversationItem_group_action_left">%1$s пакінуў групавую гутарку.</string>
   <string name="ConversationItem_click_for_details">Націсніце каб пабачыць дэталі</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Націсніце для небяспечнага паўтора</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Паўтарыць у небяспечным SMS?</string>
@@ -50,25 +50,26 @@
   <string name="ConversationActivity_select_contact_info">Абярыце кантактную інфармацыю</string>
   <string name="ConversationActivity_compose_message">Напісаць паведамленне</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">На жаль, але усталёўка вашага дадатку ідзе з памылкай.</string>
-    <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Атрымальнік ня ёсць дзейсным для адпраўкі SMS або email адрасам!</string>
+  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Атрымальнік ня ёсць дзейсным для адпраўкі SMS або email адрасам!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Паведамленне пустое!</string>
   <string name="ConversationActivity_group_members">Удзельнікі групы</string>
-    <string name="ConversationActivity_invalid_recipient">Няправільны атрымальнік!</string>
+  <string name="ConversationActivity_invalid_recipient">Няправільны атрымальнік!</string>
   <string name="ConversationActivity_calls_not_supported">Званкі не падтрымліваюцца</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Гэты апарат ня можа падтрымліваць набор нумару.</string>
   <string name="ConversationActivity_leave_group">Пакінуць групу?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Вы ўпэўнены, што хочаце пакінуць групу?</string>
   <string name="ConversationActivity_transport_insecure_sms">Небяспечная SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Небяспечная MMS</string>
-    <!--ConversationAdapter-->
+  <!--ConversationAdapter-->
   <!--ConversationFragment-->
-    <string name="ConversationFragment_save_to_sd_card">Захаваць на дыск?</string>
+  <string name="ConversationFragment_save_to_sd_card">Захаваць на дыск?</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Немагчыма запісаць на дыск!</string>
   <string name="ConversationFragment_pending">У працэсе...</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
-    <!--ConversationListActivity-->
-    <!--ConversationListFragment-->
+  <string name="ConversationFragment_deleting_messages">Выдаленне паведамлення...</string>
+  <!--ConversationListActivity-->
+  <!--ConversationListFragment-->
   <string name="ConversationListFragment_deleting">Выдаленне</string>
   <!--ConversationListItem-->
   <!--ConversationListItemAction-->
@@ -96,7 +97,7 @@
   <string name="GroupCreateActivity_actionbar_title">Новая група</string>
   <string name="GroupCreateActivity_group_name_hint">Імя групы</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Новая MMS група</string>
-    <string name="GroupCreateActivity_contacts_no_members">Для вашай групы неабходны як мінімум адзін ўдзельнік!</string>
+  <string name="GroupCreateActivity_contacts_no_members">Для вашай групы неабходны як мінімум адзін ўдзельнік!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Адзін з удзельнікаў вашай групы мае некарэтна напісаны нумар. Калі ласка выправіце напісанне гэтага нумару, альбо выдаліце яго ды паспрабуйце паўтарыць ізноў.</string>
   <string name="GroupCreateActivity_avatar_content_description">Групавы аватар</string>
   <string name="GroupCreateActivity_creating_group">Стварэнне %1$s…</string>
@@ -112,21 +113,21 @@
   <string name="ImportFragment_import_system_sms_database">Імпартаваць сістэмную базу SMS паведамленняў?</string>
   <string name="ImportFragment_import">Імпарт</string>
   <string name="ImportFragment_cancel">Адмена</string>
-    <string name="ImportFragment_import_plaintext_backup">Імпартаваць рэзервную копію простым тэкстам?</string>
+  <string name="ImportFragment_import_plaintext_backup">Імпартаваць рэзервную копію простым тэкстам?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Гэты працэс прывядзе да імпарта паведамленняў простым тэкстам з рэзервнай копіі.
 Калі раней Вы ўжо рабілі гэта, цяперашні імпарт можа прывесці да з\'яўлення SMS дублікатаў.</string>
   <string name="ImportFragment_importing">Імпартаванне</string>
   <string name="ImportFragment_no_plaintext_backup_found">Ня знойдзена рэзервных копій простым тэкстам!</string>
   <string name="ImportFragment_error_importing_backup">Памылка імпарта рэзервнай копіі!</string>
   <string name="ImportFragment_import_complete">Імпарт выкананы!</string>
-    <!--InputPanel-->
+  <!--InputPanel-->
   <!--InviteActivity-->
   <!--KeyScanningActivity-->
-    <!--MessageDetailsRecipient-->
+  <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Не атрымалася даслаць</string>
   <!--MessageRetrievalService-->
   <!--MmsDownloader-->
-    <!--MediaOverviewActivity-->
+  <!--MediaOverviewActivity-->
   <!--- NotificationBarManager-->
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Мультымедыя паведамленне</string>
@@ -140,7 +141,7 @@
   <string name="DeviceProvisioningActivity_link_this_device">Прывязаць гэты дэвайс?</string>
   <string name="DeviceProvisioningActivity_cancel">АДМЕНА</string>
   <string name="DeviceProvisioningActivity_continue">ПРАЦЯГНУЦЬ</string>
-    <string name="DeviceProvisioningActivity_content_intro">Гэта будзе магчыма</string>
+  <string name="DeviceProvisioningActivity_content_intro">Гэта будзе магчыма</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Ня знойдзена дэвайсаў.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Памылка сеткі.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Няправільны QR код.</string>
@@ -160,9 +161,9 @@
   <string name="RegistrationActivity_you_must_specify_your_phone_number">Вы мусіце ўказаць ваш нумар тэлефона</string>
   <string name="RegistrationActivity_invalid_number">Няправільны нумар</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Вы ўказалі няправільны нумар (%s) </string>
-    <!--RegistrationProblemsActivity-->
-    <!--RegistrationProgressActivity-->
-    <!--RegistrationService-->
+  <!--RegistrationProblemsActivity-->
+  <!--RegistrationProgressActivity-->
+  <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Рэгістрацыя ваканана</string>
   <string name="RegistrationService_registration_error">Памылка рэгістрацыі</string>
   <!--RingtonePreference-->
@@ -181,14 +182,14 @@
   <!--UnverifiedSendDialog-->
   <!--VerifyIdentityActivity-->
   <!--KeyExchangeInitiator-->
-    <!--MessageDisplayHelper-->
+  <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_decrypting_please_wait">Расшыфроўка, пачакайце калі ласка...</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">Памылка расшыфроўкі паведамлення.</string>
   <!--ThreadDatabase-->
   <string name="ThreadDatabase_error_decrypting_message">Памылка расшыфроўкі паведамлення.</string>
   <!--MmsDatabase-->
-    <string name="MmsDatabase_error_decrypting_message">Памылка расшыфроўкі паведамлення.</string>
+  <string name="MmsDatabase_error_decrypting_message">Памылка расшыфроўкі паведамлення.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">РасшыфроўкаMMS, пачакайце калі ласка...</string>
   <!--MuteDialog-->
@@ -199,16 +200,16 @@
   <string name="KeyCachingService_lock">Замкнуць гэты пароль</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Вы</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">Гэты медыя тып не падтрымліваецца</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Гэты медыя тып не падтрымліваецца</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_media_message_with_text">Мультымедыя паведамленне: %s</string>
-    <string name="MessageNotifier_message_delivery_failed">Памылка дастаўкі паведамлення.</string>
+  <string name="MessageNotifier_message_delivery_failed">Памылка дастаўкі паведамлення.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Памылка дастаўкі паведамлення.</string>
   <string name="MessageNotifier_error_delivering_message">Памылка дастаўкі паведамлення.</string>
   <string name="MessageNotifier_mark_all_as_read">Пазначыць усе як прачытаныя</string>
   <string name="MessageNotifier_media_message">Мультымедыя паведамленне</string>
   <!--MmsPreferencesFragment-->
-    <!--QuickResponseService-->
+  <!--QuickResponseService-->
   <!--SaveAttachmentTask-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_new_message">Новае паведамленне</string>
@@ -224,25 +225,25 @@
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Фота кантакта</string>
   <!--ContactSelectionListFragment-->
-    <!--blocked_contacts_fragment-->
+  <!--blocked_contacts_fragment-->
   <!--contact_selection_recent_activity-->
-    <!--conversation_title_view-->
+  <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__send">Даслаць</string>
-    <string name="conversation_activity__compose_description">Скласці паведамленне</string>
+  <string name="conversation_activity__compose_description">Скласці паведамленне</string>
   <string name="conversation_activity__emoji_toggle_description">Пераключыць emoji клавіятуру</string>
   <string name="conversation_activity__attachment_thumbnail">Дадатак мініяцюры</string>
   <!--conversation_input_panel-->
   <!--conversation_item-->
-    <string name="conversation_item__mms_image_description">Медыя паведамленне</string>
+  <string name="conversation_item__mms_image_description">Медыя паведамленне</string>
   <string name="conversation_item__secure_message_description">Бяспечнае паведамленне</string>
   <!--conversation_item_sent-->
-    <string name="conversation_item_sent__send_failed_indicator_description">Не атрымалася адправіць</string>
+  <string name="conversation_item_sent__send_failed_indicator_description">Не атрымалася адправіць</string>
   <string name="conversation_item_sent__pending_approval_description">Чакаецца пацверджанне</string>
   <string name="conversation_item_sent__delivered_description">Дастаўлена</string>
   <!--conversation_item_received-->
-    <string name="conversation_item_received__contact_photo_description">Фота кантакта</string>
-    <!--audio_view-->
+  <string name="conversation_item_received__contact_photo_description">Фота кантакта</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Пакетны рэжым выбару</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s абрана</string>
@@ -260,10 +261,10 @@
   <!--giphy_activity-->
   <!--giphy_fragment-->
   <!--import_export_fragment-->
-    <!--log_submit_activity-->
+  <!--log_submit_activity-->
   <string name="log_submit_activity__thanks">Дзякуй за вашу дапамогу!</string>
   <string name="log_submit_activity__submitting">Падпіска</string>
-    <!--database_migration_activity-->
+  <!--database_migration_activity-->
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Сістэмная база паведамленняў ня будзе зменена ніякім чынам.</string>
   <string name="database_migration_activity__skip">Прапусціць</string>
   <string name="database_migration_activity__import">Імпарт</string>
@@ -288,10 +289,10 @@
   <!--recipient_preferences-->
   <!--- redphone_call_controls-->
   <!--registration_activity-->
-    <string name="registration_activity__phone_number">НУМАР ТЭЛЕФОНА</string>
-    <!--registration_problems-->
-    <!--registration_progress_activity-->
-    <!--recipients_panel-->
+  <string name="registration_activity__phone_number">НУМАР ТЭЛЕФОНА</string>
+  <!--registration_problems-->
+  <!--registration_progress_activity-->
+  <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Увядзіце імя альбо нумар тэлефона</small></string>
   <!--unknown_sender_view-->
   <!--verify_display_fragment-->
@@ -322,12 +323,12 @@
     <item quantity="other">%d гадзін</item>
   </plurals>
   <!--preferences.xml-->
-    <string name="preferences__sms_mms">SMS і MMS</string>
+  <string name="preferences__sms_mms">SMS і MMS</string>
   <string name="preferences__pref_all_sms_title">Атрымаць усе SMS</string>
   <string name="preferences__pref_all_mms_title">Атрымаць усе MMS</string>
-    <string name="preferences__pref_enter_sends_title">Дасылаць клавішай Enter</string>
+  <string name="preferences__pref_enter_sends_title">Дасылаць клавішай Enter</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Націск на клавішу Enter будзе дасылаць паведамленне</string>
-    <string name="preferences__choose_identity">Абярыце ідэнтыфікатар</string>
+  <string name="preferences__choose_identity">Абярыце ідэнтыфікатар</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Абярыце кантакт са спісу.</string>
   <string name="preferences__change_passphrase">Змяніць пароль.</string>
   <string name="preferences__enable_passphrase">Уключыць пароль</string>
@@ -337,7 +338,7 @@
   <string name="preferences__led_color">колер святлодыёда</string>
   <string name="preferences__led_color_unknown">Невядома</string>
   <string name="preferences__pref_led_blink_title">Узор міргацення светладыёда</string>
-    <string name="preferences__sound">Гук</string>
+  <string name="preferences__sound">Гук</string>
   <string name="preferences__repeat_alerts">Паўтарыць папярэджанні</string>
   <string name="preferences__never">Ніколі</string>
   <string name="preferences__one_time">Адзін раз</string>
@@ -346,7 +347,7 @@
   <string name="preferences__five_times">Пяць разоў</string>
   <string name="preferences__ten_times">Дзесяць разоў</string>
   <string name="preferences__vibrate">Вібрыраваць</string>
-    <string name="preferences__green">Зялёны</string>
+  <string name="preferences__green">Зялёны</string>
   <string name="preferences__red">Чырвоны</string>
   <string name="preferences__blue">Сіні</string>
   <string name="preferences__orange">Памаранчовы</string>
@@ -357,10 +358,10 @@
   <string name="preferences__fast">Хутка</string>
   <string name="preferences__normal">Нармальна</string>
   <string name="preferences__slow">Павольна</string>
-    <string name="preferences__advanced">Прасунуты</string>
+  <string name="preferences__advanced">Прасунуты</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Ручныя налады MMS</string>
-    <string name="preferences__mmsc_url">MMSC URL</string>
+  <string name="preferences__mmsc_url">MMSC URL</string>
   <string name="preferences__mms_proxy_host">MMS Proxy Host</string>
   <string name="preferences__mms_proxy_port">MMS Proxy Port</string>
   <string name="preferences__mmsc_username">MMSC Username</string>
@@ -381,10 +382,10 @@
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-    <string name="contact_selection_list__unknown_contact">Новае паведамленне для...</string>
+  <string name="contact_selection_list__unknown_contact">Новае паведамленне для...</string>
   <!--contact_selection-->
-    <!--refreshing push directory from menu-->
-    <!--conversation_callable_insecure-->
+  <!--refreshing push directory from menu-->
+  <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Набраць</string>
   <!--conversation_callable_secure-->
   <!--conversation_context-->
@@ -400,13 +401,13 @@
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Запрасіць</string>
   <!--conversation_insecure_no_push-->
-    <!--conversation_list_batch-->
+  <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Выдаліць абранае</string>
   <string name="conversation_list_batch__menu_select_all">Выбраць усё</string>
   <!--conversation_list-->
-    <!--conversation_list_item_view-->
+  <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Фота кантакта</string>
-    <!--conversation_list_fragment-->
+  <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Новая размова</string>
   <!--conversation_secure_verified-->
   <!--conversation_muted-->
@@ -423,7 +424,7 @@
   <string name="conversation_group_options__conversation">Гутарка</string>
   <string name="conversation_group_options__broadcast">Трансляцыя</string>
   <!--key_scanning-->
-    <!--text_secure_normal-->
+  <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Новае паведамленне</string>
   <string name="text_secure_normal__menu_new_group">Новая група</string>
   <string name="text_secure_normal__menu_settings">Налады</string>
@@ -442,5 +443,6 @@
   <string name="trimmer__old_messages_successfully_deleted">Старыя паведамленні паспяхова выдалены</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Транспартны значок</string>
+  <string name="SearchToolbar_search">Пошук</string>
   <!--EOF-->
 </resources>

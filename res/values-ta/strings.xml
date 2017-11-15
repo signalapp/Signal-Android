@@ -45,7 +45,7 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">மீடியாவை தேர்வுசெய்யும் ஒரு பயன்பாட்டை கண்டுபிடிக்க முடியவில்லை.</string>
   <!--AttachmentTypeSelectorAdapter-->
-    <!--AudioSlidePlayer-->
+  <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">ஒலி இயக்குவதில் பிழை!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">முடக்கப்பட்ட தொடர்புகள்</string>
@@ -61,8 +61,8 @@
   <string name="ContactsDatabase_message_s">செய்தி %s</string>
   <string name="ContactsDatabase_signal_call_s"> சிக்னல் அழைப்பு %s</string>
   <!--ConversationItem-->
-    <string name="ConversationItem_error_not_delivered">விநியோகிக்கப்படவில்லை</string>
-    <string name="ConversationItem_group_action_left">%1$s இந்தக் குழுவை விட்டு விலகினார்.</string>
+  <string name="ConversationItem_error_not_delivered">விநியோகிக்கப்படவில்லை</string>
+  <string name="ConversationItem_group_action_left">%1$s இந்தக் குழுவை விட்டு விலகினார்.</string>
   <string name="ConversationItem_click_for_details">விவரங்களுக்கு தொடவும்</string>
   <string name="ConversationItem_click_to_approve_unencrypted">பாதுகாப்பற்ற குறைவடைந்த வழிக்கு தொடவும்</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">மறையாக்கபடாத SMS-ஆக அனுப்பலாமா?</string>
@@ -73,14 +73,14 @@
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">பாதுகாப்பான அமர்வை மீட்டமைக்க?</string>
   <string name="ConversationActivity_reset">மீட்டமைக்க</string>
-    <string name="ConversationActivity_add_attachment">இணைப்பு சேர்க்க</string>
+  <string name="ConversationActivity_add_attachment">இணைப்பு சேர்க்க</string>
   <string name="ConversationActivity_select_contact_info">தொடர்பு தகவலை தேர்ந்தெடுக்கவும்</string>
   <string name="ConversationActivity_compose_message">செய்தியை இயற்று</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">மன்னிக்கவும், உங்கள் இணைப்பை அமைப்பதில் பிழை ஏற்ப்பட்டது.</string>
-    <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">பெறுநர் ஒரு செல்லுபடியாகும் SMS அல்லது மின்னஞ்சல் முகவரி அல்ல!</string>
+  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">பெறுநர் ஒரு செல்லுபடியாகும் SMS அல்லது மின்னஞ்சல் முகவரி அல்ல!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">செய்தி காலியாக உள்ளது!</string>
   <string name="ConversationActivity_group_members">குழு உறுப்பினர்கள்</string>
-    <string name="ConversationActivity_invalid_recipient">செல்லாத பெறுநர்!</string>
+  <string name="ConversationActivity_invalid_recipient">செல்லாத பெறுநர்!</string>
   <string name="ConversationActivity_calls_not_supported">அழைப்புக்களுக்கு ஆதரவில்லை</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">இந்த சாதனம் டயல் செயல்பாட்டை ஆதரிப்பதுபோல் தோன்றவில்லை.</string>
   <string name="ConversationActivity_leave_group">குழுவிலுருந்து விலகலாமா?</string>
@@ -90,13 +90,13 @@
   <string name="ConversationActivity_transport_signal">சமிக்ஞை</string>
   <string name="ConversationActivity_lets_switch_to_signal">%1$s நாம் சமிக்ஞைக்கு மாறுவோம்</string>
   <string name="ConversationActivity_lets_use_this_to_chat">நாம் அரட்டையடிக்க இதை பயன்படுத்துவோம்: %1$s</string>
-    <string name="ConversationActivity_specify_recipient">தயவு செய்து ஒரு தொடர்பை தேர்ந்தெடு</string>
+  <string name="ConversationActivity_specify_recipient">தயவு செய்து ஒரு தொடர்பை தேர்ந்தெடு</string>
   <string name="ConversationActivity_unblock">தடுப்புநீக்க</string>
   <string name="ConversationActivity_quick_camera_unavailable">புகைப்படக் கருவி கிடைப்பிலில்லை</string>
   <string name="ConversationActivity_unable_to_record_audio">ஒலி பதிவுச் செய்ய  இயலவில்லை!</string>
   <!--ConversationAdapter-->
   <!--ConversationFragment-->
-    <plurals name="ConversationFragment_delete_selected_messages">
+  <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">தேர்ந்தெடுக்கப்பட்ட செய்தியை நீக்க ?</item>
     <item quantity="other">தேர்ந்தெடுக்கப்பட்ட செய்திகளை நீக்க  வேண்டுமா?</item>
   </plurals>
@@ -106,12 +106,14 @@
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">சேமிப்பில் சேர்க்கவேண்டுமா?</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">சேமிப்பில் சேர்க இயலவில்லை!</string>
-    <string name="ConversationFragment_pending">நிலுவையில் உள்ளது...</string>
+  <string name="ConversationFragment_pending">நிலுவையில் உள்ளது...</string>
   <string name="ConversationFragment_push">தரவு (சமிக்ஞை)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
-    <!--ConversationListActivity-->
-    <!--ConversationListFragment-->
+  <string name="ConversationFragment_deleting">நீக்கப்படுகிறது</string>
+  <string name="ConversationFragment_deleting_messages">செய்திகள் நீக்கப்படுகிறது...</string>
+  <!--ConversationListActivity-->
+  <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">தேர்ந்தெடுக்கப்பட்ட உரையாடலை அழி ?</item>
     <item quantity="other">தேர்ந்தெடுக்கப்பட்ட உரையாடலைகளை  நீக்குக ?</item>
@@ -122,7 +124,8 @@
     <item quantity="one">உரையாடல்கள் பெட்டகப்படுத்தப்பட்டது.</item>
     <item quantity="other">%d உரையாடல்கள் பெட்டகப்படுத்தப்பட்டது.</item>
   </plurals>
-    <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+  <string name="ConversationListFragment_undo">மீளமை</string>
+  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">உரையாடல் அகப்பெட்டிக்கு நகர்த்தப்பட்டது.</item>
     <item quantity="other">%d உரையாடலைகள் அகப்பெட்டிக்கு நகர்த்தப்பட்டது.</item>
   </plurals>
@@ -140,7 +143,9 @@
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">\'%s\' துண்டி?</string>
   <string name="DeviceListActivity_try_again">மீண்டும் முயற்சிக்கவும்</string>
-    <string name="DeviceListActivity_network_failed">பிணையம் தோல்வி ...</string>
+  <string name="DeviceListActivity_unlinking_device">கருவி துண்டிக்கப்படுகிறது ...</string>
+  <string name="DeviceListActivity_unlinking_device_no_ellipsis">கருவி துண்டிக்கப்படுகிறது</string>
+  <string name="DeviceListActivity_network_failed">பிணையம் தோல்வி ...</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">பெயரில்லாத கருவி</string>
   <string name="DeviceListItem_linked_s">%s இணைக்கப்பட்டது.</string>
@@ -166,7 +171,7 @@
   <string name="GroupCreateActivity_actionbar_title">புதிய குழு</string>
   <string name="GroupCreateActivity_group_name_hint">குழுவின் பெயர்</string>
   <string name="GroupCreateActivity_actionbar_mms_title">புதிய MMS குழு</string>
-    <string name="GroupCreateActivity_contacts_no_members"> உங்கள் குழுவில் குறைந்தது ஒரு நபராவது தேவை!</string>
+  <string name="GroupCreateActivity_contacts_no_members"> உங்கள் குழுவில் குறைந்தது ஒரு நபராவது தேவை!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">உங்கள் குழு உறுப்பினர்களுள் ஒருவர் சரியாக படிக்கமுடியாத எண்ணை கொண்டுள்ளார். இதை சரி செய்யவும் அல்லது அந்த தொடர்பை நீக்கி, மீண்டும் முயற்சிக்கவும்.</string>
   <string name="GroupCreateActivity_avatar_content_description">குழு சின்னம்</string>
   <string name="GroupCreateActivity_creating_group">%1$s உருவாக்கபடுகிறது…</string>
@@ -183,7 +188,7 @@
   <string name="ImportFragment_import_system_sms_database"> தொலைபேசியிலுள்ள SMS-களை இறக்குமதி செய்யலாமா?</string>
   <string name="ImportFragment_import">இறக்குமதி செய்</string>
   <string name="ImportFragment_cancel">ரத்து</string>
-    <string name="ImportFragment_import_plaintext_backup">முன்சேமித்த இயல்புஉரை கோப்பிலிருந்து இறக்குமதிசெய்யலாமா?</string>
+  <string name="ImportFragment_import_plaintext_backup">முன்சேமித்த இயல்புஉரை கோப்பிலிருந்து இறக்குமதிசெய்யலாமா?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">இது முன்சேமித்த இயல்புஉரை 
 கோப்பிலிருந்து இறக்குமதிசெய்யும். நீங்கள் முன்பே இதனை இறக்குமதி செய்திருந்தால், 
 மீண்டும் செய்வது நகல் செய்திகளை ஏற்படுத்தும்.</string>
@@ -191,7 +196,7 @@
   <string name="ImportFragment_no_plaintext_backup_found">முன்சேமித்த இயல்புஉரை கோப்பு காணப்படவில்லை!</string>
   <string name="ImportFragment_error_importing_backup">இறக்குமதி செய்வதில் பிழை!</string>
   <string name="ImportFragment_import_complete">இறக்குமதி முடிந்தது!</string>
-    <!--InputPanel-->
+  <!--InputPanel-->
   <!--InviteActivity-->
   <string name="InviteActivity_share">பகிர்</string>
   <string name="InviteActivity_cancel">இரத்து</string>
@@ -201,15 +206,15 @@
   <string name="InviteActivity_invite_to_signal">சமிக்ஞைக்கு அழை</string>
   <string name="InviteActivity_lets_switch_to_signal">%1$s: நாம் சமிக்ஞைக்கு மாறுவோம்</string>
   <!--KeyScanningActivity-->
-    <!--MessageDetailsRecipient-->
+  <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">அனுப்ப முடியவில்லை</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">சமிக்ஞை</string>
   <!--MmsDownloader-->
-    <!--MediaOverviewActivity-->
+  <!--MediaOverviewActivity-->
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">சமிக்ஞை அழைப்புப் போய்க்கொண்டிருக்கிறது</string>
-    <string name="NotificationBarManager__establishing_signal_call">சமிக்ஞை அழைப்பு நிறுவுப்படுகிறது</string>
+  <string name="NotificationBarManager__establishing_signal_call">சமிக்ஞை அழைப்பு நிறுவுப்படுகிறது</string>
   <string name="NotificationBarManager__incoming_signal_call">உள்வரும் சமிக்ஞை அழைப்பு</string>
   <string name="NotificationBarManager__deny_call">அழைப்பை மறுதளி</string>
   <string name="NotificationBarManager__answer_call">அழைப்பை எடு</string>
@@ -230,7 +235,7 @@
   <string name="DeviceProvisioningActivity_link_this_device">இந்த சாதனத்தை இணைக்களாமா? </string>
   <string name="DeviceProvisioningActivity_cancel">ரத்து</string>
   <string name="DeviceProvisioningActivity_continue">தொடர்</string>
-    <string name="DeviceProvisioningActivity_content_intro">இதனால் முடியும் </string>
+  <string name="DeviceProvisioningActivity_content_intro">இதனால் முடியும் </string>
   <string name="DeviceProvisioningActivity_content_progress_success">கருவி அங்கீகரிக்கப்பட்டது!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">எந்த சாதனமும் காணப்படவில்லை.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">இணையத்தில் பிழை.</string>
@@ -257,8 +262,8 @@
   <string name="RedPhone_ringing">அடிக்கிறது</string>
   <string name="RedPhone_busy">மும்முரமாக</string>
   <string name="RedPhone_connected">இணைக்கப்பட்டது</string>
-    <string name="RedPhone_network_failed">பிணையம் தோல்வி ...</string>
-    <string name="RedPhone_number_not_registered">எண் பதிவிலில்லை.</string>
+  <string name="RedPhone_network_failed">பிணையம் தோல்வி ...</string>
+  <string name="RedPhone_number_not_registered">எண் பதிவிலில்லை.</string>
   <string name="RedPhone_got_it">கிடைத்து.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">உங்கள் நாட்டை தேர்ந்தெடுக்கவும்</string>
@@ -271,9 +276,9 @@
   <string name="RegistrationActivity_invalid_number">செல்லா எண்</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">நீங்கள் குறிப்பிட்ட 
 எண் (%s) செல்லாது.</string>
-    <!--RegistrationProblemsActivity-->
-    <!--RegistrationProgressActivity-->
-    <!--RegistrationService-->
+  <!--RegistrationProblemsActivity-->
+  <!--RegistrationProgressActivity-->
+  <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">பதிவு முழுமையுற்றது</string>
   <string name="RegistrationService_registration_error">பதிவுசெய்தலில்  பிழை</string>
   <!--RingtonePreference-->
@@ -301,14 +306,14 @@
   <!--UnverifiedSendDialog-->
   <!--VerifyIdentityActivity-->
   <!--KeyExchangeInitiator-->
-    <!--MessageDisplayHelper-->
+  <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_decrypting_please_wait">மறைவிலக்கபடுகிறது, தயவுசெய்து காத்திருக்கவும்...</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">செய்தியை மறைவிலக்கப்படுவதில் பிழை.</string>
   <!--ThreadDatabase-->
   <string name="ThreadDatabase_error_decrypting_message">செய்தி மறைvilakkuவதில் பிழை</string>
   <!--MmsDatabase-->
-    <string name="MmsDatabase_error_decrypting_message">செய்தி மறைvilakkuவதில் பிழை</string>
+  <string name="MmsDatabase_error_decrypting_message">செய்தி மறைvilakkuவதில் பிழை</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">MMS மறைவிலக்கபடுகிறது, தயவுசெய்து காத்திருக்கவும்...</string>
   <!--MuteDialog-->
@@ -321,10 +326,10 @@
   <string name="KeyCachingService_lock">கடவுச்சொல்லை வைத்து பூட்டவும் </string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">நீங்கள்</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">ஆதரிக்கப்படாத மீடியா வகை</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">ஆதரிக்கப்படாத மீடியா வகை</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_media_message_with_text">மீடியா செய்தி: %s</string>
-    <string name="MessageNotifier_message_delivery_failed">செய்தி விநியோகிப்பது தோல்வியடைந்தது.</string>
+  <string name="MessageNotifier_message_delivery_failed">செய்தி விநியோகிப்பது தோல்வியடைந்தது.</string>
   <string name="MessageNotifier_failed_to_deliver_message">செய்தி விநியோகிப்பது தோல்வியடைந்தது.</string>
   <string name="MessageNotifier_error_delivering_message">செய்தி விநியோகிப்பதில் பிழை.</string>
   <string name="MessageNotifier_mark_all_as_read">அனைத்தையும் படித்தாக குறியிடு</string>
@@ -332,7 +337,7 @@
   <string name="MessageNotifier_media_message">மீடியா செய்தி</string>
   <string name="MessageNotifier_reply">மறுமொழி கூறு</string>
   <!--MmsPreferencesFragment-->
-    <!--QuickResponseService-->
+  <!--QuickResponseService-->
   <string name="QuickResponseService_problem_sending_message">செய்தி அனுப்புவதில் பிரச்சணை!</string>
   <!--SaveAttachmentTask-->
   <!--SingleRecipientNotificationBuilder-->
@@ -358,25 +363,25 @@
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">தொடர்பின் புகைப்படம்</string>
   <!--ContactSelectionListFragment-->
-    <!--blocked_contacts_fragment-->
+  <!--blocked_contacts_fragment-->
   <!--contact_selection_recent_activity-->
-    <!--conversation_title_view-->
+  <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__send">அனுப்பு</string>
-    <string name="conversation_activity__compose_description">செய்தி தொகுப்பு</string>
+  <string name="conversation_activity__compose_description">செய்தி தொகுப்பு</string>
   <string name="conversation_activity__emoji_toggle_description">உணர்ச்சித்திர விசைப்பலகைக்கு மாற்று</string>
   <string name="conversation_activity__attachment_thumbnail">இணைப்பின் சிறுபடம்</string>
   <!--conversation_input_panel-->
   <!--conversation_item-->
-    <string name="conversation_item__mms_image_description">மீடியா செய்தி</string>
+  <string name="conversation_item__mms_image_description">மீடியா செய்தி</string>
   <string name="conversation_item__secure_message_description">பாதுகாப்பான செய்தி</string>
   <!--conversation_item_sent-->
-    <string name="conversation_item_sent__send_failed_indicator_description">அனுப்பதலில் தோல்வி</string>
+  <string name="conversation_item_sent__send_failed_indicator_description">அனுப்பதலில் தோல்வி</string>
   <string name="conversation_item_sent__pending_approval_description">ஒப்புதல் நிலுவையிலுள்ளது </string>
   <string name="conversation_item_sent__delivered_description">விநியோகிக்கப்பட்டது</string>
   <!--conversation_item_received-->
-    <string name="conversation_item_received__contact_photo_description">தொடர்பின் புகைப்படம்</string>
-    <!--audio_view-->
+  <string name="conversation_item_received__contact_photo_description">தொடர்பின் புகைப்படம்</string>
+  <!--audio_view-->
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">தொகுப்பாய் தேர்வு செய்யப்பட்டது</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s தேர்ந்தெடுக்கப்பட்டது</string>
@@ -397,10 +402,10 @@
   <!--giphy_activity-->
   <!--giphy_fragment-->
   <!--import_export_fragment-->
-    <!--log_submit_activity-->
+  <!--log_submit_activity-->
   <string name="log_submit_activity__thanks">உங்கள் உதவிக்கு நன்றி!</string>
   <string name="log_submit_activity__submitting">சமர்பிப்பிக்கப்படுகிறது</string>
-    <!--database_migration_activity-->
+  <!--database_migration_activity-->
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">இயல்புநிலை சாதனக் கோப்பு இதனால் எந்தவிதத்திலும் மாற்றமோ அல்லது திறுத்தமோ பெறாது.</string>
   <string name="database_migration_activity__skip">தவிர்</string>
   <string name="database_migration_activity__import">இறக்குமதி செய்</string>
@@ -425,18 +430,18 @@
   <!--prompt_mms_activity-->
   <!--profile_create_activity-->
   <!--recipient_preferences_activity-->
-    <!--recipient_preferences-->
+  <!--recipient_preferences-->
   <string name="recipient_preferences__vibrate">அதிர்வு</string>
   <string name="recipient_preferences__block">முடக்கு</string>
   <string name="recipient_preferences__color">நிறம்</string>
   <string name="recipient_preferences__privacy">தனியுரிமை</string>
   <!--- redphone_call_controls-->
-    <string name="redphone_call_controls__mute">ஓசையற்ற</string>
+  <string name="redphone_call_controls__mute">ஓசையற்ற</string>
   <!--registration_activity-->
-    <string name="registration_activity__phone_number">தொலைபேசி எண்</string>
-    <!--registration_problems-->
-    <!--registration_progress_activity-->
-    <!--recipients_panel-->
+  <string name="registration_activity__phone_number">தொலைபேசி எண்</string>
+  <!--registration_problems-->
+  <!--registration_progress_activity-->
+  <!--recipients_panel-->
   <string name="recipients_panel__to"><small>ஒரு பெயர் அல்லது எண்ணை உள்ளிடவும்</small></string>
   <!--unknown_sender_view-->
   <!--verify_display_fragment-->
@@ -453,7 +458,7 @@
   <string name="AndroidManifest__create_passphrase">கடவுச்சொல்லை உருவாக்கு</string>
   <string name="AndroidManifest__enter_passphrase">கடவுச்சொல்லை உள்ளிடவும். </string>
   <string name="AndroidManifest__select_contacts">தொடர்புகளை தேர்ந்தெடு</string>
-    <string name="AndroidManifest__change_passphrase">கடவுச்சொல்லை மாற்று</string>
+  <string name="AndroidManifest__change_passphrase">கடவுச்சொல்லை மாற்று</string>
   <string name="AndroidManifest__message_details">செய்தி விவரங்கள்</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">இறக்குமதி / ஏற்றுமதி</string>
@@ -473,12 +478,12 @@
     <item quantity="other">%d மணிநேரங்கள் </item>
   </plurals>
   <!--preferences.xml-->
-    <string name="preferences__sms_mms">SMS மற்றும் MMS</string>
+  <string name="preferences__sms_mms">SMS மற்றும் MMS</string>
   <string name="preferences__pref_all_sms_title">அனைத்து SMSகளையும் பெறுக</string>
   <string name="preferences__pref_all_mms_title">அனைத்து MMSகளையும் பெறுக</string>
-    <string name="preferences__pref_enter_sends_title">பதிவு விசை அனுப்பும்</string>
+  <string name="preferences__pref_enter_sends_title">பதிவு விசை அனுப்பும்</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">உள்ளீட்டு விசையை அழுத்துவது செய்தியை அனுப்பும் </string>
-    <string name="preferences__choose_identity">அடையாள தேர்வு.
+  <string name="preferences__choose_identity">அடையாள தேர்வு.
  </string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">தொடர்பு பட்டியலில் இருந்து உங்கள் தொடர்பை  தேர்வுசெய்க.</string>
   <string name="preferences__change_passphrase">கடவுச்சொல்லை மாற்று</string>
@@ -490,7 +495,7 @@
   <string name="preferences__led_color">LED நிறம்</string>
   <string name="preferences__led_color_unknown">முன் தெரிந்திராத</string>
   <string name="preferences__pref_led_blink_title">LED மிளிரும் முறை</string>
-    <string name="preferences__sound">ஒலி</string>
+  <string name="preferences__sound">ஒலி</string>
   <string name="preferences__silent">அமைதி</string>
   <string name="preferences__repeat_alerts">பலமுறை எச்சரிக்கைகள்</string>
   <string name="preferences__never">ஒருபோதுமில்லை</string>
@@ -500,7 +505,7 @@
   <string name="preferences__five_times">ஐந்து முறை</string>
   <string name="preferences__ten_times">பத்து முறை</string>
   <string name="preferences__vibrate">அதிர்வு</string>
-    <string name="preferences__green">பச்சை</string>
+  <string name="preferences__green">பச்சை</string>
   <string name="preferences__red">சிவப்பு</string>
   <string name="preferences__blue">நீலம்</string>
   <string name="preferences__orange">ஆரஞ்சு</string>
@@ -511,10 +516,10 @@
   <string name="preferences__fast">வேகமாக</string>
   <string name="preferences__normal">சாதாரணமாக</string>
   <string name="preferences__slow">மெதுவாக</string>
-    <string name="preferences__advanced">மேம்பட்ட</string>
+  <string name="preferences__advanced">மேம்பட்ட</string>
   <string name="preferences__privacy">தனியுரிமை</string>
   <string name="preferences__advanced_mms_access_point_names">நீங்கள் செய்யவேண்டிய MMS அமைப்புகள்</string>
-    <string name="preferences__mmsc_url">MMSC URL</string>
+  <string name="preferences__mmsc_url">MMSC URL</string>
   <string name="preferences__mms_proxy_host">MMS Proxy Host</string>
   <string name="preferences__mms_proxy_port">MMS Proxy Port</string>
   <string name="preferences__mmsc_username">MMSC Username</string>
@@ -536,10 +541,10 @@
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-    <string name="contact_selection_list__unknown_contact"> புதிய செய்தி இவருக்கு...</string>
+  <string name="contact_selection_list__unknown_contact"> புதிய செய்தி இவருக்கு...</string>
   <!--contact_selection-->
-    <!--refreshing push directory from menu-->
-    <!--conversation_callable_insecure-->
+  <!--refreshing push directory from menu-->
+  <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">அழை</string>
   <!--conversation_callable_secure-->
   <string name="conversation_callable_secure__menu_call">சமிக்ஞை அழைப்பு</string>
@@ -556,13 +561,13 @@
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">அழை</string>
   <!--conversation_insecure_no_push-->
-    <!--conversation_list_batch-->
+  <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">தேர்ந்தெடுக்கப்பட்டதை நீக்க</string>
   <string name="conversation_list_batch__menu_select_all">அனைத்து தேர்வுசெய்</string>
   <!--conversation_list-->
-    <!--conversation_list_item_view-->
+  <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">தொடர்பின் புகைப்படம்</string>
-    <string name="conversation_list_item_view__archived">ஆவணமாக்கப்பட்டது</string>
+  <string name="conversation_list_item_view__archived">ஆவணமாக்கப்பட்டது</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">புதிய உரையாடல்</string>
   <!--conversation_secure_verified-->
@@ -582,7 +587,7 @@
   <string name="conversation_group_options__conversation">உரையாடல்</string>
   <string name="conversation_group_options__broadcast">ஒளிபரப்பு</string>
   <!--key_scanning-->
-    <!--text_secure_normal-->
+  <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">புதிய செய்தி</string>
   <string name="text_secure_normal__menu_new_group">புதிய குழு</string>
   <string name="text_secure_normal__menu_settings">அமைப்புகள்</string>
@@ -591,20 +596,21 @@
   <string name="text_secure_normal__help">உதவி</string>
   <!--verify_display_fragment-->
   <!--reminder_header-->
-    <string name="reminder_header_invite_title">சமிக்ஞைக்கு அழை</string>
-    <string name="reminder_header_share_title">நண்பர்களை அழைக்கவும்</string>
-    <!--media_preview-->
+  <string name="reminder_header_invite_title">சமிக்ஞைக்கு அழை</string>
+  <string name="reminder_header_share_title">நண்பர்களை அழைக்கவும்</string>
+  <!--media_preview-->
   <string name="media_preview__save_title">சேமி</string>
   <!--media_overview-->
-    <!--media_preview_activity-->
+  <!--media_preview_activity-->
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">புதுப்பி.</string>
   <!--redphone_audio_popup_menu-->
-    <!--Trimmer-->
+  <!--Trimmer-->
   <string name="trimmer__deleting">நீக்கப்படுகிறது</string>
   <string name="trimmer__deleting_old_messages">பழையசெய்திகள் நீக்கப்படுகிறது...</string>
   <string name="trimmer__old_messages_successfully_deleted">பழையசெய்திகள் நீக்கப்பட்டது</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">போக்குவரத்து குறும்படம்</string>
+  <string name="SearchToolbar_search">தேடல்</string>
   <!--EOF-->
 </resources>
