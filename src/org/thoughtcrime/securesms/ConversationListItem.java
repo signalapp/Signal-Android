@@ -191,9 +191,9 @@ public class ConversationListItem extends RelativeLayout
       this.thumbnailView.setVisibility(View.GONE);
 
       LayoutParams subjectParams = (RelativeLayout.LayoutParams)this.subjectView.getLayoutParams();
-      subjectParams.addRule(RelativeLayout.LEFT_OF, R.id.delivery_status);
+      subjectParams.addRule(RelativeLayout.LEFT_OF, R.id.status);
       if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN_MR1) {
-        subjectParams.addRule(RelativeLayout.START_OF, R.id.delivery_status);
+        subjectParams.addRule(RelativeLayout.START_OF, R.id.status);
       }
       this.subjectView.setLayoutParams(subjectParams);
     }
@@ -273,9 +273,9 @@ public class ConversationListItem extends RelativeLayout
       if (archivedView.getVisibility() == View.VISIBLE &&
           (archivedView.getWidth() + deliveryStatusView.getWidth()) > dateView.getWidth())
       {
-        thumbnailParams.addRule(RelativeLayout.LEFT_OF, R.id.delivery_status);
+        thumbnailParams.addRule(RelativeLayout.LEFT_OF, R.id.status);
         if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN_MR1) {
-          thumbnailParams.addRule(RelativeLayout.START_OF, R.id.delivery_status);
+          thumbnailParams.addRule(RelativeLayout.START_OF, R.id.status);
         }
       } else {
         thumbnailParams.addRule(RelativeLayout.LEFT_OF, R.id.date);
