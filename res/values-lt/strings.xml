@@ -1060,6 +1060,9 @@
   <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Pasirinktinai matyti kada žinutės būna perskaitomos ir rodyti tai kitiems</string>
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">Įjungti pranešimus apie žinučių skaitymą</string>
   <string name="recipient_preference_activity__shared_media">Bendrinama medija</string>
+  <string name="registration_activity__verify_your_number">Patvirtinkite savo numerį</string>
+  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Norėdami gauti patvirtinimo kodą, įveskite savo mobiliojo telefono numerį. Gali būti taikomi mobiliojo ryšio paslaugos teikėjo mokesčiai.</string>
+  <string name="ConversationListFragment_no_results_found_for_s_">Nerasta jokių rezultatų, atitinkančių \"%s\"</string>
   <string name="SearchToolbar_search">Ieškoti</string>
   <!--EOF-->
 </resources>

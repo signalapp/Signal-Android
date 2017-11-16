@@ -1047,6 +1047,12 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Můžete zobrazit a sdílet informaci, že byly zprávy přečteny</string>
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">Povolit info o přečtení</string>
   <string name="recipient_preference_activity__shared_media">Sdílená media</string>
+  <string name="registration_activity__verify_your_number">Zkontrolujte vaše číslo</string>
+  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Zadejte své mobilní číslo a obdržíte ověřovací kód. Může být zpoplatněno.</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Přidejte něco do schránky. Začněte psát přítelům.</string>
+  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Schránka prázdná</string>
+  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Všichni jste chyceni.</string>
+  <string name="ConversationListFragment_no_results_found_for_s_">Pro \'%s\' nebylo nic nalezeno</string>
   <string name="SearchToolbar_search">Hledat</string>
   <!--EOF-->
 </resources>

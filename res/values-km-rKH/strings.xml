@@ -1001,6 +1001,12 @@
   <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">ជួនកាលមើលឃើញ និងចែករំលែកនៅពេលសារត្រូវបានអាន</string>
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">បើកការទទួលអាន</string>
   <string name="recipient_preference_activity__shared_media">ចែករំលែកព័ត៌មាន</string>
+  <string name="registration_activity__verify_your_number">ផ្ទៀងផ្ទាត់លេខរបស់អ្នក</string>
+  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">សូមបញ្ចូលលេខទូរសព្ទរបស់អ្នកដើម្បីទទួលបានលេខកូដផ្ទៀងផ្ទាត់។ ថ្លៃទូរសព្ទអាចនឹងត្រូវទូទាត់។</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">រៀបរាប់ប្រអប់សំបុត្ររបស់អ្នក។ ចាប់ផ្តើមពីការផ្ញើសារទៅកាន់មិត្តភក្តិ។</string>
+  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">ប្រអប់សំបុត្រដំបូង</string>
+  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">អីយ៉ា... អ្នកតាមទាន់ហើយ!</string>
+  <string name="ConversationListFragment_no_results_found_for_s_">រកមិនឃើញលទ្ធផលសម្រាប់ \'%s\'</string>
   <string name="SearchToolbar_search">ស្វែងរក</string>
   <!--EOF-->
 </resources>

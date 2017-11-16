@@ -1018,11 +1018,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">Lesebestätigungen aktivieren</string>
   <string name="recipient_preference_activity__shared_media">Geteilte Medieninhalte</string>
   <string name="registration_activity__verify_your_number">Verifiziere deine Rufnummer</string>
-  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Bitte gib deine Rufnummer ein, um einen Verifizierungscode zu erhalten. Dabei können Mobilfunkgebühren anfallen.</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Erwecke deine Inbox zum Leben. Fang an, indem du einem Freund schreibst.</string>
-  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Leeeeere Inbox</string>
+  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Bitte gib deine Rufnummer ein, um einen Verifikationscode zu erhalten. Dabei können Mobilfunkgebühren anfallen.</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Erwecke deinen Posteingang zum Leben. Leg los und schreibe einem Freund.</string>
+  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Leeeeerer Eingang</string>
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Nix. Nada. Niente. Alles erledigt!</string>
-  <string name="ConversationListFragment_no_results_found_for_s_"> Keine Ergebnisse für \'%s\' gefunden</string>
+  <string name="ConversationListFragment_no_results_found_for_s_"> Keine Ergebnisse für »%s« gefunden</string>
   <string name="SearchToolbar_search">Suchen</string>
   <!--EOF-->
 </resources>
