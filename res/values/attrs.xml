@@ -8,12 +8,9 @@
     <attr name="conversation_list_item_date_color" format="reference|color"/>
     <attr name="conversation_list_item_divider" format="reference"/>
 
-    <attr name="share_list_item_divider" format="reference"/>
-
     <attr name="conversation_sent_card_background" format="reference|color"/>
     <attr name="conversation_group_member_name" format="reference|color"/>
     <attr name="conversation_received_card_background" format="reference|color"/>
-
 
     <attr name="fab_color" format="reference|color" />
     <attr name="lower_right_divet" format="reference" />
