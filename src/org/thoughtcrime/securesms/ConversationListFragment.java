@@ -52,6 +52,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.thoughtcrime.securesms.ConversationListAdapter.ItemClickListener;
 import org.thoughtcrime.securesms.components.recyclerview.DeleteItemAnimator;
 import org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton;
@@ -64,10 +67,12 @@ import org.thoughtcrime.securesms.components.reminder.Reminder;
 import org.thoughtcrime.securesms.components.reminder.ReminderView;
 import org.thoughtcrime.securesms.components.reminder.ShareReminder;
 import org.thoughtcrime.securesms.components.reminder.SystemSmsImportReminder;
+import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
+import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -121,7 +126,7 @@ public class ConversationListFragment extends Fragment
     if (archive) fab.setVisibility(View.GONE);
     else         fab.setVisibility(View.VISIBLE);
 
-    reminderView.setOnDismissListener(this::updateReminders);
+    reminderView.setOnDismissListener(() -> updateReminders(true));
 
     list.setHasFixedSize(true);
     list.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -146,8 +151,9 @@ public class ConversationListFragment extends Fragment
   public void onResume() {
     super.onResume();
 
-    updateReminders();
+    updateReminders(true);
     list.getAdapter().notifyDataSetChanged();
+    EventBus.getDefault().register(this);
   }
 
   @Override
@@ -155,6 +161,7 @@ public class ConversationListFragment extends Fragment
     super.onPause();
 
     fab.stopPulse();
+    EventBus.getDefault().unregister(this);
   }
 
   public ConversationListAdapter getListAdapter() {
@@ -173,12 +180,14 @@ public class ConversationListFragment extends Fragment
   }
 
   @SuppressLint("StaticFieldLeak")
-  private void updateReminders() {
-    reminderView.hide();
+  private void updateReminders(boolean hide) {
     new AsyncTask<Context, Void, Optional<? extends Reminder>>() {
-      @Override protected Optional<? extends Reminder> doInBackground(Context... params) {
+      @Override
+      protected Optional<? extends Reminder> doInBackground(Context... params) {
         final Context context = params[0];
-        if (ExpiredBuildReminder.isEligible()) {
+        if (UnauthorizedReminder.isEligible(context)) {
+          return Optional.of(new UnauthorizedReminder(context));
+        } else if (ExpiredBuildReminder.isEligible()) {
           return Optional.of(new ExpiredBuildReminder(context));
         } else if (OutdatedBuildReminder.isEligible()) {
           return Optional.of(new OutdatedBuildReminder(context));
@@ -197,9 +206,12 @@ public class ConversationListFragment extends Fragment
         }
       }
 
-      @Override protected void onPostExecute(Optional<? extends Reminder> reminder) {
+      @Override
+      protected void onPostExecute(Optional<? extends Reminder> reminder) {
         if (reminder.isPresent() && getActivity() != null && !isRemoving()) {
           reminderView.showReminder(reminder.get());
+        } else if (!reminder.isPresent()) {
+          reminderView.hide();
         }
       }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, getActivity());
@@ -434,6 +446,11 @@ public class ConversationListFragment extends Fragment
     }
 
     actionMode = null;
+  }
+
+  @Subscribe(threadMode = ThreadMode.MAIN)
+  public void onEvent(ReminderUpdateEvent event) {
+    updateReminders(false);
   }
 
   private class ArchiveListenerCallback extends ItemTouchHelper.SimpleCallback {

@@ -373,6 +373,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
           TextSecurePreferences.setSignalingKey(RegistrationActivity.this, signalingKey);
           TextSecurePreferences.setSignedPreKeyRegistered(RegistrationActivity.this, true);
           TextSecurePreferences.setPromptedPushRegistration(RegistrationActivity.this, true);
+          TextSecurePreferences.setUnauthorizedReceived(RegistrationActivity.this, false);
 
           return true;
         } catch (IOException e) {

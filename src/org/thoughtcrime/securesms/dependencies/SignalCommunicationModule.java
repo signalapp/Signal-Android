@@ -1,11 +1,14 @@
 package org.thoughtcrime.securesms.dependencies;
 
 import android.content.Context;
+import android.util.Log;
 
+import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.CreateProfileActivity;
 import org.thoughtcrime.securesms.DeviceListFragment;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
+import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.jobs.AvatarDownloadJob;
 import org.thoughtcrime.securesms.jobs.CleanPreKeysJob;
@@ -40,6 +43,7 @@ import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
+import org.whispersystems.signalservice.api.websocket.ConnectivityListener;
 
 import dagger.Module;
 import dagger.Provides;
@@ -73,6 +77,8 @@ import dagger.Provides;
                                      SendReadReceiptJob.class,
                                      MultiDeviceReadReceiptUpdateJob.class})
 public class SignalCommunicationModule {
+
+  private static final String TAG = SignalCommunicationModule.class.getSimpleName();
 
   private final Context                      context;
   private final SignalServiceNetworkAccess   networkAccess;
@@ -118,7 +124,8 @@ public class SignalCommunicationModule {
     if (this.messageReceiver == null) {
       this.messageReceiver = new SignalServiceMessageReceiver(networkAccess.getConfiguration(context),
                                                               new DynamicCredentialsProvider(context),
-                                                              BuildConfig.USER_AGENT);
+                                                              BuildConfig.USER_AGENT,
+                                                              new PipeConnectivityListener());
     }
 
     return this.messageReceiver;
@@ -146,6 +153,32 @@ public class SignalCommunicationModule {
     public String getSignalingKey() {
       return TextSecurePreferences.getSignalingKey(context);
     }
+  }
+
+  private class PipeConnectivityListener implements ConnectivityListener {
+
+    @Override
+    public void onConnected() {
+      Log.w(TAG, "onConnected()");
+    }
+
+    @Override
+    public void onConnecting() {
+      Log.w(TAG, "onConnecting()");
+    }
+
+    @Override
+    public void onDisconnected() {
+      Log.w(TAG, "onDisconnected()");
+    }
+
+    @Override
+    public void onAuthenticationFailure() {
+      Log.w(TAG, "onAuthenticationFailure()");
+      TextSecurePreferences.setUnauthorizedReceived(context, true);
+      EventBus.getDefault().post(new ReminderUpdateEvent());
+    }
+
   }
 
 }

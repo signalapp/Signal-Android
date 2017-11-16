@@ -90,8 +90,10 @@ import org.thoughtcrime.securesms.components.identity.UntrustedSendDialog;
 import org.thoughtcrime.securesms.components.identity.UnverifiedBannerView;
 import org.thoughtcrime.securesms.components.identity.UnverifiedSendDialog;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
+import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder;
 import org.thoughtcrime.securesms.components.reminder.InviteReminder;
 import org.thoughtcrime.securesms.components.reminder.ReminderView;
+import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
@@ -113,6 +115,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.identity.IdentityRecordList;
+import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
@@ -565,6 +568,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   public void onKeyboardShown() {
     inputPanel.onKeyboardShown();
+  }
+
+  @Subscribe(threadMode = ThreadMode.MAIN)
+  public void onEvent(ReminderUpdateEvent event) {
+    updateReminders(recipient.hasSeenInviteReminder());
   }
 
   //////// Event Handlers
@@ -1079,25 +1087,27 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void onSecurityUpdated() {
     Log.w(TAG, "onSecurityUpdated()");
-    updateInviteReminder(recipient.hasSeenInviteReminder());
+    updateReminders(recipient.hasSeenInviteReminder());
     updateDefaultSubscriptionId(recipient.getDefaultSubscriptionId());
   }
 
-  protected void updateInviteReminder(boolean seenInvite) {
-    Log.w(TAG, "updateInviteReminder(" + seenInvite+")");
-    if (TextSecurePreferences.isPushRegistered(this)      &&
-        TextSecurePreferences.isShowInviteReminders(this) &&
-        !isSecureText                                     &&
-        !seenInvite                                       &&
-        !recipient.isGroupRecipient())
+  protected void updateReminders(boolean seenInvite) {
+    Log.w(TAG, "updateReminders(" + seenInvite+")");
+
+    if (UnauthorizedReminder.isEligible(this)) {
+      reminderView.get().showReminder(new UnauthorizedReminder(this));
+    } else if (ExpiredBuildReminder.isEligible()) {
+      reminderView.get().showReminder(new ExpiredBuildReminder(this));
+    } else if (TextSecurePreferences.isPushRegistered(this)      &&
+               TextSecurePreferences.isShowInviteReminders(this) &&
+               !isSecureText                                            &&
+               !seenInvite                                              &&
+               !recipient.isGroupRecipient())
     {
       InviteReminder reminder = new InviteReminder(this, recipient);
-      reminder.setOkListener(new OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          handleInviteLink();
-          reminderView.get().requestDismiss();
-        }
+      reminder.setOkListener(v -> {
+        handleInviteLink();
+        reminderView.get().requestDismiss();
       });
       reminderView.get().showReminder(reminder);
     } else if (reminderView.resolved()) {
@@ -1302,7 +1312,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       setBlockedUserState(recipient, isSecureText, isDefaultSms);
       setActionBarColor(recipient.getColor());
       setGroupShareProfileReminder(recipient);
-      updateInviteReminder(recipient.hasSeenInviteReminder());
+      updateReminders(recipient.hasSeenInviteReminder());
       updateDefaultSubscriptionId(recipient.getDefaultSubscriptionId());
       initializeSecurity(isSecureText, isDefaultSms);
       invalidateOptionsMenu();

@@ -115,6 +115,15 @@ public class TextSecurePreferences {
   private static final String PROFILE_AVATAR_ID_PREF           = "pref_profile_avatar_id";
   public  static final String READ_RECEIPTS_PREF               = "pref_read_receipts";
   public  static final String INCOGNITO_KEYBORAD_PREF          = "pref_incognito_keyboard";
+  private static final String UNAUTHORIZED_RECEIVED            = "pref_unauthorized_received";
+
+  public static void setUnauthorizedReceived(Context context, boolean value) {
+    setBooleanPreference(context, UNAUTHORIZED_RECEIVED, value);
+  }
+
+  public static boolean isUnauthorizedRecieved(Context context) {
+    return getBooleanPreference(context, UNAUTHORIZED_RECEIVED, false);
+  }
 
   public static boolean isIncognitoKeyboardEnabled(Context context) {
     return getBooleanPreference(context, INCOGNITO_KEYBORAD_PREF, false);
