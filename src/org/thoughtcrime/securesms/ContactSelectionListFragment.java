@@ -38,12 +38,13 @@ import org.thoughtcrime.securesms.contacts.ContactSelectionListItem;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 /**
  * Fragment for selecting a one or more contacts from a list.
@@ -54,11 +55,13 @@ import java.util.Map;
 public class ContactSelectionListFragment extends    Fragment
                                           implements LoaderManager.LoaderCallbacks<Cursor>
 {
+  @SuppressWarnings("unused")
   private static final String TAG = ContactSelectionListFragment.class.getSimpleName();
 
-  public final static String DISPLAY_MODE = "display_mode";
-  public final static String MULTI_SELECT = "multi_select";
-  public final static String REFRESHABLE  = "refreshable";
+  public static final String DISPLAY_MODE = "display_mode";
+  public static final String MULTI_SELECT = "multi_select";
+  public static final String REFRESHABLE  = "refreshable";
+  public static final String RECENTS      = "recents";
 
   public final static int DISPLAY_MODE_ALL       = ContactsCursorLoader.MODE_ALL;
   public final static int DISPLAY_MODE_PUSH_ONLY = ContactsCursorLoader.MODE_PUSH_ONLY;
@@ -66,7 +69,7 @@ public class ContactSelectionListFragment extends    Fragment
 
   private TextView emptyText;
 
-  private Map<Long, String>         selectedContacts;
+  private Set<String>               selectedContacts;
   private OnContactSelectedListener onContactSelectedListener;
   private SwipeRefreshLayout        swipeRefresh;
   private String                    cursorFilter;
@@ -108,7 +111,7 @@ public class ContactSelectionListFragment extends    Fragment
   public @NonNull List<String> getSelectedContacts() {
     List<String> selected = new LinkedList<>();
     if (selectedContacts != null) {
-      selected.addAll(selectedContacts.values());
+      selected.addAll(selectedContacts);
     }
 
     return selected;
@@ -151,9 +154,9 @@ public class ContactSelectionListFragment extends    Fragment
 
   @Override
   public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-    return new ContactsCursorLoader(getActivity(),
+    return new ContactsCursorLoader(getActivity(), KeyCachingService.getMasterSecret(getContext()),
                                     getActivity().getIntent().getIntExtra(DISPLAY_MODE, DISPLAY_MODE_ALL),
-                                    cursorFilter);
+                                    cursorFilter, getActivity().getIntent().getBooleanExtra(RECENTS, false));
   }
 
   @Override
@@ -177,13 +180,12 @@ public class ContactSelectionListFragment extends    Fragment
   private class ListClickListener implements ContactSelectionListAdapter.ItemClickListener {
     @Override
     public void onItemClick(ContactSelectionListItem contact) {
-
-      if (!isMulti() || !selectedContacts.containsKey(contact.getContactId())) {
-        selectedContacts.put(contact.getContactId(), contact.getNumber());
+      if (!isMulti() || !selectedContacts.contains(contact.getNumber())) {
+        selectedContacts.add(contact.getNumber());
         contact.setChecked(true);
         if (onContactSelectedListener != null) onContactSelectedListener.onContactSelected(contact.getNumber());
       } else {
-        selectedContacts.remove(contact.getContactId());
+        selectedContacts.remove(contact.getNumber());
         contact.setChecked(false);
         if (onContactSelectedListener != null) onContactSelectedListener.onContactDeselected(contact.getNumber());
       }

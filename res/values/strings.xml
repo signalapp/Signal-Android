@@ -1249,6 +1249,8 @@
     <string name="UnauthorizedReminder_device_no_longer_registered">Device no longer registered</string>
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">This is likely because you registered your phone number with Signal on a different device. Tap to re-register.</string>
     <string name="OutdatedBuildReminder_no_web_browser_installed">No web browser installed!</string>
+    <string name="ContactsCursorLoader_recent_chats">Recent chats</string>
+    <string name="ContactsCursorLoader_contacts">Contacts</string>
 
 
     <!-- EOF -->

@@ -12,7 +12,6 @@ import android.widget.TextView;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.database.Address;
-import org.thoughtcrime.securesms.mms.GlideRequest;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
@@ -21,6 +20,7 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class ContactSelectionListItem extends LinearLayout implements RecipientModifiedListener {
 
+  @SuppressWarnings("unused")
   private static final String TAG = ContactSelectionListItem.class.getSimpleName();
 
   private AvatarImageView contactPhotoImage;
@@ -29,7 +29,6 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientM
   private TextView        labelView;
   private CheckBox        checkBox;
 
-  private long          id;
   private String        number;
   private Recipient     recipient;
   private GlideRequests glideRequests;
@@ -54,9 +53,8 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientM
     ViewUtil.setTextViewGravityStart(this.nameView, getContext());
   }
 
-  public void set(@NonNull GlideRequests glideRequests, long id, int type, String name, String number, String label, int color, boolean multiSelect) {
+  public void set(@NonNull GlideRequests glideRequests, int type, String name, String number, String label, int color, boolean multiSelect) {
     this.glideRequests = glideRequests;
-    this.id            = id;
     this.number        = number;
 
     if (type == ContactsDatabase.NEW_TYPE) {
@@ -112,10 +110,6 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientM
     }
 
     this.nameView.setText(name);
-  }
-
-  public long getContactId() {
-    return id;
   }
 
   public String getNumber() {

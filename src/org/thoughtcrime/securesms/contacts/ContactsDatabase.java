@@ -62,16 +62,17 @@ public class ContactsDatabase {
   private static final String CALL_MIMETYPE    = "vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.call";
   private static final String SYNC             = "__TS";
 
-  static final String ID_COLUMN           = "_id";
   static final String NAME_COLUMN         = "name";
   static final String NUMBER_COLUMN       = "number";
   static final String NUMBER_TYPE_COLUMN  = "number_type";
   static final String LABEL_COLUMN        = "label";
   static final String CONTACT_TYPE_COLUMN = "contact_type";
 
-  static final int NORMAL_TYPE = 0;
-  static final int PUSH_TYPE   = 1;
-  static final int NEW_TYPE    = 2;
+  static final int NORMAL_TYPE  = 0;
+  static final int PUSH_TYPE    = 1;
+  static final int NEW_TYPE     = 2;
+  static final int RECENT_TYPE  = 3;
+  static final int DIVIDER_TYPE = 4;
 
   private final Context context;
 
@@ -142,8 +143,7 @@ public class ContactsDatabase {
       uri = uri.buildUpon().appendQueryParameter(ContactsContract.REMOVE_DUPLICATE_ENTRIES, "true").build();
     }
 
-    String[] projection = new String[]{ContactsContract.CommonDataKinds.Phone._ID,
-                                       ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
+    String[] projection = new String[]{ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
                                        ContactsContract.CommonDataKinds.Phone.NUMBER,
                                        ContactsContract.CommonDataKinds.Phone.TYPE,
                                        ContactsContract.CommonDataKinds.Phone.LABEL};
@@ -151,7 +151,6 @@ public class ContactsDatabase {
     String sort = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
 
     Map<String, String> projectionMap = new HashMap<String, String>() {{
-      put(ID_COLUMN, ContactsContract.CommonDataKinds.Phone._ID);
       put(NAME_COLUMN, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
       put(NUMBER_COLUMN, ContactsContract.CommonDataKinds.Phone.NUMBER);
       put(NUMBER_TYPE_COLUMN, ContactsContract.CommonDataKinds.Phone.TYPE);
@@ -180,14 +179,12 @@ public class ContactsDatabase {
   }
 
   @NonNull Cursor queryTextSecureContacts(String filter) {
-    String[] projection = new String[] {ContactsContract.Data._ID,
-                                        ContactsContract.Contacts.DISPLAY_NAME,
+    String[] projection = new String[] {ContactsContract.Contacts.DISPLAY_NAME,
                                         ContactsContract.Data.DATA1};
 
     String  sort = ContactsContract.Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
 
     Map<String, String> projectionMap = new HashMap<String, String>(){{
-      put(ID_COLUMN, ContactsContract.Data._ID);
       put(NAME_COLUMN, ContactsContract.Contacts.DISPLAY_NAME);
       put(NUMBER_COLUMN, ContactsContract.Data.DATA1);
     }};

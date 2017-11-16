@@ -288,16 +288,6 @@ public class ThreadDatabase extends Database {
     }};
   }
 
-//  public void setUnread(long threadId, int unreadCount) {
-//    ContentValues contentValues = new ContentValues(1);
-//    contentValues.put(READ, 0);
-//    contentValues.put(UNREAD_COUNT, unreadCount);
-//
-//    SQLiteDatabase db = databaseHelper.getWritableDatabase();
-//    db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {threadId + ""});
-//    notifyConversationListListeners();
-//  }
-
   public void incrementUnread(long threadId, int amount) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.execSQL("UPDATE " + TABLE_NAME + " SET " + READ + " = 0, " +
@@ -351,13 +341,20 @@ public class ThreadDatabase extends Database {
         selectionArgs[i++] = DelimiterUtil.escape(address.serialize(), ' ');
       }
 
-      String query = createQuery(selection);
+      String query = createQuery(selection, 0);
       cursors.add(db.rawQuery(query, selectionArgs));
     }
 
     Cursor cursor = cursors.size() > 1 ? new MergeCursor(cursors.toArray(new Cursor[cursors.size()])) : cursors.get(0);
     setNotifyConverationListListeners(cursor);
     return cursor;
+  }
+
+  public Cursor getRecentConversationList(int limit) {
+    SQLiteDatabase db    = databaseHelper.getReadableDatabase();
+    String         query = createQuery(MESSAGE_COUNT + " != 0", limit);
+
+    return db.rawQuery(query, null);
   }
 
   public Cursor getConversationList() {
@@ -370,7 +367,7 @@ public class ThreadDatabase extends Database {
 
   private Cursor getConversationList(String archived) {
     SQLiteDatabase db     = databaseHelper.getReadableDatabase();
-    String         query  = createQuery(ARCHIVED + " = ? AND " + MESSAGE_COUNT + " != 0");
+    String         query  = createQuery(ARCHIVED + " = ? AND " + MESSAGE_COUNT + " != 0", 0);
     Cursor         cursor = db.rawQuery(query, new String[]{archived});
 
     setNotifyConverationListListeners(cursor);
@@ -380,7 +377,7 @@ public class ThreadDatabase extends Database {
 
   public Cursor getDirectShareList() {
     SQLiteDatabase db    = databaseHelper.getReadableDatabase();
-    String         query = createQuery(MESSAGE_COUNT + " != 0");
+    String         query = createQuery(MESSAGE_COUNT + " != 0", 0);
 
     return db.rawQuery(query, null);
   }
@@ -598,15 +595,22 @@ public class ThreadDatabase extends Database {
     return thumbnail != null ? thumbnail.getThumbnailUri() : null;
   }
 
-  private @NonNull String createQuery(@NonNull String where) {
+  private @NonNull String createQuery(@NonNull String where, int limit) {
     String projection = Util.join(COMBINED_THREAD_RECIPIENT_GROUP_PROJECTION, ",");
-    return "SELECT " + projection + " FROM " + TABLE_NAME +
+    String query =
+    "SELECT " + projection + " FROM " + TABLE_NAME +
            " LEFT OUTER JOIN " + RecipientDatabase.TABLE_NAME +
            " ON " + TABLE_NAME + "." + ADDRESS + " = " + RecipientDatabase.TABLE_NAME + "." + RecipientDatabase.ADDRESS +
            " LEFT OUTER JOIN " + GroupDatabase.TABLE_NAME +
            " ON " + TABLE_NAME + "." + ADDRESS + " = " + GroupDatabase.TABLE_NAME + "." + GroupDatabase.GROUP_ID +
            " WHERE " + where +
            " ORDER BY " + TABLE_NAME + "." + DATE + " DESC";
+
+    if (limit >  0) {
+      query += " LIMIT " + limit;
+    }
+
+    return query;
   }
 
   public interface ProgressListener {

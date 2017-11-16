@@ -100,6 +100,9 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
                                : ContactSelectionListFragment.DISPLAY_MODE_PUSH_ONLY);
     }
 
+    getIntent().putExtra(ContactSelectionListFragment.REFRESHABLE, false);
+    getIntent().putExtra(ContactSelectionListFragment.RECENTS, true);
+
     setContentView(R.layout.share_activity);
 
     initializeToolbar();
