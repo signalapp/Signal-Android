@@ -1027,5 +1027,10 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Voer je telefoonnummer in om een verificatiecode te ontvangen. Extra providerkosten zijn mogelijk van toepassing.</string>
   <string name="ConversationListFragment_no_results_found_for_s_">Geen resultaten gevonden voor \'%s\'</string>
   <string name="SearchToolbar_search">Zoeken</string>
+  <string name="UnauthorizedReminder_device_no_longer_registered">Apparaat niet meer geregistreerd</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dit komt waarschijnlijk doordat je je telefoonnummer met Signal op een ander apparaat hebt geregistreerd. Tik om opnieuw te registreren.</string>
+  <string name="OutdatedBuildReminder_no_web_browser_installed">Geen webbrowser geïnstalleerd!</string>
+  <string name="ContactsCursorLoader_recent_chats">Recente gesprekken</string>
+  <string name="ContactsCursorLoader_contacts">Contacten</string>
   <!--EOF-->
 </resources>

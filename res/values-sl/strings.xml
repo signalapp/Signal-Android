@@ -1075,8 +1075,15 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Prosimo vnesite svojo telefonsko številko in prejeli boste potrditveno kodo. Stroški za poslano sporočilo so odvisni od vašega naročniškega razmerja.</string>
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Vaš poštni nabiralnik je lačen nove pošte. ;-) Začnite s sporočilom prijatelju!</string>
   <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Nabiralnik je prazen!</string>
-  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Nič. Nula. Zero. Nada. Ste na tekočem!</string>
+  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Nič. Nula. Zero. Nada.</string>
   <string name="ConversationListFragment_no_results_found_for_s_">Iskanje po \'%s\' ni vrnilo nobenega rezultata.</string>
   <string name="SearchToolbar_search">Poišči</string>
+  <string name="UnauthorizedReminder_device_no_longer_registered">Naprava ni več registrirana</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Najbrž ste registrirali vašo telefonsko številko na drugi napravi. Tapnite za ponovno registracijo.</string>
+  <string name="OutdatedBuildReminder_no_web_browser_installed">Spletni brskalnik ni nameščen!</string>
+  <string name="ContactsCursorLoader_recent_chats">Nedavni pogovori</string>
+  <string name="ContactsCursorLoader_contacts">Stiki</string>
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Za sprejem klica podrsajte navzgor</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Za zavrnitev klica podrsajte navzdol</string>
   <!--EOF-->
 </resources>

@@ -341,7 +341,7 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">MMS üzenet letöltése</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Hiba az MMS üzenet letöltésekor, érints az újrapróbálkozáshoz</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Egy üzenet érkezett a Signal egy régebbi verziójával titkosítva, ami már nem támogatott. Kérlek kérd meg a küldőt, hogy frissítsen a legfrissebb verzióra és küldje újra az üzenetet.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Egy üzenet érkezett a Signal egy régebbi verziójával titkosítva, ami már nem támogatott. Kérlek kérd meg a küldőt, hogy frissítsen a legutóbbi verzióra és küldje újra az üzenetet.</string>
   <string name="MessageRecord_left_group">Elhagytad a csoportot.</string>
   <string name="MessageRecord_you_updated_group">Frissítetted a csoportot.</string>
   <string name="MessageRecord_s_updated_group">%s frissítette a csoportot.</string>
@@ -504,7 +504,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">A kontaktod a Signal egy régebbi verzióját futtatja. Kérd meg, hogy frissítsen a biztonsági szám ellenőrzése előtt.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">A kontaktod a Signal egy újabb verzióját futtatja egy inkompatibilis QR kód formátummal. Kérlek frissíts az összehasonlításhoz.</string>
-  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">A szkennelt QR kód nem egy helyesen formázott biztonság szám megerősítő kód. Kérlek próbáld újra szkennelni.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">A szkennelt QR kód nem egy helyesen formázott biztonság szám ellenőrző kód. Kérlek próbáld újra szkennelni.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Biztonsági szám megosztása ezzel...</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Signal biztonsági számunk:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Úgy néz ki, hogy nincs egy alkalmazásod se a megosztáshoz.</string>
@@ -542,7 +542,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="MediaPreviewActivity_draft">Piszkozat</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d új üzenet %2$d beszélgetésben</string>
-  <string name="MessageNotifier_most_recent_from_s">Legfrissebb tőle: %1$s</string>
+  <string name="MessageNotifier_most_recent_from_s">Legutóbbi tőle: %1$s</string>
   <string name="MessageNotifier_locked_message">Zárolt üzenet</string>
   <string name="MessageNotifier_media_message_with_text">Média üzenet: %s</string>
   <string name="MessageNotifier_message_delivery_failed">Üzenet kézbesítése sikertelen!</string>
@@ -1001,11 +1001,11 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="reminder_header_outdated_build">A Signal-od verziója elavult</string>
   <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">A Signal-od verziója 1 nap múlva lejár. Érints a legfrissebb verzióra történő frissítéshez.</item>
-    <item quantity="other">A Signal-od verziója %d nap múlva lejár. Érints a legfrissebb verzióra történő frissítéshez.</item>
+    <item quantity="other">A Signal-od verziója %d nap múlva lejár. Érints a legutóbbi verzióra történő frissítéshez.</item>
   </plurals>
-  <string name="reminder_header_outdated_build_details_today">A Signal-od verziója ma le fog járni. </string>
+  <string name="reminder_header_outdated_build_details_today">A Signal-od verziója ma le fog járni. Érints a legutóbbi verzióra történő frissítéshez.</string>
   <string name="reminder_header_expired_build">A Signal-od verziója lejárt!</string>
-  <string name="reminder_header_expired_build_details">A továbbiakban az üzenetek nem lesznek sikeresen elküldve. Érints a legfrissebb verzióra történő frissítéshez.</string>
+  <string name="reminder_header_expired_build_details">A továbbiakban az üzenetek nem lesznek sikeresen elküldve. Érints a legutóbbi verzióra történő frissítéshez.</string>
   <string name="reminder_header_sms_default_title">Használat alapértelmezett SMS alkalmazásként</string>
   <string name="reminder_header_sms_default_text">Érints a Signal alapértelmezett SMS alkalmazássá tételéhez.</string>
   <string name="reminder_header_sms_import_title">Rendszer SMS importálása</string>
@@ -1038,6 +1038,17 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Opcionálisan megnézheted és megoszthatod, ha az üzenetek el vannak olvasva</string>
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">Olvasási nyugták engedélyezése</string>
   <string name="recipient_preference_activity__shared_media">Megosztott média</string>
+  <string name="registration_activity__verify_your_number">Ellenőrizd a számod</string>
+  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Kérlek add meg a mobilszámod, hogy ellenőrző kódot kapj. Szolgáltatói költségek felmerülhetnek.</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Adj a bejövődnek valamit, hogy szóljon valamiről. Kezdd a barátodnak üzenéssel.</string>
+  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Bejövő nuuulllla</string>
+  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Zéró. Nulla. Semmi. Mind megvagytok!</string>
+  <string name="ConversationListFragment_no_results_found_for_s_">Nincs találat a következőre \'%s\'</string>
   <string name="SearchToolbar_search">Keresés</string>
+  <string name="UnauthorizedReminder_device_no_longer_registered">A készülék továbbra nem regisztrált</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Ez valószínűleg azért van, mert regisztráltad a telefonszámod Signal-lal egy másik készüléken. Érints az újraregisztráláshoz.</string>
+  <string name="OutdatedBuildReminder_no_web_browser_installed">Nincs telepítve webböngésző!</string>
+  <string name="ContactsCursorLoader_recent_chats">Legutóbbi csevegések</string>
+  <string name="ContactsCursorLoader_contacts">Kontaktok</string>
   <!--EOF-->
 </resources>

@@ -1006,5 +1006,6 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Sıfır. Sıfır. Sıfır. Hepiniz yakalandınız!</string>
   <string name="ConversationListFragment_no_results_found_for_s_">\'%s\' için hiç sonuç bulunamadı.</string>
   <string name="SearchToolbar_search">Ara</string>
+  <string name="ContactsCursorLoader_contacts">Kişiler</string>
   <!--EOF-->
 </resources>

@@ -268,6 +268,9 @@
   <string name="ImportFragment_import">وارد کردن</string>
   <string name="ImportFragment_cancel">لغو</string>
   <string name="ImportFragment_import_plaintext_backup">وارد کردن پشتیبان متنی؟</string>
+  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">این کار پیام ها را از فایل پشتیبان متنی ساده
+درون ریزی خواهد کرد. اگر شما قبل این پشتیبان را درون ریزی کرده اید
+نتیجه درون ریزی دوباره باعث ایجاد پیام های تکراری می شود.</string>
   <string name="ImportFragment_importing">وارد کردن</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">در حال وارد کردن پشتیبان متنی...</string>
   <string name="ImportFragment_no_plaintext_backup_found">هبچ پشتیبان متنی یافت نشد!</string>
@@ -449,8 +452,11 @@
   <string name="ThreadRecord_missed_call">تماس از دست رفته</string>
   <string name="ThreadRecord_media_message">پیام رسانه</string>
   <string name="ThreadRecord_s_is_on_signal">%s در سیگنال است!</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">زمان پنهان شدن پیام بر روی %s تنظیم شد</string>
   <string name="ThreadRecord_safety_number_changed">شماره امنیتی تغییر یافت</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">شماره امنیتی شما با %s تغییر یافت.</string>
+  <string name="ThreadRecord_you_marked_verified">شما به عنوان تایید شده علامت زدید</string>
+  <string name="ThreadRecord_you_marked_unverified">شما به عنوان تایید نشده علامت زدید</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">بروزرسانی سیگنال</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">نسخه جدید سیگنال در دسترس است، برای آپدیت اینجا را تپ کنید</string>
@@ -468,13 +474,16 @@
   <string name="UnverifiedSendDialog_send">ارسال</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">مخاطب شما از نسخه قدیمی سیگنال استفاده میکند. از او بخواهید تا پیش از تایید شماره امنیتی شما سیگنال را بروزرسانی کند.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">مخاطب شما نسخه جدیدتری از سیگنال را دارد که نوع کد QR آن سازگار نیست. لطفا برای مقایسه، سیگنال را بروز نمایید.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">به اشتراک گذاشتن شماره امنیتی از طریق...</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">شماره امنیتی ما:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">به نظر می رسد شما هیچ برنامه ای برای اشتراک گذاری در آن ندارید.</string>
+  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">هیچ شماره امنیتی برای مقایسه در کلیپ بورد پیدا نشد</string>
   <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">پیام بد رمزگذاری شده</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">رمز گشایی، لطفا صبر کنید...</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">پیام ها، برای نشست های غیر موجود رمزنگاری شده اند</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">خطا در رمز گشایی پیام.</string>
   <!--ThreadDatabase-->
@@ -484,6 +493,7 @@
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">رمزگشایی MMS، لطفاً صبر کنید...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message"> پیام MMS بد رمزگذاری شده</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">پیام های MMS برای نشست های غیر موجود رمزنگاری شده اند</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">بیصدا کردن اعلان ها</string>
   <!--ApplicationMigrationService-->
@@ -502,6 +512,7 @@
   <string name="MediaPreviewActivity_draft">پیش نویس</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d پیام در %2$d گفتگو</string>
+  <string name="MessageNotifier_most_recent_from_s">پیام های اخیر: %1$s</string>
   <string name="MessageNotifier_locked_message">پیام قفل شده</string>
   <string name="MessageNotifier_media_message_with_text">پیام رسانه ها: %s</string>
   <string name="MessageNotifier_message_delivery_failed">تحویل پیام شکست خورده است.</string>
@@ -518,6 +529,7 @@
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">پاسخگوی سریع هنگامی که نرم‌افزار سیگنال قفل باشد غیرفعال می‌شود.</string>
   <string name="QuickResponseService_problem_sending_message">بروز خطا در ارسال پیام!</string>
   <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_open_directory">بازکردن پوشه</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">سیگنال</string>
   <string name="SingleRecipientNotificationBuilder_new_message">پیام جدید</string>
@@ -543,6 +555,7 @@
   <string name="attachment_type_selector__file_description">فایل</string>
   <string name="attachment_type_selector__gallery">گالری</string>
   <string name="attachment_type_selector__file">فایل</string>
+  <string name="attachment_type_selector__drawer_description">تغییر حالت نگه دارنده پیوست</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">عبارت عبور قدیمی</string>
   <string name="change_passphrase_activity__new_passphrase">عبارت عبور جدید</string>
@@ -568,6 +581,7 @@
   <string name="conversation_activity__compose_description">ترکیب پیام</string>
   <string name="conversation_activity__emoji_toggle_description">تعویض صفحه کلید شکلک</string>
   <string name="conversation_activity__attachment_thumbnail">پیوست تصویر کوچک</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">تغییر حالت نگه دارنده پیوست دوربین سریع</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">فایل صوتی خود را ضبط کرده و ارسال کنید.</string>
   <string name="conversation_activity__enable_signal_for_sms">فعال کردن سیگنال برای SMS</string>
   <!--conversation_input_panel-->
@@ -625,6 +639,9 @@
   </plurals>
   <string name="expiration_weeks_abbreviated">%d هفته</string>
   <!--unverified safety numbers-->
+  <string name="IdentityUtil_unverified_banner_one">شماره امنیتی شما با %s تغییر کرده است و دیگر مورد تایید نیست</string>
+  <string name="IdentityUtil_unverified_banner_two">شماره های امنیتی شما با %1$s و %2$s دیگر مورد تایید نیستند</string>
+  <string name="IdentityUtil_unverified_banner_many">شماره های امنیتی شما با %1$s، %2$s و %3$s  دیگر مورد تایید نیستند </string>
   <string name="IdentityUtil_unverified_dialog_one">شماره امنیتی شما با %1$s تغییر کرده و دیگر معتبر نیست. این بدان معناست که کس دیگری در حال ردیابی ارتباط شماست یا %1$s سیگنال را مجدداً نصب کرده است.</string>
   <string name="IdentityUtil_untrusted_dialog_one">شماره امنیتی شما با %s تغییر کرد.</string>
   <string name="IdentityUtil_untrusted_dialog_two">شماره‌های امنیتی شما با %1$s و %2$s تغییر کرد.</string>
@@ -847,6 +864,8 @@
   <string name="preferences_chats__message_trimming">برش دادن پیام</string>
   <string name="preferences_advanced__use_system_emoji">سیستم استفاده از Emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">غیرفعال کردن پشتیبانی از شکلک های ساخته شده سیگنال</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">بازپخش تمامی تماس ها از طریق سرور سیگنال، مانع از آشکار شدن آدرس IP شما برای مخاطبین شما می شود. فعال سازی این گزینه باعث کاهش کیفیت مکالمه می گردد.</string>
+  <string name="preferences_advanced__always_relay_calls">همیشه تماس ها بازپخش شود</string>
   <string name="preferences_app_protection__app_access">دسترسی برنامه</string>
   <string name="preferences_app_protection__communication">ارتباطات</string>
   <string name="preferences_chats__chats">چت ها</string>
@@ -969,9 +988,14 @@
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">فعال سازی رسید خوانده شدن پیام</string>
   <string name="recipient_preference_activity__shared_media">رسانه های اشتراک گذاشته شده</string>
   <string name="registration_activity__verify_your_number">شماره تلفن خود را تایید کنید</string>
+  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">لطفا شماره موبایل خود را جهت دریافت کد تایید وارد نمایید. اپراتور شما ممکن است مبلغی در ازای این کار دریافت کند.</string>
   <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">اینباکس صفررررر</string>
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">اوه، از این بدتر بهتر نمی‌شه! شما گرفتار شدین!</string>
   <string name="ConversationListFragment_no_results_found_for_s_">نتایجی برای %s یافت نشد</string>
   <string name="SearchToolbar_search">جستجو</string>
+  <string name="UnauthorizedReminder_device_no_longer_registered">این دستگاه دیگر ثبت نیست</string>
+  <string name="OutdatedBuildReminder_no_web_browser_installed">هیچ مرورگر وبی نصب نشده است</string>
+  <string name="ContactsCursorLoader_recent_chats">چت های اخیر</string>
+  <string name="ContactsCursorLoader_contacts">مخاطبین</string>
   <!--EOF-->
 </resources>

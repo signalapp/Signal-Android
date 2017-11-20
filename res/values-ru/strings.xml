@@ -1076,7 +1076,17 @@
   <string name="recipient_preference_activity__shared_media">Общие медиа</string>
   <string name="registration_activity__verify_your_number">Подтвердите свой номер</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Введите номер мобильного телефона для получения кода подтверждения. За входящее SMS может взиматься плата вашим оператором.</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Начните свое общение с друзьями.</string>
+  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Сообщений нет</string>
+  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Ничего нет!</string>
   <string name="ConversationListFragment_no_results_found_for_s_">Результаты не найдены для \'%s\'</string>
   <string name="SearchToolbar_search">Поиск</string>
+  <string name="UnauthorizedReminder_device_no_longer_registered">Устройство больше не зарегистрировано</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Это может быть вызвано тем, что ваш телефонный номер зарегистрирован в Signal на другом устройстве. Нажмите для повторной регистрации.</string>
+  <string name="OutdatedBuildReminder_no_web_browser_installed">Веб-браузер не установлен!</string>
+  <string name="ContactsCursorLoader_recent_chats">Недавние беседы</string>
+  <string name="ContactsCursorLoader_contacts">Контакты</string>
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Проведите пальцем вверх, чтобы ответить</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Проведите пальцем вниз, чтобы отклонить</string>
   <!--EOF-->
 </resources>

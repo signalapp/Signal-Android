@@ -1037,5 +1037,10 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Tomt. Inkje. Null. Nada. Du er à jour!</string>
   <string name="ConversationListFragment_no_results_found_for_s_">Fann ingen resultat for «%s»</string>
   <string name="SearchToolbar_search">Søk</string>
+  <string name="UnauthorizedReminder_device_no_longer_registered">Eininga er ikkje lenger registrert</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dette er sannsynlegvis fordi du registrerte telefonnummeret ditt med Signal på ei anna eining. Trykk for å omregistrera.</string>
+  <string name="OutdatedBuildReminder_no_web_browser_installed">Ingen nettlesar installert!</string>
+  <string name="ContactsCursorLoader_recent_chats">Nylege samtalar</string>
+  <string name="ContactsCursorLoader_contacts">Kontaktar</string>
   <!--EOF-->
 </resources>

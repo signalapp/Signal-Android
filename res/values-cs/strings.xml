@@ -1054,5 +1054,10 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Všichni jste chyceni.</string>
   <string name="ConversationListFragment_no_results_found_for_s_">Pro \'%s\' nebylo nic nalezeno</string>
   <string name="SearchToolbar_search">Hledat</string>
+  <string name="UnauthorizedReminder_device_no_longer_registered">Zařízení již není reigstrováno</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">To je proto, že jste registrovali vaše telefonní číslo u Signálu z jiného zařízení. Klepněte pro přeregistraci.</string>
+  <string name="OutdatedBuildReminder_no_web_browser_installed">Není nainstalován webový prohlížeč!</string>
+  <string name="ContactsCursorLoader_recent_chats">Nedávné konverzace</string>
+  <string name="ContactsCursorLoader_contacts">Kontakty</string>
   <!--EOF-->
 </resources>

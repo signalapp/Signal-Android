@@ -1039,5 +1039,12 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Nimio. Nulo. Cero. Nada. ¡Eso es todo!</string>
   <string name="ConversationListFragment_no_results_found_for_s_">No se encontraron resultados para \'%s\'</string>
   <string name="SearchToolbar_search">Buscar</string>
+  <string name="UnauthorizedReminder_device_no_longer_registered">El dispositivo ya no está registrado</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Probablemente esto es a causa de que registró en Signal su número de teléfono con un dispositivo distinto. Pulse para volver a registrar.</string>
+  <string name="OutdatedBuildReminder_no_web_browser_installed">¡No hay navegador web instalado!</string>
+  <string name="ContactsCursorLoader_recent_chats">Chats recientes</string>
+  <string name="ContactsCursorLoader_contacts">Contactos</string>
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Barrido hacia arriba para responder</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Barrido hacia abajo para rechazar</string>
   <!--EOF-->
 </resources>

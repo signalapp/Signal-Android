@@ -1028,6 +1028,17 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">По желание вижте и споделете, когато съобщенията са прочетени</string>
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">Активиране на потвърждения за прочитане</string>
   <string name="recipient_preference_activity__shared_media">Споделена медия</string>
+  <string name="registration_activity__verify_your_number">Потвърдете числата си</string>
+  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Моля, въведете мобилния си номер, за да получите код за потвърждение. Стандартните такси на мобилния Ви оператор ще бъдат приложени.</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Хайде да добавим нещо в пощенската кутия. Започнете като изпратите съобщение на приятел.</string>
+  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Прааазна кутия</string>
+  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Нема. Нищо. Нула. Наваксахте!</string>
+  <string name="ConversationListFragment_no_results_found_for_s_">Не са открити резултати за \'1%s\'</string>
   <string name="SearchToolbar_search">Търсене</string>
+  <string name="UnauthorizedReminder_device_no_longer_registered">Устройството вече не е регистрирано.</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Това е вероятно, защото сте регистрирали номерът си със Сигнал на друго устройство. Натиснете, за да го дерегистрирате.</string>
+  <string name="OutdatedBuildReminder_no_web_browser_installed">Няма инсталиран браузър!</string>
+  <string name="ContactsCursorLoader_recent_chats">Последни чатове</string>
+  <string name="ContactsCursorLoader_contacts">Контакти</string>
   <!--EOF-->
 </resources>

@@ -1062,7 +1062,17 @@
   <string name="recipient_preference_activity__shared_media">Bendrinama medija</string>
   <string name="registration_activity__verify_your_number">Patvirtinkite savo numerį</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Norėdami gauti patvirtinimo kodą, įveskite savo mobiliojo telefono numerį. Gali būti taikomi mobiliojo ryšio paslaugos teikėjo mokesčiai.</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Pradėkite, bendraudami su draugais.</string>
+  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Gautųjų aplankas tuščias</string>
+  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Nieko nepraleidote!</string>
   <string name="ConversationListFragment_no_results_found_for_s_">Nerasta jokių rezultatų, atitinkančių \"%s\"</string>
   <string name="SearchToolbar_search">Ieškoti</string>
+  <string name="UnauthorizedReminder_device_no_longer_registered">Įrenginys daugiau nebėra registruotas</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Tai yra tikėtina, nes registravote savo telefono numerį su Signal kitame įrenginyje. Bakstelėkite, norėdami registruoti iš naujo.</string>
+  <string name="OutdatedBuildReminder_no_web_browser_installed">Neįdiegta jokia saityno naršyklė!</string>
+  <string name="ContactsCursorLoader_recent_chats">Paskiausi pokalbiai</string>
+  <string name="ContactsCursorLoader_contacts">Kontaktai</string>
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Perbraukite aukštyn, norėdami atsiliepti</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Perbraukite žemyn, norėdami atmesti</string>
   <!--EOF-->
 </resources>

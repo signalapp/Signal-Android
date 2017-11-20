@@ -1024,5 +1024,12 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Nix. Nada. Niente. Alles erledigt!</string>
   <string name="ConversationListFragment_no_results_found_for_s_"> Keine Ergebnisse für »%s« gefunden</string>
   <string name="SearchToolbar_search">Suchen</string>
+  <string name="UnauthorizedReminder_device_no_longer_registered">Gerät nicht mehr registriert</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Wahrscheinlich hast du deine Rufnummer mit Signal auf einem anderen Gerät registriert. Zum erneuten Registrieren antippen.</string>
+  <string name="OutdatedBuildReminder_no_web_browser_installed">Kein Webbrowser installiert!</string>
+  <string name="ContactsCursorLoader_recent_chats">Kürzliche Unterhaltungen</string>
+  <string name="ContactsCursorLoader_contacts">Kontakte</string>
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Wischen Sie nach oben, um anzunehmen</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Wischen Sie nach oben, um abzulehnen</string>
   <!--EOF-->
 </resources>
