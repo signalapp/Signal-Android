@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -94,7 +95,7 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientM
   }
 
   private void setText(int type, String name, String number, String label) {
-    if (number == null || number.isEmpty()) {
+    if (number == null || number.isEmpty() || GroupUtil.isEncodedGroup(number)) {
       this.nameView.setEnabled(false);
       this.numberView.setText("");
       this.labelView.setVisibility(View.GONE);
