@@ -1251,6 +1251,8 @@
     <string name="OutdatedBuildReminder_no_web_browser_installed">No web browser installed!</string>
     <string name="ContactsCursorLoader_recent_chats">Recent chats</string>
     <string name="ContactsCursorLoader_contacts">Contacts</string>
+    <string name="webrtc_answer_decline_button__swipe_up_to_answer">Swipe up to answer</string>
+    <string name="webrtc_answer_decline_button__swipe_down_to_reject">Swipe down to reject</string>
 
 
     <!-- EOF -->

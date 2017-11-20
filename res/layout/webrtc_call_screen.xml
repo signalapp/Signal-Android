@@ -225,10 +225,12 @@
             android:contentDescription="End call"
             tools:visibility="visible"/>
 
-    <org.thoughtcrime.securesms.components.webrtc.WebRtcIncomingCallOverlay
-            android:id="@+id/callControls"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
+
+    <org.thoughtcrime.securesms.components.webrtc.WebRtcAnswerDeclineButton
+            android:id="@+id/answer_decline_button"
+            android:layout_gravity="bottom|center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"/>
 
 </android.support.design.widget.CoordinatorLayout>

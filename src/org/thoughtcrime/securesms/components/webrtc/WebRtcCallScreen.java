@@ -58,6 +58,7 @@ import org.whispersystems.libsignal.IdentityKey;
  */
 public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedListener {
 
+  @SuppressWarnings("unused")
   private static final String TAG = WebRtcCallScreen.class.getSimpleName();
 
   private ImageView            photo;
@@ -77,10 +78,11 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
   private RelativeLayout       expandedInfo;
   private ViewGroup            callHeader;
 
+  private WebRtcAnswerDeclineButton incomingCallButton;
+
   private Recipient recipient;
   private boolean   minimized;
 
-  private WebRtcIncomingCallOverlay incomingCallOverlay;
 
   public WebRtcCallScreen(Context context) {
     super(context);
@@ -100,18 +102,21 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
   public void setActiveCall(@NonNull Recipient personInfo, @NonNull String message, @Nullable String sas) {
     setCard(personInfo, message);
     setConnected(WebRtcCallService.localRenderer, WebRtcCallService.remoteRenderer);
-    incomingCallOverlay.setActiveCall(sas);
+    incomingCallButton.stopRingingAnimation();
+    incomingCallButton.setVisibility(View.GONE);
   }
 
   public void setActiveCall(@NonNull Recipient personInfo, @NonNull String message) {
     setCard(personInfo, message);
-    incomingCallOverlay.setActiveCall();
+    incomingCallButton.stopRingingAnimation();
+    incomingCallButton.setVisibility(View.GONE);
   }
 
   public void setIncomingCall(Recipient personInfo) {
     setCard(personInfo, getContext().getString(R.string.CallScreen_Incoming_call));
-    incomingCallOverlay.setIncomingCall();
     endCallButton.setVisibility(View.INVISIBLE);
+    incomingCallButton.setVisibility(View.VISIBLE);
+    incomingCallButton.startRingingAnimation();
   }
 
   public void setUntrustedIdentity(Recipient personInfo, IdentityKey untrustedIdentity) {
@@ -125,7 +130,8 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
 
     setPersonInfo(personInfo);
 
-    this.incomingCallOverlay.setActiveCall();
+    incomingCallButton.stopRingingAnimation();
+    incomingCallButton.setVisibility(View.GONE);
     this.status.setText(R.string.WebRtcCallScreen_new_safety_number_title);
     this.untrustedIdentityContainer.setVisibility(View.VISIBLE);
     this.untrustedIdentityExplanation.setText(spannableString);
@@ -134,8 +140,8 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
     this.endCallButton.setVisibility(View.INVISIBLE);
   }
 
-  public void setIncomingCallActionListener(WebRtcIncomingCallOverlay.IncomingCallActionListener listener) {
-    incomingCallOverlay.setIncomingCallActionListener(listener);
+  public void setIncomingCallActionListener(WebRtcAnswerDeclineButton.AnswerDeclineListener listener) {
+    incomingCallButton.setAnswerDeclineListener(listener);
   }
 
   public void setAudioMuteButtonListener(WebRtcCallControls.MuteButtonListener listener) {
@@ -155,12 +161,7 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
   }
 
   public void setHangupButtonListener(final HangupButtonListener listener) {
-    endCallButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        listener.onClick();
-      }
-    });
+    endCallButton.setOnClickListener(v -> listener.onClick());
   }
 
   public void setAcceptIdentityListener(OnClickListener listener) {
@@ -217,34 +218,29 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
     LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     inflater.inflate(R.layout.webrtc_call_screen, this, true);
 
-    this.elapsedTime                  = (TextView) findViewById(R.id.elapsedTime);
-    this.photo                        = (ImageView) findViewById(R.id.photo);
-    this.localRenderLayout            = (PercentFrameLayout) findViewById(R.id.local_render_layout);
-    this.remoteRenderLayout           = (PercentFrameLayout) findViewById(R.id.remote_render_layout);
-    this.phoneNumber                  = (TextView) findViewById(R.id.phoneNumber);
-    this.name                         = (TextView) findViewById(R.id.name);
-    this.label                        = (TextView) findViewById(R.id.label);
-    this.status                       = (TextView) findViewById(R.id.callStateLabel);
-    this.controls                     = (WebRtcCallControls) findViewById(R.id.inCallControls);
-    this.endCallButton                = (FloatingActionButton) findViewById(R.id.hangup_fab);
-    this.incomingCallOverlay          = (WebRtcIncomingCallOverlay) findViewById(R.id.callControls);
+    this.elapsedTime                  = findViewById(R.id.elapsedTime);
+    this.photo                        = findViewById(R.id.photo);
+    this.localRenderLayout            = findViewById(R.id.local_render_layout);
+    this.remoteRenderLayout           = findViewById(R.id.remote_render_layout);
+    this.phoneNumber                  = findViewById(R.id.phoneNumber);
+    this.name                         = findViewById(R.id.name);
+    this.label                        = findViewById(R.id.label);
+    this.status                       = findViewById(R.id.callStateLabel);
+    this.controls                     = findViewById(R.id.inCallControls);
+    this.endCallButton                = findViewById(R.id.hangup_fab);
+    this.incomingCallButton           = findViewById(R.id.answer_decline_button);
     this.untrustedIdentityContainer   = findViewById(R.id.untrusted_layout);
-    this.untrustedIdentityExplanation = (TextView) findViewById(R.id.untrusted_explanation);
-    this.acceptIdentityButton         = (Button)findViewById(R.id.accept_safety_numbers);
-    this.cancelIdentityButton         = (Button)findViewById(R.id.cancel_safety_numbers);
-    this.expandedInfo                 = (RelativeLayout)findViewById(R.id.expanded_info);
-    this.callHeader                   = (ViewGroup)findViewById(R.id.call_info_1);
+    this.untrustedIdentityExplanation = findViewById(R.id.untrusted_explanation);
+    this.acceptIdentityButton         = findViewById(R.id.accept_safety_numbers);
+    this.cancelIdentityButton         = findViewById(R.id.cancel_safety_numbers);
+    this.expandedInfo                 = findViewById(R.id.expanded_info);
+    this.callHeader                   = findViewById(R.id.call_info_1);
 
     this.localRenderLayout.setHidden(true);
     this.remoteRenderLayout.setHidden(true);
     this.minimized = false;
 
-    this.remoteRenderLayout.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        setMinimized(!minimized);
-      }
-    });
+    this.remoteRenderLayout.setOnClickListener(v -> setMinimized(!minimized));
   }
 
   private void setConnected(SurfaceViewRenderer localRenderer,
@@ -300,7 +296,7 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
     setPersonInfo(recipient);
     this.status.setText(status);
     this.untrustedIdentityContainer.setVisibility(View.GONE);
-    this.endCallButton.setVisibility(View.VISIBLE);
+    this.endCallButton.show();
   }
 
   private void setMinimized(boolean minimized) {
@@ -315,12 +311,9 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
       ViewCompat.animate(callHeader).translationY(0);
       ViewCompat.animate(status).alpha(1);
       ViewCompat.animate(endCallButton).translationY(0);
-      ViewCompat.animate(endCallButton).alpha(1).withEndAction(new Runnable() {
-        @Override
-        public void run() {
-          // Note: This is to work around an Android bug, see #6225
-          endCallButton.requestLayout();
-        }
+      ViewCompat.animate(endCallButton).alpha(1).withEndAction(() -> {
+        // Note: This is to work around an Android bug, see #6225
+        endCallButton.requestLayout();
       });
 
       this.minimized = false;
@@ -336,8 +329,8 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
     });
   }
 
-  public static interface HangupButtonListener {
-    public void onClick();
+  public interface HangupButtonListener {
+    void onClick();
   }
 
 

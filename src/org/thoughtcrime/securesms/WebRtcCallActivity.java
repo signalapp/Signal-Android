@@ -35,9 +35,9 @@ import android.view.WindowManager;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.thoughtcrime.securesms.components.webrtc.WebRtcAnswerDeclineButton;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallControls;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallScreen;
-import org.thoughtcrime.securesms.components.webrtc.WebRtcIncomingCallOverlay;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
@@ -359,14 +359,14 @@ public class WebRtcCallActivity extends Activity {
     }
   }
 
-  private class IncomingCallActionListener implements WebRtcIncomingCallOverlay.IncomingCallActionListener {
+  private class IncomingCallActionListener implements WebRtcAnswerDeclineButton.AnswerDeclineListener {
     @Override
-    public void onAcceptClick() {
+    public void onAnswered() {
       WebRtcCallActivity.this.handleAnswerCall();
     }
 
     @Override
-    public void onDenyClick() {
+    public void onDeclined() {
       WebRtcCallActivity.this.handleDenyCall();
     }
   }
