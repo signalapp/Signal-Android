@@ -105,7 +105,6 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts;
-import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
@@ -235,7 +234,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   AttachmentManager      attachmentManager;
   private   AudioRecorder          audioRecorder;
   private   BroadcastReceiver      securityUpdateReceiver;
-  private   BroadcastReceiver      recipientsStaleReceiver;
   private   Stub<EmojiDrawer>      emojiDrawerStub;
   protected HidingLinearLayout     quickAttachmentToggle;
   private   QuickAttachmentDrawer  quickAttachmentDrawer;
@@ -386,7 +384,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     saveDraft();
     if (recipient != null)               recipient.removeListener(this);
     if (securityUpdateReceiver != null)  unregisterReceiver(securityUpdateReceiver);
-    if (recipientsStaleReceiver != null) unregisterReceiver(recipientsStaleReceiver);
     super.onDestroy();
   }
 
@@ -1345,29 +1342,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       }
     };
 
-    recipientsStaleReceiver = new BroadcastReceiver() {
-      @Override
-      public void onReceive(Context context, Intent intent) {
-        Log.w(TAG, "Group update received...");
-        if (recipient != null) {
-          Log.w(TAG, "Looking up new recipients...");
-          recipient = Recipient.from(context, recipient.getAddress(), true);
-          recipient.addListener(ConversationActivity.this);
-          onModified(recipient);
-          fragment.reloadList();
-        }
-      }
-    };
-
-    IntentFilter staleFilter = new IntentFilter();
-    staleFilter.addAction(GroupDatabase.DATABASE_UPDATE_ACTION);
-    staleFilter.addAction(Recipient.RECIPIENT_CLEAR_ACTION);
-
     registerReceiver(securityUpdateReceiver,
                      new IntentFilter(SecurityEvent.SECURITY_UPDATE_EVENT),
                      KeyCachingService.KEY_PERMISSION, null);
-
-    registerReceiver(recipientsStaleReceiver, staleFilter);
   }
 
   //////// Helper Methods

@@ -4,7 +4,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.media.Ringtone;
@@ -42,7 +41,6 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
@@ -93,7 +91,6 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   private TextView                threadPhotoRailLabel;
   private ThreadPhotoRailView     threadPhotoRailView;
   private CollapsingToolbarLayout toolbarLayout;
-  private BroadcastReceiver       staleReceiver;
 
   @Override
   public void onPreCreate() {
@@ -111,7 +108,6 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     Recipient recipient = Recipient.from(this, address, true);
 
     initializeToolbar();
-    initializeReceivers();
     setHeader(recipient);
     recipient.addListener(this);
 
@@ -123,12 +119,6 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     super.onResume();
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
-  }
-
-  @Override
-  public void onDestroy() {
-    super.onDestroy();
-    unregisterReceiver(staleReceiver);
   }
 
   @Override
@@ -190,23 +180,6 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
       getWindow().setStatusBarColor(Color.TRANSPARENT);
     }
-  }
-
-  private void initializeReceivers() {
-    this.staleReceiver = new BroadcastReceiver() {
-      @Override
-      public void onReceive(Context context, Intent intent) {
-        Recipient recipient = Recipient.from(context, (Address)getIntent().getParcelableExtra(ADDRESS_EXTRA), true);
-        recipient.addListener(RecipientPreferenceActivity.this);
-        onModified(recipient);
-      }
-    };
-
-    IntentFilter staleFilter = new IntentFilter();
-    staleFilter.addAction(GroupDatabase.DATABASE_UPDATE_ACTION);
-    staleFilter.addAction(Recipient.RECIPIENT_CLEAR_ACTION);
-
-    registerReceiver(staleReceiver, staleFilter);
   }
 
   private void setHeader(@NonNull Recipient recipient) {
@@ -306,23 +279,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
     private void initializeRecipients() {
       this.recipient = Recipient.from(getActivity(), getArguments().getParcelable(ADDRESS_EXTRA), true);
-
       this.recipient.addListener(this);
-
-      this.staleReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-          recipient.removeListener(RecipientPreferenceFragment.this);
-          recipient = Recipient.from(getActivity(), getArguments().getParcelable(ADDRESS_EXTRA), true);
-          onModified(recipient);
-        }
-      };
-
-      IntentFilter intentFilter = new IntentFilter();
-      intentFilter.addAction(GroupDatabase.DATABASE_UPDATE_ACTION);
-      intentFilter.addAction(Recipient.RECIPIENT_CLEAR_ACTION);
-
-      getActivity().registerReceiver(staleReceiver, intentFilter);
     }
 
     private void setSummaries(Recipient recipient) {

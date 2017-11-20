@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.database;
 
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -14,6 +14,7 @@ import android.text.TextUtils;
 
 import com.annimon.stream.Stream;
 
+import org.thoughtcrime.securesms.contacts.avatars.GroupRecordContactPhoto;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
@@ -30,8 +31,7 @@ import java.util.List;
 
 public class GroupDatabase extends Database {
 
-  public static final String DATABASE_UPDATE_ACTION = "org.thoughtcrime.securesms.database.GroupDatabase.UPDATE";
-
+  @SuppressWarnings("unused")
   private static final String TAG = GroupDatabase.class.getSimpleName();
 
           static final String TABLE_NAME          = "groups";
@@ -65,7 +65,7 @@ public class GroupDatabase extends Database {
           AVATAR_DIGEST + " BLOB, " +
           MMS + " INTEGER DEFAULT 0);";
 
-  public static final String[] CREATE_INDEXS = {
+  static final String[] CREATE_INDEXS = {
       "CREATE UNIQUE INDEX IF NOT EXISTS group_id_index ON " + TABLE_NAME + " (" + GROUP_ID + ");",
   };
 
@@ -103,9 +103,10 @@ public class GroupDatabase extends Database {
   }
 
   public Reader getGroupsFilteredByTitle(String constraint) {
+    @SuppressLint("Recycle")
     Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, TITLE + " LIKE ?",
-                                                               new String[]{"%" + constraint + "%"},
-                                                               null, null, null);
+                                                                                        new String[]{"%" + constraint + "%"},
+                                                                                        null, null, null);
 
     return new Reader(cursor);
   }
@@ -131,6 +132,7 @@ public class GroupDatabase extends Database {
   }
 
   public Reader getGroups() {
+    @SuppressLint("Recycle")
     Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, null, null, null, null, null);
     return new Reader(cursor);
   }
@@ -172,7 +174,14 @@ public class GroupDatabase extends Database {
     contentValues.put(MMS, GroupUtil.isMmsGroup(groupId));
 
     databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, contentValues);
-    Recipient.clearCache(context);
+
+    Address   address   = Address.fromSerialized(groupId);
+    Recipient recipient = Recipient.from(context, Address.fromSerialized(groupId), false);
+
+    recipient.setName(title);
+    if (avatar != null) recipient.setContactPhoto(new GroupRecordContactPhoto(address, avatar.getId()));
+    recipient.setParticipants(Stream.of(members).map(memberAddress -> Recipient.from(context, memberAddress, true)).toList());
+
     notifyConversationListListeners();
   }
 
@@ -191,8 +200,11 @@ public class GroupDatabase extends Database {
                                                 GROUP_ID + " = ?",
                                                 new String[] {groupId});
 
-    Recipient.clearCache(context);
-    notifyDatabaseListeners();
+    Address   address   = Address.fromSerialized(groupId);
+    Recipient recipient = Recipient.from(context, address, false);
+    recipient.setName(title);
+    if (avatar != null) recipient.setContactPhoto(new GroupRecordContactPhoto(address, avatar.getId()));
+
     notifyConversationListListeners();
   }
 
@@ -202,8 +214,8 @@ public class GroupDatabase extends Database {
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
                                                 new String[] {groupId});
 
-    Recipient.clearCache(context);
-    notifyDatabaseListeners();
+    Recipient recipient = Recipient.from(context, Address.fromSerialized(groupId), false);
+    recipient.setName(title);
   }
 
   public void updateAvatar(String groupId, Bitmap avatar) {
@@ -211,14 +223,17 @@ public class GroupDatabase extends Database {
   }
 
   public void updateAvatar(String groupId, byte[] avatar) {
+    long          avatarId      = Math.abs(new SecureRandom().nextLong());
     ContentValues contentValues = new ContentValues();
     contentValues.put(AVATAR, avatar);
+    contentValues.put(AVATAR_ID, avatarId);
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
                                                 new String[] {groupId});
 
-    Recipient.clearCache(context);
-    notifyDatabaseListeners();
+    Address   address   = Address.fromSerialized(groupId);
+    Recipient recipient = Recipient.from(context, address, false);
+    recipient.setContactPhoto(new GroupRecordContactPhoto(address, avatarId));
   }
 
   public void updateMembers(String groupId, List<Address> members) {
@@ -285,11 +300,6 @@ public class GroupDatabase extends Database {
     } catch (NoSuchAlgorithmException e) {
       throw new AssertionError(e);
     }
-  }
-
-  private void notifyDatabaseListeners() {
-    Intent intent = new Intent(DATABASE_UPDATE_ACTION);
-    context.sendBroadcast(intent);
   }
 
   public static class Reader {

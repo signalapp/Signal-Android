@@ -1,5 +1,6 @@
-/**
+/*
  * Copyright (C) 2011 Whisper Systems
+ * Copyright (C) 2013 - 2017 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +18,6 @@
 package org.thoughtcrime.securesms.recipients;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -50,9 +50,8 @@ import java.util.concurrent.ExecutionException;
 
 public class Recipient implements RecipientModifiedListener {
 
-  public static final  String            RECIPIENT_CLEAR_ACTION = "org.thoughtcrime.securesms.database.RecipientFactory.CLEAR";
-  private static final String            TAG                    = Recipient.class.getSimpleName();
-  private static final RecipientProvider provider               = new RecipientProvider();
+  private static final String            TAG      = Recipient.class.getSimpleName();
+  private static final RecipientProvider provider = new RecipientProvider();
 
   private final Set<RecipientModifiedListener> listeners = Collections.newSetFromMap(new WeakHashMap<RecipientModifiedListener, Boolean>());
 
@@ -61,7 +60,6 @@ public class Recipient implements RecipientModifiedListener {
 
   private @Nullable String  name;
   private @Nullable String  customLabel;
-  private           boolean stale;
   private           boolean resolving;
 
   private @Nullable ContactPhoto         contactPhoto;
@@ -84,19 +82,16 @@ public class Recipient implements RecipientModifiedListener {
   private           boolean        isSystemContact;
 
 
+  @SuppressWarnings("ConstantConditions")
   public static @NonNull Recipient from(@NonNull Context context, @NonNull Address address, boolean asynchronous) {
     if (address == null) throw new AssertionError(address);
     return provider.getRecipient(context, address, Optional.absent(), Optional.absent(), asynchronous);
   }
 
+  @SuppressWarnings("ConstantConditions")
   public static @NonNull Recipient from(@NonNull Context context, @NonNull Address address, @NonNull Optional<RecipientSettings> settings, @NonNull Optional<GroupDatabase.GroupRecord> groupRecord, boolean asynchronous) {
     if (address == null) throw new AssertionError(address);
     return provider.getRecipient(context, address, settings, groupRecord, asynchronous);
-  }
-
-  public static void clearCache(Context context) {
-    provider.clearCache();
-    context.sendBroadcast(new Intent(RECIPIENT_CLEAR_ACTION));
   }
 
   Recipient(@NonNull  Address address,
@@ -246,6 +241,19 @@ public class Recipient implements RecipientModifiedListener {
     return this.name;
   }
 
+  public void setName(@Nullable String name) {
+    boolean notify = false;
+
+    synchronized (this) {
+      if (!Util.equals(this.name, name)) {
+        this.name = name;
+        notify = true;
+      }
+    }
+
+    if (notify) notifyListeners();
+  }
+
   public synchronized @NonNull MaterialColor getColor() {
     if      (isGroupRecipient()) return MaterialColor.GROUP;
     else if (color != null)      return color;
@@ -331,6 +339,15 @@ public class Recipient implements RecipientModifiedListener {
 
   public @NonNull List<Recipient> getParticipants() {
     return participants;
+  }
+
+  public void setParticipants(@NonNull List<Recipient> participants) {
+    synchronized (this) {
+      this.participants.clear();
+      this.participants.addAll(participants);
+    }
+
+    notifyListeners();
   }
 
   public synchronized void addListener(RecipientModifiedListener listener) {
@@ -452,11 +469,16 @@ public class Recipient implements RecipientModifiedListener {
   }
 
   public void setRegistered(@NonNull RegisteredState value) {
+    boolean notify = false;
+
     synchronized (this) {
-      this.registered = value;
+      if (this.registered != value) {
+        this.registered = value;
+        notify = true;
+      }
     }
 
-    notifyListeners();
+    if (notify) notifyListeners();
   }
 
   public synchronized @Nullable byte[] getProfileKey() {
@@ -473,15 +495,6 @@ public class Recipient implements RecipientModifiedListener {
 
   public synchronized boolean isSystemContact() {
     return isSystemContact;
-  }
-
-  public void setSystemDisplayName(@Nullable String displayName) {
-    synchronized (this) {
-      if (displayName == null) this.name = profileName;
-      else                     this.name = displayName;
-    }
-
-    notifyListeners();
   }
 
   public synchronized Recipient resolve() {
@@ -521,15 +534,6 @@ public class Recipient implements RecipientModifiedListener {
     notifyListeners();
   }
 
-  boolean isStale() {
-    return stale;
-  }
-
-  void setStale() {
-    this.stale = true;
-  }
-
-  // XXX This shouldn't be public, temporary workaround
   public synchronized boolean isResolving() {
     return resolving;
   }

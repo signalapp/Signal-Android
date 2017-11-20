@@ -25,7 +25,6 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -38,6 +37,7 @@ import org.whispersystems.signalservice.api.push.ContactTokenDetails;
 
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -52,24 +52,22 @@ public class DirectoryHelper {
   {
     if (TextUtils.isEmpty(TextSecurePreferences.getLocalNumber(context))) return;
 
-    RefreshResult result = refreshDirectory(context, AccountManagerFactory.createManager(context));
+    List<Address> newlyActiveUsers = refreshDirectory(context, AccountManagerFactory.createManager(context));
 
-    if (!result.getNewUsers().isEmpty() && TextSecurePreferences.isMultiDevice(context)) {
+    if (!newlyActiveUsers.isEmpty() && TextSecurePreferences.isMultiDevice(context)) {
       ApplicationContext.getInstance(context)
                         .getJobManager()
                         .add(new MultiDeviceContactUpdateJob(context));
     }
 
-    if (!result.isFresh()) {
-      notifyNewUsers(context, masterSecret, result.getNewUsers());
-    }
+    notifyNewUsers(context, masterSecret, newlyActiveUsers);
   }
 
-  public static @NonNull RefreshResult refreshDirectory(@NonNull Context context, @NonNull SignalServiceAccountManager accountManager)
+  public static @NonNull List<Address> refreshDirectory(@NonNull Context context, @NonNull SignalServiceAccountManager accountManager)
       throws IOException
   {
     if (TextUtils.isEmpty(TextSecurePreferences.getLocalNumber(context))) {
-      return new RefreshResult(new LinkedList<>(), false);
+      return new LinkedList<>();
     }
 
     RecipientDatabase recipientDatabase                       = DatabaseFactory.getRecipientDatabase(context);
@@ -94,11 +92,19 @@ public class DirectoryHelper {
         inactiveRecipients.add(Recipient.from(context, Address.fromSerialized(inactiveContactNumber), true));
       }
 
+      Set<Address>  currentActiveAddresses = new HashSet<>(recipientDatabase.getRegistered());
+      List<Address> newlyActiveAddresses   = Stream.of(activeRecipients)
+                                                   .map(Recipient::getAddress)
+                                                   .filter(address -> !currentActiveAddresses.contains(address))
+                                                   .toList();
+
       recipientDatabase.setRegistered(activeRecipients, inactiveRecipients);
-      return updateContactsDatabase(context, Stream.of(activeRecipients).map(Recipient::getAddress).toList(), true);
+      updateContactsDatabase(context, Stream.of(activeRecipients).map(Recipient::getAddress).toList(), true);
+
+      return newlyActiveAddresses;
     }
 
-    return new RefreshResult(new LinkedList<>(), false);
+    return new LinkedList<>();
   }
 
   public static RegisteredState refreshDirectoryFor(@NonNull  Context context,
@@ -108,20 +114,21 @@ public class DirectoryHelper {
   {
     RecipientDatabase             recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
     SignalServiceAccountManager   accountManager    = AccountManagerFactory.createManager(context);
+    boolean                       activeUser        = recipient.resolve().getRegistered() == RegisteredState.REGISTERED;
     String                        number            = recipient.getAddress().serialize();
     Optional<ContactTokenDetails> details           = accountManager.getContact(number);
 
     if (details.isPresent()) {
       recipientDatabase.setRegistered(recipient, RegisteredState.REGISTERED);
 
-      RefreshResult result = updateContactsDatabase(context, Util.asList(recipient.getAddress()), false);
+      updateContactsDatabase(context, Util.asList(recipient.getAddress()), false);
 
-      if (!result.getNewUsers().isEmpty() && TextSecurePreferences.isMultiDevice(context)) {
+      if (!activeUser && TextSecurePreferences.isMultiDevice(context)) {
         ApplicationContext.getInstance(context).getJobManager().add(new MultiDeviceContactUpdateJob(context));
       }
 
-      if (!result.isFresh()) {
-        notifyNewUsers(context, masterSecret, result.getNewUsers());
+      if (!activeUser) {
+        notifyNewUsers(context, masterSecret, Collections.singletonList(recipient.getAddress()));
       }
 
       return RegisteredState.REGISTERED;
@@ -131,13 +138,12 @@ public class DirectoryHelper {
     }
   }
 
-  private static @NonNull RefreshResult updateContactsDatabase(@NonNull Context context, @NonNull List<Address> activeAddresses, boolean removeMissing) {
+  private static void updateContactsDatabase(@NonNull Context context, @NonNull List<Address> activeAddresses, boolean removeMissing) {
     Optional<AccountHolder> account = getOrCreateAccount(context);
 
     if (account.isPresent()) {
       try {
-        List<Address> newUsers = DatabaseFactory.getContactsDatabase(context)
-                                                .setRegisteredUsers(account.get().getAccount(), activeAddresses, removeMissing);
+        DatabaseFactory.getContactsDatabase(context).setRegisteredUsers(account.get().getAccount(), activeAddresses, removeMissing);
 
         Cursor                                 cursor = ContactAccessor.getInstance().getAllSystemContacts(context);
         RecipientDatabase.BulkOperationsHandle handle = DatabaseFactory.getRecipientDatabase(context).resetAllDisplayNames();
@@ -158,13 +164,10 @@ public class DirectoryHelper {
           handle.finish();
         }
 
-        return new RefreshResult(newUsers, account.get().isFresh());
       } catch (RemoteException | OperationApplicationException e) {
         Log.w(TAG, e);
       }
     }
-
-    return new RefreshResult(new LinkedList<Address>(), false);
   }
 
   private static void notifyNewUsers(@NonNull  Context context,
@@ -238,25 +241,6 @@ public class DirectoryHelper {
       return account;
     }
 
-  }
-
-  private static class RefreshResult {
-
-    private final List<Address> newUsers;
-    private final boolean       fresh;
-
-    private RefreshResult(List<Address> newUsers, boolean fresh) {
-      this.newUsers = newUsers;
-      this.fresh = fresh;
-    }
-
-    public List<Address> getNewUsers() {
-      return newUsers;
-    }
-
-    public boolean isFresh() {
-      return fresh;
-    }
   }
 
 }

@@ -399,7 +399,7 @@ public class RecipientDatabase extends Database {
       database.setTransactionSuccessful();
       database.endTransaction();
 
-      Stream.of(pendingDisplayNames).forEach(pair -> pair.first().resolve().setSystemDisplayName(pair.second()));
+      Stream.of(pendingDisplayNames).forEach(pair -> pair.first().resolve().setName(pair.second()));
 
       context.getContentResolver().notifyChange(Uri.parse(RECIPIENT_PREFERENCES_URI), null);
     }

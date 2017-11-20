@@ -77,7 +77,7 @@ class RecipientProvider {
   @NonNull Recipient getRecipient(Context context, Address address, Optional<RecipientSettings> settings, Optional<GroupRecord> groupRecord, boolean asynchronous) {
     Recipient cachedRecipient = recipientCache.get(address);
 
-    if (cachedRecipient != null && !cachedRecipient.isStale() && (asynchronous || !cachedRecipient.isResolving()) && ((!groupRecord.isPresent() && !settings.isPresent()) || !cachedRecipient.isResolving() || cachedRecipient.getName() != null)) {
+    if (cachedRecipient != null && (asynchronous || !cachedRecipient.isResolving()) && ((!groupRecord.isPresent() && !settings.isPresent()) || !cachedRecipient.isResolving() || cachedRecipient.getName() != null)) {
       return cachedRecipient;
     }
 
@@ -91,10 +91,6 @@ class RecipientProvider {
 
     recipientCache.set(address, cachedRecipient);
     return cachedRecipient;
-  }
-
-  void clearCache() {
-    recipientCache.reset();
   }
 
   private @NonNull Optional<RecipientDetails> createPrefetchedRecipientDetails(@NonNull Context context, @NonNull Address address,
@@ -274,12 +270,6 @@ class RecipientProvider {
 
     public synchronized void set(Address address, Recipient recipient) {
       cache.put(address, recipient);
-    }
-
-    public synchronized void reset() {
-      for (Recipient recipient : cache.values()) {
-        recipient.setStale();
-      }
     }
 
   }
