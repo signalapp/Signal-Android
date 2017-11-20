@@ -5,6 +5,7 @@
     <style name="TextSecure.LightNoActionBar" parent="@style/TextSecure.LightTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="windowActionModeOverlay">true</item>
 
         <item name="theme_type">light</item>
         <item name="colorPrimary">@color/textsecure_primary</item>
@@ -27,6 +28,7 @@
     <style name="TextSecure.DarkNoActionBar" parent="@style/TextSecure.DarkTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="windowActionModeOverlay">true</item>
 
         <item name="theme_type">dark</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
