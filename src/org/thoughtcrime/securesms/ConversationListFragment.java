@@ -91,8 +91,10 @@ import java.util.Set;
 public class ConversationListFragment extends Fragment
   implements LoaderManager.LoaderCallbacks<Cursor>, ActionMode.Callback, ItemClickListener
 {
-
   public static final String ARCHIVE = "archive";
+
+  @SuppressWarnings("unused")
+  private static final String TAG = ConversationListFragment.class.getSimpleName();
 
   private MasterSecret                masterSecret;
   private ActionMode                  actionMode;
@@ -540,10 +542,10 @@ public class ConversationListFragment extends Fragment
                             float dX, float dY, int actionState,
                             boolean isCurrentlyActive)
     {
-
       if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
         View  itemView = viewHolder.itemView;
         Paint p        = new Paint();
+        float alpha    = 1.0f - Math.abs(dX) / (float) viewHolder.itemView.getWidth();
 
         if (dX > 0) {
           Bitmap icon;
@@ -551,7 +553,8 @@ public class ConversationListFragment extends Fragment
           if (archive) icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_unarchive_white_36dp);
           else         icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_archive_white_36dp);
 
-          p.setColor(getResources().getColor(R.color.green_500));
+          if (alpha > 0) p.setColor(getResources().getColor(R.color.green_500));
+          else           p.setColor(Color.WHITE);
 
           c.drawRect((float) itemView.getLeft(), (float) itemView.getTop(), dX,
                      (float) itemView.getBottom(), p);
@@ -562,10 +565,8 @@ public class ConversationListFragment extends Fragment
                        p);
         }
 
-        float alpha = 1.0f - Math.abs(dX) / (float) viewHolder.itemView.getWidth();
         viewHolder.itemView.setAlpha(alpha);
         viewHolder.itemView.setTranslationX(dX);
-
       } else {
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
       }
