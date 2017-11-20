@@ -104,12 +104,14 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
     setConnected(WebRtcCallService.localRenderer, WebRtcCallService.remoteRenderer);
     incomingCallButton.stopRingingAnimation();
     incomingCallButton.setVisibility(View.GONE);
+    endCallButton.show();
   }
 
   public void setActiveCall(@NonNull Recipient personInfo, @NonNull String message) {
     setCard(personInfo, message);
     incomingCallButton.stopRingingAnimation();
     incomingCallButton.setVisibility(View.GONE);
+    endCallButton.show();
   }
 
   public void setIncomingCall(Recipient personInfo) {
@@ -296,7 +298,6 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
     setPersonInfo(recipient);
     this.status.setText(status);
     this.untrustedIdentityContainer.setVisibility(View.GONE);
-    this.endCallButton.show();
   }
 
   private void setMinimized(boolean minimized) {
