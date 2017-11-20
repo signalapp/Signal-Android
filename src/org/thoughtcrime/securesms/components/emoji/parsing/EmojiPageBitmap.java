@@ -6,6 +6,8 @@ import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import org.thoughtcrime.securesms.components.emoji.EmojiPageModel;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
@@ -72,6 +74,8 @@ public class EmojiPageBitmap {
       Bitmap originalBitmap = GlideApp.with(context.getApplicationContext())
                                       .asBitmap()
                                       .load("file:///android_asset/" + model.getSprite())
+                                      .skipMemoryCache(true)
+                                      .diskCacheStrategy(DiskCacheStrategy.NONE)
                                       .submit()
                                       .get();
 
