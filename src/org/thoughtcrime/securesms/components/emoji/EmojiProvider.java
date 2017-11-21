@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiTree;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.libsignal.util.Pair;
 
 import java.util.concurrent.ExecutionException;
 
@@ -67,6 +68,10 @@ class EmojiProvider {
           emojiTree.add(page.getEmoji()[i], new EmojiDrawInfo(pageBitmap, i));
         }
       }
+    }
+
+    for (Pair<String,String> obsolete : EmojiPages.OBSOLETE) {
+      emojiTree.add(obsolete.first(), emojiTree.getEmoji(obsolete.second(), 0, obsolete.second().length()));
     }
   }
 
