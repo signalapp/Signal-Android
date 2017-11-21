@@ -21,22 +21,25 @@ public class DirectoryRefreshJob extends ContextJob {
 
   @Nullable private transient Recipient    recipient;
   @Nullable private transient MasterSecret masterSecret;
+            private transient boolean      notifyOfNewUsers;
 
-  public DirectoryRefreshJob(@NonNull Context context) {
-    this(context, null, null);
+  public DirectoryRefreshJob(@NonNull Context context, boolean notifyOfNewUsers) {
+    this(context, null, null, notifyOfNewUsers);
   }
 
   public DirectoryRefreshJob(@NonNull Context context,
                              @Nullable MasterSecret masterSecret,
-                             @Nullable Recipient recipient)
+                             @Nullable Recipient recipient,
+                                       boolean notifyOfNewUsers)
   {
     super(context, JobParameters.newBuilder()
                                 .withGroupId(DirectoryRefreshJob.class.getSimpleName())
                                 .withRequirement(new NetworkRequirement(context))
                                 .create());
 
-    this.recipient    = recipient;
-    this.masterSecret = masterSecret;
+    this.recipient        = recipient;
+    this.masterSecret     = masterSecret;
+    this.notifyOfNewUsers = notifyOfNewUsers;
   }
 
   @Override
@@ -51,7 +54,7 @@ public class DirectoryRefreshJob extends ContextJob {
     try {
       wakeLock.acquire();
       if (recipient == null) {
-        DirectoryHelper.refreshDirectory(context, KeyCachingService.getMasterSecret(context));
+        DirectoryHelper.refreshDirectory(context, KeyCachingService.getMasterSecret(context), notifyOfNewUsers);
       } else {
         DirectoryHelper.refreshDirectoryFor(context, masterSecret, recipient);
       }

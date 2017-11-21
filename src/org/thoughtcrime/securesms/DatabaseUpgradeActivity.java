@@ -223,7 +223,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
       if (params[0] < CONTACTS_ACCOUNT_VERSION) {
         ApplicationContext.getInstance(getApplicationContext())
                           .getJobManager()
-                          .add(new DirectoryRefreshJob(getApplicationContext()));
+                          .add(new DirectoryRefreshJob(getApplicationContext(), false));
       }
 
       if (params[0] < MEDIA_DOWNLOAD_CONTROLS_VERSION) {
@@ -236,13 +236,13 @@ public class DatabaseUpgradeActivity extends BaseActivity {
                           .add(new RefreshAttributesJob(getApplicationContext()));
         ApplicationContext.getInstance(getApplicationContext())
                           .getJobManager()
-                          .add(new DirectoryRefreshJob(getApplicationContext()));
+                          .add(new DirectoryRefreshJob(getApplicationContext(), false));
       }
 
       if (params[0] < PROFILES) {
         ApplicationContext.getInstance(getApplicationContext())
                           .getJobManager()
-                          .add(new DirectoryRefreshJob(getApplicationContext()));
+                          .add(new DirectoryRefreshJob(getApplicationContext(), false));
       }
 
       if (params[0] < SCREENSHOTS) {

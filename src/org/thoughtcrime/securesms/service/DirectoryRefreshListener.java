@@ -24,7 +24,7 @@ public class DirectoryRefreshListener extends PersistentAlarmManagerListener {
     if (scheduledTime != 0 && TextSecurePreferences.isPushRegistered(context)) {
       ApplicationContext.getInstance(context)
                         .getJobManager()
-                        .add(new DirectoryRefreshJob(context));
+                        .add(new DirectoryRefreshJob(context, true));
     }
 
     long newTime = System.currentTimeMillis() + INTERVAL;

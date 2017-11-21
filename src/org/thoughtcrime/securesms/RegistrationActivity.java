@@ -391,7 +391,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
           keyboard.displaySuccess().addListener(new AssertedSuccessListener<Boolean>() {
             @Override
             public void onSuccess(Boolean result) {
-              ApplicationContext.getInstance(RegistrationActivity.this).getJobManager().add(new DirectoryRefreshJob(RegistrationActivity.this));
+              ApplicationContext.getInstance(RegistrationActivity.this).getJobManager().add(new DirectoryRefreshJob(RegistrationActivity.this, false));
 
               DirectoryRefreshListener.schedule(RegistrationActivity.this);
               RotateSignedPreKeyListener.schedule(RegistrationActivity.this);

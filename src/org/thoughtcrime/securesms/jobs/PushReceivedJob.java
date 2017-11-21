@@ -29,7 +29,7 @@ public abstract class PushReceivedJob extends ContextJob {
 
     if (!isActiveNumber(recipient)) {
       DatabaseFactory.getRecipientDatabase(context).setRegistered(recipient, RecipientDatabase.RegisteredState.REGISTERED);
-      ApplicationContext.getInstance(context).getJobManager().add(new DirectoryRefreshJob(context, KeyCachingService.getMasterSecret(context), recipient));
+      ApplicationContext.getInstance(context).getJobManager().add(new DirectoryRefreshJob(context, KeyCachingService.getMasterSecret(context), recipient, false));
     }
 
     if (envelope.isReceipt()) {

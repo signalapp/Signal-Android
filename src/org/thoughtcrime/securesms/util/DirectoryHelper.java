@@ -47,7 +47,7 @@ public class DirectoryHelper {
 
   private static final String TAG = DirectoryHelper.class.getSimpleName();
 
-  public static void refreshDirectory(@NonNull Context context, @Nullable MasterSecret masterSecret)
+  public static void refreshDirectory(@NonNull Context context, @Nullable MasterSecret masterSecret, boolean notifyOfNewUsers)
       throws IOException
   {
     if (TextUtils.isEmpty(TextSecurePreferences.getLocalNumber(context))) return;
@@ -60,7 +60,7 @@ public class DirectoryHelper {
                         .add(new MultiDeviceContactUpdateJob(context));
     }
 
-    notifyNewUsers(context, masterSecret, newlyActiveUsers);
+    if (notifyOfNewUsers) notifyNewUsers(context, masterSecret, newlyActiveUsers);
   }
 
   public static @NonNull List<Address> refreshDirectory(@NonNull Context context, @NonNull SignalServiceAccountManager accountManager)
@@ -101,7 +101,12 @@ public class DirectoryHelper {
       recipientDatabase.setRegistered(activeRecipients, inactiveRecipients);
       updateContactsDatabase(context, Stream.of(activeRecipients).map(Recipient::getAddress).toList(), true);
 
-      return newlyActiveAddresses;
+      if (TextSecurePreferences.hasSuccessfullyRetrievedDirectory(context)) {
+        return newlyActiveAddresses;
+      } else {
+        TextSecurePreferences.setHasSuccessfullyRetrievedDirectory(context, true);
+        return new LinkedList<>();
+      }
     }
 
     return new LinkedList<>();
