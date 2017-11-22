@@ -5,6 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical">
 
     <TextView android:id="@+id/empty_search"
@@ -17,29 +18,36 @@
               android:visibility="invisible"
               tools:text="No results found for 'foo'"/>
 
-    <FrameLayout android:id="@+id/empty_state"
-                 android:layout_width="match_parent"
-                 android:layout_height="match_parent"
-                 android:visibility="gone">
+    <LinearLayout android:id="@+id/empty_state"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="center"
+                  android:orientation="vertical"
+                  android:visibility="gone"
+                  tools:visibility="visible">
+
 
         <ImageView android:id="@+id/empty"
                    android:src="@drawable/conversation_list_empty_state"
-                   android:scaleType="centerCrop"
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent"/>
+                   android:paddingTop="10dp"
+                   android:layout_gravity="center_horizontal"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"/>
+
 
         <TextView android:text="@string/conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend"
                   android:textSize="20sp"
                   android:padding="16dp"
                   android:gravity="center"
+                  android:lineSpacingMultiplier="1.3"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"/>
-
-    </FrameLayout>
+    </LinearLayout>
 
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="match_parent"
-                  android:orientation="vertical">
+                  android:orientation="vertical"
+                  tools:visibility="gone">
 
         <org.thoughtcrime.securesms.components.reminder.ReminderView
                 android:id="@+id/reminder"
