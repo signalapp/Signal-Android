@@ -1053,7 +1053,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         Context           context         = ConversationActivity.this;
         Recipient         recipient       = params[0];
         Log.w(TAG, "Resolving registered state...");
-        RegisteredState   registeredState = recipient.resolve().getRegistered();
+        RegisteredState registeredState;
+
+        if (recipient.isResolving()) {
+          Log.w(TAG, "Talking to DB directly.");
+          registeredState = DatabaseFactory.getRecipientDatabase(ConversationActivity.this).isRegistered(recipient.getAddress());
+        } else {
+          Log.w(TAG, "Checking through resolved recipient");
+          registeredState = recipient.resolve().getRegistered();
+        }
+
         Log.w(TAG, "Resolved registered state: " + registeredState);
         boolean           signalEnabled   = TextSecurePreferences.isPushRegistered(context);
 

@@ -345,6 +345,16 @@ public class RecipientDatabase extends Database {
     return results;
   }
 
+  // XXX This shouldn't be here, and is just a temporary workaround
+  public RegisteredState isRegistered(@NonNull Address address) {
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+    try (Cursor cursor = db.query(TABLE_NAME, new String[] {REGISTERED}, ADDRESS + " = ?", new String[] {address.serialize()}, null, null, null)) {
+      if (cursor != null && cursor.moveToFirst()) return RegisteredState.fromId(cursor.getInt(0));
+      else                                        return RegisteredState.UNKNOWN;
+    }
+  }
+
   private void updateOrInsert(Address address, ContentValues contentValues) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
 

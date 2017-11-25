@@ -529,7 +529,8 @@ public class Recipient implements RecipientModifiedListener {
     this.stale = true;
   }
 
-  synchronized boolean isResolving() {
+  // XXX This shouldn't be public, temporary workaround
+  public synchronized boolean isResolving() {
     return resolving;
   }
 
