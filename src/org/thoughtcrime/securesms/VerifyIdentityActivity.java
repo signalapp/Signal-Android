@@ -1,5 +1,5 @@
-/**
- * Copyright (C) 2016 Open Whisper Systems
+/*
+ * Copyright (C) 2016-2017 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,11 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.*;
+import android.Manifest;
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -69,6 +72,7 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.jobs.MultiDeviceVerifiedUpdateJob;
+import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.qr.QrCode;
 import org.thoughtcrime.securesms.qr.ScanListener;
 import org.thoughtcrime.securesms.qr.ScanningThread;
@@ -96,6 +100,7 @@ import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
  *
  * @author Moxie Marlinspike
  */
+@SuppressLint("StaticFieldLeak")
 public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity implements RecipientModifiedListener, ScanListener, View.OnClickListener {
 
   private static final String TAG = VerifyIdentityActivity.class.getSimpleName();
@@ -151,36 +156,41 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
 
   @Override
   public void onModified(final Recipient recipient) {
-    Util.runOnMain(new Runnable() {
-      @Override
-      public void run() {
-        setActionBarNotificationBarColor(recipient.getColor());
-      }
-    });
+    Util.runOnMain(() -> setActionBarNotificationBarColor(recipient.getColor()));
   }
 
   @Override
   public void onQrDataFound(final String data) {
-    Util.runOnMain(new Runnable() {
-      @Override
-      public void run() {
-        ((Vibrator)getSystemService(Context.VIBRATOR_SERVICE)).vibrate(50);
+    Util.runOnMain(() -> {
+      ((Vibrator)getSystemService(Context.VIBRATOR_SERVICE)).vibrate(50);
 
-        getSupportFragmentManager().popBackStack();
-        displayFragment.setScannedFingerprint(data);
-      }
+      getSupportFragmentManager().popBackStack();
+      displayFragment.setScannedFingerprint(data);
     });
   }
 
   @Override
   public void onClick(View v) {
-    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-    transaction.setCustomAnimations(R.anim.slide_from_top, R.anim.slide_to_bottom,
-                                    R.anim.slide_from_bottom, R.anim.slide_to_top);
+    Permissions.with(this)
+               .request(Manifest.permission.CAMERA)
+               .ifNecessary()
+               .withPermanentDenialDialog(getString(R.string.VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied))
+               .onAllGranted(() -> {
+                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                 transaction.setCustomAnimations(R.anim.slide_from_top, R.anim.slide_to_bottom,
+                                                 R.anim.slide_from_bottom, R.anim.slide_to_top);
 
-    transaction.replace(android.R.id.content, scanFragment)
-               .addToBackStack(null)
-               .commit();
+                 transaction.replace(android.R.id.content, scanFragment)
+                            .addToBackStack(null)
+                            .commitAllowingStateLoss();
+               })
+               .onAnyDenied(() -> Toast.makeText(this, R.string.VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission, Toast.LENGTH_LONG).show())
+               .execute();
+  }
+
+  @Override
+  public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
   }
 
   private void setActionBarNotificationBarColor(MaterialColor color) {
@@ -295,12 +305,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
 
     @Override
     public void onModified(final Recipient recipient) {
-      Util.runOnMain(new Runnable() {
-        @Override
-        public void run() {
-          setRecipientText(recipient);
-        }
-      });
+      Util.runOnMain(() -> setRecipientText(recipient));
     }
 
     @Override

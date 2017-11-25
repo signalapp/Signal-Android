@@ -138,10 +138,9 @@ class RecipientProvider {
     }
 
     if (address.isPhone() && !TextUtils.isEmpty(address.toPhoneString())) {
-      Uri    uri    = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(address.toPhoneString()));
-      Cursor cursor = context.getContentResolver().query(uri, CALLER_ID_PROJECTION, null, null, null);
+      Uri uri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(address.toPhoneString()));
 
-      try {
+      try (Cursor cursor = context.getContentResolver().query(uri, CALLER_ID_PROJECTION, null, null, null)) {
         if (cursor != null && cursor.moveToFirst()) {
           final String resultNumber = cursor.getString(3);
           if (resultNumber != null) {
@@ -162,9 +161,8 @@ class RecipientProvider {
             Log.w(TAG, "resultNumber is null");
           }
         }
-      } finally {
-        if (cursor != null)
-          cursor.close();
+      } catch (SecurityException se) {
+        Log.w(TAG, se);
       }
     }
 

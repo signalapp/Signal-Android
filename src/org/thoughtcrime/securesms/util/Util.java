@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2011 Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -32,6 +32,7 @@ import android.os.Looper;
 import android.provider.Telephony;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresPermission;
 import android.telephony.TelephonyManager;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -50,7 +51,6 @@ import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.mms.OutgoingLegacyMmsConnection;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -113,12 +113,9 @@ public class Util {
   public static ExecutorService newSingleThreadedLifoExecutor() {
     ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingLifoQueue<Runnable>());
 
-    executor.execute(new Runnable() {
-      @Override
-      public void run() {
+    executor.execute(() -> {
 //        Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
-        Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
-      }
+      Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
     });
 
     return executor;
@@ -243,6 +240,12 @@ public class Util {
     return total;
   }
 
+  @RequiresPermission(anyOf = {
+      android.Manifest.permission.READ_PHONE_STATE,
+      android.Manifest.permission.READ_SMS,
+      android.Manifest.permission.READ_PHONE_NUMBERS
+  })
+  @SuppressLint("MissingPermission")
   public static Optional<Phonenumber.PhoneNumber> getDeviceNumber(Context context) {
     try {
       final String           localNumber = ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getLine1Number();
@@ -388,13 +391,11 @@ public class Util {
       runnable.run();
     } else {
       final CountDownLatch sync = new CountDownLatch(1);
-      runOnMain(new Runnable() {
-        @Override public void run() {
-          try {
-            runnable.run();
-          } finally {
-            sync.countDown();
-          }
+      runOnMain(() -> {
+        try {
+          runnable.run();
+        } finally {
+          sync.countDown();
         }
       });
       try {
@@ -438,7 +439,7 @@ public class Util {
   }
 
   public static @Nullable String readTextFromClipboard(@NonNull Context context) {
-    if (VERSION.SDK_INT >= 11) {
+    {
       ClipboardManager clipboardManager = (ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE);
 
       if (clipboardManager.hasPrimaryClip() && clipboardManager.getPrimaryClip().getItemCount() > 0) {
@@ -446,24 +447,13 @@ public class Util {
       } else {
         return null;
       }
-    } else {
-      android.text.ClipboardManager clipboardManager = (android.text.ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE);
-
-      if (clipboardManager.hasText()) {
-        return clipboardManager.getText().toString();
-      } else {
-        return null;
-      }
     }
   }
 
   public static void writeTextToClipboard(@NonNull Context context, @NonNull String text) {
-    if (VERSION.SDK_INT >= 11) {
+    {
       ClipboardManager clipboardManager = (ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE);
       clipboardManager.setPrimaryClip(ClipData.newPlainText("Safety numbers", text));
-    } else {
-      android.text.ClipboardManager clipboardManager = (android.text.ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE);
-      clipboardManager.setText(text);
     }
   }
 

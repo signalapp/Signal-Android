@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.profiles;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
@@ -14,8 +15,6 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.bumptech.glide.load.data.StreamLocalUriFetcher;
-
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
@@ -26,6 +25,7 @@ public class SystemProfileUtil {
 
   private static final String TAG = SystemProfileUtil.class.getSimpleName();
 
+  @SuppressLint("StaticFieldLeak")
   public  static ListenableFuture<byte[]> getSystemProfileAvatar(final @NonNull Context context, MediaConstraints mediaConstraints) {
     SettableFuture<byte[]> future = new SettableFuture<>();
 
@@ -45,6 +45,8 @@ public class SystemProfileUtil {
                 }
               }
             }
+          } catch (SecurityException se) {
+            Log.w(TAG, se);
           }
         }
 
@@ -61,6 +63,7 @@ public class SystemProfileUtil {
     return future;
   }
 
+  @SuppressLint("StaticFieldLeak")
   public static ListenableFuture<String> getSystemProfileName(final @NonNull Context context) {
     SettableFuture<String> future = new SettableFuture<>();
 
@@ -74,6 +77,8 @@ public class SystemProfileUtil {
             if (cursor != null && cursor.moveToNext()) {
               name = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Profile.DISPLAY_NAME));
             }
+          } catch (SecurityException se) {
+            Log.w(TAG, se);
           }
         }
 

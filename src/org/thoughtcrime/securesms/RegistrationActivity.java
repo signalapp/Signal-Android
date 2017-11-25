@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms;
 
+import android.Manifest;
 import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
@@ -53,6 +54,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
+import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
@@ -118,6 +120,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
 
     initializeResources();
     initializeSpinner();
+    initializePermissions();
     initializeNumber();
     initializeChallengeListener();
   }
@@ -136,6 +139,11 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
       setCountryDisplay(data.getStringExtra("country_name"));
       setCountryFormatter(data.getIntExtra("country_code", 1));
     }
+  }
+
+  @Override
+  public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+    Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
   }
 
   private void initializeResources() {
@@ -205,8 +213,13 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     });
   }
 
+  @SuppressLint("MissingPermission")
   private void initializeNumber() {
-    Optional<Phonenumber.PhoneNumber> localNumber = Util.getDeviceNumber(this);
+    Optional<Phonenumber.PhoneNumber> localNumber = Optional.absent();
+
+    if (Permissions.hasAll(this, Manifest.permission.READ_PHONE_STATE)) {
+      localNumber = Util.getDeviceNumber(this);
+    }
 
     if (localNumber.isPresent()) {
       this.countryCode.setText(String.valueOf(localNumber.get().getCountryCode()));
@@ -218,6 +231,24 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
         this.countryCode.setText(String.valueOf(PhoneNumberUtil.getInstance().getCountryCodeForRegion(simCountryIso.get())));
       }
     }
+  }
+
+  @SuppressLint("InlinedApi")
+  private void initializePermissions() {
+    Permissions.with(RegistrationActivity.this)
+               .request(Manifest.permission.WRITE_CONTACTS, Manifest.permission.READ_CONTACTS,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_CALL_LOG,
+                        Manifest.permission.PROCESS_OUTGOING_CALLS, Manifest.permission.ANSWER_PHONE_CALLS)
+               .ifNecessary()
+               .withRationaleDialog(getString(R.string.RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends),
+                                    R.drawable.ic_contacts_white_48dp, R.drawable.ic_folder_white_48dp)
+               .onSomeGranted(permissions -> {
+                 if (permissions.contains(Manifest.permission.READ_PHONE_STATE)) {
+                   initializeNumber();
+                 }
+               })
+               .execute();
   }
 
   private void setCountryDisplay(String value) {
@@ -239,6 +270,25 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
   }
 
   private void handleRegister() {
+    if (TextUtils.isEmpty(countryCode.getText())) {
+      Toast.makeText(this, getString(R.string.RegistrationActivity_you_must_specify_your_country_code), Toast.LENGTH_LONG).show();
+      return;
+    }
+
+    if (TextUtils.isEmpty(number.getText())) {
+      Toast.makeText(this, getString(R.string.RegistrationActivity_you_must_specify_your_phone_number), Toast.LENGTH_LONG).show();
+      return;
+    }
+
+    Permissions.with(this)
+               .request(Manifest.permission.READ_SMS)
+               .ifNecessary()
+               .withRationaleDialog(getString(R.string.RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code), R.drawable.ic_textsms_white_48dp)
+               .onAnyResult(this::handleRegisterWithPermissions)
+               .execute();
+  }
+
+  private void handleRegisterWithPermissions() {
     if (TextUtils.isEmpty(countryCode.getText())) {
       Toast.makeText(this, getString(R.string.RegistrationActivity_you_must_specify_your_country_code), Toast.LENGTH_LONG).show();
       return;
@@ -305,7 +355,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
 
       protected void onPostExecute(@Nullable Pair<String, Optional<String>> result) {
         if (result == null) {
-          Toast.makeText(RegistrationActivity.this, "Unable to connect to service. Please check network connection and try again.", Toast.LENGTH_LONG).show();
+          Toast.makeText(RegistrationActivity.this, R.string.RegistrationActivity_unable_to_connect_to_service, Toast.LENGTH_LONG).show();
           return;
         }
 

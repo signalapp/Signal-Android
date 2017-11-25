@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components;
 
+import android.Manifest;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.support.annotation.Nullable;
@@ -18,6 +19,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class MicrophoneRecorderView extends FrameLayout implements View.OnTouchListener {
@@ -60,9 +62,13 @@ public class MicrophoneRecorderView extends FrameLayout implements View.OnTouchL
   public boolean onTouch(View v, final MotionEvent event) {
     switch (event.getAction()) {
       case MotionEvent.ACTION_DOWN:
-        this.actionInProgress = true;
-        this.floatingRecordButton.display(event.getX());
-        if (listener != null) listener.onRecordPressed(event.getX());
+        if (!Permissions.hasAll(getContext(), Manifest.permission.RECORD_AUDIO)) {
+          if (listener != null) listener.onRecordPermissionRequired();
+        } else {
+          this.actionInProgress = true;
+          this.floatingRecordButton.display(event.getX());
+          if (listener != null) listener.onRecordPressed(event.getX());
+        }
         break;
       case MotionEvent.ACTION_CANCEL:
       case MotionEvent.ACTION_UP:
@@ -88,10 +94,11 @@ public class MicrophoneRecorderView extends FrameLayout implements View.OnTouchL
   }
 
   public interface Listener {
-    public void onRecordPressed(float x);
-    public void onRecordReleased(float x);
-    public void onRecordCanceled(float x);
-    public void onRecordMoved(float x, float absoluteX);
+    void onRecordPressed(float x);
+    void onRecordReleased(float x);
+    void onRecordCanceled(float x);
+    void onRecordMoved(float x, float absoluteX);
+    void onRecordPermissionRequired();
   }
 
   private static class FloatingRecordButton {

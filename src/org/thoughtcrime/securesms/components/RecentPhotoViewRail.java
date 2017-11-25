@@ -78,6 +78,7 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
 
   private static class RecentPhotoAdapter extends CursorRecyclerViewAdapter<RecentPhotoAdapter.RecentPhotoViewHolder> {
 
+    @SuppressWarnings("unused")
     private static final String TAG = RecentPhotoAdapter.class.getName();
 
     @NonNull  private final Uri baseUri;
@@ -117,11 +118,8 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
               .diskCacheStrategy(DiskCacheStrategy.NONE)
               .into(viewHolder.imageView);
 
-      viewHolder.imageView.setOnClickListener(new OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          if (clickedListener != null) clickedListener.onItemClicked(uri);
-        }
+      viewHolder.imageView.setOnClickListener(v -> {
+        if (clickedListener != null) clickedListener.onItemClicked(uri);
       });
 
     }
@@ -143,6 +141,6 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
   }
 
   public interface OnItemClickedListener {
-    public void onItemClicked(Uri uri);
+    void onItemClicked(Uri uri);
   }
 }

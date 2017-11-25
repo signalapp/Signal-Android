@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
@@ -132,6 +133,7 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.GroupShareProfileView;
 import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -186,7 +188,7 @@ import static org.whispersystems.signalservice.internal.push.SignalServiceProtos
 public class ConversationActivity extends PassphraseRequiredActionBarActivity
     implements ConversationFragment.ConversationFragmentListener,
                AttachmentManager.AttachmentListener,
-    RecipientModifiedListener,
+               RecipientModifiedListener,
                OnKeyboardShownListener,
                AttachmentDrawerListener,
                InputPanel.Listener,
@@ -572,6 +574,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     updateReminders(recipient.hasSeenInviteReminder());
   }
 
+  @Override
+  public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+  }
+
   //////// Event Handlers
 
   private void handleReturnToConversationList() {
@@ -826,14 +833,23 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (recipient == null) return;
 
     if (isSecureText) {
-      Intent intent = new Intent(this, WebRtcCallService.class);
-      intent.setAction(WebRtcCallService.ACTION_OUTGOING_CALL);
-      intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, recipient.getAddress());
-      startService(intent);
+      Permissions.with(ConversationActivity.this)
+                 .request(Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA)
+                 .ifNecessary()
+                 .withRationaleDialog(getString(R.string.ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera, recipient.toShortString()),
+                                      R.drawable.ic_mic_white_48dp, R.drawable.ic_videocam_white_48dp)
+                 .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s, recipient.toShortString()))
+                 .onAllGranted(() -> {
+                   Intent intent = new Intent(this, WebRtcCallService.class);
+                   intent.setAction(WebRtcCallService.ACTION_OUTGOING_CALL);
+                   intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, recipient.getAddress());
+                   startService(intent);
 
-      Intent activityIntent = new Intent(this, WebRtcCallActivity.class);
-      activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-      startActivity(activityIntent);
+                   Intent activityIntent = new Intent(this, WebRtcCallActivity.class);
+                   activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                   startActivity(activityIntent);
+                 })
+                 .execute();
     } else {
       try {
         Intent dialIntent = new Intent(Intent.ACTION_DIAL,
@@ -1786,6 +1802,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   public void onCameraStop() {}
 
   @Override
+  public void onRecorderPermissionRequired() {
+    Permissions.with(this)
+               .request(Manifest.permission.RECORD_AUDIO)
+               .ifNecessary()
+               .withRationaleDialog(getString(R.string.ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone), R.drawable.ic_mic_white_48dp)
+               .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages))
+               .execute();
+  }
+
+  @Override
   public void onRecorderStarted() {
     Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
     vibrator.vibrate(20);
@@ -1911,8 +1937,17 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     @Override
     public void onClick(View v) {
       if (!quickAttachmentDrawer.isShowing()) {
-        composeText.clearFocus();
-        container.show(composeText, quickAttachmentDrawer);
+        Permissions.with(ConversationActivity.this)
+                   .request(Manifest.permission.CAMERA)
+                   .ifNecessary()
+                   .withRationaleDialog(getString(R.string.ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera), R.drawable.ic_photo_camera_white_48dp)
+                   .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video))
+                   .onAllGranted(() -> {
+                     composeText.clearFocus();
+                     container.show(composeText, quickAttachmentDrawer);
+                   })
+                   .onAnyDenied(() -> Toast.makeText(ConversationActivity.this, R.string.ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video, Toast.LENGTH_LONG).show())
+                   .execute();
       } else {
         container.hideAttachedInput(false);
       }

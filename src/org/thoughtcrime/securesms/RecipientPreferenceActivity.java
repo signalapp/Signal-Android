@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms;
 
-import android.content.BroadcastReceiver;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -67,6 +67,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.concurrent.ExecutionException;
 
+@SuppressLint("StaticFieldLeak")
 public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActivity implements RecipientModifiedListener, LoaderManager.LoaderCallbacks<Cursor>
 {
   private static final String TAG = RecipientPreferenceActivity.class.getSimpleName();
@@ -232,9 +233,8 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       extends    CorrectedPreferenceFragment
       implements RecipientModifiedListener
   {
-    private Recipient         recipient;
-    private BroadcastReceiver staleReceiver;
-    private boolean           canHaveSafetyNumber;
+    private Recipient recipient;
+    private boolean   canHaveSafetyNumber;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -274,7 +274,6 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     public void onDestroy() {
       super.onDestroy();
       this.recipient.removeListener(this);
-      getActivity().unregisterReceiver(staleReceiver);
     }
 
     private void initializeRecipients() {

@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.util;
 
+import android.Manifest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.ContentResolver;
@@ -28,6 +29,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.IncomingJoinedMessage;
@@ -51,6 +53,7 @@ public class DirectoryHelper {
       throws IOException
   {
     if (TextUtils.isEmpty(TextSecurePreferences.getLocalNumber(context))) return;
+    if (!Permissions.hasAll(context, Manifest.permission.WRITE_CONTACTS)) return;
 
     List<Address> newlyActiveUsers = refreshDirectory(context, AccountManagerFactory.createManager(context));
 
@@ -67,6 +70,10 @@ public class DirectoryHelper {
       throws IOException
   {
     if (TextUtils.isEmpty(TextSecurePreferences.getLocalNumber(context))) {
+      return new LinkedList<>();
+    }
+
+    if (!Permissions.hasAll(context, Manifest.permission.WRITE_CONTACTS)) {
       return new LinkedList<>();
     }
 
@@ -126,7 +133,9 @@ public class DirectoryHelper {
     if (details.isPresent()) {
       recipientDatabase.setRegistered(recipient, RegisteredState.REGISTERED);
 
-      updateContactsDatabase(context, Util.asList(recipient.getAddress()), false);
+      if (Permissions.hasAll(context, Manifest.permission.WRITE_CONTACTS)) {
+        updateContactsDatabase(context, Util.asList(recipient.getAddress()), false);
+      }
 
       if (!activeUser && TextSecurePreferences.isMultiDevice(context)) {
         ApplicationContext.getInstance(context).getJobManager().add(new MultiDeviceContactUpdateJob(context));

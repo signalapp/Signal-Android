@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
@@ -58,7 +57,6 @@ public class DirectoryRefreshJob extends ContextJob {
       } else {
         DirectoryHelper.refreshDirectoryFor(context, masterSecret, recipient);
       }
-      SecurityEvent.broadcastSecurityUpdateEvent(context);
     } finally {
       if (wakeLock.isHeld()) wakeLock.release();
     }

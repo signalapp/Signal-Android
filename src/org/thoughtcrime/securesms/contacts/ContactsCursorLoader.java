@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms.contacts;
 
+import android.Manifest;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.MatrixCursor;
@@ -36,6 +37,7 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.NumberUtil;
+import org.thoughtcrime.securesms.permissions.Permissions;
 
 import java.util.ArrayList;
 
@@ -102,14 +104,16 @@ public class ContactsCursorLoader extends CursorLoader {
       }
     }
 
-    if (mode != MODE_SMS_ONLY) {
-      cursorList.add(contactsDatabase.queryTextSecureContacts(filter));
-    }
+    if (Permissions.hasAny(getContext(), Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)) {
+      if (mode != MODE_SMS_ONLY) {
+        cursorList.add(contactsDatabase.queryTextSecureContacts(filter));
+      }
 
-    if (mode == MODE_ALL) {
-      cursorList.add(contactsDatabase.querySystemContacts(filter));
-    } else if (mode == MODE_SMS_ONLY) {
-      cursorList.add(filterNonPushContacts(contactsDatabase.querySystemContacts(filter)));
+      if (mode == MODE_ALL) {
+        cursorList.add(contactsDatabase.querySystemContacts(filter));
+      } else if (mode == MODE_SMS_ONLY) {
+        cursorList.add(filterNonPushContacts(contactsDatabase.querySystemContacts(filter)));
+      }
     }
 
     if (!TextUtils.isEmpty(filter) && NumberUtil.isValidSmsOrEmail(filter)) {
@@ -122,7 +126,8 @@ public class ContactsCursorLoader extends CursorLoader {
       cursorList.add(newNumberCursor);
     }
 
-    return new MergeCursor(cursorList.toArray(new Cursor[0]));
+    if (cursorList.size() > 0) return new MergeCursor(cursorList.toArray(new Cursor[0]));
+    else                       return null;
   }
 
   private @NonNull Cursor filterNonPushContacts(@NonNull Cursor cursor) {

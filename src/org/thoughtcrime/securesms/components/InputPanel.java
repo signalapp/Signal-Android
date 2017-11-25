@@ -102,12 +102,7 @@ public class InputPanel extends LinearLayout
   public void setListener(final @NonNull Listener listener) {
     this.listener = listener;
 
-    emojiToggle.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        listener.onEmojiToggle();
-      }
-    });
+    emojiToggle.setOnClickListener(v -> listener.onEmojiToggle());
   }
 
   public void setMediaListener(@NonNull MediaListener listener) {
@@ -116,6 +111,11 @@ public class InputPanel extends LinearLayout
 
   public void setEmojiDrawer(@NonNull EmojiDrawer emojiDrawer) {
     emojiToggle.attach(emojiDrawer);
+  }
+
+  @Override
+  public void onRecordPermissionRequired() {
+    if (listener != null) listener.onRecorderPermissionRequired();
   }
 
   @Override
@@ -211,10 +211,11 @@ public class InputPanel extends LinearLayout
   }
 
   public interface Listener {
-    public void onRecorderStarted();
-    public void onRecorderFinished();
-    public void onRecorderCanceled();
-    public void onEmojiToggle();
+    void onRecorderStarted();
+    void onRecorderFinished();
+    void onRecorderCanceled();
+    void onRecorderPermissionRequired();
+    void onEmojiToggle();
   }
 
   private static class SlideToCancel {

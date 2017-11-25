@@ -16,6 +16,8 @@
  */
 package org.thoughtcrime.securesms.mms;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -49,6 +51,7 @@ import org.thoughtcrime.securesms.components.location.SignalMapView;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
+import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
 import org.thoughtcrime.securesms.scribbles.ScribbleActivity;
 import org.thoughtcrime.securesms.util.BitmapUtil;
@@ -199,6 +202,7 @@ public class AttachmentManager {
     });
   }
 
+  @SuppressLint("StaticFieldLeak")
   public void setMedia(@NonNull final MasterSecret masterSecret,
                        @NonNull final GlideRequests glideRequests,
                        @NonNull final Uri uri,
@@ -318,28 +322,57 @@ public class AttachmentManager {
   }
 
   public static void selectDocument(Activity activity, int requestCode) {
-    selectMediaType(activity, "*/*", null, requestCode);
+    Permissions.with(activity)
+               .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+               .ifNecessary()
+               .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio))
+               .onAllGranted(() -> selectMediaType(activity, "*/*", null, requestCode))
+               .execute();
   }
 
   public static void selectGallery(Activity activity, int requestCode) {
-    selectMediaType(activity, "image/*", new String[] {"image/*", "video/*"}, requestCode);
+    Permissions.with(activity)
+               .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+               .ifNecessary()
+               .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio))
+               .onAllGranted(() -> selectMediaType(activity, "image/*", new String[] {"image/*", "video/*"}, requestCode))
+               .execute();
   }
 
   public static void selectAudio(Activity activity, int requestCode) {
-    selectMediaType(activity, "audio/*", null, requestCode);
+    Permissions.with(activity)
+               .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+               .ifNecessary()
+               .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio))
+               .onAllGranted(() -> selectMediaType(activity, "audio/*", null, requestCode))
+               .execute();
   }
 
   public static void selectContactInfo(Activity activity, int requestCode) {
-    Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
-    activity.startActivityForResult(intent, requestCode);
+    Permissions.with(activity)
+               .request(Manifest.permission.WRITE_CONTACTS)
+               .ifNecessary()
+               .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information))
+               .onAllGranted(() -> {
+                 Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+                 activity.startActivityForResult(intent, requestCode);
+               })
+               .execute();
   }
 
   public static void selectLocation(Activity activity, int requestCode) {
-    try {
-      activity.startActivityForResult(new PlacePicker.IntentBuilder().build(activity), requestCode);
-    } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
-      Log.w(TAG, e);
-    }
+    Permissions.with(activity)
+               .request(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
+               .ifNecessary()
+               .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location))
+               .onAllGranted(() -> {
+                 try {
+                   activity.startActivityForResult(new PlacePicker.IntentBuilder().build(activity), requestCode);
+                 } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
+                   Log.w(TAG, e);
+                 }
+               })
+               .execute();
   }
 
   public static void selectGif(Activity activity, int requestCode, boolean isForMms) {
@@ -357,20 +390,27 @@ public class AttachmentManager {
   }
 
   public void capturePhoto(Activity activity, int requestCode) {
-    try {
-      Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-      if (captureIntent.resolveActivity(activity.getPackageManager()) != null) {
-        if (captureUri == null) {
-          captureUri = PersistentBlobProvider.getInstance(context)
-                                             .createForExternal(MediaUtil.IMAGE_JPEG);
-        }
-        Log.w(TAG, "captureUri path is " + captureUri.getPath());
-        captureIntent.putExtra(MediaStore.EXTRA_OUTPUT, captureUri);
-        activity.startActivityForResult(captureIntent, requestCode);
-      }
-    } catch (IOException ioe) {
-      Log.w(TAG, ioe);
-    }
+    Permissions.with(activity)
+               .request(Manifest.permission.CAMERA)
+               .ifNecessary()
+               .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied))
+               .onAllGranted(() -> {
+                 try {
+                   Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                   if (captureIntent.resolveActivity(activity.getPackageManager()) != null) {
+                     if (captureUri == null) {
+                       captureUri = PersistentBlobProvider.getInstance(context)
+                                                          .createForExternal(MediaUtil.IMAGE_JPEG);
+                     }
+                     Log.w(TAG, "captureUri path is " + captureUri.getPath());
+                     captureIntent.putExtra(MediaStore.EXTRA_OUTPUT, captureUri);
+                     activity.startActivityForResult(captureIntent, requestCode);
+                   }
+                 } catch (IOException ioe) {
+                   Log.w(TAG, ioe);
+                 }
+               })
+               .execute();
   }
 
   private static void selectMediaType(Activity activity, @NonNull String type, @Nullable String[] extraMimeType, int requestCode) {
