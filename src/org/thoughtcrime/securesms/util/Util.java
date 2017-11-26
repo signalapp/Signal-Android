@@ -24,6 +24,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
@@ -420,6 +421,11 @@ public class Util {
 
   public static int hashCode(@Nullable Object... objects) {
     return Arrays.hashCode(objects);
+  }
+
+  public static @Nullable Uri uri(@Nullable String uri) {
+    if (uri == null) return null;
+    else             return Uri.parse(uri);
   }
 
   @TargetApi(VERSION_CODES.KITKAT)

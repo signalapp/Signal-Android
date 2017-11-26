@@ -14,7 +14,6 @@ import android.text.TextUtils;
 
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.contacts.avatars.GroupRecordContactPhoto;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
@@ -175,12 +174,11 @@ public class GroupDatabase extends Database {
 
     databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, contentValues);
 
-    Address   address   = Address.fromSerialized(groupId);
-    Recipient recipient = Recipient.from(context, Address.fromSerialized(groupId), false);
-
-    recipient.setName(title);
-    if (avatar != null) recipient.setContactPhoto(new GroupRecordContactPhoto(address, avatar.getId()));
-    recipient.setParticipants(Stream.of(members).map(memberAddress -> Recipient.from(context, memberAddress, true)).toList());
+    Recipient.applyCached(Address.fromSerialized(groupId), recipient -> {
+      recipient.setName(title);
+      recipient.setGroupAvatarId(avatar != null ? avatar.getId() : null);
+      recipient.setParticipants(Stream.of(members).map(memberAddress -> Recipient.from(context, memberAddress, true)).toList());
+    });
 
     notifyConversationListListeners();
   }
@@ -200,10 +198,10 @@ public class GroupDatabase extends Database {
                                                 GROUP_ID + " = ?",
                                                 new String[] {groupId});
 
-    Address   address   = Address.fromSerialized(groupId);
-    Recipient recipient = Recipient.from(context, address, false);
-    recipient.setName(title);
-    if (avatar != null) recipient.setContactPhoto(new GroupRecordContactPhoto(address, avatar.getId()));
+    Recipient.applyCached(Address.fromSerialized(groupId), recipient -> {
+      recipient.setName(title);
+      recipient.setGroupAvatarId(avatar != null ? avatar.getId() : null);
+    });
 
     notifyConversationListListeners();
   }
@@ -231,9 +229,7 @@ public class GroupDatabase extends Database {
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
                                                 new String[] {groupId});
 
-    Address   address   = Address.fromSerialized(groupId);
-    Recipient recipient = Recipient.from(context, address, false);
-    recipient.setContactPhoto(new GroupRecordContactPhoto(address, avatarId));
+    Recipient.applyCached(Address.fromSerialized(groupId), recipient -> recipient.setGroupAvatarId(avatarId));
   }
 
   public void updateMembers(String groupId, List<Address> members) {

@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms.database;
 
+import android.Manifest;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -23,6 +24,8 @@ import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
+import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
@@ -40,6 +43,7 @@ import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.DelimiterUtil;
 import org.thoughtcrime.securesms.util.Hex;
@@ -110,7 +114,8 @@ public class DatabaseFactory {
   private static final int READ_RECEIPTS                                   = 44;
   private static final int GROUP_RECEIPT_TRACKING                          = 45;
   private static final int UNREAD_COUNT_VERSION                            = 46;
-  private static final int DATABASE_VERSION                                = 46;
+  private static final int MORE_RECIPIENT_FIELDS                           = 47;
+  private static final int DATABASE_VERSION                                = 47;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -1370,6 +1375,42 @@ public class DatabaseFactory {
             db.execSQL("UPDATE thread SET unread_count = ? WHERE _id = ?",
                        new String[] {String.valueOf(unreadCount),
                                      String.valueOf(threadId)});
+          }
+        }
+      }
+
+      if (oldVersion < MORE_RECIPIENT_FIELDS) {
+        db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN system_contact_photo TEXT DEFAULT NULL");
+        db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN system_phone_label TEXT DEFAULT NULL");
+        db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN system_contact_uri TEXT DEFAULT NULL");
+
+        if (Permissions.hasAny(context, Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)) {
+          try (Cursor cursor = db.query("recipient_preferences", null, null, null, null, null, null)) {
+            while (cursor != null && cursor.moveToNext()) {
+              Address address = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow("recipient_ids")));
+
+              if (address.isPhone() && !TextUtils.isEmpty(address.toPhoneString())) {
+                Uri lookup = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(address.toPhoneString()));
+
+                try (Cursor contactCursor = context.getContentResolver().query(lookup, new String[] {ContactsContract.PhoneLookup.DISPLAY_NAME,
+                                                                                                     ContactsContract.PhoneLookup.LOOKUP_KEY,
+                                                                                                     ContactsContract.PhoneLookup._ID,
+                                                                                                     ContactsContract.PhoneLookup.NUMBER,
+                                                                                                     ContactsContract.PhoneLookup.LABEL,
+                                                                                                     ContactsContract.PhoneLookup.PHOTO_URI},
+                                                                               null, null, null))
+                {
+                  if (contactCursor != null && contactCursor.moveToFirst()) {
+                    ContentValues contentValues = new ContentValues(3);
+                    contentValues.put("system_contact_photo", contactCursor.getString(5));
+                    contentValues.put("system_phone_label", contactCursor.getString(4));
+                    contentValues.put("system_contact_uri", ContactsContract.Contacts.getLookupUri(contactCursor.getLong(2), contactCursor.getString(1)).toString());
+
+                    db.update("recipient_preferences", contentValues, "recipient_ids = ?", new String[] {address.toPhoneString()});
+                  }
+                }
+              }
+            }
           }
         }
       }

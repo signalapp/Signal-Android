@@ -22,14 +22,21 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.Log;
 
-import com.annimon.stream.Stream;
+import com.annimon.stream.function.Consumer;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.GroupRecordContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.SystemContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.TransparentContactPhoto;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.GroupDatabase;
@@ -42,7 +49,6 @@ import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -65,8 +71,8 @@ public class Recipient implements RecipientModifiedListener {
   private @Nullable String  customLabel;
   private           boolean resolving;
 
-  private @Nullable ContactPhoto         contactPhoto;
-  private @NonNull  FallbackContactPhoto fallbackContactPhoto;
+  private @Nullable Uri                  systemContactPhoto;
+  private @Nullable Long                 groupAvatarId;
   private           Uri                  contactUri;
   private @Nullable Uri                  ringtone              = null;
   private           long                 mutedUntil            = 0;
@@ -97,21 +103,25 @@ public class Recipient implements RecipientModifiedListener {
     return provider.getRecipient(context, address, settings, groupRecord, asynchronous);
   }
 
+  public static void applyCached(@NonNull Address address, Consumer<Recipient> consumer) {
+    Optional<Recipient> recipient = provider.getCached(address);
+    if (recipient.isPresent()) consumer.accept(recipient.get());
+  }
+
   Recipient(@NonNull  Address address,
             @Nullable Recipient stale,
             @NonNull  Optional<RecipientDetails> details,
             @NonNull  ListenableFutureTask<RecipientDetails> future)
   {
     this.address              = address;
-    this.fallbackContactPhoto = new TransparentContactPhoto();
     this.color                = null;
     this.resolving            = true;
 
     if (stale != null) {
       this.name                  = stale.name;
       this.contactUri            = stale.contactUri;
-      this.contactPhoto          = stale.contactPhoto;
-      this.fallbackContactPhoto  = stale.fallbackContactPhoto;
+      this.systemContactPhoto    = stale.systemContactPhoto;
+      this.groupAvatarId         = stale.groupAvatarId;
       this.color                 = stale.color;
       this.customLabel           = stale.customLabel;
       this.ringtone              = stale.ringtone;
@@ -133,8 +143,8 @@ public class Recipient implements RecipientModifiedListener {
 
     if (details.isPresent()) {
       this.name                  = details.get().name;
-      this.contactPhoto          = details.get().avatar;
-      this.fallbackContactPhoto  = details.get().fallbackAvatar;
+      this.systemContactPhoto    = details.get().systemContactPhoto;
+      this.groupAvatarId         = details.get().groupAvatarId;
       this.color                 = details.get().color;
       this.ringtone              = details.get().ringtone;
       this.mutedUntil            = details.get().mutedUntil;
@@ -160,8 +170,8 @@ public class Recipient implements RecipientModifiedListener {
           synchronized (Recipient.this) {
             Recipient.this.name                  = result.name;
             Recipient.this.contactUri            = result.contactUri;
-            Recipient.this.contactPhoto          = result.avatar;
-            Recipient.this.fallbackContactPhoto  = result.fallbackAvatar;
+            Recipient.this.systemContactPhoto    = result.systemContactPhoto;
+            Recipient.this.groupAvatarId         = result.groupAvatarId;
             Recipient.this.color                 = result.color;
             Recipient.this.customLabel           = result.customLabel;
             Recipient.this.ringtone              = result.ringtone;
@@ -205,8 +215,8 @@ public class Recipient implements RecipientModifiedListener {
     this.address               = address;
     this.contactUri            = details.contactUri;
     this.name                  = details.name;
-    this.contactPhoto          = details.avatar;
-    this.fallbackContactPhoto  = details.fallbackAvatar;
+    this.systemContactPhoto    = details.systemContactPhoto;
+    this.groupAvatarId         = details.groupAvatarId;
     this.color                 = details.color;
     this.customLabel           = details.customLabel;
     this.ringtone              = details.ringtone;
@@ -228,6 +238,19 @@ public class Recipient implements RecipientModifiedListener {
 
   public synchronized @Nullable Uri getContactUri() {
     return this.contactUri;
+  }
+
+  public void setContactUri(@Nullable Uri contactUri) {
+    boolean notify = false;
+
+    synchronized (this) {
+      if (!Util.equals(contactUri, this.contactUri)) {
+        this.contactUri = contactUri;
+        notify = true;
+      }
+    }
+
+    if (notify) notifyListeners();
   }
 
   public synchronized @Nullable String getName() {
@@ -276,8 +299,21 @@ public class Recipient implements RecipientModifiedListener {
     return address;
   }
 
-  public @Nullable String getCustomLabel() {
+  public synchronized @Nullable String getCustomLabel() {
     return customLabel;
+  }
+
+  public void setCustomLabel(@Nullable String customLabel) {
+    boolean notify = false;
+
+    synchronized (this) {
+      if (!Util.equals(customLabel, this.customLabel)) {
+        this.customLabel = customLabel;
+        notify = true;
+      }
+    }
+
+    if (notify) notifyListeners();
   }
 
   public synchronized Optional<Integer> getDefaultSubscriptionId() {
@@ -377,19 +413,43 @@ public class Recipient implements RecipientModifiedListener {
   }
 
   public synchronized @NonNull FallbackContactPhoto getFallbackContactPhoto() {
-    return fallbackContactPhoto;
+    if      (isResolving())            return new TransparentContactPhoto();
+    else if (isGroupRecipient())       return new ResourceContactPhoto(R.drawable.ic_group_white_24dp, R.drawable.ic_group_large);
+    else if (!TextUtils.isEmpty(name)) return new GeneratedContactPhoto(name);
+    else                               return new GeneratedContactPhoto("#");
   }
 
   public synchronized @Nullable ContactPhoto getContactPhoto() {
-    return contactPhoto;
+    if      (isGroupRecipient() && groupAvatarId != null) return new GroupRecordContactPhoto(address, groupAvatarId);
+    else if (systemContactPhoto != null)                  return new SystemContactPhoto(address, systemContactPhoto, 0);
+    else if (profileAvatar != null)                       return new ProfileContactPhoto(address, profileAvatar);
+    else                                                  return null;
   }
 
-  public void setContactPhoto(@NonNull ContactPhoto contactPhoto) {
+  public void setSystemContactPhoto(@Nullable Uri systemContactPhoto) {
+    boolean notify = false;
+
     synchronized (this) {
-      this.contactPhoto = contactPhoto;
+      if (!Util.equals(systemContactPhoto, this.systemContactPhoto)) {
+        this.systemContactPhoto = systemContactPhoto;
+        notify = true;
+      }
     }
 
-    notifyListeners();
+    if (notify) notifyListeners();
+  }
+
+  public void setGroupAvatarId(@Nullable Long groupAvatarId) {
+    boolean notify = false;
+
+    synchronized (this) {
+      if (!Util.equals(this.groupAvatarId, groupAvatarId)) {
+        this.groupAvatarId = groupAvatarId;
+        notify = true;
+      }
+    }
+
+    if (notify) notifyListeners();
   }
 
   public synchronized @Nullable Uri getRingtone() {

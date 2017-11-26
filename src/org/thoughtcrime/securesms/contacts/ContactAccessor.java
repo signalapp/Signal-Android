@@ -79,7 +79,7 @@ public class ContactAccessor {
   }
 
   public Cursor getAllSystemContacts(Context context) {
-    return context.getContentResolver().query(Phone.CONTENT_URI, new String[] {Phone.NUMBER, Phone.DISPLAY_NAME}, null, null, null);
+    return context.getContentResolver().query(Phone.CONTENT_URI, new String[] {Phone.NUMBER, Phone.DISPLAY_NAME, Phone.LABEL, Phone.PHOTO_URI, Phone._ID, Phone.LOOKUP_KEY}, null, null, null);
   }
 
   public boolean isSystemContact(Context context, String number) {

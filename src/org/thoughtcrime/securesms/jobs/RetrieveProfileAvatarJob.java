@@ -5,7 +5,6 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
@@ -83,10 +82,6 @@ public class RetrieveProfileAvatarJob extends ContextJob implements InjectableTy
     }
 
     database.setProfileAvatar(recipient, profileAvatar);
-
-    if (recipient.resolve().getContactPhoto() == null) {
-      recipient.setContactPhoto(new ProfileContactPhoto(recipient.getAddress(), profileAvatar));
-    }
   }
 
   @Override
