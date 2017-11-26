@@ -41,11 +41,11 @@
             android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginBottom="20dp"
             android:padding="5dp"
-            android:layout_gravity="bottom|end"
+            android:layout_gravity="bottom|start"
             android:background="@drawable/circle_tintable"
             android:tint="@color/grey_600"
             android:elevation="1dp"
@@ -53,4 +53,11 @@
             android:contentDescription="@string/conversation_fragment__scroll_to_the_bottom_content_description"
             android:src="@drawable/ic_scroll_down"/>
 
+    <org.thoughtcrime.securesms.components.RecyclerViewFastScroller
+            android:id="@+id/fast_conversation_scroller"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:textSize="28sp"
+            android:visibility="gone"
+            android:layout_gravity="end"/>
 </FrameLayout>

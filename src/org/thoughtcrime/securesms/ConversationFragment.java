@@ -52,6 +52,7 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.ConversationAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.ConversationAdapter.ItemClickListener;
+import org.thoughtcrime.securesms.components.RecyclerViewFastScroller;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
@@ -101,6 +102,7 @@ public class ConversationFragment extends Fragment
   private Locale                      locale;
   private RecyclerView                list;
   private RecyclerView.ItemDecoration lastSeenDecoration;
+  private RecyclerViewFastScroller    fastScroller;
   private View                        loadMoreView;
   private UnknownSenderView           unknownSenderView;
   private View                        composeDivider;
@@ -121,6 +123,7 @@ public class ConversationFragment extends Fragment
     composeDivider       = ViewUtil.findById(view, R.id.compose_divider);
     scrollToBottomButton = ViewUtil.findById(view, R.id.scroll_to_bottom_button);
     scrollDateHeader     = ViewUtil.findById(view, R.id.scroll_date_header);
+    fastScroller         = ViewUtil.findById(view, R.id.fast_conversation_scroller);
 
     scrollToBottomButton.setOnClickListener(v -> scrollToBottom());
 
@@ -445,6 +448,13 @@ public class ConversationFragment extends Fragment
       if (lastSeenPosition <= 0) {
         setLastSeen(0);
       }
+
+      boolean useFastScroller = (list.getAdapter().getItemCount() > 20);
+      list.setVerticalScrollBarEnabled(!useFastScroller);
+      if (useFastScroller) {
+        fastScroller.setVisibility(View.VISIBLE);
+        fastScroller.setRecyclerView(list);
+      }
     }
   }
 
@@ -452,6 +462,7 @@ public class ConversationFragment extends Fragment
   public void onLoaderReset(Loader<Cursor> arg0) {
     if (list.getAdapter() != null) {
       getListAdapter().changeCursor(null);
+      fastScroller.setVisibility(View.GONE);
     }
   }
 
