@@ -252,7 +252,7 @@ public class ContactSelectionListFragment extends    Fragment
         swipeRefresh.setVisibility(View.GONE);
         showContactsLayout.setVisibility(View.VISIBLE);
         showContactsButton.setVisibility(View.INVISIBLE);
-        showContactsDescription.setText("Loading...");
+        showContactsDescription.setText(R.string.ConversationListFragment_loading);
         showContactsProgress.setVisibility(View.VISIBLE);
         showContactsProgress.spin();
       }
