@@ -221,15 +221,20 @@ public class GroupDatabase extends Database {
   }
 
   public void updateAvatar(String groupId, byte[] avatar) {
-    long          avatarId      = Math.abs(new SecureRandom().nextLong());
-    ContentValues contentValues = new ContentValues();
+    long avatarId;
+
+    if (avatar != null) avatarId = Math.abs(new SecureRandom().nextLong());
+    else                avatarId = 0;
+
+
+    ContentValues contentValues = new ContentValues(2);
     contentValues.put(AVATAR, avatar);
     contentValues.put(AVATAR_ID, avatarId);
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
                                                 new String[] {groupId});
 
-    Recipient.applyCached(Address.fromSerialized(groupId), recipient -> recipient.setGroupAvatarId(avatarId));
+    Recipient.applyCached(Address.fromSerialized(groupId), recipient -> recipient.setGroupAvatarId(avatarId == 0 ? null : avatarId));
   }
 
   public void updateMembers(String groupId, List<Address> members) {

@@ -21,6 +21,7 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.color.MaterialColor;
@@ -130,6 +131,7 @@ class RecipientProvider {
       String          title           = groupRecord.get().getTitle();
       List<Address>   memberAddresses = groupRecord.get().getMembers();
       List<Recipient> members         = new LinkedList<>();
+      Long            avatarId        = null;
 
       for (Address memberAddress : memberAddresses) {
         members.add(getRecipient(context, memberAddress, Optional.absent(), Optional.absent(), asynchronous));
@@ -139,7 +141,11 @@ class RecipientProvider {
         title = context.getString(R.string.RecipientProvider_unnamed_group);
       }
 
-      return new RecipientDetails(title, groupRecord.get().getAvatarId(), false, settings.orNull(), members);
+      if (groupRecord.get().getAvatarId() != 0) {
+        avatarId = groupRecord.get().getAvatarId();
+      }
+
+      return new RecipientDetails(title, avatarId, false, settings.orNull(), members);
     }
 
     return new RecipientDetails(context.getString(R.string.RecipientProvider_unnamed_group), null, false, settings.orNull(), null);
