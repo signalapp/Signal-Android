@@ -240,7 +240,7 @@ android {
         versionName "4.13.7"
 
         minSdkVersion 14
-        targetSdkVersion 23
+        targetSdkVersion 25
         multiDexEnabled true
 
         vectorDrawables.useSupportLibrary = true
