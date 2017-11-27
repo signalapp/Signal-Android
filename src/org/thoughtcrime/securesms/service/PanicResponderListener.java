@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -22,7 +23,9 @@ public class PanicResponderListener extends BroadcastReceiver {
     {
       Intent lockIntent = new Intent(context, KeyCachingService.class);
       lockIntent.setAction(KeyCachingService.CLEAR_KEY_ACTION);
-      context.startService(lockIntent);
+
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) context.startForegroundService(lockIntent);
+      else                                                context.startService(lockIntent);
     }
   }
 }

@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.util.Pair;
@@ -239,7 +240,9 @@ public class PushDecryptJob extends ContextJob {
       intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromExternal(context, envelope.getSource()));
       intent.putExtra(WebRtcCallService.EXTRA_REMOTE_DESCRIPTION, message.getDescription());
       intent.putExtra(WebRtcCallService.EXTRA_TIMESTAMP, envelope.getTimestamp());
-      context.startService(intent);
+
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) context.startForegroundService(intent);
+      else                                                context.startService(intent);
     }
   }
 
@@ -252,7 +255,9 @@ public class PushDecryptJob extends ContextJob {
     intent.putExtra(WebRtcCallService.EXTRA_CALL_ID, message.getId());
     intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromExternal(context, envelope.getSource()));
     intent.putExtra(WebRtcCallService.EXTRA_REMOTE_DESCRIPTION, message.getDescription());
-    context.startService(intent);
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) context.startForegroundService(intent);
+    else                                                context.startService(intent);
   }
 
   private void handleCallIceUpdateMessage(@NonNull SignalServiceEnvelope envelope,
@@ -267,7 +272,9 @@ public class PushDecryptJob extends ContextJob {
       intent.putExtra(WebRtcCallService.EXTRA_ICE_SDP, message.getSdp());
       intent.putExtra(WebRtcCallService.EXTRA_ICE_SDP_MID, message.getSdpMid());
       intent.putExtra(WebRtcCallService.EXTRA_ICE_SDP_LINE_INDEX, message.getSdpMLineIndex());
-      context.startService(intent);
+
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) context.startForegroundService(intent);
+      else                                                context.startService(intent);
     }
   }
 
@@ -283,7 +290,9 @@ public class PushDecryptJob extends ContextJob {
       intent.setAction(WebRtcCallService.ACTION_REMOTE_HANGUP);
       intent.putExtra(WebRtcCallService.EXTRA_CALL_ID, message.getId());
       intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromExternal(context, envelope.getSource()));
-      context.startService(intent);
+
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) context.startForegroundService(intent);
+      else                                                context.startService(intent);
     }
   }
 
@@ -294,7 +303,9 @@ public class PushDecryptJob extends ContextJob {
     intent.setAction(WebRtcCallService.ACTION_REMOTE_BUSY);
     intent.putExtra(WebRtcCallService.EXTRA_CALL_ID, message.getId());
     intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromExternal(context, envelope.getSource()));
-    context.startService(intent);
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) context.startForegroundService(intent);
+    else                                                context.startService(intent);
   }
 
   private void handleEndSessionMessage(@NonNull MasterSecretUnion        masterSecret,

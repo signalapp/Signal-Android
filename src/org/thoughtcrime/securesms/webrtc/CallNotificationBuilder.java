@@ -28,9 +28,11 @@ public class CallNotificationBuilder {
 
   public static final int WEBRTC_NOTIFICATION   = 313388;
 
-  public static final int TYPE_INCOMING_RINGING = 1;
-  public static final int TYPE_OUTGOING_RINGING = 2;
-  public static final int TYPE_ESTABLISHED      = 3;
+  public static final int TYPE_INCOMING_RINGING    = 1;
+  public static final int TYPE_OUTGOING_RINGING    = 2;
+  public static final int TYPE_ESTABLISHED         = 3;
+  public static final int TYPE_INCOMING_CONNECTING = 4;
+
 
   public static Notification getCallInProgressNotification(Context context, int type, Recipient recipient) {
     Intent contentIntent = new Intent(context, WebRtcCallActivity.class);
@@ -44,7 +46,10 @@ public class CallNotificationBuilder {
         .setOngoing(true)
         .setContentTitle(recipient.getName());
 
-    if (type == TYPE_INCOMING_RINGING) {
+    if (type == TYPE_INCOMING_CONNECTING) {
+      builder.setContentText(context.getString(R.string.CallNotificationBuilder_connecting));
+      builder.setPriority(NotificationCompat.PRIORITY_MIN);
+    } else if (type == TYPE_INCOMING_RINGING) {
       builder.setContentText(context.getString(R.string.NotificationBarManager__incoming_signal_call));
       builder.addAction(getServiceNotificationAction(context, WebRtcCallService.ACTION_DENY_CALL, R.drawable.ic_close_grey600_32dp,   R.string.NotificationBarManager__deny_call));
       builder.addAction(getActivityNotificationAction(context, WebRtcCallActivity.ANSWER_ACTION, R.drawable.ic_phone_grey600_32dp, R.string.NotificationBarManager__answer_call));

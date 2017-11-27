@@ -97,6 +97,7 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 
 import static org.thoughtcrime.securesms.webrtc.CallNotificationBuilder.TYPE_ESTABLISHED;
+import static org.thoughtcrime.securesms.webrtc.CallNotificationBuilder.TYPE_INCOMING_CONNECTING;
 import static org.thoughtcrime.securesms.webrtc.CallNotificationBuilder.TYPE_INCOMING_RINGING;
 import static org.thoughtcrime.securesms.webrtc.CallNotificationBuilder.TYPE_OUTGOING_RINGING;
 
@@ -332,6 +333,10 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
       insertMissedCall(this.recipient, true);
       terminate();
       return;
+    }
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+      setCallInProgressNotification(TYPE_INCOMING_CONNECTING, this.recipient);
     }
 
     timeoutExecutor.schedule(new TimeoutRunnable(this.callId), 2, TimeUnit.MINUTES);

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.media.AudioManager;
@@ -37,5 +38,9 @@ public class ServiceUtil {
 
   public static PowerManager getPowerManager(Context context) {
     return (PowerManager)context.getSystemService(Context.POWER_SERVICE);
+  }
+
+  public static AlarmManager getAlarmManager(Context context) {
+    return (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
   }
 }

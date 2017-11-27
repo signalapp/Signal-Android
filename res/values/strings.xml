@@ -1310,6 +1310,7 @@
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
     <string name="ConversationListFragment_loading">Loading...</string>
+    <string name="CallNotificationBuilder_connecting">Connecting...</string>
 
 
     <!-- EOF -->
