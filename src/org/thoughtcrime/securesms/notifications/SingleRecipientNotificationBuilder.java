@@ -46,6 +46,9 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
   private       SlideDeck    slideDeck;
   private final MasterSecret masterSecret;
 
+  private CharSequence contentTitle;
+  private CharSequence contentText;
+
   public SingleRecipientNotificationBuilder(@NonNull Context context,
                                             @Nullable MasterSecret masterSecret,
                                             @NonNull NotificationPrivacyPreference privacy)
@@ -121,7 +124,7 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
                                    @NonNull PendingIntent androidAutoHeardIntent, long timestamp)
   {
 
-    if (mContentTitle == null || mContentText == null)
+    if (contentTitle == null || contentText == null)
       return;
 
     RemoteInput remoteInput = new RemoteInput.Builder(AndroidAutoReplyReceiver.VOICE_REPLY_KEY)
@@ -129,8 +132,8 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
                                   .build();
 
     NotificationCompat.CarExtender.UnreadConversation.Builder unreadConversationBuilder =
-            new NotificationCompat.CarExtender.UnreadConversation.Builder(mContentTitle.toString())
-                .addMessage(mContentText.toString())
+            new NotificationCompat.CarExtender.UnreadConversation.Builder(contentTitle.toString())
+                .addMessage(contentText.toString())
                 .setLatestTimestamp(timestamp)
                 .setReadPendingIntent(androidAutoHeardIntent)
                 .setReplyAction(androidAutoReplyIntent, remoteInput);
@@ -253,6 +256,17 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     } catch (InterruptedException | ExecutionException e) {
       throw new AssertionError(e);
     }
+  }
+
+  @Override
+  public NotificationCompat.Builder setContentTitle(CharSequence contentTitle) {
+    this.contentTitle = contentTitle;
+    return super.setContentTitle(contentTitle);
+  }
+
+  public NotificationCompat.Builder setContentText(CharSequence contentText) {
+    this.contentText = contentText;
+    return super.setContentText(contentText);
   }
 
   private CharSequence getBigText(List<CharSequence> messageBodies) {
