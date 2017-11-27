@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -15,6 +16,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.Target;
 import com.davemorrissey.labs.subscaleview.ImageSource;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
+import com.davemorrissey.labs.subscaleview.decoder.DecoderFactory;
 import com.github.chrisbanes.photoview.PhotoView;
 
 import org.thoughtcrime.securesms.R;
@@ -55,11 +57,10 @@ public class ZoomingImageView extends FrameLayout {
     this.photoView            = findViewById(R.id.image_view);
     this.subsamplingImageView = findViewById(R.id.subsampling_image_view);
 
-    this.subsamplingImageView.setBitmapDecoderClass(AttachmentBitmapDecoder.class);
-    this.subsamplingImageView.setRegionDecoderClass(AttachmentRegionDecoder.class);
     this.subsamplingImageView.setOrientation(SubsamplingScaleImageView.ORIENTATION_USE_EXIF);
   }
 
+  @SuppressLint("StaticFieldLeak")
   public void setImageUri(@NonNull MasterSecret masterSecret, @NonNull GlideRequests glideRequests,
                           @NonNull Uri uri, @NonNull String contentType)
   {
@@ -90,7 +91,7 @@ public class ZoomingImageView extends FrameLayout {
           setImageViewUri(masterSecret, glideRequests, uri);
         } else {
           Log.w(TAG, "Loading in subsampling image view...");
-          setSubsamplingImageViewUri(uri);
+          setSubsamplingImageViewUri(masterSecret, uri);
         }
       }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -107,7 +108,10 @@ public class ZoomingImageView extends FrameLayout {
                  .into(photoView);
   }
 
-  private void setSubsamplingImageViewUri(@NonNull Uri uri) {
+  private void setSubsamplingImageViewUri(@NonNull MasterSecret masterSecret, @NonNull Uri uri) {
+    subsamplingImageView.setBitmapDecoderFactory(new AttachmentBitmapDecoderFactory(masterSecret));
+    subsamplingImageView.setRegionDecoderFactory(new AttachmentRegionDecoderFactory(masterSecret));
+
     subsamplingImageView.setVisibility(View.VISIBLE);
     photoView.setVisibility(View.GONE);
 
@@ -117,5 +121,34 @@ public class ZoomingImageView extends FrameLayout {
   public void cleanup() {
     photoView.setImageDrawable(null);
     subsamplingImageView.recycle();
+  }
+
+  private static class AttachmentBitmapDecoderFactory implements DecoderFactory<AttachmentBitmapDecoder> {
+
+    private final MasterSecret masterSecret;
+
+    private AttachmentBitmapDecoderFactory(MasterSecret masterSecret) {
+      this.masterSecret = masterSecret;
+    }
+
+    @Override
+    public AttachmentBitmapDecoder make() throws IllegalAccessException, InstantiationException {
+      return new AttachmentBitmapDecoder(masterSecret);
+    }
+
+  }
+
+  private static class AttachmentRegionDecoderFactory implements DecoderFactory<AttachmentRegionDecoder> {
+
+    private final MasterSecret masterSecret;
+
+    private AttachmentRegionDecoderFactory(@NonNull MasterSecret masterSecret) {
+      this.masterSecret = masterSecret;
+    }
+
+    @Override
+    public AttachmentRegionDecoder make() throws IllegalAccessException, InstantiationException {
+      return new AttachmentRegionDecoder(masterSecret);
+    }
   }
 }

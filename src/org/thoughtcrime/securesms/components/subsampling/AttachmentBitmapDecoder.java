@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 
 import com.davemorrissey.labs.subscaleview.decoder.ImageDecoder;
 import com.davemorrissey.labs.subscaleview.decoder.SkiaImageDecoder;
@@ -18,16 +19,16 @@ import java.io.InputStream;
 
 public class AttachmentBitmapDecoder implements ImageDecoder{
 
+  private final MasterSecret masterSecret;
+
+  public AttachmentBitmapDecoder(@NonNull MasterSecret masterSecret) {
+    this.masterSecret = masterSecret;
+  }
+
   @Override
   public Bitmap decode(Context context, Uri uri) throws Exception {
     if (!PartAuthority.isLocalUri(uri)) {
       return new SkiaImageDecoder().decode(context, uri);
-    }
-
-    MasterSecret masterSecret = KeyCachingService.getMasterSecret(context);
-
-    if (masterSecret == null) {
-      throw new IllegalStateException("Can't decode without secret");
     }
 
     InputStream inputStream = PartAuthority.getAttachmentStream(context, masterSecret, uri);
