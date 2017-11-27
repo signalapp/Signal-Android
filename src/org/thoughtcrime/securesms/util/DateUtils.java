@@ -136,4 +136,16 @@ public class DateUtils extends android.text.format.DateUtils {
       return new SimpleDateFormat(template, locale).toLocalizedPattern();
     }
   }
+
+  public static String getShortTimeString(Context context, Locale locale, long timestamp) {
+    String template = null;
+    if (DateFormat.is24HourFormat(context)) template = "HH:mm";
+    else                                    template = "hh:mm a";
+    return getFormattedDateTime(timestamp, template, locale);
+  }
+
+  public static String getShortDateString(Context context, Locale locale, long timestamp) {
+    String template = "dd MMM yyyy";
+    return getFormattedDateTime(timestamp, template, locale);
+  }
 }
