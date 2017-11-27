@@ -222,7 +222,7 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity {
   public static class AppUpgradeReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-      if (Intent.ACTION_PACKAGE_REPLACED.equals(intent.getAction()) &&
+      if (Intent.ACTION_MY_PACKAGE_REPLACED.equals(intent.getAction()) &&
           intent.getData().getSchemeSpecificPart().equals(context.getPackageName()))
       {
         Optional<ExperienceUpgrade> experienceUpgrade = getExperienceUpgrade(context);
