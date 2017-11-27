@@ -216,8 +216,8 @@
   <!--DocumentView-->
   <string name="DocumentView_unknown_file">Unbekannte Datei</string>
   <!--DozeReminder-->
-  <string name="DozeReminder_optimize_for_missing_play_services">Für fehlende Play-Dienste optimieren</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dieses Gerät unterstützt keine Play-Dienste. Antippen, um Akkuoptimierungsdienste des Systems zu deaktivieren, die Signal bei Inaktivität daran hindern, Nachrichten zu empfangen.</string>
+  <string name="DozeReminder_optimize_for_missing_play_services">Für fehlende Google-Play-Dienste optimieren</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dieses Gerät unterstützt keine Google-Play-Dienste. Antippen, um Akkuoptimierungsdienste des Systems zu deaktivieren, die Signal bei Inaktivität daran hindern, Nachrichten zu empfangen.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Teilen mit</string>
   <!--ExperienceUpgradeActivity-->
@@ -245,7 +245,7 @@
   <string name="ExportFragment_export_successful">Exportieren erfolgreich abgeschlossen.</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Dauerhafter Signal-Kommunikationsfehler!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal konnte nicht für die Google Play-Dienste registriert werden. Signal-Nachrichten und -Anrufe wurden daher deaktiviert. Bitte registriere Signal im Menü »Einstellungen« &gt; »Weitere Einstellungen« erneut.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal konnte nicht für die Google-Play-Dienste registriert werden. Signal-Nachrichten und -Anrufe wurden daher deaktiviert. Bitte registriere Signal im Menü »Einstellungen« &gt; »Weitere Einstellungen« erneut.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Fehler beim Abruf des GIFs in voller Auflösung</string>
   <!--GiphyFragmentPageAdapter-->
@@ -380,14 +380,14 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Passwort übermitteln</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Passwort ungültig!</string>
   <!--PlayServicesProblemFragment-->
-  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Die derzeit installierte Version der Google Play-Dienste funktioniert nicht korrekt. Bitte installiere die Google Play-Dienste neu und versuche es noch einmal.</string>
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Die derzeit installierte Version der Google-Play-Dienste funktioniert nicht korrekt. Bitte installiere die Google-Play-Dienste neu und versuche es noch einmal.</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Bewerte diese App</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Hilf uns durch deine Bewertung, wenn dir die App gefällt.</string>
   <string name="RatingManager_rate_now">Jetzt bewerten!</string>
   <string name="RatingManager_no_thanks">Nein danke</string>
   <string name="RatingManager_later">Später</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Hoppla, die Play Store-App scheint nicht auf deinem Gerät installiert zu sein.</string>
+  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Hoppla, die Play-Store-App scheint nicht auf deinem Gerät installiert zu sein.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Kontakt blockieren?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Du wirst keine Nachrichten und Anrufe mehr von diesem Kontakt erhalten können.</string>
@@ -418,11 +418,11 @@
   <string name="RegistrationActivity_you_must_specify_your_phone_number">Du must deine Rufnummer angeben</string>
   <string name="RegistrationActivity_invalid_number">Ungültige Rufnummer</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Die angegebene Rufummer (%s) ist ungültig.</string>
-  <string name="RegistrationActivity_missing_google_play_services">Fehlende Google Play-Dienste</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Auf diesem Gerät fehlen die Google Play-Dienste. Signal kann immer noch verwendet werden, allerdings führt diese Konfiguration eventuell zu verringerter Zuverlässigkeit oder Leistung.\n\nFalls du kein erfahrener Benutzer bist, kein Custom-ROM verwendest oder glaubst, diese Meldung irrtümlich angezeigt zu bekommen, kontaktiere bitte support@whispersystems.org für Hilfe bei der Problembehandlung.</string>
+  <string name="RegistrationActivity_missing_google_play_services">Fehlende Google-Play-Dienste</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Auf diesem Gerät fehlen die Google-Play-Dienste. Signal kann immer noch verwendet werden, allerdings führt diese Konfiguration eventuell zu verringerter Zuverlässigkeit oder Leistung.\n\nFalls du kein erfahrener Benutzer bist, kein Custom-ROM verwendest oder glaubst, diese Meldung irrtümlich angezeigt zu bekommen, kontaktiere bitte support@whispersystems.org für Hilfe bei der Problembehandlung.</string>
   <string name="RegistrationActivity_i_understand">Verstanden</string>
-  <string name="RegistrationActivity_play_services_error">Play-Dienste-Fehler</string>
-  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play-Dienste werden aktualisiert oder sind vorübergehend nicht erreichbar. Bitte erneut versuchen.</string>
+  <string name="RegistrationActivity_play_services_error">Fehler bei den Google-Play-Diensten</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google-Play-Dienste werden aktualisiert oder sind vorübergehend nicht erreichbar. Bitte erneut versuchen.</string>
   <string name="RegistrationActivity_more_information">Mehr Informationen</string>
   <string name="RegistrationActivity_less_information">Weniger Informationen</string>
   <!--RegistrationProblemsActivity-->
@@ -1022,14 +1022,14 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Erwecke deinen Posteingang zum Leben. Leg los und schreibe einem Freund.</string>
   <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Leeeeerer Eingang</string>
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Nix. Nada. Niente. Alles erledigt!</string>
-  <string name="ConversationListFragment_no_results_found_for_s_"> Keine Ergebnisse für »%s« gefunden</string>
+  <string name="ConversationListFragment_no_results_found_for_s_">Keine Ergebnisse für »%s« gefunden</string>
   <string name="SearchToolbar_search">Suchen</string>
   <string name="UnauthorizedReminder_device_no_longer_registered">Gerät nicht mehr registriert</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Wahrscheinlich hast du deine Rufnummer mit Signal auf einem anderen Gerät registriert. Zum erneuten Registrieren antippen.</string>
   <string name="OutdatedBuildReminder_no_web_browser_installed">Kein Webbrowser installiert!</string>
   <string name="ContactsCursorLoader_recent_chats">Kürzliche Unterhaltungen</string>
   <string name="ContactsCursorLoader_contacts">Kontakte</string>
-  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Wischen Sie nach oben, um anzunehmen</string>
-  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Wischen Sie nach oben, um abzulehnen</string>
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Zum Annehmen nach oben wischen</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Zum Ablehnen nach unten wischen</string>
   <!--EOF-->
 </resources>

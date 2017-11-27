@@ -1008,5 +1008,12 @@
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">អីយ៉ា... អ្នកតាមទាន់ហើយ!</string>
   <string name="ConversationListFragment_no_results_found_for_s_">រកមិនឃើញលទ្ធផលសម្រាប់ \'%s\'</string>
   <string name="SearchToolbar_search">ស្វែងរក</string>
+  <string name="UnauthorizedReminder_device_no_longer_registered">ឧបករណ៍មិនបានចុះឈ្មោះ!</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">នេះហាក់ដូចជាដោយសារអ្នកបានចុះឈ្មោះតាមលេខទូរស័ព្ទជាមួយ Signal លើឧបករណ៍ផ្សេង។ ចុច ដើម្បីចុះឈ្មោះម្តងទៀត។</string>
+  <string name="OutdatedBuildReminder_no_web_browser_installed">មិនបានដំឡើងកម្មវិធីរុករក!</string>
+  <string name="ContactsCursorLoader_recent_chats">ការសន្ទនាថ្មីៗ</string>
+  <string name="ContactsCursorLoader_contacts">បញ្ជីទំនាក់ទំនង</string>
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">អូសឡើងលើ ដើម្បីទទួល</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">អូសចុះក្រោម ដើម្បីច្រានចោល</string>
   <!--EOF-->
 </resources>

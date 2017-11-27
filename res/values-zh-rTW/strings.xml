@@ -1006,10 +1006,17 @@
   <string name="recipient_preference_activity__shared_media">分享的媒體</string>
   <string name="registration_activity__verify_your_number">驗證你的號碼</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">請輸入你的行動電話號碼來接收驗證碼。也許要支付簡訊費用。</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">何不給你的收件夾寫些東西呢？從發個訊息給好友開始吧！</string>
   <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">收件箱是空的</string>
+  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">收件箱都空了，你沒有遺漏任何訊息！</string>
   <string name="ConversationListFragment_no_results_found_for_s_">沒有找到「%s」的結果</string>
   <string name="SearchToolbar_search">搜尋</string>
+  <string name="UnauthorizedReminder_device_no_longer_registered">此裝置不再註冊於Signal</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">這似乎是你將註冊Signal的電話號碼註冊在其他的裝置上。點擊這裡來重新註冊。</string>
   <string name="OutdatedBuildReminder_no_web_browser_installed">沒有已安裝的瀏覽器</string>
   <string name="ContactsCursorLoader_recent_chats">最近的聊天</string>
+  <string name="ContactsCursorLoader_contacts">聯絡人</string>
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">往上滑動來回覆</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">往下滑動來拒接</string>
   <!--EOF-->
 </resources>

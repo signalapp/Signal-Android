@@ -1025,6 +1025,19 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Opcionalment vegeu i compartiu quan s\'han llegit els missatges</string>
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">Inhabilita les confirmacions de lectura</string>
   <string name="recipient_preference_activity__shared_media">Contingut compartit</string>
+  <string name="registration_activity__verify_your_number">Verifiqueu el número de telèfon</string>
+  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Introduïu el vostre número de telèfon per a rebre un codi de verificació. És possible que s\'apliquin càrrecs de la operadora.</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Doneu a la safata d\'entrada quelcom per a escriure a casa. Comenceu enviant un missatge a algun amic.</string>
+  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Bústia zeeeeero</string>
+  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Res. Nothing. Zero. He fet net!</string>
+  <string name="ConversationListFragment_no_results_found_for_s_">No s\'ha trobat cap resultat per a «%s»</string>
   <string name="SearchToolbar_search">Cerca</string>
+  <string name="UnauthorizedReminder_device_no_longer_registered">L\'aparell ja no està registrat</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Possiblement això és perquè vau registrar el vostre número de telèfon al Signal en una aparell diferent. Feu un toc per a tornar a registrar-lo.</string>
+  <string name="OutdatedBuildReminder_no_web_browser_installed">No teniu cap navegador web instal·lat!</string>
+  <string name="ContactsCursorLoader_recent_chats">Xats recents</string>
+  <string name="ContactsCursorLoader_contacts">Contactes</string>
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Llisqueu amunt per a respondre</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Llisqueu avall per a rebutjar</string>
   <!--EOF-->
 </resources>

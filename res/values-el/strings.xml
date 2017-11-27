@@ -1041,5 +1041,7 @@
   <string name="OutdatedBuildReminder_no_web_browser_installed">Δεν υπάρχει εγκατεστημένος φυλλομετρητής!</string>
   <string name="ContactsCursorLoader_recent_chats">Πρόσφατες συζητήσεις</string>
   <string name="ContactsCursorLoader_contacts">Επαφές</string>
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Σύρε προς τα πάνω για απάντηση</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Σύρε προς τα κάτω για απόρριψη</string>
   <!--EOF-->
 </resources>

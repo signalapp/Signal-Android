@@ -1026,8 +1026,17 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="recipient_preference_activity__shared_media">Jaettu media</string>
   <string name="registration_activity__verify_your_number">Vahvista numerosi</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Syötä puhelinnumerosi saadaksesi vahvistuskoodin. Matkapuhelinoperaattorisi hinnat voivat olla voimassa.</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Anna postilaatikollesi jotain, mistä se voisi olla ylpeä. Aloita lähettämällä viesti ystävälle.</string>
+  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Postilaatikko on tyyyhjä</string>
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Postilaatikkosi on tyhjä. Hyvää päivänjatkoa!</string>
   <string name="ConversationListFragment_no_results_found_for_s_">Ei hakutuloksia: \'%s\'</string>
   <string name="SearchToolbar_search">Hae</string>
+  <string name="UnauthorizedReminder_device_no_longer_registered">Laite ei enää ole rekisteröity</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Tämä johtuu todennäköisesti siitä, että olet rekisteröitynyt puhelinnumerollasi Signaliin toisella laitteella. Napsauta rekisteröityäksesi uudelleen.</string>
+  <string name="OutdatedBuildReminder_no_web_browser_installed">Selainta ei ole asennettu!</string>
+  <string name="ContactsCursorLoader_recent_chats">Viimeisimmät keskustelut</string>
+  <string name="ContactsCursorLoader_contacts">Yhteystiedot</string>
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Pyyhkäise ylös vastataksesi</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Pyyhkäise alas hylätäksesi</string>
   <!--EOF-->
 </resources>

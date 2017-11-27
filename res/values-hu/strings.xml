@@ -1050,5 +1050,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="OutdatedBuildReminder_no_web_browser_installed">Nincs telepítve webböngésző!</string>
   <string name="ContactsCursorLoader_recent_chats">Legutóbbi csevegések</string>
   <string name="ContactsCursorLoader_contacts">Kontaktok</string>
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Csúsztasd fel a válaszhoz</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Csúsztasd le az elutasításhoz</string>
   <!--EOF-->
 </resources>

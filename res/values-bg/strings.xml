@@ -1040,5 +1040,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="OutdatedBuildReminder_no_web_browser_installed">Няма инсталиран браузър!</string>
   <string name="ContactsCursorLoader_recent_chats">Последни чатове</string>
   <string name="ContactsCursorLoader_contacts">Контакти</string>
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Приплъзнете нагоре, за да отговорите</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Приплъзнете надолу, за да отговорите</string>
   <!--EOF-->
 </resources>

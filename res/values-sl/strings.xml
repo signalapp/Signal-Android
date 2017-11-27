@@ -375,7 +375,7 @@
   <string name="MessageRecord_s_called_you">Oseba %s vas je klicala</string>
   <string name="MessageRecord_called_s">Klicali ste: %s</string>
   <string name="MessageRecord_missed_call_from">Neodgovorjen klic: %s</string>
-  <string name="MessageRecord_s_joined_signal">%suporablja Signal!</string>
+  <string name="MessageRecord_s_joined_signal">%s uporablja Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Čas poteka sporočila ste nastavili na %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">Oseba %1$s je nastavila čas poteka sporočila na %2$s</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Varnostno število z uporabnikom %s je bilo spremenjeno.</string>
@@ -496,7 +496,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ThreadRecord_called_you">Imeli ste klic</string>
   <string name="ThreadRecord_missed_call">Neodgovorjen klic</string>
   <string name="ThreadRecord_media_message">Večpredstavno sporočilo</string>
-  <string name="ThreadRecord_s_is_on_signal">%suporablja Signal!</string>
+  <string name="ThreadRecord_s_is_on_signal">%s uporablja Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas poteka sporočila je nastavljen na %s</string>
   <string name="ThreadRecord_safety_number_changed">Varnsotno število je bilo spremenjeno</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Varnostno število z uporabnikom %s je bilo spremenjeno.</string>

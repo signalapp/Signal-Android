@@ -1042,5 +1042,12 @@
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Zero. Nada. Você está com tudo em dia!</string>
   <string name="ConversationListFragment_no_results_found_for_s_">Nenhum resultado encontrado para \'%s\'</string>
   <string name="SearchToolbar_search">Procurar</string>
+  <string name="UnauthorizedReminder_device_no_longer_registered">Aparelho não mais registrado</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Isso provavelmente aconteceu porque você registrou seu número de telefone no Signal usando um outro aparelho. Toque para registrar novamente.</string>
+  <string name="OutdatedBuildReminder_no_web_browser_installed">Nenhum navegador instalado!</string>
+  <string name="ContactsCursorLoader_recent_chats">Conversas recentes</string>
+  <string name="ContactsCursorLoader_contacts">Contatos</string>
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Deslize para cima para atender</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Deslize para baixo para recusar</string>
   <!--EOF-->
 </resources>

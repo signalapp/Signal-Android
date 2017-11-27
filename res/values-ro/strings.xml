@@ -1064,5 +1064,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="OutdatedBuildReminder_no_web_browser_installed">Nu există nici un navigator web instalat!</string>
   <string name="ContactsCursorLoader_recent_chats">Conversații recente</string>
   <string name="ContactsCursorLoader_contacts">Contacte</string>
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Glisează în sus pentru a răspunde</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Glisează în jos pentru a respinge</string>
   <!--EOF-->
 </resources>

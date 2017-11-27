@@ -1025,6 +1025,9 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="recipient_preference_activity__shared_media">Gedeelde media</string>
   <string name="registration_activity__verify_your_number">Verifieer je nummer</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Voer je telefoonnummer in om een verificatiecode te ontvangen. Extra providerkosten zijn mogelijk van toepassing.</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Geef je postvak iets om naar huis over te schrijven. Stuur een bericht naar een vriend.</string>
+  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Postvak IN helemaal leeg</string>
+  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Niks, nada, noppes. Je bent helemaal mee!</string>
   <string name="ConversationListFragment_no_results_found_for_s_">Geen resultaten gevonden voor \'%s\'</string>
   <string name="SearchToolbar_search">Zoeken</string>
   <string name="UnauthorizedReminder_device_no_longer_registered">Apparaat niet meer geregistreerd</string>
@@ -1032,5 +1035,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="OutdatedBuildReminder_no_web_browser_installed">Geen webbrowser geïnstalleerd!</string>
   <string name="ContactsCursorLoader_recent_chats">Recente gesprekken</string>
   <string name="ContactsCursorLoader_contacts">Contacten</string>
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Veeg omhoog om te beantwoorden</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Veeg omlaag om te weigeren</string>
   <!--EOF-->
 </resources>

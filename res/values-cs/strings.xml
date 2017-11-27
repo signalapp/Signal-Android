@@ -1059,5 +1059,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="OutdatedBuildReminder_no_web_browser_installed">Není nainstalován webový prohlížeč!</string>
   <string name="ContactsCursorLoader_recent_chats">Nedávné konverzace</string>
   <string name="ContactsCursorLoader_contacts">Kontakty</string>
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Pro odpověď přejeďte prstem nahoru</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Pro odmítnutí přejeďte prstem dolů</string>
   <!--EOF-->
 </resources>

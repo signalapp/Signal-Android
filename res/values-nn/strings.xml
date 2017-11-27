@@ -1042,5 +1042,7 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="OutdatedBuildReminder_no_web_browser_installed">Ingen nettlesar installert!</string>
   <string name="ContactsCursorLoader_recent_chats">Nylege samtalar</string>
   <string name="ContactsCursorLoader_contacts">Kontaktar</string>
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Sveip opp for å svara</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Sveip ned for å avslå</string>
   <!--EOF-->
 </resources>
