@@ -524,13 +524,6 @@
               android:exported="false"
               android:authorities="org.thoughtcrime.provider.securesms.mms" />
 
-    <receiver android:name=".service.RegistrationNotifier"
-              android:exported="false">
-        <intent-filter>
-            <action android:name="org.thoughtcrime.securesms.REGISTRATION_EVENT" />
-        </intent-filter>
-    </receiver>
-
     <receiver android:name=".service.BootReceiver">
         <intent-filter>
             <action android:name="android.intent.action.BOOT_COMPLETED"/>
