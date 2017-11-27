@@ -1055,7 +1055,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         Log.w(TAG, "Resolving registered state...");
         RegisteredState registeredState;
 
-        if (recipient.isResolving()) {
+        if (recipient.isPushGroupRecipient()) {
+          Log.w(TAG, "Push group recipient...");
+          registeredState = RegisteredState.REGISTERED;
+        } else if (recipient.isResolving()) {
           Log.w(TAG, "Talking to DB directly.");
           registeredState = DatabaseFactory.getRecipientDatabase(ConversationActivity.this).isRegistered(recipient.getAddress());
         } else {
