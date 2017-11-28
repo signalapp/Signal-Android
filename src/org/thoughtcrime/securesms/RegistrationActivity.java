@@ -355,7 +355,10 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
           SignedPreKeyRecord signedPreKey = PreKeyUtil.generateSignedPreKey(RegistrationActivity.this, identityKey, true);
 
           accountManager.setPreKeys(identityKey.getPublicKey(), signedPreKey, records);
-          accountManager.setGcmId(registrationState.gcmToken);
+
+          if (registrationState.gcmToken.isPresent()) {
+            accountManager.setGcmId(registrationState.gcmToken);
+          }
 
           TextSecurePreferences.setGcmRegistrationId(RegistrationActivity.this, registrationState.gcmToken.orNull());
           TextSecurePreferences.setGcmDisabled(RegistrationActivity.this, !registrationState.gcmToken.isPresent());
