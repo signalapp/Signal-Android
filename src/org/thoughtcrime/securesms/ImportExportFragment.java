@@ -21,14 +21,16 @@ import org.thoughtcrime.securesms.database.PlaintextBackupExporter;
 import org.thoughtcrime.securesms.database.PlaintextBackupImporter;
 import org.thoughtcrime.securesms.service.ApplicationMigrationService;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 
 public class ImportExportFragment extends Fragment {
 
-  private static final int SUCCESS    = 0;
-  private static final int NO_SD_CARD = 1;
-  private static final int ERROR_IO   = 2;
+  private static final int SUCCESS        = 0;
+  private static final int NO_SD_CARD     = 1;
+  private static final int ERROR_IO       = 2;
+  private static final int FILE_NOT_FOUND = 3;
 
   private MasterSecret   masterSecret;
   private ProgressDialog progressDialog;
@@ -155,6 +157,7 @@ public class ImportExportFragment extends Fragment {
 
       switch (result) {
         case NO_SD_CARD:
+        case FILE_NOT_FOUND:
           Toast.makeText(context,
                          context.getString(R.string.ImportFragment_no_plaintext_backup_found),
                          Toast.LENGTH_LONG).show();
@@ -180,6 +183,9 @@ public class ImportExportFragment extends Fragment {
       } catch (NoExternalStorageException e) {
         Log.w("ImportFragment", e);
         return NO_SD_CARD;
+      } catch (FileNotFoundException e) {
+        Log.w("ImportFragment", e);
+        return FILE_NOT_FOUND;
       } catch (IOException e) {
         Log.w("ImportFragment", e);
         return ERROR_IO;

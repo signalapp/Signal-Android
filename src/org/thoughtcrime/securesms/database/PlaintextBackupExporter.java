@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.database;
 
 
 import android.content.Context;
+import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
@@ -9,26 +10,41 @@ import org.thoughtcrime.securesms.util.StorageUtil;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class PlaintextBackupExporter {
+  private static final String TAG = PlaintextBackupExporter.class.getSimpleName();
 
-  private static final String FILENAME = "SignalPlaintextBackup.xml";
-
-  public static void exportPlaintextToSd(Context context, MasterSecret masterSecret)
+  public static File exportPlaintextToSd(Context context, MasterSecret masterSecret)
       throws NoExternalStorageException, IOException
   {
-    exportPlaintext(context, masterSecret);
+    return exportPlaintext(context, masterSecret);
   }
 
-  public static File getPlaintextExportFile() throws NoExternalStorageException {
-    return new File(StorageUtil.getBackupDir(), FILENAME);
+  private static File getTimestampedPlaintextExportFile() throws NoExternalStorageException {
+    DateFormat iso8601DateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+    iso8601DateFormatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+    Date   timestamp = new Date(System.currentTimeMillis());
+    String filename  = "SignalPlaintextBackup-" + iso8601DateFormatter.format(timestamp) + ".xml";
+    return new File(StorageUtil.getBackupDir(), filename);
   }
 
-  private static void exportPlaintext(Context context, MasterSecret masterSecret)
+  private static File exportPlaintext(Context context, MasterSecret masterSecret)
       throws NoExternalStorageException, IOException
   {
-    int count               = DatabaseFactory.getSmsDatabase(context).getMessageCount();
-    XmlBackup.Writer writer = new XmlBackup.Writer(getPlaintextExportFile().getAbsolutePath(), count);
+    int  count      = DatabaseFactory.getSmsDatabase(context).getMessageCount();
+    File exportFile = getTimestampedPlaintextExportFile();
+    File exportDir  = exportFile.getParentFile();
+    if (!exportDir.exists()) {
+      if (!exportDir.mkdirs()) {
+        Log.w(TAG, "mkdirs() returned false, attempting to continue exporting");
+      }
+    }
+    Log.w(TAG, "Exporting to " + exportFile.getAbsolutePath());
+    XmlBackup.Writer writer = new XmlBackup.Writer(exportFile.getAbsolutePath(), count);
 
 
     SmsMessageRecord record;
@@ -58,5 +74,6 @@ public class PlaintextBackupExporter {
     } while (reader.getCount() > 0);
 
     writer.close();
+    return exportFile;
   }
 }

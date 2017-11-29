@@ -9,25 +9,32 @@ import android.util.Log;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.StorageUtil;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FilenameFilter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 public class PlaintextBackupImporter {
+  private static final String TAG = PlaintextBackupImporter.class.getSimpleName();
 
   public static void importPlaintextFromSd(Context context, MasterSecret masterSecret)
       throws NoExternalStorageException, IOException
   {
-    Log.w("PlaintextBackupImporter", "importPlaintext()");
+    Log.w(TAG, "importPlaintext()");
     SmsDatabase    db          = DatabaseFactory.getSmsDatabase(context);
     SQLiteDatabase transaction = db.beginTransaction();
 
     try {
       ThreadDatabase threads         = DatabaseFactory.getThreadDatabase(context);
-      XmlBackup      backup          = new XmlBackup(getPlaintextExportFile().getAbsolutePath());
+      String         filePath        = getPlaintextBackupFile().getAbsolutePath();
+      Log.d(TAG, "Importing from " + filePath);
+      XmlBackup      backup          = new XmlBackup(filePath);
       MasterCipher   masterCipher    = new MasterCipher(masterSecret);
       Set<Long>      modifiedThreads = new HashSet<>();
       XmlBackup.XmlBackupItem item;
@@ -64,20 +71,39 @@ public class PlaintextBackupImporter {
         threads.update(threadId, true);
       }
 
-      Log.w("PlaintextBackupImporter", "Exited loop");
+      Log.w(TAG, "Exited loop");
     } catch (XmlPullParserException e) {
-      Log.w("PlaintextBackupImporter", e);
+      Log.w(TAG, e);
       throw new IOException("XML Parsing error!");
     } finally {
       db.endTransaction(transaction);
     }
   }
 
-  private static File getPlaintextExportFile() throws NoExternalStorageException {
-    File backup    = PlaintextBackupExporter.getPlaintextExportFile();
-    File oldBackup = new File(Environment.getExternalStorageDirectory(), "TextSecurePlaintextBackup.xml");
+  public static File getPlaintextBackupFile() throws NoExternalStorageException, FileNotFoundException {
+    File[] backupFiles = StorageUtil.getBackupDir().listFiles(new FilenameFilter() {
+      @Override
+      public boolean accept(File dir, String filename) {
+        return filename.startsWith("SignalPlaintextBackup-") && filename.endsWith(".xml");
+      }
+    });
+    if (backupFiles.length >= 1) {
+      Arrays.sort(backupFiles);
+      return backupFiles[backupFiles.length - 1];
+    }
 
-    return !backup.exists() && oldBackup.exists() ? oldBackup : backup;
+    File[] historicalBackupFiles = {
+      new File(Environment.getExternalStorageDirectory(), "SignalPlaintextBackup.xml"),
+      new File(Environment.getExternalStorageDirectory(), "TextSecurePlaintextBackup.xml"),
+    };
+
+    for (File possibleBackupFile: historicalBackupFiles) {
+      if (possibleBackupFile.exists()) {
+        return possibleBackupFile;
+      }
+    }
+
+    throw new FileNotFoundException();
   }
 
   private static void addEncryptedStringToStatement(MasterCipher masterCipher, SQLiteStatement statement, int index, String value) {
