@@ -18,12 +18,16 @@ package org.thoughtcrime.securesms;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -31,6 +35,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
+
+import com.google.android.exoplayer2.ui.PlaybackControlView.VisibilityListener;
 
 import org.thoughtcrime.securesms.components.ZoomingImageView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -47,6 +53,8 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.video.VideoPlayer;
 
 import java.io.IOException;
+
+import uk.co.senab.photoview.PhotoViewAttacher.OnViewTapListener;
 
 /**
  * Activity for displaying media attachments in-app
@@ -84,9 +92,11 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
                          WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    getSupportActionBar().setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.gray95_transparent50)));
     setContentView(R.layout.media_preview_activity);
 
     initializeViews();
+    initializeListenersIfNecessary();
     initializeResources();
     initializeActionBar();
   }
@@ -95,6 +105,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   private void setFullscreenIfPossible() {
     if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN) {
       getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+      supportRequestWindowFeature(AppCompatDelegate.FEATURE_SUPPORT_ACTION_BAR_OVERLAY);
     }
   }
 
@@ -145,6 +156,41 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   private void initializeViews() {
     image = findViewById(R.id.image);
     video = findViewById(R.id.video_player);
+  }
+
+  private void initializeListenersIfNecessary() {
+    if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN) {
+      image.setOnViewTapListener(new OnViewTapListener() {
+        @Override
+        public void onViewTap(View view, float v, float v1) {
+          toggleActionBar();
+        }
+      });
+
+      image.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          toggleActionBar();
+        }
+      });
+
+      video.setPlaybackControlVisibilityListener(new VisibilityListener() {
+        @Override
+        public void onVisibilityChange(int visibility) {
+          if (visibility == View.VISIBLE) {
+            getSupportActionBar().show();
+          } else {
+            getSupportActionBar().hide();
+          }
+        }
+      });
+    }
+  }
+
+  private void toggleActionBar() {
+    ActionBar actionBar = getSupportActionBar();
+    if (actionBar.isShowing()) actionBar.hide();
+    else                       actionBar.show();
   }
 
   private void initializeResources() {
