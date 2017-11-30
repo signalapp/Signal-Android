@@ -41,7 +41,7 @@ Help
 ## Support
 For troubleshooting and questions, please visit our support center!
 
-https://support.whispersystems.org/
+https://support.signal.org/
 
 ## Documentation
 Looking for documentation? Check out the wiki!
