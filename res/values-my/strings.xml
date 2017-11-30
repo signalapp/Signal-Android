@@ -67,6 +67,7 @@
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$sဖြင့် စိတ်ချရသော ဖုန်းနံပတ်ပြောင်းလဲသွားသည်။ တစ်စုံတစ်ယောက်က သင့်ဆက်သွယ်မှုကို ကြားဖြတ်ခြင်းကြောင့် သို့မဟုတ် %2$s Signal ကို ဖြုတ်လိုက်ခြင်းကြောင့် ဖြစ်နိုင်သည်။</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">ဤလူနှင့် ဆက်သွယ်ရန် စိတ်ချရသောနံပါတ်ကို အတည်ပြုပါမည်လား။ </string>
   <string name="ConfirmIdentityDialog_accept">လက်ခံသည် </string>
+  <!--ContactsCursorLoader-->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">စာတို %s </string>
   <string name="ContactsDatabase_signal_call_s">Signal ခေါ်ဆိုမှု %s </string>
@@ -497,6 +498,7 @@
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">ရှိမနေတော့သည့် ဆက်ရှင်အတွက် MMS စာများကို encrypt လုပ်ထားပါသည်။</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">အသိပေးချက်ကို ပိတ်ပါ</string>
+  <!--OutdatedBuildReminder-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">သွင်းယူနေသည်</string>
   <string name="ApplicationMigrationService_importing_text_messages">စာများကို သွင်းယူနေသည်</string>
@@ -531,11 +533,15 @@
   <string name="QuickResponseService_problem_sending_message">စာပို့ခြင်းအခက်အခဲ</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">ပွင့်လင်းလမ်းညွှန်</string>
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">ရှာရန်</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">စာအသစ်</string>
+  <!--UnauthorizedReminder-->
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">ဗီဒီယိုဖွင့်စဥ်အမှားတစ်ခုခုကြုံသည်</string>
+  <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">%1$sနှင့် သင်၏ပြောစကားများအတွက် လုံခြုံရေးနံပါတ်ပြောင်းလဲလိုက်ပါပြီ။ ယင်းသို့ဖြစ်ရခြင်းမှာ တစ်စုံတစ်ယောက်က သင့်ဆက်သွယ်ရေးလမ်းကြောင်းကို ဝင်ရောက်ရန်ကြိုးစားခြင်း သို့မဟုတ် %2$sက Signal ကိုအသစ်ပြန်သွင်းလိုက်ခြင်းကြောင့်ဖြစ်နိုင်ပါသည်။ </string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">ဤလူနှင့် ဆက်သွယ်ရန် စိတ်ချရသောနံပါတ်ကို အတည်ပြုပါမည်လား။ </string>
@@ -573,6 +579,7 @@
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">တားမြစ်ထားသောလိပ်စာမရှိ</string>
   <!--contact_selection_recent_activity-->
+  <!--contact_selection_list_fragment-->
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal ဖြင့် စာပေးပို့ခြင်း</string>
@@ -595,6 +602,7 @@
   <string name="conversation_item_sent__send_failed_indicator_description">ပေးပို့ချက် မအောင်မြင်ပါ</string>
   <string name="conversation_item_sent__pending_approval_description">ခွင့်ပြုချက်ယူရန် ဆိုင်းငံ့ထားခြင်း</string>
   <string name="conversation_item_sent__delivered_description">ပေးပို့ပြီး</string>
+  <string name="conversation_item_sent__message_read">စာဖတ်၍ ပြီးစီး။</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">လိပ်စာပါ ဓာတ်ပုံ</string>
   <!--audio_view-->
@@ -618,6 +626,9 @@
   <string name="device_list_fragment__link_new_device">ဖုန်းအသစ်ကို ချိတ်ရန်</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">ဆက်ရန်</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">ဖတ်ပြီးသားများကို ဒီမှာ တွေ့နိုင်ပါသည်</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">စာများကို ဖတ်ပြီးသည့်အခါ မြင်ရခြင်းနှင့် မျှဝေခြင်းကို ရွေးချယ်လိုပါက ရွေးချယ်နိုင်ပါသည်။</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">ဖတ်ပြီးကြောင်း ပြသည့် သင်္ကေတကို လုပ်ဆောင်ပါ။</string>
   <!--expiration-->
   <string name="expiration_off">ပိတ်သည်</string>
   <plurals name="expiration_seconds">
@@ -704,6 +715,7 @@
   <string name="profile_create_activity__who_can_see_this_information">ဒီအချက်အလက်ကို ဘယ်သူမြင်နိုင်သလဲ? </string>
   <string name="profile_create_activity__your_name">သင့်အမည်</string>
   <!--recipient_preferences_activity-->
+  <string name="recipient_preference_activity__shared_media">မျှဝေပြီးသား ရုပ်/သံ/ပုံများ</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">စကားဝိုင်း အသိပေးသံပိတ်ထားသည် </string>
   <string name="recipient_preferences__notification_sound">သတိပေးချက် အသံ</string>
@@ -737,6 +749,7 @@
   <string name="verify_display_fragment__verified">အသိအမှတ်ပြုပြီးပြီ</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">လုံခြုံရေးနံပါတ်ကို မျှဝေပါ</string>
+  <!--webrtc_answer_decline_button-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">တစ်ချို့ကိစ္စများကို သင်ကြည့်ဖို့ လိုနေသည်။</string>
   <string name="message_details_header__sent">ပို့ပြီးပြီ</string>
@@ -981,6 +994,7 @@
   <string name="media_preview__forward_title">ထပ်ဆင့် ပေးပို့ပါ။</string>
   <string name="media_preview__all_media_title">ရုပ်/သံ/ပုံ စာများအားလုံး</string>
   <!--media_overview-->
+  <string name="media_overview_documents_fragment__no_documents_found">စာရွက်စာတမ်းများ မရှိပါ။ </string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description"> ရုပ်/သံ/ပုံပါ စာများကို အစမ်းကြည့်ခြင်း</string>
   <!--new_conversation_activity-->
@@ -992,12 +1006,7 @@
   <string name="trimmer__old_messages_successfully_deleted">စာအဟောင်းများကို အောင်မြင်စွာ ဖျက်ပြီး</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">ပုံသင်္ကေတကို ပို့ဆောင်ပါ။</string>
-  <string name="conversation_item_sent__message_read">စာဖတ်၍ ပြီးစီး။</string>
-  <string name="media_overview_documents_fragment__no_documents_found">စာရွက်စာတမ်းများ မရှိပါ။ </string>
-  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">ဖတ်ပြီးသားများကို ဒီမှာ တွေ့နိုင်ပါသည်</string>
-  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">စာများကို ဖတ်ပြီးသည့်အခါ မြင်ရခြင်းနှင့် မျှဝေခြင်းကို ရွေးချယ်လိုပါက ရွေးချယ်နိုင်ပါသည်။</string>
-  <string name="experience_upgrade_preference_fragment__enable_read_receipts">ဖတ်ပြီးကြောင်း ပြသည့် သင်္ကေတကို လုပ်ဆောင်ပါ။</string>
-  <string name="recipient_preference_activity__shared_media">မျှဝေပြီးသား ရုပ်/သံ/ပုံများ</string>
-  <string name="SearchToolbar_search">ရှာရန်</string>
+  <string name="ConversationListFragment_loading">လုပ်ဆောင်နေသည်...</string>
+  <string name="CallNotificationBuilder_connecting">ချိတ်ဆက်နေသည်</string>
   <!--EOF-->
 </resources>

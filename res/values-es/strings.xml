@@ -70,6 +70,9 @@
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Su número de seguridad con %1$s ha cambiado. Esto podría significar que o bien alguien está tratando de interceptar su comunicación, o que %2$s simplemente ha reinstalado Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Puede que desee verificar su número de seguridad con este contacto.</string>
   <string name="ConfirmIdentityDialog_accept">Aceptar</string>
+  <!--ContactsCursorLoader-->
+  <string name="ContactsCursorLoader_recent_chats">Chats recientes</string>
+  <string name="ContactsCursorLoader_contacts">Contactos</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mensaje %s</string>
   <string name="ContactsDatabase_signal_call_s">Llamar a %s con Signal</string>
@@ -162,6 +165,7 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">No hay ningún navegador instalado en su dispositivo</string>
   <!--ConversationListFragment-->
+  <string name="ConversationListFragment_no_results_found_for_s_">No se encontraron resultados para \'%s\'</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">¿Eliminar la conversación seleccionada?</item>
     <item quantity="other">¿Eliminar las conversaciones seleccionadas?</item>
@@ -522,6 +526,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">El mensaje MMS se cifró para una sesión no existente</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Silenciar notificaciones</string>
+  <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_no_web_browser_installed">¡No hay navegador web instalado!</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importación en progreso</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importando mensajes de texto</string>
@@ -556,11 +562,17 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="QuickResponseService_problem_sending_message">¡Hubo un problema al enviar el mensaje!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Abrir directorio</string>
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">Buscar</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nuevo mensaje</string>
+  <!--UnauthorizedReminder-->
+  <string name="UnauthorizedReminder_device_no_longer_registered">El dispositivo ya no está registrado</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Probablemente esto es a causa de que registró en Signal su número de teléfono con un dispositivo distinto. Pulse para volver a registrar.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Error al reproducir el vídeo</string>
+  <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">El número de seguridad para tu conversación con %1$s ha cambiado. Esto podría significar que alguien está tratando de interceptar su comunicación, o bien que %2$s simplemente ha reinstalado Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Puede que desee verificar su número de seguridad con este contacto.</string>
@@ -598,6 +610,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">No hay contactos bloqueados</string>
   <!--contact_selection_recent_activity-->
+  <!--contact_selection_list_fragment-->
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Mensaje de Signal</string>
@@ -620,6 +633,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="conversation_item_sent__send_failed_indicator_description">Fallo al enviar</string>
   <string name="conversation_item_sent__pending_approval_description">Pendiente de aprobación</string>
   <string name="conversation_item_sent__delivered_description">Entregado</string>
+  <string name="conversation_item_sent__message_read">Mensaje leído</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Foto de contacto</string>
   <!--audio_view-->
@@ -643,6 +657,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="device_list_fragment__link_new_device">Vincular nuevo dispositivo</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">continuar</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Las notificaciones de lectura están aquí</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Opcionalmente ver y compartir cuando los mensajes se hayan leído</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Habilitar notificaciones de lectura</string>
   <!--expiration-->
   <string name="expiration_off">Inactivo</string>
   <plurals name="expiration_seconds">
@@ -736,6 +753,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="profile_create_activity__who_can_see_this_information">¿Quién puede ver esta información?</string>
   <string name="profile_create_activity__your_name">Su nombre</string>
   <!--recipient_preferences_activity-->
+  <string name="recipient_preference_activity__shared_media">Audiovisuales compartidos</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Silenciar conversación</string>
   <string name="recipient_preferences__notification_sound">Sonido de notificaciones</string>
@@ -752,6 +770,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NÚMERO DE TELÉFONO</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal facilita comunicarse usando tu número de teléfono y libreta de direcciones existentes. Los amigos y contactos que ya saben como contactar contigo por teléfono podrán ponerse en contacto contigo a través de Signal.\n\nEl proceso de registro transmite alguna información acerca de tus contactos al servidor pero no se almacena.</string>
+  <string name="registration_activity__verify_your_number">Verifique su número</string>
+  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Por favor, introduzca su número de móvil para reicibir un código de verificación. Puede que se apliquen tasas por parte de su compañía.</string>
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->
@@ -769,6 +789,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="verify_display_fragment__verified">Verificado</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Compartir número de seguridad</string>
+  <!--webrtc_answer_decline_button-->
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Barrido hacia arriba para responder</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Barrido hacia abajo para rechazar</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Algunos asuntos necesitan su atención</string>
   <string name="message_details_header__sent">Enviado</string>
@@ -956,8 +979,10 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Foto del contacto</string>
   <string name="conversation_list_item_view__archived">Archivado</string>
+  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Bandeja de entrada ceeerooo</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nueva conversación</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Proporcione a su buzón de entrada algo sobre lo que escribir respuestas. Comience intercambiando mensajes con un amigo.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Reiniciar sesión segura</string>
   <!--conversation_muted-->
@@ -1015,6 +1040,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="media_preview__forward_title">Avanzar</string>
   <string name="media_preview__all_media_title">Todos los audiovisuales</string>
   <!--media_overview-->
+  <string name="media_overview_documents_fragment__no_documents_found">No hay documentos</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Previsualizar multimedia</string>
   <!--new_conversation_activity-->
@@ -1026,25 +1052,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="trimmer__old_messages_successfully_deleted">Mensajes antiguos borrados con éxito</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icono de transporte</string>
-  <string name="conversation_item_sent__message_read">Mensaje leído</string>
-  <string name="media_overview_documents_fragment__no_documents_found">No hay documentos</string>
-  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Las notificaciones de lectura están aquí</string>
-  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Opcionalmente ver y compartir cuando los mensajes se hayan leído</string>
-  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Habilitar notificaciones de lectura</string>
-  <string name="recipient_preference_activity__shared_media">Audiovisuales compartidos</string>
-  <string name="registration_activity__verify_your_number">Verifique su número</string>
-  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Por favor, introduzca su número de móvil para reicibir un código de verificación. Puede que se apliquen tasas por parte de su compañía.</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Proporcione a su buzón de entrada algo sobre lo que escribir respuestas. Comience intercambiando mensajes con un amigo.</string>
-  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Bandeja de entrada ceeerooo</string>
-  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Nimio. Nulo. Cero. Nada. ¡Eso es todo!</string>
-  <string name="ConversationListFragment_no_results_found_for_s_">No se encontraron resultados para \'%s\'</string>
-  <string name="SearchToolbar_search">Buscar</string>
-  <string name="UnauthorizedReminder_device_no_longer_registered">El dispositivo ya no está registrado</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Probablemente esto es a causa de que registró en Signal su número de teléfono con un dispositivo distinto. Pulse para volver a registrar.</string>
-  <string name="OutdatedBuildReminder_no_web_browser_installed">¡No hay navegador web instalado!</string>
-  <string name="ContactsCursorLoader_recent_chats">Chats recientes</string>
-  <string name="ContactsCursorLoader_contacts">Contactos</string>
-  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Barrido hacia arriba para responder</string>
-  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Barrido hacia abajo para rechazar</string>
+  <string name="ConversationListFragment_loading">Cargando...</string>
+  <string name="CallNotificationBuilder_connecting">Conectando...</string>
   <!--EOF-->
 </resources>

@@ -67,6 +67,7 @@
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s-en segurtasun zenbakia aldatu egin da. Honek norbait zure komunikazioa eragozten saiatzen ari dela edo %2$s-k Signal aplikazioa berrinstalatu duela adierazi dezake.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Agian zure segurasun zenbakia kontatu honekin baieztatu nahi duzu.</string>
   <string name="ConfirmIdentityDialog_accept">Onartu</string>
+  <!--ContactsCursorLoader-->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mezu %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal Dei %s</string>
@@ -496,6 +497,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS mezua zifratua esistitzen ez den saio baterako</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Desaktibatu jakinarazpenak</string>
+  <!--OutdatedBuildReminder-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Inportaketa indarrean</string>
   <string name="ApplicationMigrationService_importing_text_messages">Testu mezuak inportatzen</string>
@@ -530,11 +532,15 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="QuickResponseService_problem_sending_message">Arazoa mezua bidaltzen!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Direktorioa ireki</string>
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">Bilatu</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mezu berria</string>
+  <!--UnauthorizedReminder-->
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Bideoa ikusterakoan huts egin du</string>
+  <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">%1$serabiltzailearekin duzun solasaldirako segurtasun zenbakia aldatu da. Agian norbait zure komunikazioa atzematen saiatzen ari da edo %2$s erabiltzaileak Signal berrinstalatu du.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Agian zure segurasun zenbakia kontatu honekin baieztatu nahi duzu.</string>
@@ -572,6 +578,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Blokeatutako kontaturik ez...</string>
   <!--contact_selection_recent_activity-->
+  <!--contact_selection_list_fragment-->
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal mezua</string>
@@ -735,6 +742,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="verify_display_fragment__verified">Egiaztatua</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Segurtasun zenbakia partekatu</string>
+  <!--webrtc_answer_decline_button-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Arazo batzuk daude.</string>
   <string name="message_details_header__sent">Bidalita</string>
@@ -987,6 +995,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="trimmer__old_messages_successfully_deleted">Mezu zaharrak ondo ezabatu dira</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Garraio ikonoa</string>
-  <string name="SearchToolbar_search">Bilatu</string>
+  <string name="ConversationListFragment_loading">Kargatzen...</string>
+  <string name="CallNotificationBuilder_connecting">Konektatzen...</string>
   <!--EOF-->
 </resources>

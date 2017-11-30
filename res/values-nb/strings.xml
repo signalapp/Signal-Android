@@ -70,6 +70,7 @@
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Sikkerhetsnummeret ditt med %1$s er endret. Dette kan enten bety at noen prøver å fange opp kommunikasjonen din, eller at %2$s har  installert Signal på nytt.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Du bør kontrollere sikkerhetsnumrene dine mot denne kontakten.</string>
   <string name="ConfirmIdentityDialog_accept">Godta</string>
+  <!--ContactsCursorLoader-->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Melding %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal-anrop %s</string>
@@ -517,6 +518,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-melding kryptert for ikke-eksisterende økt</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Ikke vis varsler</string>
+  <!--OutdatedBuildReminder-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importering pågår</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importerer tekstmeldinger</string>
@@ -551,11 +553,15 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="QuickResponseService_problem_sending_message">Det oppstod et problem under sending av melding.</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Åpne katalogen</string>
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">Søk</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ny melding</string>
+  <!--UnauthorizedReminder-->
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Feil ved avspilling av video</string>
+  <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Sikkerhetsnummeret for samtalen din med %1$s er endret. Dette kan enten bety at noen prøver å fange opp kommunikasjonen din, eller at %2$s bare gjeninstalleres Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Du ønsker kanskje å bekrefte din sikkerhets nummer med denne kontakten.</string>
@@ -593,6 +599,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Ingen blokkerte kontakter</string>
   <!--contact_selection_recent_activity-->
+  <!--contact_selection_list_fragment-->
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal melding</string>
@@ -615,6 +622,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="conversation_item_sent__send_failed_indicator_description">Sending mislyktes</string>
   <string name="conversation_item_sent__pending_approval_description">Venter på godkjenning</string>
   <string name="conversation_item_sent__delivered_description">Levert</string>
+  <string name="conversation_item_sent__message_read">Melding lest</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Kontaktfoto</string>
   <!--audio_view-->
@@ -638,6 +646,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="device_list_fragment__link_new_device">Koble til ny enhet</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">fortsett</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Nå kan du bruke lesebekreftelser</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Velg om du vil se og dele at meldinger er blitt lest</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Slå på lesebekreftelser</string>
   <!--expiration-->
   <string name="expiration_off">Av</string>
   <plurals name="expiration_seconds">
@@ -731,6 +742,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="profile_create_activity__who_can_see_this_information">Hvem kan se denne informasjonen?</string>
   <string name="profile_create_activity__your_name">Ditt navn</string>
   <!--recipient_preferences_activity-->
+  <string name="recipient_preference_activity__shared_media">Delte medier</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Demp samtale</string>
   <string name="recipient_preferences__notification_sound">Varslingslyd</string>
@@ -764,6 +776,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="verify_display_fragment__verified">Verifisert</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Del sikkerhets nummer</string>
+  <!--webrtc_answer_decline_button-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Problemer venter på manuell løsning.</string>
   <string name="message_details_header__sent">Sendt</string>
@@ -1011,6 +1024,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="media_preview__forward_title">Videresend</string>
   <string name="media_preview__all_media_title">Alle medier</string>
   <!--media_overview-->
+  <string name="media_overview_documents_fragment__no_documents_found">Ingen dokumenter</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Forhåndsvisning av medier</string>
   <!--new_conversation_activity-->
@@ -1022,12 +1036,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="trimmer__old_messages_successfully_deleted">Gamle meldinger ble slettet</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
-  <string name="conversation_item_sent__message_read">Melding lest</string>
-  <string name="media_overview_documents_fragment__no_documents_found">Ingen dokumenter</string>
-  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Nå kan du bruke lesebekreftelser</string>
-  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Velg om du vil se og dele at meldinger er blitt lest</string>
-  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Slå på lesebekreftelser</string>
-  <string name="recipient_preference_activity__shared_media">Delte medier</string>
-  <string name="SearchToolbar_search">Søk</string>
+  <string name="ConversationListFragment_loading">Laster...</string>
+  <string name="CallNotificationBuilder_connecting">Kobler til …</string>
   <!--EOF-->
 </resources>

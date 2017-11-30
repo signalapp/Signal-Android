@@ -57,6 +57,7 @@
   <string name="ClearProfileActivity_remove">நீக்கு</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_accept">ஏற்க</string>
+  <!--ContactsCursorLoader-->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">செய்தி %s</string>
   <string name="ContactsDatabase_signal_call_s"> சிக்னல் அழைப்பு %s</string>
@@ -318,6 +319,7 @@
   <string name="MmsMessageRecord_decrypting_mms_please_wait">MMS மறைவிலக்கபடுகிறது, தயவுசெய்து காத்திருக்கவும்...</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">அறிவிப்பை ஊமையா</string>
+  <!--OutdatedBuildReminder-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">இறக்குமதி முன்னேறுகிறது </string>
   <string name="ApplicationMigrationService_importing_text_messages">குறுஞ்செய்திகளை இறக்குமதி செய்யப்படுகிறது.</string>
@@ -340,10 +342,14 @@
   <!--QuickResponseService-->
   <string name="QuickResponseService_problem_sending_message">செய்தி அனுப்புவதில் பிரச்சணை!</string>
   <!--SaveAttachmentTask-->
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">தேடல்</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">சமிக்ஞை</string>
   <string name="SingleRecipientNotificationBuilder_new_message">புதிய செய்தி</string>
+  <!--UnauthorizedReminder-->
   <!--VideoPlayer-->
+  <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
@@ -365,6 +371,7 @@
   <!--ContactSelectionListFragment-->
   <!--blocked_contacts_fragment-->
   <!--contact_selection_recent_activity-->
+  <!--contact_selection_list_fragment-->
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__send">அனுப்பு</string>
@@ -446,6 +453,7 @@
   <!--unknown_sender_view-->
   <!--verify_display_fragment-->
   <!--verify_identity-->
+  <!--webrtc_answer_decline_button-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">சில பிரச்சினைகளுக்கு உங்கள் கவனம் தேவைப்படுகிறது.</string>
   <string name="message_details_header__sent">அனுப்பபட்டது</string>
@@ -611,6 +619,6 @@
   <string name="trimmer__old_messages_successfully_deleted">பழையசெய்திகள் நீக்கப்பட்டது</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">போக்குவரத்து குறும்படம்</string>
-  <string name="SearchToolbar_search">தேடல்</string>
+  <string name="CallNotificationBuilder_connecting">இணைக்கப்படுகிறது...</string>
   <!--EOF-->
 </resources>

@@ -70,6 +70,9 @@
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Числата Ви за сигурност с %1$s са променени. Това означава, че или някой се опитва да прехване комуникацията Ви, или че %2$s е преинсталирал Сигнал.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Може да желаете да проверите числата за сигурност с този контакт.</string>
   <string name="ConfirmIdentityDialog_accept">Приемам</string>
+  <!--ContactsCursorLoader-->
+  <string name="ContactsCursorLoader_recent_chats">Последни чатове</string>
+  <string name="ContactsCursorLoader_contacts">Контакти</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Съобщение %s</string>
   <string name="ContactsDatabase_signal_call_s">Сигналс обаждане %s</string>
@@ -162,6 +165,7 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Нямате инсталиран браузър.</string>
   <!--ConversationListFragment-->
+  <string name="ConversationListFragment_no_results_found_for_s_">Не са открити резултати за \'1%s\'</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Изтриване на избрания разговор?</item>
     <item quantity="other">Изтриване на избраните разговори?</item>
@@ -518,6 +522,8 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS съобщението е криптирано за несъществуваща сесия</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Тих режим за известия</string>
+  <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_no_web_browser_installed">Няма инсталиран браузър!</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Извършва се внасяне</string>
   <string name="ApplicationMigrationService_importing_text_messages">Внасяне на текстови съобщения</string>
@@ -552,11 +558,17 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="QuickResponseService_problem_sending_message">Проблем при изпрашане на съобщение!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Отваряне на папка</string>
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">Търсене</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Сигнал</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ново съобщение</string>
+  <!--UnauthorizedReminder-->
+  <string name="UnauthorizedReminder_device_no_longer_registered">Устройството вече не е регистрирано.</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Това е вероятно, защото сте регистрирали номерът си със Сигнал на друго устройство. Натиснете, за да го дерегистрирате.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Грешка при пускане на видео</string>
+  <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Числата за сигурност за разговора с %1$s са променени. Това означава, че или някой се опитва да прехване куминикацията Ви, или че %2$s е преинсталирал Сигнал.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Може да желаете да проверите числата за сигурност с този контакт.</string>
@@ -594,6 +606,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Няма блокирани контакти</string>
   <!--contact_selection_recent_activity-->
+  <!--contact_selection_list_fragment-->
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Сигнал-ско съобщение</string>
@@ -616,6 +629,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="conversation_item_sent__send_failed_indicator_description">Неуспешно Изпращане</string>
   <string name="conversation_item_sent__pending_approval_description">Очаква Потвърждение</string>
   <string name="conversation_item_sent__delivered_description">Доставено</string>
+  <string name="conversation_item_sent__message_read">Съобщението е прочетено</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Снимка на контакта</string>
   <!--audio_view-->
@@ -639,6 +653,9 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="device_list_fragment__link_new_device">Свържи ново устройство</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">продължи</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Потвърждения за прочитане са вече тук</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">По желание вижте и споделете, когато съобщенията са прочетени</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Активиране на потвърждения за прочитане</string>
   <!--expiration-->
   <string name="expiration_off">Деактивирано</string>
   <plurals name="expiration_seconds">
@@ -732,6 +749,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="profile_create_activity__who_can_see_this_information">Кой може да види тази информация?</string>
   <string name="profile_create_activity__your_name">Вашето име</string>
   <!--recipient_preferences_activity-->
+  <string name="recipient_preference_activity__shared_media">Споделена медия</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Слагане на чата в тих режим</string>
   <string name="recipient_preferences__notification_sound">Мелодия за известия</string>
@@ -748,6 +766,8 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <!--registration_activity-->
   <string name="registration_activity__phone_number">ТЕЛЕФОНЕН НОМЕР</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Сигнал улеснява комуникирането като използва вече съществущ телефонен номер и адресна книга. Прителите и контакти, които вече знаят как да се свържат по телефона ще могат да се свържат лесно и през Сигнал.\n\nРегистрацията изпраща информация за контактите до сървъра. Тази информация не се пази.</string>
+  <string name="registration_activity__verify_your_number">Потвърдете числата си</string>
+  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Моля, въведете мобилния си номер, за да получите код за потвърждение. Стандартните такси на мобилния Ви оператор ще бъдат приложени.</string>
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->
@@ -765,6 +785,9 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="verify_display_fragment__verified">Потвърдено</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Споделяне на числа за сигурност</string>
+  <!--webrtc_answer_decline_button-->
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Приплъзнете нагоре, за да отговорите</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Приплъзнете надолу, за да отговорите</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Няколко проблема изискват вашето внимание.</string>
   <string name="message_details_header__sent">Изпратен</string>
@@ -952,8 +975,10 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Изображение на контакта</string>
   <string name="conversation_list_item_view__archived">Архивиран</string>
+  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Прааазна кутия</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Нов разговор</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Хайде да добавим нещо в пощенската кутия. Започнете като изпратите съобщение на приятел.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Започване на нова сигурна сесия</string>
   <!--conversation_muted-->
@@ -1011,6 +1036,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="media_preview__forward_title">Препращане</string>
   <string name="media_preview__all_media_title">Всички прикачени файлове</string>
   <!--media_overview-->
+  <string name="media_overview_documents_fragment__no_documents_found">Няма документи</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Преглед на медията</string>
   <!--new_conversation_activity-->
@@ -1022,25 +1048,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="trimmer__old_messages_successfully_deleted">Старите съобщения бяха успешно изтрити</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Икона за транспорт</string>
-  <string name="conversation_item_sent__message_read">Съобщението е прочетено</string>
-  <string name="media_overview_documents_fragment__no_documents_found">Няма документи</string>
-  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Потвърждения за прочитане са вече тук</string>
-  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">По желание вижте и споделете, когато съобщенията са прочетени</string>
-  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Активиране на потвърждения за прочитане</string>
-  <string name="recipient_preference_activity__shared_media">Споделена медия</string>
-  <string name="registration_activity__verify_your_number">Потвърдете числата си</string>
-  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Моля, въведете мобилния си номер, за да получите код за потвърждение. Стандартните такси на мобилния Ви оператор ще бъдат приложени.</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Хайде да добавим нещо в пощенската кутия. Започнете като изпратите съобщение на приятел.</string>
-  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Прааазна кутия</string>
-  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Нема. Нищо. Нула. Наваксахте!</string>
-  <string name="ConversationListFragment_no_results_found_for_s_">Не са открити резултати за \'1%s\'</string>
-  <string name="SearchToolbar_search">Търсене</string>
-  <string name="UnauthorizedReminder_device_no_longer_registered">Устройството вече не е регистрирано.</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Това е вероятно, защото сте регистрирали номерът си със Сигнал на друго устройство. Натиснете, за да го дерегистрирате.</string>
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Няма инсталиран браузър!</string>
-  <string name="ContactsCursorLoader_recent_chats">Последни чатове</string>
-  <string name="ContactsCursorLoader_contacts">Контакти</string>
-  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Приплъзнете нагоре, за да отговорите</string>
-  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Приплъзнете надолу, за да отговорите</string>
+  <string name="ConversationListFragment_loading">Зареждане...</string>
+  <string name="CallNotificationBuilder_connecting">Свързване...</string>
   <!--EOF-->
 </resources>

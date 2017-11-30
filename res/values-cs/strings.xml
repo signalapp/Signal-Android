@@ -73,6 +73,9 @@
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Vaše bezpečnostní kódy pro %1$s se změnily. To může znamenat, že se někdo pokouší zachytit vaši konverzaci, nebo jen že si %2$s přeinstaloval Signal a má teď nový identifikační klíč.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Možná budete chtít zkontrolovat vaše bezpečnostní kódy pro tento kontakt.</string>
   <string name="ConfirmIdentityDialog_accept">Přijmout</string>
+  <!--ContactsCursorLoader-->
+  <string name="ContactsCursorLoader_recent_chats">Nedávné konverzace</string>
+  <string name="ContactsCursorLoader_contacts">Kontakty</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Zpráva %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal volání %s</string>
@@ -173,6 +176,7 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nemáte na vašem zařízení nainstalován žádný prohlížeč.</string>
   <!--ConversationListFragment-->
+  <string name="ConversationListFragment_no_results_found_for_s_">Pro \'%s\' nebylo nic nalezeno</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Smazat vybranou konverzaci?</item>
     <item quantity="few">Smazat vybrané konverzace?</item>
@@ -528,6 +532,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS zpráva byla zašifrována pro neexistující konverzaci</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Ztišit upozornění</string>
+  <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_no_web_browser_installed">Není nainstalován webový prohlížeč!</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Probíhá import</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importuji textové zprávy</string>
@@ -562,11 +568,17 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="QuickResponseService_problem_sending_message">Problém při odesílání zprávy!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Otevřít adresář</string>
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">Hledat</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nová zpráva</string>
+  <!--UnauthorizedReminder-->
+  <string name="UnauthorizedReminder_device_no_longer_registered">Zařízení již není reigstrováno</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">To je proto, že jste registrovali vaše telefonní číslo u Signálu z jiného zařízení. Klepněte pro přeregistraci.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Chyba při přehrávání videa</string>
+  <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Bezpečnostní kódy pro konverzaci s %1$s se změnily. To může znamenat, že se někdo pokouší zachytit vaši konverzaci, nebo že %2$s si jednoduše jen přeinstaloval Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Možná budete chtít zkontrolovat vaše bezpečnostní kódy pro tento kontakt.</string>
@@ -604,6 +616,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nezablokované kontakty</string>
   <!--contact_selection_recent_activity-->
+  <!--contact_selection_list_fragment-->
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Zpráva Signal</string>
@@ -626,6 +639,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="conversation_item_sent__send_failed_indicator_description">Odeslání selhalo</string>
   <string name="conversation_item_sent__pending_approval_description">Čeká na schválení</string>
   <string name="conversation_item_sent__delivered_description">Doručeno</string>
+  <string name="conversation_item_sent__message_read">Zpráva přečtena</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Fotografie kontaktu</string>
   <!--audio_view-->
@@ -649,6 +663,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="device_list_fragment__link_new_device">Provázat nové zařízení</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">pokračovat</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Info o přečtení jsou zde</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Můžete zobrazit a sdílet informaci, že byly zprávy přečteny</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Povolit info o přečtení</string>
   <!--expiration-->
   <string name="expiration_off">Vyp.</string>
   <plurals name="expiration_seconds">
@@ -749,6 +766,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="profile_create_activity__who_can_see_this_information">Kdo může vidět tuto informaci?</string>
   <string name="profile_create_activity__your_name">Vaše jméno</string>
   <!--recipient_preferences_activity-->
+  <string name="recipient_preference_activity__shared_media">Sdílená media</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Ztišit konverzaci</string>
   <string name="recipient_preferences__notification_sound">Zvuk upozornění</string>
@@ -765,6 +783,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">Telefonní číslo</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal umožňuje snadnou komunikaci použitím vašeho telefonního čísla a kontaktů. Přátelé a ostatní, kteří vědí, jak vás kontaktovat prostřednictvím telefonu, Vás budou moci snadno kontaktovat i pomocí aplikace Signal.\n\nRegistrace odesílá některé kontaktní údaje na server, kde ale nejsou uloženy.</string>
+  <string name="registration_activity__verify_your_number">Zkontrolujte vaše číslo</string>
+  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Zadejte své mobilní číslo a obdržíte ověřovací kód. Může být zpoplatněno.</string>
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->
@@ -782,6 +802,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="verify_display_fragment__verified">Ověřeno</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Sdílet bezpečnostní kód</string>
+  <!--webrtc_answer_decline_button-->
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Pro odpověď přejeďte prstem nahoru</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Pro odmítnutí přejeďte prstem dolů</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Některé problémy vyžadují vaši pozornost</string>
   <string name="message_details_header__sent">Odesláno</string>
@@ -970,8 +993,10 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Fotografie kontaktu</string>
   <string name="conversation_list_item_view__archived">Archivováno</string>
+  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Schránka prázdná</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nová konverzace</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Přidejte něco do schránky. Začněte psát přítelům.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Resetovat zabezpečenou konverzaci</string>
   <!--conversation_muted-->
@@ -1030,6 +1055,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="media_preview__forward_title">Přeposlat</string>
   <string name="media_preview__all_media_title">Všechna media</string>
   <!--media_overview-->
+  <string name="media_overview_documents_fragment__no_documents_found">Žádné dokumenty</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Náhled multimedií</string>
   <!--new_conversation_activity-->
@@ -1041,25 +1067,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="trimmer__old_messages_successfully_deleted">Staré zprávy byly úspěšně smazány.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona přenosu</string>
-  <string name="conversation_item_sent__message_read">Zpráva přečtena</string>
-  <string name="media_overview_documents_fragment__no_documents_found">Žádné dokumenty</string>
-  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Info o přečtení jsou zde</string>
-  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Můžete zobrazit a sdílet informaci, že byly zprávy přečteny</string>
-  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Povolit info o přečtení</string>
-  <string name="recipient_preference_activity__shared_media">Sdílená media</string>
-  <string name="registration_activity__verify_your_number">Zkontrolujte vaše číslo</string>
-  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Zadejte své mobilní číslo a obdržíte ověřovací kód. Může být zpoplatněno.</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Přidejte něco do schránky. Začněte psát přítelům.</string>
-  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Schránka prázdná</string>
-  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Všichni jste chyceni.</string>
-  <string name="ConversationListFragment_no_results_found_for_s_">Pro \'%s\' nebylo nic nalezeno</string>
-  <string name="SearchToolbar_search">Hledat</string>
-  <string name="UnauthorizedReminder_device_no_longer_registered">Zařízení již není reigstrováno</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">To je proto, že jste registrovali vaše telefonní číslo u Signálu z jiného zařízení. Klepněte pro přeregistraci.</string>
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Není nainstalován webový prohlížeč!</string>
-  <string name="ContactsCursorLoader_recent_chats">Nedávné konverzace</string>
-  <string name="ContactsCursorLoader_contacts">Kontakty</string>
-  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Pro odpověď přejeďte prstem nahoru</string>
-  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Pro odmítnutí přejeďte prstem dolů</string>
+  <string name="ConversationListFragment_loading">Načítám...</string>
+  <string name="CallNotificationBuilder_connecting">Probíhá připojování...</string>
   <!--EOF-->
 </resources>

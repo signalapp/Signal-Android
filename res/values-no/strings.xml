@@ -65,6 +65,7 @@ Om du vil benytte Signal for meldinger og anrop igjen i fremtiden må du registr
   <string name="ClearProfileActivity_remove">Slett</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_accept">Godta</string>
+  <!--ContactsCursorLoader-->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Melding %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal anrop %s</string>
@@ -408,6 +409,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Dekrypterer MMS, vennligst vent...</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Slå av varslingslyd</string>
+  <!--OutdatedBuildReminder-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Import pågår</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importerer tekstmeldinger</string>
@@ -437,10 +439,14 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Rask tilbakemelding ikke tilgjengelig når Signal er låst!</string>
   <string name="QuickResponseService_problem_sending_message">Kunne ikke sende melding!</string>
   <!--SaveAttachmentTask-->
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">Søk</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ny melding</string>
+  <!--UnauthorizedReminder-->
   <!--VideoPlayer-->
+  <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
@@ -462,6 +468,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <!--ContactSelectionListFragment-->
   <!--blocked_contacts_fragment-->
   <!--contact_selection_recent_activity-->
+  <!--contact_selection_list_fragment-->
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__from_sim_name">Fra %1$s</string>
@@ -588,6 +595,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__tap_to_scan">Klikk for å skanne</string>
   <!--verify_identity-->
+  <!--webrtc_answer_decline_button-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Noen problemer krever din oppmerksomhet.</string>
   <string name="message_details_header__sent">Sendt</string>
@@ -812,6 +820,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="trimmer__old_messages_successfully_deleted">Sletting av gamle meldinger vellykket</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportikon</string>
-  <string name="SearchToolbar_search">Søk</string>
+  <string name="CallNotificationBuilder_connecting">Kobler til...</string>
   <!--EOF-->
 </resources>

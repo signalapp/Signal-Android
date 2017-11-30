@@ -72,6 +72,9 @@
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Érdemes lenne ellenőrizned a biztonsági számodat ezzel a kontakttal.
     </string>
   <string name="ConfirmIdentityDialog_accept">Elfogad</string>
+  <!--ContactsCursorLoader-->
+  <string name="ContactsCursorLoader_recent_chats">Legutóbbi csevegések</string>
+  <string name="ContactsCursorLoader_contacts">Kontaktok</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Üzenet %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal hívás %s</string>
@@ -164,6 +167,7 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nincs böngésző telepítve a készülékedre.</string>
   <!--ConversationListFragment-->
+  <string name="ConversationListFragment_no_results_found_for_s_">Nincs találat a következőre \'%s\'</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Kiválasztott beszélgetés törlése?</item>
     <item quantity="other">Kiválasztott beszélgetések törlése?</item>
@@ -526,6 +530,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS üzenet titkosítva nem létező munkamenethez</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Értesítések némítása</string>
+  <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_no_web_browser_installed">Nincs telepítve webböngésző!</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importálás folyamatban</string>
   <string name="ApplicationMigrationService_importing_text_messages">Szöveges üzenetek importálása</string>
@@ -560,11 +566,17 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="QuickResponseService_problem_sending_message">Probléma az üzenetküldéskor!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Könyvtár megnyitása</string>
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">Keresés</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Új üzenet</string>
+  <!--UnauthorizedReminder-->
+  <string name="UnauthorizedReminder_device_no_longer_registered">A készülék továbbra nem regisztrált</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Ez valószínűleg azért van, mert regisztráltad a telefonszámod Signal-lal egy másik készüléken. Érints az újraregisztráláshoz.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Hiba a videó lejátszásakor</string>
+  <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">A biztonsági számod megváltozott vele folytatott beszélgetésedhez: %1$s. Ez jelentheti azt, hogy valaki megpróbálja lehallgatni a kommunikációdat, vagy azt, hogy %2$s egyszerűen újratelepítette a Signal-t.
     </string>
@@ -604,6 +616,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nincs blokkolt kontakt</string>
   <!--contact_selection_recent_activity-->
+  <!--contact_selection_list_fragment-->
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal üzenet</string>
@@ -626,6 +639,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="conversation_item_sent__send_failed_indicator_description">Küldés sikertelen</string>
   <string name="conversation_item_sent__pending_approval_description">Jóváhagyás függőben</string>
   <string name="conversation_item_sent__delivered_description">Kézbesítve</string>
+  <string name="conversation_item_sent__message_read">Üzenet elolvasva</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Kontakt fotó</string>
   <!--audio_view-->
@@ -649,6 +663,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="device_list_fragment__link_new_device">Új készülék társítása</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">folytatás</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Az olvasási nyugták itt vannak</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Opcionálisan megnézheted és megoszthatod, ha az üzenetek el vannak olvasva</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Olvasási nyugták engedélyezése</string>
   <!--expiration-->
   <string name="expiration_off">Ki</string>
   <plurals name="expiration_seconds">
@@ -742,6 +759,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="profile_create_activity__who_can_see_this_information">Ki láthatja ezt az információt?</string>
   <string name="profile_create_activity__your_name">Neved</string>
   <!--recipient_preferences_activity-->
+  <string name="recipient_preference_activity__shared_media">Megosztott média</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Beszélgetés némítása</string>
   <string name="recipient_preferences__notification_sound">Értesítési hang</string>
@@ -758,6 +776,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONSZÁM</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">A Signal megkönnyíti hogy kommunikálj, felhasználva a létező telefonszámod és címjegyzéked. A barátok és kontaktok, akik már tudják hogy lépjenek kapcsolatba veled telefonnal, könnyen képesek lesznek felvenni veled a kapcsolatot Signal-lal.\n\nA regisztráció továbbít néhány kontakt információt a kiszolgálónak. Ez nincs tárolva.</string>
+  <string name="registration_activity__verify_your_number">Ellenőrizd a számod</string>
+  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Kérlek add meg a mobilszámod, hogy ellenőrző kódot kapj. Szolgáltatói költségek felmerülhetnek.</string>
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->
@@ -775,6 +795,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="verify_display_fragment__verified">Ellenőrzött</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Biztonsági szám megosztása</string>
+  <!--webrtc_answer_decline_button-->
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Csúsztasd fel a válaszhoz</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Csúsztasd le az elutasításhoz</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Néhány probléma a figyelmedet igényli.</string>
   <string name="message_details_header__sent">Elküldve</string>
@@ -962,8 +985,10 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontakt fotó kép</string>
   <string name="conversation_list_item_view__archived">Archivált</string>
+  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Bejövő nuuulllla</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Új beszélgetés</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Adj a bejövődnek valamit, hogy szóljon valamiről. Kezdd a barátodnak üzenéssel.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Biztonságos munkamenet alaphelyzetbe állítása</string>
   <!--conversation_muted-->
@@ -1021,6 +1046,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="media_preview__forward_title">Továbbítás</string>
   <string name="media_preview__all_media_title">Összes média</string>
   <!--media_overview-->
+  <string name="media_overview_documents_fragment__no_documents_found">Nincs dokumentum</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Média előnézet</string>
   <!--new_conversation_activity-->
@@ -1032,25 +1058,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="trimmer__old_messages_successfully_deleted">A régi üzenetek sikeresen törlődtek</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Átvitel ikon</string>
-  <string name="conversation_item_sent__message_read">Üzenet elolvasva</string>
-  <string name="media_overview_documents_fragment__no_documents_found">Nincs dokumentum</string>
-  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Az olvasási nyugták itt vannak</string>
-  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Opcionálisan megnézheted és megoszthatod, ha az üzenetek el vannak olvasva</string>
-  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Olvasási nyugták engedélyezése</string>
-  <string name="recipient_preference_activity__shared_media">Megosztott média</string>
-  <string name="registration_activity__verify_your_number">Ellenőrizd a számod</string>
-  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Kérlek add meg a mobilszámod, hogy ellenőrző kódot kapj. Szolgáltatói költségek felmerülhetnek.</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Adj a bejövődnek valamit, hogy szóljon valamiről. Kezdd a barátodnak üzenéssel.</string>
-  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Bejövő nuuulllla</string>
-  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Zéró. Nulla. Semmi. Mind megvagytok!</string>
-  <string name="ConversationListFragment_no_results_found_for_s_">Nincs találat a következőre \'%s\'</string>
-  <string name="SearchToolbar_search">Keresés</string>
-  <string name="UnauthorizedReminder_device_no_longer_registered">A készülék továbbra nem regisztrált</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Ez valószínűleg azért van, mert regisztráltad a telefonszámod Signal-lal egy másik készüléken. Érints az újraregisztráláshoz.</string>
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Nincs telepítve webböngésző!</string>
-  <string name="ContactsCursorLoader_recent_chats">Legutóbbi csevegések</string>
-  <string name="ContactsCursorLoader_contacts">Kontaktok</string>
-  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Csúsztasd fel a válaszhoz</string>
-  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Csúsztasd le az elutasításhoz</string>
+  <string name="ConversationListFragment_loading">Betöltés</string>
+  <string name="CallNotificationBuilder_connecting">Kapcsolódás...</string>
   <!--EOF-->
 </resources>

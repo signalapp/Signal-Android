@@ -70,6 +70,9 @@
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Ditt säkerhetsnummer med %1$s har ändrats. Detta kan antingen betyda att någon försöker avlyssna er kommunikation, eller att %2$s helt enkelt ominstallerat Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Du kan vilja verifiera ditt säkerhetsnummer med denna kontakt.</string>
   <string name="ConfirmIdentityDialog_accept">Acceptera</string>
+  <!--ContactsCursorLoader-->
+  <string name="ContactsCursorLoader_recent_chats">Nyligen använda chatter</string>
+  <string name="ContactsCursorLoader_contacts">Kontakter</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Meddelande %s</string>
   <string name="ContactsDatabase_signal_call_s">Signalsamtal %s</string>
@@ -162,6 +165,7 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Det finns ingen webbläsare installerad på din enhet.</string>
   <!--ConversationListFragment-->
+  <string name="ConversationListFragment_no_results_found_for_s_">Inga resultat hittades för \'%s\'</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Radera markerad konversation?</item>
     <item quantity="other">Radera markerade konversationer?</item>
@@ -514,6 +518,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-meddelande krypteras för icke-existerande session</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Tysta ner aviseringar</string>
+  <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_no_web_browser_installed">Ingen webbläsare installerad!</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Import pågår</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importerar SMS</string>
@@ -548,11 +554,17 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="QuickResponseService_problem_sending_message">Problem med att skicka meddelandet!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Öppna mapp</string>
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">Sök</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nytt meddelande</string>
+  <!--UnauthorizedReminder-->
+  <string name="UnauthorizedReminder_device_no_longer_registered">Enhet inte längre registreread</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Detta är troligen på grund av att du registrerade ditt mobilnummer med Signal på en annan enhet. Tryck för att registrera om dig.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Fel vid videouppspelning</string>
+  <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Säkerhetsnumret för din konversation med %1$s har ändrats. Detta kan antingen betyda att någon försöker avlyssna er kommunikation, eller att %2$s helt enkelt har installerat om Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Du kan vilja verifiera ditt säkerhetsnummer med denna kontakt.</string>
@@ -590,6 +602,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Inga blockerade kontakter</string>
   <!--contact_selection_recent_activity-->
+  <!--contact_selection_list_fragment-->
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signalmeddelande</string>
@@ -612,6 +625,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="conversation_item_sent__send_failed_indicator_description">Sändningen misslyckades</string>
   <string name="conversation_item_sent__pending_approval_description">Avvaktar godkännande</string>
   <string name="conversation_item_sent__delivered_description">Levererat</string>
+  <string name="conversation_item_sent__message_read">Meddelande läst</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Kontaktfoto</string>
   <!--audio_view-->
@@ -635,6 +649,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="device_list_fragment__link_new_device">Länka ny enhet</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">fortsätt</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Lässkvittenser är här</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Om du vill kan du se och dela när ett meddelande har lästs</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Slå på läskvittenser</string>
   <!--expiration-->
   <string name="expiration_off">Av</string>
   <plurals name="expiration_seconds">
@@ -728,6 +745,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="profile_create_activity__who_can_see_this_information">Vem kan se denna information?</string>
   <string name="profile_create_activity__your_name">Ditt namn</string>
   <!--recipient_preferences_activity-->
+  <string name="recipient_preference_activity__shared_media">Delad media</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Tysta konversation</string>
   <string name="recipient_preferences__notification_sound">Aviseringsljud</string>
@@ -744,6 +762,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONNUMMER</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal gör det lätt att kommunicera genom att använda ditt mobilnummer och din kontaktbok. Vänner och kontakter som redan har ditt nummer kommer lätt kunna kontakta dig med Signal.\n\nRegistreringen skickar viss kontaktinformation till servern. Informationen lagras ej.</string>
+  <string name="registration_activity__verify_your_number">Verifiera ditt nummer</string>
+  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Vänligen skriv in ditt mobilnummer för att få en verifieringskod.</string>
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->
@@ -761,6 +781,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="verify_display_fragment__verified">Verifierad</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Dela säkerhetsnummer</string>
+  <!--webrtc_answer_decline_button-->
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Dra upp för att svara</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Dra ner för att avvisa</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Vissa frågor behöver din uppmärksamhet.</string>
   <string name="message_details_header__sent">Skickat</string>
@@ -948,8 +971,10 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontaktfoto</string>
   <string name="conversation_list_item_view__archived">Arkiverad</string>
+  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Inbox noooll</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Ny konversation</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Ge din inkorg något att visa upp. Kom igång genom att skriva till en vän.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Starta om säker session</string>
   <!--conversation_muted-->
@@ -1007,6 +1032,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="media_preview__forward_title">Vidarebefordra</string>
   <string name="media_preview__all_media_title">All media</string>
   <!--media_overview-->
+  <string name="media_overview_documents_fragment__no_documents_found">Inga dokument</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Mediaförhandsgranskning</string>
   <!--new_conversation_activity-->
@@ -1018,25 +1044,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="trimmer__old_messages_successfully_deleted">Gamla meddelanden har raderats</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportikon</string>
-  <string name="conversation_item_sent__message_read">Meddelande läst</string>
-  <string name="media_overview_documents_fragment__no_documents_found">Inga dokument</string>
-  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Lässkvittenser är här</string>
-  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Om du vill kan du se och dela när ett meddelande har lästs</string>
-  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Slå på läskvittenser</string>
-  <string name="recipient_preference_activity__shared_media">Delad media</string>
-  <string name="registration_activity__verify_your_number">Verifiera ditt nummer</string>
-  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Vänligen skriv in ditt mobilnummer för att få en verifieringskod.</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Ge din inkorg något att visa upp. Kom igång genom att skriva till en vän.</string>
-  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Inbox noooll</string>
-  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Tomt. Slut. Öde. Du har inga meddelanden!</string>
-  <string name="ConversationListFragment_no_results_found_for_s_">Inga resultat hittades för \'%s\'</string>
-  <string name="SearchToolbar_search">Sök</string>
-  <string name="UnauthorizedReminder_device_no_longer_registered">Enhet inte längre registreread</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Detta är troligen på grund av att du registrerade ditt mobilnummer med Signal på en annan enhet. Tryck för att registrera om dig.</string>
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Ingen webbläsare installerad!</string>
-  <string name="ContactsCursorLoader_recent_chats">Nyligen använda chatter</string>
-  <string name="ContactsCursorLoader_contacts">Kontakter</string>
-  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Dra upp för att svara</string>
-  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Dra ner för att avvisa</string>
+  <string name="ConversationListFragment_loading">Laddar...</string>
+  <string name="CallNotificationBuilder_connecting">Ansluter...</string>
   <!--EOF-->
 </resources>

@@ -62,6 +62,7 @@
   <string name="ClearProfileActivity_remove">삭제</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_accept">수락</string>
+  <!--ContactsCursorLoader-->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">%s에 메시지 보내기</string>
   <string name="ContactsDatabase_signal_call_s">%s에 Signal 통화</string>
@@ -391,6 +392,7 @@
   <string name="MmsMessageRecord_decrypting_mms_please_wait">MMS 메시지를 복호화하는 중입니다. 잠시 기다려 주세요…</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">대화 알림 끄기</string>
+  <!--OutdatedBuildReminder-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">가져오는 중입니다.</string>
   <string name="ApplicationMigrationService_importing_text_messages">메시지 가져오기</string>
@@ -420,10 +422,14 @@
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal 잠겨 있는 경우 빠른 응답 사용할 수 없음</string>
   <string name="QuickResponseService_problem_sending_message">메시지 보내지 못함</string>
   <!--SaveAttachmentTask-->
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">검색</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">새 메시지</string>
+  <!--UnauthorizedReminder-->
   <!--VideoPlayer-->
+  <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
@@ -452,6 +458,7 @@
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">차단된 연락처가 없습니다.</string>
   <!--contact_selection_recent_activity-->
+  <!--contact_selection_list_fragment-->
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__from_sim_name">%1$s(으)로</string>
@@ -575,6 +582,7 @@
   <!--unknown_sender_view-->
   <!--verify_display_fragment-->
   <!--verify_identity-->
+  <!--webrtc_answer_decline_button-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">문제가 발생하여 확인이 필요합니다.</string>
   <string name="message_details_header__sent">보낸 시간:</string>
@@ -796,6 +804,6 @@
   <string name="trimmer__old_messages_successfully_deleted">이전 메시지 삭제됨</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">전송 아이콘</string>
-  <string name="SearchToolbar_search">검색</string>
+  <string name="CallNotificationBuilder_connecting">연결 중…</string>
   <!--EOF-->
 </resources>

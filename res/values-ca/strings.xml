@@ -70,6 +70,9 @@
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">El número de seguretat amb %1$s ha canviat. Això pot significar o bé que algú està provant d\'interceptar la comunicació, o bé que %2$s ha reinstal·lat el Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Potser voleu verificar el número de seguretat amb aquest contacte.</string>
   <string name="ConfirmIdentityDialog_accept">Accepta</string>
+  <!--ContactsCursorLoader-->
+  <string name="ContactsCursorLoader_recent_chats">Xats recents</string>
+  <string name="ContactsCursorLoader_contacts">Contactes</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Missatge %s</string>
   <string name="ContactsDatabase_signal_call_s">Trucada del Signal %s</string>
@@ -162,6 +165,7 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">No hi ha cap navegador instal·lat al dispositiu.</string>
   <!--ConversationListFragment-->
+  <string name="ConversationListFragment_no_results_found_for_s_">No s\'ha trobat cap resultat per a «%s»</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Voleu eliminar la conversa seleccionada?</item>
     <item quantity="other">Voleu eliminar les converses seleccionades?</item>
@@ -515,6 +519,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Missatge MMS xifrat per a una sessió que no existeix</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Silencia les notificacions</string>
+  <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_no_web_browser_installed">No teniu cap navegador web instal·lat!</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importació en curs</string>
   <string name="ApplicationMigrationService_importing_text_messages">S\'estan important els missatges de text</string>
@@ -549,11 +555,17 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="QuickResponseService_problem_sending_message">S\'ha produït un problema en enviar el missatge!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Obre el directori</string>
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">Cerca</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Missatge nou</string>
+  <!--UnauthorizedReminder-->
+  <string name="UnauthorizedReminder_device_no_longer_registered">L\'aparell ja no està registrat</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Possiblement això és perquè vau registrar el vostre número de telèfon al Signal en una aparell diferent. Feu un toc per a tornar a registrar-lo.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">S\'ha produït un error en reproduir el vídeo</string>
+  <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">El número de seguretat de la conversa amb %1$s ha canviat. Això pot significar o bé que algú està provant d\'interceptar la comunicació, o bé que %2$s ha reinstal·lat el Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Potser voleu verificar el número de seguretat amb aquest contacte.</string>
@@ -591,6 +603,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">No hi ha cap contacte blocat</string>
   <!--contact_selection_recent_activity-->
+  <!--contact_selection_list_fragment-->
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Missatge de Signal</string>
@@ -613,6 +626,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="conversation_item_sent__send_failed_indicator_description">Ha fallat l\'enviament</string>
   <string name="conversation_item_sent__pending_approval_description">Pendent de validació</string>
   <string name="conversation_item_sent__delivered_description">Entregat</string>
+  <string name="conversation_item_sent__message_read">Missatge llegit</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Foto del contacte</string>
   <!--audio_view-->
@@ -636,6 +650,9 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="device_list_fragment__link_new_device">Enllaça un dispositiu nou</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">continua</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Aquí hi ha les confirmacions de lectura</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Opcionalment vegeu i compartiu quan s\'han llegit els missatges</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Inhabilita les confirmacions de lectura</string>
   <!--expiration-->
   <string name="expiration_off">Inactiu</string>
   <plurals name="expiration_seconds">
@@ -729,6 +746,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="profile_create_activity__who_can_see_this_information">Qui pot veure aquesta informació?</string>
   <string name="profile_create_activity__your_name">El nom</string>
   <!--recipient_preferences_activity-->
+  <string name="recipient_preference_activity__shared_media">Contingut compartit</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Silencia la conversa</string>
   <string name="recipient_preferences__notification_sound">So de notificació</string>
@@ -745,6 +763,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NÚMERO DE TELÈFON</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">El Signal fa que comunicar-se sigui fàcil utilitzant el vostre número de telèfon i el llibre d\'adreces. Els amics i contactes que ja saben com contactar-vos pel número de telèfon us podran trobar fàcilment al Signal.\n\nEl registre tramet certa informació de contacte al servidor. No s\'emmagatzema.</string>
+  <string name="registration_activity__verify_your_number">Verifiqueu el número de telèfon</string>
+  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Introduïu el vostre número de telèfon per a rebre un codi de verificació. És possible que s\'apliquin càrrecs de la operadora.</string>
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->
@@ -762,6 +782,9 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="verify_display_fragment__verified">Verificat</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Comparteix el número de seguretat</string>
+  <!--webrtc_answer_decline_button-->
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Llisqueu amunt per a respondre</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Llisqueu avall per a rebutjar</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Certs problemes necessiten la vostra atenció.</string>
   <string name="message_details_header__sent">Enviat</string>
@@ -949,8 +972,10 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Foto del contacte</string>
   <string name="conversation_list_item_view__archived">Arxivat</string>
+  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Bústia zeeeeero</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Conversa nova</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Doneu a la safata d\'entrada quelcom per a escriure a casa. Comenceu enviant un missatge a algun amic.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Restableix la sessió segura</string>
   <!--conversation_muted-->
@@ -1008,6 +1033,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="media_preview__forward_title">Reenvia</string>
   <string name="media_preview__all_media_title">Tot el contingut</string>
   <!--media_overview-->
+  <string name="media_overview_documents_fragment__no_documents_found">Cap document</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Previsualització multimèdia</string>
   <!--new_conversation_activity-->
@@ -1019,25 +1045,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="trimmer__old_messages_successfully_deleted">S\'han eliminant correctament els missatges antics</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona de trànsit</string>
-  <string name="conversation_item_sent__message_read">Missatge llegit</string>
-  <string name="media_overview_documents_fragment__no_documents_found">Cap document</string>
-  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Aquí hi ha les confirmacions de lectura</string>
-  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Opcionalment vegeu i compartiu quan s\'han llegit els missatges</string>
-  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Inhabilita les confirmacions de lectura</string>
-  <string name="recipient_preference_activity__shared_media">Contingut compartit</string>
-  <string name="registration_activity__verify_your_number">Verifiqueu el número de telèfon</string>
-  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Introduïu el vostre número de telèfon per a rebre un codi de verificació. És possible que s\'apliquin càrrecs de la operadora.</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Doneu a la safata d\'entrada quelcom per a escriure a casa. Comenceu enviant un missatge a algun amic.</string>
-  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Bústia zeeeeero</string>
-  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Res. Nothing. Zero. He fet net!</string>
-  <string name="ConversationListFragment_no_results_found_for_s_">No s\'ha trobat cap resultat per a «%s»</string>
-  <string name="SearchToolbar_search">Cerca</string>
-  <string name="UnauthorizedReminder_device_no_longer_registered">L\'aparell ja no està registrat</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Possiblement això és perquè vau registrar el vostre número de telèfon al Signal en una aparell diferent. Feu un toc per a tornar a registrar-lo.</string>
-  <string name="OutdatedBuildReminder_no_web_browser_installed">No teniu cap navegador web instal·lat!</string>
-  <string name="ContactsCursorLoader_recent_chats">Xats recents</string>
-  <string name="ContactsCursorLoader_contacts">Contactes</string>
-  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Llisqueu amunt per a respondre</string>
-  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Llisqueu avall per a rebutjar</string>
+  <string name="ConversationListFragment_loading">S\'està carregant...</string>
+  <string name="CallNotificationBuilder_connecting">S\'està connectant...</string>
   <!--EOF-->
 </resources>

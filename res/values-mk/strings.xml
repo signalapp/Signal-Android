@@ -51,6 +51,7 @@
   <string name="ClearProfileActivity_remove">Отстрани</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_accept">Прифати</string>
+  <!--ContactsCursorLoader-->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Порака %s</string>
   <!--ConversationItem-->
@@ -265,6 +266,7 @@
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Дешифрирање на MMS пораката, ве молиме почекајте...</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Безвучни известувања</string>
+  <!--OutdatedBuildReminder-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Импортирањето е во прогрес</string>
   <string name="ApplicationMigrationService_importing_text_messages">Импортирање на текстуални пораки</string>
@@ -284,10 +286,14 @@
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <!--SaveAttachmentTask-->
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">Барај</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Нова порака</string>
+  <!--UnauthorizedReminder-->
   <!--VideoPlayer-->
+  <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
@@ -303,6 +309,7 @@
   <!--ContactSelectionListFragment-->
   <!--blocked_contacts_fragment-->
   <!--contact_selection_recent_activity-->
+  <!--contact_selection_list_fragment-->
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__send">Испрати</string>
@@ -378,6 +385,7 @@
   <!--unknown_sender_view-->
   <!--verify_display_fragment-->
   <!--verify_identity-->
+  <!--webrtc_answer_decline_button-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Некои проблеми барааат ваше внимание.</string>
   <string name="message_details_header__sent">Испратено</string>
@@ -543,6 +551,6 @@
   <string name="trimmer__old_messages_successfully_deleted">Старите пораки се успешно избришани</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Симбол за транспорт</string>
-  <string name="SearchToolbar_search">Барај</string>
+  <string name="CallNotificationBuilder_connecting">Се поврзува...</string>
   <!--EOF-->
 </resources>

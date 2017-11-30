@@ -67,6 +67,9 @@
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s 的安全代码发生了改变。这可能是因为有人正在尝试截获你们的通讯，或者 %2$s 只是重新安装了 Signal 。</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">您可能希望验证这个联系人的安全码。</string>
   <string name="ConfirmIdentityDialog_accept">接受</string>
+  <!--ContactsCursorLoader-->
+  <string name="ContactsCursorLoader_recent_chats">最近对话</string>
+  <string name="ContactsCursorLoader_contacts">联系人</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">信息 %s</string>
   <string name="ContactsDatabase_signal_call_s">暗号呼叫 %s</string>
@@ -151,6 +154,7 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">您的设备上无浏览器</string>
   <!--ConversationListFragment-->
+  <string name="ConversationListFragment_no_results_found_for_s_">没有找到关于“%s”的结果</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="other">删除已选择的会话？</item>
   </plurals>
@@ -498,6 +502,8 @@
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">已为不存在的会话加密其中的彩信</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">静音通知</string>
+  <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_no_web_browser_installed">未安装网络浏览器！</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">正在导入数据</string>
   <string name="ApplicationMigrationService_importing_text_messages">正在导入文本信息</string>
@@ -532,11 +538,17 @@
   <string name="QuickResponseService_problem_sending_message">发送信息时遇到问题！</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">打开文件目录</string>
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">搜索</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">暗号</string>
   <string name="SingleRecipientNotificationBuilder_new_message">新信息</string>
+  <!--UnauthorizedReminder-->
+  <string name="UnauthorizedReminder_device_no_longer_registered">设备已注销</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">这可能是因为您的号码在另一台设备上注册了 Signal。点击以重试。</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">播放视频时出错</string>
+  <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">%1$s 的安全码发生了改变。这可能是因为有人正在尝试截获你们的通讯，或者 %2$s 只是重新安装了 Signal 。</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">您可能希望验证这个联系人的安全代码。</string>
@@ -574,6 +586,7 @@
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">没有屏蔽的联系人</string>
   <!--contact_selection_recent_activity-->
+  <!--contact_selection_list_fragment-->
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">发送 Signal 信息</string>
@@ -596,6 +609,7 @@
   <string name="conversation_item_sent__send_failed_indicator_description">发送失败</string>
   <string name="conversation_item_sent__pending_approval_description">等待批准</string>
   <string name="conversation_item_sent__delivered_description">已送达</string>
+  <string name="conversation_item_sent__message_read">消息已读</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">联系人照片</string>
   <!--audio_view-->
@@ -619,6 +633,9 @@
   <string name="device_list_fragment__link_new_device">连接新的设备</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">继续</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">已读回执在此</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">可选查看和分享消息的已读状态。</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">启用已读回执</string>
   <!--expiration-->
   <string name="expiration_off">关</string>
   <plurals name="expiration_seconds">
@@ -705,6 +722,7 @@
   <string name="profile_create_activity__who_can_see_this_information">谁能看见这些信息？</string>
   <string name="profile_create_activity__your_name">你的名字</string>
   <!--recipient_preferences_activity-->
+  <string name="recipient_preference_activity__shared_media">分享媒体文件</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">静音会话</string>
   <string name="recipient_preferences__notification_sound">通知声音</string>
@@ -721,6 +739,8 @@
   <!--registration_activity-->
   <string name="registration_activity__phone_number">电话号码</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal 使用您的电话号码以及您手机上的联系人来更好地帮助您沟通。如此，已经了解您的联系方式的朋友及联系人将能够更轻松地使用 Signal 来与您联络。\n\n注册时联系人将会被上传到服务器，但是他们不会被保存在服务器上。</string>
+  <string name="registration_activity__verify_your_number">验证您的号码</string>
+  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">请输入您的电话号码来接收验证码。运营商可能会对此收费。</string>
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->
@@ -738,6 +758,9 @@
   <string name="verify_display_fragment__verified">已验证</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">分享安全代码</string>
+  <!--webrtc_answer_decline_button-->
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">向上滑动以接听</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">向下滑动以拒接</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">一些问题需要您的注意</string>
   <string name="message_details_header__sent">发送</string>
@@ -924,8 +947,10 @@
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">联系人照片</string>
   <string name="conversation_list_item_view__archived">存档</string>
+  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">收件箱空空如也</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">新会话</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">收件箱闲得发慌。快开始找您的朋友聊天吧。</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">重置安全会话</string>
   <!--conversation_muted-->
@@ -982,6 +1007,7 @@
   <string name="media_preview__forward_title">转发</string>
   <string name="media_preview__all_media_title">所有媒体</string>
   <!--media_overview-->
+  <string name="media_overview_documents_fragment__no_documents_found">无文档</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">媒体预览</string>
   <!--new_conversation_activity-->
@@ -993,25 +1019,7 @@
   <string name="trimmer__old_messages_successfully_deleted">旧信息已被成功删除。</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">传输图标</string>
-  <string name="conversation_item_sent__message_read">消息已读</string>
-  <string name="media_overview_documents_fragment__no_documents_found">无文档</string>
-  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">已读回执在此</string>
-  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">可选查看和分享消息的已读状态。</string>
-  <string name="experience_upgrade_preference_fragment__enable_read_receipts">启用已读回执</string>
-  <string name="recipient_preference_activity__shared_media">分享媒体文件</string>
-  <string name="registration_activity__verify_your_number">验证您的号码</string>
-  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">请输入您的电话号码来接收验证码。运营商可能会对此收费。</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">收件箱闲得发慌。快开始找您的朋友聊天吧。</string>
-  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">收件箱空空如也</string>
-  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">收件箱空空如也，你已经看完了所有消息！</string>
-  <string name="ConversationListFragment_no_results_found_for_s_">没有找到关于“%s”的结果</string>
-  <string name="SearchToolbar_search">搜索</string>
-  <string name="UnauthorizedReminder_device_no_longer_registered">设备已注销</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">这可能是因为您的号码在另一台设备上注册了 Signal。点击以重试。</string>
-  <string name="OutdatedBuildReminder_no_web_browser_installed">未安装网络浏览器！</string>
-  <string name="ContactsCursorLoader_recent_chats">最近对话</string>
-  <string name="ContactsCursorLoader_contacts">联系人</string>
-  <string name="webrtc_answer_decline_button__swipe_up_to_answer">向上滑动以接听</string>
-  <string name="webrtc_answer_decline_button__swipe_down_to_reject">向下滑动以拒接</string>
+  <string name="ConversationListFragment_loading">载入中…</string>
+  <string name="CallNotificationBuilder_connecting">连接中……</string>
   <!--EOF-->
 </resources>

@@ -36,6 +36,7 @@
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Выдаліць</string>
   <!--ConfirmIdentityDialog-->
+  <!--ContactsCursorLoader-->
   <!--ContactsDatabase-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Не было дастаўлена</string>
@@ -193,6 +194,7 @@
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">РасшыфроўкаMMS, пачакайце калі ласка...</string>
   <!--MuteDialog-->
+  <!--OutdatedBuildReminder-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Імпарт у працэсе</string>
   <string name="ApplicationMigrationService_importing_text_messages">Імпарт тэкставых паведамленняў</string>
@@ -211,9 +213,13 @@
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <!--SaveAttachmentTask-->
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">Пошук</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_new_message">Новае паведамленне</string>
+  <!--UnauthorizedReminder-->
   <!--VideoPlayer-->
+  <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
@@ -227,6 +233,7 @@
   <!--ContactSelectionListFragment-->
   <!--blocked_contacts_fragment-->
   <!--contact_selection_recent_activity-->
+  <!--contact_selection_list_fragment-->
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__send">Даслаць</string>
@@ -297,6 +304,7 @@
   <!--unknown_sender_view-->
   <!--verify_display_fragment-->
   <!--verify_identity-->
+  <!--webrtc_answer_decline_button-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Некаторыя акалічнасці патрабуюць вашай увагі.</string>
   <string name="message_details_header__sent">Адпраўлена</string>
@@ -443,6 +451,6 @@
   <string name="trimmer__old_messages_successfully_deleted">Старыя паведамленні паспяхова выдалены</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Транспартны значок</string>
-  <string name="SearchToolbar_search">Пошук</string>
+  <string name="CallNotificationBuilder_connecting">Падлучэнне...</string>
   <!--EOF-->
 </resources>

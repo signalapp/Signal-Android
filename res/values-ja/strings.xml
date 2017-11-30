@@ -67,6 +67,7 @@
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$sとの安全番号が変更されました。通信が傍受されている可能性がありますが，%2$sがSignalを再インストールしただけかも知れません。</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">この連絡先との安全番号を確認しておいた方がいいかも知れません。</string>
   <string name="ConfirmIdentityDialog_accept">承認</string>
+  <!--ContactsCursorLoader-->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">%sにメッセージを送る</string>
   <string name="ContactsDatabase_signal_call_s">Signalコール %s</string>
@@ -489,6 +490,7 @@
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">存在しない相手に向けてMMSメッセージが暗号化されています</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">消音通知</string>
+  <!--OutdatedBuildReminder-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">インポート中</string>
   <string name="ApplicationMigrationService_importing_text_messages">メッセージをインポート中</string>
@@ -523,11 +525,15 @@
   <string name="QuickResponseService_problem_sending_message">メッセージ送信で問題発生</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">フォルダを開ける</string>
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">検索</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">新規メッセージ</string>
+  <!--UnauthorizedReminder-->
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">動画再生にエラー</string>
+  <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">%1$sとの会話の安全番号に変更があります。誰かが通信を傍受している可能性もありますし，%2$sがSignalを再インストールしただけかも知れません。</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">この連絡先との安全番号を確認しておいた方がいいかも知れません。</string>
@@ -565,6 +571,7 @@
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">ブロックしている連絡先はありません</string>
   <!--contact_selection_recent_activity-->
+  <!--contact_selection_list_fragment-->
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">メッセージ</string>
@@ -587,6 +594,7 @@
   <string name="conversation_item_sent__send_failed_indicator_description">送信失敗</string>
   <string name="conversation_item_sent__pending_approval_description">承認待ち</string>
   <string name="conversation_item_sent__delivered_description">配信済み</string>
+  <string name="conversation_item_sent__message_read">既読</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">連絡先の写真</string>
   <!--audio_view-->
@@ -610,6 +618,9 @@
   <string name="device_list_fragment__link_new_device">結び付けるデバイスを追加</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">続ける</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">既読機能が追加</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">既読機能が利用できるようになりました！</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">既読機能をオンにする</string>
   <!--expiration-->
   <string name="expiration_off">オフ</string>
   <plurals name="expiration_seconds">
@@ -696,6 +707,7 @@
   <string name="profile_create_activity__who_can_see_this_information">誰がこの情報を見れるようになるのですか？</string>
   <string name="profile_create_activity__your_name">プロフィール名</string>
   <!--recipient_preferences_activity-->
+  <string name="recipient_preference_activity__shared_media">共有されたメディア</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">消音会話</string>
   <string name="recipient_preferences__notification_sound">通知音</string>
@@ -729,6 +741,7 @@
   <string name="verify_display_fragment__verified">検証済み</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">安全番号を共有する</string>
+  <!--webrtc_answer_decline_button-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">問題があります</string>
   <string name="message_details_header__sent">送信</string>
@@ -973,6 +986,7 @@
   <string name="media_preview__forward_title">早送り</string>
   <string name="media_preview__all_media_title">すべてのメディア</string>
   <!--media_overview-->
+  <string name="media_overview_documents_fragment__no_documents_found">文書が見つかりません</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">メディアのプレビュー</string>
   <!--new_conversation_activity-->
@@ -984,12 +998,7 @@
   <string name="trimmer__old_messages_successfully_deleted">古いメッセージの削除に成功</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">転送アイコン</string>
-  <string name="conversation_item_sent__message_read">既読</string>
-  <string name="media_overview_documents_fragment__no_documents_found">文書が見つかりません</string>
-  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">既読機能が追加</string>
-  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">既読機能が利用できるようになりました！</string>
-  <string name="experience_upgrade_preference_fragment__enable_read_receipts">既読機能をオンにする</string>
-  <string name="recipient_preference_activity__shared_media">共有されたメディア</string>
-  <string name="SearchToolbar_search">検索</string>
+  <string name="ConversationListFragment_loading">取得中</string>
+  <string name="CallNotificationBuilder_connecting">接続中...</string>
   <!--EOF-->
 </resources>

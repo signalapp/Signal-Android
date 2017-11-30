@@ -70,6 +70,9 @@
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Turvanumerosi yhteystiedon %1$s kanssa on vaihtunut. Tämä voi tarkoittaa joko sitä, että joku yrittää kaapata viestiliikennettänne, tai sitä, että %2$s on vain yksinkertaisesti asentanut Signalin uudelleen.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Saatat haluta varmentaa turvanumerosi tämän yhteystiedon kanssa.</string>
   <string name="ConfirmIdentityDialog_accept">Hyväksy</string>
+  <!--ContactsCursorLoader-->
+  <string name="ContactsCursorLoader_recent_chats">Viimeisimmät keskustelut</string>
+  <string name="ContactsCursorLoader_contacts">Yhteystiedot</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Viesti %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal-puhelu %s</string>
@@ -162,6 +165,7 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Laitteessasi ei ole verkkoselainta asennettuna.</string>
   <!--ConversationListFragment-->
+  <string name="ConversationListFragment_no_results_found_for_s_">Ei hakutuloksia: \'%s\'</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Poistetaanko valittu keskustelu?</item>
     <item quantity="other">Poistetaanko valitut keskustelut?</item>
@@ -514,6 +518,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-viesti salattu olemattomalle istunnolle</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Mykistä ilmoitukset</string>
+  <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_no_web_browser_installed">Selainta ei ole asennettu!</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Tuonti käynnissä</string>
   <string name="ApplicationMigrationService_importing_text_messages">Tuo tekstiviestejä</string>
@@ -548,11 +554,17 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="QuickResponseService_problem_sending_message">Ongelma viestin lähettämisessä!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Avaa hakemisto</string>
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">Hae</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Uusi viesti</string>
+  <!--UnauthorizedReminder-->
+  <string name="UnauthorizedReminder_device_no_longer_registered">Laite ei enää ole rekisteröity</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Tämä johtuu todennäköisesti siitä, että olet rekisteröitynyt puhelinnumerollasi Signaliin toisella laitteella. Napsauta rekisteröityäksesi uudelleen.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Virhe videon toistossa</string>
+  <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Turvanumerosi yhteystiedon %1$s kanssa on vaihtunut. Tämä voi tarkoittaa joko sitä, että joku yrittää kaapata viestiliikennettänne, tai sitä, että %2$s on vain yksinkertaisesti asentanut Signalin uudelleen.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Saatat haluta varmentaa turvanumerosi tämän yhteystiedon kanssa.</string>
@@ -590,6 +602,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Ei estettyjä yhteystietoja</string>
   <!--contact_selection_recent_activity-->
+  <!--contact_selection_list_fragment-->
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal-viesti</string>
@@ -612,6 +625,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="conversation_item_sent__send_failed_indicator_description">Lähetys epäonnistui</string>
   <string name="conversation_item_sent__pending_approval_description">Odottaa hyväksyntää</string>
   <string name="conversation_item_sent__delivered_description">Toimitettu</string>
+  <string name="conversation_item_sent__message_read">Viesti luettu</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Yhteystiedon kuva</string>
   <!--audio_view-->
@@ -635,6 +649,9 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="device_list_fragment__link_new_device">Yhdistä uusi laite</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">jatka</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Lukukuittaukset ovat täällä</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Voit halutessasi nähdä ja jakaa milloin viestit on luettu</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Ota lukukuittaukset käyttöön</string>
   <!--expiration-->
   <string name="expiration_off">pois päältä</string>
   <plurals name="expiration_seconds">
@@ -728,6 +745,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="profile_create_activity__who_can_see_this_information">Kuka voi nähdä nämä tiedot?</string>
   <string name="profile_create_activity__your_name">Nimesi</string>
   <!--recipient_preferences_activity-->
+  <string name="recipient_preference_activity__shared_media">Jaettu media</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Mykistä keskustelu</string>
   <string name="recipient_preferences__notification_sound">Ilmoitusääni</string>
@@ -744,6 +762,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--registration_activity-->
   <string name="registration_activity__phone_number">PUHELINNUMERO</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal tekee kommunikoinnista helppoa käyttämällä hyödyksi olemassaolevaa puhelinnumeroasi ja yhteystietojasi. Ystäväsi, jotka tuntevat sinut puhelinnumerosi kautta, voivat ottaa sinuun yhteyttä jatkossa myös Signalin kautta.\n\nRekisteröityminen siirtää joitakin yhteystietoja väliaikaisesti palvelimelle. Niitä ei kuitenkaan tallenneta sinne.</string>
+  <string name="registration_activity__verify_your_number">Vahvista numerosi</string>
+  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Syötä puhelinnumerosi saadaksesi vahvistuskoodin. Matkapuhelinoperaattorisi hinnat voivat olla voimassa.</string>
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->
@@ -761,6 +781,9 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="verify_display_fragment__verified">Varmennettu</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Jaa turvanumero</string>
+  <!--webrtc_answer_decline_button-->
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Pyyhkäise ylös vastataksesi</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Pyyhkäise alas hylätäksesi</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Jotkin asiat kaipaavat huomiotasi.</string>
   <string name="message_details_header__sent">Lähetetty</string>
@@ -948,8 +971,10 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Yhteystiedon kuva</string>
   <string name="conversation_list_item_view__archived">Arkistoitu</string>
+  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Postilaatikko on tyyyhjä</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Uusi keskustelu</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Anna postilaatikollesi jotain, mistä se voisi olla ylpeä. Aloita lähettämällä viesti ystävälle.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Alusta suojattu istunto</string>
   <!--conversation_muted-->
@@ -1007,6 +1032,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="media_preview__forward_title">Välitä</string>
   <string name="media_preview__all_media_title">Kaikki mediatiedostot</string>
   <!--media_overview-->
+  <string name="media_overview_documents_fragment__no_documents_found">Ei tiedostoja</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Liitteen esikatselu</string>
   <!--new_conversation_activity-->
@@ -1018,25 +1044,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="trimmer__old_messages_successfully_deleted">Vanhojen viestien poisto onnistui</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Tyypin kuvake</string>
-  <string name="conversation_item_sent__message_read">Viesti luettu</string>
-  <string name="media_overview_documents_fragment__no_documents_found">Ei tiedostoja</string>
-  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Lukukuittaukset ovat täällä</string>
-  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Voit halutessasi nähdä ja jakaa milloin viestit on luettu</string>
-  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Ota lukukuittaukset käyttöön</string>
-  <string name="recipient_preference_activity__shared_media">Jaettu media</string>
-  <string name="registration_activity__verify_your_number">Vahvista numerosi</string>
-  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Syötä puhelinnumerosi saadaksesi vahvistuskoodin. Matkapuhelinoperaattorisi hinnat voivat olla voimassa.</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Anna postilaatikollesi jotain, mistä se voisi olla ylpeä. Aloita lähettämällä viesti ystävälle.</string>
-  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Postilaatikko on tyyyhjä</string>
-  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Postilaatikkosi on tyhjä. Hyvää päivänjatkoa!</string>
-  <string name="ConversationListFragment_no_results_found_for_s_">Ei hakutuloksia: \'%s\'</string>
-  <string name="SearchToolbar_search">Hae</string>
-  <string name="UnauthorizedReminder_device_no_longer_registered">Laite ei enää ole rekisteröity</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Tämä johtuu todennäköisesti siitä, että olet rekisteröitynyt puhelinnumerollasi Signaliin toisella laitteella. Napsauta rekisteröityäksesi uudelleen.</string>
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Selainta ei ole asennettu!</string>
-  <string name="ContactsCursorLoader_recent_chats">Viimeisimmät keskustelut</string>
-  <string name="ContactsCursorLoader_contacts">Yhteystiedot</string>
-  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Pyyhkäise ylös vastataksesi</string>
-  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Pyyhkäise alas hylätäksesi</string>
+  <string name="ConversationListFragment_loading">Ladataan...</string>
+  <string name="CallNotificationBuilder_connecting">Yhdistetään...</string>
   <!--EOF-->
 </resources>

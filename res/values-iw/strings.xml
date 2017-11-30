@@ -67,6 +67,7 @@
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">מספר הבטיחות שלך עם %1$s השתנה. ייתכן שזה אומר שמישהו מנסה ללכוד את התקשורת שלכם או ש%2$s פשוט התקין את סיגנל מחדש.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">אולי תרצה לוודא את מספרי הבטיחות שלך עם איש הקשר הזה.</string>
   <string name="ConfirmIdentityDialog_accept">קבל</string>
+  <!--ContactsCursorLoader-->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">שלח מסר אל %s</string>
   <string name="ContactsDatabase_signal_call_s">שיחת סיגנל אל %s</string>
@@ -493,6 +494,7 @@
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">מסר MMS הוצפן להתחברות שאינה קיימת</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">השתקת התראות</string>
+  <!--OutdatedBuildReminder-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">בתהליך ייבוא</string>
   <string name="ApplicationMigrationService_importing_text_messages">מייבא מסרים</string>
@@ -527,11 +529,15 @@
   <string name="QuickResponseService_problem_sending_message">בעיה בשליחת מסר!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">פתיחת מדריך</string>
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">חיפוש</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">סיגנל</string>
   <string name="SingleRecipientNotificationBuilder_new_message">מסר חדש</string>
+  <!--UnauthorizedReminder-->
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">שגיאה בהצגת וידאו</string>
+  <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">מספר הבטיחות לשיחה שלך עם %1$s השתנה. ייתכן שזה אומר שמישהו מנסה ללכוד את התקשורת שלכם או ש%2$s פשוט התקין את סיגנל מחדש.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">אולי תרצה לוודא את מספרי הבטיחות שלך עם איש הקשר הזה.</string>
@@ -569,6 +575,7 @@
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">אין אנשי קשר חסומים</string>
   <!--contact_selection_recent_activity-->
+  <!--contact_selection_list_fragment-->
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">מסר סיגנל</string>
@@ -725,6 +732,7 @@
   <string name="verify_display_fragment__verified">מאומת</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">שיתוף מספר בטיחות</string>
+  <!--webrtc_answer_decline_button-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">עניינים מסוימים דורשים את תשומת הלב שלך.</string>
   <string name="message_details_header__sent">נשלח</string>
@@ -977,6 +985,7 @@
   <string name="trimmer__old_messages_successfully_deleted">מסרים ישנים נמחקו</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">סמל תעבורה</string>
-  <string name="SearchToolbar_search">חיפוש</string>
+  <string name="ConversationListFragment_loading">טוען...</string>
+  <string name="CallNotificationBuilder_connecting">מתחבר...</string>
   <!--EOF-->
 </resources>

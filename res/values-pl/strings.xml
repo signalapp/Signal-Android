@@ -76,6 +76,7 @@
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Numer bezpieczeństwa z %1$s zmienił się. To może oznaczać, że ktoś próbuje przechwycić Twoją komunikację, lub że po prostu %2$s przeinstalował Signal. </string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Możesz zweryfikować numer bezpieczeństwa z tym kontaktem.</string>
   <string name="ConfirmIdentityDialog_accept">Akceptuj</string>
+  <!--ContactsCursorLoader-->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Wiadomość %s</string>
   <string name="ContactsDatabase_signal_call_s">Połączenie Signal %s</string>
@@ -544,6 +545,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Wiadomość MMS zaszyfrowana dla nieistniejącej sesji</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Wycisz powiadomienia</string>
+  <!--OutdatedBuildReminder-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Trwa importowanie</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importowanie wiadomości tekstowych</string>
@@ -578,11 +580,15 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="QuickResponseService_problem_sending_message">Wystąpił błąd przy wysyłaniu wiadomości!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Otwórz katalog</string>
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">Szukaj</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nowa wiadomość</string>
+  <!--UnauthorizedReminder-->
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Błąd przy odtwarzaniu filmu</string>
+  <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Numer bezpieczeństwa dla konwersacji z %1$s zmienił się. To może oznaczać, że ktoś próbuje przechwycić Twoją komunikację, lub po prostu %2$s przeinstalował Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Możesz zweryfikować numer bezpieczeństwa z tym kontaktem.</string>
@@ -620,6 +626,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Brak zablokowanych kontaktów</string>
   <!--contact_selection_recent_activity-->
+  <!--contact_selection_list_fragment-->
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Wiadomość Signal</string>
@@ -642,6 +649,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="conversation_item_sent__send_failed_indicator_description">Nie udało się wysłać</string>
   <string name="conversation_item_sent__pending_approval_description">Oczekuję akceptacji</string>
   <string name="conversation_item_sent__delivered_description">Dostarczono</string>
+  <string name="conversation_item_sent__message_read">Wiadomość odczytana</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Zdjęcie kontaktu</string>
   <!--audio_view-->
@@ -665,6 +673,9 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="device_list_fragment__link_new_device">Dodaj nowe urządzenie</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">kontynuuj</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Potwierdzenia przeczytania są tutaj</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Opcjonalnie możesz otrzymywać i udostępniać informacje kiedy wiadomości zostały przeczytane</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Włącz potwierdzenia przeczytania</string>
   <!--expiration-->
   <string name="expiration_off">Wyłączone</string>
   <plurals name="expiration_seconds">
@@ -772,6 +783,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="profile_create_activity__who_can_see_this_information">Kto może zobaczyć te informacje?</string>
   <string name="profile_create_activity__your_name">Twoje imię</string>
   <!--recipient_preferences_activity-->
+  <string name="recipient_preference_activity__shared_media">Udostępnione media</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Wycisz konwersację</string>
   <string name="recipient_preferences__notification_sound">Dźwięk powiadomień</string>
@@ -805,6 +817,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="verify_display_fragment__verified">Zweryfikowano</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Podziel się numerem bezpieczeństwa</string>
+  <!--webrtc_answer_decline_button-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Niektóre kwestie wymagają Twojej uwagi.</string>
   <string name="message_details_header__sent">Wysłano</string>
@@ -1055,6 +1068,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="media_preview__forward_title">Przekaż dalej</string>
   <string name="media_preview__all_media_title">Wszystkie multimedia</string>
   <!--media_overview-->
+  <string name="media_overview_documents_fragment__no_documents_found">Brak dokumentów</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Podgląd plików multimedialnych</string>
   <!--new_conversation_activity-->
@@ -1066,12 +1080,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="trimmer__old_messages_successfully_deleted">Stare wiadomości zostały pomyślnie usunięte</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transportu</string>
-  <string name="conversation_item_sent__message_read">Wiadomość odczytana</string>
-  <string name="media_overview_documents_fragment__no_documents_found">Brak dokumentów</string>
-  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Potwierdzenia przeczytania są tutaj</string>
-  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Opcjonalnie możesz otrzymywać i udostępniać informacje kiedy wiadomości zostały przeczytane</string>
-  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Włącz potwierdzenia przeczytania</string>
-  <string name="recipient_preference_activity__shared_media">Udostępnione media</string>
-  <string name="SearchToolbar_search">Szukaj</string>
+  <string name="ConversationListFragment_loading">Ładowanie...</string>
+  <string name="CallNotificationBuilder_connecting">Łączenie...</string>
   <!--EOF-->
 </resources>

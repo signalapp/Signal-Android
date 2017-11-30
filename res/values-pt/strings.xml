@@ -70,6 +70,7 @@
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">O seu número de segurança com %1$s foi alterado. Isto pode significar que alguém está a tentar interceptar esta comunicação ou simplesmente que %2$s reinstalou o Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Pode ser desejável verificar o seu número de segurança com este contacto.</string>
   <string name="ConfirmIdentityDialog_accept">Aceitar</string>
+  <!--ContactsCursorLoader-->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mensagem %s</string>
   <string name="ContactsDatabase_signal_call_s">Chamada do Signal %s</string>
@@ -520,6 +521,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS encriptada para sessão inexistente</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Silenciar notificações</string>
+  <!--OutdatedBuildReminder-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importação em progresso</string>
   <string name="ApplicationMigrationService_importing_text_messages">A importar mensages de texto</string>
@@ -554,11 +556,15 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="QuickResponseService_problem_sending_message">Problema no envio da mensagem!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Abrir directório</string>
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">Procurar</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mensagem nova</string>
+  <!--UnauthorizedReminder-->
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Erro ao reproduzir o vídeo</string>
+  <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">O número de segurança para a sua conversa com %1$s mudou. Isto pode significar que alguém está a tentar interceptar a sua comunicação ou que %2$s simplesmente reinstalou o Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Pode ser desejável verificar o seu número de segurança com este contracto.</string>
@@ -596,6 +602,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nenhum contacto bloqueado</string>
   <!--contact_selection_recent_activity-->
+  <!--contact_selection_list_fragment-->
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Msg. do Signal</string>
@@ -618,6 +625,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="conversation_item_sent__send_failed_indicator_description">O envio falhou</string>
   <string name="conversation_item_sent__pending_approval_description">Aprovação Pendente</string>
   <string name="conversation_item_sent__delivered_description">Entregue</string>
+  <string name="conversation_item_sent__message_read">Mensagem lida</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Foto de Contacto</string>
   <!--audio_view-->
@@ -641,6 +649,9 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="device_list_fragment__link_new_device">Associar dispositivo novo</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">continuar</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Os recibos de leitura chegaram</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Opcionalmente, veja e partilhe quando as mensagens tiverem sido lidas.</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Ativar recibos de leitura</string>
   <!--expiration-->
   <string name="expiration_off">Desligado</string>
   <plurals name="expiration_seconds">
@@ -734,6 +745,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="profile_create_activity__who_can_see_this_information">Quem pode ver esta informação?</string>
   <string name="profile_create_activity__your_name">O seu nome</string>
   <!--recipient_preferences_activity-->
+  <string name="recipient_preference_activity__shared_media">Ficheiros partilhados</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Silenciar conversa</string>
   <string name="recipient_preferences__notification_sound">Som de notificação</string>
@@ -767,6 +779,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="verify_display_fragment__verified">Verificado</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Partilhar número de segurança</string>
+  <!--webrtc_answer_decline_button-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Alguns problemas requerem a sua atenção.</string>
   <string name="message_details_header__sent">Enviado</string>
@@ -1013,6 +1026,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="media_preview__forward_title">Reencaminhar</string>
   <string name="media_preview__all_media_title">Toda a multimédia</string>
   <!--media_overview-->
+  <string name="media_overview_documents_fragment__no_documents_found">Sem documentos</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Previsualização de multimédia</string>
   <!--new_conversation_activity-->
@@ -1024,12 +1038,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="trimmer__old_messages_successfully_deleted">Mensagens antigas apagadas com sucesso</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icon de transporte</string>
-  <string name="conversation_item_sent__message_read">Mensagem lida</string>
-  <string name="media_overview_documents_fragment__no_documents_found">Sem documentos</string>
-  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Os recibos de leitura chegaram</string>
-  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Opcionalmente, veja e partilhe quando as mensagens tiverem sido lidas.</string>
-  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Ativar recibos de leitura</string>
-  <string name="recipient_preference_activity__shared_media">Ficheiros partilhados</string>
-  <string name="SearchToolbar_search">Procurar</string>
+  <string name="ConversationListFragment_loading">A carregar...</string>
+  <string name="CallNotificationBuilder_connecting">A ligar...</string>
   <!--EOF-->
 </resources>

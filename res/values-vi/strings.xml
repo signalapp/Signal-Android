@@ -64,6 +64,7 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Mã số an toàn với %1$s đã thay đổi. Điều này có thể là do ai đó đang tìm cách đánh chặn thông tin của bạn, hoặc %2$s đã chỉ vừa mới cài lại Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Bạn có thể sẽ cần xác minh mã số an toàn với liên hệ này.</string>
   <string name="ConfirmIdentityDialog_accept">Chấp nhận</string>
+  <!--ContactsCursorLoader-->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Tin nhắn %s</string>
   <string name="ContactsDatabase_signal_call_s">Cuộc gọi Signal %s</string>
@@ -383,6 +384,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Giải mã MMS, xin chờ...</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Tạm im thông báo</string>
+  <!--OutdatedBuildReminder-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Đang tiến hành việc nhập vào</string>
   <string name="ApplicationMigrationService_importing_text_messages">Đang nhập vào tin nhắn</string>
@@ -412,10 +414,14 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Trả lời nhanh không khả thi khi Signal bị khoá!</string>
   <string name="QuickResponseService_problem_sending_message">Có vấn đề khi gửi tin nhắn!</string>
   <!--SaveAttachmentTask-->
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">Tìm kiếm</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Tin nhắn mới</string>
+  <!--UnauthorizedReminder-->
   <!--VideoPlayer-->
+  <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Bạn có thể sẽ cần xác minh mã số an toàn với liên hệ này.</string>
   <!--WebRtcCallControls-->
@@ -438,6 +444,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <!--ContactSelectionListFragment-->
   <!--blocked_contacts_fragment-->
   <!--contact_selection_recent_activity-->
+  <!--contact_selection_list_fragment-->
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__from_sim_name">Từ %1$s</string>
@@ -533,6 +540,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <!--unknown_sender_view-->
   <!--verify_display_fragment-->
   <!--verify_identity-->
+  <!--webrtc_answer_decline_button-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Một số việc cần bạn lưu ý.</string>
   <string name="message_details_header__sent">Đã gửi</string>
@@ -753,6 +761,6 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <string name="trimmer__old_messages_successfully_deleted">Xóa thành công các tin nhắn cũ</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Biểu tượng chuyển tải</string>
-  <string name="SearchToolbar_search">Tìm kiếm</string>
+  <string name="CallNotificationBuilder_connecting">Đang kết nối...</string>
   <!--EOF-->
 </resources>

@@ -67,6 +67,9 @@
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">លេខសុវត្ថិភាពរបស់អ្នក%1$s បានផ្លាស់ប្តូរ។ នេះមានន័យថា មាននរណាម្នាក់ព្យាយាមជ្រាតចូលការទំនាក់ទំនងរបស់អ្នក ឬក៏ %2$s ប្រើដំឡើង ស៊ីហ្គណលឡើងវិញ។</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">អ្នកគួតែផ្ទៀងផ្ទាត់លេខសុវត្ថិភាពរបស់អ្នកជាមួយលេខទំនាក់ទំនងនេះ។</string>
   <string name="ConfirmIdentityDialog_accept">យល់ព្រម</string>
+  <!--ContactsCursorLoader-->
+  <string name="ContactsCursorLoader_recent_chats">ការសន្ទនាថ្មីៗ</string>
+  <string name="ContactsCursorLoader_contacts">បញ្ជីទំនាក់ទំនង</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">សារ %s</string>
   <string name="ContactsDatabase_signal_call_s">ការហៅចេញរបស់ស៊ីហ្គណល  %s</string>
@@ -151,6 +154,7 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ពំុមានកម្មវិធីរុករកបានដំឡើងនៅលើឧបករណ៍របស់អ្នកទេ។</string>
   <!--ConversationListFragment-->
+  <string name="ConversationListFragment_no_results_found_for_s_">រកមិនឃើញលទ្ធផលសម្រាប់ \'%s\'</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="other">លុបការសន្ទនាដែលបានជ្រើសរើសនេះ?</item>
   </plurals>
@@ -500,6 +504,8 @@
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">សារMMS ត្រូវបានកាណាល់កូដសម្ងាត់សម្រាប់កំឡុងពេលមិនប្រើប្រាស់</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">បិទសំឡេងសារជូនដំណឹង</string>
+  <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_no_web_browser_installed">មិនបានដំឡើងកម្មវិធីរុករក!</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">ការនាំចូលកំពុងដំណើរការ</string>
   <string name="ApplicationMigrationService_importing_text_messages">កំពុងនាំចូលសារជាអក្សរ</string>
@@ -534,11 +540,17 @@
   <string name="QuickResponseService_problem_sending_message">សារដែលបានបញ្ជូនមានបញ្ហា!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">បើកថត</string>
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">ស្វែងរក</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal"> ស៊ីហ្គណល</string>
   <string name="SingleRecipientNotificationBuilder_new_message">សារថ្មី</string>
+  <!--UnauthorizedReminder-->
+  <string name="UnauthorizedReminder_device_no_longer_registered">ឧបករណ៍មិនបានចុះឈ្មោះ!</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">នេះហាក់ដូចជាដោយសារអ្នកបានចុះឈ្មោះតាមលេខទូរស័ព្ទជាមួយ Signal លើឧបករណ៍ផ្សេង។ ចុច ដើម្បីចុះឈ្មោះម្តងទៀត។</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">មានបញ្ហាចាក់មើលវីដេអូ</string>
+  <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">លេខសុវត្ថិភាពសម្រាប់ការសន្ទនារបស់អ្នកជាមួយ %1$s បានផ្លាស់ប្តូរ។ អាចមានន័យថា មានអ្នកផ្សេងព្យាយាមជ្រាតចូលការទាក់ទង ឬ %2$s ប្រើដំឡើង ស៊ីហ្គណលឡើងវិញ។</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">អ្នកប្រហែលចង់ផ្ទៀងផ្ទាត់លេខសុវត្ថិភាពរបស់អ្នក ជាមួយលេខទំនាក់ទំនងនេះ។</string>
@@ -576,6 +588,7 @@
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">ពុំមានលេខដែលបានបិទ</string>
   <!--contact_selection_recent_activity-->
+  <!--contact_selection_list_fragment-->
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">សារ ស៊ីហ្គណល</string>
@@ -598,6 +611,7 @@
   <string name="conversation_item_sent__send_failed_indicator_description">ផ្ញើបរាជ័យ</string>
   <string name="conversation_item_sent__pending_approval_description">រង់ចាំការអនុម័ត</string>
   <string name="conversation_item_sent__delivered_description">បានបញ្ចូន</string>
+  <string name="conversation_item_sent__message_read">សារបានអានរួច</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">រូបភាពទំនាក់ទំនង</string>
   <!--audio_view-->
@@ -621,6 +635,9 @@
   <string name="device_list_fragment__link_new_device">ភ្ជាប់ឧបករណ៍ថ្មី</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">បន្ត</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">ទទួលអានមាននៅទីនេះ</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">ជួនកាលមើលឃើញ និងចែករំលែកនៅពេលសារត្រូវបានអាន</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">បើកការទទួលអាន</string>
   <!--expiration-->
   <string name="expiration_off">បិទ</string>
   <plurals name="expiration_seconds">
@@ -707,6 +724,7 @@
   <string name="profile_create_activity__who_can_see_this_information">នរណាខ្លះអាចឃើញព័ត៌មាននេះ?</string>
   <string name="profile_create_activity__your_name">ឈ្មោះរបស់អ្នក</string>
   <!--recipient_preferences_activity-->
+  <string name="recipient_preference_activity__shared_media">ចែករំលែកព័ត៌មាន</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">បិទសំឡេងការសន្ទនា</string>
   <string name="recipient_preferences__notification_sound">សំឡេងសារជូនដំណឹង</string>
@@ -723,6 +741,8 @@
   <!--registration_activity-->
   <string name="registration_activity__phone_number">លេខទូរស័ព្ទ</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">ស៊ីហ្គណល បានធ្វើឲ្យការទំនាក់ទំនងងាយស្រួល ដោយប្រើប្រាស់លេខទូរស័ព្ទ និងបញ្ជីទំនាក់ទំនងរបស់អ្នក។ មិត្តភក្តិ និងលេខទំនាក់ទំនង ដែលដឹងពីរបៀបទាក់ទងអ្នកតាមលេខទូរស័ព្ទ គឺអាចទាក់ទងអ្នក យ៉ាងងាយស្រួលតាម ស៊ីហ្គណល.\n\nការចុះឈ្មោះ នឹងបញ្ជូនព័ត៌មានទំនាក់ទំនងមួយចំនួនទៅកាន់ម៉ាស៊ីនមេ។ តែវាមិនរក្សាទុកអ្វីឡើយ។</string>
+  <string name="registration_activity__verify_your_number">ផ្ទៀងផ្ទាត់លេខរបស់អ្នក</string>
+  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">សូមបញ្ចូលលេខទូរសព្ទរបស់អ្នកដើម្បីទទួលបានលេខកូដផ្ទៀងផ្ទាត់។ ថ្លៃទូរសព្ទអាចនឹងត្រូវទូទាត់។</string>
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->
@@ -740,6 +760,9 @@
   <string name="verify_display_fragment__verified">បានផ្ទៀងផ្ទាត់</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">ចែករំលែកលេខសុវត្ថិភាព</string>
+  <!--webrtc_answer_decline_button-->
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">អូសឡើងលើ ដើម្បីទទួល</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">អូសចុះក្រោម ដើម្បីច្រានចោល</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">បញ្ហាមួយចំនួនត្រូវការ ការយកចិត្តទុកដាក់របស់អ្នក។</string>
   <string name="message_details_header__sent">បានផ្ញើ</string>
@@ -926,8 +949,10 @@
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">រូបថតទំនាក់ទំនង</string>
   <string name="conversation_list_item_view__archived">បានដាក់ទុកបណ្ណសារ   </string>
+  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">ប្រអប់សំបុត្រដំបូង</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">ការសន្ទនាថ្មី</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">រៀបរាប់ប្រអប់សំបុត្ររបស់អ្នក។ ចាប់ផ្តើមពីការផ្ញើសារទៅកាន់មិត្តភក្តិ។</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">កំណត់ឡើងវិញការចូលប្រើប្រាស់សុវត្ថិភាព</string>
   <!--conversation_muted-->
@@ -984,6 +1009,7 @@
   <string name="media_preview__forward_title">បញ្ជូនបន្ត</string>
   <string name="media_preview__all_media_title">ព័ត៌មានទាំងអស់</string>
   <!--media_overview-->
+  <string name="media_overview_documents_fragment__no_documents_found">គ្មានឯកសារ</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">មើលព័ត៌មានជាមុន</string>
   <!--new_conversation_activity-->
@@ -995,25 +1021,7 @@
   <string name="trimmer__old_messages_successfully_deleted">សារចាស់ៗត្រូវបានលុបចេញដោយជោគជ័យ</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">រូបសញ្ញាជញ្ជូន</string>
-  <string name="conversation_item_sent__message_read">សារបានអានរួច</string>
-  <string name="media_overview_documents_fragment__no_documents_found">គ្មានឯកសារ</string>
-  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">ទទួលអានមាននៅទីនេះ</string>
-  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">ជួនកាលមើលឃើញ និងចែករំលែកនៅពេលសារត្រូវបានអាន</string>
-  <string name="experience_upgrade_preference_fragment__enable_read_receipts">បើកការទទួលអាន</string>
-  <string name="recipient_preference_activity__shared_media">ចែករំលែកព័ត៌មាន</string>
-  <string name="registration_activity__verify_your_number">ផ្ទៀងផ្ទាត់លេខរបស់អ្នក</string>
-  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">សូមបញ្ចូលលេខទូរសព្ទរបស់អ្នកដើម្បីទទួលបានលេខកូដផ្ទៀងផ្ទាត់។ ថ្លៃទូរសព្ទអាចនឹងត្រូវទូទាត់។</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">រៀបរាប់ប្រអប់សំបុត្ររបស់អ្នក។ ចាប់ផ្តើមពីការផ្ញើសារទៅកាន់មិត្តភក្តិ។</string>
-  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">ប្រអប់សំបុត្រដំបូង</string>
-  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">អីយ៉ា... អ្នកតាមទាន់ហើយ!</string>
-  <string name="ConversationListFragment_no_results_found_for_s_">រកមិនឃើញលទ្ធផលសម្រាប់ \'%s\'</string>
-  <string name="SearchToolbar_search">ស្វែងរក</string>
-  <string name="UnauthorizedReminder_device_no_longer_registered">ឧបករណ៍មិនបានចុះឈ្មោះ!</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">នេះហាក់ដូចជាដោយសារអ្នកបានចុះឈ្មោះតាមលេខទូរស័ព្ទជាមួយ Signal លើឧបករណ៍ផ្សេង។ ចុច ដើម្បីចុះឈ្មោះម្តងទៀត។</string>
-  <string name="OutdatedBuildReminder_no_web_browser_installed">មិនបានដំឡើងកម្មវិធីរុករក!</string>
-  <string name="ContactsCursorLoader_recent_chats">ការសន្ទនាថ្មីៗ</string>
-  <string name="ContactsCursorLoader_contacts">បញ្ជីទំនាក់ទំនង</string>
-  <string name="webrtc_answer_decline_button__swipe_up_to_answer">អូសឡើងលើ ដើម្បីទទួល</string>
-  <string name="webrtc_answer_decline_button__swipe_down_to_reject">អូសចុះក្រោម ដើម្បីច្រានចោល</string>
+  <string name="ConversationListFragment_loading">កំពុងផ្ទុក...</string>
+  <string name="CallNotificationBuilder_connecting">កំពុងតភ្ជាប់...</string>
   <!--EOF-->
 </resources>

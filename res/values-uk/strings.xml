@@ -70,6 +70,7 @@
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Ваш номер безпеки із %1$s змінився. Це може означати або те, що хтось намагається перехопити вашу розмову, або те, що %2$s просто перевстановив Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Можливо, ви хочете перевірити ваш номер безпеки із цим контактом.</string>
   <string name="ConfirmIdentityDialog_accept">Прийняти</string>
+  <!--ContactsCursorLoader-->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Повідомлення %s</string>
   <string name="ContactsDatabase_signal_call_s">Виклик Signal %s</string>
@@ -483,6 +484,7 @@
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS повідомлення зашифроване для неіснуючої сесії</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Вимкнути звук сповіщень</string>
+  <!--OutdatedBuildReminder-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Імпортування</string>
   <string name="ApplicationMigrationService_importing_text_messages">Імпортування текстових повідомлень</string>
@@ -514,11 +516,15 @@
   <string name="QuickResponseService_problem_sending_message">Проблема під час надсилання повідомлення!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Відкрити теку</string>
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">Пошук</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Нове повідомлення</string>
+  <!--UnauthorizedReminder-->
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Помилка відтворення відео</string>
+  <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Можливо, ви хочете перевірити ваш номер безпеки із цим контактом.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Новий номер безпеки</string>
@@ -553,6 +559,7 @@
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Немає заблокованих контактів</string>
   <!--contact_selection_recent_activity-->
+  <!--contact_selection_list_fragment-->
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__from_sim_name">Від %1$s</string>
@@ -697,6 +704,7 @@
   <string name="verify_display_fragment__tap_to_scan">Натисніть, щоб сканувати</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Поділитися номером безпеки</string>
+  <!--webrtc_answer_decline_button-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Є деякі проблеми, що потребують вашої уваги.</string>
   <string name="message_details_header__sent">Надіслано</string>
@@ -942,6 +950,6 @@
   <string name="trimmer__old_messages_successfully_deleted">Старі повідомлення було успішно видалено</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Логотип типу зв\'язку</string>
-  <string name="SearchToolbar_search">Пошук</string>
+  <string name="CallNotificationBuilder_connecting">Підключення...</string>
   <!--EOF-->
 </resources>

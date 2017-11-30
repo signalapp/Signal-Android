@@ -73,6 +73,7 @@
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Vaš sigurnosni broj za %1$s je izmjenjen. Ovo može značiti da netko pokušava presresti vašu komunikaciju ili da je %2$s jednostavno ponovno instalirao Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Možda biste trebali provjeriti sigurnosni broj za ovaj kontakt.</string>
   <string name="ConfirmIdentityDialog_accept">Prihvati</string>
+  <!--ContactsCursorLoader-->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Poruka %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal poziv %s</string>
@@ -534,6 +535,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS poruka kriptirana za nepostojeću sesiju</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Utišaj obavijesti</string>
+  <!--OutdatedBuildReminder-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Uvoz u tijeku</string>
   <string name="ApplicationMigrationService_importing_text_messages">Uvoz tekstualnih poruka</string>
@@ -568,11 +570,15 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="QuickResponseService_problem_sending_message">Greška prilikom slanja poruke!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Otvori direktorij</string>
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">Traži</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nova poruka</string>
+  <!--UnauthorizedReminder-->
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Greška pri video reprodukciji</string>
+  <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Sigurnosni broj za vaš razgovor s %1$s je izmjenjen. Ovo može značiti da netko pokušava presresti vašu komunikaciju ili da je %2$s jednostavno ponovno instalirao Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Možda biste trebali provjeriti sigurnosni broj za ovaj kontakt.</string>
@@ -610,6 +616,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nema blokiranih kontakata</string>
   <!--contact_selection_recent_activity-->
+  <!--contact_selection_list_fragment-->
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal poruka</string>
@@ -632,6 +639,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="conversation_item_sent__send_failed_indicator_description">Neuspješno slanje</string>
   <string name="conversation_item_sent__pending_approval_description">Odobrenje u tijeku</string>
   <string name="conversation_item_sent__delivered_description">Isporučeno</string>
+  <string name="conversation_item_sent__message_read">Poruka pročitana</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Slika kontakta</string>
   <!--audio_view-->
@@ -655,6 +663,9 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="device_list_fragment__link_new_device">Poveži novi uređaj</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">nastavi</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Potvrde čitanja su ovdje</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Vidite i dijelite kada su poruke pročitane</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Omogući potvrde čitanja</string>
   <!--expiration-->
   <string name="expiration_off">Isključeno</string>
   <plurals name="expiration_seconds">
@@ -756,6 +767,7 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="profile_create_activity__who_can_see_this_information">Tko može vidjeti ove podatke?</string>
   <string name="profile_create_activity__your_name">Vaše ime</string>
   <!--recipient_preferences_activity-->
+  <string name="recipient_preference_activity__shared_media">Dijeljeni mediji</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Utišaj razgovor</string>
   <string name="recipient_preferences__notification_sound">Zvuk obavijesti</string>
@@ -789,6 +801,7 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="verify_display_fragment__verified">Provjereno</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Podijeli sigurnosni broj</string>
+  <!--webrtc_answer_decline_button-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Neki problemi zahtjevaju vašu pozornost.</string>
   <string name="message_details_header__sent">Poslano</string>
@@ -1037,6 +1050,7 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="media_preview__forward_title">Naprijed</string>
   <string name="media_preview__all_media_title">Svi mediji</string>
   <!--media_overview-->
+  <string name="media_overview_documents_fragment__no_documents_found">Nema dokumenata</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Prikaz medija</string>
   <!--new_conversation_activity-->
@@ -1048,12 +1062,7 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="trimmer__old_messages_successfully_deleted">Stare poruke su uspješno obrisane</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transporta</string>
-  <string name="conversation_item_sent__message_read">Poruka pročitana</string>
-  <string name="media_overview_documents_fragment__no_documents_found">Nema dokumenata</string>
-  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Potvrde čitanja su ovdje</string>
-  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Vidite i dijelite kada su poruke pročitane</string>
-  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Omogući potvrde čitanja</string>
-  <string name="recipient_preference_activity__shared_media">Dijeljeni mediji</string>
-  <string name="SearchToolbar_search">Traži</string>
+  <string name="ConversationListFragment_loading">Učitavanje...</string>
+  <string name="CallNotificationBuilder_connecting">Povezivanje...</string>
   <!--EOF-->
 </resources>

@@ -67,6 +67,9 @@
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s ile güvenlik numaranız değişti. Bu, birisinin sizin iletişiminizi araya girerek yakalayıp dinlemeye çalıştığı veya %2$s \'in yalnızca Signal\'i yeniden yüklediği anlamına gelebilir.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Bu kişiyle güvenlik numaranızı doğrulamak isteyebilirsiniz.</string>
   <string name="ConfirmIdentityDialog_accept">Kabul et</string>
+  <!--ContactsCursorLoader-->
+  <string name="ContactsCursorLoader_recent_chats">Son sohbetler</string>
+  <string name="ContactsCursorLoader_contacts">Kişiler</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">%s Mesaj</string>
   <string name="ContactsDatabase_signal_call_s">%s Signal Araması</string>
@@ -151,6 +154,7 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Cihazınıza yüklü tarayıcı bulunmamaktadır.</string>
   <!--ConversationListFragment-->
+  <string name="ConversationListFragment_no_results_found_for_s_">\'%s\' için hiç sonuç bulunamadı.</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="other">Seçilmiş sohbetleri sil?</item>
   </plurals>
@@ -498,6 +502,8 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS mesajı var olmayan oturum için şifrelenmiş</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Bildirimleri sustur</string>
+  <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_no_web_browser_installed">Web tarayıcısı yüklü değil!</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">İçe aktarma sürüyor</string>
   <string name="ApplicationMigrationService_importing_text_messages">Mesajlar içe aktarılıyor</string>
@@ -532,11 +538,17 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="QuickResponseService_problem_sending_message">Mesaj gönderilirken hata!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Dizini aç</string>
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">Ara</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Yeni mesaj</string>
+  <!--UnauthorizedReminder-->
+  <string name="UnauthorizedReminder_device_no_longer_registered">Cihaz artık kayıtlı değil</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Bunun nedeni büyük olasılıkla telefon numaranızın farklı bir cihazda Sinyal ile kaydedilmesidir. Yeniden kayıt için dokunun.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Video oynatma hatası</string>
+  <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">%1$s ile sohbetinizin güvenlik numarası değişti. Bu, birisinin sizin iletişiminizi araya girerek yakalayıp dinlemeye çalıştığı veya %2$s \'in yalnızca Signal\'i yeniden yüklediği anlamına gelebilir. </string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Bu kişiyle güvenlik numaranızı doğrulamak isteyebilirsiniz.</string>
@@ -571,9 +583,12 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Kişi Fotoğrafı</string>
   <!--ContactSelectionListFragment-->
+  <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Kişiler alınırken hata oluştu, ağ bağlantınızı kontrol edin</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Hiç engellenmiş kişi yok</string>
   <!--contact_selection_recent_activity-->
+  <!--contact_selection_list_fragment-->
+  <string name="contact_selection_list_fragment__show_contacts">Kişileri Görüntüle</string>
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal mesajı</string>
@@ -596,6 +611,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="conversation_item_sent__send_failed_indicator_description">Gönderme başarısız</string>
   <string name="conversation_item_sent__pending_approval_description">Bekleyen Onaylama</string>
   <string name="conversation_item_sent__delivered_description">Gönderildi</string>
+  <string name="conversation_item_sent__message_read">Mesaj okundu</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Kişi fotoğrafı</string>
   <!--audio_view-->
@@ -619,6 +635,9 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="device_list_fragment__link_new_device">Yeni cihaz bağla</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">devam</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Okundu bilgisi burada</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">İsteğe bağlı olarak mesajların okunduğunu gör ve paylaş</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Okundu bilgisini etkinleştir</string>
   <!--expiration-->
   <string name="expiration_off">Kapalı</string>
   <plurals name="expiration_seconds">
@@ -705,6 +724,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="profile_create_activity__who_can_see_this_information">Bu bilgiyi kimler görebilir?</string>
   <string name="profile_create_activity__your_name">Adınız</string>
   <!--recipient_preferences_activity-->
+  <string name="recipient_preference_activity__shared_media">Paylaşılan medya</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Sohbeti sessize al</string>
   <string name="recipient_preferences__notification_sound">Bildirim sesi</string>
@@ -721,6 +741,8 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFON NUMARASI</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal mevcut telefon numaranızı ve adres defterinizi kullanarak iletişim kurmayı kolaylaştırır. Zaten sizinle telefon aracılığı ile nasıl iletişim kuracağını bilen arkadaşlarınız ve kişiler, Signal ile sizinle kolayca iletişime geçebilecek.\n\nKayıt işlemi, bazı iletişim bilgilerini sunucuya iletir. Bunlar saklanmaz.</string>
+  <string name="registration_activity__verify_your_number">Numaranızı Doğrulayın</string>
+  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Bir onay kodu almak için lütfen telefon numaranızı giriniz. Ücret tarifesi uygulanabilir.</string>
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->
@@ -738,6 +760,9 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="verify_display_fragment__verified">Doğrulandı</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Güvenlik numarasını paylaş</string>
+  <!--webrtc_answer_decline_button-->
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Yanıtlamak için hızlıca kaydır</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Reddetmek için aşağı doğru hızlıca kaydır</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Bazı sorunlar ilginizi gerektiriyor.</string>
   <string name="message_details_header__sent">Gönderildi</string>
@@ -924,8 +949,10 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kişi fotoğrafı</string>
   <string name="conversation_list_item_view__archived">Arşivlendi</string>
+  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Gelen kutusu sıııfffııır</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Yeni sohbet</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Gelen kutunuza birşeyler gelmesini sağlayın. Bir arkadaşınıza mesaj göndererek başlayın.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Güvenli oturumu sıfırla</string>
   <!--conversation_muted-->
@@ -982,6 +1009,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="media_preview__forward_title">İleri</string>
   <string name="media_preview__all_media_title">Tüm medya</string>
   <!--media_overview-->
+  <string name="media_overview_documents_fragment__no_documents_found">Belge yok</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Medya önizleme</string>
   <!--new_conversation_activity-->
@@ -993,19 +1021,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="trimmer__old_messages_successfully_deleted">Eski iletiler başarıyla silindi</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ulaştırma simgesi</string>
-  <string name="conversation_item_sent__message_read">Mesaj okundu</string>
-  <string name="media_overview_documents_fragment__no_documents_found">Belge yok</string>
-  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Okundu bilgisi burada</string>
-  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">İsteğe bağlı olarak mesajların okunduğunu gör ve paylaş</string>
-  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Okundu bilgisini etkinleştir</string>
-  <string name="recipient_preference_activity__shared_media">Paylaşılan medya</string>
-  <string name="registration_activity__verify_your_number">Numaranızı Doğrulayın</string>
-  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Bir onay kodu almak için lütfen telefon numaranızı giriniz. Ücret tarifesi uygulanabilir.</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Gelen kutunuza birşeyler gelmesini sağlayın. Bir arkadaşınıza mesaj göndererek başlayın.</string>
-  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Gelen kutusu sıııfffııır</string>
-  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Sıfır. Sıfır. Sıfır. Hepiniz yakalandınız!</string>
-  <string name="ConversationListFragment_no_results_found_for_s_">\'%s\' için hiç sonuç bulunamadı.</string>
-  <string name="SearchToolbar_search">Ara</string>
-  <string name="ContactsCursorLoader_contacts">Kişiler</string>
+  <string name="ConversationListFragment_loading">Yükleniyor...</string>
+  <string name="CallNotificationBuilder_connecting">Bağlanılıyor...</string>
   <!--EOF-->
 </resources>

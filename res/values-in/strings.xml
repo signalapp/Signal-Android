@@ -67,6 +67,7 @@
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Angka keamanan Anda dengan %1$s telah berubah. Ini bisa disebabkan seseorang mencoba mencegat komunikasi Anda, atau disebabkan %2$s telah memasang ulang Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Sebaiknya Anda memastikan angka keamanan dengan kontak ini.</string>
   <string name="ConfirmIdentityDialog_accept">Terima</string>
+  <!--ContactsCursorLoader-->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Pesan %s</string>
   <string name="ContactsDatabase_signal_call_s">Panggilan Signal %s</string>
@@ -505,6 +506,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Pesan MMS dienkripsi untuk sesi yang tidak ada</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Bisukan pemberitahuan</string>
+  <!--OutdatedBuildReminder-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Dalam proses mengimport</string>
   <string name="ApplicationMigrationService_importing_text_messages">Mengimpor pesan teks</string>
@@ -539,11 +541,15 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="QuickResponseService_problem_sending_message">Terjadi masalah saat mengirim pesan!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Buka direktori</string>
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">Cari</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Pesan baru</string>
+  <!--UnauthorizedReminder-->
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Gagal saat memutar video</string>
+  <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Nomor keamanan untuk percakapan Anda dengan %1$s telah berubah. Ini bisa berarti seseorang mencoba untuk mencegat komunikasi Anda, atau %2$s hanya perlu memasang kembali Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Mungkin sebaiknya Anda memastikan angka keamanan dengan kontak ini.</string>
@@ -581,6 +587,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Tidak ada kontak yang diblokir</string>
   <!--contact_selection_recent_activity-->
+  <!--contact_selection_list_fragment-->
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Pesan Signal</string>
@@ -603,6 +610,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="conversation_item_sent__send_failed_indicator_description">Gagal Mengirim</string>
   <string name="conversation_item_sent__pending_approval_description">Persetujuan Tertunda</string>
   <string name="conversation_item_sent__delivered_description">Terkirim</string>
+  <string name="conversation_item_sent__message_read">Pesan terbaca</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Foto kontak</string>
   <!--audio_view-->
@@ -626,6 +634,9 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="device_list_fragment__link_new_device">Kaitkan perangkat baru</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">lanjutkan</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Baca pesan di sini</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Pilihan melihat dan membagikan ketika pesan sudah dibaca</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Dapat membaca penerima</string>
   <!--expiration-->
   <string name="expiration_off">Mati</string>
   <plurals name="expiration_seconds">
@@ -712,6 +723,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="profile_create_activity__who_can_see_this_information">Siapa yang dapat melihat informasi ini?</string>
   <string name="profile_create_activity__your_name">Nama anda</string>
   <!--recipient_preferences_activity-->
+  <string name="recipient_preference_activity__shared_media">Bagikan media</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Bisukan percakapan</string>
   <string name="recipient_preferences__notification_sound">Suara pemberitahuan</string>
@@ -745,6 +757,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="verify_display_fragment__verified">Terverifikasi</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Bagikan nomor keamanan</string>
+  <!--webrtc_answer_decline_button-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Beberapa masalah membutuhkan perhatian Anda.</string>
   <string name="message_details_header__sent">Terkirim</string>
@@ -989,6 +1002,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="media_preview__forward_title">Teruskan</string>
   <string name="media_preview__all_media_title">Semua media</string>
   <!--media_overview-->
+  <string name="media_overview_documents_fragment__no_documents_found">Tidak ada dokumen</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Pratinjau media</string>
   <!--new_conversation_activity-->
@@ -1000,12 +1014,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="trimmer__old_messages_successfully_deleted">Pesan lama berhasil dihapus</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikon transpor</string>
-  <string name="conversation_item_sent__message_read">Pesan terbaca</string>
-  <string name="media_overview_documents_fragment__no_documents_found">Tidak ada dokumen</string>
-  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Baca pesan di sini</string>
-  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Pilihan melihat dan membagikan ketika pesan sudah dibaca</string>
-  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Dapat membaca penerima</string>
-  <string name="recipient_preference_activity__shared_media">Bagikan media</string>
-  <string name="SearchToolbar_search">Cari</string>
+  <string name="ConversationListFragment_loading">Memuat...</string>
+  <string name="CallNotificationBuilder_connecting">Menghubungkan...</string>
   <!--EOF-->
 </resources>

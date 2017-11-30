@@ -58,6 +58,7 @@
   <string name="ClearProfileActivity_remove">Gyawo</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_accept">Kiriza</string>
+  <!--ContactsCursorLoader-->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Obubaka %s</string>
   <string name="ContactsDatabase_signal_call_s">Mayengo g\'amasimu %s</string>
@@ -385,6 +386,7 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="MmsMessageRecord_decrypting_mms_please_wait">MMS message  esumululwa, bambi lindako.</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">zikiza obude bwemboozi</string>
+  <!--OutdatedBuildReminder-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">kuyingiza kugenda mumaaso</string>
   <string name="ApplicationMigrationService_importing_text_messages">text message zili mu kuyingizibwa</string>
@@ -414,10 +416,14 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">okudamu okwangu tekubawo nga amayengo gasibidwa</string>
   <string name="QuickResponseService_problem_sending_message">obuzibu mukusindika obubaka</string>
   <!--SaveAttachmentTask-->
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">Noonya</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">mayengo</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Obubaka obupya</string>
+  <!--UnauthorizedReminder-->
   <!--VideoPlayer-->
+  <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
@@ -439,6 +445,7 @@ gy\'olonze (%s) sintuufu.</string>
   <!--ContactSelectionListFragment-->
   <!--blocked_contacts_fragment-->
   <!--contact_selection_recent_activity-->
+  <!--contact_selection_list_fragment-->
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__from_sim_name">kuva %1$s</string>
@@ -567,6 +574,7 @@ gy\'olonze (%s) sintuufu.</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__tap_to_scan">Nyiga osikaniinge</string>
   <!--verify_identity-->
+  <!--webrtc_answer_decline_button-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Ensonga ezimu zetaaga gwe</string>
   <string name="message_details_header__sent">Esindikiddwa</string>
@@ -799,6 +807,6 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="trimmer__old_messages_successfully_deleted">Obubaka obukadde busangulidwa ddala</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">akatambuza</string>
-  <string name="SearchToolbar_search">Noonya</string>
+  <string name="CallNotificationBuilder_connecting">Tukonekitinga...</string>
   <!--EOF-->
 </resources>

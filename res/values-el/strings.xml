@@ -70,6 +70,9 @@
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Ο αριθμός ασφαλείας με τον/την %1$s άλλαξε. Είτε κάποιος προσπαθεί να υποκλέψει τη συνομιλία σας, είτε ο/η %2$s απλά επανεγκατέστησε το Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Προτείνουμε να επιβεβαιώσεις τον αριθμό ασφαλείας σου με αυτή την επαφή.</string>
   <string name="ConfirmIdentityDialog_accept">Αποδοχή</string>
+  <!--ContactsCursorLoader-->
+  <string name="ContactsCursorLoader_recent_chats">Πρόσφατες συζητήσεις</string>
+  <string name="ContactsCursorLoader_contacts">Επαφές</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Μήνυμα %s</string>
   <string name="ContactsDatabase_signal_call_s">Κλήση Signal %s</string>
@@ -162,6 +165,7 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Δεν υπάρχει εγκατεστημένο πρόγραμμα περιήγησης στη συσκευή σας.</string>
   <!--ConversationListFragment-->
+  <string name="ConversationListFragment_no_results_found_for_s_">Δεν βρέθηκαν αποτελέσματα για \"%s\"</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Διαγραφή επιλεγμένης συζήτησης;</item>
     <item quantity="other">Διαγραφή επιλεγμένων συζητήσεων;</item>
@@ -519,6 +523,8 @@
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Το MMS μήνυμα κρυπτογραφήθηκε για μη υπάρχον session</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Σίγαση ειδοποιήσεων</string>
+  <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_no_web_browser_installed">Δεν υπάρχει εγκατεστημένος φυλλομετρητής!</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Εισαγωγή σε εξέλιξη</string>
   <string name="ApplicationMigrationService_importing_text_messages">Εισαγωγή μηνυμάτων κειμένου</string>
@@ -553,11 +559,17 @@
   <string name="QuickResponseService_problem_sending_message">Πρόβλημα με την αποστολή μηνύματος!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Άνοιγμα φακέλου</string>
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">Αναζήτηση</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Νέο μήνυμα</string>
+  <!--UnauthorizedReminder-->
+  <string name="UnauthorizedReminder_device_no_longer_registered">Η συσκευή δεν είναι πλέον εγγεγραμμένη</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Αυτό συνέβη μάλλον επειδή καταχώρησες τον αριθμό τηλεφώνου σου στο Signal σε άλλη συσκευή. Πάτησε για να επανεγγραφτείς.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Πρόβλημα με την απαπαραγωγή του βίντεο</string>
+  <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Ο αριθμός ασφαλείας για την συζήτησή σου με τον/την %1$s έχει αλλάξει. Αυτό μπορεί να σημαίνει πως κάποιος προσπαθεί να υποκλέψει τις επικοινωνίες σου, ή πως απλά ο/η %2$s επανεγκατέστησε το Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Μήπως θα ήθελες να επιβεβαιώσεις τον αριθμό ασφαλείας σου για αυτή την επαφή;</string>
@@ -595,6 +607,7 @@
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Καμία μπλοκαρισμένη επαφή</string>
   <!--contact_selection_recent_activity-->
+  <!--contact_selection_list_fragment-->
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Μήνυμα Signal</string>
@@ -617,6 +630,7 @@
   <string name="conversation_item_sent__send_failed_indicator_description">Η αποστολή απέτυχε</string>
   <string name="conversation_item_sent__pending_approval_description">Η έγκριση εκκρεμεί</string>
   <string name="conversation_item_sent__delivered_description">Παραδόθηκε</string>
+  <string name="conversation_item_sent__message_read">Το μήνυμα διαβάστηκε</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Φωτογραφία επαφής</string>
   <!--audio_view-->
@@ -640,6 +654,9 @@
   <string name="device_list_fragment__link_new_device">Σύνδεση νέας συσκευής</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">συνέχεια</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Τα αποδεικτικά ανάγνωσης ήρθαν</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Προαιρετικά, μπορείς να δεις και να μοιραστείς πότε διαβάστηκαν τα μηνύματα</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Ενεργοποίηση αποδεικτικών ανάγνωσης</string>
   <!--expiration-->
   <string name="expiration_off">Απενεργοποιημένο</string>
   <plurals name="expiration_seconds">
@@ -733,6 +750,7 @@
   <string name="profile_create_activity__who_can_see_this_information">Ποιοί μπορούν να δουν αυτές τις πληροφορίες; </string>
   <string name="profile_create_activity__your_name">Το όνομα σου</string>
   <!--recipient_preferences_activity-->
+  <string name="recipient_preference_activity__shared_media">Διαμοιρασμένα πολυμέσα</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Σίγαση συζήτησης</string>
   <string name="recipient_preferences__notification_sound">Ήχος ειδοποίησης</string>
@@ -749,6 +767,8 @@
   <!--registration_activity-->
   <string name="registration_activity__phone_number">ΑΡΙΘΜΟΣ ΚΙΝΗΤΟΥ</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Το Signal κάνει την επικοινωνία εύκολη χρησιμοποιόντας τον τηλεφωνικό αριθμό και τη λίστα επαφών σου. Φίλοι/ες και επαφές που έχουν ήδη τον αριθμό σου θα μπορούν να σου μιλήσουν εύκολα μέσω του Signal.\n\nΗ εγγραφή μεταδίδει προσωρινά μερικά στοιχεία επικοινωνίας στον διακομιστή. Δεν θα αποθηκευτούν.</string>
+  <string name="registration_activity__verify_your_number">Επιβεβαίωσε τον αριθμό σου</string>
+  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Παρακαλώ γράψε τον αριθμό κινητού σου για να λάβεις ένα κωδικό επιβεβαίωσης. Μπορεί να υπάρξουν χρεώσεις παρόχου.</string>
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->
@@ -766,6 +786,9 @@
   <string name="verify_display_fragment__verified">Επιβεβαιωμένο</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Μοιράσου τον αριθμό ασφαλείας</string>
+  <!--webrtc_answer_decline_button-->
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Σύρε προς τα πάνω για απάντηση</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Σύρε προς τα κάτω για απόρριψη</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Ορισμένα ζητήματα χρειάζονται την προσοχή σου.</string>
   <string name="message_details_header__sent">Στάλθηκε στις</string>
@@ -953,8 +976,10 @@
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Φωτογραφία επαφής</string>
   <string name="conversation_list_item_view__archived">Αρχειοθετημένα</string>
+  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Τίποτα στα εισερχόμενα</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Νεα συζήτηση</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Δώσε ζωή στα εισερχόμενά σου! Ξεκίνα στέλνοντας μήνυμα σε κάποιον/α φίλο/η σου.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Επανεκκίνηση ασφαλούς συνεδρίας</string>
   <!--conversation_muted-->
@@ -1012,6 +1037,7 @@
   <string name="media_preview__forward_title">Προώθηση</string>
   <string name="media_preview__all_media_title">Όλα τα πολυμέσα</string>
   <!--media_overview-->
+  <string name="media_overview_documents_fragment__no_documents_found">Δεν υπάρχουν έγγραφα</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Προεπισκόπιση</string>
   <!--new_conversation_activity-->
@@ -1023,25 +1049,7 @@
   <string name="trimmer__old_messages_successfully_deleted">Τα παλιά μηνύματα διαγράφτηκαν επιτυχώς</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Μεταφορά εικονίδιου</string>
-  <string name="conversation_item_sent__message_read">Το μήνυμα διαβάστηκε</string>
-  <string name="media_overview_documents_fragment__no_documents_found">Δεν υπάρχουν έγγραφα</string>
-  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Τα αποδεικτικά ανάγνωσης ήρθαν</string>
-  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Προαιρετικά, μπορείς να δεις και να μοιραστείς πότε διαβάστηκαν τα μηνύματα</string>
-  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Ενεργοποίηση αποδεικτικών ανάγνωσης</string>
-  <string name="recipient_preference_activity__shared_media">Διαμοιρασμένα πολυμέσα</string>
-  <string name="registration_activity__verify_your_number">Επιβεβαίωσε τον αριθμό σου</string>
-  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Παρακαλώ γράψε τον αριθμό κινητού σου για να λάβεις ένα κωδικό επιβεβαίωσης. Μπορεί να υπάρξουν χρεώσεις παρόχου.</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Δώσε ζωή στα εισερχόμενά σου! Ξεκίνα στέλνοντας μήνυμα σε κάποιον/α φίλο/η σου.</string>
-  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Τίποτα στα εισερχόμενα</string>
-  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Το απόλυτο μηδέν! Τα εισερχόμενα είναι άδεια.</string>
-  <string name="ConversationListFragment_no_results_found_for_s_">Δεν βρέθηκαν αποτελέσματα για \"%s\"</string>
-  <string name="SearchToolbar_search">Αναζήτηση</string>
-  <string name="UnauthorizedReminder_device_no_longer_registered">Η συσκευή δεν είναι πλέον εγγεγραμμένη</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Αυτό συνέβη μάλλον επειδή καταχώρησες τον αριθμό τηλεφώνου σου στο Signal σε άλλη συσκευή. Πάτησε για να επανεγγραφτείς.</string>
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Δεν υπάρχει εγκατεστημένος φυλλομετρητής!</string>
-  <string name="ContactsCursorLoader_recent_chats">Πρόσφατες συζητήσεις</string>
-  <string name="ContactsCursorLoader_contacts">Επαφές</string>
-  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Σύρε προς τα πάνω για απάντηση</string>
-  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Σύρε προς τα κάτω για απόρριψη</string>
+  <string name="ConversationListFragment_loading">Φορτώνει...</string>
+  <string name="CallNotificationBuilder_connecting">Γίνεται σύνδεση...</string>
   <!--EOF-->
 </resources>
