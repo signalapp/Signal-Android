@@ -1311,6 +1311,8 @@
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
     <string name="ConversationListFragment_loading">Loading...</string>
     <string name="CallNotificationBuilder_connecting">Connecting...</string>
+    <string name="Permissions_permission_required">Permission required</string>
+    <string name="Permissions_continue">Continue</string>
 
 
     <!-- EOF -->

@@ -22,9 +22,11 @@ import android.view.WindowManager;
 import com.annimon.stream.Stream;
 import com.annimon.stream.function.Consumer;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 
+import java.lang.ref.WeakReference;
 import java.security.SecureRandom;
 import java.util.List;
 import java.util.Map;
@@ -309,22 +311,26 @@ public class Permissions {
 
   private static class SettingsDialogListener implements Runnable {
 
-    private final Context context;
-    private final String message;
+    private final WeakReference<Context> context;
+    private final String                 message;
 
     SettingsDialogListener(Context context, String message) {
       this.message = message;
-      this.context = context.getApplicationContext();
+      this.context = new WeakReference<>(context);
     }
 
     @Override
     public void run() {
-      new AlertDialog.Builder(context)
-          .setTitle("Permission required")
-          .setMessage(message)
-          .setPositiveButton("Continue", (dialog, which) -> context.startActivity(getApplicationSettingsIntent(context)))
-          .setNegativeButton("Cancel", null)
-          .show();
+      Context context = this.context.get();
+
+      if (context != null) {
+        new AlertDialog.Builder(context)
+            .setTitle(R.string.Permissions_permission_required)
+            .setMessage(message)
+            .setPositiveButton(R.string.Permissions_continue, (dialog, which) -> context.startActivity(getApplicationSettingsIntent(context)))
+            .setNegativeButton(android.R.string.cancel, null)
+            .show();
+      }
     }
   }
 }
