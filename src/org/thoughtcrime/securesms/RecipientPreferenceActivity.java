@@ -296,8 +296,8 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       final Uri toneUri = recipient.getRingtone();
 
       if (toneUri == null) {
-        ringtonePreference.setSummary(R.string.preferences__default);
-        ringtonePreference.setCurrentRingtone(Uri.parse(TextSecurePreferences.getNotificationRingtone(getContext())));
+        ringtonePreference.setSummary(R.string.preferences__none);
+        ringtonePreference.setCurrentRingtone(null);
       } else if (toneUri.toString().isEmpty()) {
         ringtonePreference.setSummary(R.string.preferences__silent);
         ringtonePreference.setCurrentRingtone(null);
@@ -364,11 +364,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     private class RingtoneChangeListener implements Preference.OnPreferenceChangeListener {
       @Override
       public boolean onPreferenceChange(Preference preference, Object newValue) {
-        Uri value = (Uri)newValue;
-
-        if (Settings.System.DEFAULT_NOTIFICATION_URI.equals(value)) {
-          value = null;
-        }
+        final Uri value = (Uri)newValue;
 
         new AsyncTask<Uri, Void, Void>() {
           @Override
