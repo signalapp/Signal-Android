@@ -524,6 +524,15 @@
               android:exported="false"
               android:authorities="org.thoughtcrime.provider.securesms.mms" />
 
+    <provider android:name="android.support.v4.content.FileProvider"
+              android:authorities="org.thoughtcrime.securesms.fileprovider"
+              android:exported="false"
+              android:grantUriPermissions="true">
+
+        <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_provider_paths" />
+
+    </provider>
+
     <receiver android:name=".service.BootReceiver">
         <intent-filter>
             <action android:name="android.intent.action.BOOT_COMPLETED"/>

@@ -5,8 +5,10 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.UriMatcher;
 import android.net.Uri;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
 
@@ -14,6 +16,7 @@ import org.thoughtcrime.securesms.crypto.DecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.EncryptingPartOutputStream;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.util.FileProviderUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.InvalidMessageException;
 
@@ -128,8 +131,8 @@ public class PersistentBlobProvider {
   }
 
   public Uri createForExternal(@NonNull String mimeType) throws IOException {
-    return Uri.fromFile(new File(getExternalDir(context),
-                        String.valueOf(System.currentTimeMillis()) + "." + getExtensionFromMimeType(mimeType)));
+    File target = new File(getExternalDir(context), String.valueOf(System.currentTimeMillis()) + "." + getExtensionFromMimeType(mimeType));
+    return FileProviderUtil.getUriFor(context, target);
   }
 
   public boolean delete(@NonNull Uri uri) {
