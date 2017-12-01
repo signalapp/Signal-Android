@@ -635,7 +635,17 @@ public class TextSecurePreferences {
   }
 
   public static String getNotificationRingtone(Context context) {
-    return getStringPreference(context, RINGTONE_PREF, Settings.System.DEFAULT_NOTIFICATION_URI.toString());
+    String result = getStringPreference(context, RINGTONE_PREF, Settings.System.DEFAULT_NOTIFICATION_URI.toString());
+
+    if (result != null && result.startsWith("file:")) {
+      result = Settings.System.DEFAULT_NOTIFICATION_URI.toString();
+    }
+
+    return result;
+  }
+
+  public static void setNotificationRingtone(Context context, String ringtone) {
+    setStringPreference(context, RINGTONE_PREF, ringtone);
   }
 
   public static boolean isNotificationVibrateEnabled(Context context) {

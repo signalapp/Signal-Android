@@ -10,13 +10,10 @@
                 android:disableDependentsState="true"
                 android:persistent="false" />
 
-        <org.thoughtcrime.securesms.preferences.widgets.SignalRingtonePreference
+        <org.thoughtcrime.securesms.preferences.widgets.SignalPreference
                             android:dependency="pref_key_recipient_mute"
                             android:key="pref_key_recipient_ringtone"
                             android:title="@string/recipient_preferences__notification_sound"
-                            android:ringtoneType="notification"
-                            android:showSilent="true"
-                            android:showDefault="true"
                             android:persistent="false"/>
 
         <org.thoughtcrime.securesms.preferences.widgets.SignalListPreference

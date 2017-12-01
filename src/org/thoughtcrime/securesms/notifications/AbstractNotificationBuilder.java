@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
@@ -18,6 +19,9 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
 public abstract class AbstractNotificationBuilder extends NotificationCompat.Builder {
+
+  @SuppressWarnings("unused")
+  private static final String TAG = AbstractNotificationBuilder.class.getSimpleName();
 
   protected Context                       context;
   protected NotificationPrivacyPreference privacy;

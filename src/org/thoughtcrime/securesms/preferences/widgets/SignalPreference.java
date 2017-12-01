@@ -2,36 +2,34 @@ package org.thoughtcrime.securesms.preferences.widgets;
 
 
 import android.content.Context;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
+import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceViewHolder;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
 
-public class SignalRingtonePreference extends AdvancedRingtonePreference {
+public class SignalPreference extends Preference {
 
   private TextView rightSummary;
   private CharSequence summary;
 
-  @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-  public SignalRingtonePreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+  public SignalPreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
     super(context, attrs, defStyleAttr, defStyleRes);
     initialize();
   }
 
-  public SignalRingtonePreference(Context context, AttributeSet attrs, int defStyleAttr) {
+  public SignalPreference(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
     initialize();
   }
 
-  public SignalRingtonePreference(Context context, AttributeSet attrs) {
+  public SignalPreference(Context context, AttributeSet attrs) {
     super(context, attrs);
     initialize();
   }
 
-  public SignalRingtonePreference(Context context) {
+  public SignalPreference(Context context) {
     super(context);
     initialize();
   }
@@ -45,17 +43,17 @@ public class SignalRingtonePreference extends AdvancedRingtonePreference {
     super.onBindViewHolder(view);
 
     this.rightSummary = (TextView)view.findViewById(R.id.right_summary);
-    setSummary(summary);
+    setSummary(this.summary);
   }
 
   @Override
   public void setSummary(CharSequence summary) {
-    this.summary = summary;
-
     super.setSummary(null);
 
-    if (rightSummary != null) {
-      rightSummary.setText(summary);
+    this.summary = summary;
+
+    if (this.rightSummary != null) {
+      this.rightSummary.setText(summary);
     }
   }
 

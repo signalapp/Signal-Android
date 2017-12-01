@@ -9,11 +9,11 @@
                             android:title="@string/preferences__notifications"
                             android:defaultValue="true" />
 
-        <org.thoughtcrime.securesms.preferences.widgets.SignalRingtonePreference
+        <org.thoughtcrime.securesms.preferences.widgets.SignalPreference
                 android:dependency="pref_key_enable_notifications"
                 android:key="pref_key_ringtone"
                 android:title="@string/preferences__sound"
-                android:ringtoneType="notification"
+                android:persistent="false"
                 android:defaultValue="content://settings/system/notification_sound" />
 
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat

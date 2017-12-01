@@ -51,7 +51,6 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.preferences.CorrectedPreferenceFragment;
-import org.thoughtcrime.securesms.preferences.widgets.AdvancedRingtonePreference;
 import org.thoughtcrime.securesms.preferences.widgets.ColorPickerPreference;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
@@ -59,7 +58,6 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.IdentityUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
@@ -248,6 +246,8 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
       this.findPreference(PREFERENCE_TONE)
           .setOnPreferenceChangeListener(new RingtoneChangeListener());
+      this.findPreference(PREFERENCE_TONE)
+          .setOnPreferenceClickListener(new RingtoneClickedListener());
       this.findPreference(PREFERENCE_VIBRATE)
           .setOnPreferenceChangeListener(new VibrateChangeListener());
       this.findPreference(PREFERENCE_MUTED)
@@ -276,6 +276,15 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       this.recipient.removeListener(this);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+      if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
+        Uri uri = data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
+
+        findPreference(PREFERENCE_TONE).getOnPreferenceChangeListener().onPreferenceChange(findPreference(PREFERENCE_TONE), uri);
+      }
+    }
+
     private void initializeRecipients() {
       this.recipient = Recipient.from(getActivity(), getArguments().getParcelable(ADDRESS_EXTRA), true);
       this.recipient.addListener(this);
@@ -283,7 +292,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
     private void setSummaries(Recipient recipient) {
       CheckBoxPreference         mutePreference     = (CheckBoxPreference) this.findPreference(PREFERENCE_MUTED);
-      AdvancedRingtonePreference ringtonePreference = (AdvancedRingtonePreference) this.findPreference(PREFERENCE_TONE);
+      Preference                 ringtonePreference =  this.findPreference(PREFERENCE_TONE);
       ListPreference             vibratePreference  = (ListPreference) this.findPreference(PREFERENCE_VIBRATE);
       ColorPickerPreference      colorPreference    = (ColorPickerPreference) this.findPreference(PREFERENCE_COLOR);
       Preference                 blockPreference    = this.findPreference(PREFERENCE_BLOCK);
@@ -297,16 +306,13 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
       if (toneUri == null) {
         ringtonePreference.setSummary(R.string.preferences__default);
-        ringtonePreference.setCurrentRingtone(Uri.parse(TextSecurePreferences.getNotificationRingtone(getContext())));
       } else if (toneUri.toString().isEmpty()) {
         ringtonePreference.setSummary(R.string.preferences__silent);
-        ringtonePreference.setCurrentRingtone(null);
       } else {
         Ringtone tone = RingtoneManager.getRingtone(getActivity(), toneUri);
 
         if (tone != null) {
           ringtonePreference.setSummary(tone.getTitle(getActivity()));
-          ringtonePreference.setCurrentRingtone(toneUri);
         }
       }
 
@@ -368,6 +374,8 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
         if (Settings.System.DEFAULT_NOTIFICATION_URI.equals(value)) {
           value = null;
+        } else if (value == null) {
+          value = Uri.EMPTY;
         }
 
         new AsyncTask<Uri, Void, Void>() {
@@ -380,6 +388,27 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, value);
 
         return false;
+      }
+    }
+
+    private class RingtoneClickedListener implements Preference.OnPreferenceClickListener {
+
+      @Override
+      public boolean onPreferenceClick(Preference preference) {
+        Uri uri = recipient.getRingtone();
+
+        if      (uri == null)              uri = Settings.System.DEFAULT_NOTIFICATION_URI;
+        else if (uri.toString().isEmpty()) uri = null;
+
+        Intent intent = new Intent(RingtoneManager.ACTION_RINGTONE_PICKER);
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, true);
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true);
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_NOTIFICATION);
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, uri);
+
+        startActivityForResult(intent, 1);
+
+        return true;
       }
     }
 
