@@ -1023,5 +1023,6 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="transport_selection_list_item__transport_icon">Ulaştırma simgesi</string>
   <string name="ConversationListFragment_loading">Yükleniyor...</string>
   <string name="CallNotificationBuilder_connecting">Bağlanılıyor...</string>
+  <string name="Permissions_continue">Devam Et</string>
   <!--EOF-->
 </resources>

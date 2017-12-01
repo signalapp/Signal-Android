@@ -1046,5 +1046,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="transport_selection_list_item__transport_icon">Transportikon</string>
   <string name="ConversationListFragment_loading">Laddar...</string>
   <string name="CallNotificationBuilder_connecting">Ansluter...</string>
+  <string name="Permissions_continue">Fortsätt</string>
   <!--EOF-->
 </resources>

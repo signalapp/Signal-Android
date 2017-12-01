@@ -1030,5 +1030,6 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <string name="transport_selection_list_item__transport_icon">Ikonat e transportit</string>
   <string name="ConversationListFragment_loading">Duke karikuar...</string>
   <string name="CallNotificationBuilder_connecting">Duke u lidhur...</string>
+  <string name="Permissions_continue">Vazhdo</string>
   <!--EOF-->
 </resources>

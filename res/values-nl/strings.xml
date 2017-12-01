@@ -53,6 +53,8 @@
   <string name="AttachmentManager_cant_open_media_selection">Geen app gevonden om media te selecteren.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal heeft toestemming nodig tot de opslagruimte om foto\'s, video en audio te kunnen versturen maar deze toestemming is permanent geweigerd. Ga in het menu naar de app instellingen, open \"Toestemmingen\" en zet \"Opslagruimte\" aan.</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal heeft toestemming nodig tot de contacten om contactinformatie te kunnen versturen maar deze toestemming is permanent geweigerd. Ga in het menu naar de app instellingen, open \"Toestemmingen\" en zet \"Contacten\" aan.</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal heeft toestemming nodig tot de locatie om locaties te kunnen versturen maar deze toestemming is permanent geweigerd. Ga in het menu naar de app instellingen, open \"Toestemmingen\" en zet \"Locatie\" aan.</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal heeft toestemming nodig tot de camera om foto\'s te kunnen maken maar deze toestemming is permanent geweigerd. Ga in het menu naar de app instellingen, open \"Toestemmingen\" en zet \"Camera\" aan.</string>
   <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Fout bij afspelen van audio!</string>
@@ -123,8 +125,12 @@
   <string name="ConversationActivity_error_sending_voice_message">Fout bij verzenden van audiobericht</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Er is geen app aanwezig op het apparaat om deze link te openen.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Geef Signal toegang tot je microfoon om audioberichten te sturen.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal heeft toestemming nodig tot de microfoon om audioberichten te kunnen versturen maar deze toestemming is permanent geweigerd. Ga in het menu naar de app instellingen, open \"Toestemmingen\" en zet \"Microfoon\" aan.</string>
   <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Signal heeft toegang nodig tot je microfoon en camera om %s te bellen.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal heeft toestemming nodig tot de microfoon en camera om %s te kunnen bellen maar deze toestemming is permanent geweigerd. Ga in het menu naar de app instellingen, open \"Toestemmingen\" en zet \"Microfoon\" en \"Camera\" aan.</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Geef Signal toegang tot de camera om foto\'s en video\'s te maken.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal heeft toestemming nodig om de camera te benaderen om foto\'s en video te kunnen opnemen maar deze toestemming is permanent geweigerd. Ga in het menu naar de app instellingen, open \"Toestemmingen\" en zet \"Camera\" aan.</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal heeft toestemming nodig om de camera te benaderen om foto\'s en video te kunnen opnemen</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ongelezen bericht</item>
@@ -297,6 +303,12 @@
   <string name="ImportFragment_no_plaintext_backup_found">Geen niet-versleutelde back-up gevonden!</string>
   <string name="ImportFragment_error_importing_backup">Fout bij het importeren van back-up!</string>
   <string name="ImportFragment_import_complete">Importeren voltooid!</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages">Signal heeft toestemming nodig om sms berichten te kunnen versturen maar deze is permanent geweigerd. Ga naar app instellingen, selecteer \"Toestemmingen\" en zet \"SMS\" aan.</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">Signal heeft toestemming nodig om de sms berichten te lezen om deze te kunnen importeren maar deze is permanent geweigerd</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">Signal heeft toestemming nodig om de opslagruimte te benaderen om van de externe opslag te kunnen lezen maar deze is permanent geweigerd. Ga naar app instellingen, selecteer \"Toestemmingen\" en zet \"Opslagruimte\" aan.</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">Signal heeft toestemming nodig om de opslagruimte te benaderen om van de externe opslag te kunnen lezen.</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal heeft toestemming nodig om de opslagruimte te benaderen om naar de externe opslag te kunnen schrijven maar deze is permanent geweigerd. Ga naar app instellingen, selecteer \"Toestemmingen\" en zet \"Opslagruimte\" aan.</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">Signal heeft toestemming nodig om de opslagruimte te benaderen om naar de externe opslag te kunnen schrijven maar deze is permanent geweigerd.</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tik en hou vast om audio op te nemen, laat los om te verzenden</string>
   <!--InviteActivity-->
@@ -381,6 +393,7 @@
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Sorry, dit is geen geldige QR-code voor koppeling van een apparaat.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Een Signal-apparaat koppelen?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Het lijkt erop dat je een Signal-apparaat wil koppelen met een externe scanner. Scan voor de veiligheid alsjeblieft de code opnieuw vanuit Signal.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal heeft toestemming nodig om de camera te benaderen om een QR code te scannen maar deze is permanent geweigerd. Ga naar app instellingen, selecteer \"Toestemmingen\" en zet \"Camera\" aan.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Niet in staat om een QR code te scannen zonder de Camera toestemming.</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Verdwijnende berichten</string>
@@ -509,6 +522,8 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="VerifyIdentityActivity_our_signal_safety_number">Ons Signal-veiligheidsnummer:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Het lijkt erop dat je geen apps hebt om naar te delen.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Geen veiligheidsnummer gevonden op het klembord</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal heeft toestemming nodig om de camera te benaderen om een QR code te scannen maar deze is permanent geweigerd. Ga naar app instellingen, selecteer \"Toestemmingen\" en zet \"Camera\" aan.</string>
+  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Kan QR code niet scannen zonder de camera toestemming</string>
   <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Verkeerd versleuteld bericht</string>
@@ -542,6 +557,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="MediaPreviewActivity_you">Jij</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Niet-ondersteund mediatype</string>
   <string name="MediaPreviewActivity_draft">Concept</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal heeft toestemming nodig om de opslagruimte te benaderen om naar de externe opslag te kunnen opslaan maar deze is permanent geweigerd. Ga naar app instellingen, selecteer \"Toestemmingen\" en zet \"Opslagruimte\" aan.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Kan niet opslaan naar externe opslag zonder toestemming</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nieuwe berichten in %2$d gesprekken</string>
@@ -575,6 +591,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="VideoPlayer_error_playing_video">Fout bij afspelen van video</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Geef Signal toegang tot je microfoon om de oproep van %s te beantwoorden.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal heeft toestemming nodig om de microfoon en de camera te benaderen om gesprekken te kunnen voeren maar deze is permanent geweigerd. Ga naar app instellingen, selecteer \"Toestemmingen\" en zet \"Microfoon\" en \"Camera\" aan.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Je veiligheidsnummer met %1$s is veranderd. Dit kan betekenen dat iemand je communicatie probeert te onderscheppen, of gewoon dat %2$s Signal opnieuw geïnstalleerd heeft.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Veiligheidsnummers met deze contactpersoon verifiëren.</string>
@@ -609,6 +626,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Contactfoto</string>
   <!--ContactSelectionListFragment-->
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal heeft toestemming nodig om de contacten te benaderen om je contacten weer te kunnen geven maar deze is permanent geweigerd. Ga naar app instellingen, selecteer \"Toestemmingen\" en zet \"Contacten\" aan.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Fout bij ophalen van contacten, controleer je netwerkverbinding</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Geen geblokkeerde contacten</string>
@@ -1060,5 +1078,6 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="transport_selection_list_item__transport_icon">Transportkanaalpictogram</string>
   <string name="ConversationListFragment_loading">Laden...</string>
   <string name="CallNotificationBuilder_connecting">Verbinden...</string>
+  <string name="Permissions_continue">Doorgaan</string>
   <!--EOF-->
 </resources>

@@ -1008,5 +1008,6 @@
   <string name="transport_selection_list_item__transport_icon">ပုံသင်္ကေတကို ပို့ဆောင်ပါ။</string>
   <string name="ConversationListFragment_loading">လုပ်ဆောင်နေသည်...</string>
   <string name="CallNotificationBuilder_connecting">ချိတ်ဆက်နေသည်</string>
+  <string name="Permissions_continue">ရှေ့ဆက်ပါ။</string>
   <!--EOF-->
 </resources>

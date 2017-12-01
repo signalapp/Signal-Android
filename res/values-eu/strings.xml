@@ -997,5 +997,6 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="transport_selection_list_item__transport_icon">Garraio ikonoa</string>
   <string name="ConversationListFragment_loading">Kargatzen...</string>
   <string name="CallNotificationBuilder_connecting">Konektatzen...</string>
+  <string name="Permissions_continue">Jarraitu</string>
   <!--EOF-->
 </resources>

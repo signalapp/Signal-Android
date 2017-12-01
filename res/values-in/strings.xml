@@ -1016,5 +1016,6 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="transport_selection_list_item__transport_icon">Ikon transpor</string>
   <string name="ConversationListFragment_loading">Memuat...</string>
   <string name="CallNotificationBuilder_connecting">Menghubungkan...</string>
+  <string name="Permissions_continue">Lanjutkan</string>
   <!--EOF-->
 </resources>

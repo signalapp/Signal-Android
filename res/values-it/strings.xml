@@ -1046,5 +1046,6 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="transport_selection_list_item__transport_icon">Icona trasporto</string>
   <string name="ConversationListFragment_loading">Caricamento...</string>
   <string name="CallNotificationBuilder_connecting">Connessione in corso...</string>
+  <string name="Permissions_continue">Continua</string>
   <!--EOF-->
 </resources>

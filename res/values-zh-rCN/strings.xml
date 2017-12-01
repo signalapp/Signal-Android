@@ -61,8 +61,8 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">来电呼叫</string>
   <!--ClearProfileActivity-->
-  <string name="ClearProfileActivity_remove">移除</string>
-  <string name="ClearProfileActivity_remove_profile_photo">移除头像照片？</string>
+  <string name="ClearProfileActivity_remove">删除</string>
+  <string name="ClearProfileActivity_remove_profile_photo">删除头像</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s 的安全代码发生了改变。这可能是因为有人正在尝试截获你们的通讯，或者 %2$s 只是重新安装了 Signal 。</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">您可能希望验证这个联系人的安全码。</string>
@@ -154,7 +154,7 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">您的设备上无浏览器</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_no_results_found_for_s_">没有找到关于“%s”的结果</string>
+  <string name="ConversationListFragment_no_results_found_for_s_">没有找到关于“%s”的信息</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="other">删除已选择的会话？</item>
   </plurals>
@@ -219,8 +219,8 @@
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal 现在支持视频通话了！同往常一样开始一个 Signal 通话，然后点击启用视频按钮，同您的联系人问好吧。</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal 现在支持视频通话了</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal 现在支持视频通话了，点击以探索此新功能。</string>
-  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">准备好分享您的头像了？</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">现在您可以在 Signal 上分享您的头像和昵称了</string>
+  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">要拍近照了，准备好了吗？</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">在Signal上和朋友们分享你的头像和昵称</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal 个人档案来了</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">导出</string>
@@ -1021,5 +1021,6 @@
   <string name="transport_selection_list_item__transport_icon">传输图标</string>
   <string name="ConversationListFragment_loading">载入中…</string>
   <string name="CallNotificationBuilder_connecting">连接中……</string>
+  <string name="Permissions_continue">继续</string>
   <!--EOF-->
 </resources>

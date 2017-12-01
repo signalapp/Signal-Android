@@ -1064,5 +1064,6 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="transport_selection_list_item__transport_icon">Ikona transporta</string>
   <string name="ConversationListFragment_loading">Učitavanje...</string>
   <string name="CallNotificationBuilder_connecting">Povezivanje...</string>
+  <string name="Permissions_continue">Nastavi</string>
   <!--EOF-->
 </resources>

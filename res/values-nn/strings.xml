@@ -51,6 +51,10 @@
   <string name="DraftDatabase_Draft_location_snippet">(stad)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Fann ingen program for valt medium.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal treng tilgang til ekstern lagring for å legga til bilete, film eller lydklipp som vedlegg, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Lagring».</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal treng tilgang til kontaktar for å legga til kontaktinformasjon som vedlegg, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Kontaktar».</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal treng tilgang til posisjon for å legga til posisjon som vedlegg, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Posisjon».</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal treng tilgang til kameraet for å ta bilete, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Kamera».</string>
   <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Det oppstod ein feil under lydavspeling.</string>
@@ -120,6 +124,13 @@
   <string name="ConversationActivity_unable_to_record_audio">Klarte ikkje å ta opp lydar.</string>
   <string name="ConversationActivity_error_sending_voice_message">Klarte ikkje senda talemelding</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Du har inga program på denne eininga som kan handtera denne lenkja.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">La Signal få tilgang til mikrofonen for å senda lydmeldingar.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal treng tilgang til mikrofonen for å senda lydklipp, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Mikrofon».</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">For å ringa %s må Signal ha tilgang til mikrofonen og kameraet ditt.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal treng tilgang til mikrofonen og kameraet for å ringa %s, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Mikrofon» og «Kamera»</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Gi Signal tilgang til kameraet for å ta bilete eller videoopptak.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal treng tilgang til kameraet for å ta bilete eller videoar, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Kamera».</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal treng tilgang til kameraet for å ta bilete eller videoopptak</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ulesen melding</item>
@@ -296,6 +307,12 @@ fører dette til dupliserte meldingar.</string>
   <string name="ImportFragment_no_plaintext_backup_found">Fann ingen klartekst-tryggleikskopi.</string>
   <string name="ImportFragment_error_importing_backup">Feil under importering av tryggleikskopi.</string>
   <string name="ImportFragment_import_complete">Importering er utført.</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages">Signal treng tilgang til SMS for å importera SMS-historikken, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «SMS».</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">Signal treng tilgang til SMS for å importera SMS-historikken</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">Signal treng tilgang til lagring for å lesa frå eksterne minnekort, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Lagring».</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">Signal treng tilgang til Lagring for å lesa frå eksterne minnekort</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal treng tilgang til lagring for å skriva til eksterne minnekort, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Lagring».</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">Signal treng tilgang til Lagring for å skriva til eksterne minnekort</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Trykk og hald for å spela inn talemelding , slepp for å senda</string>
   <!--InviteActivity-->
@@ -379,6 +396,8 @@ fører dette til dupliserte meldingar.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Dette er ikkje ein gyldig QR-kode for einingstilkopling.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Vil du kopla til ei Signal-eining?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Det ser ut som at du prøver å kopla ei eining til Signal ved hjelp av ein tredjepartsskannar. For din eigen tryggleik må du skanna koden på nytt via Signal.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal treng tilgang til kameraet for å skanna QR-kodar, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Kamera».</string>
+  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Kan ikkje skanna QR-kodar utan tilgang til kameraet</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Utløpstid for meldingar</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Meldingar går ikkje ut på tid.</string>
@@ -439,6 +458,9 @@ Viss du ikkje er ein erfaren brukar, ikkje køyrer ein tredjeparts Android-ROM, 
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play-tenester oppdaterer seg eller er mellombels utilgjengeleg. Prøv igjen seinare.</string>
   <string name="RegistrationActivity_more_information">Meir informasjon</string>
   <string name="RegistrationActivity_less_information">Mindre informasjon</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal treng tilgang til kontaktane dine og media for å ta kontakt med vennar, utveksla meldingar og oppretta trygge samtalar</string>
+  <string name="RegistrationActivity_unable_to_connect_to_service">Kan ikkje kopla til tenesta. Sjekk nettverkstilkoplinga og prøv igjen.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Signal kan automatisk oppdaga stadfestingskoden for å enkelt stadfesta telefonnummeret ditt, viss du gir Signal tilgang til å lesa SMS-meldingar.</string>
   <!--RegistrationProblemsActivity-->
   <!--RegistrationProgressActivity-->
   <!--RegistrationService-->
@@ -505,6 +527,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Vårt Signal-tryggleiksnummer:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Det ser ut som at du ikkje har noko program å dela denne informasjonen med.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Inga tryggleiksnummer å samanlikna vart funne i utklippstavla</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal treng tilgang til kameraet for å skanna QR-kodar, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Kamera».</string>
+  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Kan ikkje skanna QR-kodar utan kameratilgang</string>
   <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Dårleg kryptert melding</string>
@@ -538,6 +562,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="MediaPreviewActivity_you">Deg</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Ustøtta medietype</string>
   <string name="MediaPreviewActivity_draft">Kladd</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal treng tilgang til lagring for å lagra til eksterne minnekort, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Lagring».</string>
+  <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Kan ikkje lagra til eksterne minnekort utan tilgang</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nye meldingar i %2$d samtalar</string>
   <string name="MessageNotifier_most_recent_from_s">Nyaste frå: %1$s</string>
@@ -569,6 +595,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Klarte ikkje spela videoen</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Gi Signal tilgang til mikrofonen for å ta imot oppringinga frå %s.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal treng tilgang til mikrofon og kamera for å ringa eller ta imot samtalar, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Mikrofon» og «Kamera».</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Tryggleiksnummeret for samtalen din med %1$s har endra seg. Dette kan tyda på at nokon prøver å overvaka kommunikasjonen, eller at %2$s berre har installert Signal på nytt.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Du ynskjer kanskje å stadfesta tryggleiksnummeret ditt med denne kontakten.</string>
@@ -603,10 +631,14 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Kontaktfoto</string>
   <!--ContactSelectionListFragment-->
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal treng tilgang til kontaktar for å visa kontaktlista, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Kontaktar».</string>
+  <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Klarte ikkje henta kontaktane, sjekk nettverkstilkoplinga di</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Ingen blokkerte kontaktar</string>
   <!--contact_selection_recent_activity-->
   <!--contact_selection_list_fragment-->
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal treng tilgang til kontaktane dine for å visa dei.</string>
+  <string name="contact_selection_list_fragment__show_contacts">Vis kontaktar</string>
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal-melding</string>
@@ -978,6 +1010,8 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="conversation_list_item_view__contact_photo_image">Kontaktfoto</string>
   <string name="conversation_list_item_view__archived">Arkivert</string>
   <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Inboks tooommm</string>
+  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Tomt. Inkje. Null. Nada.
+Du er à jour!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Ny samtale</string>
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Gje innboksen din noko å skriva heim om. Kom i gang ved å melda med ein venn.</string>
@@ -1052,5 +1086,7 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
   <string name="ConversationListFragment_loading">Lastar …</string>
   <string name="CallNotificationBuilder_connecting">Koplar til …</string>
+  <string name="Permissions_permission_required">Tilgang krevst</string>
+  <string name="Permissions_continue">Hald fram</string>
   <!--EOF-->
 </resources>

@@ -1050,5 +1050,6 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="transport_selection_list_item__transport_icon">Икона за транспорт</string>
   <string name="ConversationListFragment_loading">Зареждане...</string>
   <string name="CallNotificationBuilder_connecting">Свързване...</string>
+  <string name="Permissions_continue">Продължи</string>
   <!--EOF-->
 </resources>

@@ -1038,5 +1038,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
   <string name="ConversationListFragment_loading">Laster...</string>
   <string name="CallNotificationBuilder_connecting">Kobler til …</string>
+  <string name="Permissions_continue">Fortsett</string>
   <!--EOF-->
 </resources>

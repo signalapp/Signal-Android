@@ -1000,5 +1000,6 @@
   <string name="transport_selection_list_item__transport_icon">転送アイコン</string>
   <string name="ConversationListFragment_loading">取得中</string>
   <string name="CallNotificationBuilder_connecting">接続中...</string>
+  <string name="Permissions_continue">続行</string>
   <!--EOF-->
 </resources>

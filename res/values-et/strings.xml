@@ -1056,5 +1056,6 @@
   <string name="transport_selection_list_item__transport_icon">Transpordi ikoon</string>
   <string name="ConversationListFragment_loading">Laadimine...</string>
   <string name="CallNotificationBuilder_connecting">Ühendan...</string>
+  <string name="Permissions_continue">Jätka</string>
   <!--EOF-->
 </resources>

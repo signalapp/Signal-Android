@@ -989,5 +989,6 @@
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Икона преноса</string>
   <string name="CallNotificationBuilder_connecting">Повезујем се...</string>
+  <string name="Permissions_continue">Настави</string>
   <!--EOF-->
 </resources>

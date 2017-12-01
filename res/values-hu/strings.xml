@@ -1060,5 +1060,6 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="transport_selection_list_item__transport_icon">Átvitel ikon</string>
   <string name="ConversationListFragment_loading">Betöltés</string>
   <string name="CallNotificationBuilder_connecting">Kapcsolódás...</string>
+  <string name="Permissions_continue">Folytatás</string>
   <!--EOF-->
 </resources>

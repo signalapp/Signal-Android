@@ -1093,5 +1093,6 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="transport_selection_list_item__transport_icon">Ikona transporta</string>
   <string name="ConversationListFragment_loading">Nalagam...</string>
   <string name="CallNotificationBuilder_connecting">Povezujem ...</string>
+  <string name="Permissions_continue">Nadaljuj</string>
   <!--EOF-->
 </resources>

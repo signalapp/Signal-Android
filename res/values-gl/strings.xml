@@ -1044,5 +1044,6 @@
   <string name="transport_selection_list_item__transport_icon">Icona do tráfico</string>
   <string name="ConversationListFragment_loading">Cargando...</string>
   <string name="CallNotificationBuilder_connecting">Conectando...</string>
+  <string name="Permissions_continue">Continuar</string>
   <!--EOF-->
 </resources>

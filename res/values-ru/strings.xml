@@ -126,6 +126,10 @@
   <string name="ConversationActivity_unable_to_record_audio">Невозможно записать аудио!</string>
   <string name="ConversationActivity_error_sending_voice_message">Ошибка при отправке голосового сообщения</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">На вашем устройстве не найдено приложение для открытия этой ссылки.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Для отправки аудиосообщений разрешите Signal доступ к микрофону.</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Для звонка %s, Signal требуется доступ к микрофону и камере.</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Для создания фото и видео разрешите Signal доступ к камере.</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Для съемки фото или видео предоставьте Signal доступ к камере</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d непрочитанное сообщение</item>
@@ -322,6 +326,8 @@
   <string name="ImportFragment_no_plaintext_backup_found">Простая резервная копия не найдена!</string>
   <string name="ImportFragment_error_importing_backup">Ошибка при импорте!</string>
   <string name="ImportFragment_import_complete">Импорт завершён.</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">Для импорта SMS предоставьте Signal разрешение на доступ к SMS</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">Для доступа Signal к хранилищу требуется разрешение.</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Нажмите и держите, чтобы записать голосовое сообщение; отпустите, чтобы отправить</string>
   <!--InviteActivity-->
@@ -597,6 +603,7 @@
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Ошибка при воспроизведении видео</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Для ответа на вызов от %s разрешите Signal доступ к микрофону.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Код безопасности вашего разговора с %1$s изменился. Это может означать, что кто-то пытается перехватить вашу переписку и звонки, или что %2$s просто переустановил(а) Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Возможно, вам стоит подтвердить код безопасности с этим контактом.</string>
@@ -631,10 +638,13 @@
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Фото контакта</string>
   <!--ContactSelectionListFragment-->
+  <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Ошибка при получении контактов, проверьте сетевое подключение</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Нет заблокированных контактов</string>
   <!--contact_selection_recent_activity-->
   <!--contact_selection_list_fragment-->
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Чтобы отобразить ваши контакты Signal необходимо разрешение на доступ.</string>
+  <string name="contact_selection_list_fragment__show_contacts">Показать контакты</string>
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Сообщение Signal</string>
@@ -1020,6 +1030,7 @@
   <string name="conversation_list_item_view__contact_photo_image">Фотография контакта</string>
   <string name="conversation_list_item_view__archived">Архив</string>
   <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Сообщений нет</string>
+  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Ничего нет!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Новый разговор</string>
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Начните свое общение с друзьями.</string>
@@ -1096,5 +1107,7 @@
   <string name="transport_selection_list_item__transport_icon">Иконка транспорта</string>
   <string name="ConversationListFragment_loading">Загрузка...</string>
   <string name="CallNotificationBuilder_connecting">Соединяемся...</string>
+  <string name="Permissions_permission_required">Требуется разрешение</string>
+  <string name="Permissions_continue">Продолжить</string>
   <!--EOF-->
 </resources>

@@ -1069,5 +1069,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="transport_selection_list_item__transport_icon">Ikona přenosu</string>
   <string name="ConversationListFragment_loading">Načítám...</string>
   <string name="CallNotificationBuilder_connecting">Probíhá připojování...</string>
+  <string name="Permissions_continue">Pokračovat</string>
   <!--EOF-->
 </resources>

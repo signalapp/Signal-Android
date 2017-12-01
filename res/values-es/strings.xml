@@ -51,6 +51,10 @@
   <string name="DraftDatabase_Draft_location_snippet">(ubicación)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">No se pudo encontrar una aplicación para el contenido seleccionado.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal requiere el permiso Almacenamiento para adjuntar fotos, vídeos, o audio desde almacenamiento externo, pero ha sido denegado permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilite \"Almacenamiento\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal requiere el permiso Contactos para adjuntar información de contacto. pero ha sido denegado permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilite \"Contactos\".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal requiere el permiso Ubicación para adjuntar una ubicación, pero ha sido denegado permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilite \"Ubicación\".</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal requiere el permiso Cámara para tomar fotos, pero ha sido denegado permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilite \"Cámara\".</string>
   <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">¡Error al reproducir el audio!</string>
@@ -120,6 +124,13 @@
   <string name="ConversationActivity_unable_to_record_audio">¡No se ha podido grabar el audio!</string>
   <string name="ConversationActivity_error_sending_voice_message">Error al enviar mensaje de voz</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">No hay ninguna aplicación disponible para usar este enlace en su dispositivo.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Para enviar mensajes de audio, permita a Signal acceder a su micrófono.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal requiere el permiso Micrófono para enviar mensajes de audio, pero ha sido denegado permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilite \"Micrófono\".</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Para llamar a %s, Signal necesita acceder a su micrófono y cámara.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal necesita los permisos Micrófono y Cámara para llamar a 1%s, pero han sido denegados permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilite \"Micrófono\" y \"Cámara\".</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Para capturar fotos y vídeo, permita el acceso de Signal a la cámara.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal necesita el permiso Cámara para tomar fotos o vídeo, pero ha sido denegado permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilite \"Cámara\".</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal necesita los permisos Cámara para tomar fotos o vídeo.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensaje no leído</item>
@@ -296,6 +307,12 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="ImportFragment_no_plaintext_backup_found">¡No se encontró una copia de seguridad de los mensajes en claro!</string>
   <string name="ImportFragment_error_importing_backup">¡Error importando copia de seguridad!</string>
   <string name="ImportFragment_import_complete">¡Se ha importado correctamente!</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages">Signal necesita el permiso SMS para importar mensajes SMS, pero ha sido denegado permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilite \"SMS\".</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">Signal necesita el permiso SMS para importar mensajes SMS.</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">Signal necesita el permiso Almacenamiento para leer desde almacenamiento externo, pero ha sido denegado permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, y habilite \"Almacenamiento\".</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">Signal necesita el permiso Almacenamiento para leer desde almacenamiento externo.</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal necesita el permiso Almacenamiento para escribir hacia almacenamiento externo, pero ha sido denegado permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilte \"Almacenamiento\".</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">Signal necesita el permiso Almacenamiento para escribir hacia almacenamiento externo.</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Pulse y mantenga pulsado para grabar un mensaje de voz, suelte para enviar</string>
   <!--InviteActivity-->
@@ -380,6 +397,8 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Lo sentimos , este código QR no es ​​válido .</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">¿Enlazar un dispositivo Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Parece que estás intentando enlazar un dispositivo Signal usando un escáner de terceros. Para tu protección, por favor, escanea el código otra vez desde Signal.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal necesita el permiso Cámara para escanear un código QR, pero ha sido denegado permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilite \"Cámara\".</string>
+  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">No se puede escanear un código QR sin el permiso Cámara.</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Mensajes desvanecentes</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Sus mensajes no caducarán.</string>
@@ -441,6 +460,8 @@ número de teléfono
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services se está actualizando o está temporalmente suspendido. Por favor intente de nuevo.</string>
   <string name="RegistrationActivity_more_information">Más información</string>
   <string name="RegistrationActivity_less_information">Menos información</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal necesita acceder a sus contactos y medios para conectar con amigos, intercambiar mensajes, y establecer llamadas seguras.</string>
+  <string name="RegistrationActivity_unable_to_connect_to_service">No se puede conectar al servicio. Por favor, compruebe la conexión de red e inténtelo de nuevo.</string>
   <!--RegistrationProblemsActivity-->
   <!--RegistrationProgressActivity-->
   <!--RegistrationService-->
@@ -509,6 +530,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="VerifyIdentityActivity_our_signal_safety_number">Nuestro número de seguridad de Signal:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Parece que no tiene ninguna aplicación con qué compartir.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">No se encontró número de seguridad para comparar en el portapapeles</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal necesita el permiso Cámara para escanear un código QR, pero ha sido denegado permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilite \"Cámara\".</string>
   <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Mensaje cifrado erróneo</string>
@@ -1054,5 +1076,6 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="transport_selection_list_item__transport_icon">Icono de transporte</string>
   <string name="ConversationListFragment_loading">Cargando...</string>
   <string name="CallNotificationBuilder_connecting">Conectando...</string>
+  <string name="Permissions_continue">Continuar</string>
   <!--EOF-->
 </resources>

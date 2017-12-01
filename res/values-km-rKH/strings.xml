@@ -1023,5 +1023,6 @@
   <string name="transport_selection_list_item__transport_icon">រូបសញ្ញាជញ្ជូន</string>
   <string name="ConversationListFragment_loading">កំពុងផ្ទុក...</string>
   <string name="CallNotificationBuilder_connecting">កំពុងតភ្ជាប់...</string>
+  <string name="Permissions_continue">បន្ត</string>
   <!--EOF-->
 </resources>

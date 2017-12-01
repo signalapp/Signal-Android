@@ -1005,5 +1005,6 @@
   <string name="transport_selection_list_item__transport_icon">آیکون های حمل و نقل</string>
   <string name="ConversationListFragment_loading">درحال بارگذاری...</string>
   <string name="CallNotificationBuilder_connecting">اتصال ...</string>
+  <string name="Permissions_continue">ادامه</string>
   <!--EOF-->
 </resources>

@@ -1047,5 +1047,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="transport_selection_list_item__transport_icon">Icona de trànsit</string>
   <string name="ConversationListFragment_loading">S\'està carregant...</string>
   <string name="CallNotificationBuilder_connecting">S\'està connectant...</string>
+  <string name="Permissions_continue">Continua</string>
   <!--EOF-->
 </resources>

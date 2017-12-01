@@ -1046,5 +1046,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="transport_selection_list_item__transport_icon">Tyypin kuvake</string>
   <string name="ConversationListFragment_loading">Ladataan...</string>
   <string name="CallNotificationBuilder_connecting">Yhdistetään...</string>
+  <string name="Permissions_continue">Jatka</string>
   <!--EOF-->
 </resources>

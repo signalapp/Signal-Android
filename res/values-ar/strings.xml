@@ -1089,5 +1089,6 @@
   <string name="transport_selection_list_item__transport_icon">أيقونة النقل.</string>
   <string name="ConversationListFragment_loading">جاري التحميل ...</string>
   <string name="CallNotificationBuilder_connecting">الاتصال جارِ...</string>
+  <string name="Permissions_continue">استمر</string>
   <!--EOF-->
 </resources>

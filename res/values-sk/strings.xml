@@ -1019,5 +1019,6 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <string name="transport_selection_list_item__transport_icon">Ikona prenosu</string>
   <string name="ConversationListFragment_loading">Načítava sa...</string>
   <string name="CallNotificationBuilder_connecting">Pripájanie...</string>
+  <string name="Permissions_continue">Pokračovať</string>
   <!--EOF-->
 </resources>

@@ -51,6 +51,7 @@
   <string name="DraftDatabase_Draft_location_snippet">(local)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Não foi possível encontrar um aplicativo para selecionar arquivos.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">O Signal precisa de permissão de acesso ao Armazenamento Externo para anexar fotos, vídeos, ou áudio, mas ela foi permanentemente negada. Favor ir para o menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Armazenamento\".</string>
   <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Erro ao tocar áudio!</string>
@@ -1057,5 +1058,6 @@
   <string name="transport_selection_list_item__transport_icon">Ícone do transporte</string>
   <string name="ConversationListFragment_loading">Carregando...</string>
   <string name="CallNotificationBuilder_connecting">Conectando...</string>
+  <string name="Permissions_continue">Continuar</string>
   <!--EOF-->
 </resources>

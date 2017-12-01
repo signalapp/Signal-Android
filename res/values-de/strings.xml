@@ -218,7 +218,7 @@
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">»%s« entfernen?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Nach Entfernen dieses Geräts wird es keine weiteren Nachrichten senden oder empfangen können.</string>
-  <string name="DeviceListActivity_network_connection_failed">Keine Netzwerkverbindung</string>
+  <string name="DeviceListActivity_network_connection_failed">Keine Netzverbindung</string>
   <string name="DeviceListActivity_try_again">Erneut versuchen</string>
   <string name="DeviceListActivity_unlinking_device">Gerät wird entfernt …</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Gerät entfernen</string>
@@ -305,10 +305,10 @@
   <string name="ImportFragment_import_complete">Importieren abgeschlossen!</string>
   <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages">Signal benötigt die Berechtigung »SMS« für das Importieren von SMS-Nachrichten, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »SMS«.</string>
   <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">Signal benötigt die Berechtigung »SMS«, um SMS-Nachrichten zu importieren</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">Signal benötigt die Berechtigung »Speicher« für den Lesezugriff auf den Benutzerspeicher, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Speicher«.</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">Signal benötigt die Berechtigung »Speicher«, um vom Benutzerspeicher zu lesen</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal benötigt die Berechtigung »Speicher« für den Schreibzugriff auf den Benutzerspeicher, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Speicher«.</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">Signal benötigt die Berechtigung »Speicher«, um in den Benutzerspeicher zu schreiben</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">Signal benötigt die Berechtigung »Speicher« für den Lesezugriff auf den Gerätespeicher, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Speicher«.</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">Signal benötigt die Berechtigung »Speicher«, um vom Gerätespeicher zu lesen</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal benötigt die Berechtigung »Speicher« für den Schreibzugriff auf den Gerätespeicher, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Speicher«.</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">Signal benötigt die Berechtigung »Speicher«, um in den Gerätespeicher zu schreiben</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Antippen und Halten zur Aufnahme einer Sprachnachricht, Loslassen zum Senden</string>
   <!--InviteActivity-->
@@ -449,6 +449,8 @@
   <string name="RegistrationActivity_more_information">Mehr Informationen</string>
   <string name="RegistrationActivity_less_information">Weniger Informationen</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal benötigt Zugriff auf deine Kontakte und Medien, um dich mit Freunden zu verbinden, Nachrichten auszutauschen und sichere Anrufe zu tätigen</string>
+  <string name="RegistrationActivity_unable_to_connect_to_service">Kein Verbinden zum Dienst möglich. Bitte überprüfe deine Netzverbindung und versuche es erneut.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Zum einfachen Verifizieren deiner Rufnummer kann Signal deinen Verifikationscode ermitteln, falls du Signal Zugriff auf deine SMS-Nachrichten erlaubst.</string>
   <!--RegistrationProblemsActivity-->
   <!--RegistrationProgressActivity-->
   <!--RegistrationService-->
@@ -515,6 +517,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="VerifyIdentityActivity_no_app_to_share_to">Anscheinend hast du keine zum Teilen geeigneten Apps installiert.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Keine zu vergleichende Sicherheitsnummer in der Zwischenablage gefunden</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal benötigt die Berechtigung »Kamera« für das Einscannen von QR-Codes, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kamera«.</string>
+  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">QR-Codes können ohne die Berechtigung »Kamera« nicht eingescannt werden</string>
   <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Fehlerhaft verschlüsselte Nachricht</string>
@@ -548,7 +551,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MediaPreviewActivity_you">Du</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Nicht unterstützter Medieninhaltetyp</string>
   <string name="MediaPreviewActivity_draft">Entwurf</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal benötigt die Berechtigung »Speicher« für das Abspeichern im Benutzerspeicher, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Speicher«.</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal benötigt die Berechtigung »Speicher« für das Speichern in den Gerätespeicher, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Speicher«.</string>
+  <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Speichern in den Gerätespeicher ohne Berechtigungen nicht möglich</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d neue Nachrichten in %2$d Unterhaltungen</string>
   <string name="MessageNotifier_most_recent_from_s">Neueste von: %1$s</string>
@@ -580,6 +584,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Fehler bei Videowiedergabe</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Um den Anruf von %s anzunehmen, erlaube Signal Zugriff auf dein Mikrofon.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal benötigt die Berechtigungen »Mikrofon« und »Kamera« für Anrufe, diese wurden jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Mikrofon« und »Kamera«.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Die Sicherheitsnummer für deine Unterhaltung mit %1$s hat sich geändert. Dies könnte bedeuten, dass jemand versucht, eure Kommunikation abzuhören. Oder %2$s hat Signal einfach erneut installiert.</string>
@@ -616,10 +621,12 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="SingleContactSelectionActivity_contact_photo">Kontaktbild</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal benötigt die Berechtigung »Kontakte« für die Anzeige deiner Kontakte, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kontakte«.</string>
+  <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Kontakte konnten nicht abgerufen werden. Überprüfe bitte deine Netzverbindung</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Keine blockierten Kontakte</string>
   <!--contact_selection_recent_activity-->
   <!--contact_selection_list_fragment-->
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal benötigt Zugriff auf deine Kontakte, um sie anzeigen zu können.</string>
   <string name="contact_selection_list_fragment__show_contacts">Kontakte anzeigen</string>
   <!--conversation_title_view-->
   <!--conversation_activity-->
@@ -1065,5 +1072,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="transport_selection_list_item__transport_icon">Übertragungssymbol</string>
   <string name="ConversationListFragment_loading">Wird geladen …</string>
   <string name="CallNotificationBuilder_connecting">Verbindung wird hergestellt …</string>
+  <string name="Permissions_permission_required">Berechtigung erforderlich</string>
+  <string name="Permissions_continue">Weiter</string>
   <!--EOF-->
 </resources>
