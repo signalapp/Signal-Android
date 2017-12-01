@@ -141,7 +141,7 @@ class RecipientProvider {
         title = context.getString(R.string.RecipientProvider_unnamed_group);
       }
 
-      if (groupRecord.get().getAvatarId() != 0) {
+      if (groupRecord.get().getAvatar() != null && groupRecord.get().getAvatar().length > 0) {
         avatarId = groupRecord.get().getAvatarId();
       }
 
