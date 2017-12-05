@@ -16,7 +16,6 @@
                 android:layout_height="?android:attr/actionBarSize"
                 android:background="?attr/media_overview_toolbar_background"
                 android:titleTextColor="?attr/media_overview_toolbar_foreground"
-                android:foreground="?attr/media_overview_toolbar_foreground"
                 app:layout_scrollFlags="scroll|enterAlways"/>
 
         <android.support.design.widget.TabLayout

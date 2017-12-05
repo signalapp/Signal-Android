@@ -59,6 +59,8 @@ import java.util.Locale;
  * Activity for displaying media attachments in-app
  */
 public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity  {
+
+  @SuppressWarnings("unused")
   private final static String TAG = MediaOverviewActivity.class.getSimpleName();
 
   public static final String ADDRESS_EXTRA   = "address";
@@ -198,7 +200,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity  
     private StickyHeaderGridLayoutManager gridManager;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
       View view = inflater.inflate(R.layout.media_overview_gallery_fragment, container, false);
 
       this.recyclerView = ViewUtil.findById(view, R.id.media_grid);
@@ -244,7 +246,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity  
   public static class MediaOverviewDocumentsFragment extends MediaOverviewFragment<Cursor> {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
       View                  view    = inflater.inflate(R.layout.media_overview_documents_fragment, container, false);
       MediaDocumentsAdapter adapter = new MediaDocumentsAdapter(getContext(), masterSecret, null, locale);
 
