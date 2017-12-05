@@ -64,6 +64,8 @@ public class Permissions {
 
     private boolean ifNecesary;
 
+    private boolean condition = true;
+
     PermissionsBuilder(PermissionObject permissionObject) {
       this.permissionObject = permissionObject;
     }
@@ -75,6 +77,12 @@ public class Permissions {
 
     public PermissionsBuilder ifNecessary() {
       this.ifNecesary = true;
+      return this;
+    }
+
+    public PermissionsBuilder ifNecessary(boolean condition) {
+      this.ifNecesary = true;
+      this.condition  = condition;
       return this;
     }
 
@@ -128,7 +136,7 @@ public class Permissions {
       PermissionsRequest request = new PermissionsRequest(allGrantedListener, anyDeniedListener, anyPermanentlyDeniedListener, anyResultListener,
                                                           someGrantedListener, someDeniedListener, somePermanentlyDeniedListener);
 
-      if (ifNecesary && permissionObject.hasAll(requestedPermissions)) {
+      if (ifNecesary && (permissionObject.hasAll(requestedPermissions) || !condition)) {
         executePreGrantedPermissionsRequest(request);
       } else if (rationaleDialogMessage != null && rationalDialogHeader != null) {
         executePermissionsRequestWithRationale(request);

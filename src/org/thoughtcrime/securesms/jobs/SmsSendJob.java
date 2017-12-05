@@ -118,6 +118,9 @@ public class SmsSendJob extends SendJob {
         Log.w(TAG, npe);
         throw new UndeliverableMessageException(npe2);
       }
+    } catch (SecurityException se) {
+      Log.w(TAG, se);
+      throw new UndeliverableMessageException(se);
     }
   }
 

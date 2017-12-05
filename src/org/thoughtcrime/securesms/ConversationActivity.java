@@ -112,7 +112,6 @@ import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MmsSmsColumns.Types;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
-import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.identity.IdentityRecordList;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
@@ -1663,48 +1662,49 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     sendMediaMessage(forceSms, getMessage(), attachmentManager.buildSlideDeck(), expiresIn, subscriptionId, initiating);
   }
 
-  private ListenableFuture<Void> sendMediaMessage(final boolean forceSms, String body, SlideDeck slideDeck, final long expiresIn, final int subscriptionId, final boolean initiating)
-      throws InvalidMessageException
-  {
-    final SettableFuture<Void> future          = new SettableFuture<>();
-    final Context              context         = getApplicationContext();
-          OutgoingMediaMessage outgoingMessage = new OutgoingMediaMessage(recipient,
-                                                                          slideDeck,
-                                                                          body,
-                                                                          System.currentTimeMillis(),
-                                                                          subscriptionId,
-                                                                          expiresIn,
-                                                                          distributionType);
+  private ListenableFuture<Void> sendMediaMessage(final boolean forceSms, String body, SlideDeck slideDeck, final long expiresIn, final int subscriptionId, final boolean initiating) {
+
+    OutgoingMediaMessage outgoingMessageCandidate = new OutgoingMediaMessage(recipient, slideDeck, body, System.currentTimeMillis(), subscriptionId, expiresIn, distributionType);
+
+    final SettableFuture<Void> future  = new SettableFuture<>();
+    final Context              context = getApplicationContext();
+
+    final OutgoingMediaMessage outgoingMessage;
 
     if (isSecureText && !forceSms) {
-      outgoingMessage = new OutgoingSecureMediaMessage(outgoingMessage);
+      outgoingMessage = new OutgoingSecureMediaMessage(outgoingMessageCandidate);
+    } else {
+      outgoingMessage = outgoingMessageCandidate;
     }
 
-    attachmentManager.clear(glideRequests, false);
-    composeText.setText("");
-    final long id = fragment.stageOutgoingMessage(outgoingMessage);
+    Permissions.with(this)
+               .request(Manifest.permission.SEND_SMS)
+               .ifNecessary(isSecureText || forceSms)
+               .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms))
+               .onAllGranted(() -> {
+                 attachmentManager.clear(glideRequests, false);
+                 composeText.setText("");
+                 final long id = fragment.stageOutgoingMessage(outgoingMessage);
 
-    new AsyncTask<OutgoingMediaMessage, Void, Long>() {
-      @Override
-      protected Long doInBackground(OutgoingMediaMessage... messages) {
-        if (initiating) {
-          DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true);
-        }
+                 new AsyncTask<Void, Void, Long>() {
+                   @Override
+                   protected Long doInBackground(Void... param) {
+                     if (initiating) {
+                       DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true);
+                     }
 
-        return MessageSender.send(context, masterSecret, messages[0], threadId, forceSms, new SmsDatabase.InsertListener() {
-          @Override
-          public void onComplete() {
-            fragment.releaseOutgoingMessage(id);
-          }
-        });
-      }
+                     return MessageSender.send(context, masterSecret, outgoingMessage, threadId, forceSms, () -> fragment.releaseOutgoingMessage(id));
+                   }
 
-      @Override
-      protected void onPostExecute(Long result) {
-        sendComplete(result);
-        future.set(null);
-      }
-    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, outgoingMessage);
+                   @Override
+                   protected void onPostExecute(Long result) {
+                     sendComplete(result);
+                     future.set(null);
+                   }
+                 }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+               })
+               .onAnyDenied(() -> future.set(null))
+               .execute();
 
     return future;
   }
@@ -1712,38 +1712,43 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void sendTextMessage(final boolean forceSms, final long expiresIn, final int subscriptionId, final boolean initiatingConversation)
       throws InvalidMessageException
   {
-    final Context context = getApplicationContext();
+    final Context context     = getApplicationContext();
+    final String  messageBody = getMessage();
+
     OutgoingTextMessage message;
 
     if (isSecureText && !forceSms) {
-      message = new OutgoingEncryptedMessage(recipient, getMessage(), expiresIn);
+      message = new OutgoingEncryptedMessage(recipient, messageBody, expiresIn);
     } else {
-      message = new OutgoingTextMessage(recipient, getMessage(), expiresIn, subscriptionId);
+      message = new OutgoingTextMessage(recipient, messageBody, expiresIn, subscriptionId);
     }
 
-    this.composeText.setText("");
-    final long id = fragment.stageOutgoingMessage(message);
+    Permissions.with(this)
+               .request(Manifest.permission.SEND_SMS)
+               .ifNecessary(forceSms || !isSecureText)
+               .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms))
+               .onAllGranted(() -> {
+                 this.composeText.setText("");
+                 final long id = fragment.stageOutgoingMessage(message);
 
-    new AsyncTask<OutgoingTextMessage, Void, Long>() {
-      @Override
-      protected Long doInBackground(OutgoingTextMessage... messages) {
-        if (initiatingConversation) {
-          DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true);
-        }
+                 new AsyncTask<OutgoingTextMessage, Void, Long>() {
+                   @Override
+                   protected Long doInBackground(OutgoingTextMessage... messages) {
+                     if (initiatingConversation) {
+                       DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true);
+                     }
 
-        return MessageSender.send(context, masterSecret, messages[0], threadId, forceSms, new SmsDatabase.InsertListener() {
-          @Override
-          public void onComplete() {
-            fragment.releaseOutgoingMessage(id);
-          }
-        });
-      }
+                     return MessageSender.send(context, masterSecret, messages[0], threadId, forceSms, () -> fragment.releaseOutgoingMessage(id));
+                   }
 
-      @Override
-      protected void onPostExecute(Long result) {
-        sendComplete(result);
-      }
-    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, message);
+                   @Override
+                   protected void onPostExecute(Long result) {
+                     sendComplete(result);
+                   }
+                 }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, message);
+
+               })
+               .execute();
   }
 
   private void updateToggleButtonState() {
@@ -1830,31 +1835,26 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     future.addListener(new ListenableFuture.Listener<Pair<Uri, Long>>() {
       @Override
       public void onSuccess(final @NonNull Pair<Uri, Long> result) {
-        try {
-          boolean    forceSms       = sendButton.isManualSelection() && sendButton.getSelectedTransport().isSms();
-          int        subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().or(-1);
-          long       expiresIn      = recipient.getExpireMessages() * 1000;
-          boolean    initiating     = threadId == -1;
-          AudioSlide audioSlide     = new AudioSlide(ConversationActivity.this, result.first, result.second, MediaUtil.AUDIO_AAC, true);
-          SlideDeck  slideDeck      = new SlideDeck();
-          slideDeck.addSlide(audioSlide);
+        boolean    forceSms       = sendButton.isManualSelection() && sendButton.getSelectedTransport().isSms();
+        int        subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().or(-1);
+        long       expiresIn      = recipient.getExpireMessages() * 1000;
+        boolean    initiating     = threadId == -1;
+        AudioSlide audioSlide     = new AudioSlide(ConversationActivity.this, result.first, result.second, MediaUtil.AUDIO_AAC, true);
+        SlideDeck  slideDeck      = new SlideDeck();
+        slideDeck.addSlide(audioSlide);
 
-          sendMediaMessage(forceSms, "", slideDeck, expiresIn, subscriptionId, initiating).addListener(new AssertedSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void nothing) {
-              new AsyncTask<Void, Void, Void>() {
-                @Override
-                protected Void doInBackground(Void... params) {
-                  PersistentBlobProvider.getInstance(ConversationActivity.this).delete(result.first);
-                  return null;
-                }
-              }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-            }
-          });
-        } catch (InvalidMessageException e) {
-          Log.w(TAG, e);
-          Toast.makeText(ConversationActivity.this, R.string.ConversationActivity_error_sending_voice_message, Toast.LENGTH_LONG).show();
-        }
+        sendMediaMessage(forceSms, "", slideDeck, expiresIn, subscriptionId, initiating).addListener(new AssertedSuccessListener<Void>() {
+          @Override
+          public void onSuccess(Void nothing) {
+            new AsyncTask<Void, Void, Void>() {
+              @Override
+              protected Void doInBackground(Void... params) {
+                PersistentBlobProvider.getInstance(ConversationActivity.this).delete(result.first);
+                return null;
+              }
+            }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+          }
+        });
       }
 
       @Override
