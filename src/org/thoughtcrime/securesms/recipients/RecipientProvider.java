@@ -21,7 +21,6 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.color.MaterialColor;
@@ -113,7 +112,8 @@ class RecipientProvider {
     if (!settings.isPresent() && STATIC_DETAILS.containsKey(address.serialize())) {
       return STATIC_DETAILS.get(address.serialize());
     } else {
-      return new RecipientDetails(null, null, false, settings.orNull(), null);
+      boolean systemContact = settings.isPresent() && !TextUtils.isEmpty(settings.get().getSystemDisplayName());
+      return new RecipientDetails(null, null, systemContact, settings.orNull(), null);
     }
   }
 
