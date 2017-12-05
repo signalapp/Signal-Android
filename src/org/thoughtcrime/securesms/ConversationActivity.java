@@ -22,7 +22,6 @@ import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
@@ -43,6 +42,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.WindowCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -71,7 +71,6 @@ import com.google.protobuf.ByteString;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import org.thoughtcrime.securesms.TransportOptions.OnTransportChangedListener;
 import org.thoughtcrime.securesms.audio.AudioRecorder;
 import org.thoughtcrime.securesms.audio.AudioSlidePlayer;
 import org.thoughtcrime.securesms.color.MaterialColor;
@@ -154,6 +153,7 @@ import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -478,15 +478,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
         final MenuItem item       = menu.findItem(R.id.menu_expiring_messages);
         final View     actionView = MenuItemCompat.getActionView(item);
-        final TextView badgeView  = (TextView)actionView.findViewById(R.id.expiration_badge);
+        final TextView badgeView  = actionView.findViewById(R.id.expiration_badge);
 
         badgeView.setText(ExpirationUtil.getExpirationAbbreviatedDisplayValue(this, recipient.getExpireMessages()));
-        actionView.setOnClickListener(new OnClickListener() {
-          @Override
-          public void onClick(View v) {
-            onOptionsItemSelected(item);
-          }
-        });
+        actionView.setOnClickListener(v -> onOptionsItemSelected(item));
       } else {
         inflater.inflate(R.menu.conversation_expiring_off, menu);
       }
@@ -592,45 +587,40 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       return;
     }
 
-    ExpirationDialog.show(this, recipient.getExpireMessages(), new ExpirationDialog.OnClickListener() {
-      @Override
-      public void onClick(final int expirationTime) {
-        new AsyncTask<Void, Void, Void>() {
-          @Override
-          protected Void doInBackground(Void... params) {
-            DatabaseFactory.getRecipientDatabase(ConversationActivity.this).setExpireMessages(recipient, expirationTime);
-            OutgoingExpirationUpdateMessage outgoingMessage = new OutgoingExpirationUpdateMessage(getRecipient(), System.currentTimeMillis(), expirationTime * 1000);
-            MessageSender.send(ConversationActivity.this, masterSecret, outgoingMessage, threadId, false, null);
+    //noinspection CodeBlock2Expr
+    ExpirationDialog.show(this, recipient.getExpireMessages(), expirationTime -> {
+      new AsyncTask<Void, Void, Void>() {
+        @Override
+        protected Void doInBackground(Void... params) {
+          DatabaseFactory.getRecipientDatabase(ConversationActivity.this).setExpireMessages(recipient, expirationTime);
+          OutgoingExpirationUpdateMessage outgoingMessage = new OutgoingExpirationUpdateMessage(getRecipient(), System.currentTimeMillis(), expirationTime * 1000);
+          MessageSender.send(ConversationActivity.this, masterSecret, outgoingMessage, threadId, false, null);
 
-            return null;
-          }
+          return null;
+        }
 
-          @Override
-          protected void onPostExecute(Void result) {
-            invalidateOptionsMenu();
-            if (fragment != null) fragment.setLastSeen(0);
-          }
-        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-      }
+        @Override
+        protected void onPostExecute(Void result) {
+          invalidateOptionsMenu();
+          if (fragment != null) fragment.setLastSeen(0);
+        }
+      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     });
   }
 
   private void handleMuteNotifications() {
-    MuteDialog.show(this, new MuteDialog.MuteSelectionListener() {
-      @Override
-      public void onMuted(final long until) {
-        recipient.setMuted(until);
+    MuteDialog.show(this, until -> {
+      recipient.setMuted(until);
 
-        new AsyncTask<Void, Void, Void>() {
-          @Override
-          protected Void doInBackground(Void... params) {
-            DatabaseFactory.getRecipientDatabase(ConversationActivity.this)
-                           .setMuted(recipient, until);
+      new AsyncTask<Void, Void, Void>() {
+        @Override
+        protected Void doInBackground(Void... params) {
+          DatabaseFactory.getRecipientDatabase(ConversationActivity.this)
+                         .setMuted(recipient, until);
 
-            return null;
-          }
-        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-      }
+          return null;
+        }
+      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     });
   }
 
@@ -658,27 +648,25 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleUnblock() {
+    //noinspection CodeBlock2Expr
     new AlertDialog.Builder(this)
         .setTitle(R.string.ConversationActivity_unblock_this_contact_question)
         .setMessage(R.string.ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact)
         .setNegativeButton(android.R.string.cancel, null)
-        .setPositiveButton(R.string.ConversationActivity_unblock, new DialogInterface.OnClickListener() {
-          @Override
-          public void onClick(DialogInterface dialog, int which) {
-            new AsyncTask<Void, Void, Void>() {
-              @Override
-              protected Void doInBackground(Void... params) {
-                DatabaseFactory.getRecipientDatabase(ConversationActivity.this)
-                               .setBlocked(recipient, false);
+        .setPositiveButton(R.string.ConversationActivity_unblock, (dialog, which) -> {
+          new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+              DatabaseFactory.getRecipientDatabase(ConversationActivity.this)
+                             .setBlocked(recipient, false);
 
-                ApplicationContext.getInstance(ConversationActivity.this)
-                                  .getJobManager()
-                                  .add(new MultiDeviceBlockedUpdateJob(ConversationActivity.this));
+              ApplicationContext.getInstance(ConversationActivity.this)
+                                .getJobManager()
+                                .add(new MultiDeviceBlockedUpdateJob(ConversationActivity.this));
 
-                return null;
-              }
-            }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-          }
+              return null;
+            }
+          }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         }).show();
   }
 
@@ -717,27 +705,24 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     builder.setIconAttribute(R.attr.dialog_alert_icon);
     builder.setCancelable(true);
     builder.setMessage(R.string.ConversationActivity_this_may_help_if_youre_having_encryption_problems);
-    builder.setPositiveButton(R.string.ConversationActivity_reset, new DialogInterface.OnClickListener() {
-      @Override
-      public void onClick(DialogInterface dialog, int which) {
-        if (isSingleConversation()) {
-          final Context context = getApplicationContext();
+    builder.setPositiveButton(R.string.ConversationActivity_reset, (dialog, which) -> {
+      if (isSingleConversation()) {
+        final Context context = getApplicationContext();
 
-          OutgoingEndSessionMessage endSessionMessage =
-              new OutgoingEndSessionMessage(new OutgoingTextMessage(getRecipient(), "TERMINATE", 0, -1));
+        OutgoingEndSessionMessage endSessionMessage =
+            new OutgoingEndSessionMessage(new OutgoingTextMessage(getRecipient(), "TERMINATE", 0, -1));
 
-          new AsyncTask<OutgoingEndSessionMessage, Void, Long>() {
-            @Override
-            protected Long doInBackground(OutgoingEndSessionMessage... messages) {
-              return MessageSender.send(context, masterSecret, messages[0], threadId, false, null);
-            }
+        new AsyncTask<OutgoingEndSessionMessage, Void, Long>() {
+          @Override
+          protected Long doInBackground(OutgoingEndSessionMessage... messages) {
+            return MessageSender.send(context, masterSecret, messages[0], threadId, false, null);
+          }
 
-            @Override
-            protected void onPostExecute(Long result) {
-              sendComplete(result);
-            }
-          }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, endSessionMessage);
-        }
+          @Override
+          protected void onPostExecute(Long result) {
+            sendComplete(result);
+          }
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, endSessionMessage);
       }
     });
     builder.setNegativeButton(android.R.string.cancel, null);
@@ -762,27 +747,25 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     builder.setIconAttribute(R.attr.dialog_info_icon);
     builder.setCancelable(true);
     builder.setMessage(getString(R.string.ConversationActivity_are_you_sure_you_want_to_leave_this_group));
-    builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-      @Override
-      public void onClick(DialogInterface dialog, int which) {
-        Context self = ConversationActivity.this;
-        try {
-          String groupId = getRecipient().getAddress().toGroupString();
-          DatabaseFactory.getGroupDatabase(self).setActive(groupId, false);
+    builder.setPositiveButton(R.string.yes, (dialog, which) -> {
+      Context self = ConversationActivity.this;
 
-          GroupContext context = GroupContext.newBuilder()
-                                             .setId(ByteString.copyFrom(GroupUtil.getDecodedId(groupId)))
-                                             .setType(GroupContext.Type.QUIT)
-                                             .build();
+      try {
+        String groupId = getRecipient().getAddress().toGroupString();
+        DatabaseFactory.getGroupDatabase(self).setActive(groupId, false);
 
-          OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(getRecipient(), context, null, System.currentTimeMillis(), 0);
-          MessageSender.send(self, masterSecret, outgoingMessage, threadId, false, null);
-          DatabaseFactory.getGroupDatabase(self).remove(groupId, Address.fromSerialized(TextSecurePreferences.getLocalNumber(self)));
-          initializeEnabledCheck();
-        } catch (IOException e) {
-          Log.w(TAG, e);
-          Toast.makeText(self, R.string.ConversationActivity_error_leaving_group, Toast.LENGTH_LONG).show();
-        }
+        GroupContext context = GroupContext.newBuilder()
+                                           .setId(ByteString.copyFrom(GroupUtil.getDecodedId(groupId)))
+                                           .setType(GroupContext.Type.QUIT)
+                                           .build();
+
+        OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(getRecipient(), context, null, System.currentTimeMillis(), 0);
+        MessageSender.send(self, masterSecret, outgoingMessage, threadId, false, null);
+        DatabaseFactory.getGroupDatabase(self).remove(groupId, Address.fromSerialized(TextSecurePreferences.getLocalNumber(self)));
+        initializeEnabledCheck();
+      } catch (IOException e) {
+        Log.w(TAG, e);
+        Toast.makeText(self, R.string.ConversationActivity_error_leaving_group, Toast.LENGTH_LONG).show();
       }
     });
 
@@ -910,8 +893,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void handleManualMmsRequired() {
     Toast.makeText(this, R.string.MmsDownloader_error_reading_mms_settings, Toast.LENGTH_LONG).show();
 
+    Bundle extras = getIntent().getExtras();
     Intent intent = new Intent(this, PromptMmsActivity.class);
-    intent.putExtras(getIntent().getExtras());
+    if (extras != null) intent.putExtras(extras);
     startActivity(intent);
   }
 
@@ -922,21 +906,19 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (message == null) return;
 
-    new UnverifiedSendDialog(this, message, unverifiedRecords, new UnverifiedSendDialog.ResendListener() {
-      @Override
-      public void onResendMessage() {
-        initializeIdentityRecords().addListener(new ListenableFuture.Listener<Boolean>() {
-          @Override
-          public void onSuccess(Boolean result) {
-            sendMessage();
-          }
+    //noinspection CodeBlock2Expr
+    new UnverifiedSendDialog(this, message, unverifiedRecords, () -> {
+      initializeIdentityRecords().addListener(new ListenableFuture.Listener<Boolean>() {
+        @Override
+        public void onSuccess(Boolean result) {
+          sendMessage();
+        }
 
-          @Override
-          public void onFailure(ExecutionException e) {
-            throw new AssertionError(e);
-          }
-        });
-      }
+        @Override
+        public void onFailure(ExecutionException e) {
+          throw new AssertionError(e);
+        }
+      });
     }).show();
   }
 
@@ -947,21 +929,19 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (untrustedMessage == null) return;
 
-    new UntrustedSendDialog(this, untrustedMessage, untrustedRecords, new UntrustedSendDialog.ResendListener() {
-      @Override
-      public void onResendMessage() {
-        initializeIdentityRecords().addListener(new ListenableFuture.Listener<Boolean>() {
-          @Override
-          public void onSuccess(Boolean result) {
-            sendMessage();
-          }
+    //noinspection CodeBlock2Expr
+    new UntrustedSendDialog(this, untrustedMessage, untrustedRecords, () -> {
+      initializeIdentityRecords().addListener(new ListenableFuture.Listener<Boolean>() {
+        @Override
+        public void onSuccess(Boolean result) {
+          sendMessage();
+        }
 
-          @Override
-          public void onFailure(ExecutionException e) {
-            throw new AssertionError(e);
-          }
-        });
-      }
+        @Override
+        public void onFailure(ExecutionException e) {
+          throw new AssertionError(e);
+        }
+      });
     }).show();
   }
 
@@ -1031,16 +1011,22 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       protected void onPostExecute(List<Draft> drafts) {
         for (Draft draft : drafts) {
           try {
-            if (draft.getType().equals(Draft.TEXT)) {
-              composeText.setText(draft.getValue());
-            } else if (draft.getType().equals(Draft.LOCATION)) {
-              attachmentManager.setLocation(masterSecret, SignalPlace.deserialize(draft.getValue()), getCurrentMediaConstraints());
-            } else if (draft.getType().equals(Draft.IMAGE)) {
-              setMedia(Uri.parse(draft.getValue()), MediaType.IMAGE);
-            } else if (draft.getType().equals(Draft.AUDIO)) {
-              setMedia(Uri.parse(draft.getValue()), MediaType.AUDIO);
-            } else if (draft.getType().equals(Draft.VIDEO)) {
-              setMedia(Uri.parse(draft.getValue()), MediaType.VIDEO);
+            switch (draft.getType()) {
+              case Draft.TEXT:
+                composeText.setText(draft.getValue());
+                break;
+              case Draft.LOCATION:
+                attachmentManager.setLocation(masterSecret, SignalPlace.deserialize(draft.getValue()), getCurrentMediaConstraints());
+                break;
+              case Draft.IMAGE:
+                setMedia(Uri.parse(draft.getValue()), MediaType.IMAGE);
+                break;
+              case Draft.AUDIO:
+                setMedia(Uri.parse(draft.getValue()), MediaType.AUDIO);
+                break;
+              case Draft.VIDEO:
+                setMedia(Uri.parse(draft.getValue()), MediaType.VIDEO);
+                break;
             }
           } catch (IOException e) {
             Log.w(TAG, e);
@@ -1215,7 +1201,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeViews() {
-    titleView             = (ConversationTitleView) getSupportActionBar().getCustomView();
+    ActionBar supportActionBar = getSupportActionBar();
+    if (supportActionBar == null) throw new AssertionError();
+
+    titleView             = (ConversationTitleView) supportActionBar.getCustomView();
     buttonToggle          = ViewUtil.findById(this, R.id.button_toggle);
     sendButton            = ViewUtil.findById(this, R.id.send_button);
     attachButton          = ViewUtil.findById(this, R.id.attach_button);
@@ -1258,15 +1247,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     attachButton.setOnLongClickListener(new AttachButtonLongClickListener());
     sendButton.setOnClickListener(sendButtonListener);
     sendButton.setEnabled(true);
-    sendButton.addOnTransportChangedListener(new OnTransportChangedListener() {
-      @Override
-      public void onChange(TransportOption newTransport, boolean manuallySelected) {
-        calculateCharactersRemaining();
-        composeText.setTransport(newTransport);
-        buttonToggle.getBackground().setColorFilter(newTransport.getBackgroundColor(), Mode.MULTIPLY);
-        buttonToggle.getBackground().invalidateSelf();
-        if (manuallySelected) recordSubscriptionIdPreference(newTransport.getSimSubscriptionId());
-      }
+    sendButton.addOnTransportChangedListener((newTransport, manuallySelected) -> {
+      calculateCharactersRemaining();
+      composeText.setTransport(newTransport);
+      buttonToggle.getBackground().setColorFilter(newTransport.getBackgroundColor(), Mode.MULTIPLY);
+      buttonToggle.getBackground().invalidateSelf();
+      if (manuallySelected) recordSubscriptionIdPreference(newTransport.getSimSubscriptionId());
     });
 
     titleView.setOnClickListener(v -> handleConversationSettings());
@@ -1291,16 +1277,19 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   protected void initializeActionBar() {
-    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-    getSupportActionBar().setCustomView(R.layout.conversation_title_view);
-    getSupportActionBar().setDisplayShowCustomEnabled(true);
-    getSupportActionBar().setDisplayShowTitleEnabled(false);
+    ActionBar supportActionBar = getSupportActionBar();
+    if (supportActionBar == null) throw new AssertionError();
+
+    supportActionBar.setDisplayHomeAsUpEnabled(false);
+    supportActionBar.setCustomView(R.layout.conversation_title_view);
+    supportActionBar.setDisplayShowCustomEnabled(true);
+    supportActionBar.setDisplayShowTitleEnabled(false);
   }
 
   private void initializeResources() {
     if (recipient != null) recipient.removeListener(this);
 
-    recipient        = Recipient.from(this, (Address)getIntent().getParcelableExtra(ADDRESS_EXTRA), true);
+    recipient        = Recipient.from(this, getIntent().getParcelableExtra(ADDRESS_EXTRA), true);
     threadId         = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
     archived         = getIntent().getBooleanExtra(IS_ARCHIVED_EXTRA, false);
     distributionType = getIntent().getIntExtra(DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
@@ -1410,12 +1399,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     builder.setIconAttribute(R.attr.conversation_attach_contact_info);
     builder.setTitle(R.string.ConversationActivity_select_contact_info);
 
-    builder.setItems(numberItems, new DialogInterface.OnClickListener() {
-      @Override
-      public void onClick(DialogInterface dialog, int which) {
-        composeText.append(numbers[which]);
-      }
-    });
+    builder.setItems(numberItems, (dialog, which) -> composeText.append(numbers[which]));
     builder.show();
   }
 
@@ -1481,7 +1465,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void setActionBarColor(MaterialColor color) {
-    getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color.toActionBarColor(this)));
+    ActionBar supportActionBar = getSupportActionBar();
+    if (supportActionBar == null) throw new AssertionError();
+    supportActionBar.setBackgroundDrawable(new ColorDrawable(color.toActionBarColor(this)));
     setStatusBarColor(color.toStatusBarColor(this));
   }
 
@@ -1516,8 +1502,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     CharacterState  characterState  = transportOption.calculateCharacters(messageBody);
 
     if (characterState.charactersRemaining <= 15 || characterState.messagesSpent > 1) {
-      charactersLeft.setText(characterState.charactersRemaining + "/" + characterState.maxMessageSize
-                                 + " (" + characterState.messagesSpent + ")");
+      charactersLeft.setText(String.format(dynamicLanguage.getCurrentLocale(),
+                                           "%d/%d (%d)",
+                                           characterState.charactersRemaining,
+                                           characterState.maxMessageSize,
+                                           characterState.messagesSpent));
       charactersLeft.setVisibility(View.VISIBLE);
     } else {
       charactersLeft.setVisibility(View.GONE);
@@ -1535,9 +1524,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     return record.isPresent() && record.get().isActive();
   }
 
+  @SuppressWarnings("SimplifiableIfStatement")
   private boolean isSelfConversation() {
     if (!TextSecurePreferences.isPushRegistered(this)) return false;
-    if (recipient.isGroupRecipient())                  return false;
+    if (recipient.isGroupRecipient())                         return false;
 
     return Util.isOwnNumber(this, recipient.getAddress());
   }
@@ -1774,10 +1764,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onAttachmentDrawerStateChanged(DrawerState drawerState) {
+    ActionBar supportActionBar = getSupportActionBar();
+    if (supportActionBar == null) throw new AssertionError();
+
     if (drawerState == DrawerState.FULL_EXPANDED) {
-      getSupportActionBar().hide();
+      supportActionBar.hide();
     } else {
-      getSupportActionBar().show();
+      supportActionBar.show();
     }
 
     if (drawerState == DrawerState.COLLAPSED) {
@@ -1818,8 +1811,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onRecorderStarted() {
-    Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+    Vibrator vibrator = ServiceUtil.getVibrator(this);
     vibrator.vibrate(20);
+
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
     audioRecorder.startRecording();
@@ -1827,8 +1821,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onRecorderFinished() {
-    Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+    Vibrator vibrator = ServiceUtil.getVibrator(this);
     vibrator.vibrate(20);
+
     getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
     ListenableFuture<Pair<Uri, Long>> future = audioRecorder.stopRecording();
@@ -1866,8 +1861,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onRecorderCanceled() {
-    Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+    Vibrator vibrator = ServiceUtil.getVibrator(this);
     vibrator.vibrate(50);
+
     getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
     ListenableFuture<Pair<Uri, Long>> future = audioRecorder.stopRecording();
@@ -2017,12 +2013,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       calculateCharactersRemaining();
 
       if (composeText.getTextTrimmed().length() == 0 || beforeLength == 0) {
-        composeText.postDelayed(new Runnable() {
-          @Override
-          public void run() {
-            updateToggleButtonState();
-          }
-        }, 50);
+        composeText.postDelayed(ConversationActivity.this::updateToggleButtonState, 50);
       }
     }
 
@@ -2092,16 +2083,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         AlertDialog.Builder builder = new AlertDialog.Builder(ConversationActivity.this);
         builder.setIconAttribute(R.attr.dialog_alert_icon);
         builder.setTitle("No longer verified");
-        builder.setItems(unverifiedNames, new DialogInterface.OnClickListener() {
-          @Override
-          public void onClick(DialogInterface dialog, int which) {
-            Intent intent = new Intent(ConversationActivity.this, VerifyIdentityActivity.class);
-            intent.putExtra(VerifyIdentityActivity.ADDRESS_EXTRA, unverifiedIdentities.get(which).getAddress());
-            intent.putExtra(VerifyIdentityActivity.IDENTITY_EXTRA, new IdentityKeyParcelable(unverifiedIdentities.get(which).getIdentityKey()));
-            intent.putExtra(VerifyIdentityActivity.VERIFIED_EXTRA, false);
+        builder.setItems(unverifiedNames, (dialog, which) -> {
+          Intent intent = new Intent(ConversationActivity.this, VerifyIdentityActivity.class);
+          intent.putExtra(VerifyIdentityActivity.ADDRESS_EXTRA, unverifiedIdentities.get(which).getAddress());
+          intent.putExtra(VerifyIdentityActivity.IDENTITY_EXTRA, new IdentityKeyParcelable(unverifiedIdentities.get(which).getIdentityKey()));
+          intent.putExtra(VerifyIdentityActivity.VERIFIED_EXTRA, false);
 
-            startActivity(intent);
-          }
+          startActivity(intent);
         });
         builder.show();
       }
