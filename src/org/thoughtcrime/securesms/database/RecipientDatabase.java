@@ -354,6 +354,19 @@ public class RecipientDatabase extends Database {
     return results;
   }
 
+  public List<Address> getSystemContacts() {
+    SQLiteDatabase db      = databaseHelper.getReadableDatabase();
+    List<Address>  results = new LinkedList<>();
+
+    try (Cursor cursor = db.query(TABLE_NAME, new String[] {ADDRESS}, SYSTEM_DISPLAY_NAME + " IS NOT NULL AND " + SYSTEM_DISPLAY_NAME + " != \"\"", null, null, null, null)) {
+      while (cursor != null && cursor.moveToNext()) {
+        results.add(Address.fromSerialized(cursor.getString(0)));
+      }
+    }
+
+    return results;
+  }
+
   // XXX This shouldn't be here, and is just a temporary workaround
   public RegisteredState isRegistered(@NonNull Address address) {
     SQLiteDatabase db = databaseHelper.getReadableDatabase();

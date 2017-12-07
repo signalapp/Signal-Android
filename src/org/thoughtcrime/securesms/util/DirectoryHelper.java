@@ -67,7 +67,7 @@ public class DirectoryHelper {
     if (notifyOfNewUsers) notifyNewUsers(context, masterSecret, newlyActiveUsers);
   }
 
-  public static @NonNull List<Address> refreshDirectory(@NonNull Context context, @NonNull SignalServiceAccountManager accountManager)
+  private static @NonNull List<Address> refreshDirectory(@NonNull Context context, @NonNull SignalServiceAccountManager accountManager)
       throws IOException
   {
     if (TextUtils.isEmpty(TextSecurePreferences.getLocalNumber(context))) {
@@ -101,8 +101,10 @@ public class DirectoryHelper {
       }
 
       Set<Address>  currentActiveAddresses = new HashSet<>(recipientDatabase.getRegistered());
+      Set<Address>  contactAddresses       = new HashSet<>(recipientDatabase.getSystemContacts());
       List<Address> newlyActiveAddresses   = Stream.of(activeAddresses)
                                                    .filter(address -> !currentActiveAddresses.contains(address))
+                                                   .filter(contactAddresses::contains)
                                                    .toList();
 
       recipientDatabase.setRegistered(activeAddresses, inactiveAddresses);
@@ -127,6 +129,7 @@ public class DirectoryHelper {
     RecipientDatabase             recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
     SignalServiceAccountManager   accountManager    = AccountManagerFactory.createManager(context);
     boolean                       activeUser        = recipient.resolve().getRegistered() == RegisteredState.REGISTERED;
+    boolean                       systemContact     = recipient.isSystemContact();
     String                        number            = recipient.getAddress().serialize();
     Optional<ContactTokenDetails> details           = accountManager.getContact(number);
 
@@ -141,7 +144,7 @@ public class DirectoryHelper {
         ApplicationContext.getInstance(context).getJobManager().add(new MultiDeviceContactUpdateJob(context));
       }
 
-      if (!activeUser) {
+      if (!activeUser && systemContact) {
         notifyNewUsers(context, masterSecret, Collections.singletonList(recipient.getAddress()));
       }
 
