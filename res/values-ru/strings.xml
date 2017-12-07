@@ -328,6 +328,7 @@
   <string name="ImportFragment_import_complete">Импорт завершён.</string>
   <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">Для импорта SMS предоставьте Signal разрешение на доступ к SMS</string>
   <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">Для доступа Signal к хранилищу требуется разрешение.</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">Для доступа Signal к хранилищу требуется разрешение.</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Нажмите и держите, чтобы записать голосовое сообщение; отпустите, чтобы отправить</string>
   <!--InviteActivity-->

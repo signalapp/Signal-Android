@@ -51,7 +51,6 @@
   <string name="DraftDatabase_Draft_location_snippet">(ubicación)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">No se pudo encontrar una aplicación para el contenido seleccionado.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal requiere el permiso Almacenamiento para adjuntar fotos, vídeos, o audio desde almacenamiento externo, pero ha sido denegado permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilite \"Almacenamiento\".</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal requiere el permiso Contactos para adjuntar información de contacto. pero ha sido denegado permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilite \"Contactos\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal requiere el permiso Ubicación para adjuntar una ubicación, pero ha sido denegado permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilite \"Ubicación\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal requiere el permiso Cámara para tomar fotos, pero ha sido denegado permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilite \"Cámara\".</string>
@@ -462,6 +461,7 @@ número de teléfono
   <string name="RegistrationActivity_less_information">Menos información</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal necesita acceder a sus contactos y medios para conectar con amigos, intercambiar mensajes, y establecer llamadas seguras.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">No se puede conectar al servicio. Por favor, compruebe la conexión de red e inténtelo de nuevo.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Para verificar fácilmente su número de teléfono, Signal podrá detectar automáticamente su código de verificación si le permite ver mensajes SMS.</string>
   <!--RegistrationProblemsActivity-->
   <!--RegistrationProgressActivity-->
   <!--RegistrationService-->
@@ -531,6 +531,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="VerifyIdentityActivity_no_app_to_share_to">Parece que no tiene ninguna aplicación con qué compartir.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">No se encontró número de seguridad para comparar en el portapapeles</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal necesita el permiso Cámara para escanear un código QR, pero ha sido denegado permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilite \"Cámara\".</string>
+  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">No se puede escanear un código QR sin el permiso Cámara</string>
   <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Mensaje cifrado erróneo</string>
@@ -564,6 +565,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MediaPreviewActivity_you">Usted</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Formato de contenido no compatible</string>
   <string name="MediaPreviewActivity_draft">Borrador</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal necesita el permiso Almacenamiento para guardar a un almacenamiento externo, pero ha sido denegado permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilite \"Almacenamiento\".</string>
+  <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">No se puede guardar a un almacenamiento externo sin permisos</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d mensajes nuevos en %2$d conversaciones</string>
   <string name="MessageNotifier_most_recent_from_s">Más recientes desde: %1$s</string>
@@ -595,6 +598,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Error al reproducir el vídeo</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Para responder una llamada de %s, dé a Signal acceso a su micrófono.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal requiere los permisos Micrófono y Cámara para efectuar o recibir llamadas, pero han sido denegados permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilite \"Micrófono\" y \"Cámara\".</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">El número de seguridad para tu conversación con %1$s ha cambiado. Esto podría significar que alguien está tratando de interceptar su comunicación, o bien que %2$s simplemente ha reinstalado Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Puede que desee verificar su número de seguridad con este contacto.</string>
@@ -629,10 +634,14 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Foto del contacto</string>
   <!--ContactSelectionListFragment-->
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal requiere el permiso Contactos para mostrar sus contactos, pero ha sido denegado permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilite, \"Contactos\".</string>
+  <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Error al descargar contactos, compruebe su conexión a la red.</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">No hay contactos bloqueados</string>
   <!--contact_selection_recent_activity-->
   <!--contact_selection_list_fragment-->
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal necesita acceso a sus contactos para mostrarlos.</string>
+  <string name="contact_selection_list_fragment__show_contacts">Mostrar contactos</string>
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Mensaje de Signal</string>
@@ -1002,6 +1011,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="conversation_list_item_view__contact_photo_image">Foto del contacto</string>
   <string name="conversation_list_item_view__archived">Archivado</string>
   <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Bandeja de entrada ceeerooo</string>
+  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Vacío. Nulo. Cero. Nada.
+¡Esto es todo!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nueva conversación</string>
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Proporcione a su buzón de entrada algo sobre lo que escribir respuestas. Comience intercambiando mensajes con un amigo.</string>
@@ -1076,6 +1087,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="transport_selection_list_item__transport_icon">Icono de transporte</string>
   <string name="ConversationListFragment_loading">Cargando...</string>
   <string name="CallNotificationBuilder_connecting">Conectando...</string>
+  <string name="Permissions_permission_required">Se requiere permiso</string>
   <string name="Permissions_continue">Continuar</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal necesita el permiso SMS para enviar un SMS, pero ha sido denegado permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilite \"SMS\".</string>
   <!--EOF-->
 </resources>

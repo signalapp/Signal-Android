@@ -601,10 +601,13 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Foto del contatto</string>
   <!--ContactSelectionListFragment-->
+  <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Errore di rilevamento dei contatti, controlla la connessione di rete</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nessun contatto bloccato</string>
   <!--contact_selection_recent_activity-->
   <!--contact_selection_list_fragment-->
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal richiede l\'accesso ai tuoi contatti per poterli mostrare.</string>
+  <string name="contact_selection_list_fragment__show_contacts">Mostra contatti</string>
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Messaggio Signal</string>
@@ -784,6 +787,8 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Condivi numero sicuro.</string>
   <!--webrtc_answer_decline_button-->
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Trascina in alto per rispondere</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Trascina in basso per rifiutare</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Alcuni problemi necessitano della tua attenzione.</string>
   <string name="message_details_header__sent">Inviato</string>
@@ -972,6 +977,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="conversation_list_item_view__contact_photo_image">Foto del contatto</string>
   <string name="conversation_list_item_view__archived">Archiviate</string>
   <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Inbox vuoootaaa</string>
+  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Zero. Niente. Nada.\nSei a posto così! </string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nuova conversazione</string>
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Dai alla tua inbox qualcosa di cui parlare. Inizia inviando un messaggio ad un amico.</string>
@@ -1046,6 +1052,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="transport_selection_list_item__transport_icon">Icona trasporto</string>
   <string name="ConversationListFragment_loading">Caricamento...</string>
   <string name="CallNotificationBuilder_connecting">Connessione in corso...</string>
+  <string name="Permissions_permission_required">Autorizzazione necessaria</string>
   <string name="Permissions_continue">Continua</string>
   <!--EOF-->
 </resources>

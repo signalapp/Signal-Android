@@ -51,7 +51,6 @@
   <string name="DraftDatabase_Draft_location_snippet">(τοποθεσία)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Δε μπορεί να βρεθεί εφαρμογή για επιλογή πολυμέσων.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Το Signal χρειάζεται τα δικαιώματα Εξωτερικών Μέσων Αποθήκευσης για να μπορούμε να επισυνάπτουμε φωτογραφίες, βίντεο ή ήχο, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε τα \"Μέσα Αποθήκευσης\".</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Το Signal χρειάζεται τα δικαιώματα Επαφών για να μπορούμε να επισυνάπτουμε πληροφορίες επαφών, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε τις \"Επαφές\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Το Signal χρειάζεται τα δικαιώματα Τοποθεσίας για να μπορούμε να επισυνάπτουμε τοποθεσίες, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε την \"Τοποθεσία\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Το Signal χρειάζεται τα δικαιώματα Κάμερας για να μπορούμε να τραβάμε φωτογραφίες, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε τα \"Κάμερα\".</string>
@@ -1087,5 +1086,6 @@
   <string name="CallNotificationBuilder_connecting">Γίνεται σύνδεση...</string>
   <string name="Permissions_permission_required">Χρειάζονται δικαιώματα πρόσβασης</string>
   <string name="Permissions_continue">Συνέχεια</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Το Signal χρειάζεται τα δικαιώματα SMS για να μπορέσουμε να στείλουμε ένα SMS, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε τα \"SMS\".</string>
   <!--EOF-->
 </resources>

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">Signal</string>
+  <string name="app_name">Сигнал</string>
   <string name="yes">Да</string>
   <string name="no">Не</string>
   <string name="delete">Изтрий</string>
@@ -51,6 +51,9 @@
   <string name="DraftDatabase_Draft_location_snippet">(местоположение)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Неуспешно откриване на папка за избор на файл.</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Сигнал се нуждае от достъп до контактите Ви, за да може да прикачва информация за тях, но той му е отказан. Моля, отидете на настройки в менюто и изберете \"Разрешения\" и \"Контакти\".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Сигнал се нуждае от достъп до местоположението Ви, за да може да го прикачва, но той му е отказан. Моля, отидете на настройки в менюто и изберете \"Разрешения\" и \"Местоположение\".</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Сигнал се нуждае от достъп до камерта Ви, за да може да прави снимки, но той му е отказан. Моля, отидете на настройки в менюто и изберете \"Разрешения\" и \"Камера\".</string>
   <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Грешка при възпроизвеждане на аудио!</string>
@@ -120,6 +123,13 @@
   <string name="ConversationActivity_unable_to_record_audio">Не може да бъде записано аудио!</string>
   <string name="ConversationActivity_error_sending_voice_message">Грешка при изпращането на гласово съобщение</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Нямате инсталирано приложение, което да може да използва тази препратка.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">За да изпратите аудио съобщение, разрешете достъпа на Сигнал до микрофона.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Сигнал се нуждае от достъп до микрофона Ви, за да може да изпраща аудио съобщения, но той му е отказан. Моля, отидете в настройки в менюто и изберете \"Разрешения\" и \"Микрофон\".</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">За да се обади на %s, Сигнал се нуждае от достъп до микрофона и камерта Ви.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Сигнал се нуждае от достъп до микрофона и камерта Ви, за да може да се обади на %s, но той му е отказан. Моля, отидете на настройки в менюто и изберете \"Разрешения\" и \"Микрофон\" и \"Камера\".</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">За прави снимки и видеота, Сигнал се нуждае от достъп до камерта Ви.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Сигнал се нуждае от достъп до камерта Ви, за да може да прави снимки или видеота, но той му е отказан. Моля, отидете в настройки в менюто и изберете \"Разрешения\" и \"Камера\".</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Сигнал се нуждае от достъп до камерата, за да прави снимки и видеота</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d непрочетено съобщение</item>
@@ -296,6 +306,12 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="ImportFragment_no_plaintext_backup_found">Не е намерен разшифрован архив!</string>
   <string name="ImportFragment_error_importing_backup">Грешка при внасяне на архива!</string>
   <string name="ImportFragment_import_complete">Внасянето приключи!</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages">Сигнал се нуждае от достъп до SMS-те Ви, за да може да ги внесе, но той му е отказан. Моля, отидете в настройки в менюто и изберете \"Разрешения\" и \"SMS\".</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">Сигнал се нуждае от достъп до SMS-те Ви, за да  може да ги внесе</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">Сигнал се нуждае от достъп до вградения диск, за да може да чете от него, но той му е отказан. Моля, отидете в настройки в менюто и изберете \"Разрешения\" и \"Дискове\".</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">Сигнал се нуждае от достъп до дисковете Ви, за да  може да чете от тях.</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Сигнал се нуждае от достъп до вградения диск, за да може да чете от него, но той му е отказан. Моля, отидете в настройки в менюто и изберете \"Разрешения\" и \"Дискове\".</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">Сигнал се нуждае от достъп до външните дисковете, за да  може да чете от тях.</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Натиснете и задръжте, за да запишете гласово съобщение, отпуснете, за да го изпратите</string>
   <!--InviteActivity-->
@@ -367,8 +383,8 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="DeviceProvisioningActivity_continue">ПРОДЪЛЖИ</string>
   <string name="DeviceProvisioningActivity_content_intro">Ще може да</string>
   <string name="DeviceProvisioningActivity_content_bullets">
-        •Прочетете всичките си съобщения
-        \n• Изпратете съобщения от свое име
+        • Прочитате всичките си съобщения
+        \n• Изпращате съобщения от свое име
     </string>
   <string name="DeviceProvisioningActivity_content_progress_title">Свързване с устройството</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Свързване с ново устройство...</string>
@@ -378,8 +394,10 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="DeviceProvisioningActivity_content_progress_key_error">Невалиден QR код.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">За съжалние имате твърде много свързани устройства, опитайте да премахнете някои от тях...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">За съжаление това не е валидна QR връзка.</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Свържи с Сигнал устройство?</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Свързване със Сигнал устройство?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Изглежда се опитвате да свържете Сигнал устройство с външна скенер програма. За Ваша сигурност, моля сканирайте кодът повторно използвайки Сигнал.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Сигнал се нуждае от достъп до камерата Ви, за да може да сканирва QR кодове, но той му е отказан. Моля, отидете на настройки в менюто и изберете \"Разрешения\" и \"Камера\".</string>
+  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Неуспешно сканирване на QR код без разрешение за достъп до камерата</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Изчезващи съобщения</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Съобщенията няма да изчезват.</string>
@@ -438,6 +456,9 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play услуги се обновява или временно не е на разположение. Моля, опитайте отново.</string>
   <string name="RegistrationActivity_more_information">Повече информация</string>
   <string name="RegistrationActivity_less_information">По-малко информация</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Сигнал се нуждае от достъп до контактите Ви и друга медия, за да може да може да се свързва с приятелите Ви, обменя съобщения и да прави обажданията защитени.</string>
+  <string name="RegistrationActivity_unable_to_connect_to_service">Неуспешно свързване с услугата. Моля, проверете мобилната връзка и опитайте отново.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">За да можете лесно да потвърдите телефонния си номер, Сигнал може автоматично да прочете кода за потвърждение ако разрешите достъпът на Сигнал до SMS съобщенията Ви.</string>
   <!--RegistrationProblemsActivity-->
   <!--RegistrationProgressActivity-->
   <!--RegistrationService-->
@@ -505,6 +526,8 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="VerifyIdentityActivity_our_signal_safety_number">Нашите Сигнал числа за сигурност:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Изглежда нямате приложения, с които да можете да сподялите.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Не са открити копирани числа за сигурност</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Сигнал се нуждае от достъп до камерата Ви, за да може да сканирва QR кодове, но той му е отказан. Моля, отидете на настройки в менюто и изберете \"Разрешения\" и \"Камера\".</string>
+  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Неуспешно сканирване на QR код без разрешение за достъп до камерата</string>
   <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Грешно криптирано съобщение</string>
@@ -538,6 +561,8 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="MediaPreviewActivity_you">Ти</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Неподдържан медиен формат.</string>
   <string name="MediaPreviewActivity_draft">Чернова</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Сигнал се нуждае от достъп до вградения диск, за да може да запазва на  него, но той му е отказан. Моля, отидете в настройки в менюто и изберете \"Разрешения\" и \"Дискове\".</string>
+  <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Неуспешно запазване на външен диск без нуждното разрешение за достъп</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d нови съобщения в %2$d чата</string>
   <string name="MessageNotifier_most_recent_from_s">Най-скорошно от: %1$s</string>
@@ -569,6 +594,8 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Грешка при пускане на видео</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">За да можете да провеждате разговор с %s, разрешете на Сигнал достъп до микрофона.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Сигнал се нуждае от достъп до микрофона и камерта Ви, за да може да получава обаждания, но той му е отказан. Моля, отидете на настройки в менюто и изберете \"Разрешения\" и \"Микрофон\" и \"Камера\".</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Числата за сигурност за разговора с %1$s са променени. Това означава, че или някой се опитва да прехване куминикацията Ви, или че %2$s е преинсталирал Сигнал.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Може да желаете да проверите числата за сигурност с този контакт.</string>
@@ -603,10 +630,14 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Снимка на Контактът</string>
   <!--ContactSelectionListFragment-->
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Сигнал се нуждае от достъп до контактите Ви, за да може да Ви ги показва, но той му е отказан. Моля, отидете на настройки в менюто и изберете \"Разрешения\" и \"Контакти\".</string>
+  <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Грешка при получаване на конатактите, моля, проверете мобилната връзка</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Няма блокирани контакти</string>
   <!--contact_selection_recent_activity-->
   <!--contact_selection_list_fragment-->
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Сигнал се нуждае от достъп до контактите Ви, за да може да ги покаже.</string>
+  <string name="contact_selection_list_fragment__show_contacts">Показване на контактите</string>
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Сигнал-ско съобщение</string>
@@ -647,10 +678,10 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Сканирай QR кодът, показан на устройството, за да се свържете</string>
   <!--device_link_fragment-->
-  <string name="device_link_fragment__link_device">Свържи устройство</string>
+  <string name="device_link_fragment__link_device">Свържи устройството</string>
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Няма свързани устройства</string>
-  <string name="device_list_fragment__link_new_device">Свържи ново устройство</string>
+  <string name="device_list_fragment__link_new_device">Свързване на ново устройство</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">продължи</string>
   <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Потвърждения за прочитане са вече тук</string>
@@ -976,6 +1007,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="conversation_list_item_view__contact_photo_image">Изображение на контакта</string>
   <string name="conversation_list_item_view__archived">Архивиран</string>
   <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Прааазна кутия</string>
+  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Никак. Нищо. Нула. Нада.\nНаваксахте!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Нов разговор</string>
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Хайде да добавим нещо в пощенската кутия. Започнете като изпратите съобщение на приятел.</string>
@@ -1050,6 +1082,8 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="transport_selection_list_item__transport_icon">Икона за транспорт</string>
   <string name="ConversationListFragment_loading">Зареждане...</string>
   <string name="CallNotificationBuilder_connecting">Свързване...</string>
+  <string name="Permissions_permission_required">Нужда от разрешение за достъп</string>
   <string name="Permissions_continue">Продължи</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Сигнал се нуждае от достъп до SMS-те Ви, за да може да изпраща  нови, но той му е отказан. Моля, отидете в настройки в менюто и изберете \"Разрешения\" и \"SMS\".</string>
   <!--EOF-->
 </resources>

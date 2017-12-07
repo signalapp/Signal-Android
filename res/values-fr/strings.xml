@@ -51,6 +51,10 @@
   <string name="DraftDatabase_Draft_location_snippet">(localisation)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Impossible de trouver une application pour sélectionner le média.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal nécessite l\'autorisation Stockage pour joindre des photos, des vidéos ou de l\'audio, mais elle a été définitivement refusée. Accédez au menu Paramètres de l\'application, sélectionnez \"Autorisations\" et activez \"Stockage\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Le signal nécessite l\'autorisation Contacts pour joindre des informations de contact, mais il a été définitivement refusé. Continuez dans le menu des paramètres de l\'application, sélectionnez \"Autorisations\" et activez \"Contacts\".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Le signal nécessite une autorisation de localisation pour joindre un emplacement, mais il a été définitivement refusé. Continuez dans le menu des paramètres de l\'application, sélectionnez \"Autorisations\" et activez \"Emplacement\".</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Le signal nécessite l\'autorisation de l\'appareil photo pour prendre des photos, mais il a été refusé de façon permanente. Continuez dans le menu des paramètres de l\'application, sélectionnez \"Autorisations\" et activez \"Appareil photo\".</string>
   <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Erreur lors de la lecture du son !</string>
@@ -120,6 +124,13 @@
   <string name="ConversationActivity_unable_to_record_audio">Impossible d\'enregistrer l\'audio !</string>
   <string name="ConversationActivity_error_sending_voice_message">Erreur lors de l\'envoi du message vocal</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Il n\'y a pas d\'application disponible pour ouvrir ce lien sur votre appareil.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Pour envoyer des messages audio, autorisez l\'accès Signal à votre microphone.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal nécessite l\'autorisation Microphone pour envoyer des messages audio, mais il a été refusé de façon permanente. Veuillez continuer avec les paramètres de l\'application, sélectionnez \"Autorisations\" et activez \"Microphone\".</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Pour appeler %s, Signal a besoin d\'accéder à votre microphone et à votre caméra.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal a besoin des permissions Microphone et Caméra pour appeler %s, mais elles ont été définitivement refusées. S\'il vous plaît continuer à paramètres de l\'application, sélectionnez \"Autorisations\", et activer \"Microphone\" et \"Appareil photo\".</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Pour capturer des photos et des vidéos, autorisez l\'accès Signal à la caméra.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal a besoin de l\'autorisation de la caméra pour prendre des photos ou des vidéos, mais elle a été refusée de façon permanente. S\'il vous plaît continuer à paramètres de l\'application, sélectionnez \"Autorisations\", et activer \"Appareil photo\".</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Le signal nécessite des autorisations de caméra pour prendre des photos ou des vidéos</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d message non lu</item>
@@ -294,6 +305,12 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="ImportFragment_no_plaintext_backup_found">Aucune sauvegarde en texte clair trouvée !</string>
   <string name="ImportFragment_error_importing_backup">Erreur lors de l\'importation de la sauvegarde !</string>
   <string name="ImportFragment_import_complete">Importation terminée !</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages">Signal a besoin de l\'autorisation SMS pour importer des messages SMS, mais il a été définitivement refusé. S\'il vous plaît continuer à paramètres de l\'application, sélectionnez \"Autorisations\", et activer \"SMS\".</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">Signal a besoin de l\'autorisation SMS pour importer des messages SMS</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">Signal a besoin de l\'autorisation \"Stockage\" pour pouvoir lire depuis un stockage externe, mais il a été définitivement refusé. S\'il vous plaît continuer à paramètres de l\'application, sélectionnez \"Autorisations\", puis activer \"Stockage\".</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">Signal a besoin de l\'autorisation \"Stockage\" pour pouvoir lire à partir du stockage externe.</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal a besoin de l\'autorisation \"Storage\" pour écrire sur un stockage externe, mais il a été définitivement refusé. S\'il vous plaît continuer à paramètres de l\'application, sélectionnez \"Autorisations\", puis activer \"Stockage\".</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">Signal a besoin de l\'autorisation \"Stockage\" pour écrire sur un stockage externe.</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Appuyez et maintenez pour enregistrer un message vocal puis relâchez pour l\'envoyer.</string>
   <!--InviteActivity-->
@@ -376,6 +393,8 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Désolé, ceci n\'est pas un QR code valide pour lier son appareil.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Lier un appareil Signal ?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Vous semblez utiliser un scanner tiers pour associer un appareil Signal. Pour votre protection, veuillez scanner de nouveau le code depuis Signal.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal a besoin de l\'autorisation \"Camera\" pour scanner un code QR, mais il a été définitivement refusé. S\'il vous plaît continuer à paramètres de l\'application, sélectionnez \"Autorisations\", et activer \"Appareil photo\".</string>
+  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Impossible de numériser un code QR sans l\'autorisation \"Appareil photo\"</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Messages éphémères</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Vos messages ne vont pas expirer.</string>
@@ -434,6 +453,9 @@ introduit (%s) n\'est pas valide.</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services est en cours de mise à jour ou est temporairement indisponible. Veuillez réessayer.</string>
   <string name="RegistrationActivity_more_information">Plus d\'informations</string>
   <string name="RegistrationActivity_less_information">Moins d\'informations</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal a besoin d\'accéder à vos contacts et médias pour se connecter avec vos amis, échanger des messages et passer des appels sécurisés</string>
+  <string name="RegistrationActivity_unable_to_connect_to_service">Impossible de se connecter au service. Veuillez vérifier la connexion réseau et réessayer.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Pour vérifier facilement votre numéro de téléphone, Signal peut automatiquement détecter votre code de vérification si vous autorisez Signal à afficher les messages SMS.</string>
   <!--RegistrationProblemsActivity-->
   <!--RegistrationProgressActivity-->
   <!--RegistrationService-->
@@ -500,6 +522,8 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="VerifyIdentityActivity_our_signal_safety_number">Vos numéros de sécurité Signal :</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Il semble n\'y avoir aucune application pour partager ce contenu.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Aucun numéro de sécurité à comparer n\'a été trouvé dans le presse-papiers</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal a besoin de l\'autorisation \"Camera\" pour scanner un code QR, mais il a été définitivement refusé. S\'il vous plaît continuer à paramètres de l\'application, sélectionnez \"Autorisations\", et activer \"Appareil photo\".</string>
+  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Impossible de scanner le code QR sans autorisation de l\'appareil photo</string>
   <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Message chiffré incorrect</string>
@@ -533,6 +557,8 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="MediaPreviewActivity_you">Vous</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Type de média non supporté</string>
   <string name="MediaPreviewActivity_draft">Brouillon</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal a besoin de l\'autorisation Stockage pour enregistrer sur un stockage externe, mais il a été définitivement refusé. Veuillez continuer avec les paramètres de l\'application, sélectionnez \"Autorisations\" et activez \"Stockage\".</string>
+  <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Impossible d\'enregistrer sur un stockage externe sans autorisations</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nouveaux messages dans %2$d conversations</string>
   <string name="MessageNotifier_most_recent_from_s">Plus récent de : %1$s</string>
@@ -564,6 +590,8 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Erreur lors de la lecture de la vidéo</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Pour répondre à l\'appel de %s, donnez un accès Signal à votre microphone.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Le signal nécessite des autorisations Microphone et Appareil photo pour passer ou recevoir des appels, mais ils ont été refusés de façon permanente. S\'il vous plaît continuer à paramètres de l\'application, sélectionnez \"Autorisations\", et activer \"Microphone\" et \"Appareil photo\".</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Le numéro de sécurité pour votre conversation avec %1$s a changé. Soit quelqu\'un tente d\'intercepter votre communication, soit que %2$s a simplement réinstallé Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Vous pourriez vouloir vérifier votre numéro de sécurité avec ce contact.</string>
@@ -598,10 +626,14 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Photo de contact</string>
   <!--ContactSelectionListFragment-->
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal nécessite l\'autorisation Contacts pour afficher vos contacts, mais elle a été refusée définitivement. Continuez dans le menu des paramètres de l\'application, sélectionnez \"Autorisations\" et activez \"Contacts\".</string>
+  <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Erreur lors de la récupération des contacts, vérifiez votre connexion réseau</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Aucun contact bloqué</string>
   <!--contact_selection_recent_activity-->
   <!--contact_selection_list_fragment-->
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal a besoin d\'accéder à vos contacts pour les afficher.</string>
+  <string name="contact_selection_list_fragment__show_contacts">Afficher les contacts</string>
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Message de Signal</string>
@@ -972,6 +1004,7 @@ Les paramètres MMS de votre opérateur peuvent généralement être obtenus en 
   <string name="conversation_list_item_view__contact_photo_image">Photo de contact</string>
   <string name="conversation_list_item_view__archived">Archivé</string>
   <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Boîte de réception zeeerrro</string>
+  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Zip. Zilch. Zero. Vous êtes tous pris au dépourvu!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nouvelle conversation</string>
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Donnez à votre boîte de réception quelque chose à raconter. Commencez par envoyer un message à un ami.</string>
@@ -1046,6 +1079,8 @@ Les paramètres MMS de votre opérateur peuvent généralement être obtenus en 
   <string name="transport_selection_list_item__transport_icon">Icône de transport</string>
   <string name="ConversationListFragment_loading">Chargement...</string>
   <string name="CallNotificationBuilder_connecting">Connexion...</string>
+  <string name="Permissions_permission_required">Permission requise</string>
   <string name="Permissions_continue">Continuer</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal a besoin de l\'autorisation SMS pour envoyer des SMS, mais elle a été définitivement refusée. Veuillez consulter les paramètres de l\'application, sélectionner \"Autorisations\", et activer \"SMS\". </string>
   <!--EOF-->
 </resources>
