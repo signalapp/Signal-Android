@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.jobs;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
@@ -19,6 +20,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
+import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -117,6 +119,11 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
   private void generateFullContactUpdate()
       throws IOException, UntrustedIdentityException, NetworkException
   {
+    if (!Permissions.hasAny(context, Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)) {
+      Log.w(TAG, "No contact permissions, skipping multi-device contact update...");
+      return;
+    }
+    
     File contactDataFile = createTempFile("multidevice-contact-update");
 
     try {
