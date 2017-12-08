@@ -376,8 +376,8 @@ public class Recipient implements RecipientModifiedListener {
     return address.isGroup() && !address.isMmsGroup();
   }
 
-  public @NonNull List<Recipient> getParticipants() {
-    return participants;
+  public @NonNull synchronized List<Recipient> getParticipants() {
+    return new LinkedList<>(participants);
   }
 
   public void setParticipants(@NonNull List<Recipient> participants) {
