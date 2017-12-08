@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -24,6 +25,7 @@ import java.lang.ref.WeakReference;
 
 public class ConversationTitleView extends RelativeLayout {
 
+  @SuppressWarnings("unused")
   private static final String TAG = ConversationTitleView.class.getSimpleName();
 
   private View            content;
@@ -118,6 +120,7 @@ public class ConversationTitleView extends RelativeLayout {
     this.subtitle.setVisibility(View.VISIBLE);
   }
 
+  @SuppressLint("SetTextI18n")
   private void setNonContactRecipientTitle(Recipient recipient) {
     this.title.setText(recipient.getAddress().serialize());
 

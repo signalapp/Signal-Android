@@ -29,7 +29,7 @@ import java.io.OutputStream;
 import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
 
-public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTask.Attachment, Void, Pair<Integer, File>> {
+public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTask.Attachment, Void, Pair<Integer, String>> {
   private static final String TAG = SaveAttachmentTask.class.getSimpleName();
 
   protected static final int SUCCESS              = 0;
@@ -57,7 +57,7 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
   }
 
   @Override
-  protected Pair<Integer, File> doInBackground(SaveAttachmentTask.Attachment... attachments) {
+  protected Pair<Integer, String> doInBackground(SaveAttachmentTask.Attachment... attachments) {
     if (attachments == null || attachments.length == 0) {
       throw new AssertionError("must pass in at least one attachment");
     }
@@ -65,7 +65,7 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
     try {
       Context      context      = contextReference.get();
       MasterSecret masterSecret = masterSecretReference.get();
-      File         directory    = null;
+      String       directory    = null;
 
       if (!StorageUtil.canWriteInSignalStorageDir()) {
         return new Pair<>(WRITE_ACCESS_FAILURE, null);
@@ -90,7 +90,7 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
     }
   }
 
-  private @Nullable File saveAttachment(Context context, MasterSecret masterSecret, Attachment attachment)
+  private @Nullable String saveAttachment(Context context, MasterSecret masterSecret, Attachment attachment)
       throws NoExternalStorageException, IOException
   {
     String      contentType = MediaUtil.getCorrectedMimeType(attachment.contentType);
@@ -113,7 +113,7 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
     MediaScannerConnection.scanFile(context, new String[]{mediaFile.getAbsolutePath()},
                                     new String[]{contentType}, null);
 
-    return mediaFile.getParentFile();
+    return outputDirectory.getName();
   }
 
   private File createOutputDirectoryFromContentType(@NonNull String contentType)
@@ -184,7 +184,7 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
   }
 
   @Override
-  protected void onPostExecute(final Pair<Integer, File> result) {
+  protected void onPostExecute(final Pair<Integer, String> result) {
     super.onPostExecute(result);
     final Context context = contextReference.get();
     if (context == null) return;
@@ -197,26 +197,7 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
                        Toast.LENGTH_LONG).show();
         break;
       case SUCCESS:
-        Snackbar snackbar = Snackbar.make(view.get(),
-                                          context.getResources().getQuantityText(R.plurals.ConversationFragment_files_saved_successfully, attachmentCount),
-                                          Snackbar.LENGTH_SHORT);
-
-        if (result.second() != null) {
-          snackbar.setDuration(Snackbar.LENGTH_LONG);
-          snackbar.setAction(R.string.SaveAttachmentTask_open_directory, new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-              Intent intent = new Intent(Intent.ACTION_VIEW);
-              intent.setDataAndType(Uri.fromFile(result.second()), "resource/folder");
-              if (intent.resolveActivityInfo(context.getPackageManager(), 0) != null)
-              {
-                context.startActivity(intent);
-              }
-            }
-          });
-        }
-
-        snackbar.show();
+        Toast.makeText(context, String.format("Saved to %s", result.second()), Toast.LENGTH_LONG).show();
         break;
       case WRITE_ACCESS_FAILURE:
         Toast.makeText(context, R.string.ConversationFragment_unable_to_write_to_sd_card_exclamation,
