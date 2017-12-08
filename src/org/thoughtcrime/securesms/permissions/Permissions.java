@@ -155,8 +155,8 @@ public class Permissions {
     @SuppressWarnings("ConstantConditions")
     private void executePermissionsRequestWithRationale(PermissionsRequest request) {
       RationaleDialog.createFor(permissionObject.getContext(), rationaleDialogMessage, rationalDialogHeader)
-                     .setPositiveButton("Continue", (dialog, which) -> executePermissionsRequest(request))
-                     .setNegativeButton("Not now", null)
+                     .setPositiveButton(R.string.Permissions_continue, (dialog, which) -> executePermissionsRequest(request))
+                     .setNegativeButton(R.string.Permissions_not_now, null)
                      .show()
                      .getWindow()
                      .setLayout((int)(permissionObject.getWindowWidth() * .75), ViewGroup.LayoutParams.WRAP_CONTENT);
