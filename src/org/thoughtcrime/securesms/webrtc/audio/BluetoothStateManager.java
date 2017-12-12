@@ -54,9 +54,9 @@ public class BluetoothStateManager {
 
     requestHeadsetProxyProfile();
 
-    context.registerReceiver(bluetoothConnectionReceiver, new IntentFilter(BluetoothHeadset.ACTION_CONNECTION_STATE_CHANGED));
+    this.context.registerReceiver(bluetoothConnectionReceiver, new IntentFilter(BluetoothHeadset.ACTION_CONNECTION_STATE_CHANGED));
 
-    Intent sticky = context.registerReceiver(bluetoothScoReceiver, new IntentFilter(getScoChangeIntent()));
+    Intent sticky = this.context.registerReceiver(bluetoothScoReceiver, new IntentFilter(getScoChangeIntent()));
 
     if (sticky != null) {
       bluetoothScoReceiver.onReceive(context, sticky);
