@@ -256,8 +256,7 @@ public class PushDecryptJob extends ContextJob {
     intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromExternal(context, envelope.getSource()));
     intent.putExtra(WebRtcCallService.EXTRA_REMOTE_DESCRIPTION, message.getDescription());
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) context.startForegroundService(intent);
-    else                                                context.startService(intent);
+    context.startService(intent);
   }
 
   private void handleCallIceUpdateMessage(@NonNull SignalServiceEnvelope envelope,
@@ -273,8 +272,7 @@ public class PushDecryptJob extends ContextJob {
       intent.putExtra(WebRtcCallService.EXTRA_ICE_SDP_MID, message.getSdpMid());
       intent.putExtra(WebRtcCallService.EXTRA_ICE_SDP_LINE_INDEX, message.getSdpMLineIndex());
 
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) context.startForegroundService(intent);
-      else                                                context.startService(intent);
+      context.startService(intent);
     }
   }
 
@@ -291,8 +289,7 @@ public class PushDecryptJob extends ContextJob {
       intent.putExtra(WebRtcCallService.EXTRA_CALL_ID, message.getId());
       intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromExternal(context, envelope.getSource()));
 
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) context.startForegroundService(intent);
-      else                                                context.startService(intent);
+      context.startService(intent);
     }
   }
 
@@ -304,8 +301,7 @@ public class PushDecryptJob extends ContextJob {
     intent.putExtra(WebRtcCallService.EXTRA_CALL_ID, message.getId());
     intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromExternal(context, envelope.getSource()));
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) context.startForegroundService(intent);
-    else                                                context.startService(intent);
+    context.startService(intent);
   }
 
   private void handleEndSessionMessage(@NonNull MasterSecretUnion        masterSecret,
