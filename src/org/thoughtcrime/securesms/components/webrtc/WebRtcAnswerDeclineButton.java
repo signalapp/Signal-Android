@@ -52,6 +52,8 @@ public class WebRtcAnswerDeclineButton extends LinearLayout implements View.OnTo
   private float lastY;
 
   private boolean animating = false;
+  private boolean complete  = false;
+
   private AnimatorSet animatorSet;
   private AnswerDeclineListener listener;
 
@@ -162,7 +164,10 @@ public class WebRtcAnswerDeclineButton extends LinearLayout implements View.OnTo
           if (percentageToThreshold == 1 && listener != null) {
             fab.setVisibility(View.INVISIBLE);
             lastY = event.getRawY();
-            listener.onAnswered();
+            if (!complete) {
+              complete = true;
+              listener.onAnswered();
+            }
           }
         } else {
           differenceThreshold = ViewUtil.dpToPx(getContext(), DECLINE_THRESHOLD);
@@ -180,7 +185,11 @@ public class WebRtcAnswerDeclineButton extends LinearLayout implements View.OnTo
           if (percentageToThreshold == 1 && listener != null) {
             fab.setVisibility(View.INVISIBLE);
             lastY = event.getRawY();
-            listener.onDeclined();
+
+            if (!complete) {
+              complete = true;
+              listener.onDeclined();
+            }
           }
         }
 
@@ -287,6 +296,7 @@ public class WebRtcAnswerDeclineButton extends LinearLayout implements View.OnTo
 
   private void resetElements() {
     animating = false;
+    complete  = false;
     animatorSet.cancel();
 
     swipeUpText.setTranslationY(0);
