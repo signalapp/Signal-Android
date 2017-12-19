@@ -45,11 +45,11 @@ public abstract class AbstractNotificationBuilder extends NotificationCompat.Bui
   }
 
   public void setAlarms(@Nullable Uri ringtone, RecipientDatabase.VibrateState vibrate) {
-    String  defaultRingtoneName = TextSecurePreferences.getNotificationRingtone(context);
-    boolean defaultVibrate      = TextSecurePreferences.isNotificationVibrateEnabled(context);
+    Uri     defaultRingtone = TextSecurePreferences.getNotificationRingtone(context);
+    boolean defaultVibrate  = TextSecurePreferences.isNotificationVibrateEnabled(context);
 
-    if      (ringtone == null && !TextUtils.isEmpty(defaultRingtoneName)) setSound(Uri.parse(defaultRingtoneName));
-    else if (ringtone != null && !ringtone.toString().isEmpty())          setSound(ringtone);
+    if      (ringtone == null && !TextUtils.isEmpty(defaultRingtone.toString())) setSound(defaultRingtone);
+    else if (ringtone != null && !ringtone.toString().isEmpty())                 setSound(ringtone);
 
     if (vibrate == RecipientDatabase.VibrateState.ENABLED ||
         (vibrate == RecipientDatabase.VibrateState.DEFAULT && defaultVibrate))

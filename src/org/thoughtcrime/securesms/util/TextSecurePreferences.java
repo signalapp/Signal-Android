@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.hardware.Camera.CameraInfo;
+import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -10,7 +11,6 @@ import android.support.annotation.ArrayRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.content.SharedPreferencesCompat;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
@@ -634,14 +634,18 @@ public class TextSecurePreferences {
     return getBooleanPreference(context, NOTIFICATION_PREF, true);
   }
 
-  public static String getNotificationRingtone(Context context) {
+  public static @NonNull Uri getNotificationRingtone(Context context) {
     String result = getStringPreference(context, RINGTONE_PREF, Settings.System.DEFAULT_NOTIFICATION_URI.toString());
 
     if (result != null && result.startsWith("file:")) {
       result = Settings.System.DEFAULT_NOTIFICATION_URI.toString();
     }
 
-    return result;
+    return Uri.parse(result);
+  }
+
+  public static void removeNotificationRingtone(Context context) {
+    removePreference(context, RINGTONE_PREF);
   }
 
   public static void setNotificationRingtone(Context context, String ringtone) {
@@ -732,6 +736,10 @@ public class TextSecurePreferences {
 
   private static void setLongPreference(Context context, String key, long value) {
     PreferenceManager.getDefaultSharedPreferences(context).edit().putLong(key, value).apply();
+  }
+
+  private static void removePreference(Context context, String key) {
+    PreferenceManager.getDefaultSharedPreferences(context).edit().remove(key).apply();
   }
 
   private static Set<String> getStringSetPreference(Context context, String key, Set<String> defaultValues) {

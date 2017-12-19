@@ -456,7 +456,7 @@ public class Recipient implements RecipientModifiedListener {
     if (ringtone != null && ringtone.getScheme() != null && ringtone.getScheme().startsWith("file")) {
       return null;
     }
-    
+
     return ringtone;
   }
 

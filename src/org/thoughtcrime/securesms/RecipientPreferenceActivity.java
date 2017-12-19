@@ -58,6 +58,7 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.IdentityUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
@@ -372,7 +373,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       public boolean onPreferenceChange(Preference preference, Object newValue) {
         Uri value = (Uri)newValue;
 
-        if (Settings.System.DEFAULT_NOTIFICATION_URI.equals(value)) {
+        if (TextSecurePreferences.getNotificationRingtone(getContext()).equals(value)) {
           value = null;
         } else if (value == null) {
           value = Uri.EMPTY;
@@ -403,6 +404,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         Intent intent = new Intent(RingtoneManager.ACTION_RINGTONE_PICKER);
         intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, true);
         intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true);
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_DEFAULT_URI, TextSecurePreferences.getNotificationRingtone(getContext()));
         intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_NOTIFICATION);
         intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, uri);
 
