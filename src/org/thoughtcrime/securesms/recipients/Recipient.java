@@ -453,6 +453,10 @@ public class Recipient implements RecipientModifiedListener {
   }
 
   public synchronized @Nullable Uri getRingtone() {
+    if (ringtone != null && ringtone.getScheme() != null && ringtone.getScheme().startsWith("file")) {
+      return null;
+    }
+    
     return ringtone;
   }
 
