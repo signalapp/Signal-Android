@@ -32,6 +32,7 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -116,7 +117,7 @@ public class ConversationListFragment extends Fragment
   }
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
+  public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle bundle) {
     final View view = inflater.inflate(R.layout.conversation_list_fragment, container, false);
 
     reminderView = ViewUtil.findById(view, R.id.reminder);

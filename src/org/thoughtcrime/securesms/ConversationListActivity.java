@@ -16,6 +16,8 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.*;
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -38,6 +40,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
@@ -111,8 +114,15 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   }
 
   private void initializeSearchListener() {
-    searchAction.setOnClickListener(v -> searchToolbar.display(searchAction.getX() + (searchAction.getWidth() / 2),
-                                                               searchAction.getY() + (searchAction.getHeight() / 2)));
+    searchAction.setOnClickListener(v -> {
+      Permissions.with(this)
+                 .request(Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)
+                 .ifNecessary()
+                 .onAllGranted(() -> searchToolbar.display(searchAction.getX() + (searchAction.getWidth() / 2),
+                                                           searchAction.getY() + (searchAction.getHeight() / 2)))
+                 .withPermanentDenialDialog(getString(R.string.ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied))
+                 .execute();
+    });
 
     searchToolbar.setListener(new SearchToolbar.SearchListener() {
       @Override
