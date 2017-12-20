@@ -172,7 +172,7 @@ public class MmsSendJob extends SendJob {
       throws UndeliverableMessageException
   {
     SendReq          req               = new SendReq();
-    String           lineNumber        = Utils.getMyPhoneNumber(context);
+    String           lineNumber        = getMyNumber(context);
     Address          destination       = message.getRecipient().getAddress();
     MediaConstraints mediaConstraints  = MediaConstraints.getMmsMediaConstraints(message.getSubscriptionId());
     List<Attachment> scaledAttachments = scaleAttachments(masterSecret, mediaConstraints, message.getAttachments());
@@ -285,6 +285,14 @@ public class MmsSendJob extends SendJob {
 
     if (recipient != null) {
       MessageNotifier.notifyMessageDeliveryFailed(context, recipient, threadId);
+    }
+  }
+
+  private String getMyNumber(Context context) throws UndeliverableMessageException {
+    try {
+      return Utils.getMyPhoneNumber(context);
+    } catch (SecurityException e) {
+      throw new UndeliverableMessageException(e);
     }
   }
 }
