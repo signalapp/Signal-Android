@@ -1127,7 +1127,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ConversationListFragment_loading">Nalagam...</string>
   <string name="CallNotificationBuilder_connecting">Povezujem ...</string>
   <string name="Permissions_permission_required">Zahtevano dovoljenje</string>
-  <string name="Permissions_continue">Nadaljuj</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Dovoljenje za dostop do sporočil SMS je bilo trajno odvzeto. Aplikacija Signal potrebuje dovoljenje za dostop do sporočil SMS za pošiljanje sporočil SMS. Prosimo pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"SMS\".</string>
+  <string name="Permissions_continue">Nadaljuj</string>
+  <string name="Permissions_not_now">Ne zdaj</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Dostop do stikov je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do stikov za iskanje med osebami iz vašega imenika. Prosimo pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Stiki\".</string>
   <!--EOF-->
 </resources>

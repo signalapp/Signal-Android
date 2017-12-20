@@ -51,6 +51,8 @@
   <string name="DraftDatabase_Draft_location_snippet">(sted)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Fant ingen programmer for valg av medier.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal krever Lagringstillatelse for å kunne legge til bilder, videoer eller lyd, men den er permanent nektet. Vennligst fortsett til appinnstillingsmenyen, velg \"Tillatelser\", og aktiver \"Lagring\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal krever kontaktstillatelse for å kunne legge ved kontaktinformasjon, men den er permanent nektet. Vennligst fortsett til appinnstillingsmenyen, velg \"Tillatelser\", og aktiver \"Kontakter\".</string>
   <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Det oppstod en feil under lydavspilling.</string>
@@ -71,6 +73,7 @@
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Du bør kontrollere sikkerhetsnumrene dine mot denne kontakten.</string>
   <string name="ConfirmIdentityDialog_accept">Godta</string>
   <!--ContactsCursorLoader-->
+  <string name="ContactsCursorLoader_contacts">Kontakter</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Melding %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal-anrop %s</string>
@@ -519,6 +522,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Ikke vis varsler</string>
   <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_no_web_browser_installed">Ingen nettleser installert!</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importering pågår</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importerer tekstmeldinger</string>
@@ -559,6 +563,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ny melding</string>
   <!--UnauthorizedReminder-->
+  <string name="UnauthorizedReminder_device_no_longer_registered">Enheten er ikke lenger registrert</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Feil ved avspilling av video</string>
   <!--WebRtcCallActivity-->
@@ -600,6 +605,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="blocked_contacts_fragment__no_blocked_contacts">Ingen blokkerte kontakter</string>
   <!--contact_selection_recent_activity-->
   <!--contact_selection_list_fragment-->
+  <string name="contact_selection_list_fragment__show_contacts">Vis Kontakter</string>
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal melding</string>
@@ -759,6 +765,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONNUMMER</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal gjør det enkelt å kommunisere ved å bruke telefonnummeret og adresseboka du allerede har. Venner og kontakter som allerede vet hvordan de kontakter deg via telefon kan enkelt ta kontakt via Signal.\n\nRegistrering overfører noe kontaktinformasjon til Signal-tjeneren. Dette blir ikke lagret.</string>
+  <string name="registration_activity__verify_your_number">Bekreft nummeret ditt</string>
+  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Vennligst skriv inn ditt mobilnummer for å motta en bekreftelseskode. Teleoperatørs priser kan gjelde.</string>
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->
@@ -777,6 +785,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Del sikkerhets nummer</string>
   <!--webrtc_answer_decline_button-->
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Sveip opp for å svare</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Sveip ned for å avvise</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Problemer venter på manuell løsning.</string>
   <string name="message_details_header__sent">Sendt</string>
@@ -1038,6 +1048,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
   <string name="ConversationListFragment_loading">Laster...</string>
   <string name="CallNotificationBuilder_connecting">Kobler til …</string>
+  <string name="Permissions_permission_required">Tillatelse kreves</string>
   <string name="Permissions_continue">Fortsett</string>
+  <string name="Permissions_not_now">Ikke nå</string>
   <!--EOF-->
 </resources>

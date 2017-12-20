@@ -54,6 +54,10 @@
   <string name="DraftDatabase_Draft_location_snippet">(vieta)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nerasta programėlė medijos pasirinkimui.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Norint pridėti nuotraukas, vaizdo įrašus ar garsą, Signal reikia saugyklos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Saugyklą\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Norint pridėti kontaktinę informaciją, Signal reikia kontaktų leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Kontaktus\".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Norint pridėti vietą, Signal reikia vietos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Vietą\".</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Norint fotografuoti, Signal reikia kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Kamerą\".</string>
   <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Klaida atkuriant garso įrašą!</string>
@@ -124,8 +128,11 @@
   <string name="ConversationActivity_error_sending_voice_message">Klaida, išsiunčiant balso žinutę</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nėra prieinamos programėlės, kuri galėtų apdoroti šią nuorodą jūsų įrenginyje.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Norėdami siųsti garso žinutes, leiskite Signal prieigą prie mikrofono.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Norint siųsti garso žinutes, Signal reikia mikrofono leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"Mikrofoną\".</string>
   <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Norint skambinti %s, Signal yra reikalinga prieiga prie jūsų mikrofono ir kameros.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Norint skambinti %s, programai Signal reikia mikrofono ir kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"Mikrofoną\" ir \"Kamerą\".</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Norėdami fotografuoti ir filmuoti vaizdo įrašus, leiskite Signal prieigą prie kameros.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Norint fotografuoti, Signal reikia kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Kamerą\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Norint fotografuoti ar filmuoti, Signal reikalinga prieiga prie kameros</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
@@ -317,8 +324,11 @@
   <string name="ImportFragment_no_plaintext_backup_found">Nerasta jokios grynojo teksto atsarginės kopijos!</string>
   <string name="ImportFragment_error_importing_backup">Klaida importuojant atsarginę kopiją!</string>
   <string name="ImportFragment_import_complete">Importavimas užbaigtas!</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages">Norint importuoti SMS žinutes, Signal reikia SMS leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"SMS\".</string>
   <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">Norint importuoti SMS žinutes, Signal reikalingas SMS leidimas</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">Norint skaityti iš išorinės saugyklos, Signal reikia saugyklos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"Saugyklą\".</string>
   <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">Norint skaityti iš išorinių įrenginių, Signal reikalingas saugyklos leidimas</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Norint rašyti į išorinę saugyklą, Signal reikia saugyklos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"Saugyklą\".</string>
   <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">Norint rašyti į išorinius įrenginius, Signal reikalingas saugyklos leidimas.</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Bakstelėkite ir laikykite, kad įrašinėtumėte balso žinutę, atleiskite, kad išsiųstumėte</string>
@@ -406,6 +416,7 @@
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Atleiskite, tai nėra teisingas įrenginio nuorodos QR kodas.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Susieti Signal įrenginį?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Atrodo, kad bandote susieti Signal įrenginį, naudodami trečiųjų šalių skenerį. Jūsų saugumui, dar kartą nuskenuokite kodą, naudodami Signal.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Norint skenuoti QR kodą, Signal reikia kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Kamerą\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Nepavyksta nuskenuoti QR kodo be kameros leidimo</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Išnykstančios žinutės</string>
@@ -468,7 +479,9 @@
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">„Google Play“ paslaugos yra atnaujinamos arba laikinai neprieinamos. Prašome bandyti dar kartą.</string>
   <string name="RegistrationActivity_more_information">Daugiau informacijos</string>
   <string name="RegistrationActivity_less_information">Mažiau informacijos</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Norinti susisiekti su draugais, keistis žinutėmis ir saugiai skambinti, Signal reikia prieigos prie jūsų kontaktų ir medijos</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Nepavyksta prisijungti prie paslaugos. Patikrinkite tinklo ryšį ir bandykite dar kartą.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Norint lengvai patvirtinti jūsų telefono numerį, Signal gali automatiškai aptikti patvirtinimo kodą, jei leisite programai Signal peržiūrėti SMS žinutes.</string>
   <!--RegistrationProblemsActivity-->
   <!--RegistrationProgressActivity-->
   <!--RegistrationService-->
@@ -537,6 +550,7 @@
   <string name="VerifyIdentityActivity_our_signal_safety_number">Mūsų Signal saugumo numeris:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Atrodo, kad neturite programėlių su kuriomis dalintis.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Iškarpinėje palyginimui nebuvo rasta jokio saugumo numerio</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Norint skenuoti QR kodą, Signal reikia kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Kamerą\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Nepavyksta nuskenuoti QR kodo be kameros leidimo</string>
   <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
@@ -571,6 +585,7 @@
   <string name="MediaPreviewActivity_you">Jūs</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Nepalaikomas medijos tipas</string>
   <string name="MediaPreviewActivity_draft">Juodraštis</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Norint įrašyti į išorinę saugyklą, Signal reikia saugyklos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"Saugyklą\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Nepavyksta įrašyti į išorinę saugyklą be leidimų</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d naujų(-os) žinutės(-ių) %2$d pokalbyje(-iuose)</string>
@@ -604,6 +619,7 @@
   <string name="VideoPlayer_error_playing_video">Klaida, atkuriant vaizdo įrašą</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Norėdami atsiliepti į skambutį nuo %s, suteikite Signal prieigą prie mikrofono.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Norint skambinti ar gauti skambučius, Signal reikia mikrofono ir kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"Mikrofoną\" ir \"Kamerą\".</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Jūsų pokalbio su %1$s saugumo numeris pasikeitė. Tai gali reikšti, kad kažkas bando perimti jūsų susirašinėjimą arba, kad %2$s, tiesiog, iš naujo įdiegė Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Jūs, tikriausiai, norėtumėte patvirtinti savo saugumo numerį su šiuo kontaktu.</string>
@@ -638,6 +654,7 @@
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Kontakto nuotrauka</string>
   <!--ContactSelectionListFragment-->
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Norint rodyti jūsų kontaktus, Signal reikia kontaktų leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Kontaktus\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Klaida gaunant kontaktus, patikrinkite tinklo ryšį</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nėra užblokuotų kontaktų</string>
@@ -1099,6 +1116,9 @@
   <string name="ConversationListFragment_loading">Įkeliama...</string>
   <string name="CallNotificationBuilder_connecting">Jungiamasi...</string>
   <string name="Permissions_permission_required">Reikalingas leidimas</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Norint siųsti SMS žinutes, Signal reikia SMS leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"SMS\".</string>
   <string name="Permissions_continue">Tęsti</string>
+  <string name="Permissions_not_now">Ne dabar</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Norint rodyti jūsų kontaktus, Signal reikia kontaktų leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Kontaktus\".</string>
   <!--EOF-->
 </resources>

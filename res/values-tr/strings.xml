@@ -117,6 +117,8 @@
   <string name="ConversationActivity_unable_to_record_audio">Ses kaydedilemedi!</string>
   <string name="ConversationActivity_error_sending_voice_message">Sesli mesaj gönderirken hata</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Cihazınızda bu linke ulaşmanız için gereken hiç bir uygulama yüklü değil.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Sesli mesaj göndermek için Signal\'in mikrofonunuza erişime ihtiyacı var.</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Arama yapmak için %s Signal\'in mikrofon ve kameranıza erişime ihtiyacı var.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d okunmamış mesaj</item>
@@ -1023,6 +1025,8 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="transport_selection_list_item__transport_icon">Ulaştırma simgesi</string>
   <string name="ConversationListFragment_loading">Yükleniyor...</string>
   <string name="CallNotificationBuilder_connecting">Bağlanılıyor...</string>
+  <string name="Permissions_permission_required">İzin gerekmekte</string>
   <string name="Permissions_continue">Devam Et</string>
+  <string name="Permissions_not_now">Simdi degil</string>
   <!--EOF-->
 </resources>

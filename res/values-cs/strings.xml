@@ -55,7 +55,7 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nemohu nalézt aplikaci pro vybraný typ dat.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signál potřebuje oprávnění pro přístup k úložišti aby mohl připojovat fotky, videa nebo zvuky, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Úložiště\",</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signál potřebuje oprávnění pro přístup ke kontkatům aby mohl připojit informace o kontaktu, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Kontakty\",</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signál potřebuje oprávnění pro přístup ke kontaktům aby mohl připojit informace o kontaktu, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Kontakty\",</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signál potřebuje oprávnění pro přístup k poloze aby mohl připojit informace o poloze, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Poloha\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signál potřebuje oprávnění pro přístup k fotoaparátu aby mohl pořizovat fotografie, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Fotoaparát\".</string>
   <!--AttachmentTypeSelectorAdapter-->
@@ -641,7 +641,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Fotografie kontaktu</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signál potřebuje oprávnění pro přístup ke kontkatům aby vám je mohl zobrazit, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Kontakty\".</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signál potřebuje oprávnění pro přístup ke kontaktům aby vám je mohl zobrazit, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Kontakty\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Nepodařilo se načíst kontakty, zkontrolujte připojení k internetu.</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nezablokované kontakty</string>
@@ -1103,8 +1103,10 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="ConversationListFragment_loading">Načítám...</string>
   <string name="CallNotificationBuilder_connecting">Probíhá připojování...</string>
   <string name="Permissions_permission_required">Vyžadovaná oprávnění</string>
-  <string name="Permissions_continue">Pokračovat</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signál potřebuje oprávnění pro přístup k SMS aby mohl posílat SMS zprávy, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"SMS\".
 </string>
+  <string name="Permissions_continue">Pokračovat</string>
+  <string name="Permissions_not_now">Teď ne</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signál potřebuje oprávnění pro přístup ke kontaktům aby je mohl  vyhledávat, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Kontakty\", </string>
   <!--EOF-->
 </resources>

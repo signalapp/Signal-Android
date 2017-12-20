@@ -51,6 +51,10 @@
   <string name="DraftDatabase_Draft_location_snippet">(asukoht)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Ei leia rakendust meediafaili valimiseks.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal vajab fotode, videote või audiofailide manustamiseks ligipääsu salvestusmeediale, kuid see on püsivalt keelatud. Palun ava rakenduse sätete menüü, vali \"Õigused\" ja luba \"Salvestusmeedia\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal vajab kontaktide manustamiseks ligipääsu kontaktidele, kuid see on püsivalt keelatud. Palun ava rakenduse sätete menüü, vali \"Õigused\" ja luba \"Kontaktid\".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal vajab asukoha manustamiseks ligipääsu seadme asukohale, kuid see on püsivalt keelatud. Palun ava rakenduse sätete menüü, vali \"Õigused\" ja luba \"Asukoht\".</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal vajab fotode tegemiseks ligipääsu seadme kaamerale, kuid see on püsivalt keelatud. Palun ava rakenduse sätete menüü, vali \"Õigused\" ja luba \"Kaamera\".</string>
   <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Heli esitamisel tekkis viga!</string>
@@ -120,6 +124,13 @@
   <string name="ConversationActivity_unable_to_record_audio">Ei saa heli salvestada!</string>
   <string name="ConversationActivity_error_sending_voice_message">Viga helisõnumi saatmisel</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Sinu seadmes pole rakendust, mis oleks võimeline seda linki käsitlema.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Audiosõnumite saatmiseks luba Signalile juurdepääs seadme mikrofonile.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal vajab audiosõnumite saatmiseks ligipääsu seadme mikrofonile, kuid see on püsivalt keelatud. Palun ava rakenduse sätete menüü, vali \"Õigused\" ja luba \"Mikrofon\".</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Signal vajab kasutajale %s helistamiseks ligipääsu seadme kaamerale ja mikrofonile.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal vajab kasutajale %s helistamiseks ligipääsu kaamerale ja mikrofonile, kuid need on püsivalt keelatud. Palun ava rakenduse sätete menüü, vali \"Õigused\" ja luba \"Mikrofon\" ning \"Kaamera\".</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Luba Signalile ligipääs kaamerale fotode ja videote salvestamiseks.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal vajab ligipääsu kaamerale, et salvestada fotosid ja videosid, kuid see on püsivalt keelatud. Palun ava rakenduse sätete menüü, vali \"Õigused\" ja luba \"Kaamera\".</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal vajab fotode ja videote salvestamiseks ligipääsu kaamerale</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d lugemata sõnum</item>
@@ -544,6 +555,7 @@
   <string name="MediaPreviewActivity_you">Sina</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Mittetoetatud meediatüüp</string>
   <string name="MediaPreviewActivity_draft">Mustand</string>
+  <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Õiguste puudumise tõttu pole võimalik välisele andmekandjale salvestada.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d uut sõnumit %2$d vestluses</string>
   <string name="MessageNotifier_most_recent_from_s">Viimatine kontaktilt %1$s</string>
@@ -609,10 +621,14 @@
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Kontakti pilt</string>
   <!--ContactSelectionListFragment-->
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal vajab kontaktide kuvamiseks neile ligipääsu, kuid see on püsivalt keelatud. Palun ava rakenduse sätete menüü, vali \"Õigused\" ja luba \"Kontaktid\".</string>
+  <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Kontaktide laadimisel tekkis tõrge. Kontrolli võrguühendust.</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Blokeeritud kontakte pole</string>
   <!--contact_selection_recent_activity-->
   <!--contact_selection_list_fragment-->
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal vajab kontaktide kuvamiseks nendele ligipääsu.</string>
+  <string name="contact_selection_list_fragment__show_contacts">Näita kontakte</string>
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signali sõnum</string>
@@ -1057,5 +1073,6 @@
   <string name="ConversationListFragment_loading">Laadimine...</string>
   <string name="CallNotificationBuilder_connecting">Ühendan...</string>
   <string name="Permissions_continue">Jätka</string>
+  <string name="Permissions_not_now">Mitte praegu</string>
   <!--EOF-->
 </resources>

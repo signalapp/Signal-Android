@@ -48,6 +48,10 @@
   <string name="DraftDatabase_Draft_location_snippet">(ទីតាំង)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">មិនអាចស្វែងរកកម្មវិធីដើម្បីជ្រើសរើសព័ត៌មាន</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">ស៊ីហ្គណល តម្រូវឱ្យមានការអនុញ្ញាតប្រើប្រាស់កន្លែងផ្ទុកទិន្នន័យដើម្បីភ្ជាប់រូបថតវីដេអូឬសម្លេងប៉ុន្តែវាត្រូវបានបដិសេធជាអចិន្ត្រៃយ៍។ សូមបន្តទៅម៉ឺនុយការកំណត់កម្មវិធីជ្រើស \"អនុញ្ញាត\" និងបើក \"កន្លែងផ្ទុកទិន្នន័យ\" ។</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">សញ្ញាតម្រូវឱ្យមានការអនុញ្ញាតប្រើប្រាស់បញ្ជីឈ្មោះទំនាក់ទំនងដើម្បីភ្ជាប់ព័ត៌មានបញ្ជីឈ្មោះទំនាក់ទំនង ប៉ុន្តែវាត្រូវបានបដិសេធជាអចិន្ត្រៃយ៍។ សូមបន្តទៅម៉ឺនុយការកំណត់កម្មវិធីជ្រើស \"អនុញ្ញាត\" និងបើក \"បញ្ជីឈ្មោះទំនាក់ទំនង\" ។</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">ស៊ីហ្គណល តម្រូវឱ្យមានការអនុញ្ញាតប្រើប្រាស់ទីតាំងដើម្បីភ្ជាប់ទីតាំងប៉ុន្តែវាត្រូវបានបដិសេធជាអចិន្ត្រៃយ៍។ សូមបន្តទៅម៉ឺនុយការកំណត់កម្មវិធីជ្រើស \"អនុញ្ញាត\" និងបើក \"ទីតាំង\" ។</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">ស៊ីហ្គណល តម្រូវឱ្យមានការអនុញ្ញាតប្រើប្រាស់កាមេរ៉ាដើម្បីថតរូប ប៉ុន្តែវាត្រូវបានគេបដិសេធជាអចិន្ត្រៃយ៍។ សូមបន្តទៅម៉ឺនុយការកំណត់កម្មវិធីជ្រើស \"អនុញ្ញាត\" និងបើក \"កាមេរ៉ា\" ។</string>
   <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">បញ្ហាចាក់សំឡេង!</string>

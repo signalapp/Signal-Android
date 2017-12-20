@@ -51,6 +51,7 @@
   <string name="DraftDatabase_Draft_location_snippet">(ubicación)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">No se pudo encontrar una aplicación para el contenido seleccionado.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal requiere el permiso Almacenamiento para adjuntar fotos, vídeos, o audio, pero ha sido denegado permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilite \"Almacenamiento\".</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal requiere el permiso Contactos para adjuntar información de contacto. pero ha sido denegado permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilite \"Contactos\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal requiere el permiso Ubicación para adjuntar una ubicación, pero ha sido denegado permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilite \"Ubicación\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal requiere el permiso Cámara para tomar fotos, pero ha sido denegado permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilite \"Cámara\".</string>
@@ -1088,7 +1089,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ConversationListFragment_loading">Cargando...</string>
   <string name="CallNotificationBuilder_connecting">Conectando...</string>
   <string name="Permissions_permission_required">Se requiere permiso</string>
-  <string name="Permissions_continue">Continuar</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal necesita el permiso SMS para enviar un SMS, pero ha sido denegado permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilite \"SMS\".</string>
+  <string name="Permissions_continue">Continuar</string>
+  <string name="Permissions_not_now">Ahora no</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal necesita el permiso Contactos para buscar sus contactos, pero ha sido denegado permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilite \"Contactos\".</string>
   <!--EOF-->
 </resources>

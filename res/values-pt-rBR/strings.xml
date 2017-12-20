@@ -1091,7 +1091,8 @@
   <string name="ConversationListFragment_loading">Carregando...</string>
   <string name="CallNotificationBuilder_connecting">Conectando...</string>
   <string name="Permissions_permission_required">Permissão necessária</string>
-  <string name="Permissions_continue">Continuar</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">O Signal precisa da permissão SMS para enviar mensagens SMS, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"SMS\".</string>
+  <string name="Permissions_continue">Continuar</string>
+  <string name="Permissions_not_now">Agora não</string>
   <!--EOF-->
 </resources>

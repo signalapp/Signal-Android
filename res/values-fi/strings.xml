@@ -1080,7 +1080,9 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ConversationListFragment_loading">Ladataan...</string>
   <string name="CallNotificationBuilder_connecting">Yhdistetään...</string>
   <string name="Permissions_permission_required">Sovelluslupa vaaditaan</string>
-  <string name="Permissions_continue">Jatka</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal tarvitsee tekstiviestien käyttöoikeutta niiden lähettämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Jatka sovellusten asetuksiin, valitse \"Sovelluksen käyttöoikeudet\" ja laita päälle \"Tekstiviestit\".</string>
+  <string name="Permissions_continue">Jatka</string>
+  <string name="Permissions_not_now">Ei nyt</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal tarvitsee lupaa käyttää laitteesi yhteystietoja niiden etsimistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Jatka sovellusten asetuksiin, valitse \"Sovelluksen käyttöoikeudet\" ja laita päälle  \"Yhteystiedot\".</string>
   <!--EOF-->
 </resources>

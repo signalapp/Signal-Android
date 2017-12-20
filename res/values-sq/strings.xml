@@ -71,6 +71,8 @@
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Ndoshta deshironi të verifikoni numrin e juaj sigurie me këtë kontakt.</string>
   <string name="ConfirmIdentityDialog_accept">Prano</string>
   <!--ContactsCursorLoader-->
+  <string name="ContactsCursorLoader_recent_chats">Bisedat e fundit</string>
+  <string name="ContactsCursorLoader_contacts">Kontaktet</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Lajmi %s</string>
   <string name="ContactsDatabase_signal_call_s">Thirrje përmes Signal %s</string>
@@ -118,6 +120,10 @@
   <string name="ConversationActivity_unable_to_record_audio">E pamundur të regjistrohet zë!</string>
   <string name="ConversationActivity_error_sending_voice_message">Problem në dërgimin e porosisë me zë</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nuk ekziston aplikacion në celularin tuaj që mund ta procesojë këtë.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Për të dërguar porosi zëri, lejoi Signal-it qasje në mikrofon.</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Për të thirrë %s, Signal-it i duhet qasje në mikrofon dhe kamerë.</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Për të kapur foto dhe dhe video, lejoji Signal-it qasje në kamerë.</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal-it i duhet qasje në Kamerë për të marrë foto ose video</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d porosi e palexuar</item>
@@ -163,6 +169,7 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nuk keni instaluar shfletues në celularin tuaj.</string>
   <!--ConversationListFragment-->
+  <string name="ConversationListFragment_no_results_found_for_s_">Nuk u gjetën rezultate për \'%s\'</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Fshij bisedën e zgjedhur?</item>
     <item quantity="other">Fshij bisedat e zgjedhura?</item>
@@ -296,6 +303,7 @@ importimi i sërishëm do të rezultojë ne mesazhe duplikate.</string>
   <string name="ImportFragment_no_plaintext_backup_found">Nuk u gjetë kopje rezervë tekst i pastër!</string>
   <string name="ImportFragment_error_importing_backup">Gabim në importimin e kopjes rezervë!</string>
   <string name="ImportFragment_import_complete">Importimi u krye!</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">Signal-it i duhet qasje në SMS për t\'i importuar ato</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Prek dhe mbaja për të regjistruar një porosi zanore, liroje për ta dërguar</string>
   <!--InviteActivity-->
@@ -379,6 +387,7 @@ importimi i sërishëm do të rezultojë ne mesazhe duplikate.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Kërkojmë falje, ky QR kod është i gabuar.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Lidh një pajisje Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Duket sikur provoni të lidhni Signal paisje duke përdorur skaner të një pale të 3të. Si përmasë mbrojtëse, skanoni kodin sërish nga përbrenda Signal-it.</string>
+  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">E pamundur të skanohet kodi QR pa lejim të kamerës</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Porosi zhdukëse</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Porositë tuaja nuk do të skadojnë.</string>
@@ -447,7 +456,10 @@ e zgjodhët (%s) nuk është korrekt.</string>
   <string name="RegistrationService_registration_error">Gabim regjistrimi</string>
   <string name="RegistrationService_signal_registration_has_encountered_a_problem">Signal regjistrimi hasi në problem.</string>
   <!--RingtonePreference-->
+  <string name="RingtonePreference_ringtone_default">Zilja e parazgjehdur</string>
   <string name="RingtonePreference_ringtone_silent">Asnjë</string>
+  <string name="RingtonePreference_notification_sound_default">Zëri i lajmërimit i parazgjedhur</string>
+  <string name="RingtonePreference_alarm_sound_default">Zëri i alarmit i parazgjedhur</string>
   <string name="RingtonePreference_add_ringtone_text">Shto zile</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Nuk munda të shtoj zilen e personalizuar</string>
   <!--Slide-->
@@ -501,6 +513,7 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <string name="VerifyIdentityActivity_our_signal_safety_number">Signal numri sigurie i jonë:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Duket që nuk keni epa me të cilat të ndani.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Asnjë numër sigurie për të krahasuar nuk është gjetur në kujtesen e përkohshme</string>
+  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">E pamundur të skanohet kodi QR pa lejim të kamerës</string>
   <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Porosi e enkriptuar keq</string>
@@ -519,6 +532,7 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Hesht lajmërimet</string>
   <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_no_web_browser_installed">Nuk ka shletues uebi të regjistruar</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Duke ndodhur importimi</string>
   <string name="ApplicationMigrationService_importing_text_messages">Duke importuar porositë me tekst</string>
@@ -559,6 +573,7 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Porosi e re</string>
   <!--UnauthorizedReminder-->
+  <string name="UnauthorizedReminder_device_no_longer_registered">Pajisja nuk është më e regjistruar</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Gabim në luajtjen e videos</string>
   <!--WebRtcCallActivity-->
@@ -600,6 +615,7 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <string name="blocked_contacts_fragment__no_blocked_contacts">S\'ka kontakte të bllokuara</string>
   <!--contact_selection_recent_activity-->
   <!--contact_selection_list_fragment-->
+  <string name="contact_selection_list_fragment__show_contacts">Trego Kontaktet</string>
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Porosi në Signal</string>
@@ -646,6 +662,8 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <string name="device_list_fragment__link_new_device">Lidh pajisje të re</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">vazhdo</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Ka mbërri vërtetimi i leximit</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Aktivizo vërtetimin e leximit</string>
   <!--expiration-->
   <string name="expiration_off">Çaktivizuar</string>
   <plurals name="expiration_seconds">
@@ -756,6 +774,7 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NUMRI I TELEFONIT</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal lehtëson komunikimin duke përdorur numrin tuaj ekzistues të telefonit dhe adresarin. Miqtë dhe kontaktet të cilët tashmë e dinë se si të lidhen me ju me telefon do të jenë në gjendje lehtë të ju kontaktojnë në Signal.\n\nRegjistrimi i dërgon disa informacione të kontaktit në shërbyes. Informacioni nuk ruhet.</string>
+  <string name="registration_activity__verify_your_number">Verifiko numrin tuaj</string>
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->
@@ -773,6 +792,8 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Shpërndajeni numrin sigurie</string>
   <!--webrtc_answer_decline_button-->
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Tërhiq lartë për t\'u përgjigjur</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Tërhqi poshtë për të refuzuar</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Disa gjëra kërkojnë vëmendjen tuaj.</string>
   <string name="message_details_header__sent">Dërguar</string>
@@ -900,6 +921,7 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <string name="preferences__support_wifi_calling">Manyra kompatibile \'Thirrje Wifi\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Mundëso nëse pajisja juaj përdor SMS/MMS dorëzim të porosive nëpërmjet WiFi (mundëso vetëm kur \'Thirrje Wifi\' është e mundësuar në pajisje).</string>
   <string name="preferences__incognito_keyboard">Tastiera inkonjito</string>
+  <string name="preferences__read_receipts">Vërtetimet e leximit</string>
   <string name="preferences_app_protection__blocked_contacts">Kontaktet e bllokuara</string>
   <string name="preferences_chats__when_using_mobile_data">Kur përdor rrjetin celular</string>
   <string name="preferences_chats__when_using_wifi">Kur përdor Wi-Fi</string>
@@ -957,6 +979,8 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Photo e kontaktit</string>
   <string name="conversation_list_item_view__archived">Arkivuar</string>
+  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Inboxi i zbrazët</string>
+  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Zip. Zilch. Zero. Nada.\n I ke lexuar të gjitha!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Lidhje e re</string>
   <!--conversation_secure_verified-->
@@ -1030,6 +1054,8 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <string name="transport_selection_list_item__transport_icon">Ikonat e transportit</string>
   <string name="ConversationListFragment_loading">Duke karikuar...</string>
   <string name="CallNotificationBuilder_connecting">Duke u lidhur...</string>
+  <string name="Permissions_permission_required">Kërkohet leje</string>
   <string name="Permissions_continue">Vazhdo</string>
+  <string name="Permissions_not_now">Jo tash</string>
   <!--EOF-->
 </resources>

@@ -48,6 +48,10 @@
   <string name="DraftDatabase_Draft_location_snippet">(位置)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">无法找到用于选择媒体的应用。</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal 需要\"存储空间\"权限才能发送图片、视频以及音频，但是该权限已被永久禁用。请转到系统的应用设置菜单，找到权限设置，选择 Signal 应用，并启用\"存储空间\"权限。</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal 需要\"通讯录\"权限才能发送联系人名片信息，但是该权限已被永久禁用。请转到系统的应用设置菜单，找到权限设置，选择 Signal 应用，并启用\"通讯录\"权限。</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal 需要\"位置信息\"权限才能发送位置信息，但是该权限已被永久禁用。请转到系统的应用设置菜单，找到权限设置，选择 Signal 应用，并启用\"位置信息\"权限。</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal 需要\"相机\"权限才能拍照并发送相片，但是该权限已被永久禁用。请转到系统的应用设置菜单，找到权限设置，选择 Signal 应用，并启用\"相机\"权限。</string>
   <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">播放音频时出现错误！</string>
@@ -117,6 +121,13 @@
   <string name="ConversationActivity_unable_to_record_audio">无法录音！</string>
   <string name="ConversationActivity_error_sending_voice_message">发送语音信息出错</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">您的设备上没有应用程序能打开这个链接。</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">如果想要发送语音信息，请允许 Signal 使用您设备的麦克风。</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal 需要麦克风权限才能发送语音信息，但是该权限已经被永久拒绝，请进入应用程序设置，点击权限，并启用“麦克风”。</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Signal 需要使用您的麦克风和照相机来给%s打电话。</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal 需要麦克风和相机权限以呼叫 %s ，但是该权限已经被永久拒绝，请进入应用程序设置，点击权限，并启用“麦克风”和“相机”。</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">要拍照或录像，请允许 Signal 访问相机。</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal 需要相机权限来拍摄照片或录制视频。但是该权限已经被永久拒绝，请进入应用程序设置，点击权限，并启用“相机”。</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal 需要相机权限以拍摄照片或视频</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d 条未读信息</item>
@@ -281,6 +292,12 @@
   <string name="ImportFragment_no_plaintext_backup_found">没有发现明文备份！</string>
   <string name="ImportFragment_error_importing_backup">导入备份的过程中发生错误！</string>
   <string name="ImportFragment_import_complete">导入完成！</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages">Signal 需要短信权限以导入短信，但是该权限已经被永久拒绝。请进入应用程序设置，点击权限，并启用“短信”。</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">Signal 需要短信权限以导入短信</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">Signal 需要存储权限以读取外部存储，但是该权限已经被永久拒绝。请进入应用程序设置，点击权限，并启用“存储”。</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">Signal 需要存储权限以读取外部存储。</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal 需要存储权限以写入外部存储，但是该权限已经被永久拒绝。请进入应用程序设置，点击权限，并启用“存储”。</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">Signal 需要存储权限以写入外部存储。</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">按住并保持以录制语音信息，松开即发送</string>
   <!--InviteActivity-->
@@ -362,6 +379,8 @@
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">抱歉，这不是有效的设备连接二维码。</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">连接一个暗号设备？</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">看起来您正在使用第三方的扫描器来连接暗号设备。处于您的安全考虑，请尝试使用暗号的扫描器扫描二维码。</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal 需要相机权限以扫描 QR 码，但是该权限已经被永久拒绝，请进入应用程序设置，点击权限，并启用“相机”。</string>
+  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">无法在没有访问相机的权限时扫描 QR 码</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">阅后即焚信息</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">您的信息将不会过期。</string>
@@ -420,6 +439,9 @@
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play 服务正在更新或者暂时不可用。请稍后再试。</string>
   <string name="RegistrationActivity_more_information">展开</string>
   <string name="RegistrationActivity_less_information">隐藏</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal 需要访问您的联系人和媒体以连接您的朋友，外部存储信息，并建立安全呼叫。</string>
+  <string name="RegistrationActivity_unable_to_connect_to_service">无法连接到 Signal 服务。请检查您的网络连接。</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">为了方便验证您的号码，如果您能允许 Signal 查看您的短信，便可自动检测您的验证代码。</string>
   <!--RegistrationProblemsActivity-->
   <!--RegistrationProgressActivity-->
   <!--RegistrationService-->
@@ -485,6 +507,8 @@
   <string name="VerifyIdentityActivity_our_signal_safety_number">我们的 Signal 安全码：</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">看起来您没有任何可以共享的应用。</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">剪切板中没有安全代码进行比较</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal 需要相机权限以扫描 QR 码，但是该权限已经被永久拒绝，请进入应用程序设置，点击权限，并启用“相机”。</string>
+  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">无法在没有访问相机的权限时扫描 QR 二维码</string>
   <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">已损坏的加密消息</string>
@@ -518,6 +542,8 @@
   <string name="MediaPreviewActivity_you">您</string>
   <string name="MediaPreviewActivity_unssuported_media_type">不支持的媒体类型。</string>
   <string name="MediaPreviewActivity_draft">草稿</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal 需要存储权限以写入外部存储，但是该权限已经被永久拒绝。请进入应用程序设置，点击权限，并启用“存储”。</string>
+  <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">无法在没有写入到外部存储的权限时保存到外部存储</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d 新信息是在 %2$d 中的会话</string>
   <string name="MessageNotifier_most_recent_from_s">最新的邮件来自：%1$s</string>
@@ -549,6 +575,8 @@
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">播放视频时出错</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">如要接听来自 %s 的通话，请首先允许 Signal 访问您设备的麦克风。</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal 需要麦克风和相机权限才能发送或接受呼叫，但是该权限已经被永久拒绝，请进入应用程序设置，点击权限，并启用“麦克风”和“相机”。</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">%1$s 的安全码发生了改变。这可能是因为有人正在尝试截获你们的通讯，或者 %2$s 只是重新安装了 Signal 。</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">您可能希望验证这个联系人的安全代码。</string>
@@ -583,10 +611,13 @@
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">联系人照片</string>
   <!--ContactSelectionListFragment-->
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal 需要\"通讯录\"权限才能显示联系人信息，但是该权限已被永久禁用。请转到系统的应用设置菜单，找到权限设置，选择 Signal 应用，并启用\"通讯录\"权限。</string>
+  <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">无法获取通讯录数据，请检查您的网络连接</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">没有屏蔽的联系人</string>
   <!--contact_selection_recent_activity-->
   <!--contact_selection_list_fragment-->
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal 需要访问您的联系人才能显示他们。</string>
   <string name="contact_selection_list_fragment__show_contacts">显示联系人</string>
   <!--conversation_title_view-->
   <!--conversation_activity-->
@@ -949,6 +980,8 @@
   <string name="conversation_list_item_view__contact_photo_image">联系人照片</string>
   <string name="conversation_list_item_view__archived">存档</string>
   <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">收件箱空空如也</string>
+  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">收件箱空空如也
+你已经看完了所有的消息！</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">新会话</string>
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">收件箱闲得发慌。快开始找您的朋友聊天吧。</string>
@@ -1023,6 +1056,8 @@
   <string name="ConversationListFragment_loading">载入中…</string>
   <string name="CallNotificationBuilder_connecting">连接中……</string>
   <string name="Permissions_permission_required">需要相应权限</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal 需要短信权限以发送短信，但是该权限已经被永久拒绝。请进入应用程序设置，点击权限，并启用“短信”。</string>
   <string name="Permissions_continue">继续</string>
+  <string name="Permissions_not_now">稍后再说</string>
   <!--EOF-->
 </resources>

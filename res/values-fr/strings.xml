@@ -1080,7 +1080,9 @@ Les paramètres MMS de votre opérateur peuvent généralement être obtenus en 
   <string name="ConversationListFragment_loading">Chargement...</string>
   <string name="CallNotificationBuilder_connecting">Connexion...</string>
   <string name="Permissions_permission_required">Permission requise</string>
-  <string name="Permissions_continue">Continuer</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal a besoin de l\'autorisation SMS pour envoyer des SMS, mais elle a été définitivement refusée. Veuillez consulter les paramètres de l\'application, sélectionner \"Autorisations\", et activer \"SMS\". </string>
+  <string name="Permissions_continue">Continuer</string>
+  <string name="Permissions_not_now">Pas maintenant</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal a besoin de l\'autorisation Contacts pour rechercher vos contacts, mais elle a été refusée de façon permanente. S\'il vous plaît continuer à paramètres de l\'application, sélectionnez \"Autorisations\", et activer \"Contacts\".</string>
   <!--EOF-->
 </resources>

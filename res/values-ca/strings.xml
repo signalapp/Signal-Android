@@ -51,6 +51,7 @@
   <string name="DraftDatabase_Draft_location_snippet">(ubicació)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">No s\'ha trobat cap aplicació compatible.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">El Signal necessita el permís de l\'emmagatzematge per tal d\'adjuntar fotografies, vídeos o àudio, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i habiliteu-hi l\'emmagatzematge.</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">El Signal necessita el permís dels contactes per tal d\'adjuntar-ne informació, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i habiliteu-hi els contactes.</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">El Signal necessita el permís de la ubicació per tal d\'adjuntar-ne informació, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i habiliteu-hi la ubicació.</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">El Signal necessita el permís de la càmera per tal d\'adjuntar-ne informació, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i habiliteu-hi la càmera.</string>
@@ -1080,7 +1081,9 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ConversationListFragment_loading">S\'està carregant...</string>
   <string name="CallNotificationBuilder_connecting">S\'està connectant...</string>
   <string name="Permissions_permission_required">Cal permís</string>
-  <string name="Permissions_continue">Continua</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">El Signal necessita el permís d\'SMS per tal d\'enviar missatges SMS, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i habiliteu-hi l\'SMS.</string>
+  <string name="Permissions_continue">Continua</string>
+  <string name="Permissions_not_now">Ara no</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">El Signal necessita el permís dels contactes per tal de cercar-ne els vostres, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i habiliteu-hi els contactes.</string>
   <!--EOF-->
 </resources>

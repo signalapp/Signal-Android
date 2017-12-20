@@ -1087,7 +1087,9 @@ Du er à jour!</string>
   <string name="ConversationListFragment_loading">Lastar …</string>
   <string name="CallNotificationBuilder_connecting">Koplar til …</string>
   <string name="Permissions_permission_required">Tilgang krevst</string>
-  <string name="Permissions_continue">Hald fram</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal treng tilgang til SMS for å senda SMS, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «SMS».</string>
+  <string name="Permissions_continue">Hald fram</string>
+  <string name="Permissions_not_now">Ikkje no</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal treng tilgang til kontaktar for å søka i kontaktar, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Kontaktar».</string>
   <!--EOF-->
 </resources>

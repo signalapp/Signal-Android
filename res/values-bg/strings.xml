@@ -51,6 +51,7 @@
   <string name="DraftDatabase_Draft_location_snippet">(местоположение)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Неуспешно откриване на папка за избор на файл.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Сигнал се нуждае от достъп до вградения диск, за да може да прикачва снимки, видеота или аудио, но той му е отказан. Моля, отидете в настройки в менюто и изберете \"Разрешения\" и \"Дискове\".</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Сигнал се нуждае от достъп до контактите Ви, за да може да прикачва информация за тях, но той му е отказан. Моля, отидете на настройки в менюто и изберете \"Разрешения\" и \"Контакти\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Сигнал се нуждае от достъп до местоположението Ви, за да може да го прикачва, но той му е отказан. Моля, отидете на настройки в менюто и изберете \"Разрешения\" и \"Местоположение\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Сигнал се нуждае от достъп до камерта Ви, за да може да прави снимки, но той му е отказан. Моля, отидете на настройки в менюто и изберете \"Разрешения\" и \"Камера\".</string>
@@ -1083,7 +1084,9 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="ConversationListFragment_loading">Зареждане...</string>
   <string name="CallNotificationBuilder_connecting">Свързване...</string>
   <string name="Permissions_permission_required">Нужда от разрешение за достъп</string>
-  <string name="Permissions_continue">Продължи</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Сигнал се нуждае от достъп до SMS-те Ви, за да може да изпраща  нови, но той му е отказан. Моля, отидете в настройки в менюто и изберете \"Разрешения\" и \"SMS\".</string>
+  <string name="Permissions_continue">Продължи</string>
+  <string name="Permissions_not_now">Не сега</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Сигнал се нуждае от достъп до контактите Ви, за да може да Ви търси в тях, но той му е отказан. Моля, отидете на настройки в менюто и изберете \"Разрешения\" и \"Контакти\".</string>
   <!--EOF-->
 </resources>

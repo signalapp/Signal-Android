@@ -1079,7 +1079,9 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="ConversationListFragment_loading">Laden...</string>
   <string name="CallNotificationBuilder_connecting">Verbinden...</string>
   <string name="Permissions_permission_required">Toestemming vereist</string>
-  <string name="Permissions_continue">Doorgaan</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal heeft toegang nodig tot je sms-berichten om er te kunnen sturen, maar deze toestemming is permanent geweigerd. Ga naar de instellingen, selecteer \"Toestemmingen\" en schakel \"Sms\" in.</string>
+  <string name="Permissions_continue">Doorgaan</string>
+  <string name="Permissions_not_now">Niet nu</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal heeft toegang nodig tot de contacten om ze te zoeken, maar deze toestemming is permanent geweigerd. Ga naar de appinstellingen, selecteer \"Toestemmingen\" en schakel \"Contacten\" in.</string>
   <!--EOF-->
 </resources>

@@ -57,6 +57,10 @@
   <string name="DraftDatabase_Draft_location_snippet">(место)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Не найдено приложение для выбора медиа-файлов.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal требуется разрешение на доступ к хранилищу для возможности прирепления фото, видео и аудио, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Хранилище.</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Для прикрепления контактной информации Signal требуется разрешение на доступ к контактам, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Контакты.</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Для прикрепления вашего местоположения Signal требуется разрешение на доступ к местоположению, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Местоположение.</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Чтобы сделать фото требуется разрешение на доступ к камере, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Камеру.</string>
   <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Ошибка при воспроизведении аудио!</string>
@@ -127,8 +131,11 @@
   <string name="ConversationActivity_error_sending_voice_message">Ошибка при отправке голосового сообщения</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">На вашем устройстве не найдено приложение для открытия этой ссылки.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Для отправки аудиосообщений разрешите Signal доступ к микрофону.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Для отправки аудиосообщений требуется разрешение на доступ к микрофону, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Микрофон.</string>
   <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Для звонка %s, Signal требуется доступ к микрофону и камере.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal требуется разрешение на доступ к микрофону и камере для звонка %s, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Микрофон и Камеру.</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Для создания фото и видео разрешите Signal доступ к камере.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Чтобы сделать фото или видео требуется разрешение на доступ к камере, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Камеру.</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Для съемки фото или видео предоставьте Signal доступ к камере</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
@@ -326,8 +333,11 @@
   <string name="ImportFragment_no_plaintext_backup_found">Простая резервная копия не найдена!</string>
   <string name="ImportFragment_error_importing_backup">Ошибка при импорте!</string>
   <string name="ImportFragment_import_complete">Импорт завершён.</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages">Для импорта SMS Signal требуется разрешение на доступ к сообщениям, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Сообщения (SMS).</string>
   <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">Для импорта SMS предоставьте Signal разрешение на доступ к SMS</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">Signal требуется разрешение на доступ к хранилищу для прикрепления вложений, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Хранилище.</string>
   <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">Для доступа Signal к хранилищу требуется разрешение.</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal требуется разрешение на доступ к хранилищу для сохранения вложений, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Хранилище.</string>
   <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">Для доступа Signal к хранилищу требуется разрешение.</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Нажмите и держите, чтобы записать голосовое сообщение; отпустите, чтобы отправить</string>
@@ -416,6 +426,8 @@
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">К сожалению, это неправильный QR-код для привязки устройства.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Привязать устройство Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Похоже, вы пытаетесь привязать устройство Signal, используя сторонний сканер. Для вашей защиты, пожалуйста, просканируйте код через Signal.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Для сканирования QR-кодов требуется разрешение на доступ к камере, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Камеру.</string>
+  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Не удалось отсканировать QR-код из-за отсутствия доступа к камере</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Исчезающие сообщения</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Срок показа сообщений не ограничен.</string>
@@ -472,6 +484,9 @@
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Службы Google Play обновляются или временно недоступны. Пожалуйста, попробуйте ещё раз.</string>
   <string name="RegistrationActivity_more_information">Больше информации</string>
   <string name="RegistrationActivity_less_information">Меньше информации</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal необходим доступ к вашим контактам и мультимедиа для того, чтобы общаться с друзьями, обмениваться сообщениями и совершать безопасные вызовы</string>
+  <string name="RegistrationActivity_unable_to_connect_to_service">Не удается подключиться к сервису. Проверьте подключение к сети и повторите попытку.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Чтобы максимально просто проверить ваш телефонный номер, Signal может автоматически вставить код подтверждения. Для этого разрешите Signal доступ к SMS.</string>
   <!--RegistrationProblemsActivity-->
   <!--RegistrationProgressActivity-->
   <!--RegistrationService-->
@@ -540,6 +555,8 @@
   <string name="VerifyIdentityActivity_our_signal_safety_number">Наш код безопасности Signal:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Похоже, что у вас нет приложений, через которые можно поделиться.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Коды безопасности в буфере обмена не найдены</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Для сканирования QR-кодов требуется разрешение на доступ к камере, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Камеру.</string>
+  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Не удалось отсканировать QR-код из-за отсутствия доступа к камере</string>
   <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Сообщение испорчено</string>
@@ -573,6 +590,8 @@
   <string name="MediaPreviewActivity_you">Вы</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Тип медиа-файла не поддерживается</string>
   <string name="MediaPreviewActivity_draft">Черновик</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal требуется разрешение на доступ к хранилищу для сохранения вложений, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Хранилище.</string>
+  <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Не удается сохранить во внешнем хранилище без разрешений</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d новых сообщений в %2$d разговорах</string>
   <string name="MessageNotifier_most_recent_from_s">Последнее от %1$s</string>
@@ -605,6 +624,7 @@
   <string name="VideoPlayer_error_playing_video">Ошибка при воспроизведении видео</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Для ответа на вызов от %s разрешите Signal доступ к микрофону.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal требуется разрешение на доступ к микрофону и камере для того, чтобы совершать или принимать вызовы, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Микрофон и Камеру.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Код безопасности вашего разговора с %1$s изменился. Это может означать, что кто-то пытается перехватить вашу переписку и звонки, или что %2$s просто переустановил(а) Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Возможно, вам стоит подтвердить код безопасности с этим контактом.</string>
@@ -639,6 +659,7 @@
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Фото контакта</string>
   <!--ContactSelectionListFragment-->
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Для поиска ваших знакомых Signal требуется разрешение на доступ к контактам, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Контакты.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Ошибка при получении контактов, проверьте сетевое подключение</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Нет заблокированных контактов</string>
@@ -1109,6 +1130,9 @@
   <string name="ConversationListFragment_loading">Загрузка...</string>
   <string name="CallNotificationBuilder_connecting">Соединяемся...</string>
   <string name="Permissions_permission_required">Требуется разрешение</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Для отправки SMS Signal требуется разрешение на доступ к сообщениям, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Сообщения (SMS).</string>
   <string name="Permissions_continue">Продолжить</string>
+  <string name="Permissions_not_now">Не сейчас</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Для поиска ваших знакомых Signal требуется разрешение на доступ к контактам, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Контакты.</string>
   <!--EOF-->
 </resources>

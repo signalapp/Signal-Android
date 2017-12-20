@@ -1073,7 +1073,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ConversationListFragment_loading">Wird geladen …</string>
   <string name="CallNotificationBuilder_connecting">Verbindung wird hergestellt …</string>
   <string name="Permissions_permission_required">Berechtigung erforderlich</string>
-  <string name="Permissions_continue">Weiter</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal benötigt die Berechtigung »SMS« für das Senden von SMS, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »SMS«.</string>
+  <string name="Permissions_continue">Weiter</string>
+  <string name="Permissions_not_now">Nicht jetzt</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal benötigt die Berechtigung »Kontakte« für das Suchen in deinen Kontakten, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kontakte«.</string>
   <!--EOF-->
 </resources>
