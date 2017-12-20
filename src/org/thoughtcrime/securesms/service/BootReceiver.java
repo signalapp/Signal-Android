@@ -11,9 +11,7 @@ public class BootReceiver extends BroadcastReceiver {
   public void onReceive(Context context, Intent intent) {
     if (intent != null && Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {
       Intent messageRetrievalService = new Intent(context, MessageRetrievalService.class);
-
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) context.startForegroundService(messageRetrievalService);
-      else                                                context.startService(messageRetrievalService);
+      context.startService(messageRetrievalService);
     }
   }
 

@@ -23,9 +23,7 @@ public class PanicResponderListener extends BroadcastReceiver {
     {
       Intent lockIntent = new Intent(context, KeyCachingService.class);
       lockIntent.setAction(KeyCachingService.CLEAR_KEY_ACTION);
-
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) context.startForegroundService(lockIntent);
-      else                                                context.startService(lockIntent);
+      context.startService(lockIntent);
     }
   }
 }
