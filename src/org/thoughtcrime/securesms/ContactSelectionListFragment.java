@@ -213,7 +213,10 @@ public class ContactSelectionListFragment extends    Fragment
 
   public void reset() {
     selectedContacts.clear();
-    getLoaderManager().restartLoader(0, null, this);
+
+    if (!isDetached() && !isRemoving() && getActivity() != null && !getActivity().isFinishing()) {
+      getLoaderManager().restartLoader(0, null, this);
+    }
   }
 
   @Override
