@@ -44,6 +44,7 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.WindowCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.SearchView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -191,7 +192,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                OnKeyboardShownListener,
                AttachmentDrawerListener,
                InputPanel.Listener,
-               InputPanel.MediaListener
+               InputPanel.MediaListener,
+               SearchView.OnQueryTextListener
 {
   private static final String TAG = ConversationActivity.class.getSimpleName();
 
@@ -471,6 +473,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   public boolean onPrepareOptionsMenu(Menu menu) {
     MenuInflater inflater = this.getMenuInflater();
     menu.clear();
+
+    inflater.inflate(R.menu.conversation_search, menu);
+    final MenuItem searchItem = menu.findItem(R.id.action_search_message);
+    final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+    searchView.setOnQueryTextListener(this);
 
     if (isSecureText) {
       if (recipient.getExpireMessages() > 0) {
@@ -1909,6 +1916,17 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     } else if (MediaUtil.isAudioType(contentType)) {
       setMedia(uri, MediaType.AUDIO);
     }
+  }
+
+  @Override
+  public boolean onQueryTextSubmit(String query) {
+    fragment.find(query);
+    return true;
+  }
+
+  @Override
+  public boolean onQueryTextChange(String newText) {
+    return false;
   }
 
 
