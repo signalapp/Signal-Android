@@ -190,6 +190,9 @@ public class ImportExportFragment extends Fragment {
       } catch (NoExternalStorageException e) {
         Log.w("ImportFragment", e);
         return NO_SD_CARD;
+      } catch (FileNotFoundException e) {
+        Log.w("ImportFragment", e);
+        return NO_SD_CARD;
       } catch (IOException e) {
         Log.w("ImportFragment", e);
         return ERROR_IO;
