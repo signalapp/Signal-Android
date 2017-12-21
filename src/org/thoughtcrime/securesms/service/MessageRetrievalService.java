@@ -109,7 +109,7 @@ public class MessageRetrievalService extends Service implements InjectableType, 
       builder.setContentText(getString(R.string.MessageRetrievalService_background_connection_enabled));
       builder.setPriority(NotificationCompat.PRIORITY_MIN);
       builder.setWhen(0);
-      builder.setSmallIcon(R.drawable.ic_signal_grey_24dp);
+      builder.setSmallIcon(R.drawable.ic_settings_input_antenna_black_24dp);
       startForeground(FOREGROUND_ID, builder.build());
     }
   }
