@@ -4,10 +4,19 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
+    <org.thoughtcrime.securesms.components.ThumbnailView
+        android:id="@+id/video_placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:visibility="visible"/>
+
     <VideoView android:id="@+id/video_view"
                android:layout_width="match_parent"
                android:layout_height="match_parent"
                android:layout_gravity="center"
-               android:gravity="center"/>
+               android:gravity="center"
+               android:visibility="gone"/>
 
 </FrameLayout>

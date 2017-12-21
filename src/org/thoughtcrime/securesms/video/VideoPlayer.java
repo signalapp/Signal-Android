@@ -22,6 +22,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -53,7 +54,9 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.AttachmentServer;
+import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -65,6 +68,7 @@ public class VideoPlayer extends FrameLayout {
 
   private static final String TAG = VideoPlayer.class.getName();
 
+  @NonNull  private final ThumbnailView       videoPlaceholder;
   @Nullable private final VideoView           videoView;
   @Nullable private final SimpleExoPlayerView exoView;
 
@@ -93,16 +97,36 @@ public class VideoPlayer extends FrameLayout {
       this.exoView   = null;
       initializeVideoViewControls(videoView);
     }
+    this.videoPlaceholder = ViewUtil.findById(this, R.id.video_placeholder);
   }
 
-  public void setVideoSource(@NonNull MasterSecret masterSecret, @NonNull VideoSlide videoSource)
-      throws IOException
-  {
-    if (Build.VERSION.SDK_INT >= 16) setExoViewSource(masterSecret, videoSource);
-    else                             setVideoViewSource(masterSecret, videoSource);
+  public void setVideoSource(@NonNull final MasterSecret masterSecret,
+                             @NonNull final VideoSlide   videoSource,
+                                            boolean      setPlay) {
+    videoPlaceholder.setImageResource(masterSecret, GlideApp.with(getContext()), videoSource, false, false);
+    videoPlaceholder.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        showVideo(masterSecret,videoSource);
+      }
+    });
+
+    if (setPlay) showVideo(masterSecret, videoSource);
   }
 
-  public void cleanup() {
+  private void showVideo(MasterSecret masterSecret, VideoSlide videoSource) {
+    try {
+      if (Build.VERSION.SDK_INT >= 16) setExoViewSource(masterSecret, videoSource);
+      else                             setVideoViewSource(masterSecret, videoSource);
+    } catch (IOException e) {
+      Log.w(TAG, e);
+      Toast.makeText(getContext(),
+                     R.string.MediaPreviewActivity_unssuported_media_type,
+                     Toast.LENGTH_LONG).show();
+    }
+  }
+
+  public void cleanup(boolean clearPlaceholder) {
     if (this.attachmentServer != null) {
       this.attachmentServer.stop();
     }
@@ -110,6 +134,12 @@ public class VideoPlayer extends FrameLayout {
     if (this.exoPlayer != null) {
       this.exoPlayer.release();
     }
+
+    if (this.videoView != null) {
+      this.videoView.suspend();
+    }
+
+    if (clearPlaceholder) videoPlaceholder.clear(GlideApp.with(getContext()));
   }
 
   public void setWindow(Window window) {
@@ -135,6 +165,8 @@ public class VideoPlayer extends FrameLayout {
     MediaSource mediaSource = new ExtractorMediaSource(videoSource.getUri(), attachmentDataSourceFactory, extractorsFactory, null, null);
 
     exoPlayer.prepare(mediaSource);
+    videoPlaceholder.setVisibility(View.GONE);
+    exoView.setVisibility(View.VISIBLE);
     exoPlayer.setPlayWhenReady(true);
   }
 
@@ -159,7 +191,20 @@ public class VideoPlayer extends FrameLayout {
       return;
     }
 
+    this.videoPlaceholder.setVisibility(View.GONE);
+    this.videoView.setVisibility(View.VISIBLE);
     this.videoView.start();
+  }
+
+  public void hideVideo() {
+    if (exoPlayer != null) exoPlayer.stop();
+    if (exoView != null)   exoView.setVisibility(View.GONE);
+    if (videoView != null) {
+      videoView.stopPlayback();
+      videoView.setVisibility(View.GONE);
+    }
+    videoPlaceholder.setVisibility(View.VISIBLE);
+    cleanup(false);
   }
 
   private void initializeVideoViewControls(@NonNull VideoView videoView) {

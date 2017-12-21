@@ -19,12 +19,16 @@ package org.thoughtcrime.securesms;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,11 +37,11 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.components.ZoomingImageView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
-import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.mms.VideoSlide;
+import org.thoughtcrime.securesms.database.CursorPagerAdapter;
+import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;
+import org.thoughtcrime.securesms.database.loaders.ThreadMediaLoader;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
@@ -46,14 +50,14 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.video.VideoPlayer;
-
-import java.io.IOException;
 
 /**
  * Activity for displaying media attachments in-app
  */
-public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity implements RecipientModifiedListener {
+public class MediaPreviewActivity extends    PassphraseRequiredActionBarActivity
+                                  implements LoaderManager.LoaderCallbacks<Cursor>,
+                                             RecipientModifiedListener,
+                                             ViewPager.OnPageChangeListener {
   private final static String TAG = MediaPreviewActivity.class.getSimpleName();
 
   public static final String ADDRESS_EXTRA  = "address";
@@ -65,15 +69,14 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
   private MasterSecret masterSecret;
 
-  private ZoomingImageView image;
-  private VideoPlayer      video;
-
+  private ViewPager viewPager;
   private Uri       mediaUri;
   private String    mediaType;
   private Recipient recipient;
   private long      date;
   private long      size;
   private boolean   outgoing;
+  private boolean   setSelectedVideoPlay = true;
 
   @Override
   protected void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
@@ -87,8 +90,8 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     setContentView(R.layout.media_preview_activity);
+    viewPager = (ViewPager) findViewById(R.id.viewPager);
 
-    initializeViews();
     initializeResources();
     initializeActionBar();
   }
@@ -130,6 +133,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     super.onResume();
     dynamicLanguage.onResume(this);
     if (recipient != null) recipient.addListener(this);
+    viewPager.addOnPageChangeListener(this);
     initializeMedia();
   }
 
@@ -137,21 +141,19 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   public void onPause() {
     super.onPause();
     if (recipient != null) recipient.removeListener(this);
+    viewPager.clearOnPageChangeListeners();
     cleanupMedia();
   }
 
   @Override
   protected void onNewIntent(Intent intent) {
     super.onNewIntent(intent);
+    setSelectedVideoPlay = true;
     if (recipient != null) recipient.removeListener(this);
+    viewPager.clearOnPageChangeListeners();
     setIntent(intent);
     initializeResources();
     initializeActionBar();
-  }
-
-  private void initializeViews() {
-    image = findViewById(R.id.image);
-    video = findViewById(R.id.video_player);
   }
 
   private void initializeResources() {
@@ -178,29 +180,33 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
       finish();
     }
 
-    Log.w(TAG, "Loading Part URI: " + mediaUri);
-
-    try {
-      if (mediaType != null && mediaType.startsWith("image/")) {
-        image.setVisibility(View.VISIBLE);
-        video.setVisibility(View.GONE);
-        image.setImageUri(masterSecret, GlideApp.with(this), mediaUri, mediaType);
-      } else if (mediaType != null && mediaType.startsWith("video/")) {
-        image.setVisibility(View.GONE);
-        video.setVisibility(View.VISIBLE);
-        video.setWindow(getWindow());
-        video.setVideoSource(masterSecret, new VideoSlide(this, mediaUri, size));
-      }
-    } catch (IOException e) {
-      Log.w(TAG, e);
-      Toast.makeText(getApplicationContext(), R.string.MediaPreviewActivity_unssuported_media_type, Toast.LENGTH_LONG).show();
-      finish();
+    if (recipient != null) {
+      getSupportLoaderManager().initLoader(0, null, MediaPreviewActivity.this);
+    } else {
+      viewPager.setAdapter(new MediaPreviewDraftAdapter(this,
+                                                        getWindow(),
+                                                        masterSecret,
+                                                        mediaUri,
+                                                        mediaType,
+                                                        size));
     }
   }
 
+  private void initializeViewPagerAdapter(Cursor cursor) {
+    final MediaPreviewThreadAdapter adapter = new MediaPreviewThreadAdapter(this,
+                                                                            getWindow(),
+                                                                            masterSecret,
+                                                                            cursor);
+    viewPager.addOnPageChangeListener(adapter);
+    final int startPosition = adapter.getAndSetStartPosition(mediaUri, setSelectedVideoPlay);
+    viewPager.setAdapter(adapter);
+    viewPager.setCurrentItem(startPosition);
+
+    setSelectedVideoPlay = false;
+  }
+
   private void cleanupMedia() {
-    image.cleanup();
-    video.cleanup();
+    viewPager.setAdapter(null);
   }
 
   private void showOverview() {
@@ -224,7 +230,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
                  .withPermanentDenialDialog(getString(R.string.MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))
                  .onAnyDenied(() -> Toast.makeText(this, R.string.MediaPreviewActivity_unable_to_write_to_external_storage_without_permission, Toast.LENGTH_LONG).show())
                  .onAllGranted(() -> {
-                   SaveAttachmentTask saveTask = new SaveAttachmentTask(MediaPreviewActivity.this, masterSecret, image);
+                   SaveAttachmentTask saveTask = new SaveAttachmentTask(MediaPreviewActivity.this, masterSecret, viewPager);
                    long saveDate = (date > 0) ? date : System.currentTimeMillis();
                    saveTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, new Attachment(mediaUri, mediaType, saveDate, null));
                  })
@@ -256,6 +262,55 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     }
 
     return false;
+  }
+
+  @Override
+  public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+    return new ThreadMediaLoader(this, masterSecret, recipient.getAddress(), true);
+  }
+
+  @Override
+  public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
+    Log.w(TAG, "onLoadFinished()");
+    initializeViewPagerAdapter(cursor);
+  }
+
+  @Override
+  public void onLoaderReset(Loader<Cursor> cursorLoader) {
+    CursorPagerAdapter adapter = (CursorPagerAdapter) viewPager.getAdapter();
+    if (adapter != null) adapter.changeCursor(null);
+  }
+
+  @Override
+  public void onPageScrollStateChanged(int state) {}
+
+  @Override
+  public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+
+  @Override
+  public void onPageSelected(int position) {
+    if (viewPager.getAdapter().getCount() > 1) {
+      updateResources(position);
+      initializeActionBar();
+    }
+  }
+
+  private void updateResources(int position) {
+    MediaRecord mediaRecord = ((MediaPreviewThreadAdapter) viewPager.getAdapter())
+                                .getMediaRecord(position);
+    mediaUri  = mediaRecord.getAttachment().getDataUri();
+    mediaType = mediaRecord.getContentType();
+    date      = mediaRecord.getDate();
+    size      = mediaRecord.getAttachment().getSize();
+
+    if (recipient != null) recipient.removeListener(this);
+    Address newAddress = mediaRecord.getAddress();
+    if (newAddress != null) {
+      recipient = Recipient.from(this, newAddress, true);
+      recipient.addListener(this);
+    } else {
+      recipient = null;
+    }
   }
 
   public static boolean isContentTypeSupported(final String contentType) {
