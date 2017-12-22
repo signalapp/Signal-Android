@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.util.ServiceUtil;
 
 public class SignalAudioManager {
 
+  @SuppressWarnings("unused")
   private static final String TAG = SignalAudioManager.class.getSimpleName();
 
   private final Context        context;
@@ -61,11 +62,7 @@ public class SignalAudioManager {
       audioManager.setSpeakerphoneOn(false);
     }
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-      audioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
-    } else {
-      audioManager.setMode(AudioManager.MODE_IN_CALL);
-    }
+    audioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
 
     outgoingRinger.start(type);
   }
@@ -80,11 +77,7 @@ public class SignalAudioManager {
     incomingRinger.stop();
     outgoingRinger.stop();
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-      audioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
-    } else {
-      audioManager.setMode(AudioManager.MODE_IN_CALL);
-    }
+    audioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
 
     if (!preserveSpeakerphone) {
       audioManager.setSpeakerphoneOn(false);

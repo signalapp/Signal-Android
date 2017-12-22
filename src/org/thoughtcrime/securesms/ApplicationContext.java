@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -40,6 +41,7 @@ import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.webrtc.PeerConnectionFactory;
+import org.webrtc.PeerConnectionFactory.InitializationOptions;
 import org.webrtc.voiceengine.WebRtcAudioManager;
 import org.webrtc.voiceengine.WebRtcAudioUtils;
 import org.whispersystems.jobqueue.JobManager;
@@ -171,22 +173,23 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         add("Pixel XL");
       }};
 
-      if (Build.VERSION.SDK_INT >= 11) {
-        if (HARDWARE_AEC_BLACKLIST.contains(Build.MODEL)) {
-          WebRtcAudioUtils.setWebRtcBasedAcousticEchoCanceler(true);
-        }
-
-        if (!OPEN_SL_ES_WHITELIST.contains(Build.MODEL)) {
-          WebRtcAudioManager.setBlacklistDeviceForOpenSLESUsage(true);
-        }
-
-        PeerConnectionFactory.initializeAndroidGlobals(this, true, true, true);
+      if (HARDWARE_AEC_BLACKLIST.contains(Build.MODEL)) {
+        WebRtcAudioUtils.setWebRtcBasedAcousticEchoCanceler(true);
       }
+
+      if (!OPEN_SL_ES_WHITELIST.contains(Build.MODEL)) {
+        WebRtcAudioManager.setBlacklistDeviceForOpenSLESUsage(true);
+      }
+
+      PeerConnectionFactory.initialize(InitializationOptions.builder(this)
+                                                            .setEnableVideoHwAcceleration(true)
+                                                            .createInitializationOptions());
     } catch (UnsatisfiedLinkError e) {
       Log.w(TAG, e);
     }
   }
 
+  @SuppressLint("StaticFieldLeak")
   private void initializeCircumvention() {
     AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
       @Override

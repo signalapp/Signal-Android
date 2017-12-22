@@ -584,6 +584,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
 
     setCallInProgressNotification(TYPE_ESTABLISHED, recipient);
 
+    this.peerConnection.setCommunicationMode();
     this.peerConnection.setAudioEnabled(microphoneEnabled);
     this.peerConnection.setVideoEnabled(localVideoEnabled);
 
@@ -1044,7 +1045,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
     }
 
     if (stream.videoTracks != null && stream.videoTracks.size() == 1) {
-      VideoTrack videoTrack = stream.videoTracks.getFirst();
+      VideoTrack videoTrack = stream.videoTracks.get(0);
       videoTrack.setEnabled(true);
       videoTrack.addRenderer(new VideoRenderer(remoteRenderer));
     }
