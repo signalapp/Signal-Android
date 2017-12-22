@@ -66,9 +66,11 @@ import org.thoughtcrime.securesms.profiles.UnknownSenderView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
+import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 
@@ -287,24 +289,58 @@ public class ConversationFragment extends Fragment
       }
     });
 
-    StringBuilder    bodyBuilder = new StringBuilder();
-    ClipboardManager clipboard   = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-    boolean          first       = true;
+    StringBuilder    bodyBuilder   = new StringBuilder();
+    ClipboardManager clipboard     = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+    boolean          first         = true;
+    int              messageCount  = messageRecords.size();
+    String           prevSender    = "";
 
     for (MessageRecord messageRecord : messageList) {
-      String body = messageRecord.getDisplayBody().toString();
 
-      if (body != null) {
+      if( !(messageRecord.getDisplayBody().toString().isEmpty())) {
+        String body   = messageRecord.getDisplayBody().toString();
+        String sender = getSender(messageRecord);
         if (!first) bodyBuilder.append('\n');
+
+        if (messageCount > 1) {
+          if (!TextUtils.equals(prevSender, sender)) {
+            prevSender = sender;
+            if (!first) bodyBuilder.append('\n');
+            String date = DateUtils.getShortDateString(getContext(), locale, messageRecord.getDateSent());
+            bodyBuilder.append(sender + ": [" + date + "]");
+            bodyBuilder.append('\n');
+          }
+          bodyBuilder.append(DateUtils.getShortTimeString(getContext(), locale, messageRecord.getDateSent()) + "  ");
+        }
+
         bodyBuilder.append(body);
         first = false;
       }
     }
-
     String result = bodyBuilder.toString();
 
-    if (!TextUtils.isEmpty(result))
-        clipboard.setText(result);
+    if (!TextUtils.isEmpty(result)){
+      clipboard.setText(result);
+      String copyToastString = getActivity().getResources().getQuantityString(R.plurals.ConversationFragment_copy_messages, messageCount, messageCount);
+      Toast.makeText(getContext(),copyToastString, Toast.LENGTH_SHORT).show();
+    }
+  }
+
+  private String getSender(MessageRecord messageRecord){
+    String msgSender = "";
+    if (messageRecord.isOutgoing()) {
+      msgSender = TextSecurePreferences.getProfileName(getContext()).trim();
+      if (TextUtils.isEmpty(msgSender)){
+        msgSender = Address.fromSerialized(TextSecurePreferences.getLocalNumber(getContext())).toPhoneString().trim();
+      }
+    }
+    else {
+      msgSender = messageRecord.getIndividualRecipient().getProfileName().trim();
+      if (TextUtils.isEmpty(msgSender)) {
+        msgSender = messageRecord.getIndividualRecipient().getAddress().toPhoneString().trim();
+      }
+    }
+    return msgSender;
   }
 
   private void handleDeleteMessages(final Set<MessageRecord> messageRecords) {

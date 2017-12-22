@@ -193,6 +193,10 @@
     <string name="ConversationFragment_sms">SMS</string>
     <string name="ConversationFragment_deleting">Deleting</string>
     <string name="ConversationFragment_deleting_messages">Deleting messages...</string>
+    <plurals name="ConversationFragment_copy_messages">
+        <item quantity="one">Message copied</item>
+        <item quantity="other">%d messages copied</item>
+    </plurals>
 
     <!-- ConversationListActivity -->
     <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">There is no browser installed on your device.</string>
