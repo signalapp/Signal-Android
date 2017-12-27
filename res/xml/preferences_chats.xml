@@ -55,6 +55,12 @@
                 android:key="pref_enter_sends"
                 android:summary="@string/preferences__pressing_the_enter_key_will_send_text_messages"
                 android:title="@string/preferences__pref_enter_sends_title"/>
+
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+                android:defaultValue="false"
+                android:key="pref_absolute_time"
+                android:title="@string/preferences_chats__use_absolute_time"
+                android:summary="@string/preferences_chats__use_absolute_time_instead_of_relative_one" />
     </PreferenceCategory>
 
     <PreferenceCategory android:layout="@layout/preference_divider"/>

@@ -1164,6 +1164,8 @@
     <string name="preferences_chats__message_text_size">Message font size</string>
     <string name="preferences_events__contact_joined_signal">Contact joined Signal</string>
     <string name="preferences_notifications__priority">Priority</string>
+    <string name="preferences_chats__use_absolute_time">Use absolute time</string>
+    <string name="preferences_chats__use_absolute_time_instead_of_relative_one">Use absolute time in local time zone instead of relative time</string>
     
     <!-- **************************************** -->
     <!-- menus -->

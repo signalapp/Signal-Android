@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.video.VideoPlayer;
 
@@ -111,18 +112,22 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   }
 
   private void initializeActionBar() {
-    final CharSequence relativeTimeSpan;
+    final CharSequence timeSpan;
 
     if (date > 0) {
-      relativeTimeSpan = DateUtils.getExtendedRelativeTimeSpanString(this,dynamicLanguage.getCurrentLocale(),date);
+      if (TextSecurePreferences.isAbsoluteTimeEnabled(this)) {
+        timeSpan = DateUtils.getAbsoluteTimeSpanString(dynamicLanguage.getCurrentLocale(), date);
+      } else {
+        timeSpan = DateUtils.getExtendedRelativeTimeSpanString(this, dynamicLanguage.getCurrentLocale(), date);
+      }
     } else {
-      relativeTimeSpan = getString(R.string.MediaPreviewActivity_draft);
+      timeSpan = getString(R.string.MediaPreviewActivity_draft);
     }
 
     if (outgoing) getSupportActionBar().setTitle(getString(R.string.MediaPreviewActivity_you));
     else          getSupportActionBar().setTitle(recipient.toShortString());
 
-    getSupportActionBar().setSubtitle(relativeTimeSpan);
+    getSupportActionBar().setSubtitle(timeSpan);
   }
 
   @Override
