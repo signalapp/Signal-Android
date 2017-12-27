@@ -436,7 +436,12 @@ public class ConversationItem extends LinearLayout
 
     insecureImage.setVisibility(messageRecord.isSecure() ? View.GONE : View.VISIBLE);
     bodyText.setCompoundDrawablesWithIntrinsicBounds(0, 0, messageRecord.isKeyExchange() ? R.drawable.ic_menu_login : 0, 0);
-    dateText.setText(DateUtils.getExtendedRelativeTimeSpanString(getContext(), locale, messageRecord.getTimestamp()));
+
+    if (TextSecurePreferences.isAbsoluteTimeEnabled(getContext())) {
+      dateText.setText(DateUtils.getAbsoluteTimeSpanString(locale, messageRecord.getTimestamp()));
+    } else {
+      dateText.setText(DateUtils.getExtendedRelativeTimeSpanString(getContext(), locale, messageRecord.getTimestamp()));
+    }
 
     if (messageRecord.isFailed()) {
       setFailedStatusIcons();

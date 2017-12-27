@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -113,7 +114,11 @@ public class ConversationUpdateItem extends LinearLayout
     else                                     icon.setImageResource(R.drawable.ic_call_missed_grey600_24dp);
 
     body.setText(messageRecord.getDisplayBody());
-    date.setText(DateUtils.getExtendedRelativeTimeSpanString(getContext(), locale, messageRecord.getDateReceived()));
+    if (TextSecurePreferences.isAbsoluteTimeEnabled(getContext())) {
+      date.setText(DateUtils.getAbsoluteTimeSpanString(locale, messageRecord.getDateReceived()));
+    } else {
+      date.setText(DateUtils.getExtendedRelativeTimeSpanString(getContext(), locale, messageRecord.getDateReceived()));
+    }
     date.setVisibility(View.VISIBLE);
   }
 

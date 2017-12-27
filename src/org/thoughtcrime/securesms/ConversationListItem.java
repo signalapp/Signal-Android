@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.DateUtils;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -112,6 +113,8 @@ public class ConversationListItem extends RelativeLayout
                    @NonNull GlideRequests glideRequests, @NonNull Locale locale,
                    @NonNull Set<Long> selectedThreads, boolean batchMode)
   {
+    final CharSequence date;
+
     this.selectedThreads  = selectedThreads;
     this.recipient        = thread.getRecipient();
     this.threadId         = thread.getThreadId();
@@ -127,7 +130,11 @@ public class ConversationListItem extends RelativeLayout
 //    this.subjectView.setTypeface(read ? LIGHT_TYPEFACE : BOLD_TYPEFACE);
 
     if (thread.getDate() > 0) {
-      CharSequence date = DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, thread.getDate());
+      if (TextSecurePreferences.isAbsoluteTimeEnabled(getContext())) {
+        date = DateUtils.getAbsoluteTimeSpanString(locale, thread.getDate());
+      } else {
+        date = DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, thread.getDate());
+      }
       dateView.setText(unreadCount == 0 ? date : color(getResources().getColor(R.color.textsecure_primary_dark), date));
       dateView.setTypeface(unreadCount == 0 ? LIGHT_TYPEFACE : BOLD_TYPEFACE);
     }

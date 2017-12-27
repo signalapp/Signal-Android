@@ -107,6 +107,7 @@ public class TextSecurePreferences {
   public  static final String MEDIA_DOWNLOAD_ROAMING_PREF      = "pref_media_download_roaming";
 
   public  static final String SYSTEM_EMOJI_PREF                = "pref_system_emoji";
+  public  static final String ABSOLUTE_TIME_PREF               = "pref_absolute_time";
   private static final String MULTI_DEVICE_PROVISIONED_PREF    = "pref_multi_device";
   public  static final String DIRECT_CAPTURE_CAMERA_ID         = "pref_direct_capture_camera_id";
   private static final String ALWAYS_RELAY_CALLS_PREF          = "pref_turn_only";
@@ -682,6 +683,10 @@ public class TextSecurePreferences {
 
   public static boolean isSystemEmojiPreferred(Context context) {
     return getBooleanPreference(context, SYSTEM_EMOJI_PREF, false);
+  }
+
+  public static boolean isAbsoluteTimeEnabled(Context context) {
+    return getBooleanPreference(context, ABSOLUTE_TIME_PREF, false);
   }
 
   public static @NonNull Set<String> getMobileMediaDownloadAllowed(Context context) {

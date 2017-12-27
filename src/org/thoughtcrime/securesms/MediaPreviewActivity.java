@@ -61,6 +61,7 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
@@ -128,19 +129,23 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     MediaItem mediaItem = getCurrentMediaItem();
 
     if (mediaItem != null) {
-      CharSequence relativeTimeSpan;
+      CharSequence timeSpan;
 
       if (mediaItem.date > 0) {
-        relativeTimeSpan = DateUtils.getExtendedRelativeTimeSpanString(this,dynamicLanguage.getCurrentLocale(), mediaItem.date);
+        if (TextSecurePreferences.isAbsoluteTimeEnabled(this)) {
+          timeSpan = DateUtils.getAbsoluteTimeSpanString(dynamicLanguage.getCurrentLocale(), mediaItem.date);
+        } else {
+          timeSpan = DateUtils.getExtendedRelativeTimeSpanString(this, dynamicLanguage.getCurrentLocale(), mediaItem.date);
+        }
       } else {
-        relativeTimeSpan = getString(R.string.MediaPreviewActivity_draft);
+        timeSpan = getString(R.string.MediaPreviewActivity_draft);
       }
 
       if      (mediaItem.outgoing)          getSupportActionBar().setTitle(getString(R.string.MediaPreviewActivity_you));
       else if (mediaItem.recipient != null) getSupportActionBar().setTitle(mediaItem.recipient.toShortString());
       else                                  getSupportActionBar().setTitle("");
 
-      getSupportActionBar().setSubtitle(relativeTimeSpan);
+      getSupportActionBar().setSubtitle(timeSpan);
     }
   }
 
