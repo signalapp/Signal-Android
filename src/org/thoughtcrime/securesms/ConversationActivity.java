@@ -225,6 +225,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   ConversationFragment        fragment;
   private   Button                      unblockButton;
   private   Button                      makeDefaultSmsButton;
+  private   Button                      registerButton;
   private   InputAwareLayout            container;
   private   View                        composePanel;
   protected Stub<ReminderView>          reminderView;
@@ -677,6 +678,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     startActivityForResult(intent, SMS_DEFAULT);
   }
 
+  private void handleRegisterForSignal() {
+    Intent intent = new Intent(this, RegistrationActivity.class);
+    intent.putExtra("cancel_button", true);
+    intent.putExtra("master_secret", masterSecret);
+    startActivity(intent);
+  }
+
   private void handleInviteLink() {
     try {
       String inviteText;
@@ -959,11 +967,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     sendButton.resetAvailableTransports(isMediaMessage);
 
-    if (!isSecureText)                    sendButton.disableTransport(Type.TEXTSECURE);
-    if (recipient.isPushGroupRecipient()) sendButton.disableTransport(Type.SMS);
+    if (!isSecureText && !isPushGroupConversation()) sendButton.disableTransport(Type.TEXTSECURE);
+    if (recipient.isPushGroupRecipient())            sendButton.disableTransport(Type.SMS);
 
-    if (isSecureText) sendButton.setDefaultTransport(Type.TEXTSECURE);
-    else              sendButton.setDefaultTransport(Type.SMS);
+    if (isSecureText || isPushGroupConversation()) sendButton.setDefaultTransport(Type.TEXTSECURE);
+    else                                           sendButton.setDefaultTransport(Type.SMS);
 
     calculateCharactersRemaining();
     supportInvalidateOptionsMenu();
@@ -1213,6 +1221,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     emojiDrawerStub       = ViewUtil.findStubById(this, R.id.emoji_drawer_stub);
     unblockButton         = ViewUtil.findById(this, R.id.unblock_button);
     makeDefaultSmsButton  = ViewUtil.findById(this, R.id.make_default_sms_button);
+    registerButton        = ViewUtil.findById(this, R.id.register_button);
     composePanel          = ViewUtil.findById(this, R.id.bottom_panel);
     container             = ViewUtil.findById(this, R.id.layout_container);
     reminderView          = ViewUtil.findStubById(this, R.id.reminder_stub);
@@ -1260,6 +1269,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     titleView.setOnBackClickedListener(view -> super.onBackPressed());
     unblockButton.setOnClickListener(v -> handleUnblock());
     makeDefaultSmsButton.setOnClickListener(v -> handleMakeDefaultSms());
+    registerButton.setOnClickListener(v -> handleRegisterForSignal());
 
     composeText.setOnKeyListener(composeKeyPressedListener);
     composeText.addTextChangedListener(composeKeyPressedListener);
@@ -1476,14 +1486,22 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       unblockButton.setVisibility(View.VISIBLE);
       composePanel.setVisibility(View.GONE);
       makeDefaultSmsButton.setVisibility(View.GONE);
+      registerButton.setVisibility(View.GONE);
+    } else if (!isSecureText && isPushGroupConversation()) {
+      unblockButton.setVisibility(View.GONE);
+      composePanel.setVisibility(View.GONE);
+      makeDefaultSmsButton.setVisibility(View.GONE);
+      registerButton.setVisibility(View.VISIBLE);
     } else if (!isSecureText && !isDefaultSms) {
       unblockButton.setVisibility(View.GONE);
       composePanel.setVisibility(View.GONE);
       makeDefaultSmsButton.setVisibility(View.VISIBLE);
+      registerButton.setVisibility(View.GONE);
     } else {
       composePanel.setVisibility(View.VISIBLE);
       unblockButton.setVisibility(View.GONE);
       makeDefaultSmsButton.setVisibility(View.GONE);
+      registerButton.setVisibility(View.GONE);
     }
   }
 

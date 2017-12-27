@@ -69,6 +69,9 @@ public class PeerConnectionWrapper {
     audioConstraints.optional.add(new MediaConstraints.KeyValuePair("DtlsSrtpKeyAgreement", "true"));
 
     this.peerConnection = factory.createPeerConnection(configuration, constraints, observer);
+    this.peerConnection.setAudioPlayout(false);
+    this.peerConnection.setAudioRecording(false);
+
     this.videoCapturer  = createVideoCapturer(context);
 
     MediaStream mediaStream = factory.createLocalMediaStream("ARDAMS");
@@ -105,6 +108,11 @@ public class PeerConnectionWrapper {
         Log.w(TAG, e);
       }
     }
+  }
+
+  public void setCommunicationMode() {
+    this.peerConnection.setAudioPlayout(true);
+    this.peerConnection.setAudioRecording(true);
   }
 
   public void setAudioEnabled(boolean enabled) {

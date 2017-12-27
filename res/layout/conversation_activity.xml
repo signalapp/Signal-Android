@@ -56,6 +56,13 @@
 
         <include layout="@layout/conversation_input_panel"/>
 
+        <Button android:id="@+id/register_button"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:text="@string/conversation_activity__enable_signal_messages"
+                android:visibility="gone"/>
+
         <Button android:id="@+id/unblock_button"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
