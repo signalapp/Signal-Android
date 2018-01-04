@@ -58,7 +58,7 @@ public class DirectoryHelper {
 
     List<Address> newlyActiveUsers = refreshDirectory(context, AccountManagerFactory.createManager(context));
 
-    if (!newlyActiveUsers.isEmpty() && TextSecurePreferences.isMultiDevice(context)) {
+    if (TextSecurePreferences.isMultiDevice(context)) {
       ApplicationContext.getInstance(context)
                         .getJobManager()
                         .add(new MultiDeviceContactUpdateJob(context));
