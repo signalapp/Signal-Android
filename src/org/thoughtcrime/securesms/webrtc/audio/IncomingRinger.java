@@ -5,14 +5,15 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Vibrator;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
 
@@ -32,11 +33,19 @@ public class IncomingRinger {
     this.vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
   }
 
-  public void start() {
+  public void start(@NonNull Optional<Uri> ringtone) {
     AudioManager audioManager = ServiceUtil.getAudioManager(context);
 
-    if (player != null) player.release();
-    player = createPlayer();
+    if (player != null) {
+      player.release();
+      player = null;
+    }
+    if (ringtone.isPresent()) {
+      final Uri uri = ringtone.get();
+      player = createPlayer(uri);
+    } else {
+      Log.w(TAG, "No ringtone present");
+    }
 
     int ringerMode = audioManager.getRingerMode();
 
@@ -45,7 +54,8 @@ public class IncomingRinger {
       vibrator.vibrate(VIBRATE_PATTERN, 1);
     }
 
-    if (player != null && ringerMode == AudioManager.RINGER_MODE_NORMAL) {
+    final boolean ringerModeNormal = (ringerMode == AudioManager.RINGER_MODE_NORMAL);
+    if (player != null && ringerModeNormal) {
       try {
         if (!player.isPlaying()) {
           player.prepare();
@@ -58,7 +68,7 @@ public class IncomingRinger {
         Log.w(TAG, e);
         player = null;
       }
-    } else {
+    } else if (!ringerModeNormal) {
       Log.w(TAG, "Not ringing, mode: " + ringerMode);
     }
   }
@@ -108,10 +118,9 @@ public class IncomingRinger {
     return audioManager.shouldVibrate(AudioManager.VIBRATE_TYPE_RINGER);
   }
 
-  private MediaPlayer createPlayer() {
+  private MediaPlayer createPlayer(@NonNull Uri ringtoneUri) {
     try {
       MediaPlayer mediaPlayer = new MediaPlayer();
-      Uri         ringtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
 
       mediaPlayer.setOnErrorListener(new MediaPlayerErrorListener());
       mediaPlayer.setDataSource(context, ringtoneUri);

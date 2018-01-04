@@ -4,11 +4,13 @@ package org.thoughtcrime.securesms.webrtc.audio;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 public class SignalAudioManager {
 
@@ -42,7 +44,7 @@ public class SignalAudioManager {
     }
   }
 
-  public void startIncomingRinger() {
+  public void startIncomingRinger(@NonNull Optional<Uri> ringtone) {
     AudioManager audioManager = ServiceUtil.getAudioManager(context);
     boolean      speaker      = !audioManager.isWiredHeadsetOn() && !audioManager.isBluetoothScoOn();
 
@@ -50,7 +52,7 @@ public class SignalAudioManager {
     audioManager.setMicrophoneMute(false);
     audioManager.setSpeakerphoneOn(speaker);
 
-    incomingRinger.start();
+    incomingRinger.start(ringtone);
   }
 
   public void startOutgoingRinger(OutgoingRinger.Type type) {
