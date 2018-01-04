@@ -17,27 +17,43 @@
 package org.thoughtcrime.securesms;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
+import android.support.v4.util.Pair;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.components.ZoomingImageView;
+import org.thoughtcrime.securesms.components.MediaView;
+import org.thoughtcrime.securesms.components.viewpager.ExtendedOnPageChangedListener;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;
+import org.thoughtcrime.securesms.database.loaders.PagingMediaLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.mms.VideoSlide;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
@@ -46,14 +62,15 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.video.VideoPlayer;
 
 import java.io.IOException;
+import java.util.WeakHashMap;
 
 /**
  * Activity for displaying media attachments in-app
  */
-public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity implements RecipientModifiedListener {
+public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity implements RecipientModifiedListener, LoaderManager.LoaderCallbacks<Pair<Cursor, Integer>> {
+
   private final static String TAG = MediaPreviewActivity.class.getSimpleName();
 
   public static final String ADDRESS_EXTRA  = "address";
@@ -65,16 +82,13 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
   private MasterSecret masterSecret;
 
-  private ZoomingImageView image;
-  private VideoPlayer      video;
+  private ViewPager mediaPager;
+  private Uri       initialMediaUri;
+  private String    initialMediaType;
+  private long      initialMediaSize;
+  private Recipient conversationRecipient;
 
-  private Uri       mediaUri;
-  private String    mediaType;
-  private Recipient recipient;
-  private long      date;
-  private long      size;
-  private boolean   outgoing;
-
+  @SuppressWarnings("ConstantConditions")
   @Override
   protected void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
     this.masterSecret = masterSecret;
@@ -90,7 +104,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
     initializeViews();
     initializeResources();
-    initializeActionBar();
   }
 
   @Override
@@ -110,126 +123,126 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     Util.runOnMain(this::initializeActionBar);
   }
 
+  @SuppressWarnings("ConstantConditions")
   private void initializeActionBar() {
-    final CharSequence relativeTimeSpan;
+    MediaItem mediaItem = getCurrentMediaItem();
 
-    if (date > 0) {
-      relativeTimeSpan = DateUtils.getExtendedRelativeTimeSpanString(this,dynamicLanguage.getCurrentLocale(),date);
-    } else {
-      relativeTimeSpan = getString(R.string.MediaPreviewActivity_draft);
+    if (mediaItem != null) {
+      CharSequence relativeTimeSpan;
+
+      if (mediaItem.date > 0) {
+        relativeTimeSpan = DateUtils.getExtendedRelativeTimeSpanString(this,dynamicLanguage.getCurrentLocale(), mediaItem.date);
+      } else {
+        relativeTimeSpan = getString(R.string.MediaPreviewActivity_draft);
+      }
+
+      if      (mediaItem.outgoing)          getSupportActionBar().setTitle(getString(R.string.MediaPreviewActivity_you));
+      else if (mediaItem.recipient != null) getSupportActionBar().setTitle(mediaItem.recipient.toShortString());
+      else                                  getSupportActionBar().setTitle("");
+
+      getSupportActionBar().setSubtitle(relativeTimeSpan);
     }
-
-    if (outgoing) getSupportActionBar().setTitle(getString(R.string.MediaPreviewActivity_you));
-    else          getSupportActionBar().setTitle(recipient.toShortString());
-
-    getSupportActionBar().setSubtitle(relativeTimeSpan);
   }
 
   @Override
   public void onResume() {
     super.onResume();
+
     dynamicLanguage.onResume(this);
-    if (recipient != null) recipient.addListener(this);
     initializeMedia();
   }
 
   @Override
   public void onPause() {
     super.onPause();
-    if (recipient != null) recipient.removeListener(this);
     cleanupMedia();
   }
 
   @Override
   protected void onNewIntent(Intent intent) {
     super.onNewIntent(intent);
-    if (recipient != null) recipient.removeListener(this);
     setIntent(intent);
     initializeResources();
-    initializeActionBar();
   }
 
   private void initializeViews() {
-    image = findViewById(R.id.image);
-    video = findViewById(R.id.video_player);
+    mediaPager = findViewById(R.id.media_pager);
+    mediaPager.setOffscreenPageLimit(1);
+    mediaPager.addOnPageChangeListener(new ViewPagerListener());
   }
 
   private void initializeResources() {
     Address address = getIntent().getParcelableExtra(ADDRESS_EXTRA);
 
-    mediaUri  = getIntent().getData();
-    mediaType = getIntent().getType();
-    date      = getIntent().getLongExtra(DATE_EXTRA, -1);
-    size      = getIntent().getLongExtra(SIZE_EXTRA, 0);
-    outgoing  = getIntent().getBooleanExtra(OUTGOING_EXTRA, false);
+    initialMediaUri  = getIntent().getData();
+    initialMediaType = getIntent().getType();
+    initialMediaSize = getIntent().getLongExtra(SIZE_EXTRA, 0);
 
     if (address != null) {
-      recipient = Recipient.from(this, address, true);
-      recipient.addListener(this);
+      conversationRecipient = Recipient.from(this, address, true);
     } else {
-      recipient = null;
+      conversationRecipient = null;
     }
   }
 
   private void initializeMedia() {
-    if (!isContentTypeSupported(mediaType)) {
+    if (!isContentTypeSupported(initialMediaType)) {
       Log.w(TAG, "Unsupported media type sent to MediaPreviewActivity, finishing.");
       Toast.makeText(getApplicationContext(), R.string.MediaPreviewActivity_unssuported_media_type, Toast.LENGTH_LONG).show();
       finish();
     }
 
-    Log.w(TAG, "Loading Part URI: " + mediaUri);
+    Log.w(TAG, "Loading Part URI: " + initialMediaUri);
 
-    try {
-      if (mediaType != null && mediaType.startsWith("image/")) {
-        image.setVisibility(View.VISIBLE);
-        video.setVisibility(View.GONE);
-        image.setImageUri(masterSecret, GlideApp.with(this), mediaUri, mediaType);
-      } else if (mediaType != null && mediaType.startsWith("video/")) {
-        image.setVisibility(View.GONE);
-        video.setVisibility(View.VISIBLE);
-        video.setWindow(getWindow());
-        video.setVideoSource(masterSecret, new VideoSlide(this, mediaUri, size));
-      }
-    } catch (IOException e) {
-      Log.w(TAG, e);
-      Toast.makeText(getApplicationContext(), R.string.MediaPreviewActivity_unssuported_media_type, Toast.LENGTH_LONG).show();
-      finish();
+    if (conversationRecipient != null) {
+      getSupportLoaderManager().initLoader(0, null, this);
+    } else {
+      mediaPager.setAdapter(new SingleItemPagerAdapter(this, masterSecret, GlideApp.with(this), getWindow(), initialMediaUri, initialMediaType, initialMediaSize));
     }
   }
 
   private void cleanupMedia() {
-    image.cleanup();
-    video.cleanup();
+    mediaPager.removeAllViews();
+    mediaPager.setAdapter(null);
   }
 
   private void showOverview() {
     Intent intent = new Intent(this, MediaOverviewActivity.class);
-    intent.putExtra(MediaOverviewActivity.ADDRESS_EXTRA, recipient.getAddress());
+    intent.putExtra(MediaOverviewActivity.ADDRESS_EXTRA, conversationRecipient.getAddress());
     startActivity(intent);
   }
 
   private void forward() {
-    Intent composeIntent = new Intent(this, ShareActivity.class);
-    composeIntent.putExtra(Intent.EXTRA_STREAM, mediaUri);
-    composeIntent.setType(mediaType);
-    startActivity(composeIntent);
+    MediaItem mediaItem = getCurrentMediaItem();
+
+    if (mediaItem != null) {
+      Intent composeIntent = new Intent(this, ShareActivity.class);
+      composeIntent.putExtra(Intent.EXTRA_STREAM, mediaItem.uri);
+      composeIntent.setType(mediaItem.type);
+      startActivity(composeIntent);
+    }
   }
 
+  @SuppressWarnings("CodeBlock2Expr")
+  @SuppressLint("InlinedApi")
   private void saveToDisk() {
-    SaveAttachmentTask.showWarningDialog(this, (dialogInterface, i) -> {
-      Permissions.with(this)
-                 .request(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
-                 .ifNecessary()
-                 .withPermanentDenialDialog(getString(R.string.MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))
-                 .onAnyDenied(() -> Toast.makeText(this, R.string.MediaPreviewActivity_unable_to_write_to_external_storage_without_permission, Toast.LENGTH_LONG).show())
-                 .onAllGranted(() -> {
-                   SaveAttachmentTask saveTask = new SaveAttachmentTask(MediaPreviewActivity.this, masterSecret, image);
-                   long saveDate = (date > 0) ? date : System.currentTimeMillis();
-                   saveTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, new Attachment(mediaUri, mediaType, saveDate, null));
-                 })
-                 .execute();
-    });
+    MediaItem mediaItem = getCurrentMediaItem();
+
+    if (mediaItem != null) {
+      SaveAttachmentTask.showWarningDialog(this, (dialogInterface, i) -> {
+        Permissions.with(this)
+                   .request(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
+                   .ifNecessary()
+                   .withPermanentDenialDialog(getString(R.string.MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))
+                   .onAnyDenied(() -> Toast.makeText(this, R.string.MediaPreviewActivity_unable_to_write_to_external_storage_without_permission, Toast.LENGTH_LONG).show())
+                   .onAllGranted(() -> {
+                     SaveAttachmentTask saveTask = new SaveAttachmentTask(MediaPreviewActivity.this, masterSecret);
+                     long saveDate = (mediaItem.date > 0) ? mediaItem.date : System.currentTimeMillis();
+                     saveTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, new Attachment(mediaItem.uri, mediaItem.type, saveDate, null));
+                   })
+                   .execute();
+      });
+    }
   }
 
   @Override
@@ -239,7 +252,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     menu.clear();
     MenuInflater inflater = this.getMenuInflater();
     inflater.inflate(R.menu.media_preview, menu);
-    if (recipient == null) menu.findItem(R.id.media_preview__overview).setVisible(false);
+    if (conversationRecipient == null) menu.findItem(R.id.media_preview__overview).setVisible(false);
 
     return true;
   }
@@ -258,7 +271,260 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     return false;
   }
 
+  private @Nullable MediaItem getCurrentMediaItem() {
+    MediaItemAdapter adapter = (MediaItemAdapter)mediaPager.getAdapter();
+
+    if (adapter != null) {
+      return adapter.getMediaItemFor(mediaPager.getCurrentItem());
+    } else {
+      return null;
+    }
+  }
+
   public static boolean isContentTypeSupported(final String contentType) {
     return contentType != null && (contentType.startsWith("image/") || contentType.startsWith("video/"));
   }
+
+  @Override
+  public Loader<Pair<Cursor, Integer>> onCreateLoader(int id, Bundle args) {
+    return new PagingMediaLoader(this, conversationRecipient, initialMediaUri);
+  }
+
+  @Override
+  public void onLoadFinished(Loader<Pair<Cursor, Integer>> loader, @Nullable Pair<Cursor, Integer> data) {
+    if (data != null) {
+      @SuppressWarnings("ConstantConditions")
+      CursorPagerAdapter adapter = new CursorPagerAdapter(this, masterSecret, GlideApp.with(this), getWindow(), data.first, data.second);
+      mediaPager.setAdapter(adapter);
+      adapter.setActive(true);
+      mediaPager.setCurrentItem(data.second);
+    }
+  }
+
+  @Override
+  public void onLoaderReset(Loader<Pair<Cursor, Integer>> loader) {
+
+  }
+
+  private class ViewPagerListener extends ExtendedOnPageChangedListener {
+
+    @Override
+    public void onPageSelected(int position) {
+      super.onPageSelected(position);
+
+      MediaItemAdapter adapter = (MediaItemAdapter)mediaPager.getAdapter();
+
+      if (adapter != null) {
+        MediaItem item = adapter.getMediaItemFor(position);
+        if (item.recipient != null) item.recipient.addListener(MediaPreviewActivity.this);
+
+        initializeActionBar();
+      }
+    }
+
+
+    @Override
+    public void onPageUnselected(int position) {
+      MediaItemAdapter adapter = (MediaItemAdapter)mediaPager.getAdapter();
+
+      if (adapter != null) {
+        MediaItem item = adapter.getMediaItemFor(position);
+        if (item.recipient != null) item.recipient.removeListener(MediaPreviewActivity.this);
+
+        adapter.pause(position);
+      }
+    }
+  }
+
+  private static class SingleItemPagerAdapter extends PagerAdapter implements MediaItemAdapter {
+
+    private final MasterSecret  masterSecret;
+    private final GlideRequests glideRequests;
+    private final Window        window;
+    private final Uri           uri;
+    private final String        mediaType;
+    private final long          size;
+
+    private final LayoutInflater inflater;
+
+    SingleItemPagerAdapter(@NonNull Context context, @NonNull MasterSecret masterSecret,
+                           @NonNull GlideRequests glideRequests, @NonNull Window window,
+                           @NonNull Uri uri, @NonNull String mediaType, long size)
+    {
+      this.masterSecret  = masterSecret;
+      this.glideRequests = glideRequests;
+      this.window        = window;
+      this.uri           = uri;
+      this.mediaType     = mediaType;
+      this.size          = size;
+      this.inflater      = LayoutInflater.from(context);
+    }
+
+    @Override
+    public int getCount() {
+      return 1;
+    }
+
+    @Override
+    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
+      return view == object;
+    }
+
+    @Override
+    public @NonNull Object instantiateItem(@NonNull ViewGroup container, int position) {
+      View      itemView  = inflater.inflate(R.layout.media_view_page, container, false);
+      MediaView mediaView = itemView.findViewById(R.id.media_view);
+
+      try {
+        mediaView.set(masterSecret, glideRequests, window, uri, mediaType, size, true);
+      } catch (IOException e) {
+        Log.w(TAG, e);
+      }
+
+      container.addView(itemView);
+
+      return itemView;
+    }
+
+    @Override
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+      MediaView mediaView = ((FrameLayout)object).findViewById(R.id.media_view);
+      mediaView.cleanup();
+
+      container.removeView((FrameLayout)object);
+    }
+
+    @Override
+    public MediaItem getMediaItemFor(int position) {
+      return new MediaItem(null, uri, mediaType, -1, true);
+    }
+
+    @Override
+    public void pause(int position) {
+
+    }
+  }
+
+  private static class CursorPagerAdapter extends PagerAdapter implements MediaItemAdapter {
+
+    private final WeakHashMap<Integer, MediaView> mediaViews = new WeakHashMap<>();
+
+    private final Context       context;
+    private final MasterSecret  masterSecret;
+    private final GlideRequests glideRequests;
+    private final Window        window;
+    private final Cursor        cursor;
+
+    private boolean active;
+    private int     autoPlayPosition;
+
+    CursorPagerAdapter(@NonNull Context context, @NonNull MasterSecret masterSecret,
+                       @NonNull GlideRequests glideRequests, @NonNull Window window,
+                       @NonNull Cursor cursor, int autoPlayPosition)
+    {
+      this.context          = context.getApplicationContext();
+      this.masterSecret     = masterSecret;
+      this.glideRequests    = glideRequests;
+      this.window           = window;
+      this.cursor           = cursor;
+      this.autoPlayPosition = autoPlayPosition;
+    }
+
+    public void setActive(boolean active) {
+      this.active = active;
+      notifyDataSetChanged();
+    }
+
+    @Override
+    public int getCount() {
+      if (!active) return 0;
+      else         return cursor.getCount();
+    }
+
+    @Override
+    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
+      return view == object;
+    }
+
+    @Override
+    public @NonNull Object instantiateItem(@NonNull ViewGroup container, int position) {
+      View      itemView       = LayoutInflater.from(context).inflate(R.layout.media_view_page, container, false);
+      MediaView mediaView      = itemView.findViewById(R.id.media_view);
+      boolean   autoplay       = position == autoPlayPosition;
+      int       cursorPosition = getCursorPosition(position);
+
+      autoPlayPosition = -1;
+
+      cursor.moveToPosition(cursorPosition);
+
+      MediaRecord mediaRecord = MediaRecord.from(context, masterSecret, cursor);
+
+      try {
+        //noinspection ConstantConditions
+        mediaView.set(masterSecret, glideRequests, window, mediaRecord.getAttachment().getDataUri(), mediaRecord.getAttachment().getContentType(), mediaRecord.getAttachment().getSize(), autoplay);
+      } catch (IOException e) {
+        Log.w(TAG, e);
+      }
+
+      mediaViews.put(position, mediaView);
+      container.addView(itemView);
+
+      return itemView;
+    }
+
+    @Override
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+      MediaView mediaView = ((FrameLayout)object).findViewById(R.id.media_view);
+      mediaView.cleanup();
+
+      mediaViews.remove(position);
+      container.removeView((FrameLayout)object);
+    }
+
+    public MediaItem getMediaItemFor(int position) {
+      cursor.moveToPosition(getCursorPosition(position));
+      MediaRecord mediaRecord = MediaRecord.from(context, masterSecret, cursor);
+      Address     address     = mediaRecord.getAddress();
+
+      if (mediaRecord.getAttachment().getDataUri() == null) throw new AssertionError();
+
+      return new MediaItem(address != null ? Recipient.from(context, address,true) : null,
+                           mediaRecord.getAttachment().getDataUri(),
+                           mediaRecord.getContentType(),
+                           mediaRecord.getDate(),
+                           mediaRecord.isOutgoing());
+    }
+
+    @Override
+    public void pause(int position) {
+      MediaView mediaView = mediaViews.get(position);
+      if (mediaView != null) mediaView.pause();
+    }
+
+    private int getCursorPosition(int position) {
+      return cursor.getCount() - 1 - position;
+    }
+  }
+
+  private static class MediaItem {
+    private final @Nullable Recipient recipient;
+    private final @NonNull Uri        uri;
+    private final @NonNull String     type;
+    private final          long       date;
+    private final          boolean    outgoing;
+
+    private MediaItem(@Nullable Recipient recipient, @NonNull Uri uri, @NonNull String type, long date, boolean outgoing) {
+      this.recipient = recipient;
+      this.uri       = uri;
+      this.type      = type;
+      this.date      = date;
+      this.outgoing  = outgoing;
+    }
+  }
+
+  interface MediaItemAdapter {
+    MediaItem getMediaItemFor(int position);
+    void pause(int position);
+  }
+
 }

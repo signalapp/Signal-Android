@@ -2,15 +2,12 @@ package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
 import android.content.DialogInterface.OnClickListener;
-import android.content.Intent;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
-import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
@@ -32,27 +29,25 @@ import java.text.SimpleDateFormat;
 public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTask.Attachment, Void, Pair<Integer, String>> {
   private static final String TAG = SaveAttachmentTask.class.getSimpleName();
 
-  protected static final int SUCCESS              = 0;
-  protected static final int FAILURE              = 1;
-  protected static final int WRITE_ACCESS_FAILURE = 2;
+          static final int SUCCESS              = 0;
+  private static final int FAILURE              = 1;
+  private static final int WRITE_ACCESS_FAILURE = 2;
 
   private final WeakReference<Context>      contextReference;
   private final WeakReference<MasterSecret> masterSecretReference;
-  private final WeakReference<View>         view;
 
   private final int attachmentCount;
 
-  public SaveAttachmentTask(Context context, MasterSecret masterSecret, View view) {
-    this(context, masterSecret, view, 1);
+  public SaveAttachmentTask(Context context, MasterSecret masterSecret) {
+    this(context, masterSecret, 1);
   }
 
-  public SaveAttachmentTask(Context context, MasterSecret masterSecret, View view, int count) {
+  public SaveAttachmentTask(Context context, MasterSecret masterSecret, int count) {
     super(context,
           context.getResources().getQuantityString(R.plurals.ConversationFragment_saving_n_attachments, count, count),
           context.getResources().getQuantityString(R.plurals.ConversationFragment_saving_n_attachments_to_sd_card, count, count));
     this.contextReference      = new WeakReference<>(context);
     this.masterSecretReference = new WeakReference<>(masterSecret);
-    this.view                  = new WeakReference<>(view);
     this.attachmentCount       = count;
   }
 

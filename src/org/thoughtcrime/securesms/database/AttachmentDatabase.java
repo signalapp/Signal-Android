@@ -67,7 +67,7 @@ public class AttachmentDatabase extends Database {
 
           static final String TABLE_NAME             = "part";
           static final String ROW_ID                 = "_id";
-          static final String ATTACHMENT_ID_ALIAS    = "attachment_id";
+  public  static final String ATTACHMENT_ID_ALIAS    = "attachment_id";
           static final String MMS_ID                 = "mid";
           static final String CONTENT_TYPE           = "ct";
           static final String NAME                   = "name";
@@ -79,7 +79,7 @@ public class AttachmentDatabase extends Database {
           static final String FILE_NAME              = "file_name";
           static final String THUMBNAIL              = "thumbnail";
           static final String THUMBNAIL_ASPECT_RATIO = "aspect_ratio";
-          static final String UNIQUE_ID              = "unique_id";
+  public  static final String UNIQUE_ID              = "unique_id";
           static final String DIGEST                 = "digest";
           static final String VOICE_NOTE             = "voice_note";
   public  static final String FAST_PREFLIGHT_ID      = "fast_preflight_id";

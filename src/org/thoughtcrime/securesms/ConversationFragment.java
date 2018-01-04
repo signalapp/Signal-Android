@@ -391,7 +391,7 @@ public class ConversationFragment extends Fragment
       public void onClick(DialogInterface dialog, int which) {
         for (Slide slide : message.getSlideDeck().getSlides()) {
           if ((slide.hasImage() || slide.hasVideo() || slide.hasAudio() || slide.hasDocument()) && slide.getUri() != null) {
-            SaveAttachmentTask saveTask = new SaveAttachmentTask(getActivity(), masterSecret, list);
+            SaveAttachmentTask saveTask = new SaveAttachmentTask(getActivity(), masterSecret);
             saveTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, new Attachment(slide.getUri(), slide.getContentType(), message.getDateReceived(), slide.getFileName().orNull()));
             return;
           }
