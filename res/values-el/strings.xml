@@ -1089,5 +1089,6 @@
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Το Signal χρειάζεται τα δικαιώματα SMS για να μπορέσουμε να στείλουμε ένα SMS, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε τα \"SMS\".</string>
   <string name="Permissions_continue">Συνέχεια</string>
   <string name="Permissions_not_now">Όχι τώρα</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Το Signal χρειάζεται τα δικαιώματα Επαφών για να μπορούμε να αναζητήσουμε τις επαφές σου, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε τις \"Επαφές\".</string>
   <!--EOF-->
 </resources>

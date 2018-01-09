@@ -11,7 +11,7 @@
   <string name="ApplicationPreferencesActivity_currently_s">در حال حاضر: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">شما هنوز رمزی تعیین نکرده‌اید!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="other">%d پیام برای هر گفتگو</item>
+    <item quantity="other">%d تعداد پیام  در هر گفتگو</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">پیام‌های قدیمی حذف شوند؟</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
@@ -48,6 +48,7 @@
   <string name="DraftDatabase_Draft_location_snippet">(موقعیت)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">امکان یافتن برنامه‌ای برای انتخاب مدیا وجود ندارد.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">سیگنال برای ارسال فایل‌های تصویری و صوتی نیاز به دسترسی به حافظه دارد اما این دسترسی به طور همیشگی رد شده است. لطفا به بخش برنامه ها در تنظیمات تلفن همراه خود رفته و پس از یافتن سیگنال وارد بخش دسترسی ها شده و گزینه حافظه را فعال کنید.</string>
   <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">خطا در پخش صوتی!</string>
@@ -987,8 +988,8 @@
   <string name="reminder_header_share_title">دوستانت رو دعوت کن</string>
   <string name="reminder_header_share_text">بیشتر دوستانتان از سیگنال استفاده میکنند, بهتره اون بگیرید</string>
   <!--media_preview-->
-  <string name="media_preview__save_title">دخیره</string>
-  <string name="media_preview__forward_title">Forward</string>
+  <string name="media_preview__save_title">ذخیره</string>
+  <string name="media_preview__forward_title">ارسال به دیگری</string>
   <string name="media_preview__all_media_title">تمام رسانه ها</string>
   <!--media_overview-->
   <string name="media_overview_documents_fragment__no_documents_found">اسنادی نیست</string>
@@ -1005,6 +1006,10 @@
   <string name="transport_selection_list_item__transport_icon">آیکون های حمل و نقل</string>
   <string name="ConversationListFragment_loading">درحال بارگذاری...</string>
   <string name="CallNotificationBuilder_connecting">اتصال ...</string>
+  <string name="Permissions_permission_required">مجوز لازم است</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">سیگنال برای ارسال پیامک نیاز به دسترسی به پیامک دارد اما این دسترسی به طور همیشگی رد شده است. لطفا به بخش برنامه ها در تنظیمات تلفن همراه خود رفته در ادامه  پس از یافتن سیگنال وارد بخش دسترسی ها شده و گزینه پیامک را فعال کنید.</string>
   <string name="Permissions_continue">ادامه</string>
+  <string name="Permissions_not_now">حالا نه</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">سیگنال برای جستجو مخاطبان نیاز به دسترسی به مجوز مخاطباندارد اما این دسترسی به طور همیشگی رد شده است. لطفا به بخش برنامه ها در تنظیمات تلفن همراه خود رفته در ادامه پس از یافتن سیگنال وارد بخش دسترسی ها شده و گزینه مخاطبان را فعال کنید.</string>
   <!--EOF-->
 </resources>

@@ -1054,5 +1054,6 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="CallNotificationBuilder_connecting">Connessione in corso...</string>
   <string name="Permissions_permission_required">Autorizzazione necessaria</string>
   <string name="Permissions_continue">Continua</string>
+  <string name="Permissions_not_now">Non ora</string>
   <!--EOF-->
 </resources>

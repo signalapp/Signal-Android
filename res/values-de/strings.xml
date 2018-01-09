@@ -621,7 +621,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="SingleContactSelectionActivity_contact_photo">Kontaktbild</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal benötigt die Berechtigung »Kontakte« für die Anzeige deiner Kontakte, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kontakte«.</string>
-  <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Kontakte konnten nicht abgerufen werden. Überprüfe bitte deine Netzverbindung</string>
+  <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Kontakte konnten nicht abgerufen werden. Überprüfe bitte deine Netzverbindung.</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Keine blockierten Kontakte</string>
   <!--contact_selection_recent_activity-->
@@ -1077,5 +1077,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="Permissions_continue">Weiter</string>
   <string name="Permissions_not_now">Nicht jetzt</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal benötigt die Berechtigung »Kontakte« für das Suchen in deinen Kontakten, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kontakte«.</string>
+  <string name="conversation_activity__enable_signal_messages">AKTIVIERE SIGNAL-NACHRICHTEN</string>
   <!--EOF-->
 </resources>

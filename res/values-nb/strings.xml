@@ -51,8 +51,10 @@
   <string name="DraftDatabase_Draft_location_snippet">(sted)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Fant ingen programmer for valg av medier.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal krever Lagringstillatelse for å kunne legge til bilder, videoer eller lyd, men den er permanent nektet. Vennligst fortsett til appinnstillingsmenyen, velg \"Tillatelser\", og aktiver \"Lagring\".</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal krever kontaktstillatelse for å kunne legge ved kontaktinformasjon, men den er permanent nektet. Vennligst fortsett til appinnstillingsmenyen, velg \"Tillatelser\", og aktiver \"Kontakter\".</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal krever tillatelse fra systemet for å kunne legge til bilder, videoer eller lyd, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Lagring».</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal krever tillatelse fra systemet for å kunne legge til kontaktinformasjon, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kontakter».</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal krever tillatelse fra systemet for å kunne legge til posisjonsdata, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Posisjon».</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal krever tillatelse fra systemet for å kunne ta bilder, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kamera».</string>
   <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Det oppstod en feil under lydavspilling.</string>
@@ -73,6 +75,7 @@
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Du bør kontrollere sikkerhetsnumrene dine mot denne kontakten.</string>
   <string name="ConfirmIdentityDialog_accept">Godta</string>
   <!--ContactsCursorLoader-->
+  <string name="ContactsCursorLoader_recent_chats">Nylige samtaler</string>
   <string name="ContactsCursorLoader_contacts">Kontakter</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Melding %s</string>
@@ -121,6 +124,13 @@
   <string name="ConversationActivity_unable_to_record_audio">Klarte ikke ta opp lyd.</string>
   <string name="ConversationActivity_error_sending_voice_message">Klarte ikke sende lydmelding</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Du har ingen programmer på denne enheten som kan håndtere denne lenka.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Du må gi Signal tilgang til mikrofonen for å kunne sende lydmeldinger.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal krever tillatelse fra systemet for å kunne bruke mikrofonen, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Mikrofon».</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Signal må ha tilgang til mikrofon og kamera for å kunne ringe «1%s».</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal krever tillatelser fra systemet for å kunne ringe 1%s, men du har valgt å avslå minst én av disse permanent. Gå til «Apper»-menyen på systemet og slå på tillatelser for «Mikrofon» og «Kamera».</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Du må gi Signal «Kamera»-tillatelse på systemet for å kunne filme og ta bilder.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal krever tillatelse fra systemet for å kunne ta bilder eller filme, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kamera».</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Du må gi Signal «Kamera»-tillatelse på systemet for å kunne filme og ta bilder.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ulest melding</item>
@@ -166,6 +176,7 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Denne enheten har ingen nettleser installert.</string>
   <!--ConversationListFragment-->
+  <string name="ConversationListFragment_no_results_found_for_s_">Søket «1%s» ga ingen treff.</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Vil du slette valgt samtale?</item>
     <item quantity="other">Vil du slette valgte samtaler?</item>
@@ -296,6 +307,12 @@ fører dette til dupliserte meldinger.</string>
   <string name="ImportFragment_no_plaintext_backup_found">Fant ingen ukryptert sikkerhetskopi.</string>
   <string name="ImportFragment_error_importing_backup">Feil under importering av sikkerhetskopi.</string>
   <string name="ImportFragment_import_complete">Importering er utført.</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages">Signal krever tillatelse fra systemet for å kunne importere SMS-meldinger, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «SMS».</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">Signal må ha «SMS»-tillatelse fra systemet for å kunne importere SMS-meldinger</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">Signal krever tillatelse fra systemet for å kunne lese fra ekstern lagringsenhet, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Lagring».</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">Signal må ha «Lagring»-tillatelse fra systemet for å kunne lese fra ekstern lagringsenhet.</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal krever tillatelse fra systemet for å kunne skrive til ekstern lagringsenhet, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Lagring».</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">Signal må ha «Lagring»-tillatelse fra systemet for å kunne skrive til ekstern lagringsenhet.</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Trykk og hold for å spille inn talemelding , slipp for å sende</string>
   <!--InviteActivity-->
@@ -380,6 +397,8 @@ fører dette til dupliserte meldinger.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Dette er ikke en gyldig QR-kode for enhetstilkobling.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Vil du koble til en Signal-enhet?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Det ser ut som at du prøver å koble en enhet til Signal ved hjelp av en tredjepartsskanner. For din egen sikkerhet må du skanne koden på nytt via Signal.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal krever tillatelse fra systemet for å kunne skanne QR-koder, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kamera».</string>
+  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Du kan ikke skanne en QR-kode når systemet ikke tillater Signal å bruke kameraet</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Utløptstid for meldinger</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Meldinger går ikke ut på tid.</string>
@@ -438,6 +457,9 @@ skrev inn (%s) er ugyldig.</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play-tjenester er opptatt eller midlertidig utilgjengelig. Vent litt, og prøv på nytt.</string>
   <string name="RegistrationActivity_more_information">Mer informasjon</string>
   <string name="RegistrationActivity_less_information">Mindre informasjon</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal må ha tilgang til kontakter og medier på systemet for å kunne koble til venner, sende/motta meldinger og ringe</string>
+  <string name="RegistrationActivity_unable_to_connect_to_service">Klarte ikke å koble til tjenesten. Kontroller at du har en stabil nettilkobling og prøv på nytt.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Signal kan hente SMS-bekreftelseskoden din automatisk hvis du tillater at programmet leser SMS-meldinger på enheten.</string>
   <!--RegistrationProblemsActivity-->
   <!--RegistrationProgressActivity-->
   <!--RegistrationService-->
@@ -497,13 +519,15 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="UnverifiedSendDialog_send_message">Send melding?</string>
   <string name="UnverifiedSendDialog_send">Send</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Din kontakt kjører en gammel versjon av Signal. Vennligst be dem om å oppdatere før verifisere din sikkerhets nummer.</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Din kontakt kjører en nyere versjon av Signal med en inkompatibel QR-kode format. Vennligst oppdater for å sammenligne.</string>
-  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Det skannede QR-kode er ikke en riktig formatert sikkerhets nummer bekreftelseskode. Vennligst prøv å skanne på nytt.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontakten kjører en gammel versjon av Signal. Be vedkommende om å oppdatere og deretter bekrefte sikkerhetsnummeret ditt.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontakten kjører en nyere versjon av Signal og bruker et QR-kodeformat som ikke kan brukes med din versjon. Oppdater Signal for å sammenligne.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">QR-koden du skannet er feilformatert. Prøv å skanne på nytt.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Del sikkerhets nummer via...</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Vår Signal sikkerhet nummer:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Det ser ut som at du ikke har noen programmer å dele denne informasjonen med.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Ingen sikkerhet nummer å sammenligne ble funnet i utklippstavlen </string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal krever tillatelse fra systemet for å kunne skanne QR-koder, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kamera».</string>
+  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Du kan ikke skanne en QR-kode når systemet ikke tillater Signal å bruke kameraet</string>
   <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Ugyldig kryptert melding</string>
@@ -537,6 +561,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MediaPreviewActivity_you">Deg</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Ustøttet medietype</string>
   <string name="MediaPreviewActivity_draft">Utkast</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal krever tillatelse fra systemet for å kunne skrive til ekstern lagringsenhet, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Lagring».</string>
+  <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Du kan ikke lagre på ekstern lagringsenhet uten å slå på tillatelse i systemet først</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nye meldinger i %2$d samtaler</string>
   <string name="MessageNotifier_most_recent_from_s">Nyeste fra: %1$s</string>
@@ -564,9 +590,12 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ny melding</string>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Enheten er ikke lenger registrert</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dette skyldes sannsynligvis at du registrerte telefonnummeret ditt på Signal med en annen enhet. Trykk for å registrere på nytt.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Feil ved avspilling av video</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Gi Signal tilgang til mikrofonen for å besvare samtalen fra 1%s.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal krever tillatelser fra systemet for å kunne ringe eller motta samtaler, men du har valgt å avslå minst én av disse permanent. Gå til «Apper»-menyen på systemet og slå på tillatelser for «Mikrofon» og «Kamera».</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Sikkerhetsnummeret for samtalen din med %1$s er endret. Dette kan enten bety at noen prøver å fange opp kommunikasjonen din, eller at %2$s bare gjeninstalleres Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Du ønsker kanskje å bekrefte din sikkerhets nummer med denne kontakten.</string>
@@ -580,8 +609,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="attachment_type_selector__contact_description">Kontakt</string>
   <string name="attachment_type_selector__camera">Kamera</string>
   <string name="attachment_type_selector__camera_description">Kamera</string>
-  <string name="attachment_type_selector__location">Plassering</string>
-  <string name="attachment_type_selector__location_description">Plassering</string>
+  <string name="attachment_type_selector__location">Posisjon</string>
+  <string name="attachment_type_selector__location_description">Posisjon</string>
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
   <string name="attachment_type_selector__gallery_description">Bilde eller video</string>
@@ -601,10 +630,13 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Kontaktfoto</string>
   <!--ContactSelectionListFragment-->
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal krever tillatelse fra systemet for å kunne vise kontakter, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kontakter».</string>
+  <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Klarte ikke å hente kontakter. Kontroller nettforbindelse</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Ingen blokkerte kontakter</string>
   <!--contact_selection_recent_activity-->
   <!--contact_selection_list_fragment-->
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal må ha tilgang til kontaktene dine for å kunne vise dem.</string>
   <string name="contact_selection_list_fragment__show_contacts">Vis Kontakter</string>
   <!--conversation_title_view-->
   <!--conversation_activity-->
@@ -644,7 +676,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="country_selection_fragment__loading_countries">Laster inn land …</string>
   <string name="country_selection_fragment__search">Søk</string>
   <!--device_add_fragment-->
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Skann QR-koden på enheten for å koble den til</string>
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Skann QR-koden på Signal-enheten du vil koble denne enheten med</string>
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Koble til enhet</string>
   <!--device_list_fragment-->
@@ -766,7 +798,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="registration_activity__phone_number">TELEFONNUMMER</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal gjør det enkelt å kommunisere ved å bruke telefonnummeret og adresseboka du allerede har. Venner og kontakter som allerede vet hvordan de kontakter deg via telefon kan enkelt ta kontakt via Signal.\n\nRegistrering overfører noe kontaktinformasjon til Signal-tjeneren. Dette blir ikke lagret.</string>
   <string name="registration_activity__verify_your_number">Bekreft nummeret ditt</string>
-  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Vennligst skriv inn ditt mobilnummer for å motta en bekreftelseskode. Teleoperatørs priser kan gjelde.</string>
+  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Skriv inn mobilnummeret ditt for å motta en bekreftelseskode. Teleoperatøren kan belaste deg for dette.</string>
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->
@@ -805,7 +837,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="AndroidManifest__log_submit">Send debug logg</string>
   <string name="AndroidManifest__media_preview">Forhåndsvisning av medier</string>
   <string name="AndroidManifest__message_details">Meldingsdetaljer</string>
-  <string name="AndroidManifest__linked_devices">Koblede enheter</string>
+  <string name="AndroidManifest__linked_devices">Sammenkoblede enheter</string>
   <string name="AndroidManifest__invite_friends">Inviter venner</string>
   <string name="AndroidManifest_archived_conversations">Lagrede samtaler</string>
   <string name="AndroidManifest_remove_photo">Fjern bilde</string>
@@ -853,7 +885,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__change_passphrase">Endre passord</string>
   <string name="preferences__change_your_passphrase">Endre passordet ditt</string>
   <string name="preferences__enable_passphrase">Bruk passordfrase</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lås Signal og meldingsvarsler med ett passord</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lås Signal og meldingsvarsler med passordfrase</string>
   <string name="preferences__screen_security">Skjermsikkerhet</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokker skjermbilder i sist brukte-liste og i programmet</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Lås Signal automatisk etter valgt tid uten aktivitet</string>
@@ -901,7 +933,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__conversation_length_limit">Lengdegrense for samtaler</string>
   <string name="preferences__trim_all_conversations_now">Rydd opp i alle samtaler nå</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Søk gjennom alle samtaler og tving lengdegrenser for samtaler</string>
-  <string name="preferences__linked_devices">Tilkoblede enheter</string>
+  <string name="preferences__linked_devices">Sammenkoblede enheter</string>
   <string name="preferences__light_theme">Lys</string>
   <string name="preferences__dark_theme">Mørk</string>
   <string name="preferences__appearance">Utseende</string>
@@ -923,7 +955,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_chats__when_roaming">I fremmednett</string>
   <string name="preferences_chats__media_auto_download">Automatisk nedlasting av medier</string>
   <string name="preferences_chats__message_trimming">Meldingsforkortelse</string>
-  <string name="preferences_advanced__use_system_emoji">Bruk emoji på systemet</string>
+  <string name="preferences_advanced__use_system_emoji">Bruk systemets emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Slå av innebygd emoji-støtte i Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">La alle anrop gå via Signal-tjeneren for å unngå å avsløre telefonens IP-adresse til kontakten. Dette reduserer samtalekvaliteten.</string>
   <string name="preferences_advanced__always_relay_calls">Videresend alle anrop</string>
@@ -931,13 +963,13 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_app_protection__communication">Kommunikasjon</string>
   <string name="preferences_chats__chats">Samtaler</string>
   <string name="preferences_notifications__messages">Meldinger</string>
-  <string name="preferences_notifications__events">Arrangementer</string>
-  <string name="preferences_notifications__in_chat_sounds">Lyder i samtaler</string>
+  <string name="preferences_notifications__events">Hendelser</string>
+  <string name="preferences_notifications__in_chat_sounds">Samtalelyder</string>
   <string name="preferences_notifications__show">Vis</string>
   <string name="preferences_chats__show_invitation_prompts">Vis invitasjonsmeldinger</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Vis invitasjonsspørringer for kontakter som ikke har Signal</string>
   <string name="preferences_chats__message_text_size">Skriftstørrelse i meldinger</string>
-  <string name="preferences_events__contact_joined_signal">Kontakt ble med Signal</string>
+  <string name="preferences_events__contact_joined_signal">Når kontakt installerer Signal</string>
   <string name="preferences_notifications__priority">Prioritet</string>
   <!--****************************************-->
   <!--menus-->
@@ -975,8 +1007,11 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontaktfoto</string>
   <string name="conversation_list_item_view__archived">Arkivert</string>
+  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Innboks null</string>
+  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Zip. Zilch. Zero. Nada.\nDu er i rute!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Ny samtale</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Kom i gang ved å sende en melding til en venn.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Tilbakestill sikker økt</string>
   <!--conversation_muted-->
@@ -1049,7 +1084,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ConversationListFragment_loading">Laster...</string>
   <string name="CallNotificationBuilder_connecting">Kobler til …</string>
   <string name="Permissions_permission_required">Tillatelse kreves</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal krever tillatelse fra systemet for å kunne sende SMS-meldinger, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «SMS».</string>
   <string name="Permissions_continue">Fortsett</string>
   <string name="Permissions_not_now">Ikke nå</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal krever tillatelse fra systemet for å kunne søke etter kontakter, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kontakter».</string>
   <!--EOF-->
 </resources>

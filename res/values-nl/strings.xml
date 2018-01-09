@@ -1083,5 +1083,6 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="Permissions_continue">Doorgaan</string>
   <string name="Permissions_not_now">Niet nu</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal heeft toegang nodig tot de contacten om ze te zoeken, maar deze toestemming is permanent geweigerd. Ga naar de appinstellingen, selecteer \"Toestemmingen\" en schakel \"Contacten\" in.</string>
+  <string name="conversation_activity__enable_signal_messages">SIGNAL-BERICHTEN INSCHAKELEN</string>
   <!--EOF-->
 </resources>

@@ -120,6 +120,9 @@
   <string name="ConversationActivity_unable_to_record_audio">Kunde inte spela in ljud!</string>
   <string name="ConversationActivity_error_sending_voice_message">Fel när röstmeddelande skickades</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Det finns ingen app på din enhet som kan hantera den här länken.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">För att skicka ljudmeddelanden, vänligen ge Signal tillgång till din mikrofon.</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">För att ringa %s behöver Signal åtkomst till din mikrofon och kamera.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal behöver behörighet att använda mikrofonen och kameran för att ringa%s, men du har redan nekat åtkomsten permanent. Vänligen gå in i app-inställningar, välj \"Behörigheter\" och slå på \"Mikrofon\" och Kamera\".</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d oläst meddelande</item>
@@ -501,6 +504,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Vårt säkerhetsnummer för Signal:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Verkar som att du inte har några appar att dela till.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Inga säkerhetsnummer att jämföra med hittades i urklipp</string>
+  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Kan inte skanna QR-kod utan Kamera-behörigheten</string>
   <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Dåligt krypterat meddelande</string>
@@ -534,6 +538,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MediaPreviewActivity_you">Du</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Mediatypen stöds ej</string>
   <string name="MediaPreviewActivity_draft">Utkast</string>
+  <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Kan inte spara till externt utrymme utan behörighet</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nya meddelanden i %2$d konversationer</string>
   <string name="MessageNotifier_most_recent_from_s">Senaste från %1$s</string>
@@ -603,6 +608,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="blocked_contacts_fragment__no_blocked_contacts">Inga blockerade kontakter</string>
   <!--contact_selection_recent_activity-->
   <!--contact_selection_list_fragment-->
+  <string name="contact_selection_list_fragment__show_contacts">Visa kontakter</string>
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signalmeddelande</string>
@@ -815,7 +821,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="arrays__mute_for_one_day">Tysta i 1 dag</string>
   <string name="arrays__mute_for_seven_days">Tysta i 7 dagar</string>
   <string name="arrays__mute_for_one_year">Tysta i 1 år</string>
-  <string name="arrays__settings_default">Inställningars standardvärde</string>
+  <string name="arrays__settings_default">Inställningars standardvärden</string>
   <string name="arrays__enabled">Aktiverad</string>
   <string name="arrays__disabled">Inaktiverad</string>
   <string name="arrays__name_and_message">Namn och meddelande</string>
@@ -1047,5 +1053,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ConversationListFragment_loading">Laddar...</string>
   <string name="CallNotificationBuilder_connecting">Ansluter...</string>
   <string name="Permissions_continue">Fortsätt</string>
+  <string name="Permissions_not_now">Inte nu</string>
   <!--EOF-->
 </resources>

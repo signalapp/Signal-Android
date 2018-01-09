@@ -309,6 +309,12 @@
   <string name="ImportFragment_no_plaintext_backup_found">Lihtteksti varundust ei leitud!</string>
   <string name="ImportFragment_error_importing_backup">Varunduse importimisel tekkis viga!</string>
   <string name="ImportFragment_import_complete">Importimine õnnestus!</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages">Signal vajab SMSi luba, et importida SMS-sõnumeid, ent see on püsivalt keelatud. Palun jätka rakenduse seadetes, vali \"Load\" ja luba \"SMS\".</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">Signal vajab SMSi luba, et importida SMS-sõnumeid</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">Signal vajab mäluruumi luba, et lugeda välismälu, ent see on püsivalt keelatud. Palun jätka rakenduse seadetes, vali \"Load\", seejärel luba \"Mäluruum\".</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">Signal vajab mäluruumi luba, et lugeda välismälu.</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal vajab mäluruumi luba, et kirjutada välismälule, ent see on püsivalt keelatud. Palun jätka rakenduse seadetes, vali \"Load\", seejärel luba \"Mäluruum\".</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">Signal vajab mäluruumi luba, et kirjutada välismällu.</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Koputa ja hoia all, et salvestada helisõnum, vabasta saatmiseks</string>
   <!--InviteActivity-->
@@ -393,6 +399,8 @@
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Vabandust, see ei ole sobiv seadme linkimise QR-kood.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Lingid Signali seadme?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Tundub, et proovid linkida Signali seadet, kasutades 3. osapoole skannerit. Sinu kaitseks, palun skanneeri kood uuesti Signali siseselt.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal vajab kaamera luba, et skanneerida QR-koodi, ent see on püsivalt keelatud. Palun jätka rakenduse seadetes, vali \"Load\" ja luba \"Kaamera\".</string>
+  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">QR-koodi ei saa skanneerida ilma kaamera loata</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Hävinevad sõnumid</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Sinu sõnumid ei aegu.</string>
@@ -406,7 +414,7 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Google Play Services versioon, mis sul on installitud, ei toimi korrektselt. Palun taasinstalli Google Play Services ja proovi uuesti.</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Hinda seda rakendust</string>
-  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Kui sa naudid selle rakenduse kasutamist, palin võta aega ja aita meid, hinnates seda.</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Kui sa naudid selle rakenduse kasutamist, palun võta aega ja hinda seda, et meid aidata.</string>
   <string name="RatingManager_rate_now">Hinda nüüd!</string>
   <string name="RatingManager_no_thanks">Tänan, ei</string>
   <string name="RatingManager_later">Hiljem</string>
@@ -454,6 +462,9 @@
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play teenused uuenevad või pole hetkel saadaval. Palun proovi uuesti.</string>
   <string name="RegistrationActivity_more_information">Rohkem infot</string>
   <string name="RegistrationActivity_less_information">Vähem infot</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal vajab sinu kontaktidele ja meediale ligipääsu, et ühenduda sõpradega, vahetada sõnumeid ja teha turvalisi kõnesid</string>
+  <string name="RegistrationActivity_unable_to_connect_to_service">Teenusega ei saanud ühendust. Palun kontrolli võrguühendust ja proovi uuesti.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Et sinu telefoninumbrit lihtsalt kinnitada, võib Signal automaatselt tuvastada sinu kinnituskoodi, kui lubad sellel vaadata SMS-sõnumeid.</string>
   <!--RegistrationProblemsActivity-->
   <!--RegistrationProgressActivity-->
   <!--RegistrationService-->
@@ -522,6 +533,8 @@
   <string name="VerifyIdentityActivity_our_signal_safety_number">Meie Signali turvanumber:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Tundub, et sul pole ühtegi rakendust, kuhu jagada.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Lõikelaualt ei leitud turvanumbrit, millega võrrelda</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal vajab kaamera luba, et skanneerida QR-koodi, ent see on püsivalt keelatud. Palun jätka rakenduse seadetes, vali \"Load\" ja luba \"Kaamera\".</string>
+  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">QR-koodi ei saa skanneerida ilma kaamera loata</string>
   <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Halb krüptitud sõnum</string>
@@ -555,6 +568,7 @@
   <string name="MediaPreviewActivity_you">Sina</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Mittetoetatud meediatüüp</string>
   <string name="MediaPreviewActivity_draft">Mustand</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal vajab mäluruumi luba, et salvestada välismällu, ent see on püsivalt keelatud. Palun jätka rakenduse seadetes, vali \"Load\" ja luba \"Mäluruum\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Õiguste puudumise tõttu pole võimalik välisele andmekandjale salvestada.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d uut sõnumit %2$d vestluses</string>
@@ -587,6 +601,8 @@
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Video esitamisel tekkis viga</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Et vastata %s kõnele, anna Signalile juurdepääs oma mikrofonile.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal vajab mikrofoni ja kaamera lubasid, et teha ja vastu võtta kõnesid, ent need on püsivalt keelatud. Palun jätka rakenduse seadetes, vali \"Load\" ja luba \"Mikrofon\" ning \"Kaamera\".</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Turvanumber sinu vestluses kontaktiga %1$s on muutunud. See võib tähendada, et keegi üritab su vestlusesse sekkuda või et %2$s lihtsalt taasinstallis Signali.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Sa võid tahta kinnitada oma turvanumbrit selle kontaktiga.</string>
@@ -998,6 +1014,7 @@
   <string name="conversation_list_item_view__contact_photo_image">Kontakti foto pilt</string>
   <string name="conversation_list_item_view__archived">Arhiveeritud</string>
   <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Postkast on tüüühi</string>
+  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Zip. Zilch. Null. Nada.\nKõik on loetud!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Uus vestlus</string>
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Lisa oma postkasti midagi, näiteks alusta sõbraga sõnumite vahetamist.</string>
@@ -1072,7 +1089,10 @@
   <string name="transport_selection_list_item__transport_icon">Transpordi ikoon</string>
   <string name="ConversationListFragment_loading">Laadimine...</string>
   <string name="CallNotificationBuilder_connecting">Ühendan...</string>
+  <string name="Permissions_permission_required">Luba on vajalik</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal vajab SMS-uba, et saata SMSi, ent see on püsivalt keelatud. Palun jätka rakenduse seadetes, vali \"Load\" ja luba \"SMS\".</string>
   <string name="Permissions_continue">Jätka</string>
   <string name="Permissions_not_now">Mitte praegu</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal vajab kontaktide luba, et otsida su kontakte, ent see on püsivalt keelatud. Palun jätka rakenduse seadetes, vali \"Load\" ja luba \"Kontaktid\".</string>
   <!--EOF-->
 </resources>

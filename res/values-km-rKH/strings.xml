@@ -121,6 +121,13 @@
   <string name="ConversationActivity_unable_to_record_audio">មិនអាចថតសំឡេងបាន!</string>
   <string name="ConversationActivity_error_sending_voice_message">បញ្ហាបញ្ជូនសារសំឡេង</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">មិនមានកម្មវិធីដើម្បីបើកតំណនេះ នៅលើឧបករណ៍របស់អ្នកទេ។</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">ដើម្បីផ្ញើសារជាសំឡេង សូមអនុញ្ញាតឱ្យ Signal ចូលទៅប្រើប្រាស់មីក្រូហ្វូនរបស់អ្នក។</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal ត្រូវការសិទ្ធិប្រើប្រាស់ប្រដាប់ស្រូបសំឡេង ដើម្បីផ្ញើសារជាសំឡេង, ប៉ុន្តែ វាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅកាន់ ការកំណត់, ជ្រើសរើស  \"ការអនុញ្ញាត\", និងបើក \"ប្រដាប់ស្រូបសំឡេង\"។</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">ដើម្បីហៅចេញ %s, Signal ត្រូវការចូលប្រើប្រាស់ប្រដាប់ស្រូបសំឡេង និងកាមេរ៉ារបស់អ្នក។</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal ត្រូវការសិទ្ធិប្រើប្រាស់ប្រដាប់ស្រូបសំឡេង និងកាមេរ៉ា ដើម្បីហៅទៅកាន់ %s, ប៉ុន្តែ ពួកវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅកាន់ ការកំណត់, ជ្រើសរើស  \"ការអនុញ្ញាត\", និងបើក \"ប្រដាប់ស្រូបសំឡេង\" និង \"កាមេរ៉ា\"។</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">ដើម្បីថតរូបភាព និងវីដេអូ, សូមអនុញ្ញាត Signal ចូលប្រើប្រាស់កាមេរ៉ា។</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal ត្រូវការសិទ្ធិប្រើប្រាស់កាមេរ៉ា ដើម្បីថតរូបភាព ឬវីដេអូ, ប៉ុន្តែ វាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅកាន់ ការកំណត់, ជ្រើសរើស  \"ការអនុញ្ញាត\", និងបើក \"កាមេរ៉ា\"។</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal​ ត្រូវការសិទ្ធិប្រើប្រាស់កាមេរ៉ា ដើម្បីថតរូបភាព ឬវីដេអូ</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d សារមិនទាន់អាន</item>
@@ -286,6 +293,12 @@
   <string name="ImportFragment_no_plaintext_backup_found">រកមិនឃើញការបម្រុងទុកជាអក្សរ!</string>
   <string name="ImportFragment_error_importing_backup">មានបញ្ហានាំចូលការបម្រុងទុក!</string>
   <string name="ImportFragment_import_complete">បម្រុងទុកជោគជ័យ!</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages">Signal ត្រូវការសិទ្ធិប្រើប្រាស់សារ SMS ដើម្បីនាំចូលសារ SMS, ប៉ុន្តែ វាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅកាន់ ការកំណត់, ជ្រើសរើស  \"ការអនុញ្ញាត\", និងបើក \"សារ SMS\"។</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">Signal​ ត្រូវការសិទ្ធិប្រើប្រាស់សារ SMS ដើម្បីនាំចូលសារ SMS</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">Signal ត្រូវការសិទ្ធិប្រើប្រាស់អង្គស្តុកទុក ដើម្បីអានឯកសារពីអង្គស្តុកទុកខាងក្រៅ, ប៉ុន្តែ វាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅកាន់ ការកំណត់, ជ្រើសរើស \"ការអនុញ្ញាត\", និងបើក \"អង្គស្តុកទុក\"។ </string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">Signal ត្រូវការសិទ្ធិប្រើប្រាស់អង្គស្តុកទុក ដើម្បីអានឯកសារពីអង្គស្តុកទុកខាងក្រៅ។</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal ត្រូវការសិទ្ធិប្រើប្រាស់អង្គស្តុកទុក ដើម្បីរក្សាឯកសារក្នុងអង្គស្តុកទុកខាងក្រៅ, ប៉ុន្តែ វាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅកាន់ ការកំណត់, ជ្រើសរើស \"ការអនុញ្ញាត\", និងបើក \"អង្គស្តុកទុក\"។ </string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">Signal ត្រូវការសិទ្ធិប្រើប្រាស់អង្គស្តុកទុក ដើម្បីរក្សាឯកសារក្នុងអង្គស្តុកទុកខាងក្រៅ។</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">ចុចអោយជាប់ដើម្បីថតសំឡេងជាសារ ដកដៃចេញដើម្បីផ្ញើ</string>
   <!--InviteActivity-->
@@ -367,6 +380,8 @@
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">សុំទោស តំណកូដQR ភ្ជាប់ទៅកាន់ឧបករណ៍ មិនត្រឹមត្រូវ។</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">ភ្ជាប់ឧបករណ៍ ស៊ីហ្គណល ១?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">អ្នកហាក់ដូចជាព្យាយាមភ្ជាប់ឧបករណ៍ស៊ីហ្គណល ដោយប្រើកម្មវិធីស្កែនជនទី3។ ដើម្បីការពារសុវត្ថិភាពរបស់អ្នក សូមស្កែនកូដម្តងទៀត នៅក្នុងកម្មវិធីស៊ីហ្គណល ។</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal ត្រូវការសិទ្ធិប្រើប្រាស់កាមេរ៉ា ដើម្បីស្កេនកូដ QR, ប៉ុន្តែ វាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅកាន់ ការកំណត់, ជ្រើសរើស  \"ការអនុញ្ញាត\", និងបើក \"កាមេរ៉ា\"។</string>
+  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">មិនអាចស្កេនកូដ QR ដោយគ្មានការអនុញ្ញាតសិទ្ធិប្រើប្រាស់កាមេរ៉ា</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">សារដែលមិនបង្ហាញ</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">សាររបស់អ្នកនឹងមិនផុតកំណត់ទេ។</string>
@@ -425,6 +440,9 @@
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services កំពុងធ្វើបច្ចុប្បន្នភាព ឬមិនអាចប្រើបានជាបណ្តោះអាសន្ន។ សូមព្យាយាមម្តងទៀត។</string>
   <string name="RegistrationActivity_more_information">ព័ត៌មានបន្ថែម</string>
   <string name="RegistrationActivity_less_information">ខ្វះព័ត៌មាន</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal ត្រូវការចូលប្រើប្រាស់បញ្ជីទំនាក់ទំនងរបស់អ្នក ដើម្បីភ្ជាប់ទៅកាន់មិត្តភក្តិ, ឆ្លើយឆ្លងសារ, និងហៅទូរស័ព្ទដោយសុវត្ថិភាព</string>
+  <string name="RegistrationActivity_unable_to_connect_to_service">មិនអាចតភ្ជាប់សេវា។ សូមពិនិត្យការតភ្ជាប់បណ្តាញ ហើយសាកល្បងម្តងទៀត។</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">ដើម្បីផ្ទៀងផ្ទាត់លេខទូរស័ព្ទដោយងាយស្រួល Signal អាចកំណត់លេខកូដផ្ទៀងផ្ទាត់ដោយស្វ័យប្រវត្តិ ប្រសិនបើអ្នកអនុញ្ញាត Signal ឲ្យចូលមើលសារ SMS។</string>
   <!--RegistrationProblemsActivity-->
   <!--RegistrationProgressActivity-->
   <!--RegistrationService-->
@@ -491,6 +509,8 @@
   <string name="VerifyIdentityActivity_our_signal_safety_number">លេខសុវត្ថិភាព ស៊ីហ្គណលរបស់យើង៖</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">អ្នកហាក់ដូចជាមិនមានកម្មវិធីណាមួយដើម្បីចែករំលែក។</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">ពុំមានលេខសុវត្ថិភាព ដើម្បីប្រៀបធៀបក្នុង clipboard</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal ត្រូវការសិទ្ធិប្រើប្រាស់កាមេរ៉ា ដើម្បីស្កេនកូដ QR, ប៉ុន្តែ វាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅកាន់ ការកំណត់, ជ្រើសរើស  \"ការអនុញ្ញាត\", និងបើក \"កាមេរ៉ា\"។</string>
+  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">មិនអាចស្កេនកូដ QR ដោយគ្មានការអនុញ្ញាតប្រើប្រាស់កាមេរ៉ា</string>
   <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">សារដែលបានកាណាលកូដសម្ងាត់មិនត្រឹមត្រូវ</string>
@@ -524,6 +544,8 @@
   <string name="MediaPreviewActivity_you">អ្នក</string>
   <string name="MediaPreviewActivity_unssuported_media_type">ប្រភេទឯកសារមិនគាំទ្រ</string>
   <string name="MediaPreviewActivity_draft">ព្រាង</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal ត្រូវការសិទ្ធិប្រើប្រាស់អង្គស្តុកទុក ដើម្បីរក្សាឯកសារក្នុងអង្គស្តុកទុកខាងក្រៅ, ប៉ុន្តែ វាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅកាន់ ការកំណត់, ជ្រើសរើស \"ការអនុញ្ញាត\", និងបើក \"អង្គស្តុកទុក\"។ </string>
+  <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">មិនអាចរក្សាក្នុងអង្គស្តុកទុក ដោយគ្មានការអនុញ្ញាតប្រើប្រាស់អង្គស្តុកទុក</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d សារថ្មីក្នុង %2$d ការសន្ទនា</string>
   <string name="MessageNotifier_most_recent_from_s">ថ្មីៗភាពច្រើនមកពី៖ %1$s</string>
@@ -555,6 +577,8 @@
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">មានបញ្ហាចាក់មើលវីដេអូ</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">ដើម្បីទទួលការហៅចូលពី %s, សូមផ្តល់សិទ្ធិ Signal ឲ្យប្រើប្រាស់ប្រដាប់ស្រូបសំឡេង។</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal ត្រូវការសិទ្ធិប្រើប្រាស់ប្រដាប់ស្រូបសំឡេង និងកាមេរ៉ា ដើម្បីហៅចេញ ឬទទួលការហៅចូល, ប៉ុន្តែ ពួកវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅកាន់ ការកំណត់, ជ្រើសរើស  \"ការអនុញ្ញាត\", និងបើក \"ប្រដាប់ស្រូបសំឡេង\" និង \"កាមេរ៉ា\"។</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">លេខសុវត្ថិភាពសម្រាប់ការសន្ទនារបស់អ្នកជាមួយ %1$s បានផ្លាស់ប្តូរ។ អាចមានន័យថា មានអ្នកផ្សេងព្យាយាមជ្រាតចូលការទាក់ទង ឬ %2$s ប្រើដំឡើង ស៊ីហ្គណលឡើងវិញ។</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">អ្នកប្រហែលចង់ផ្ទៀងផ្ទាត់លេខសុវត្ថិភាពរបស់អ្នក ជាមួយលេខទំនាក់ទំនងនេះ។</string>
@@ -589,10 +613,14 @@
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">រូបភាពទំនាក់ទំនង</string>
   <!--ContactSelectionListFragment-->
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal ត្រូវការសិទ្ធិប្រើប្រាស់បញ្ជី​ទំនាក់ទំនង ដើម្បីបង្ហាញលេខទំនាក់ទំនងរបស់អ្នក  ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។  សូមបន្តទៅ ការកំណត់, ជ្រើសរើស \"អនុញ្ញាត\" , និងបើក \"បញ្ជីទំនាក់ទំនង\" ។</string>
+  <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">បញ្ហាក្នុងការទាញយកបញ្ជីទំនាក់ទំនង, សូមពិនិត្យការតភ្ជាប់បណ្តាញរបស់អ្នក</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">ពុំមានលេខដែលបានបិទ</string>
   <!--contact_selection_recent_activity-->
   <!--contact_selection_list_fragment-->
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal ត្រូវការចូលប្រើប្រាស់បញ្ជីទំនាក់ទំនងរបស់អ្នក ដើម្បីបង្ហាញវា។ </string>
+  <string name="contact_selection_list_fragment__show_contacts">បង្ហាញបញ្ជីទំនាក់ទំនង</string>
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">សារ ស៊ីហ្គណល</string>
@@ -954,6 +982,7 @@
   <string name="conversation_list_item_view__contact_photo_image">រូបថតទំនាក់ទំនង</string>
   <string name="conversation_list_item_view__archived">បានដាក់ទុកបណ្ណសារ   </string>
   <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">ប្រអប់សំបុត្រដំបូង</string>
+  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">អស្ចារ្យមែន! អ្នករួចរាល់ហើយ!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">ការសន្ទនាថ្មី</string>
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">រៀបរាប់ប្រអប់សំបុត្ររបស់អ្នក។ ចាប់ផ្តើមពីការផ្ញើសារទៅកាន់មិត្តភក្តិ។</string>
@@ -1027,6 +1056,10 @@
   <string name="transport_selection_list_item__transport_icon">រូបសញ្ញាជញ្ជូន</string>
   <string name="ConversationListFragment_loading">កំពុងផ្ទុក...</string>
   <string name="CallNotificationBuilder_connecting">កំពុងតភ្ជាប់...</string>
+  <string name="Permissions_permission_required">ទាមទារការអនុញ្ញាត</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal ត្រូវការសិទ្ធិប្រើប្រាស់សារ SMS ដើម្បីផ្ញើសារ SMS, ប៉ុន្តែ វាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅកាន់ ការកំណត់, ជ្រើសរើស  \"ការអនុញ្ញាត\", និងបើក \"សារ SMS\"។</string>
   <string name="Permissions_continue">បន្ត</string>
+  <string name="Permissions_not_now">ពេលក្រោយ</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal ត្រូវការសិទ្ធិប្រើប្រាស់បញ្ជី​ទំនាក់ទំនង ដើម្បីស្វែងរកលេខទំនាក់ទំនងរបស់អ្នក  ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។  សូមបន្តទៅ ការកំណត់, ជ្រើសរើស \"អនុញ្ញាត\" , និងបើក \"បញ្ជីទំនាក់ទំនង\" ។</string>
   <!--EOF-->
 </resources>

@@ -1063,5 +1063,6 @@
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal 需要\"簡訊\"的權限以傳送訊息，但是現在被設定為永久拒絕存取。請到應用程式設定中，選取\"權限\"，並啟用\"簡訊\"的權限。</string>
   <string name="Permissions_continue">繼續</string>
   <string name="Permissions_not_now">不是現在</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal 需要聯絡人的權限來搜尋聯絡人，但是現在設定為永久拒絕存取。請繼續到\"應用程式\"ˇ的設定中，選擇\"權限\"，接著啟動\"聯絡人\"。</string>
   <!--EOF-->
 </resources>

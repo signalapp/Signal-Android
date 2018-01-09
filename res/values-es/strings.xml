@@ -1093,5 +1093,6 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="Permissions_continue">Continuar</string>
   <string name="Permissions_not_now">Ahora no</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal necesita el permiso Contactos para buscar sus contactos, pero ha sido denegado permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilite \"Contactos\".</string>
+  <string name="conversation_activity__enable_signal_messages">HABILITAR MENSAJES DE SIGNAL</string>
   <!--EOF-->
 </resources>

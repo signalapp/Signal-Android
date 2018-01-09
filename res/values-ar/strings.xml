@@ -77,12 +77,14 @@
   <string name="CallScreen_Incoming_call">مكالمة واردة</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">إزالة</string>
-  <string name="ClearProfileActivity_remove_profile_photo">هل تود حذف سورة ملفك الشخصي ؟</string>
+  <string name="ClearProfileActivity_remove_profile_photo">هل تود حذف صورة ملفك الشخصي ؟</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">لقد تغير رقم الأمان الخاص بك وبـ %1$s. هذا إما يعني أن أحداً يحاول اعتراض اتصالكما ، أو أن %2$s ببساطة أعاد تنصيب تطبيق سيقنـال مرة آخرى.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">لربما ترغب بالتحقق من رقم الأمان مع هذا المتصل.</string>
   <string name="ConfirmIdentityDialog_accept">موافقة</string>
   <!--ContactsCursorLoader-->
+  <string name="ContactsCursorLoader_recent_chats">الدردشات الحديثة</string>
+  <string name="ContactsCursorLoader_contacts">جهات الإتصال</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">رسالة %s</string>
   <string name="ContactsDatabase_signal_call_s">مكالمة سيجنال %s</string>
@@ -129,7 +131,11 @@
   <string name="ConversationActivity_quick_camera_unavailable">الكاميرا غير موجودة</string>
   <string name="ConversationActivity_unable_to_record_audio">تعذر تسجيل الصوت!</string>
   <string name="ConversationActivity_error_sending_voice_message">خطأ في إرسال الرسالة الصوتية</string>
-  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">لا يوجد تطبيق على الجهاز لمعالجة الرابط.</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">لا يوجد تطبيق على الجهاز لمعالجة هذا الرابط.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">لإرسال رسالة صوتية, برجاء السماح لسيجنال بالوصول إلي المايكروفون</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">للإتصال ب%s, سيجنال يحتاج الوصول إلي المايكروفون و الكاميرا الخاصين بكم.</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">لإلتقاط صور و فيديوهات, برجاء السماح لسيجنال بالوصول إلي الكاميرا.</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">يحتاج سيجنال إلي إذن الوصول للكاميرا لالتقاط الصور أو الفيديوهات</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="zero">رسالة %d غير مقرؤة</item>
@@ -207,6 +213,7 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">لا يوجد متصفح بالجهاز.</string>
   <!--ConversationListFragment-->
+  <string name="ConversationListFragment_no_results_found_for_s_">لم يتم العثور على أية نتيجة لـ \'%s\'</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="zero">حذف المحادثات المختارة؟</item>
     <item quantity="one">حذف المحادثة المختارة؟</item>
@@ -257,7 +264,7 @@
   <string name="CustomDefaultPreference_using_default">الاستخدام الافتراضي: %s</string>
   <string name="CustomDefaultPreference_none">لا شيء </string>
   <!--DateUtils-->
-  <string name="DateUtils_just_now">هذه اللحظة</string>
+  <string name="DateUtils_just_now">الآن</string>
   <string name="DateUtils_minutes_ago">%d دقيقة</string>
   <string name="DateUtils_today">اليوم</string>
   <string name="DateUtils_yesterday">البارحة</string>
@@ -347,6 +354,7 @@
   <string name="ImportFragment_no_plaintext_backup_found">لم يتم العثور على نسخ احتياطية غير مشفرة!</string>
   <string name="ImportFragment_error_importing_backup">خطأ باستيراد النسخة الاحتياطية!</string>
   <string name="ImportFragment_import_complete">تم الاستيراد!</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">يحتاج سيجنال إلى إذن التخزين من أجل القراءة من وحدة التخزين الخارجية.</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">ألمس وأضغط لتسجيل رسالة صوتية. اسحب إصبعك للإرسال</string>
   <!--InviteActivity-->
@@ -357,6 +365,14 @@
   <string name="InviteActivity_heart_content_description">قلب</string>
   <string name="InviteActivity_invitations_sent">تم إرسال الدعوات!</string>
   <string name="InviteActivity_invite_to_signal">الدعوة إلى سيجنال</string>
+  <plurals name="InviteActivity_send_sms_to_friends">
+    <item quantity="zero">أرسل SMS ل%d من الأصدقاء</item>
+    <item quantity="one">أرسل أرسل SMS ل1 من الأصدقاء</item>
+    <item quantity="two">أرسل SMS ل%d من الأصدقاء</item>
+    <item quantity="few">أرسل SMS ل%d من الأصدقاء</item>
+    <item quantity="many">أرسل SMS ل%d من الأصدقاء</item>
+    <item quantity="other">أرسل SMS ل%dمن الأصدقاء</item>
+  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="zero">ارسل %d دعوة برسالة نصية؟</item>
     <item quantity="one">ارسل دعوة واحدة عبر رسالة؟</item>
@@ -494,6 +510,7 @@
   <string name="RingtonePreference_notification_sound_default">نغمة الإخطارات الإفتراضية</string>
   <string name="RingtonePreference_alarm_sound_default">نغمة التنبيه الإفتراضية</string>
   <string name="RingtonePreference_add_ringtone_text">إضافة نغمة</string>
+  <string name="RingtonePreference_unable_to_add_ringtone">تعذر إضافة نغمة رنين مخصصة</string>
   <!--Slide-->
   <string name="Slide_image">صورة</string>
   <string name="Slide_audio">صوت</string>
@@ -561,6 +578,7 @@
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">كتم الإشعارات</string>
   <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_no_web_browser_installed">لم يتم العثور على أي متصفح ويب مثبت</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">جاري الاستيراد...</string>
   <string name="ApplicationMigrationService_importing_text_messages">استيراد رسائل نصية</string>
@@ -600,9 +618,11 @@
   <string name="SingleRecipientNotificationBuilder_signal">سيجنال</string>
   <string name="SingleRecipientNotificationBuilder_new_message">رسالة جديدة</string>
   <!--UnauthorizedReminder-->
+  <string name="UnauthorizedReminder_device_no_longer_registered">إنّ الجهاز لم يعد مسجلا</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">خطأ في تشغيل الفيديو</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">للإجابة على مكالمة %s يجب السماح لسيجنال إستخدام مايكروفون جهازك.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">لربما ترغب بالتحقق من رقم الأمان مع هذا المتصل.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">رقم أمان جديد</string>
@@ -640,6 +660,7 @@
   <string name="blocked_contacts_fragment__no_blocked_contacts">لا توجد جهات اتصال محظورة </string>
   <!--contact_selection_recent_activity-->
   <!--contact_selection_list_fragment-->
+  <string name="contact_selection_list_fragment__show_contacts">إظهار جهات الإتصال</string>
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">رسالة من سيجنال</string>
@@ -662,6 +683,7 @@
   <string name="conversation_item_sent__send_failed_indicator_description">الإرسال فشل</string>
   <string name="conversation_item_sent__pending_approval_description">في انتظار الموافقة</string>
   <string name="conversation_item_sent__delivered_description">تم تسليم الرسالة</string>
+  <string name="conversation_item_sent__message_read">تم قراءة الرسالة </string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">صورة جهة الاتصال</string>
   <!--audio_view-->
@@ -808,6 +830,7 @@
   <string name="redphone_call_controls__signal_call">مكالمة سيجنال</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">رقم الهاتف</string>
+  <string name="registration_activity__verify_your_number">رجاء التحقق من رقمكم</string>
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->
@@ -820,9 +843,12 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__tap_to_scan">المس للمسح</string>
   <string name="verify_display_fragment__loading">جاري التحميل ...</string>
+  <string name="verify_display_fragment__verified"> تم التحقق منه</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">شارك رقم الأمان</string>
   <!--webrtc_answer_decline_button-->
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">إسحب إلى أعلى للإجابة</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">إسحب إلى أسفل لرفض المكالمة</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">بعض المشاكل تتطلب انتباهك.</string>
   <string name="message_details_header__sent">أرسلت</string>
@@ -1072,7 +1098,7 @@
   <string name="reminder_header_share_text">زيادة عدد الأصدقاء المستخدمي لسيجنال يجعله أفضل بكثير.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">أحفظ</string>
-  <string name="media_preview__forward_title">إعادة إرسال</string>
+  <string name="media_preview__forward_title">إعادة توجيه</string>
   <string name="media_preview__all_media_title">جميع الوسائط</string>
   <!--media_overview-->
   <string name="media_overview_documents_fragment__no_documents_found">لا توجد ملفات</string>
@@ -1090,5 +1116,6 @@
   <string name="ConversationListFragment_loading">جاري التحميل ...</string>
   <string name="CallNotificationBuilder_connecting">الاتصال جارِ...</string>
   <string name="Permissions_continue">استمر</string>
+  <string name="Permissions_not_now">ليس الآن</string>
   <!--EOF-->
 </resources>

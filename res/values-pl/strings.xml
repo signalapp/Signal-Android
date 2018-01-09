@@ -77,6 +77,7 @@
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Możesz zweryfikować numer bezpieczeństwa z tym kontaktem.</string>
   <string name="ConfirmIdentityDialog_accept">Akceptuj</string>
   <!--ContactsCursorLoader-->
+  <string name="ContactsCursorLoader_recent_chats">Ostatnie rozmowy</string>
   <string name="ContactsCursorLoader_contacts">Kontakty</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Wiadomość %s</string>
@@ -125,6 +126,8 @@
   <string name="ConversationActivity_unable_to_record_audio">Nie udało się nagrać dźwięku!</string>
   <string name="ConversationActivity_error_sending_voice_message">Błąd wysyłania wiadomości głosowej</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Brak aplikacji do obsługi tego linku na Twoim urządzeniu.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Aby wysyłać wiadomości audio, zezwól na dostęp do mikrofonu Signal.</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Aby zadzwonić do %s, Signal potrzebuje dostępu do mikrofonu i kamery.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d nieprzeczytana wiadomość</item>
@@ -547,6 +550,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Wycisz powiadomienia</string>
   <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_no_web_browser_installed">Nie zainstalowano przeglądarki internetowej!</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Trwa importowanie</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importowanie wiadomości tekstowych</string>
@@ -821,6 +825,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Podziel się numerem bezpieczeństwa</string>
   <!--webrtc_answer_decline_button-->
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Przesuń w górę, aby odebrać</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Przesuń w dół, aby odrzucić</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Niektóre kwestie wymagają Twojej uwagi.</string>
   <string name="message_details_header__sent">Wysłano</string>
@@ -1087,5 +1093,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="CallNotificationBuilder_connecting">Łączenie...</string>
   <string name="Permissions_permission_required">Wymagane uprawnienia</string>
   <string name="Permissions_continue">Kontynuuj</string>
+  <string name="Permissions_not_now">Nie teraz</string>
   <!--EOF-->
 </resources>

@@ -1094,5 +1094,7 @@
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">O Signal precisa da permissão SMS para enviar mensagens SMS, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"SMS\".</string>
   <string name="Permissions_continue">Continuar</string>
   <string name="Permissions_not_now">Agora não</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal precisa da permissão de Contatos para poder pesquisar nos seus contatos, mas ela foi permanentemente negada. Por favor, vá nas configurações do aplicativo, selecione \"Permissões\" e ative \"Contatos\".</string>
+  <string name="conversation_activity__enable_signal_messages">HABILITAR MENSAGENS SIGNAL</string>
   <!--EOF-->
 </resources>

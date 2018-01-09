@@ -51,6 +51,10 @@
   <string name="DraftDatabase_Draft_location_snippet">(localização)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Não foi possível encontrar uma aplicação para seleccionar a multimédia.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">O Signal requer permissão de acesso ao Armazenamento para anexar fotos, vídeo e áudio, mas esta foi negada permanentemente. Por favor aceda a permissões da aplicação, seleccione \"Permissões\" e active \"Armazenamento\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">O Signal requer permissão de acesso aos Contactos para anexar dados de contacto, mas esta foi negada permanentemente. Por favor aceda a permissões da aplicação, seleccione \"Permissões\" e active \"Contactos\".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">O Signal requer permissão de acesso à Localização para anexar uma localização, mas esta foi negada permanentemente. Por favor aceda a permissões da aplicação, seleccione \"Permissões\" e active \"Localização\".</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">O Signal requer permissão de acesso à Câmara para tirar fotos, mas esta foi negada permanentemente. Por favor aceda a permissões da aplicação, seleccione \"Permissões\" e active \"Câmara\".</string>
   <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Erro ao reproduzir áudio!</string>
@@ -71,6 +75,8 @@
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Pode ser desejável verificar o seu número de segurança com este contacto.</string>
   <string name="ConfirmIdentityDialog_accept">Aceitar</string>
   <!--ContactsCursorLoader-->
+  <string name="ContactsCursorLoader_recent_chats">Conversas recentes</string>
+  <string name="ContactsCursorLoader_contacts">Contactos</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mensagem %s</string>
   <string name="ContactsDatabase_signal_call_s">Chamada do Signal %s</string>
@@ -118,6 +124,13 @@
   <string name="ConversationActivity_unable_to_record_audio">Não é possível gravar áudio!</string>
   <string name="ConversationActivity_error_sending_voice_message">Erro no envio de mensagem de voz</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Não existe uma aplicação capaz de lidar com este tipo de ligação no seu dispositivo.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Para enviar mensagens áudio, dê permissões ao Signal para acesso ao microfone.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">O Signal requer permissão de acesso ao Microfone para enviar mensagens áudio, mas esta foi negada permanentemente. Por favor aceda a permissões da aplicação, seleccione \"Permissões\" e active \"Microfone\".</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Para ligar para %s, o Signal precisa de acesso ao microfone e câmara.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">O Signal requer permissões de acesso ao Microfone e Câmara, para efectuar uma chamada para %s, mas estas foram negada permanentemente. Por favor aceda a permissões da aplicação, seleccione \"Permissões\" e active \"Microfone\" e \"Câmara\".</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Para tirar fotos e filmar vídeos, dê permissões ao Signal para acesso à câmara.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">O Signal requer permissão de acesso à Câmara para tirar fotos ou vídeo, mas esta foi negada permanentemente. Por favor aceda a permissões da aplicação, seleccione \"Permissões\" e active \"Câmara\".</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">O Signal requer permissão de acesso à Câmara para tirar fotos ou vídeo</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensagem não lida</item>
@@ -163,6 +176,7 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Não existe um navegador instalado no seu dispositivo.</string>
   <!--ConversationListFragment-->
+  <string name="ConversationListFragment_no_results_found_for_s_">Sem resultados para \'%s\'</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Eliminar a conversa seleccionada?</item>
     <item quantity="other">Eliminar conversas seleccionadas?</item>
@@ -295,6 +309,12 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="ImportFragment_no_plaintext_backup_found">Não foi encontrada uma cópia de segurança em texto simples!</string>
   <string name="ImportFragment_error_importing_backup">Erro a importar cópia de segurança!</string>
   <string name="ImportFragment_import_complete">Importação completa!</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages">O Signal requer permissão de acesso a SMS para importar as mensagens SMS, mas esta foi negada permanentemente. Por favor aceda a permissões da aplicação, seleccione \"Permissões\" e active \"SMS\".</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">O Signal requer permissão de acesso a SMS para importar as mensagens SMS</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">O Signal requer permissão de acesso a Armazenamento para ler o suporte de armazenamento externo, mas esta foi negada permanentemente. Por favor aceda a permissões da aplicação, seleccione \"Permissões\" e active \"Armazenamento\".</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">O Signal requer permissão de acesso a Armazenamento para ler o suporte de armazenamento externo</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">O Signal requer permissão de acesso a Armazenamento para escrever para o suporte de armazenamento externo, mas esta foi negada permanentemente. Por favor aceda a permissões da aplicação, seleccione \"Permissões\" e active \"Armazenamento\".</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">O Signal requer permissão de acesso a Armazenamento para escrever para o suporte de armazenamento externo</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Pressione e mantenha para gravar uma mensagem de voz, liberte para a enviar.</string>
   <!--InviteActivity-->
@@ -378,6 +398,8 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Lamento mas este não é um código QR de associação de dispositivo válido.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Associe um dispositivo Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Parece estar a tentar associar um dispositivo Signal através de um scanner externo. Para sua segurança, faça scan do código através do Signal.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">O Signal requer permissão de acesso à Câmara para ler códigos QR, mas esta foi negada permanentemente. Por favor aceda a permissões da aplicação, seleccione \"Permissões\" e active \"Câmara\".</string>
+  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Não é possível ler um código QR sem permissão de acesso à Câmara.</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Mensagens a desaparecer</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">As suas mensagens não expirarão.</string>
@@ -436,6 +458,9 @@ especificou (%s) não é válido.</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Os Google Play Services estão a ser atualizados ou estão temporariamente indisponíveis. Por favor, tenta outra vez.</string>
   <string name="RegistrationActivity_more_information">Mais informação</string>
   <string name="RegistrationActivity_less_information">Menos informação</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal precisa de acesso aos contactos e média para poder ligar com os seus amigos, trocar mensagens e efectuar chamadas seguras.</string>
+  <string name="RegistrationActivity_unable_to_connect_to_service">Não foi possível conectar ao serviço. Por favor verifique a sua ligação à rede e tente novamente.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Para verificar facilmente o seu número de telefone, o Signal pode detectar automaticamente o seu código de verificação, se o permitir ler mensagens SMS.</string>
   <!--RegistrationProblemsActivity-->
   <!--RegistrationProgressActivity-->
   <!--RegistrationService-->
@@ -504,6 +529,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="VerifyIdentityActivity_our_signal_safety_number">O nosso número de segurança Signal:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Parece que não tem aplicações para as quais partilhar.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Não foi encontrado um número de segurança com o qual comparar na área de transferência</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">O Signal requer permissão de acesso à Câmara para ler códigos QR, mas esta foi negada permanentemente. Por favor aceda a permissões da aplicação, seleccione \"Permissões\" e active \"Câmara\".</string>
+  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Não é possível ler um código QR sem permissão de acesso à câmara.</string>
   <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Mensagem encriptada corrompida</string>
@@ -522,6 +549,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Silenciar notificações</string>
   <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_no_web_browser_installed">Não existe um navegador web instalado!</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importação em progresso</string>
   <string name="ApplicationMigrationService_importing_text_messages">A importar mensages de texto</string>
@@ -536,6 +564,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="MediaPreviewActivity_you">Você</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Tipo de multimédia não suportado</string>
   <string name="MediaPreviewActivity_draft">Rascunho</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">O Signal requer permissão de acesso a Armazenamento para escrever para o suporte de armazenamento externo, mas esta foi negada permanentemente. Por favor aceda a permissões da aplicação, seleccione \"Permissões\" e active \"Armazenamento\".</string>
+  <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Não é possível guardar para armazenamento externo sem permissões.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d novas mensagens em %2$d conversas</string>
   <string name="MessageNotifier_most_recent_from_s">Mais recente de: %1$s</string>
@@ -562,9 +592,13 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mensagem nova</string>
   <!--UnauthorizedReminder-->
+  <string name="UnauthorizedReminder_device_no_longer_registered">O dispositivo deixou de estar registado.</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Isto é possivelmente devido a ter registado o seu número de telefone noutro dispositivo. Pressione para re-registar.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Erro ao reproduzir o vídeo</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Para responder à chamada de %s, dê acesso ao microfone para o Signal.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">O Signal requer permissões de acesso ao Microfone e Câmara, para efectuar e receber chamadas, mas estas foram negada permanentemente. Por favor aceda a permissões da aplicação, seleccione \"Permissões\" e active \"Microfone\" e \"Câmara\".</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">O número de segurança para a sua conversa com %1$s mudou. Isto pode significar que alguém está a tentar interceptar a sua comunicação ou que %2$s simplesmente reinstalou o Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Pode ser desejável verificar o seu número de segurança com este contracto.</string>
@@ -599,10 +633,14 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Foto de Contacto</string>
   <!--ContactSelectionListFragment-->
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">O Signal requer permissão de acesso aos Contactos para visualizar os seus contactos, mas esta foi negada permanentemente. Por favor aceda a permissões da aplicação, seleccione \"Permissões\" e active \"Contactos\".</string>
+  <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Problema a obter contactos, verifique a sua ligação à rede</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nenhum contacto bloqueado</string>
   <!--contact_selection_recent_activity-->
   <!--contact_selection_list_fragment-->
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal precisa de acesso aos contactos para os poder mostrar.</string>
+  <string name="contact_selection_list_fragment__show_contacts">Mostrar contactos</string>
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Msg. do Signal</string>
@@ -762,6 +800,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONE</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">O Signal facilita as suas comunicações, já que utiliza o seu número e a sua lista telefónica. Amigos e contactos que já lhe conseguem ligar por telemóvel vão poder facilmente entrar em contacto consigo pelo Signal.\n\nO registo envia algumas informações de contacto para o servidor. Estas não são armazenadas.</string>
+  <string name="registration_activity__verify_your_number">Verifique o seu número</string>
+  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Por favor insira o seu número de telefone para receber o código de verificação. Podem haver custos por parte do seu operador.</string>
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->
@@ -780,6 +820,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Partilhar número de segurança</string>
   <!--webrtc_answer_decline_button-->
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Deslize para cima para atender</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Deslize para baixo para rejeitar</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Alguns problemas requerem a sua atenção.</string>
   <string name="message_details_header__sent">Enviado</string>
@@ -967,8 +1009,11 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Foto de Contacto</string>
   <string name="conversation_list_item_view__archived">Arquivado</string>
+  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Caixa de entrada zeeerrro</string>
+  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Zip. Népia. Zero. Nada.\nEstá completamente a par!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Conversa nova</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Dê à sua caixa de entrada also sobre o qual escrever. Comece por enviar uma mensagem para um amigo.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Reiniciar sessão segura</string>
   <!--conversation_muted-->
@@ -1040,6 +1085,11 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="transport_selection_list_item__transport_icon">Icon de transporte</string>
   <string name="ConversationListFragment_loading">A carregar...</string>
   <string name="CallNotificationBuilder_connecting">A ligar...</string>
+  <string name="Permissions_permission_required">Permissão necessária</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">O Signal requer permissão de acesso a SMS para enviar uma mensagem SMS, mas esta foi negada permanentemente. Por favor aceda a permissões da aplicação, seleccione \"Permissões\" e active \"SMS\".</string>
   <string name="Permissions_continue">Continuar</string>
+  <string name="Permissions_not_now">Agora não</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">O Signal requer permissão de acesso aos Contactos para pesquisar os seus contactos, mas esta foi negada permanentemente. Por favor aceda a permissões da aplicação, seleccione \"Permissões\" e active \"Contactos\".</string>
+  <string name="conversation_activity__enable_signal_messages">ACTIVAR MENSAGENS SIGNAL</string>
   <!--EOF-->
 </resources>

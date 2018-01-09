@@ -1059,5 +1059,6 @@
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal 需要短信权限以发送短信，但是该权限已经被永久拒绝。请进入应用程序设置，点击权限，并启用“短信”。</string>
   <string name="Permissions_continue">继续</string>
   <string name="Permissions_not_now">稍后再说</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal 需要\"通讯录\"权限才能显示联系人信息，但是该权限已被永久禁用。请转到系统的应用设置菜单，找到权限设置，选择 Signal 应用，并启用\"通讯录\"权限。 </string>
   <!--EOF-->
 </resources>

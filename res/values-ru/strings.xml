@@ -1134,5 +1134,6 @@
   <string name="Permissions_continue">Продолжить</string>
   <string name="Permissions_not_now">Не сейчас</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Для поиска ваших знакомых Signal требуется разрешение на доступ к контактам, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Контакты.</string>
+  <string name="conversation_activity__enable_signal_messages">ВКЛЮЧИТЬ СООБЩЕНИЯ SIGNAL</string>
   <!--EOF-->
 </resources>
