@@ -117,8 +117,16 @@ public class ZoomingImageView extends FrameLayout {
   }
 
   public void cleanup() {
+    photoView.setOnClickListener(null);
     photoView.setImageDrawable(null);
+    subsamplingImageView.setOnClickListener(null);
     subsamplingImageView.recycle();
+  }
+
+  @Override
+  public void setOnClickListener(@Nullable View.OnClickListener l) {
+    photoView.setOnClickListener(l);
+    subsamplingImageView.setOnClickListener(l);
   }
 
   private static class AttachmentBitmapDecoderFactory implements DecoderFactory<AttachmentBitmapDecoder> {

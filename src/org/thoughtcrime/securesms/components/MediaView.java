@@ -53,10 +53,11 @@ public class MediaView extends FrameLayout {
     this.videoView = new Stub<>(findViewById(R.id.video_player_stub));
   }
 
-  public void set(@NonNull GlideRequests glideRequests,
-                  @NonNull Window window,
-                  @NonNull Uri source,
-                  @NonNull String mediaType,
+  public void set(@NonNull  GlideRequests glideRequests,
+                  @NonNull  Window window,
+                  @Nullable View.OnClickListener onClickListener,
+                  @NonNull  Uri source,
+                  @NonNull  String mediaType,
                   long size,
                   boolean autoplay)
       throws IOException
@@ -65,6 +66,7 @@ public class MediaView extends FrameLayout {
       imageView.setVisibility(View.VISIBLE);
       if (videoView.resolved()) videoView.get().setVisibility(View.GONE);
       imageView.setImageUri(glideRequests, source, mediaType);
+      imageView.setOnClickListener(onClickListener);
     } else if (mediaType.startsWith("video/")) {
       imageView.setVisibility(View.GONE);
       videoView.get().setVisibility(View.VISIBLE);

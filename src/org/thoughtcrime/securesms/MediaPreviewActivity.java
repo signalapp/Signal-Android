@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -30,6 +31,7 @@ import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
@@ -210,7 +212,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     if (conversationRecipient != null) {
       getSupportLoaderManager().restartLoader(0, null, this);
     } else {
-      mediaPager.setAdapter(new SingleItemPagerAdapter(this, GlideApp.with(this), getWindow(), initialMediaUri, initialMediaType, initialMediaSize));
+      mediaPager.setAdapter(new SingleItemPagerAdapter(this, GlideApp.with(this), getWindow(), getOnClickListener(), initialMediaUri, initialMediaType, initialMediaSize));
     }
   }
 
@@ -339,8 +341,40 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     }
   }
 
+  @RequiresApi(VERSION_CODES.JELLY_BEAN)
+  private void toggleBars() {
+    if (isFullscreen()) showBars();
+    else                hideBars();
+  }
+
+  @TargetApi(VERSION_CODES.JELLY_BEAN)
+  private void showBars() {
+    getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+                                                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+  }
+
+  @TargetApi(VERSION_CODES.JELLY_BEAN)
+  private void hideBars() {
+    getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+                                                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE     |
+                                                     View.SYSTEM_UI_FLAG_FULLSCREEN);
+  }
+
   public static boolean isContentTypeSupported(final String contentType) {
     return contentType != null && (contentType.startsWith("image/") || contentType.startsWith("video/"));
+  }
+
+  @TargetApi(VERSION_CODES.JELLY_BEAN)
+  private boolean isFullscreen() {
+    return (getWindow().getDecorView().getSystemUiVisibility() & View.SYSTEM_UI_FLAG_FULLSCREEN) != 0;
+  }
+
+  private @Nullable View.OnClickListener getOnClickListener() {
+    if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN) {
+      return view -> toggleBars();
+    } else {
+      return null;
+    }
   }
 
   @Override
@@ -352,7 +386,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   public void onLoadFinished(Loader<Pair<Cursor, Integer>> loader, @Nullable Pair<Cursor, Integer> data) {
     if (data != null) {
       @SuppressWarnings("ConstantConditions")
-      CursorPagerAdapter adapter = new CursorPagerAdapter(this, GlideApp.with(this), getWindow(), data.first, data.second, leftIsRecent);
+      CursorPagerAdapter adapter = new CursorPagerAdapter(this, GlideApp.with(this), getWindow(), data.first, getOnClickListener(), data.second, leftIsRecent);
       mediaPager.setAdapter(adapter);
       adapter.setActive(true);
 
@@ -398,24 +432,26 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
   private static class SingleItemPagerAdapter extends PagerAdapter implements MediaItemAdapter {
 
-    private final GlideRequests glideRequests;
-    private final Window        window;
-    private final Uri           uri;
-    private final String        mediaType;
-    private final long          size;
+    private final GlideRequests        glideRequests;
+    private final Window               window;
+    private final View.OnClickListener onClickListener;
+    private final Uri                  uri;
+    private final String               mediaType;
+    private final long                 size;
 
     private final LayoutInflater inflater;
 
     SingleItemPagerAdapter(@NonNull Context context, @NonNull GlideRequests glideRequests,
-                           @NonNull Window window, @NonNull Uri uri, @NonNull String mediaType,
-                           long size)
+                           @NonNull Window window, @Nullable View.OnClickListener onClickListener,
+                           @NonNull Uri uri, @NonNull String mediaType, long size)
     {
-      this.glideRequests = glideRequests;
-      this.window        = window;
-      this.uri           = uri;
-      this.mediaType     = mediaType;
-      this.size          = size;
-      this.inflater      = LayoutInflater.from(context);
+      this.glideRequests   = glideRequests;
+      this.window          = window;
+      this.onClickListener = onClickListener;
+      this.uri             = uri;
+      this.mediaType       = mediaType;
+      this.size            = size;
+      this.inflater        = LayoutInflater.from(context);
     }
 
     @Override
@@ -434,7 +470,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
       MediaView mediaView = itemView.findViewById(R.id.media_view);
 
       try {
-        mediaView.set(glideRequests, window, uri, mediaType, size, true);
+        mediaView.set(glideRequests, window, onClickListener, uri, mediaType, size, true);
       } catch (IOException e) {
         Log.w(TAG, e);
       }
@@ -467,23 +503,26 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
     private final WeakHashMap<Integer, MediaView> mediaViews = new WeakHashMap<>();
 
-    private final Context       context;
-    private final GlideRequests glideRequests;
-    private final Window        window;
-    private final Cursor        cursor;
-    private final boolean       leftIsRecent;
+    private final Context              context;
+    private final GlideRequests        glideRequests;
+    private final Window               window;
+    private final Cursor               cursor;
+    private final boolean              leftIsRecent;
+    private final View.OnClickListener onClickListener;
 
     private boolean active;
     private int     autoPlayPosition;
 
     CursorPagerAdapter(@NonNull Context context, @NonNull GlideRequests glideRequests,
-                       @NonNull Window window, @NonNull Cursor cursor, int autoPlayPosition,
+                       @NonNull Window window, @NonNull Cursor cursor,
+                       @Nullable View.OnClickListener onClickListener, int autoPlayPosition,
                        boolean leftIsRecent)
     {
       this.context          = context.getApplicationContext();
       this.glideRequests    = glideRequests;
       this.window           = window;
       this.cursor           = cursor;
+      this.onClickListener  = onClickListener;
       this.autoPlayPosition = autoPlayPosition;
       this.leftIsRecent     = leftIsRecent;
     }
@@ -519,7 +558,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
       try {
         //noinspection ConstantConditions
-        mediaView.set(glideRequests, window, mediaRecord.getAttachment().getDataUri(), mediaRecord.getAttachment().getContentType(), mediaRecord.getAttachment().getSize(), autoplay);
+        mediaView.set(glideRequests, window, onClickListener, mediaRecord.getAttachment().getDataUri(), mediaRecord.getAttachment().getContentType(), mediaRecord.getAttachment().getSize(), autoplay);
       } catch (IOException e) {
         Log.w(TAG, e);
       }
