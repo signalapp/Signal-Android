@@ -46,6 +46,7 @@ import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelection;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.trackselection.TrackSelector;
+import com.google.android.exoplayer2.ui.PlaybackControlView;
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.exoplayer2.upstream.BandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
@@ -121,6 +122,10 @@ public class VideoPlayer extends FrameLayout {
 
   public void setWindow(@Nullable Window window) {
     this.window = window;
+  }
+
+  public void setPlaybackControlVisibilityListener(PlaybackControlView.VisibilityListener listener) {
+    if (exoView != null) exoView.setControllerVisibilityListener(listener);
   }
 
   private void setExoViewSource(@NonNull VideoSlide videoSource, boolean autoplay)

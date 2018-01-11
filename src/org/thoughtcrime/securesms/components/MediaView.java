@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.Window;
 import android.widget.FrameLayout;
 
+import com.google.android.exoplayer2.ui.PlaybackControlView;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.VideoSlide;
@@ -55,7 +57,7 @@ public class MediaView extends FrameLayout {
 
   public void set(@NonNull  GlideRequests glideRequests,
                   @NonNull  Window window,
-                  @Nullable View.OnClickListener onClickListener,
+                  @Nullable MediaViewListener listener,
                   @NonNull  Uri source,
                   @NonNull  String mediaType,
                   long size,
@@ -66,12 +68,13 @@ public class MediaView extends FrameLayout {
       imageView.setVisibility(View.VISIBLE);
       if (videoView.resolved()) videoView.get().setVisibility(View.GONE);
       imageView.setImageUri(glideRequests, source, mediaType);
-      imageView.setOnClickListener(onClickListener);
+      imageView.setOnClickListener(listener);
     } else if (mediaType.startsWith("video/")) {
       imageView.setVisibility(View.GONE);
       videoView.get().setVisibility(View.VISIBLE);
       videoView.get().setWindow(window);
       videoView.get().setVideoSource(new VideoSlide(getContext(), source, size), autoplay);
+      videoView.get().setPlaybackControlVisibilityListener(listener);
     } else {
       throw new IOException("Unsupported media type: " + mediaType);
     }
@@ -89,4 +92,6 @@ public class MediaView extends FrameLayout {
       this.videoView.get().cleanup();
     }
   }
+
+  public interface MediaViewListener extends View.OnClickListener, PlaybackControlView.VisibilityListener {}
 }
