@@ -392,7 +392,7 @@ public class PushDecryptJob extends ContextJob {
     IncomingMediaMessage mediaMessage = new IncomingMediaMessage(masterSecret,
                                                                  Address.fromExternal(context, envelope.getSource()),
                                                                  message.getTimestamp(), -1,
-                                                                 message.getExpiresInSeconds() * 1000, true,
+                                                                 message.getExpiresInSeconds() * 1000L, true,
                                                                  Optional.fromNullable(envelope.getRelay()),
                                                                  Optional.<String>absent(), message.getGroupInfo(),
                                                                  Optional.<List<SignalServiceAttachment>>absent());
@@ -524,7 +524,7 @@ public class PushDecryptJob extends ContextJob {
     IncomingMediaMessage mediaMessage = new IncomingMediaMessage(masterSecret,
                                                                  Address.fromExternal(context, envelope.getSource()),
                                                                  message.getTimestamp(), -1,
-                                                                 message.getExpiresInSeconds() * 1000, false,
+                                                                 message.getExpiresInSeconds() * 1000L, false,
                                                                  Optional.fromNullable(envelope.getRelay()),
                                                                  message.getBody(),
                                                                  message.getGroupInfo(),
@@ -568,7 +568,7 @@ public class PushDecryptJob extends ContextJob {
 
     OutgoingExpirationUpdateMessage expirationUpdateMessage = new OutgoingExpirationUpdateMessage(recipient,
                                                                                                   message.getTimestamp(),
-                                                                                                  message.getMessage().getExpiresInSeconds() * 1000);
+                                                                                                  message.getMessage().getExpiresInSeconds() * 1000L);
 
     long threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
     long messageId = database.insertMessageOutbox(masterSecret, expirationUpdateMessage, threadId, false, null);
@@ -589,7 +589,7 @@ public class PushDecryptJob extends ContextJob {
     OutgoingMediaMessage  mediaMessage = new OutgoingMediaMessage(recipients, message.getMessage().getBody().orNull(),
                                                                   PointerAttachment.forPointers(masterSecret, message.getMessage().getAttachments()),
                                                                   message.getTimestamp(), -1,
-                                                                  message.getMessage().getExpiresInSeconds() * 1000,
+                                                                  message.getMessage().getExpiresInSeconds() * 1000L,
                                                                   ThreadDatabase.DistributionTypes.DEFAULT);
 
     mediaMessage = new OutgoingSecureMediaMessage(mediaMessage);
@@ -615,7 +615,7 @@ public class PushDecryptJob extends ContextJob {
                         .getExpiringMessageManager()
                         .scheduleDeletion(messageId, true,
                                           message.getExpirationStartTimestamp(),
-                                          message.getMessage().getExpiresInSeconds() * 1000);
+                                          message.getMessage().getExpiresInSeconds() * 1000L);
     }
 
     return threadId;
@@ -644,7 +644,7 @@ public class PushDecryptJob extends ContextJob {
                                                                 envelope.getSourceDevice(),
                                                                 message.getTimestamp(), body,
                                                                 message.getGroupInfo(),
-                                                                message.getExpiresInSeconds() * 1000);
+                                                                message.getExpiresInSeconds() * 1000L);
 
       textMessage = new IncomingEncryptedMessage(textMessage, body);
       Optional<InsertResult> insertResult = database.insertMessageInbox(masterSecret, textMessage);
@@ -667,7 +667,7 @@ public class PushDecryptJob extends ContextJob {
 
     Recipient recipient       = getSyncMessageDestination(message);
     String    body            = message.getMessage().getBody().or("");
-    long      expiresInMillis = message.getMessage().getExpiresInSeconds() * 1000;
+    long      expiresInMillis = message.getMessage().getExpiresInSeconds() * 1000L;
 
     if (recipient.getExpireMessages() != message.getMessage().getExpiresInSeconds()) {
       handleSynchronizeSentExpirationUpdate(masterSecret, message);
