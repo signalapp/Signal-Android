@@ -88,6 +88,8 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   private long      initialMediaSize;
   private Recipient conversationRecipient;
 
+  private int restartItem = -1;
+
   @SuppressWarnings("ConstantConditions")
   @Override
   protected void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
@@ -155,7 +157,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   @Override
   public void onPause() {
     super.onPause();
-    cleanupMedia();
+    restartItem = cleanupMedia();
   }
 
   @Override
@@ -177,6 +179,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     initialMediaUri  = getIntent().getData();
     initialMediaType = getIntent().getType();
     initialMediaSize = getIntent().getLongExtra(SIZE_EXTRA, 0);
+    restartItem      = -1;
 
     if (address != null) {
       conversationRecipient = Recipient.from(this, address, true);
@@ -195,15 +198,19 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     Log.w(TAG, "Loading Part URI: " + initialMediaUri);
 
     if (conversationRecipient != null) {
-      getSupportLoaderManager().initLoader(0, null, this);
+      getSupportLoaderManager().restartLoader(0, null, this);
     } else {
       mediaPager.setAdapter(new SingleItemPagerAdapter(this, masterSecret, GlideApp.with(this), getWindow(), initialMediaUri, initialMediaType, initialMediaSize));
     }
   }
 
-  private void cleanupMedia() {
+  private int cleanupMedia() {
+    int restartItem = mediaPager.getCurrentItem();
+
     mediaPager.removeAllViews();
     mediaPager.setAdapter(null);
+
+    return restartItem;
   }
 
   private void showOverview() {
@@ -297,7 +304,9 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
       CursorPagerAdapter adapter = new CursorPagerAdapter(this, masterSecret, GlideApp.with(this), getWindow(), data.first, data.second);
       mediaPager.setAdapter(adapter);
       adapter.setActive(true);
-      mediaPager.setCurrentItem(data.second);
+
+      if (restartItem < 0) mediaPager.setCurrentItem(data.second);
+      else                 mediaPager.setCurrentItem(restartItem);
     }
   }
 
