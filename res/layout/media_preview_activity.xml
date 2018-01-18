@@ -5,7 +5,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/gray95">
 
-    <android.support.v4.view.ViewPager
+    <org.thoughtcrime.securesms.components.viewpager.HackyViewPager
             android:id="@+id/media_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
