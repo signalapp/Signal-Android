@@ -19,7 +19,6 @@ import org.whispersystems.signalservice.api.messages.multidevice.ContactsMessage
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceContact;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceContactsOutputStream;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
-import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.ByteArrayInputStream;
@@ -55,11 +54,11 @@ public class MultiDeviceProfileKeyUpdateJob extends MasterSecretJob implements I
     DeviceContactsOutputStream out        = new DeviceContactsOutputStream(baos);
 
     out.write(new DeviceContact(TextSecurePreferences.getLocalNumber(getContext()),
-                                Optional.<String>absent(),
-                                Optional.<SignalServiceAttachmentStream>absent(),
-                                Optional.<String>absent(),
-                                Optional.<VerifiedMessage>absent(),
-                                profileKey));
+                                Optional.absent(),
+                                Optional.absent(),
+                                Optional.absent(),
+                                Optional.absent(),
+                                profileKey, false, Optional.absent()));
 
     out.close();
 

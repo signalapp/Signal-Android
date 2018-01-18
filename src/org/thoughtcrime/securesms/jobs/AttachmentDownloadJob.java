@@ -169,6 +169,7 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
       return new SignalServiceAttachmentPointer(id, null, key, relay,
                                                 Optional.of(Util.toIntExact(attachment.getSize())),
                                                 Optional.absent(),
+                                                0, 0,
                                                 Optional.fromNullable(attachment.getDigest()),
                                                 Optional.fromNullable(attachment.getFileName()),
                                                 attachment.isVoiceNote());

@@ -10,6 +10,8 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -68,9 +70,12 @@ public class MultiDeviceGroupUpdateJob extends MasterSecretJob implements Inject
             members.add(member.serialize());
           }
 
+          Recipient         recipient       = Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(record.getId(), record.isMms())), false);
+          Optional<Integer> expirationTimer = recipient.getExpireMessages() > 0 ? Optional.of(recipient.getExpireMessages()) : Optional.absent();
+
           out.write(new DeviceGroup(record.getId(), Optional.fromNullable(record.getTitle()),
                                     members, getAvatar(record.getAvatar()),
-                                    record.isActive()));
+                                    record.isActive(), expirationTimer));
         }
       }
 
