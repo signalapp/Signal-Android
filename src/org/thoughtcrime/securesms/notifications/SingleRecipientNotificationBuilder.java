@@ -254,7 +254,8 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
                      .submit(500, 500)
                      .get();
     } catch (InterruptedException | ExecutionException e) {
-      throw new AssertionError(e);
+      Log.w(TAG, e);
+      return Bitmap.createBitmap(500, 500, Bitmap.Config.RGB_565);
     }
   }
 
