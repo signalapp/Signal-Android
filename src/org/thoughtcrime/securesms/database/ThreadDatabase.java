@@ -382,6 +382,13 @@ public class ThreadDatabase extends Database {
     return db.rawQuery(query, null);
   }
 
+    public Cursor getShortcutList() {
+      SQLiteDatabase db    = databaseHelper.getReadableDatabase();
+      String         query = createQuery(MESSAGE_COUNT + " != 0", 4);
+
+      return db.rawQuery(query, null);
+    }
+
   public int getArchivedConversationListCount() {
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
     Cursor cursor     = null;

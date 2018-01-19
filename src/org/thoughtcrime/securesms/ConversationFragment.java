@@ -25,6 +25,7 @@ import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
@@ -53,6 +54,7 @@ import android.widget.Toast;
 import org.thoughtcrime.securesms.ConversationAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.ConversationAdapter.ItemClickListener;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
@@ -180,7 +182,19 @@ public class ConversationFragment extends Fragment
   }
 
   private void initializeResources() {
-    this.recipient         = Recipient.from(getActivity(), getActivity().getIntent().getParcelableExtra(ConversationActivity.ADDRESS_EXTRA), true);
+
+    //Because we don't know which type the intent is we check it with an object
+    Bundle bundle = getActivity().getIntent().getExtras();
+    Object value = bundle.get(ConversationActivity.ADDRESS_EXTRA);
+
+    if(value instanceof Parcelable) {
+      recipient        = Recipient.from(getActivity(), getActivity().getIntent().getParcelableExtra(ConversationActivity.ADDRESS_EXTRA), true);
+
+    } else {
+      String address = getActivity().getIntent().getStringExtra(ConversationActivity.ADDRESS_EXTRA);
+      recipient = Recipient.from(getActivity(), Address.fromSerialized(address), true);
+    }
+
     this.threadId          = this.getActivity().getIntent().getLongExtra(ConversationActivity.THREAD_ID_EXTRA, -1);
     this.lastSeen          = this.getActivity().getIntent().getLongExtra(ConversationActivity.LAST_SEEN_EXTRA, -1);
     this.firstLoad         = true;

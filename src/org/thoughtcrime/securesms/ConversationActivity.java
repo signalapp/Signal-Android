@@ -34,6 +34,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.os.Vibrator;
 import android.provider.Browser;
 import android.provider.ContactsContract;
@@ -1299,7 +1300,17 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void initializeResources() {
     if (recipient != null) recipient.removeListener(this);
 
-    recipient        = Recipient.from(this, getIntent().getParcelableExtra(ADDRESS_EXTRA), true);
+    //Because we don't know which type the intent is we check it with an object
+    Bundle bundle = getIntent().getExtras();
+    Object value = bundle.get(ConversationActivity.ADDRESS_EXTRA);
+
+    if(value instanceof Parcelable) {
+      recipient        = Recipient.from(this, getIntent().getParcelableExtra(ADDRESS_EXTRA), true);
+    } else {
+      String address = getIntent().getStringExtra(ADDRESS_EXTRA);
+      recipient = Recipient.from(this, Address.fromSerialized(address), true);
+    }
+
     threadId         = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
     archived         = getIntent().getBooleanExtra(IS_ARCHIVED_EXTRA, false);
     distributionType = getIntent().getIntExtra(DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);

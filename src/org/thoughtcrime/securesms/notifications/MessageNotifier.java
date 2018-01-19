@@ -39,6 +39,7 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.ConversationActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.ShortcutHelper;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
@@ -272,6 +273,13 @@ public class MessageNotifier {
         sendMultipleThreadNotification(context, notificationState, signal);
       } else {
         sendSingleThreadNotification(context, masterSecret, notificationState, signal, false);
+      }
+
+      if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+        //Also when the MessageNotifier has not something to do with Shortcuts we need to make a
+        //refresh here because we need to refresh Shortcuts when a new message appears to have an
+        //actual list of chats in the list
+        new ShortcutHelper(context).buildAllShortcuts();
       }
 
       cancelOrphanedNotifications(context, notificationState);
