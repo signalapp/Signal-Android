@@ -16,7 +16,6 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.*;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
@@ -28,7 +27,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
