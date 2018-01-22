@@ -51,6 +51,10 @@ public class DateUtils extends android.text.format.DateUtils {
     return new SimpleDateFormat(localizedPattern, locale).format(new Date(time));
   }
 
+  public static String getAbsoluteTimeSpanString(final Locale locale, final long timestamp) {
+    return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", locale).format(new Date(timestamp));
+  }
+
   public static String getBriefRelativeTimeSpanString(final Context c, final Locale locale, final long timestamp) {
     if (isWithin(timestamp, 1, TimeUnit.MINUTES)) {
       return c.getString(R.string.DateUtils_just_now);
