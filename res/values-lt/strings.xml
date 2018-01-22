@@ -1120,5 +1120,6 @@
   <string name="Permissions_continue">Tęsti</string>
   <string name="Permissions_not_now">Ne dabar</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Norint rodyti jūsų kontaktus, Signal reikia kontaktų leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Kontaktus\".</string>
+  <string name="conversation_activity__enable_signal_messages">ĮJUNGTI SIGNAL ŽINUTES</string>
   <!--EOF-->
 </resources>

@@ -1061,5 +1061,6 @@
   <string name="Permissions_continue">បន្ត</string>
   <string name="Permissions_not_now">ពេលក្រោយ</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal ត្រូវការសិទ្ធិប្រើប្រាស់បញ្ជី​ទំនាក់ទំនង ដើម្បីស្វែងរកលេខទំនាក់ទំនងរបស់អ្នក  ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។  សូមបន្តទៅ ការកំណត់, ជ្រើសរើស \"អនុញ្ញាត\" , និងបើក \"បញ្ជីទំនាក់ទំនង\" ។</string>
+  <string name="conversation_activity__enable_signal_messages">បើកប្រើសារ SIGNAL </string>
   <!--EOF-->
 </resources>

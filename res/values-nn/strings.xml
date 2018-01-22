@@ -1091,5 +1091,6 @@ Du er à jour!</string>
   <string name="Permissions_continue">Hald fram</string>
   <string name="Permissions_not_now">Ikkje no</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal treng tilgang til kontaktar for å søka i kontaktar, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Kontaktar».</string>
+  <string name="conversation_activity__enable_signal_messages">SKRU PÅ SIGNAL-MELDINGAR</string>
   <!--EOF-->
 </resources>

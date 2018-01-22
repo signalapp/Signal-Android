@@ -1044,7 +1044,7 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Parapamje e medias</string>
   <!--new_conversation_activity-->
-  <string name="new_conversation_activity__refresh">FRESKO</string>
+  <string name="new_conversation_activity__refresh">Fresko</string>
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">Duke fshirë</string>
@@ -1057,5 +1057,6 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <string name="Permissions_permission_required">Kërkohet leje</string>
   <string name="Permissions_continue">Vazhdo</string>
   <string name="Permissions_not_now">Jo tash</string>
+  <string name="conversation_activity__enable_signal_messages">AKTIVIZO MESAZHET NË SIGNAL</string>
   <!--EOF-->
 </resources>

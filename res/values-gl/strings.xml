@@ -1094,5 +1094,6 @@
   <string name="Permissions_continue">Continuar</string>
   <string name="Permissions_not_now">Agora non</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal necesita permiso para acceder aos contactos e facer buscas neles, pero foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Contactos\".</string>
+  <string name="conversation_activity__enable_signal_messages">ACTIVAR MENSAXES DE SIGNAL</string>
   <!--EOF-->
 </resources>

@@ -1084,5 +1084,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="Permissions_continue">Jatka</string>
   <string name="Permissions_not_now">Ei nyt</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal tarvitsee lupaa käyttää laitteesi yhteystietoja niiden etsimistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Jatka sovellusten asetuksiin, valitse \"Sovelluksen käyttöoikeudet\" ja laita päälle  \"Yhteystiedot\".</string>
+  <string name="conversation_activity__enable_signal_messages">OTA KÄYTTÖÖN SIGNAL-VIESTIT</string>
   <!--EOF-->
 </resources>

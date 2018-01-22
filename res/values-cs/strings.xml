@@ -1108,5 +1108,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="Permissions_continue">Pokračovat</string>
   <string name="Permissions_not_now">Teď ne</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signál potřebuje oprávnění pro přístup ke kontaktům aby je mohl  vyhledávat, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Kontakty\", </string>
+  <string name="conversation_activity__enable_signal_messages">POVOLIT ZPRÁVY</string>
   <!--EOF-->
 </resources>

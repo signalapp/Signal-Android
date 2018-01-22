@@ -116,6 +116,7 @@
   <string name="ConversationActivity_unable_to_record_audio">Fejl ved lydoptagelse!</string>
   <string name="ConversationActivity_error_sending_voice_message">Der skete en fejl, da vi sendte voice besked.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Der er ingen app, der kan åbne dette link på dit device.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">For at sende talebeskeder skal du give Signal adgang til mikrofonen.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ulæst besked</item>

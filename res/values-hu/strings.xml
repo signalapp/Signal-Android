@@ -1098,5 +1098,6 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="Permissions_continue">Folytatás</string>
   <string name="Permissions_not_now">Most nem</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">A Signal-nak szüksége van a Névjegyek engedélyre, hogy megkeresse a névjegyeid, de ez meg van tagadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Névjegyek\"-et.</string>
+  <string name="conversation_activity__enable_signal_messages">SIGNAL ÜZENETEK ENGEDÉLYEZÉSE</string>
   <!--EOF-->
 </resources>

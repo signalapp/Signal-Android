@@ -1087,5 +1087,6 @@
   <string name="Permissions_continue">המשך</string>
   <string name="Permissions_not_now">לא עכשיו</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal צריך הרשאת אנשי קשר על מנת לחפש את אנשי הקשר שלך, אבל היא נדחתה לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"אנשי קשר\".</string>
+  <string name="conversation_activity__enable_signal_messages">אפשר הודעות SIGNAL</string>
   <!--EOF-->
 </resources>

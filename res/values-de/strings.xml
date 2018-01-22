@@ -1077,6 +1077,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="Permissions_continue">Weiter</string>
   <string name="Permissions_not_now">Nicht jetzt</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal benötigt die Berechtigung »Kontakte« für das Suchen in deinen Kontakten, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kontakte«.</string>
-  <string name="conversation_activity__enable_signal_messages">AKTIVIERE SIGNAL-NACHRICHTEN</string>
+  <string name="conversation_activity__enable_signal_messages">SIGNAL-NACHRICHTEN AKTIVIEREN</string>
   <!--EOF-->
 </resources>
