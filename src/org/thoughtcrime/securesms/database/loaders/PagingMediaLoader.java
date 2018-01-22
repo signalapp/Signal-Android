@@ -40,7 +40,7 @@ public class PagingMediaLoader extends AsyncLoader<Pair<Cursor, Integer>> {
       Uri          attachmentUri = PartAuthority.getAttachmentDataUri(attachmentId);
 
       if (attachmentUri.equals(uri)) {
-        return new Pair<>(cursor, cursor.getCount() - 1 - cursor.getPosition());
+        return new Pair<>(cursor, cursor.getPosition());
       }
     }
 

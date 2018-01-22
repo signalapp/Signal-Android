@@ -460,11 +460,10 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
       View      itemView       = LayoutInflater.from(context).inflate(R.layout.media_view_page, container, false);
       MediaView mediaView      = itemView.findViewById(R.id.media_view);
       boolean   autoplay       = position == autoPlayPosition;
-      int       cursorPosition = getCursorPosition(position);
 
       autoPlayPosition = -1;
 
-      cursor.moveToPosition(cursorPosition);
+      cursor.moveToPosition(position);
 
       MediaRecord mediaRecord = MediaRecord.from(context, masterSecret, cursor);
 
@@ -491,7 +490,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     }
 
     public MediaItem getMediaItemFor(int position) {
-      cursor.moveToPosition(getCursorPosition(position));
+      cursor.moveToPosition(position);
       MediaRecord mediaRecord = MediaRecord.from(context, masterSecret, cursor);
       Address     address     = mediaRecord.getAddress();
 
@@ -508,10 +507,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     public void pause(int position) {
       MediaView mediaView = mediaViews.get(position);
       if (mediaView != null) mediaView.pause();
-    }
-
-    private int getCursorPosition(int position) {
-      return cursor.getCount() - 1 - position;
     }
   }
 
