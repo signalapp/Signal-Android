@@ -17,9 +17,13 @@
  */
 package org.thoughtcrime.securesms.recipients;
 
+import android.content.ContentResolver;
 import android.content.Context;
+import android.database.Cursor;
 import android.graphics.drawable.Drawable;
+import android.media.RingtoneManager;
 import android.net.Uri;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -605,5 +609,55 @@ public class Recipient implements RecipientModifiedListener {
     return resolving;
   }
 
+  @NonNull
+  public Optional<Uri> ringtoneForIncomingCall(ContentResolver contentResolver) {
+    final Uri defaultUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+    Optional<Uri> ringtoneUri = Optional.of(defaultUri);
+    if (!this.isSystemContact()) {
+      return ringtoneUri;
+    }
+
+    Cursor cursor = null;
+    try {
+      cursor = this.getCursorForCustomRingtone(contentResolver);
+      if (hasNoResult(cursor)) return ringtoneUri;
+
+      final int columnIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.CUSTOM_RINGTONE);
+      final String uriString = cursor.getString(columnIndex);
+
+      if (shouldUseNoRingtone(uriString))      return Optional.absent();
+      if (shouldUseDefaultRingtone(uriString)) return ringtoneUri;
+
+      ringtoneUri = Optional.of(Uri.parse(uriString));
+    } catch (Exception e) {
+      Log.w(TAG, e);
+    }
+    finally {
+      if (cursor != null) {
+        cursor.close();
+      }
+    }
+
+    return ringtoneUri;
+  }
+
+  private boolean hasNoResult(Cursor cursor) {
+    return cursor == null || !cursor.moveToFirst();
+  }
+
+  private static boolean shouldUseNoRingtone(String uriString) {
+    return uriString != null && uriString.equals("");
+  }
+
+  private static boolean shouldUseDefaultRingtone(String uriString) {
+    return uriString == null;
+  }
+
+  private Cursor getCursorForCustomRingtone(ContentResolver contentResolver) {
+    final String encoded = Uri.encode(this.getAddress().serialize());
+    Uri uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, encoded);
+    final String[] projection = {ContactsContract.CommonDataKinds.Phone.CUSTOM_RINGTONE};
+    return contentResolver.query(uri, projection, null, null, null);
+  }
 
 }

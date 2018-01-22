@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -67,6 +68,7 @@ import org.webrtc.SurfaceViewRenderer;
 import org.webrtc.VideoRenderer;
 import org.webrtc.VideoTrack;
 import org.whispersystems.libsignal.IdentityKey;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
@@ -539,8 +541,10 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
 
       sendMessage(WebRtcViewModel.State.CALL_INCOMING, recipient, localVideoEnabled, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
       startCallCardActivity();
+
+      Optional<Uri> ringtone = recipient.ringtoneForIncomingCall(getContentResolver());
       audioManager.initializeAudioForCall();
-      audioManager.startIncomingRinger();
+      audioManager.startIncomingRinger(ringtone);
 
       registerPowerButtonReceiver();
 
