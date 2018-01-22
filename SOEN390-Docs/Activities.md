@@ -79,20 +79,33 @@
 * LogSubmitActivity
     * submits app logs from device when user chooses to send feedback
 * MediaPreviewActivity
-    * previews media attachments
+    * previews media attachments before sending
 * MediaOverviewActivity
-    * something else to do with attachments
+    * shows you summary of media and documents shared with recipient
 * DummyActivity
 * PlayServicesProblemActivity
     * when there's a problem with user's google play services
 * SmsSendtoActivity
-    
+    * not sure what this does
 * VoiceCallShare
+    * something to do with phone calls
 * RecipientPreferenceActivity
+    * deals with the conversation settings for a particular contact, e.g. ringtone, colors
 * BlockedContactsActivity
+    * shows list of blocked contacts
+    * accessed by going to settings -> privacy -> blocked contacts
 * ScribbleActivity
+    * when sending an image, lets you add stickers, text and drawings to the image
+    * accessed by clicking edit button in the corner of image preview
 * StickerSelectActivity
+    * sticker selection screen when you edit
+    * accessed from ScribbleActivity when clicking button to add sticker
 * CropImageActivity
+    * something for cropping images
 * CreateProfileActivity
+    * change user profile info (avatar, name)
+    * accessed by going to settings and clicking your name
 * ClearProfileAvatarActivity
+    * dialog when removing profile avatar
+    
 
