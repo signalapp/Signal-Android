@@ -22,11 +22,13 @@ public class PagingMediaLoader extends AsyncLoader<Pair<Cursor, Integer>> {
 
   private final Recipient recipient;
   private final Uri       uri;
+  private final boolean   leftIsRecent;
 
-  public PagingMediaLoader(@NonNull Context context, @NonNull Recipient recipient, @NonNull Uri uri) {
+  public PagingMediaLoader(@NonNull Context context, @NonNull Recipient recipient, @NonNull Uri uri, boolean leftIsRecent) {
     super(context);
-    this.recipient = recipient;
-    this.uri       = uri;
+    this.recipient    = recipient;
+    this.uri          = uri;
+    this.leftIsRecent = leftIsRecent;
   }
 
   @Nullable
@@ -40,7 +42,7 @@ public class PagingMediaLoader extends AsyncLoader<Pair<Cursor, Integer>> {
       Uri          attachmentUri = PartAuthority.getAttachmentDataUri(attachmentId);
 
       if (attachmentUri.equals(uri)) {
-        return new Pair<>(cursor, cursor.getPosition());
+        return new Pair<>(cursor, leftIsRecent ? cursor.getPosition() : cursor.getCount() - 1 - cursor.getPosition());
       }
     }
 

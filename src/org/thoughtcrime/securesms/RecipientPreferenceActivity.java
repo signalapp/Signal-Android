@@ -161,6 +161,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       intent.putExtra(MediaPreviewActivity.OUTGOING_EXTRA, mediaRecord.isOutgoing());
       intent.putExtra(MediaPreviewActivity.DATE_EXTRA, mediaRecord.getDate());
       intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, mediaRecord.getAttachment().getSize());
+      intent.putExtra(MediaPreviewActivity.LEFT_IS_RECENT_EXTRA, true);
       intent.setDataAndType(mediaRecord.getAttachment().getDataUri(), mediaRecord.getContentType());
       startActivity(intent);
     });

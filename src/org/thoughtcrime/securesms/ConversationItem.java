@@ -611,6 +611,7 @@ public class ConversationItem extends LinearLayout
         intent.putExtra(MediaPreviewActivity.OUTGOING_EXTRA, messageRecord.isOutgoing());
         intent.putExtra(MediaPreviewActivity.DATE_EXTRA, messageRecord.getTimestamp());
         intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, slide.asAttachment().getSize());
+        intent.putExtra(MediaPreviewActivity.LEFT_IS_RECENT_EXTRA, false);
 
         context.startActivity(intent);
       } else if (slide.getUri() != null) {

@@ -73,10 +73,11 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
   private final static String TAG = MediaPreviewActivity.class.getSimpleName();
 
-  public static final String ADDRESS_EXTRA  = "address";
-  public static final String DATE_EXTRA     = "date";
-  public static final String SIZE_EXTRA     = "size";
-  public static final String OUTGOING_EXTRA = "outgoing";
+  public static final String ADDRESS_EXTRA        = "address";
+  public static final String DATE_EXTRA           = "date";
+  public static final String SIZE_EXTRA           = "size";
+  public static final String OUTGOING_EXTRA       = "outgoing";
+  public static final String LEFT_IS_RECENT_EXTRA = "left_is_recent";
 
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
@@ -87,6 +88,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   private String    initialMediaType;
   private long      initialMediaSize;
   private Recipient conversationRecipient;
+  private boolean   leftIsRecent;
 
   private int restartItem = -1;
 
@@ -179,6 +181,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     initialMediaUri  = getIntent().getData();
     initialMediaType = getIntent().getType();
     initialMediaSize = getIntent().getLongExtra(SIZE_EXTRA, 0);
+    leftIsRecent     = getIntent().getBooleanExtra(LEFT_IS_RECENT_EXTRA, false);
     restartItem      = -1;
 
     if (address != null) {
@@ -294,14 +297,14 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
   @Override
   public Loader<Pair<Cursor, Integer>> onCreateLoader(int id, Bundle args) {
-    return new PagingMediaLoader(this, conversationRecipient, initialMediaUri);
+    return new PagingMediaLoader(this, conversationRecipient, initialMediaUri, leftIsRecent);
   }
 
   @Override
   public void onLoadFinished(Loader<Pair<Cursor, Integer>> loader, @Nullable Pair<Cursor, Integer> data) {
     if (data != null) {
       @SuppressWarnings("ConstantConditions")
-      CursorPagerAdapter adapter = new CursorPagerAdapter(this, masterSecret, GlideApp.with(this), getWindow(), data.first, data.second);
+      CursorPagerAdapter adapter = new CursorPagerAdapter(this, masterSecret, GlideApp.with(this), getWindow(), data.first, data.second, leftIsRecent);
       mediaPager.setAdapter(adapter);
       adapter.setActive(true);
 
@@ -423,13 +426,14 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     private final GlideRequests glideRequests;
     private final Window        window;
     private final Cursor        cursor;
+    private final boolean       leftIsRecent;
 
     private boolean active;
     private int     autoPlayPosition;
 
     CursorPagerAdapter(@NonNull Context context, @NonNull MasterSecret masterSecret,
                        @NonNull GlideRequests glideRequests, @NonNull Window window,
-                       @NonNull Cursor cursor, int autoPlayPosition)
+                       @NonNull Cursor cursor, int autoPlayPosition, boolean leftIsRecent)
     {
       this.context          = context.getApplicationContext();
       this.masterSecret     = masterSecret;
@@ -437,6 +441,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
       this.window           = window;
       this.cursor           = cursor;
       this.autoPlayPosition = autoPlayPosition;
+      this.leftIsRecent     = leftIsRecent;
     }
 
     public void setActive(boolean active) {
@@ -460,10 +465,11 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
       View      itemView       = LayoutInflater.from(context).inflate(R.layout.media_view_page, container, false);
       MediaView mediaView      = itemView.findViewById(R.id.media_view);
       boolean   autoplay       = position == autoPlayPosition;
+      int       cursorPosition = getCursorPosition(position);
 
       autoPlayPosition = -1;
 
-      cursor.moveToPosition(position);
+      cursor.moveToPosition(cursorPosition);
 
       MediaRecord mediaRecord = MediaRecord.from(context, masterSecret, cursor);
 
@@ -490,7 +496,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     }
 
     public MediaItem getMediaItemFor(int position) {
-      cursor.moveToPosition(position);
+      cursor.moveToPosition(getCursorPosition(position));
       MediaRecord mediaRecord = MediaRecord.from(context, masterSecret, cursor);
       Address     address     = mediaRecord.getAddress();
 
@@ -507,6 +513,11 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     public void pause(int position) {
       MediaView mediaView = mediaViews.get(position);
       if (mediaView != null) mediaView.pause();
+    }
+
+    private int getCursorPosition(int position) {
+      if (leftIsRecent) return position;
+      else              return cursor.getCount() - 1 - position;
     }
   }
 
