@@ -1,0 +1,47 @@
+# -----------------------------------------------------------------------
+# This is the file that Travis CI looks for to test builds. It tells
+# Travis what to do before and after running tests, as well as how to
+# run the tests.
+#
+# Typically, this file should not be modified.
+# -----------------------------------------------------------------------
+
+language: android
+sudo: true
+
+jdk:
+  - oraclejdk8
+
+env:
+  - 
+before install:
+    # newest android SDK
+  - wget http://dl.google.com/android/android-sdk_${ANDROID_SDK_VERSION}-linux.tgz
+  - tar -zxf android-sdk_${ANDROID_SDK_VERSION}-linux.tgz
+  - export ANDROID_HOME=`pwd`/android-sdk-linux
+  - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
+
+  # manually set sdk.dir variable, according to local paths
+  - echo "sdk.dir=~/Android/Sdk" > local.properties
+
+android:
+  components:
+    - tools
+    - platform-tools
+    - build-tools-27.0.1
+    - android-27
+    - extra-google-m2repository
+    - extra-android-m2repository
+
+script:
+  - ./gradlew assemble
+  - ./gradlew check
+
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+
+
