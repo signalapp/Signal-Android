@@ -19,6 +19,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.CheckBoxPreference;
 import android.support.v7.preference.ListPreference;
@@ -161,7 +162,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       intent.putExtra(MediaPreviewActivity.OUTGOING_EXTRA, mediaRecord.isOutgoing());
       intent.putExtra(MediaPreviewActivity.DATE_EXTRA, mediaRecord.getDate());
       intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, mediaRecord.getAttachment().getSize());
-      intent.putExtra(MediaPreviewActivity.LEFT_IS_RECENT_EXTRA, true);
+      intent.putExtra(MediaPreviewActivity.LEFT_IS_RECENT_EXTRA, ViewCompat.getLayoutDirection(threadPhotoRailView) == ViewCompat.LAYOUT_DIRECTION_LTR);
       intent.setDataAndType(mediaRecord.getAttachment().getDataUri(), mediaRecord.getContentType());
       startActivity(intent);
     });
