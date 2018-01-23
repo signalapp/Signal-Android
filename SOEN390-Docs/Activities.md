@@ -86,7 +86,7 @@
 * PlayServicesProblemActivity
     * when there's a problem with user's google play services
 * SmsSendtoActivity
-    * not sure what this does
+    * This activity is to send a text/attachment from outside the app by clicking on android "share"   button and choosing "signal" app as a mean to share the selected data
 * VoiceCallShare
     * something to do with phone calls
 * RecipientPreferenceActivity
