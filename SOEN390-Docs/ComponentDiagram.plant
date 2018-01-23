@@ -1,0 +1,40 @@
+' https://www.planttext.com/
+@startuml
+
+title Component Diagram - Signal
+
+node "User Interface Components" as UIC {
+  node "Registration" as RE {
+    node "Country Selection"
+  }
+
+  node "Conversations" as CS {
+    node "Web RTC Call"
+    node "Import/Export SMS DB"
+    node "Invite Friends"
+    node "Create Group"
+    node "Create Conversation"
+  }
+
+  node "Preferences" as PR {
+    node "MMS Preferences"
+    node "Notification Preferences"
+    node "Appearance Preferences"
+    node "Chat/Media Preferences"
+    node "Linked Devices Preferences"
+    node "Profile Preferences"
+  }
+
+  node "Conversation" as CO {
+    node "Share Attachment"
+    node "Media Preview"
+    node "Message Info"
+    node "Group Conversation"
+  }
+
+  RE .. CS
+  CS .. PR
+  CS .. CO
+}
+
+@enduml
