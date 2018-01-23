@@ -235,8 +235,8 @@ android {
     }
 
     defaultConfig {
-        versionCode 331
-        versionName "4.15.3"
+        versionCode 332
+        versionName "4.15.4"
 
         minSdkVersion 14
         targetSdkVersion 25
