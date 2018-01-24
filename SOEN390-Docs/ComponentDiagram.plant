@@ -49,7 +49,7 @@ node "System Components" as SC {
     node "Crypto System" as ENS {
       node "MasterSecret" as ENSM
       node "KeyManager" as ENKM
-      node "EncryptionAndDecryptionManager as ENED
+      node "EncryptionAndDecryptionManager" as ENED
     }
 
     node "Authorization Manager" as ATS {
@@ -61,8 +61,10 @@ node "System Components" as SC {
     }
 
     node "Contact Manager" as COS {
-
+      node "ContactDatabase" as CODB
+      node "ContactInformationSystem" as COCIS
     }
+
     node "Message Manager" as MMS {
       node "IncomingMessageManager" as IMMS
       node "OutgoingMessageManager" as OMMS
@@ -70,7 +72,7 @@ node "System Components" as SC {
     }
 
     node "Attachment Manager" as ACS {
-
+      
     }
 
     node "Push Manager" as PMS {
