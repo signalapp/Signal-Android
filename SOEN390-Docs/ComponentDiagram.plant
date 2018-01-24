@@ -64,7 +64,9 @@ node "System Components" as SC {
     }
 
     node "Message Manager" as MMS {
-
+      node "IncomingMessageManager" as IMMS
+      node "OutgoingMessageManager" as OMMS
+      node "MessageSenderManager" as MMMS
     }
 
     node "Attachment Manager" as ACS {
