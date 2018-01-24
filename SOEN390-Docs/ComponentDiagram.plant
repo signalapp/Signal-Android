@@ -44,8 +44,15 @@ node "User Interface Components" as UIC {
 node "System Components" as SC {
 
     node "Database Component" as DBS{
-    
+        node "DatabaseItemLoader" as DBSL
+        node "DatabaseObejectsModels" as DBSM
+        node "DababaseFactory" as DBSF
     }
+    
+    DBSL --> DBSF
+    DBSF --> DBSM
+    DBS -- DBSL
+    DBS -- DBSF
     
     node "Encryption" as ENS{
     
@@ -76,4 +83,5 @@ node "System Components" as SC {
     }
 }
 
+CO --> DBS
 @enduml
