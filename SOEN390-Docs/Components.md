@@ -5,7 +5,7 @@ Components will be based on critical user interface items and system components 
 Critical User interface components:
   - registration
     - country selection
-	- phone number registration 
+    - phone number registration 
   - preferences
     - sms/mms preferences
     - notification preferences
@@ -14,14 +14,14 @@ Critical User interface components:
     - chat/media preferences
     - linked device preferences
     - profile preferences
-	- conversation preferences
+    - conversation preferences
   - conversation list
     - import/export sms db
     - invite friends
     - create group
     - create conversation
   - conversation
-	- web rtc call
+    - web rtc call
     - share attachment
     - media preview
     - message info

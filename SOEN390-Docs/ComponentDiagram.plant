@@ -6,7 +6,7 @@ title Component Diagram - Signal
 node "User Interface Components" as UIC {
   node "Registration" as RE {
     node "Country Selection"
-	node "Phone Number Registration"
+    node "Phone Number Registration"
   }
 
   node "Conversation List" as CL {
@@ -19,16 +19,16 @@ node "User Interface Components" as UIC {
   node "Preferences" as PR {
     node "SMS/MMS Preferences"
     node "Notification Preferences"
-	node "Privacy Preferences"
+    node "Privacy Preferences"
     node "Appearance Preferences"
     node "Chat/Media Preferences"
     node "Linked Devices Preferences"
     node "Profile Preferences"
-	node "Conversation Preferences"
+    node "Conversation Preferences"
   }
 
   node "Conversation" as CO {
-	node "Web RTC Call"
+    node "Web RTC Call"
     node "Share Attachment"
     node "Media Preview"
     node "Message Info"
