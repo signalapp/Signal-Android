@@ -1,25 +1,27 @@
 # Potential Components List
 
-System components will be based on critical user interface items and system components that they are involved in such interaction to provide specific functionalities.
+Components will be based on critical user interface items and system components that they interact with to provide specific functionalities.
 
 Critical User interface components:
   - registration
     - country selection
+	- phone number registration 
   - preferences
-    - mms preferences
+    - sms/mms preferences
     - notification preferences
     - privacy preferences
     - appearance preferences
     - chat/media preferences
     - linked device preferences
     - profile preferences
-  - conversations
-    - web rtc call
+	- conversation preferences
+  - conversation list
     - import/export sms db
     - invite friends
     - create group
     - create conversation
   - conversation
+	- web rtc call
     - share attachment
     - media preview
     - message info

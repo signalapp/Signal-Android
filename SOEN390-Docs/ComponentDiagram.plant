@@ -6,10 +6,10 @@ title Component Diagram - Signal
 node "User Interface Components" as UIC {
   node "Registration" as RE {
     node "Country Selection"
+	node "Phone Number Registration"
   }
 
-  node "Conversations" as CS {
-    node "Web RTC Call"
+  node "Conversation List" as CL {
     node "Import/Export SMS DB"
     node "Invite Friends"
     node "Create Group"
@@ -17,24 +17,28 @@ node "User Interface Components" as UIC {
   }
 
   node "Preferences" as PR {
-    node "MMS Preferences"
+    node "SMS/MMS Preferences"
     node "Notification Preferences"
+	node "Privacy Preferences"
     node "Appearance Preferences"
     node "Chat/Media Preferences"
     node "Linked Devices Preferences"
     node "Profile Preferences"
+	node "Conversation Preferences"
   }
 
   node "Conversation" as CO {
+	node "Web RTC Call"
     node "Share Attachment"
     node "Media Preview"
     node "Message Info"
     node "Group Conversation"
   }
 
-  RE .. CS
-  CS .. PR
-  CS .. CO
+  RE .. CL
+  CL .. PR
+  CL .. CO
+  CO .. PR
 }
 
 node "System Components" as SC {
@@ -47,7 +51,7 @@ node "System Components" as SC {
     
     }
     
-    node "Autherization Manager" as AuthS{
+    node "Authorization Manager" as AuthS{
     
     }
     

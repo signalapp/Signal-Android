@@ -9,7 +9,7 @@
 * Encryption
 * Persistence
 * Authentication
-* Identify verification
+* Identity verification
 * Account registration
 * Network connection
 * qr code scanner
