@@ -46,7 +46,7 @@ node "System Components" as SC {
         node "DababaseFactory" as DBSF
     }
 
-    node "Encryption" as ENS {
+    node "Crypto System" as ENS {
       node "MasterSecret" as ENSM
       node "KeyManager" as ENKM
       node "EncryptionAndDecryptionManager as ENED
