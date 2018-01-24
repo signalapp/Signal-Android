@@ -49,11 +49,6 @@ node "System Components" as SC {
         node "DababaseFactory" as DBSF
     }
     
-    DBSL --> DBSF
-    DBSF --> DBSM
-    DBS -- DBSL
-    DBS -- DBSF
-    
     node "Encryption" as ENS{
     
     }
