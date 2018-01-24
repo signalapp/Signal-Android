@@ -73,10 +73,13 @@ node "System Components" as SC {
     
     }
     
-    node "Push Manager" as PMs{
-    
+    node "Push Manager" as PMS{
+      node "PushNotificationServicesFactory" as PMSF
     }
 }
 
 CO --> DBS
+PR --> PMSF
+RE --> RMSF
+
 @enduml
