@@ -24,7 +24,6 @@ node "User Interface Components" as UIC {
     node "Chat/Media Preferences"
     node "Linked Devices Preferences"
     node "Profile Preferences"
-    node "Conversation Preferences"
   }
 
   node "Conversation" as CO {
@@ -33,49 +32,46 @@ node "User Interface Components" as UIC {
     node "Media Preview"
     node "Message Info"
     node "Group Conversation"
+    node "Conversation Preferences"
   }
 
   RE .. CL
   CL .. PR
   CL .. CO
-  CO .. PR
 }
 
 node "System Components" as SC {
-
     node "Database Component" as DBS{
         node "DatabaseItemLoader" as DBSL
         node "DatabaseObejectsModels" as DBSM
         node "DababaseFactory" as DBSF
     }
-    
-    node "Encryption" as ENS{
-    
+
+    node "Encryption" as ENS {
+
     }
-    
-    node "Authorization Manager" as AuthS{
-    
+
+    node "Authorization Manager" as ATS {
+
     }
-    
-    node "Shared Services" as SHS{
-    
+
+    node "Shared Services" as SHS {
+
     }
-    
-    node "Contact Manager" as COS{
-    
+
+    node "Contact Manager" as COS {
+
     }
-    
-    node "Message Manager" as MMS{
-      node "IncomingMessageManager" as IMMS
-      node "OutgoingMessageManager" as OMMS
-      node "MessageSenderManager" as MMMS
+
+    node "Message Manager" as MMS {
+
     }
-    
-    node "Attachment Manager" as AtS{
-    
+
+    node "Attachment Manager" as ACS {
+
     }
-    
-    node "Push Manager" as PMS{
+
+    node "Push Manager" as PMS {
       node "PushNotificationServicesFactory" as PMSF
     }
 }
