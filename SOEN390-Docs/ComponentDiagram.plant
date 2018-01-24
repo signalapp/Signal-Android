@@ -37,4 +37,39 @@ node "User Interface Components" as UIC {
   CS .. CO
 }
 
+node "System Components" as SC {
+
+    node "Database Component" as DBS{
+    
+    }
+    
+    node "Encryption" as ENS{
+    
+    }
+    
+    node "Autherization Manager" as AuthS{
+    
+    }
+    
+    node "Shared Services" as SHS{
+    
+    }
+    
+    node "Contact Manager" as COS{
+    
+    }
+    
+    node "Message Manager" as MMS{
+    
+    }
+    
+    node "Attachment Manager" as AtS{
+    
+    }
+    
+    node "Push Manager" as PMs{
+    
+    }
+}
+
 @enduml
