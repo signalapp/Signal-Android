@@ -9,11 +9,12 @@
 language: android
 sudo: true
 
+notifications:
+  email: false
+
 jdk:
   - oraclejdk8
 
-env:
-  - 
 before install:
     # newest android SDK
   - wget http://dl.google.com/android/android-sdk_${ANDROID_SDK_VERSION}-linux.tgz
