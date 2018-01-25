@@ -1,0 +1,116 @@
+' https://www.planttext.com/
+@startuml
+
+title Component Diagram - Signal
+
+node "User Interface Components" as UIC {
+  ' This is the screen the user sees the first time they use the app, before they create their profile.
+  node "Registration" as RE {
+    ' User must select their country from a list.
+    node "Country Selection"
+    ' User registers their phone number with the app.
+    node "Phone Number Registration"
+  }
+
+  ' This is the screen a regiestered user sees when they open the app. It displays a searcheable list of the user's conversations.
+  node "Conversation List" as CL {
+    ' Allows the user to import their chat history from the device's messaging database.
+    node "Import/Export SMS DB"
+    ' Allows the user to invite others to use Signal via an invite URL, an external application (ex. Facebook) or SMS.
+    node "Invite Friends"
+    ' Creates a new group conversations with the specified name, photo and group memebers.
+    node "Create Group"
+    ' Creates a new one-on-one conversation with a contact selected from the user's contact list.
+    node "Create Conversation"
+  }
+
+  ' This is the application preferences menu, accessed from the conversation list view.
+  node "Preferences" as PR {
+    ' Allows the user to set Signal as their default SMS app, request delivery reports and enabe WiFi calling compatibility mode.
+    node "SMS/MMS Preferences"
+    ' Allows user to customize app notifications, including toggles to enable or disable vibration, sounds and LEDs.
+    node "Notification Preferences"
+    ' Allows user to enable password-protection, block screenshots, disable keyboard learning, relay calls through Signal servers, toggle read receipts and view blocked contacts.
+    node "Privacy Preferences"
+    ' Allows user to change the theme and language of the app.
+    node "Appearance Preferences"
+    ' Allows user to specify media auto-download settings, chat settings (ex. font size) and whether old messages should be deleted.
+    node "Chat/Media Preferences"
+    ' Allows user to link another device using Signal by scanning a QR code.
+    node "Linked Devices Preferences"
+    ' Allows user to change their profile avatar and display name.
+    node "Profile Preferences"
+  }
+
+  ' This is the view of a single conversation, showing all sent and received messages.
+  node "Conversation" as CO {
+    ' Starts an audio and/or video call using the WebRTC communication protocol.
+    node "Web RTC Call"
+    ' Allows user to send attachments, including pictures, audio clips and gifs.
+    node "Share Attachment"
+    ' Provides a preview and edit functionality of an attachment to be sent, such as a photo.
+    node "Media Preview"
+    ' Gives details of a particular message, including the timestamp, delivery method and recipients.
+    node "Message Info"
+    ' A conversation that can have a group name, group photo and multiple members.
+    node "Group Conversation"
+    ' Preferences menu for a single conversation, with options to mute the conversation and set notification settings.
+    node "Conversation Preferences"
+  }
+
+  RE .. CL
+  CL .. PR
+  CL .. CO
+}
+
+node "System Components" as SC {
+    node "Database Component" as DBS{
+        node "DatabaseItemLoader" as DBSL
+        node "DatabaseObjectsModels" as DBSM
+        node "DatabaseFactory" as DBSF
+    }
+
+    node "Crypto System" as ENS {
+      node "MasterSecret" as ENSM
+      node "KeyManager" as ENKM
+      node "EncryptionAndDecryptionManager" as ENED
+    }
+
+    node "Authorization Manager" as ATS {
+
+    }
+
+    node "Shared Services" as SHS {
+
+    }
+
+    node "Contact Manager" as COS {
+      node "ContactDatabase" as CODB
+      node "ContactInformationSystem" as COCIS
+    }
+
+    node "Message Manager" as MMS {
+      node "IncomingMessageManager" as IMMS
+      node "OutgoingMessageManager" as OMMS
+      node "MessageSenderManager" as MMMS
+    }
+
+    MMS .. DBS
+
+    node "Attachment Manager" as ACS {
+      node "Attachment Database" as ACSD
+      node "AttachmentInformation" as ACSI
+    }
+
+    ACS .. DBS
+
+    node "Push Manager" as PMS {
+      node "PushNotificationServicesFactory" as PMSF
+    }
+}
+
+CO --> DBS
+PR --> PMS
+RE --> PMS
+
+@enduml
