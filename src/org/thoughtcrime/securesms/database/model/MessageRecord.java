@@ -121,7 +121,11 @@ public abstract class MessageRecord extends DisplayRecord {
       if (isOutgoing()) return emphasisAdded(context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_unverified, getIndividualRecipient().toShortString()));
       else              return emphasisAdded(context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device, getIndividualRecipient().toShortString()));
     } else if (getBody().getBody().length() > MAX_DISPLAY_LENGTH) {
-      return new SpannableString(getBody().getBody().substring(0, MAX_DISPLAY_LENGTH));
+      String trimmedMessage = getBody().getBody().substring(0, MAX_DISPLAY_LENGTH);
+      String messageTooLongSuffix = "\n" + context.getString(R.string.MessageRecord_message_too_long);
+      SpannableString finalMessage = new SpannableString(trimmedMessage + messageTooLongSuffix);
+      setEmphasis(finalMessage, finalMessage.length() - messageTooLongSuffix.length(), finalMessage.length());
+      return finalMessage;
     }
 
     return new SpannableString(getBody().getBody());
@@ -208,10 +212,13 @@ public abstract class MessageRecord extends DisplayRecord {
 
   protected SpannableString emphasisAdded(String sequence) {
     SpannableString spannable = new SpannableString(sequence);
-    spannable.setSpan(new RelativeSizeSpan(0.9f), 0, sequence.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-    spannable.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 0, sequence.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
+    setEmphasis(spannable, 0, spannable.length());
     return spannable;
+  }
+
+  protected void setEmphasis(SpannableString spannable, int start, int end) {
+    spannable.setSpan(new RelativeSizeSpan(0.9f), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+    spannable.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
   }
 
   public boolean equals(Object other) {
