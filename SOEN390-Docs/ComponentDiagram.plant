@@ -71,9 +71,14 @@ node "System Components" as SC {
       node "MessageSenderManager" as MMMS
     }
 
+    MMS .. DBS
+
     node "Attachment Manager" as ACS {
-      
+      node "Attachment Database" as ACSD
+      node "AttachmentInformation" as ACSI
     }
+
+    ACS .. DBS
 
     node "Push Manager" as PMS {
       node "PushNotificationServicesFactory" as PMSF
