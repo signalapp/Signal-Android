@@ -5,9 +5,12 @@ https://github.com/WhisperSystems/Signal-Android/wiki
 
 ## Installation
 * [Windows 10 (64-bit Pro)](https://github.com/Radu-Raicea/SignalAndroid/wiki/%5BInstallation%5D-Windows-10-Instructions-(64-bit-Pro))
-* [macOS (Yosemite 10.10.3 and higher)](https://github.com/Radu-Raicea/SignalAndroid/wiki/%5BInstallation%5D-macOS-Instructions-(Yosemite-10.10.3-and-higher))
-* [Troubleshooting] (https://github.com/Radu-Raicea/SignalAndroid/wiki/%5BTroubleshooting)
+* [Mac OS](https://github.com/Radu-Raicea/SignalAndroid/wiki/%5BInstallation%5D-macOS-Instructions)
+* [Troubleshooting](https://github.com/Radu-Raicea/SignalAndroid/wiki/%5BTroubleshooting%5D)
 
+
+## Architectural Diagrams
+https://github.com/Radu-Raicea/SignalAndroid/wiki/Architectural-Diagrams
 
 # Signal Android 
 
