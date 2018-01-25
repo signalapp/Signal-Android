@@ -9,6 +9,9 @@
 language: android
 sudo: true
 
+notifications:
+  email: false
+
 jdk:
   - oraclejdk8
 
