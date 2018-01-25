@@ -14,8 +14,6 @@ import android.service.chooser.ChooserTargetService;
 import android.support.annotation.RequiresApi;
 
 import org.thoughtcrime.securesms.ShareActivity;
-import org.thoughtcrime.securesms.crypto.MasterCipher;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
@@ -34,18 +32,12 @@ public class DirectShareService extends ChooserTargetService {
                                                  IntentFilter matchedFilter)
   {
     List<ChooserTarget> results        = new LinkedList<>();
-    MasterSecret        masterSecret   = KeyCachingService.getMasterSecret(this);
-
-    if (masterSecret == null) {
-      return results;
-    }
-
-    ComponentName  componentName  = new ComponentName(this, ShareActivity.class);
-    ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(this);
-    Cursor         cursor         = threadDatabase.getDirectShareList();
+    ComponentName       componentName  = new ComponentName(this, ShareActivity.class);
+    ThreadDatabase      threadDatabase = DatabaseFactory.getThreadDatabase(this);
+    Cursor              cursor         = threadDatabase.getDirectShareList();
 
     try {
-      ThreadDatabase.Reader reader = threadDatabase.readerFor(cursor, new MasterCipher(masterSecret));
+      ThreadDatabase.Reader reader = threadDatabase.readerFor(cursor);
       ThreadRecord record;
 
       while ((record = reader.getNext()) != null && results.size() < 10) {

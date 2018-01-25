@@ -16,7 +16,6 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.*;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
@@ -60,7 +59,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private ConversationListFragment fragment;
-  private MasterSecret             masterSecret;
   private SearchToolbar            searchToolbar;
   private ImageView                searchAction;
 
@@ -72,8 +70,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
   @Override
   protected void onCreate(Bundle icicle, @NonNull MasterSecret masterSecret) {
-    this.masterSecret = masterSecret;
-
     setContentView(R.layout.conversation_list_activity);
 
     Toolbar toolbar = findViewById(R.id.toolbar);
@@ -211,7 +207,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         Context                 context    = ConversationListActivity.this;
         List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setAllThreadsRead();
 
-        MessageNotifier.updateNotification(context, masterSecret);
+        MessageNotifier.updateNotification(context);
         MarkReadReceiver.process(context, messageIds);
 
         return null;

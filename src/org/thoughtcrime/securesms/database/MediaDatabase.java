@@ -2,14 +2,14 @@ package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import net.sqlcipher.database.SQLiteDatabase;
+
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 
 public class MediaDatabase extends Database {
 
@@ -44,7 +44,7 @@ public class MediaDatabase extends Database {
   private static final String GALLERY_MEDIA_QUERY  = String.format(BASE_MEDIA_QUERY, AttachmentDatabase.CONTENT_TYPE + " LIKE 'image/%' OR " + AttachmentDatabase.CONTENT_TYPE + " LIKE 'video/%'");
   private static final String DOCUMENT_MEDIA_QUERY = String.format(BASE_MEDIA_QUERY, AttachmentDatabase.CONTENT_TYPE + " NOT LIKE 'image/%' AND " + AttachmentDatabase.CONTENT_TYPE + " NOT LIKE 'video/%' AND " + AttachmentDatabase.CONTENT_TYPE + " NOT LIKE 'audio/%'");
 
-  public MediaDatabase(Context context, SQLiteOpenHelper databaseHelper) {
+  public MediaDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
   }
 
@@ -76,9 +76,9 @@ public class MediaDatabase extends Database {
       this.outgoing   = outgoing;
     }
 
-    public static MediaRecord from(@NonNull Context context, @NonNull MasterSecret masterSecret, @NonNull Cursor cursor) {
+    public static MediaRecord from(@NonNull Context context, @NonNull Cursor cursor) {
       AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
-      DatabaseAttachment attachment         = attachmentDatabase.getAttachment(masterSecret, cursor);
+      DatabaseAttachment attachment         = attachmentDatabase.getAttachment(cursor);
       String             serializedAddress  = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS));
       boolean            outgoing           = MessagingDatabase.Types.isOutgoingMessageType(cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.MESSAGE_BOX)));
       Address            address            = null;

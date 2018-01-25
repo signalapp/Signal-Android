@@ -28,16 +28,14 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.MasterCipher;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.NumberUtil;
-import org.thoughtcrime.securesms.permissions.Permissions;
 
 import java.util.ArrayList;
 
@@ -61,17 +59,14 @@ public class ContactsCursorLoader extends CursorLoader {
                                                                   ContactsDatabase.CONTACT_TYPE_COLUMN};
 
 
-  private final MasterSecret masterSecret;
   private final String       filter;
   private final int          mode;
   private final boolean      recents;
 
-  public ContactsCursorLoader(@NonNull Context context, @NonNull MasterSecret masterSecret,
-                              int mode, String filter, boolean recents)
+  public ContactsCursorLoader(@NonNull Context context, int mode, String filter, boolean recents)
   {
     super(context);
 
-    this.masterSecret = masterSecret;
     this.filter       = filter;
     this.mode         = mode;
     this.recents      = recents;
@@ -88,7 +83,7 @@ public class ContactsCursorLoader extends CursorLoader {
         MatrixCursor          synthesizedContacts = new MatrixCursor(CONTACT_PROJECTION);
         synthesizedContacts.addRow(new Object[] {getContext().getString(R.string.ContactsCursorLoader_recent_chats), "", ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE, "", ContactsDatabase.DIVIDER_TYPE});
 
-        ThreadDatabase.Reader reader = threadDatabase.readerFor(recentConversations, new MasterCipher(masterSecret));
+        ThreadDatabase.Reader reader = threadDatabase.readerFor(recentConversations);
 
         ThreadRecord threadRecord;
 

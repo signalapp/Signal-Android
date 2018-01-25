@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.util.Pair;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
@@ -117,6 +118,52 @@ public class TextSecurePreferences {
   public  static final String INCOGNITO_KEYBORAD_PREF          = "pref_incognito_keyboard";
   private static final String UNAUTHORIZED_RECEIVED            = "pref_unauthorized_received";
   private static final String SUCCESSFUL_DIRECTORY_PREF        = "pref_successful_directory";
+
+  private static final String DATABASE_ENCRYPTED_SECRET     = "pref_database_encrypted_secret";
+  private static final String DATABASE_UNENCRYPTED_SECRET   = "pref_database_unencrypted_secret";
+  private static final String ATTACHMENT_ENCRYPTED_SECRET   = "pref_attachment_encrypted_secret";
+  private static final String ATTACHMENT_UNENCRYPTED_SECRET = "pref_attachment_unencrypted_secret";
+  private static final String NEEDS_SQLCIPHER_MIGRATION     = "pref_needs_sql_cipher_migration";
+
+  public static void setNeedsSqlCipherMigration(@NonNull Context context, boolean value) {
+    setBooleanPreference(context, NEEDS_SQLCIPHER_MIGRATION, value);
+  }
+
+  public static boolean getNeedsSqlCipherMigration(@NonNull Context context) {
+    return getBooleanPreference(context, NEEDS_SQLCIPHER_MIGRATION, false);
+  }
+
+  public static void setAttachmentEncryptedSecret(@NonNull Context context, @NonNull String secret) {
+    setStringPreference(context, ATTACHMENT_ENCRYPTED_SECRET, secret);
+  }
+
+  public static void setAttachmentUnencryptedSecret(@NonNull Context context, @Nullable String secret) {
+    setStringPreference(context, ATTACHMENT_UNENCRYPTED_SECRET, secret);
+  }
+
+  public static @Nullable String getAttachmentEncryptedSecret(@NonNull Context context) {
+    return getStringPreference(context, ATTACHMENT_ENCRYPTED_SECRET, null);
+  }
+
+  public static @Nullable String getAttachmentUnencryptedSecret(@NonNull Context context) {
+    return getStringPreference(context, ATTACHMENT_UNENCRYPTED_SECRET, null);
+  }
+
+  public static void setDatabaseEncryptedSecret(@NonNull Context context, @NonNull String secret) {
+    setStringPreference(context, DATABASE_ENCRYPTED_SECRET, secret);
+  }
+
+  public static void setDatabaseUnencryptedSecret(@NonNull Context context, @Nullable String secret) {
+    setStringPreference(context, DATABASE_UNENCRYPTED_SECRET, secret);
+  }
+
+  public static @Nullable String getDatabaseUnencryptedSecret(@NonNull Context context) {
+    return getStringPreference(context, DATABASE_UNENCRYPTED_SECRET, null);
+  }
+
+  public static @Nullable String getDatabaseEncryptedSecret(@NonNull Context context) {
+    return getStringPreference(context, DATABASE_ENCRYPTED_SECRET, null);
+  }
 
   public static void setHasSuccessfullyRetrievedDirectory(Context context, boolean value) {
     setBooleanPreference(context, SUCCESSFUL_DIRECTORY_PREF, value);

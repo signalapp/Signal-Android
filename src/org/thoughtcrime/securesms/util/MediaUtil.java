@@ -42,14 +42,14 @@ public class MediaUtil {
   public static final String VIDEO_UNSPECIFIED = "video/*";
 
 
-  public static @Nullable ThumbnailData generateThumbnail(Context context, MasterSecret masterSecret, String contentType, Uri uri)
+  public static @Nullable ThumbnailData generateThumbnail(Context context, String contentType, Uri uri)
       throws BitmapDecodingException
   {
     long   startMillis = System.currentTimeMillis();
     ThumbnailData data = null;
 
     if (isImageType(contentType)) {
-      data = new ThumbnailData(generateImageThumbnail(context, masterSecret, uri));
+      data = new ThumbnailData(generateImageThumbnail(context, uri));
     }
 
     if (data != null) {
@@ -61,14 +61,14 @@ public class MediaUtil {
     return data;
   }
 
-  private static Bitmap generateImageThumbnail(Context context, MasterSecret masterSecret, Uri uri)
+  private static Bitmap generateImageThumbnail(Context context, Uri uri)
       throws BitmapDecodingException
   {
     try {
       int maxSize = context.getResources().getDimensionPixelSize(R.dimen.media_bubble_height);
       return GlideApp.with(context.getApplicationContext())
                      .asBitmap()
-                     .load(new DecryptableUri(masterSecret, uri))
+                     .load(new DecryptableUri(uri))
                      .centerCrop()
                      .into(maxSize, maxSize)
                      .get();
@@ -125,8 +125,8 @@ public class MediaUtil {
     }
   }
 
-  public static long getMediaSize(Context context, MasterSecret masterSecret, Uri uri) throws IOException {
-    InputStream in = PartAuthority.getAttachmentStream(context, masterSecret, uri);
+  public static long getMediaSize(Context context, Uri uri) throws IOException {
+    InputStream in = PartAuthority.getAttachmentStream(context, uri);
     if (in == null) throw new IOException("Couldn't obtain input stream.");
 
     long   size   = 0;

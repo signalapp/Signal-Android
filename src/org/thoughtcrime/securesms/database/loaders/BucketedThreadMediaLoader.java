@@ -9,7 +9,6 @@ import android.support.v4.content.AsyncTaskLoader;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MediaDatabase;
@@ -28,15 +27,14 @@ import java.util.Map;
 
 public class BucketedThreadMediaLoader extends AsyncTaskLoader<BucketedThreadMediaLoader.BucketedThreadMedia> {
 
+  @SuppressWarnings("unused")
   private static final String TAG = BucketedThreadMediaLoader.class.getSimpleName();
 
-  private final MasterSecret masterSecret;
   private final Address      address;
 
-  public BucketedThreadMediaLoader(@NonNull Context context, @NonNull MasterSecret masterSecret, @NonNull Address address) {
+  public BucketedThreadMediaLoader(@NonNull Context context, @NonNull Address address) {
     super(context);
-    this.masterSecret = masterSecret;
-    this.address      = address;
+    this.address = address;
 
     onContentChanged();
   }
@@ -60,7 +58,7 @@ public class BucketedThreadMediaLoader extends AsyncTaskLoader<BucketedThreadMed
 
     try (Cursor cursor = DatabaseFactory.getMediaDatabase(getContext()).getGalleryMediaForThread(threadId)) {
       while (cursor != null && cursor.moveToNext()) {
-        result.add(MediaDatabase.MediaRecord.from(getContext(), masterSecret, cursor));
+        result.add(MediaDatabase.MediaRecord.from(getContext(), cursor));
       }
     }
 

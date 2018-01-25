@@ -22,7 +22,6 @@ public class SystemSmsImportReminder extends Reminder {
       public void onClick(View v) {
         Intent intent = new Intent(context, ApplicationMigrationService.class);
         intent.setAction(ApplicationMigrationService.MIGRATE_DATABASE);
-        intent.putExtra("master_secret", masterSecret);
         context.startService(intent);
 
         Intent nextIntent = new Intent(context, ConversationListActivity.class);

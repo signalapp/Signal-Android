@@ -18,7 +18,6 @@
 package org.thoughtcrime.securesms;
 
 import android.app.Activity;
-import android.content.AsyncTaskLoader;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -102,7 +101,6 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   private ListView     lv;
   private ImageView    avatar;
   private TextView     creatingText;
-  private MasterSecret masterSecret;
   private Bitmap       avatarBmp;
 
   @NonNull private Optional<GroupData> groupToUpdate = Optional.absent();
@@ -115,8 +113,6 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   protected void onCreate(Bundle state, @NonNull MasterSecret masterSecret) {
-    this.masterSecret = masterSecret;
-
     setContentView(R.layout.group_create_activity);
     //noinspection ConstantConditions
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -192,12 +188,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     recipientsPanel.setPanelChangeListener(this);
     findViewById(R.id.contacts_button).setOnClickListener(new AddRecipientButtonListener());
     avatar.setImageDrawable(new ResourceContactPhoto(R.drawable.ic_group_white_24dp).asDrawable(this, ContactColors.UNKNOWN_COLOR.toConversationColor(this)));
-    avatar.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        Crop.pickImage(GroupCreateActivity.this);
-      }
-    });
+    avatar.setOnClickListener(view -> Crop.pickImage(GroupCreateActivity.this));
   }
 
   private void initializeExistingGroup() {
@@ -252,14 +243,14 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
       return;
     }
     if (isSignalGroup()) {
-      new CreateSignalGroupTask(this, masterSecret, avatarBmp, getGroupName(), getAdapter().getRecipients()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+      new CreateSignalGroupTask(this, avatarBmp, getGroupName(), getAdapter().getRecipients()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     } else {
-      new CreateMmsGroupTask(this, masterSecret, getAdapter().getRecipients()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+      new CreateMmsGroupTask(this, getAdapter().getRecipients()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
   }
 
   private void handleGroupUpdate() {
-    new UpdateSignalGroupTask(this, masterSecret, groupToUpdate.get().id, avatarBmp,
+    new UpdateSignalGroupTask(this, groupToUpdate.get().id, avatarBmp,
                               getGroupName(), getAdapter().getRecipients()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
@@ -313,7 +304,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
                 .override(AVATAR_SIZE, AVATAR_SIZE)
                 .into(new SimpleTarget<Bitmap>() {
                   @Override
-                  public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
+                  public void onResourceReady(@NonNull Bitmap resource, Transition<? super Bitmap> transition) {
                     setAvatar(Crop.getOutput(data), resource);
                   }
                 });
@@ -332,12 +323,10 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
 
   private static class CreateMmsGroupTask extends AsyncTask<Void,Void,GroupActionResult> {
     private final GroupCreateActivity activity;
-    private final MasterSecret        masterSecret;
     private final Set<Recipient>      members;
 
-    public CreateMmsGroupTask(GroupCreateActivity activity, MasterSecret masterSecret, Set<Recipient> members) {
+    public CreateMmsGroupTask(GroupCreateActivity activity, Set<Recipient> members) {
       this.activity     = activity;
-      this.masterSecret = masterSecret;
       this.members      = members;
     }
 
@@ -368,20 +357,18 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   }
 
   private abstract static class SignalGroupTask extends AsyncTask<Void,Void,Optional<GroupActionResult>> {
+
     protected GroupCreateActivity activity;
-    protected MasterSecret        masterSecret;
     protected Bitmap              avatar;
     protected Set<Recipient>      members;
     protected String              name;
 
     public SignalGroupTask(GroupCreateActivity activity,
-                           MasterSecret        masterSecret,
                            Bitmap              avatar,
                            String              name,
                            Set<Recipient>      members)
     {
       this.activity     = activity;
-      this.masterSecret = masterSecret;
       this.avatar       = avatar;
       this.name         = name;
       this.members      = members;
@@ -408,13 +395,13 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   }
 
   private static class CreateSignalGroupTask extends SignalGroupTask {
-    public CreateSignalGroupTask(GroupCreateActivity activity, MasterSecret masterSecret, Bitmap avatar, String name, Set<Recipient> members) {
-      super(activity, masterSecret, avatar, name, members);
+    public CreateSignalGroupTask(GroupCreateActivity activity, Bitmap avatar, String name, Set<Recipient> members) {
+      super(activity, avatar, name, members);
     }
 
     @Override
     protected Optional<GroupActionResult> doInBackground(Void... aVoid) {
-      return Optional.of(GroupManager.createGroup(activity, masterSecret, members, avatar, name, false));
+      return Optional.of(GroupManager.createGroup(activity, members, avatar, name, false));
     }
 
     @Override
@@ -434,18 +421,17 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   private static class UpdateSignalGroupTask extends SignalGroupTask {
     private String groupId;
 
-    public UpdateSignalGroupTask(GroupCreateActivity activity,
-                                 MasterSecret masterSecret, String groupId, Bitmap avatar, String name,
-                                 Set<Recipient> members)
+    public UpdateSignalGroupTask(GroupCreateActivity activity, String groupId,
+                                 Bitmap avatar, String name, Set<Recipient> members)
     {
-      super(activity, masterSecret, avatar, name, members);
+      super(activity, avatar, name, members);
       this.groupId = groupId;
     }
 
     @Override
     protected Optional<GroupActionResult> doInBackground(Void... aVoid) {
       try {
-        return Optional.of(GroupManager.updateGroup(activity, masterSecret, groupId, members, avatar, name));
+        return Optional.of(GroupManager.updateGroup(activity, groupId, members, avatar, name));
       } catch (InvalidNumberException e) {
         return Optional.absent();
       }

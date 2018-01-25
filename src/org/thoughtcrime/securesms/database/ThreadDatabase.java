@@ -21,21 +21,19 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.MergeCursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 import android.util.Log;
 
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.MasterCipher;
+import net.sqlcipher.database.SQLiteDatabase;
+
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
+import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.DisplayRecord;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -46,7 +44,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DelimiterUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -90,7 +87,7 @@ public class ThreadDatabase extends Database {
     LAST_SEEN + " INTEGER DEFAULT 0, " + HAS_SENT + " INTEGER DEFAULT 0, "                         +
     READ_RECEIPT_COUNT + " INTEGER DEFAULT 0, " + UNREAD_COUNT + " INTEGER DEFAULT 0);";
 
-  static final String[] CREATE_INDEXS = {
+  public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS thread_recipient_ids_index ON " + TABLE_NAME + " (" + ADDRESS + ");",
     "CREATE INDEX IF NOT EXISTS archived_count_index ON " + TABLE_NAME + " (" + ARCHIVED + ", " + MESSAGE_COUNT + ");",
   };
@@ -109,7 +106,7 @@ public class ThreadDatabase extends Database {
                                                                                                Stream.of(GroupDatabase.TYPED_GROUP_PROJECTION))
                                                                                        .toList();
 
-  public ThreadDatabase(Context context, SQLiteOpenHelper databaseHelper) {
+  public ThreadDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
   }
 
@@ -617,8 +614,8 @@ public class ThreadDatabase extends Database {
     void onProgress(int complete, int total);
   }
 
-  public Reader readerFor(Cursor cursor, MasterCipher masterCipher) {
-    return new Reader(cursor, masterCipher);
+  public Reader readerFor(Cursor cursor) {
+    return new Reader(cursor);
   }
 
   public static class DistributionTypes {
@@ -631,12 +628,10 @@ public class ThreadDatabase extends Database {
 
   public class Reader {
 
-    private final Cursor       cursor;
-    private final MasterCipher masterCipher;
+    private final Cursor cursor;
 
-    public Reader(Cursor cursor, MasterCipher masterCipher) {
-      this.cursor       = cursor;
-      this.masterCipher = masterCipher;
+    public Reader(Cursor cursor) {
+      this.cursor = cursor;
     }
 
     public ThreadRecord getNext() {
@@ -686,21 +681,7 @@ public class ThreadDatabase extends Database {
     }
 
     private DisplayRecord.Body getPlaintextBody(Cursor cursor) {
-      try {
-        long type   = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.SNIPPET_TYPE));
-        String body = cursor.getString(cursor.getColumnIndexOrThrow(SNIPPET));
-
-        if (!TextUtils.isEmpty(body) && masterCipher != null && MmsSmsColumns.Types.isSymmetricEncryption(type)) {
-          return new DisplayRecord.Body(masterCipher.decryptBody(body), true);
-        } else if (!TextUtils.isEmpty(body) && masterCipher == null && MmsSmsColumns.Types.isSymmetricEncryption(type)) {
-          return new DisplayRecord.Body(body, false);
-        } else {
-          return new DisplayRecord.Body(body, true);
-        }
-      } catch (InvalidMessageException e) {
-        Log.w("ThreadDatabase", e);
-        return new DisplayRecord.Body(context.getString(R.string.ThreadDatabase_error_decrypting_message), true);
-      }
+      return new DisplayRecord.Body(cursor.getString(cursor.getColumnIndexOrThrow(SNIPPET)), true);
     }
 
     private @Nullable Uri getSnippetUri(Cursor cursor) {

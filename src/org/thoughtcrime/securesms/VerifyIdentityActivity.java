@@ -618,7 +618,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
                                                                     isChecked ? VerifiedStatus.VERIFIED :
                                                                                 VerifiedStatus.DEFAULT));
 
-            IdentityUtil.markIdentityVerified(getActivity(), new MasterSecretUnion(masterSecret), recipient, isChecked, false);
+            IdentityUtil.markIdentityVerified(getActivity(), recipient, isChecked, false);
           }
           return null;
         }

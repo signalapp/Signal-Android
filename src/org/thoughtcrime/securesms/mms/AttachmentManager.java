@@ -49,7 +49,6 @@ import org.thoughtcrime.securesms.components.RemovableEditableMediaView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.components.location.SignalMapView;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
@@ -158,7 +157,7 @@ public class AttachmentManager {
   private void cleanup(final @Nullable Uri uri) {
     if (uri != null && PersistentBlobProvider.isAuthority(context, uri)) {
       Log.w(TAG, "cleaning up " + uri);
-      PersistentBlobProvider.getInstance(context).delete(uri);
+      PersistentBlobProvider.getInstance(context).delete(context, uri);
     }
   }
 
@@ -177,8 +176,7 @@ public class AttachmentManager {
     this.slide      = Optional.of(slide);
   }
 
-  public void setLocation(@NonNull final MasterSecret masterSecret,
-                          @NonNull final SignalPlace place,
+  public void setLocation(@NonNull final SignalPlace place,
                           @NonNull final MediaConstraints constraints)
   {
     inflateStub();
@@ -193,7 +191,7 @@ public class AttachmentManager {
       public void onSuccess(@NonNull Bitmap result) {
         byte[]        blob          = BitmapUtil.toByteArray(result);
         Uri           uri           = PersistentBlobProvider.getInstance(context)
-                                                            .create(masterSecret, blob, MediaUtil.IMAGE_PNG, null);
+                                                            .create(context, blob, MediaUtil.IMAGE_PNG, null);
         LocationSlide locationSlide = new LocationSlide(context, uri, blob.length, place);
 
         setSlide(locationSlide);
@@ -203,8 +201,7 @@ public class AttachmentManager {
   }
 
   @SuppressLint("StaticFieldLeak")
-  public void setMedia(@NonNull final MasterSecret masterSecret,
-                       @NonNull final GlideRequests glideRequests,
+  public void setMedia(@NonNull final GlideRequests glideRequests,
                        @NonNull final Uri uri,
                        @NonNull final MediaType mediaType,
                        @NonNull final MediaConstraints constraints)
@@ -243,7 +240,7 @@ public class AttachmentManager {
           Toast.makeText(context,
                          R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
                          Toast.LENGTH_SHORT).show();
-        } else if (!areConstraintsSatisfied(context, masterSecret, slide, constraints)) {
+        } else if (!areConstraintsSatisfied(context, slide, constraints)) {
           attachmentViewStub.get().setVisibility(View.GONE);
           Toast.makeText(context,
                          R.string.ConversationActivity_attachment_exceeds_size_limits,
@@ -253,13 +250,13 @@ public class AttachmentManager {
           attachmentViewStub.get().setVisibility(View.VISIBLE);
 
           if (slide.hasAudio()) {
-            audioView.setAudio(masterSecret, (AudioSlide) slide, false);
+            audioView.setAudio((AudioSlide) slide, false);
             removableMediaView.display(audioView, false);
           } else if (slide.hasDocument()) {
             documentView.setDocument((DocumentSlide) slide, false);
             removableMediaView.display(documentView, false);
           } else {
-            thumbnail.setImageResource(masterSecret, glideRequests, slide, false, true);
+            thumbnail.setImageResource(glideRequests, slide, false, true);
             removableMediaView.display(thumbnail, mediaType == MediaType.IMAGE);
           }
 
@@ -296,13 +293,13 @@ public class AttachmentManager {
         String mimeType = null;
 
         if (PartAuthority.isLocalUri(uri)) {
-          mediaSize = PartAuthority.getAttachmentSize(context, masterSecret, uri);
-          fileName  = PartAuthority.getAttachmentFileName(context, masterSecret, uri);
-          mimeType  = PartAuthority.getAttachmentContentType(context, masterSecret, uri);
+          mediaSize = PartAuthority.getAttachmentSize(context, uri);
+          fileName  = PartAuthority.getAttachmentFileName(context, uri);
+          mimeType  = PartAuthority.getAttachmentContentType(context, uri);
         }
 
         if (mediaSize == null) {
-          mediaSize = MediaUtil.getMediaSize(context, masterSecret, uri);
+          mediaSize = MediaUtil.getMediaSize(context, uri);
         }
 
         Log.w(TAG, "local slide with size " + mediaSize + " took " + (System.currentTimeMillis() - start) + "ms");
@@ -399,8 +396,7 @@ public class AttachmentManager {
                    Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                    if (captureIntent.resolveActivity(activity.getPackageManager()) != null) {
                      if (captureUri == null) {
-                       captureUri = PersistentBlobProvider.getInstance(context)
-                                                          .createForExternal(MediaUtil.IMAGE_JPEG);
+                       captureUri = PersistentBlobProvider.getInstance(context).createForExternal(context, MediaUtil.IMAGE_JPEG);
                      }
                      Log.w(TAG, "captureUri path is " + captureUri.getPath());
                      captureIntent.putExtra(MediaStore.EXTRA_OUTPUT, captureUri);
@@ -442,12 +438,11 @@ public class AttachmentManager {
   }
 
   private boolean areConstraintsSatisfied(final @NonNull  Context context,
-                                          final @NonNull  MasterSecret masterSecret,
                                           final @Nullable Slide slide,
                                           final @NonNull  MediaConstraints constraints)
   {
-   return slide == null                                                        ||
-          constraints.isSatisfied(context, masterSecret, slide.asAttachment()) ||
+   return slide == null                                          ||
+          constraints.isSatisfied(context, slide.asAttachment()) ||
           constraints.canResize(slide.asAttachment());
   }
 

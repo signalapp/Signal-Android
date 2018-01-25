@@ -9,7 +9,6 @@ import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 
@@ -40,7 +39,7 @@ public class ConversationListItemInboxZero extends LinearLayout implements Binda
   }
 
   @Override
-  public void bind(@NonNull MasterSecret masterSecret, @NonNull ThreadRecord thread, @NonNull GlideRequests glideRequests, @NonNull Locale locale, @NonNull Set<Long> selectedThreads, boolean batchMode) {
+  public void bind(@NonNull ThreadRecord thread, @NonNull GlideRequests glideRequests, @NonNull Locale locale, @NonNull Set<Long> selectedThreads, boolean batchMode) {
 
   }
 }

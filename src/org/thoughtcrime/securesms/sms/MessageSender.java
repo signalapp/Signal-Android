@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2011 Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -21,11 +21,8 @@ import android.util.Log;
 import android.util.Pair;
 
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
@@ -55,15 +52,14 @@ public class MessageSender {
   private static final String TAG = MessageSender.class.getSimpleName();
 
   public static long send(final Context context,
-                          final MasterSecret masterSecret,
                           final OutgoingTextMessage message,
                           final long threadId,
                           final boolean forceSms,
                           final SmsDatabase.InsertListener insertListener)
   {
-    EncryptingSmsDatabase database    = DatabaseFactory.getEncryptingSmsDatabase(context);
-    Recipient             recipient   = message.getRecipient();
-    boolean               keyExchange = message.isKeyExchange();
+    SmsDatabase database    = DatabaseFactory.getSmsDatabase(context);
+    Recipient   recipient   = message.getRecipient();
+    boolean     keyExchange = message.isKeyExchange();
 
     long allocatedThreadId;
 
@@ -73,8 +69,7 @@ public class MessageSender {
       allocatedThreadId = threadId;
     }
 
-    long messageId = database.insertMessageOutbox(new MasterSecretUnion(masterSecret), allocatedThreadId,
-                                                  message, forceSms, System.currentTimeMillis(), insertListener);
+    long messageId = database.insertMessageOutbox(allocatedThreadId, message, forceSms, System.currentTimeMillis(), insertListener);
 
     sendTextMessage(context, recipient, forceSms, keyExchange, messageId, message.getExpiresIn());
 
@@ -82,7 +77,6 @@ public class MessageSender {
   }
 
   public static long send(final Context context,
-                          final MasterSecret masterSecret,
                           final OutgoingMediaMessage message,
                           final long threadId,
                           final boolean forceSms,
@@ -101,9 +95,9 @@ public class MessageSender {
       }
 
       Recipient recipient = message.getRecipient();
-      long      messageId = database.insertMessageOutbox(new MasterSecretUnion(masterSecret), message, allocatedThreadId, forceSms, insertListener);
+      long      messageId = database.insertMessageOutbox(message, allocatedThreadId, forceSms, insertListener);
 
-      sendMediaMessage(context, masterSecret, recipient, forceSms, messageId, message.getExpiresIn());
+      sendMediaMessage(context, recipient, forceSms, messageId, message.getExpiresIn());
 
       return allocatedThreadId;
     } catch (MmsException e) {
@@ -117,7 +111,7 @@ public class MessageSender {
     sendGroupPush(context, messageRecord.getRecipient(), messageRecord.getId(), filterAddress);
   }
 
-  public static void resend(Context context, MasterSecret masterSecret, MessageRecord messageRecord) {
+  public static void resend(Context context, MessageRecord messageRecord) {
     try {
       long       messageId   = messageRecord.getId();
       boolean    forceSms    = messageRecord.isForcedSms();
@@ -126,7 +120,7 @@ public class MessageSender {
       Recipient  recipient   = messageRecord.getRecipient();
 
       if (messageRecord.isMms()) {
-        sendMediaMessage(context, masterSecret, recipient, forceSms, messageId, expiresIn);
+        sendMediaMessage(context, recipient, forceSms, messageId, expiresIn);
       } else {
         sendTextMessage(context, recipient, forceSms, keyExchange, messageId, expiresIn);
       }
@@ -135,13 +129,11 @@ public class MessageSender {
     }
   }
 
-  private static void sendMediaMessage(Context context, MasterSecret masterSecret,
-                                       Recipient recipient, boolean forceSms,
-                                       long messageId, long expiresIn)
+  private static void sendMediaMessage(Context context, Recipient recipient, boolean forceSms, long messageId, long expiresIn)
       throws MmsException
   {
     if (!forceSms && isSelfSend(context, recipient)) {
-      sendMediaSelf(context, masterSecret, messageId, expiresIn);
+      sendMediaSelf(context, messageId, expiresIn);
     } else if (isGroupPushSend(recipient)) {
       sendGroupPush(context, recipient, messageId, null);
     } else if (!forceSms && isPushMediaSend(context, recipient)) {
@@ -165,7 +157,7 @@ public class MessageSender {
   }
 
   private static void sendTextSelf(Context context, long messageId, long expiresIn) {
-    EncryptingSmsDatabase database = DatabaseFactory.getEncryptingSmsDatabase(context);
+    SmsDatabase database = DatabaseFactory.getSmsDatabase(context);
 
     database.markAsSent(messageId, true);
 
@@ -180,15 +172,14 @@ public class MessageSender {
     }
   }
 
-  private static void sendMediaSelf(Context context, MasterSecret masterSecret,
-                                    long messageId, long expiresIn)
+  private static void sendMediaSelf(Context context, long messageId, long expiresIn)
       throws MmsException
   {
     ExpiringMessageManager expiringMessageManager = ApplicationContext.getInstance(context).getExpiringMessageManager();
     MmsDatabase            database               = DatabaseFactory.getMmsDatabase(context);
 
     database.markAsSent(messageId, true);
-    database.copyMessageInbox(masterSecret, messageId);
+    database.copyMessageInbox(messageId);
 
     if (expiresIn > 0) {
       database.markExpireStarted(messageId);

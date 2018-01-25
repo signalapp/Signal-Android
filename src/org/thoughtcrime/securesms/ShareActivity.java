@@ -131,7 +131,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   public void onPause() {
     super.onPause();
     if (!isPassingAlongMedia && resolvedExtra != null) {
-      PersistentBlobProvider.getInstance(this).delete(resolvedExtra);
+      PersistentBlobProvider.getInstance(this).delete(this, resolvedExtra);
     }
     if (!isFinishing()) {
       finish();
@@ -334,7 +334,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
           if (cursor != null) cursor.close();
         }
 
-        return PersistentBlobProvider.getInstance(context).create(masterSecret, inputStream, mimeType, fileName, fileSize);
+        return PersistentBlobProvider.getInstance(context).create(context, inputStream, mimeType, fileName, fileSize);
       } catch (IOException ioe) {
         Log.w(TAG, ioe);
         return null;

@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
@@ -10,7 +11,6 @@ import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -35,12 +35,12 @@ import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
 
 public class ConfirmIdentityDialog extends AlertDialog {
 
+  @SuppressWarnings("unused")
   private static final String TAG = ConfirmIdentityDialog.class.getSimpleName();
 
   private OnClickListener callback;
 
   public ConfirmIdentityDialog(Context context,
-                               MasterSecret masterSecret,
                                MessageRecord messageRecord,
                                IdentityKeyMismatch mismatch)
   {
@@ -59,7 +59,7 @@ public class ConfirmIdentityDialog extends AlertDialog {
       setTitle(name);
       setMessage(spannableString);
 
-      setButton(AlertDialog.BUTTON_POSITIVE, context.getString(R.string.ConfirmIdentityDialog_accept), new AcceptListener(masterSecret, messageRecord, mismatch, recipient.getAddress()));
+      setButton(AlertDialog.BUTTON_POSITIVE, context.getString(R.string.ConfirmIdentityDialog_accept), new AcceptListener(messageRecord, mismatch, recipient.getAddress()));
       setButton(AlertDialog.BUTTON_NEGATIVE, context.getString(android.R.string.cancel),               new CancelListener());
   }
 
@@ -76,18 +76,17 @@ public class ConfirmIdentityDialog extends AlertDialog {
 
   private class AcceptListener implements OnClickListener {
 
-    private final MasterSecret        masterSecret;
     private final MessageRecord       messageRecord;
     private final IdentityKeyMismatch mismatch;
     private final Address             address;
 
-    private AcceptListener(MasterSecret masterSecret, MessageRecord messageRecord, IdentityKeyMismatch mismatch, Address address) {
-      this.masterSecret  = masterSecret;
+    private AcceptListener(MessageRecord messageRecord, IdentityKeyMismatch mismatch, Address address) {
       this.messageRecord = messageRecord;
       this.mismatch      = mismatch;
       this.address       = address;
     }
 
+    @SuppressLint("StaticFieldLeak")
     @Override
     public void onClick(DialogInterface dialog, int which) {
       new AsyncTask<Void, Void, Void>()
@@ -115,7 +114,7 @@ public class ConfirmIdentityDialog extends AlertDialog {
         private void processPendingMessageRecords(long threadId, IdentityKeyMismatch mismatch) {
           MmsSmsDatabase        mmsSmsDatabase = DatabaseFactory.getMmsSmsDatabase(getContext());
           Cursor                cursor         = mmsSmsDatabase.getIdentityConflictMessagesForThread(threadId);
-          MmsSmsDatabase.Reader reader         = mmsSmsDatabase.readerFor(cursor, masterSecret);
+          MmsSmsDatabase.Reader reader         = mmsSmsDatabase.readerFor(cursor);
           MessageRecord         record;
 
           try {
@@ -144,14 +143,14 @@ public class ConfirmIdentityDialog extends AlertDialog {
             if (messageRecord.getRecipient().isPushGroupRecipient()) {
               MessageSender.resendGroupMessage(getContext(), messageRecord, mismatch.getAddress());
             } else {
-              MessageSender.resend(getContext(), masterSecret, messageRecord);
+              MessageSender.resend(getContext(), messageRecord);
             }
           } else {
             smsDatabase.removeMismatchedIdentity(messageRecord.getId(),
                                                  mismatch.getAddress(),
                                                  mismatch.getIdentityKey());
 
-            MessageSender.resend(getContext(), masterSecret, messageRecord);
+            MessageSender.resend(getContext(), messageRecord);
           }
         }
 

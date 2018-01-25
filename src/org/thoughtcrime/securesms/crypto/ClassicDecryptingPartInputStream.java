@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms.crypto;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.util.LimitedInputStream;
@@ -37,14 +38,14 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-public class DecryptingPartInputStream {
+public class ClassicDecryptingPartInputStream {
 
-  private static final String TAG = DecryptingPartInputStream.class.getSimpleName();
+  private static final String TAG = ClassicDecryptingPartInputStream.class.getSimpleName();
 
   private static final int IV_LENGTH  = 16;
   private static final int MAC_LENGTH = 20;
 
-  public static InputStream createFor(MasterSecret masterSecret, File file)
+  public static InputStream createFor(@NonNull AttachmentSecret attachmentSecret, @NonNull File file)
       throws IOException
   {
     try {
@@ -52,7 +53,7 @@ public class DecryptingPartInputStream {
         throw new IOException("File too short");
       }
 
-      verifyMac(masterSecret, file);
+      verifyMac(attachmentSecret, file);
 
       FileInputStream fileStream = new FileInputStream(file);
       byte[]          ivBytes    = new byte[IV_LENGTH];
@@ -60,7 +61,7 @@ public class DecryptingPartInputStream {
 
       Cipher          cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
       IvParameterSpec iv     = new IvParameterSpec(ivBytes);
-      cipher.init(Cipher.DECRYPT_MODE, masterSecret.getEncryptionKey(), iv);
+      cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(attachmentSecret.getClassicCipherKey(), "AES"), iv);
 
       return new CipherInputStreamWrapper(new LimitedInputStream(fileStream, file.length() - MAC_LENGTH - IV_LENGTH), cipher);
     } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | InvalidAlgorithmParameterException e) {
@@ -68,8 +69,8 @@ public class DecryptingPartInputStream {
     }
   }
 
-  private static void verifyMac(MasterSecret masterSecret, File file) throws IOException {
-    Mac             mac        = initializeMac(masterSecret.getMacKey());
+  private static void verifyMac(AttachmentSecret attachmentSecret, File file) throws IOException {
+    Mac             mac        = initializeMac(new SecretKeySpec(attachmentSecret.getClassicMacKey(), "HmacSHA1"));
     FileInputStream macStream  = new FileInputStream(file);
     InputStream     dataStream = new LimitedInputStream(new FileInputStream(file), file.length() - MAC_LENGTH);
     byte[]          theirMac   = new byte[MAC_LENGTH];

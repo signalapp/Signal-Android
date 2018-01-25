@@ -53,7 +53,6 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.AttachmentServer;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -95,11 +94,11 @@ public class VideoPlayer extends FrameLayout {
     }
   }
 
-  public void setVideoSource(@NonNull MasterSecret masterSecret, @NonNull VideoSlide videoSource, boolean autoplay)
+  public void setVideoSource(@NonNull VideoSlide videoSource, boolean autoplay)
       throws IOException
   {
-    if (Build.VERSION.SDK_INT >= 16) setExoViewSource(masterSecret, videoSource, autoplay);
-    else                             setVideoViewSource(masterSecret, videoSource, autoplay);
+    if (Build.VERSION.SDK_INT >= 16) setExoViewSource(videoSource, autoplay);
+    else                             setVideoViewSource(videoSource, autoplay);
   }
 
   public void pause() {
@@ -124,7 +123,7 @@ public class VideoPlayer extends FrameLayout {
     this.window = window;
   }
 
-  private void setExoViewSource(@NonNull MasterSecret masterSecret, @NonNull VideoSlide videoSource, boolean autoplay)
+  private void setExoViewSource(@NonNull VideoSlide videoSource, boolean autoplay)
       throws IOException
   {
     BandwidthMeter         bandwidthMeter             = new DefaultBandwidthMeter();
@@ -138,7 +137,7 @@ public class VideoPlayer extends FrameLayout {
     exoView.setPlayer(exoPlayer);
 
     DefaultDataSourceFactory    defaultDataSourceFactory    = new DefaultDataSourceFactory(getContext(), "GenericUserAgent", null);
-    AttachmentDataSourceFactory attachmentDataSourceFactory = new AttachmentDataSourceFactory(getContext(), masterSecret, defaultDataSourceFactory, null);
+    AttachmentDataSourceFactory attachmentDataSourceFactory = new AttachmentDataSourceFactory(getContext(), defaultDataSourceFactory, null);
     ExtractorsFactory           extractorsFactory           = new DefaultExtractorsFactory();
 
     MediaSource mediaSource = new ExtractorMediaSource(videoSource.getUri(), attachmentDataSourceFactory, extractorsFactory, null, null);
@@ -147,7 +146,7 @@ public class VideoPlayer extends FrameLayout {
     exoPlayer.setPlayWhenReady(autoplay);
   }
 
-  private void setVideoViewSource(@NonNull MasterSecret masterSecret, @NonNull VideoSlide videoSource, boolean autoplay)
+  private void setVideoViewSource(@NonNull VideoSlide videoSource, boolean autoplay)
     throws IOException
   {
     if (this.attachmentServer != null) {
@@ -156,7 +155,7 @@ public class VideoPlayer extends FrameLayout {
 
     if (videoSource.getUri() != null && PartAuthority.isLocalUri(videoSource.getUri())) {
       Log.w(TAG, "Starting video attachment server for part provider Uri...");
-      this.attachmentServer = new AttachmentServer(getContext(), masterSecret, videoSource.asAttachment());
+      this.attachmentServer = new AttachmentServer(getContext(), videoSource.asAttachment());
       this.attachmentServer.start();
 
       //noinspection ConstantConditions

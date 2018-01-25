@@ -226,7 +226,7 @@ public class Util {
   }
 
   public static long copy(InputStream in, OutputStream out) throws IOException {
-    byte[] buffer = new byte[4096];
+    byte[] buffer = new byte[8192];
     int read;
     long total = 0;
 

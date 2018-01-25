@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2011 Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,6 +17,7 @@
 
 package org.thoughtcrime.securesms.notifications;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -41,6 +42,7 @@ public class AndroidAutoHeardReceiver extends MasterSecretBroadcastReceiver {
   public static final String THREAD_IDS_EXTRA      = "car_heard_thread_ids";
   public static final String NOTIFICATION_ID_EXTRA = "car_notification_id";
 
+  @SuppressLint("StaticFieldLeak")
   @Override
   protected void onReceive(final Context context, Intent intent,
                            @Nullable final MasterSecret masterSecret)
@@ -66,7 +68,7 @@ public class AndroidAutoHeardReceiver extends MasterSecretBroadcastReceiver {
             messageIdsCollection.addAll(messageIds);
           }
 
-          MessageNotifier.updateNotification(context, masterSecret);
+          MessageNotifier.updateNotification(context);
           MarkReadReceiver.process(context, messageIdsCollection);
 
           return null;

@@ -10,7 +10,6 @@ import com.google.protobuf.ByteString;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -37,7 +36,6 @@ import java.util.Set;
 public class GroupManager {
 
   public static @NonNull GroupActionResult createGroup(@NonNull  Context        context,
-                                                       @NonNull  MasterSecret   masterSecret,
                                                        @NonNull  Set<Recipient> members,
                                                        @Nullable Bitmap         avatar,
                                                        @Nullable String         name,
@@ -55,7 +53,7 @@ public class GroupManager {
     if (!mms) {
       groupDatabase.updateAvatar(groupId, avatarBytes);
       DatabaseFactory.getRecipientDatabase(context).setProfileSharing(groupRecipient, true);
-      return sendGroupUpdate(context, masterSecret, groupId, memberAddresses, name, avatarBytes);
+      return sendGroupUpdate(context, groupId, memberAddresses, name, avatarBytes);
     } else {
       long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
       return new GroupActionResult(groupRecipient, threadId);
@@ -63,7 +61,6 @@ public class GroupManager {
   }
 
   public static GroupActionResult updateGroup(@NonNull  Context        context,
-                                              @NonNull  MasterSecret   masterSecret,
                                               @NonNull  String         groupId,
                                               @NonNull  Set<Recipient> members,
                                               @Nullable Bitmap         avatar,
@@ -80,7 +77,7 @@ public class GroupManager {
     groupDatabase.updateAvatar(groupId, avatarBytes);
 
     if (!GroupUtil.isMmsGroup(groupId)) {
-      return sendGroupUpdate(context, masterSecret, groupId, memberAddresses, name, avatarBytes);
+      return sendGroupUpdate(context, groupId, memberAddresses, name, avatarBytes);
     } else {
       Recipient groupRecipient = Recipient.from(context, Address.fromSerialized(groupId), true);
       long      threadId       = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
@@ -89,7 +86,6 @@ public class GroupManager {
   }
 
   private static GroupActionResult sendGroupUpdate(@NonNull  Context      context,
-                                                   @NonNull  MasterSecret masterSecret,
                                                    @NonNull  String       groupId,
                                                    @NonNull  Set<Address> members,
                                                    @Nullable String       groupName,
@@ -119,7 +115,7 @@ public class GroupManager {
       }
 
       OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(groupRecipient, groupContext, avatarAttachment, System.currentTimeMillis(), 0);
-      long                      threadId        = MessageSender.send(context, masterSecret, outgoingMessage, -1, false, null);
+      long                      threadId        = MessageSender.send(context, outgoingMessage, -1, false, null);
 
       return new GroupActionResult(groupRecipient, threadId);
     } catch (IOException e) {

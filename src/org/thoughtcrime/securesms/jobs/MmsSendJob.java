@@ -76,10 +76,10 @@ public class MmsSendJob extends SendJob {
   @Override
   public void onSend(MasterSecret masterSecret) throws MmsException, NoSuchMessageException, IOException {
     MmsDatabase          database = DatabaseFactory.getMmsDatabase(context);
-    OutgoingMediaMessage message  = database.getOutgoingMessage(masterSecret, messageId);
+    OutgoingMediaMessage message  = database.getOutgoingMessage(messageId);
 
     try {
-      SendReq pdu = constructSendPdu(masterSecret, message);
+      SendReq pdu = constructSendPdu(message);
 
       validateDestinations(message, pdu);
 
@@ -168,14 +168,14 @@ public class MmsSendJob extends SendJob {
     }
   }
 
-  private SendReq constructSendPdu(MasterSecret masterSecret, OutgoingMediaMessage message)
+  private SendReq constructSendPdu(OutgoingMediaMessage message)
       throws UndeliverableMessageException
   {
     SendReq          req               = new SendReq();
     String           lineNumber        = getMyNumber(context);
     Address          destination       = message.getRecipient().getAddress();
     MediaConstraints mediaConstraints  = MediaConstraints.getMmsMediaConstraints(message.getSubscriptionId());
-    List<Attachment> scaledAttachments = scaleAttachments(masterSecret, mediaConstraints, message.getAttachments());
+    List<Attachment> scaledAttachments = scaleAttachments(mediaConstraints, message.getAttachments());
 
     if (!TextUtils.isEmpty(lineNumber)) {
       req.setFrom(new EncodedStringValue(lineNumber));
@@ -241,7 +241,7 @@ public class MmsSendJob extends SendJob {
         int index = fileName.lastIndexOf(".");
         String contentId = (index == -1) ? fileName : fileName.substring(0, index);
         part.setContentId(contentId.getBytes());
-        part.setData(Util.readFully(PartAuthority.getAttachmentStream(context, masterSecret, attachment.getDataUri())));
+        part.setData(Util.readFully(PartAuthority.getAttachmentStream(context, attachment.getDataUri())));
 
         body.addPart(part);
         size += getPartSize(part);

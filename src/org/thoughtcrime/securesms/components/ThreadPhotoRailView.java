@@ -91,11 +91,11 @@ public class ThreadPhotoRailView extends FrameLayout {
     @Override
     public void onBindItemViewHolder(ThreadPhotoViewHolder viewHolder, @NonNull Cursor cursor) {
       ThumbnailView             imageView   = viewHolder.imageView;
-      MediaDatabase.MediaRecord mediaRecord = MediaDatabase.MediaRecord.from(getContext(), masterSecret, cursor);
+      MediaDatabase.MediaRecord mediaRecord = MediaDatabase.MediaRecord.from(getContext(), cursor);
       Slide                     slide       = MediaUtil.getSlideForAttachment(getContext(), mediaRecord.getAttachment());
 
       if (slide != null) {
-        imageView.setImageResource(masterSecret, glideRequests, slide, false, false);
+        imageView.setImageResource(glideRequests, slide, false, false);
       }
 
       imageView.setOnClickListener(v -> {

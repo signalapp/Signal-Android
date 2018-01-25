@@ -34,7 +34,6 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.RemoteViews;
 
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.DatabaseUpgradeActivity;
 import org.thoughtcrime.securesms.DummyActivity;
@@ -42,7 +41,6 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
-import org.thoughtcrime.securesms.jobs.MasterSecretDecryptJob;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -105,16 +103,12 @@ public class KeyCachingService extends Service {
       foregroundService();
       broadcastNewSecret();
       startTimeoutIfAppropriate();
-
-      if (!TextSecurePreferences.isPasswordDisabled(this)) {
-        ApplicationContext.getInstance(this).getJobManager().add(new MasterSecretDecryptJob(this));
-      }
-
+      
       new AsyncTask<Void, Void, Void>() {
         @Override
         protected Void doInBackground(Void... params) {
           if (!DatabaseUpgradeActivity.isUpdate(KeyCachingService.this)) {
-            MessageNotifier.updateNotification(KeyCachingService.this, masterSecret);
+            MessageNotifier.updateNotification(KeyCachingService.this);
           }
           return null;
         }
@@ -205,7 +199,7 @@ public class KeyCachingService extends Service {
     new AsyncTask<Void, Void, Void>() {
       @Override
       protected Void doInBackground(Void... params) {
-        MessageNotifier.updateNotification(KeyCachingService.this, null);
+        MessageNotifier.updateNotification(KeyCachingService.this);
         return null;
       }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);

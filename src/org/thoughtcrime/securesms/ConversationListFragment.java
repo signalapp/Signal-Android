@@ -221,7 +221,7 @@ public class ConversationListFragment extends Fragment
   }
 
   private void initializeListAdapter() {
-    list.setAdapter(new ConversationListAdapter(getActivity(), masterSecret, GlideApp.with(this), locale, null, this));
+    list.setAdapter(new ConversationListAdapter(getActivity(), GlideApp.with(this), locale, null, this));
     getLoaderManager().restartLoader(0, null, this);
   }
 
@@ -302,7 +302,7 @@ public class ConversationListFragment extends Fragment
           @Override
           protected Void doInBackground(Void... params) {
             DatabaseFactory.getThreadDatabase(getActivity()).deleteConversations(selectedConversations);
-            MessageNotifier.updateNotification(getActivity(), masterSecret);
+            MessageNotifier.updateNotification(getActivity());
             return null;
           }
 
@@ -519,7 +519,7 @@ public class ConversationListFragment extends Fragment
 
             if (unreadCount > 0) {
               List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(getActivity()).setRead(threadId, false);
-              MessageNotifier.updateNotification(getActivity(), masterSecret);
+              MessageNotifier.updateNotification(getActivity());
               MarkReadReceiver.process(getActivity(), messageIds);
             }
           }
@@ -530,7 +530,7 @@ public class ConversationListFragment extends Fragment
 
             if (unreadCount > 0) {
               DatabaseFactory.getThreadDatabase(getActivity()).incrementUnread(threadId, unreadCount);
-              MessageNotifier.updateNotification(getActivity(), masterSecret);
+              MessageNotifier.updateNotification(getActivity());
             }
           }
         }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, threadId);

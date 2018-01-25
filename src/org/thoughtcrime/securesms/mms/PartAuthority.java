@@ -41,15 +41,15 @@ public class PartAuthority {
     uriMatcher.addURI(SingleUseBlobProvider.AUTHORITY, SingleUseBlobProvider.PATH, SINGLE_USE_ROW);
   }
 
-  public static InputStream getAttachmentStream(@NonNull Context context, @NonNull MasterSecret masterSecret, @NonNull Uri uri)
+  public static InputStream getAttachmentStream(@NonNull Context context, @NonNull Uri uri)
       throws IOException
   {
     int match = uriMatcher.match(uri);
     try {
       switch (match) {
-      case PART_ROW:       return DatabaseFactory.getAttachmentDatabase(context).getAttachmentStream(masterSecret, new PartUriParser(uri).getPartId());
-      case THUMB_ROW:      return DatabaseFactory.getAttachmentDatabase(context).getThumbnailStream(masterSecret, new PartUriParser(uri).getPartId());
-      case PERSISTENT_ROW: return PersistentBlobProvider.getInstance(context).getStream(masterSecret, ContentUris.parseId(uri));
+      case PART_ROW:       return DatabaseFactory.getAttachmentDatabase(context).getAttachmentStream(new PartUriParser(uri).getPartId());
+      case THUMB_ROW:      return DatabaseFactory.getAttachmentDatabase(context).getThumbnailStream(new PartUriParser(uri).getPartId());
+      case PERSISTENT_ROW: return PersistentBlobProvider.getInstance(context).getStream(context, ContentUris.parseId(uri));
       case SINGLE_USE_ROW: return SingleUseBlobProvider.getInstance().getStream(ContentUris.parseId(uri));
       default:             return context.getContentResolver().openInputStream(uri);
       }
@@ -58,31 +58,31 @@ public class PartAuthority {
     }
   }
 
-  public static @Nullable String getAttachmentFileName(@NonNull Context context, @NonNull MasterSecret masterSecret, @NonNull Uri uri) {
+  public static @Nullable String getAttachmentFileName(@NonNull Context context, @NonNull Uri uri) {
     int match = uriMatcher.match(uri);
 
     switch (match) {
     case THUMB_ROW:
     case PART_ROW:
-      Attachment attachment = DatabaseFactory.getAttachmentDatabase(context).getAttachment(masterSecret, new PartUriParser(uri).getPartId());
+      Attachment attachment = DatabaseFactory.getAttachmentDatabase(context).getAttachment(new PartUriParser(uri).getPartId());
 
       if (attachment != null) return attachment.getFileName();
       else                    return null;
     case PERSISTENT_ROW:
-      return PersistentBlobProvider.getFileName(context, masterSecret, uri);
+      return PersistentBlobProvider.getFileName(context, uri);
     case SINGLE_USE_ROW:
     default:
       return null;
     }
   }
 
-  public static @Nullable Long getAttachmentSize(@NonNull Context context, @NonNull MasterSecret masterSecret, @NonNull Uri uri) {
+  public static @Nullable Long getAttachmentSize(@NonNull Context context, @NonNull Uri uri) {
     int match = uriMatcher.match(uri);
 
     switch (match) {
       case THUMB_ROW:
       case PART_ROW:
-        Attachment attachment = DatabaseFactory.getAttachmentDatabase(context).getAttachment(masterSecret, new PartUriParser(uri).getPartId());
+        Attachment attachment = DatabaseFactory.getAttachmentDatabase(context).getAttachment(new PartUriParser(uri).getPartId());
 
         if (attachment != null) return attachment.getSize();
         else                    return null;
@@ -94,13 +94,13 @@ public class PartAuthority {
     }
   }
 
-  public static @Nullable String getAttachmentContentType(@NonNull Context context, @NonNull MasterSecret masterSecret, @NonNull Uri uri) {
+  public static @Nullable String getAttachmentContentType(@NonNull Context context, @NonNull Uri uri) {
     int match = uriMatcher.match(uri);
 
     switch (match) {
       case THUMB_ROW:
       case PART_ROW:
-        Attachment attachment = DatabaseFactory.getAttachmentDatabase(context).getAttachment(masterSecret, new PartUriParser(uri).getPartId());
+        Attachment attachment = DatabaseFactory.getAttachmentDatabase(context).getAttachment(new PartUriParser(uri).getPartId());
 
         if (attachment != null) return attachment.getContentType();
         else                    return null;

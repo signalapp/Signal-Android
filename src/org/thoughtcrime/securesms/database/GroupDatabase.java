@@ -5,8 +5,6 @@ import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,6 +12,9 @@ import android.text.TextUtils;
 
 import com.annimon.stream.Stream;
 
+import net.sqlcipher.database.SQLiteDatabase;
+
+import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
@@ -64,7 +65,7 @@ public class GroupDatabase extends Database {
           AVATAR_DIGEST + " BLOB, " +
           MMS + " INTEGER DEFAULT 0);";
 
-  static final String[] CREATE_INDEXS = {
+  public static final String[] CREATE_INDEXS = {
       "CREATE UNIQUE INDEX IF NOT EXISTS group_id_index ON " + TABLE_NAME + " (" + GROUP_ID + ");",
   };
 
@@ -75,7 +76,7 @@ public class GroupDatabase extends Database {
 
   static final List<String> TYPED_GROUP_PROJECTION = Stream.of(GROUP_PROJECTION).map(columnName -> TABLE_NAME + "." + columnName).toList();
 
-  public GroupDatabase(Context context, SQLiteOpenHelper databaseHelper) {
+  public GroupDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
   }
 

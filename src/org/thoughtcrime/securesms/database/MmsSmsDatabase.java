@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2011 Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,23 +18,22 @@ package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteQueryBuilder;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import net.sqlcipher.database.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteQueryBuilder;
+
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
+import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class MmsSmsDatabase extends Database {
 
+  @SuppressWarnings("unused")
   private static final String TAG = MmsSmsDatabase.class.getSimpleName();
 
   public static final String TRANSPORT     = "transport_type";
@@ -77,7 +76,7 @@ public class MmsSmsDatabase extends Database {
                                               AttachmentDatabase.NAME,
                                               AttachmentDatabase.TRANSFER_STATE};
 
-  public MmsSmsDatabase(Context context, SQLiteOpenHelper databaseHelper) {
+  public MmsSmsDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
   }
 
@@ -309,34 +308,23 @@ public class MmsSmsDatabase extends Database {
     return db.rawQuery(query, null);
   }
 
-  public Reader readerFor(@NonNull Cursor cursor, @Nullable MasterSecret masterSecret) {
-    return new Reader(cursor, masterSecret);
-  }
-
   public Reader readerFor(@NonNull Cursor cursor) {
     return new Reader(cursor);
   }
 
   public class Reader {
 
-    private final Cursor                       cursor;
-    private final Optional<MasterSecret>       masterSecret;
-    private       EncryptingSmsDatabase.Reader smsReader;
-    private       MmsDatabase.Reader           mmsReader;
-
-    public Reader(Cursor cursor, @Nullable MasterSecret masterSecret) {
-      this.cursor       = cursor;
-      this.masterSecret = Optional.fromNullable(masterSecret);
-    }
+    private final Cursor                 cursor;
+    private       SmsDatabase.Reader     smsReader;
+    private       MmsDatabase.Reader     mmsReader;
 
     public Reader(Cursor cursor) {
-      this(cursor, null);
+      this.cursor = cursor;
     }
 
-    private EncryptingSmsDatabase.Reader getSmsReader() {
+    private SmsDatabase.Reader getSmsReader() {
       if (smsReader == null) {
-        if (masterSecret.isPresent()) smsReader = DatabaseFactory.getEncryptingSmsDatabase(context).readerFor(masterSecret.get(), cursor);
-        else                          smsReader = DatabaseFactory.getSmsDatabase(context).readerFor(cursor);
+        smsReader = DatabaseFactory.getSmsDatabase(context).readerFor(cursor);
       }
 
       return smsReader;
@@ -344,7 +332,7 @@ public class MmsSmsDatabase extends Database {
 
     private MmsDatabase.Reader getMmsReader() {
       if (mmsReader == null) {
-        mmsReader = DatabaseFactory.getMmsDatabase(context).readerFor(masterSecret.orNull(), cursor);
+        mmsReader = DatabaseFactory.getMmsDatabase(context).readerFor(cursor);
       }
 
       return mmsReader;

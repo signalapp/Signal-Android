@@ -3,8 +3,6 @@ package org.thoughtcrime.securesms.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,7 +10,10 @@ import android.util.Log;
 
 import com.annimon.stream.Stream;
 
+import net.sqlcipher.database.SQLiteDatabase;
+
 import org.thoughtcrime.securesms.color.MaterialColor;
+import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Util;
@@ -119,7 +120,7 @@ public class RecipientDatabase extends Database {
           SIGNAL_PROFILE_AVATAR + " TEXT DEFAULT NULL, " +
           PROFILE_SHARING + " INTEGER DEFAULT 0);";
 
-  public RecipientDatabase(Context context, SQLiteOpenHelper databaseHelper) {
+  public RecipientDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
   }
 

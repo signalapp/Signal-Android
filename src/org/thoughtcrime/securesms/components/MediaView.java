@@ -13,7 +13,6 @@ import android.view.Window;
 import android.widget.FrameLayout;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.util.views.Stub;
@@ -54,8 +53,7 @@ public class MediaView extends FrameLayout {
     this.videoView = new Stub<>(findViewById(R.id.video_player_stub));
   }
 
-  public void set(@NonNull MasterSecret masterSecret,
-                  @NonNull GlideRequests glideRequests,
+  public void set(@NonNull GlideRequests glideRequests,
                   @NonNull Window window,
                   @NonNull Uri source,
                   @NonNull String mediaType,
@@ -66,12 +64,12 @@ public class MediaView extends FrameLayout {
     if (mediaType.startsWith("image/")) {
       imageView.setVisibility(View.VISIBLE);
       if (videoView.resolved()) videoView.get().setVisibility(View.GONE);
-      imageView.setImageUri(masterSecret, glideRequests, source, mediaType);
+      imageView.setImageUri(glideRequests, source, mediaType);
     } else if (mediaType.startsWith("video/")) {
       imageView.setVisibility(View.GONE);
       videoView.get().setVisibility(View.VISIBLE);
       videoView.get().setWindow(window);
-      videoView.get().setVideoSource(masterSecret, new VideoSlide(getContext(), source, size), autoplay);
+      videoView.get().setVideoSource(new VideoSlide(getContext(), source, size), autoplay);
     } else {
       throw new IOException("Unsupported media type: " + mediaType);
     }

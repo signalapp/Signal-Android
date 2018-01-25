@@ -672,8 +672,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
 
   private void insertMissedCall(@NonNull Recipient recipient, boolean signal) {
     Pair<Long, Long> messageAndThreadId = DatabaseFactory.getSmsDatabase(this).insertMissedCall(recipient.getAddress());
-    MessageNotifier.updateNotification(this, KeyCachingService.getMasterSecret(this),
-                                       messageAndThreadId.second, signal);
+    MessageNotifier.updateNotification(this, messageAndThreadId.second, signal);
   }
 
   private void handleAnswerCall(Intent intent) {

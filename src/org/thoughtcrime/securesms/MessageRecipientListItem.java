@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.text.TextUtils;
@@ -29,7 +30,6 @@ import org.thoughtcrime.securesms.MessageDetailsRecipientAdapter.RecipientDelive
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.DeliveryStatusView;
 import org.thoughtcrime.securesms.components.FromTextView;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.util.Util;
 public class MessageRecipientListItem extends RelativeLayout
     implements RecipientModifiedListener
 {
+  @SuppressWarnings("unused")
   private final static String TAG = MessageRecipientListItem.class.getSimpleName();
 
   private RecipientDeliveryStatus member;
@@ -81,8 +82,7 @@ public class MessageRecipientListItem extends RelativeLayout
     this.deliveryStatusView = findViewById(R.id.delivery_status);
   }
 
-  public void set(final MasterSecret masterSecret,
-                  final GlideRequests glideRequests,
+  public void set(final GlideRequests glideRequests,
                   final MessageRecord record,
                   final RecipientDeliveryStatus member,
                   final boolean isPushGroup)
@@ -93,11 +93,10 @@ public class MessageRecipientListItem extends RelativeLayout
     member.getRecipient().addListener(this);
     fromView.setText(member.getRecipient());
     contactPhotoImage.setAvatar(glideRequests, member.getRecipient(), false);
-    setIssueIndicators(masterSecret, record, isPushGroup);
+    setIssueIndicators(record, isPushGroup);
   }
 
-  private void setIssueIndicators(final MasterSecret masterSecret,
-                                  final MessageRecord record,
+  private void setIssueIndicators(final MessageRecord record,
                                   final boolean isPushGroup)
   {
     final NetworkFailure      networkFailure = getNetworkFailure(record);
@@ -110,7 +109,7 @@ public class MessageRecipientListItem extends RelativeLayout
       conflictButton.setVisibility(View.VISIBLE);
 
       errorText = getContext().getString(R.string.MessageDetailsRecipient_new_safety_number);
-      conflictButton.setOnClickListener(v -> new ConfirmIdentityDialog(getContext(), masterSecret, record, keyMismatch).show());
+      conflictButton.setOnClickListener(v -> new ConfirmIdentityDialog(getContext(), record, keyMismatch).show());
     } else if (networkFailure != null || (!isPushGroup && record.isFailed())) {
       resendButton.setVisibility(View.VISIBLE);
       resendButton.setEnabled(true);
@@ -123,7 +122,7 @@ public class MessageRecipientListItem extends RelativeLayout
         errorDescription.setVisibility(View.GONE);
         actionDescription.setVisibility(View.VISIBLE);
         actionDescription.setText(R.string.message_recipients_list_item__resending);
-        new ResendAsyncTask(masterSecret, record, networkFailure).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        new ResendAsyncTask(record, networkFailure).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
       });
     } else {
       if (record.isOutgoing()) {
@@ -185,15 +184,14 @@ public class MessageRecipientListItem extends RelativeLayout
     });
   }
 
+  @SuppressLint("StaticFieldLeak")
   private class ResendAsyncTask extends AsyncTask<Void,Void,Void> {
     private final Context        context;
-    private final MasterSecret   masterSecret;
     private final MessageRecord  record;
     private final NetworkFailure failure;
 
-    ResendAsyncTask(MasterSecret masterSecret, MessageRecord record, NetworkFailure failure) {
+    ResendAsyncTask(MessageRecord record, NetworkFailure failure) {
       this.context      = getContext().getApplicationContext();
-      this.masterSecret = masterSecret;
       this.record       = record;
       this.failure      = failure;
     }
@@ -206,7 +204,7 @@ public class MessageRecipientListItem extends RelativeLayout
       if (record.getRecipient().isPushGroupRecipient()) {
         MessageSender.resendGroupMessage(context, record, failure.getAddress());
       } else {
-        MessageSender.resend(context, masterSecret, record);
+        MessageSender.resend(context, record);
       }
       return null;
     }

@@ -207,7 +207,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity  
       this.noMedia      = ViewUtil.findById(view, R.id.no_images);
       this.gridManager  = new StickyHeaderGridLayoutManager(getResources().getInteger(R.integer.media_overview_cols));
 
-      this.recyclerView.setAdapter(new MediaGalleryAdapter(getContext(), masterSecret, GlideApp.with(this), new BucketedThreadMedia(getContext()), locale, recipient.getAddress()));
+      this.recyclerView.setAdapter(new MediaGalleryAdapter(getContext(), GlideApp.with(this), new BucketedThreadMedia(getContext()), locale, recipient.getAddress()));
       this.recyclerView.setLayoutManager(gridManager);
       this.recyclerView.setHasFixedSize(true);
 
@@ -225,7 +225,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity  
 
     @Override
     public Loader<BucketedThreadMedia> onCreateLoader(int i, Bundle bundle) {
-      return new BucketedThreadMediaLoader(getContext(), masterSecret, recipient.getAddress());
+      return new BucketedThreadMediaLoader(getContext(), recipient.getAddress());
     }
 
     @Override
@@ -248,7 +248,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity  
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
       View                  view    = inflater.inflate(R.layout.media_overview_documents_fragment, container, false);
-      MediaDocumentsAdapter adapter = new MediaDocumentsAdapter(getContext(), masterSecret, null, locale);
+      MediaDocumentsAdapter adapter = new MediaDocumentsAdapter(getContext(), null, locale);
 
       this.recyclerView  = ViewUtil.findById(view, R.id.recycler_view);
       this.noMedia       = ViewUtil.findById(view, R.id.no_documents);

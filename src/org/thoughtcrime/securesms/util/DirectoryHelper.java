@@ -11,7 +11,6 @@ import android.net.Uri;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -21,7 +20,6 @@ import com.annimon.stream.Stream;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SessionUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -50,7 +48,7 @@ public class DirectoryHelper {
 
   private static final String TAG = DirectoryHelper.class.getSimpleName();
 
-  public static void refreshDirectory(@NonNull Context context, @Nullable MasterSecret masterSecret, boolean notifyOfNewUsers)
+  public static void refreshDirectory(@NonNull Context context, boolean notifyOfNewUsers)
       throws IOException
   {
     if (TextUtils.isEmpty(TextSecurePreferences.getLocalNumber(context))) return;
@@ -64,7 +62,7 @@ public class DirectoryHelper {
                         .add(new MultiDeviceContactUpdateJob(context));
     }
 
-    if (notifyOfNewUsers) notifyNewUsers(context, masterSecret, newlyActiveUsers);
+    if (notifyOfNewUsers) notifyNewUsers(context, newlyActiveUsers);
   }
 
   private static @NonNull List<Address> refreshDirectory(@NonNull Context context, @NonNull SignalServiceAccountManager accountManager)
@@ -122,7 +120,6 @@ public class DirectoryHelper {
   }
 
   public static RegisteredState refreshDirectoryFor(@NonNull  Context context,
-                                                    @Nullable MasterSecret masterSecret,
                                                     @NonNull  Recipient recipient)
       throws IOException
   {
@@ -145,7 +142,7 @@ public class DirectoryHelper {
       }
 
       if (!activeUser && systemContact) {
-        notifyNewUsers(context, masterSecret, Collections.singletonList(recipient.getAddress()));
+        notifyNewUsers(context, Collections.singletonList(recipient.getAddress()));
       }
 
       return RegisteredState.REGISTERED;
@@ -191,22 +188,21 @@ public class DirectoryHelper {
   }
 
   private static void notifyNewUsers(@NonNull  Context context,
-                                     @Nullable MasterSecret masterSecret,
                                      @NonNull  List<Address> newUsers)
   {
     if (!TextSecurePreferences.isNewContactsNotificationEnabled(context)) return;
 
     for (Address newUser: newUsers) {
-      if (!SessionUtil.hasSession(context, masterSecret, newUser) && !Util.isOwnNumber(context, newUser)) {
+      if (!SessionUtil.hasSession(context, newUser) && !Util.isOwnNumber(context, newUser)) {
         IncomingJoinedMessage  message      = new IncomingJoinedMessage(newUser);
         Optional<InsertResult> insertResult = DatabaseFactory.getSmsDatabase(context).insertMessageInbox(message);
 
         if (insertResult.isPresent()) {
           int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
           if (hour >= 9 && hour < 23) {
-            MessageNotifier.updateNotification(context, masterSecret, insertResult.get().getThreadId(), true);
+            MessageNotifier.updateNotification(context, insertResult.get().getThreadId(), true);
           } else {
-            MessageNotifier.updateNotification(context, masterSecret, insertResult.get().getThreadId(), false);
+            MessageNotifier.updateNotification(context, insertResult.get().getThreadId(), false);
           }
         }
       }

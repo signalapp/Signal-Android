@@ -9,13 +9,12 @@ import android.util.Log;
 import com.google.protobuf.ByteString;
 
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.jobs.AvatarDownloadJob;
 import org.thoughtcrime.securesms.jobs.PushGroupUpdateJob;
 import org.thoughtcrime.securesms.mms.MmsException;
@@ -47,7 +46,6 @@ public class GroupMessageProcessor {
   private static final String TAG = GroupMessageProcessor.class.getSimpleName();
 
   public static @Nullable Long process(@NonNull Context context,
-                                       @NonNull MasterSecretUnion masterSecret,
                                        @NonNull SignalServiceEnvelope envelope,
                                        @NonNull SignalServiceDataMessage message,
                                        boolean outgoing)
@@ -63,11 +61,11 @@ public class GroupMessageProcessor {
     Optional<GroupRecord> record   = database.getGroup(id);
 
     if (record.isPresent() && group.getType() == Type.UPDATE) {
-      return handleGroupUpdate(context, masterSecret, envelope, group, record.get(), outgoing);
+      return handleGroupUpdate(context, envelope, group, record.get(), outgoing);
     } else if (!record.isPresent() && group.getType() == Type.UPDATE) {
-      return handleGroupCreate(context, masterSecret, envelope, group, outgoing);
+      return handleGroupCreate(context, envelope, group, outgoing);
     } else if (record.isPresent() && group.getType() == Type.QUIT) {
-      return handleGroupLeave(context, masterSecret, envelope, group, record.get(), outgoing);
+      return handleGroupLeave(context, envelope, group, record.get(), outgoing);
     } else if (record.isPresent() && group.getType() == Type.REQUEST_INFO) {
       return handleGroupInfoRequest(context, envelope, group, record.get());
     } else {
@@ -77,7 +75,6 @@ public class GroupMessageProcessor {
   }
 
   private static @Nullable Long handleGroupCreate(@NonNull Context context,
-                                                  @NonNull MasterSecretUnion masterSecret,
                                                   @NonNull SignalServiceEnvelope envelope,
                                                   @NonNull SignalServiceGroup group,
                                                   boolean outgoing)
@@ -100,11 +97,10 @@ public class GroupMessageProcessor {
                     avatar != null && avatar.isPointer() ? avatar.asPointer() : null,
                     envelope.getRelay());
 
-    return storeMessage(context, masterSecret, envelope, group, builder.build(), outgoing);
+    return storeMessage(context, envelope, group, builder.build(), outgoing);
   }
 
   private static @Nullable Long handleGroupUpdate(@NonNull Context context,
-                                                  @NonNull MasterSecretUnion masterSecret,
                                                   @NonNull SignalServiceEnvelope envelope,
                                                   @NonNull SignalServiceGroup group,
                                                   @NonNull GroupRecord groupRecord,
@@ -159,7 +155,7 @@ public class GroupMessageProcessor {
 
     if (!groupRecord.isActive()) database.setActive(id, true);
 
-    return storeMessage(context, masterSecret, envelope, group, builder.build(), outgoing);
+    return storeMessage(context, envelope, group, builder.build(), outgoing);
   }
 
   private static Long handleGroupInfoRequest(@NonNull Context context,
@@ -177,7 +173,6 @@ public class GroupMessageProcessor {
   }
 
   private static Long handleGroupLeave(@NonNull Context               context,
-                                       @NonNull MasterSecretUnion     masterSecret,
                                        @NonNull SignalServiceEnvelope envelope,
                                        @NonNull SignalServiceGroup    group,
                                        @NonNull GroupRecord           record,
@@ -194,7 +189,7 @@ public class GroupMessageProcessor {
       database.remove(id, Address.fromExternal(context, envelope.getSource()));
       if (outgoing) database.setActive(id, false);
 
-      return storeMessage(context, masterSecret, envelope, group, builder.build(), outgoing);
+      return storeMessage(context, envelope, group, builder.build(), outgoing);
     }
 
     return null;
@@ -202,7 +197,6 @@ public class GroupMessageProcessor {
 
 
   private static @Nullable Long storeMessage(@NonNull Context context,
-                                             @NonNull MasterSecretUnion masterSecret,
                                              @NonNull SignalServiceEnvelope envelope,
                                              @NonNull SignalServiceGroup group,
                                              @NonNull GroupContext storage,
@@ -220,21 +214,21 @@ public class GroupMessageProcessor {
         Recipient                 recipient       = Recipient.from(context, addres, false);
         OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(recipient, storage, null, envelope.getTimestamp(), 0);
         long                      threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
-        long                      messageId       = mmsDatabase.insertMessageOutbox(masterSecret, outgoingMessage, threadId, false, null);
+        long                      messageId       = mmsDatabase.insertMessageOutbox(outgoingMessage, threadId, false, null);
 
         mmsDatabase.markAsSent(messageId, true);
 
         return threadId;
       } else {
-        EncryptingSmsDatabase smsDatabase  = DatabaseFactory.getEncryptingSmsDatabase(context);
-        String                body         = Base64.encodeBytes(storage.toByteArray());
-        IncomingTextMessage   incoming     = new IncomingTextMessage(Address.fromExternal(context, envelope.getSource()), envelope.getSourceDevice(), envelope.getTimestamp(), body, Optional.of(group), 0);
-        IncomingGroupMessage  groupMessage = new IncomingGroupMessage(incoming, storage, body);
+        SmsDatabase          smsDatabase  = DatabaseFactory.getSmsDatabase(context);
+        String               body         = Base64.encodeBytes(storage.toByteArray());
+        IncomingTextMessage  incoming     = new IncomingTextMessage(Address.fromExternal(context, envelope.getSource()), envelope.getSourceDevice(), envelope.getTimestamp(), body, Optional.of(group), 0);
+        IncomingGroupMessage groupMessage = new IncomingGroupMessage(incoming, storage, body);
 
-        Optional<InsertResult> insertResult = smsDatabase.insertMessageInbox(masterSecret, groupMessage);
+        Optional<InsertResult> insertResult = smsDatabase.insertMessageInbox(groupMessage);
 
         if (insertResult.isPresent()) {
-          MessageNotifier.updateNotification(context, masterSecret.getMasterSecret().orNull(), insertResult.get().getThreadId());
+          MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
           return insertResult.get().getThreadId();
         } else {
           return null;

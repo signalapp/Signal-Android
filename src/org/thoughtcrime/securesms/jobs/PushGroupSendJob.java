@@ -12,7 +12,6 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase.GroupReceiptInfo;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
@@ -82,10 +81,10 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       throws MmsException, IOException, NoSuchMessageException
   {
     MmsDatabase          database = DatabaseFactory.getMmsDatabase(context);
-    OutgoingMediaMessage message  = database.getOutgoingMessage(masterSecret, messageId);
+    OutgoingMediaMessage message  = database.getOutgoingMessage(messageId);
 
     try {
-      deliver(masterSecret, message, filterAddress == null ? null : Address.fromSerialized(filterAddress));
+      deliver(message, filterAddress == null ? null : Address.fromSerialized(filterAddress));
 
       database.markAsSent(messageId, true);
       markAttachmentsUploaded(messageId, message.getAttachments());
@@ -135,7 +134,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageId);
   }
 
-  private void deliver(MasterSecret masterSecret, OutgoingMediaMessage message, @Nullable Address filterAddress)
+  private void deliver(OutgoingMediaMessage message, @Nullable Address filterAddress)
       throws IOException, RecipientFormattingException, InvalidNumberException,
       EncapsulatedExceptions, UndeliverableMessageException
   {
@@ -143,8 +142,8 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     Optional<byte[]>              profileKey        = getProfileKey(message.getRecipient());
     List<Address>                 recipients        = getGroupMessageRecipients(groupId, messageId);
     MediaConstraints              mediaConstraints  = MediaConstraints.getPushMediaConstraints();
-    List<Attachment>              scaledAttachments = scaleAttachments(masterSecret, mediaConstraints, message.getAttachments());
-    List<SignalServiceAttachment> attachmentStreams = getAttachmentsFor(masterSecret, scaledAttachments);
+    List<Attachment>              scaledAttachments = scaleAttachments(mediaConstraints, message.getAttachments());
+    List<SignalServiceAttachment> attachmentStreams = getAttachmentsFor(scaledAttachments);
 
     List<SignalServiceAddress>    addresses;
 

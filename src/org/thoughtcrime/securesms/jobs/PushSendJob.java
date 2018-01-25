@@ -80,13 +80,13 @@ public abstract class PushSendJob extends SendJob {
     return new SignalServiceAddress(address.toPhoneString(), Optional.fromNullable(relay));
   }
 
-  protected List<SignalServiceAttachment> getAttachmentsFor(MasterSecret masterSecret, List<Attachment> parts) {
+  protected List<SignalServiceAttachment> getAttachmentsFor(List<Attachment> parts) {
     List<SignalServiceAttachment> attachments = new LinkedList<>();
 
     for (final Attachment attachment : parts) {
       try {
         if (attachment.getDataUri() == null || attachment.getSize() == 0) throw new IOException("Assertion failed, outgoing attachment has no data!");
-        InputStream is = PartAuthority.getAttachmentStream(context, masterSecret, attachment.getDataUri());
+        InputStream is = PartAuthority.getAttachmentStream(context, attachment.getDataUri());
         attachments.add(SignalServiceAttachment.newStreamBuilder()
                                                .withStream(is)
                                                .withContentType(attachment.getContentType())

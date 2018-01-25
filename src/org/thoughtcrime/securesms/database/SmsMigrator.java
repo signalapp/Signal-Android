@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2011 Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,15 +18,14 @@ package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
-import android.database.sqlite.SQLiteStatement;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.crypto.MasterCipher;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import net.sqlcipher.database.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteStatement;
+
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -39,19 +38,6 @@ import java.util.StringTokenizer;
 public class SmsMigrator {
 
   private static final String TAG = SmsMigrator.class.getSimpleName();
-
-  private static void addEncryptedStringToStatement(Context context, SQLiteStatement statement,
-                                                    Cursor cursor, MasterSecret masterSecret,
-                                                    int index, String key)
-  {
-    int columnIndex = cursor.getColumnIndexOrThrow(key);
-
-    if (cursor.isNull(columnIndex)) {
-      statement.bindNull(index);
-    } else {
-      statement.bindString(index, encrypt(masterSecret, cursor.getString(columnIndex)));
-    }
-  }
 
   private static void addStringToStatement(SQLiteStatement statement, Cursor cursor,
                                            int index, String key)
@@ -77,8 +63,8 @@ public class SmsMigrator {
     }
   }
 
-  private static void addTranslatedTypeToStatement(SQLiteStatement statement, Cursor cursor,
-                                                   int index, String key)
+  @SuppressWarnings("SameParameterValue")
+  private static void addTranslatedTypeToStatement(SQLiteStatement statement, Cursor cursor, int index, String key)
   {
     int columnIndex = cursor.getColumnIndexOrThrow(key);
 
@@ -99,9 +85,8 @@ public class SmsMigrator {
            ourType == MmsSmsColumns.Types.BASE_SENT_FAILED_TYPE;
   }
 
-  private static void getContentValuesForRow(Context context, MasterSecret masterSecret,
-                                             Cursor cursor, long threadId,
-                                             SQLiteStatement statement)
+  private static void getContentValuesForRow(Context context, Cursor cursor,
+                                             long threadId, SQLiteStatement statement)
   {
     String theirAddress = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.ADDRESS));
     statement.bindString(1, Address.fromExternal(context, theirAddress).serialize());
@@ -115,7 +100,7 @@ public class SmsMigrator {
     addTranslatedTypeToStatement(statement, cursor, 8, SmsDatabase.TYPE);
     addIntToStatement(statement, cursor, 9, SmsDatabase.REPLY_PATH_PRESENT);
     addStringToStatement(statement, cursor, 10, SmsDatabase.SUBJECT);
-    addEncryptedStringToStatement(context, statement, cursor, masterSecret, 11, SmsDatabase.BODY);
+    addStringToStatement(statement, cursor, 11, SmsDatabase.BODY);
     addStringToStatement(statement, cursor, 12, SmsDatabase.SERVICE_CENTER);
 
     statement.bindLong(13, threadId);
@@ -159,14 +144,7 @@ public class SmsMigrator {
     else                         return recipientList;
   }
 
-  private static String encrypt(MasterSecret masterSecret, String body)
-  {
-    MasterCipher masterCipher = new MasterCipher(masterSecret);
-    return masterCipher.encryptBody(body);
-  }
-
-  private static void migrateConversation(Context context, MasterSecret masterSecret,
-                                          SmsMigrationProgressListener listener,
+  private static void migrateConversation(Context context, SmsMigrationProgressListener listener,
                                           ProgressDescription progress,
                                           long theirThreadId, long ourThreadId)
   {
@@ -191,7 +169,7 @@ public class SmsMigrator {
         int typeColumn = cursor.getColumnIndex(SmsDatabase.TYPE);
 
         if (cursor.isNull(typeColumn) || isAppropriateTypeForMigration(cursor, typeColumn)) {
-          getContentValuesForRow(context, masterSecret, cursor, ourThreadId, statement);
+          getContentValuesForRow(context, cursor, ourThreadId, statement);
           statement.execute();
         }
 
@@ -208,9 +186,7 @@ public class SmsMigrator {
     }
   }
 
-  public static void migrateDatabase(Context context,
-                                     MasterSecret masterSecret,
-                                     SmsMigrationProgressListener listener)
+  public static void migrateDatabase(Context context, SmsMigrationProgressListener listener)
   {
 //    if (context.getSharedPreferences("SecureSMS", Context.MODE_PRIVATE).getBoolean("migrated", false))
 //      return;
@@ -231,7 +207,7 @@ public class SmsMigrator {
         if (ourRecipients != null) {
           if (ourRecipients.size() == 1) {
             long ourThreadId = threadDatabase.getThreadIdFor(ourRecipients.iterator().next());
-            migrateConversation(context, masterSecret, listener, progress, theirThreadId, ourThreadId);
+            migrateConversation(context, listener, progress, theirThreadId, ourThreadId);
           } else if (ourRecipients.size() > 1) {
             ourRecipients.add(Recipient.from(context, Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)), true));
 
@@ -245,7 +221,7 @@ public class SmsMigrator {
             Recipient ourGroupRecipient = Recipient.from(context, Address.fromSerialized(ourGroupId), true);
             long      ourThreadId       = threadDatabase.getThreadIdFor(ourGroupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
 
-            migrateConversation(context, masterSecret, listener, progress, theirThreadId, ourThreadId);
+            migrateConversation(context, listener, progress, theirThreadId, ourThreadId);
           }
         }
 
@@ -262,7 +238,7 @@ public class SmsMigrator {
   }
 
   public interface SmsMigrationProgressListener {
-    public void progressUpdate(ProgressDescription description);
+    void progressUpdate(ProgressDescription description);
   }
 
   public static class ProgressDescription {
@@ -271,8 +247,8 @@ public class SmsMigrator {
     public final int secondaryTotal;
     public final int secondaryComplete;
 
-    public ProgressDescription(int primaryTotal, int primaryComplete,
-                               int secondaryTotal, int secondaryComplete)
+    ProgressDescription(int primaryTotal, int primaryComplete,
+                        int secondaryTotal, int secondaryComplete)
     {
       this.primaryTotal      = primaryTotal;
       this.primaryComplete   = primaryComplete;
@@ -280,14 +256,14 @@ public class SmsMigrator {
       this.secondaryComplete = secondaryComplete;
     }
 
-    public ProgressDescription(ProgressDescription that, int secondaryTotal, int secondaryComplete) {
+    ProgressDescription(ProgressDescription that, int secondaryTotal, int secondaryComplete) {
       this.primaryComplete   = that.primaryComplete;
       this.primaryTotal      = that.primaryTotal;
       this.secondaryComplete = secondaryComplete;
       this.secondaryTotal    = secondaryTotal;
     }
 
-    public void incrementPrimaryComplete() {
+    void incrementPrimaryComplete() {
       primaryComplete += 1;
     }
   }

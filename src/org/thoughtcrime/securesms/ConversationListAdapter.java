@@ -25,8 +25,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.thoughtcrime.securesms.crypto.MasterCipher;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -53,8 +51,6 @@ class ConversationListAdapter extends CursorRecyclerViewAdapter<ConversationList
   private static final int MESSAGE_TYPE_INBOX_ZERO     = 3;
 
   private final @NonNull  ThreadDatabase    threadDatabase;
-  private final @NonNull  MasterSecret      masterSecret;
-  private final @NonNull  MasterCipher      masterCipher;
   private final @NonNull  GlideRequests     glideRequests;
   private final @NonNull  Locale            locale;
   private final @NonNull  LayoutInflater    inflater;
@@ -83,7 +79,6 @@ class ConversationListAdapter extends CursorRecyclerViewAdapter<ConversationList
   }
 
   ConversationListAdapter(@NonNull Context context,
-                          @NonNull MasterSecret masterSecret,
                           @NonNull GlideRequests glideRequests,
                           @NonNull Locale locale,
                           @Nullable Cursor cursor,
@@ -91,8 +86,6 @@ class ConversationListAdapter extends CursorRecyclerViewAdapter<ConversationList
   {
     super(context, cursor);
     try {
-      this.masterSecret   = masterSecret;
-      this.masterCipher   = new MasterCipher(masterSecret);
       this.glideRequests  = glideRequests;
       this.threadDatabase = DatabaseFactory.getThreadDatabase(context);
       this.locale         = locale;
@@ -142,7 +135,7 @@ class ConversationListAdapter extends CursorRecyclerViewAdapter<ConversationList
 
   @Override
   public void onBindItemViewHolder(ViewHolder viewHolder, @NonNull Cursor cursor) {
-    viewHolder.getItem().bind(masterSecret, getThreadRecord(cursor), glideRequests, locale, batchSet, batchMode);
+    viewHolder.getItem().bind(getThreadRecord(cursor), glideRequests, locale, batchSet, batchMode);
   }
 
   @Override
@@ -159,10 +152,10 @@ class ConversationListAdapter extends CursorRecyclerViewAdapter<ConversationList
   }
 
   private ThreadRecord getThreadRecord(@NonNull Cursor cursor) {
-    return threadDatabase.readerFor(cursor, masterCipher).getCurrent();
+    return threadDatabase.readerFor(cursor).getCurrent();
   }
 
-  public void toggleThreadInBatchSet(long threadId) {
+  void toggleThreadInBatchSet(long threadId) {
     if (batchSet.contains(threadId)) {
       batchSet.remove(threadId);
     } else if (threadId != -1) {
@@ -170,21 +163,21 @@ class ConversationListAdapter extends CursorRecyclerViewAdapter<ConversationList
     }
   }
 
-  public Set<Long> getBatchSelections() {
+  Set<Long> getBatchSelections() {
     return batchSet;
   }
 
-  public void initializeBatchMode(boolean toggle) {
+  void initializeBatchMode(boolean toggle) {
     this.batchMode = toggle;
     unselectAllThreads();
   }
 
-  public void unselectAllThreads() {
+  private void unselectAllThreads() {
     this.batchSet.clear();
     this.notifyDataSetChanged();
   }
 
-  public void selectAllThreads() {
+  void selectAllThreads() {
     for (int i = 0; i < getItemCount(); i++) {
       long threadId = getThreadRecord(getCursorAtPositionOrThrow(i)).getThreadId();
       if (threadId != -1) batchSet.add(threadId);

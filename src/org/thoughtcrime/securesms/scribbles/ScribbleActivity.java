@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.scribbles;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -49,14 +50,12 @@ public class ScribbleActivity extends PassphraseRequiredActionBarActivity implem
   private VerticalSlideColorPicker colorPicker;
   private ScribbleToolbar          toolbar;
   private ScribbleView             scribbleView;
-  private MasterSecret             masterSecret;
   private GlideRequests            glideRequests;
 
   @Override
   protected void onCreate(Bundle savedInstanceState, @NonNull MasterSecret masterSecret) {
     setContentView(R.layout.scribble_activity);
 
-    this.masterSecret  = masterSecret;
     this.glideRequests = GlideApp.with(this);
     this.scribbleView  = findViewById(R.id.scribble_view);
     this.toolbar       = findViewById(R.id.toolbar);
@@ -67,7 +66,7 @@ public class ScribbleActivity extends PassphraseRequiredActionBarActivity implem
 
     scribbleView.setMotionViewCallback(motionViewCallback);
     scribbleView.setDrawingMode(false);
-    scribbleView.setImage(masterSecret, glideRequests, getIntent().getData());
+    scribbleView.setImage(glideRequests, getIntent().getData());
 
     colorPicker.setOnColorChangeListener(this);
     colorPicker.setVisibility(View.GONE);
@@ -144,6 +143,7 @@ public class ScribbleActivity extends PassphraseRequiredActionBarActivity implem
     return textLayer;
   }
 
+  @SuppressLint("StaticFieldLeak")
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
@@ -231,7 +231,7 @@ public class ScribbleActivity extends PassphraseRequiredActionBarActivity implem
         baos   = null;
         result = null;
 
-        Uri    uri    = provider.create(masterSecret, data, MediaUtil.IMAGE_JPEG, null);
+        Uri    uri    = provider.create(ScribbleActivity.this, data, MediaUtil.IMAGE_JPEG, null);
         Intent intent = new Intent();
         intent.setData(uri);
         setResult(RESULT_OK, intent);

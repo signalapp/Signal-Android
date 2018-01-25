@@ -52,7 +52,6 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.ConversationAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.ConversationAdapter.ItemClickListener;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
@@ -92,7 +91,6 @@ public class ConversationFragment extends Fragment
 
   private ConversationFragmentListener listener;
 
-  private MasterSecret                masterSecret;
   private Recipient                   recipient;
   private long                        threadId;
   private long                        lastSeen;
@@ -110,12 +108,11 @@ public class ConversationFragment extends Fragment
   @Override
   public void onCreate(Bundle icicle) {
     super.onCreate(icicle);
-    this.masterSecret = getArguments().getParcelable("master_secret");
-    this.locale       = (Locale) getArguments().getSerializable(PassphraseRequiredActionBarActivity.LOCALE_EXTRA);
+    this.locale = (Locale) getArguments().getSerializable(PassphraseRequiredActionBarActivity.LOCALE_EXTRA);
   }
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
+  public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle bundle) {
     final View view = inflater.inflate(R.layout.conversation_fragment, container, false);
     list                 = ViewUtil.findById(view, android.R.id.list);
     composeDivider       = ViewUtil.findById(view, R.id.compose_divider);
@@ -192,7 +189,7 @@ public class ConversationFragment extends Fragment
 
   private void initializeListAdapter() {
     if (this.recipient != null && this.threadId != -1) {
-      ConversationAdapter adapter = new ConversationAdapter(getActivity(), masterSecret, GlideApp.with(this), locale, selectionClickListener, null, this.recipient);
+      ConversationAdapter adapter = new ConversationAdapter(getActivity(), GlideApp.with(this), locale, selectionClickListener, null, this.recipient);
       list.setAdapter(adapter);
       list.addItemDecoration(new StickyHeaderDecoration(adapter, false, false));
 
@@ -352,7 +349,6 @@ public class ConversationFragment extends Fragment
 
   private void handleDisplayDetails(MessageRecord message) {
     Intent intent = new Intent(getActivity(), MessageDetailsActivity.class);
-    intent.putExtra(MessageDetailsActivity.MASTER_SECRET_EXTRA, masterSecret);
     intent.putExtra(MessageDetailsActivity.MESSAGE_ID_EXTRA, message.getId());
     intent.putExtra(MessageDetailsActivity.THREAD_ID_EXTRA, threadId);
     intent.putExtra(MessageDetailsActivity.TYPE_EXTRA, message.isMms() ? MmsSmsDatabase.MMS_TRANSPORT : MmsSmsDatabase.SMS_TRANSPORT);
@@ -380,7 +376,7 @@ public class ConversationFragment extends Fragment
     new AsyncTask<MessageRecord, Void, Void>() {
       @Override
       protected Void doInBackground(MessageRecord... messageRecords) {
-        MessageSender.resend(context, masterSecret, messageRecords[0]);
+        MessageSender.resend(context, messageRecords[0]);
         return null;
       }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, message);
@@ -391,7 +387,7 @@ public class ConversationFragment extends Fragment
       public void onClick(DialogInterface dialog, int which) {
         for (Slide slide : message.getSlideDeck().getSlides()) {
           if ((slide.hasImage() || slide.hasVideo() || slide.hasAudio() || slide.hasDocument()) && slide.getUri() != null) {
-            SaveAttachmentTask saveTask = new SaveAttachmentTask(getActivity(), masterSecret);
+            SaveAttachmentTask saveTask = new SaveAttachmentTask(getActivity());
             saveTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, new Attachment(slide.getUri(), slide.getContentType(), message.getDateReceived(), slide.getFileName().orNull()));
             return;
           }

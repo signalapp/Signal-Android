@@ -27,7 +27,6 @@ import android.widget.TextView;
 import com.codewaves.stickyheadergrid.StickyHeaderGridAdapter;
 
 import org.thoughtcrime.securesms.components.ThumbnailView;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;
 import org.thoughtcrime.securesms.database.loaders.BucketedThreadMediaLoader.BucketedThreadMedia;
@@ -39,10 +38,10 @@ import java.util.Locale;
 
 class MediaGalleryAdapter extends StickyHeaderGridAdapter {
 
+  @SuppressWarnings("unused")
   private static final String TAG = MediaGalleryAdapter.class.getSimpleName();
 
   private final Context             context;
-  private final MasterSecret        masterSecret;
   private final GlideRequests       glideRequests;
   private final Locale              locale;
   private final Address             address;
@@ -67,11 +66,10 @@ class MediaGalleryAdapter extends StickyHeaderGridAdapter {
     }
   }
 
-  MediaGalleryAdapter(@NonNull Context context, @NonNull MasterSecret masterSecret, @NonNull GlideRequests glideRequests,
+  MediaGalleryAdapter(@NonNull Context context, @NonNull GlideRequests glideRequests,
                       BucketedThreadMedia media, Locale locale, Address address)
   {
     this.context       = context;
-    this.masterSecret  = masterSecret;
     this.glideRequests = glideRequests;
     this.locale        = locale;
     this.media         = media;
@@ -105,7 +103,7 @@ class MediaGalleryAdapter extends StickyHeaderGridAdapter {
     Slide slide = MediaUtil.getSlideForAttachment(context, mediaRecord.getAttachment());
 
     if (slide != null) {
-      thumbnailView.setImageResource(masterSecret, glideRequests, slide, false, false);
+      thumbnailView.setImageResource(glideRequests, slide, false, false);
     }
 
     thumbnailView.setOnClickListener(new OnMediaClickListener(mediaRecord));

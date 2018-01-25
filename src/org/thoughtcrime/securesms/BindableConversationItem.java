@@ -11,8 +11,7 @@ import java.util.Locale;
 import java.util.Set;
 
 public interface BindableConversationItem extends Unbindable {
-  void bind(@NonNull MasterSecret masterSecret,
-            @NonNull MessageRecord messageRecord,
+  void bind(@NonNull MessageRecord messageRecord,
             @NonNull GlideRequests glideRequests,
             @NonNull Locale locale,
             @NonNull Set<MessageRecord> batchSelected,

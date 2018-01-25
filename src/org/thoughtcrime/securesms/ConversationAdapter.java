@@ -26,13 +26,10 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.ConversationAdapter.HeaderViewHolder;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.FastCursorRecyclerViewAdapter;
@@ -92,7 +89,6 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   private final Set<MessageRecord> batchSelected = Collections.synchronizedSet(new HashSet<MessageRecord>());
 
   private final @Nullable ItemClickListener clickListener;
-  private final @NonNull  MasterSecret      masterSecret;
   private final @NonNull  GlideRequests     glideRequests;
   private final @NonNull  Locale            locale;
   private final @NonNull  Recipient         recipient;
@@ -142,7 +138,6 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   ConversationAdapter(Context context, Cursor cursor) {
     super(context, cursor);
     try {
-      this.masterSecret  = null;
       this.glideRequests = null;
       this.locale        = null;
       this.clickListener = null;
@@ -157,7 +152,6 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   }
 
   public ConversationAdapter(@NonNull Context context,
-                             @NonNull MasterSecret masterSecret,
                              @NonNull GlideRequests glideRequests,
                              @NonNull Locale locale,
                              @Nullable ItemClickListener clickListener,
@@ -167,7 +161,6 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     super(context, cursor);
 
     try {
-      this.masterSecret  = masterSecret;
       this.glideRequests = glideRequests;
       this.locale        = locale;
       this.clickListener = clickListener;
@@ -193,7 +186,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   @Override
   protected void onBindItemViewHolder(ViewHolder viewHolder, @NonNull MessageRecord messageRecord) {
     long start = System.currentTimeMillis();
-    viewHolder.getView().bind(masterSecret, messageRecord, glideRequests, locale, batchSelected, recipient);
+    viewHolder.getView().bind(messageRecord, glideRequests, locale, batchSelected, recipient);
     Log.w(TAG, "Bind time: " + (System.currentTimeMillis() - start));
   }
 
@@ -302,7 +295,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
       if (record != null) return record;
     }
 
-    final MessageRecord messageRecord = db.readerFor(cursor, masterSecret).getCurrent();
+    final MessageRecord messageRecord = db.readerFor(cursor).getCurrent();
     messageRecordCache.put(type + messageId, new SoftReference<>(messageRecord));
 
     return messageRecord;

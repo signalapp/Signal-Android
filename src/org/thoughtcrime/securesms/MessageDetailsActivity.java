@@ -39,7 +39,6 @@ import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase.GroupReceiptInfo;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -72,14 +71,12 @@ import java.util.Locale;
 public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity implements LoaderCallbacks<Cursor>, RecipientModifiedListener {
   private final static String TAG = MessageDetailsActivity.class.getSimpleName();
 
-  public final static String MASTER_SECRET_EXTRA  = "master_secret";
   public final static String MESSAGE_ID_EXTRA     = "message_id";
   public final static String THREAD_ID_EXTRA      = "thread_id";
   public final static String IS_PUSH_GROUP_EXTRA  = "is_push_group";
   public final static String TYPE_EXTRA           = "type";
   public final static String ADDRESS_EXTRA        = "address";
 
-  private MasterSecret     masterSecret;
   private GlideRequests    glideRequests;
   private long             threadId;
   private boolean          isPushGroup;
@@ -166,21 +163,20 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     inflater       = LayoutInflater.from(this);
     View header = inflater.inflate(R.layout.message_details_header, recipientsList, false);
 
-    masterSecret      = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
     threadId          = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
     isPushGroup       = getIntent().getBooleanExtra(IS_PUSH_GROUP_EXTRA, false);
     glideRequests     = GlideApp.with(this);
-    itemParent        = (ViewGroup) header.findViewById(R.id.item_container);
-    recipientsList    = (ListView ) findViewById(R.id.recipients_list);
-    metadataContainer =             header.findViewById(R.id.metadata_container);
-    errorText         = (TextView ) header.findViewById(R.id.error_text);
-    sentDate          = (TextView ) header.findViewById(R.id.sent_time);
-    receivedContainer =             header.findViewById(R.id.received_container);
-    receivedDate      = (TextView ) header.findViewById(R.id.received_time);
-    transport         = (TextView ) header.findViewById(R.id.transport);
-    toFrom            = (TextView ) header.findViewById(R.id.tofrom);
-    expiresContainer  =             header.findViewById(R.id.expires_container);
-    expiresInText     = (TextView)  header.findViewById(R.id.expires_in);
+    itemParent        = header.findViewById(R.id.item_container);
+    recipientsList    = findViewById(R.id.recipients_list);
+    metadataContainer = header.findViewById(R.id.metadata_container);
+    errorText         = header.findViewById(R.id.error_text);
+    sentDate          = header.findViewById(R.id.sent_time);
+    receivedContainer = header.findViewById(R.id.received_container);
+    receivedDate      = header.findViewById(R.id.received_time);
+    transport         = header.findViewById(R.id.transport);
+    toFrom            = header.findViewById(R.id.tofrom);
+    expiresContainer  = header.findViewById(R.id.expires_container);
+    expiresInText     = header.findViewById(R.id.expires_in);
     recipientsList.setHeaderDividersEnabled(false);
     recipientsList.addHeaderView(header, null, false);
   }
@@ -253,8 +249,8 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
       toFromRes = R.string.message_details_header__from;
     }
     toFrom.setText(toFromRes);
-    conversationItem.bind(masterSecret, messageRecord, glideRequests, dynamicLanguage.getCurrentLocale(), new HashSet<>(), recipient);
-    recipientsList.setAdapter(new MessageDetailsRecipientAdapter(this, masterSecret, glideRequests, messageRecord, recipients, isPushGroup));
+    conversationItem.bind(messageRecord, glideRequests, dynamicLanguage.getCurrentLocale(), new HashSet<>(), recipient);
+    recipientsList.setAdapter(new MessageDetailsRecipientAdapter(this, glideRequests, messageRecord, recipients, isPushGroup));
   }
 
   private void inflateMessageViewIfAbsent(MessageRecord messageRecord) {
@@ -273,12 +269,12 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   private @Nullable MessageRecord getMessageRecord(Context context, Cursor cursor, String type) {
     switch (type) {
       case MmsSmsDatabase.SMS_TRANSPORT:
-        EncryptingSmsDatabase smsDatabase = DatabaseFactory.getEncryptingSmsDatabase(context);
-        SmsDatabase.Reader    reader      = smsDatabase.readerFor(masterSecret, cursor);
+        SmsDatabase        smsDatabase = DatabaseFactory.getSmsDatabase(context);
+        SmsDatabase.Reader reader      = smsDatabase.readerFor(cursor);
         return reader.getNext();
       case MmsSmsDatabase.MMS_TRANSPORT:
         MmsDatabase        mmsDatabase = DatabaseFactory.getMmsDatabase(context);
-        MmsDatabase.Reader mmsReader   = mmsDatabase.readerFor(masterSecret, cursor);
+        MmsDatabase.Reader mmsReader   = mmsDatabase.readerFor(cursor);
         return mmsReader.getNext();
       default:
         throw new AssertionError("no valid message type specified");

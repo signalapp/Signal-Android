@@ -71,9 +71,9 @@ public interface MmsSmsColumns {
     protected static final long GROUP_QUIT_BIT              = 0x20000;
     protected static final long EXPIRATION_TIMER_UPDATE_BIT = 0x40000;
 
-    // Encrypted Storage Information
-    protected static final long ENCRYPTION_MASK                  = 0xFF000000;
-    protected static final long ENCRYPTION_SYMMETRIC_BIT         = 0x80000000;
+    // Encrypted Storage Information XXX
+    public    static final long ENCRYPTION_MASK                  = 0xFF000000;
+    public    static final long ENCRYPTION_SYMMETRIC_BIT         = 0x80000000;
     protected static final long ENCRYPTION_ASYMMETRIC_BIT        = 0x40000000;
     protected static final long ENCRYPTION_REMOTE_BIT            = 0x20000000;
     protected static final long ENCRYPTION_REMOTE_FAILED_BIT     = 0x10000000;

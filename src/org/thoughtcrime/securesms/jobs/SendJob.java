@@ -22,6 +22,7 @@ import java.util.List;
 
 public abstract class SendJob extends MasterSecretJob {
 
+  @SuppressWarnings("unused")
   private final static String TAG = SendJob.class.getSimpleName();
 
   public SendJob(Context context, JobParameters parameters) {
@@ -49,8 +50,7 @@ public abstract class SendJob extends MasterSecretJob {
     }
   }
 
-  protected List<Attachment> scaleAttachments(@NonNull MasterSecret masterSecret,
-                                              @NonNull MediaConstraints constraints,
+  protected List<Attachment> scaleAttachments(@NonNull MediaConstraints constraints,
                                               @NonNull List<Attachment> attachments)
       throws UndeliverableMessageException
   {
@@ -59,11 +59,11 @@ public abstract class SendJob extends MasterSecretJob {
 
     for (Attachment attachment : attachments) {
       try {
-        if (constraints.isSatisfied(context, masterSecret, attachment)) {
+        if (constraints.isSatisfied(context, attachment)) {
           results.add(attachment);
         } else if (constraints.canResize(attachment)) {
-          MediaStream resized = constraints.getResizedMedia(context, masterSecret, attachment);
-          results.add(attachmentDatabase.updateAttachmentData(masterSecret, attachment, resized));
+          MediaStream resized = constraints.getResizedMedia(context, attachment);
+          results.add(attachmentDatabase.updateAttachmentData(attachment, resized));
         } else {
           throw new UndeliverableMessageException("Size constraints could not be met!");
         }

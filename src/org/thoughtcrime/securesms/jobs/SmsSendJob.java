@@ -11,8 +11,8 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
+import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.jobs.requirements.NetworkOrServiceRequirement;
@@ -43,8 +43,8 @@ public class SmsSendJob extends SendJob {
 
   @Override
   public void onSend(MasterSecret masterSecret) throws NoSuchMessageException {
-    EncryptingSmsDatabase database = DatabaseFactory.getEncryptingSmsDatabase(context);
-    SmsMessageRecord      record   = database.getMessage(masterSecret, messageId);
+    SmsDatabase      database = DatabaseFactory.getSmsDatabase(context);
+    SmsMessageRecord record   = database.getMessage(messageId);
 
     try {
       Log.w(TAG, "Sending message: " + messageId);

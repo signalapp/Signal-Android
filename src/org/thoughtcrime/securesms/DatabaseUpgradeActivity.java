@@ -76,6 +76,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   public static final int SCREENSHOTS                          = 300;
   public static final int PERSISTENT_BLOBS                     = 317;
   public static final int INTERNALIZE_CONTACTS                 = 317;
+  public static final int SQLCIPHER                            = 334;
 
   private static final SortedSet<Integer> UPGRADE_VERSIONS = new TreeSet<Integer>() {{
     add(NO_MORE_KEY_EXCHANGE_PREFIX_VERSION);
@@ -93,6 +94,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     add(SCREENSHOTS);
     add(INTERNALIZE_CONTACTS);
     add(PERSISTENT_BLOBS);
+    add(SQLCIPHER);
   }};
 
   private MasterSecret masterSecret;
@@ -106,14 +108,14 @@ public class DatabaseUpgradeActivity extends BaseActivity {
       Log.w("DatabaseUpgradeActivity", "Upgrading...");
       setContentView(R.layout.database_upgrade_activity);
 
-      ProgressBar indeterminateProgress = (ProgressBar)findViewById(R.id.indeterminate_progress);
-      ProgressBar determinateProgress   = (ProgressBar)findViewById(R.id.determinate_progress);
+      ProgressBar indeterminateProgress = findViewById(R.id.indeterminate_progress);
+      ProgressBar determinateProgress   = findViewById(R.id.determinate_progress);
 
       new DatabaseUpgradeTask(indeterminateProgress, determinateProgress)
           .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, VersionTracker.getLastSeenVersion(this));
     } else {
       VersionTracker.updateLastSeenVersion(this);
-      updateNotifications(this, masterSecret);
+      updateNotifications(this);
       startActivity((Intent)getIntent().getParcelableExtra("next_intent"));
       finish();
     }
@@ -149,11 +151,11 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   }
 
   @SuppressLint("StaticFieldLeak")
-  private void updateNotifications(final Context context, final MasterSecret masterSecret) {
+  private void updateNotifications(final Context context) {
     new AsyncTask<Void, Void, Void>() {
       @Override
       protected Void doInBackground(Void... params) {
-        MessageNotifier.updateNotification(context, masterSecret);
+        MessageNotifier.updateNotification(context);
         return null;
       }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -171,7 +173,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     private final ProgressBar indeterminateProgress;
     private final ProgressBar determinateProgress;
 
-    public DatabaseUpgradeTask(ProgressBar indeterminateProgress, ProgressBar determinateProgress) {
+    DatabaseUpgradeTask(ProgressBar indeterminateProgress, ProgressBar determinateProgress) {
       this.indeterminateProgress = indeterminateProgress;
       this.determinateProgress   = determinateProgress;
     }
@@ -278,11 +280,11 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     private void schedulePendingIncomingParts(Context context) {
       final AttachmentDatabase       attachmentDb       = DatabaseFactory.getAttachmentDatabase(context);
       final MmsDatabase              mmsDb              = DatabaseFactory.getMmsDatabase(context);
-      final List<DatabaseAttachment> pendingAttachments = DatabaseFactory.getAttachmentDatabase(context).getPendingAttachments(masterSecret);
+      final List<DatabaseAttachment> pendingAttachments = DatabaseFactory.getAttachmentDatabase(context).getPendingAttachments();
 
       Log.w(TAG, pendingAttachments.size() + " pending parts.");
       for (DatabaseAttachment attachment : pendingAttachments) {
-        final Reader        reader = mmsDb.readerFor(masterSecret, mmsDb.getMessage(attachment.getMmsId()));
+        final Reader        reader = mmsDb.readerFor(mmsDb.getMessage(attachment.getMmsId()));
         final MessageRecord record = reader.getNext();
 
         if (attachment.hasData()) {
@@ -329,7 +331,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     @Override
     protected void onPostExecute(Void result) {
       VersionTracker.updateLastSeenVersion(DatabaseUpgradeActivity.this);
-      updateNotifications(DatabaseUpgradeActivity.this, masterSecret);
+      updateNotifications(DatabaseUpgradeActivity.this);
 
       startActivity((Intent)getIntent().getParcelableExtra("next_intent"));
       finish();

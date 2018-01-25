@@ -184,8 +184,7 @@ public class ConversationItem extends LinearLayout
   }
 
   @Override
-  public void bind(@NonNull MasterSecret       masterSecret,
-                   @NonNull MessageRecord      messageRecord,
+  public void bind(@NonNull MessageRecord      messageRecord,
                    @NonNull GlideRequests      glideRequests,
                    @NonNull Locale             locale,
                    @NonNull Set<MessageRecord> batchSelected,
@@ -366,7 +365,7 @@ public class ConversationItem extends LinearLayout
       if (documentViewStub.resolved())   documentViewStub.get().setVisibility(View.GONE);
 
       //noinspection ConstantConditions
-      audioViewStub.get().setAudio(masterSecret, ((MediaMmsMessageRecord) messageRecord).getSlideDeck().getAudioSlide(), showControls);
+      audioViewStub.get().setAudio(((MediaMmsMessageRecord) messageRecord).getSlideDeck().getAudioSlide(), showControls);
       audioViewStub.get().setDownloadClickListener(downloadClickListener);
       audioViewStub.get().setOnLongClickListener(passthroughClickListener);
 
@@ -389,7 +388,7 @@ public class ConversationItem extends LinearLayout
       if (documentViewStub.resolved()) documentViewStub.get().setVisibility(View.GONE);
 
       //noinspection ConstantConditions
-      mediaThumbnailStub.get().setImageResource(masterSecret, glideRequests,
+      mediaThumbnailStub.get().setImageResource(glideRequests,
                                                 ((MmsMessageRecord)messageRecord).getSlideDeck().getThumbnailSlide(),
                                                 showControls, false);
       mediaThumbnailStub.get().setThumbnailClickListener(new ThumbnailClickListener());
@@ -564,7 +563,7 @@ public class ConversationItem extends LinearLayout
       throw new AssertionError("Identity mismatch count: " + mismatches.size());
     }
 
-    new ConfirmIdentityDialog(context, masterSecret, messageRecord, mismatches.get(0)).show();
+    new ConfirmIdentityDialog(context, messageRecord, mismatches.get(0)).show();
   }
 
   @Override
@@ -660,7 +659,6 @@ public class ConversationItem extends LinearLayout
         parent.onClick(v);
       } else if (messageRecord.isFailed()) {
         Intent intent = new Intent(context, MessageDetailsActivity.class);
-        intent.putExtra(MessageDetailsActivity.MASTER_SECRET_EXTRA, masterSecret);
         intent.putExtra(MessageDetailsActivity.MESSAGE_ID_EXTRA, messageRecord.getId());
         intent.putExtra(MessageDetailsActivity.THREAD_ID_EXTRA, messageRecord.getThreadId());
         intent.putExtra(MessageDetailsActivity.TYPE_EXTRA, messageRecord.isMms() ? MmsSmsDatabase.MMS_TRANSPORT : MmsSmsDatabase.SMS_TRANSPORT);

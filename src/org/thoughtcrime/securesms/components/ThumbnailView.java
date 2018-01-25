@@ -17,7 +17,6 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -58,8 +57,8 @@ public class ThumbnailView extends FrameLayout {
     inflate(context, R.layout.thumbnail_view, this);
 
     this.radius      = getResources().getDimensionPixelSize(R.dimen.message_bubble_corner_radius);
-    this.image       = (ImageView) findViewById(R.id.thumbnail_image);
-    this.playOverlay = (ImageView) findViewById(R.id.play_overlay);
+    this.image       = findViewById(R.id.thumbnail_image);
+    this.playOverlay = findViewById(R.id.play_overlay);
     super.setOnClickListener(new ThumbnailClickDispatcher());
 
     if (attrs != null) {
@@ -88,7 +87,7 @@ public class ThumbnailView extends FrameLayout {
 
   private TransferControlView getTransferControls() {
     if (!transferControls.isPresent()) {
-      transferControls = Optional.of((TransferControlView)ViewUtil.inflateStub(this, R.id.transfer_controls_stub));
+      transferControls = Optional.of(ViewUtil.inflateStub(this, R.id.transfer_controls_stub));
     }
     return transferControls.get();
   }
@@ -97,8 +96,8 @@ public class ThumbnailView extends FrameLayout {
     this.backgroundColorHint = color;
   }
 
-  public void setImageResource(@NonNull MasterSecret masterSecret, @NonNull GlideRequests glideRequests,
-                               @NonNull Slide slide, boolean showControls, boolean isPreview)
+  public void setImageResource(@NonNull GlideRequests glideRequests, @NonNull Slide slide,
+                               boolean showControls, boolean isPreview)
   {
     if (showControls) {
       getTransferControls().setSlide(slide);
@@ -134,15 +133,15 @@ public class ThumbnailView extends FrameLayout {
 
     this.slide = slide;
 
-    if      (slide.getThumbnailUri() != null) buildThumbnailGlideRequest(masterSecret, glideRequests, slide).into(image);
+    if      (slide.getThumbnailUri() != null) buildThumbnailGlideRequest(glideRequests, slide).into(image);
     else if (slide.hasPlaceholder())          buildPlaceholderGlideRequest(glideRequests, slide).into(image);
     else                                      glideRequests.clear(image);
   }
 
-  public void setImageResource(@NonNull MasterSecret masterSecret, @NonNull GlideRequests glideRequests, @NonNull Uri uri) {
+  public void setImageResource(@NonNull GlideRequests glideRequests, @NonNull Uri uri) {
     if (transferControls.isPresent()) getTransferControls().setVisibility(View.GONE);
 
-    glideRequests.load(new DecryptableUri(masterSecret, uri))
+    glideRequests.load(new DecryptableUri(uri))
                  .diskCacheStrategy(DiskCacheStrategy.NONE)
                  .transform(new RoundedCorners(radius))
                  .transition(withCrossFade())
@@ -172,8 +171,8 @@ public class ThumbnailView extends FrameLayout {
     getTransferControls().showProgressSpinner();
   }
 
-  private RequestBuilder buildThumbnailGlideRequest(@NonNull MasterSecret masterSecret, @NonNull GlideRequests glideRequests, @NonNull Slide slide) {
-    RequestBuilder builder = glideRequests.load(new DecryptableUri(masterSecret, slide.getThumbnailUri()))
+  private RequestBuilder buildThumbnailGlideRequest(@NonNull GlideRequests glideRequests, @NonNull Slide slide) {
+    RequestBuilder builder = glideRequests.load(new DecryptableUri(slide.getThumbnailUri()))
                                           .diskCacheStrategy(DiskCacheStrategy.NONE)
                                           .transform(new RoundedCorners(radius))
                                           .centerCrop()

@@ -5,20 +5,19 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.UriMatcher;
 import android.net.Uri;
-import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
 
-import org.thoughtcrime.securesms.crypto.DecryptingPartInputStream;
-import org.thoughtcrime.securesms.crypto.EncryptingPartOutputStream;
-import org.thoughtcrime.securesms.crypto.MasterCipher;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.AttachmentSecret;
+import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
+import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream;
+import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
+import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
+import org.thoughtcrime.securesms.util.Conversions;
 import org.thoughtcrime.securesms.util.FileProviderUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.InvalidMessageException;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -67,83 +66,84 @@ public class PersistentBlobProvider {
     return instance;
   }
 
-  private final Context           context;
   @SuppressLint("UseSparseArrays")
   private final Map<Long, byte[]> cache    = Collections.synchronizedMap(new HashMap<Long, byte[]>());
   private final ExecutorService   executor = Executors.newCachedThreadPool();
 
-  private PersistentBlobProvider(Context context) {
-    this.context = context.getApplicationContext();
+  private final AttachmentSecret  attachmentSecret;
+
+  private PersistentBlobProvider(@NonNull Context context) {
+    this.attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
   }
 
-  public Uri create(@NonNull  MasterSecret masterSecret,
+  public Uri create(@NonNull Context context,
                     @NonNull  byte[] blobBytes,
                     @NonNull  String mimeType,
                     @Nullable String fileName)
   {
     final long id = System.currentTimeMillis();
     cache.put(id, blobBytes);
-    return create(masterSecret, new ByteArrayInputStream(blobBytes), id, mimeType, fileName, (long) blobBytes.length);
+    return create(context, attachmentSecret, new ByteArrayInputStream(blobBytes), id, mimeType, fileName, (long) blobBytes.length);
   }
 
-  public Uri create(@NonNull  MasterSecret masterSecret,
+  public Uri create(@NonNull Context context,
                     @NonNull  InputStream input,
                     @NonNull  String mimeType,
                     @Nullable String fileName,
                     @Nullable Long   fileSize)
   {
-    return create(masterSecret, input, System.currentTimeMillis(), mimeType, fileName, fileSize);
+    return create(context, attachmentSecret, input, System.currentTimeMillis(), mimeType, fileName, fileSize);
   }
 
-  private Uri create(@NonNull  MasterSecret masterSecret,
+  private Uri create(@NonNull Context context,
+                     @NonNull  AttachmentSecret attachmentSecret,
                      @NonNull  InputStream input,
                                long id,
                      @NonNull  String mimeType,
                      @Nullable String fileName,
                      @Nullable Long fileSize)
   {
-    persistToDisk(masterSecret, id, input);
+    persistToDisk(context, attachmentSecret, id, input);
     final Uri uniqueUri = CONTENT_URI.buildUpon()
                                      .appendPath(mimeType)
-                                     .appendPath(getEncryptedFileName(masterSecret, fileName))
+                                     .appendPath(fileName)
                                      .appendEncodedPath(String.valueOf(fileSize))
                                      .appendEncodedPath(String.valueOf(System.currentTimeMillis()))
                                      .build();
     return ContentUris.withAppendedId(uniqueUri, id);
   }
 
-  private void persistToDisk(final MasterSecret masterSecret, final long id, final InputStream input) {
-    executor.submit(new Runnable() {
-      @Override
-      public void run() {
-        try {
-          OutputStream output = new EncryptingPartOutputStream(getFile(id), masterSecret);
-          Log.w(TAG, "Starting stream copy....");
-          Util.copy(input, output);
-          Log.w(TAG, "Stream copy finished...");
-        } catch (IOException e) {
-          Log.w(TAG, e);
-        }
-
-        cache.remove(id);
+  private void persistToDisk(@NonNull Context context,
+                             @NonNull AttachmentSecret attachmentSecret,
+                             final long id, final InputStream input)
+  {
+    executor.submit(() -> {
+      try {
+        OutputStream output = ModernEncryptingPartOutputStream.createFor(attachmentSecret, Conversions.longToByteArray(id), getFile(context, id).file);
+        Util.copy(input, output);
+      } catch (IOException e) {
+        Log.w(TAG, e);
       }
+
+      cache.remove(id);
     });
   }
 
-  public Uri createForExternal(@NonNull String mimeType) throws IOException {
+  public Uri createForExternal(@NonNull Context context, @NonNull String mimeType) throws IOException {
     File target = new File(getExternalDir(context), String.valueOf(System.currentTimeMillis()) + "." + getExtensionFromMimeType(mimeType));
     return FileProviderUtil.getUriFor(context, target);
   }
 
-  public boolean delete(@NonNull Uri uri) {
+  public boolean delete(@NonNull Context context, @NonNull Uri uri) {
     switch (MATCHER.match(uri)) {
     case MATCH_OLD:
     case MATCH_NEW:
       long id = ContentUris.parseId(uri);
       cache.remove(id);
-      return getFile(ContentUris.parseId(uri)).delete();
+      return getFile(context, ContentUris.parseId(uri)).file.delete();
     }
 
+    //noinspection SimplifiableIfStatement
     if (isExternalBlobUri(context, uri)) {
       return new File(uri.getPath()).delete();
     }
@@ -151,31 +151,39 @@ public class PersistentBlobProvider {
     return false;
   }
 
-  public @NonNull InputStream getStream(MasterSecret masterSecret, long id) throws IOException {
+  public @NonNull InputStream getStream(@NonNull Context context, long id) throws IOException {
     final byte[] cached = cache.get(id);
-    return cached != null ? new ByteArrayInputStream(cached)
-                          : DecryptingPartInputStream.createFor(masterSecret, getFile(id));
+
+    if (cached != null) {
+      return new ByteArrayInputStream(cached);
+    }
+
+    FileData fileData = getFile(context, id);
+
+    if (fileData.modern) return ModernDecryptingPartInputStream.createFor(attachmentSecret, Conversions.longToByteArray(id), fileData.file);
+    else                 return ClassicDecryptingPartInputStream.createFor(attachmentSecret, fileData.file);
   }
 
-  private File getFile(long id) {
-    File legacy = getLegacyFile(id);
-    File cache  = getCacheFile(id);
+  private FileData getFile(@NonNull Context context, long id) {
+    File legacy      = getLegacyFile(context, id);
+    File cache       = getCacheFile(context, id);
+    File modernCache = getModernCacheFile(context, id);
 
-    if (legacy.exists()) return legacy;
-    else                 return cache;
+    if      (legacy.exists()) return new FileData(legacy, false);
+    else if (cache.exists())  return new FileData(cache, false);
+    else                      return new FileData(modernCache, true);
   }
 
-  private File getLegacyFile(long id) {
+  private File getLegacyFile(@NonNull Context context, long id) {
     return new File(context.getDir("captures", Context.MODE_PRIVATE), id + "." + BLOB_EXTENSION);
   }
 
-  private File getCacheFile(long id) {
+  private File getCacheFile(@NonNull Context context, long id) {
     return new File(context.getCacheDir(), "capture-" + id + "." + BLOB_EXTENSION);
   }
 
-  private @Nullable String getEncryptedFileName(@NonNull MasterSecret masterSecret, @Nullable String fileName) {
-    if (fileName == null) return null;
-    return new MasterCipher(masterSecret).encryptBody(fileName);
+  private File getModernCacheFile(@NonNull Context context, long id) {
+    return new File(context.getCacheDir(), "capture-m-" + id + "." + BLOB_EXTENSION);
   }
 
   public static @Nullable String getMimeType(@NonNull Context context, @NonNull Uri persistentBlobUri) {
@@ -185,20 +193,12 @@ public class PersistentBlobProvider {
         : persistentBlobUri.getPathSegments().get(MIMETYPE_PATH_SEGMENT);
   }
 
-  public static @Nullable String getFileName(@NonNull Context context, @NonNull MasterSecret masterSecret, @NonNull Uri persistentBlobUri) {
+  public static @Nullable String getFileName(@NonNull Context context, @NonNull Uri persistentBlobUri) {
     if (!isAuthority(context, persistentBlobUri))      return null;
     if (isExternalBlobUri(context, persistentBlobUri)) return null;
     if (MATCHER.match(persistentBlobUri) == MATCH_OLD) return null;
 
-    String fileName = persistentBlobUri.getPathSegments().get(FILENAME_PATH_SEGMENT);
-
-    try {
-      return new MasterCipher(masterSecret).decryptBody(fileName);
-    } catch (InvalidMessageException e) {
-      Log.w(TAG, "No valid filename for URI");
-    }
-
-    return null;
+    return persistentBlobUri.getPathSegments().get(FILENAME_PATH_SEGMENT);
   }
 
   public static @Nullable Long getFileSize(@NonNull Context context, Uri persistentBlobUri) {
@@ -241,6 +241,16 @@ public class PersistentBlobProvider {
       return uri.getPath().startsWith(getExternalDir(context).getAbsolutePath());
     } catch (IOException ioe) {
       return false;
+    }
+  }
+
+  private static class FileData {
+    private final File    file;
+    private final boolean modern;
+
+    private FileData(File file, boolean modern) {
+      this.file   = file;
+      this.modern = modern;
     }
   }
 }

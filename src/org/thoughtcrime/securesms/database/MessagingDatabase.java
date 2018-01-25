@@ -3,14 +3,15 @@ package org.thoughtcrime.securesms.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.text.TextUtils;
 import android.util.Log;
+
+import net.sqlcipher.database.SQLiteDatabase;
 
 import org.thoughtcrime.securesms.database.documents.Document;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchList;
+import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.whispersystems.libsignal.IdentityKey;
 
@@ -23,7 +24,7 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
 
   private static final String TAG = MessagingDatabase.class.getSimpleName();
 
-  public MessagingDatabase(Context context, SQLiteOpenHelper databaseHelper) {
+  public MessagingDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
   }
 

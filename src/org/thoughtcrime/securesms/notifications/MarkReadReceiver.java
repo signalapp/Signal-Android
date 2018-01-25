@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.notifications;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -33,6 +34,7 @@ public class MarkReadReceiver extends MasterSecretBroadcastReceiver {
   public static final  String THREAD_IDS_EXTRA      = "thread_ids";
   public static final  String NOTIFICATION_ID_EXTRA = "notification_id";
 
+  @SuppressLint("StaticFieldLeak")
   @Override
   protected void onReceive(final Context context, Intent intent, @Nullable final MasterSecret masterSecret)
   {
@@ -57,7 +59,7 @@ public class MarkReadReceiver extends MasterSecretBroadcastReceiver {
 
           process(context, messageIdsCollection);
 
-          MessageNotifier.updateNotification(context, masterSecret);
+          MessageNotifier.updateNotification(context);
 
           return null;
         }

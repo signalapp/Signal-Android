@@ -59,10 +59,10 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
   {
     ExpiringMessageManager expirationManager = ApplicationContext.getInstance(context).getExpiringMessageManager();
     MmsDatabase            database          = DatabaseFactory.getMmsDatabase(context);
-    OutgoingMediaMessage   message           = database.getOutgoingMessage(masterSecret, messageId);
+    OutgoingMediaMessage   message           = database.getOutgoingMessage(messageId);
 
     try {
-      deliver(masterSecret, message);
+      deliver(message);
       database.markAsSent(messageId, true);
       markAttachmentsUploaded(messageId, message.getAttachments());
 
@@ -97,7 +97,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
     notifyMediaMessageDeliveryFailed(context, messageId);
   }
 
-  private void deliver(MasterSecret masterSecret, OutgoingMediaMessage message)
+  private void deliver(OutgoingMediaMessage message)
       throws RetryLaterException, InsecureFallbackApprovalException, UntrustedIdentityException,
              UndeliverableMessageException
   {
@@ -108,8 +108,8 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
     try {
       SignalServiceAddress          address           = getPushAddress(message.getRecipient().getAddress());
       MediaConstraints              mediaConstraints  = MediaConstraints.getPushMediaConstraints();
-      List<Attachment>              scaledAttachments = scaleAttachments(masterSecret, mediaConstraints, message.getAttachments());
-      List<SignalServiceAttachment> attachmentStreams = getAttachmentsFor(masterSecret, scaledAttachments);
+      List<Attachment>              scaledAttachments = scaleAttachments(mediaConstraints, message.getAttachments());
+      List<SignalServiceAttachment> attachmentStreams = getAttachmentsFor(scaledAttachments);
       Optional<byte[]>              profileKey        = getProfileKey(message.getRecipient());
       SignalServiceDataMessage      mediaMessage      = SignalServiceDataMessage.newBuilder()
                                                                                 .withBody(message.getBody())

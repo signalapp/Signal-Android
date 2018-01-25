@@ -117,6 +117,7 @@ dependencies {
     }
     compile 'com.codewaves.stickyheadergrid:stickyheadergrid:0.9.4'
     compile 'com.github.dmytrodanylyk.circular-progress-button:library:1.1.3-S2'
+    compile 'net.zetetic:android-database-sqlcipher:3.5.9'
 
     testCompile 'junit:junit:4.12'
     testCompile 'org.assertj:assertj-core:1.7.1'
@@ -183,6 +184,7 @@ dependencyVerification {
         'com.annimon:stream:5da6e2e3e0551d61a3ea7014f04312276549e3dd739cf637996e4cf43c5535b9',
         'com.takisoft.fix:colorpicker:f5d0dbabe406a1800498ca9c1faf34db36e021d8488bf10360f29961fe3ab0d1',
         'com.github.dmytrodanylyk.circular-progress-button:library:8dc6a29a5a8db7b2ad5a9a7fda1dc9ae0893f4c8f0545732b2c63854ea693e8e',
+        'net.zetetic:android-database-sqlcipher:eff93b3222f4bdc349ffee2d2e3b2a2507241f17435fb998947bcce486618f1d',
         'com.google.android.gms:play-services-iid:54e919f9957b8b7820da7ee9b83471d00d0cac1cf08ddea8b5b41aea80bb1a70',
         'com.google.android.gms:play-services-base:0ca636a8fc9a5af45e607cdcd61783bf5d561cbbb0f862021ce69606eee5ad49',
         'com.google.android.gms:play-services-tasks:69ec265168e601d0203d04cd42e34bb019b2f029aa1e16fabd38a5153eea2086',

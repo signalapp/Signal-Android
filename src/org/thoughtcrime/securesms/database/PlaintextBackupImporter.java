@@ -1,13 +1,12 @@
 package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteStatement;
 import android.os.Environment;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.crypto.MasterCipher;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import net.sqlcipher.database.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteStatement;
+
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -18,7 +17,7 @@ import java.util.Set;
 
 public class PlaintextBackupImporter {
 
-  public static void importPlaintextFromSd(Context context, MasterSecret masterSecret)
+  public static void importPlaintextFromSd(Context context)
       throws NoExternalStorageException, IOException
   {
     Log.w("PlaintextBackupImporter", "importPlaintext()");
@@ -28,7 +27,6 @@ public class PlaintextBackupImporter {
     try {
       ThreadDatabase threads         = DatabaseFactory.getThreadDatabase(context);
       XmlBackup      backup          = new XmlBackup(getPlaintextExportFile().getAbsolutePath());
-      MasterCipher   masterCipher    = new MasterCipher(masterSecret);
       Set<Long>      modifiedThreads = new HashSet<>();
       XmlBackup.XmlBackupItem item;
 
@@ -53,7 +51,7 @@ public class PlaintextBackupImporter {
         addTranslatedTypeToStatement(statement, 8, item.getType());
         addNullToStatement(statement, 9);
         addStringToStatement(statement, 10, item.getSubject());
-        addEncryptedStringToStatement(masterCipher, statement, 11, item.getBody());
+        addStringToStatement(statement, 11, item.getBody());
         addStringToStatement(statement, 12, item.getServiceCenter());
         addLongToStatement(statement, 13, threadId);
         modifiedThreads.add(threadId);
@@ -80,14 +78,7 @@ public class PlaintextBackupImporter {
     return !backup.exists() && oldBackup.exists() ? oldBackup : backup;
   }
 
-  private static void addEncryptedStringToStatement(MasterCipher masterCipher, SQLiteStatement statement, int index, String value) {
-    if (value == null || value.equals("null")) {
-      statement.bindNull(index);
-    } else {
-      statement.bindString(index, masterCipher.encryptBody(value));
-    }
-  }
-
+  @SuppressWarnings("SameParameterValue")
   private static void addTranslatedTypeToStatement(SQLiteStatement statement, int index, int type) {
     statement.bindLong(index, SmsDatabase.Types.translateFromSystemBaseType(type) | SmsDatabase.Types.ENCRYPTION_SYMMETRIC_BIT);
   }

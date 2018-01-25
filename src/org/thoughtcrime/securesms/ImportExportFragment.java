@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.database.PlaintextBackupExporter;
 import org.thoughtcrime.securesms.database.PlaintextBackupImporter;
@@ -35,13 +34,11 @@ public class ImportExportFragment extends Fragment {
   private static final int NO_SD_CARD = 1;
   private static final int ERROR_IO   = 2;
 
-  private MasterSecret   masterSecret;
   private ProgressDialog progressDialog;
 
   @Override
   public void onCreate(Bundle bundle) {
     super.onCreate(bundle);
-    this.masterSecret = getArguments().getParcelable("master_secret");
   }
 
   @Override
@@ -87,7 +84,6 @@ public class ImportExportFragment extends Fragment {
                  .onAllGranted(() -> {
                    Intent intent = new Intent(getActivity(), ApplicationMigrationService.class);
                    intent.setAction(ApplicationMigrationService.MIGRATE_DATABASE);
-                   intent.putExtra("master_secret", masterSecret);
                    getActivity().startService(intent);
 
                    Intent nextIntent = new Intent(getActivity(), ConversationListActivity.class);
@@ -185,7 +181,7 @@ public class ImportExportFragment extends Fragment {
     @Override
     protected Integer doInBackground(Void... params) {
       try {
-        PlaintextBackupImporter.importPlaintextFromSd(getActivity(), masterSecret);
+        PlaintextBackupImporter.importPlaintextFromSd(getActivity());
         return SUCCESS;
       } catch (NoExternalStorageException e) {
         Log.w("ImportFragment", e);
@@ -212,7 +208,7 @@ public class ImportExportFragment extends Fragment {
     @Override
     protected Integer doInBackground(Void... params) {
       try {
-        PlaintextBackupExporter.exportPlaintextToSd(getActivity(), masterSecret);
+        PlaintextBackupExporter.exportPlaintextToSd(getActivity());
         return SUCCESS;
       } catch (NoExternalStorageException e) {
         Log.w("ExportFragment", e);

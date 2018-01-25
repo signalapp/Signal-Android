@@ -19,12 +19,13 @@ package org.thoughtcrime.securesms.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import net.sqlcipher.database.SQLiteDatabase;
+
 import org.greenrobot.eventbus.EventBus;
+import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.InvalidKeyException;
@@ -72,7 +73,7 @@ public class IdentityDatabase extends Database {
     }
   }
 
-  IdentityDatabase(Context context, SQLiteOpenHelper databaseHelper) {
+  IdentityDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
   }
 

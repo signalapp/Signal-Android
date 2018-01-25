@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.mms;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.PointerAttachment;
-import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -46,8 +45,7 @@ public class IncomingMediaMessage {
     this.attachments.addAll(attachments);
   }
 
-  public IncomingMediaMessage(MasterSecretUnion masterSecret,
-                              Address from,
+  public IncomingMediaMessage(Address from,
                               long sentTimeMillis,
                               int subscriptionId,
                               long expiresIn,
@@ -68,7 +66,7 @@ public class IncomingMediaMessage {
     if (group.isPresent()) this.groupId = Address.fromSerialized(GroupUtil.getEncodedId(group.get().getGroupId(), false));
     else                   this.groupId = null;
 
-    this.attachments.addAll(PointerAttachment.forPointers(masterSecret, attachments));
+    this.attachments.addAll(PointerAttachment.forPointers(attachments));
   }
 
   public int getSubscriptionId() {
