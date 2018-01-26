@@ -167,7 +167,7 @@
                            android:visibility="gone"
                            android:layout_gravity="center_vertical|end"
                            android:alpha=".6"
-                           android:tint="red_400"
+                           android:tint="#f44336"
                            android:layout_marginLeft="3dp"
                            android:layout_marginStart="3dp"
                            android:tintMode="multiply"
