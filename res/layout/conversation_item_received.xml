@@ -123,7 +123,7 @@
                            android:contentDescription="@string/conversation_item__secure_message_description"
                            android:visibility="gone"
                            android:alpha=".65"
-                           android:tint="red_400"
+                           android:tint="#f44336"
                            android:tintMode="multiply"
                            tools:visibility="visible"/>
 
