@@ -76,8 +76,9 @@ node "System Components" as SC {
       node "EncryptionAndDecryptionManager" as ENED
     }
 
-    node "Authorization Manager" as ATS {
-
+    node "Permissions Manager" as PRS {
+      node "PermissionsBuilder" as PRBR
+      node "PermissionsRequest" as PREQ
     }
 
     node "Shared Services" as SHS {
@@ -85,8 +86,8 @@ node "System Components" as SC {
       node "DataStructures" as DSS
       node "Localization/Date" as LAN
       node "Logging" as LOG
-      node "Concurrency/Timing" CRT
-      node "RegularExpressions" REG
+      node "Concurrency/Timing" as CRT
+      node "RegularExpressions" as REG
     }
 
     node "Contact Manager" as COS {
@@ -103,7 +104,7 @@ node "System Components" as SC {
     MMS .. DBS
 
     node "Attachment Manager" as ACS {
-      node "Attachment Database" as ACSD
+      node "AttachmentDatabase" as ACSD
       node "AttachmentInformation" as ACSI
     }
 
