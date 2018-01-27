@@ -1,6 +1,9 @@
-# ContactManager Component
+# Contact Manager Component
+
 This diagram explains the structure of Contact Manager component and the way the subcomponents work together to provide the interface that is used in the main application
+
 ### Diagram Summary:
+
 - ''ContactsDatabase'' is the class that is actually responsible for querying the contact android addressbook by using ContentResolver android API and content URI. However, you need CursorLoader that initializes a ContactsDatabase instance
 
 - ''ContactAccessor'' is another way to access the database, it was introduced in TextSecure API and has be kept they way it is now
