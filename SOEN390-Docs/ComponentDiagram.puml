@@ -65,21 +65,30 @@ node "User Interface Components" as UIC {
 
 node "System Components" as SC {
     node "Database Component" as DBS {
-        node "DatabaseItemLoader" as DBSL
-        node "DatabaseObjectsModels" as DBSM
-        node "DatabaseFactory" as DBSF
-    }
-
-    node "Crypto System" as ENS {
-      node "MasterSecret" as ENSM
-      node "KeyManager" as ENKM
-      node "EncryptionAndDecryptionManager" as ENED
+      node "DatabaseItemLoader" as DBSL
+      node "DatabaseObjectsModels" as DBSM
+      node "DatabaseFactory" as DBSF
     }
 
     node "Permissions Manager" as PRS {
       node "PermissionsBuilder" as PRBR
       node "PermissionsRequest" as PREQ
     }
+    PRS .. SHS
+
+    node "Contact Manager" as COS {
+      node "ContactDatabase" as CODB
+      node "ContactInformationSystem" as COCIS
+    }
+    COS .. SHS
+    
+    node "Crypto System" as ENS {
+      node "MasterSecret" as ENSM
+      node "KeyManager" as ENKM
+      node "EncryptionAndDecryptionManager" as ENED
+    }
+    ENS .. SHS
+    ENS ... DBS
 
     node "Shared Services" as SHS {
       node "Preferences" as PRF
@@ -88,35 +97,28 @@ node "System Components" as SC {
       node "Logging" as LOG
       node "Concurrency/Timing" as CRT
       node "RegularExpressions" as REG
+      node "JobManager" as JBM
     }
-
-    node "Contact Manager" as COS {
-      node "ContactDatabase" as CODB
-      node "ContactInformationSystem" as COCIS
-    }
-
+    SHS .. DBS
+    
     node "Message Manager" as MMS {
       node "IncomingMessageManager" as IMMS
       node "OutgoingMessageManager" as OMMS
       node "MessageSenderManager" as MMMS
     }
-
     MMS .. DBS
+    MMS .. ENS
 
     node "Attachment Manager" as ACS {
       node "AttachmentDatabase" as ACSD
       node "AttachmentInformation" as ACSI
     }
-
     ACS .. DBS
 
     node "Push Manager" as PMS {
       node "PushNotificationServicesFactory" as PMSF
     }
+    PMS .. ENS
 }
-
-CO --> DBS
-PR --> PMS
-RE --> PMS
 
 @enduml
