@@ -82,7 +82,7 @@ public class StickerSelectActivity extends FragmentActivity implements StickerSe
     finish();
   }
 
-  class StickerPagerAdapter extends FragmentStatePagerAdapter {
+  static class StickerPagerAdapter extends FragmentStatePagerAdapter {
 
     private final Fragment[] fragments;
 

@@ -180,7 +180,7 @@ public class VideoPlayer extends FrameLayout {
     videoView.setMediaController(mediaController);
   }
 
-  private class ExoPlayerListener implements ExoPlayer.EventListener {
+  private static class ExoPlayerListener implements ExoPlayer.EventListener {
     private final Window window;
 
     ExoPlayerListener(Window window) {
