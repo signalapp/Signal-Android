@@ -64,7 +64,7 @@ node "User Interface Components" as UIC {
 }
 
 node "System Components" as SC {
-    node "Database Component" as DBS{
+    node "Database Component" as DBS {
         node "DatabaseItemLoader" as DBSL
         node "DatabaseObjectsModels" as DBSM
         node "DatabaseFactory" as DBSF
@@ -81,7 +81,12 @@ node "System Components" as SC {
     }
 
     node "Shared Services" as SHS {
-
+      node "Preferences" as PRF
+      node "DataStructures" as DSS
+      node "Localization/Date" as LAN
+      node "Logging" as LOG
+      node "Concurrency/Timing" CRT
+      node "RegularExpressions" REG
     }
 
     node "Contact Manager" as COS {
