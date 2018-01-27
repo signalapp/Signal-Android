@@ -1,4 +1,4 @@
-# Database System
+# Crypto Component
 This diagram explains the structure of Crypto component and the way the subcomponents work together to provide the interface that is used in the main application
 ### Diagram Summary:
 - ''MasterSecret'' is the object that is being exchanged between the presentation components and the business logic components.
