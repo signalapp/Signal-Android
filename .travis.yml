@@ -5,46 +5,33 @@
 #
 # Typically, this file should not be modified.
 # -----------------------------------------------------------------------
-
-language: android
-sudo: true
-
-notifications:
-  email: false
-
-jdk:
-  - oraclejdk8
-
-before install:
-    # newest android SDK
-  - yes | sdkmanager "platforms;android-27"
-  - wget http://dl.google.com/android/android-sdk_${ANDROID_SDK_VERSION}-linux.tgz
-  - tar -zxf android-sdk_${ANDROID_SDK_VERSION}-linux.tgz
-  - export ANDROID_HOME=`pwd`/android-sdk-linux
-  - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
-
-  # manually set sdk.dir variable, according to local paths
-  - echo "sdk.dir=~/Android/Sdk" > local.properties
-
-
-android:
-  components:
-    - tools
-    - platform-tools
-    - build-tools-27.0.1
-    - android-27
-    - extra-google-m2repository
-    - extra-android-m2repository
-
-script:
-  - ./gradlew assemble
-  - ./gradlew check
-
-before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
-cache:
-  directories:
-    - $HOME/.gradle/caches/
+ language: android
+ jdk: oraclejdk8
+ sudo: false
+ 
+ android:
+   components:
+     - tools
+     - platform-tools
+     - build-tools-26.0.2
+     - android-27
+     - extra-google-m2repository
+  
+ before_install:
+    - yes | sdkmanager "platforms;android-27"
+ 
+ script:
+    - ./gradlew assemble
+    - ./gradlew check
+  
+ before_cache:
+   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+ 
+ cache:
+   directories:
+     - $HOME/.gradle/caches/
+     - $HOME/.gradle/wrapper/
+     - $HOME/.android/build-cache
 
 
