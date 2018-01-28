@@ -1,0 +1,3 @@
+# UI System
+
+The included diagram is only a small brief summary to convey the the idea of how Signal application components are connected with each other. In Short, each Activity is a start point for each UI screen, It implements and extends different android api views, listeners, and adapters. Each activity contains/extends different signal "fragments" which basically represent certain parts of the UI that needs to be changed dynamically. Each Fragment contains a number of adapters, loaders, and cursors in order to introduce signal system interfaces to the activities. 
