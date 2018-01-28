@@ -24,6 +24,7 @@ before install:
 
   # manually set sdk.dir variable, according to local paths
   - echo "sdk.dir=~/Android/Sdk" > local.properties
+  - yes | sudo sdkmanager --licenses
 
 android:
   components:
