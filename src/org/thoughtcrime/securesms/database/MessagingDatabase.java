@@ -36,9 +36,8 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
   public abstract void markAsSent(long messageId, boolean secure);
 
   public void setMismatchedIdentity(long messageId, final Address address, final IdentityKey identityKey) {
-    List<IdentityKeyMismatch> items = new ArrayList<IdentityKeyMismatch>() {{
-      add(new IdentityKeyMismatch(address, identityKey));
-    }};
+    List<IdentityKeyMismatch> items = new ArrayList<IdentityKeyMismatch>();
+    items.add(new IdentityKeyMismatch(address, identityKey));
 
     IdentityKeyMismatchList document = new IdentityKeyMismatchList(items);
 
@@ -101,9 +100,8 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
   }
 
   protected <T extends Document<I>, I> void addToDocument(long messageId, String column, final I object, Class<T> clazz) throws IOException {
-    List<I> list = new ArrayList<I>() {{
-      add(object);
-    }};
+    List<I> list = new ArrayList<I>();
+    list.add(object);
 
     addToDocument(messageId, column, list, clazz);
   }

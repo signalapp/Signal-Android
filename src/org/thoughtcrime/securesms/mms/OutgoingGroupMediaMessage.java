@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
                                    long expireIn)
   {
     super(recipient, Base64.encodeBytes(group.toByteArray()),
-          new LinkedList<Attachment>() {{if (avatar != null) add(avatar);}},
+          avatar != null ? new LinkedList<Attachment>(Arrays.asList(avatar)) : new LinkedList<Attachment>(),
           System.currentTimeMillis(),
           ThreadDatabase.DistributionTypes.CONVERSATION, expireIn);
 

@@ -1377,12 +1377,11 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
 
     private static final String TAG = NumberMigrator.class.getSimpleName();
 
-    private static final Set<String> SHORT_COUNTRIES = new HashSet<String>() {{
-      add("NU");
-      add("TK");
-      add("NC");
-      add("AC");
-    }};
+    private static final Set<String> SHORT_COUNTRIES = new HashSet<String>(Arrays.asList(
+      "NU",
+      "TK",
+      "NC",
+      "AC"));
 
     private final Phonenumber.PhoneNumber localNumber;
     private final String                  localNumberString;

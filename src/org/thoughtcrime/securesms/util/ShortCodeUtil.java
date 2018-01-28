@@ -8,6 +8,7 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 import com.google.i18n.phonenumbers.ShortNumberInfo;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,12 +16,11 @@ public class ShortCodeUtil {
 
   private static final String TAG = ShortCodeUtil.class.getSimpleName();
 
-  private static final Set<String> SHORT_COUNTRIES = new HashSet<String>() {{
-    add("NU");
-    add("TK");
-    add("NC");
-    add("AC");
-  }};
+  private static final Set<String> SHORT_COUNTRIES = new HashSet<String>(Arrays.asList(
+    "NU",
+    "TK",
+    "NC",
+    "AC"));
 
   public static boolean isShortCode(@NonNull String localNumber, @NonNull String number) {
     try {

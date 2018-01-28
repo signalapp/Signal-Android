@@ -113,43 +113,42 @@ public class SignalServiceNetworkAccess {
     final SignalCdnUrl     mapsTwoAndroidCdn     = new SignalCdnUrl("https://clients4.google.com", APPSPOT_SERVICE_REFLECTOR_HOST, googleTrustStore, GMAPS_CONNECTION_SPEC);
     final SignalCdnUrl     mailAndroidCdn        = new SignalCdnUrl("https://mail.google.com", APPSPOT_SERVICE_REFLECTOR_HOST, googleTrustStore, GMAIL_CONNECTION_SPEC);
 
-    this.censorshipConfiguration = new HashMap<String, SignalServiceConfiguration>() {{
-      put("+20", new SignalServiceConfiguration(new SignalServiceUrl[] {new SignalServiceUrl("https://www.google.com.eg",
-                                                                                             APPSPOT_SERVICE_REFLECTOR_HOST,
-                                                                                             googleTrustStore, GMAIL_CONNECTION_SPEC),
-                                                                        baseAndroidService, mapsOneAndroidService, mapsTwoAndroidService, mailAndroidService},
-                                                new SignalCdnUrl[] {new SignalCdnUrl("https://www.google.com.eg",
-                                                                                     APPSPOT_CDN_REFLECTOR_HOST,
-                                                                                     googleTrustStore, GMAIL_CONNECTION_SPEC),
-                                                                    baseAndroidCdn, mapsOneAndroidCdn, mapsTwoAndroidCdn, mailAndroidCdn, mailAndroidCdn}));
+    this.censorshipConfiguration = new HashMap<String, SignalServiceConfiguration>();
+    this.censorshipConfiguration.put("+20", new SignalServiceConfiguration(new SignalServiceUrl[] {new SignalServiceUrl("https://www.google.com.eg",
+                                                                                                                        APPSPOT_SERVICE_REFLECTOR_HOST,
+                                                                                                                        googleTrustStore, GMAIL_CONNECTION_SPEC),
+                                                                                                   baseAndroidService, mapsOneAndroidService, mapsTwoAndroidService, mailAndroidService},
+                                                                           new SignalCdnUrl[] {new SignalCdnUrl("https://www.google.com.eg",
+                                                                                                                APPSPOT_CDN_REFLECTOR_HOST,
+                                                                                                                googleTrustStore, GMAIL_CONNECTION_SPEC),
+                                                                                               baseAndroidCdn, mapsOneAndroidCdn, mapsTwoAndroidCdn, mailAndroidCdn, mailAndroidCdn}));
 
-      put("+971", new SignalServiceConfiguration(new SignalServiceUrl[] {new SignalServiceUrl("https://www.google.ae",
-                                                                                              APPSPOT_SERVICE_REFLECTOR_HOST,
-                                                                                              googleTrustStore, GMAIL_CONNECTION_SPEC),
-                                                                         baseAndroidService, baseGoogleService, mapsOneAndroidService, mapsTwoAndroidService, mailAndroidService},
-                                                 new SignalCdnUrl[] {new SignalCdnUrl("https://www.google.ae",
-                                                                                      APPSPOT_CDN_REFLECTOR_HOST,
-                                                                                      googleTrustStore, GMAIL_CONNECTION_SPEC),
-                                                                     baseAndroidCdn, baseGoogleCdn, mapsOneAndroidCdn, mapsTwoAndroidCdn, mailAndroidCdn}));
+    this.censorshipConfiguration.put("+971", new SignalServiceConfiguration(new SignalServiceUrl[] {new SignalServiceUrl("https://www.google.ae",
+                                                                                                                         APPSPOT_SERVICE_REFLECTOR_HOST,
+                                                                                                                         googleTrustStore, GMAIL_CONNECTION_SPEC),
+                                                                                                    baseAndroidService, baseGoogleService, mapsOneAndroidService, mapsTwoAndroidService, mailAndroidService},
+                                                                            new SignalCdnUrl[] {new SignalCdnUrl("https://www.google.ae",
+                                                                                                                 APPSPOT_CDN_REFLECTOR_HOST,
+                                                                                                                 googleTrustStore, GMAIL_CONNECTION_SPEC),
+                                                                                                baseAndroidCdn, baseGoogleCdn, mapsOneAndroidCdn, mapsTwoAndroidCdn, mailAndroidCdn}));
 
-      put("+968", new SignalServiceConfiguration(new SignalServiceUrl[] {new SignalServiceUrl("https://www.google.com.om",
-                                                                                              APPSPOT_SERVICE_REFLECTOR_HOST,
-                                                                                              googleTrustStore, GMAIL_CONNECTION_SPEC),
-                                                                         baseAndroidService, baseGoogleService, mapsOneAndroidService, mapsTwoAndroidService, mailAndroidService},
-                                                 new SignalCdnUrl[] {new SignalCdnUrl("https://www.google.com.om",
-                                                                                      APPSPOT_CDN_REFLECTOR_HOST,
-                                                                                      googleTrustStore, GMAIL_CONNECTION_SPEC),
-                                                                     baseAndroidCdn, baseGoogleCdn, mapsOneAndroidCdn, mapsTwoAndroidCdn, mailAndroidCdn}));
+    this.censorshipConfiguration.put("+968", new SignalServiceConfiguration(new SignalServiceUrl[] {new SignalServiceUrl("https://www.google.com.om",
+                                                                                                                         APPSPOT_SERVICE_REFLECTOR_HOST,
+                                                                                                                         googleTrustStore, GMAIL_CONNECTION_SPEC),
+                                                                                                    baseAndroidService, baseGoogleService, mapsOneAndroidService, mapsTwoAndroidService, mailAndroidService},
+                                                                            new SignalCdnUrl[] {new SignalCdnUrl("https://www.google.com.om",
+                                                                                                                 APPSPOT_CDN_REFLECTOR_HOST,
+                                                                                                                 googleTrustStore, GMAIL_CONNECTION_SPEC),
+                                                                                                baseAndroidCdn, baseGoogleCdn, mapsOneAndroidCdn, mapsTwoAndroidCdn, mailAndroidCdn}));
 
-      put("+974", new SignalServiceConfiguration(new SignalServiceUrl[] {new SignalServiceUrl("https://www.google.com.qa",
-                                                                                              APPSPOT_SERVICE_REFLECTOR_HOST,
-                                                                                              googleTrustStore, GMAIL_CONNECTION_SPEC),
-                                                                         baseAndroidService, baseGoogleService, mapsOneAndroidService, mapsTwoAndroidService, mailAndroidService},
-                                                 new SignalCdnUrl[] {new SignalCdnUrl("https://www.google.com.qa",
-                                                                                      APPSPOT_CDN_REFLECTOR_HOST,
-                                                                                      googleTrustStore, GMAIL_CONNECTION_SPEC),
-                                                                     baseAndroidCdn, baseGoogleCdn, mapsOneAndroidCdn, mapsTwoAndroidCdn, mailAndroidCdn}));
-    }};
+    this.censorshipConfiguration.put("+974", new SignalServiceConfiguration(new SignalServiceUrl[] {new SignalServiceUrl("https://www.google.com.qa",
+                                                                                                                         APPSPOT_SERVICE_REFLECTOR_HOST,
+                                                                                                                         googleTrustStore, GMAIL_CONNECTION_SPEC),
+                                                                                                    baseAndroidService, baseGoogleService, mapsOneAndroidService, mapsTwoAndroidService, mailAndroidService},
+                                                                            new SignalCdnUrl[] {new SignalCdnUrl("https://www.google.com.qa",
+                                                                                                                 APPSPOT_CDN_REFLECTOR_HOST,
+                                                                                                                 googleTrustStore, GMAIL_CONNECTION_SPEC),
+                                                                                                baseAndroidCdn, baseGoogleCdn, mapsOneAndroidCdn, mapsTwoAndroidCdn, mailAndroidCdn}));
 
     this.uncensoredConfiguration = new SignalServiceConfiguration(new SignalServiceUrl[] {new SignalServiceUrl(BuildConfig.SIGNAL_URL, new SignalServiceTrustStore(context))},
                                                                   new SignalCdnUrl[] {new SignalCdnUrl(BuildConfig.SIGNAL_CDN_URL, new SignalServiceTrustStore(context))});

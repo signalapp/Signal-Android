@@ -50,9 +50,10 @@ class RecipientProvider {
   private static final RecipientCache  recipientCache         = new RecipientCache();
   private static final ExecutorService asyncRecipientResolver = Util.newSingleThreadedLifoExecutor();
 
-  private static final Map<String, RecipientDetails> STATIC_DETAILS = new HashMap<String, RecipientDetails>() {{
-    put("262966", new RecipientDetails("Amazon", null, false, null, null));
-  }};
+  private static final Map<String, RecipientDetails> STATIC_DETAILS = new HashMap<String, RecipientDetails>();
+  static {
+    STATIC_DETAILS.put("262966", new RecipientDetails("Amazon", null, false, null, null));
+  }
 
   @NonNull Recipient getRecipient(@NonNull Context context, @NonNull Address address, @NonNull Optional<RecipientSettings> settings, @NonNull Optional<GroupRecord> groupRecord, boolean asynchronous) {
     Recipient cachedRecipient = recipientCache.get(address);

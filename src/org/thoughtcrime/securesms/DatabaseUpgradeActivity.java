@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.VersionTracker;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -77,24 +78,23 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   public static final int INTERNALIZE_CONTACTS                 = 317;
   public static final int SQLCIPHER                            = 334;
 
-  private static final SortedSet<Integer> UPGRADE_VERSIONS = new TreeSet<Integer>() {{
-    add(NO_MORE_KEY_EXCHANGE_PREFIX_VERSION);
-    add(TOFU_IDENTITIES_VERSION);
-    add(CURVE25519_VERSION);
-    add(ASYMMETRIC_MASTER_SECRET_FIX_VERSION);
-    add(NO_V1_VERSION);
-    add(SIGNED_PREKEY_VERSION);
-    add(NO_DECRYPT_QUEUE_VERSION);
-    add(PUSH_DECRYPT_SERIAL_ID_VERSION);
-    add(MIGRATE_SESSION_PLAINTEXT);
-    add(MEDIA_DOWNLOAD_CONTROLS_VERSION);
-    add(REDPHONE_SUPPORT_VERSION);
-    add(NO_MORE_CANONICAL_DB_VERSION);
-    add(SCREENSHOTS);
-    add(INTERNALIZE_CONTACTS);
-    add(PERSISTENT_BLOBS);
-    add(SQLCIPHER);
-  }};
+  private static final SortedSet<Integer> UPGRADE_VERSIONS = new TreeSet<Integer>(Arrays.asList(
+    NO_MORE_KEY_EXCHANGE_PREFIX_VERSION,
+    TOFU_IDENTITIES_VERSION,
+    CURVE25519_VERSION,
+    ASYMMETRIC_MASTER_SECRET_FIX_VERSION,
+    NO_V1_VERSION,
+    SIGNED_PREKEY_VERSION,
+    NO_DECRYPT_QUEUE_VERSION,
+    PUSH_DECRYPT_SERIAL_ID_VERSION,
+    MIGRATE_SESSION_PLAINTEXT,
+    MEDIA_DOWNLOAD_CONTROLS_VERSION,
+    REDPHONE_SUPPORT_VERSION,
+    NO_MORE_CANONICAL_DB_VERSION,
+    SCREENSHOTS,
+    INTERNALIZE_CONTACTS,
+    PERSISTENT_BLOBS,
+    SQLCIPHER));
 
   private MasterSecret masterSecret;
 

@@ -48,10 +48,11 @@ public class PersistentBlobProvider {
   private static final int        MATCH_OLD             = 1;
   private static final int        MATCH_NEW             = 2;
 
-  private static final UriMatcher MATCHER               = new UriMatcher(UriMatcher.NO_MATCH) {{
-    addURI(AUTHORITY, EXPECTED_PATH_OLD, MATCH_OLD);
-    addURI(AUTHORITY, EXPECTED_PATH_NEW, MATCH_NEW);
-  }};
+  private static final UriMatcher MATCHER               = new UriMatcher(UriMatcher.NO_MATCH);
+  static {
+    MATCHER.addURI(AUTHORITY, EXPECTED_PATH_OLD, MATCH_OLD);
+    MATCHER.addURI(AUTHORITY, EXPECTED_PATH_NEW, MATCH_NEW);
+  };
 
   private static volatile PersistentBlobProvider instance;
 

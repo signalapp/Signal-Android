@@ -54,10 +54,9 @@ public class GiphyProxySelector extends ProxySelector {
   }
 
   private void initializeGiphyProxy() {
-    GIPHY = new ArrayList<Proxy>(1) {{
-      add(new Proxy(Proxy.Type.HTTP, new InetSocketAddress(BuildConfig.GIPHY_PROXY_HOST,
+    GIPHY = new ArrayList<Proxy>(1);
+    GIPHY.add(new Proxy(Proxy.Type.HTTP, new InetSocketAddress(BuildConfig.GIPHY_PROXY_HOST,
                                                            BuildConfig.GIPHY_PROXY_PORT)));
-    }};
   }
 
   private List<Proxy> getOrCreateGiphyProxy() {

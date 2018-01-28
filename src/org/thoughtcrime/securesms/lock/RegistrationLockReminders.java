@@ -14,21 +14,23 @@ public class RegistrationLockReminders {
 
   public static final long INITIAL_INTERVAL = TimeUnit.HOURS.toMillis(6);
 
-  private static Map<Long, Long> INTERVAL_PROGRESSION = new HashMap<Long, Long>() {{
-    put(TimeUnit.HOURS.toMillis(6), TimeUnit.HOURS.toMillis(12));
-    put(TimeUnit.HOURS.toMillis(12), TimeUnit.DAYS.toMillis(1));
-    put(TimeUnit.DAYS.toMillis(1), TimeUnit.DAYS.toMillis(3));
-    put(TimeUnit.DAYS.toMillis(3), TimeUnit.DAYS.toMillis(7));
-    put(TimeUnit.DAYS.toMillis(7), TimeUnit.DAYS.toMillis(7));
-  }};
+  private static final Map<Long, Long> INTERVAL_PROGRESSION = new HashMap<Long, Long>();
+  static {
+    INTERVAL_PROGRESSION.put(TimeUnit.HOURS.toMillis(6), TimeUnit.HOURS.toMillis(12));
+    INTERVAL_PROGRESSION.put(TimeUnit.HOURS.toMillis(12), TimeUnit.DAYS.toMillis(1));
+    INTERVAL_PROGRESSION.put(TimeUnit.DAYS.toMillis(1), TimeUnit.DAYS.toMillis(3));
+    INTERVAL_PROGRESSION.put(TimeUnit.DAYS.toMillis(3), TimeUnit.DAYS.toMillis(7));
+    INTERVAL_PROGRESSION.put(TimeUnit.DAYS.toMillis(7), TimeUnit.DAYS.toMillis(7));
+  }
 
 
-  private static Map<Long, Long> INTERVAL_REGRESSION = new HashMap<Long, Long>() {{
-    put(TimeUnit.HOURS.toMillis(12), TimeUnit.HOURS.toMillis(6));
-    put(TimeUnit.DAYS.toMillis(1), TimeUnit.HOURS.toMillis(12));
-    put(TimeUnit.DAYS.toMillis(3), TimeUnit.DAYS.toMillis(1));
-    put(TimeUnit.DAYS.toMillis(7), TimeUnit.DAYS.toMillis(3));
-  }};
+  private static final Map<Long, Long> INTERVAL_REGRESSION = new HashMap<Long, Long>();
+  static {
+    INTERVAL_REGRESSION.put(TimeUnit.HOURS.toMillis(12), TimeUnit.HOURS.toMillis(6));
+    INTERVAL_REGRESSION.put(TimeUnit.DAYS.toMillis(1), TimeUnit.HOURS.toMillis(12));
+    INTERVAL_REGRESSION.put(TimeUnit.DAYS.toMillis(3), TimeUnit.DAYS.toMillis(1));
+    INTERVAL_REGRESSION.put(TimeUnit.DAYS.toMillis(7), TimeUnit.DAYS.toMillis(3));
+  }
 
 
   public static boolean needsReminder(@NonNull Context context) {
