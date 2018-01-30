@@ -74,6 +74,7 @@ import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -202,8 +203,9 @@ public class ConversationFragment extends Fragment
   }
 
   private void setCorrectMenuVisibility(Menu menu) {
-    Set<MessageRecord> messageRecords = getListAdapter().getSelectedItems();
-    boolean            actionMessage  = false;
+    Set<MessageRecord> messageRecords  = getListAdapter().getSelectedItems();
+    boolean            actionMessage   = false;
+    boolean            nonMediaMessage = false;
 
     if (actionMode != null && messageRecords.size() == 0) {
       actionMode.finish();
@@ -216,26 +218,26 @@ public class ConversationFragment extends Fragment
           messageRecord.isEndSession() || messageRecord.isIdentityUpdate() ||
           messageRecord.isIdentityVerified() || messageRecord.isIdentityDefault())
       {
-        actionMessage = true;
+        actionMessage   = true;
+        nonMediaMessage = true;
         break;
+      } else if (!nonMediaMessage) {
+        nonMediaMessage = !(messageRecord.isMms() && !messageRecord.isMmsNotification() &&
+                           ((MediaMmsMessageRecord)messageRecord).containsMediaSlide());
       }
     }
 
     if (messageRecords.size() > 1) {
       menu.findItem(R.id.menu_context_forward).setVisible(false);
       menu.findItem(R.id.menu_context_details).setVisible(false);
-      menu.findItem(R.id.menu_context_save_attachment).setVisible(false);
+      menu.findItem(R.id.menu_context_save_attachment).setVisible(!nonMediaMessage);
       menu.findItem(R.id.menu_context_resend).setVisible(false);
       menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage);
     } else {
       MessageRecord messageRecord = messageRecords.iterator().next();
 
       menu.findItem(R.id.menu_context_resend).setVisible(messageRecord.isFailed());
-      menu.findItem(R.id.menu_context_save_attachment).setVisible(!actionMessage                     &&
-                                                                  messageRecord.isMms()              &&
-                                                                  !messageRecord.isMmsNotification() &&
-                                                                  ((MediaMmsMessageRecord)messageRecord).containsMediaSlide());
-
+      menu.findItem(R.id.menu_context_save_attachment).setVisible(!nonMediaMessage);
       menu.findItem(R.id.menu_context_forward).setVisible(!actionMessage);
       menu.findItem(R.id.menu_context_details).setVisible(!actionMessage);
       menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage);
@@ -386,23 +388,33 @@ public class ConversationFragment extends Fragment
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, message);
   }
 
-  private void handleSaveAttachment(final MediaMmsMessageRecord message) {
+  private void handleSaveAttachment(final Set<MediaMmsMessageRecord> messages) {
     SaveAttachmentTask.showWarningDialog(getActivity(), new DialogInterface.OnClickListener() {
+      @Override
       public void onClick(DialogInterface dialog, int which) {
-        for (Slide slide : message.getSlideDeck().getSlides()) {
-          if ((slide.hasImage() || slide.hasVideo() || slide.hasAudio() || slide.hasDocument()) && slide.getUri() != null) {
-            SaveAttachmentTask saveTask = new SaveAttachmentTask(getActivity(), masterSecret);
-            saveTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, new Attachment(slide.getUri(), slide.getContentType(), message.getDateReceived(), slide.getFileName().orNull()));
-            return;
+        Set<Attachment> attachments = new HashSet<>(messages.size());
+        for (MediaMmsMessageRecord message : messages) {
+          for (Slide slide : message.getSlideDeck().getSlides()) {
+            if ((slide.hasImage() || slide.hasVideo() || slide.hasAudio() || slide.hasDocument()) && slide.getUri() != null) {
+              attachments.add(new Attachment(slide.getUri(),
+                                             slide.getContentType(),
+                                             message.getDateReceived(),
+                                             slide.getFileName().orNull()));
+            }
           }
         }
 
-        Log.w(TAG, "No slide with attachable media found, failing nicely.");
-        Toast.makeText(getActivity(),
-                       getResources().getQuantityString(R.plurals.ConversationFragment_error_while_saving_attachments_to_sd_card, 1),
-                       Toast.LENGTH_LONG).show();
+        if (attachments.size() > 0) {
+          SaveAttachmentTask saveTask = new SaveAttachmentTask(getActivity(), masterSecret, attachments.size());
+          saveTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, attachments.toArray(new Attachment[attachments.size()]));
+        } else {
+          Log.w(TAG, "No slide with attachable media found, failing nicely.");
+          Toast.makeText(getActivity(),
+                         getResources().getQuantityString(R.plurals.ConversationFragment_error_while_saving_attachments_to_sd_card, messages.size()),
+                         Toast.LENGTH_LONG).show();
+        }
       }
-    });
+    }, messages.size());
   }
 
   @Override
@@ -657,7 +669,7 @@ public class ConversationFragment extends Fragment
           actionMode.finish();
           return true;
         case R.id.menu_context_save_attachment:
-          handleSaveAttachment((MediaMmsMessageRecord)getSelectedMessageRecord());
+          handleSaveAttachment(((Set<MediaMmsMessageRecord>) getListAdapter().getSelectedItems()));
           actionMode.finish();
           return true;
       }
