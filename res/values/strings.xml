@@ -689,6 +689,7 @@
 
     <!-- SaveAttachmentTask -->
     <string name="SaveAttachmentTask_open_directory">Open directory</string>
+    <string name="SaveAttachmentTask_saved_to">Saved to %s</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">Search</string>
