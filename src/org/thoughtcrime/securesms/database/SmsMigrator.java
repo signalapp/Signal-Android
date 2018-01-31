@@ -69,10 +69,10 @@ public class SmsMigrator {
     int columnIndex = cursor.getColumnIndexOrThrow(key);
 
     if (cursor.isNull(columnIndex)) {
-      statement.bindLong(index, SmsDatabase.Types.BASE_INBOX_TYPE | SmsDatabase.Types.ENCRYPTION_SYMMETRIC_BIT);
+      statement.bindLong(index, SmsDatabase.Types.BASE_INBOX_TYPE);
     } else {
       long theirType = cursor.getLong(columnIndex);
-      statement.bindLong(index, SmsDatabase.Types.translateFromSystemBaseType(theirType) | SmsDatabase.Types.ENCRYPTION_SYMMETRIC_BIT);
+      statement.bindLong(index, SmsDatabase.Types.translateFromSystemBaseType(theirType));
     }
   }
 

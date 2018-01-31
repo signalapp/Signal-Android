@@ -664,20 +664,6 @@ public class SmsDatabase extends MessagingDatabase {
     return db.query(TABLE_NAME, MESSAGE_PROJECTION, outgoingSelection, null, null, null, null);
   }
 
-  public Cursor getDecryptInProgressMessages() {
-    String where       = TYPE + " & " + (Types.ENCRYPTION_ASYMMETRIC_BIT) + " != 0";
-    SQLiteDatabase db  = databaseHelper.getReadableDatabase();
-    return db.query(TABLE_NAME, MESSAGE_PROJECTION, where, null, null, null, null);
-  }
-
-//  public Cursor getEncryptedRogueMessages(Recipient recipient) {
-//    String selection  = TYPE + " & " + Types.ENCRYPTION_REMOTE_NO_SESSION_BIT + " != 0" +
-//                        " AND PHONE_NUMBERS_EQUAL(" + ADDRESS + ", ?)";
-//    String[] args     = {recipient.getNumber()};
-//    SQLiteDatabase db = databaseHelper.getReadableDatabase();
-//    return db.query(TABLE_NAME, MESSAGE_PROJECTION, selection, args, null, null, null);
-//  }
-
   public Cursor getExpirationStartedMessages() {
     String         where = EXPIRE_STARTED + " > 0";
     SQLiteDatabase db    = databaseHelper.getReadableDatabase();
@@ -895,14 +881,7 @@ public class SmsDatabase extends MessagingDatabase {
     }
 
     protected DisplayRecord.Body getBody(Cursor cursor) {
-      long type   = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.TYPE));
-      String body = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.BODY));
-
-      if (Types.isSymmetricEncryption(type)) {
-        return new DisplayRecord.Body(body, false);
-      } else {
-        return new DisplayRecord.Body(body, true);
-      }
+      return new DisplayRecord.Body(cursor.getString(cursor.getColumnIndexOrThrow(BODY)), true);
     }
 
     public void close() {

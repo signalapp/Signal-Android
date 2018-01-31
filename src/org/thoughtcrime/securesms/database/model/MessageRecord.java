@@ -86,10 +86,6 @@ public abstract class MessageRecord extends DisplayRecord {
     return MmsSmsColumns.Types.isLegacyType(type);
   }
 
-  public boolean isAsymmetricEncryption() {
-    return MmsSmsColumns.Types.isAsymmetricEncryption(type);
-  }
-
   @Override
   public SpannableString getDisplayBody() {
     if (isGroupUpdate() && isOutgoing()) {

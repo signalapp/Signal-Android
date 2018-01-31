@@ -416,7 +416,7 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
 
             ContentValues update = new ContentValues();
             update.put(SmsDatabase.BODY, encryptedBody);
-            update.put(SmsDatabase.TYPE, type | SmsDatabase.Types.ENCRYPTION_SYMMETRIC_BIT);
+            update.put(SmsDatabase.TYPE, type | 0x80000000); // Inline now deprecated symmetric encryption type
 
             db.update(SmsDatabase.TABLE_NAME, update, SmsDatabase.ID  + " = ?",
                       new String[] {String.valueOf(id)});

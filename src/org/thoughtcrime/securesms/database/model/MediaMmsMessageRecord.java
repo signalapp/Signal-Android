@@ -73,9 +73,7 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
 
   @Override
   public SpannableString getDisplayBody() {
-    if (MmsDatabase.Types.isDecryptInProgressType(type)) {
-      return emphasisAdded(context.getString(R.string.MmsMessageRecord_decrypting_mms_please_wait));
-    } else if (MmsDatabase.Types.isFailedDecryptType(type)) {
+    if (MmsDatabase.Types.isFailedDecryptType(type)) {
       return emphasisAdded(context.getString(R.string.MmsMessageRecord_bad_encrypted_mms_message));
     } else if (MmsDatabase.Types.isDuplicateMessageType(type)) {
       return emphasisAdded(context.getString(R.string.SmsMessageRecord_duplicate_message));

@@ -80,7 +80,7 @@ public class PlaintextBackupImporter {
 
   @SuppressWarnings("SameParameterValue")
   private static void addTranslatedTypeToStatement(SQLiteStatement statement, int index, int type) {
-    statement.bindLong(index, SmsDatabase.Types.translateFromSystemBaseType(type) | SmsDatabase.Types.ENCRYPTION_SYMMETRIC_BIT);
+    statement.bindLong(index, SmsDatabase.Types.translateFromSystemBaseType(type));
   }
 
   private static void addStringToStatement(SQLiteStatement statement, int index, String value) {

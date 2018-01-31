@@ -289,11 +289,6 @@ public class MmsDatabase extends MessagingDatabase {
     return readerFor(rawQuery(where, null));
   }
 
-  public Reader getDecryptInProgressMessages() {
-    String where = MESSAGE_BOX + " & " + (Types.ENCRYPTION_ASYMMETRIC_BIT) + " != 0";
-    return readerFor(rawQuery(where, null));
-  }
-
   private void updateMailboxBitmask(long id, long maskOff, long maskOn, Optional<Long> threadId) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.execSQL("UPDATE " + TABLE_NAME +
@@ -583,7 +578,7 @@ public class MmsDatabase extends MessagingDatabase {
       ContentValues contentValues = new ContentValues();
       contentValues.put(ADDRESS, request.getRecipient().getAddress().serialize());
       contentValues.put(DATE_SENT, request.getSentTimeMillis());
-      contentValues.put(MESSAGE_BOX, Types.BASE_INBOX_TYPE | Types.SECURE_MESSAGE_BIT | Types.ENCRYPTION_SYMMETRIC_BIT);
+      contentValues.put(MESSAGE_BOX, Types.BASE_INBOX_TYPE | Types.SECURE_MESSAGE_BIT);
       contentValues.put(THREAD_ID, getThreadIdForMessage(messageId));
       contentValues.put(READ, 1);
       contentValues.put(DATE_RECEIVED, contentValues.getAsLong(DATE_SENT));
