@@ -264,7 +264,7 @@ public class MasterSecretUtil {
     }
   }
 
-  private static byte[] generateSalt() throws NoSuchAlgorithmException {
+  static byte[] generateSalt() throws NoSuchAlgorithmException {
     SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
     byte[] salt         = new byte[16];
     random.nextBytes(salt);
@@ -272,7 +272,7 @@ public class MasterSecretUtil {
     return salt;
   }
 
-  private static int generateIterationCount(String passphrase, byte[] salt) {
+  static int generateIterationCount(String passphrase, byte[] salt) {
     int TARGET_ITERATION_TIME     = 50;   //ms
     int MINIMUM_ITERATION_COUNT   = 100;   //default for low-end devices
     int BENCHMARK_ITERATION_COUNT = 10000; //baseline starting iteration count

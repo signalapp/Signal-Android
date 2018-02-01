@@ -30,6 +30,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +43,7 @@ import com.google.i18n.phonenumbers.AsYouTypeFormatter;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
+import org.thoughtcrime.securesms.backup.FullBackupImporter;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
 import org.thoughtcrime.securesms.components.registration.CallMeCountDownView;
 import org.thoughtcrime.securesms.components.registration.VerificationCodeView;
@@ -58,6 +60,9 @@ import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
+import org.thoughtcrime.securesms.backup.ImportExportResult;
+import org.thoughtcrime.securesms.database.NoExternalStorageException;
+import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.PlayServicesUtil;
 import org.thoughtcrime.securesms.util.PlayServicesUtil.PlayServicesStatus;
@@ -72,8 +77,16 @@ import org.whispersystems.libsignal.util.KeyHelper;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
+import org.xml.sax.SAXException;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import static org.thoughtcrime.securesms.service.KeyCachingService.BACKUP_RESTORED_EVENT;
+
 import java.util.List;
 
 /**
@@ -86,6 +99,7 @@ import java.util.List;
 public class RegistrationActivity extends BaseActionBarActivity implements VerificationCodeView.OnCodeEnteredListener {
 
   private static final int    PICK_COUNTRY              = 1;
+  private static final int    ENTER_PASSPHRASE          = 2;
   private static final int    SCENE_TRANSITION_DURATION = 250;
   public static final  String CHALLENGE_EVENT           = "org.thoughtcrime.securesms.CHALLENGE_EVENT";
   public static final  String CHALLENGE_EXTRA           = "CAAChallenge";
@@ -138,6 +152,9 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
       this.countryCode.setText(String.valueOf(data.getIntExtra("country_code", 1)));
       setCountryDisplay(data.getStringExtra("country_name"));
       setCountryFormatter(data.getIntExtra("country_code", 1));
+    } else if (requestCode == ENTER_PASSPHRASE && resultCode == RESULT_OK && data != null) {
+      String passphrase = data.getStringExtra("passphrase");
+      new ImportEncryptedBackupTask().execute(passphrase);
     }
   }
 
@@ -148,6 +165,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
 
   private void initializeResources() {
     TextView     skipButton        = findViewById(R.id.skip_button);
+    Button       importButton      = findViewById(R.id.import_button);
     View         informationToggle = findViewById(R.id.information_link_container);
 
     this.countrySpinner        = findViewById(R.id.country_spinner);
@@ -186,6 +204,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     });
 
     this.verificationCodeView.setOnCompleteListener(this);
+    importButton.setOnClickListener(new ImportButtonListener());
   }
 
   @SuppressLint("ClickableViewAccessibility")
@@ -757,6 +776,79 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
       this.e164number = previous.e164number;
       this.password   = previous.password;
       this.gcmToken   = previous.gcmToken;
+    }
+  }
+
+
+  private class ImportButtonListener implements View.OnClickListener {
+    @Override
+    public void onClick(View v) {
+      Intent intent = new Intent(RegistrationActivity.this, EnterPassphraseActivity.class);
+      startActivityForResult(intent, ENTER_PASSPHRASE);
+    }
+  }
+
+  private class ImportEncryptedBackupTask extends AsyncTask<String, Void, ImportExportResult> {
+    @Override
+    protected ImportExportResult doInBackground(String... params) {
+      if ((params == null) || (params.length != 1)) {
+        Log.w("ImportExportActivity", "passphrase required");
+        return ImportExportResult.PASSPHRASE_REQUIRED;
+      }
+      try {
+        String passphrase = params[0];
+        FullBackupImporter.importXml(RegistrationActivity.this, passphrase);
+        return ImportExportResult.SUCCESS;
+      } catch (NoExternalStorageException e) {
+        Log.w("RegistrationActivity", e);
+        return ImportExportResult.NO_SD_CARD;
+      } catch (IOException e) {
+        Log.w("RegistrationActivity", e);
+        return ImportExportResult.ERROR_IO;
+      } catch (ParserConfigurationException e) {
+        Log.w("RegistrationActivity", e);
+        return ImportExportResult.ERROR_PARSER_CONFIGURATION;
+      } catch (SAXException e) {
+        Log.w("RegistrationActivity", e);
+        return ImportExportResult.ERROR_PARSE;
+      } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+        Log.w("RegistrationActivity", e);
+        return ImportExportResult.INTERNAL_ERROR;
+      }
+    }
+
+    @Override
+    protected void onPostExecute(ImportExportResult result) {
+      Context context = RegistrationActivity.this;
+      switch (result) {
+        case NO_SD_CARD:
+          Toast.makeText(context,
+                  context.getString(R.string.ImportFragment_no_plaintext_backup_found),
+                  Toast.LENGTH_LONG).show();
+          break;
+        case ERROR_IO:
+        case ERROR_PARSER_CONFIGURATION:
+        case ERROR_PARSE:
+        case INTERNAL_ERROR:
+          Toast.makeText(context,
+                  context.getString(R.string.ImportFragment_error_importing_backup),
+                  Toast.LENGTH_LONG).show();
+          break;
+        case PASSPHRASE_REQUIRED:
+          Toast.makeText(context,
+                  context.getString(R.string.ExportFragment_error_no_passphrase_given),
+                  Toast.LENGTH_LONG).show();
+          break;
+        case SUCCESS:
+          Toast.makeText(context,
+                  context.getString(R.string.ImportFragment_import_complete),
+                  Toast.LENGTH_LONG).show();
+          Intent intent = new Intent(BACKUP_RESTORED_EVENT, null,
+                  context, KeyCachingService.class);
+          startService(intent);
+          startActivity(new Intent(RegistrationActivity.this, ConversationListActivity.class));
+          break;
+      }
     }
   }
 }

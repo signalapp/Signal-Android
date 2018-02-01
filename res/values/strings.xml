@@ -293,6 +293,7 @@
     <string name="ExportFragment_exporting">Exporting</string>
     <string name="ExportFragment_exporting_plaintext_to_storage">Exporting plaintext to storage...</string>
     <string name="ExportFragment_error_unable_to_write_to_storage">Error, unable to write to storage.</string>
+    <string name="ExportFragment_error_no_passphrase_given">Unable to export without passphrase</string>
     <string name="ExportFragment_error_while_writing_to_storage">Error while writing to storage.</string>
     <string name="ExportFragment_export_successful">Export successful.</string>
 
@@ -439,6 +440,10 @@
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passphrases don\'t match!</string>
     <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Incorrect old passphrase!</string>
     <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Enter new passphrase!</string>
+
+    <!-- EnterPassphraseActivity -->
+    <string name="EnterPassphraseActivity_passphrases_dont_match_exclamation">Passphrases don\'t match!</string>
+    <string name="EnterPassphraseActivity_enter_passphrase_exclamation">Enter passphrase!</string>
 
     <!-- DeviceProvisioningActivity -->
     <string name="DeviceProvisioningActivity_link_this_device">Link this device?</string>
@@ -820,6 +825,10 @@
     <string name="device_list_fragment__no_devices_linked">No devices linked</string>
     <string name="device_list_fragment__link_new_device">Link new device</string>
 
+    <!-- enter_passphrase_activity -->
+    <string name="enter_passphrase_activity__passphrase">Passphrase</string>
+    <string name="enter_passphrase_activity__repeat_passphrase">Repeat passphrase</string>
+
     <!-- experience_upgrade_activity -->
     <string name="experience_upgrade_activity__continue">continue</string>
 
@@ -912,6 +921,8 @@
 
     <string name="export_fragment__export_plaintext_backup">Export plaintext backup</string>
     <string name="export_fragment__export_a_plaintext_backup_compatible_with">Export a plaintext backup compatible with \'SMS Backup &amp; Restore\' to storage</string>
+    <string name="export_fragment__export_encrypted_backup">Export encrypted backup</string>
+    <string name="export_fragment__export_an_encrypted_backup">Export an encrypted backup which can be used to restore your app data on another device</string>
     <string name="import_fragment__import_system_sms_database">Import system SMS database</string>
     <string name="import_fragment__import_the_database_from_the_default_system">Import the database from the default system messenger app</string>
     <string name="import_fragment__import_plaintext_backup">Import plaintext backup</string>
@@ -1309,6 +1320,8 @@
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
+
+    <string name="registration_activity__or_import_full_backup">Or import full backup</string>
     <string name="ConversationListFragment_loading">Loading...</string>
     <string name="CallNotificationBuilder_connecting">Connecting...</string>
     <string name="Permissions_permission_required">Permission required</string>

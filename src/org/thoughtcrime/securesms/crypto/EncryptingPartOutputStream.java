@@ -44,10 +44,13 @@ public class EncryptingPartOutputStream extends FileOutputStream {
   private Mac mac;
   private boolean closed;
 
-  public EncryptingPartOutputStream(File file, MasterSecret masterSecret) throws FileNotFoundException {
+  public EncryptingPartOutputStream(File file, MasterSecret masterSecret, byte[] unencryptedStartBytes) throws FileNotFoundException {
     super(file);
 
     try {
+      if (unencryptedStartBytes != null) {
+        super.write(unencryptedStartBytes, 0, unencryptedStartBytes.length);
+      }
       mac    = initializeMac(masterSecret.getMacKey());
       cipher = initializeCipher(mac, masterSecret.getEncryptionKey());
       closed = false;
@@ -61,6 +64,10 @@ public class EncryptingPartOutputStream extends FileOutputStream {
     } catch (NoSuchPaddingException e) {
       throw new AssertionError(e);
     }
+  }
+
+  public EncryptingPartOutputStream(File file, MasterSecret masterSecret) throws FileNotFoundException {
+    this(file, masterSecret, null);
   }
 
   @Override

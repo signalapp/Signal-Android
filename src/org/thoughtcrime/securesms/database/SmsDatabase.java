@@ -639,7 +639,7 @@ public class SmsDatabase extends MessagingDatabase {
     return messageId;
   }
 
-  Cursor getMessages(int skip, int limit) {
+  public Cursor getMessages(int skip, int limit) {
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
     return db.query(TABLE_NAME, MESSAGE_PROJECTION, null, null, null, null, ID, skip + "," + limit);
   }

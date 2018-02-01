@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -28,12 +29,12 @@ import java.io.IOException;
 
 public class ImportExportFragment extends Fragment {
 
-  @SuppressWarnings("unused")
-  private static final String TAG = ImportExportFragment.class.getSimpleName();
-
   private static final int SUCCESS    = 0;
   private static final int NO_SD_CARD = 1;
   private static final int ERROR_IO   = 2;
+
+  @SuppressWarnings("unused")
+  private static final String TAG = ImportExportFragment.class.getSimpleName();
 
   private MasterSecret   masterSecret;
   private ProgressDialog progressDialog;
@@ -50,10 +51,20 @@ public class ImportExportFragment extends Fragment {
     View importSmsView       = layout.findViewById(R.id.import_sms             );
     View importPlaintextView = layout.findViewById(R.id.import_plaintext_backup);
     View exportPlaintextView = layout.findViewById(R.id.export_plaintext_backup);
+    View exportEncryptedView = layout.findViewById(R.id.export_encrypted_backup);
 
     importSmsView.setOnClickListener(v -> handleImportSms());
     importPlaintextView.setOnClickListener(v -> handleImportPlaintextBackup());
     exportPlaintextView.setOnClickListener(v -> handleExportPlaintextBackup());
+
+    exportEncryptedView.setOnClickListener(v -> {
+      DialogInterface.OnClickListener positiveListener = (dialogInterface, i) -> {
+        ImportExportActivity activity = (ImportExportActivity) getActivity();
+        activity.handleExportEncryptedBackup();
+      };
+      ExportEncryptedBackupDialog dialog = new ExportEncryptedBackupDialog(getContext(), positiveListener);
+      dialog.show();
+    });
 
     return layout;
   }

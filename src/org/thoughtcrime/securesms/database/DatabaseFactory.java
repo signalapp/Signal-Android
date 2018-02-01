@@ -138,6 +138,7 @@ public class DatabaseFactory {
   private final RecipientDatabase recipientDatabase;
   private final ContactsDatabase contactsDatabase;
   private final GroupReceiptDatabase groupReceiptDatabase;
+  private final RawDatabase rawDatabase;
 
   public static DatabaseFactory getInstance(Context context) {
     synchronized (lock) {
@@ -204,6 +205,10 @@ public class DatabaseFactory {
     return getInstance(context).groupReceiptDatabase;
   }
 
+  public static RawDatabase getRawDatabase(Context context) {
+    return getInstance(context).rawDatabase;
+  }
+
   private DatabaseFactory(Context context) {
     this.databaseHelper       = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
     this.sms                  = new SmsDatabase(context, databaseHelper);
@@ -220,6 +225,7 @@ public class DatabaseFactory {
     this.recipientDatabase    = new RecipientDatabase(context, databaseHelper);
     this.groupReceiptDatabase = new GroupReceiptDatabase(context, databaseHelper);
     this.contactsDatabase     = new ContactsDatabase(context);
+    this.rawDatabase                 = new RawDatabase(context, databaseHelper);
   }
 
   public void reset(Context context) {
@@ -238,6 +244,7 @@ public class DatabaseFactory {
     this.groupDatabase.reset(databaseHelper);
     this.recipientDatabase.reset(databaseHelper);
     this.groupReceiptDatabase.reset(databaseHelper);
+    this.rawDatabase.reset(databaseHelper);
     old.close();
   }
 
