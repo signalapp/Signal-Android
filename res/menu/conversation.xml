@@ -10,4 +10,7 @@
     <item android:title="@string/conversation__menu_conversation_settings"
           android:id="@+id/menu_conversation_settings"/>
 
+    <item android:title="@string/conversation__menu_view_pinned_messages"
+        android:id="@+id/menu_view_pinned_messages"/>
+
 </menu>
