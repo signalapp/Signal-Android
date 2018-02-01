@@ -14,17 +14,11 @@ public class PlaintextBackupExporter {
 
   private static final String FILENAME = "SignalPlaintextBackup.xml";
 
-  public static void exportPlaintextToSd(Context context, MasterSecret masterSecret)
-      throws NoExternalStorageException, IOException
-  {
-    exportPlaintext(context, masterSecret);
-  }
-
   public static File getPlaintextExportFile() throws NoExternalStorageException {
     return new File(StorageUtil.getBackupDir(), FILENAME);
   }
 
-  private static void exportPlaintext(Context context, MasterSecret masterSecret)
+  public static void exportPlaintextToSd(Context context, MasterSecret masterSecret)
       throws NoExternalStorageException, IOException
   {
     int count               = DatabaseFactory.getSmsDatabase(context).getMessageCount();

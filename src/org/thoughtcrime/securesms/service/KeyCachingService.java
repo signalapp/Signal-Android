@@ -69,6 +69,7 @@ public class KeyCachingService extends Service {
   public  static final String ACTIVITY_START_EVENT     = "org.thoughtcrime.securesms.service.action.ACTIVITY_START_EVENT";
   public  static final String ACTIVITY_STOP_EVENT      = "org.thoughtcrime.securesms.service.action.ACTIVITY_STOP_EVENT";
   public  static final String LOCALE_CHANGE_EVENT      = "org.thoughtcrime.securesms.service.action.LOCALE_CHANGE_EVENT";
+  public  static final String BACKUP_RESTORED_EVENT    = "org.thoughtcrime.securesms.service.action.BACKUP_RESTORED_EVENT";
 
   private DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
@@ -135,6 +136,9 @@ public class KeyCachingService extends Service {
         case PASSPHRASE_EXPIRED_EVENT: handleClearKey();        break;
         case DISABLE_ACTION:           handleDisableService();  break;
         case LOCALE_CHANGE_EVENT:      handleLocaleChanged();   break;
+        case BACKUP_RESTORED_EVENT:
+          handleClearKey();
+          break;
       }
     }
 

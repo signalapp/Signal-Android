@@ -45,16 +45,25 @@ public class DecryptingPartInputStream {
   private static final int MAC_LENGTH = 20;
 
   public static InputStream createFor(MasterSecret masterSecret, File file)
+          throws IOException
+  {
+    return createFor(masterSecret, file, 0);
+  }
+
+  public static InputStream createFor(MasterSecret masterSecret, File file, int skipBytes)
       throws IOException
   {
     try {
-      if (file.length() <= IV_LENGTH + MAC_LENGTH) {
+      if (file.length() <= IV_LENGTH + MAC_LENGTH + skipBytes) {
         throw new IOException("File too short");
       }
 
-      verifyMac(masterSecret, file);
+      verifyMac(masterSecret, file, skipBytes);
 
       FileInputStream fileStream = new FileInputStream(file);
+      if ((fileStream.skip(skipBytes)) != skipBytes) {
+        throw new IOException("Unable to seek");
+      }
       byte[]          ivBytes    = new byte[IV_LENGTH];
       readFully(fileStream, ivBytes);
 
@@ -62,16 +71,16 @@ public class DecryptingPartInputStream {
       IvParameterSpec iv     = new IvParameterSpec(ivBytes);
       cipher.init(Cipher.DECRYPT_MODE, masterSecret.getEncryptionKey(), iv);
 
-      return new CipherInputStreamWrapper(new LimitedInputStream(fileStream, file.length() - MAC_LENGTH - IV_LENGTH), cipher);
+      return new CipherInputStreamWrapper(new LimitedInputStream(fileStream, file.length() - MAC_LENGTH - IV_LENGTH - skipBytes), cipher);
     } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | InvalidAlgorithmParameterException e) {
       throw new AssertionError(e);
     }
   }
 
-  private static void verifyMac(MasterSecret masterSecret, File file) throws IOException {
+  private static void verifyMac(MasterSecret masterSecret, File file, int skipBytes) throws IOException {
     Mac             mac        = initializeMac(masterSecret.getMacKey());
     FileInputStream macStream  = new FileInputStream(file);
-    InputStream     dataStream = new LimitedInputStream(new FileInputStream(file), file.length() - MAC_LENGTH);
+    InputStream     dataStream = new LimitedInputStream(new FileInputStream(file), file.length() - MAC_LENGTH - skipBytes);
     byte[]          theirMac   = new byte[MAC_LENGTH];
 
     if (macStream.skip(file.length() - MAC_LENGTH) != file.length() - MAC_LENGTH) {
@@ -83,6 +92,9 @@ public class DecryptingPartInputStream {
     byte[] buffer = new byte[4096];
     int    read;
 
+    if (dataStream.skip(skipBytes) != skipBytes) {
+      throw new IOException("Unable to seek");
+    }
     while ((read = dataStream.read(buffer)) != -1) {
       mac.update(buffer, 0, read);
     }

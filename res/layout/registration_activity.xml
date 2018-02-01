@@ -37,7 +37,6 @@
                       android:textColor="@color/white"
                       android:text="@string/registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply"
                       android:gravity="center"/>
-
         </LinearLayout>
 
         <android.support.design.widget.FloatingActionButton
@@ -117,6 +116,48 @@
                     android:layout_marginRight="16dp"
                     android:layout_marginTop="20dp"
                     android:layout_gravity="center_horizontal"/>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:gravity="center">
+                <View
+                    android:layout_weight="1"
+                    android:layout_height="1dp"
+                    android:layout_width="20dp"
+                    android:background="@color/grey_600" />
+                <TextView
+                    android:layout_weight="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="@string/registration_activity__or_import_full_backup" />
+                <View
+                    android:layout_weight="1"
+                    android:layout_height="1dp"
+                    android:layout_width="20dp"
+                    android:background="@color/grey_600"/>
+            </LinearLayout>
+
+            <com.dd.CircularProgressButton
+                android:id="@+id/import_button"
+                app:cpb_textIdle="Import"
+                app:cpb_selectorIdle="@drawable/progress_button_state"
+                app:cpb_colorIndicator="@color/white"
+                app:cpb_colorProgress="@color/textsecure_primary"
+                app:cpb_cornerRadius="50dp"
+                android:background="@color/signal_primary"
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"/>
 
             <TextView android:id="@+id/skip_button"
                       android:layout_gravity="center_horizontal"
@@ -199,5 +240,4 @@
 
         </RelativeLayout>
     </RelativeLayout>
-
 </ScrollView>
