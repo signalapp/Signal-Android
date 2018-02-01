@@ -104,7 +104,7 @@
 
             <com.dd.CircularProgressButton
                     android:id="@+id/registerButton"
-                    app:cpb_textIdle="Register"
+                    app:cpb_textIdle="@string/registration_activity__register"
                     app:cpb_selectorIdle="@drawable/progress_button_state"
                     app:cpb_colorIndicator="@color/white"
                     app:cpb_colorProgress="@color/textsecure_primary"
