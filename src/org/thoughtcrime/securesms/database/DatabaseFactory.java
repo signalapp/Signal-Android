@@ -140,6 +140,8 @@ public class DatabaseFactory {
   public void onApplicationLevelUpgrade(@NonNull Context context, @NonNull MasterSecret masterSecret,
                                         int fromVersion, DatabaseUpgradeActivity.DatabaseUpgradeListener listener)
   {
+    databaseHelper.getWritableDatabase();
+
     ClassicOpenHelper legacyOpenHelper = null;
 
     if (fromVersion < DatabaseUpgradeActivity.ASYMMETRIC_MASTER_SECRET_FIX_VERSION) {
