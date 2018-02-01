@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.util.Pair;
 import android.webkit.MimeTypeMap;
 
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
@@ -15,7 +16,6 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
-import org.thoughtcrime.securesms.util.Conversions;
 import org.thoughtcrime.securesms.util.FileProviderUtil;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -119,8 +119,8 @@ public class PersistentBlobProvider {
   {
     executor.submit(() -> {
       try {
-        OutputStream output = ModernEncryptingPartOutputStream.createFor(attachmentSecret, Conversions.longToByteArray(id), getFile(context, id).file);
-        Util.copy(input, output);
+        Pair<byte[], OutputStream> output = ModernEncryptingPartOutputStream.createFor(attachmentSecret, getFile(context, id).file, true);
+        Util.copy(input, output.second);
       } catch (IOException e) {
         Log.w(TAG, e);
       }
@@ -160,7 +160,7 @@ public class PersistentBlobProvider {
 
     FileData fileData = getFile(context, id);
 
-    if (fileData.modern) return ModernDecryptingPartInputStream.createFor(attachmentSecret, Conversions.longToByteArray(id), fileData.file);
+    if (fileData.modern) return ModernDecryptingPartInputStream.createFor(attachmentSecret, fileData.file);
     else                 return ClassicDecryptingPartInputStream.createFor(attachmentSecret, fileData.file);
   }
 

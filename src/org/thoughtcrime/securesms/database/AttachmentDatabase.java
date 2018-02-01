@@ -29,6 +29,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Pair;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
@@ -53,7 +54,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.security.SecureRandom;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -82,8 +82,8 @@ public class AttachmentDatabase extends Database {
           static final String DIGEST                 = "digest";
           static final String VOICE_NOTE             = "voice_note";
   public  static final String FAST_PREFLIGHT_ID      = "fast_preflight_id";
-          static final String DATA_RANDOM            = "data_random";
-          static final String THUMBNAIL_RANDOM       = "thumbnail_random";
+  private static final String DATA_RANDOM            = "data_random";
+  private static final String THUMBNAIL_RANDOM       = "thumbnail_random";
 
   public static final int TRANSFER_PROGRESS_DONE    = 0;
   public static final int TRANSFER_PROGRESS_STARTED = 1;
@@ -462,13 +462,10 @@ public class AttachmentDatabase extends Database {
       throws MmsException
   {
     try {
-      byte[] random = new byte[32];
-      new SecureRandom().nextBytes(random);
+      Pair<byte[], OutputStream> out    = ModernEncryptingPartOutputStream.createFor(attachmentSecret, destination, false);
+      long                       length = Util.copy(in, out.second);
 
-      OutputStream out    = ModernEncryptingPartOutputStream.createFor(attachmentSecret, random, destination);
-      long         length = Util.copy(in, out);
-
-      return new DataInfo(destination, length, random);
+      return new DataInfo(destination, length, out.first);
     } catch (IOException e) {
       throw new MmsException(e);
     }
