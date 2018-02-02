@@ -107,6 +107,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.gray95_transparent50)));
+    setStatusBarColor(ContextCompat.getColor(this, R.color.gray95_transparent80));
     setContentView(R.layout.media_preview_activity);
 
     initializeViews();
