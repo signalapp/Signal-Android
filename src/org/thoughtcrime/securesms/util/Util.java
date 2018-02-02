@@ -127,7 +127,7 @@ public class Util {
   }
 
   public static boolean isEmpty(EditText value) {
-    return value == null || value.getText() == null || TextUtils.isEmpty(value.getText().toString());
+    return value == null || value.getText() == null || TextUtils.isEmpty(value.getText().toString().trim());
   }
 
   public static CharSequence getBoldedString(String value) {
