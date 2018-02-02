@@ -34,7 +34,6 @@ import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
-import org.thoughtcrime.securesms.database.model.DisplayRecord;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
@@ -567,7 +566,7 @@ public class ThreadDatabase extends Database {
       MessageRecord record;
 
       if (reader != null && (record = reader.getNext()) != null) {
-        updateThread(threadId, count, record.getBody().getBody(), getAttachmentUriFor(record),
+        updateThread(threadId, count, record.getBody(), getAttachmentUriFor(record),
                      record.getTimestamp(), record.getDeliveryStatus(), record.getDeliveryReceiptCount(),
                      record.getType(), unarchive, record.getExpiresIn(), record.getReadReceiptCount());
         notifyConversationListListeners();
@@ -658,7 +657,7 @@ public class ThreadDatabase extends Database {
       }
 
       Recipient          recipient            = Recipient.from(context, address, settings, groupRecord, true);
-      DisplayRecord.Body body                 = getPlaintextBody(cursor);
+      String             body                 = cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.SNIPPET));
       long               date                 = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.DATE));
       long               count                = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.MESSAGE_COUNT));
       int                unreadCount          = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.UNREAD_COUNT));
@@ -678,10 +677,6 @@ public class ThreadDatabase extends Database {
       return new ThreadRecord(context, body, snippetUri, recipient, date, count,
                               unreadCount, threadId, deliveryReceiptCount, status, type,
                               distributionType, archived, expiresIn, lastSeen, readReceiptCount);
-    }
-
-    private DisplayRecord.Body getPlaintextBody(Cursor cursor) {
-      return new DisplayRecord.Body(cursor.getString(cursor.getColumnIndexOrThrow(SNIPPET)), true);
     }
 
     private @Nullable Uri getSnippetUri(Cursor cursor) {

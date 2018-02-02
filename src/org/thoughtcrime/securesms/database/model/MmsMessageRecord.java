@@ -16,7 +16,7 @@ public abstract class MmsMessageRecord extends MessageRecord {
 
   private final @NonNull SlideDeck slideDeck;
 
-  MmsMessageRecord(Context context, long id, Body body, Recipient conversationRecipient,
+  MmsMessageRecord(Context context, long id, String body, Recipient conversationRecipient,
                    Recipient individualRecipient, int recipientDeviceId, long dateSent,
                    long dateReceived, long threadId, int deliveryStatus, int deliveryReceiptCount,
                    long type, List<IdentityKeyMismatch> mismatches,

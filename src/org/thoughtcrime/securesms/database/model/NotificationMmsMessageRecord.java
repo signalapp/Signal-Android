@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2012 Moxie Marlinspike
  *
  * This program is free software: you can redistribute it and/or modify
@@ -52,7 +52,7 @@ public class NotificationMmsMessageRecord extends MmsMessageRecord {
                                       long expiry, int status, byte[] transactionId, long mailbox,
                                       int subscriptionId, SlideDeck slideDeck, int readReceiptCount)
   {
-    super(context, id, new Body("", true), conversationRecipient, individualRecipient, recipientDeviceId,
+    super(context, id, "", conversationRecipient, individualRecipient, recipientDeviceId,
           dateSent, dateReceived, threadId, Status.STATUS_NONE, deliveryReceiptCount, mailbox,
           new LinkedList<IdentityKeyMismatch>(), new LinkedList<NetworkFailure>(), subscriptionId,
           0, 0, slideDeck, readReceiptCount);

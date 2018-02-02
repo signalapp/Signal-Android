@@ -47,7 +47,7 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
   public MediaMmsMessageRecord(Context context, long id, Recipient conversationRecipient,
                                Recipient individualRecipient, int recipientDeviceId,
                                long dateSent, long dateReceived, int deliveryReceiptCount,
-                               long threadId, Body body,
+                               long threadId, String body,
                                @NonNull SlideDeck slideDeck,
                                int partCount, long mailbox,
                                List<IdentityKeyMismatch> mismatches,
@@ -81,8 +81,6 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
       return emphasisAdded(context.getString(R.string.MmsMessageRecord_mms_message_encrypted_for_non_existing_session));
     } else if (isLegacyMessage()) {
       return emphasisAdded(context.getString(R.string.MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported));
-    } else if (!getBody().isPlaintext()) {
-      return emphasisAdded(context.getString(R.string.MessageNotifier_locked_message));
     }
 
     return super.getDisplayBody();

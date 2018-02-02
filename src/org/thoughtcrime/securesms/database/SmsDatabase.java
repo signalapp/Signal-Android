@@ -34,7 +34,6 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchList;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
-import org.thoughtcrime.securesms.database.model.DisplayRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
@@ -449,7 +448,7 @@ public class SmsDatabase extends MessagingDatabase {
       contentValues.put(DATE_SENT, record.getDateSent());
       contentValues.put(PROTOCOL, 31337);
       contentValues.put(READ, 0);
-      contentValues.put(BODY, record.getBody().getBody());
+      contentValues.put(BODY, record.getBody());
       contentValues.put(THREAD_ID, record.getThreadId());
       contentValues.put(EXPIRES_IN, record.getExpiresIn());
 
@@ -806,7 +805,7 @@ public class SmsDatabase extends MessagingDatabase {
     }
 
     public MessageRecord getCurrent() {
-      return new SmsMessageRecord(context, id, new DisplayRecord.Body(message.getMessageBody(), true),
+      return new SmsMessageRecord(context, id, message.getMessageBody(),
                                   message.getRecipient(), message.getRecipient(),
                                   1, System.currentTimeMillis(), System.currentTimeMillis(),
                                   0, message.isSecureMessage() ? MmsSmsColumns.Types.getOutgoingEncryptedMessageType() : MmsSmsColumns.Types.getOutgoingSmsMessageType(),
@@ -851,6 +850,7 @@ public class SmsDatabase extends MessagingDatabase {
       int     subscriptionId       = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.SUBSCRIPTION_ID));
       long    expiresIn            = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.EXPIRES_IN));
       long    expireStarted        = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.EXPIRE_STARTED));
+      String  body                 = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.BODY));
 
       if (!TextSecurePreferences.isReadReceiptsEnabled(context)) {
         readReceiptCount = 0;
@@ -858,7 +858,6 @@ public class SmsDatabase extends MessagingDatabase {
 
       List<IdentityKeyMismatch> mismatches = getMismatches(mismatchDocument);
       Recipient                 recipient  = Recipient.from(context, address, true);
-      DisplayRecord.Body        body       = getBody(cursor);
 
       return new SmsMessageRecord(context, messageId, body, recipient,
                                   recipient,
@@ -878,10 +877,6 @@ public class SmsDatabase extends MessagingDatabase {
       }
 
       return new LinkedList<>();
-    }
-
-    protected DisplayRecord.Body getBody(Cursor cursor) {
-      return new DisplayRecord.Body(cursor.getString(cursor.getColumnIndexOrThrow(BODY)), true);
     }
 
     public void close() {

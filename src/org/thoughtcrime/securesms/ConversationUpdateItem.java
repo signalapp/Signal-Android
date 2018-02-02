@@ -146,7 +146,7 @@ public class ConversationUpdateItem extends LinearLayout
     icon.setImageResource(R.drawable.ic_group_grey600_24dp);
     icon.clearColorFilter();
 
-    GroupUtil.getDescription(getContext(), messageRecord.getBody().getBody()).addListener(this);
+    GroupUtil.getDescription(getContext(), messageRecord.getBody()).addListener(this);
     body.setText(messageRecord.getDisplayBody());
 
     date.setVisibility(View.GONE);

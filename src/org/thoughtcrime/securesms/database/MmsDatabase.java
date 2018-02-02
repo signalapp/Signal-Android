@@ -41,7 +41,6 @@ import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchList;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.documents.NetworkFailureList;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
-import org.thoughtcrime.securesms.database.model.DisplayRecord;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
@@ -1011,7 +1010,7 @@ public class MmsDatabase extends MessagingDatabase {
 
       return new MediaMmsMessageRecord(context, id, message.getRecipient(), message.getRecipient(),
                                        1, System.currentTimeMillis(), System.currentTimeMillis(),
-                                       0, threadId, new DisplayRecord.Body(message.getBody(), true),
+                                       0, threadId, message.getBody(),
                                        slideDeck, slideDeck.getSlides().size(),
                                        message.isSecure() ? MmsSmsColumns.Types.getOutgoingEncryptedMessageType() : MmsSmsColumns.Types.getOutgoingSmsMessageType(),
                                        new LinkedList<IdentityKeyMismatch>(),
@@ -1099,7 +1098,7 @@ public class MmsDatabase extends MessagingDatabase {
       int                addressDeviceId      = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS_DEVICE_ID));
       int                deliveryReceiptCount = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.DELIVERY_RECEIPT_COUNT));
       int                readReceiptCount     = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.READ_RECEIPT_COUNT));
-      DisplayRecord.Body body                 = getBody(cursor);
+      String             body                 = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.BODY));
       int                partCount            = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.PART_COUNT));
       String             mismatchDocument     = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.MISMATCHED_IDENTITIES));
       String             networkDocument      = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.NETWORK_FAILURE));
@@ -1157,11 +1156,6 @@ public class MmsDatabase extends MessagingDatabase {
       }
 
       return new LinkedList<>();
-    }
-
-    private DisplayRecord.Body getBody(Cursor cursor) {
-      String body = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.BODY));
-      return new DisplayRecord.Body(body == null ? "" : body, true);
     }
 
     private SlideDeck getSlideDeck(@NonNull Cursor cursor) {

@@ -93,7 +93,7 @@ public class SmsSendJob extends SendJob {
       throw new UndeliverableMessageException("Not a valid SMS destination! " + recipient);
     }
 
-    ArrayList<String> messages                = SmsManager.getDefault().divideMessage(message.getBody().getBody());
+    ArrayList<String> messages                = SmsManager.getDefault().divideMessage(message.getBody());
     ArrayList<PendingIntent> sentIntents      = constructSentIntents(message.getId(), message.getType(), messages, false);
     ArrayList<PendingIntent> deliveredIntents = constructDeliveredIntents(message.getId(), message.getType(), messages);
 

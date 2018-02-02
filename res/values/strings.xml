@@ -1077,8 +1077,8 @@
     <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Choose your contact entry from the contacts list.</string>
     <string name="preferences__change_passphrase">Change passphrase</string>
     <string name="preferences__change_your_passphrase">Change your passphrase</string>
-    <string name="preferences__enable_passphrase">Enable passphrase</string>
-    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lock Signal and message notifications with a passphrase</string>
+    <string name="preferences__enable_passphrase">Enable passphrase screen lock</string>
+    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lock screen and notifications with a passphrase</string>
     <string name="preferences__screen_security">Screen security</string>
     <string name="preferences__disable_screen_security_to_allow_screen_shots">Block screenshots in the recents list and inside the app</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Auto-lock Signal after a specified time interval of inactivity</string>

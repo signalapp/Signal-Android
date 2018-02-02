@@ -102,7 +102,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
       Optional<byte[]>           profileKey        = getProfileKey(message.getIndividualRecipient());
       SignalServiceDataMessage   textSecureMessage = SignalServiceDataMessage.newBuilder()
                                                                              .withTimestamp(message.getDateSent())
-                                                                             .withBody(message.getBody().getBody())
+                                                                             .withBody(message.getBody())
                                                                              .withExpiration((int)(message.getExpiresIn() / 1000))
                                                                              .withProfileKey(profileKey.orNull())
                                                                              .asEndSessionMessage(message.isEndSession())

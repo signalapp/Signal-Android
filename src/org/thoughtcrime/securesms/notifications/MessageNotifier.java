@@ -42,7 +42,6 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
-import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -427,7 +426,7 @@ public class MessageNotifier {
         threadRecipients = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId);
       }
 
-      if (SmsDatabase.Types.isDecryptInProgressType(record.getType()) || !record.getBody().isPlaintext()) {
+      if (KeyCachingService.isLocked(context)) {
         body = SpanUtil.italic(context.getString(R.string.MessageNotifier_locked_message));
       } else if (record.isMms() && TextUtils.isEmpty(body)) {
         body = SpanUtil.italic(context.getString(R.string.MessageNotifier_media_message));
