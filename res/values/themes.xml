@@ -109,9 +109,9 @@
         <item name="actionBarTabBarStyle">@style/TextSecure.LightActionBar.TabBar</item>
         <item name="colorPrimary">@color/textsecure_primary</item>
         <item name="colorPrimaryDark">@color/textsecure_primary_dark</item>
-        <item name="colorAccent">@color/textsecure_primary_dark</item>
+        <item name="colorAccent">@color/signal_primary</item>
         <item name="colorControlActivated">@color/signal_primary</item>
-        <item name="colorControlHighlight">@color/signal_primary</item>
+        <item name="colorControlHighlight">@color/signal_primary_dark</item>
         <item name="android:windowBackground">@color/white</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleLight</item>
         <item name="android:alertDialogTheme">@style/AppCompatDialogStyleLight</item>
@@ -235,7 +235,7 @@
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
         <item name="android:textColor">@color/text_color_dark_theme</item>
         <item name="android:textColorSecondary">@color/text_color_secondary_dark_theme</item>
-        <item name="colorAccent">@color/textsecure_primary_dark</item>
+        <item name="colorAccent">@color/signal_primary</item>
         <item name="colorControlActivated">@color/signal_primary_dark</item>
         <item name="colorControlHighlight">@color/signal_primary_dark</item>
         <item name="android:windowBackground">@color/black</item>
