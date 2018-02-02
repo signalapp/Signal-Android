@@ -1,11 +1,11 @@
 package org.thoughtcrime.securesms.notifications;
 
 import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
@@ -13,7 +13,6 @@ import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.ExpirationInfo;
@@ -27,7 +26,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class MarkReadReceiver extends MasterSecretBroadcastReceiver {
+public class MarkReadReceiver extends BroadcastReceiver {
 
   private static final String TAG                   = MarkReadReceiver.class.getSimpleName();
   public static final  String CLEAR_ACTION          = "org.thoughtcrime.securesms.notifications.CLEAR";
@@ -36,8 +35,7 @@ public class MarkReadReceiver extends MasterSecretBroadcastReceiver {
 
   @SuppressLint("StaticFieldLeak")
   @Override
-  protected void onReceive(final Context context, Intent intent, @Nullable final MasterSecret masterSecret)
-  {
+  public void onReceive(final Context context, Intent intent) {
     if (!CLEAR_ACTION.equals(intent.getAction()))
       return;
 

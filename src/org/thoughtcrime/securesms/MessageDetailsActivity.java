@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.drawable.ColorDrawable;
@@ -36,8 +37,6 @@ import android.widget.TextView;
 
 import org.thoughtcrime.securesms.MessageDetailsRecipientAdapter.RecipientDeliveryStatus;
 import org.thoughtcrime.securesms.color.MaterialColor;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase.GroupReceiptInfo;
@@ -106,7 +105,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   }
 
   @Override
-  public void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
+  public void onCreate(Bundle bundle, boolean ready) {
     setContentView(R.layout.message_details_activity);
     running = true;
 
@@ -120,6 +119,8 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     super.onResume();
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
+
+    assert getSupportActionBar() != null;
     getSupportActionBar().setTitle(R.string.AndroidManifest__message_details);
 
     MessageNotifier.setVisibleThread(threadId);
@@ -138,15 +139,17 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   }
 
   private void initializeActionBar() {
+    assert getSupportActionBar() != null;
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-    Recipient recipient = Recipient.from(this, (Address)getIntent().getParcelableExtra(ADDRESS_EXTRA), true);
+    Recipient recipient = Recipient.from(this, getIntent().getParcelableExtra(ADDRESS_EXTRA), true);
     recipient.addListener(this);
 
     setActionBarColor(recipient.getColor());
   }
 
   private void setActionBarColor(MaterialColor color) {
+    assert getSupportActionBar() != null;
     getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color.toActionBarColor(this)));
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -315,6 +318,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     return false;
   }
 
+  @SuppressLint("StaticFieldLeak")
   private class MessageRecipientAsyncTask extends AsyncTask<Void,Void,List<RecipientDeliveryStatus>> {
 
     private final WeakReference<Context> weakContext;

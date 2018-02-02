@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.MediaDatabase;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -55,27 +54,25 @@ public class ThreadPhotoRailView extends FrameLayout {
     }
   }
 
-  public void setCursor(@NonNull MasterSecret masterSecret, @NonNull GlideRequests glideRequests, @Nullable Cursor cursor) {
-    this.recyclerView.setAdapter(new ThreadPhotoRailAdapter(getContext(), masterSecret, glideRequests, cursor, this.listener));
+  public void setCursor(@NonNull GlideRequests glideRequests, @Nullable Cursor cursor) {
+    this.recyclerView.setAdapter(new ThreadPhotoRailAdapter(getContext(), glideRequests, cursor, this.listener));
   }
 
   private static class ThreadPhotoRailAdapter extends CursorRecyclerViewAdapter<ThreadPhotoRailAdapter.ThreadPhotoViewHolder> {
 
+    @SuppressWarnings("unused")
     private static final String TAG = ThreadPhotoRailAdapter.class.getName();
 
-    @NonNull  private final MasterSecret  masterSecret;
     @NonNull  private final GlideRequests glideRequests;
 
     @Nullable private OnItemClickedListener clickedListener;
 
     private ThreadPhotoRailAdapter(@NonNull Context context,
-                                   @NonNull MasterSecret masterSecret,
                                    @NonNull GlideRequests glideRequests,
                                    @Nullable Cursor cursor,
                                    @Nullable OnItemClickedListener listener)
     {
       super(context, cursor);
-      this.masterSecret    = masterSecret;
       this.glideRequests   = glideRequests;
       this.clickedListener = listener;
     }
@@ -120,6 +117,6 @@ public class ThreadPhotoRailView extends FrameLayout {
   }
 
   public interface OnItemClickedListener {
-    public void onItemClicked(MediaDatabase.MediaRecord mediaRecord);
+    void onItemClicked(MediaDatabase.MediaRecord mediaRecord);
   }
 }

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
@@ -46,7 +45,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
   public void onAdded() {}
 
   @Override
-  public void onPushSend(MasterSecret masterSecret) throws NoSuchMessageException, RetryLaterException {
+  public void onPushSend() throws NoSuchMessageException, RetryLaterException {
     ExpiringMessageManager expirationManager = ApplicationContext.getInstance(context).getExpiringMessageManager();
     SmsDatabase            database          = DatabaseFactory.getSmsDatabase(context);
     SmsMessageRecord       record            = database.getMessage(messageId);

@@ -16,7 +16,6 @@ import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -27,12 +26,9 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
   @SuppressWarnings("unused")
   private static final String TAG = NotificationsPreferenceFragment.class.getSimpleName();
 
-  private MasterSecret masterSecret;
-
   @Override
   public void onCreate(Bundle paramBundle) {
     super.onCreate(paramBundle);
-    masterSecret = getArguments().getParcelable("master_secret");
 
     this.findPreference(TextSecurePreferences.LED_COLOR_PREF)
         .setOnPreferenceChangeListener(new ListSummaryListener());

@@ -16,7 +16,6 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.*;
 import android.Manifest;
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
@@ -66,8 +65,6 @@ import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.components.camera.CameraView;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
@@ -122,7 +119,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
   }
 
   @Override
-  protected void onCreate(Bundle state, @NonNull MasterSecret masterSecret) {
+  protected void onCreate(Bundle state, boolean ready) {
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setTitle(R.string.AndroidManifest__verify_safety_number);
 
@@ -142,7 +139,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
     scanFragment.setScanListener(this);
     displayFragment.setClickListener(this);
 
-    initFragment(android.R.id.content, displayFragment, masterSecret, dynamicLanguage.getCurrentLocale(), extras);
+    initFragment(android.R.id.content, displayFragment, dynamicLanguage.getCurrentLocale(), extras);
   }
 
   @Override
@@ -210,7 +207,6 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
     public static final String LOCAL_NUMBER    = "local_number";
     public static final String VERIFIED_STATE  = "verified_state";
 
-    private MasterSecret masterSecret;
     private Recipient    recipient;
     private String       localNumber;
     private String       remoteNumber;
@@ -276,7 +272,6 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       if (localIdentityParcelable == null)  throw new AssertionError("local identity required");
       if (remoteIdentityParcelable == null) throw new AssertionError("remote identity required");
 
-      this.masterSecret   = getArguments().getParcelable("master_secret");
       this.localNumber    = getArguments().getString(LOCAL_NUMBER);
       this.localIdentity  = localIdentityParcelable.get();
       this.remoteNumber   = getArguments().getString(REMOTE_NUMBER);

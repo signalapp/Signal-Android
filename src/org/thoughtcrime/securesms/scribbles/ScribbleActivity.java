@@ -53,7 +53,7 @@ public class ScribbleActivity extends PassphraseRequiredActionBarActivity implem
   private GlideRequests            glideRequests;
 
   @Override
-  protected void onCreate(Bundle savedInstanceState, @NonNull MasterSecret masterSecret) {
+  protected void onCreate(Bundle savedInstanceState, boolean ready) {
     setContentView(R.layout.scribble_activity);
 
     this.glideRequests = GlideApp.with(this);

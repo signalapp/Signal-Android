@@ -38,7 +38,6 @@ import android.view.View;
 import android.widget.ImageView;
 
 import org.thoughtcrime.securesms.components.SearchToolbar;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -74,7 +73,6 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   private final DynamicTheme    dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
-  private MasterSecret                 masterSecret;
   private ContactSelectionListFragment contactsFragment;
   private SearchToolbar                searchToolbar;
   private ImageView                    searchAction;
@@ -90,9 +88,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override
-  protected void onCreate(Bundle icicle, @NonNull MasterSecret masterSecret) {
-    this.masterSecret = masterSecret;
-
+  protected void onCreate(Bundle icicle, boolean ready) {
     if (!getIntent().hasExtra(ContactSelectionListFragment.DISPLAY_MODE)) {
       getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE,
                            TextSecurePreferences.isSmsEnabled(this)

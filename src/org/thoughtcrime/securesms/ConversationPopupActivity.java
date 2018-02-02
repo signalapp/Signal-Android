@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.util.Log;
 import android.view.Display;
@@ -15,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 
 import java.util.concurrent.ExecutionException;
@@ -31,7 +29,7 @@ public class ConversationPopupActivity extends ConversationActivity {
   }
 
   @Override
-  protected void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
+  protected void onCreate(Bundle bundle, boolean ready) {
     getWindow().setFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND,
                          WindowManager.LayoutParams.FLAG_DIM_BEHIND);
 
@@ -48,7 +46,7 @@ public class ConversationPopupActivity extends ConversationActivity {
     if (height > width) getWindow().setLayout((int) (width * .85), (int) (height * .5));
     else                getWindow().setLayout((int) (width * .7), (int) (height * .75));
 
-    super.onCreate(bundle, masterSecret);
+    super.onCreate(bundle, ready);
 
     titleView.setOnClickListener(null);
   }

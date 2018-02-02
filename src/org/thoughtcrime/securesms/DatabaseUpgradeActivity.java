@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.VersionTracker;
@@ -102,7 +103,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   @Override
   public void onCreate(Bundle bundle) {
     super.onCreate(bundle);
-    this.masterSecret = getIntent().getParcelableExtra("master_secret");
+    this.masterSecret = KeyCachingService.getMasterSecret(this);
 
     if (needsUpgradeTask()) {
       Log.w("DatabaseUpgradeActivity", "Upgrading...");

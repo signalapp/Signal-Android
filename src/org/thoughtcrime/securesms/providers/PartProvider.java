@@ -31,7 +31,6 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.mms.PartUriParser;
 import org.thoughtcrime.securesms.service.KeyCachingService;
@@ -71,10 +70,9 @@ public class PartProvider extends ContentProvider {
 
   @Override
   public ParcelFileDescriptor openFile(@NonNull Uri uri, @NonNull String mode) throws FileNotFoundException {
-    final MasterSecret masterSecret = KeyCachingService.getMasterSecret(getContext());
     Log.w(TAG, "openFile() called!");
 
-    if (masterSecret == null) {
+    if (KeyCachingService.isLocked(getContext())) {
       Log.w(TAG, "masterSecret was null, abandoning.");
       return null;
     }

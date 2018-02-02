@@ -97,7 +97,6 @@ import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -259,7 +258,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override
-  protected void onCreate(Bundle state, @NonNull MasterSecret masterSecret) {
+  protected void onCreate(Bundle state, boolean ready) {
     Log.w(TAG, "onCreate()");
 
     supportRequestWindowFeature(WindowCompat.FEATURE_ACTION_BAR_OVERLAY);
@@ -271,8 +270,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     getWindow().getDecorView().setBackgroundColor(color);
 
-    fragment = initFragment(R.id.fragment_content, new ConversationFragment(),
-                            masterSecret, dynamicLanguage.getCurrentLocale());
+    fragment = initFragment(R.id.fragment_content, new ConversationFragment(), dynamicLanguage.getCurrentLocale());
 
     initializeReceivers();
     initializeActionBar();

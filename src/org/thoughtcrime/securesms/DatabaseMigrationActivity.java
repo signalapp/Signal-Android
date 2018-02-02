@@ -11,14 +11,12 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.SmsMigrator.ProgressDescription;
 import org.thoughtcrime.securesms.service.ApplicationMigrationService;
 import org.thoughtcrime.securesms.service.ApplicationMigrationService.ImportState;
@@ -40,7 +38,7 @@ public class DatabaseMigrationActivity extends PassphraseRequiredActionBarActivi
   private boolean isVisible = false;
 
   @Override
-  protected void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
+  protected void onCreate(Bundle bundle, boolean ready) {
     setContentView(R.layout.database_migration_activity);
 
     initializeResources();

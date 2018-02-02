@@ -97,7 +97,6 @@ public class ConversationListFragment extends Fragment
   @SuppressWarnings("unused")
   private static final String TAG = ConversationListFragment.class.getSimpleName();
 
-  private MasterSecret                masterSecret;
   private ActionMode                  actionMode;
   private RecyclerView                list;
   private ReminderView                reminderView;
@@ -111,9 +110,8 @@ public class ConversationListFragment extends Fragment
   @Override
   public void onCreate(Bundle icicle) {
     super.onCreate(icicle);
-    masterSecret = getArguments().getParcelable("master_secret");
-    locale       = (Locale) getArguments().getSerializable(PassphraseRequiredActionBarActivity.LOCALE_EXTRA);
-    archive      = getArguments().getBoolean(ARCHIVE, false);
+    locale  = (Locale) getArguments().getSerializable(PassphraseRequiredActionBarActivity.LOCALE_EXTRA);
+    archive = getArguments().getBoolean(ARCHIVE, false);
   }
 
   @Override
@@ -197,9 +195,9 @@ public class ConversationListFragment extends Fragment
         } else if (DefaultSmsReminder.isEligible(context)) {
           return Optional.of(new DefaultSmsReminder(context));
         } else if (Util.isDefaultSmsProvider(context) && SystemSmsImportReminder.isEligible(context)) {
-          return Optional.of((new SystemSmsImportReminder(context, masterSecret)));
+          return Optional.of((new SystemSmsImportReminder(context)));
         } else if (PushRegistrationReminder.isEligible(context)) {
-          return Optional.of((new PushRegistrationReminder(context, masterSecret)));
+          return Optional.of((new PushRegistrationReminder(context)));
         } else if (ShareReminder.isEligible(context)) {
           return Optional.of(new ShareReminder(context));
         } else if (DozeReminder.isEligible(context)) {

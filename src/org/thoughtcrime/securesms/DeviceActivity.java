@@ -18,7 +18,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
@@ -60,7 +59,7 @@ public class DeviceActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override
-  public void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
+  public void onCreate(Bundle bundle, boolean ready) {
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setTitle(R.string.AndroidManifest__linked_devices);
     this.deviceAddFragment  = new DeviceAddFragment();
@@ -71,9 +70,9 @@ public class DeviceActivity extends PassphraseRequiredActionBarActivity
     this.deviceAddFragment.setScanListener(this);
 
     if (getIntent().getBooleanExtra("add", false)) {
-      initFragment(android.R.id.content, deviceAddFragment, masterSecret, dynamicLanguage.getCurrentLocale());
+      initFragment(android.R.id.content, deviceAddFragment, dynamicLanguage.getCurrentLocale());
     } else {
-      initFragment(android.R.id.content, deviceListFragment, masterSecret, dynamicLanguage.getCurrentLocale());
+      initFragment(android.R.id.content, deviceListFragment, dynamicLanguage.getCurrentLocale());
     }
   }
 

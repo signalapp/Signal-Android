@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2015 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,13 +18,11 @@ package org.thoughtcrime.securesms;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -38,12 +36,12 @@ import org.thoughtcrime.securesms.recipients.Recipient;
  */
 public class NewConversationActivity extends ContactSelectionActivity {
 
+  @SuppressWarnings("unused")
   private static final String TAG = NewConversationActivity.class.getSimpleName();
 
   @Override
-  public void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
-    super.onCreate(bundle, masterSecret);
-
+  public void onCreate(Bundle bundle, boolean ready) {
+    assert getSupportActionBar() != null;
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
   }
 

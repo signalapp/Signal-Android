@@ -1,16 +1,13 @@
 package org.thoughtcrime.securesms.preferences;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.CheckBoxPreference;
 import android.support.v7.preference.Preference;
-import android.support.v7.preference.PreferenceScreen;
 import android.widget.Toast;
 
 import com.doomonafireball.betterpickers.hmspicker.HmsPickerBuilder;
@@ -21,7 +18,6 @@ import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.BlockedContactsActivity;
 import org.thoughtcrime.securesms.PassphraseChangeActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadReceiptUpdateJob;
 import org.thoughtcrime.securesms.service.KeyCachingService;
@@ -33,14 +29,12 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
 
   private static final String PREFERENCE_CATEGORY_BLOCKED = "preference_category_blocked";
 
-  private MasterSecret       masterSecret;
   private CheckBoxPreference disablePassphrase;
 
   @Override
   public void onCreate(Bundle paramBundle) {
     super.onCreate(paramBundle);
 
-    masterSecret      = getArguments().getParcelable("master_secret");
     disablePassphrase = (CheckBoxPreference) this.findPreference("pref_enable_passphrase_temporary");
 
     this.findPreference(TextSecurePreferences.CHANGE_PASSPHRASE_PREF)
@@ -65,20 +59,9 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     super.onResume();
     ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.preferences__privacy);
 
-    initializePlatformSpecificOptions();
     initializeTimeoutSummary();
 
     disablePassphrase.setChecked(!TextSecurePreferences.isPasswordDisabled(getActivity()));
-  }
-
-  private void initializePlatformSpecificOptions() {
-    PreferenceScreen preferenceScreen         = getPreferenceScreen();
-    Preference screenSecurityPreference = findPreference(TextSecurePreferences.SCREEN_SECURITY_PREF);
-
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH &&
-        screenSecurityPreference != null) {
-      preferenceScreen.removePreference(screenSecurityPreference);
-    }
   }
 
   private void initializeTimeoutSummary() {
@@ -148,20 +131,17 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
         builder.setTitle(R.string.ApplicationPreferencesActivity_disable_passphrase);
         builder.setMessage(R.string.ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications);
         builder.setIconAttribute(R.attr.dialog_alert_icon);
-        builder.setPositiveButton(R.string.ApplicationPreferencesActivity_disable, new DialogInterface.OnClickListener() {
-          @Override
-          public void onClick(DialogInterface dialog, int which) {
-            MasterSecretUtil.changeMasterSecretPassphrase(getActivity(),
-                                                          masterSecret,
-                                                          MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
+        builder.setPositiveButton(R.string.ApplicationPreferencesActivity_disable, (dialog, which) -> {
+          MasterSecretUtil.changeMasterSecretPassphrase(getActivity(),
+                                                        KeyCachingService.getMasterSecret(getContext()),
+                                                        MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
 
-            TextSecurePreferences.setPasswordDisabled(getActivity(), true);
-            ((CheckBoxPreference)preference).setChecked(false);
+          TextSecurePreferences.setPasswordDisabled(getActivity(), true);
+          ((CheckBoxPreference)preference).setChecked(false);
 
-            Intent intent = new Intent(getActivity(), KeyCachingService.class);
-            intent.setAction(KeyCachingService.DISABLE_ACTION);
-            getActivity().startService(intent);
-          }
+          Intent intent = new Intent(getActivity(), KeyCachingService.class);
+          intent.setAction(KeyCachingService.DISABLE_ACTION);
+          getActivity().startService(intent);
         });
         builder.setNegativeButton(android.R.string.cancel, null);
         builder.show();

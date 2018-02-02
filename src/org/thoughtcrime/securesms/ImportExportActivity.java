@@ -1,10 +1,8 @@
 package org.thoughtcrime.securesms;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.MenuItem;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
@@ -20,10 +18,10 @@ public class ImportExportActivity extends PassphraseRequiredActionBarActivity {
   }
 
   @Override
-  protected void onCreate(Bundle savedInstanceState, @NonNull MasterSecret masterSecret) {
+  protected void onCreate(Bundle savedInstanceState, boolean ready) {
+    assert getSupportActionBar() != null;
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    initFragment(android.R.id.content, new ImportExportFragment(),
-                 masterSecret, dynamicLanguage.getCurrentLocale());
+    initFragment(android.R.id.content, new ImportExportFragment(), dynamicLanguage.getCurrentLocale());
   }
 
   @Override

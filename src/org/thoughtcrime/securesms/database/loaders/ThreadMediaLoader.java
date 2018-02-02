@@ -5,24 +5,20 @@ import android.content.Context;
 import android.database.Cursor;
 import android.support.annotation.NonNull;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
-import org.thoughtcrime.securesms.database.Database;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.AbstractCursorLoader;
 
 public class ThreadMediaLoader extends AbstractCursorLoader {
 
-  private final Address      address;
-  private final MasterSecret masterSecret;
-  private final boolean      gallery;
+  private final Address address;
+  private final boolean gallery;
 
-  public ThreadMediaLoader(@NonNull Context context, @NonNull MasterSecret masterSecret, @NonNull Address address, boolean gallery) {
+  public ThreadMediaLoader(@NonNull Context context, @NonNull Address address, boolean gallery) {
     super(context);
-    this.masterSecret = masterSecret;
-    this.address      = address;
-    this.gallery      = gallery;
+    this.address = address;
+    this.gallery = gallery;
   }
 
   @Override
@@ -37,7 +33,4 @@ public class ThreadMediaLoader extends AbstractCursorLoader {
     return address;
   }
 
-  public MasterSecret getMasterSecret() {
-    return masterSecret;
-  }
 }

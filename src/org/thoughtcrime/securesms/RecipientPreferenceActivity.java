@@ -39,7 +39,6 @@ import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.color.MaterialColors;
 import org.thoughtcrime.securesms.components.ThreadPhotoRailView;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
@@ -86,7 +85,6 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private ImageView               avatar;
-  private MasterSecret            masterSecret;
   private GlideRequests           glideRequests;
   private Address                 address;
   private TextView                threadPhotoRailLabel;
@@ -100,9 +98,8 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   }
 
   @Override
-  public void onCreate(Bundle instanceState, @NonNull MasterSecret masterSecret) {
+  public void onCreate(Bundle instanceState, boolean ready) {
     setContentView(R.layout.recipient_preference_activity);
-    this.masterSecret  = masterSecret;
     this.glideRequests = GlideApp.with(this);
     this.address       = getIntent().getParcelableExtra(ADDRESS_EXTRA);
 
@@ -205,7 +202,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
   @Override
   public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-    return new ThreadMediaLoader(this, masterSecret, address, true);
+    return new ThreadMediaLoader(this, address, true);
   }
 
   @Override
@@ -218,16 +215,16 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       this.threadPhotoRailView.setVisibility(View.GONE);
     }
 
-    this.threadPhotoRailView.setCursor(masterSecret, glideRequests, data);
+    this.threadPhotoRailView.setCursor(glideRequests, data);
 
     Bundle bundle = new Bundle();
     bundle.putParcelable(ADDRESS_EXTRA, address);
-    initFragment(R.id.preference_fragment, new RecipientPreferenceFragment(), masterSecret, null, bundle);
+    initFragment(R.id.preference_fragment, new RecipientPreferenceFragment(), null, bundle);
   }
 
   @Override
   public void onLoaderReset(Loader<Cursor> loader) {
-    this.threadPhotoRailView.setCursor(masterSecret, glideRequests, null);
+    this.threadPhotoRailView.setCursor(glideRequests, null);
   }
 
   public static class RecipientPreferenceFragment

@@ -1,16 +1,15 @@
 package org.thoughtcrime.securesms;
 
 import android.animation.Animator;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.annotation.AnimRes;
-import android.support.annotation.NonNull;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
@@ -27,45 +26,35 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.components.ContactFilterToolbar;
 import org.thoughtcrime.securesms.components.ContactFilterToolbar.OnFilterChangedListener;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture.Listener;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.concurrent.ExecutionException;
 
 public class InviteActivity extends PassphraseRequiredActionBarActivity implements ContactSelectionListFragment.OnContactSelectedListener {
 
-  private MasterSecret                 masterSecret;
   private ContactSelectionListFragment contactsFragment;
   private EditText                     inviteText;
-  private View                         shareButton;
-  private View                         smsButton;
   private ViewGroup                    smsSendFrame;
   private Button                       smsSendButton;
-  private Button                       smsCancelButton;
   private Animation                    slideInAnimation;
   private Animation                    slideOutAnimation;
-  private ContactFilterToolbar         contactFilter;
   private ImageView                    heart;
 
   @Override
-  protected void onCreate(Bundle savedInstanceState, @NonNull MasterSecret masterSecret) {
-    this.masterSecret = masterSecret;
-
+  protected void onCreate(Bundle savedInstanceState, boolean ready) {
     getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE, ContactSelectionListFragment.DISPLAY_MODE_SMS_ONLY);
     getIntent().putExtra(ContactSelectionListFragment.MULTI_SELECT, true);
     getIntent().putExtra(ContactSelectionListFragment.REFRESHABLE, false);
 
-    super.onCreate(savedInstanceState, masterSecret);
     setContentView(R.layout.invite_activity);
+    assert getSupportActionBar() != null;
     getSupportActionBar().setTitle(R.string.AndroidManifest__invite_friends);
 
     initializeResources();
@@ -74,13 +63,15 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
   private void initializeResources() {
     slideInAnimation  = loadAnimation(R.anim.slide_from_bottom);
     slideOutAnimation = loadAnimation(R.anim.slide_to_bottom);
-    shareButton       = ViewUtil.findById(this, R.id.share_button);
-    smsButton         = ViewUtil.findById(this, R.id.sms_button);
+
+    View                 shareButton     = ViewUtil.findById(this, R.id.share_button);
+    View                 smsButton       = ViewUtil.findById(this, R.id.sms_button);
+    Button               smsCancelButton = ViewUtil.findById(this, R.id.cancel_sms_button);
+    ContactFilterToolbar contactFilter   = ViewUtil.findById(this, R.id.contact_filter);
+
     inviteText        = ViewUtil.findById(this, R.id.invite_text);
     smsSendFrame      = ViewUtil.findById(this, R.id.sms_send_frame);
     smsSendButton     = ViewUtil.findById(this, R.id.send_sms_button);
-    smsCancelButton   = ViewUtil.findById(this, R.id.cancel_sms_button);
-    contactFilter     = ViewUtil.findById(this, R.id.contact_filter);
     heart             = ViewUtil.findById(this, R.id.heart);
     contactsFragment  = (ContactSelectionListFragment)getSupportFragmentManager().findFragmentById(R.id.contact_selection_list_fragment);
 
@@ -180,16 +171,8 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
                                                      contactsFragment.getSelectedContacts().size(),
                                                      contactsFragment.getSelectedContacts().size()))
           .setMessage(inviteText.getText().toString())
-          .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-            @Override public void onClick(DialogInterface dialog, int which) {
-              sendSmsInvites();
-            }
-          })
-          .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-            @Override public void onClick(DialogInterface dialog, int which) {
-              dialog.dismiss();
-            }
-          })
+          .setPositiveButton(R.string.yes, (dialog, which) -> sendSmsInvites())
+          .setNegativeButton(R.string.no, (dialog, which) -> dialog.dismiss())
           .show();
     }
   }
@@ -218,10 +201,11 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
     }
   }
 
+  @SuppressLint("StaticFieldLeak")
   private class SendSmsInvitesAsyncTask extends ProgressDialogAsyncTask<String,Void,Void> {
     private final String message;
 
-    public SendSmsInvitesAsyncTask(Context context, String message) {
+    SendSmsInvitesAsyncTask(Context context, String message) {
       super(context, R.string.InviteActivity_sending, R.string.InviteActivity_sending);
       this.message = message;
     }

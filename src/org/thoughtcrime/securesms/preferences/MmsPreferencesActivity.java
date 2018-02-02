@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2011 Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,14 +17,12 @@
 package org.thoughtcrime.securesms.preferences;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.MenuItem;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
@@ -40,7 +38,8 @@ public class MmsPreferencesActivity extends PassphraseRequiredActionBarActivity 
   }
 
   @Override
-  protected void onCreate(Bundle icicle, @NonNull MasterSecret masterSecret) {
+  protected void onCreate(Bundle icicle, boolean ready) {
+    assert getSupportActionBar() != null;
     this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     Fragment fragment = new MmsPreferencesFragment();

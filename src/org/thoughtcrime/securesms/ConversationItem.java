@@ -17,9 +17,9 @@
 package org.thoughtcrime.securesms;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -53,7 +53,6 @@ import org.thoughtcrime.securesms.components.DeliveryStatusView;
 import org.thoughtcrime.securesms.components.DocumentView;
 import org.thoughtcrime.securesms.components.ExpirationTimerView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -105,7 +104,6 @@ public class ConversationItem extends LinearLayout
   private final static String TAG = ConversationItem.class.getSimpleName();
 
   private MessageRecord messageRecord;
-  private MasterSecret  masterSecret;
   private Locale        locale;
   private boolean       groupThread;
   private Recipient     recipient;
@@ -190,7 +188,6 @@ public class ConversationItem extends LinearLayout
                    @NonNull Set<MessageRecord> batchSelected,
                    @NonNull Recipient          conversationRecipient)
   {
-    this.masterSecret           = masterSecret;
     this.messageRecord          = messageRecord;
     this.locale                 = locale;
     this.glideRequests          = glideRequests;
@@ -472,6 +469,7 @@ public class ConversationItem extends LinearLayout
     }
   }
 
+  @SuppressLint("StaticFieldLeak")
   private void setExpiration(final MessageRecord messageRecord) {
     if (messageRecord.getExpiresIn() > 0) {
       this.expirationTimer.setVisibility(View.VISIBLE);
@@ -536,6 +534,7 @@ public class ConversationItem extends LinearLayout
             messageRecord.isBundleKeyExchange());
   }
 
+  @SuppressLint("SetTextI18n")
   private void setGroupMessageStatus(MessageRecord messageRecord, Recipient recipient) {
     if (groupThread && !messageRecord.isOutgoing()) {
       this.groupSender.setText(recipient.toShortString());
@@ -650,7 +649,7 @@ public class ConversationItem extends LinearLayout
   private class ClickListener implements View.OnClickListener {
     private OnClickListener parent;
 
-    public ClickListener(@Nullable OnClickListener parent) {
+    ClickListener(@Nullable OnClickListener parent) {
       this.parent = parent;
     }
 
@@ -687,40 +686,34 @@ public class ConversationItem extends LinearLayout
 
     if (message > -1) builder.setMessage(message);
 
-    builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-      @Override
-      public void onClick(DialogInterface dialogInterface, int i) {
-        if (messageRecord.isMms()) {
-          MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
-          database.markAsInsecure(messageRecord.getId());
-          database.markAsOutbox(messageRecord.getId());
-          database.markAsForcedSms(messageRecord.getId());
+    builder.setPositiveButton(R.string.yes, (dialogInterface, i) -> {
+      if (messageRecord.isMms()) {
+        MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
+        database.markAsInsecure(messageRecord.getId());
+        database.markAsOutbox(messageRecord.getId());
+        database.markAsForcedSms(messageRecord.getId());
 
-          ApplicationContext.getInstance(context)
-                            .getJobManager()
-                            .add(new MmsSendJob(context, messageRecord.getId()));
-        } else {
-          SmsDatabase database = DatabaseFactory.getSmsDatabase(context);
-          database.markAsInsecure(messageRecord.getId());
-          database.markAsOutbox(messageRecord.getId());
-          database.markAsForcedSms(messageRecord.getId());
+        ApplicationContext.getInstance(context)
+                          .getJobManager()
+                          .add(new MmsSendJob(context, messageRecord.getId()));
+      } else {
+        SmsDatabase database = DatabaseFactory.getSmsDatabase(context);
+        database.markAsInsecure(messageRecord.getId());
+        database.markAsOutbox(messageRecord.getId());
+        database.markAsForcedSms(messageRecord.getId());
 
-          ApplicationContext.getInstance(context)
-                            .getJobManager()
-                            .add(new SmsSendJob(context, messageRecord.getId(),
-                                                messageRecord.getIndividualRecipient().getAddress().serialize()));
-        }
+        ApplicationContext.getInstance(context)
+                          .getJobManager()
+                          .add(new SmsSendJob(context, messageRecord.getId(),
+                                              messageRecord.getIndividualRecipient().getAddress().serialize()));
       }
     });
 
-    builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-      @Override
-      public void onClick(DialogInterface dialogInterface, int i) {
-        if (messageRecord.isMms()) {
-          DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageRecord.getId());
-        } else {
-          DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageRecord.getId());
-        }
+    builder.setNegativeButton(R.string.no, (dialogInterface, i) -> {
+      if (messageRecord.isMms()) {
+        DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageRecord.getId());
+      } else {
+        DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageRecord.getId());
       }
     });
     builder.show();

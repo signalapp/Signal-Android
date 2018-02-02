@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.text.SpannableString;
 
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
@@ -61,8 +62,8 @@ public abstract class DisplayRecord {
     this.deliveryStatus       = deliveryStatus;
   }
 
-  public String getBody() {
-    return body;
+  public @NonNull String getBody() {
+    return body == null ? "" : body;
   }
 
   public boolean isFailed() {
