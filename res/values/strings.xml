@@ -1317,6 +1317,7 @@
     <string name="Permissions_not_now">Not now</string>
     <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal needs Contacts permission in order to search your contacts, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Contacts\".</string>
     <string name="conversation_activity__enable_signal_messages">ENABLE SIGNAL MESSAGES</string>
+    <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrating Signal database</string>
 
 
     <!-- EOF -->

@@ -78,11 +78,11 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       ClassicOpenHelper                      legacyHelper = new ClassicOpenHelper(context);
       android.database.sqlite.SQLiteDatabase legacyDb     = legacyHelper.getWritableDatabase();
 
-      SQLCipherMigrationHelper.migratePlaintext(legacyDb, db);
+      SQLCipherMigrationHelper.migratePlaintext(context, legacyDb, db);
 
       MasterSecret masterSecret = KeyCachingService.getMasterSecret(context);
 
-      if (masterSecret != null) SQLCipherMigrationHelper.migrateCiphertext(context, masterSecret, legacyDb, db);
+      if (masterSecret != null) SQLCipherMigrationHelper.migrateCiphertext(context, masterSecret, legacyDb, db, null);
       else                      TextSecurePreferences.setNeedsSqlCipherMigration(context, true);
     }
   }

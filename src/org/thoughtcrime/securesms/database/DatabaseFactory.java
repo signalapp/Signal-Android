@@ -156,7 +156,8 @@ public class DatabaseFactory {
 
       SQLCipherMigrationHelper.migrateCiphertext(context, masterSecret,
                                                  legacyOpenHelper.getWritableDatabase(),
-                                                 databaseHelper.getWritableDatabase());
+                                                 databaseHelper.getWritableDatabase(),
+                                                 listener);
     }
   }
 
