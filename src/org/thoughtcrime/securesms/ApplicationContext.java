@@ -54,6 +54,8 @@ import java.util.concurrent.TimeUnit;
 
 import dagger.ObjectGraph;
 
+import static com.facebook.stetho.Stetho.*;
+
 /**
  * Will be called once when the TextSecure process is created.
  *
@@ -77,6 +79,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   @Override
   public void onCreate() {
     super.onCreate();
+    initializeWithDefaults(this);
     initializeRandomNumberFix();
     initializeLogging();
     initializeDependencyInjection();
