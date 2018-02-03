@@ -2,21 +2,15 @@
 <resources>
     <attr name="theme_type" format="string"/>
     <attr name="attachment_type_selector_background" format="color"/>
-    <attr name="conversation_list_item_background_selected" format="reference"/>
-    <attr name="conversation_list_item_background_read" format="reference"/>
-    <attr name="conversation_list_item_background_unread" format="reference"/>
-    <attr name="conversation_list_item_count_color" format="reference|color"/>
+    <attr name="conversation_list_item_background" format="reference"/>
     <attr name="conversation_list_item_contact_color" format="reference|color"/>
     <attr name="conversation_list_item_subject_color" format="reference|color"/>
     <attr name="conversation_list_item_date_color" format="reference|color"/>
     <attr name="conversation_list_item_divider" format="reference"/>
 
-    <attr name="share_list_item_divider" format="reference"/>
-
     <attr name="conversation_sent_card_background" format="reference|color"/>
     <attr name="conversation_group_member_name" format="reference|color"/>
     <attr name="conversation_received_card_background" format="reference|color"/>
-
 
     <attr name="fab_color" format="reference|color" />
     <attr name="lower_right_divet" format="reference" />
@@ -130,6 +124,16 @@
 
     <attr name="verification_background" format="color"/>
 
+    <attr name="media_overview_toolbar_background" format="color"/>
+    <attr name="media_overview_toolbar_foreground" format="color"/>
+    <attr name="media_overview_header_foreground" format="color"/>
+    <attr name="media_overview_document_background" format="color"/>
+    <attr name="media_overview_document_foreground" format="color"/>
+
+    <attr name="search_toolbar_background" format="color"/>
+
+    <attr name="contact_list_divider" format="reference"/>
+
     <declare-styleable name="ColorPreference">
         <attr name="itemLayout" format="reference" />
         <attr name="choices" format="reference" />
@@ -198,5 +202,37 @@
     <declare-styleable name="EmojiTextView">
         <attr name="scaleEmojis" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="RingtonePreference">
+        <attr name="showAdd" format="boolean" />
+        <attr name="summaryHasRingtone" format="string|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="ColorPickerPreference">
+        <attr name="currentColor" format="reference" />
+
+        <attr name="colors" format="reference" />
+
+        <attr name="sortColors" format="boolean|reference" />
+
+        <attr name="colorDescriptions" format="reference" />
+
+        <attr name="columns" format="integer|reference" />
+
+        <attr name="colorSize" format="enum|reference">
+            <enum name="large" value="1" />
+            <enum name="small" value="2" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="VerificationCodeView">
+        <attr name="vcv_spacing" format="dimension"/>
+        <attr name="vcv_inputWidth" format="dimension"/>
+        <attr name="vcv_inputHeight" format="dimension"/>
+        <attr name="vcv_inputColor" format="color"/>
+        <attr name="vcv_textSize" format="dimension"/>
+        <attr name="vcv_textColor" format="color"/>
+    </declare-styleable>
+
 
 </resources>

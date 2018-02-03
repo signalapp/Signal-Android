@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule.SignalMessageSenderFactory;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -25,7 +24,7 @@ public class RequestGroupInfoJob extends ContextJob implements InjectableType {
 
   private static final long serialVersionUID = 0L;
 
-  @Inject transient SignalMessageSenderFactory messageSenderFactory;
+  @Inject transient SignalServiceMessageSender messageSender;
 
   private final String source;
   private final byte[] groupId;
@@ -46,16 +45,14 @@ public class RequestGroupInfoJob extends ContextJob implements InjectableType {
 
   @Override
   public void onRun() throws IOException, UntrustedIdentityException {
-    SignalServiceMessageSender messageSender = messageSenderFactory.create();
+    SignalServiceGroup       group   = SignalServiceGroup.newBuilder(Type.REQUEST_INFO)
+                                                         .withId(groupId)
+                                                         .build();
 
-    SignalServiceGroup         group         = SignalServiceGroup.newBuilder(Type.REQUEST_INFO)
-                                                                 .withId(groupId)
-                                                                 .build();
-
-    SignalServiceDataMessage   message       = SignalServiceDataMessage.newBuilder()
-                                                                       .asGroupMessage(group)
-                                                                       .withTimestamp(System.currentTimeMillis())
-                                                                       .build();
+    SignalServiceDataMessage message = SignalServiceDataMessage.newBuilder()
+                                                               .asGroupMessage(group)
+                                                               .withTimestamp(System.currentTimeMillis())
+                                                               .build();
 
     messageSender.sendMessage(new SignalServiceAddress(source), message);
   }

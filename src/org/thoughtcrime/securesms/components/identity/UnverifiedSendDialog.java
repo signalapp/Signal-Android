@@ -58,7 +58,7 @@ public class UnverifiedSendDialog extends AlertDialog.Builder implements DialogI
       protected void onPostExecute(Void result) {
         resendListener.onResendMessage();
       }
-    }.execute();
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   public interface ResendListener {

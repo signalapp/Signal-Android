@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2012 Moxie Marlinspike
  *
  * This program is free software: you can redistribute it and/or modify
@@ -20,13 +20,12 @@ import android.content.Context;
 import android.text.SpannableString;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.SmsDatabase.Status;
 import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.database.documents.NetworkFailure;
+import org.thoughtcrime.securesms.database.SmsDatabase.Status;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
+import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.Recipients;
 
 import java.util.LinkedList;
 
@@ -46,17 +45,17 @@ public class NotificationMmsMessageRecord extends MmsMessageRecord {
   private final int    status;
   private final byte[] transactionId;
 
-  public NotificationMmsMessageRecord(Context context, long id, Recipients recipients,
+  public NotificationMmsMessageRecord(Context context, long id, Recipient conversationRecipient,
                                       Recipient individualRecipient, int recipientDeviceId,
-                                      long dateSent, long dateReceived, int receiptCount,
+                                      long dateSent, long dateReceived, int deliveryReceiptCount,
                                       long threadId, byte[] contentLocation, long messageSize,
                                       long expiry, int status, byte[] transactionId, long mailbox,
-                                      int subscriptionId, SlideDeck slideDeck)
+                                      int subscriptionId, SlideDeck slideDeck, int readReceiptCount)
   {
-    super(context, id, new Body("", true), recipients, individualRecipient, recipientDeviceId,
-          dateSent, dateReceived, threadId, Status.STATUS_NONE, receiptCount, mailbox,
+    super(context, id, "", conversationRecipient, individualRecipient, recipientDeviceId,
+          dateSent, dateReceived, threadId, Status.STATUS_NONE, deliveryReceiptCount, mailbox,
           new LinkedList<IdentityKeyMismatch>(), new LinkedList<NetworkFailure>(), subscriptionId,
-          0, 0, slideDeck);
+          0, 0, slideDeck, readReceiptCount);
 
     this.contentLocation = contentLocation;
     this.messageSize     = messageSize;

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2016 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -31,15 +31,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 
 public class StickerSelectFragment extends Fragment implements LoaderManager.LoaderCallbacks<String[]> {
 
-  private RecyclerView recyclerView;
-  private String assetDirectory;
+  private RecyclerView             recyclerView;
+  private GlideRequests            glideRequests;
+  private String                   assetDirectory;
   private StickerSelectionListener listener;
 
   public static StickerSelectFragment newInstance(String assetDirectory) {
@@ -58,7 +60,7 @@ public class StickerSelectFragment extends Fragment implements LoaderManager.Loa
                            @Nullable Bundle savedInstanceState)
   {
     View view = inflater.inflate(R.layout.scribble_select_sticker_fragment, container, false);
-    this.recyclerView = (RecyclerView)view.findViewById(R.id.stickers_recycler_view);
+    this.recyclerView = view.findViewById(R.id.stickers_recycler_view);
 
     return view;
   }
@@ -67,6 +69,7 @@ public class StickerSelectFragment extends Fragment implements LoaderManager.Loa
   public void onActivityCreated(Bundle bundle) {
     super.onActivityCreated(bundle);
 
+    this.glideRequests  = GlideApp.with(this);
     this.assetDirectory = getArguments().getString("assetDirectory");
 
     getLoaderManager().initLoader(0, null, this);
@@ -80,7 +83,7 @@ public class StickerSelectFragment extends Fragment implements LoaderManager.Loa
 
   @Override
   public void onLoadFinished(Loader<String[]> loader, String[] data) {
-    recyclerView.setAdapter(new StickersAdapter(getActivity(), data));
+    recyclerView.setAdapter(new StickersAdapter(getActivity(), glideRequests, data));
   }
 
   @Override
@@ -94,12 +97,12 @@ public class StickerSelectFragment extends Fragment implements LoaderManager.Loa
 
   class StickersAdapter extends RecyclerView.Adapter<StickersAdapter.StickerViewHolder> {
 
-    private final Context context;
+    private final GlideRequests  glideRequests;
     private final String[]       stickerFiles;
     private final LayoutInflater layoutInflater;
 
-    StickersAdapter(@NonNull Context context, @NonNull String[] stickerFiles) {
-      this.context        = context;
+    StickersAdapter(@NonNull Context context, @NonNull GlideRequests glideRequests, @NonNull String[] stickerFiles) {
+      this.glideRequests  = glideRequests;
       this.stickerFiles   = stickerFiles;
       this.layoutInflater = LayoutInflater.from(context);
     }
@@ -113,10 +116,9 @@ public class StickerSelectFragment extends Fragment implements LoaderManager.Loa
     public void onBindViewHolder(StickerViewHolder holder, int position) {
       holder.fileName = stickerFiles[position];
 
-      Glide.with(context)
-           .load(Uri.parse("file:///android_asset/" + holder.fileName))
-           .diskCacheStrategy(DiskCacheStrategy.NONE)
-           .into(holder.image);
+      glideRequests.load(Uri.parse("file:///android_asset/" + holder.fileName))
+                   .diskCacheStrategy(DiskCacheStrategy.NONE)
+                   .into(holder.image);
     }
 
     @Override
@@ -127,7 +129,7 @@ public class StickerSelectFragment extends Fragment implements LoaderManager.Loa
     @Override
     public void onViewRecycled(StickerViewHolder holder) {
       super.onViewRecycled(holder);
-      Glide.clear(holder.image);
+      glideRequests.clear(holder.image);
     }
 
     private void onStickerSelected(String fileName) {
@@ -141,22 +143,19 @@ public class StickerSelectFragment extends Fragment implements LoaderManager.Loa
 
       StickerViewHolder(View itemView) {
         super(itemView);
-        image = (ImageView) itemView.findViewById(R.id.sticker_image);
-        itemView.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
-            int pos = getAdapterPosition();
-            if (pos >= 0) {
-              onStickerSelected(fileName);
-            }
+        image = itemView.findViewById(R.id.sticker_image);
+        itemView.setOnClickListener(view -> {
+          int pos = getAdapterPosition();
+          if (pos >= 0) {
+            onStickerSelected(fileName);
           }
         });
       }
     }
   }
 
-  public interface StickerSelectionListener {
-    public void onStickerSelected(String name);
+  interface StickerSelectionListener {
+    void onStickerSelected(String name);
   }
 
 

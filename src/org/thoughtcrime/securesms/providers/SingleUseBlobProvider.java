@@ -1,27 +1,14 @@
 package org.thoughtcrime.securesms.providers;
 
 import android.content.ContentUris;
-import android.content.Context;
-import android.content.UriMatcher;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.support.annotation.NonNull;
-import android.util.Log;
-
-import org.thoughtcrime.securesms.crypto.DecryptingPartInputStream;
-import org.thoughtcrime.securesms.crypto.EncryptingPartOutputStream;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 

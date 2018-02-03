@@ -1,11 +1,13 @@
 package org.thoughtcrime.securesms.components;
 
-import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.preference.DialogPreference;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.preference.DialogPreference;
+import android.support.v7.preference.PreferenceDialogFragmentCompat;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -19,6 +21,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.CustomDefaultPreference.CustomDefaultPreferenceDialogFragmentCompat.CustomPreferenceValidator;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.net.URI;
@@ -36,11 +39,6 @@ public class CustomDefaultPreference extends DialogPreference {
   private CustomPreferenceValidator validator;
   private String                    defaultValue;
 
-  private Spinner  spinner;
-  private EditText customText;
-  private TextView defaultLabel;
-  private Button   positiveButton;
-
   public CustomDefaultPreference(Context context, AttributeSet attrs) {
     super(context, attrs);
 
@@ -50,7 +48,7 @@ public class CustomDefaultPreference extends DialogPreference {
     this.inputType        = attributes.getInt(0, 0);
     this.customPreference = getKey();
     this.customToggle     = attributes.getString(1);
-    this.validator        = new NullValidator();
+    this.validator        = new CustomDefaultPreferenceDialogFragmentCompat.NullValidator();
 
     attributes.recycle();
 
@@ -80,40 +78,6 @@ public class CustomDefaultPreference extends DialogPreference {
     }
   }
 
-  @Override
-  protected void onBindDialogView(@NonNull View view) {
-    super.onBindDialogView(view);
-
-    this.spinner      = (Spinner) view.findViewById(R.id.default_or_custom);
-    this.defaultLabel = (TextView) view.findViewById(R.id.default_label);
-    this.customText   = (EditText) view.findViewById(R.id.custom_edit);
-
-    this.customText.setInputType(inputType);
-    this.customText.addTextChangedListener(new TextValidator());
-    this.customText.setText(getCustomValue());
-    this.spinner.setOnItemSelectedListener(new SelectionLister());
-    this.defaultLabel.setText(getPrettyPrintValue(defaultValue));
-  }
-
-  @Override
-  protected void showDialog(Bundle instanceState) {
-    super.showDialog(instanceState);
-    positiveButton = ((AlertDialog)getDialog()).getButton(AlertDialog.BUTTON_POSITIVE);
-
-    if (isCustom()) spinner.setSelection(1, true);
-    else            spinner.setSelection(0, true);
-  }
-
-  @Override
-  protected void onDialogClosed(boolean positiveResult) {
-    if (positiveResult) {
-      if (spinner != null)    setCustom(spinner.getSelectedItemPosition() == 1);
-      if (customText != null) setCustomValue(customText.getText().toString());
-
-      setSummary(getSummary());
-    }
-  }
-
   private String getPrettyPrintValue(String value) {
     if (TextUtils.isEmpty(value)) return getContext().getString(R.string.CustomDefaultPreference_none);
     else                          return value;
@@ -139,87 +103,155 @@ public class CustomDefaultPreference extends DialogPreference {
     return defaultValue;
   }
 
-  private class SelectionLister implements AdapterView.OnItemSelectedListener {
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-      defaultLabel.setVisibility(position == 0 ? View.VISIBLE : View.GONE);
-      customText.setVisibility(position == 0 ? View.GONE : View.VISIBLE);
-      positiveButton.setEnabled(position == 0 || validator.isValid(customText.getText().toString()));
+  public static class CustomDefaultPreferenceDialogFragmentCompat extends PreferenceDialogFragmentCompat {
+
+    private static final String INPUT_TYPE = "input_type";
+
+    private Spinner  spinner;
+    private EditText customText;
+    private TextView defaultLabel;
+
+    public static CustomDefaultPreferenceDialogFragmentCompat newInstance(String key) {
+      CustomDefaultPreferenceDialogFragmentCompat fragment = new CustomDefaultPreferenceDialogFragmentCompat();
+      Bundle b = new Bundle(1);
+      b.putString(PreferenceDialogFragmentCompat.ARG_KEY, key);
+      fragment.setArguments(b);
+      return fragment;
     }
 
     @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-      defaultLabel.setVisibility(View.VISIBLE);
-      customText.setVisibility(View.GONE);
+    protected void onBindDialogView(@NonNull View view) {
+      Log.w(TAG, "onBindDialogView");
+      super.onBindDialogView(view);
+
+      CustomDefaultPreference preference = (CustomDefaultPreference)getPreference();
+
+      this.spinner      = (Spinner) view.findViewById(R.id.default_or_custom);
+      this.defaultLabel = (TextView) view.findViewById(R.id.default_label);
+      this.customText   = (EditText) view.findViewById(R.id.custom_edit);
+
+      this.customText.setInputType(preference.inputType);
+      this.customText.addTextChangedListener(new TextValidator());
+      this.customText.setText(preference.getCustomValue());
+      this.spinner.setOnItemSelectedListener(new SelectionLister());
+      this.defaultLabel.setText(preference.getPrettyPrintValue(preference.defaultValue));
     }
-  }
 
-  private class TextValidator implements TextWatcher {
 
     @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+    public Dialog onCreateDialog(Bundle instanceState) {
+      Dialog dialog = super.onCreateDialog(instanceState);
+
+      CustomDefaultPreference preference = (CustomDefaultPreference)getPreference();
+
+      if (preference.isCustom()) spinner.setSelection(1, true);
+      else                       spinner.setSelection(0, true);
+
+      return dialog;
+    }
 
     @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {}
+    public void onDialogClosed(boolean positiveResult) {
+      CustomDefaultPreference preference = (CustomDefaultPreference)getPreference();
 
-    @Override
-    public void afterTextChanged(Editable s) {
-      if (spinner.getSelectedItemPosition() == 1) {
-        positiveButton.setEnabled(validator.isValid(s.toString()));
+      if (positiveResult) {
+        if (spinner != null)    preference.setCustom(spinner.getSelectedItemPosition() == 1);
+        if (customText != null) preference.setCustomValue(customText.getText().toString());
+
+        preference.setSummary(preference.getSummary());
       }
     }
-  }
 
-  protected interface CustomPreferenceValidator {
-    public boolean isValid(String value);
-  }
-
-  private static class NullValidator implements CustomPreferenceValidator {
-    @Override
-    public boolean isValid(String value) {
-      return true;
+    interface CustomPreferenceValidator {
+      public boolean isValid(String value);
     }
-  }
 
-  public static class UriValidator implements CustomPreferenceValidator {
-    @Override
-    public boolean isValid(String value) {
-      if (TextUtils.isEmpty(value)) return true;
-
-      try {
-        new URI(value);
+    private static class NullValidator implements CustomPreferenceValidator {
+      @Override
+      public boolean isValid(String value) {
         return true;
-      } catch (URISyntaxException mue) {
-        return false;
       }
     }
-  }
 
-  public static class HostnameValidator implements CustomPreferenceValidator {
-    @Override
-    public boolean isValid(String value) {
-      if (TextUtils.isEmpty(value)) return true;
+    private class TextValidator implements TextWatcher {
 
-      try {
-        URI uri = new URI(null, value, null, null);
-        return true;
-      } catch (URISyntaxException mue) {
-        return false;
+      @Override
+      public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+      @Override
+      public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+      @Override
+      public void afterTextChanged(Editable s) {
+        CustomDefaultPreference preference = (CustomDefaultPreference)getPreference();
+
+        if (spinner.getSelectedItemPosition() == 1) {
+          Button positiveButton = ((AlertDialog)getDialog()).getButton(AlertDialog.BUTTON_POSITIVE);
+          positiveButton.setEnabled(preference.validator.isValid(s.toString()));
+        }
       }
     }
-  }
 
-  public static class PortValidator implements CustomPreferenceValidator {
-    @Override
-    public boolean isValid(String value) {
-      try {
-        Integer.parseInt(value);
-        return true;
-      } catch (NumberFormatException e) {
-        return false;
+    public static class UriValidator implements CustomPreferenceValidator {
+      @Override
+      public boolean isValid(String value) {
+        if (TextUtils.isEmpty(value)) return true;
+
+        try {
+          new URI(value);
+          return true;
+        } catch (URISyntaxException mue) {
+          return false;
+        }
       }
     }
+
+    public static class HostnameValidator implements CustomPreferenceValidator {
+      @Override
+      public boolean isValid(String value) {
+        if (TextUtils.isEmpty(value)) return true;
+
+        try {
+          URI uri = new URI(null, value, null, null);
+          return true;
+        } catch (URISyntaxException mue) {
+          return false;
+        }
+      }
+    }
+
+    public static class PortValidator implements CustomPreferenceValidator {
+      @Override
+      public boolean isValid(String value) {
+        try {
+          Integer.parseInt(value);
+          return true;
+        } catch (NumberFormatException e) {
+          return false;
+        }
+      }
+    }
+
+    private class SelectionLister implements AdapterView.OnItemSelectedListener {
+
+      @Override
+      public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        CustomDefaultPreference preference = (CustomDefaultPreference)getPreference();
+        Button positiveButton = ((AlertDialog)getDialog()).getButton(AlertDialog.BUTTON_POSITIVE);
+
+        defaultLabel.setVisibility(position == 0 ? View.VISIBLE : View.GONE);
+        customText.setVisibility(position == 0 ? View.GONE : View.VISIBLE);
+        positiveButton.setEnabled(position == 0 || preference.validator.isValid(customText.getText().toString()));
+      }
+
+      @Override
+      public void onNothingSelected(AdapterView<?> parent) {
+        defaultLabel.setVisibility(View.VISIBLE);
+        customText.setVisibility(View.GONE);
+      }
+    }
+
   }
 
 

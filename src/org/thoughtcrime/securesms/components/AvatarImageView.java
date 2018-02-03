@@ -4,22 +4,26 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.ImageView;
+
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
-import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
+import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
 
-public class AvatarImageView extends ImageView {
+public class AvatarImageView extends AppCompatImageView {
+
+  private static final String TAG = AvatarImageView.class.getSimpleName();
 
   private boolean inverted;
+  private OnClickListener listener = null;
 
   public AvatarImageView(Context context) {
     super(context);
@@ -37,44 +41,49 @@ public class AvatarImageView extends ImageView {
     }
   }
 
-  public void setAvatar(final @Nullable Recipients recipients, boolean quickContactEnabled) {
-    if (recipients != null) {
-      MaterialColor backgroundColor = recipients.getColor();
-      setImageDrawable(recipients.getContactPhoto().asDrawable(getContext(), backgroundColor.toConversationColor(getContext()), inverted));
-      setAvatarClickHandler(recipients, quickContactEnabled);
+  @Override
+  public void setOnClickListener(OnClickListener listener) {
+    this.listener = listener;
+    super.setOnClickListener(listener);
+  }
+
+  public void setAvatar(@NonNull GlideRequests requestManager, @Nullable Recipient recipient, boolean quickContactEnabled) {
+    if (recipient != null) {
+      requestManager.load(recipient.getContactPhoto())
+                    .fallback(recipient.getFallbackContactPhotoDrawable(getContext(), inverted))
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .circleCrop()
+                    .into(this);
+      setAvatarClickHandler(recipient, quickContactEnabled);
     } else {
-      setImageDrawable(ContactPhotoFactory.getDefaultContactPhoto(null).asDrawable(getContext(), ContactColors.UNKNOWN_COLOR.toConversationColor(getContext()), inverted));
-      setOnClickListener(null);
+      setImageDrawable(new GeneratedContactPhoto("#").asDrawable(getContext(), ContactColors.UNKNOWN_COLOR.toConversationColor(getContext()), inverted));
+      super.setOnClickListener(listener);
     }
   }
 
-  public void setAvatar(@Nullable Recipient recipient, boolean quickContactEnabled) {
-    setAvatar(RecipientFactory.getRecipientsFor(getContext(), recipient, true), quickContactEnabled);
+  public void clear(@NonNull GlideRequests glideRequests) {
+    glideRequests.clear(this);
   }
 
-  private void setAvatarClickHandler(final Recipients recipients, boolean quickContactEnabled) {
-    if (!recipients.isGroupRecipient() && quickContactEnabled) {
-      setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          Recipient recipient = recipients.getPrimaryRecipient();
-
-          if (recipient != null && recipient.getContactUri() != null) {
-            ContactsContract.QuickContact.showQuickContact(getContext(), AvatarImageView.this, recipient.getContactUri(), ContactsContract.QuickContact.MODE_LARGE, null);
-          } else if (recipient != null) {
-            final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
-            if (recipient.getAddress().isEmail()) {
-              intent.putExtra(ContactsContract.Intents.Insert.EMAIL, recipient.getAddress().toEmailString());
-            } else {
-              intent.putExtra(ContactsContract.Intents.Insert.PHONE, recipient.getAddress().toPhoneString());
-            }
-            intent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
-            getContext().startActivity(intent);
+  private void setAvatarClickHandler(final Recipient recipient, boolean quickContactEnabled) {
+    if (!recipient.isGroupRecipient() && quickContactEnabled) {
+      super.setOnClickListener(v -> {
+        if (recipient.getContactUri() != null) {
+          ContactsContract.QuickContact.showQuickContact(getContext(), AvatarImageView.this, recipient.getContactUri(), ContactsContract.QuickContact.MODE_LARGE, null);
+        } else {
+          final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
+          if (recipient.getAddress().isEmail()) {
+            intent.putExtra(ContactsContract.Intents.Insert.EMAIL, recipient.getAddress().toEmailString());
+          } else {
+            intent.putExtra(ContactsContract.Intents.Insert.PHONE, recipient.getAddress().toPhoneString());
           }
+          intent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
+          getContext().startActivity(intent);
         }
       });
     } else {
-      setOnClickListener(null);
+      super.setOnClickListener(listener);
     }
   }
+
 }

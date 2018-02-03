@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.service;
 
 
+import android.Manifest;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -29,11 +30,10 @@ import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule.SignalMessageSenderFactory;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -97,6 +97,7 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 
 import static org.thoughtcrime.securesms.webrtc.CallNotificationBuilder.TYPE_ESTABLISHED;
+import static org.thoughtcrime.securesms.webrtc.CallNotificationBuilder.TYPE_INCOMING_CONNECTING;
 import static org.thoughtcrime.securesms.webrtc.CallNotificationBuilder.TYPE_INCOMING_RINGING;
 import static org.thoughtcrime.securesms.webrtc.CallNotificationBuilder.TYPE_OUTGOING_RINGING;
 
@@ -148,12 +149,10 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
   private boolean   localVideoEnabled  = false;
   private boolean   remoteVideoEnabled = false;
   private boolean   bluetoothAvailable = false;
-  private Handler   serviceHandler     = new Handler();
 
-  @Inject public SignalMessageSenderFactory  messageSenderFactory;
+  @Inject public SignalServiceMessageSender  messageSender;
   @Inject public SignalServiceAccountManager accountManager;
 
-  private SignalServiceMessageSender messageSender;
   private PeerConnectionFactory      peerConnectionFactory;
   private SignalAudioManager         audioManager;
   private BluetoothStateManager      bluetoothStateManager;
@@ -195,31 +194,28 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
     Log.w(TAG, "onStartCommand...");
     if (intent == null || intent.getAction() == null) return START_NOT_STICKY;
 
-    serviceExecutor.execute(new Runnable() {
-      @Override
-      public void run() {
-        if      (intent.getAction().equals(ACTION_INCOMING_CALL) && isBusy()) handleBusyCall(intent);
-        else if (intent.getAction().equals(ACTION_REMOTE_BUSY))               handleBusyMessage(intent);
-        else if (intent.getAction().equals(ACTION_INCOMING_CALL))             handleIncomingCall(intent);
-        else if (intent.getAction().equals(ACTION_OUTGOING_CALL) && isIdle()) handleOutgoingCall(intent);
-        else if (intent.getAction().equals(ACTION_ANSWER_CALL))               handleAnswerCall(intent);
-        else if (intent.getAction().equals(ACTION_DENY_CALL))                 handleDenyCall(intent);
-        else if (intent.getAction().equals(ACTION_LOCAL_HANGUP))              handleLocalHangup(intent);
-        else if (intent.getAction().equals(ACTION_REMOTE_HANGUP))             handleRemoteHangup(intent);
-        else if (intent.getAction().equals(ACTION_SET_MUTE_AUDIO))            handleSetMuteAudio(intent);
-        else if (intent.getAction().equals(ACTION_SET_MUTE_VIDEO))            handleSetMuteVideo(intent);
-        else if (intent.getAction().equals(ACTION_BLUETOOTH_CHANGE))          handleBluetoothChange(intent);
-        else if (intent.getAction().equals(ACTION_WIRED_HEADSET_CHANGE))      handleWiredHeadsetChange(intent);
-        else if (intent.getAction().equals((ACTION_SCREEN_OFF)))              handleScreenOffChange(intent);
-        else if (intent.getAction().equals(ACTION_REMOTE_VIDEO_MUTE))         handleRemoteVideoMute(intent);
-        else if (intent.getAction().equals(ACTION_RESPONSE_MESSAGE))          handleResponseMessage(intent);
-        else if (intent.getAction().equals(ACTION_ICE_MESSAGE))               handleRemoteIceCandidate(intent);
-        else if (intent.getAction().equals(ACTION_ICE_CANDIDATE))             handleLocalIceCandidate(intent);
-        else if (intent.getAction().equals(ACTION_ICE_CONNECTED))             handleIceConnected(intent);
-        else if (intent.getAction().equals(ACTION_CALL_CONNECTED))            handleCallConnected(intent);
-        else if (intent.getAction().equals(ACTION_CHECK_TIMEOUT))             handleCheckTimeout(intent);
-        else if (intent.getAction().equals(ACTION_IS_IN_CALL_QUERY))          handleIsInCallQuery(intent);
-      }
+    serviceExecutor.execute(() -> {
+      if      (intent.getAction().equals(ACTION_INCOMING_CALL) && isBusy()) handleBusyCall(intent);
+      else if (intent.getAction().equals(ACTION_REMOTE_BUSY))               handleBusyMessage(intent);
+      else if (intent.getAction().equals(ACTION_INCOMING_CALL))             handleIncomingCall(intent);
+      else if (intent.getAction().equals(ACTION_OUTGOING_CALL) && isIdle()) handleOutgoingCall(intent);
+      else if (intent.getAction().equals(ACTION_ANSWER_CALL))               handleAnswerCall(intent);
+      else if (intent.getAction().equals(ACTION_DENY_CALL))                 handleDenyCall(intent);
+      else if (intent.getAction().equals(ACTION_LOCAL_HANGUP))              handleLocalHangup(intent);
+      else if (intent.getAction().equals(ACTION_REMOTE_HANGUP))             handleRemoteHangup(intent);
+      else if (intent.getAction().equals(ACTION_SET_MUTE_AUDIO))            handleSetMuteAudio(intent);
+      else if (intent.getAction().equals(ACTION_SET_MUTE_VIDEO))            handleSetMuteVideo(intent);
+      else if (intent.getAction().equals(ACTION_BLUETOOTH_CHANGE))          handleBluetoothChange(intent);
+      else if (intent.getAction().equals(ACTION_WIRED_HEADSET_CHANGE))      handleWiredHeadsetChange(intent);
+      else if (intent.getAction().equals((ACTION_SCREEN_OFF)))              handleScreenOffChange(intent);
+      else if (intent.getAction().equals(ACTION_REMOTE_VIDEO_MUTE))         handleRemoteVideoMute(intent);
+      else if (intent.getAction().equals(ACTION_RESPONSE_MESSAGE))          handleResponseMessage(intent);
+      else if (intent.getAction().equals(ACTION_ICE_MESSAGE))               handleRemoteIceCandidate(intent);
+      else if (intent.getAction().equals(ACTION_ICE_CANDIDATE))             handleLocalIceCandidate(intent);
+      else if (intent.getAction().equals(ACTION_ICE_CONNECTED))             handleIceConnected(intent);
+      else if (intent.getAction().equals(ACTION_CALL_CONNECTED))            handleCallConnected(intent);
+      else if (intent.getAction().equals(ACTION_CHECK_TIMEOUT))             handleCheckTimeout(intent);
+      else if (intent.getAction().equals(ACTION_IS_IN_CALL_QUERY))          handleIsInCallQuery(intent);
     });
 
     return START_NOT_STICKY;
@@ -273,7 +269,6 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
     this.peerConnectionFactory = new PeerConnectionFactory(new PeerConnectionFactoryOptions());
     this.audioManager          = new SignalAudioManager(this);
     this.bluetoothStateManager = new BluetoothStateManager(this, this);
-    this.messageSender         = messageSenderFactory.create();
     this.messageSender.setSoTimeoutMillis(TimeUnit.SECONDS.toMillis(10));
     this.accountManager.setSoTimeoutMillis(TimeUnit.SECONDS.toMillis(10));
   }
@@ -337,6 +332,10 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
       return;
     }
 
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+      setCallInProgressNotification(TYPE_INCOMING_CONNECTING, this.recipient);
+    }
+
     timeoutExecutor.schedule(new TimeoutRunnable(this.callId), 2, TimeUnit.MINUTES);
 
     initializeVideo();
@@ -345,8 +344,13 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
       @Override
       public void onSuccessContinue(List<PeerConnection.IceServer> result) {
         try {
-          boolean isSystemContact = ContactAccessor.getInstance().isSystemContact(WebRtcCallService.this, recipient.getAddress().serialize());
-          boolean isAlwaysTurn    = TextSecurePreferences.isTurnOnly(WebRtcCallService.this);
+          boolean isSystemContact = false;
+
+          if (Permissions.hasAny(WebRtcCallService.this, Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)) {
+            isSystemContact = ContactAccessor.getInstance().isSystemContact(WebRtcCallService.this, recipient.getAddress().serialize());
+          }
+
+          boolean isAlwaysTurn = TextSecurePreferences.isTurnOnly(WebRtcCallService.this);
 
           WebRtcCallService.this.peerConnection = new PeerConnectionWrapper(WebRtcCallService.this, peerConnectionFactory, WebRtcCallService.this, localRenderer, result, !isSystemContact || isAlwaysTurn);
           WebRtcCallService.this.peerConnection.setRemoteDescription(new SessionDescription(SessionDescription.Type.OFFER, offer));
@@ -580,6 +584,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
 
     setCallInProgressNotification(TYPE_ESTABLISHED, recipient);
 
+    this.peerConnection.setCommunicationMode();
     this.peerConnection.setAudioEnabled(microphoneEnabled);
     this.peerConnection.setVideoEnabled(localVideoEnabled);
 
@@ -593,6 +598,22 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
   private void handleBusyCall(Intent intent) {
     Recipient recipient = getRemoteRecipient(intent);
     long      callId    = getCallId(intent);
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+      switch (callState) {
+        case STATE_DIALING:
+        case STATE_REMOTE_RINGING: setCallInProgressNotification(TYPE_OUTGOING_RINGING, this.recipient);    break;
+        case STATE_IDLE:
+        case STATE_ANSWERING:      setCallInProgressNotification(TYPE_INCOMING_CONNECTING, this.recipient); break;
+        case STATE_LOCAL_RINGING:  setCallInProgressNotification(TYPE_INCOMING_RINGING, this.recipient);    break;
+        case STATE_CONNECTED:      setCallInProgressNotification(TYPE_ESTABLISHED, this.recipient);         break;
+        default:                   throw new AssertionError();
+      }
+    }
+
+    if (callState == CallState.STATE_IDLE) {
+      stopForeground(true);
+    }
 
     sendMessage(recipient, SignalServiceCallMessage.forBusy(new BusyMessage(callId)));
     insertMissedCall(getRemoteRecipient(intent), false);
@@ -612,7 +633,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
     sendMessage(WebRtcViewModel.State.CALL_BUSY, recipient, localVideoEnabled, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
 
     audioManager.startOutgoingRinger(OutgoingRinger.Type.BUSY);
-    serviceHandler.postDelayed(new Runnable() {
+    Util.runOnMainDelayed(new Runnable() {
       @Override
       public void run() {
         Intent intent = new Intent(WebRtcCallService.this, WebRtcCallService.class);
@@ -651,8 +672,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
 
   private void insertMissedCall(@NonNull Recipient recipient, boolean signal) {
     Pair<Long, Long> messageAndThreadId = DatabaseFactory.getSmsDatabase(this).insertMissedCall(recipient.getAddress());
-    MessageNotifier.updateNotification(this, KeyCachingService.getMasterSecret(this),
-                                       messageAndThreadId.second, signal);
+    MessageNotifier.updateNotification(this, messageAndThreadId.second, signal);
   }
 
   private void handleAnswerCall(Intent intent) {
@@ -945,7 +965,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
     Address remoteAddress = intent.getParcelableExtra(EXTRA_REMOTE_ADDRESS);
     if (remoteAddress == null) throw new AssertionError("No recipient in intent!");
 
-    return RecipientFactory.getRecipientFor(this, remoteAddress, true);
+    return Recipient.from(this, remoteAddress, true);
   }
 
   private long getCallId(Intent intent) {
@@ -1024,7 +1044,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
     }
 
     if (stream.videoTracks != null && stream.videoTracks.size() == 1) {
-      VideoTrack videoTrack = stream.videoTracks.getFirst();
+      VideoTrack videoTrack = stream.videoTracks.get(0);
       videoTrack.setEnabled(true);
       videoTrack.addRenderer(new VideoRenderer(remoteRenderer));
     }
@@ -1102,28 +1122,25 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
   }
 
   private ListenableFutureTask<List<PeerConnection.IceServer>> retrieveTurnServers() {
-    Callable<List<PeerConnection.IceServer>> callable = new Callable<List<PeerConnection.IceServer>>() {
-      @Override
-      public List<PeerConnection.IceServer> call() {
-        LinkedList<PeerConnection.IceServer> results = new LinkedList<>();
+    Callable<List<PeerConnection.IceServer>> callable = () -> {
+      LinkedList<PeerConnection.IceServer> results = new LinkedList<>();
 
-        try {
-          TurnServerInfo turnServerInfo = accountManager.getTurnServerInfo();
+      try {
+        TurnServerInfo turnServerInfo = accountManager.getTurnServerInfo();
 
-          for (String url : turnServerInfo.getUrls()) {
-            if (url.startsWith("turn")) {
-              results.add(new PeerConnection.IceServer(url, turnServerInfo.getUsername(), turnServerInfo.getPassword()));
-            } else {
-              results.add(new PeerConnection.IceServer(url));
-            }
+        for (String url : turnServerInfo.getUrls()) {
+          if (url.startsWith("turn")) {
+            results.add(new PeerConnection.IceServer(url, turnServerInfo.getUsername(), turnServerInfo.getPassword()));
+          } else {
+            results.add(new PeerConnection.IceServer(url));
           }
-
-        } catch (IOException e) {
-          Log.w(TAG, e);
         }
 
-        return results;
+      } catch (IOException e) {
+        Log.w(TAG, e);
       }
+
+      return results;
     };
 
     ListenableFutureTask<List<PeerConnection.IceServer>> futureTask = new ListenableFutureTask<>(callable, null, serviceExecutor);

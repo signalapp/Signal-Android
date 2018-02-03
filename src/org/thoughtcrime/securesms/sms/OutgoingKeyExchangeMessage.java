@@ -1,11 +1,11 @@
 package org.thoughtcrime.securesms.sms;
 
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.recipients.Recipient;
 
 public class OutgoingKeyExchangeMessage extends OutgoingTextMessage {
 
-  public OutgoingKeyExchangeMessage(Recipients recipients, String message) {
-    super(recipients, message, -1);
+  public OutgoingKeyExchangeMessage(Recipient recipient, String message) {
+    super(recipient, message, -1);
   }
 
   private OutgoingKeyExchangeMessage(OutgoingKeyExchangeMessage base, String body) {

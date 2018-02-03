@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Pair;
 
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
@@ -26,6 +27,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Pattern;
 
 public class Address implements Parcelable, Comparable<Address> {
@@ -44,6 +46,8 @@ public class Address implements Parcelable, Comparable<Address> {
 
   private static final String TAG = Address.class.getSimpleName();
 
+  private static final AtomicReference<Pair<String, ExternalAddressFormatter>> cachedFormatter = new AtomicReference<>();
+
   private final String address;
 
   private Address(@NonNull String address) {
@@ -60,17 +64,7 @@ public class Address implements Parcelable, Comparable<Address> {
   }
 
   public static Address fromExternal(@NonNull Context context, @Nullable String external) {
-    String localNumber = TextSecurePreferences.getLocalNumber(context);
-
-    ExternalAddressFormatter formatter;
-
-    if (!TextUtils.isEmpty(localNumber)) {
-      formatter = new ExternalAddressFormatter(localNumber);
-    } else  {
-      formatter = new ExternalAddressFormatter(Util.getSimCountryIso(context).or("US"), true);
-    }
-
-    return new Address(formatter.format(external));
+    return new Address(getExternalAddressFormatter(context).format(external));
   }
 
   public static @NonNull List<Address> fromSerializedList(@NonNull String serialized, char delimiter) {
@@ -96,18 +90,29 @@ public class Address implements Parcelable, Comparable<Address> {
     return Util.join(escapedAddresses, delimiter + "");
   }
 
-  public static Address[] fromParcelable(Parcelable[] parcelables) {
-    Address[] addresses = new Address[parcelables.length];
+  private static @NonNull ExternalAddressFormatter getExternalAddressFormatter(Context context) {
+    String localNumber = TextSecurePreferences.getLocalNumber(context);
 
-    for (int i=0;i<parcelables.length;i++) {
-      addresses[i] = (Address)parcelables[i];
+    if (!TextUtils.isEmpty(localNumber)) {
+      Pair<String, ExternalAddressFormatter> cached = cachedFormatter.get();
+
+      if (cached != null && cached.first.equals(localNumber)) return cached.second;
+
+      ExternalAddressFormatter formatter = new ExternalAddressFormatter(localNumber);
+      cachedFormatter.set(new Pair<>(localNumber, formatter));
+
+      return formatter;
+    } else {
+      return new ExternalAddressFormatter(Util.getSimCountryIso(context).or("US"), true);
     }
-
-    return addresses;
   }
 
   public boolean isGroup() {
     return GroupUtil.isEncodedGroup(address);
+  }
+
+  public boolean isMmsGroup() {
+    return GroupUtil.isMmsGroup(address);
   }
 
   public boolean isEmail() {
@@ -170,7 +175,7 @@ public class Address implements Parcelable, Comparable<Address> {
   }
 
   @VisibleForTesting
-  static class ExternalAddressFormatter {
+  public static class ExternalAddressFormatter {
 
     private static final String TAG = ExternalAddressFormatter.class.getSimpleName();
 
@@ -204,9 +209,9 @@ public class Address implements Parcelable, Comparable<Address> {
     }
 
     public String format(@Nullable String number) {
-      if (number == null)                             return "Unknown";
-      if (number.startsWith("__textsecure_group__!")) return number;
-      if (ALPHA_PATTERN.matcher(number).find())       return number.trim();
+      if (number == null)                       return "Unknown";
+      if (GroupUtil.isEncodedGroup(number))     return number;
+      if (ALPHA_PATTERN.matcher(number).find()) return number.trim();
 
       String bareNumber = number.replaceAll("[^0-9+]", "");
 

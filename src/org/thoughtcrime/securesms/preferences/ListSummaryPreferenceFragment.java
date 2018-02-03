@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.preferences;
 
-import android.preference.ListPreference;
-import android.preference.Preference;
-import android.support.v4.preference.PreferenceFragment;
+
+import android.support.v7.preference.ListPreference;
+import android.support.v7.preference.Preference;
 
 import org.thoughtcrime.securesms.R;
 

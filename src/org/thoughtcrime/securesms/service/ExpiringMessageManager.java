@@ -46,7 +46,7 @@ public class ExpiringMessageManager {
     }
   }
 
-  public void checkSchedule() {
+  void checkSchedule() {
     synchronized (expiringMessageReferences) {
       expiringMessageReferences.notifyAll();
     }
@@ -55,9 +55,9 @@ public class ExpiringMessageManager {
   private class LoadTask implements Runnable {
     public void run() {
       SmsDatabase.Reader smsReader = smsDatabase.readerFor(smsDatabase.getExpirationStartedMessages());
-      MmsDatabase.Reader mmsReader = mmsDatabase.getExpireStartedMessages(null);
+      MmsDatabase.Reader mmsReader = mmsDatabase.getExpireStartedMessages();
 
-      MessageRecord messageRecord = null;
+      MessageRecord messageRecord;
 
       while ((messageRecord = smsReader.getNext()) != null) {
         expiringMessageReferences.add(new ExpiringMessageReference(messageRecord.getId(),
@@ -70,9 +70,13 @@ public class ExpiringMessageManager {
                                                                    messageRecord.isMms(),
                                                                    messageRecord.getExpireStarted() + messageRecord.getExpiresIn()));
       }
+
+      smsReader.close();
+      mmsReader.close();
     }
   }
 
+  @SuppressWarnings("InfiniteLoopStatement")
   private class ProcessTask implements Runnable {
     public void run() {
       while (true) {

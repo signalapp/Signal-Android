@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2011 Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,6 +16,8 @@
  */
 package org.thoughtcrime.securesms.mms;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -47,8 +49,8 @@ import org.thoughtcrime.securesms.components.RemovableEditableMediaView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.components.location.SignalMapView;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
+import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
 import org.thoughtcrime.securesms.scribbles.ScribbleActivity;
 import org.thoughtcrime.securesms.util.BitmapUtil;
@@ -108,14 +110,14 @@ public class AttachmentManager {
 
   }
 
-  public void clear(boolean animate) {
+  public void clear(@NonNull GlideRequests glideRequests, boolean animate) {
     if (attachmentViewStub.resolved()) {
 
       if (animate) {
         ViewUtil.fadeOut(attachmentViewStub.get(), 200).addListener(new Listener<Boolean>() {
           @Override
           public void onSuccess(Boolean result) {
-            thumbnail.clear();
+            thumbnail.clear(glideRequests);
             attachmentViewStub.get().setVisibility(View.GONE);
             attachmentListener.onAttachmentChanged();
           }
@@ -125,7 +127,7 @@ public class AttachmentManager {
           }
         });
       } else {
-        thumbnail.clear();
+        thumbnail.clear(glideRequests);
         attachmentViewStub.get().setVisibility(View.GONE);
         attachmentListener.onAttachmentChanged();
       }
@@ -155,7 +157,7 @@ public class AttachmentManager {
   private void cleanup(final @Nullable Uri uri) {
     if (uri != null && PersistentBlobProvider.isAuthority(context, uri)) {
       Log.w(TAG, "cleaning up " + uri);
-      PersistentBlobProvider.getInstance(context).delete(uri);
+      PersistentBlobProvider.getInstance(context).delete(context, uri);
     }
   }
 
@@ -174,8 +176,7 @@ public class AttachmentManager {
     this.slide      = Optional.of(slide);
   }
 
-  public void setLocation(@NonNull final MasterSecret masterSecret,
-                          @NonNull final SignalPlace place,
+  public void setLocation(@NonNull final SignalPlace place,
                           @NonNull final MediaConstraints constraints)
   {
     inflateStub();
@@ -190,7 +191,7 @@ public class AttachmentManager {
       public void onSuccess(@NonNull Bitmap result) {
         byte[]        blob          = BitmapUtil.toByteArray(result);
         Uri           uri           = PersistentBlobProvider.getInstance(context)
-                                                            .create(masterSecret, blob, MediaUtil.IMAGE_PNG, null);
+                                                            .create(context, blob, MediaUtil.IMAGE_PNG, null);
         LocationSlide locationSlide = new LocationSlide(context, uri, blob.length, place);
 
         setSlide(locationSlide);
@@ -199,7 +200,8 @@ public class AttachmentManager {
     });
   }
 
-  public void setMedia(@NonNull final MasterSecret masterSecret,
+  @SuppressLint("StaticFieldLeak")
+  public void setMedia(@NonNull final GlideRequests glideRequests,
                        @NonNull final Uri uri,
                        @NonNull final MediaType mediaType,
                        @NonNull final MediaConstraints constraints)
@@ -209,7 +211,7 @@ public class AttachmentManager {
             new AsyncTask<Void, Void, Slide>() {
       @Override
       protected void onPreExecute() {
-        thumbnail.clear();
+        thumbnail.clear(glideRequests);
         thumbnail.showProgressSpinner();
         attachmentViewStub.get().setVisibility(View.VISIBLE);
       }
@@ -238,7 +240,7 @@ public class AttachmentManager {
           Toast.makeText(context,
                          R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
                          Toast.LENGTH_SHORT).show();
-        } else if (!areConstraintsSatisfied(context, masterSecret, slide, constraints)) {
+        } else if (!areConstraintsSatisfied(context, slide, constraints)) {
           attachmentViewStub.get().setVisibility(View.GONE);
           Toast.makeText(context,
                          R.string.ConversationActivity_attachment_exceeds_size_limits,
@@ -248,13 +250,13 @@ public class AttachmentManager {
           attachmentViewStub.get().setVisibility(View.VISIBLE);
 
           if (slide.hasAudio()) {
-            audioView.setAudio(masterSecret, (AudioSlide) slide, false);
+            audioView.setAudio((AudioSlide) slide, false);
             removableMediaView.display(audioView, false);
           } else if (slide.hasDocument()) {
             documentView.setDocument((DocumentSlide) slide, false);
             removableMediaView.display(documentView, false);
           } else {
-            thumbnail.setImageResource(masterSecret, slide, false, true);
+            thumbnail.setImageResource(glideRequests, slide, false, true);
             removableMediaView.display(thumbnail, mediaType == MediaType.IMAGE);
           }
 
@@ -291,19 +293,19 @@ public class AttachmentManager {
         String mimeType = null;
 
         if (PartAuthority.isLocalUri(uri)) {
-          mediaSize = PartAuthority.getAttachmentSize(context, masterSecret, uri);
-          fileName  = PartAuthority.getAttachmentFileName(context, masterSecret, uri);
-          mimeType  = PartAuthority.getAttachmentContentType(context, masterSecret, uri);
+          mediaSize = PartAuthority.getAttachmentSize(context, uri);
+          fileName  = PartAuthority.getAttachmentFileName(context, uri);
+          mimeType  = PartAuthority.getAttachmentContentType(context, uri);
         }
 
         if (mediaSize == null) {
-          mediaSize = MediaUtil.getMediaSize(context, masterSecret, uri);
+          mediaSize = MediaUtil.getMediaSize(context, uri);
         }
 
         Log.w(TAG, "local slide with size " + mediaSize + " took " + (System.currentTimeMillis() - start) + "ms");
         return mediaType.createSlide(context, uri, fileName, mimeType, mediaSize);
       }
-    }.execute();
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   public boolean isAttachmentPresent() {
@@ -317,28 +319,57 @@ public class AttachmentManager {
   }
 
   public static void selectDocument(Activity activity, int requestCode) {
-    selectMediaType(activity, "*/*", null, requestCode);
+    Permissions.with(activity)
+               .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+               .ifNecessary()
+               .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio))
+               .onAllGranted(() -> selectMediaType(activity, "*/*", null, requestCode))
+               .execute();
   }
 
   public static void selectGallery(Activity activity, int requestCode) {
-    selectMediaType(activity, "image/*", new String[] {"image/*", "video/*"}, requestCode);
+    Permissions.with(activity)
+               .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+               .ifNecessary()
+               .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio))
+               .onAllGranted(() -> selectMediaType(activity, "image/*", new String[] {"image/*", "video/*"}, requestCode))
+               .execute();
   }
 
   public static void selectAudio(Activity activity, int requestCode) {
-    selectMediaType(activity, "audio/*", null, requestCode);
+    Permissions.with(activity)
+               .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+               .ifNecessary()
+               .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio))
+               .onAllGranted(() -> selectMediaType(activity, "audio/*", null, requestCode))
+               .execute();
   }
 
   public static void selectContactInfo(Activity activity, int requestCode) {
-    Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
-    activity.startActivityForResult(intent, requestCode);
+    Permissions.with(activity)
+               .request(Manifest.permission.WRITE_CONTACTS)
+               .ifNecessary()
+               .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information))
+               .onAllGranted(() -> {
+                 Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+                 activity.startActivityForResult(intent, requestCode);
+               })
+               .execute();
   }
 
   public static void selectLocation(Activity activity, int requestCode) {
-    try {
-      activity.startActivityForResult(new PlacePicker.IntentBuilder().build(activity), requestCode);
-    } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
-      Log.w(TAG, e);
-    }
+    Permissions.with(activity)
+               .request(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
+               .ifNecessary()
+               .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location))
+               .onAllGranted(() -> {
+                 try {
+                   activity.startActivityForResult(new PlacePicker.IntentBuilder().build(activity), requestCode);
+                 } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
+                   Log.w(TAG, e);
+                 }
+               })
+               .execute();
   }
 
   public static void selectGif(Activity activity, int requestCode, boolean isForMms) {
@@ -356,20 +387,26 @@ public class AttachmentManager {
   }
 
   public void capturePhoto(Activity activity, int requestCode) {
-    try {
-      Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-      if (captureIntent.resolveActivity(activity.getPackageManager()) != null) {
-        if (captureUri == null) {
-          captureUri = PersistentBlobProvider.getInstance(context)
-                                             .createForExternal(MediaUtil.IMAGE_JPEG);
-        }
-        Log.w(TAG, "captureUri path is " + captureUri.getPath());
-        captureIntent.putExtra(MediaStore.EXTRA_OUTPUT, captureUri);
-        activity.startActivityForResult(captureIntent, requestCode);
-      }
-    } catch (IOException ioe) {
-      Log.w(TAG, ioe);
-    }
+    Permissions.with(activity)
+               .request(Manifest.permission.CAMERA)
+               .ifNecessary()
+               .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied))
+               .onAllGranted(() -> {
+                 try {
+                   Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                   if (captureIntent.resolveActivity(activity.getPackageManager()) != null) {
+                     if (captureUri == null) {
+                       captureUri = PersistentBlobProvider.getInstance(context).createForExternal(context, MediaUtil.IMAGE_JPEG);
+                     }
+                     Log.w(TAG, "captureUri path is " + captureUri.getPath());
+                     captureIntent.putExtra(MediaStore.EXTRA_OUTPUT, captureUri);
+                     activity.startActivityForResult(captureIntent, requestCode);
+                   }
+                 } catch (IOException ioe) {
+                   Log.w(TAG, ioe);
+                 }
+               })
+               .execute();
   }
 
   private static void selectMediaType(Activity activity, @NonNull String type, @Nullable String[] extraMimeType, int requestCode) {
@@ -401,12 +438,11 @@ public class AttachmentManager {
   }
 
   private boolean areConstraintsSatisfied(final @NonNull  Context context,
-                                          final @NonNull  MasterSecret masterSecret,
                                           final @Nullable Slide slide,
                                           final @NonNull  MediaConstraints constraints)
   {
-   return slide == null                                                        ||
-          constraints.isSatisfied(context, masterSecret, slide.asAttachment()) ||
+   return slide == null                                          ||
+          constraints.isSatisfied(context, slide.asAttachment()) ||
           constraints.canResize(slide.asAttachment());
   }
 
@@ -415,6 +451,7 @@ public class AttachmentManager {
       Intent intent = new Intent(context, MediaPreviewActivity.class);
       intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
       intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, slide.asAttachment().getSize());
+      intent.putExtra(MediaPreviewActivity.OUTGOING_EXTRA, true);
       intent.setDataAndType(slide.getUri(), slide.getContentType());
 
       context.startActivity(intent);
@@ -432,7 +469,7 @@ public class AttachmentManager {
     @Override
     public void onClick(View v) {
       cleanup();
-      clear(true);
+      clear(GlideApp.with(context.getApplicationContext()), true);
     }
   }
 

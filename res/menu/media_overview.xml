@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/save"
-          android:title="@string/media_overview__save_all"
-          android:icon="@drawable/ic_save_all_white_24dp"
-          app:showAsAction="ifRoom"/>
-</menu>

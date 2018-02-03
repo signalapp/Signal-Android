@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<org.thoughtcrime.securesms.components.InputAwareLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_marginLeft="16dp"
+                      android:layout_marginRight="16dp"
+                      android:orientation="horizontal">
+
+            <ImageView android:id="@+id/avatar"
+                       android:layout_width="64dp"
+                       android:layout_height="64dp"
+                       android:transitionName="avatar"/>
+
+            <org.thoughtcrime.securesms.components.emoji.EmojiEditText
+                    android:id="@+id/name"
+                    android:hint="@string/profile_create_activity__your_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:inputType="textCapWords"/>
+
+            <org.thoughtcrime.securesms.components.emoji.EmojiToggle
+                    android:id="@+id/emoji_toggle"
+                    android:layout_width="37dp"
+                    android:layout_height="37dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/touch_highlight_background"
+                    android:contentDescription="@string/conversation_activity__emoji_toggle_description" />
+
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/information_link_container"
+                      android:clickable="true"
+                      android:orientation="horizontal"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_marginLeft="16dp"
+                      android:layout_marginRight="16dp"
+                      android:layout_marginTop="16dip"
+                      android:gravity="center_horizontal|center_vertical">
+
+            <ImageView android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:clickable="false"
+                       android:layout_gravity="center_vertical"
+                       android:gravity="center_vertical"
+                       android:src="@drawable/ic_info_white_18dp"
+                       android:tint="#73B7F0"/>
+
+            <TextView style="@style/Registration.Description"
+                      android:id="@+id/information_label"
+                      android:clickable="true"
+                      android:layout_width="wrap_content"
+                      android:layout_height="match_parent"
+                      android:layout_marginLeft="3dp"
+                      android:layout_gravity="center_vertical"
+                      android:gravity="center_vertical"
+                      android:textColor="#73B7F0"
+                      android:text="@string/profile_create_activity__who_can_see_this_information"/>
+        </LinearLayout>
+
+
+        <LinearLayout android:orientation="vertical"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:gravity="bottom"
+                      android:clipChildren="false"
+                      android:clipToPadding="false">
+
+            <com.dd.CircularProgressButton
+                    android:id="@+id/finish_button"
+                    app:cpb_textIdle="@string/profile_create_activity__finish"
+                    app:cpb_selectorIdle="@drawable/progress_button_state"
+                    app:cpb_colorIndicator="@color/white"
+                    app:cpb_colorProgress="@color/textsecure_primary"
+                    app:cpb_cornerRadius="50dp"
+                    android:textAllCaps="true"
+                    android:background="@color/signal_primary"
+                    android:textColor="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_gravity="center_horizontal"/>
+
+            <TextView android:id="@+id/skip_button"
+                      android:layout_gravity="center_horizontal"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="0dp"
+                      android:layout_marginBottom="20dp"
+                      android:textColor="@color/gray50"
+                      android:text="@string/profile_create_activity__set_later"/>
+
+            <org.thoughtcrime.securesms.components.emoji.EmojiDrawer
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/emoji_drawer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
+        </LinearLayout>
+
+</org.thoughtcrime.securesms.components.InputAwareLayout>
+
+    <View android:id="@+id/reveal"
+          android:background="@color/textsecure_primary"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:visibility="invisible"/>
+
+</FrameLayout>

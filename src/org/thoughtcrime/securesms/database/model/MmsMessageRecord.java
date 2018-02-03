@@ -9,7 +9,6 @@ import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.Recipients;
 
 import java.util.List;
 
@@ -17,14 +16,14 @@ public abstract class MmsMessageRecord extends MessageRecord {
 
   private final @NonNull SlideDeck slideDeck;
 
-  MmsMessageRecord(Context context, long id, Body body, Recipients recipients,
+  MmsMessageRecord(Context context, long id, String body, Recipient conversationRecipient,
                    Recipient individualRecipient, int recipientDeviceId, long dateSent,
-                   long dateReceived, long threadId, int deliveryStatus, int receiptCount,
+                   long dateReceived, long threadId, int deliveryStatus, int deliveryReceiptCount,
                    long type, List<IdentityKeyMismatch> mismatches,
                    List<NetworkFailure> networkFailures, int subscriptionId, long expiresIn,
-                   long expireStarted, @NonNull SlideDeck slideDeck)
+                   long expireStarted, @NonNull SlideDeck slideDeck, int readReceiptCount)
   {
-    super(context, id, body, recipients, individualRecipient, recipientDeviceId, dateSent, dateReceived, threadId, deliveryStatus, receiptCount, type, mismatches, networkFailures, subscriptionId, expiresIn, expireStarted);
+    super(context, id, body, conversationRecipient, individualRecipient, recipientDeviceId, dateSent, dateReceived, threadId, deliveryStatus, deliveryReceiptCount, type, mismatches, networkFailures, subscriptionId, expiresIn, expireStarted, readReceiptCount);
     this.slideDeck = slideDeck;
   }
 

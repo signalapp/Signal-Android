@@ -13,8 +13,7 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 
@@ -86,7 +85,7 @@ public class MmsReceiveJob extends ContextJob {
 
   private boolean isBlocked(GenericPdu pdu) {
     if (pdu.getFrom() != null && pdu.getFrom().getTextString() != null) {
-      Recipients recipients = RecipientFactory.getRecipientsFor(context, new Address[] {Address.fromExternal(context, Util.toIsoString(pdu.getFrom().getTextString()))}, false);
+      Recipient recipients = Recipient.from(context, Address.fromExternal(context, Util.toIsoString(pdu.getFrom().getTextString())), false);
       return recipients.isBlocked();
     }
 

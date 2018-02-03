@@ -3,6 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:background="?attr/conversation_list_item_background"
         android:layout_width="match_parent"
         android:focusable="true"
         android:nextFocusRight="@+id/fab"
@@ -23,6 +24,8 @@
         tools:src="@drawable/ic_contact_picture"
         android:contentDescription="@string/conversation_list_item_view__contact_photo_image"
         android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="14dp"
         android:layout_marginLeft="14dp" />
 
     <RelativeLayout android:layout_width="match_parent"
@@ -75,8 +78,8 @@
                 android:layout_below="@id/from"
                 android:layout_toRightOf="@id/indicators_parent"
                 android:layout_toEndOf="@id/indicators_parent"
-                android:layout_toLeftOf="@+id/delivery_status"
-                android:layout_toStartOf="@+id/delivery_status"
+                android:layout_toLeftOf="@+id/status"
+                android:layout_toStartOf="@+id/status"
                 android:paddingRight="1dp"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="?attr/conversation_list_item_subject_color"
@@ -132,15 +135,27 @@
                   android:textSize="12sp"
                 />
 
-        <org.thoughtcrime.securesms.components.DeliveryStatusView
-                  android:id="@+id/delivery_status"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_below="@+id/date"
-                  android:layout_toLeftOf="@+id/archived"
-                  android:layout_toStartOf="@+id/archived"
-                  android:layout_alignWithParentIfMissing="true"
-                  app:iconColor="?attr/conversation_list_item_subject_color"/>
+
+        <FrameLayout android:id="@+id/status"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_below="@id/date"
+                     android:layout_toLeftOf="@id/archived"
+                     android:layout_toStartOf="@id/archived"
+                     android:layout_alignWithParentIfMissing="true">
+
+            <org.thoughtcrime.securesms.components.DeliveryStatusView
+                    android:id="@+id/delivery_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:iconColor="?attr/conversation_list_item_subject_color"/>
+
+            <ImageView android:id="@+id/unread_indicator"
+                       android:layout_width="24dp"
+                       android:layout_height="24dp"/>
+
+        </FrameLayout>
+
 
     </RelativeLayout>
 </org.thoughtcrime.securesms.ConversationListItem>

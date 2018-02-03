@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2015 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,18 +18,15 @@ package org.thoughtcrime.securesms;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.recipients.Recipient;
 
 /**
  * Activity container for starting a new conversation.
@@ -39,25 +36,26 @@ import org.thoughtcrime.securesms.recipients.Recipients;
  */
 public class NewConversationActivity extends ContactSelectionActivity {
 
+  @SuppressWarnings("unused")
   private static final String TAG = NewConversationActivity.class.getSimpleName();
 
   @Override
-  public void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
-    super.onCreate(bundle, masterSecret);
-
+  public void onCreate(Bundle bundle, boolean ready) {
+    super.onCreate(bundle, ready);
+    assert getSupportActionBar() != null;
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
   }
 
   @Override
   public void onContactSelected(String number) {
-    Recipients recipients = RecipientFactory.getRecipientsFor(this, new Address[] {Address.fromExternal(this, number)}, true);
+    Recipient recipient = Recipient.from(this, Address.fromExternal(this, number), true);
 
     Intent intent = new Intent(this, ConversationActivity.class);
-    intent.putExtra(ConversationActivity.ADDRESSES_EXTRA, recipients.getAddresses());
+    intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.getAddress());
     intent.putExtra(ConversationActivity.TEXT_EXTRA, getIntent().getStringExtra(ConversationActivity.TEXT_EXTRA));
     intent.setDataAndType(getIntent().getData(), getIntent().getType());
 
-    long existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipients);
+    long existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipient);
 
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, existingThread);
     intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);

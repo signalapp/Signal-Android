@@ -37,7 +37,6 @@ import org.apache.http.impl.client.LaxRedirectStrategy;
 import org.apache.http.impl.conn.BasicHttpClientConnectionManager;
 import org.apache.http.message.BasicHeader;
 import org.thoughtcrime.securesms.database.ApnDatabase;
-import org.thoughtcrime.securesms.util.Conversions;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TelephonyUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -130,6 +129,7 @@ public abstract class LegacyMmsConnection {
 
     Log.w(TAG, "Checking route to address: " + host + ", " + inetAddress.getHostAddress());
     ConnectivityManager manager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
     try {
       final Method  requestRouteMethod  = manager.getClass().getMethod("requestRouteToHostAddress", Integer.TYPE, InetAddress.class);
       final boolean routeToHostObtained = (Boolean) requestRouteMethod.invoke(manager, MmsRadio.TYPE_MOBILE_MMS, inetAddress);
@@ -143,10 +143,7 @@ public abstract class LegacyMmsConnection {
       Log.w(TAG, ite);
     }
 
-    final int     ipAddress           = Conversions.byteArrayToIntLittleEndian(ipAddressBytes, 0);
-    final boolean routeToHostObtained = manager.requestRouteToHost(MmsRadio.TYPE_MOBILE_MMS, ipAddress);
-    Log.w(TAG, "requestRouteToHost(" + ipAddress + ") -> " + routeToHostObtained);
-    return routeToHostObtained;
+    return false;
   }
 
   protected static byte[] parseResponse(InputStream is) throws IOException {

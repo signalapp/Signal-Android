@@ -6,14 +6,14 @@ import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.provider.Telephony;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.preference.PreferenceFragment;
+import android.support.v7.preference.Preference;
+import android.support.v7.preference.PreferenceScreen;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
@@ -27,12 +27,17 @@ public class SmsMmsPreferenceFragment extends CorrectedPreferenceFragment {
   @Override
   public void onCreate(Bundle paramBundle) {
     super.onCreate(paramBundle);
-    addPreferencesFromResource(R.xml.preferences_sms_mms);
+
 
     this.findPreference(MMS_PREF)
       .setOnPreferenceClickListener(new ApnPreferencesClickListener());
 
     initializePlatformSpecificOptions();
+  }
+
+  @Override
+  public void onCreatePreferences(@Nullable Bundle savedInstanceState, String rootKey) {
+    addPreferencesFromResource(R.xml.preferences_sms_mms);
   }
 
   @Override

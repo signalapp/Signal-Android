@@ -91,12 +91,7 @@
       <item>vi</item>
   </string-array>
 
-  <string-array name="minutes_hours">
-  	<item>@string/preferences__minutes</item>
-  	<item>@string/preferences__hours</item>
-  </string-array>
-
-  <string-array name="pref_theme_entries">
+    <string-array name="pref_theme_entries">
       <item>@string/preferences__light_theme</item>
       <item>@string/preferences__dark_theme</item>
   </string-array>
@@ -133,14 +128,12 @@
     <item>@string/preferences__fast</item>
     <item>@string/preferences__normal</item>
     <item>@string/preferences__slow</item>
-    <item>@string/preferences__custom</item>
   </string-array>
 
   <string-array name="pref_led_blink_pattern_values" translatable="false">
     <item>300,300</item>
     <item>500,2000</item>
     <item>3000,3000</item>
-    <item>custom</item>
   </string-array>
 
   <string-array name="pref_repeat_alerts_entries">

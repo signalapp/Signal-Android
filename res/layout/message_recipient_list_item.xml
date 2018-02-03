@@ -6,14 +6,13 @@
     android:gravity="center_vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp">
+    android:padding="16dp">
 
     <org.thoughtcrime.securesms.components.AvatarImageView
             android:id="@+id/contact_photo_image"
             android:foreground="@drawable/contact_photo_background"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
             android:layout_marginTop="3dp"
@@ -28,6 +27,7 @@
                   android:layout_marginTop="4dip"
                   android:layout_marginBottom="4dip"
                   android:layout_toRightOf="@id/contact_photo_image"
+                  android:layout_toEndOf="@id/contact_photo_image"
                   android:layout_centerVertical="true"
                   android:orientation="horizontal">
 
@@ -77,7 +77,7 @@
                 android:drawableLeft="@drawable/ic_error_white_18dp"
                 android:text="@string/message_recipients_list_item__view"
                 android:visibility="gone"
-                tools:visibility="visible" />
+                tools:visibility="gone" />
 
         <Button android:id="@+id/resend_button"
                 android:layout_width="wrap_content"
@@ -91,8 +91,13 @@
                 android:drawableLeft="@drawable/ic_refresh_white_18dp"
                 android:text="@string/message_recipients_list_item__resend"
                 android:visibility="gone"
-                tools:visibility="visible" />
+                tools:visibility="gone" />
 
+        <org.thoughtcrime.securesms.components.DeliveryStatusView
+                android:id="@+id/delivery_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
 
     </LinearLayout>
 

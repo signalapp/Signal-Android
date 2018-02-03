@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
@@ -16,16 +17,14 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.loaders.BlockedContactsLoader;
+import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.preferences.BlockedContactListItem;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-
-import java.util.List;
 
 public class BlockedContactsActivity extends PassphraseRequiredActionBarActivity {
 
@@ -40,10 +39,10 @@ public class BlockedContactsActivity extends PassphraseRequiredActionBarActivity
 
 
   @Override
-  public void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
+  public void onCreate(Bundle bundle, boolean ready) {
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setTitle(R.string.BlockedContactsActivity_blocked_contacts);
-    initFragment(android.R.id.content, new BlockedContactsFragment(), masterSecret);
+    initFragment(android.R.id.content, new BlockedContactsFragment());
   }
 
   @Override
@@ -75,7 +74,7 @@ public class BlockedContactsActivity extends PassphraseRequiredActionBarActivity
     @Override
     public void onCreate(Bundle bundle) {
       super.onCreate(bundle);
-      setListAdapter(new BlockedContactAdapter(getActivity(), null));
+      setListAdapter(new BlockedContactAdapter(getActivity(), GlideApp.with(this), null));
       getLoaderManager().initLoader(0, null, this);
     }
 
@@ -106,17 +105,20 @@ public class BlockedContactsActivity extends PassphraseRequiredActionBarActivity
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-      Recipients recipients = ((BlockedContactListItem)view).getRecipients();
-      Intent     intent     = new Intent(getActivity(), RecipientPreferenceActivity.class);
-      intent.putExtra(RecipientPreferenceActivity.ADDRESSES_EXTRA, recipients.getAddresses());
+      Recipient recipient = ((BlockedContactListItem)view).getRecipient();
+      Intent    intent    = new Intent(getActivity(), RecipientPreferenceActivity.class);
+      intent.putExtra(RecipientPreferenceActivity.ADDRESS_EXTRA, recipient.getAddress());
 
       startActivity(intent);
     }
 
     private static class BlockedContactAdapter extends CursorAdapter {
 
-      public BlockedContactAdapter(Context context, Cursor c) {
+      private final GlideRequests glideRequests;
+
+      BlockedContactAdapter(@NonNull Context context, @NonNull GlideRequests glideRequests, @Nullable Cursor c) {
         super(context, c);
+        this.glideRequests = glideRequests;
       }
 
       @Override
@@ -127,12 +129,10 @@ public class BlockedContactsActivity extends PassphraseRequiredActionBarActivity
 
       @Override
       public void bindView(View view, Context context, Cursor cursor) {
-        String        addressesConcat = cursor.getString(1);
-        List<Address> addresses       = Address.fromSerializedList(addressesConcat, ' ');
+        String    address   = cursor.getString(1);
+        Recipient recipient = Recipient.from(context, Address.fromSerialized(address), true);
 
-        Recipients recipients   = RecipientFactory.getRecipientsFor(context, addresses.toArray(new Address[0]), true);
-
-        ((BlockedContactListItem) view).set(recipients);
+        ((BlockedContactListItem) view).set(glideRequests, recipient);
       }
     }
 

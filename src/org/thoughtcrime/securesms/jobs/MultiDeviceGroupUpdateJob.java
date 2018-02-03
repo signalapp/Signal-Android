@@ -9,8 +9,9 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -38,8 +39,7 @@ public class MultiDeviceGroupUpdateJob extends MasterSecretJob implements Inject
   private static final long serialVersionUID = 1L;
   private static final String TAG = MultiDeviceGroupUpdateJob.class.getSimpleName();
 
-  @Inject
-  transient SignalCommunicationModule.SignalMessageSenderFactory messageSenderFactory;
+  @Inject transient SignalServiceMessageSender messageSender;
 
   public MultiDeviceGroupUpdateJob(Context context) {
     super(context, JobParameters.newBuilder()
@@ -52,9 +52,8 @@ public class MultiDeviceGroupUpdateJob extends MasterSecretJob implements Inject
 
   @Override
   public void onRun(MasterSecret masterSecret) throws Exception {
-    SignalServiceMessageSender messageSender = messageSenderFactory.create();
-    File                    contactDataFile  = createTempFile("multidevice-contact-update");
-    GroupDatabase.Reader    reader           = null;
+    File                 contactDataFile = createTempFile("multidevice-contact-update");
+    GroupDatabase.Reader reader          = null;
 
     GroupDatabase.GroupRecord record;
 
@@ -64,15 +63,20 @@ public class MultiDeviceGroupUpdateJob extends MasterSecretJob implements Inject
       reader = DatabaseFactory.getGroupDatabase(context).getGroups();
 
       while ((record = reader.getNext()) != null) {
-        List<String> members = new LinkedList<>();
+        if (!record.isMms()) {
+          List<String> members = new LinkedList<>();
 
-        for (Address member : record.getMembers()) {
-          members.add(member.serialize());
+          for (Address member : record.getMembers()) {
+            members.add(member.serialize());
+          }
+
+          Recipient         recipient       = Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(record.getId(), record.isMms())), false);
+          Optional<Integer> expirationTimer = recipient.getExpireMessages() > 0 ? Optional.of(recipient.getExpireMessages()) : Optional.absent();
+
+          out.write(new DeviceGroup(record.getId(), Optional.fromNullable(record.getTitle()),
+                                    members, getAvatar(record.getAvatar()),
+                                    record.isActive(), expirationTimer));
         }
-
-        out.write(new DeviceGroup(record.getId(), Optional.fromNullable(record.getTitle()),
-                                  members, getAvatar(record.getAvatar()),
-                                  record.isActive()));
       }
 
       out.close();

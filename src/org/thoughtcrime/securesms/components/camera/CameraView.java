@@ -450,7 +450,7 @@ public class CameraView extends ViewGroup {
         Log.w(TAG, "previewFormat: " + camera.getParameters().getPreviewFormat());
         Log.w(TAG, "croppingRect: " + croppingRect.toString());
         Log.w(TAG, "rotation: " + rotation);
-        new CaptureTask(previewSize, rotation, croppingRect).execute(data);
+        new CaptureTask(previewSize, rotation, croppingRect).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, data);
       }
     });
   }

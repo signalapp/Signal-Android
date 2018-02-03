@@ -1,49 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
                   xmlns:app="http://schemas.android.com/apk/res-auto">
-    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
-            android:key="pref_key_recipient_mute"
-            android:title="@string/recipient_preferences__mute_conversation"
-            android:summary="@string/recipient_preferences__disable_notifications_for_this_conversation"
-            android:defaultValue="false"
-            android:disableDependentsState="true"
-            android:persistent="false" />
 
-    <org.thoughtcrime.securesms.preferences.AdvancedRingtonePreference
-                        android:dependency="pref_key_recipient_mute"
-                        android:key="pref_key_recipient_ringtone"
-                        android:title="@string/recipient_preferences__notification_sound"
-                        android:ringtoneType="notification"
-                        android:showSilent="true"
-                        android:showDefault="true"
-                        android:persistent="false"/>
+    <PreferenceCategory android:key="notification_settings" android:title="@string/recipient_preferences__chat_settings">
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+                android:key="pref_key_recipient_mute"
+                android:title="@string/recipient_preferences__mute_conversation"
+                android:defaultValue="false"
+                android:disableDependentsState="true"
+                android:persistent="false" />
 
-    <ListPreference android:dependency="pref_key_recipient_mute"
-                    android:key="pref_key_recipient_vibrate"
-                    android:title="@string/recipient_preferences__vibrate"
-                    android:entries="@array/recipient_vibrate_entries"
-                    android:entryValues="@array/recipient_vibrate_values"
-                    android:defaultValue="0"
-                    android:persistent="false"/>
+        <org.thoughtcrime.securesms.preferences.widgets.SignalPreference
+                            android:dependency="pref_key_recipient_mute"
+                            android:key="pref_key_recipient_ringtone"
+                            android:title="@string/recipient_preferences__notification_sound"
+                            android:persistent="false"/>
 
-    <org.thoughtcrime.securesms.preferences.ColorPreference
-            android:key="pref_key_recipient_color"
-            android:title="@string/recipient_preferences__color"
-            android:summary="@string/recipient_preferences__color_for_this_contact"
-            android:defaultValue="@android:color/black"
-            android:negativeButtonText="@null"
-            android:positiveButtonText="@null"
-            android:persistent="false"
-            app:numColumns="5" />
-
-    <Preference android:key="pref_key_recipient_identity"
-                android:title="@string/recipient_preferences__view_safety_number"
-                android:persistent="false"
-                android:enabled="false"/>
-
-    <Preference android:key="pref_key_recipient_block"
-                android:title="@string/recipient_preferences__block"
+        <org.thoughtcrime.securesms.preferences.widgets.SignalListPreference
+                android:dependency="pref_key_recipient_mute"
+                android:key="pref_key_recipient_vibrate"
+                android:title="@string/recipient_preferences__vibrate"
+                android:entries="@array/recipient_vibrate_entries"
+                android:entryValues="@array/recipient_vibrate_values"
+                android:defaultValue="0"
                 android:persistent="false"/>
 
+        <org.thoughtcrime.securesms.preferences.widgets.ColorPickerPreference
+                android:key="pref_key_recipient_color"
+                android:title="@string/recipient_preferences__color"
+                android:defaultValue="@android:color/black"
+                android:negativeButtonText="@null"
+                android:positiveButtonText="@null"
+                android:persistent="false"
+                app:numColumns="5" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:key="divider" android:layout="@layout/preference_divider"/>
+
+    <PreferenceCategory android:key="privacy_settings" android:title="@string/recipient_preferences__privacy">
+
+        <Preference android:key="pref_key_recipient_identity"
+                    android:title="@string/recipient_preferences__view_safety_number"
+                    android:persistent="false"
+                    android:enabled="false"/>
+
+        <Preference android:key="pref_key_recipient_block"
+                    android:title="@string/recipient_preferences__block"
+                    android:persistent="false"/>
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

@@ -23,19 +23,15 @@ import java.io.InputStream;
 public class PartDataSource implements DataSource {
 
   private final @NonNull  Context      context;
-  private final @NonNull  MasterSecret masterSecret;
   private final @Nullable TransferListener<? super PartDataSource> listener;
 
   private Uri         uri;
   private InputStream inputSteam;
 
-  public PartDataSource(@NonNull Context context,
-                        @NonNull MasterSecret masterSecret,
-                        @Nullable TransferListener<? super PartDataSource> listener)
+  public PartDataSource(@NonNull Context context, @Nullable TransferListener<? super PartDataSource> listener)
   {
-    this.context      = context.getApplicationContext();
-    this.masterSecret = masterSecret;
-    this.listener     = listener;
+    this.context  = context.getApplicationContext();
+    this.listener = listener;
   }
 
   @Override
@@ -44,11 +40,11 @@ public class PartDataSource implements DataSource {
 
     AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
     PartUriParser      partUri            = new PartUriParser(uri);
-    Attachment         attachment         = attachmentDatabase.getAttachment(masterSecret, partUri.getPartId());
+    Attachment         attachment         = attachmentDatabase.getAttachment(partUri.getPartId());
 
     if (attachment == null) throw new IOException("Attachment not found");
 
-    this.inputSteam = attachmentDatabase.getAttachmentStream(masterSecret, partUri.getPartId());
+    this.inputSteam = attachmentDatabase.getAttachmentStream(partUri.getPartId());
 
     if (inputSteam == null) throw new IOException("InputStream not foudn");
 

@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
@@ -10,11 +11,9 @@ import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MmsAddressDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
@@ -23,8 +22,6 @@ import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.VerifySpan;
@@ -38,18 +35,18 @@ import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
 
 public class ConfirmIdentityDialog extends AlertDialog {
 
+  @SuppressWarnings("unused")
   private static final String TAG = ConfirmIdentityDialog.class.getSimpleName();
 
   private OnClickListener callback;
 
   public ConfirmIdentityDialog(Context context,
-                               MasterSecret masterSecret,
                                MessageRecord messageRecord,
                                IdentityKeyMismatch mismatch)
   {
     super(context);
 
-      Recipient       recipient       = RecipientFactory.getRecipientFor(context, mismatch.getAddress(), false);
+      Recipient       recipient       = Recipient.from(context, mismatch.getAddress(), false);
       String          name            = recipient.toShortString();
       String          introduction    = String.format(context.getString(R.string.ConfirmIdentityDialog_your_safety_number_with_s_has_changed), name, name);
       SpannableString spannableString = new SpannableString(introduction + " " +
@@ -62,7 +59,7 @@ public class ConfirmIdentityDialog extends AlertDialog {
       setTitle(name);
       setMessage(spannableString);
 
-      setButton(AlertDialog.BUTTON_POSITIVE, context.getString(R.string.ConfirmIdentityDialog_accept), new AcceptListener(masterSecret, messageRecord, mismatch, recipient.getAddress()));
+      setButton(AlertDialog.BUTTON_POSITIVE, context.getString(R.string.ConfirmIdentityDialog_accept), new AcceptListener(messageRecord, mismatch, recipient.getAddress()));
       setButton(AlertDialog.BUTTON_NEGATIVE, context.getString(android.R.string.cancel),               new CancelListener());
   }
 
@@ -79,18 +76,17 @@ public class ConfirmIdentityDialog extends AlertDialog {
 
   private class AcceptListener implements OnClickListener {
 
-    private final MasterSecret        masterSecret;
     private final MessageRecord       messageRecord;
     private final IdentityKeyMismatch mismatch;
     private final Address             address;
 
-    private AcceptListener(MasterSecret masterSecret, MessageRecord messageRecord, IdentityKeyMismatch mismatch, Address address) {
-      this.masterSecret  = masterSecret;
+    private AcceptListener(MessageRecord messageRecord, IdentityKeyMismatch mismatch, Address address) {
       this.messageRecord = messageRecord;
       this.mismatch      = mismatch;
       this.address       = address;
     }
 
+    @SuppressLint("StaticFieldLeak")
     @Override
     public void onClick(DialogInterface dialog, int which) {
       new AsyncTask<Void, Void, Void>()
@@ -118,7 +114,7 @@ public class ConfirmIdentityDialog extends AlertDialog {
         private void processPendingMessageRecords(long threadId, IdentityKeyMismatch mismatch) {
           MmsSmsDatabase        mmsSmsDatabase = DatabaseFactory.getMmsSmsDatabase(getContext());
           Cursor                cursor         = mmsSmsDatabase.getIdentityConflictMessagesForThread(threadId);
-          MmsSmsDatabase.Reader reader         = mmsSmsDatabase.readerFor(cursor, masterSecret);
+          MmsSmsDatabase.Reader reader         = mmsSmsDatabase.readerFor(cursor);
           MessageRecord         record;
 
           try {
@@ -138,23 +134,23 @@ public class ConfirmIdentityDialog extends AlertDialog {
         private void processOutgoingMessageRecord(MessageRecord messageRecord) {
           SmsDatabase        smsDatabase        = DatabaseFactory.getSmsDatabase(getContext());
           MmsDatabase        mmsDatabase        = DatabaseFactory.getMmsDatabase(getContext());
-          MmsAddressDatabase mmsAddressDatabase = DatabaseFactory.getMmsAddressDatabase(getContext());
 
           if (messageRecord.isMms()) {
             mmsDatabase.removeMismatchedIdentity(messageRecord.getId(),
                                                  mismatch.getAddress(),
                                                  mismatch.getIdentityKey());
 
-            Recipients recipients = mmsAddressDatabase.getRecipientsForId(messageRecord.getId());
-
-            if (recipients.isGroupRecipient()) MessageSender.resendGroupMessage(getContext(), masterSecret, messageRecord, mismatch.getAddress());
-            else                               MessageSender.resend(getContext(), masterSecret, messageRecord);
+            if (messageRecord.getRecipient().isPushGroupRecipient()) {
+              MessageSender.resendGroupMessage(getContext(), messageRecord, mismatch.getAddress());
+            } else {
+              MessageSender.resend(getContext(), messageRecord);
+            }
           } else {
             smsDatabase.removeMismatchedIdentity(messageRecord.getId(),
                                                  mismatch.getAddress(),
                                                  mismatch.getIdentityKey());
 
-            MessageSender.resend(getContext(), masterSecret, messageRecord);
+            MessageSender.resend(getContext(), messageRecord);
           }
         }
 
@@ -173,8 +169,8 @@ public class ConfirmIdentityDialog extends AlertDialog {
                                                                        messageRecord.getIndividualRecipient().getAddress().toPhoneString(),
                                                                        messageRecord.getRecipientDeviceId(), "",
                                                                        messageRecord.getDateSent(),
-                                                                       legacy ? Base64.decode(messageRecord.getBody().getBody()) : null,
-                                                                       !legacy ? Base64.decode(messageRecord.getBody().getBody()) : null);
+                                                                       legacy ? Base64.decode(messageRecord.getBody()) : null,
+                                                                       !legacy ? Base64.decode(messageRecord.getBody()) : null);
 
             long pushId = pushDatabase.insert(envelope);
 
@@ -186,7 +182,7 @@ public class ConfirmIdentityDialog extends AlertDialog {
           }
         }
 
-      }.execute();
+      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
       if (callback != null) callback.onClick(null, 0);
     }

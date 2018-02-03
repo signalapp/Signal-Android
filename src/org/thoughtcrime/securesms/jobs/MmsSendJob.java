@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.CompatMmsConnection;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
@@ -33,11 +34,12 @@ import org.thoughtcrime.securesms.mms.MmsSendResult;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.NumberUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
@@ -74,10 +76,10 @@ public class MmsSendJob extends SendJob {
   @Override
   public void onSend(MasterSecret masterSecret) throws MmsException, NoSuchMessageException, IOException {
     MmsDatabase          database = DatabaseFactory.getMmsDatabase(context);
-    OutgoingMediaMessage message  = database.getOutgoingMessage(masterSecret, messageId);
+    OutgoingMediaMessage message  = database.getOutgoingMessage(messageId);
 
     try {
-      SendReq pdu = constructSendPdu(masterSecret, message);
+      SendReq pdu = constructSendPdu(message);
 
       validateDestinations(message, pdu);
 
@@ -166,21 +168,33 @@ public class MmsSendJob extends SendJob {
     }
   }
 
-  private SendReq constructSendPdu(MasterSecret masterSecret, OutgoingMediaMessage message)
+  private SendReq constructSendPdu(OutgoingMediaMessage message)
       throws UndeliverableMessageException
   {
     SendReq          req               = new SendReq();
-    String           lineNumber        = Utils.getMyPhoneNumber(context);
-    Address[]        numbers           = message.getRecipients().getAddresses();
+    String           lineNumber        = getMyNumber(context);
+    Address          destination       = message.getRecipient().getAddress();
     MediaConstraints mediaConstraints  = MediaConstraints.getMmsMediaConstraints(message.getSubscriptionId());
-    List<Attachment> scaledAttachments = scaleAttachments(masterSecret, mediaConstraints, message.getAttachments());
+    List<Attachment> scaledAttachments = scaleAttachments(mediaConstraints, message.getAttachments());
 
     if (!TextUtils.isEmpty(lineNumber)) {
       req.setFrom(new EncodedStringValue(lineNumber));
+    } else {
+      req.setFrom(new EncodedStringValue(TextSecurePreferences.getLocalNumber(context)));
     }
 
-    for (Address recipient : numbers) {
-      req.addTo(new EncodedStringValue(recipient.serialize()));
+    if (destination.isMmsGroup()) {
+      List<Recipient> members = DatabaseFactory.getGroupDatabase(context).getGroupMembers(destination.toGroupString(), false);
+
+      for (Recipient member : members) {
+        if (message.getDistributionType() == ThreadDatabase.DistributionTypes.BROADCAST) {
+          req.addBcc(new EncodedStringValue(member.getAddress().serialize()));
+        } else {
+          req.addTo(new EncodedStringValue(member.getAddress().serialize()));
+        }
+      }
+    } else {
+      req.addTo(new EncodedStringValue(destination.serialize()));
     }
 
     req.setDate(System.currentTimeMillis() / 1000);
@@ -227,7 +241,7 @@ public class MmsSendJob extends SendJob {
         int index = fileName.lastIndexOf(".");
         String contentId = (index == -1) ? fileName : fileName.substring(0, index);
         part.setContentId(contentId.getBytes());
-        part.setData(Util.readFully(PartAuthority.getAttachmentStream(context, masterSecret, attachment.getDataUri())));
+        part.setData(Util.readFully(PartAuthority.getAttachmentStream(context, attachment.getDataUri())));
 
         body.addPart(part);
         size += getPartSize(part);
@@ -266,11 +280,19 @@ public class MmsSendJob extends SendJob {
   }
 
   private void notifyMediaMessageDeliveryFailed(Context context, long messageId) {
-    long       threadId   = DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId);
-    Recipients recipients = DatabaseFactory.getThreadDatabase(context).getRecipientsForThreadId(threadId);
+    long      threadId  = DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId);
+    Recipient recipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId);
 
-    if (recipients != null) {
-      MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
+    if (recipient != null) {
+      MessageNotifier.notifyMessageDeliveryFailed(context, recipient, threadId);
+    }
+  }
+
+  private String getMyNumber(Context context) throws UndeliverableMessageException {
+    try {
+      return Utils.getMyPhoneNumber(context);
+    } catch (SecurityException e) {
+      throw new UndeliverableMessageException(e);
     }
   }
 }

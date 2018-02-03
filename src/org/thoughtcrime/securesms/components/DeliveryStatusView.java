@@ -22,6 +22,7 @@ public class DeliveryStatusView extends FrameLayout {
   private final ViewGroup pendingIndicatorStub;
   private final ImageView sentIndicator;
   private final ImageView deliveredIndicator;
+  private final ImageView readIndicator;
 
   public DeliveryStatusView(Context context) {
     this(context, null);
@@ -39,6 +40,7 @@ public class DeliveryStatusView extends FrameLayout {
     this.deliveredIndicator   = (ImageView) findViewById(R.id.delivered_indicator);
     this.sentIndicator        = (ImageView) findViewById(R.id.sent_indicator);
     this.pendingIndicatorStub = (ViewGroup) findViewById(R.id.pending_indicator_stub);
+    this.readIndicator        = (ImageView) findViewById(R.id.read_indicator);
 
     int iconColor = Color.GRAY;
 
@@ -71,6 +73,7 @@ public class DeliveryStatusView extends FrameLayout {
     pendingIndicatorStub.setVisibility(View.VISIBLE);
     sentIndicator.setVisibility(View.GONE);
     deliveredIndicator.setVisibility(View.GONE);
+    readIndicator.setVisibility(View.GONE);
   }
 
   public void setSent() {
@@ -78,6 +81,7 @@ public class DeliveryStatusView extends FrameLayout {
     pendingIndicatorStub.setVisibility(View.GONE);
     sentIndicator.setVisibility(View.VISIBLE);
     deliveredIndicator.setVisibility(View.GONE);
+    readIndicator.setVisibility(View.GONE);
   }
 
   public void setDelivered() {
@@ -85,5 +89,14 @@ public class DeliveryStatusView extends FrameLayout {
     pendingIndicatorStub.setVisibility(View.GONE);
     sentIndicator.setVisibility(View.GONE);
     deliveredIndicator.setVisibility(View.VISIBLE);
+    readIndicator.setVisibility(View.GONE);
+  }
+
+  public void setRead() {
+    this.setVisibility(View.VISIBLE);
+    pendingIndicatorStub.setVisibility(View.GONE);
+    sentIndicator.setVisibility(View.GONE);
+    deliveredIndicator.setVisibility(View.GONE);
+    readIndicator.setVisibility(View.VISIBLE);
   }
 }

@@ -11,7 +11,12 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.util.Util;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 public class MmsRadio {
+
+  private static final String TAG = MmsRadio.class.getSimpleName();
 
   private static MmsRadio instance;
 
@@ -52,8 +57,17 @@ public class MmsRadio {
 
     if (connectedCounter == 0) {
       Log.w("MmsRadio", "Turning off MMS radio...");
-      connectivityManager.stopUsingNetworkFeature(ConnectivityManager.TYPE_MOBILE, FEATURE_ENABLE_MMS);
-
+      try {
+        final Method stopUsingNetworkFeatureMethod = connectivityManager.getClass().getMethod("stopUsingNetworkFeature", Integer.TYPE, String.class);
+        stopUsingNetworkFeatureMethod.invoke(connectivityManager, ConnectivityManager.TYPE_MOBILE, FEATURE_ENABLE_MMS);
+      } catch (NoSuchMethodException nsme) {
+        Log.w(TAG, nsme);
+      } catch (IllegalAccessException iae) {
+        Log.w(TAG, iae);
+      } catch (InvocationTargetException ite) {
+        Log.w(TAG, ite);
+      }
+      
       if (connectivityListener != null) {
         Log.w("MmsRadio", "Unregistering receiver...");
         context.unregisterReceiver(connectivityListener);
@@ -63,8 +77,18 @@ public class MmsRadio {
   }
 
   public synchronized void connect() throws MmsRadioException {
-    int status = connectivityManager.startUsingNetworkFeature(ConnectivityManager.TYPE_MOBILE,
-                                                              FEATURE_ENABLE_MMS);
+    int status;
+
+    try {
+      final Method startUsingNetworkFeatureMethod = connectivityManager.getClass().getMethod("startUsingNetworkFeature", Integer.TYPE, String.class);
+      status = (int)startUsingNetworkFeatureMethod.invoke(connectivityManager, ConnectivityManager.TYPE_MOBILE, FEATURE_ENABLE_MMS);
+    } catch (NoSuchMethodException nsme) {
+      throw new MmsRadioException(nsme);
+    } catch (IllegalAccessException iae) {
+      throw new MmsRadioException(iae);
+    } catch (InvocationTargetException ite) {
+      throw new MmsRadioException(ite);
+    }
 
     Log.w("MmsRadio", "startUsingNetworkFeature status: " + status);
 

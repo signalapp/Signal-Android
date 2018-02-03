@@ -48,14 +48,24 @@ public class IncomingLegacyMmsConnection extends LegacyMmsConnection implements 
   }
 
   private HttpUriRequest constructRequest(Apn contentApn, boolean useProxy) throws IOException {
-    HttpGetHC4 request = new HttpGetHC4(contentApn.getMmsc());
+    HttpGetHC4 request;
+
+    try {
+      request = new HttpGetHC4(contentApn.getMmsc());
+    } catch (IllegalArgumentException e) {
+      // #7339
+      throw new IOException(e);
+    }
+
     for (Header header : getBaseHeaders()) {
       request.addHeader(header);
     }
+
     if (useProxy) {
       HttpHost proxy = new HttpHost(contentApn.getProxy(), contentApn.getPort());
       request.setConfig(RequestConfig.custom().setProxy(proxy).build());
     }
+
     return request;
   }
 

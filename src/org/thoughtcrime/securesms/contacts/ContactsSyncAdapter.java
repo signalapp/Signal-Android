@@ -8,7 +8,6 @@ import android.content.SyncResult;
 import android.os.Bundle;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -30,11 +29,21 @@ public class ContactsSyncAdapter extends AbstractThreadedSyncAdapter {
 
     if (TextSecurePreferences.isPushRegistered(getContext())) {
       try {
-        DirectoryHelper.refreshDirectory(getContext(), KeyCachingService.getMasterSecret(getContext()));
+        DirectoryHelper.refreshDirectory(getContext(), true);
       } catch (IOException e) {
         Log.w(TAG, e);
       }
     }
+  }
+
+  @Override
+  public void onSyncCanceled() {
+    Log.w(TAG, "onSyncCanceled()");
+  }
+
+  @Override
+  public void onSyncCanceled(Thread thread) {
+    Log.w(TAG, "onSyncCanceled(" + thread + ")");
   }
 
 }

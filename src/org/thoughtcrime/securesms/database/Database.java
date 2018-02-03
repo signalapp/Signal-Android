@@ -18,8 +18,9 @@ package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
+
+import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 
 import java.util.Set;
 
@@ -29,10 +30,10 @@ public abstract class Database {
   private   static final String CONVERSATION_URI      = "content://textsecure/thread/";
   private   static final String CONVERSATION_LIST_URI = "content://textsecure/conversation-list";
 
-  protected       SQLiteOpenHelper databaseHelper;
-  protected final Context context;
+  protected       SQLCipherOpenHelper databaseHelper;
+  protected final Context             context;
 
-  public Database(Context context, SQLiteOpenHelper databaseHelper) {
+  public Database(Context context, SQLCipherOpenHelper databaseHelper) {
     this.context        = context;
     this.databaseHelper = databaseHelper;
   }
@@ -58,7 +59,7 @@ public abstract class Database {
     cursor.setNotificationUri(context.getContentResolver(), Uri.parse(CONVERSATION_LIST_URI));
   }
 
-  public void reset(SQLiteOpenHelper databaseHelper) {
+  public void reset(SQLCipherOpenHelper databaseHelper) {
     this.databaseHelper = databaseHelper;
   }
 

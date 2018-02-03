@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2012 Moxie Marlinpsike
  *
  * This program is free software: you can redistribute it and/or modify
@@ -28,7 +28,6 @@ import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 
@@ -55,16 +54,17 @@ public abstract class MessageRecord extends DisplayRecord {
   private final long                      expiresIn;
   private final long                      expireStarted;
 
-  MessageRecord(Context context, long id, Body body, Recipients recipients,
+  MessageRecord(Context context, long id, String body, Recipient conversationRecipient,
                 Recipient individualRecipient, int recipientDeviceId,
                 long dateSent, long dateReceived, long threadId,
-                int deliveryStatus, int receiptCount, long type,
+                int deliveryStatus, int deliveryReceiptCount, long type,
                 List<IdentityKeyMismatch> mismatches,
                 List<NetworkFailure> networkFailures,
-                int subscriptionId, long expiresIn, long expireStarted)
+                int subscriptionId, long expiresIn, long expireStarted,
+                int readReceiptCount)
   {
-    super(context, body, recipients, dateSent, dateReceived, threadId, deliveryStatus, receiptCount,
-          type);
+    super(context, body, conversationRecipient, dateSent, dateReceived,
+          threadId, deliveryStatus, deliveryReceiptCount, type, readReceiptCount);
     this.id                  = id;
     this.individualRecipient = individualRecipient;
     this.recipientDeviceId   = recipientDeviceId;
@@ -86,16 +86,12 @@ public abstract class MessageRecord extends DisplayRecord {
     return MmsSmsColumns.Types.isLegacyType(type);
   }
 
-  public boolean isAsymmetricEncryption() {
-    return MmsSmsColumns.Types.isAsymmetricEncryption(type);
-  }
-
   @Override
   public SpannableString getDisplayBody() {
     if (isGroupUpdate() && isOutgoing()) {
       return emphasisAdded(context.getString(R.string.MessageRecord_you_updated_group));
     } else if (isGroupUpdate()) {
-      return emphasisAdded(GroupUtil.getDescription(context, getBody().getBody()).toString(getIndividualRecipient()));
+      return emphasisAdded(GroupUtil.getDescription(context, getBody()).toString(getIndividualRecipient()));
     } else if (isGroupQuit() && isOutgoing()) {
       return emphasisAdded(context.getString(R.string.MessageRecord_left_group));
     } else if (isGroupQuit()) {
@@ -120,11 +116,11 @@ public abstract class MessageRecord extends DisplayRecord {
     } else if (isIdentityDefault()) {
       if (isOutgoing()) return emphasisAdded(context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_unverified, getIndividualRecipient().toShortString()));
       else              return emphasisAdded(context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device, getIndividualRecipient().toShortString()));
-    } else if (getBody().getBody().length() > MAX_DISPLAY_LENGTH) {
-      return new SpannableString(getBody().getBody().substring(0, MAX_DISPLAY_LENGTH));
+    } else if (getBody().length() > MAX_DISPLAY_LENGTH) {
+      return new SpannableString(getBody().substring(0, MAX_DISPLAY_LENGTH));
     }
 
-    return new SpannableString(getBody().getBody());
+    return new SpannableString(getBody());
   }
 
   public long getId() {

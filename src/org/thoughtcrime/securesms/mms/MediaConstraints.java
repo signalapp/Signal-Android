@@ -38,10 +38,10 @@ public abstract class MediaConstraints {
   public abstract int getAudioMaxSize(Context context);
   public abstract int getDocumentMaxSize(Context context);
 
-  public boolean isSatisfied(@NonNull Context context, @NonNull MasterSecret masterSecret, @NonNull Attachment attachment) {
+  public boolean isSatisfied(@NonNull Context context, @NonNull Attachment attachment) {
     try {
-      return (MediaUtil.isGif(attachment)    && attachment.getSize() <= getGifMaxSize(context)   && isWithinBounds(context, masterSecret, attachment.getDataUri())) ||
-             (MediaUtil.isImage(attachment)  && attachment.getSize() <= getImageMaxSize(context) && isWithinBounds(context, masterSecret, attachment.getDataUri())) ||
+      return (MediaUtil.isGif(attachment)    && attachment.getSize() <= getGifMaxSize(context)   && isWithinBounds(context, attachment.getDataUri())) ||
+             (MediaUtil.isImage(attachment)  && attachment.getSize() <= getImageMaxSize(context) && isWithinBounds(context, attachment.getDataUri())) ||
              (MediaUtil.isAudio(attachment)  && attachment.getSize() <= getAudioMaxSize(context)) ||
              (MediaUtil.isVideo(attachment)  && attachment.getSize() <= getVideoMaxSize(context)) ||
              (MediaUtil.isFile(attachment) && attachment.getSize() <= getDocumentMaxSize(context));
@@ -51,9 +51,9 @@ public abstract class MediaConstraints {
     }
   }
 
-  private boolean isWithinBounds(Context context, MasterSecret masterSecret, Uri uri) throws IOException {
+  private boolean isWithinBounds(Context context, Uri uri) throws IOException {
     try {
-      InputStream is = PartAuthority.getAttachmentStream(context, masterSecret, uri);
+      InputStream is = PartAuthority.getAttachmentStream(context, uri);
       Pair<Integer, Integer> dimensions = BitmapUtil.getDimensions(is);
       return dimensions.first  > 0 && dimensions.first  <= getImageMaxWidth(context) &&
              dimensions.second > 0 && dimensions.second <= getImageMaxHeight(context);
@@ -66,9 +66,7 @@ public abstract class MediaConstraints {
     return attachment != null && MediaUtil.isImage(attachment) && !MediaUtil.isGif(attachment);
   }
 
-  public MediaStream getResizedMedia(@NonNull Context context,
-                                     @NonNull MasterSecret masterSecret,
-                                     @NonNull Attachment attachment)
+  public MediaStream getResizedMedia(@NonNull Context context, @NonNull Attachment attachment)
       throws IOException
   {
     if (!canResize(attachment)) {
@@ -77,7 +75,7 @@ public abstract class MediaConstraints {
 
     try {
       // XXX - This is loading everything into memory! We want the send path to be stream-like.
-      return new MediaStream(new ByteArrayInputStream(BitmapUtil.createScaledBytes(context, new DecryptableUri(masterSecret, attachment.getDataUri()), this)),
+      return new MediaStream(new ByteArrayInputStream(BitmapUtil.createScaledBytes(context, new DecryptableUri(attachment.getDataUri()), this)),
                              MediaUtil.IMAGE_JPEG);
     } catch (BitmapDecodingException e) {
       throw new IOException(e);

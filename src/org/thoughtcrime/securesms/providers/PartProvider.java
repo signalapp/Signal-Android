@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2011 Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -31,7 +31,6 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.mms.PartUriParser;
 import org.thoughtcrime.securesms.service.KeyCachingService;
@@ -71,10 +70,9 @@ public class PartProvider extends ContentProvider {
 
   @Override
   public ParcelFileDescriptor openFile(@NonNull Uri uri, @NonNull String mode) throws FileNotFoundException {
-    final MasterSecret masterSecret = KeyCachingService.getMasterSecret(getContext());
     Log.w(TAG, "openFile() called!");
 
-    if (masterSecret == null) {
+    if (KeyCachingService.isLocked(getContext())) {
       Log.w(TAG, "masterSecret was null, abandoning.");
       return null;
     }
@@ -84,7 +82,7 @@ public class PartProvider extends ContentProvider {
       Log.w(TAG, "Parting out a single row...");
       try {
         final PartUriParser partUri = new PartUriParser(uri);
-        return getParcelStreamForAttachment(masterSecret, partUri.getPartId());
+        return getParcelStreamForAttachment(partUri.getPartId());
       } catch (IOException ioe) {
         Log.w(TAG, ioe);
         throw new FileNotFoundException("Error opening file");
@@ -108,7 +106,7 @@ public class PartProvider extends ContentProvider {
       case SINGLE_ROW:
         PartUriParser      partUriParser = new PartUriParser(uri);
         DatabaseAttachment attachment    = DatabaseFactory.getAttachmentDatabase(getContext())
-                                                          .getAttachment(null, partUriParser.getPartId());
+                                                          .getAttachment(partUriParser.getPartId());
 
         if (attachment != null) {
           return attachment.getContentType();
@@ -127,14 +125,13 @@ public class PartProvider extends ContentProvider {
   @Override
   public Cursor query(@NonNull Uri url, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
     Log.w(TAG, "query() called: " + url);
-    MasterSecret masterSecret = KeyCachingService.getMasterSecret(getContext());
 
     if (projection == null || projection.length <= 0) return null;
 
     switch (uriMatcher.match(url)) {
       case SINGLE_ROW:
         PartUriParser      partUri      = new PartUriParser(url);
-        DatabaseAttachment attachment   = DatabaseFactory.getAttachmentDatabase(getContext()).getAttachment(masterSecret, partUri.getPartId());
+        DatabaseAttachment attachment   = DatabaseFactory.getAttachmentDatabase(getContext()).getAttachment(partUri.getPartId());
 
         if (attachment == null) return null;
 
@@ -160,11 +157,11 @@ public class PartProvider extends ContentProvider {
     return 0;
   }
 
-  private ParcelFileDescriptor getParcelStreamForAttachment(MasterSecret masterSecret, AttachmentId attachmentId) throws IOException {
-    long       plaintextLength = Util.getStreamLength(DatabaseFactory.getAttachmentDatabase(getContext()).getAttachmentStream(masterSecret, attachmentId));
+  private ParcelFileDescriptor getParcelStreamForAttachment(AttachmentId attachmentId) throws IOException {
+    long       plaintextLength = Util.getStreamLength(DatabaseFactory.getAttachmentDatabase(getContext()).getAttachmentStream(attachmentId));
     MemoryFile memoryFile      = new MemoryFile(attachmentId.toString(), Util.toIntExact(plaintextLength));
 
-    InputStream  in  = DatabaseFactory.getAttachmentDatabase(getContext()).getAttachmentStream(masterSecret, attachmentId);
+    InputStream  in  = DatabaseFactory.getAttachmentDatabase(getContext()).getAttachmentStream(attachmentId);
     OutputStream out = memoryFile.getOutputStream();
 
     Util.copy(in, out);

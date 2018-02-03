@@ -4,7 +4,6 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewCompat;
@@ -25,11 +24,11 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiDrawer;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
-import org.thoughtcrime.securesms.util.views.Stub;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
@@ -103,12 +102,7 @@ public class InputPanel extends LinearLayout
   public void setListener(final @NonNull Listener listener) {
     this.listener = listener;
 
-    emojiToggle.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        listener.onEmojiToggle();
-      }
-    });
+    emojiToggle.setOnClickListener(v -> listener.onEmojiToggle());
   }
 
   public void setMediaListener(@NonNull MediaListener listener) {
@@ -117,6 +111,11 @@ public class InputPanel extends LinearLayout
 
   public void setEmojiDrawer(@NonNull EmojiDrawer emojiDrawer) {
     emojiToggle.attach(emojiDrawer);
+  }
+
+  @Override
+  public void onRecordPermissionRequired() {
+    if (listener != null) listener.onRecorderPermissionRequired();
   }
 
   @Override
@@ -212,10 +211,11 @@ public class InputPanel extends LinearLayout
   }
 
   public interface Listener {
-    public void onRecorderStarted();
-    public void onRecorderFinished();
-    public void onRecorderCanceled();
-    public void onEmojiToggle();
+    void onRecorderStarted();
+    void onRecorderFinished();
+    void onRecorderCanceled();
+    void onRecorderPermissionRequired();
+    void onEmojiToggle();
   }
 
   private static class SlideToCancel {
@@ -288,9 +288,7 @@ public class InputPanel extends LinearLayout
   private static class RecordTime implements Runnable {
 
     private final TextView recordTimeView;
-
     private final AtomicLong startTime = new AtomicLong(0);
-    private final Handler    handler   = new Handler();
 
     private RecordTime(TextView recordTimeView) {
       this.recordTimeView = recordTimeView;
@@ -300,7 +298,7 @@ public class InputPanel extends LinearLayout
       this.startTime.set(System.currentTimeMillis());
       this.recordTimeView.setText(DateUtils.formatElapsedTime(0));
       ViewUtil.fadeIn(this.recordTimeView, FADE_TIME);
-      handler.postDelayed(this, TimeUnit.SECONDS.toMillis(1));
+      Util.runOnMainDelayed(this, TimeUnit.SECONDS.toMillis(1));
     }
 
     public long hide() {
@@ -316,7 +314,7 @@ public class InputPanel extends LinearLayout
       if (localStartTime > 0) {
         long elapsedTime = System.currentTimeMillis() - localStartTime;
         recordTimeView.setText(DateUtils.formatElapsedTime(TimeUnit.MILLISECONDS.toSeconds(elapsedTime)));
-        handler.postDelayed(this, TimeUnit.SECONDS.toMillis(1));
+        Util.runOnMainDelayed(this, TimeUnit.SECONDS.toMillis(1));
       }
     }
   }

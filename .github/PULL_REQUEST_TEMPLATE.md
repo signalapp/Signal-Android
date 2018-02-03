@@ -13,7 +13,6 @@
  * Virtual device W, Android Y.Y.Z
 - [ ] My contribution is fully baked and ready to be merged as is
 - [ ] I ensure that all the open issues my contribution fixes are mentioned in the commit message of my first commit using the `Fixes #1234` [syntax](https://help.github.com/articles/closing-issues-via-commit-messages/)
-- [ ] I have made the choice whether I want the [BitHub reward](https://github.com/WhisperSystems/Signal-Android/wiki/BitHub-Rewards) or not by omitting or adding the word `FREEBIE` in the commit message of my first commit
 
 ----------
 

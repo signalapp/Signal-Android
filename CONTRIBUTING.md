@@ -30,7 +30,7 @@ Please do not submit issues or pull requests for translation fixes. Anyone can u
 The main purpose of this issue tracker is to track bugs for the Android client. Relevant, concise and to the point comments that help to solve the issue are very welcome.
 
 ##### Send support questions to support
-Please do **not** ask support questions at the issue tracker. We want to help you using Signal and we have created our support system just for that. You can reach support by sending email to support@whispersystems.org or by going to our [Support Center](http://support.whispersystems.org). You can also search for existing troubleshooting articles at the [Support Center](http://support.whispersystems.org).
+Please do **not** ask support questions at the issue tracker. We want to help you using Signal and we have created our support system just for that. You can reach support by sending email to support@whispersystems.org or by going to our [Support Center](https://support.signal.org/). You can also search for existing troubleshooting articles at the [Support Center](https://support.signal.org/).
 
 ##### Not a discussion forum
 Please do **not** use this issue tracker as a discussion forum. Discussion related to the bug in question should of course go to the issue itself. However other discussion should take place at the [community forum](https://whispersystems.discoursehosting.net). You can use that forum to discuss any Signal related topics or to just hang out with your fellow users.
@@ -52,7 +52,7 @@ Please understand that writing detailed explanations every time for every issue 
 ## Pull requests
 
 ### Sign the Contributor Licence Agreement (CLA)
-You need to sign our CLA before your pull request can be merged. You can sign it at: https://whispersystems.org/cla/
+You need to sign our CLA before your pull request can be merged. You can sign it at: https://signal.org/cla/
 
 ### Follow the Code Style Guidelines
 Before submitting a pull request please check that your code adheres to the [Code Style Guidelines](https://github.com/WhisperSystems/Signal-Android/wiki/Code-Style-Guidelines).
@@ -66,14 +66,10 @@ Please do not try to change too much at once. Big changes are less likely to be 
 ### Merging can sometimes take a while
 If your pull request follows all the advice above but still has not been merged it usually means the developers haven't simply had the time to review it yet. We understand that this might feel frustrating. We are sorry!
 
-### Bithub
-Accepted pull requests will be rewarded with Bitcoins! After your pull request has been merged you will automatically receive an email to the address you have specified as your Git commit email. Follow the instructions in the email to claim your coins. If you wish to submit your contribution for free please add the word `FREEBIE` in your Git commit message. You may wish to explore some previously merged commits to see how it all works.
-
-
 ## How can I contribute?
 Anyone can help by
 - advising new people about the guidelines of this project
- - redirecting support questions to support@whispersystems.org and the [support site](https://support.whispersystems.org)
+ - redirecting support questions to support@whispersystems.org and the [support site](https://support.signal.org/)
  - redirecting non-bug related discussions to the [community forum](https://whispersystems.discoursehosting.net)
 - improving documentation in the [wiki](https://github.com/WhisperSystems/Signal-Android/wiki)
 - [translating](https://www.transifex.com/projects/p/signal-android/)
@@ -83,6 +79,6 @@ Anyone can help by
 - submitting pull requests
 - testing other people's pull requests
 - spreading the joy of Signal to your friends and family
-- donating money to our [BitHub](https://www.coinbase.com/checkouts/51dac699e660a4d773216b5ad94d6a0b) or through the [Freedom of the Press Foundation's donation page](https://freedom.press/crowdfunding/signal/)
+- donating money through the [Freedom of the Press Foundation's donation page](https://freedom.press/crowdfunding/signal/)
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/WhisperSystems/Signal-Android?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)

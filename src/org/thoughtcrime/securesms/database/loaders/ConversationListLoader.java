@@ -42,15 +42,22 @@ public class ConversationListLoader extends AbstractCursorLoader {
     if (archivedCount > 0) {
       MatrixCursor switchToArchiveCursor = new MatrixCursor(new String[] {
           ThreadDatabase.ID, ThreadDatabase.DATE, ThreadDatabase.MESSAGE_COUNT,
-          ThreadDatabase.ADDRESSES, ThreadDatabase.SNIPPET, ThreadDatabase.READ,
+          ThreadDatabase.ADDRESS, ThreadDatabase.SNIPPET, ThreadDatabase.READ, ThreadDatabase.UNREAD_COUNT,
           ThreadDatabase.TYPE, ThreadDatabase.SNIPPET_TYPE, ThreadDatabase.SNIPPET_URI,
-          ThreadDatabase.ARCHIVED, ThreadDatabase.STATUS, ThreadDatabase.RECEIPT_COUNT,
-          ThreadDatabase.EXPIRES_IN, ThreadDatabase.LAST_SEEN}, 1);
+          ThreadDatabase.ARCHIVED, ThreadDatabase.STATUS, ThreadDatabase.DELIVERY_RECEIPT_COUNT,
+          ThreadDatabase.EXPIRES_IN, ThreadDatabase.LAST_SEEN, ThreadDatabase.READ_RECEIPT_COUNT}, 1);
+
+
+      if (cursorList.get(0).getCount() <= 0) {
+        switchToArchiveCursor.addRow(new Object[] {-1L, System.currentTimeMillis(), archivedCount,
+                                                   "-1", null, 1, 0, ThreadDatabase.DistributionTypes.INBOX_ZERO,
+                                                   0, null, 0, -1, 0, 0, 0, -1});
+      }
 
       switchToArchiveCursor.addRow(new Object[] {-1L, System.currentTimeMillis(), archivedCount,
-                                                 "-1", null, 1, ThreadDatabase.DistributionTypes.ARCHIVE,
-                                                 0, null, 0, -1, 0, 0, 0});
-      
+                                                 "-1", null, 1, 0, ThreadDatabase.DistributionTypes.ARCHIVE,
+                                                 0, null, 0, -1, 0, 0, 0, -1});
+
       cursorList.add(switchToArchiveCursor);
     }
 

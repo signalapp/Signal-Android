@@ -8,16 +8,12 @@ import android.graphics.BitmapRegionDecoder;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.net.Uri;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.util.Log;
 
 import com.davemorrissey.labs.subscaleview.decoder.ImageRegionDecoder;
 import com.davemorrissey.labs.subscaleview.decoder.SkiaImageRegionDecoder;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.PartAuthority;
-import org.thoughtcrime.securesms.service.KeyCachingService;
 
 import java.io.InputStream;
 
@@ -29,7 +25,6 @@ public class AttachmentRegionDecoder implements ImageRegionDecoder {
 
   private BitmapRegionDecoder bitmapRegionDecoder;
 
-  @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD_MR1)
   @Override
   public Point init(Context context, Uri uri) throws Exception {
     Log.w(TAG, "Init!");
@@ -38,13 +33,7 @@ public class AttachmentRegionDecoder implements ImageRegionDecoder {
       return passthrough.init(context, uri);
     }
 
-    MasterSecret masterSecret = KeyCachingService.getMasterSecret(context);
-
-    if (masterSecret == null) {
-      throw new IllegalStateException("No master secret available...");
-    }
-
-    InputStream inputStream = PartAuthority.getAttachmentStream(context, masterSecret, uri);
+    InputStream inputStream = PartAuthority.getAttachmentStream(context, uri);
 
     this.bitmapRegionDecoder = BitmapRegionDecoder.newInstance(inputStream, false);
     inputStream.close();
@@ -52,7 +41,6 @@ public class AttachmentRegionDecoder implements ImageRegionDecoder {
     return new Point(bitmapRegionDecoder.getWidth(), bitmapRegionDecoder.getHeight());
   }
 
-  @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD_MR1)
   @Override
   public Bitmap decodeRegion(Rect rect, int sampleSize) {
     Log.w(TAG, "Decode region: " + rect);
@@ -76,14 +64,12 @@ public class AttachmentRegionDecoder implements ImageRegionDecoder {
     }
   }
 
-  @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD_MR1)
   public boolean isReady() {
     Log.w(TAG, "isReady");
     return (passthrough != null && passthrough.isReady()) ||
            (bitmapRegionDecoder != null && !bitmapRegionDecoder.isRecycled());
   }
 
-  @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD_MR1)
   public void recycle() {
     if (passthrough != null) {
       passthrough.recycle();

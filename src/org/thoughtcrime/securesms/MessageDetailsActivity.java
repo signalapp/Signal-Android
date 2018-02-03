@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2015 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.drawable.ColorDrawable;
@@ -34,49 +35,48 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.thoughtcrime.securesms.MessageDetailsRecipientAdapter.RecipientDeliveryStatus;
 import org.thoughtcrime.securesms.color.MaterialColor;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
+import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
+import org.thoughtcrime.securesms.database.GroupReceiptDatabase.GroupReceiptInfo;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.loaders.MessageDetailsLoader;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
 
-import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Locale;
 
 /**
  * @author Jake McGinty
  */
-public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity implements LoaderCallbacks<Cursor>, Recipients.RecipientsModifiedListener {
+public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity implements LoaderCallbacks<Cursor>, RecipientModifiedListener {
   private final static String TAG = MessageDetailsActivity.class.getSimpleName();
 
-  public final static String MASTER_SECRET_EXTRA  = "master_secret";
   public final static String MESSAGE_ID_EXTRA     = "message_id";
   public final static String THREAD_ID_EXTRA      = "thread_id";
   public final static String IS_PUSH_GROUP_EXTRA  = "is_push_group";
   public final static String TYPE_EXTRA           = "type";
-  public final static String ADDRESSES_EXTRA      = "addresses";
+  public final static String ADDRESS_EXTRA        = "address";
 
-  private MasterSecret     masterSecret;
+  private GlideRequests    glideRequests;
   private long             threadId;
   private boolean          isPushGroup;
   private ConversationItem conversationItem;
@@ -105,7 +105,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   }
 
   @Override
-  public void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
+  public void onCreate(Bundle bundle, boolean ready) {
     setContentView(R.layout.message_details_activity);
     running = true;
 
@@ -119,6 +119,8 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     super.onResume();
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
+
+    assert getSupportActionBar() != null;
     getSupportActionBar().setTitle(R.string.AndroidManifest__message_details);
 
     MessageNotifier.setVisibleThread(threadId);
@@ -137,15 +139,17 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   }
 
   private void initializeActionBar() {
+    assert getSupportActionBar() != null;
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-    Recipients recipients = RecipientFactory.getRecipientsFor(this, Address.fromParcelable(getIntent().getParcelableArrayExtra(ADDRESSES_EXTRA)), true);
-    recipients.addListener(this);
+    Recipient recipient = Recipient.from(this, getIntent().getParcelableExtra(ADDRESS_EXTRA), true);
+    recipient.addListener(this);
 
-    setActionBarColor(recipients.getColor());
+    setActionBarColor(recipient.getColor());
   }
 
   private void setActionBarColor(MaterialColor color) {
+    assert getSupportActionBar() != null;
     getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color.toActionBarColor(this)));
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -154,33 +158,28 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   }
 
   @Override
-  public void onModified(final Recipients recipients) {
-    Util.runOnMain(new Runnable() {
-      @Override
-      public void run() {
-        setActionBarColor(recipients.getColor());
-      }
-    });
+  public void onModified(final Recipient recipient) {
+    Util.runOnMain(() -> setActionBarColor(recipient.getColor()));
   }
 
   private void initializeResources() {
     inflater       = LayoutInflater.from(this);
     View header = inflater.inflate(R.layout.message_details_header, recipientsList, false);
 
-    masterSecret      = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
     threadId          = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
     isPushGroup       = getIntent().getBooleanExtra(IS_PUSH_GROUP_EXTRA, false);
-    itemParent        = (ViewGroup) header.findViewById(R.id.item_container);
-    recipientsList    = (ListView ) findViewById(R.id.recipients_list);
-    metadataContainer =             header.findViewById(R.id.metadata_container);
-    errorText         = (TextView ) header.findViewById(R.id.error_text);
-    sentDate          = (TextView ) header.findViewById(R.id.sent_time);
-    receivedContainer =             header.findViewById(R.id.received_container);
-    receivedDate      = (TextView ) header.findViewById(R.id.received_time);
-    transport         = (TextView ) header.findViewById(R.id.transport);
-    toFrom            = (TextView ) header.findViewById(R.id.tofrom);
-    expiresContainer  =             header.findViewById(R.id.expires_container);
-    expiresInText     = (TextView)  header.findViewById(R.id.expires_in);
+    glideRequests     = GlideApp.with(this);
+    itemParent        = header.findViewById(R.id.item_container);
+    recipientsList    = findViewById(R.id.recipients_list);
+    metadataContainer = header.findViewById(R.id.metadata_container);
+    errorText         = header.findViewById(R.id.error_text);
+    sentDate          = header.findViewById(R.id.sent_time);
+    receivedContainer = header.findViewById(R.id.received_container);
+    receivedDate      = header.findViewById(R.id.received_time);
+    transport         = header.findViewById(R.id.transport);
+    toFrom            = header.findViewById(R.id.tofrom);
+    expiresContainer  = header.findViewById(R.id.expires_container);
+    expiresInText     = header.findViewById(R.id.expires_in);
     recipientsList.setHeaderDividersEnabled(false);
     recipientsList.addHeaderView(header, null, false);
   }
@@ -227,7 +226,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     }
 
     expiresContainer.setVisibility(View.VISIBLE);
-    expiresInText.post(new Runnable() {
+    Util.runOnMain(new Runnable() {
       @Override
       public void run() {
         long elapsed   = System.currentTimeMillis() - messageRecord.getExpireStarted();
@@ -237,13 +236,13 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
         expiresInText.setText(duration);
 
         if (running) {
-          expiresInText.postDelayed(this, 500);
+          Util.runOnMainDelayed(this, 500);
         }
       }
     });
   }
 
-  private void updateRecipients(MessageRecord messageRecord, Recipients recipients) {
+  private void updateRecipients(MessageRecord messageRecord, Recipient recipient, List<RecipientDeliveryStatus> recipients) {
     final int toFromRes;
     if (messageRecord.isMms() && !messageRecord.isPush() && !messageRecord.isOutgoing()) {
       toFromRes = R.string.message_details_header__with;
@@ -253,10 +252,8 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
       toFromRes = R.string.message_details_header__from;
     }
     toFrom.setText(toFromRes);
-    conversationItem.bind(masterSecret, messageRecord, dynamicLanguage.getCurrentLocale(),
-                         new HashSet<MessageRecord>(), recipients);
-    recipientsList.setAdapter(new MessageDetailsRecipientAdapter(this, masterSecret, messageRecord,
-                                                                 recipients, isPushGroup));
+    conversationItem.bind(messageRecord, glideRequests, dynamicLanguage.getCurrentLocale(), new HashSet<>(), recipient);
+    recipientsList.setAdapter(new MessageDetailsRecipientAdapter(this, glideRequests, messageRecord, recipients, isPushGroup));
   }
 
   private void inflateMessageViewIfAbsent(MessageRecord messageRecord) {
@@ -275,12 +272,12 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   private @Nullable MessageRecord getMessageRecord(Context context, Cursor cursor, String type) {
     switch (type) {
       case MmsSmsDatabase.SMS_TRANSPORT:
-        EncryptingSmsDatabase smsDatabase = DatabaseFactory.getEncryptingSmsDatabase(context);
-        SmsDatabase.Reader    reader      = smsDatabase.readerFor(masterSecret, cursor);
+        SmsDatabase        smsDatabase = DatabaseFactory.getSmsDatabase(context);
+        SmsDatabase.Reader reader      = smsDatabase.readerFor(cursor);
         return reader.getNext();
       case MmsSmsDatabase.MMS_TRANSPORT:
         MmsDatabase        mmsDatabase = DatabaseFactory.getMmsDatabase(context);
-        MmsDatabase.Reader mmsReader   = mmsDatabase.readerFor(masterSecret, cursor);
+        MmsDatabase.Reader mmsReader   = mmsDatabase.readerFor(cursor);
         return mmsReader.getNext();
       default:
         throw new AssertionError("no valid message type specified");
@@ -301,7 +298,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     if (messageRecord == null) {
       finish();
     } else {
-      new MessageRecipientAsyncTask(this, messageRecord).execute();
+      new MessageRecipientAsyncTask(this, messageRecord).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
   }
 
@@ -321,11 +318,13 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     return false;
   }
 
-  private class MessageRecipientAsyncTask extends AsyncTask<Void,Void,Recipients> {
-    private WeakReference<Context> weakContext;
-    private MessageRecord          messageRecord;
+  @SuppressLint("StaticFieldLeak")
+  private class MessageRecipientAsyncTask extends AsyncTask<Void,Void,List<RecipientDeliveryStatus>> {
 
-    public MessageRecipientAsyncTask(@NonNull  Context context, @NonNull MessageRecord messageRecord) {
+    private final WeakReference<Context> weakContext;
+    private final MessageRecord          messageRecord;
+
+    MessageRecipientAsyncTask(@NonNull Context context, @NonNull MessageRecord messageRecord) {
       this.weakContext   = new WeakReference<>(context);
       this.messageRecord = messageRecord;
     }
@@ -335,33 +334,33 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     }
 
     @Override
-    public Recipients doInBackground(Void... voids) {
+    public List<RecipientDeliveryStatus> doInBackground(Void... voids) {
       Context context = getContext();
+
       if (context == null) {
         Log.w(TAG, "associated context is destroyed, finishing early");
         return null;
       }
 
-      Recipients recipients;
+      List<RecipientDeliveryStatus> recipients = new LinkedList<>();
 
-      final Recipients intermediaryRecipients;
-      if (messageRecord.isMms()) {
-        intermediaryRecipients = DatabaseFactory.getMmsAddressDatabase(context).getRecipientsForId(messageRecord.getId());
+      if (!messageRecord.getRecipient().isGroupRecipient()) {
+        recipients.add(new RecipientDeliveryStatus(messageRecord.getRecipient(), getStatusFor(messageRecord.getDeliveryReceiptCount(), messageRecord.getReadReceiptCount(), messageRecord.isPending()), -1));
       } else {
-        intermediaryRecipients = messageRecord.getRecipients();
-      }
+        List<GroupReceiptInfo> receiptInfoList = DatabaseFactory.getGroupReceiptDatabase(context).getGroupReceiptInfo(messageRecord.getId());
 
-      if (!intermediaryRecipients.isGroupRecipient()) {
-        Log.w(TAG, "Recipient is not a group, resolving members immediately.");
-        recipients = intermediaryRecipients;
-      } else {
-        try {
-          Address groupId = intermediaryRecipients.getPrimaryRecipient().getAddress();
-          recipients = DatabaseFactory.getGroupDatabase(context)
-                                      .getGroupMembers(GroupUtil.getDecodedId(groupId.toGroupString()), false);
-        } catch (IOException e) {
-          Log.w(TAG, e);
-          recipients = RecipientFactory.getRecipientsFor(MessageDetailsActivity.this, new LinkedList<Recipient>(), false);
+        if (receiptInfoList.isEmpty()) {
+          List<Recipient> group = DatabaseFactory.getGroupDatabase(context).getGroupMembers(messageRecord.getRecipient().getAddress().toGroupString(), false);
+
+          for (Recipient recipient : group) {
+            recipients.add(new RecipientDeliveryStatus(recipient, RecipientDeliveryStatus.Status.UNKNOWN, -1));
+          }
+        } else {
+          for (GroupReceiptInfo info : receiptInfoList) {
+            recipients.add(new RecipientDeliveryStatus(Recipient.from(context, info.getAddress(), true),
+                                                       getStatusFor(info.getStatus(), messageRecord.isPending()),
+                                                       info.getTimestamp()));
+          }
         }
       }
 
@@ -369,7 +368,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     }
 
     @Override
-    public void onPostExecute(Recipients recipients) {
+    public void onPostExecute(List<RecipientDeliveryStatus> recipients) {
       if (getContext() == null) {
         Log.w(TAG, "AsyncTask finished with a destroyed context, leaving early.");
         return;
@@ -377,7 +376,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
 
       inflateMessageViewIfAbsent(messageRecord);
 
-      updateRecipients(messageRecord, recipients);
+      updateRecipients(messageRecord, messageRecord.getRecipient(), recipients);
       if (messageRecord.isFailed()) {
         errorText.setVisibility(View.VISIBLE);
         metadataContainer.setVisibility(View.GONE);
@@ -389,5 +388,22 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
         metadataContainer.setVisibility(View.VISIBLE);
       }
     }
+
+    private RecipientDeliveryStatus.Status getStatusFor(int deliveryReceiptCount, int readReceiptCount, boolean pending) {
+      if      (readReceiptCount > 0)     return RecipientDeliveryStatus.Status.READ;
+      else if (deliveryReceiptCount > 0) return RecipientDeliveryStatus.Status.DELIVERED;
+      else if (!pending)                 return RecipientDeliveryStatus.Status.SENT;
+      else                               return RecipientDeliveryStatus.Status.PENDING;
+    }
+
+    private RecipientDeliveryStatus.Status getStatusFor(int groupStatus, boolean pending) {
+      if      (groupStatus == GroupReceiptDatabase.STATUS_READ)                    return RecipientDeliveryStatus.Status.READ;
+      else if (groupStatus == GroupReceiptDatabase.STATUS_DELIVERED)               return RecipientDeliveryStatus.Status.DELIVERED;
+      else if (groupStatus == GroupReceiptDatabase.STATUS_UNDELIVERED && !pending) return RecipientDeliveryStatus.Status.SENT;
+      else if (groupStatus == GroupReceiptDatabase.STATUS_UNDELIVERED)             return RecipientDeliveryStatus.Status.PENDING;
+      else if (groupStatus == GroupReceiptDatabase.STATUS_UNKNOWN)                 return RecipientDeliveryStatus.Status.UNKNOWN;
+      throw new AssertionError();
+    }
+
   }
 }

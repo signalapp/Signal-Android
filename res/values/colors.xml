@@ -23,25 +23,10 @@
     <color name="gray78">#ff383838</color>
     <color name="gray95">#ff111111</color>
 
-    <color name="gray95_transparent50">#7F111111</color>
-
     <color name="conversation_compose_divider">#32000000</color>
 
-    <color name="conversation_list_item_background_read_light">@color/gray5</color>
-    <color name="conversation_list_item_background_unread_light">#ffffffff</color>
-    <color name="conversation_list_item_background_read_dark">#ff000000</color>
-    <color name="conversation_list_item_background_unread_dark">#ff333333</color>
-
-    <color name="conversation_list_divider_light">#15000000</color>
-    <color name="conversation_list_divider_dark">#22ffffff</color>
-
-    <color name="textsecure_holo_blue_light">#ff33b5e5</color>
-
-    <color name="dark_action_bar">#ff111111</color>
     <color name="action_mode_status_bar">#ff1f1f1f</color>
     <color name="touch_highlight">#400099cc</color>
-    <color name="light_button">#33ffffff</color>
-    <color name="light_button_highlight">#66ffffff</color>
 
     <color name="device_link_item_background_light">#ffffffff</color>
     <color name="device_link_item_background_dark">#ff333333</color>

@@ -33,24 +33,15 @@ If you're new to the Signal codebase, we recommend going through our issues and 
 
 For larger changes and feature ideas, we ask that you propose it on the [unofficial Community Forum](https://whispersystems.discoursehosting.net) for a high-level discussion with the wider community before implementation.
 
-This repository is set up with [BitHub](https://whispersystems.org/blog/bithub/), so you can make money for committing to Signal. The current BitHub price for an accepted pull request is:
-
-[![Current BitHub Price](https://bithub.herokuapp.com/v1/status/payment/commit/)](https://whispersystems.org/blog/bithub/)
-
 ## Contributing Ideas
 Have something you want to say about Open Whisper Systems projects or want to be part of the conversation? Get involved in the [community forum](https://whispersystems.discoursehosting.net).
-
-## Contributing Funds
-[![Donate](https://cloud.githubusercontent.com/assets/3121306/11278543/d46e03d0-8eeb-11e5-9691-0da1bf643192.png)](https://www.coinbase.com/checkouts/51dac699e660a4d773216b5ad94d6a0b)
-
-You can add funds to BitHub to directly help further development efforts.
 
 Help
 ====
 ## Support
 For troubleshooting and questions, please visit our support center!
 
-https://support.whispersystems.org/
+https://support.signal.org/
 
 ## Documentation
 Looking for documentation? Check out the wiki!

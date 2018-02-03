@@ -1,5 +1,5 @@
-/**
- * Copyright (C) 2013 Open Whisper Systems
+/*
+ * Copyright (C) 2013-2017 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms.contacts;
 
+import android.Manifest;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.MatrixCursor;
@@ -29,10 +30,11 @@ import android.util.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.DirectoryHelper;
-import org.thoughtcrime.securesms.util.DirectoryHelper.UserCapabilities.Capability;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.permissions.Permissions;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.NumberUtil;
 
 import java.util.ArrayList;
@@ -46,71 +48,93 @@ public class ContactsCursorLoader extends CursorLoader {
 
   private static final String TAG = ContactsCursorLoader.class.getSimpleName();
 
-  public final static int MODE_ALL       = 0;
-  public final static int MODE_PUSH_ONLY = 1;
-  public final static int MODE_SMS_ONLY  = 2;
+  public static final int MODE_ALL       = 0;
+  public static final int MODE_PUSH_ONLY = 1;
+  public static final int MODE_SMS_ONLY  = 2;
 
-  private final String filter;
-  private final int    mode;
+  private static final String[] CONTACT_PROJECTION = new String[]{ContactsDatabase.NAME_COLUMN,
+                                                                  ContactsDatabase.NUMBER_COLUMN,
+                                                                  ContactsDatabase.NUMBER_TYPE_COLUMN,
+                                                                  ContactsDatabase.LABEL_COLUMN,
+                                                                  ContactsDatabase.CONTACT_TYPE_COLUMN};
 
-  public ContactsCursorLoader(Context context, int mode, String filter) {
+
+  private final String       filter;
+  private final int          mode;
+  private final boolean      recents;
+
+  public ContactsCursorLoader(@NonNull Context context, int mode, String filter, boolean recents)
+  {
     super(context);
 
-    this.filter = filter;
-    this.mode   = mode;
+    this.filter       = filter;
+    this.mode         = mode;
+    this.recents      = recents;
   }
 
   @Override
   public Cursor loadInBackground() {
     ContactsDatabase  contactsDatabase = DatabaseFactory.getContactsDatabase(getContext());
-    ArrayList<Cursor> cursorList       = new ArrayList<>(3);
+    ThreadDatabase    threadDatabase   = DatabaseFactory.getThreadDatabase(getContext());
+    ArrayList<Cursor> cursorList       = new ArrayList<>(4);
 
-    if (mode != MODE_SMS_ONLY) {
-      cursorList.add(contactsDatabase.queryTextSecureContacts(filter));
+    if (recents && TextUtils.isEmpty(filter)) {
+      try (Cursor recentConversations = DatabaseFactory.getThreadDatabase(getContext()).getRecentConversationList(5)) {
+        MatrixCursor          synthesizedContacts = new MatrixCursor(CONTACT_PROJECTION);
+        synthesizedContacts.addRow(new Object[] {getContext().getString(R.string.ContactsCursorLoader_recent_chats), "", ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE, "", ContactsDatabase.DIVIDER_TYPE});
+
+        ThreadDatabase.Reader reader = threadDatabase.readerFor(recentConversations);
+
+        ThreadRecord threadRecord;
+
+        while ((threadRecord = reader.getNext()) != null) {
+          synthesizedContacts.addRow(new Object[] {threadRecord.getRecipient().toShortString(),
+                                                   threadRecord.getRecipient().getAddress().serialize(),
+                                                   ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
+                                                   "", ContactsDatabase.RECENT_TYPE});
+        }
+
+        synthesizedContacts.addRow(new Object[] {getContext().getString(R.string.ContactsCursorLoader_contacts), "", ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE, "", ContactsDatabase.DIVIDER_TYPE});
+        if (synthesizedContacts.getCount() > 2) cursorList.add(synthesizedContacts);
+      }
     }
 
-    if (mode == MODE_ALL) {
-      cursorList.add(contactsDatabase.querySystemContacts(filter));
-    } else if (mode == MODE_SMS_ONLY) {
-      cursorList.add(filterNonPushContacts(contactsDatabase.querySystemContacts(filter)));
+    if (Permissions.hasAny(getContext(), Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)) {
+      if (mode != MODE_SMS_ONLY) {
+        cursorList.add(contactsDatabase.queryTextSecureContacts(filter));
+      }
+
+      if (mode == MODE_ALL) {
+        cursorList.add(contactsDatabase.querySystemContacts(filter));
+      } else if (mode == MODE_SMS_ONLY) {
+        cursorList.add(filterNonPushContacts(contactsDatabase.querySystemContacts(filter)));
+      }
     }
 
     if (!TextUtils.isEmpty(filter) && NumberUtil.isValidSmsOrEmail(filter)) {
-      MatrixCursor newNumberCursor = new MatrixCursor(new String[] {ContactsDatabase.ID_COLUMN,
-                                                                    ContactsDatabase.NAME_COLUMN,
-                                                                    ContactsDatabase.NUMBER_COLUMN,
-                                                                    ContactsDatabase.NUMBER_TYPE_COLUMN,
-                                                                    ContactsDatabase.LABEL_COLUMN,
-                                                                    ContactsDatabase.CONTACT_TYPE_COLUMN}, 1);
+      MatrixCursor newNumberCursor = new MatrixCursor(CONTACT_PROJECTION, 1);
 
-      newNumberCursor.addRow(new Object[] {-1L, getContext().getString(R.string.contact_selection_list__unknown_contact),
+      newNumberCursor.addRow(new Object[] {getContext().getString(R.string.contact_selection_list__unknown_contact),
                                            filter, ContactsContract.CommonDataKinds.Phone.TYPE_CUSTOM,
                                            "\u21e2", ContactsDatabase.NEW_TYPE});
 
       cursorList.add(newNumberCursor);
     }
 
-    return new MergeCursor(cursorList.toArray(new Cursor[0]));
+    if (cursorList.size() > 0) return new MergeCursor(cursorList.toArray(new Cursor[0]));
+    else                       return null;
   }
 
   private @NonNull Cursor filterNonPushContacts(@NonNull Cursor cursor) {
     try {
       final long startMillis = System.currentTimeMillis();
-      final MatrixCursor matrix = new MatrixCursor(new String[]{ContactsDatabase.ID_COLUMN,
-                                                                ContactsDatabase.NAME_COLUMN,
-                                                                ContactsDatabase.NUMBER_COLUMN,
-                                                                ContactsDatabase.NUMBER_TYPE_COLUMN,
-                                                                ContactsDatabase.LABEL_COLUMN,
-                                                                ContactsDatabase.CONTACT_TYPE_COLUMN});
+      final MatrixCursor matrix = new MatrixCursor(CONTACT_PROJECTION);
       while (cursor.moveToNext()) {
-        final String     number     = cursor.getString(cursor.getColumnIndexOrThrow(ContactsDatabase.NUMBER_COLUMN));
-        final Recipients recipients = RecipientFactory.getRecipientsFor(getContext(), new Address[]{Address.fromExternal(getContext(), number)}, true);
+        final String    number    = cursor.getString(cursor.getColumnIndexOrThrow(ContactsDatabase.NUMBER_COLUMN));
+        final Recipient recipient = Recipient.from(getContext(), Address.fromExternal(getContext(), number), false);
 
-        if (DirectoryHelper.getUserCapabilities(getContext(), recipients)
-                           .getTextCapability() != Capability.SUPPORTED)
-        {
-          matrix.addRow(new Object[]{cursor.getLong(cursor.getColumnIndexOrThrow(ContactsDatabase.ID_COLUMN)),
-                                     cursor.getString(cursor.getColumnIndexOrThrow(ContactsDatabase.NAME_COLUMN)),
+        if (recipient.resolve().getRegistered() != RecipientDatabase.RegisteredState.REGISTERED) {
+          matrix.addRow(new Object[]{cursor.getString(cursor.getColumnIndexOrThrow(ContactsDatabase.NAME_COLUMN)),
                                      number,
                                      cursor.getString(cursor.getColumnIndexOrThrow(ContactsDatabase.NUMBER_TYPE_COLUMN)),
                                      cursor.getString(cursor.getColumnIndexOrThrow(ContactsDatabase.LABEL_COLUMN)),

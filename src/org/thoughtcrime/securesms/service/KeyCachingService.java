@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2011 Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms.service;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.AlarmManager;
 import android.app.Notification;
@@ -33,7 +34,6 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.RemoteViews;
 
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.DatabaseUpgradeActivity;
 import org.thoughtcrime.securesms.DummyActivity;
@@ -41,9 +41,9 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
-import org.thoughtcrime.securesms.jobs.MasterSecretDecryptJob;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
+import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.concurrent.TimeUnit;
@@ -78,6 +78,10 @@ public class KeyCachingService extends Service {
 
   public KeyCachingService() {}
 
+  public static synchronized boolean isLocked(Context context) {
+    return getMasterSecret(context) == null;
+  }
+
   public static synchronized @Nullable MasterSecret getMasterSecret(Context context) {
     if (masterSecret == null && TextSecurePreferences.isPasswordDisabled(context)) {
       try {
@@ -95,6 +99,7 @@ public class KeyCachingService extends Service {
     return masterSecret;
   }
 
+  @SuppressLint("StaticFieldLeak")
   public void setMasterSecret(final MasterSecret masterSecret) {
     synchronized (KeyCachingService.class) {
       KeyCachingService.masterSecret = masterSecret;
@@ -102,20 +107,16 @@ public class KeyCachingService extends Service {
       foregroundService();
       broadcastNewSecret();
       startTimeoutIfAppropriate();
-
-      if (!TextSecurePreferences.isPasswordDisabled(this)) {
-        ApplicationContext.getInstance(this).getJobManager().add(new MasterSecretDecryptJob(this));
-      }
-
+      
       new AsyncTask<Void, Void, Void>() {
         @Override
         protected Void doInBackground(Void... params) {
           if (!DatabaseUpgradeActivity.isUpdate(KeyCachingService.this)) {
-            MessageNotifier.updateNotification(KeyCachingService.this, masterSecret);
+            MessageNotifier.updateNotification(KeyCachingService.this);
           }
           return null;
         }
-      }.execute();
+      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
   }
 
@@ -176,7 +177,7 @@ public class KeyCachingService extends Service {
   private void handleActivityStarted() {
     Log.w("KeyCachingService", "Incrementing activity count...");
 
-    AlarmManager alarmManager = (AlarmManager)this.getSystemService(ALARM_SERVICE);
+    AlarmManager alarmManager = ServiceUtil.getAlarmManager(this);
     alarmManager.cancel(pending);
     activitiesRunning++;
   }
@@ -188,6 +189,7 @@ public class KeyCachingService extends Service {
     startTimeoutIfAppropriate();
   }
 
+  @SuppressLint("StaticFieldLeak")
   private void handleClearKey() {
     Log.w("KeyCachingService", "handleClearKey()");
     KeyCachingService.masterSecret = null;
@@ -201,10 +203,10 @@ public class KeyCachingService extends Service {
     new AsyncTask<Void, Void, Void>() {
       @Override
       protected Void doInBackground(Void... params) {
-        MessageNotifier.updateNotification(KeyCachingService.this, null);
+        MessageNotifier.updateNotification(KeyCachingService.this);
         return null;
       }
-    }.execute();
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   private void handleDisableService() {
@@ -226,7 +228,7 @@ public class KeyCachingService extends Service {
 
       Log.w("KeyCachingService", "Starting timeout: " + timeoutMillis);
 
-      AlarmManager alarmManager = (AlarmManager)this.getSystemService(ALARM_SERVICE);
+      AlarmManager alarmManager = ServiceUtil.getAlarmManager(this);
       alarmManager.cancel(pending);
       alarmManager.set(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + timeoutMillis, pending);
     }
@@ -304,15 +306,13 @@ public class KeyCachingService extends Service {
   private PendingIntent buildLockIntent() {
     Intent intent = new Intent(this, KeyCachingService.class);
     intent.setAction(PASSPHRASE_EXPIRED_EVENT);
-    PendingIntent pendingIntent = PendingIntent.getService(getApplicationContext(), 0, intent, 0);
-    return pendingIntent;
+    return PendingIntent.getService(getApplicationContext(), 0, intent, 0);
   }
 
   private PendingIntent buildLaunchIntent() {
     Intent intent              = new Intent(this, ConversationListActivity.class);
     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-    PendingIntent launchIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
-    return launchIntent;
+    return PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
   }
 
   @Override

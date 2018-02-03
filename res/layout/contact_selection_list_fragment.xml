@@ -1,8 +1,9 @@
-
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:orientation="vertical">
     
     <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipe_refresh"
@@ -13,7 +14,6 @@
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="4dp"
             android:clipToPadding="false"
             android:scrollbars="vertical" />
 
@@ -33,5 +33,60 @@
         android:layout_height="match_parent"
         android:visibility="gone"
         android:layout_gravity="end"/>
+
+    <LinearLayout android:id="@+id/show_contacts_container"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:layout_gravity="center"
+                  android:visibility="gone"
+                  tools:visibility="visible">
+
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <com.pnikosis.materialishprogress.ProgressWheel
+                    android:id="@+id/progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="invisible"
+                    app:matProg_circleRadius="145dp"
+                    app:matProg_barWidth="6dp"
+                    app:matProg_rimColor="@color/signal_primary"
+                    app:matProg_barColor="@color/signal_primary_dark"
+                    app:matProg_progressIndeterminate="true"
+                    tools:visibility="visible"
+                    />
+
+            <ImageView android:layout_gravity="center"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:src="@drawable/no_contacts"/>
+
+
+        </FrameLayout>
+
+        <TextView android:id="@+id/show_contacts_description"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="20dp"
+                  android:layout_marginLeft="50dp"
+                  android:layout_marginRight="50dp"
+                  android:textSize="15sp"
+                  android:lineSpacingMultiplier="1.3"
+                  android:gravity="center"
+                  android:text="@string/contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them"/>
+
+        <Button android:id="@+id/show_contacts_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/signal_primary"
+                android:textColor="@color/white"
+                android:padding="10dp"
+                android:text="@string/contact_selection_list_fragment__show_contacts"/>
+    </LinearLayout>
 
 </FrameLayout>

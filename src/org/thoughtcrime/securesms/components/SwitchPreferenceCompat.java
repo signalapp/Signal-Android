@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.components;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
-import android.preference.CheckBoxPreference;
+import android.support.v7.preference.CheckBoxPreference;
 import android.util.AttributeSet;
 
 import org.thoughtcrime.securesms.R;

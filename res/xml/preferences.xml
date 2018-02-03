@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <org.thoughtcrime.securesms.preferences.widgets.ProfilePreference
+            android:key="preference_category_profile"/>
+
     <Preference android:key="preference_category_sms_mms"
                 android:title="@string/preferences__sms_mms"
                 android:icon="@drawable/ic_textsms_24dp"/>

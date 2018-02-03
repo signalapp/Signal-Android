@@ -3,18 +3,19 @@ package org.thoughtcrime.securesms.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.hardware.Camera.CameraInfo;
+import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.ArrayRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-
-import com.h6ah4i.android.compat.content.SharedPreferenceCompat;
+import android.util.Pair;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.preferences.NotificationPrivacyPreference;
+import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -47,6 +48,7 @@ public class TextSecurePreferences {
 
   private static final String LAST_VERSION_CODE_PREF           = "last_version_code";
   private static final String LAST_EXPERIENCE_VERSION_PREF     = "last_experience_version_code";
+  private static final String EXPERIENCE_DISMISSED_PREF        = "experience_dismissed";
   public  static final String RINGTONE_PREF                    = "pref_key_ringtone";
   private static final String VIBRATE_PREF                     = "pref_key_vibrate";
   private static final String NOTIFICATION_PREF                = "pref_key_enable_notifications";
@@ -109,6 +111,111 @@ public class TextSecurePreferences {
   private static final String MULTI_DEVICE_PROVISIONED_PREF    = "pref_multi_device";
   public  static final String DIRECT_CAPTURE_CAMERA_ID         = "pref_direct_capture_camera_id";
   private static final String ALWAYS_RELAY_CALLS_PREF          = "pref_turn_only";
+  private static final String PROFILE_KEY_PREF                 = "pref_profile_key";
+  private static final String PROFILE_NAME_PREF                = "pref_profile_name";
+  private static final String PROFILE_AVATAR_ID_PREF           = "pref_profile_avatar_id";
+  public  static final String READ_RECEIPTS_PREF               = "pref_read_receipts";
+  public  static final String INCOGNITO_KEYBORAD_PREF          = "pref_incognito_keyboard";
+  private static final String UNAUTHORIZED_RECEIVED            = "pref_unauthorized_received";
+  private static final String SUCCESSFUL_DIRECTORY_PREF        = "pref_successful_directory";
+
+  private static final String DATABASE_ENCRYPTED_SECRET     = "pref_database_encrypted_secret";
+  private static final String DATABASE_UNENCRYPTED_SECRET   = "pref_database_unencrypted_secret";
+  private static final String ATTACHMENT_ENCRYPTED_SECRET   = "pref_attachment_encrypted_secret";
+  private static final String ATTACHMENT_UNENCRYPTED_SECRET = "pref_attachment_unencrypted_secret";
+  private static final String NEEDS_SQLCIPHER_MIGRATION     = "pref_needs_sql_cipher_migration";
+
+  public static void setNeedsSqlCipherMigration(@NonNull Context context, boolean value) {
+    setBooleanPreference(context, NEEDS_SQLCIPHER_MIGRATION, value);
+  }
+
+  public static boolean getNeedsSqlCipherMigration(@NonNull Context context) {
+    return getBooleanPreference(context, NEEDS_SQLCIPHER_MIGRATION, false);
+  }
+
+  public static void setAttachmentEncryptedSecret(@NonNull Context context, @NonNull String secret) {
+    setStringPreference(context, ATTACHMENT_ENCRYPTED_SECRET, secret);
+  }
+
+  public static void setAttachmentUnencryptedSecret(@NonNull Context context, @Nullable String secret) {
+    setStringPreference(context, ATTACHMENT_UNENCRYPTED_SECRET, secret);
+  }
+
+  public static @Nullable String getAttachmentEncryptedSecret(@NonNull Context context) {
+    return getStringPreference(context, ATTACHMENT_ENCRYPTED_SECRET, null);
+  }
+
+  public static @Nullable String getAttachmentUnencryptedSecret(@NonNull Context context) {
+    return getStringPreference(context, ATTACHMENT_UNENCRYPTED_SECRET, null);
+  }
+
+  public static void setDatabaseEncryptedSecret(@NonNull Context context, @NonNull String secret) {
+    setStringPreference(context, DATABASE_ENCRYPTED_SECRET, secret);
+  }
+
+  public static void setDatabaseUnencryptedSecret(@NonNull Context context, @Nullable String secret) {
+    setStringPreference(context, DATABASE_UNENCRYPTED_SECRET, secret);
+  }
+
+  public static @Nullable String getDatabaseUnencryptedSecret(@NonNull Context context) {
+    return getStringPreference(context, DATABASE_UNENCRYPTED_SECRET, null);
+  }
+
+  public static @Nullable String getDatabaseEncryptedSecret(@NonNull Context context) {
+    return getStringPreference(context, DATABASE_ENCRYPTED_SECRET, null);
+  }
+
+  public static void setHasSuccessfullyRetrievedDirectory(Context context, boolean value) {
+    setBooleanPreference(context, SUCCESSFUL_DIRECTORY_PREF, value);
+  }
+
+  public static boolean hasSuccessfullyRetrievedDirectory(Context context) {
+    return getBooleanPreference(context, SUCCESSFUL_DIRECTORY_PREF, false);
+  }
+
+  public static void setUnauthorizedReceived(Context context, boolean value) {
+    setBooleanPreference(context, UNAUTHORIZED_RECEIVED, value);
+  }
+
+  public static boolean isUnauthorizedRecieved(Context context) {
+    return getBooleanPreference(context, UNAUTHORIZED_RECEIVED, false);
+  }
+
+  public static boolean isIncognitoKeyboardEnabled(Context context) {
+    return getBooleanPreference(context, INCOGNITO_KEYBORAD_PREF, false);
+  }
+
+  public static boolean isReadReceiptsEnabled(Context context) {
+    return getBooleanPreference(context, READ_RECEIPTS_PREF, false);
+  }
+
+  public static void setReadReceiptsEnabled(Context context, boolean enabled) {
+    setBooleanPreference(context, READ_RECEIPTS_PREF, enabled);
+  }
+
+  public static @Nullable String getProfileKey(Context context) {
+    return getStringPreference(context, PROFILE_KEY_PREF, null);
+  }
+
+  public static void setProfileKey(Context context, String key) {
+    setStringPreference(context, PROFILE_KEY_PREF, key);
+  }
+
+  public static void setProfileName(Context context, String name) {
+    setStringPreference(context, PROFILE_NAME_PREF, name);
+  }
+
+  public static String getProfileName(Context context) {
+    return getStringPreference(context, PROFILE_NAME_PREF, null);
+  }
+
+  public static void setProfileAvatarId(Context context, int id) {
+    setIntegerPrefrence(context, PROFILE_AVATAR_ID_PREF, id);
+  }
+
+  public static int getProfileAvatarId(Context context) {
+    return getIntegerPreference(context, PROFILE_AVATAR_ID_PREF, 0);
+  }
 
   public static int getNotificationPriority(Context context) {
     return Integer.valueOf(getStringPreference(context, NOTIFICATION_PRIORITY_PREF, String.valueOf(NotificationCompat.PRIORITY_HIGH)));
@@ -443,8 +550,12 @@ public class TextSecurePreferences {
     setStringPreference(context, IDENTITY_PREF, identityUri);
   }
 
+  public static void setScreenSecurityEnabled(Context context, boolean value) {
+    setBooleanPreference(context, SCREEN_SECURITY_PREF, value);
+  }
+
   public static boolean isScreenSecurityEnabled(Context context) {
-    return getBooleanPreference(context, SCREEN_SECURITY_PREF, true);
+    return getBooleanPreference(context, SCREEN_SECURITY_PREF, false);
   }
 
   public static boolean isLegacyUseLocalApnsEnabled(Context context) {
@@ -467,6 +578,14 @@ public class TextSecurePreferences {
 
   public static void setLastExperienceVersionCode(Context context, int versionCode) {
     setIntegerPrefrence(context, LAST_EXPERIENCE_VERSION_PREF, versionCode);
+  }
+
+  public static int getExperienceDismissedVersionCode(Context context) {
+    return getIntegerPreference(context, EXPERIENCE_DISMISSED_PREF, 0);
+  }
+
+  public static void setExperienceDismissedVersionCode(Context context, int versionCode) {
+    setIntegerPrefrence(context, EXPERIENCE_DISMISSED_PREF, versionCode);
   }
 
   public static String getTheme(Context context) {
@@ -562,8 +681,22 @@ public class TextSecurePreferences {
     return getBooleanPreference(context, NOTIFICATION_PREF, true);
   }
 
-  public static String getNotificationRingtone(Context context) {
-    return getStringPreference(context, RINGTONE_PREF, Settings.System.DEFAULT_NOTIFICATION_URI.toString());
+  public static @NonNull Uri getNotificationRingtone(Context context) {
+    String result = getStringPreference(context, RINGTONE_PREF, Settings.System.DEFAULT_NOTIFICATION_URI.toString());
+
+    if (result != null && result.startsWith("file:")) {
+      result = Settings.System.DEFAULT_NOTIFICATION_URI.toString();
+    }
+
+    return Uri.parse(result);
+  }
+
+  public static void removeNotificationRingtone(Context context) {
+    removePreference(context, RINGTONE_PREF);
+  }
+
+  public static void setNotificationRingtone(Context context, String ringtone) {
+    setStringPreference(context, RINGTONE_PREF, ringtone);
   }
 
   public static boolean isNotificationVibrateEnabled(Context context) {
@@ -652,12 +785,14 @@ public class TextSecurePreferences {
     PreferenceManager.getDefaultSharedPreferences(context).edit().putLong(key, value).apply();
   }
 
+  private static void removePreference(Context context, String key) {
+    PreferenceManager.getDefaultSharedPreferences(context).edit().remove(key).apply();
+  }
+
   private static Set<String> getStringSetPreference(Context context, String key, Set<String> defaultValues) {
     final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
     if (prefs.contains(key)) {
-      return SharedPreferenceCompat.getStringSet(PreferenceManager.getDefaultSharedPreferences(context),
-                                                 key,
-                                                 Collections.<String>emptySet());
+      return prefs.getStringSet(key, Collections.<String>emptySet());
     } else {
       return defaultValues;
     }

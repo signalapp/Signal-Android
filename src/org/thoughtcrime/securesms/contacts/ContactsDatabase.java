@@ -38,15 +38,13 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.push.ContactTokenDetails;
-import org.whispersystems.signalservice.api.util.InvalidNumberException;
-import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Database to supply all types of contacts that TextSecure needs to know about
@@ -60,16 +58,17 @@ public class ContactsDatabase {
   private static final String CALL_MIMETYPE    = "vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.call";
   private static final String SYNC             = "__TS";
 
-  static final String ID_COLUMN           = "_id";
   static final String NAME_COLUMN         = "name";
   static final String NUMBER_COLUMN       = "number";
   static final String NUMBER_TYPE_COLUMN  = "number_type";
   static final String LABEL_COLUMN        = "label";
   static final String CONTACT_TYPE_COLUMN = "contact_type";
 
-  static final int NORMAL_TYPE = 0;
-  static final int PUSH_TYPE   = 1;
-  static final int NEW_TYPE    = 2;
+  static final int NORMAL_TYPE  = 0;
+  static final int PUSH_TYPE    = 1;
+  static final int NEW_TYPE     = 2;
+  static final int RECENT_TYPE  = 3;
+  static final int DIVIDER_TYPE = 4;
 
   private final Context context;
 
@@ -77,28 +76,23 @@ public class ContactsDatabase {
     this.context  = context;
   }
 
-  public synchronized @NonNull List<Address> setRegisteredUsers(@NonNull Account account,
-                                                                @NonNull List<ContactTokenDetails> registeredContacts,
-                                                                boolean remove)
+  public synchronized void setRegisteredUsers(@NonNull Account account,
+                                              @NonNull List<Address> registeredAddressList,
+                                              boolean remove)
       throws RemoteException, OperationApplicationException
   {
+    Set<Address>                        registeredAddressSet = new HashSet<>();
+    ArrayList<ContentProviderOperation> operations           = new ArrayList<>();
+    Map<Address, SignalContact>         currentContacts      = getSignalRawContacts(account);
 
-    Map<Address, ContactTokenDetails>   registeredAddresses = new HashMap<>();
-    List<Address>                       addedAddresses      = new LinkedList<>();
-    ArrayList<ContentProviderOperation> operations          = new ArrayList<>();
-    Map<Address, SignalContact>         currentContacts     = getSignalRawContacts(account);
-
-    for (ContactTokenDetails registeredContact : registeredContacts) {
-      Address registeredAddress = Address.fromSerialized(registeredContact.getNumber());
-
-      registeredAddresses.put(registeredAddress, registeredContact);
+    for (Address registeredAddress : registeredAddressList) {
+      registeredAddressSet.add(registeredAddress);
 
       if (!currentContacts.containsKey(registeredAddress)) {
         Optional<SystemContactInfo> systemContactInfo = getSystemContactInfo(registeredAddress);
 
         if (systemContactInfo.isPresent()) {
           Log.w(TAG, "Adding number: " + registeredAddress);
-          addedAddresses.add(registeredAddress);
           addTextSecureRawContact(operations, account, systemContactInfo.get().number,
                                   systemContactInfo.get().name, systemContactInfo.get().id,
                                   true);
@@ -107,9 +101,7 @@ public class ContactsDatabase {
     }
 
     for (Map.Entry<Address, SignalContact> currentContactEntry : currentContacts.entrySet()) {
-      ContactTokenDetails tokenDetails = registeredAddresses.get(currentContactEntry.getKey());
-
-      if (tokenDetails == null) {
+      if (!registeredAddressSet.contains(currentContactEntry.getKey())) {
         if (remove) {
           Log.w(TAG, "Removing number: " + currentContactEntry.getKey());
           removeTextSecureRawContact(operations, account, currentContactEntry.getValue().getId());
@@ -128,11 +120,9 @@ public class ContactsDatabase {
     if (!operations.isEmpty()) {
       context.getContentResolver().applyBatch(ContactsContract.AUTHORITY, operations);
     }
-
-    return addedAddresses;
   }
 
-  @NonNull Cursor querySystemContacts(String filter) {
+  @NonNull Cursor querySystemContacts(@Nullable String filter) {
     Uri uri;
 
     if (!TextUtils.isEmpty(filter)) {
@@ -145,8 +135,7 @@ public class ContactsDatabase {
       uri = uri.buildUpon().appendQueryParameter(ContactsContract.REMOVE_DUPLICATE_ENTRIES, "true").build();
     }
 
-    String[] projection = new String[]{ContactsContract.CommonDataKinds.Phone._ID,
-                                       ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
+    String[] projection = new String[]{ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
                                        ContactsContract.CommonDataKinds.Phone.NUMBER,
                                        ContactsContract.CommonDataKinds.Phone.TYPE,
                                        ContactsContract.CommonDataKinds.Phone.LABEL};
@@ -154,7 +143,6 @@ public class ContactsDatabase {
     String sort = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
 
     Map<String, String> projectionMap = new HashMap<String, String>() {{
-      put(ID_COLUMN, ContactsContract.CommonDataKinds.Phone._ID);
       put(NAME_COLUMN, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
       put(NUMBER_COLUMN, ContactsContract.CommonDataKinds.Phone.NUMBER);
       put(NUMBER_TYPE_COLUMN, ContactsContract.CommonDataKinds.Phone.TYPE);
@@ -183,14 +171,12 @@ public class ContactsDatabase {
   }
 
   @NonNull Cursor queryTextSecureContacts(String filter) {
-    String[] projection = new String[] {ContactsContract.Data._ID,
-                                        ContactsContract.Contacts.DISPLAY_NAME,
+    String[] projection = new String[] {ContactsContract.Contacts.DISPLAY_NAME,
                                         ContactsContract.Data.DATA1};
 
     String  sort = ContactsContract.Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
 
     Map<String, String> projectionMap = new HashMap<String, String>(){{
-      put(ID_COLUMN, ContactsContract.Data._ID);
       put(NAME_COLUMN, ContactsContract.Contacts.DISPLAY_NAME);
       put(NUMBER_COLUMN, ContactsContract.Data.DATA1);
     }};

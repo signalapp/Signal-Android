@@ -3,13 +3,13 @@ package org.thoughtcrime.securesms.mms;
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.recipients.Recipient;
 
 import java.util.List;
 
 public class OutgoingMediaMessage {
 
-  private   final Recipients       recipients;
+  private   final Recipient        recipient;
   protected final String           body;
   protected final List<Attachment> attachments;
   private   final long             sentTimeMillis;
@@ -17,12 +17,12 @@ public class OutgoingMediaMessage {
   private   final int              subscriptionId;
   private   final long             expiresIn;
 
-  public OutgoingMediaMessage(Recipients recipients, String message,
+  public OutgoingMediaMessage(Recipient recipient, String message,
                               List<Attachment> attachments, long sentTimeMillis,
                               int subscriptionId, long expiresIn,
                               int distributionType)
   {
-    this.recipients       = recipients;
+    this.recipient        = recipient;
     this.body             = message;
     this.sentTimeMillis   = sentTimeMillis;
     this.distributionType = distributionType;
@@ -31,9 +31,9 @@ public class OutgoingMediaMessage {
     this.expiresIn        = expiresIn;
   }
 
-  public OutgoingMediaMessage(Recipients recipients, SlideDeck slideDeck, String message, long sentTimeMillis, int subscriptionId, long expiresIn, int distributionType)
+  public OutgoingMediaMessage(Recipient recipient, SlideDeck slideDeck, String message, long sentTimeMillis, int subscriptionId, long expiresIn, int distributionType)
   {
-    this(recipients,
+    this(recipient,
          buildMessage(slideDeck, message),
          slideDeck.asAttachments(),
          sentTimeMillis, subscriptionId,
@@ -41,7 +41,7 @@ public class OutgoingMediaMessage {
   }
 
   public OutgoingMediaMessage(OutgoingMediaMessage that) {
-    this.recipients       = that.getRecipients();
+    this.recipient        = that.getRecipient();
     this.body             = that.body;
     this.distributionType = that.distributionType;
     this.attachments      = that.attachments;
@@ -50,8 +50,8 @@ public class OutgoingMediaMessage {
     this.expiresIn        = that.expiresIn;
   }
 
-  public Recipients getRecipients() {
-    return recipients;
+  public Recipient getRecipient() {
+    return recipient;
   }
 
   public String getBody() {

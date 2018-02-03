@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2012 Moxie Marlinspike
  *
  * This program is free software: you can redistribute it and/or modify
@@ -24,9 +24,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
-import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.Recipients;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -41,19 +39,20 @@ import java.util.List;
 public class SmsMessageRecord extends MessageRecord {
 
   public SmsMessageRecord(Context context, long id,
-                          Body body, Recipients recipients,
+                          String body, Recipient recipient,
                           Recipient individualRecipient,
                           int recipientDeviceId,
                           long dateSent, long dateReceived,
-                          int receiptCount,
+                          int deliveryReceiptCount,
                           long type, long threadId,
                           int status, List<IdentityKeyMismatch> mismatches,
-                          int subscriptionId, long expiresIn, long expireStarted)
+                          int subscriptionId, long expiresIn, long expireStarted,
+                          int readReceiptCount)
   {
-    super(context, id, body, recipients, individualRecipient, recipientDeviceId,
-          dateSent, dateReceived, threadId, status, receiptCount, type,
-          mismatches, new LinkedList<NetworkFailure>(), subscriptionId,
-          expiresIn, expireStarted);
+    super(context, id, body, recipient, individualRecipient, recipientDeviceId,
+          dateSent, dateReceived, threadId, status, deliveryReceiptCount, type,
+          mismatches, new LinkedList<>(), subscriptionId,
+          expiresIn, expireStarted, readReceiptCount);
   }
 
   public long getType() {
@@ -78,12 +77,8 @@ public class SmsMessageRecord extends MessageRecord {
       return emphasisAdded(context.getString(R.string.ConversationItem_received_key_exchange_message_tap_to_process));
     } else if (SmsDatabase.Types.isDuplicateMessageType(type)) {
       return emphasisAdded(context.getString(R.string.SmsMessageRecord_duplicate_message));
-    } else if (SmsDatabase.Types.isDecryptInProgressType(type)) {
-      return emphasisAdded(context.getString(R.string.MessageDisplayHelper_decrypting_please_wait));
     } else if (SmsDatabase.Types.isNoRemoteSessionType(type)) {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_message_encrypted_for_non_existing_session));
-    } else if (!getBody().isPlaintext()) {
-      return emphasisAdded(context.getString(R.string.MessageNotifier_locked_message));
     } else if (isEndSession() && isOutgoing()) {
       return emphasisAdded(context.getString(R.string.SmsMessageRecord_secure_session_reset));
     } else if (isEndSession()) {

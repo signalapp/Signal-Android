@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2011 Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,17 +23,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 
-import org.thoughtcrime.securesms.crypto.MasterCipher;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.util.Conversions;
 
 import java.security.MessageDigest;
@@ -48,18 +44,18 @@ import java.util.Set;
  *
  * @author Moxie Marlinspike
  */
-public class ConversationListAdapter extends CursorRecyclerViewAdapter<ConversationListAdapter.ViewHolder> {
+class ConversationListAdapter extends CursorRecyclerViewAdapter<ConversationListAdapter.ViewHolder> {
 
   private static final int MESSAGE_TYPE_SWITCH_ARCHIVE = 1;
   private static final int MESSAGE_TYPE_THREAD         = 2;
+  private static final int MESSAGE_TYPE_INBOX_ZERO     = 3;
 
-  private final          ThreadDatabase    threadDatabase;
-  private final          MasterSecret      masterSecret;
-  private final          MasterCipher      masterCipher;
-  private final          Locale            locale;
-  private final          LayoutInflater    inflater;
-  private final          ItemClickListener clickListener;
-  private final @NonNull MessageDigest     digest;
+  private final @NonNull  ThreadDatabase    threadDatabase;
+  private final @NonNull  GlideRequests     glideRequests;
+  private final @NonNull  Locale            locale;
+  private final @NonNull  LayoutInflater    inflater;
+  private final @Nullable ItemClickListener clickListener;
+  private final @NonNull  MessageDigest     digest;
 
   private final Set<Long> batchSet  = Collections.synchronizedSet(new HashSet<Long>());
   private       boolean   batchMode = false;
@@ -78,25 +74,19 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
   @Override
   public long getItemId(@NonNull Cursor cursor) {
     ThreadRecord  record  = getThreadRecord(cursor);
-    StringBuilder builder = new StringBuilder("" + record.getThreadId());
 
-    for (Address address : record.getRecipients().getAddresses()) {
-      builder.append("::").append(address.serialize());
-    }
-
-    return Conversions.byteArrayToLong(digest.digest(builder.toString().getBytes()));
+    return Conversions.byteArrayToLong(digest.digest(record.getRecipient().getAddress().serialize().getBytes()));
   }
 
-  public ConversationListAdapter(@NonNull Context context,
-                                 @NonNull MasterSecret masterSecret,
-                                 @NonNull Locale locale,
-                                 @Nullable Cursor cursor,
-                                 @Nullable ItemClickListener clickListener)
+  ConversationListAdapter(@NonNull Context context,
+                          @NonNull GlideRequests glideRequests,
+                          @NonNull Locale locale,
+                          @Nullable Cursor cursor,
+                          @Nullable ItemClickListener clickListener)
   {
     super(context, cursor);
     try {
-      this.masterSecret   = masterSecret;
-      this.masterCipher   = new MasterCipher(masterSecret);
+      this.glideRequests  = glideRequests;
       this.threadDatabase = DatabaseFactory.getThreadDatabase(context);
       this.locale         = locale;
       this.inflater       = LayoutInflater.from(context);
@@ -111,34 +101,27 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
   @Override
   public ViewHolder onCreateItemViewHolder(ViewGroup parent, int viewType) {
     if (viewType == MESSAGE_TYPE_SWITCH_ARCHIVE) {
-      ConversationListItemAction action = (ConversationListItemAction)inflater.inflate(R.layout.conversation_list_item_action,
-                                                                                       parent, false);
+      ConversationListItemAction action = (ConversationListItemAction) inflater.inflate(R.layout.conversation_list_item_action,
+                                                                                        parent, false);
 
-      action.setOnClickListener(new OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          if (clickListener != null) clickListener.onSwitchToArchive();
-        }
+      action.setOnClickListener(v -> {
+        if (clickListener != null) clickListener.onSwitchToArchive();
       });
 
       return new ViewHolder(action);
+    } else if (viewType == MESSAGE_TYPE_INBOX_ZERO) {
+      return new ViewHolder((ConversationListItemInboxZero)inflater.inflate(R.layout.conversation_list_item_inbox_zero, parent, false));
     } else {
       final ConversationListItem item = (ConversationListItem)inflater.inflate(R.layout.conversation_list_item_view,
                                                                                parent, false);
 
-      item.setOnClickListener(new OnClickListener() {
-        @Override
-        public void onClick(View view) {
-          if (clickListener != null) clickListener.onItemClick(item);
-        }
+      item.setOnClickListener(view -> {
+        if (clickListener != null) clickListener.onItemClick(item);
       });
 
-      item.setOnLongClickListener(new OnLongClickListener() {
-        @Override
-        public boolean onLongClick(View view) {
-          if (clickListener != null) clickListener.onItemLongClick(item);
-          return true;
-        }
+      item.setOnLongClickListener(view -> {
+        if (clickListener != null) clickListener.onItemLongClick(item);
+        return true;
       });
 
       return new ViewHolder(item);
@@ -152,7 +135,7 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
 
   @Override
   public void onBindItemViewHolder(ViewHolder viewHolder, @NonNull Cursor cursor) {
-    viewHolder.getItem().bind(masterSecret, getThreadRecord(cursor), locale, batchSet, batchMode);
+    viewHolder.getItem().bind(getThreadRecord(cursor), glideRequests, locale, batchSet, batchMode);
   }
 
   @Override
@@ -161,16 +144,18 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
 
     if (threadRecord.getDistributionType() == ThreadDatabase.DistributionTypes.ARCHIVE) {
       return MESSAGE_TYPE_SWITCH_ARCHIVE;
+    } else if (threadRecord.getDistributionType() == ThreadDatabase.DistributionTypes.INBOX_ZERO) {
+      return MESSAGE_TYPE_INBOX_ZERO;
     } else {
       return MESSAGE_TYPE_THREAD;
     }
   }
 
   private ThreadRecord getThreadRecord(@NonNull Cursor cursor) {
-    return threadDatabase.readerFor(cursor, masterCipher).getCurrent();
+    return threadDatabase.readerFor(cursor).getCurrent();
   }
 
-  public void toggleThreadInBatchSet(long threadId) {
+  void toggleThreadInBatchSet(long threadId) {
     if (batchSet.contains(threadId)) {
       batchSet.remove(threadId);
     } else if (threadId != -1) {
@@ -178,21 +163,21 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
     }
   }
 
-  public Set<Long> getBatchSelections() {
+  Set<Long> getBatchSelections() {
     return batchSet;
   }
 
-  public void initializeBatchMode(boolean toggle) {
+  void initializeBatchMode(boolean toggle) {
     this.batchMode = toggle;
     unselectAllThreads();
   }
 
-  public void unselectAllThreads() {
+  private void unselectAllThreads() {
     this.batchSet.clear();
     this.notifyDataSetChanged();
   }
 
-  public void selectAllThreads() {
+  void selectAllThreads() {
     for (int i = 0; i < getItemCount(); i++) {
       long threadId = getThreadRecord(getCursorAtPositionOrThrow(i)).getThreadId();
       if (threadId != -1) batchSet.add(threadId);
@@ -200,7 +185,7 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
     this.notifyDataSetChanged();
   }
 
-  public interface ItemClickListener {
+  interface ItemClickListener {
     void onItemClick(ConversationListItem item);
     void onItemLongClick(ConversationListItem item);
     void onSwitchToArchive();

@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.util.StorageUtil;
 
@@ -14,33 +13,35 @@ public class PlaintextBackupExporter {
 
   private static final String FILENAME = "SignalPlaintextBackup.xml";
 
-  public static void exportPlaintextToSd(Context context, MasterSecret masterSecret)
+  public static void exportPlaintextToSd(Context context)
       throws NoExternalStorageException, IOException
   {
-    exportPlaintext(context, masterSecret);
+    exportPlaintext(context);
   }
 
   public static File getPlaintextExportFile() throws NoExternalStorageException {
     return new File(StorageUtil.getBackupDir(), FILENAME);
   }
 
-  private static void exportPlaintext(Context context, MasterSecret masterSecret)
+  private static void exportPlaintext(Context context)
       throws NoExternalStorageException, IOException
   {
-    int count               = DatabaseFactory.getSmsDatabase(context).getMessageCount();
-    XmlBackup.Writer writer = new XmlBackup.Writer(getPlaintextExportFile().getAbsolutePath(), count);
+    SmsDatabase      database = DatabaseFactory.getSmsDatabase(context);
+    int              count    = database.getMessageCount();
+    XmlBackup.Writer writer   = new XmlBackup.Writer(getPlaintextExportFile().getAbsolutePath(), count);
 
 
     SmsMessageRecord record;
-    EncryptingSmsDatabase.Reader reader = null;
-    int skip                            = 0;
-    int ROW_LIMIT                       = 500;
+
+    SmsDatabase.Reader reader    = null;
+    int                skip      = 0;
+    int                ROW_LIMIT = 500;
 
     do {
       if (reader != null)
         reader.close();
 
-      reader = DatabaseFactory.getEncryptingSmsDatabase(context).getMessages(masterSecret, skip, ROW_LIMIT);
+      reader = database.readerFor(database.getMessages(skip, ROW_LIMIT));
 
       while ((record = reader.getNext()) != null) {
         XmlBackup.XmlBackupItem item =

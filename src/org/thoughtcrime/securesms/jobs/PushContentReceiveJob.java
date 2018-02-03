@@ -3,16 +3,10 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.libsignal.InvalidVersionException;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
-import org.thoughtcrime.securesms.database.TextSecureDirectory;
-import org.thoughtcrime.securesms.database.NotInDirectoryException;
-import org.whispersystems.signalservice.api.push.ContactTokenDetails;
 
 import java.io.IOException;
 
@@ -45,7 +39,7 @@ public class PushContentReceiveJob extends PushReceivedJob {
       String                sessionKey = TextSecurePreferences.getSignalingKey(context);
       SignalServiceEnvelope envelope   = new SignalServiceEnvelope(data, sessionKey);
 
-      handle(envelope, true);
+      handle(envelope);
     } catch (IOException | InvalidVersionException e) {
       Log.w(TAG, e);
     }

@@ -10,7 +10,6 @@
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:clickable="true"
-        android:background="?android:windowBackground"
         android:padding="5dp"
         android:clipChildren="false"
         android:clipToPadding="false">

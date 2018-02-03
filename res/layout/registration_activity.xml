@@ -1,137 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:fillViewport="true"
-            android:background="@drawable/background_pattern_repeat">
-
-    <LinearLayout android:padding="16dp"
-                  android:paddingBottom="0dp"
-                  android:layout_marginTop="20dp"
+                  xmlns:app="http://schemas.android.com/apk/res-auto"
                   android:layout_width="fill_parent"
-                  android:layout_height="wrap_content"
-                  android:animateLayoutChanges="true"
-                  android:orientation="vertical">
+                  android:layout_height="fill_parent"
+                  xmlns:tools="http://schemas.android.com/tools"
+                  android:fillViewport="true"
+                  android:background="@color/white"
+                  tools:context=".RegistrationActivity">
 
-        <Spinner android:id="@+id/country_spinner"
-                 android:layout_width="fill_parent"
-                 android:layout_height="wrap_content"
-                 android:layout_marginBottom="16dip" />
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-        <LinearLayout android:orientation="horizontal"
-                      android:layoutDirection="ltr"
-                      android:layout_width="fill_parent"
-                      android:layout_height="wrap_content">
-
-            <TextView android:layout_width="wrap_content"
+        <LinearLayout android:id="@+id/header"
+                      android:layout_width="match_parent"
                       android:layout_height="wrap_content"
+                      android:layout_alignParentTop="true"
+                      android:orientation="vertical"
+                      android:background="@color/signal_primary"
+                      android:padding="16dp">
+
+            <TextView android:id="@+id/verify_header"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:paddingBottom="16dp"
+                      android:text="@string/registration_activity__verify_your_number"
                       android:textSize="20sp"
-                      style="@style/Registration.Constant"
-                      android:text="+" />
+                      android:textStyle="bold"
+                      android:textColor="@color/white"
+                      android:layout_gravity="center"
+                      android:gravity="center"/>
 
-            <EditText android:id="@+id/country_code"
-                      android:layout_width="55dip"
+            <TextView android:id="@+id/verify_subheader"
+                      android:layout_width="match_parent"
                       android:layout_height="wrap_content"
-                      android:singleLine="true"
-                      android:gravity="center"
-                      android:inputType="phone"
-                      android:digits="0123456789"
-                      android:maxLength="3" />
-
-            <EditText android:id="@+id/number"
-                      android:layout_width="0dip"
-                      android:layout_height="wrap_content"
-                      android:layout_weight="1"
-                      android:inputType="phone"
-                      android:hint="@string/registration_activity__phone_number"
-                      android:gravity="center"
-                      android:singleLine="true"/>
+                      android:paddingBottom="25dp"
+                      android:textColor="@color/white"
+                      android:text="@string/registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply"
+                      android:gravity="center"/>
 
         </LinearLayout>
 
-        <TextView style="@style/Registration.Description"
-                  android:layout_width="fill_parent"
-                  android:layout_marginBottom="8dip"
-                  android:layout_marginTop="16dip"
-                  android:gravity="start"
-                  android:text="@string/registration_activity__verify_your_number_to_connect_with_signal"/>
+        <android.support.design.widget.FloatingActionButton
+                app:fabSize="normal"
+                app:backgroundTint="@color/white"
+                app:elevation="1dp"
+                android:id="@+id/fab"
+                android:transitionName="icon"
+                android:src="@drawable/ic_action_name"
+                android:tint="@color/grey_700"
+                android:rotation="15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/header"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="-32dp"/>
 
-        <TextView style="@style/Registration.Description"
-                  android:id="@+id/registration_information"
-                  android:layout_width="fill_parent"
-                  android:gravity="start"
-                  android:visibility="gone"
-                  android:layout_marginBottom="16dp"
-                  android:text="@string/registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy"/>
+        <LinearLayout android:id="@+id/registration_container"
+                      android:padding="16dp"
+                      android:paddingBottom="0dp"
+                      android:layout_marginTop="30dp"
+                      android:layout_below="@id/header"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:animateLayoutChanges="true"
+                      android:orientation="vertical"
+                      tools:visibility="invisible">
 
-        <LinearLayout android:id="@+id/information_link_container"
-                      android:clickable="true"
-                      android:orientation="horizontal"
+            <Spinner android:id="@+id/country_spinner"
+                     android:layout_width="fill_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginBottom="16dip" />
+
+            <LinearLayout android:orientation="horizontal"
+                          android:layoutDirection="ltr"
+                          android:layout_width="fill_parent"
+                          android:layout_height="wrap_content">
+
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:textSize="20sp"
+                          style="@style/Registration.Constant"
+                          android:text="+" />
+
+                <EditText android:id="@+id/country_code"
+                          android:layout_width="55dip"
+                          android:layout_height="wrap_content"
+                          android:singleLine="true"
+                          android:gravity="center"
+                          android:inputType="phone"
+                          android:digits="0123456789"
+                          android:maxLength="3" />
+
+                <EditText android:id="@+id/number"
+                          android:layout_width="0dip"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="1"
+                          android:inputType="phone"
+                          android:hint="@string/registration_activity__phone_number"
+                          android:gravity="center"
+                          android:singleLine="true"/>
+
+            </LinearLayout>
+
+            <com.dd.CircularProgressButton
+                    android:id="@+id/registerButton"
+                    app:cpb_textIdle="Register"
+                    app:cpb_selectorIdle="@drawable/progress_button_state"
+                    app:cpb_colorIndicator="@color/white"
+                    app:cpb_colorProgress="@color/textsecure_primary"
+                    app:cpb_cornerRadius="50dp"
+                    android:background="@color/signal_primary"
+                    android:textColor="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center_horizontal"/>
+
+            <TextView android:id="@+id/skip_button"
+                      android:layout_gravity="center_horizontal"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:layout_marginBottom="16dip">
-
-            <ImageView android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:clickable="false"
-                       android:src="@drawable/ic_info_white_18dp"
-                       android:tint="#73B7F0"/>
+                      android:layout_marginTop="20dp"
+                      android:textColor="@color/gray50"
+                      android:text="@android:string/cancel"/>
 
             <TextView style="@style/Registration.Description"
-                      android:id="@+id/information_label"
-                      android:clickable="false"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:layout_marginLeft="3dp"
-                      android:layout_gravity="center_vertical"
-                      android:textColor="#73B7F0"
-                      android:text="@string/RegistrationActivity_more_information"/>
-        </LinearLayout>
+                      android:id="@+id/registration_information"
+                      android:layout_width="fill_parent"
+                      android:gravity="start"
+                      android:visibility="gone"
+                      android:layout_marginBottom="16dp"
+                      android:layout_marginTop="16dp"
+                      android:text="@string/registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy"/>
 
-        <LinearLayout android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:layout_marginTop="16dip"
-                      android:layout_marginBottom="16dip"
-                      android:layout_gravity="right"
-                      android:orientation="horizontal">
+            <LinearLayout android:id="@+id/information_link_container"
+                          android:clickable="true"
+                          android:orientation="horizontal"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginTop="16dp"
+                          android:layout_marginBottom="16dip">
 
-            <TextView android:id="@+id/skipButton"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:paddingTop="15dp"
-                    android:paddingBottom="15dp"
-                    android:text="@android:string/cancel"
-                    android:textColor="@color/white"
-                    android:background="@drawable/pill_button"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_marginRight="5dip"
-                    android:layout_height="wrap_content"/>
+                <ImageView android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:clickable="false"
+                           android:src="@drawable/ic_info_white_18dp"
+                           android:tint="#73B7F0"/>
 
-            <TextView android:id="@+id/registerButton"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:paddingTop="15dp"
-                    android:paddingBottom="15dp"
-                    android:text="@string/registration_activity__register"
-                    android:textColor="@color/white"
-                    android:background="@drawable/pill_button"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"/>
+                <TextView style="@style/Registration.Description"
+                          android:id="@+id/information_label"
+                          android:clickable="false"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="3dp"
+                          android:layout_gravity="center_vertical"
+                          android:textColor="#73B7F0"
+                          android:text="@string/RegistrationActivity_more_information"/>
+            </LinearLayout>
+
 
         </LinearLayout>
 
-        <ImageView android:id="@+id/twilio_shoutout"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:src="@drawable/ic_twilio_shoutout_white"
-                   android:layout_gravity="right"
-                   android:tint="@color/grey_800"
-                   android:contentDescription="@string/registration_activity__powered_by_twilio"/>
+        <RelativeLayout android:id="@+id/verification_container"
+                        android:visibility="invisible"
+                        android:layout_below="@id/header"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:visibility="visible">
 
-    </LinearLayout>
+            <org.thoughtcrime.securesms.components.registration.VerificationCodeView
+                    android:id="@+id/code"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:vcv_inputWidth="30dp"
+                    app:vcv_spacing="10dp"
+                    app:vcv_textColor="@color/signal_primary"
+                    app:vcv_inputColor="@color/grey_600"/>
+
+            <org.thoughtcrime.securesms.components.registration.CallMeCountDownView
+                    android:id="@+id/call_me_count_down"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/code"
+                    android:layout_marginTop="30dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"/>
+
+            <org.thoughtcrime.securesms.components.registration.VerificationPinKeyboard
+                    android:id="@+id/keyboard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"/>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
 </ScrollView>

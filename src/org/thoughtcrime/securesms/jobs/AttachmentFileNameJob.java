@@ -48,7 +48,7 @@ public class AttachmentFileNameJob extends MasterSecretJob {
     AttachmentId attachmentId      = new AttachmentId(attachmentRowId, attachmentUniqueId);
     String       plaintextFileName = new AsymmetricMasterCipher(MasterSecretUtil.getAsymmetricMasterSecret(context, masterSecret)).decryptBody(encryptedFileName);
 
-    DatabaseFactory.getAttachmentDatabase(context).updateAttachmentFileName(masterSecret, attachmentId, plaintextFileName);
+    DatabaseFactory.getAttachmentDatabase(context).updateAttachmentFileName(attachmentId, plaintextFileName);
   }
 
   @Override

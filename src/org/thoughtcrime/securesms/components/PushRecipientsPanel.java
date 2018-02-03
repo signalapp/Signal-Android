@@ -19,7 +19,6 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -32,10 +31,7 @@ import org.thoughtcrime.securesms.contacts.RecipientsAdapter;
 import org.thoughtcrime.securesms.contacts.RecipientsEditor;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.recipients.Recipients.RecipientsModifiedListener;
+import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -47,7 +43,7 @@ import java.util.StringTokenizer;
  *
  * @author Moxie Marlinspike
  */
-public class PushRecipientsPanel extends RelativeLayout implements RecipientsModifiedListener {
+public class PushRecipientsPanel extends RelativeLayout implements RecipientModifiedListener {
   private final String                         TAG = PushRecipientsPanel.class.getSimpleName();
   private       RecipientsPanelChangedListener panelChangeListener;
 
@@ -71,14 +67,9 @@ public class PushRecipientsPanel extends RelativeLayout implements RecipientsMod
     initialize();
   }
 
-  public Recipients getRecipients() throws RecipientFormattingException {
-    String     rawText    = recipientsText.getText().toString();
-    Recipients recipients = getRecipientsFromString(getContext(), rawText, true);
-
-    if (recipients == null || recipients.isEmpty())
-      throw new RecipientFormattingException("Recipient List Is Empty!");
-
-    return recipients;
+  public List<Recipient> getRecipients() {
+    String rawText = recipientsText.getText().toString();
+    return getRecipientsFromString(getContext(), rawText, true);
   }
 
   public void disable() {
@@ -104,15 +95,14 @@ public class PushRecipientsPanel extends RelativeLayout implements RecipientsMod
   }
 
   private void initRecipientsEditor() {
-    Recipients recipients;
-    recipientsText = (RecipientsEditor)findViewById(R.id.recipients_text);
 
-    try {
-      recipients = getRecipients();
-    } catch (RecipientFormattingException e) {
-      recipients = RecipientFactory.getRecipientsFor(getContext(), new LinkedList<Recipient>(), true);
+    this.recipientsText = (RecipientsEditor)findViewById(R.id.recipients_text);
+
+    List<Recipient> recipients = getRecipients();
+
+    for (Recipient recipient : recipients) {
+      recipient.addListener(this);
     }
-    recipients.addListener(this);
 
     recipientsText.setAdapter(new RecipientsAdapter(this.getContext()));
     recipientsText.populate(recipients);
@@ -122,32 +112,27 @@ public class PushRecipientsPanel extends RelativeLayout implements RecipientsMod
       @Override
       public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         if (panelChangeListener != null) {
-          try {
-            panelChangeListener.onRecipientsPanelUpdate(getRecipients());
-          } catch (RecipientFormattingException rfe) {
-            panelChangeListener.onRecipientsPanelUpdate(null);
-          }
+          panelChangeListener.onRecipientsPanelUpdate(getRecipients());
         }
         recipientsText.setText("");
       }
     });
   }
 
-  private @Nullable Recipients getRecipientsFromString(Context context, @NonNull String rawText, boolean asynchronous) {
-    StringTokenizer tokenizer = new StringTokenizer(rawText, ",");
-    List<Address>   addresses = new LinkedList<>();
+  private @NonNull List<Recipient> getRecipientsFromString(Context context, @NonNull String rawText, boolean asynchronous) {
+    StringTokenizer tokenizer  = new StringTokenizer(rawText, ",");
+    List<Recipient> recipients = new LinkedList<>();
 
     while (tokenizer.hasMoreTokens()) {
       String token = tokenizer.nextToken().trim();
 
       if (!TextUtils.isEmpty(token)) {
-        if (hasBracketedNumber(token)) addresses.add(Address.fromExternal(context, parseBracketedNumber(token)));
-        else                           addresses.add(Address.fromExternal(context, token));
+        if (hasBracketedNumber(token)) recipients.add(Recipient.from(context, Address.fromExternal(context, parseBracketedNumber(token)), asynchronous));
+        else                           recipients.add(Recipient.from(context, Address.fromExternal(context, token), asynchronous));
       }
     }
 
-    if (addresses.size() == 0) return null;
-    else                       return RecipientFactory.getRecipientsFor(context, addresses.toArray(new Address[0]), asynchronous);
+    return recipients;
   }
 
   private boolean hasBracketedNumber(String recipient) {
@@ -166,24 +151,20 @@ public class PushRecipientsPanel extends RelativeLayout implements RecipientsMod
   }
 
   @Override
-  public void onModified(Recipients recipients) {
-    recipientsText.populate(recipients);
+  public void onModified(Recipient recipient) {
+    recipientsText.populate(getRecipients());
   }
 
   private class FocusChangedListener implements View.OnFocusChangeListener {
     public void onFocusChange(View v, boolean hasFocus) {
       if (!hasFocus && (panelChangeListener != null)) {
-        try {
-          panelChangeListener.onRecipientsPanelUpdate(getRecipients());
-        } catch (RecipientFormattingException rfe) {
-          panelChangeListener.onRecipientsPanelUpdate(null);
-        }
+        panelChangeListener.onRecipientsPanelUpdate(getRecipients());
       }
     }
   }
 
   public interface RecipientsPanelChangedListener {
-    public void onRecipientsPanelUpdate(Recipients recipients);
+    public void onRecipientsPanelUpdate(List<Recipient> recipients);
   }
 
 }

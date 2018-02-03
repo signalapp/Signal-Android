@@ -2,11 +2,9 @@ package org.thoughtcrime.securesms;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.MenuItem;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
@@ -24,15 +22,14 @@ public class ConversationListArchiveActivity extends PassphraseRequiredActionBar
   }
 
   @Override
-  protected void onCreate(Bundle icicle, @NonNull MasterSecret masterSecret) {
+  protected void onCreate(Bundle icicle, boolean ready) {
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setTitle(R.string.AndroidManifest_archived_conversations);
 
     Bundle bundle = new Bundle();
     bundle.putBoolean(ConversationListFragment.ARCHIVE, true);
 
-    initFragment(android.R.id.content, new ConversationListFragment(),
-                 masterSecret, dynamicLanguage.getCurrentLocale(), bundle);
+    initFragment(android.R.id.content, new ConversationListFragment(), dynamicLanguage.getCurrentLocale(), bundle);
   }
 
   @Override
@@ -54,9 +51,9 @@ public class ConversationListArchiveActivity extends PassphraseRequiredActionBar
   }
 
   @Override
-  public void onCreateConversation(long threadId, Recipients recipients, int distributionType, long lastSeenTime) {
+  public void onCreateConversation(long threadId, Recipient recipient, int distributionType, long lastSeenTime) {
     Intent intent = new Intent(this, ConversationActivity.class);
-    intent.putExtra(ConversationActivity.ADDRESSES_EXTRA, recipients.getAddresses());
+    intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.getAddress());
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
     intent.putExtra(ConversationActivity.IS_ARCHIVED_EXTRA, true);
     intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, distributionType);

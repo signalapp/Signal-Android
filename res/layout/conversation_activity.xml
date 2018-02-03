@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <org.thoughtcrime.securesms.components.InputAwareLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layout_container"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/layout_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 <org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer
         android:id="@+id/quick_attachment_drawer"
@@ -22,6 +22,12 @@
                   android:gravity="bottom"
                   android:clipToPadding="false"
                   android:clipChildren="false">
+
+        <ViewStub android:id="@+id/group_share_profile_view_stub"
+                  android:layout="@layout/conversation_activity_group_share_profile_stub"
+                  android:inflatedId="@+id/group_share_profile_view"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"/>
 
         <ViewStub android:id="@+id/unverified_banner_stub"
                   android:layout="@layout/conversation_activity_unverified_banner_stub"
@@ -49,6 +55,13 @@
                 android:layout_height="wrap_content"/>
 
         <include layout="@layout/conversation_input_panel"/>
+
+        <Button android:id="@+id/register_button"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:text="@string/conversation_activity__enable_signal_messages"
+                android:visibility="gone"/>
 
         <Button android:id="@+id/unblock_button"
                 android:layout_width="fill_parent"

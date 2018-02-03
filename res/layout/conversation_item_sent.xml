@@ -75,7 +75,12 @@
                           android:paddingRight="4dp"
                           android:layout_gravity="right">
 
-                <TextView android:id="@+id/group_message_status"
+                <View android:id="@+id/group_sender_holder"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:visibility="gone"/>
+
+                <TextView android:id="@+id/group_message_sender"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:linksClickable="false"
@@ -84,7 +89,19 @@
                           android:textColor="?conversation_item_sent_text_secondary_color"
                           android:visibility="gone"
                           android:layout_marginRight="8dip"
-                          android:paddingTop="1dip" />
+                          android:paddingTop="1dip"/>
+
+                <TextView android:id="@+id/group_message_sender_profile"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:linksClickable="false"
+                          android:textAppearance="?android:attr/textAppearanceSmall"
+                          android:layout_gravity="right"
+                          android:textColor="?conversation_item_sent_text_secondary_color"
+                          android:visibility="gone"
+                          android:layout_marginRight="8dip"
+                          android:paddingTop="1dip"/>
+
 
                 <TextView android:id="@+id/conversation_item_date"
                           android:autoLink="none"
@@ -99,7 +116,7 @@
                           android:textSize="@dimen/conversation_item_date_text_size"
                           android:paddingTop="1dip"
                           android:paddingBottom="2dp"
-                          tools:text="30 mins" />
+                          tools:text="30 mins"/>
 
                 <TextView android:id="@+id/sim_info"
                           android:autoLink="none"
@@ -131,25 +148,28 @@
                         android:id="@+id/expiration_indicator"
                         app:empty="@drawable/ic_hourglass_empty_white_18dp"
                         app:full="@drawable/ic_hourglass_full_white_18dp"
-                        app:tint="@color/black"
+                        app:tint="?conversation_item_sent_text_secondary_color"
                         app:percentage="0"
                         app:offset="0"
                         android:layout_gravity="center_vertical|end"
                         android:alpha=".6"
                         android:layout_marginLeft="3dp"
-                        android:layout_width="10dp"
+                        android:layout_marginStart="3dp"
+                        android:layout_width="7dp"
                         android:layout_height="11dp"
                         android:visibility="gone"
                         tools:visibility="visible"/>
 
-                <ImageView android:id="@+id/secure_indicator"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:src="?menu_lock_icon_small"
+                <ImageView android:id="@+id/insecure_indicator"
+                           android:layout_width="12dp"
+                           android:layout_height="11dp"
+                           android:src="@drawable/ic_unlocked_white_18dp"
                            android:visibility="gone"
                            android:layout_gravity="center_vertical|end"
-                           android:paddingLeft="2dp"
-                           android:tint="?conversation_item_sent_text_secondary_color"
+                           android:alpha=".6"
+                           android:tint="?attr/conversation_item_sent_text_secondary_color"
+                           android:layout_marginLeft="3dp"
+                           android:layout_marginStart="3dp"
                            android:tintMode="multiply"
                            android:contentDescription="@string/conversation_item__secure_message_description"
                            tools:visibility="visible"/>

@@ -5,16 +5,21 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.content.res.AppCompatResources;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 
 import org.thoughtcrime.securesms.R;
 
-public class GeneratedContactPhoto implements ContactPhoto {
+import java.util.regex.Pattern;
+
+public class GeneratedContactPhoto implements FallbackContactPhoto {
+
+  private static final Pattern PATTERN = Pattern.compile("[^\\p{L}\\p{Nd}\\p{P}\\p{S}]+");
 
   private final String name;
 
-  GeneratedContactPhoto(@NonNull String name) {
+  public GeneratedContactPhoto(@NonNull String name) {
     this.name  = name;
   }
 
@@ -37,7 +42,7 @@ public class GeneratedContactPhoto implements ContactPhoto {
   }
 
   private String getCharacter(String name) {
-    String cleanedName = name.replaceFirst("[^\\p{L}\\p{Nd}\\p{P}\\p{S}]+", "");
+    String cleanedName = PATTERN.matcher(name).replaceFirst("");
 
     if (cleanedName.isEmpty()) {
       return "#";
@@ -48,6 +53,7 @@ public class GeneratedContactPhoto implements ContactPhoto {
 
   @Override
   public Drawable asCallCard(Context context) {
-    return ContextCompat.getDrawable(context, R.drawable.ic_contact_picture_large);
+    return AppCompatResources.getDrawable(context, R.drawable.ic_person_large);
+
   }
 }

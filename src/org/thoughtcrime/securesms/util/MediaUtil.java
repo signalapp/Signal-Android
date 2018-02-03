@@ -11,8 +11,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
 
-import com.bumptech.glide.Glide;
-
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -20,6 +18,7 @@ import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.DocumentSlide;
 import org.thoughtcrime.securesms.mms.GifSlide;
+import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.MmsSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -43,14 +42,14 @@ public class MediaUtil {
   public static final String VIDEO_UNSPECIFIED = "video/*";
 
 
-  public static @Nullable ThumbnailData generateThumbnail(Context context, MasterSecret masterSecret, String contentType, Uri uri)
+  public static @Nullable ThumbnailData generateThumbnail(Context context, String contentType, Uri uri)
       throws BitmapDecodingException
   {
     long   startMillis = System.currentTimeMillis();
     ThumbnailData data = null;
 
     if (isImageType(contentType)) {
-      data = new ThumbnailData(generateImageThumbnail(context, masterSecret, uri));
+      data = new ThumbnailData(generateImageThumbnail(context, uri));
     }
 
     if (data != null) {
@@ -62,17 +61,17 @@ public class MediaUtil {
     return data;
   }
 
-  private static Bitmap generateImageThumbnail(Context context, MasterSecret masterSecret, Uri uri)
+  private static Bitmap generateImageThumbnail(Context context, Uri uri)
       throws BitmapDecodingException
   {
     try {
       int maxSize = context.getResources().getDimensionPixelSize(R.dimen.media_bubble_height);
-      return Glide.with(context)
-                  .load(new DecryptableUri(masterSecret, uri))
-                  .asBitmap()
-                  .centerCrop()
-                  .into(maxSize, maxSize)
-                  .get();
+      return GlideApp.with(context.getApplicationContext())
+                     .asBitmap()
+                     .load(new DecryptableUri(uri))
+                     .centerCrop()
+                     .into(maxSize, maxSize)
+                     .get();
     } catch (InterruptedException | ExecutionException e) {
       Log.w(TAG, e);
       throw new BitmapDecodingException(e);
@@ -126,8 +125,8 @@ public class MediaUtil {
     }
   }
 
-  public static long getMediaSize(Context context, MasterSecret masterSecret, Uri uri) throws IOException {
-    InputStream in = PartAuthority.getAttachmentStream(context, masterSecret, uri);
+  public static long getMediaSize(Context context, Uri uri) throws IOException {
+    InputStream in = PartAuthority.getAttachmentStream(context, uri);
     if (in == null) throw new IOException("Couldn't obtain input stream.");
 
     long   size   = 0;

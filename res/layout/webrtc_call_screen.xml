@@ -43,11 +43,10 @@
             <ImageView android:id="@+id/photo"
                        android:layout_width="match_parent"
                        android:layout_height="match_parent"
-                       android:background="@android:color/black"
                        android:scaleType="centerCrop"
                        android:visibility="visible"
                        android:clickable="true"
-                       tools:src="@drawable/ic_contact_picture_large"
+                       tools:src="@drawable/ic_person_large"
                     />
 
             <LinearLayout android:id="@+id/untrusted_layout"
@@ -218,7 +217,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
-            android:layout_gravity="bottom"
+            android:layout_gravity="bottom|center_horizontal"
             android:src="@drawable/ic_call_end_white_48dp"
             android:focusable="true"
             app:backgroundTint="@color/red_500"
@@ -226,10 +225,12 @@
             android:contentDescription="End call"
             tools:visibility="visible"/>
 
-    <org.thoughtcrime.securesms.components.webrtc.WebRtcIncomingCallOverlay
-            android:id="@+id/callControls"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
+
+    <org.thoughtcrime.securesms.components.webrtc.WebRtcAnswerDeclineButton
+            android:id="@+id/answer_decline_button"
+            android:layout_gravity="bottom|center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"/>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -20,7 +20,6 @@ import org.whispersystems.jobqueue.requirements.RequirementListener;
 import org.whispersystems.libsignal.InvalidVersionException;
 import org.whispersystems.signalservice.api.SignalServiceMessagePipe;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
-import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -189,6 +188,7 @@ public class MessageRetrievalService extends Service implements InjectableType, 
     private AtomicBoolean stopThread = new AtomicBoolean(false);
 
     MessageRetrievalThread() {
+      super("MessageRetrievalService");
       setUncaughtExceptionHandler(this);
     }
 
@@ -208,16 +208,13 @@ public class MessageRetrievalService extends Service implements InjectableType, 
             try {
               Log.w(TAG, "Reading message...");
               localPipe.read(REQUEST_TIMEOUT_MINUTES, TimeUnit.MINUTES,
-                             new SignalServiceMessagePipe.MessagePipeCallback() {
-                               @Override
-                               public void onMessage(SignalServiceEnvelope envelope) {
-                                 Log.w(TAG, "Retrieved envelope! " + envelope.getSource());
+                             envelope -> {
+                               Log.w(TAG, "Retrieved envelope! " + envelope.getSource());
 
-                                 PushContentReceiveJob receiveJob = new PushContentReceiveJob(MessageRetrievalService.this);
-                                 receiveJob.handle(envelope, false);
+                               PushContentReceiveJob receiveJob = new PushContentReceiveJob(MessageRetrievalService.this);
+                               receiveJob.handle(envelope);
 
-                                 decrementPushReceived();
-                               }
+                               decrementPushReceived();
                              });
             } catch (TimeoutException e) {
               Log.w(TAG, "Application level read timeout...");

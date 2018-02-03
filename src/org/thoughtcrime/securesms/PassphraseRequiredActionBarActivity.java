@@ -11,7 +11,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
@@ -42,17 +41,20 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
     Log.w(TAG, "onCreate(" + savedInstanceState + ")");
     this.networkAccess = new SignalServiceNetworkAccess(this);
     onPreCreate();
-    final MasterSecret masterSecret = KeyCachingService.getMasterSecret(this);
-    routeApplicationState(masterSecret);
+
+    final boolean locked = KeyCachingService.isLocked(this);
+    routeApplicationState(locked);
+
     super.onCreate(savedInstanceState);
+
     if (!isFinishing()) {
       initializeClearKeyReceiver();
-      onCreate(savedInstanceState, masterSecret);
+      onCreate(savedInstanceState, true);
     }
   }
 
   protected void onPreCreate() {}
-  protected void onCreate(Bundle savedInstanceState, @NonNull MasterSecret masterSecret) {}
+  protected void onCreate(Bundle savedInstanceState, boolean ready) {}
 
   @Override
   protected void onResume() {
@@ -87,33 +89,29 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
   @Override
   public void onMasterSecretCleared() {
     Log.w(TAG, "onMasterSecretCleared()");
-    if (isVisible) routeApplicationState(null);
+    if (isVisible) routeApplicationState(false);
     else           finish();
   }
 
   protected <T extends Fragment> T initFragment(@IdRes int target,
-                                                @NonNull T fragment,
-                                                @NonNull MasterSecret masterSecret)
+                                                @NonNull T fragment)
   {
-    return initFragment(target, fragment, masterSecret, null);
+    return initFragment(target, fragment, null);
   }
 
   protected <T extends Fragment> T initFragment(@IdRes int target,
                                                 @NonNull T fragment,
-                                                @NonNull MasterSecret masterSecret,
                                                 @Nullable Locale locale)
   {
-    return initFragment(target, fragment, masterSecret, locale, null);
+    return initFragment(target, fragment, locale, null);
   }
 
   protected <T extends Fragment> T initFragment(@IdRes int target,
                                                 @NonNull T fragment,
-                                                @NonNull MasterSecret masterSecret,
                                                 @Nullable Locale locale,
                                                 @Nullable Bundle extras)
   {
     Bundle args = new Bundle();
-    args.putParcelable("master_secret", masterSecret);
     args.putSerializable(LOCALE_EXTRA, locale);
 
     if (extras != null) {
@@ -123,75 +121,77 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
     fragment.setArguments(args);
     getSupportFragmentManager().beginTransaction()
                                .replace(target, fragment)
-                               .commit();
+                               .commitAllowingStateLoss();
     return fragment;
   }
 
-  private void routeApplicationState(MasterSecret masterSecret) {
-    Intent intent = getIntentForState(masterSecret, getApplicationState(masterSecret));
+  private void routeApplicationState(boolean locked) {
+    Intent intent = getIntentForState(getApplicationState(locked));
     if (intent != null) {
       startActivity(intent);
       finish();
     }
   }
 
-  private Intent getIntentForState(MasterSecret masterSecret, int state) {
+  private Intent getIntentForState(int state) {
     Log.w(TAG, "routeApplicationState(), state: " + state);
 
     switch (state) {
     case STATE_CREATE_PASSPHRASE:        return getCreatePassphraseIntent();
     case STATE_PROMPT_PASSPHRASE:        return getPromptPassphraseIntent();
-    case STATE_UPGRADE_DATABASE:         return getUpgradeDatabaseIntent(masterSecret);
-    case STATE_PROMPT_PUSH_REGISTRATION: return getPushRegistrationIntent(masterSecret);
+    case STATE_UPGRADE_DATABASE:         return getUpgradeDatabaseIntent();
+    case STATE_PROMPT_PUSH_REGISTRATION: return getPushRegistrationIntent();
     case STATE_EXPERIENCE_UPGRADE:       return getExperienceUpgradeIntent();
     default:                             return null;
     }
   }
 
-  private int getApplicationState(MasterSecret masterSecret) {
+  private int getApplicationState(boolean locked) {
     if (!MasterSecretUtil.isPassphraseInitialized(this)) {
       return STATE_CREATE_PASSPHRASE;
-    } else if (ExperienceUpgradeActivity.isUpdate(this)) {
-      return STATE_EXPERIENCE_UPGRADE;
-    } else if (masterSecret == null) {
+    } else if (locked) {
       return STATE_PROMPT_PASSPHRASE;
     } else if (DatabaseUpgradeActivity.isUpdate(this)) {
       return STATE_UPGRADE_DATABASE;
     } else if (!TextSecurePreferences.hasPromptedPushRegistration(this)) {
       return STATE_PROMPT_PUSH_REGISTRATION;
+    } else if (ExperienceUpgradeActivity.isUpdate(this)) {
+      return STATE_EXPERIENCE_UPGRADE;
     } else {
       return STATE_NORMAL;
     }
   }
 
   private Intent getCreatePassphraseIntent() {
-    return getRoutedIntent(PassphraseCreateActivity.class, getIntent(), null);
+    return getRoutedIntent(PassphraseCreateActivity.class, getIntent());
   }
 
   private Intent getPromptPassphraseIntent() {
-    return getRoutedIntent(PassphrasePromptActivity.class, getIntent(), null);
+    return getRoutedIntent(PassphrasePromptActivity.class, getIntent());
   }
 
-  private Intent getUpgradeDatabaseIntent(MasterSecret masterSecret) {
+  private Intent getUpgradeDatabaseIntent() {
     return getRoutedIntent(DatabaseUpgradeActivity.class,
                            TextSecurePreferences.hasPromptedPushRegistration(this)
                                ? getConversationListIntent()
-                               : getPushRegistrationIntent(masterSecret),
-                           masterSecret);
+                               : getPushRegistrationIntent());
   }
 
   private Intent getExperienceUpgradeIntent() {
-    return getRoutedIntent(ExperienceUpgradeActivity.class, getIntent(), null);
+    return getRoutedIntent(ExperienceUpgradeActivity.class, getIntent());
   }
 
-  private Intent getPushRegistrationIntent(MasterSecret masterSecret) {
-    return getRoutedIntent(RegistrationActivity.class, getConversationListIntent(), masterSecret);
+  private Intent getPushRegistrationIntent() {
+    return getRoutedIntent(RegistrationActivity.class, getCreateProfileIntent());
   }
 
-  private Intent getRoutedIntent(Class<?> destination, @Nullable Intent nextIntent, @Nullable MasterSecret masterSecret) {
+  private Intent getCreateProfileIntent() {
+    return getRoutedIntent(CreateProfileActivity.class, getConversationListIntent());
+  }
+
+  private Intent getRoutedIntent(Class<?> destination, @Nullable Intent nextIntent) {
     final Intent intent = new Intent(this, destination);
     if (nextIntent != null)   intent.putExtra("next_intent", nextIntent);
-    if (masterSecret != null) intent.putExtra("master_secret", masterSecret);
     return intent;
   }
 

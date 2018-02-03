@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2015 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,13 +19,10 @@ package org.thoughtcrime.securesms;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.components.ContactFilterToolbar;
-import org.thoughtcrime.securesms.components.ContactFilterToolbar.OnFilterChangedListener;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
@@ -53,8 +50,7 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
 
   protected ContactSelectionListFragment contactsFragment;
 
-  private   MasterSecret         masterSecret;
-  private   ContactFilterToolbar toolbar;
+  private ContactFilterToolbar toolbar;
 
   @Override
   protected void onPreCreate() {
@@ -63,8 +59,7 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
   }
 
   @Override
-  protected void onCreate(Bundle icicle, @NonNull MasterSecret masterSecret) {
-    this.masterSecret = masterSecret;
+  protected void onCreate(Bundle icicle, boolean ready) {
     if (!getIntent().hasExtra(ContactSelectionListFragment.DISPLAY_MODE)) {
       getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE,
                            TextSecurePreferences.isSmsEnabled(this)
@@ -94,6 +89,7 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
     this.toolbar = ViewUtil.findById(this, R.id.toolbar);
     setSupportActionBar(toolbar);
 
+    assert  getSupportActionBar() != null;
     getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     getSupportActionBar().setDisplayShowTitleEnabled(false);
     getSupportActionBar().setIcon(null);
@@ -107,16 +103,12 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
   }
 
   private void initializeSearch() {
-    toolbar.setOnFilterChangedListener(new OnFilterChangedListener() {
-      @Override public void onFilterChanged(String filter) {
-        contactsFragment.setQueryFilter(filter);
-      }
-    });
+    toolbar.setOnFilterChangedListener(filter -> contactsFragment.setQueryFilter(filter));
   }
 
   @Override
   public void onRefresh() {
-    new RefreshDirectoryTask(this).execute(getApplicationContext());
+    new RefreshDirectoryTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, getApplicationContext());
   }
 
   @Override
@@ -128,19 +120,16 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
   private static class RefreshDirectoryTask extends AsyncTask<Context, Void, Void> {
 
     private final WeakReference<ContactSelectionActivity> activity;
-    private final MasterSecret masterSecret;
 
     private RefreshDirectoryTask(ContactSelectionActivity activity) {
-      this.activity     = new WeakReference<>(activity);
-      this.masterSecret = activity.masterSecret;
+      this.activity = new WeakReference<>(activity);
     }
-
 
     @Override
     protected Void doInBackground(Context... params) {
 
       try {
-        DirectoryHelper.refreshDirectory(params[0], masterSecret);
+        DirectoryHelper.refreshDirectory(params[0], true);
       } catch (IOException e) {
         Log.w(TAG, e);
       }

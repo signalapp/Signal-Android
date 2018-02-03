@@ -27,7 +27,6 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.audio.AudioSlidePlayer;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.mms.AudioSlide;
@@ -108,8 +107,7 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
     EventBus.getDefault().unregister(this);
   }
 
-  public void setAudio(final @NonNull MasterSecret masterSecret,
-                       final @NonNull AudioSlide audio,
+  public void setAudio(final @NonNull AudioSlide audio,
                        final boolean showControls)
   {
 
@@ -128,7 +126,7 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
       if (downloadProgress.isSpinning()) downloadProgress.stopSpinning();
     }
 
-    this.audioSlidePlayer = AudioSlidePlayer.createFor(getContext(), masterSecret, audio, this);
+    this.audioSlidePlayer = AudioSlidePlayer.createFor(getContext(), audio, this);
   }
 
   public void cleanup() {

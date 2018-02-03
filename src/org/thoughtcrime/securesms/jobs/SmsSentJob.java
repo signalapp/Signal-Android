@@ -8,8 +8,8 @@ import android.util.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
+import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -46,7 +46,7 @@ public class SmsSentJob extends MasterSecretJob {
 
     switch (action) {
       case SmsDeliveryListener.SENT_SMS_ACTION:
-        handleSentResult(masterSecret, messageId, result);
+        handleSentResult(messageId, result);
         break;
       case SmsDeliveryListener.DELIVERED_SMS_ACTION:
         handleDeliveredResult(messageId, result);
@@ -65,13 +65,13 @@ public class SmsSentJob extends MasterSecretJob {
   }
 
   private void handleDeliveredResult(long messageId, int result) {
-    DatabaseFactory.getEncryptingSmsDatabase(context).markStatus(messageId, result);
+    DatabaseFactory.getSmsDatabase(context).markStatus(messageId, result);
   }
 
-  private void handleSentResult(MasterSecret masterSecret, long messageId, int result) {
+  private void handleSentResult(long messageId, int result) {
     try {
-      EncryptingSmsDatabase database = DatabaseFactory.getEncryptingSmsDatabase(context);
-      SmsMessageRecord      record   = database.getMessage(masterSecret, messageId);
+      SmsDatabase      database = DatabaseFactory.getSmsDatabase(context);
+      SmsMessageRecord record   = database.getMessage(messageId);
 
       switch (result) {
         case Activity.RESULT_OK:
@@ -86,7 +86,7 @@ public class SmsSentJob extends MasterSecretJob {
           break;
         default:
           database.markAsSentFailed(messageId);
-          MessageNotifier.notifyMessageDeliveryFailed(context, record.getRecipients(), record.getThreadId());
+          MessageNotifier.notifyMessageDeliveryFailed(context, record.getRecipient(), record.getThreadId());
       }
     } catch (NoSuchMessageException e) {
       Log.w(TAG, e);

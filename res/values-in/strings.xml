@@ -18,7 +18,7 @@
     <item quantity="other">Ini akan segera memangkas seluruh percakapan menjadi %d pesan terbaru.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Hapus</string>
-  <string name="ApplicationPreferencesActivity_disable_passphrase">Nonaktifkan frasa sandi?</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Nonaktifkan kata sandi?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Ini akan secara permanen membuka kunci Signal dan notifikasi pesan.</string>
   <string name="ApplicationPreferencesActivity_disable">Nonaktifkan</string>
   <string name="ApplicationPreferencesActivity_unregistering">Berhenti registrasi</string>
@@ -29,11 +29,11 @@
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Aktif</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Sentuh untuk mengubah aplikasi SMS bawaan Anda</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS Nonaktif</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Sentuh untuk menetapkan Signal sebagai aplikasi SMS bawaan Anda</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Sentuh agar Signal menjadi aplikasi SMS Anda</string>
   <string name="ApplicationPreferencesActivity_on">nyala</string>
   <string name="ApplicationPreferencesActivity_On">Nyala</string>
-  <string name="ApplicationPreferencesActivity_off">mati</string>
-  <string name="ApplicationPreferencesActivity_Off">Mati</string>
+  <string name="ApplicationPreferencesActivity_off">padam</string>
+  <string name="ApplicationPreferencesActivity_Off">Padam</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Frasa sandi %1$s, Keamanan layar %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Bahasa %2$s</string>
@@ -48,32 +48,37 @@
   <string name="DraftDatabase_Draft_location_snippet">(lokasi)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Tidak bisa menemukan aplikasi untuk memilih media.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal membutuhkan ijin Penyimpanan untuk mengirimkan foto, video, atau suara, tetapi saat ini telah ditolak secara permanen. Harap melanjutkan ke menu setting aplikasi, Pilih \"Izin\", dan aktifkan \"Penyimpanan\"</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal membutuhkan ijin Kontak untuk mengirimkan informasi kontak, tetapi saat ini telah ditolak secara permanen. Harap melanjutkan ke menu setting aplikasi, Pilih \"Izin\", dan aktifkan \"Kontak\"</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal membutuhkan ijin Lokasi untuk mengirimkan lokasi, tetapi saat ini telah ditolak secara permanen. Harap melanjutkan ke menu setting aplikasi, Pilih \"Izin\", dan aktifkan \"Lokasi\"</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal membutuhkan ijin Kamera untuk mengambil foto, tetapi saat ini telah ditolak secara permanen. Harap melanjutkan ke menu setting aplikasi, Pilih \"Izin\", dan aktifkan \"Kamera\"</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_camera">Kamera</string>
-  <string name="AttachmentTypeSelectorAdapter_picture">Gambar</string>
-  <string name="AttachmentTypeSelectorAdapter_video">Video</string>
-  <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
-  <string name="AttachmentTypeSelectorAdapter_contact">Info kontak</string>
   <!--AudioSlidePlayer-->
-  <string name="AudioSlidePlayer_error_playing_audio">Galat memutar audio!</string>
+  <string name="AudioSlidePlayer_error_playing_audio">Gagal memutar audio!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Kontak yang diblokir</string>
+  <!--BucketedThreadMedia-->
+  <string name="BucketedThreadMedia_Today">Hari ini</string>
+  <string name="BucketedThreadMedia_Yesterday">Kemarin</string>
+  <string name="BucketedThreadMedia_This_week">Minggu Ini</string>
+  <string name="BucketedThreadMedia_This_month">Bulan ini</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Panggilan masuk</string>
+  <!--ClearProfileActivity-->
+  <string name="ClearProfileActivity_remove">Hapus</string>
+  <string name="ClearProfileActivity_remove_profile_photo">Buang foto profil?</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Angka keamanan Anda dengan %1$s telah berubah. Ini bisa disebabkan adanya seseorang yang mencoba mencegat komunikasi Anda, atau dikarenakan %2$s telah memasang ulang Signal.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Mungkin sebaiknya Anda memastikan angka keamanan dengan kontak ini.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Angka keamanan Anda dengan %1$s telah berubah. Ini bisa disebabkan seseorang mencoba mencegat komunikasi Anda, atau disebabkan %2$s telah memasang ulang Signal.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Sebaiknya Anda memastikan angka keamanan dengan kontak ini.</string>
   <string name="ConfirmIdentityDialog_accept">Terima</string>
+  <!--ContactsCursorLoader-->
+  <string name="ContactsCursorLoader_recent_chats">Obrolan terbaru</string>
+  <string name="ContactsCursorLoader_contacts">Kontak</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Pesan %s</string>
   <string name="ContactsDatabase_signal_call_s">Panggilan Signal %s</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_message_size_d_kb">Ukuran pesan: %d KB</string>
-  <string name="ConversationItem_expires_s">Berakhir: %s</string>
   <string name="ConversationItem_error_not_delivered">Tidak terkirim</string>
-  <string name="ConversationItem_view_secure_media_question">Tampilkan media aman?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Media ini telah disimpan di dalam basis data terenkripsi. Sayang sekali, untuk melihatnya dengan penampil eksternal saat ini memerlukan data didekripsi sementara dan ditulis ke penyimpanan. Anda yakin ingin melakukan hal ini?</string>
-  <string name="ConversationItem_error_received_stale_key_exchange_message">Gagal, menerima pesan pertukaran kunci terhenti.</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Menerima pesan pertukaran kunci, ketuk untuk memproses.</string>
   <string name="ConversationItem_group_action_left">%1$s telah meninggalkan grup.</string>
   <string name="ConversationItem_click_for_details">Ketuk untuk detail</string>
@@ -89,23 +94,13 @@
   <string name="ConversationActivity_reset_secure_session_question">Atur kembali sesi aman?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Ini dapat membantu jika Anda mengalami masalah enkripsi dalam percakapan ini. Pesan Anda akan disimpan.</string>
   <string name="ConversationActivity_reset">Atur kembali</string>
-  <string name="ConversationActivity_delete_thread_question">Hapus percakapan?</string>
-  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">Ini akan menghapus secara permanen seluruh pesan dalam percakapan.</string>
   <string name="ConversationActivity_add_attachment">Tambahkan lampiran</string>
   <string name="ConversationActivity_select_contact_info">Pilih info kontak</string>
   <string name="ConversationActivity_compose_message">Tulis pesan</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Maaf, terjadi kesalahan pada pengaturan lampiran anda.</string>
-  <string name="ConversationActivity_the_gif_you_selected_was_too_big">Gif yang Anda pilih terlalu besar!</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Maaf, video terpilih melebihi batasan ukuran pesan (%1$skB).</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Maaf, audio terpilih melebihi batasan ukuran pesan (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Alamat penerima SMS atau email tidak benar!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Pesan kosong!</string>
   <string name="ConversationActivity_group_members">Anggota grup</string>
-  <string name="ConversationActivity_group_conversation">Percakapan grup</string>
-  <plurals name="ConversationActivity_d_recipients_in_group">
-    <item quantity="other">%d anggota</item>
-  </plurals>
-  <string name="ConversationActivity_saved_draft">Draf tersimpan</string>
   <string name="ConversationActivity_invalid_recipient">Penerima tidak lengkap!</string>
   <string name="ConversationActivity_calls_not_supported">Panggilan tidak didukung</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Perangkat ini sepertinya tidak mendukung untuk panggilan.</string>
@@ -116,9 +111,7 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Ayo pindah ke Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Ayo gunakan ini untuk mengobrol: %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Galat saat meninggalkan grup</string>
-  <string name="ConversationActivity_mms_not_supported_title">MMS tidak didukung</string>
-  <string name="ConversationActivity_mms_not_supported_message">Pesan ini tidak bisa dikirimkan karena penyedia layanan seluler Anda tidak mendukung MMS.</string>
+  <string name="ConversationActivity_error_leaving_group">Gagal meninggalkan grup</string>
   <string name="ConversationActivity_specify_recipient">Silahkan pilih kontak</string>
   <string name="ConversationActivity_unblock_this_contact_question">Buka blokir kontak ini?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Anda kembali dapat menerima pesan dan panggilan dari kontak ini.</string>
@@ -126,16 +119,13 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Lampiran melebihi batas ukuran untuk tipe pesan yang Anda kirimkan.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera tidak tersedia</string>
   <string name="ConversationActivity_unable_to_record_audio">Tidak bisa merekam audio!</string>
-  <string name="ConversationActivity_error_sending_voice_message">Galat saat mengirim pesan suara</string>
+  <string name="ConversationActivity_error_sending_voice_message">Gagal saat mengirim pesan suara</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Tidak ada aplikasi tersedia untuk menangani tautan ini pada perangkat Anda</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d pesan belum dibaca</item>
   </plurals>
   <!--ConversationFragment-->
-  <string name="ConversationFragment_message_details">Rincian pesan</string>
-  <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nTerkirim/Diterima: %2$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Pengirim: %1$s\nTransport: %2$s\Terkirim: %3$s\nDiterima: %4$s</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="other">Hapus pesan terpilih?</item>
   </plurals>
@@ -159,7 +149,6 @@
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
     <item quantity="other">Menyimpan %1$d lampiran ke penyimpanan...</item>
   </plurals>
-  <string name="ConversationFragment_collecting_attahments">Mengumpulkan lampiran...</string>
   <string name="ConversationFragment_pending">Tertunda...</string>
   <string name="ConversationFragment_push">Data (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
@@ -167,7 +156,6 @@
   <string name="ConversationFragment_deleting">Menghapus</string>
   <string name="ConversationFragment_deleting_messages">Menghapus pesan...</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">Cari</string>
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Tidak ada peramban yang terpasang pada perangkat Anda.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
@@ -189,6 +177,12 @@
   <string name="ConversationListItem_key_exchange_message">Kunci pertukaran pesan</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Arsip percakapan (%d)</string>
+  <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity_your_profile_info">Profil informasi Anda</string>
+  <string name="CreateProfileActivity_error_setting_profile_photo">Gagal mengatur foto profil</string>
+  <string name="CreateProfileActivity_problem_setting_profile">Masalah pengaturan profil</string>
+  <string name="CreateProfileActivity_profile_photo">Foto profil</string>
+  <string name="CreateProfileActivity_too_long">Kepanjangan</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Gunakan ubahsuai: %s</string>
   <string name="CustomDefaultPreference_using_default">Gunakan bawaan: %s</string>
@@ -228,6 +222,9 @@
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal sekarang mendukung panggilan video yang aman. Cukup mulai panggilan Signal seperti biasa, ketuk tombol video, dan ucapkan halo.</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal sekarang mendukung panggilan video yang aman.</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal sekarang mendukung panggilan video yang aman. Ketuk untuk menjelajahi.</string>
+  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Siap foto wajah</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Sekarang anda dapat membagikan nama dan foto profil dengan kawan anda di Signal</string>
+  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Profil signal ada di sini</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Eksport</string>
   <string name="ExportFragment_export_plaintext_to_storage">Ekspor plaintext ke media penyimpanan?</string>
@@ -235,14 +232,14 @@
   <string name="ExportFragment_cancel">Batal</string>
   <string name="ExportFragment_exporting">Mengeksport</string>
   <string name="ExportFragment_exporting_plaintext_to_storage">Mengekspor plaintext ke media penyimpanan...</string>
-  <string name="ExportFragment_error_unable_to_write_to_storage">Galat, tidak bisa menyimpan ke penyimpanan.</string>
-  <string name="ExportFragment_error_while_writing_to_storage">Galat saat menyimpan ke penyimpanan.</string>
+  <string name="ExportFragment_error_unable_to_write_to_storage">Gagal, tidak bisa menyimpan ke penyimpanan.</string>
+  <string name="ExportFragment_error_while_writing_to_storage">Gagal saat menyimpan ke penyimpanan.</string>
   <string name="ExportFragment_export_successful">Ekspor berhasil.</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Kegagalan permanen komunikasi Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal tidak dapat melakukan registrasi dengan Layanan Google Play. Fitur Signal seperti pesan dan panggilan di nonaktifkan, mohon registrasi ulang melalui Pengaturan &gt; Lanjutan.</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Kesalahan saat mengambil GIF dengan resolusi penuh</string>
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Kesalahan saat mengambil berkas GIF dengan resolusi penuh</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Stiker</string>
@@ -253,7 +250,6 @@
   <string name="GroupCreateActivity_actionbar_mms_title">Grup MMS baru</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Anda telah memilih kontak yang tidak mendukung grup Signal, maka grup ini akan menjadi grup MMS.</string>
   <string name="GroupCreateActivity_youre_not_registered_for_signal">Anda tidak terdaftar dalam pesan dan panggilan Signal, jadi grup Signal dinonaktifkan. Mohon coba registrasi ulang melalui Pengaturan.</string>
-  <string name="GroupCreateActivity_contacts_mms_exception">Terjadi kesalahan tidak terduga yang menggagalkan pembuatan grup.</string>
   <string name="GroupCreateActivity_contacts_no_members">Anda butuh minimal satu orang tergabung dalam grup Anda!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Salah satu anggota grup Anda memiliki nomor yang tidak dapat dibaca, silakan perbaiki atau keluarkan kontak tersebut dan coba lagi.</string>
   <string name="GroupCreateActivity_avatar_content_description">Avatar grup</string>
@@ -263,26 +259,23 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Tidak bisa menambahkan %1$s karena mereka bukan pengguna Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Memuat detail grup...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Anda sudah berada di grup.</string>
+  <!--GroupShareProfileView-->
+  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Bagi nama profil dan foto anda di group ini?</string>
+  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Apakah anda ingin nama dan profil anda ditampilkan untuk semua anggota group saat ini dan yang akan datang? </string>
+  <string name="GroupShareProfileView_make_visible">Tampilkan</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Saya</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Impor</string>
   <string name="ImportExportActivity_export">Ekspor</string>
   <!--ImportFragment-->
-  <string name="ImportFragment_import_system_sms_database">Impor basis data SMS sistem?</string>
+  <string name="ImportFragment_import_system_sms_database">Impor basis data sistem SMS?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Ini akan mengimpor
-        pesan dari basis data SMS bawaan sistem ke Signal. Jika Anda sebelumnya telah
-        mengimpor basis data SMS sistem, mengimpornya lagi akan mengakibatkan duplikasi pesan.
+        pesan dari basis data sistem SMS bawaan ke Signal. Jika Anda sebelumnya telah
+        mengimpor basis data sistem SMS, mengimpornya lagi akan mengakibatkan duplikasi pesan.
     </string>
   <string name="ImportFragment_import">Import</string>
   <string name="ImportFragment_cancel">Batal</string>
-  <string name="ImportFragment_restore_encrypted_backup">Pulihkan cadangan terenkripsi?</string>
-  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
-        Memulihkan cadangan terenkripsi akan mengganti seluruhnya kunci, preferensi, dan
-        pesan yang ada. Anda akan kehilangan seluruh informasi Signal yang ada saat ini tetapi
-        tidak di cadangan.
-    </string>
-  <string name="ImportFragment_restore">Pulihkan</string>
   <string name="ImportFragment_import_plaintext_backup">Impor cadangan plaintext?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Ini akan mengimport
 pesan dari basis data SMS standar ke TextSecure. Jika anda sebelumnya
@@ -292,10 +285,6 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <string name="ImportFragment_no_plaintext_backup_found">Cadangan teks polos tidak ditemukan!</string>
   <string name="ImportFragment_error_importing_backup">Gagal mengimport cadangan!</string>
   <string name="ImportFragment_import_complete">Selesai mengimport!</string>
-  <string name="ImportFragment_restoring">Memulihkan</string>
-  <string name="ImportFragment_restoring_encrypted_backup">Memulihkan daru cadangan yang dienkripsi...</string>
-  <string name="ImportFragment_no_encrypted_backup_found">Tidak menemukan adanya cadangan yang dienkripsi!</string>
-  <string name="ImportFragment_restore_complete">Pemulihan selesai!</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Ketuk dan tahan untuk merekam pesan suara, lepas untuk mengirim</string>
   <!--InviteActivity-->
@@ -316,9 +305,6 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <string name="InviteActivity_no_app_to_share_to">Sepertinya Anda tidak memiliki aplikasi untuk berbagi.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Teman tidak membiarkan temannya mengobrol tanpa enkripsi.</string>
   <!--KeyScanningActivity-->
-  <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Pemindai kunci tidak ditemukan!</string>
-  <string name="KeyScanningActivity_install_barcode_Scanner">Pasang Pemindai Barcode?</string>
-  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal membutuhkan Pemindai Barcode untuk kode QR.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Gagal mengirim</string>
   <string name="MessageDetailsRecipient_new_safety_number">Angka keamanan baru</string>
@@ -326,13 +312,12 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Koneksi latar belakang diaktifkan</string>
   <!--MmsDownloader-->
-  <string name="MmsDownloader_error_storing_mms">Kesalahan dalam menyimpan MMS!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Galat saat menyambung ke penyedia MMS</string>
-  <string name="MmsDownloader_error_reading_mms_settings">Galat saat membaca pengaturan MMS penyedia nirkabel</string>
+  <string name="MmsDownloader_error_reading_mms_settings">Gagal saat membaca pengaturan MMS penyedia nirkabel</string>
+  <!--MediaOverviewActivity-->
+  <string name="MediaOverviewActivity_Media">Media</string>
+  <string name="MediaOverviewActivity_Documents">Dokumen</string>
   <!--- NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">Kemajuan panggilan masuk Signal</string>
-  <string name="NotificationBarManager_missed_call_from_s">Panggilan tak terjawab dari %s</string>
-  <string name="NotificationBarManager_missed_signal_call">Panggilan tak terjawab Signal</string>
+  <string name="NotificationBarManager_signal_call_in_progress">Panggilan masuk Signal berlangsung</string>
   <string name="NotificationBarManager__establishing_signal_call">Menyiapkan panggilan Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Panggilan masuk Signal</string>
   <string name="NotificationBarManager__deny_call">Tolak panggilan</string>
@@ -342,7 +327,7 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Pesan multimedia</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Mengunduh pesan MMS.</string>
-  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Galat saat mengunduh pesan MMS, ketuk untuk mencoba lagi</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Gagal saat mengunduh pesan MMS, ketuk untuk mencoba lagi</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Menerima pesan terenkripsi menggunakan Signal versi lama tidak lagi didukung, Harap beri tahu pengirim untuk memutakhirkan ke versi terbaru dan kirim ulang pesannya.</string>
   <string name="MessageRecord_left_group">Anda telah keluar dari grup.</string>
@@ -367,7 +352,6 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <string name="DeviceProvisioningActivity_link_this_device">Kaitkan perangkat ini?</string>
   <string name="DeviceProvisioningActivity_cancel">BATAL</string>
   <string name="DeviceProvisioningActivity_continue">LANJUTKAN</string>
-  <string name="DeviceProvisioningActivity_title">Kaitkan perangkat ini?</string>
   <string name="DeviceProvisioningActivity_content_intro">Ini akan dapat</string>
   <string name="DeviceProvisioningActivity_content_bullets">
 • Baca semua pesan Anda
@@ -377,7 +361,7 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <string name="DeviceProvisioningActivity_content_progress_content">Mengaitkan perangkat baru...</string>
   <string name="DeviceProvisioningActivity_content_progress_success">Perangkat disetujui!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Perangkat tidak ditemukan.</string>
-  <string name="DeviceProvisioningActivity_content_progress_network_error">Galat jaringan.</string>
+  <string name="DeviceProvisioningActivity_content_progress_network_error">Jaringan gagal.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Kode QR tidak valid.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Maaf, Anda memiliki terlalu banyak perangkat yang terhubung, coba buang beberapa</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Maaf, ini bukan tautan perangkat kode QR yang benar.</string>
@@ -417,28 +401,18 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <string name="RedPhone_answering">Menjawab</string>
   <string name="RedPhone_ending_call">Mengakhiri panggilan</string>
   <string name="RedPhone_dialing">Memanggil</string>
-  <string name="RedPhone_canceling_call">Membatalkan panggilan</string>
-  <string name="RedPhone_call_rejected">Panggilan ditolak</string>
   <string name="RedPhone_ringing">Berdering</string>
   <string name="RedPhone_busy">Sibuk</string>
   <string name="RedPhone_connected">Tersambung</string>
-  <string name="RedPhone_connecting">Menyambung</string>
-  <string name="RedPhone_handshake_failed">Otentikasi gagal!</string>
   <string name="RedPhone_recipient_unavailable">Penerima tidak tersedia</string>
-  <string name="RedPhone_performing_handshake">Melakukan otentikasi</string>
   <string name="RedPhone_network_failed">Jaringan gagal!</string>
-  <string name="RedPhone_client_failed">Klien gagal</string>
-  <string name="RedPhone_fatal_error">Kesalahan Fatal</string>
-  <string name="RedPhone_login_failed">Gagal masuk!</string>
-  <string name="RedPhone_message_from_the_server">Pesan dari server</string>
   <string name="RedPhone_number_not_registered">Nomor tidak terdaftar!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Nomor yang Anda panggil tidak mendukung panggilan aman!</string>
   <string name="RedPhone_got_it">Paham</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_signal">Menyambung dengan Signal</string>
-  <string name="RegistrationActivity_select_your_country">Pilih negara Anda</string>
+  <string name="RegistrationActivity_select_your_country">Pilih negeri Anda</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Anda harus mengisi
-        kode negara Anda
+        kode negeri Anda
     </string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">Anda harus mengisi
         nomor telepon Anda
@@ -447,46 +421,27 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Nomor yang anda
 isikan (%s) tidak tepat.
 </string>
-  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
-        Periksa lagi bahwa ini adalah nomor Anda! Kami akan memverifikasinya dengan SMS.
-    </string>
-  <string name="RegistrationActivity_continue">Lanjutkan</string>
-  <string name="RegistrationActivity_edit">Edit</string>
   <string name="RegistrationActivity_missing_google_play_services">Tidak memiliki Google Play Services</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Perangkat ini tidak memiliki Google Play Services. Anda tetap dapat menggunakan Signal, namun konfigurasi ini dapat menyebabkan berkurangnya keandalan atau kinerja.\n\nJika Anda bukan pengguna tingkat lanjut, tidak menjalankan aftermarket ROM Android, atau Anda yakin bahwa melihat kesalahan ini, hubungi support@whispersystems.org untuk mendapatkan bantuan penyelesaian masalah.</string>
   <string name="RegistrationActivity_i_understand">Saya mengerti</string>
-  <string name="RegistrationActivity_play_services_error">Play Services Error</string>
+  <string name="RegistrationActivity_play_services_error">Play Services gagal</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services diperbarui atau untuk sementara tidak tersedia. Silahkan coba lagi.</string>
   <string name="RegistrationActivity_more_information">Informasi lebih lanjut</string>
   <string name="RegistrationActivity_less_information">Kurang informasi</string>
   <!--RegistrationProblemsActivity-->
-  <string name="RegistrationProblemsActivity_possible_problems">Masalah yang mungkin terjadi</string>
   <!--RegistrationProgressActivity-->
-  <string name="RegistrationProgressActivity_verifying_number">Memverifikasi Nomor</string>
-  <string name="RegistrationProgressActivity_edit_s">Edit %s</string>
-  <string name="RegistrationProgressActivity_registration_complete">Pendaftaran selesai!</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Anda harus memasukkan kode yang Anda terima terlebih dahulu</string>
-  <string name="RegistrationProgressActivity_connecting">Menghubungkan</string>
-  <string name="RegistrationProgressActivity_connecting_for_verification">Menghubungkan untuk verifikasi</string>
-  <string name="RegistrationProgressActivity_network_error">Galat jaringan!</string>
-  <string name="RegistrationProgressActivity_unable_to_connect">Tidak dapat menyambung. Mohon periksa koneksi anda dan coba lagi.</string>
-  <string name="RegistrationProgressActivity_verification_failed">Verifikasi gagal!</string>
-  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">Kode Verifikasi yang anda kirim salah. Silakan coba lagi.</string>
-  <string name="RegistrationProgressActivity_too_many_attempts">Terlalu banyak mencoba</string>
-  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Anda telah terlalu banyak memasukkan kode yang salah. Silakan tunggu satu menit untuk mencoba lagi</string>
-  <string name="RegistrationProgressActivity_requesting_call">Meminta panggilan</string>
-  <string name="RegistrationProgressActivity_requesting_incoming_call">Meminta verifikasi panggilan masuk...</string>
-  <string name="RegistrationProgressActivity_server_error">Galat server</string>
-  <string name="RegistrationProgressActivity_the_server_encountered_an_error">Server mengalami gangguan. Silakan coba lagi.</string>
-  <string name="RegistrationProgressActivity_too_many_requests">Terlalu banyak permintaan!</string>
-  <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Anda telah meminta panggilan suara. Anda dapat meminta lagi dalam 20 menit kemudian.</string>
-  <string name="RegistrationProgressActivity_registration_conflict">Konflik pendaftaran</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Nomor ini sudah terdaftar di server Signal yang berbeda. Anda harus membatalkan pendaftaran di sana sebelum mendaftar di sini.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Pendaftaran selesai</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Pendaftaran Signal telah lengkap dan berhasil.</string>
   <string name="RegistrationService_registration_error">Pendaftaran gagal</string>
   <string name="RegistrationService_signal_registration_has_encountered_a_problem">Pendaftaran Signal mengalami masalah.</string>
+  <!--RingtonePreference-->
+  <string name="RingtonePreference_ringtone_default">Nada dering standar</string>
+  <string name="RingtonePreference_ringtone_silent">Kosong</string>
+  <string name="RingtonePreference_notification_sound_default">Pemberitahuan suara standar</string>
+  <string name="RingtonePreference_alarm_sound_default">Suara pengingat standar</string>
+  <string name="RingtonePreference_add_ringtone_text">Tambahkan nada dering</string>
+  <string name="RingtonePreference_unable_to_add_ringtone">Tidak dapat menambahkan nada dering sesuai keinginan</string>
   <!--Slide-->
   <string name="Slide_image">Gambar</string>
   <string name="Slide_audio">Audio</string>
@@ -519,6 +474,19 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Perbarui Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Versi baru Signal tersedia, ketuk untuk memperbarui</string>
+  <!--UnknownSenderView-->
+  <string name="UnknownSenderView_block_s">Blokir %s</string>
+  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Blokir kontak yang tidak lagi dapat mengirimkan pesan atau panggilan</string>
+  <string name="UnknownSenderView_block">Blokir</string>
+  <string name="UnknownSenderView_share_profile_with_s">Bagikan profil dengan%s</string>
+  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Cara yang paling mudah untuk membagikan informasi profil adalah dengan menambahkan pengirim ke dalam kontak. Jika anda tidak lagi menginginkannya, anda tetap membagikan informasi profil anda dengan cara ini</string>
+  <string name="UnknownSenderView_share_profile">Bagikan profil</string>
+  <!--UntrustedSendDialog-->
+  <string name="UntrustedSendDialog_send_message">Kirim pesan?</string>
+  <string name="UntrustedSendDialog_send">Kirim</string>
+  <!--UnverifiedSendDialog-->
+  <string name="UnverifiedSendDialog_send_message">Kirim pesan?</string>
+  <string name="UnverifiedSendDialog_send">Kirim</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontak Anda menjalankan versi lama Signal. Mintalah mereka untuk memperbarui sebelum memverifikasi nomor keselamatan Anda.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontak Anda menjalankan versi Signal yang lebih baru dengan format kode QR yang tidak kompatibel. Silahkan perbarui untuk membandingkan.</string>
@@ -528,34 +496,29 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="VerifyIdentityActivity_no_app_to_share_to">Sepertinya Anda tidak memiliki aplikasi untuk berbagi.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Tidak ada nomor keamanan untuk dibandingkan yang ditemukan di papan klip</string>
   <!--KeyExchangeInitiator-->
-  <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Memulai meskipun permintaan sudah ada?</string>
-  <string name="KeyExchangeInitiator_send">Kirim</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Pesan terenkripsi buruk</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Melakukan dekripsi, mohon tunggu...</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Pesan dienkripsi untuk sesi yang tidak ada</string>
   <!--EncryptingSmsDatabase-->
-  <string name="EncryptingSmsDatabase_error_decrypting_message">Galat mendekripsi pesan.</string>
+  <string name="EncryptingSmsDatabase_error_decrypting_message">Gagal mendekripsi pesan.</string>
   <!--ThreadDatabase-->
-  <string name="ThreadDatabase_error_decrypting_message">Galat mendekripsi pesan.</string>
+  <string name="ThreadDatabase_error_decrypting_message">Gagal mendekripsi pesan.</string>
   <!--MmsDatabase-->
-  <string name="MmsDatabase_connecting_to_mms_server">Memulai koneksi ke Server MMS...</string>
-  <string name="MmsDatabase_downloading_mms">Mengunduh MMS...</string>
-  <string name="MmsDatabase_mms_download_failed">Pengunduhan MMS gagal!</string>
-  <string name="MmsDatabase_downloading">Mengunduh...</string>
-  <string name="MmsDatabase_mms_pending_download">Ketuk untuk mengkonfigurasi pengaturan MMS untuk lanjut mengunduh.</string>
-  <string name="MmsDatabase_error_decrypting_message">Galat mendekripsi pesan.</string>
+  <string name="MmsDatabase_error_decrypting_message">Gagal mendekripsi pesan.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Proses deskripsi MMS, mohon tunggu...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Pesan MMS terenkripsi buruk</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Pesan MMS dienkripsi untuk sesi yang tidak ada</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Bisukan pemberitahuan</string>
+  <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_no_web_browser_installed">Tidak ada peramban terpasang</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Dalam proses mengimport</string>
   <string name="ApplicationMigrationService_importing_text_messages">Mengimpor pesan teks</string>
   <string name="ApplicationMigrationService_import_complete">Selesai mengimpor</string>
-  <string name="ApplicationMigrationService_system_database_import_is_complete">Impor basis data sistem berhasil</string>
+  <string name="ApplicationMigrationService_system_database_import_is_complete">Impor sistem basis data berhasil</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Sentuh untuk membuka.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Sentuh untuk membuka, atau sentuh kunci untuk menutup.</string>
@@ -563,7 +526,6 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="KeyCachingService_lock">Kunci dengan frasa sandi</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Anda</string>
-  <string name="MediaPreviewActivity_cant_display">Gagal meninjau gambar ini</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Tipe media tidak didukung</string>
   <string name="MediaPreviewActivity_draft">Draf</string>
   <!--MessageNotifier-->
@@ -571,7 +533,6 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MessageNotifier_most_recent_from_s">Paling baru dari: %1$s</string>
   <string name="MessageNotifier_locked_message">Pesan terkunci</string>
   <string name="MessageNotifier_media_message_with_text">Pesan media: %s</string>
-  <string name="MessageNotifier_no_subject">(Tidak ada subyek)</string>
   <string name="MessageNotifier_message_delivery_failed">Pengiriman pesan gagal.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Gagal mengirimkan pesan.</string>
   <string name="MessageNotifier_error_delivering_message">Kesalahan dalam mengirimkan pesan.</string>
@@ -582,22 +543,21 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MessageNotifier_pending_signal_messages">Pesan Signal tertunda</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Anda memiliki pesan Signal yang tertunda, ketuk untuk membuka dan menerima</string>
   <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Telepon Anda membutuhkan pengaturan MMS secara manual.</string>
-  <string name="MmsPreferencesFragment__enabled">Aktif</string>
-  <string name="MmsPreferencesFragment__disabled">Nonaktif</string>
-  <string name="MmsPreferencesFragment__not_set">Belum ditetapkan</string>
-  <string name="MmsPreferencesFragment__invalid_uri">Teks yang dimasukkan bukan URI yang valid</string>
-  <string name="MmsPreferencesFragment__invalid_host">Teks yang dimasukkan bukan host yang valid</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Tanggapan cepat tidak tersedia ketika Signal sedang dikunci!</string>
   <string name="QuickResponseService_problem_sending_message">Terjadi masalah saat mengirim pesan!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Buka direktori</string>
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">Cari</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Pesan baru</string>
+  <!--UnauthorizedReminder-->
+  <string name="UnauthorizedReminder_device_no_longer_registered">Perangkat tidak lagi terdaftar</string>
   <!--VideoPlayer-->
-  <string name="VideoPlayer_error_playing_video">Galat saat memutar video</string>
+  <string name="VideoPlayer_error_playing_video">Gagal saat memutar video</string>
+  <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Nomor keamanan untuk percakapan Anda dengan %1$s telah berubah. Ini bisa berarti seseorang mencoba untuk mencegat komunikasi Anda, atau %2$s hanya perlu memasang kembali Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Mungkin sebaiknya Anda memastikan angka keamanan dengan kontak ini.</string>
@@ -632,21 +592,18 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Foto Kontak</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionlistFragment_select_for">Pilih untuk</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Tidak ada kontak yang diblokir</string>
   <!--contact_selection_recent_activity-->
-  <string name="contact_selection_recent_activity__no_recent_calls">Tidak ada panggilan baru</string>
+  <!--contact_selection_list_fragment-->
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal membutuhkan akses kontak anda supaya dapat menampilkannya</string>
   <!--conversation_title_view-->
-  <string name="conversation_title_view__conversation_muted">Percakapan dibisukan</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Pesan Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">Kirim SMS tidak aman</string>
   <string name="conversation_activity__type_message_mms_insecure">Kirim MMS tidak aman</string>
   <string name="conversation_activity__from_sim_name">Dari %1$s</string>
   <string name="conversation_activity__send">Kirim</string>
-  <string name="conversation_activity__remove">Hapus</string>
-  <string name="conversation_activity__window_description">Percakapan dengan %1$s</string>
   <string name="conversation_activity__compose_description">Penulisan pesan</string>
   <string name="conversation_activity__emoji_toggle_description">Jungkitkan papan ketik emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Gambar Mini Lampiran</string>
@@ -656,19 +613,15 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">GESER UNTUK MEMBATALKAN</string>
   <!--conversation_item-->
-  <string name="conversation_item__mms_downloading_description">Pengunduhan pesan media</string>
   <string name="conversation_item__mms_image_description">Pesan media</string>
   <string name="conversation_item__secure_message_description">Pesan aman</string>
   <!--conversation_item_sent-->
-  <string name="conversation_item_sent__download">Unduh</string>
-  <string name="conversation_item_sent__downloading">Mengunduh</string>
   <string name="conversation_item_sent__send_failed_indicator_description">Gagal Mengirim</string>
   <string name="conversation_item_sent__pending_approval_description">Persetujuan Tertunda</string>
   <string name="conversation_item_sent__delivered_description">Terkirim</string>
+  <string name="conversation_item_sent__message_read">Pesan terbaca</string>
   <!--conversation_item_received-->
-  <string name="conversation_item_received__download">Unduh</string>
   <string name="conversation_item_received__contact_photo_description">Foto kontak</string>
-  <string name="conversation_item_received__downloading">Mengunduh</string>
   <!--audio_view-->
   <string name="audio_view__play_accessibility_description">Putar</string>
   <string name="audio_view__pause_accessibility_description">Jeda</string>
@@ -690,6 +643,9 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="device_list_fragment__link_new_device">Kaitkan perangkat baru</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">lanjutkan</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Baca pesan di sini</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Pilihan melihat dan membagikan ketika pesan sudah dibaca</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Dapat membaca penerima</string>
   <!--expiration-->
   <string name="expiration_off">Mati</string>
   <plurals name="expiration_seconds">
@@ -730,13 +686,10 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Tidak ada yang ditemukan</string>
   <!--import_export_fragment-->
-  <string name="import_export_fragment__export">Ekspor</string>
-  <string name="import_export_fragment__import">Impor</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__log_fetch_failed">Tidak bisa membaca catatan log pada perangkat Anda. Anda masih bisa menggunakan ADB untuk mengambil log awakutu.</string>
+  <string name="log_submit_activity__log_fetch_failed">Tidak bisa membaca catatan log pada perangkat Anda. Anda masih bisa menggunakan ADB untuk mengambil log celah keamanan.</string>
   <string name="log_submit_activity__thanks">Terima kasih atas bantuan Anda!</string>
   <string name="log_submit_activity__submitting">Mengirimkan</string>
-  <string name="log_submit_activity__posting_logs">Kirim catatan log gist…</string>
   <string name="log_submit_activity__no_browser_installed">Tidak ada peramban yang terpasang</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Apakah Anda ingin mengimpor pesan teks yang ada ke basis data Signal yang terenkripsi?</string>
@@ -749,10 +702,8 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="database_upgrade_activity__updating_database">Memperbarui basis data...</string>
   <string name="export_fragment__export_plaintext_backup">Ekspor cadangan plaintext</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">Ekspor cadangan plaintext kompatibel dengan \'SMS Backup &amp; Restore\' ke media penyimpanan</string>
-  <string name="import_fragment__import_system_sms_database">Impor basis data SMS sistem</string>
+  <string name="import_fragment__import_system_sms_database">Impor sistem basis data SMS</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Impor basis data dari aplikasi bawaan perpesanan sistem</string>
-  <string name="import_fragment__restore_encrypted_backup">Pulihkan cadangan terenkripsi</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">Pulihkan cadangan terenkripsi Signal yang sebelumnya diekspor</string>
   <string name="import_fragment__import_plaintext_backup">Impor cadangan plaintext </string>
   <string name="import_fragment__import_a_plaintext_backup_file">Impor cadangan plaintext. Kompatibel dengan \'SMS Backup &amp; Restore.\'</string>
   <!--load_more_header-->
@@ -768,109 +719,46 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
     <item quantity="other">%1$s bergabung dengan grup</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Nama grup sekarang \'%1$s\'.</string>
+  <!--profile_group_share_view-->
+  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Tampilkan profil anda dan foto dalam grup ini?</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Buka Kunci</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal membutuhkan pengaturan MMS untuk mengirimkan media dan pesan grup melalui penyedia layanan wireless Anda. Perangkat Anda tidak menyediakan informasi tersebut, dan terkadang benar untuk perangkat terkunci dan konfigurasi terbatas lainnya.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Untuk mengirim pesan media dan pesan grup, ketuk \'OK\' dan selesaikan pengaturan yang diminta. Pengaturan MMS untuk operator Anda biasanya dapat ditemukan dengan mencari \'APN operator Anda\'. Anda hanya memerlukan ini sekali saja.</string>
+  <!--profile_create_activity-->
+  <string name="profile_create_activity__set_later">Atur nanti</string>
+  <string name="profile_create_activity__finish">SELESAI</string>
+  <string name="profile_create_activity__who_can_see_this_information">Siapa yang dapat melihat informasi ini?</string>
+  <string name="profile_create_activity__your_name">Nama anda</string>
   <!--recipient_preferences_activity-->
-  <string name="recipient_preference_activity__blocked">DIBLOKIR</string>
+  <string name="recipient_preference_activity__shared_media">Bagikan media</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Bisukan percakapan</string>
-  <string name="recipient_preferences__disable_notifications_for_this_conversation">Nonaktifkan pemberitahuan untuk percapakan ini</string>
   <string name="recipient_preferences__notification_sound">Suara pemberitahuan</string>
   <string name="recipient_preferences__vibrate">Bergetar</string>
   <string name="recipient_preferences__block">Blokir</string>
   <string name="recipient_preferences__color">Warna</string>
-  <string name="recipient_preferences__color_for_this_contact">Warna untuk kontak ini</string>
   <string name="recipient_preferences__view_safety_number">Lihat nomor keamanan</string>
+  <string name="recipient_preferences__chat_settings">Setelan percakapan</string>
+  <string name="recipient_preferences__privacy">Privasi</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Panggilan Signal</string>
-  <string name="redphone_call_controls__end_call">akhiri panggilan</string>
-  <string name="redphone_call_controls__audio">Audio</string>
   <string name="redphone_call_controls__mute">Bisukan</string>
   <string name="redphone_call_controls__signal_call">Panggilan Signal</string>
   <!--registration_activity-->
-  <string name="registration_activity__verify_your_number_to_connect_with_signal">
-        Verifikasi nomor telepon Anda untuk tersambung dengan Signal.
-    </string>
-  <string name="registration_activity__your_country">NEGARA ANDA</string>
-  <string name="registration_activity__your_country_code_and_phone_number">KODE NEGARA ANDA DAN
-NOMOR TELEPON</string>
   <string name="registration_activity__phone_number">NOMOR TELEPON</string>
-  <string name="registration_activity__register">Daftar</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal memudahkan komunikasi dengan menggunakan nomor telepon dan buku alamat yang ada. Teman dan kontak yang sudah tahu cara menghubungi Anda melalui telepon akan dapat dengan mudah menghubungi Signal.\n\nPendaftaran mentransmisikan beberapa informasi kontak ke server. Itu tidak disimpan.</string>
-  <string name="registration_activity__powered_by_twilio">Didukung oleh twillio</string>
   <!--registration_problems-->
-  <string name="registration_problems__some_possible_problems_include">Beberapa masalah yang mungkin
-termasuk:
-</string>
-  <string name="registration_problems__sms_interceptors">Penyadap SMS.</string>
-  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
-        Beberapa aplikasi perpesanan teks pihak ketiga, seperti Handcent atau GoSMS, bekerja dengan sangat buruk dan
-        mencegat semua pesan SMS yang masuk. Periksa apakah Anda menerima pesan teks yang dimulai
-        dengan \'Kode verifikasi Signal Anda:\', yang dalam kasus tersebut Anda harus mengkonfigurasi
-        aplikasi perpesanan teks pihak ketiga yang Anda miliki untuk memperbolehkan pesan diterima.
-    </string>
-  <string name="registration_problems__incorrect_number">nomor salah.</string>
-  <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
-        Mohon pastikan Anda memasukkan nomor Anda dengan benar, dan dengan format yang sesuai dengan
-        wilayah Anda.
-    </string>
-  <string name="registration_problems__google_voice">Google Voice.</string>
-  <string name="registration_problems__signal_will_not_work_with_google_voice_numbers">
-        Signal tidak akan bekerja dengan nomor Google Voice.
-    </string>
   <!--registration_progress_activity-->
-  <string name="registration_progress_activity__voice_verification">Verifikasi suara</string>
-  <string name="registration_progress_activity__signal_can_also_call_you_to_verify_your_number">
-Signal juga bisa menelpon Anda untuk memverifikasi nomor Anda. Ketuk \'Panggil Saya\' dan masukkan enam digit
-yang Anda dengar.
-    </string>
-  <string name="registration_progress_activity__verify">Verifikasi</string>
-  <string name="registration_progress_activity__call_me">Panggil saya</string>
-  <string name="registration_progress_activity__edit_number">Sunting nomor</string>
-  <string name="registration_progress_activity__connectivity_error">Galat konektivitas</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal tidak dapat terhubung ke server.</string>
-  <string name="registration_progress_activity__some_possible_problems_include">Kemungkinan masalah
-termasuk:
-</string>
-  <string name="registration_progress_activity__no_network_connectivity">Tidak ada konektivitas
-jaringan.
-</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Perangkat Anda
-membutuhkan konektivitas jaringan agar dapat menggunakan fitur Signal. Periksa untuk memastikan
-Anda tersambung ke data seluler atau Wi-Fi.
-</string>
-  <string name="registration_progress_activity__restrictive_firewall">Firewall membatasi.
-</string>
-  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
-Jika Anda tersambung melalui Wi-Fi, kemungkinan ada pengaturan firewall yang memblokir akses ke
-server Signal. Coba jaringan lain atau gunakan data seluler.
-</string>
-  <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-        Signal akan secara otomatis memverifikasi nomor Anda menggunakan konfirmasi pesan SMS.
-    </string>
-  <string name="registration_progress_activity__connecting">Menghubungkan...</string>
-  <string name="registration_progress_activity__waiting_for_sms_verification">Menunggu Verifikasi
-SMS...</string>
-  <string name="registration_progress_activity__registering_with_server">Mendaftarkan ke server...</string>
-  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Ini
-        akan memakan waktu sejenak. Mohon sabar, kami akan beritahu Anda ketika verifikasi telah berhasil.
-    </string>
-  <string name="registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message">
-        Signal kehabisan waktu saat menunggu pesan verifikasi SMS.
-    </string>
-  <string name="registration_progress_activity__sms_verification_failed">Verifikasi SMS
-gagal
-</string>
-  <string name="registration_progress_activity__generating_keys">Membuat kunci...</string>
-  <string name="registration_progress_activity__alert">Peringatan</string>
-  <string name="registration_progress_activity__telephone">Telepon</string>
-  <string name="registration_progress_activity__check">Periksa</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Masukkan nama atau nomor</small></string>
   <string name="recipients_panel__add_members">Tambah anggota</string>
+  <!--unknown_sender_view-->
+  <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">Pengirim tidak ada dalam daftar kontak</string>
+  <string name="unknown_sender_view__block">BLOKIR</string>
+  <string name="unknown_sender_view__add_to_contacts">TAMBAHKAN KONTAK</string>
+  <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">JANGAN DIMASUKKAN, TAPI BUAT PROFILKU TAMPAK</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Jika anda ingin memverifikasi keamanan enkripsi anda dengan %s, bandingkan nomor diatas dengan nomor di perangkat mereka. Alternatifnya, anda bisa memindai kode di telepon mereka, atau minta mereka untuk  memindai kode anda. <a href="https://whispersystems.org/redirect/safety-numbers">Pelajari lebih lanjut.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Ketuk untuk memindai</string>
@@ -878,6 +766,7 @@ gagal
   <string name="verify_display_fragment__verified">Terverifikasi</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Bagikan nomor keamanan</string>
+  <!--webrtc_answer_decline_button-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Beberapa masalah membutuhkan perhatian Anda.</string>
   <string name="message_details_header__sent">Terkirim</string>
@@ -891,17 +780,15 @@ gagal
   <string name="AndroidManifest__create_passphrase">Buat frasa sandi</string>
   <string name="AndroidManifest__enter_passphrase">Masukkan frasa sandi</string>
   <string name="AndroidManifest__select_contacts">Pilih kontak</string>
-  <string name="AndroidManifest__signal_detected">Signal terdeteksi</string>
   <string name="AndroidManifest__change_passphrase">Ganti frasa sandi</string>
   <string name="AndroidManifest__verify_safety_number">Periksa angka keamanan</string>
-  <string name="AndroidManifest__log_submit">Kirim log awakutu</string>
+  <string name="AndroidManifest__log_submit">Kirim log celah keamanan</string>
   <string name="AndroidManifest__media_preview">Pratinjau media</string>
-  <string name="AndroidManifest__all_media">Semua media</string>
-  <string name="AndroidManifest__all_media_named">Semua media dengan %1$s</string>
   <string name="AndroidManifest__message_details">Rincian pesan</string>
   <string name="AndroidManifest__linked_devices">Perangkat terkait</string>
   <string name="AndroidManifest__invite_friends">Undang teman</string>
   <string name="AndroidManifest_archived_conversations">Arsip percakapan</string>
+  <string name="AndroidManifest_remove_photo">Buang foto</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Impor / ekspor</string>
   <string name="arrays__use_default">Gunakan bawaan</string>
@@ -933,18 +820,13 @@ gagal
     <item quantity="other">%d jam</item>
   </plurals>
   <!--preferences.xml-->
-  <string name="preferences__general">Umum</string>
   <string name="preferences__sms_mms">SMS dan MMS</string>
   <string name="preferences__pref_all_sms_title">Terima semua SMS</string>
   <string name="preferences__pref_all_mms_title">Terima semua MMS</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Gunakan Signal untuk semua pesan teks yang masuk</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Gunakan Signal untuk semua pesan multimedia yang masuk</string>
-  <string name="preferences__input_settings">Pengaturan Masukan</string>
-  <string name="preferences__enable_enter_key_title">Aktifkan tombol Enter</string>
-  <string name="preferences__replace_smiley_with_enter_key">Ganti tombol smiley dengan tombol Enter</string>
   <string name="preferences__pref_enter_sends_title">Enter untuk mengirim</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Menekan tombol Enter akan mengirimkan pesan teks</string>
-  <string name="preferences__display_settings">Pengaturan tampilan</string>
   <string name="preferences__choose_identity">Pilih identitas</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Pilih kontak anda dari daftar kontak yang ada.</string>
   <string name="preferences__change_passphrase">Ganti Kata Kunci</string>
@@ -957,20 +839,11 @@ gagal
   <string name="preferences__inactivity_timeout_passphrase">Frasa sandi untuk habis waktu karena tiada aktivitas</string>
   <string name="preferences__inactivity_timeout_interval">Interval habis waktu karena tiada aktivitas</string>
   <string name="preferences__notifications">Pemberitahuan</string>
-  <string name="preferences__enable_message_notifications">Aktifkan pemberitahuan pesan</string>
-  <string name="preferences__new_contacts_notifications">Notifikasi kontak baru</string>
-  <string name="preferences__show_a_notification_for_new_signal_contacts">Tampilkan notifikasi untuk kontak baru Signal</string>
   <string name="preferences__led_color">Warna LED</string>
   <string name="preferences__led_color_unknown">Tidak dikenal</string>
   <string name="preferences__pref_led_blink_title">Pola kedip LED</string>
-  <string name="preferences__pref_led_blink_custom_pattern_title">Tetapkan pola kedip LED ubahsuai</string>
-  <string name="preferences__pref_led_blink_custom_pattern_on_for">Nyala selama:</string>
-  <string name="preferences__pref_led_blink_custom_pattern_off_for">Mati selama:</string>
-  <string name="preferences__pref_led_blink_custom_pattern_set">Atur pola kedip LED!</string>
   <string name="preferences__sound">Bunyi</string>
   <string name="preferences__silent">Diam</string>
-  <string name="preferences__in_conversation_notifications">Pemberitahuan percakapan</string>
-  <string name="preferences__play_inthread_notifications">Putar suara pemberitahuan ketika berada pada percakapan aktif</string>
   <string name="preferences__repeat_alerts">Ulangi peringatan</string>
   <string name="preferences__never">Tidak pernah</string>
   <string name="preferences__one_time">Sekali saja</string>
@@ -979,9 +852,6 @@ gagal
   <string name="preferences__five_times">Lima kali</string>
   <string name="preferences__ten_times">Sepuluh kali</string>
   <string name="preferences__vibrate">Getar</string>
-  <string name="preferences__also_vibrate_when_notified">Bergetar jika ada pemberitahuan masuk</string>
-  <string name="preferences__minutes">menit</string>
-  <string name="preferences__hours">jam</string>
   <string name="preferences__green">Hijau</string>
   <string name="preferences__red">Merah</string>
   <string name="preferences__blue">Biru</string>
@@ -993,13 +863,10 @@ gagal
   <string name="preferences__fast">Cepat</string>
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Lambat</string>
-  <string name="preferences__custom">Spesifik</string>
   <string name="preferences__advanced">Lanjutan</string>
   <string name="preferences__privacy">Privasi</string>
   <string name="preferences__mms_user_agent">User Agent MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Pengaturan Manual MMS</string>
-  <string name="preferences__enable_manual_mms">Gunakan pengaturan manual MMS</string>
-  <string name="preferences__override_system_mms_settings">Ganti pengaturan MMS dengan informasi berikut.</string>
   <string name="preferences__mmsc_url">URL MMSC</string>
   <string name="preferences__mms_proxy_host">Host Proksi MMS</string>
   <string name="preferences__mms_proxy_port">Port Proksi MMS</string>
@@ -1025,10 +892,11 @@ gagal
   <string name="preferences__submit_debug_log">Kirim log awakutu</string>
   <string name="preferences__support_wifi_calling">Mode kompatibilitas \'Panggilan WiFi\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktifkan jika perangkat Anda menggunakan pengiriman SMS/MMS melalui WiFi (hanya berfungsi ketika \'Panggilan WiFi\' aktif di perangkat Anda)</string>
+  <string name="preferences__incognito_keyboard">Papan ketik tersembunyi</string>
+  <string name="preferences__read_receipts">Pesan terbaca</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Jika tanda telah diterima di non aktifkan . anda tidak dapat melihat jika pesan sudah dibaca oleh orang lain</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Permintaan papan ketik untuk non-aktif personalisasi</string>
   <string name="preferences_app_protection__blocked_contacts">Kontak yang diblokir</string>
-  <string name="preferences_app_protection__safety_numbers_approval">Persetujuan nomor keamanan</string>
-  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Perlu persetujuan nomor keamanan baru saat mereka berubah</string>
-  <string name="preferences_notifications__display_in_notifications">Tampilkan di pemberitahuan</string>
   <string name="preferences_chats__when_using_mobile_data">Ketika menggunakan data seluler</string>
   <string name="preferences_chats__when_using_wifi">Ketika menggunakan Wi-Fi</string>
   <string name="preferences_chats__when_roaming">Ketika roaming</string>
@@ -1036,8 +904,6 @@ gagal
   <string name="preferences_chats__message_trimming">Penyingkatan pesan</string>
   <string name="preferences_advanced__use_system_emoji">Gunakan emoji sistem</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Nonaktifkan dukungan emoji Signal bawaan</string>
-  <string name="preferences_advanced__video_calling_beta">Panggilan video beta</string>
-  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Dukungan untuk video dan panggilan suara generasi mendatang bila diaktifkan oleh kedua belah pihak. Fitur ini ada dalam versi beta.</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Relay semua panggilan melalui server Signal untuk menghindari mengungkapkan alamat IP Anda ke kontak Anda. Mengaktifkannya akan mengurangi kualitas panggilan.</string>
   <string name="preferences_advanced__always_relay_calls">Selalu relay panggilan</string>
   <string name="preferences_app_protection__app_access">Akses aplikasi</string>
@@ -1056,15 +922,9 @@ gagal
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__menu_select_all">Pilih semua</string>
-  <string name="contact_selection_list__menu_unselect_all">Batal pilih semua</string>
-  <string name="contact_selection_list__header_signal_users">PENGGUNA SIGNAL</string>
-  <string name="contact_selection_list__header_other">SEMUA KONTAK</string>
   <string name="contact_selection_list__unknown_contact">Pesan baru ke...</string>
   <!--contact_selection-->
-  <string name="contact_selection__menu_finished">Selesai</string>
   <!--refreshing push directory from menu-->
-  <string name="push_directory__menu_refresh">Segarkan daftar kontak</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Panggil</string>
   <!--conversation_callable_secure-->
@@ -1084,18 +944,16 @@ gagal
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Undang</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__security">Keamanan</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Hapus terpilih</string>
   <string name="conversation_list_batch__menu_select_all">Pilih semua</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arsip terpilih</string>
-  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Ekstrak arsip terpilih</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Buka arsip terpilih</string>
   <!--conversation_list-->
-  <string name="conversation_list__menu_search">Cari</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Gambar Foto Kontak</string>
-  <string name="conversation_list_item_view__error_alert">Galat peringatan</string>
   <string name="conversation_list_item_view__archived">Diarsipkan</string>
+  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Inbox kosong</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Percakapan baru</string>
   <!--conversation_secure_verified-->
@@ -1108,7 +966,6 @@ gagal
   <string name="conversation__menu_add_attachment">Tambahkan lampiran</string>
   <string name="conversation__menu_edit_group">Ubah grup</string>
   <string name="conversation__menu_leave_group">Keluar grup</string>
-  <string name="conversation__menu_delete_thread">Hapus percakapan</string>
   <string name="conversation__menu_view_all_media">Semua media</string>
   <string name="conversation__menu_conversation_settings">Pengaturan percakapan</string>
   <!--conversation_popup-->
@@ -1121,9 +978,6 @@ gagal
   <string name="conversation_group_options__conversation">Percakapan</string>
   <string name="conversation_group_options__broadcast">Siaran</string>
   <!--key_scanning-->
-  <string name="key_scanning__menu_compare">Bandingkan</string>
-  <string name="key_scanning__menu_display_your_qr_code">Tampilkan kode QR Anda</string>
-  <string name="key_scanning__menu_scan_contacts_qr_code">Pindai kode QR kontak</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Pesan baru</string>
   <string name="text_secure_normal__menu_new_group">Grup baru</string>
@@ -1143,46 +997,37 @@ gagal
   <string name="reminder_header_outdated_build_details_today">Versi Signal Anda akan berakhir hari ini. Ketuk untuk memperbarui versi terbaru.</string>
   <string name="reminder_header_expired_build">Versi Signal Anda telah usang!</string>
   <string name="reminder_header_expired_build_details">Pesan tidak akan berhasil dikirim. Ketuk untuk memperbarui versi terbaru.</string>
-  <string name="reminder_header_expired_build_button">PERBARUI</string>
   <string name="reminder_header_sms_default_title">Gunakan sebagai aplikasi SMS baku</string>
   <string name="reminder_header_sms_default_text">Ketuk untuk membuat Signal menjadi aplikasi SMS utama Anda.</string>
-  <string name="reminder_header_sms_default_button">SET</string>
-  <string name="reminder_header_sms_import_title">Impor SMS sistem</string>
+  <string name="reminder_header_sms_import_title">Impor sistem SMS</string>
   <string name="reminder_header_sms_import_text">Ketuk untuk menyalin pesan telepon Anda ke dalam basis data Signal yang terenkripsi.</string>
-  <string name="reminder_header_sms_import_button">IMPOR</string>
   <string name="reminder_header_push_title">Aktifkan pesan dan panggilan Signal</string>
   <string name="reminder_header_push_text">Tingkatkan pengalaman komunikasi Anda.</string>
-  <string name="reminder_header_push_button">AKTIFKAN</string>
   <string name="reminder_header_invite_title">Undang ke Signal</string>
   <string name="reminder_header_invite_text">Bawa percakapan Anda dengan %1$s ke tingkat selanjutnya.</string>
-  <string name="reminder_header_invite_button">UNDANG</string>
   <string name="reminder_header_share_title">Undang teman Anda!</string>
   <string name="reminder_header_share_text">Semakin banyak teman menggunakan Signal, semakin lebih baik.</string>
-  <string name="reminder_header_share_button">BERBAGI</string>
-  <string name="reminder_header_close_button">TUTUP</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Simpan</string>
   <string name="media_preview__forward_title">Teruskan</string>
   <string name="media_preview__all_media_title">Semua media</string>
   <!--media_overview-->
-  <string name="media_overview__save_all">Simpan semua</string>
+  <string name="media_overview_documents_fragment__no_documents_found">Tidak ada dokumen</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Pratinjau media</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Segarkan</string>
   <!--redphone_audio_popup_menu-->
-  <string name="redphone_audio_popup_menu__handset">Handset</string>
-  <string name="redphone_audio_popup_menu__headset">Headset</string>
-  <string name="redphone_audio_popup_menu__speaker">Pengeras suara</string>
   <!--Trimmer-->
   <string name="trimmer__deleting">Menghapus</string>
   <string name="trimmer__deleting_old_messages">Menghapus pesan lama...</string>
   <string name="trimmer__old_messages_successfully_deleted">Pesan lama berhasil dihapus</string>
   <!--transport_selection_list_item-->
-  <string name="transport_selection_list_item__transport_icon">Ikon transport</string>
-  <string name="UntrustedSendDialog_send_message">Kirim pesan?</string>
-  <string name="UntrustedSendDialog_send">Kirim</string>
-  <string name="UnverifiedSendDialog_send_message">Kirim pesan?</string>
-  <string name="UnverifiedSendDialog_send">Kirim</string>
+  <string name="transport_selection_list_item__transport_icon">Ikon transpor</string>
+  <string name="ConversationListFragment_loading">Memuat...</string>
+  <string name="CallNotificationBuilder_connecting">Menghubungkan...</string>
+  <string name="Permissions_permission_required">Dibutuhkan ijin akses</string>
+  <string name="Permissions_continue">Lanjutkan</string>
+  <string name="Permissions_not_now">Nanti saja</string>
   <!--EOF-->
 </resources>

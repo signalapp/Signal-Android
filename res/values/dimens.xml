@@ -15,25 +15,16 @@
     <dimen name="transport_selection_popup_yoff">2dp</dimen>
     <dimen name="contact_photo_target_size">64dp</dimen>
     <dimen name="contact_selection_photo_size">50dp</dimen>
-    <dimen name="thumbnail_max_size">230dp</dimen>
-    <dimen name="preference_fragment_padding_side">8dp</dimen>
-    <dimen name="conversation_activity_compose_padding">12dp</dimen>
 
-    <dimen name="message_bubble_end_padding">50dp</dimen>
     <dimen name="message_bubble_corner_radius">4dp</dimen>
     <dimen name="message_bubble_shadow_distance">1.5dp</dimen>
     <dimen name="media_bubble_height">210dp</dimen>
-    <dimen name="media_bubble_border_width">3dp</dimen>
     <dimen name="media_bubble_remove_button_size">24dp</dimen>
     <dimen name="media_bubble_edit_button_size">24dp</dimen>
 
     <integer name="media_overview_cols">3</integer>
     <dimen name="message_details_table_row_pad">10dp</dimen>
 
-    <dimen name="color_grid_extra_padding">32dp</dimen>
-    <dimen name="color_grid_item_size">48dp</dimen>
-
-    <dimen name="quick_media_drawer_default_height">250dp</dimen>
     <dimen name="quick_camera_shutter_ring_size">52dp</dimen>
 
     <dimen name="transfer_controls_expanded_width">150dp</dimen>
@@ -49,7 +40,6 @@
     <dimen name="incoming_widget_snap_margin">20dip</dimen>
 
     <!-- Height of the main row of in-call buttons. -->
-    <dimen name="in_call_button_height">76dp</dimen>
 
     <!-- Padding at the left and right edges of the incall_touch_ui button
          cluster.  This padding is necessary because we can't allow the
@@ -57,11 +47,7 @@
          risk of false touches (from your finger wrapping around while
          holding the phone, *before* moving it up to your face and having
          the prox sensor kick in.) -->
-    <dimen name="button_cluster_side_padding">20dp</dimen>
 
-    <dimen name="onboarding_margin_vert">35dp</dimen>
-    <dimen name="onboarding_margin_land">20dp</dimen>
-    <dimen name="onboarding_watermark_size">140dp</dimen>
     <dimen name="onboarding_title_size">34sp</dimen>
     <dimen name="onboarding_subtitle_size">20sp</dimen>
 

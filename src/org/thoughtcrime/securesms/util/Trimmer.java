@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 public class Trimmer {
 
   public static void trimAllThreads(Context context, int threadLengthLimit) {
-    new TrimmingProgressTask(context).execute(threadLengthLimit);
+    new TrimmingProgressTask(context).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, threadLengthLimit);
   }
 
   private static class TrimmingProgressTask extends AsyncTask<Integer, Integer, Void> implements ThreadDatabase.ProgressListener {

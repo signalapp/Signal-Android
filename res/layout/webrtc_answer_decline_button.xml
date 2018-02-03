@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:tools="http://schemas.android.com/tools"
+       android:clipToPadding="false"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       tools:parentTag="android.widget.LinearLayout"
+       tools:orientation="vertical">
+
+    <ImageView android:id="@+id/arrow_one"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center_horizontal"
+               android:layout_marginBottom="-15dp"
+               android:alpha="0"
+               android:src="@drawable/ic_keyboard_arrow_up_white_36dp"
+               android:tint="@color/gray20"
+               tools:alpha="1"/>
+
+    <ImageView android:id="@+id/arrow_two"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center_horizontal"
+               android:layout_marginBottom="-15dp"
+               android:alpha="0"
+               android:src="@drawable/ic_keyboard_arrow_up_white_36dp"
+               android:tint="@color/gray20"
+               tools:alpha="1"/>
+
+    <ImageView android:id="@+id/arrow_three"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center_horizontal"
+               android:layout_marginBottom="-15dp"
+               android:alpha="0"
+               android:src="@drawable/ic_keyboard_arrow_up_white_36dp"
+               android:tint="@color/gray20"
+               tools:alpha="1"/>
+
+    <ImageView android:id="@+id/arrow_four"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center_horizontal"
+               android:layout_marginBottom="10dp"
+               android:alpha="0"
+               android:src="@drawable/ic_keyboard_arrow_up_white_36dp"
+               android:tint="@color/gray20"
+               tools:alpha="1"/>
+
+    <TextView android:id="@+id/swipe_up_text"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_horizontal"
+              android:layout_marginBottom="19dp"
+              android:textColor="@color/gray20"
+              android:textStyle="italic"
+              android:shadowColor="#94000000"
+              android:shadowDx="2"
+              android:shadowDy="2"
+              android:shadowRadius="4"
+              android:text="@string/webrtc_answer_decline_button__swipe_up_to_answer"/>
+
+    <ImageView android:id="@+id/answer"
+               android:layout_width="56dp"
+               android:layout_height="56dp"
+               android:layout_gravity="center_horizontal"
+               android:padding="12dp"
+               android:elevation="5dp"
+               android:background="@drawable/circle_tintable"
+               android:src="@drawable/ic_phone_grey600_32dp"
+               android:tint="@color/green_600"/>
+
+    <TextView android:id="@+id/swipe_down_text"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_horizontal"
+              android:layout_marginTop="16dp"
+              android:textStyle="italic"
+              android:textColor="@color/gray20"
+              android:shadowColor="#94000000"
+              android:shadowDx="2"
+              android:shadowDy="2"
+              android:shadowRadius="4"
+              android:text="@string/webrtc_answer_decline_button__swipe_down_to_reject"/>
+
+
+</merge>

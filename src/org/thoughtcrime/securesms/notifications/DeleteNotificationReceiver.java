@@ -35,7 +35,7 @@ public class DeleteNotificationReceiver extends BroadcastReceiver {
 
           return null;
         }
-      }.execute();
+      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
   }
 }

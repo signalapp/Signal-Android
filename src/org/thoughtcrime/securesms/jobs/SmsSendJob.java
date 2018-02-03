@@ -11,7 +11,6 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
@@ -19,7 +18,7 @@ import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.jobs.requirements.NetworkOrServiceRequirement;
 import org.thoughtcrime.securesms.jobs.requirements.ServiceRequirement;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.SmsDeliveryListener;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.NumberUtil;
@@ -44,8 +43,8 @@ public class SmsSendJob extends SendJob {
 
   @Override
   public void onSend(MasterSecret masterSecret) throws NoSuchMessageException {
-    EncryptingSmsDatabase database = DatabaseFactory.getEncryptingSmsDatabase(context);
-    SmsMessageRecord      record   = database.getMessage(masterSecret, messageId);
+    SmsDatabase      database = DatabaseFactory.getSmsDatabase(context);
+    SmsMessageRecord record   = database.getMessage(messageId);
 
     try {
       Log.w(TAG, "Sending message: " + messageId);
@@ -54,7 +53,7 @@ public class SmsSendJob extends SendJob {
     } catch (UndeliverableMessageException ude) {
       Log.w(TAG, ude);
       DatabaseFactory.getSmsDatabase(context).markAsSentFailed(record.getId());
-      MessageNotifier.notifyMessageDeliveryFailed(context, record.getRecipients(), record.getThreadId());
+      MessageNotifier.notifyMessageDeliveryFailed(context, record.getRecipient(), record.getThreadId());
     }
   }
 
@@ -66,11 +65,11 @@ public class SmsSendJob extends SendJob {
   @Override
   public void onCanceled() {
     Log.w(TAG, "onCanceled()");
-    long       threadId   = DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageId);
-    Recipients recipients = DatabaseFactory.getThreadDatabase(context).getRecipientsForThreadId(threadId);
+    long      threadId  = DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageId);
+    Recipient recipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId);
 
     DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageId);
-    MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
+    MessageNotifier.notifyMessageDeliveryFailed(context, recipient, threadId);
   }
 
   private void deliver(SmsMessageRecord message)
@@ -94,7 +93,7 @@ public class SmsSendJob extends SendJob {
       throw new UndeliverableMessageException("Not a valid SMS destination! " + recipient);
     }
 
-    ArrayList<String> messages                = SmsManager.getDefault().divideMessage(message.getBody().getBody());
+    ArrayList<String> messages                = SmsManager.getDefault().divideMessage(message.getBody());
     ArrayList<PendingIntent> sentIntents      = constructSentIntents(message.getId(), message.getType(), messages, false);
     ArrayList<PendingIntent> deliveredIntents = constructDeliveredIntents(message.getId(), message.getType(), messages);
 
@@ -104,7 +103,7 @@ public class SmsSendJob extends SendJob {
     // repeatedly crash every time you start the app.
     try {
       getSmsManagerFor(message.getSubscriptionId()).sendMultipartTextMessage(recipient, null, messages, sentIntents, deliveredIntents);
-    } catch (NullPointerException npe) {
+    } catch (NullPointerException | IllegalArgumentException npe) {
       Log.w(TAG, npe);
       Log.w(TAG, "Recipient: " + recipient);
       Log.w(TAG, "Message Parts: " + messages.size());
@@ -115,10 +114,13 @@ public class SmsSendJob extends SendJob {
                                                                         sentIntents.get(i),
                                                                         deliveredIntents == null ? null : deliveredIntents.get(i));
         }
-      } catch (NullPointerException npe2) {
+      } catch (NullPointerException | IllegalArgumentException npe2) {
         Log.w(TAG, npe);
         throw new UndeliverableMessageException(npe2);
       }
+    } catch (SecurityException se) {
+      Log.w(TAG, se);
+      throw new UndeliverableMessageException(se);
     }
   }
 

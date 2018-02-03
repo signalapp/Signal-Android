@@ -7,48 +7,37 @@ import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.provider.ContactsContract;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
+import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
 
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class GroupMembersDialog extends AsyncTask<Void, Void, Recipients> {
+public class GroupMembersDialog extends AsyncTask<Void, Void, List<Recipient>> {
 
   private static final String TAG = GroupMembersDialog.class.getSimpleName();
 
-  private final Recipients recipients;
+  private final Recipient  recipient;
   private final Context    context;
 
-  public GroupMembersDialog(Context context, Recipients recipients) {
-    this.recipients = recipients;
-    this.context    = context;
+  public GroupMembersDialog(Context context, Recipient recipient) {
+    this.recipient = recipient;
+    this.context   = context;
   }
 
   @Override
   public void onPreExecute() {}
 
   @Override
-  protected Recipients doInBackground(Void... params) {
-    try {
-      String groupId = recipients.getPrimaryRecipient().getAddress().toGroupString();
-      return DatabaseFactory.getGroupDatabase(context)
-                            .getGroupMembers(GroupUtil.getDecodedId(groupId), true);
-    } catch (IOException e) {
-      Log.w(TAG, e);
-      return RecipientFactory.getRecipientsFor(context, new LinkedList<Recipient>(), true);
-    }
+  protected List<Recipient> doInBackground(Void... params) {
+    return DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.getAddress().toGroupString(), true);
   }
 
   @Override
-  public void onPostExecute(Recipients members) {
+  public void onPostExecute(List<Recipient> members) {
     GroupMembers groupMembers = new GroupMembers(members);
     AlertDialog.Builder builder = new AlertDialog.Builder(context);
     builder.setTitle(R.string.ConversationActivity_group_members);
@@ -60,8 +49,7 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, Recipients> {
   }
 
   public void display() {
-    if (recipients.isGroupRecipient()) execute();
-    else                               onPostExecute(recipients);
+    executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   private static class GroupMembersOnClickListener implements DialogInterface.OnClickListener {
@@ -107,8 +95,8 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, Recipients> {
 
     private final LinkedList<Recipient> members = new LinkedList<>();
 
-    public GroupMembers(Recipients recipients) {
-      for (Recipient recipient : recipients.getRecipientsList()) {
+    public GroupMembers(List<Recipient> recipients) {
+      for (Recipient recipient : recipients) {
         if (isLocalNumber(recipient)) {
           members.push(recipient);
         } else {
@@ -124,7 +112,13 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, Recipients> {
         if (isLocalNumber(recipient)) {
           recipientStrings.add(context.getString(R.string.GroupMembersDialog_me));
         } else {
-          recipientStrings.add(recipient.toShortString());
+          String name = recipient.toShortString();
+
+          if (recipient.getName() == null && !TextUtils.isEmpty(recipient.getProfileName())) {
+            name += " ~" + recipient.getProfileName();
+          }
+
+          recipientStrings.add(name);
         }
       }
 

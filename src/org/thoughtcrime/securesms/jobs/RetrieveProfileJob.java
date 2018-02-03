@@ -6,24 +6,28 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.MessageRetrievalService;
 import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.InvalidKeyException;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessagePipe;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
+import org.whispersystems.signalservice.api.crypto.ProfileCipher;
+import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.api.push.SignalServiceProfile;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -33,14 +37,14 @@ public class RetrieveProfileJob extends ContextJob implements InjectableType {
 
   @Inject transient SignalServiceMessageReceiver receiver;
 
-  private final Recipients recipients;
+  private final Recipient recipient;
 
-  public RetrieveProfileJob(Context context, Recipients recipients) {
+  public RetrieveProfileJob(Context context, Recipient recipient) {
     super(context, JobParameters.newBuilder()
                                 .withRetryCount(3)
                                 .create());
 
-    this.recipients = recipients;
+    this.recipient = recipient;
   }
 
   @Override
@@ -49,10 +53,8 @@ public class RetrieveProfileJob extends ContextJob implements InjectableType {
   @Override
   public void onRun() throws IOException, InvalidKeyException {
     try {
-      for (Recipient recipient : recipients) {
-        if (recipient.isGroupRecipient()) handleGroupRecipient(recipient);
-        else                              handleIndividualRecipient(recipient);
-      }
+      if (recipient.isGroupRecipient()) handleGroupRecipient(recipient);
+      else                              handleIndividualRecipient(recipient);
     } catch (InvalidNumberException e) {
       Log.w(TAG, e);
     }
@@ -72,29 +74,15 @@ public class RetrieveProfileJob extends ContextJob implements InjectableType {
     String               number  = recipient.getAddress().toPhoneString();
     SignalServiceProfile profile = retrieveProfile(number);
 
-    if (TextUtils.isEmpty(profile.getIdentityKey())) {
-      Log.w(TAG, "Identity key is missing on profile!");
-      return;
-    }
-
-    IdentityKey identityKey = new IdentityKey(Base64.decode(profile.getIdentityKey()), 0);
-
-    if (!DatabaseFactory.getIdentityDatabase(context)
-                        .getIdentity(recipient.getAddress())
-                        .isPresent())
-    {
-      Log.w(TAG, "Still first use...");
-      return;
-    }
-
-    IdentityUtil.saveIdentity(context, number, identityKey);
+    setIdentityKey(recipient, profile.getIdentityKey());
+    setProfileName(recipient, profile.getName());
+    setProfileAvatar(recipient, profile.getAvatar());
   }
 
   private void handleGroupRecipient(Recipient group)
       throws IOException, InvalidKeyException, InvalidNumberException
   {
-    byte[]     groupId    = GroupUtil.getDecodedId(group.getAddress().toGroupString());
-    Recipients recipients = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, false);
+    List<Recipient> recipients = DatabaseFactory.getGroupDatabase(context).getGroupMembers(group.getAddress().toGroupString(), false);
 
     for (Recipient recipient : recipients) {
       handleIndividualRecipient(recipient);
@@ -113,5 +101,58 @@ public class RetrieveProfileJob extends ContextJob implements InjectableType {
     }
 
     return receiver.retrieveProfile(new SignalServiceAddress(number));
+  }
+
+  private void setIdentityKey(Recipient recipient, String identityKeyValue) {
+    try {
+      if (TextUtils.isEmpty(identityKeyValue)) {
+        Log.w(TAG, "Identity key is missing on profile!");
+        return;
+      }
+
+      IdentityKey identityKey = new IdentityKey(Base64.decode(identityKeyValue), 0);
+
+      if (!DatabaseFactory.getIdentityDatabase(context)
+                          .getIdentity(recipient.getAddress())
+                          .isPresent())
+      {
+        Log.w(TAG, "Still first use...");
+        return;
+      }
+
+      IdentityUtil.saveIdentity(context, recipient.getAddress().toPhoneString(), identityKey);
+    } catch (InvalidKeyException | IOException e) {
+      Log.w(TAG, e);
+    }
+  }
+
+  private void setProfileName(Recipient recipient, String profileName) {
+    try {
+      byte[] profileKey = recipient.getProfileKey();
+      if (profileKey == null) return;
+
+      String plaintextProfileName = null;
+
+      if (profileName != null) {
+        ProfileCipher profileCipher = new ProfileCipher(profileKey);
+        plaintextProfileName = new String(profileCipher.decryptName(Base64.decode(profileName)));
+      }
+
+      if (!Util.equals(plaintextProfileName, recipient.getProfileName())) {
+        DatabaseFactory.getRecipientDatabase(context).setProfileName(recipient, plaintextProfileName);
+      }
+    } catch (ProfileCipher.InvalidCiphertextException | IOException e) {
+      Log.w(TAG, e);
+    }
+  }
+
+  private void setProfileAvatar(Recipient recipient, String profileAvatar) {
+    if (recipient.getProfileKey() == null) return;
+
+    if (!Util.equals(profileAvatar, recipient.getProfileAvatar())) {
+      ApplicationContext.getInstance(context)
+                        .getJobManager()
+                        .add(new RetrieveProfileAvatarJob(context, recipient, profileAvatar));
+    }
   }
 }

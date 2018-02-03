@@ -7,7 +7,6 @@ import android.util.Log;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
@@ -30,7 +29,7 @@ public class MultiDeviceVerifiedUpdateJob extends ContextJob implements Injectab
   private static final String TAG = MultiDeviceVerifiedUpdateJob.class.getSimpleName();
 
   @Inject
-  transient SignalCommunicationModule.SignalMessageSenderFactory messageSenderFactory;
+  transient SignalServiceMessageSender messageSender;
 
   private final String         destination;
   private final byte[]         identityKey;
@@ -65,7 +64,6 @@ public class MultiDeviceVerifiedUpdateJob extends ContextJob implements Injectab
 
       Address                       canonicalDestination = Address.fromSerialized(destination);
       VerifiedMessage.VerifiedState verifiedState        = getVerifiedState(verifiedStatus);
-      SignalServiceMessageSender    messageSender        = messageSenderFactory.create();
       VerifiedMessage               verifiedMessage      = new VerifiedMessage(canonicalDestination.toPhoneString(), new IdentityKey(identityKey, 0), verifiedState, timestamp);
 
       messageSender.sendMessage(SignalServiceSyncMessage.forVerified(verifiedMessage));

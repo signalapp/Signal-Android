@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -30,7 +31,6 @@ import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
-import org.thoughtcrime.securesms.jobs.persistence.EncryptingJobSerializer;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirementProvider;
 import org.thoughtcrime.securesms.jobs.requirements.ServiceRequirementProvider;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
@@ -40,10 +40,12 @@ import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.webrtc.PeerConnectionFactory;
+import org.webrtc.PeerConnectionFactory.InitializationOptions;
 import org.webrtc.voiceengine.WebRtcAudioManager;
 import org.webrtc.voiceengine.WebRtcAudioUtils;
 import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.jobqueue.dependencies.DependencyInjector;
+import org.whispersystems.jobqueue.persistence.JavaJobSerializer;
 import org.whispersystems.jobqueue.requirements.NetworkRequirementProvider;
 import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
 import org.whispersystems.libsignal.util.AndroidSignalProtocolLogger;
@@ -116,7 +118,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     this.jobManager = JobManager.newBuilder(this)
                                 .withName("TextSecureJobs")
                                 .withDependencyInjector(this)
-                                .withJobSerializer(new EncryptingJobSerializer())
+                                .withJobSerializer(new JavaJobSerializer())
                                 .withRequirementProviders(new MasterSecretRequirementProvider(this),
                                                           new ServiceRequirementProvider(this),
                                                           new NetworkRequirementProvider(this))
@@ -171,22 +173,23 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         add("Pixel XL");
       }};
 
-      if (Build.VERSION.SDK_INT >= 11) {
-        if (HARDWARE_AEC_BLACKLIST.contains(Build.MODEL)) {
-          WebRtcAudioUtils.setWebRtcBasedAcousticEchoCanceler(true);
-        }
-
-        if (!OPEN_SL_ES_WHITELIST.contains(Build.MODEL)) {
-          WebRtcAudioManager.setBlacklistDeviceForOpenSLESUsage(true);
-        }
-
-        PeerConnectionFactory.initializeAndroidGlobals(this, true, true, true);
+      if (HARDWARE_AEC_BLACKLIST.contains(Build.MODEL)) {
+        WebRtcAudioUtils.setWebRtcBasedAcousticEchoCanceler(true);
       }
+
+      if (!OPEN_SL_ES_WHITELIST.contains(Build.MODEL)) {
+        WebRtcAudioManager.setBlacklistDeviceForOpenSLESUsage(true);
+      }
+
+      PeerConnectionFactory.initialize(InitializationOptions.builder(this)
+                                                            .setEnableVideoHwAcceleration(true)
+                                                            .createInitializationOptions());
     } catch (UnsatisfiedLinkError e) {
       Log.w(TAG, e);
     }
   }
 
+  @SuppressLint("StaticFieldLeak")
   private void initializeCircumvention() {
     AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
       @Override
@@ -202,8 +205,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       }
     };
 
-    if (Build.VERSION.SDK_INT >= 11) task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-    else                             task.execute();
+    task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
 }

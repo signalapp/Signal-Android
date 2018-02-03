@@ -15,12 +15,12 @@ import java.util.List;
 
 public class SessionUtil {
 
-  public static boolean hasSession(Context context, MasterSecret masterSecret, Recipient recipient) {
-    return hasSession(context, masterSecret, recipient.getAddress());
+  public static boolean hasSession(Context context, Recipient recipient) {
+    return hasSession(context, recipient.getAddress());
   }
 
-  public static boolean hasSession(Context context, MasterSecret masterSecret, @NonNull Address address) {
-    SessionStore          sessionStore   = new TextSecureSessionStore(context, masterSecret);
+  public static boolean hasSession(Context context, @NonNull Address address) {
+    SessionStore          sessionStore   = new TextSecureSessionStore(context, null);
     SignalProtocolAddress axolotlAddress = new SignalProtocolAddress(address.serialize(), SignalServiceAddress.DEFAULT_DEVICE_ID);
 
     return sessionStore.containsSession(axolotlAddress);

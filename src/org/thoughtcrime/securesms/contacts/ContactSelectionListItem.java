@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.contacts;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
@@ -11,12 +12,17 @@ import android.widget.TextView;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.database.Address;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.recipients.RecipientsFormatter;
+import org.thoughtcrime.securesms.mms.GlideRequests;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
+import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
-public class ContactSelectionListItem extends LinearLayout implements Recipients.RecipientsModifiedListener {
+public class ContactSelectionListItem extends LinearLayout implements RecipientModifiedListener {
+
+  @SuppressWarnings("unused")
+  private static final String TAG = ContactSelectionListItem.class.getSimpleName();
 
   private AvatarImageView contactPhotoImage;
   private TextView        numberView;
@@ -24,9 +30,9 @@ public class ContactSelectionListItem extends LinearLayout implements Recipients
   private TextView        labelView;
   private CheckBox        checkBox;
 
-  private long       id;
-  private String     number;
-  private Recipients recipients;
+  private String        number;
+  private Recipient     recipient;
+  private GlideRequests glideRequests;
 
   public ContactSelectionListItem(Context context) {
     super(context);
@@ -39,38 +45,35 @@ public class ContactSelectionListItem extends LinearLayout implements Recipients
   @Override
   protected void onFinishInflate() {
     super.onFinishInflate();
-    this.contactPhotoImage = (AvatarImageView) findViewById(R.id.contact_photo_image);
-    this.numberView        = (TextView)        findViewById(R.id.number);
-    this.labelView         = (TextView)        findViewById(R.id.label);
-    this.nameView          = (TextView)        findViewById(R.id.name);
-    this.checkBox          = (CheckBox)        findViewById(R.id.check_box);
+    this.contactPhotoImage = findViewById(R.id.contact_photo_image);
+    this.numberView        = findViewById(R.id.number);
+    this.labelView         = findViewById(R.id.label);
+    this.nameView          = findViewById(R.id.name);
+    this.checkBox          = findViewById(R.id.check_box);
 
     ViewUtil.setTextViewGravityStart(this.nameView, getContext());
   }
 
-  public void set(long id, int type, String name, String number, String label, int color, boolean multiSelect) {
-    this.id     = id;
-    this.number = number;
+  public void set(@NonNull GlideRequests glideRequests, int type, String name, String number, String label, int color, boolean multiSelect) {
+    this.glideRequests = glideRequests;
+    this.number        = number;
 
     if (type == ContactsDatabase.NEW_TYPE) {
-      this.recipients = null;
-      this.contactPhotoImage.setAvatar(RecipientFactory.getRecipientFor(getContext(), Address.UNKNOWN, true), false);
+      this.recipient = null;
+      this.contactPhotoImage.setAvatar(glideRequests, Recipient.from(getContext(), Address.UNKNOWN, true), false);
     } else if (!TextUtils.isEmpty(number)) {
       Address address = Address.fromExternal(getContext(), number);
-      this.recipients = RecipientFactory.getRecipientsFor(getContext(), new Address[] {address}, true);
+      this.recipient = Recipient.from(getContext(), address, true);
+      this.recipient.addListener(this);
 
-      if (this.recipients.getPrimaryRecipient() != null &&
-          this.recipients.getPrimaryRecipient().getName() != null)
-      {
-        name = this.recipients.getPrimaryRecipient().getName();
+      if (this.recipient.getName() != null) {
+        name = this.recipient.getName();
       }
-
-      this.recipients.addListener(this);
     }
 
     this.nameView.setTextColor(color);
     this.numberView.setTextColor(color);
-    this.contactPhotoImage.setAvatar(recipients, false);
+    this.contactPhotoImage.setAvatar(glideRequests, recipient, false);
 
     setText(type, name, number, label);
 
@@ -82,15 +85,17 @@ public class ContactSelectionListItem extends LinearLayout implements Recipients
     this.checkBox.setChecked(selected);
   }
 
-  public void unbind() {
-    if (recipients != null) {
-      recipients.removeListener(this);
-      recipients = null;
+  public void unbind(GlideRequests glideRequests) {
+    if (recipient != null) {
+      recipient.removeListener(this);
+      recipient = null;
     }
+
+    contactPhotoImage.clear(glideRequests);
   }
 
   private void setText(int type, String name, String number, String label) {
-    if (number == null || number.isEmpty()) {
+    if (number == null || number.isEmpty() || GroupUtil.isEncodedGroup(number)) {
       this.nameView.setEnabled(false);
       this.numberView.setText("");
       this.labelView.setVisibility(View.GONE);
@@ -108,23 +113,16 @@ public class ContactSelectionListItem extends LinearLayout implements Recipients
     this.nameView.setText(name);
   }
 
-  public long getContactId() {
-    return id;
-  }
-
   public String getNumber() {
     return number;
   }
 
   @Override
-  public void onModified(final Recipients recipients) {
-    if (this.recipients == recipients) {
-      this.contactPhotoImage.post(new Runnable() {
-        @Override
-        public void run() {
-          contactPhotoImage.setAvatar(recipients, false);
-          nameView.setText(recipients.toShortString());
-        }
+  public void onModified(final Recipient recipient) {
+    if (this.recipient == recipient) {
+      Util.runOnMain(() -> {
+        contactPhotoImage.setAvatar(glideRequests, recipient, false);
+        nameView.setText(recipient.toShortString());
       });
     }
   }

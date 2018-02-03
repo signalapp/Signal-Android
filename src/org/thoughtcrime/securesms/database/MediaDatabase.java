@@ -2,18 +2,18 @@ package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import net.sqlcipher.database.SQLiteDatabase;
+
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 
 public class MediaDatabase extends Database {
 
-    private final static String MEDIA_QUERY = "SELECT " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " AS " + AttachmentDatabase.ATTACHMENT_ID_ALIAS + ", "
+    private static final String BASE_MEDIA_QUERY = "SELECT " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " AS " + AttachmentDatabase.ATTACHMENT_ID_ALIAS + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_TYPE + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.THUMBNAIL_ASPECT_RATIO + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.UNIQUE_ID + ", "
@@ -37,19 +37,27 @@ public class MediaDatabase extends Database {
         + " ON " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + " = " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " "
         + "WHERE " + AttachmentDatabase.MMS_ID + " IN (SELECT " + MmsSmsColumns.ID
         + " FROM " + MmsDatabase.TABLE_NAME
-        + " WHERE " + MmsDatabase.THREAD_ID + " = ?) AND ("
-        + AttachmentDatabase.CONTENT_TYPE + " LIKE 'image/%' OR "
-        + AttachmentDatabase.CONTENT_TYPE + " LIKE 'video/%') AND "
+        + " WHERE " + MmsDatabase.THREAD_ID + " = ?) AND (%s) AND "
         + AttachmentDatabase.DATA + " IS NOT NULL "
         + "ORDER BY " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " DESC";
 
-  public MediaDatabase(Context context, SQLiteOpenHelper databaseHelper) {
+  private static final String GALLERY_MEDIA_QUERY  = String.format(BASE_MEDIA_QUERY, AttachmentDatabase.CONTENT_TYPE + " LIKE 'image/%' OR " + AttachmentDatabase.CONTENT_TYPE + " LIKE 'video/%'");
+  private static final String DOCUMENT_MEDIA_QUERY = String.format(BASE_MEDIA_QUERY, AttachmentDatabase.CONTENT_TYPE + " NOT LIKE 'image/%' AND " + AttachmentDatabase.CONTENT_TYPE + " NOT LIKE 'video/%' AND " + AttachmentDatabase.CONTENT_TYPE + " NOT LIKE 'audio/%'");
+
+  public MediaDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
   }
 
-  public Cursor getMediaForThread(long threadId) {
+  public Cursor getGalleryMediaForThread(long threadId) {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
-    Cursor cursor = database.rawQuery(MEDIA_QUERY, new String[]{threadId+""});
+    Cursor cursor = database.rawQuery(GALLERY_MEDIA_QUERY, new String[]{threadId+""});
+    setNotifyConverationListeners(cursor, threadId);
+    return cursor;
+  }
+
+  public Cursor getDocumentMediaForThread(long threadId) {
+    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    Cursor cursor = database.rawQuery(DOCUMENT_MEDIA_QUERY, new String[]{threadId+""});
     setNotifyConverationListeners(cursor, threadId);
     return cursor;
   }
@@ -59,17 +67,20 @@ public class MediaDatabase extends Database {
     private final DatabaseAttachment attachment;
     private final Address            address;
     private final long               date;
+    private final boolean            outgoing;
 
-    private MediaRecord(DatabaseAttachment attachment, @Nullable Address address, long date) {
+    private MediaRecord(DatabaseAttachment attachment, @Nullable Address address, long date, boolean outgoing) {
       this.attachment = attachment;
       this.address    = address;
       this.date       = date;
+      this.outgoing   = outgoing;
     }
 
-    public static MediaRecord from(@NonNull Context context, @NonNull MasterSecret masterSecret, @NonNull Cursor cursor) {
+    public static MediaRecord from(@NonNull Context context, @NonNull Cursor cursor) {
       AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
-      DatabaseAttachment attachment         = attachmentDatabase.getAttachment(masterSecret, cursor);
+      DatabaseAttachment attachment         = attachmentDatabase.getAttachment(cursor);
       String             serializedAddress  = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS));
+      boolean            outgoing           = MessagingDatabase.Types.isOutgoingMessageType(cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.MESSAGE_BOX)));
       Address            address            = null;
 
       if (serializedAddress != null) {
@@ -84,7 +95,7 @@ public class MediaDatabase extends Database {
         date = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.DATE_RECEIVED));
       }
 
-      return new MediaRecord(attachment, address, date);
+      return new MediaRecord(attachment, address, date, outgoing);
     }
 
     public Attachment getAttachment() {
@@ -101,6 +112,10 @@ public class MediaDatabase extends Database {
 
     public long getDate() {
       return date;
+    }
+
+    public boolean isOutgoing() {
+      return outgoing;
     }
 
   }

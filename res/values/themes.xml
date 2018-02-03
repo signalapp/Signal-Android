@@ -2,38 +2,51 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="TextSecure.LightNoActionBar" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <style name="TextSecure.LightNoActionBar" parent="@style/TextSecure.LightTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionModeOverlay">true</item>
+
         <item name="theme_type">light</item>
-        <item name="actionBarStyle">@style/TextSecure.LightActionBar</item>
-        <item name="actionBarTabBarStyle">@style/TextSecure.LightActionBar.TabBar</item>
         <item name="colorPrimary">@color/textsecure_primary</item>
         <item name="colorPrimaryDark">@color/textsecure_primary_dark</item>
         <item name="colorAccent">@color/textsecure_primary_dark</item>
-        <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleLight</item>
-        <item name="android:alertDialogTheme">@style/AppCompatDialogStyleLight</item>
 
         <item name="recipient_preference_blocked">#d00000</item>
         <item name="contact_selection_label_text">#66000000</item>
         <item name="contact_selection_push_user">#ff000000</item>
         <item name="contact_selection_lay_user">#a0000000</item>
         <item name="contact_selection_header_text">@color/textsecure_primary_dark</item>
-        <item name="dialog_background_color">@color/background_material_light</item>
+
+        <item name="media_overview_toolbar_background">@color/white</item>
+        <item name="media_overview_toolbar_foreground">@color/gray70</item>
+        <item name="media_overview_header_foreground">@color/gray50</item>
+        <item name="media_overview_document_foreground">@color/gray70</item>
+        <item name="media_overview_document_background">@color/white</item>
     </style>
 
-    <style name="TextSecure.DarkNoActionBar" parent="@style/Theme.AppCompat.NoActionBar">
+    <style name="TextSecure.DarkNoActionBar" parent="@style/TextSecure.DarkTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionModeOverlay">true</item>
+
         <item name="theme_type">dark</item>
-        <item name="actionBarStyle">@style/TextSecure.DarkActionBar</item>
-        <item name="actionBarTabBarStyle">@style/TextSecure.DarkActionBar.TabBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
-        <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleDark</item>
-        <item name="android:alertDialogTheme">@style/AppCompatDialogStyleDark</item>
+        <item name="colorPrimary">@color/gray95</item>
+        <item name="colorAccent">@color/signal_primary_dark</item>
+        <item name="android:colorControlActivated">@color/signal_primary_dark</item>
 
         <item name="recipient_preference_blocked">#d00000</item>
         <item name="contact_selection_label_text">#66eeeeee</item>
         <item name="contact_selection_push_user">#ffeeeeee</item>
         <item name="contact_selection_lay_user">#afeeeeee</item>
         <item name="contact_selection_header_text">#66eeeeee</item>
-        <item name="dialog_background_color">@color/background_material_dark</item>
+
+        <item name="media_overview_toolbar_background">@color/black</item>
+        <item name="media_overview_toolbar_foreground">@color/white</item>
+        <item name="media_overview_header_foreground">@color/gray10</item>
+        <item name="media_overview_document_foreground">@color/white</item>
+        <item name="media_overview_document_background">@color/black</item>
     </style>
 
     <style name="TextSecure.HighlightTheme" parent="@style/TextSecure.LightTheme">
@@ -99,28 +112,23 @@
         <item name="colorAccent">@color/textsecure_primary_dark</item>
         <item name="colorControlActivated">@color/signal_primary</item>
         <item name="colorControlHighlight">@color/signal_primary</item>
-        <item name="android:windowBackground">@color/gray5</item>
+        <item name="android:windowBackground">@color/white</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleLight</item>
         <item name="android:alertDialogTheme">@style/AppCompatDialogStyleLight</item>
         <!--<item name="android:windowContentOverlay">@drawable/compat_actionbar_shadow_background</item>-->
         <item name="attachment_type_selector_background">@color/white</item>
-        <item name="conversation_list_item_background_selected">@drawable/list_selected_holo_light</item>
-        <item name="conversation_list_item_background_unread">@drawable/conversation_list_item_unread_background</item>
-        <item name="conversation_list_item_background_read">@drawable/conversation_list_item_read_background</item>
-        <item name="conversation_list_item_count_color">#66333333</item>
+        <item name="conversation_list_item_background">@drawable/conversation_list_item_background</item>
         <item name="conversation_list_item_contact_color">#FF333333</item>
         <item name="conversation_list_item_subject_color">#FF444444</item>
         <item name="conversation_list_item_date_color">#ff999999</item>
         <item name="conversation_list_item_divider">@drawable/conversation_list_divider_shape</item>
-
-        <item name="share_list_item_divider">@drawable/share_list_divider_shape</item>
 
         <item name="fab_color">@color/textsecure_primary</item>
         <item name="lower_right_divet">@drawable/divet_lower_right_dark</item>
 
         <item name="conversation_group_member_name">#99000000</item>
 
-        <item name="conversation_background">#eeeeee</item>
+        <item name="conversation_background">@color/gray5</item>
         <item name="conversation_editor_background">#22000000</item>
         <item name="conversation_editor_text_color">#ff111111</item>
         <item name="conversation_transport_sms_indicator">@drawable/ic_send_sms_insecure</item>
@@ -136,6 +144,8 @@
         <item name="conversation_attach">@drawable/ic_attach_grey600_24dp</item>
         <item name="conversation_number_picker_text_color_normal">@color/gray65</item>
         <item name="conversation_number_picker_text_color_selected">@color/black</item>
+
+        <item name="contact_list_divider">@drawable/contact_list_divider_light</item>
 
         <item name="verification_background">@color/gray5</item>
 
@@ -212,6 +222,9 @@
         <item name="app_protect_timeout_picker_color">@style/BetterPickersDialogFragment.Light</item>
 
         <item name="group_members_dialog_icon">@drawable/ic_group_grey600_24dp</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
+
+        <item name="search_toolbar_background">@color/white</item>
     </style>
 
     <style name="TextSecure.DarkTheme" parent="@style/Theme.AppCompat">
@@ -228,16 +241,11 @@
         <item name="android:windowBackground">@color/black</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleDark</item>
         <item name="android:alertDialogTheme">@style/AppCompatDialogStyleDark</item>
-        <item name="conversation_list_item_background_selected">@drawable/list_selected_holo_dark</item>
-        <item name="conversation_list_item_background_unread">@drawable/conversation_list_item_unread_background_dark</item>
-        <item name="conversation_list_item_background_read">@drawable/conversation_list_item_read_background_dark</item>
-        <item name="conversation_list_item_count_color">#66dddddd</item>
+        <item name="conversation_list_item_background">@drawable/conversation_list_item_background_dark</item>
         <item name="conversation_list_item_contact_color">#ffdddddd</item>
         <item name="conversation_list_item_subject_color">#ffdddddd</item>
         <item name="conversation_list_item_date_color">#ffdddddd</item>
         <item name="conversation_list_item_divider">@drawable/conversation_list_divider_shape_dark</item>
-
-        <item name="share_list_item_divider">@drawable/share_list_divider_shape_dark</item>
 
         <item name="conversation_group_member_name">#99ffffff</item>
 
@@ -251,6 +259,8 @@
         <item name="conversation_item_header_background">@drawable/conversation_item_header_background_dark</item>
         <item name="conversation_item_last_seen_background">#66333333</item>
         <item name="conversation_item_last_seen_text_background">@drawable/last_seen_divider_text_background_dark</item>
+
+        <item name="contact_list_divider">@drawable/contact_list_divider_dark</item>
 
         <item name="verification_background">#ff333333</item>
 
@@ -267,7 +277,7 @@
         <item name="fab_color">@color/textsecure_primary_dark</item>
         <item name="lower_right_divet">@drawable/divet_lower_right_light</item>
 
-        <item name="conversation_background">#22ffffff</item>
+        <item name="conversation_background">@color/black</item>
         <item name="conversation_editor_background">#22ffffff</item>
         <item name="conversation_editor_text_color">#ffeeeeee</item>
         <item name="conversation_transport_sms_indicator">@drawable/ic_send_sms_insecure_dark</item>
@@ -335,5 +345,11 @@
         <item name="app_protect_timeout_picker_color">@style/BetterPickersDialogFragment</item>
 
         <item name="group_members_dialog_icon">@drawable/ic_group_white_24dp</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
+        <item name="search_toolbar_background">@color/black</item>
+    </style>
+    
+    <style name="RationaleDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/permission_rationale_dialog_corners</item>
     </style>
 </resources>

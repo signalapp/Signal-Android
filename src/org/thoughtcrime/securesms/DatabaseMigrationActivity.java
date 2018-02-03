@@ -10,14 +10,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
-import android.support.annotation.NonNull;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.SmsMigrator.ProgressDescription;
 import org.thoughtcrime.securesms.service.ApplicationMigrationService;
 import org.thoughtcrime.securesms.service.ApplicationMigrationService.ImportState;
@@ -39,7 +38,7 @@ public class DatabaseMigrationActivity extends PassphraseRequiredActionBarActivi
   private boolean isVisible = false;
 
   @Override
-  protected void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
+  protected void onCreate(Bundle bundle, boolean ready) {
     setContentView(R.layout.database_migration_activity);
 
     initializeResources();
@@ -92,7 +91,7 @@ public class DatabaseMigrationActivity extends PassphraseRequiredActionBarActivi
       public void onClick(View v) {
         Intent intent = new Intent(DatabaseMigrationActivity.this, ApplicationMigrationService.class);
         intent.setAction(ApplicationMigrationService.MIGRATE_DATABASE);
-        intent.putExtra("master_secret", getIntent().getParcelableExtra("master_secret"));
+        intent.putExtra("master_secret", (Parcelable)getIntent().getParcelableExtra("master_secret"));
         startService(intent);
 
         promptLayout.setVisibility(View.GONE);

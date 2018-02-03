@@ -17,12 +17,14 @@
 
 package org.thoughtcrime.securesms;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -44,6 +46,8 @@ import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.VersionTracker;
 
@@ -69,6 +73,11 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   public static final int MEDIA_DOWNLOAD_CONTROLS_VERSION      = 151;
   public static final int REDPHONE_SUPPORT_VERSION             = 157;
   public static final int NO_MORE_CANONICAL_DB_VERSION         = 276;
+  public static final int PROFILES                             = 289;
+  public static final int SCREENSHOTS                          = 300;
+  public static final int PERSISTENT_BLOBS                     = 317;
+  public static final int INTERNALIZE_CONTACTS                 = 317;
+  public static final int SQLCIPHER                            = 334;
 
   private static final SortedSet<Integer> UPGRADE_VERSIONS = new TreeSet<Integer>() {{
     add(NO_MORE_KEY_EXCHANGE_PREFIX_VERSION);
@@ -83,6 +92,10 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     add(MEDIA_DOWNLOAD_CONTROLS_VERSION);
     add(REDPHONE_SUPPORT_VERSION);
     add(NO_MORE_CANONICAL_DB_VERSION);
+    add(SCREENSHOTS);
+    add(INTERNALIZE_CONTACTS);
+    add(PERSISTENT_BLOBS);
+    add(SQLCIPHER);
   }};
 
   private MasterSecret masterSecret;
@@ -90,20 +103,20 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   @Override
   public void onCreate(Bundle bundle) {
     super.onCreate(bundle);
-    this.masterSecret = getIntent().getParcelableExtra("master_secret");
+    this.masterSecret = KeyCachingService.getMasterSecret(this);
 
     if (needsUpgradeTask()) {
       Log.w("DatabaseUpgradeActivity", "Upgrading...");
       setContentView(R.layout.database_upgrade_activity);
 
-      ProgressBar indeterminateProgress = (ProgressBar)findViewById(R.id.indeterminate_progress);
-      ProgressBar determinateProgress   = (ProgressBar)findViewById(R.id.determinate_progress);
+      ProgressBar indeterminateProgress = findViewById(R.id.indeterminate_progress);
+      ProgressBar determinateProgress   = findViewById(R.id.determinate_progress);
 
       new DatabaseUpgradeTask(indeterminateProgress, determinateProgress)
-          .execute(VersionTracker.getLastSeenVersion(this));
+          .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, VersionTracker.getLastSeenVersion(this));
     } else {
       VersionTracker.updateLastSeenVersion(this);
-      updateNotifications(this, masterSecret);
+      updateNotifications(this);
       startActivity((Intent)getIntent().getParcelableExtra("next_intent"));
       finish();
     }
@@ -138,20 +151,22 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     }
   }
 
-  private void updateNotifications(final Context context, final MasterSecret masterSecret) {
+  @SuppressLint("StaticFieldLeak")
+  private void updateNotifications(final Context context) {
     new AsyncTask<Void, Void, Void>() {
       @Override
       protected Void doInBackground(Void... params) {
-        MessageNotifier.updateNotification(context, masterSecret);
+        MessageNotifier.updateNotification(context);
         return null;
       }
-    }.execute();
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   public interface DatabaseUpgradeListener {
     public void setProgress(int progress, int total);
   }
 
+  @SuppressLint("StaticFieldLeak")
   private class DatabaseUpgradeTask extends AsyncTask<Integer, Double, Void>
       implements DatabaseUpgradeListener
   {
@@ -159,7 +174,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     private final ProgressBar indeterminateProgress;
     private final ProgressBar determinateProgress;
 
-    public DatabaseUpgradeTask(ProgressBar indeterminateProgress, ProgressBar determinateProgress) {
+    DatabaseUpgradeTask(ProgressBar indeterminateProgress, ProgressBar determinateProgress) {
       this.indeterminateProgress = indeterminateProgress;
       this.determinateProgress   = determinateProgress;
     }
@@ -217,7 +232,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
       if (params[0] < CONTACTS_ACCOUNT_VERSION) {
         ApplicationContext.getInstance(getApplicationContext())
                           .getJobManager()
-                          .add(new DirectoryRefreshJob(getApplicationContext()));
+                          .add(new DirectoryRefreshJob(getApplicationContext(), false));
       }
 
       if (params[0] < MEDIA_DOWNLOAD_CONTROLS_VERSION) {
@@ -230,7 +245,34 @@ public class DatabaseUpgradeActivity extends BaseActivity {
                           .add(new RefreshAttributesJob(getApplicationContext()));
         ApplicationContext.getInstance(getApplicationContext())
                           .getJobManager()
-                          .add(new DirectoryRefreshJob(getApplicationContext()));
+                          .add(new DirectoryRefreshJob(getApplicationContext(), false));
+      }
+
+      if (params[0] < PROFILES) {
+        ApplicationContext.getInstance(getApplicationContext())
+                          .getJobManager()
+                          .add(new DirectoryRefreshJob(getApplicationContext(), false));
+      }
+
+      if (params[0] < SCREENSHOTS) {
+        boolean screenSecurity = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(TextSecurePreferences.SCREEN_SECURITY_PREF, true);
+        TextSecurePreferences.setScreenSecurityEnabled(getApplicationContext(), screenSecurity);
+      }
+
+      if (params[0] < PERSISTENT_BLOBS) {
+        File externalDir = context.getExternalFilesDir(null);
+
+        if (externalDir != null && externalDir.isDirectory() && externalDir.exists()) {
+          for (File blob : externalDir.listFiles()) {
+            if (blob.exists() && blob.isFile()) blob.delete();
+          }
+        }
+      }
+
+      if (params[0] < INTERNALIZE_CONTACTS) {
+        if (TextSecurePreferences.isPushRegistered(getApplicationContext())) {
+          TextSecurePreferences.setHasSuccessfullyRetrievedDirectory(getApplicationContext(), true);
+        }
       }
 
       return null;
@@ -239,11 +281,11 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     private void schedulePendingIncomingParts(Context context) {
       final AttachmentDatabase       attachmentDb       = DatabaseFactory.getAttachmentDatabase(context);
       final MmsDatabase              mmsDb              = DatabaseFactory.getMmsDatabase(context);
-      final List<DatabaseAttachment> pendingAttachments = DatabaseFactory.getAttachmentDatabase(context).getPendingAttachments(masterSecret);
+      final List<DatabaseAttachment> pendingAttachments = DatabaseFactory.getAttachmentDatabase(context).getPendingAttachments();
 
       Log.w(TAG, pendingAttachments.size() + " pending parts.");
       for (DatabaseAttachment attachment : pendingAttachments) {
-        final Reader        reader = mmsDb.readerFor(masterSecret, mmsDb.getMessage(attachment.getMmsId()));
+        final Reader        reader = mmsDb.readerFor(mmsDb.getMessage(attachment.getMmsId()));
         final MessageRecord record = reader.getNext();
 
         if (attachment.hasData()) {
@@ -290,7 +332,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     @Override
     protected void onPostExecute(Void result) {
       VersionTracker.updateLastSeenVersion(DatabaseUpgradeActivity.this);
-      updateNotifications(DatabaseUpgradeActivity.this, masterSecret);
+      updateNotifications(DatabaseUpgradeActivity.this);
 
       startActivity((Intent)getIntent().getParcelableExtra("next_intent"));
       finish();

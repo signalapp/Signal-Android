@@ -51,38 +51,43 @@
   <string name="DraftDatabase_Draft_location_snippet">(locatie)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Geen app gevonden om media te selecteren.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal heeft toegang nodig tot de opslagruimte om foto\'s, video\'s of audio te kunnen sturen, maar deze toestemming is permanent geweigerd. Ga naar de instellingen, selecteer \"Toestemmingen\" en schakel \"Opslagruimte\" in.</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal heeft toegang nodig tot de contacten om contactinformatie te kunnen sturen, maar deze toestemming is permanent geweigerd. Ga naar de instellingen, selecteer \"Toestemmingen\" en schakel \"Contacten\" in.</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal heeft toegang nodig tot de locatie om locaties te kunnen sturen, maar deze toestemming is permanent geweigerd. Ga naar de instellingen, selecteer \"Toestemmingen\" en schakel \"Locatie\" in.</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal heeft toegang nodig tot de camera om foto\'s te kunnen maken, maar deze toestemming is permanent geweigerd. Ga naar de instellingen, selecteer \"Toestemmingen\" en schakel \"Camera\" in.</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_camera">Camera</string>
-  <string name="AttachmentTypeSelectorAdapter_picture">Afbeelding</string>
-  <string name="AttachmentTypeSelectorAdapter_video">Video</string>
-  <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
-  <string name="AttachmentTypeSelectorAdapter_contact">Contactgegevens</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Fout bij afspelen van audio!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Geblokkeerde contacten</string>
+  <!--BucketedThreadMedia-->
+  <string name="BucketedThreadMedia_Today">Vandaag</string>
+  <string name="BucketedThreadMedia_Yesterday">Gisteren</string>
+  <string name="BucketedThreadMedia_This_week">Deze week</string>
+  <string name="BucketedThreadMedia_This_month">Deze maand</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Inkomende oproep</string>
+  <!--ClearProfileActivity-->
+  <string name="ClearProfileActivity_remove">Verwijderen</string>
+  <string name="ClearProfileActivity_remove_profile_photo">Profielfoto verwijderen?</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Je veiligheidsnummer met %1$s is veranderd. Dit kan betekenen dat iemand je communicatie probeert te onderscheppen, of gewoon dat %2$s Signal opnieuw geïnstalleerd heeft.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Veiligheidsnummers met deze contactpersoon verifiëren.</string>
   <string name="ConfirmIdentityDialog_accept">Aanvaarden</string>
+  <!--ContactsCursorLoader-->
+  <string name="ContactsCursorLoader_recent_chats">Recente gesprekken</string>
+  <string name="ContactsCursorLoader_contacts">Contacten</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Bericht sturen naar %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal-oproep %s</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_message_size_d_kb">Berichtgrootte: %d KB</string>
-  <string name="ConversationItem_expires_s">Verloopt: %s</string>
   <string name="ConversationItem_error_not_delivered">Niet bezorgd</string>
-  <string name="ConversationItem_view_secure_media_question">Bekijk beveiligde media?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Deze media is opgeslagen in een versleutelde database. Om het weer te geven met een externe app, zal het tijdelijk moeten worden ontsleuteld en opgeslagen. Weet je zeker dat je dat wil doen?</string>
-  <string name="ConversationItem_error_received_stale_key_exchange_message">Fout, verouderd sleuteluitwisselingsbericht ontvangen.</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Sleuteluitwisselingsbericht ontvangen, tik om te verwerken.</string>
   <string name="ConversationItem_group_action_left">%1$s heeft de groep verlaten.</string>
   <string name="ConversationItem_click_for_details">Tik voor details</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Tik voor terugvallen naar onbeveiligd</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Terugvallen naar onversleutelde SMS?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Terugvallen naar onversleutelde MMS?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Terugvallen naar onversleutelde sms?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Terugvallen naar onversleutelde mms?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Dit bericht zal <b>niet</b> versleuteld worden omdat de ontvanger geen Signal meer gebruikt.\n\nOnbeveiligd bericht verzenden?</string>
   <string name="ConversationItem_unable_to_open_media">Geen app gevonden om dit bestand te openen.</string>
   <string name="ConversationItem_copied_text">%s gekopieerd</string>
@@ -92,37 +97,24 @@
   <string name="ConversationActivity_reset_secure_session_question">Beveiligde sessie opnieuw instellen?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Dit kan mogelijk helpen wanneer je versleutelingsproblemen hebt met dit gesprek. Je berichten blijven behouden.</string>
   <string name="ConversationActivity_reset">Opnieuw instellen</string>
-  <string name="ConversationActivity_delete_thread_question">Gesprek verwijderen?</string>
-  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">Dit zal alle berichten in dit gesprek voorgoed verwijderen.</string>
   <string name="ConversationActivity_add_attachment">Bijlage toevoegen</string>
   <string name="ConversationActivity_select_contact_info">Selecteer contactinformatie</string>
   <string name="ConversationActivity_compose_message">Bericht opstellen</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Sorry, er trad een fout op bij het instellen van je bijlage.</string>
-  <string name="ConversationActivity_the_gif_you_selected_was_too_big">De gif die je geselecteerd hebt is te groot!</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Sorry, het videobestand overschrijdt de maximale berichtgrootte (%1$skB).</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Sorry, het audiobestand overschrijdt de maximale berichtgrootte (%1$skB).</string>
-  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Ontvanger is geen geldig SMS- of e-mailadres!</string>
+  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Ontvanger is geen geldig sms- of e-mailadres!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Bericht is leeg!</string>
   <string name="ConversationActivity_group_members">Groepsleden</string>
-  <string name="ConversationActivity_group_conversation">Groepsgesprek</string>
-  <plurals name="ConversationActivity_d_recipients_in_group">
-    <item quantity="one">1 lid</item>
-    <item quantity="other">%d leden</item>
-  </plurals>
-  <string name="ConversationActivity_saved_draft">Concept opgeslagen</string>
   <string name="ConversationActivity_invalid_recipient">Ongeldige ontvanger!</string>
   <string name="ConversationActivity_calls_not_supported">Bellen niet ondersteund</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Dit apparaat lijkt belacties niet te ondersteunen.</string>
   <string name="ConversationActivity_leave_group">Groep verlaten?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Weet je zeker dat je deze groep wil verlaten?</string>
-  <string name="ConversationActivity_transport_insecure_sms">Onbeveiligde SMS</string>
-  <string name="ConversationActivity_transport_insecure_mms">Onbeveiligde MMS</string>
+  <string name="ConversationActivity_transport_insecure_sms">Onbeveiligde sms</string>
+  <string name="ConversationActivity_transport_insecure_mms">Onbeveiligde mms</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Laten we wisselen naar Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Laten we chatten met %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Fout bij het verlaten van de groep</string>
-  <string name="ConversationActivity_mms_not_supported_title">MMS niet ondersteund</string>
-  <string name="ConversationActivity_mms_not_supported_message">Dit bericht kan niet verzonden worden omdat je provider MMS niet ondersteunt.</string>
   <string name="ConversationActivity_specify_recipient">Kies een contact</string>
   <string name="ConversationActivity_unblock_this_contact_question">Contact deblokkeren?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Je kan weer berichten en oproepen van dit contact ontvangen.</string>
@@ -132,15 +124,19 @@
   <string name="ConversationActivity_unable_to_record_audio">Fout bij opnemen audio!</string>
   <string name="ConversationActivity_error_sending_voice_message">Fout bij verzenden van audiobericht</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Er is geen app aanwezig op het apparaat om deze link te openen.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Geef Signal toegang tot je microfoon om audioberichten te sturen.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal heeft toegang nodig tot de microfoon om audioberichten te kunnen sturen, maar deze toestemming is permanent geweigerd. Ga naar de instellingen, selecteer \"Toestemmingen\" en schakel \"Microfoon\" in.</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Signal heeft toegang nodig tot je microfoon en camera om %s te bellen.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal heeft toegang nodig tot de microfoon en camera om %s te kunnen bellen, maar deze toestemming is permanent geweigerd. Ga naar de instellingen, selecteer \"Toestemmingen\" en schakel \"Microfoon\" en \"Camera\" in.</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Geef Signal toegang tot de camera om foto\'s en video\'s te maken.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal heeft toegang nodig tot de camera om foto\'s en video\'s te kunnen opnemen, maar deze toestemming is permanent geweigerd. Ga naar de instellingen, selecteer \"Toestemmingen\" en schakel \"Camera\" in.</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal heeft toegang nodig tot de camera om foto\'s en video\'s te kunnen opnemen</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ongelezen bericht</item>
     <item quantity="other">%d ongelezen berichten</item>
   </plurals>
   <!--ConversationFragment-->
-  <string name="ConversationFragment_message_details">Berichtdetails</string>
-  <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nVerzonden/Ontvangen: %2$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Afzender: %1$s\nTransport: %2$s\nVerzonden: %3$s\n/Ontvangen: %4$s</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Geselecteerd bericht verwijderen?</item>
     <item quantity="other">Geselecteerde berichten verwijderen?</item>
@@ -171,17 +167,16 @@
     <item quantity="one">Bijlage opslaan...</item>
     <item quantity="other">%1$d bijlagen opslaan...</item>
   </plurals>
-  <string name="ConversationFragment_collecting_attahments">Bijlagen aan het verzamelen...</string>
   <string name="ConversationFragment_pending">In afwachting...</string>
   <string name="ConversationFragment_push">Gegevens (Signal)</string>
-  <string name="ConversationFragment_mms">MMS</string>
-  <string name="ConversationFragment_sms">SMS</string>
+  <string name="ConversationFragment_mms">Mms</string>
+  <string name="ConversationFragment_sms">Sms</string>
   <string name="ConversationFragment_deleting">Verwijderen</string>
   <string name="ConversationFragment_deleting_messages">Berichten verwijderen...</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">Zoeken</string>
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Er is geen browser op het apparaat geïnstalleerd.</string>
   <!--ConversationListFragment-->
+  <string name="ConversationListFragment_no_results_found_for_s_">Geen resultaten gevonden voor \'%s\'</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Geselecteerd gesprek verwijderen?</item>
     <item quantity="other">Geselecteerde gesprekken verwijderen?</item>
@@ -205,6 +200,12 @@
   <string name="ConversationListItem_key_exchange_message">Sleuteluitwisselingsbericht</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Gesprekken gearchiveerd (%d)</string>
+  <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity_your_profile_info">Je profielinfo</string>
+  <string name="CreateProfileActivity_error_setting_profile_photo">Fout bij instellen van profielfoto</string>
+  <string name="CreateProfileActivity_problem_setting_profile">Probleem bij instellen van profiel</string>
+  <string name="CreateProfileActivity_profile_photo">Profielfoto</string>
+  <string name="CreateProfileActivity_too_long">Te lang</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Aangepast in gebruik: %s</string>
   <string name="CustomDefaultPreference_using_default">Standaard in gebruik: %s</string>
@@ -230,8 +231,8 @@
   <!--DocumentView-->
   <string name="DocumentView_unknown_file">Onbekend bestand</string>
   <!--DozeReminder-->
-  <string name="DozeReminder_optimize_for_missing_play_services">Achtergrond verbinding geactiveerd</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dit apparaat ondersteund de Play Services niet. Tik om de optimalisaties m.b.t. stroomverbruik uit te schakelen die Signal momenteel verhinderen om berichten te ontvangen op de achtergrond.</string>
+  <string name="DozeReminder_optimize_for_missing_play_services">Optimaliseren voor ontbrekende Google Play Services</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dit apparaat biedt geen ondersteuning voor de Play Services. Tik om de optimalisaties m.b.t. stroomverbruik uit te schakelen, die Signal momenteel verhinderen om berichten te ontvangen op de achtergrond.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Delen met</string>
   <!--ExperienceUpgradeActivity-->
@@ -244,6 +245,9 @@
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal ondersteunt nu beveiligde videogesprekken. Maak gewoon een Signal-oproep en tik op de videoknop om een videogesprek te beginnen.</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal ondersteunt nu beveiligde videogesprekken.</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal ondersteunt nu beveiligde videogesprekken. Tik om te verkennen.</string>
+  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Klaar voor je close-up?</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Je kan nu een profielfoto en naam met je vrienden op Signal delen</string>
+  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal-profielen zijn nu beschikbaar</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exporteren</string>
   <string name="ExportFragment_export_plaintext_to_storage">Tekst exporteren naar opslag?</string>
@@ -266,10 +270,9 @@
   <string name="GroupCreateActivity_actionbar_title">Nieuwe groep</string>
   <string name="GroupCreateActivity_actionbar_edit_title">Groep bijwerken</string>
   <string name="GroupCreateActivity_group_name_hint">Groepsnaam</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">Nieuwe MMS-groep</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Je hebt een contactpersoon geselecteerd die geen Signal-groepen ondersteunt, dus deze groep zal gebruik maken van MMS.</string>
+  <string name="GroupCreateActivity_actionbar_mms_title">Nieuwe mms-groep</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Je hebt een contactpersoon geselecteerd die geen Signal-groepen ondersteunt, dus deze groep zal gebruik maken van mms.</string>
   <string name="GroupCreateActivity_youre_not_registered_for_signal">Je bent niet geregistreerd voor Signal-berichten en -oproepen, dus Signal-groepen zijn uitgeschakeld. Registreren kan via Instellingen &gt; Geavanceerd.</string>
-  <string name="GroupCreateActivity_contacts_mms_exception">Er is een onverwachte fout opgetreden waardoor het aanmaken van een groep is mislukt.</string>
   <string name="GroupCreateActivity_contacts_no_members">Je groep moet minstens één persoon bevatten.</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Het nummer van een van de leden van je groep kan niet goed worden gelezen. Corrigeer dit of verwijder deze persoon, en probeer het opnieuw.</string>
   <string name="GroupCreateActivity_avatar_content_description">Groepsafbeelding</string>
@@ -279,20 +282,20 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Kon  %1$s niet toevoegen omdat het geen Signal-gebruikers zijn</string>
   <string name="GroupCreateActivity_loading_group_details">Groepsdetails laden...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Je bent al lid van deze groep.</string>
+  <!--GroupShareProfileView-->
+  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Je profielnaam en -foto met deze groep delen?</string>
+  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Wil je je profielnaam en -foto zichtbaar maken voor alle huidige en toekomstige leden van deze groep?</string>
+  <string name="GroupShareProfileView_make_visible">Zichtbaar maken</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Ik</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Importeren</string>
   <string name="ImportExportActivity_export">Exporteren</string>
   <!--ImportFragment-->
-  <string name="ImportFragment_import_system_sms_database">SMS-berichten uit de systeemdatabase importeren?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Dit zal berichten uit de standaard-SMS-database van het systeem importeren naar Signal. Als je de SMS-database van het systeem voorheen hebt geïmporteerd, kan opnieuw importeren resulteren in dubbele berichten.</string>
+  <string name="ImportFragment_import_system_sms_database">Sms-berichten uit de systeemdatabase importeren?</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Dit zal berichten uit de standaard-sms-database van het systeem importeren naar Signal. Als je de sms-database van het systeem voorheen hebt geïmporteerd, kan opnieuw importeren resulteren in dubbele berichten.</string>
   <string name="ImportFragment_import">Importeren</string>
   <string name="ImportFragment_cancel">Annuleren</string>
-  <string name="ImportFragment_restore_encrypted_backup">Versleutelde back-up herstellen?</string>
-  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
-Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en berichten volledig vervangen. Je zult alle informatie verliezen die wel in je huidige Signal-installatie zit, maar niet in de back-up.</string>
-  <string name="ImportFragment_restore">Herstellen</string>
   <string name="ImportFragment_import_plaintext_backup">Onversleutelde back-up importeren?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Dit zal berichten importeren uit een platte tekstbackup. Als je deze backup eerder al eens hebt geïmporteerd, zal het opnieuw importeren resulteren in dubbele berichten.</string>
   <string name="ImportFragment_importing">Importeren</string>
@@ -300,10 +303,12 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="ImportFragment_no_plaintext_backup_found">Geen niet-versleutelde back-up gevonden!</string>
   <string name="ImportFragment_error_importing_backup">Fout bij het importeren van back-up!</string>
   <string name="ImportFragment_import_complete">Importeren voltooid!</string>
-  <string name="ImportFragment_restoring">Herstellen</string>
-  <string name="ImportFragment_restoring_encrypted_backup">Versleutelde back-up herstellen...</string>
-  <string name="ImportFragment_no_encrypted_backup_found">Geen versleutelde back-up gevonden!</string>
-  <string name="ImportFragment_restore_complete">Herstellen voltooid!</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages">Signal heeft toegang nodig tot je sms-berichten om deze te importeren, maar deze toestemming is permanent geweigerd. Ga naar de instellingen, selecteer \"Toestemmingen\" en schakel \"Sms\" in.</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">Signal heeft toegang nodig tot je sms-berichten om deze te importeren</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">Signal heeft toegang nodig tot de opslagruimte om van de externe opslag te kunnen lezen, maar deze toestemming is permanent geweigerd. Ga naar de instellingen, selecteer \"Toestemmingen\" en schakel \"Opslagruimte\" in.</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">Signal heeft toegang nodig tot de opslagruimte om van de externe opslag te kunnen lezen.</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal heeft toegang nodig tot de opslagruimte om naar de externe opslag te kunnen schrijven, maar deze toestemming is permanent geweigerd. Ga naar de instellingen, selecteer \"Toestemmingen\" en schakel \"Opslagruimte\" in.</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">Signal heeft toegang nodig tot de opslagruimte om naar de externe opslag te kunnen schrijven, maar deze toestemming is permanent geweigerd.</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tik en hou vast om audio op te nemen, laat los om te verzenden</string>
   <!--InviteActivity-->
@@ -319,30 +324,26 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
     <item quantity="other">STUUR SMS NAAR %d VRIENDEN</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">1 SMS-uitnodiging versturen?</item>
-    <item quantity="other">%d SMS-uitnodigingen verzenden?</item>
+    <item quantity="one">1 sms-uitnodiging verzenden?</item>
+    <item quantity="other">%d sms-uitnodigingen verzenden?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Laten we overstappen naar Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Het lijkt erop dat je geen apps hebt om naar te delen.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Vrienden laten vrienden niet onversleuteld chatten.</string>
   <!--KeyScanningActivity-->
-  <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Geen gescande sleutel gevonden!</string>
-  <string name="KeyScanningActivity_install_barcode_Scanner">Barcode Scanner installeren?</string>
-  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal heeft Barcode Scanner nodig voor QR-codes.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Verzenden mislukt</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nieuw veiligheidsnummer</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
-  <string name="MessageRetrievalService_background_connection_enabled">Achtergrond verbinding tot stand gebracht</string>
+  <string name="MessageRetrievalService_background_connection_enabled">Achtergrondverbinding tot stand gebracht</string>
   <!--MmsDownloader-->
-  <string name="MmsDownloader_error_storing_mms">MMS opslaan mislukt!</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">Fout bij het verbinden met de MMS provider</string>
-  <string name="MmsDownloader_error_reading_mms_settings">Fout bij het lezen van de MMS instellingen van de provider</string>
+  <string name="MmsDownloader_error_reading_mms_settings">Fout bij het lezen van de mms-instellingen van de provider</string>
+  <!--MediaOverviewActivity-->
+  <string name="MediaOverviewActivity_Media">Media</string>
+  <string name="MediaOverviewActivity_Documents">Documenten</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-oproep aan de gang</string>
-  <string name="NotificationBarManager_missed_call_from_s">Gemiste oproep van %s</string>
-  <string name="NotificationBarManager_missed_signal_call">Gemiste Signal-oproep</string>
   <string name="NotificationBarManager__establishing_signal_call">Opzetten van Signal-oproep</string>
   <string name="NotificationBarManager__incoming_signal_call">Inkomende Signal-oproep</string>
   <string name="NotificationBarManager__deny_call">Oproep afwijzen</string>
@@ -351,8 +352,8 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="NotificationBarManager__cancel_call">Oproep annuleren</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediabericht</string>
-  <string name="NotificationMmsMessageRecord_downloading_mms_message">Downloaden van MMS</string>
-  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Fout bij het downloaden van een MMS bericht, tik om het nogmaals te proberen</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">Downloaden van mms-bericht</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Fout bij downloaden van mms-bericht, tik om opnieuw te proberen</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Dit bericht gebruikt verouderde versleuteling van een Signal-versie die niet meer ondersteund wordt. Vraag de afzender om bij te werken naar de meest recente versie en het bericht opnieuw te verzenden.</string>
   <string name="MessageRecord_left_group">Je hebt de groep verlaten.</string>
@@ -377,7 +378,6 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="DeviceProvisioningActivity_link_this_device">Dit apparaat koppelen?</string>
   <string name="DeviceProvisioningActivity_cancel">ANNULEREN</string>
   <string name="DeviceProvisioningActivity_continue">DOORGAAN</string>
-  <string name="DeviceProvisioningActivity_title">Dit apparaat koppelen?</string>
   <string name="DeviceProvisioningActivity_content_intro">Het kan</string>
   <string name="DeviceProvisioningActivity_content_bullets">
         • Al je berichten lezen
@@ -393,6 +393,8 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Sorry, dit is geen geldige QR-code voor koppeling van een apparaat.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Een Signal-apparaat koppelen?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Het lijkt erop dat je een Signal-apparaat wil koppelen met een externe scanner. Scan voor de veiligheid alsjeblieft de code opnieuw vanuit Signal.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal heeft toegang nodig tot de camera om een QR-code te scannen, maar deze toestemming is permanent geweigerd. Ga naar de instellingen, selecteer \"Toestemmingen\" en schakel \"Camera\" in.</string>
+  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Kan geen QR-code scannen zonder toegang tot camera</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Verdwijnende berichten</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">De berichten zullen zichzelf niet verwijderen.</string>
@@ -427,25 +429,15 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="RedPhone_answering">Beantwoorden</string>
   <string name="RedPhone_ending_call">Oproep beëindigen</string>
   <string name="RedPhone_dialing">Bellen</string>
-  <string name="RedPhone_canceling_call">Oproep annuleren</string>
-  <string name="RedPhone_call_rejected">Oproep geweigerd</string>
   <string name="RedPhone_ringing">Bellen</string>
   <string name="RedPhone_busy">Bezig</string>
   <string name="RedPhone_connected">Verbonden</string>
-  <string name="RedPhone_connecting">Verbinden</string>
-  <string name="RedPhone_handshake_failed">Verbinden mislukt!</string>
   <string name="RedPhone_recipient_unavailable">Ontvanger niet beschikbaar</string>
-  <string name="RedPhone_performing_handshake">Handdruk uitvoeren</string>
   <string name="RedPhone_network_failed">Netwerkfout!</string>
-  <string name="RedPhone_client_failed">Cliëntfout</string>
-  <string name="RedPhone_fatal_error">Fatale fout</string>
-  <string name="RedPhone_login_failed">Login mislukt!</string>
-  <string name="RedPhone_message_from_the_server">Bericht van de server</string>
   <string name="RedPhone_number_not_registered">Nummer niet geregistreerd!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Het gebelde nummer ondersteunt geen veilig bellen!</string>
   <string name="RedPhone_got_it">Begrepen</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_signal">Verbinden met Signal</string>
   <string name="RegistrationActivity_select_your_country">Selecteer je land</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Je moet je
 landcode opgeven</string>
@@ -454,11 +446,6 @@ telefoonnummer opgeven</string>
   <string name="RegistrationActivity_invalid_number">Ongeldig nummer</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Het nummer dat je hebt
 ingevoerd (%s) is ongeldig.</string>
-  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
-        Dubbelcheck dat dit je nummer is! We gaan dit verifiëren met een SMS.
-    </string>
-  <string name="RegistrationActivity_continue">Doorgaan</string>
-  <string name="RegistrationActivity_edit">Bewerken</string>
   <string name="RegistrationActivity_missing_google_play_services">De Google Play Services zijn niet aanwezig</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Dit apparaat bevat geen Google Play Services. Je kunt Signal nog steeds gebruiken, maar deze configuratie kan de betrouwbaarheid en performance verslechteren.\n\nAls je geen gevorderde gebruiker bent, geen aangepaste ROM gebruikt of denkt dat het tonen van dit bericht onterecht is, neem dan voor hulp a.u.b. contact op met support@whispersystems.org.</string>
   <string name="RegistrationActivity_i_understand">I begrijp het</string>
@@ -466,34 +453,23 @@ ingevoerd (%s) is ongeldig.</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">De Google Play Services zijn momenteel aan het updaten of zijn tijdelijk niet beschikbaar. Probeer het nog eens.</string>
   <string name="RegistrationActivity_more_information">Meer informatie</string>
   <string name="RegistrationActivity_less_information">Minder informatie</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal heeft toegang nodig tot je contacten en media om je met je vrienden te laten verbinden, elkaar berichten te sturen en beveiligde oproepen te maken</string>
+  <string name="RegistrationActivity_unable_to_connect_to_service">Verbinden met dienst niet mogelijk. Controleer je netwerkverbinding en probeer het opnieuw.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Als je Signal toestaat sms-berichten te lezen, kan het je verificatiecode automatisch detecteren om je telefoonnummer eenvoudig te verifiëren.</string>
   <!--RegistrationProblemsActivity-->
-  <string name="RegistrationProblemsActivity_possible_problems">Mogelijke problemen</string>
   <!--RegistrationProgressActivity-->
-  <string name="RegistrationProgressActivity_verifying_number">Nummer verifiëren</string>
-  <string name="RegistrationProgressActivity_edit_s">%s bewerken</string>
-  <string name="RegistrationProgressActivity_registration_complete">Registratie voltooid!</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Je moet eerst de ontvangen code invoeren</string>
-  <string name="RegistrationProgressActivity_connecting">Verbinden</string>
-  <string name="RegistrationProgressActivity_connecting_for_verification">Verbinden voor verificatie...</string>
-  <string name="RegistrationProgressActivity_network_error">Netwerkfout!</string>
-  <string name="RegistrationProgressActivity_unable_to_connect">Verbinden niet mogelijk. Controleer je netwerkverbinding en probeer opnieuw.</string>
-  <string name="RegistrationProgressActivity_verification_failed">Verificatie mislukt!</string>
-  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">De verificatiecode die je opgaf is niet juist. Probeer opnieuw.</string>
-  <string name="RegistrationProgressActivity_too_many_attempts">Te veel pogingen</string>
-  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Je hebt te vaak een onjuiste verificatiecode geprobeerd. Wacht een minuut voordat je het opnieuw probeert.</string>
-  <string name="RegistrationProgressActivity_requesting_call">Oproep aanvragen</string>
-  <string name="RegistrationProgressActivity_requesting_incoming_call">Inkomende verificatie-oproep aanvragen...</string>
-  <string name="RegistrationProgressActivity_server_error">Serverfout</string>
-  <string name="RegistrationProgressActivity_the_server_encountered_an_error">Er is een fout opgetreden. Probeer opnieuw.</string>
-  <string name="RegistrationProgressActivity_too_many_requests">Te veel verzoeken!</string>
-  <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Je hebt al een spraakoproep aangevraagd. Je kan dit opnieuw doen binnen 20 minuten.</string>
-  <string name="RegistrationProgressActivity_registration_conflict">Registratieconflict</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Dit nummer bestaat al op een andere Signal-server. Maak daar eerst je registratie ongedaan voordat je je hier registreert.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registratie voltooid</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Registratie bij Signal is succesvol afgerond.</string>
   <string name="RegistrationService_registration_error">Registratiefout</string>
   <string name="RegistrationService_signal_registration_has_encountered_a_problem">Registratie bij Signal is mislukt.</string>
+  <!--RingtonePreference-->
+  <string name="RingtonePreference_ringtone_default">Standaardbeltoon</string>
+  <string name="RingtonePreference_ringtone_silent">Geen</string>
+  <string name="RingtonePreference_notification_sound_default">Standaardmeldingsgeluid</string>
+  <string name="RingtonePreference_alarm_sound_default">Standaardwekkergeluid</string>
+  <string name="RingtonePreference_add_ringtone_text">Beltoon toevoegen</string>
+  <string name="RingtonePreference_unable_to_add_ringtone">Kan aangepaste beltoon niet toevoegen</string>
   <!--Slide-->
   <string name="Slide_image">Afbeelding</string>
   <string name="Slide_audio">Audio</string>
@@ -525,6 +501,19 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal-update</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Er is een nieuwe versie van Signal beschikbaar, tik om bij te werken</string>
+  <!--UnknownSenderView-->
+  <string name="UnknownSenderView_block_s">%s blokkeren?</string>
+  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Geblokkeerde contacten zullen je geen berichten meer kunnen sturen of je bellen.</string>
+  <string name="UnknownSenderView_block">Blokkeren</string>
+  <string name="UnknownSenderView_share_profile_with_s">Je profiel delen met %s?</string>
+  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">De eenvoudigste manier om je profielinformatie te delen is door de afzender aan je contacten toe te voegen. Als je dit niet wilt, kan je je profielinformatie nog steeds langs deze weg delen.</string>
+  <string name="UnknownSenderView_share_profile">Profiel delen</string>
+  <!--UntrustedSendDialog-->
+  <string name="UntrustedSendDialog_send_message">Bericht verzenden?</string>
+  <string name="UntrustedSendDialog_send">Verzenden</string>
+  <!--UnverifiedSendDialog-->
+  <string name="UnverifiedSendDialog_send_message">Bericht verzenden?</string>
+  <string name="UnverifiedSendDialog_send">Verzenden</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Dit contact gebruikt een oude versie van Signal. Vraag hen om Signal bij te werken vooraleer je het veiligheidsnummer verifieert.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Je contact gebruikt een nieuwere versie van Signal met een incompatibel QR-codeformaat. Werk Signal bij om te vergelijken.</string>
@@ -533,9 +522,9 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="VerifyIdentityActivity_our_signal_safety_number">Ons Signal-veiligheidsnummer:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Het lijkt erop dat je geen apps hebt om naar te delen.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Geen veiligheidsnummer gevonden op het klembord</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal heeft toegang nodig tot de camera om een QR-code te scannen, maar deze toestemming is permanent geweigerd. Ga naar de instellingen, selecteer \"Toestemmingen\" en schakel \"Camera\" in.</string>
+  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Kan QR-code niet scannen zonder toegang tot camera</string>
   <!--KeyExchangeInitiator-->
-  <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initiëren ondanks bestaand verzoek?</string>
-  <string name="KeyExchangeInitiator_send">Verzenden</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Verkeerd versleuteld bericht</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Ontsleutelen, even geduld...</string>
@@ -545,18 +534,15 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <!--ThreadDatabase-->
   <string name="ThreadDatabase_error_decrypting_message">Fout bij ontsleutelen  van bericht.</string>
   <!--MmsDatabase-->
-  <string name="MmsDatabase_connecting_to_mms_server">Verbinden met MMS-server...</string>
-  <string name="MmsDatabase_downloading_mms">Downloaden van MMS...</string>
-  <string name="MmsDatabase_mms_download_failed">Downloaden van MMS mislukt!</string>
-  <string name="MmsDatabase_downloading">Downloaden...</string>
-  <string name="MmsDatabase_mms_pending_download">Tik en configureer MMS-instellingen om de download te hervatten.</string>
   <string name="MmsDatabase_error_decrypting_message">Fout bij ontsleutelen  van bericht.</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_decrypting_mms_please_wait">MMS ontsleutelen, even geduld...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Verkeerd versleuteld MMS-bericht</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-bericht versleuteld voor niet-bestaande sessie</string>
+  <string name="MmsMessageRecord_decrypting_mms_please_wait">Mms ontsleutelen, even geduld...</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Verkeerd versleuteld mms-bericht</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Mms-bericht versleuteld voor niet-bestaande sessie</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Demp meldingen</string>
+  <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_no_web_browser_installed">Geen webbrowser geïnstalleerd!</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importeren</string>
   <string name="ApplicationMigrationService_importing_text_messages">Tekstberichten importeren</string>
@@ -569,15 +555,15 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="KeyCachingService_lock">Vergrendelen met wachtwoord</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Jij</string>
-  <string name="MediaPreviewActivity_cant_display">Weergeven van deze afbeelding is mislukt</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Niet-ondersteund mediatype</string>
   <string name="MediaPreviewActivity_draft">Concept</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal heeft toegang nodig tot de opslagruimte om naar de externe opslag te kunnen opslaan, maar deze toestemming is permanent geweigerd. Ga naar de instellingen, selecteer \"Toestemmingen\" en schakel \"Opslagruimte\" in.</string>
+  <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Kan niet opslaan naar externe opslag zonder toestemming</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nieuwe berichten in %2$d gesprekken</string>
   <string name="MessageNotifier_most_recent_from_s">Meest recente van: %1$s</string>
   <string name="MessageNotifier_locked_message">Versleuteld bericht</string>
   <string name="MessageNotifier_media_message_with_text">Mediabericht: %s</string>
-  <string name="MessageNotifier_no_subject">(Geen onderwerp)</string>
   <string name="MessageNotifier_message_delivery_failed">Berichtaflevering mislukt.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Het bericht afleveren is mislukt.</string>
   <string name="MessageNotifier_error_delivering_message">Fout bij afleveren bericht.</string>
@@ -588,22 +574,24 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="MessageNotifier_pending_signal_messages">Signal-berichten in wachtrij</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Er staan Signal-berichten in de wachtrij, tik om ze te openen en op te halen</string>
   <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Voor jouw telefoon zijn handmatige MMS-instellingen noodzakelijk.</string>
-  <string name="MmsPreferencesFragment__enabled">Ingeschakeld</string>
-  <string name="MmsPreferencesFragment__disabled">Uitgeschakeld</string>
-  <string name="MmsPreferencesFragment__not_set">Niet ingesteld</string>
-  <string name="MmsPreferencesFragment__invalid_uri">De ingevoerde tekst is geen geldige URI</string>
-  <string name="MmsPreferencesFragment__invalid_host">De ingevoerde tekst is geen geldige host</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Snel reageren niet beschikbaar wanneer Signal vergrendeld is!</string>
   <string name="QuickResponseService_problem_sending_message">Fout bij verzenden van bericht!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Map openen</string>
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">Zoeken</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nieuw bericht</string>
+  <!--UnauthorizedReminder-->
+  <string name="UnauthorizedReminder_device_no_longer_registered">Apparaat niet meer geregistreerd</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dit komt waarschijnlijk doordat je je telefoonnummer met Signal op een ander apparaat hebt geregistreerd. Tik om opnieuw te registreren.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Fout bij afspelen van video</string>
+  <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Geef Signal toegang tot je microfoon om de oproep van %s te beantwoorden.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal heeft toegang nodig tot de microfoon en de camera om oproepen te maken of ontvangen, maar deze toestemmingen zijn permanent geweigerd. Ga naar de instellingen, selecteer \"Toestemmingen\" en schakel \"Microfoon\" en \"Camera\" in.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Je veiligheidsnummer met %1$s is veranderd. Dit kan betekenen dat iemand je communicatie probeert te onderscheppen, of gewoon dat %2$s Signal opnieuw geïnstalleerd heeft.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Veiligheidsnummers met deze contactpersoon verifiëren.</string>
@@ -638,43 +626,39 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Contactfoto</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionlistFragment_select_for">Selecteer voor</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal heeft toegang nodig tot de contacten om je contacten weer te kunnen geven, maar deze toestemming is permanent geweigerd. Ga naar de instellingen, selecteer \"Toestemmingen\" en schakel \"Contacten\" in.</string>
+  <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Fout bij ophalen van contacten, controleer je netwerkverbinding</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Geen geblokkeerde contacten</string>
   <!--contact_selection_recent_activity-->
-  <string name="contact_selection_recent_activity__no_recent_calls">Geen recente oproepen.</string>
+  <!--contact_selection_list_fragment-->
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal heeft toegang nodig tot je contacten om ze weer te kunnen geven.</string>
+  <string name="contact_selection_list_fragment__show_contacts">Contacten tonen</string>
   <!--conversation_title_view-->
-  <string name="conversation_title_view__conversation_muted">Gesprek gedempt</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal-bericht</string>
-  <string name="conversation_activity__type_message_sms_insecure">Onbeveiligde SMS</string>
-  <string name="conversation_activity__type_message_mms_insecure">Onbeveiligde MMS</string>
+  <string name="conversation_activity__type_message_sms_insecure">Onbeveiligde sms</string>
+  <string name="conversation_activity__type_message_mms_insecure">Onbeveiligde mms</string>
   <string name="conversation_activity__from_sim_name">Van %1$s</string>
   <string name="conversation_activity__send">Verzenden</string>
-  <string name="conversation_activity__remove">Verwijderen</string>
-  <string name="conversation_activity__window_description">Gesprek met %1$s</string>
   <string name="conversation_activity__compose_description">Berichtsamenstelling</string>
   <string name="conversation_activity__emoji_toggle_description">Emojitoetsenbord wisselen</string>
   <string name="conversation_activity__attachment_thumbnail">Bijlageminiatuur</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Camera overzicht tonen/verbergen</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Geluidsopname opnemen en verzenden</string>
-  <string name="conversation_activity__enable_signal_for_sms">Gebruik Signal voor SMS</string>
+  <string name="conversation_activity__enable_signal_for_sms">Gebruik Signal voor sms</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">SCHUIF OM TE ANNULEREN</string>
   <!--conversation_item-->
-  <string name="conversation_item__mms_downloading_description">Mediabericht downloaden</string>
   <string name="conversation_item__mms_image_description">Mediabericht</string>
   <string name="conversation_item__secure_message_description">Beveiligd bericht</string>
   <!--conversation_item_sent-->
-  <string name="conversation_item_sent__download">Download</string>
-  <string name="conversation_item_sent__downloading">Downloaden</string>
   <string name="conversation_item_sent__send_failed_indicator_description">Verzenden mislukt</string>
   <string name="conversation_item_sent__pending_approval_description">In afwachting van goedkeuring</string>
   <string name="conversation_item_sent__delivered_description">Bezorgd </string>
+  <string name="conversation_item_sent__message_read">Bericht gelezen</string>
   <!--conversation_item_received-->
-  <string name="conversation_item_received__download">Download</string>
   <string name="conversation_item_received__contact_photo_description">Contactfoto</string>
-  <string name="conversation_item_received__downloading">Downloaden</string>
   <!--audio_view-->
   <string name="audio_view__play_accessibility_description">Afspelen</string>
   <string name="audio_view__pause_accessibility_description">Pauzeren</string>
@@ -696,6 +680,9 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="device_list_fragment__link_new_device">Nieuw apparaat koppelen</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">doorgaan</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Leesbevestigingen zijn nu beschikbaar</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Een nieuwe optie om te zien en te delen wanneer berichten gelezen zijn</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Schakel leesbevestigingen in</string>
   <!--expiration-->
   <string name="expiration_off">Uit</string>
   <plurals name="expiration_seconds">
@@ -742,13 +729,10 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Niets gevonden</string>
   <!--import_export_fragment-->
-  <string name="import_export_fragment__export">Exporteren</string>
-  <string name="import_export_fragment__import">Importeren</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Kon geen logs van je apparaat verzamelen. Je kan nog wel ADB gebruiken om debuglogs te verzamelen.</string>
   <string name="log_submit_activity__thanks">Bedankt voor je hulp!</string>
   <string name="log_submit_activity__submitting">Indienen</string>
-  <string name="log_submit_activity__posting_logs">Logs worden gepost naar gist...</string>
   <string name="log_submit_activity__no_browser_installed">Geen browser geïnstalleerd</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Wil je je huidige tekstberichtendatabase importeren naar de versleutelde database van Signal?</string>
@@ -758,13 +742,11 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Dit kan even duren. Even geduld, we zullen je melden wanneer het importeren voltooid is.</string>
   <string name="database_migration_activity__importing">IMPORTEREN</string>
   <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Database wordt bijgewerkt...</string>
+  <string name="database_upgrade_activity__updating_database">Database bijwerken...</string>
   <string name="export_fragment__export_plaintext_backup">Onversleutelde back-up exporteren</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">Exporteer een onversleutelde back-up compatibel met \'SMS Backup &amp; Restore\' naar de opslag</string>
-  <string name="import_fragment__import_system_sms_database">SMS-berichten uit de systeemdatabase importeren?</string>
+  <string name="import_fragment__import_system_sms_database">Sms-berichten uit de systeemdatabase importeren?</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importeer de database van de standaardberichtenapp</string>
-  <string name="import_fragment__restore_encrypted_backup">Versleutelde back-up herstellen</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">Herstel een eerder geëxporteerde versleutelde back-up van Signal</string>
   <string name="import_fragment__import_plaintext_backup">Onversleutelde back-up importeren</string>
   <string name="import_fragment__import_a_plaintext_backup_file">Importeer een onversleutelde back-up. Compatibel met \'SMS Back-up &amp; Herstellen\'.</string>
   <!--load_more_header-->
@@ -781,87 +763,48 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
     <item quantity="other">%1$s zijn toegevoegd aan de groep.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">De groepsnaam is nu \'%1$s\'.</string>
+  <!--profile_group_share_view-->
+  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Je profielnaam en -foto zichtbaar maken voor deze groep?</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Ontgrendelen</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal heeft MMS-instellingen nodig om mediaberichten te kunnen versturen via je telefoonprovider. Je apparaat maakt deze informatie niet beschikbaar. Dit komt vaker voor bij gelockte apparaten en andere beperkende configuraties.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Om media- en groepsberichten te verzenden tik je op Oké en voer je de gevraagde gegevens in. De MMS-instellingen voor je provider kunnen meestal gevonden worden door online te zoeken naar \"naam-van-je-provider APN\". Dit hoef je maar één keer te doen.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal heeft mms-instellingen nodig om mediaberichten te kunnen versturen via je telefoonprovider. Je apparaat maakt deze informatie niet beschikbaar. Dit komt vaker voor bij gelockte apparaten en andere beperkende configuraties.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Om media- en groepsberichten te verzenden tik je op Oké en voer je de gevraagde gegevens in. De mms-instellingen voor je provider kunnen meestal gevonden worden door online te zoeken naar \"naam-van-je-provider APN\". Dit hoef je maar één keer te doen.</string>
+  <!--profile_create_activity-->
+  <string name="profile_create_activity__set_later">Later instellen</string>
+  <string name="profile_create_activity__finish">KLAAR</string>
+  <string name="profile_create_activity__who_can_see_this_information">Wie kan deze informatie zien?</string>
+  <string name="profile_create_activity__your_name">Je naam</string>
   <!--recipient_preferences_activity-->
-  <string name="recipient_preference_activity__blocked">GEBLOKKEERD</string>
+  <string name="recipient_preference_activity__shared_media">Gedeelde media</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Gesprek dempen</string>
-  <string name="recipient_preferences__disable_notifications_for_this_conversation">Meldingen uitschakelen voor dit gesprek</string>
   <string name="recipient_preferences__notification_sound">Meldingsgeluid</string>
   <string name="recipient_preferences__vibrate">Vibreren</string>
   <string name="recipient_preferences__block">Blokkeren</string>
   <string name="recipient_preferences__color">Kleur</string>
-  <string name="recipient_preferences__color_for_this_contact">Kleur voor dit contact</string>
   <string name="recipient_preferences__view_safety_number">Veiligheidsnummer weergeven</string>
+  <string name="recipient_preferences__chat_settings">Gespreksinstellingen</string>
+  <string name="recipient_preferences__privacy">Privacy</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal oproep</string>
-  <string name="redphone_call_controls__end_call">Oproep beëindigen</string>
-  <string name="redphone_call_controls__audio">Audio</string>
   <string name="redphone_call_controls__mute">Dempen</string>
   <string name="redphone_call_controls__signal_call">Signal oproep</string>
   <!--registration_activity-->
-  <string name="registration_activity__verify_your_number_to_connect_with_signal">
-Verifieer je telefoonnummer om met Signal verbinding te maken.
-    </string>
-  <string name="registration_activity__your_country">JE LAND</string>
-  <string name="registration_activity__your_country_code_and_phone_number">JE LANDCODE EN
-TELEFOONNUMMER</string>
   <string name="registration_activity__phone_number">TELEFOONNUMMER</string>
-  <string name="registration_activity__register">Registreren</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal maakt het eenvoudig om met je bestaande telefoonnummer en adresboek te communiceren. Vrienden en contacten die jou al via je telefoon kunnen contacteren zullen eenvoudig met je contact kunnen opnemen via Signal.\n\nRegistreren deelt tijdelijk enige informatie met de server. Het wordt niet bewaard.</string>
-  <string name="registration_activity__powered_by_twilio">Mogelijk gemaakt door twilio</string>
+  <string name="registration_activity__verify_your_number">Verifieer je nummer</string>
+  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Voer je telefoonnummer in om een verificatiecode te ontvangen. Extra providerkosten zijn mogelijk van toepassing.</string>
   <!--registration_problems-->
-  <string name="registration_problems__some_possible_problems_include">Mogelijke problemen
-zijn:</string>
-  <string name="registration_problems__sms_interceptors">SMS-onderscheppers.</string>
-  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
-Sommige SMS-apps van derden, zoals Handcent of GoSMS, gedragen zich slecht en onderscheppen alle inkomende SMS-berichten. Controleer of je een SMS-bericht hebt ontvangen dat begint met \"Your Signal verification code:\", in welk geval je je andere SMS-apps zal moeten configureren om SMS-berichten door te laten.</string>
-  <string name="registration_problems__incorrect_number">Incorrect nummer.</string>
-  <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
-Controleer of je jouw nummer correct hebt ingevuld, en of het 
-in correct formaat is
-voor jouw regio.</string>
-  <string name="registration_problems__google_voice">Google Voice.</string>
-  <string name="registration_problems__signal_will_not_work_with_google_voice_numbers">
-Signal werkt niet met nummers van Google Voice.</string>
   <!--registration_progress_activity-->
-  <string name="registration_progress_activity__voice_verification">Spraakverificatie</string>
-  <string name="registration_progress_activity__signal_can_also_call_you_to_verify_your_number">
-Signal kan je ook bellen om je nummer te verifiëren. Tik op \'Bel me\' en voer
-hieronder de 6-cijferige code in die wordt voorgelezen.</string>
-  <string name="registration_progress_activity__verify">Verifiëren</string>
-  <string name="registration_progress_activity__call_me">Bel me</string>
-  <string name="registration_progress_activity__edit_number">Nummer bewerken</string>
-  <string name="registration_progress_activity__connectivity_error">Verbindingsfout.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal kon geen verbinding maken met de server.</string>
-  <string name="registration_progress_activity__some_possible_problems_include">Mogelijke problemen
-zijn:</string>
-  <string name="registration_progress_activity__no_network_connectivity">Geen netwerkverbinding.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Je apparaat heeft een netwerkverbinding nodig voor deze Signal-functie. Controleer of je verbonden bent met mobiel internet of WiFi.</string>
-  <string name="registration_progress_activity__restrictive_firewall">Beperkende firewall.</string>
-  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
-Als je bent verbonden via WiFi is het mogelijk dat een firewall de verbinding met de Signal-server blokkeert. Probeer een ander- of het mobiele netwerk.</string>
-  <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-Signal zal je nummer nu automatisch verifiëren door middel van een SMS-bericht.</string>
-  <string name="registration_progress_activity__connecting">Verbinden...</string>
-  <string name="registration_progress_activity__waiting_for_sms_verification">Wachten op
-SMS-verificatie...</string>
-  <string name="registration_progress_activity__registering_with_server">Aanmelden bij de server...</string>
-  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Dit kan even duren. Even geduld, we zullen je melden wanneer de verificatie voltooid is.</string>
-  <string name="registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message">
-Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</string>
-  <string name="registration_progress_activity__sms_verification_failed">SMS-verificatie mislukt.</string>
-  <string name="registration_progress_activity__generating_keys">Sleutels genereren...</string>
-  <string name="registration_progress_activity__alert">Melding</string>
-  <string name="registration_progress_activity__telephone">Telefoon</string>
-  <string name="registration_progress_activity__check">Check</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Typ een naam of nummer</small></string>
   <string name="recipients_panel__add_members">Leden toevoegen</string>
+  <!--unknown_sender_view-->
+  <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">De afzender staat niet in je contacten</string>
+  <string name="unknown_sender_view__block">BLOKKEREN</string>
+  <string name="unknown_sender_view__add_to_contacts">TOEVOEGEN AAN CONTACTEN</string>
+  <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NIET TOEVOEGEN, MAAR MIJN PROFIEL WEL ZICHTBAAR MAKEN</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Als je de veiligheid van de beveiligde verbinding met %s wil verifiëren, moet je het nummer hierboven vergelijken met dat op hun apparaat. Een alternatieve methode is om de code op hun telefoon te scannen, of hen te vragen jouw code te scannen. <a href="https://whispersystems.org/redirect/safety-numbers">Lees meer.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tik om te scannen</string>
@@ -869,6 +812,9 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="verify_display_fragment__verified">Geverifieerd</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Veiligheidsnummer delen</string>
+  <!--webrtc_answer_decline_button-->
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Veeg omhoog om te beantwoorden</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Veeg omlaag om te weigeren</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Enkele dingen vergen je aandacht.</string>
   <string name="message_details_header__sent">Verzonden</string>
@@ -882,17 +828,15 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="AndroidManifest__create_passphrase">Wachtwoord aanmaken</string>
   <string name="AndroidManifest__enter_passphrase">Wachtwoord invoeren</string>
   <string name="AndroidManifest__select_contacts">Contacten selecteren</string>
-  <string name="AndroidManifest__signal_detected">Signal gedetecteerd</string>
   <string name="AndroidManifest__change_passphrase">Wachtwoord wijzigen</string>
   <string name="AndroidManifest__verify_safety_number">Veiligheidsnummer verifiëren</string>
   <string name="AndroidManifest__log_submit">Debuglog indienen</string>
   <string name="AndroidManifest__media_preview">Mediaminiatuur</string>
-  <string name="AndroidManifest__all_media">Alle media</string>
-  <string name="AndroidManifest__all_media_named">Alle media met %1$s</string>
   <string name="AndroidManifest__message_details">Berichtdetails</string>
   <string name="AndroidManifest__linked_devices">Gekoppelde apparaten</string>
   <string name="AndroidManifest__invite_friends">Vrienden uitnodigen</string>
   <string name="AndroidManifest_archived_conversations">Gearchiveerde gesprekken</string>
+  <string name="AndroidManifest_remove_photo">Foto verwijderen</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importeren / exporteren</string>
   <string name="arrays__use_default">Gebruik standaard</string>
@@ -925,18 +869,13 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
     <item quantity="other">%d uren</item>
   </plurals>
   <!--preferences.xml-->
-  <string name="preferences__general">Algemeen</string>
-  <string name="preferences__sms_mms">SMS en MMS</string>
-  <string name="preferences__pref_all_sms_title">Ontvang alle SMS</string>
-  <string name="preferences__pref_all_mms_title">Ontvang alle MMS</string>
+  <string name="preferences__sms_mms">Sms en mms</string>
+  <string name="preferences__pref_all_sms_title">Ontvang alle sms</string>
+  <string name="preferences__pref_all_mms_title">Ontvang alle mms</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Signal gebruiken voor alle inkomende tekstberichten</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Signal gebruiken voor alle inkomende multimediaberichten</string>
-  <string name="preferences__input_settings">Invoerinstellingen</string>
-  <string name="preferences__enable_enter_key_title">Enter-toets inschakelen</string>
-  <string name="preferences__replace_smiley_with_enter_key">De smiley-toets vervangen door een Enter-toets</string>
   <string name="preferences__pref_enter_sends_title">Enter-toets verzendt</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Gebruik de Enter-toets voor verzenden van tekstberichten</string>
-  <string name="preferences__display_settings">Beeldscherminstellingen</string>
   <string name="preferences__choose_identity">Identiteit kiezen</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Kies je contactgegevens uit de lijst met contactpersonen.</string>
   <string name="preferences__change_passphrase">Wachtwoord wijzigen</string>
@@ -949,20 +888,11 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="preferences__inactivity_timeout_passphrase">Vergrendeling bij inactiviteit</string>
   <string name="preferences__inactivity_timeout_interval">Inactiviteitsduur voor vergrendeling</string>
   <string name="preferences__notifications">Meldingen</string>
-  <string name="preferences__enable_message_notifications">Toon berichtmeldingen</string>
-  <string name="preferences__new_contacts_notifications">Meldingen voor nieuwe contacten</string>
-  <string name="preferences__show_a_notification_for_new_signal_contacts">Toon een melding voor nieuwe Signal-contacten</string>
   <string name="preferences__led_color">LED-kleur</string>
   <string name="preferences__led_color_unknown">Onbekend</string>
   <string name="preferences__pref_led_blink_title">LED-knipperpatroon</string>
-  <string name="preferences__pref_led_blink_custom_pattern_title">Aangepast LED-knipperpatroon instellen</string>
-  <string name="preferences__pref_led_blink_custom_pattern_on_for">Aan voor:</string>
-  <string name="preferences__pref_led_blink_custom_pattern_off_for">Uit voor:</string>
-  <string name="preferences__pref_led_blink_custom_pattern_set">Aangepast LED-knipperpatroon ingesteld.</string>
   <string name="preferences__sound">Geluid</string>
   <string name="preferences__silent">Stil</string>
-  <string name="preferences__in_conversation_notifications">Meldingen in een gesprek</string>
-  <string name="preferences__play_inthread_notifications">Meldingsgeluid afspelen tijdens het bekijken van een actief gesprek</string>
   <string name="preferences__repeat_alerts">Herhaal meldingen</string>
   <string name="preferences__never">Nooit</string>
   <string name="preferences__one_time">Een keer</string>
@@ -971,9 +901,6 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="preferences__five_times">Vijf keer</string>
   <string name="preferences__ten_times">Tien keer</string>
   <string name="preferences__vibrate">Trillen</string>
-  <string name="preferences__also_vibrate_when_notified">Tril bij meldingen</string>
-  <string name="preferences__minutes">minuten</string>
-  <string name="preferences__hours">uren</string>
   <string name="preferences__green">Groen</string>
   <string name="preferences__red">Rood</string>
   <string name="preferences__blue">Blauw</string>
@@ -985,20 +912,17 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="preferences__fast">Snel</string>
   <string name="preferences__normal">Normaal</string>
   <string name="preferences__slow">Langzaam</string>
-  <string name="preferences__custom">Aangepast</string>
   <string name="preferences__advanced">Geavanceerd</string>
   <string name="preferences__privacy">Privacy</string>
-  <string name="preferences__mms_user_agent">MMS-gebruikersagent</string>
-  <string name="preferences__advanced_mms_access_point_names">Handmatige MMS-instellingen</string>
-  <string name="preferences__enable_manual_mms">Gebruik handmatige MMS-instellingen</string>
-  <string name="preferences__override_system_mms_settings">Gebruik onderstaande gegevens in plaats van de MMS-instellingen van het systeem.</string>
+  <string name="preferences__mms_user_agent">Mms-gebruikersagent</string>
+  <string name="preferences__advanced_mms_access_point_names">Handmatige mms-instellingen</string>
   <string name="preferences__mmsc_url">MMSC-URL</string>
-  <string name="preferences__mms_proxy_host">MMS-proxyserver</string>
-  <string name="preferences__mms_proxy_port">MMS-proxypoort</string>
+  <string name="preferences__mms_proxy_host">Mms-proxyserver</string>
+  <string name="preferences__mms_proxy_port">Mms-proxypoort</string>
   <string name="preferences__mmsc_username">MMSC-gebruikersnaam</string>
   <string name="preferences__mmsc_password">MMSC-wachtwoord</string>
-  <string name="preferences__sms_delivery_reports">SMS-ontvangstbevestigingen</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Vraag een ontvangstbevestiging voor ieder verzonden SMS-bericht</string>
+  <string name="preferences__sms_delivery_reports">Sms-ontvangstbevestigingen</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Vraag een ontvangstbevestiging voor ieder verzonden sms-bericht</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Verwijder automatisch oudere berichten wanneer een gesprek meer dan een bepaald aantal berichten bevat</string>
   <string name="preferences__delete_old_messages">Verwijder oude berichten</string>
   <string name="preferences__chats">Gesprekken en media</string>
@@ -1016,20 +940,19 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="preferences__free_private_messages_and_calls">Gratis privéberichten en bellen met Signal-gebruikers</string>
   <string name="preferences__submit_debug_log">Debuglog indienen</string>
   <string name="preferences__support_wifi_calling">\'Bellen via WiFi\'-compatibiliteitsmodus</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Schakel dit in als je apparaat SMS/MMS over WiFi gebruikt (alleen inschakelen als \'Bellen via WiFi\' is ingeschakeld op je apparaat)</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Schakel dit in als je apparaat sms/mms over wifi gebruikt (alleen inschakelen als \'Bellen via wifi\' is ingeschakeld op je apparaat)</string>
+  <string name="preferences__incognito_keyboard">Incognito toetsenbord</string>
+  <string name="preferences__read_receipts">Leesbevestigingen</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Als je leesbevestigingen uitgeschakeld zijn, zal je leesbevestigingen van anderen ook niet kunnen zien.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Schakel gepersonaliseerd leren van toetsenbord uit</string>
   <string name="preferences_app_protection__blocked_contacts">Geblokkeerde contacten</string>
-  <string name="preferences_app_protection__safety_numbers_approval">De veiligheidsnummers zijn in orde</string>
-  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Vereist dat veranderde veiligheidsnummers eerst goedgekeurd moeten worden</string>
-  <string name="preferences_notifications__display_in_notifications">Toon in meldingen</string>
   <string name="preferences_chats__when_using_mobile_data">Wanneer mobiele gegevensoverdracht gebruikt wordt</string>
-  <string name="preferences_chats__when_using_wifi">Wanneer Wi-Fi gebruikt wordt</string>
+  <string name="preferences_chats__when_using_wifi">Wanneer wifi gebruikt wordt</string>
   <string name="preferences_chats__when_roaming">Bij roaming</string>
   <string name="preferences_chats__media_auto_download">Media automatisch downloaden</string>
   <string name="preferences_chats__message_trimming">Bericht inkorten</string>
   <string name="preferences_advanced__use_system_emoji">Gebruik systeem-emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">De ingebouwde emoji-ondersteuning van Signal uitschakelen</string>
-  <string name="preferences_advanced__video_calling_beta">Videobellen</string>
-  <string name="preferences_advanced__enable_support_for_next_generation_video_and_voice_calls">Biedt ondersteuning voor video- en audiogesprekken van de volgende generatie, indien ingeschakeld door beide partijen. Deze functie is in bèta.</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Verstuur oproepen door de Signal server om te voorkomen dat je contact je IP adres kan achterhalen. Dit zorgt wel voor een verminderde geluidskwaliteit.</string>
   <string name="preferences_advanced__always_relay_calls">Alle oproepen doorsturen</string>
   <string name="preferences_app_protection__app_access">App toegang</string>
@@ -1048,15 +971,9 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__menu_select_all">Alles selecteren</string>
-  <string name="contact_selection_list__menu_unselect_all">Alles deselecteren</string>
-  <string name="contact_selection_list__header_signal_users">SIGNAL-GEBRUIKERS</string>
-  <string name="contact_selection_list__header_other">ALLE CONTACTEN</string>
   <string name="contact_selection_list__unknown_contact">Nieuw bericht naar...</string>
   <!--contact_selection-->
-  <string name="contact_selection__menu_finished">Voltooid</string>
   <!--refreshing push directory from menu-->
-  <string name="push_directory__menu_refresh">Contactenlijst verversen</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Bellen</string>
   <!--conversation_callable_secure-->
@@ -1076,20 +993,20 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Uitnodigen</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__security">Beveiliging</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Geselecteerde verwijderen</string>
   <string name="conversation_list_batch__menu_select_all">Alles selecteren</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Selectie archiveren</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Selectie dearchiveren</string>
   <!--conversation_list-->
-  <string name="conversation_list__menu_search">Zoeken</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Contactfoto</string>
-  <string name="conversation_list_item_view__error_alert">Foutmelding</string>
   <string name="conversation_list_item_view__archived">Gearchiveerd</string>
+  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Postvak IN helemaal leeg</string>
+  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Niks, nada, noppes.\nJe bent helemaal mee!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nieuw gesprek</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Geef je postvak iets om naar huis over te schrijven. Stuur een bericht naar een vriend.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Beveiligde sessie opnieuw instellen</string>
   <!--conversation_muted-->
@@ -1100,7 +1017,6 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="conversation__menu_add_attachment">Bijlage toevoegen</string>
   <string name="conversation__menu_edit_group">Groep bijwerken</string>
   <string name="conversation__menu_leave_group">Groep verlaten</string>
-  <string name="conversation__menu_delete_thread">Gesprek verwijderen</string>
   <string name="conversation__menu_view_all_media">Alle media</string>
   <string name="conversation__menu_conversation_settings">Gespreksinstellingen</string>
   <!--conversation_popup-->
@@ -1113,9 +1029,6 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="conversation_group_options__conversation">Gesprek</string>
   <string name="conversation_group_options__broadcast">Uitzenden</string>
   <!--key_scanning-->
-  <string name="key_scanning__menu_compare">Vergelijk</string>
-  <string name="key_scanning__menu_display_your_qr_code">Toon je QR-code</string>
-  <string name="key_scanning__menu_scan_contacts_qr_code">Scan de QR-code van het contact</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Nieuw bericht</string>
   <string name="text_secure_normal__menu_new_group">Nieuwe groep</string>
@@ -1136,46 +1049,40 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="reminder_header_outdated_build_details_today">Je versie van Signal zal vandaag verlopen. Tik om bij te werken naar de meest recente versie.</string>
   <string name="reminder_header_expired_build">Je versie van Signal is verlopen!</string>
   <string name="reminder_header_expired_build_details">Berichten zullen niet meer verzonden worden. Tik om bij te werken naar de meest recente versie.</string>
-  <string name="reminder_header_expired_build_button">BIJWERKEN</string>
-  <string name="reminder_header_sms_default_title">Gebruiken als standaard SMS-app</string>
-  <string name="reminder_header_sms_default_text">Tik om van Signal je standaard-SMS-app te maken.</string>
-  <string name="reminder_header_sms_default_button">INSTELLEN</string>
-  <string name="reminder_header_sms_import_title">SMS uit systeem importeren</string>
-  <string name="reminder_header_sms_import_text">Tik om de SMS-berichten uit je telefoon te kopiëren naar de versleutelde database van Signal.</string>
-  <string name="reminder_header_sms_import_button">IMPORTEREN</string>
+  <string name="reminder_header_sms_default_title">Gebruiken als standaard-sms-app</string>
+  <string name="reminder_header_sms_default_text">Tik om van Signal je standaard-sms-app te maken.</string>
+  <string name="reminder_header_sms_import_title">Sms uit systeem importeren</string>
+  <string name="reminder_header_sms_import_text">Tik om de sms-berichten uit je telefoon te kopiëren naar de versleutelde database van Signal.</string>
   <string name="reminder_header_push_title">Signal-berichten en -oproepen inschakelen</string>
   <string name="reminder_header_push_text">Verbeter je communicatie-ervaring.</string>
-  <string name="reminder_header_push_button">INSCHAKELEN</string>
   <string name="reminder_header_invite_title">Uitnodigen voor Signal</string>
   <string name="reminder_header_invite_text">Neem je gesprek met %1$s naar een hoger niveau.</string>
-  <string name="reminder_header_invite_button">UITNODIGEN</string>
   <string name="reminder_header_share_title">Nodig je vrienden uit!</string>
   <string name="reminder_header_share_text">Hoe meer vrienden Signal gebruiken, hoe beter het wordt.</string>
-  <string name="reminder_header_share_button">DELEN</string>
-  <string name="reminder_header_close_button">SLUITEN</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Opslaan</string>
   <string name="media_preview__forward_title">Doorsturen</string>
   <string name="media_preview__all_media_title">Alle media</string>
   <!--media_overview-->
-  <string name="media_overview__save_all">Alles opslaan</string>
+  <string name="media_overview_documents_fragment__no_documents_found">Geen documenten</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Mediaminiatuur</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Verversen</string>
   <!--redphone_audio_popup_menu-->
-  <string name="redphone_audio_popup_menu__handset">Toestel</string>
-  <string name="redphone_audio_popup_menu__headset">Hoofdtelefoon</string>
-  <string name="redphone_audio_popup_menu__speaker">Luidspreker</string>
   <!--Trimmer-->
   <string name="trimmer__deleting">Verwijderen</string>
   <string name="trimmer__deleting_old_messages">Oude berichten verwijderen...</string>
   <string name="trimmer__old_messages_successfully_deleted">Oude berichten succesvol verwijderd</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportkanaalpictogram</string>
-  <string name="UntrustedSendDialog_send_message">Bericht verzenden?</string>
-  <string name="UntrustedSendDialog_send">Verzenden</string>
-  <string name="UnverifiedSendDialog_send_message">Bericht verzenden?</string>
-  <string name="UnverifiedSendDialog_send">Verzenden</string>
+  <string name="ConversationListFragment_loading">Laden...</string>
+  <string name="CallNotificationBuilder_connecting">Verbinden...</string>
+  <string name="Permissions_permission_required">Toestemming vereist</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal heeft toegang nodig tot je sms-berichten om er te kunnen sturen, maar deze toestemming is permanent geweigerd. Ga naar de instellingen, selecteer \"Toestemmingen\" en schakel \"Sms\" in.</string>
+  <string name="Permissions_continue">Doorgaan</string>
+  <string name="Permissions_not_now">Niet nu</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal heeft toegang nodig tot de contacten om ze te zoeken, maar deze toestemming is permanent geweigerd. Ga naar de appinstellingen, selecteer \"Toestemmingen\" en schakel \"Contacten\" in.</string>
+  <string name="conversation_activity__enable_signal_messages">SIGNAL-BERICHTEN INSCHAKELEN</string>
   <!--EOF-->
 </resources>

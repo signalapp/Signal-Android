@@ -1,20 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:wheel="http://schemas.android.com/apk/res-auto"
-             android:orientation="vertical"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:wheel="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    <FrameLayout android:id="@+id/drawer_layout"
-                 android:layout_width="match_parent"
-                 android:layout_height="match_parent"
-                 android:visibility="gone" />
+    <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_alignParentTop="true"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:minHeight="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:theme="?attr/actionBarStyle">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="@string/ShareActivity_share_with"
+                      android:textColor="@color/white"
+                      android:textSize="20sp"
+                      android:layout_alignParentStart="true"
+                      android:layout_alignParentLeft="true"
+                      android:layout_centerVertical="true"
+                      android:layout_toLeftOf="@+id/search_action"
+                      android:layout_toStartOf="@+id/search_action"/>
+
+            <ImageView android:id="@+id/search_action"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:src="@drawable/ic_search_white_24dp"
+                       android:layout_alignParentRight="true"
+                       android:layout_alignParentEnd="true"
+                       android:layout_centerVertical="true"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+
+    <fragment android:id="@+id/contact_selection_list_fragment"
+              android:layout_below="@id/toolbar"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:name="org.thoughtcrime.securesms.ContactSelectionListFragment" />
+
+    <org.thoughtcrime.securesms.components.SearchToolbar
+            android:id="@+id/search_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:visibility="invisible"
+            tools:visibility="invisible"/>
 
     <com.pnikosis.materialishprogress.ProgressWheel android:id="@+id/progress_wheel"
                                                     android:layout_width="70dp"
                                                     android:layout_height="70dp"
-                                                    android:layout_gravity="center"
+                                                    android:layout_centerInParent="true"
                                                     wheel:matProg_progressIndeterminate="true" />
 
-</FrameLayout>
+</RelativeLayout>

@@ -1,54 +1,55 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.Conversions;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
-public class MessageDetailsRecipientAdapter extends BaseAdapter implements AbsListView.RecyclerListener {
+class MessageDetailsRecipientAdapter extends BaseAdapter implements AbsListView.RecyclerListener {
 
-  private final Context       context;
-  private final MasterSecret  masterSecret;
-  private final MessageRecord record;
-  private final Recipients    recipients;
-  private final boolean       isPushGroup;
+  private final Context                       context;
+  private final GlideRequests                 glideRequests;
+  private final MessageRecord                 record;
+  private final List<RecipientDeliveryStatus> members;
+  private final boolean                       isPushGroup;
 
-  public MessageDetailsRecipientAdapter(Context context, MasterSecret masterSecret,
-                                        MessageRecord record, Recipients recipients,
-                                        boolean isPushGroup)
+  MessageDetailsRecipientAdapter(@NonNull Context context, @NonNull GlideRequests glideRequests,
+                                 @NonNull MessageRecord record, @NonNull List<RecipientDeliveryStatus> members,
+                                 boolean isPushGroup)
   {
-    this.context      = context;
-    this.masterSecret = masterSecret;
-    this.record       = record;
-    this.recipients   = recipients;
-    this.isPushGroup  = isPushGroup;
+    this.context       = context;
+    this.glideRequests = glideRequests;
+    this.record        = record;
+    this.isPushGroup   = isPushGroup;
+    this.members       = members;
   }
 
   @Override
   public int getCount() {
-    return recipients.getRecipientsList().size();
+    return members.size();
   }
 
   @Override
   public Object getItem(int position) {
-    return recipients.getRecipientsList().get(position);
+    return members.get(position);
   }
 
   @Override
   public long getItemId(int position) {
     try {
-      return Conversions.byteArrayToLong(MessageDigest.getInstance("SHA1").digest(recipients.getRecipientsList().get(position).getAddress().serialize().getBytes()));
+      return Conversions.byteArrayToLong(MessageDigest.getInstance("SHA1").digest(members.get(position).recipient.getAddress().serialize().getBytes()));
     } catch (NoSuchAlgorithmException e) {
       throw new AssertionError(e);
     }
@@ -60,14 +61,46 @@ public class MessageDetailsRecipientAdapter extends BaseAdapter implements AbsLi
       convertView = LayoutInflater.from(context).inflate(R.layout.message_recipient_list_item, parent, false);
     }
 
-    Recipient recipient = recipients.getRecipientsList().get(position);
-    ((MessageRecipientListItem)convertView).set(masterSecret, record, recipient, isPushGroup);
+    RecipientDeliveryStatus member = members.get(position);
+
+    ((MessageRecipientListItem)convertView).set(glideRequests, record, member, isPushGroup);
     return convertView;
   }
 
   @Override
   public void onMovedToScrapHeap(View view) {
     ((MessageRecipientListItem)view).unbind();
+  }
+
+
+  static class RecipientDeliveryStatus {
+
+    enum Status {
+      UNKNOWN, PENDING, SENT, DELIVERED, READ
+    }
+
+    private final Recipient recipient;
+    private final Status    deliveryStatus;
+    private final long      timestamp;
+
+    RecipientDeliveryStatus(Recipient recipient, Status deliveryStatus, long timestamp) {
+      this.recipient      = recipient;
+      this.deliveryStatus = deliveryStatus;
+      this.timestamp      = timestamp;
+    }
+
+    Status getDeliveryStatus() {
+      return deliveryStatus;
+    }
+
+    public long getTimestamp() {
+      return timestamp;
+    }
+
+    public Recipient getRecipient() {
+      return recipient;
+    }
+
   }
 
 }

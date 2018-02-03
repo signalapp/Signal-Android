@@ -6,7 +6,6 @@ import android.util.Log;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobParameters;
@@ -31,8 +30,7 @@ public class MultiDeviceReadUpdateJob extends MasterSecretJob implements Injecta
 
   private final List<SerializableSyncMessageId> messageIds;
 
-  @Inject
-  transient SignalCommunicationModule.SignalMessageSenderFactory messageSenderFactory;
+  @Inject transient SignalServiceMessageSender messageSender;
 
   public MultiDeviceReadUpdateJob(Context context, List<SyncMessageId> messageIds) {
     super(context, JobParameters.newBuilder()
@@ -62,7 +60,6 @@ public class MultiDeviceReadUpdateJob extends MasterSecretJob implements Injecta
       readMessages.add(new ReadMessage(messageId.sender, messageId.timestamp));
     }
 
-    SignalServiceMessageSender messageSender = messageSenderFactory.create();
     messageSender.sendMessage(SignalServiceSyncMessage.forRead(readMessages));
   }
 

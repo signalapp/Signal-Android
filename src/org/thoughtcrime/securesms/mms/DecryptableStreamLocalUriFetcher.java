@@ -17,17 +17,15 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class DecryptableStreamLocalUriFetcher extends StreamLocalUriFetcher {
+class DecryptableStreamLocalUriFetcher extends StreamLocalUriFetcher {
 
   private static final String TAG = DecryptableStreamLocalUriFetcher.class.getSimpleName();
 
-  private Context      context;
-  private MasterSecret masterSecret;
+  private Context context;
 
-  public DecryptableStreamLocalUriFetcher(Context context, MasterSecret masterSecret, Uri uri) {
-    super(context, uri);
+  DecryptableStreamLocalUriFetcher(Context context, Uri uri) {
+    super(context.getContentResolver(), uri);
     this.context      = context;
-    this.masterSecret = masterSecret;
   }
 
   @Override
@@ -43,7 +41,7 @@ public class DecryptableStreamLocalUriFetcher extends StreamLocalUriFetcher {
     }
 
     try {
-      return PartAuthority.getAttachmentStream(context, masterSecret, uri);
+      return PartAuthority.getAttachmentStream(context, uri);
     } catch (IOException ioe) {
       Log.w(TAG, ioe);
       throw new FileNotFoundException("PartAuthority couldn't load Uri resource.");

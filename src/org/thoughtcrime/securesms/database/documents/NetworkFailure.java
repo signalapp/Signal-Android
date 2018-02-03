@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.database.documents;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.thoughtcrime.securesms.database.Address;
@@ -15,6 +16,7 @@ public class NetworkFailure {
 
   public NetworkFailure() {}
 
+  @JsonIgnore
   public Address getAddress() {
     return Address.fromSerialized(address);
   }
