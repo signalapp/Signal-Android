@@ -168,7 +168,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   private void initializeViews() {
     mediaPager = findViewById(R.id.media_pager);
     mediaPager.setOffscreenPageLimit(1);
-    mediaPager.addOnPageChangeListener(new ViewPagerListener());
   }
 
   private void initializeResources() {
@@ -199,7 +198,10 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     if (conversationRecipient != null) {
       getSupportLoaderManager().restartLoader(0, null, this);
     } else {
+      ViewPager.OnPageChangeListener onPageChangeListener = new ViewPagerListener();
+      mediaPager.addOnPageChangeListener(onPageChangeListener);
       mediaPager.setAdapter(new SingleItemPagerAdapter(this, GlideApp.with(this), getWindow(), initialMediaUri, initialMediaType, initialMediaSize));
+      onPageChangeListener.onPageSelected(0);
     }
   }
 
@@ -299,6 +301,8 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   @Override
   public void onLoadFinished(Loader<Pair<Cursor, Integer>> loader, @Nullable Pair<Cursor, Integer> data) {
     if (data != null) {
+      ViewPager.OnPageChangeListener onPageChangeListener = new ViewPagerListener();
+      mediaPager.addOnPageChangeListener(onPageChangeListener);
       @SuppressWarnings("ConstantConditions")
       CursorPagerAdapter adapter = new CursorPagerAdapter(this, GlideApp.with(this), getWindow(), data.first, data.second, leftIsRecent);
       mediaPager.setAdapter(adapter);
@@ -306,6 +310,8 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
       if (restartItem < 0) mediaPager.setCurrentItem(data.second);
       else                 mediaPager.setCurrentItem(restartItem);
+
+      if (mediaPager.getCurrentItem() == 0) onPageChangeListener.onPageSelected(0);
     }
   }
 
