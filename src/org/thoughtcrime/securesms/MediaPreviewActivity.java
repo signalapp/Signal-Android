@@ -156,6 +156,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   public void onPause() {
     super.onPause();
     restartItem = cleanupMedia();
+    mediaPager.clearOnPageChangeListeners();
   }
 
   @Override
