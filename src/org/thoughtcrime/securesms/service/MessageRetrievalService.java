@@ -1,9 +1,14 @@
 package org.thoughtcrime.securesms.service;
 
 import android.app.Service;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.IBinder;
+import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -20,6 +25,7 @@ import org.whispersystems.jobqueue.requirements.RequirementListener;
 import org.whispersystems.libsignal.InvalidVersionException;
 import org.whispersystems.signalservice.api.SignalServiceMessagePipe;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
+import org.whispersystems.signalservice.api.util.SignalThread;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -43,6 +49,7 @@ public class MessageRetrievalService extends Service implements InjectableType, 
 
   private NetworkRequirement         networkRequirement;
   private NetworkRequirementProvider networkRequirementProvider;
+  private KeepAliveAlarmReceiver keepAliveAlarmReceiver = null;
 
   @Inject
   public SignalServiceMessageReceiver receiver;
@@ -67,6 +74,7 @@ public class MessageRetrievalService extends Service implements InjectableType, 
     retrievalThread.start();
 
     setForegroundIfNecessary();
+    enableKeepAliveAlarmIfNecessary();
   }
 
   public int onStartCommand(Intent intent, int flags, int startId) {
@@ -85,6 +93,11 @@ public class MessageRetrievalService extends Service implements InjectableType, 
 
     if (retrievalThread != null) {
       retrievalThread.stopThread();
+    }
+
+    if (keepAliveAlarmReceiver != null) {
+      keepAliveAlarmReceiver.stop();
+      unregisterReceiver(keepAliveAlarmReceiver);
     }
 
     sendBroadcast(new Intent("org.thoughtcrime.securesms.RESTART"));
@@ -111,6 +124,14 @@ public class MessageRetrievalService extends Service implements InjectableType, 
       builder.setWhen(0);
       builder.setSmallIcon(R.drawable.ic_signal_grey_24dp);
       startForeground(FOREGROUND_ID, builder.build());
+    }
+  }
+
+  private void enableKeepAliveAlarmIfNecessary() {
+    if (TextSecurePreferences.isGcmDisabled(this)) {
+      keepAliveAlarmReceiver = new KeepAliveAlarmReceiver();
+      registerReceiver(keepAliveAlarmReceiver,
+                       new IntentFilter(KeepAliveAlarmReceiver.WAKE_UP_THREADS_ACTION));
     }
   }
 
@@ -183,6 +204,72 @@ public class MessageRetrievalService extends Service implements InjectableType, 
     return pipe;
   }
 
+  public class KeepAliveAlarmReceiver extends BroadcastReceiver {
+
+    private final int KEEPALIVE_TIMEOUT_SECONDS = 55;
+
+    private int pipes;
+
+    public static final String WAKE_UP_THREADS_ACTION = "org.thoughtcrime.securesms.KeepAliveAlarmReceiver.WAKE_UP_THREADS";
+
+    private void setOrCancelAlarm(Context context, boolean set) {
+      Intent        intent        = new Intent(WAKE_UP_THREADS_ACTION);
+      PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+      AlarmManager  alarmManager  = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+
+      alarmManager.cancel(pendingIntent);
+
+      if (set) {
+        Log.w(TAG, "Setting repeating alarm to trigger KeepAlive message.");
+
+        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                SystemClock.elapsedRealtime() + TimeUnit.SECONDS.toMillis(KEEPALIVE_TIMEOUT_SECONDS),
+                TimeUnit.SECONDS.toMillis(KEEPALIVE_TIMEOUT_SECONDS),
+                pendingIntent);
+      } else {
+        Log.w(TAG, "Canceling KeepAlive message alarm.");
+      }
+    }
+
+    public synchronized void incrementPipes() {
+      if (pipes < 0) {
+        return;
+      }
+
+      pipes++;
+
+      if (pipes == 1) {
+        setOrCancelAlarm(MessageRetrievalService.this, true);
+      }
+    }
+
+    public synchronized void decrementPipes() {
+      if (pipes < 0) {
+        return;
+      }
+
+      pipes--;
+
+      assert (pipes >= 0);
+
+      if (pipes == 0) {
+        setOrCancelAlarm(MessageRetrievalService.this, false);
+      }
+    }
+
+    public synchronized void stop() {
+      pipes = -1;
+      setOrCancelAlarm(MessageRetrievalService.this, false);
+    }
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+      Log.w(TAG, "Triggering KeepAlive message.");
+      SignalThread.onTrigger();
+    }
+
+  }
+
   private class MessageRetrievalThread extends Thread implements Thread.UncaughtExceptionHandler {
 
     private AtomicBoolean stopThread = new AtomicBoolean(false);
@@ -202,6 +289,10 @@ public class MessageRetrievalService extends Service implements InjectableType, 
         pipe = receiver.createMessagePipe();
 
         SignalServiceMessagePipe localPipe = pipe;
+
+        if (keepAliveAlarmReceiver != null) {
+          keepAliveAlarmReceiver.incrementPipes();
+        }
 
         try {
           while (isConnectionNecessary() && !stopThread.get()) {
@@ -227,6 +318,9 @@ public class MessageRetrievalService extends Service implements InjectableType, 
         } finally {
           Log.w(TAG, "Shutting down pipe...");
           shutdown(localPipe);
+          if (keepAliveAlarmReceiver != null) {
+            keepAliveAlarmReceiver.decrementPipes();
+          }
         }
 
         Log.w(TAG, "Looping...");
