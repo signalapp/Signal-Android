@@ -206,7 +206,7 @@ public class MessageRetrievalService extends Service implements InjectableType, 
 
   public class KeepAliveAlarmReceiver extends BroadcastReceiver {
 
-    private final int KEEPALIVE_TIMEOUT_SECONDS = 55;
+    private final int KEEPALIVE_TIMEOUT_SECONDS = 60;
 
     private int pipes;
 
