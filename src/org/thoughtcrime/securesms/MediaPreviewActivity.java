@@ -199,10 +199,8 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     if (conversationRecipient != null) {
       getSupportLoaderManager().restartLoader(0, null, this);
     } else {
-      ViewPager.OnPageChangeListener onPageChangeListener = new ViewPagerListener();
-      mediaPager.addOnPageChangeListener(onPageChangeListener);
       mediaPager.setAdapter(new SingleItemPagerAdapter(this, GlideApp.with(this), getWindow(), initialMediaUri, initialMediaType, initialMediaSize));
-      onPageChangeListener.onPageSelected(0);
+      initializeActionBar();
     }
   }
 
