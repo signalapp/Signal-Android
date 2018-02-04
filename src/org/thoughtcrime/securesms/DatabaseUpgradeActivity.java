@@ -275,6 +275,10 @@ public class DatabaseUpgradeActivity extends BaseActivity {
         }
       }
 
+      if (params[0] < SQLCIPHER) {
+        scheduleMessagesInPushDatabase(context);
+      }
+
       return null;
     }
 

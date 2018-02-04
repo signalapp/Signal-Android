@@ -1,13 +1,19 @@
 package org.thoughtcrime.securesms.jobs;
 
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 import android.util.Pair;
 
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.ConversationListActivity;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.attachments.PointerAttachment;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
@@ -112,9 +118,23 @@ public class PushDecryptJob extends ContextJob {
 
   @Override
   public void onRun() throws NoSuchMessageException {
-
     if (!IdentityKeyUtil.hasIdentityKey(context)) {
       Log.w(TAG, "Skipping job, waiting for migration...");
+      return;
+    }
+
+    if (TextSecurePreferences.getNeedsSqlCipherMigration(context)) {
+      Log.w(TAG, "Skipping job, waiting for sqlcipher migration...");
+      NotificationManagerCompat.from(context).notify(494949,
+                                                     new NotificationCompat.Builder(context)
+                                                         .setSmallIcon(R.drawable.icon_notification)
+                                                         .setPriority(NotificationCompat.PRIORITY_HIGH)
+                                                         .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                                                         .setContentTitle(context.getString(R.string.PushDecryptJob_new_locked_message))
+                                                         .setContentText(context.getString(R.string.PushDecryptJob_unlock_to_view_pending_messages))
+                                                         .setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, ConversationListActivity.class), 0))
+                                                         .setDefaults(NotificationCompat.DEFAULT_SOUND | NotificationCompat.DEFAULT_VIBRATE)
+                                                         .build());
       return;
     }
 
