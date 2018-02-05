@@ -413,6 +413,9 @@ public class MmsDatabase extends MessagingDatabase {
     database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {String.valueOf(id)});
   }
 
+  public void pinMessage(long id) {
+
+  }
 
   public List<MarkedMessageInfo> setMessagesRead(long threadId) {
     return setMessagesRead(THREAD_ID + " = ? AND " + READ + " = 0", new String[] {String.valueOf(threadId)});

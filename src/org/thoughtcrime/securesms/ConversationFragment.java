@@ -53,6 +53,7 @@ import android.widget.Toast;
 import org.thoughtcrime.securesms.ConversationAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.ConversationAdapter.ItemClickListener;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.Database;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
@@ -305,6 +306,27 @@ public class ConversationFragment extends Fragment
 
     if (!TextUtils.isEmpty(result))
         clipboard.setText(result);
+  }
+
+  private void getPinnedMessages(){
+    MmsSmsDatabase db = DatabaseFactory.getMmsSmsDatabase(getContext());
+    Cursor cursor = db.getPinnedMessages(threadId);
+
+    if(cursor.getCount() > 0){
+      MmsSmsDatabase.Reader reader = db.readerFor(cursor,masterSecret);
+
+      while(reader.getNext() != null){
+        MessageRecord record = reader.getCurrent();
+      }
+    }
+  }
+
+  private void handlePinMessage(final MessageRecord message){
+    if(message.isMms()){
+
+    } else{
+      DatabaseFactory.getSmsDatabase(getActivity()).pinMessage(message.getId());
+    }
   }
 
   private void handleDeleteMessages(final Set<MessageRecord> messageRecords) {
@@ -638,6 +660,7 @@ public class ConversationFragment extends Fragment
       switch(item.getItemId()) {
         case R.id.menu_context_copy:
           handleCopyMessage(getListAdapter().getSelectedItems());
+          getPinnedMessages();
           actionMode.finish();
           return true;
         case R.id.menu_context_delete_message:

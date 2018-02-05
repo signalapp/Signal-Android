@@ -288,6 +288,16 @@ public class SmsDatabase extends MessagingDatabase {
     database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {String.valueOf(id)});
   }
 
+  @Override
+  public void pinMessage(long messageId) {
+    Log.w("MessageDatabase", "Pinning: " + messageId);
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    long threadId     = getThreadIdForMessage(messageId);
+    ContentValues values = new ContentValues();
+    values.put("pinned", 1);
+    db.update(TABLE_NAME, values, ID_WHERE, new String[] {messageId+""});
+  }
+
   public void incrementReceiptCount(SyncMessageId messageId, boolean deliveryReceipt, boolean readReceipt) {
     SQLiteDatabase database     = databaseHelper.getWritableDatabase();
     Cursor         cursor       = null;
