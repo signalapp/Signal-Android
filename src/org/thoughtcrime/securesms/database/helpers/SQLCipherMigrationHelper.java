@@ -25,6 +25,8 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.InvalidMessageException;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 public class SQLCipherMigrationHelper {
 
@@ -180,6 +182,8 @@ public class SQLCipherMigrationHelper {
                                 @NonNull net.sqlcipher.database.SQLiteDatabase modernDb,
                                 @Nullable BiFunction<ContentValues, Pair<Integer, Integer>, ContentValues> transformer)
   {
+    Set<String> destinationColumns = getTableColumns(tableName, modernDb);
+
     try (Cursor cursor = legacyDb.query(tableName, null, null, null, null, null, null)) {
       int count    = (cursor != null) ? cursor.getCount() : 0;
       int progress = 1;
@@ -190,11 +194,13 @@ public class SQLCipherMigrationHelper {
         for (int i=0;i<cursor.getColumnCount();i++) {
           String columnName = cursor.getColumnName(i);
 
-          switch (cursor.getType(i)) {
-            case Cursor.FIELD_TYPE_STRING:  row.put(columnName, cursor.getString(i));  break;
-            case Cursor.FIELD_TYPE_FLOAT:   row.put(columnName, cursor.getFloat(i));   break;
-            case Cursor.FIELD_TYPE_INTEGER: row.put(columnName, cursor.getLong(i));    break;
-            case Cursor.FIELD_TYPE_BLOB:    row.put(columnName, cursor.getBlob(i));    break;
+          if (destinationColumns.contains(columnName)) {
+            switch (cursor.getType(i)) {
+              case Cursor.FIELD_TYPE_STRING:  row.put(columnName, cursor.getString(i));  break;
+              case Cursor.FIELD_TYPE_FLOAT:   row.put(columnName, cursor.getFloat(i));   break;
+              case Cursor.FIELD_TYPE_INTEGER: row.put(columnName, cursor.getLong(i));    break;
+              case Cursor.FIELD_TYPE_BLOB:    row.put(columnName, cursor.getBlob(i));    break;
+            }
           }
         }
 
@@ -225,6 +231,18 @@ public class SQLCipherMigrationHelper {
     type &= ~(ENCRYPTION_ASYMMETRIC_BIT);
 
     return new Pair<>(type, body);
+  }
+
+  private static Set<String> getTableColumns(String tableName, net.sqlcipher.database.SQLiteDatabase database) {
+    Set<String> results = new HashSet<>();
+
+    try (Cursor cursor = database.rawQuery("PRAGMA table_info(" + tableName + ")", null)) {
+      while (cursor != null && cursor.moveToNext()) {
+        results.add(cursor.getString(1));
+      }
+    }
+
+    return results;
   }
 
   private static int getTotalProgress(int sectionOffset, int sectionProgress, int sectionTotal) {
