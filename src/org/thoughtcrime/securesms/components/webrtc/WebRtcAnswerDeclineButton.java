@@ -297,7 +297,8 @@ public class WebRtcAnswerDeclineButton extends LinearLayout implements View.OnTo
   private void resetElements() {
     animating = false;
     complete  = false;
-    animatorSet.cancel();
+    
+    if (animatorSet != null) animatorSet.cancel();
 
     swipeUpText.setTranslationY(0);
     fab.setTranslationY(0);
