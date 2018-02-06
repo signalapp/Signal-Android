@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms;
 
 import android.app.Activity;
-import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,9 +17,6 @@ import android.support.v4.app.LoaderManager;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,14 +29,10 @@ import java.util.List;
 public class PinnedMessageFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
     //private PinnedMessageFragment.PinnedMessageFragmentListener listener;
 
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_THREADID = "threadId";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private long mThreadId;
 
     private RecyclerView recyclerView;
     private PinnedMessageAdapter adapter;
@@ -57,16 +49,14 @@ public class PinnedMessageFragment extends Fragment implements LoaderManager.Loa
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * @param threadId Parameter 1.
      * @return A new instance of fragment PinnedMessageFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static PinnedMessageFragment newInstance(String param1, String param2) {
+    public static PinnedMessageFragment newInstance(long threadId) {
         PinnedMessageFragment fragment = new PinnedMessageFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putLong(ARG_THREADID, threadId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -75,10 +65,10 @@ public class PinnedMessageFragment extends Fragment implements LoaderManager.Loa
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mThreadId = getArguments().getLong(ARG_THREADID);
         }
 
+        this.mThreadId = getActivity().getIntent().getLongExtra("THREADID",-1);
         this.masterSecret = getArguments().getParcelable("master_secret");
     }
 
@@ -121,7 +111,7 @@ public class PinnedMessageFragment extends Fragment implements LoaderManager.Loa
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         Log.v("pinFragment", "on create loader");
-        return new PinMessagesLoader(getActivity(), 2, 10);
+        return new PinMessagesLoader(getActivity(), this.mThreadId, 10);
     }
 
     @Override
@@ -147,6 +137,9 @@ public class PinnedMessageFragment extends Fragment implements LoaderManager.Loa
         mListener = null;
     }
 
+    public void setThreadId(long mThreadId){
+        this.mThreadId = mThreadId;
+    }
 
     /**
      * This interface must be implemented by activities that contain this

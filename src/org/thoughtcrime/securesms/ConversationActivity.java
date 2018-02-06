@@ -739,6 +739,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void handleViewPinnedMessages() {
     Intent intent = new Intent(this, PinnedMessageActivity.class);
     intent.putExtra(PinnedMessageActivity.ADDRESS_EXTRA, recipient.getAddress());
+    intent.putExtra("THREADID", getThreadId());
     startActivity(intent);
   }
 

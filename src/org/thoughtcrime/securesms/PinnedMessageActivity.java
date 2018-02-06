@@ -35,6 +35,8 @@ public class PinnedMessageActivity extends PassphraseRequiredActionBarActivity
     @Override
     protected void onCreate(Bundle state, @NonNull MasterSecret masterSecret) {
         Log.w(TAG, "onCreate()");
+
+
         this.masterSecret = masterSecret;
 
         supportRequestWindowFeature(WindowCompat.FEATURE_ACTION_BAR_OVERLAY);
@@ -60,11 +62,13 @@ public class PinnedMessageActivity extends PassphraseRequiredActionBarActivity
 
     private void initializeResources() {
         Address address = getIntent().getParcelableExtra(ADDRESS_EXTRA);
+        this.threadId   = getIntent().getLongExtra("THREADID", -1);
+        this.recipient = Recipient.from(this, address, true);
 
 //        this.viewPager = ViewUtil.findById(this, R.id.pager);
 //        this.toolbar   = ViewUtil.findById(this, R.id.toolbar);
 //        this.tabLayout = ViewUtil.findById(this, R.id.tab_layout);
-        this.recipient = Recipient.from(this, address, true);
+
     }
 
     private void initializeToolbar() {
