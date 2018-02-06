@@ -313,7 +313,7 @@ public class ConversationFragment extends Fragment
     Cursor cursor = db.getPinnedMessages(threadId);
 
     if(cursor.getCount() > 0){
-      MmsSmsDatabase.Reader reader = db.readerFor(cursor,masterSecret);
+      MmsSmsDatabase.Reader reader = db.readerFor(cursor, masterSecret);
 
       while(reader.getNext() != null){
         MessageRecord record = reader.getCurrent();
@@ -326,6 +326,11 @@ public class ConversationFragment extends Fragment
 
     } else{
       DatabaseFactory.getSmsDatabase(getActivity()).pinMessage(message.getId());
+
+      //TODO refactor this code to a better implementation
+      //I wrote it for @DAN
+      Toast toast=Toast.makeText(getContext(),"You Pinned a Message",Toast.LENGTH_SHORT);
+      toast.show();
     }
   }
 
@@ -660,7 +665,7 @@ public class ConversationFragment extends Fragment
       switch(item.getItemId()) {
         case R.id.menu_context_copy:
           handleCopyMessage(getListAdapter().getSelectedItems());
-          getPinnedMessages();
+          handlePinMessage(getSelectedMessageRecord());
           actionMode.finish();
           return true;
         case R.id.menu_context_delete_message:
