@@ -108,7 +108,7 @@ public class MmsDatabase extends MessagingDatabase {
     NETWORK_FAILURE + " TEXT DEFAULT NULL," + "d_rpt" + " INTEGER, " +
     SUBSCRIPTION_ID + " INTEGER DEFAULT -1, " + EXPIRES_IN + " INTEGER DEFAULT 0, " +
     EXPIRE_STARTED + " INTEGER DEFAULT 0, " + NOTIFIED + " INTEGER DEFAULT 0, " +
-    READ_RECEIPT_COUNT + " INTEGER DEFAULT 0);";
+    READ_RECEIPT_COUNT + " INTEGER DEFAULT 0, " + PINNED + " BOOLEAN DEFAULT 0 );";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS mms_thread_id_index ON " + TABLE_NAME + " (" + THREAD_ID + ");",
@@ -413,8 +413,19 @@ public class MmsDatabase extends MessagingDatabase {
     database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {String.valueOf(id)});
   }
 
-  public void pinMessage(long id) {
+  public void pinMessage(long messageId) {
+    Log.w("MMessageDatabase", "Pinning: " + messageId);
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
+    ContentValues values = new ContentValues();
+    values.put("pinned", 1);
+
+    int res = db.update(TABLE_NAME, values, ID_WHERE, new String[] {messageId+""});
+    if(res > 0){
+      Log.w("MMessageDatabase", "Pinning is completed: " + messageId);
+    } else {
+      Log.w("MMessageDatabase", "Pinning is not successful: " + messageId);
+    }
   }
 
   public List<MarkedMessageInfo> setMessagesRead(long threadId) {

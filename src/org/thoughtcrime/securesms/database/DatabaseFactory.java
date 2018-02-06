@@ -1417,8 +1417,8 @@ public class DatabaseFactory {
       }
 
       if (oldVersion < INTRODUCED_PINNED_MESSAGES){
-        db.execSQL("ALTER TABLE sms ADD COLUMN pinned INTEGER DEFAULT 0;");
-        db.execSQL("ALTER TABLE mms ADD COLUMN pinned INTEGER DEFAULT 0;");
+        db.execSQL("ALTER TABLE sms ADD COLUMN pinned BOOLEAN DEFAULT 0;");
+        db.execSQL("ALTER TABLE mms ADD COLUMN pinned BOOLEAN DEFAULT 0;");
       }
 
       db.setTransactionSuccessful();

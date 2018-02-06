@@ -308,6 +308,7 @@ public class ConversationFragment extends Fragment
         clipboard.setText(result);
   }
 
+  //TODO remove this method after the ui and db branch are merged
   private void getPinnedMessages(){
     MmsSmsDatabase db = DatabaseFactory.getMmsSmsDatabase(getContext());
     Cursor cursor = db.getPinnedMessages(threadId);
@@ -323,15 +324,15 @@ public class ConversationFragment extends Fragment
 
   private void handlePinMessage(final MessageRecord message){
     if(message.isMms()){
-
+      DatabaseFactory.getMmsDatabase(getActivity()).pinMessage(message.getId());
     } else{
       DatabaseFactory.getSmsDatabase(getActivity()).pinMessage(message.getId());
-
-      //TODO refactor this code to a better implementation
-      //I wrote it for @DAN
-      Toast toast=Toast.makeText(getContext(),"You Pinned a Message",Toast.LENGTH_SHORT);
-      toast.show();
     }
+
+    //TODO refactor this code to a better implementation
+    //I wrote it for @DAN
+    Toast toast=Toast.makeText(getContext(),"You Pinned a message" ,Toast.LENGTH_SHORT);
+    toast.show();
   }
 
   private void handleDeleteMessages(final Set<MessageRecord> messageRecords) {
