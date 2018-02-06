@@ -16,8 +16,10 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -31,7 +33,7 @@ import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.PinnedMessageAdapter.HeaderViewHolder;
+//import org.thoughtcrime.securesms.PinnedMessageAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -57,171 +59,69 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * A cursor adapter for a pinned messages thread.  Ultimately
- * used by ComposeMessageActivity to display a conversation
- * thread in a ListActivity.
- *
- * @author Daniel Yoo
- *
- */
-public class PinnedMessageAdapter <V extends View & BindableConversationItem> 
-extends FastCursorRecyclerViewAdapter<ConversationAdapter.ViewHolder, MessageRecord>
-{
+public class PinnedMessageAdapter extends RecyclerView.Adapter<PinnedMessageAdapter.ViewHolder> {
+    Cursor dataCursor;
+    Context context;
+    MmsSmsDatabase db;
+    MasterSecret masterSecret;
 
-  private static final int MAX_CACHE_SIZE = 40;
-  private static final String TAG = PinnedMessageAdapter.class.getSimpleName();
-  private final Map<String,SoftReference<MessageRecord>> messageRecordCache =
-      Collections.synchronizedMap(new LRUCache<String, SoftReference<MessageRecord>>(MAX_CACHE_SIZE));
-
-  private final Set<MessageRecord> batchSelected = Collections.synchronizedSet(new HashSet<MessageRecord>());
-
-  private final @Nullable ItemClickListener clickListener;
-  private final @NonNull  MasterSecret      masterSecret;
-  private final @NonNull  GlideRequests     glideRequests;
-  private final @NonNull  Locale            locale;
-  private final @NonNull  Recipient         recipient;
-  private final @NonNull  MmsSmsDatabase    db;
-  private final @NonNull  LayoutInflater    inflater;
-  private final @NonNull  Calendar          calendar;
-  private final @NonNull  MessageDigest     digest;
-
-  protected static class ViewHolder extends RecyclerView.ViewHolder {
-    public <V extends View & BindableConversationItem> ViewHolder(final @NonNull V itemView) {
-      super(itemView);
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView messageContent;
+        public ViewHolder(View v) {
+            super(v);
+            messageContent = (TextView) v.findViewById(R.id.messageContent);
+        }
     }
 
-    @SuppressWarnings("unchecked")
-    public <V extends View & BindableConversationItem> V getView() {
-      return (V)itemView;
-    }
-  }
-
-
-  static class HeaderViewHolder extends RecyclerView.ViewHolder {
-    TextView textView;
-
-    HeaderViewHolder(View itemView) {
-      super(itemView);
-      textView = ViewUtil.findById(itemView, R.id.text);
+    public PinnedMessageAdapter(Activity mContext, Cursor cursor, MasterSecret masterSecret) {
+        dataCursor = cursor;
+        context = mContext;
+        db = DatabaseFactory.getMmsSmsDatabase(mContext);
+        this.masterSecret = masterSecret;
     }
 
-    HeaderViewHolder(TextView textView) {
-      super(textView);
-      this.textView = textView;
+    @Override
+    public PinnedMessageAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        Log.v("pinFragment", "on create view holder");
+        View cardview = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.pinned_message_item, parent, false);
+        return new ViewHolder(cardview);
     }
 
-    public void setText(CharSequence text) {
-      textView.setText(text);
-    }
-  }
-
-
-  interface ItemClickListener {
-    void onItemClick(MessageRecord item);
-    void onItemLongClick(MessageRecord item);
-  }
-
-  @SuppressWarnings("ConstantConditions")
-  @VisibleForTesting
-  PinnedMessageAdapter(Context context, Cursor cursor) {
-    super(context, cursor);
-    try {
-      this.masterSecret  = null;
-      this.glideRequests = null;
-      this.locale        = null;
-      this.clickListener = null;
-      this.recipient     = null;
-      this.inflater      = null;
-      this.db            = null;
-      this.calendar      = null;
-      this.digest        = MessageDigest.getInstance("SHA1");
-    } catch (NoSuchAlgorithmException nsae) {
-      throw new AssertionError("SHA1 isn't supported!");
-    }
-  }
-
-  public PinnedMessageAdapter(@NonNull Context context,
-                             @NonNull MasterSecret masterSecret,
-                             @NonNull GlideRequests glideRequests,
-                             @NonNull Locale locale,
-                             @Nullable ItemClickListener clickListener,
-                             @Nullable Cursor cursor,
-                             @NonNull Recipient recipient)
-  {
-    super(context, cursor);
-
-    try {
-      this.masterSecret  = masterSecret;
-      this.glideRequests = glideRequests;
-      this.locale        = locale;
-      this.clickListener = clickListener;
-      this.recipient     = recipient;
-      this.inflater      = LayoutInflater.from(context);
-      this.db            = DatabaseFactory.getMmsSmsDatabase(context);
-      this.calendar      = Calendar.getInstance();
-      this.digest        = MessageDigest.getInstance("SHA1");
-
-     setHasStableIds(true);
-    } catch (NoSuchAlgorithmException nsae) {
-      throw new AssertionError("SHA1 isn't supported!");
-    }
-  }
-
-  @Override
-  public ConversationAdapter.ViewHolder onCreateItemViewHolder(ViewGroup parent, int viewType) {
-    return null;
-  }
-
-  @Override
-  protected MessageRecord getRecordFromCursor(@NonNull Cursor cursor) {
-    return null;
-  }
-
-  @Override
-  protected void onBindItemViewHolder(ConversationAdapter.ViewHolder viewHolder, @NonNull MessageRecord record) {
-
-  }
-
-  @Override
-  public long getItemId(@NonNull Cursor cursor) {
-    String fastPreflightId = cursor.getString(cursor.getColumnIndexOrThrow(AttachmentDatabase.FAST_PREFLIGHT_ID));
-
-    if (fastPreflightId != null) {
-      return Long.valueOf(fastPreflightId);
+    public Cursor swapCursor(Cursor cursor) {
+        Log.v("pinFragment", "swap cursor");
+        if (dataCursor == cursor) {
+            return null;
+        }
+        Cursor oldCursor = dataCursor;
+        this.dataCursor = cursor;
+        if (cursor != null) {
+            this.notifyDataSetChanged();
+        }
+        return oldCursor;
     }
 
-    final String unique = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsColumns.UNIQUE_ROW_ID));
-    final byte[] bytes  = digest.digest(unique.getBytes());
-    return Conversions.byteArrayToLong(bytes);
-  }
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        dataCursor.moveToPosition(position);
+        Log.v("pinFragment", "onbindViewHolder");
+        // Log.v("pinFragment", DatabaseUtils.dumpCursorToString(dataCursor));
 
-  @Override
-  protected long getItemId(@NonNull MessageRecord record) {
-    if (record.isOutgoing() && record.isMms()) {
-      SlideDeck slideDeck = ((MmsMessageRecord)record).getSlideDeck();
+        MmsSmsDatabase.Reader reader = db.readerFor(dataCursor, masterSecret);
+        MessageRecord record = reader.getCurrent();
 
-      if (slideDeck.getThumbnailSlide() != null && slideDeck.getThumbnailSlide().getFastPreflightId() != null) {
-        return Long.valueOf(slideDeck.getThumbnailSlide().getFastPreflightId());
-      }
+        Log.v("pinFragment", record.getDisplayBody().toString());
+
+        holder.messageContent.setText(record.getDisplayBody().toString());
     }
 
-    return record.getId();
-  }
-
-  @Override
-  protected int getItemViewType(@NonNull MessageRecord record) {
-    return 0;
-  }
-
-  @Override
-  protected boolean isRecordForId(@NonNull MessageRecord record, long id) {
-    return record.getId() == id;
-  }
-
+    @Override
+    public int getItemCount() {
+        return (dataCursor == null) ? 0 : dataCursor.getCount();
+    }
 }
-

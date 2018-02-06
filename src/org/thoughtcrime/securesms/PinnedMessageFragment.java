@@ -8,12 +8,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.database.Cursor;
 import android.support.v4.app.LoaderManager;
 
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.ArrayList;
@@ -41,8 +43,9 @@ public class PinnedMessageFragment extends Fragment implements LoaderManager.Loa
     private String mParam2;
 
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
-    private List<PinnedMessageItem> listItems;
+    private PinnedMessageAdapter adapter;
+    // private List<PinnedMessageItem> listItems;
+    private MasterSecret masterSecret;
 
     private OnFragmentInteractionListener mListener;
 
@@ -75,6 +78,8 @@ public class PinnedMessageFragment extends Fragment implements LoaderManager.Loa
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        this.masterSecret = getArguments().getParcelable("master_secret");
     }
 
     @Override
@@ -88,16 +93,10 @@ public class PinnedMessageFragment extends Fragment implements LoaderManager.Loa
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(null);
 
-        listItems = new ArrayList<>();
-
-        for(int i = 0; i <= 10; i++) {
-            PinnedMessageItem item = new PinnedMessageItem("message content " + i);
-            listItems.add(item);
-        }
-
-        adapter = new PinnedMessageAdapterTest(listItems, this);
-
+        adapter = new PinnedMessageAdapter(getActivity(), null, masterSecret);
         recyclerView.setAdapter(adapter);
+
+        getLoaderManager().initLoader(1, null, this);
 
         return view;
     }
@@ -121,12 +120,14 @@ public class PinnedMessageFragment extends Fragment implements LoaderManager.Loa
 //    }
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return null;
+        Log.v("pinFragment", "on create loader");
+        return new PinMessagesLoader(getActivity(), 2, 10);
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-
+        Log.v("pinFragment", "on finished loader");
+        adapter.swapCursor(data);
     }
 
     @Override
