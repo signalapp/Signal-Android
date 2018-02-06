@@ -5,9 +5,19 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.Loader;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.database.Cursor;
+import android.support.v4.app.LoaderManager;
+
+import org.thoughtcrime.securesms.util.ViewUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -18,7 +28,7 @@ import android.view.ViewGroup;
  * Use the {@link PinnedMessageFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PinnedMessageFragment extends Fragment {
+public class PinnedMessageFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
     //private PinnedMessageFragment.PinnedMessageFragmentListener listener;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -29,6 +39,10 @@ public class PinnedMessageFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private List<PinnedMessageItem> listItems;
 
     private OnFragmentInteractionListener mListener;
 
@@ -67,7 +81,25 @@ public class PinnedMessageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.pinned_message_fragment, container, false);
+        final View view = inflater.inflate(R.layout.pinned_message_fragment, container, false);
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, true);
+        recyclerView = ViewUtil.findById(view, android.R.id.list);
+        recyclerView.setHasFixedSize(false);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(null);
+
+        listItems = new ArrayList<>();
+
+        for(int i = 0; i <= 10; i++) {
+            PinnedMessageItem item = new PinnedMessageItem("message content " + i);
+            listItems.add(item);
+        }
+
+        adapter = new PinnedMessageAdapterTest(listItems, this);
+
+        recyclerView.setAdapter(adapter);
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -87,6 +119,20 @@ public class PinnedMessageFragment extends Fragment {
 //                    + " must implement OnFragmentInteractionListener");
 //        }
 //    }
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return null;
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+
+    }
 
     @Override
     public void onAttach(Activity activity) {
@@ -99,6 +145,7 @@ public class PinnedMessageFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
 
     /**
      * This interface must be implemented by activities that contain this
