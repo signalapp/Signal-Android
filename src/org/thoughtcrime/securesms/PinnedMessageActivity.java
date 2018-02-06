@@ -8,6 +8,6 @@ public class PinnedMessageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pinned_message);
+        setContentView(R.layout.pinned_message_activity);
     }
 }
