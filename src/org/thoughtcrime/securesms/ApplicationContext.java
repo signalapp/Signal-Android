@@ -22,8 +22,10 @@ import android.os.Build;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
+import static com.facebook.stetho.Stetho.*;
 import com.google.android.gms.security.ProviderInstaller;
 
+import org.greenrobot.eventbus.util.ExceptionToResourceMapping;
 import org.thoughtcrime.securesms.crypto.PRNGFixes;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
@@ -53,6 +55,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import dagger.ObjectGraph;
+
 
 /**
  * Will be called once when the TextSecure process is created.
@@ -87,6 +90,15 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     initializePeriodicTasks();
     initializeCircumvention();
     initializeWebRtc();
+    initializeStethoLibrary();
+  }
+
+  private void initializeStethoLibrary() {
+      try{
+        initializeWithDefaults(this);
+      }catch (Exception e) {
+        Log.w(TAG,"Stetho was not loaded properly");
+      }
   }
 
   @Override

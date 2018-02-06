@@ -115,7 +115,8 @@ public class DatabaseFactory {
   private static final int GROUP_RECEIPT_TRACKING                          = 45;
   private static final int UNREAD_COUNT_VERSION                            = 46;
   private static final int MORE_RECIPIENT_FIELDS                           = 47;
-  private static final int DATABASE_VERSION                                = 47;
+  private static final int INTRODUCED_PINNED_MESSAGES                      = 48;
+  private static final int DATABASE_VERSION                                = 48;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -1413,6 +1414,11 @@ public class DatabaseFactory {
             }
           }
         }
+      }
+
+      if (oldVersion < INTRODUCED_PINNED_MESSAGES){
+        db.execSQL("ALTER TABLE sms ADD COLUMN pinned INTEGER DEFAULT 0;");
+        db.execSQL("ALTER TABLE mms ADD COLUMN pinned INTEGER DEFAULT 0;");
       }
 
       db.setTransactionSuccessful();

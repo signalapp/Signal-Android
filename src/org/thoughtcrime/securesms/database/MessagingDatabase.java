@@ -34,6 +34,8 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
 
   public abstract void markAsSent(long messageId, boolean secure);
 
+  public abstract void pinMessage(long id);
+
   public void setMismatchedIdentity(long messageId, final Address address, final IdentityKey identityKey) {
     List<IdentityKeyMismatch> items = new ArrayList<IdentityKeyMismatch>() {{
       add(new IdentityKeyMismatch(address, identityKey));
