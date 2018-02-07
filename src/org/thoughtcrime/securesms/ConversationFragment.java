@@ -227,6 +227,7 @@ public class ConversationFragment extends Fragment
       menu.findItem(R.id.menu_context_save_attachment).setVisible(false);
       menu.findItem(R.id.menu_context_resend).setVisible(false);
       menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage);
+      menu.findItem(R.id.menu_context_pin_message).setVisible(false);
     } else {
       MessageRecord messageRecord = messageRecords.iterator().next();
 
@@ -239,6 +240,7 @@ public class ConversationFragment extends Fragment
       menu.findItem(R.id.menu_context_forward).setVisible(!actionMessage);
       menu.findItem(R.id.menu_context_details).setVisible(!actionMessage);
       menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage);
+      menu.findItem(R.id.menu_context_pin_message).setVisible(!actionMessage);
     }
   }
 
@@ -305,6 +307,11 @@ public class ConversationFragment extends Fragment
 
     if (!TextUtils.isEmpty(result))
         clipboard.setText(result);
+  }
+
+  private void handlePinMessage(final MessageRecord message) {
+    Log.w(TAG, "Pinning message: " + message.getDisplayBody());
+    // TODO put code from other branches here
   }
 
   private void handleDeleteMessages(final Set<MessageRecord> messageRecords) {
@@ -658,6 +665,10 @@ public class ConversationFragment extends Fragment
           return true;
         case R.id.menu_context_save_attachment:
           handleSaveAttachment((MediaMmsMessageRecord)getSelectedMessageRecord());
+          actionMode.finish();
+          return true;
+        case R.id.menu_context_pin_message:
+          handlePinMessage(getSelectedMessageRecord());
           actionMode.finish();
           return true;
       }
