@@ -26,6 +26,7 @@ import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceCategory;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -193,8 +194,11 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     if (recipient.getContactPhoto() == null) this.avatar.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
     else                                     this.avatar.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
+    String conversationTitle = TextUtils.isEmpty(recipient.getChatName()) ?
+            recipient.toShortString() : recipient.getChatName();
+
     this.avatar.setBackgroundColor(recipient.getColor().toActionBarColor(this));
-    this.toolbarLayout.setTitle(recipient.toShortString());
+    this.toolbarLayout.setTitle(conversationTitle);
     this.toolbarLayout.setContentScrimColor(recipient.getColor().toActionBarColor(this));
   }
 
@@ -306,8 +310,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       PreferenceCategory         privacyCategory    = (PreferenceCategory)this.findPreference("privacy_settings");
       PreferenceCategory         divider            = (PreferenceCategory)this.findPreference("divider");
 
-      // TODO: Load from recipient
-      chatNamePreference.setText("Load from recipient");
+      chatNamePreference.setText(recipient.getChatName());
 
       mutePreference.setChecked(recipient.isMuted());
 
@@ -377,11 +380,14 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     }
 
     private class ChatNameChangeListener implements Preference.OnPreferenceChangeListener {
-       @Override
-       public boolean onPreferenceChange(Preference preference, Object newValue) {
-         // TODO: Save to database
-         return false;
-       }
+      @Override
+      public boolean onPreferenceChange(Preference preference, Object newValue) {
+        String value = (String)newValue;
+        DatabaseFactory.getRecipientDatabase(getActivity()).setChatName(recipient, value);
+
+        Util.runOnMain(() -> ((RecipientPreferenceActivity)getActivity()).setHeader(recipient));
+        return false;
+      }
     }
 
     private class RingtoneChangeListener implements Preference.OnPreferenceChangeListener {

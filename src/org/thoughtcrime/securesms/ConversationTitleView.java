@@ -103,9 +103,10 @@ public class ConversationTitleView extends RelativeLayout {
   }
 
   private void setRecipientTitle(Recipient recipient) {
-    if      (recipient.isGroupRecipient())           setGroupRecipientTitle(recipient);
-    else if (TextUtils.isEmpty(recipient.getName())) setNonContactRecipientTitle(recipient);
-    else                                             setContactRecipientTitle(recipient);
+    if      (!TextUtils.isEmpty(recipient.getChatName())) setChatNameTitle(recipient);
+    else if (recipient.isGroupRecipient())                setGroupRecipientTitle(recipient);
+    else if (TextUtils.isEmpty(recipient.getName()))      setNonContactRecipientTitle(recipient);
+    else                                                  setContactRecipientTitle(recipient);
   }
 
   private void setGroupRecipientTitle(Recipient recipient) {
@@ -118,6 +119,19 @@ public class ConversationTitleView extends RelativeLayout {
                                 .collect(Collectors.joining(", ")));
 
     this.subtitle.setVisibility(View.VISIBLE);
+  }
+
+  private void setChatNameTitle(Recipient recipient){
+    this.title.setText(recipient.getChatName());
+
+    this.subtitle.setVisibility(View.VISIBLE);
+    if (!TextUtils.isEmpty(recipient.getProfileName())) {
+      this.subtitle.setText(recipient.getProfileName());
+    } else if (!TextUtils.isEmpty(recipient.getName())) {
+      this.subtitle.setText(recipient.getName());
+    } else {
+      this.subtitle.setVisibility(View.GONE);
+    }
   }
 
   @SuppressLint("SetTextI18n")
