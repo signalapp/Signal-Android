@@ -413,21 +413,6 @@ public class MmsDatabase extends MessagingDatabase {
     database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {String.valueOf(id)});
   }
 
-  public void pinMessage(long messageId) {
-    Log.w("MMessageDatabase", "Pinning: " + messageId);
-    SQLiteDatabase db = databaseHelper.getWritableDatabase();
-
-    ContentValues values = new ContentValues();
-    values.put("pinned", 1);
-
-    int res = db.update(TABLE_NAME, values, ID_WHERE, new String[] {messageId+""});
-    if(res > 0){
-      Log.w("MMessageDatabase", "Pinning is completed: " + messageId);
-    } else {
-      Log.w("MMessageDatabase", "Pinning is not successful: " + messageId);
-    }
-  }
-
   public List<MarkedMessageInfo> setMessagesRead(long threadId) {
     return setMessagesRead(THREAD_ID + " = ? AND " + READ + " = 0", new String[] {String.valueOf(threadId)});
   }

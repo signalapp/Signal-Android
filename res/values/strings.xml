@@ -187,6 +187,8 @@
         <item quantity="one">Saving attachment to storage...</item>
         <item quantity="other">Saving %1$d attachments to storage...</item>
     </plurals>
+    <string name="ConversationFragment_pin_new">You pinned a message</string>
+    <string name="ConversationFragment_pin_already_pinned">The message is already pinned</string>
     <string name="ConversationFragment_pending">Pending...</string>
     <string name="ConversationFragment_push">Data (Signal)</string>
     <string name="ConversationFragment_mms">MMS</string>

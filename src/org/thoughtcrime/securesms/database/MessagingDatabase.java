@@ -5,12 +5,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
 import android.text.TextUtils;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.database.documents.Document;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchList;
+
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.whispersystems.libsignal.IdentityKey;
 
@@ -34,7 +36,31 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
 
   public abstract void markAsSent(long messageId, boolean secure);
 
-  public abstract void pinMessage(long id);
+  public boolean pinMessage(long messageId) {
+    Log.w("MessageDatabase", "Pinning: " + messageId);
+
+    ContentValues values = new ContentValues();
+    values.put("pinned", 1);
+
+    int res = processPinSqlRequest(values, messageId);
+    return res > 0 ? true : false;
+  }
+
+  public boolean unpinMessage(long messageId) {
+    Log.w("MessageDatabase", "Unpinning: " + messageId);
+
+    ContentValues values = new ContentValues();
+    values.put("pinned", 0);
+
+    int res = processPinSqlRequest(values, messageId);
+    return res > 0 ? true : false;
+  }
+
+  private int processPinSqlRequest(ContentValues values, long messageId) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    return db.update(this.getTableName(), values, ID_WHERE + "AND pinned = ?" ,
+            new String[] {messageId+"", (values.getAsInteger("pinned") == 1 ? 0:1) + ""});
+  }
 
   public void setMismatchedIdentity(long messageId, final Address address, final IdentityKey identityKey) {
     List<IdentityKeyMismatch> items = new ArrayList<IdentityKeyMismatch>() {{
