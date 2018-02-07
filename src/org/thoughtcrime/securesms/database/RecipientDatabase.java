@@ -197,7 +197,7 @@ public class RecipientDatabase extends Database {
                                              RegisteredState.fromId(registeredState),
                                              profileKey, systemDisplayName, systemContactPhoto,
                                              systemPhoneLabel, systemContactUri,
-                                             signalProfileName, signalProfileAvatar, profileSharing));
+                                             signalProfileName, signalProfileAvatar, profileSharing, ""));
   }
 
   public BulkOperationsHandle resetAllSystemContactInfo() {
@@ -434,6 +434,7 @@ public class RecipientDatabase extends Database {
     private final long            muteUntil;
     private final VibrateState    vibrateState;
     private final Uri             notification;
+    private final String          chatName;
     private final MaterialColor   color;
     private final boolean         seenInviteReminder;
     private final int             defaultSubscriptionId;
@@ -463,12 +464,14 @@ public class RecipientDatabase extends Database {
                       @Nullable String systemContactUri,
                       @Nullable String signalProfileName,
                       @Nullable String signalProfileAvatar,
-                      boolean profileSharing)
+                      boolean profileSharing,
+                      @Nullable String chatName)
     {
       this.blocked               = blocked;
       this.muteUntil             = muteUntil;
       this.vibrateState          = vibrateState;
       this.notification          = notification;
+      this.chatName              = chatName;
       this.color                 = color;
       this.seenInviteReminder    = seenInviteReminder;
       this.defaultSubscriptionId = defaultSubscriptionId;
@@ -483,6 +486,8 @@ public class RecipientDatabase extends Database {
       this.signalProfileAvatar   = signalProfileAvatar;
       this.profileSharing        = profileSharing;
     }
+
+    public @Nullable String getChatName() { return chatName; }
 
     public @Nullable MaterialColor getColor() {
       return color;

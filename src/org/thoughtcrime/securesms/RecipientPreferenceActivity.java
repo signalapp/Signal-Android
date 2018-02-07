@@ -21,6 +21,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.CheckBoxPreference;
+import android.support.v7.preference.EditTextPreference;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceCategory;
@@ -74,12 +75,13 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   public static final String ADDRESS_EXTRA                = "recipient_address";
   public static final String CAN_HAVE_SAFETY_NUMBER_EXTRA = "can_have_safety_number";
 
-  private static final String PREFERENCE_MUTED    = "pref_key_recipient_mute";
-  private static final String PREFERENCE_TONE     = "pref_key_recipient_ringtone";
-  private static final String PREFERENCE_VIBRATE  = "pref_key_recipient_vibrate";
-  private static final String PREFERENCE_BLOCK    = "pref_key_recipient_block";
-  private static final String PREFERENCE_COLOR    = "pref_key_recipient_color";
-  private static final String PREFERENCE_IDENTITY = "pref_key_recipient_identity";
+  private static final String PREFERENCE_CHAT_NAME = "pref_key_recipient_chat_name";
+  private static final String PREFERENCE_MUTED     = "pref_key_recipient_mute";
+  private static final String PREFERENCE_TONE      = "pref_key_recipient_ringtone";
+  private static final String PREFERENCE_VIBRATE   = "pref_key_recipient_vibrate";
+  private static final String PREFERENCE_BLOCK     = "pref_key_recipient_block";
+  private static final String PREFERENCE_COLOR     = "pref_key_recipient_color";
+  private static final String PREFERENCE_IDENTITY  = "pref_key_recipient_identity";
 
   private final DynamicTheme    dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -245,6 +247,8 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       this.canHaveSafetyNumber = getActivity().getIntent()
                                  .getBooleanExtra(RecipientPreferenceActivity.CAN_HAVE_SAFETY_NUMBER_EXTRA, false);
 
+      this.findPreference(PREFERENCE_CHAT_NAME)
+          .setOnPreferenceChangeListener(new ChatNameChangeListener());
       this.findPreference(PREFERENCE_TONE)
           .setOnPreferenceChangeListener(new RingtoneChangeListener());
       this.findPreference(PREFERENCE_TONE)
@@ -292,6 +296,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     }
 
     private void setSummaries(Recipient recipient) {
+      EditTextPreference chatNamePreference = (EditTextPreference) this.findPreference(PREFERENCE_CHAT_NAME);
       CheckBoxPreference         mutePreference     = (CheckBoxPreference) this.findPreference(PREFERENCE_MUTED);
       Preference                 ringtonePreference =  this.findPreference(PREFERENCE_TONE);
       ListPreference             vibratePreference  = (ListPreference) this.findPreference(PREFERENCE_VIBRATE);
@@ -300,6 +305,9 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       Preference                 identityPreference = this.findPreference(PREFERENCE_IDENTITY);
       PreferenceCategory         privacyCategory    = (PreferenceCategory)this.findPreference("privacy_settings");
       PreferenceCategory         divider            = (PreferenceCategory)this.findPreference("divider");
+
+      // TODO: Load from recipient
+      chatNamePreference.setText("Load from recipient");
 
       mutePreference.setChecked(recipient.isMuted());
 
@@ -366,6 +374,14 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     @Override
     public void onModified(final Recipient recipient) {
       Util.runOnMain(() -> setSummaries(recipient));
+    }
+
+    private class ChatNameChangeListener implements Preference.OnPreferenceChangeListener {
+       @Override
+       public boolean onPreferenceChange(Preference preference, Object newValue) {
+         // TODO: Save to database
+         return false;
+       }
     }
 
     private class RingtoneChangeListener implements Preference.OnPreferenceChangeListener {

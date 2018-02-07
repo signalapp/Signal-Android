@@ -82,6 +82,7 @@ public class Recipient implements RecipientModifiedListener {
   private           Optional<Integer>    defaultSubscriptionId = Optional.absent();
   private @NonNull  RegisteredState      registered            = RegisteredState.UNKNOWN;
 
+  private @Nullable String         chatName;
   private @Nullable MaterialColor  color;
   private           boolean        seenInviteReminder;
   private @Nullable byte[]         profileKey;
@@ -122,6 +123,7 @@ public class Recipient implements RecipientModifiedListener {
       this.contactUri            = stale.contactUri;
       this.systemContactPhoto    = stale.systemContactPhoto;
       this.groupAvatarId         = stale.groupAvatarId;
+      this.chatName              = stale.chatName;
       this.color                 = stale.color;
       this.customLabel           = stale.customLabel;
       this.ringtone              = stale.ringtone;
@@ -145,6 +147,7 @@ public class Recipient implements RecipientModifiedListener {
       this.name                  = details.get().name;
       this.systemContactPhoto    = details.get().systemContactPhoto;
       this.groupAvatarId         = details.get().groupAvatarId;
+      this.chatName              = details.get().chatName;
       this.color                 = details.get().color;
       this.ringtone              = details.get().ringtone;
       this.mutedUntil            = details.get().mutedUntil;
