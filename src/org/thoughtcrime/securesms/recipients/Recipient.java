@@ -175,6 +175,7 @@ public class Recipient implements RecipientModifiedListener {
             Recipient.this.contactUri            = result.contactUri;
             Recipient.this.systemContactPhoto    = result.systemContactPhoto;
             Recipient.this.groupAvatarId         = result.groupAvatarId;
+            Recipient.this.chatName              = result.chatName;
             Recipient.this.color                 = result.color;
             Recipient.this.customLabel           = result.customLabel;
             Recipient.this.ringtone              = result.ringtone;
@@ -220,6 +221,7 @@ public class Recipient implements RecipientModifiedListener {
     this.name                  = details.name;
     this.systemContactPhoto    = details.systemContactPhoto;
     this.groupAvatarId         = details.groupAvatarId;
+    this.chatName              = details.chatName;
     this.color                 = details.color;
     this.customLabel           = details.customLabel;
     this.ringtone              = details.ringtone;
@@ -296,6 +298,16 @@ public class Recipient implements RecipientModifiedListener {
     }
 
     notifyListeners();
+  }
+
+  public @Nullable String getChatName() {
+    return this.chatName;
+  }
+
+  public void setChatName(@Nullable String chatName) {
+    synchronized (this) {
+      this.chatName = chatName;
+    }
   }
 
   public @NonNull Address getAddress() {

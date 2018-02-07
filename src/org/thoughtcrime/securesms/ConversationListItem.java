@@ -124,7 +124,6 @@ public class ConversationListItem extends RelativeLayout
     this.fromView.setText(recipient, unreadCount == 0);
 
     this.subjectView.setText(thread.getDisplayBody());
-//    this.subjectView.setTypeface(read ? LIGHT_TYPEFACE : BOLD_TYPEFACE);
 
     if (thread.getDate() > 0) {
       CharSequence date = DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, thread.getDate());

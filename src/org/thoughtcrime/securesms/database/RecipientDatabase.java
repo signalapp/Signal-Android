@@ -50,11 +50,12 @@ public class RecipientDatabase extends Database {
   private static final String SIGNAL_PROFILE_NAME     = "signal_profile_name";
   private static final String SIGNAL_PROFILE_AVATAR   = "signal_profile_avatar";
   private static final String PROFILE_SHARING         = "profile_sharing_approval";
+  private static final String CHAT_NAME               = "chat_name";
 
   private static final String[] RECIPIENT_PROJECTION = new String[] {
       BLOCK, NOTIFICATION, VIBRATE, MUTE_UNTIL, COLOR, SEEN_INVITE_REMINDER, DEFAULT_SUBSCRIPTION_ID, EXPIRE_MESSAGES, REGISTERED,
       PROFILE_KEY, SYSTEM_DISPLAY_NAME, SYSTEM_PHOTO_URI, SYSTEM_PHONE_LABEL, SYSTEM_CONTACT_URI,
-      SIGNAL_PROFILE_NAME, SIGNAL_PROFILE_AVATAR, PROFILE_SHARING
+      SIGNAL_PROFILE_NAME, SIGNAL_PROFILE_AVATAR, CHAT_NAME, PROFILE_SHARING
   };
 
   static final List<String> TYPED_RECIPIENT_PROJECTION = Stream.of(RECIPIENT_PROJECTION)
@@ -117,7 +118,8 @@ public class RecipientDatabase extends Database {
           PROFILE_KEY + " TEXT DEFAULT NULL, " +
           SIGNAL_PROFILE_NAME + " TEXT DEFAULT NULL, " +
           SIGNAL_PROFILE_AVATAR + " TEXT DEFAULT NULL, " +
-          PROFILE_SHARING + " INTEGER DEFAULT 0);";
+          PROFILE_SHARING + " INTEGER DEFAULT 0, " +
+          CHAT_NAME + " TEXT DEFAULT NULL);";
 
   public RecipientDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -169,6 +171,7 @@ public class RecipientDatabase extends Database {
     String  systemContactUri      = cursor.getString(cursor.getColumnIndexOrThrow(SYSTEM_CONTACT_URI));
     String  signalProfileName     = cursor.getString(cursor.getColumnIndexOrThrow(SIGNAL_PROFILE_NAME));
     String  signalProfileAvatar   = cursor.getString(cursor.getColumnIndexOrThrow(SIGNAL_PROFILE_AVATAR));
+    String  chatName              = cursor.getString(cursor.getColumnIndexOrThrow(CHAT_NAME));
     boolean profileSharing        = cursor.getInt(cursor.getColumnIndexOrThrow(PROFILE_SHARING))      == 1;
 
     MaterialColor color;
@@ -197,7 +200,7 @@ public class RecipientDatabase extends Database {
                                              RegisteredState.fromId(registeredState),
                                              profileKey, systemDisplayName, systemContactPhoto,
                                              systemPhoneLabel, systemContactUri,
-                                             signalProfileName, signalProfileAvatar, profileSharing, ""));
+                                             signalProfileName, signalProfileAvatar, profileSharing, chatName));
   }
 
   public BulkOperationsHandle resetAllSystemContactInfo() {
@@ -299,6 +302,13 @@ public class RecipientDatabase extends Database {
     contentValues.put(PROFILE_SHARING, enabled ? 1 : 0);
     updateOrInsert(recipient.getAddress(), contentValues);
     recipient.setProfileSharing(enabled);
+  }
+
+  public void setChatName(@NonNull Recipient recipient, @Nullable String chatName) {
+    ContentValues contentValues = new ContentValues(1);
+    contentValues.put(CHAT_NAME, chatName);
+    updateOrInsert(recipient.getAddress(), contentValues);
+    recipient.setChatName(chatName);
   }
 
   public Set<Address> getAllAddresses() {
@@ -487,8 +497,6 @@ public class RecipientDatabase extends Database {
       this.profileSharing        = profileSharing;
     }
 
-    public @Nullable String getChatName() { return chatName; }
-
     public @Nullable MaterialColor getColor() {
       return color;
     }
@@ -556,6 +564,11 @@ public class RecipientDatabase extends Database {
     public boolean isProfileSharing() {
       return profileSharing;
     }
+
+    public @Nullable String getChatName() {
+      return chatName;
+    }
+
   }
 
   public static class BlockedReader {
