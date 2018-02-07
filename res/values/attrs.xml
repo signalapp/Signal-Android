@@ -108,6 +108,7 @@
     <attr name="menu_info_icon" format="reference" />
     <attr name="menu_forward_icon" format="reference" />
     <attr name="menu_save_icon" format="reference" />
+    <attr name="menu_reply_icon" format="reference" />
 
     <attr name="pref_icon_tint" format="color"/>
 
@@ -239,6 +240,10 @@
         <attr name="vcv_inputColor" format="color"/>
         <attr name="vcv_textSize" format="dimension"/>
         <attr name="vcv_textColor" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="QuoteView">
+        <attr name="quote_dismissable" format="boolean"/>
     </declare-styleable>
 
 

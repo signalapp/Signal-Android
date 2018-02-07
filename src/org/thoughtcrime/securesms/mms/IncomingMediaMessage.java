@@ -13,14 +13,15 @@ import java.util.List;
 
 public class IncomingMediaMessage {
 
-  private final Address from;
-  private final Address groupId;
-  private final String  body;
-  private final boolean push;
-  private final long    sentTimeMillis;
-  private final int     subscriptionId;
-  private final long    expiresIn;
-  private final boolean expirationUpdate;
+  private final Address       from;
+  private final Address       groupId;
+  private final String        body;
+  private final boolean       push;
+  private final long          sentTimeMillis;
+  private final int           subscriptionId;
+  private final long          expiresIn;
+  private final boolean       expirationUpdate;
+  private final QuoteModel quote;
 
   private final List<Attachment> attachments = new LinkedList<>();
 
@@ -41,6 +42,7 @@ public class IncomingMediaMessage {
     this.subscriptionId   = subscriptionId;
     this.expiresIn        = expiresIn;
     this.expirationUpdate = expirationUpdate;
+    this.quote            = null;
 
     this.attachments.addAll(attachments);
   }
@@ -53,7 +55,8 @@ public class IncomingMediaMessage {
                               Optional<String> relay,
                               Optional<String> body,
                               Optional<SignalServiceGroup> group,
-                              Optional<List<SignalServiceAttachment>> attachments)
+                              Optional<List<SignalServiceAttachment>> attachments,
+                              Optional<QuoteModel> quote)
   {
     this.push             = true;
     this.from             = from;
@@ -62,6 +65,7 @@ public class IncomingMediaMessage {
     this.subscriptionId   = subscriptionId;
     this.expiresIn        = expiresIn;
     this.expirationUpdate = expirationUpdate;
+    this.quote            = quote.orNull();
 
     if (group.isPresent()) this.groupId = Address.fromSerialized(GroupUtil.getEncodedId(group.get().getGroupId(), false));
     else                   this.groupId = null;
@@ -107,5 +111,9 @@ public class IncomingMediaMessage {
 
   public boolean isGroupMessage() {
     return groupId != null;
+  }
+
+  public QuoteModel getQuote() {
+    return quote;
   }
 }

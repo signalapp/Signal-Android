@@ -15,12 +15,12 @@ import java.util.List;
 public class PointerAttachment extends Attachment {
 
   private PointerAttachment(@NonNull String contentType, int transferState, long size,
-                           @Nullable String fileName,  @NonNull String location,
-                           @NonNull String key, @NonNull String relay,
-                           @Nullable byte[] digest, boolean voiceNote,
+                            @Nullable String fileName,  @NonNull String location,
+                            @Nullable String key, @NonNull String relay,
+                            @Nullable byte[] digest, boolean voiceNote,
                             int width, int height)
   {
-    super(contentType, transferState, size, fileName, location, key, relay, digest, null, voiceNote, width, height);
+    super(contentType, transferState, size, fileName, location, key, relay, digest, null, voiceNote, width, height, false);
   }
 
   @Nullable
@@ -41,23 +41,36 @@ public class PointerAttachment extends Attachment {
 
     if (pointers.isPresent()) {
       for (SignalServiceAttachment pointer : pointers.get()) {
-        if (pointer.isPointer()) {
-          String encodedKey = Base64.encodeBytes(pointer.asPointer().getKey());
+        Optional<Attachment> result = forPointer(Optional.of(pointer));
 
-          results.add(new PointerAttachment(pointer.getContentType(),
-                                            AttachmentDatabase.TRANSFER_PROGRESS_PENDING,
-                                            pointer.asPointer().getSize().or(0),
-                                            pointer.asPointer().getFileName().orNull(),
-                                            String.valueOf(pointer.asPointer().getId()),
-                                            encodedKey, pointer.asPointer().getRelay().orNull(),
-                                            pointer.asPointer().getDigest().orNull(),
-                                            pointer.asPointer().getVoiceNote(),
-                                            pointer.asPointer().getWidth(),
-                                            pointer.asPointer().getHeight()));
+        if (result.isPresent()) {
+          results.add(result.get());
         }
       }
     }
 
     return results;
+  }
+
+  public static Optional<Attachment> forPointer(Optional<SignalServiceAttachment> pointer) {
+    if (!pointer.isPresent() || !pointer.get().isPointer()) return Optional.absent();
+
+    String encodedKey = null;
+
+    if (pointer.get().asPointer().getKey() != null) {
+      encodedKey = Base64.encodeBytes(pointer.get().asPointer().getKey());
+    }
+
+    return Optional.of(new PointerAttachment(pointer.get().getContentType(),
+                                      AttachmentDatabase.TRANSFER_PROGRESS_PENDING,
+                                      pointer.get().asPointer().getSize().or(0),
+                                      pointer.get().asPointer().getFileName().orNull(),
+                                      String.valueOf(pointer.get().asPointer().getId()),
+                                      encodedKey, pointer.get().asPointer().getRelay().orNull(),
+                                      pointer.get().asPointer().getDigest().orNull(),
+                                      pointer.get().asPointer().getVoiceNote(),
+                                      pointer.get().asPointer().getWidth(),
+                                      pointer.get().asPointer().getHeight()));
+
   }
 }
