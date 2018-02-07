@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:tools="http://schemas.android.com/tools"
+       xmlns:app="http://schemas.android.com/apk/res-auto"
+       android:id="@+id/quote_container"
+       android:orientation="horizontal"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:visibility="gone"
+       android:layout_margin="3dp"
+       android:background="@drawable/quote_background"
+       tools:visibility="visible"
+       tools:parentTag="android.widget.LinearLayout">
+
+    <ImageView android:id="@+id/quote_bar"
+               android:layout_width="5dp"
+               android:layout_height="match_parent"
+               android:src="@drawable/quote_bar"
+               tools:tint="@color/purple_400"/>
+
+    <LinearLayout android:orientation="vertical"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="10dp"
+                  android:layout_marginStart="10dp"
+                  android:layout_marginRight="10dp"
+                  android:layout_marginEnd="10dp"
+                  android:paddingBottom="10dp">
+
+        <TextView android:id="@+id/quote_author"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="5dp"
+                  android:maxLines="1"
+                  tools:textColor="@color/purple_400"
+                  tools:text="Riya"/>
+
+        <LinearLayout android:id="@+id/media_description"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="7dp"
+                      android:orientation="horizontal"
+                      android:visibility="gone"
+                      tools:visibility="visible">
+
+            <ImageView android:id="@+id/media_icon"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:tint="@color/gray50"
+                       android:src="@drawable/ic_insert_photo_white_18dp"/>
+
+            <TextView android:id="@+id/media_name"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="center_vertical"
+                      android:layout_marginLeft="10dp"
+                      android:layout_marginStart="10dp"
+                      android:textSize="11sp"
+                      tools:text="Photo"/>
+
+        </LinearLayout>
+
+        <TextView android:id="@+id/quote_text"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="3dp"
+                  android:maxLines="3"
+                  android:ellipsize="end"
+                  tools:text="Short text."
+                />
+
+    </LinearLayout>
+
+    <FrameLayout android:layout_width="wrap_content"
+                 android:layout_height="match_parent">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/quote_attachment"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                app:riv_corner_radius_top_right="5dp"
+                app:riv_corner_radius_bottom_right="5dp"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                tools:src="@drawable/surfwalk2"
+                tools:visibility="visible"/>
+
+        <ImageView android:id="@+id/quote_dismiss"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="right"
+                   android:src="@drawable/ic_close_white_18dp"
+                   android:tint="@color/gray70"
+                   android:background="@drawable/circle_alpha"
+                   android:layout_marginTop="5dp"
+                   android:layout_marginRight="5dp"
+                   android:layout_marginEnd="5dp"/>
+    </FrameLayout>
+
+
+</merge>

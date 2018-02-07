@@ -386,6 +386,10 @@ public class ConversationFragment extends Fragment
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, message);
   }
 
+  private void handleReplyMessage(final MessageRecord message) {
+    listener.handleReplyMessage(message);
+  }
+
   private void handleSaveAttachment(final MediaMmsMessageRecord message) {
     SaveAttachmentTask.showWarningDialog(getActivity(), new DialogInterface.OnClickListener() {
       public void onClick(DialogInterface dialog, int which) {
@@ -493,6 +497,7 @@ public class ConversationFragment extends Fragment
 
   public interface ConversationFragmentListener {
     void setThreadId(long threadId);
+    void handleReplyMessage(MessageRecord messageRecord);
   }
 
   private class ConversationScrollListener extends OnScrollListener {
@@ -666,6 +671,10 @@ public class ConversationFragment extends Fragment
           return true;
         case R.id.menu_context_save_attachment:
           handleSaveAttachment((MediaMmsMessageRecord)getSelectedMessageRecord());
+          actionMode.finish();
+          return true;
+        case R.id.menu_context_reply:
+          handleReplyMessage(getSelectedMessageRecord());
           actionMode.finish();
           return true;
       }

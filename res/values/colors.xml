@@ -23,6 +23,19 @@
     <color name="gray78">#ff383838</color>
     <color name="gray95">#ff111111</color>
 
+    <color name="transparent_black_05">#05000000</color>
+    <color name="transparent_black_10">#10000000</color>
+    <color name="transparent_black_20">#20000000</color>
+    <color name="transparent_black_30">#30000000</color>
+    <color name="transparent_black_40">#40000000</color>
+
+    <color name="transparent_white_05">#05ffffff</color>
+    <color name="transparent_white_10">#10ffffff</color>
+    <color name="transparent_white_20">#20ffffff</color>
+    <color name="transparent_white_30">#30ffffff</color>
+    <color name="transparent_white_40">#40ffffff</color>
+    <color name="transparent_white_aa">#aaffffff</color>
+
     <color name="conversation_compose_divider">#32000000</color>
 
     <color name="action_mode_status_bar">@color/gray65</color>

@@ -60,26 +60,18 @@ public class MmsSmsDatabase extends Database {
                                               MmsSmsColumns.EXPIRE_STARTED,
                                               MmsSmsColumns.NOTIFIED,
                                               TRANSPORT,
-                                              AttachmentDatabase.ATTACHMENT_ID_ALIAS,
-                                              AttachmentDatabase.UNIQUE_ID,
-                                              AttachmentDatabase.MMS_ID,
-                                              AttachmentDatabase.SIZE,
-                                              AttachmentDatabase.FILE_NAME,
-                                              AttachmentDatabase.DATA,
-                                              AttachmentDatabase.THUMBNAIL,
-                                              AttachmentDatabase.CONTENT_TYPE,
-                                              AttachmentDatabase.CONTENT_LOCATION,
-                                              AttachmentDatabase.DIGEST,
-                                              AttachmentDatabase.FAST_PREFLIGHT_ID,
-                                              AttachmentDatabase.VOICE_NOTE,
-                                              AttachmentDatabase.WIDTH,
-                                              AttachmentDatabase.HEIGHT,
-                                              AttachmentDatabase.CONTENT_DISPOSITION,
-                                              AttachmentDatabase.NAME,
-                                              AttachmentDatabase.TRANSFER_STATE};
+                                              AttachmentDatabase.ATTACHMENT_JSON_ALIAS,
+                                              MmsDatabase.QUOTE_ID,
+                                              MmsDatabase.QUOTE_AUTHOR,
+                                              MmsDatabase.QUOTE_BODY,
+                                              MmsDatabase.QUOTE_ATTACHMENT};
 
   public MmsSmsDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
+  }
+
+  public Cursor getMessagesFor(long timestamp) {
+    return queryTables(PROJECTION, MmsSmsColumns.NORMALIZED_DATE_SENT + " = " + timestamp, null, null);
   }
 
   public Cursor getConversation(long threadId, long limit) {
@@ -155,7 +147,25 @@ public class MmsSmsDatabase extends Database {
                               "'MMS::' || " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID
                                   + " || '::' || " + MmsDatabase.DATE_SENT
                                   + " AS " + MmsSmsColumns.UNIQUE_ROW_ID,
-                              AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " AS " + AttachmentDatabase.ATTACHMENT_ID_ALIAS,
+                              "json_group_array(json_object(" +
+                                  "'" + AttachmentDatabase.ROW_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + ", " +
+                                  "'" + AttachmentDatabase.UNIQUE_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.UNIQUE_ID + ", " +
+                                  "'" + AttachmentDatabase.MMS_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + "," +
+                                  "'" + AttachmentDatabase.SIZE + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.SIZE + ", " +
+                                  "'" + AttachmentDatabase.FILE_NAME + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.FILE_NAME + ", " +
+                                  "'" + AttachmentDatabase.DATA + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DATA + ", " +
+                                  "'" + AttachmentDatabase.THUMBNAIL + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.THUMBNAIL + ", " +
+                                  "'" + AttachmentDatabase.CONTENT_TYPE + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_TYPE + ", " +
+                                  "'" + AttachmentDatabase.CONTENT_LOCATION + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_LOCATION + ", " +
+                                  "'" + AttachmentDatabase.FAST_PREFLIGHT_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.FAST_PREFLIGHT_ID + ", " +
+                                  "'" + AttachmentDatabase.VOICE_NOTE + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.VOICE_NOTE + ", " +
+                                  "'" + AttachmentDatabase.WIDTH + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.WIDTH + ", " +
+                                  "'" + AttachmentDatabase.HEIGHT + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.HEIGHT + ", " +
+                                  "'" + AttachmentDatabase.QUOTE + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.QUOTE + ", " +
+                                  "'" + AttachmentDatabase.CONTENT_DISPOSITION + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_DISPOSITION + ", " +
+                                  "'" + AttachmentDatabase.NAME + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.NAME + ", " +
+                                  "'" + AttachmentDatabase.TRANSFER_STATE + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.TRANSFER_STATE +
+                                  ")) AS " + AttachmentDatabase.ATTACHMENT_JSON_ALIAS,
                               SmsDatabase.BODY, MmsSmsColumns.READ, MmsSmsColumns.THREAD_ID,
                               SmsDatabase.TYPE, SmsDatabase.ADDRESS, SmsDatabase.ADDRESS_DEVICE_ID, SmsDatabase.SUBJECT, MmsDatabase.MESSAGE_TYPE,
                               MmsDatabase.MESSAGE_BOX, SmsDatabase.STATUS, MmsDatabase.PART_COUNT,
@@ -166,22 +176,10 @@ public class MmsSmsDatabase extends Database {
                               MmsSmsColumns.SUBSCRIPTION_ID, MmsSmsColumns.EXPIRES_IN, MmsSmsColumns.EXPIRE_STARTED,
                               MmsSmsColumns.NOTIFIED,
                               MmsDatabase.NETWORK_FAILURE, TRANSPORT,
-                              AttachmentDatabase.UNIQUE_ID,
-                              AttachmentDatabase.MMS_ID,
-                              AttachmentDatabase.SIZE,
-                              AttachmentDatabase.FILE_NAME,
-                              AttachmentDatabase.DATA,
-                              AttachmentDatabase.THUMBNAIL,
-                              AttachmentDatabase.CONTENT_TYPE,
-                              AttachmentDatabase.CONTENT_LOCATION,
-                              AttachmentDatabase.DIGEST,
-                              AttachmentDatabase.FAST_PREFLIGHT_ID,
-                              AttachmentDatabase.VOICE_NOTE,
-                              AttachmentDatabase.WIDTH,
-                              AttachmentDatabase.HEIGHT,
-                              AttachmentDatabase.CONTENT_DISPOSITION,
-                              AttachmentDatabase.NAME,
-                              AttachmentDatabase.TRANSFER_STATE};
+                              MmsDatabase.QUOTE_ID,
+                              MmsDatabase.QUOTE_AUTHOR,
+                              MmsDatabase.QUOTE_BODY,
+                              MmsDatabase.QUOTE_ATTACHMENT};
 
     String[] smsProjection = {SmsDatabase.DATE_SENT + " AS " + MmsSmsColumns.NORMALIZED_DATE_SENT,
                               SmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
@@ -189,7 +187,7 @@ public class MmsSmsDatabase extends Database {
                               "'SMS::' || " + MmsSmsColumns.ID
                                   + " || '::' || " + SmsDatabase.DATE_SENT
                                   + " AS " + MmsSmsColumns.UNIQUE_ROW_ID,
-                              "NULL AS " + AttachmentDatabase.ATTACHMENT_ID_ALIAS,
+                              "NULL AS " + AttachmentDatabase.ATTACHMENT_JSON_ALIAS,
                               SmsDatabase.BODY, MmsSmsColumns.READ, MmsSmsColumns.THREAD_ID,
                               SmsDatabase.TYPE, SmsDatabase.ADDRESS, SmsDatabase.ADDRESS_DEVICE_ID, SmsDatabase.SUBJECT, MmsDatabase.MESSAGE_TYPE,
                               MmsDatabase.MESSAGE_BOX, SmsDatabase.STATUS, MmsDatabase.PART_COUNT,
@@ -200,22 +198,10 @@ public class MmsSmsDatabase extends Database {
                               MmsSmsColumns.SUBSCRIPTION_ID, MmsSmsColumns.EXPIRES_IN, MmsSmsColumns.EXPIRE_STARTED,
                               MmsSmsColumns.NOTIFIED,
                               MmsDatabase.NETWORK_FAILURE, TRANSPORT,
-                              AttachmentDatabase.UNIQUE_ID,
-                              AttachmentDatabase.MMS_ID,
-                              AttachmentDatabase.SIZE,
-                              AttachmentDatabase.FILE_NAME,
-                              AttachmentDatabase.DATA,
-                              AttachmentDatabase.THUMBNAIL,
-                              AttachmentDatabase.CONTENT_TYPE,
-                              AttachmentDatabase.CONTENT_LOCATION,
-                              AttachmentDatabase.DIGEST,
-                              AttachmentDatabase.FAST_PREFLIGHT_ID,
-                              AttachmentDatabase.VOICE_NOTE,
-                              AttachmentDatabase.WIDTH,
-                              AttachmentDatabase.HEIGHT,
-                              AttachmentDatabase.CONTENT_DISPOSITION,
-                              AttachmentDatabase.NAME,
-                              AttachmentDatabase.TRANSFER_STATE};
+                              MmsDatabase.QUOTE_ID,
+                              MmsDatabase.QUOTE_AUTHOR,
+                              MmsDatabase.QUOTE_BODY,
+                              MmsDatabase.QUOTE_ATTACHMENT};
 
     SQLiteQueryBuilder mmsQueryBuilder = new SQLiteQueryBuilder();
     SQLiteQueryBuilder smsQueryBuilder = new SQLiteQueryBuilder();
@@ -226,11 +212,7 @@ public class MmsSmsDatabase extends Database {
     smsQueryBuilder.setTables(SmsDatabase.TABLE_NAME);
     mmsQueryBuilder.setTables(MmsDatabase.TABLE_NAME + " LEFT OUTER JOIN " +
                               AttachmentDatabase.TABLE_NAME +
-                              " ON " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " = " +
-                                  " (SELECT " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID +
-                                  " FROM " + AttachmentDatabase.TABLE_NAME + " WHERE " +
-                                  AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + " = " +
-                                  MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " LIMIT 1)");
+                              " ON " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + " = " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID);
 
 
     Set<String> mmsColumnsPresent = new HashSet<>();
@@ -273,9 +255,15 @@ public class MmsSmsDatabase extends Database {
     mmsColumnsPresent.add(AttachmentDatabase.VOICE_NOTE);
     mmsColumnsPresent.add(AttachmentDatabase.WIDTH);
     mmsColumnsPresent.add(AttachmentDatabase.HEIGHT);
+    mmsColumnsPresent.add(AttachmentDatabase.QUOTE);
     mmsColumnsPresent.add(AttachmentDatabase.CONTENT_DISPOSITION);
     mmsColumnsPresent.add(AttachmentDatabase.NAME);
     mmsColumnsPresent.add(AttachmentDatabase.TRANSFER_STATE);
+    mmsColumnsPresent.add(AttachmentDatabase.ATTACHMENT_JSON_ALIAS);
+    mmsColumnsPresent.add(MmsDatabase.QUOTE_ID);
+    mmsColumnsPresent.add(MmsDatabase.QUOTE_AUTHOR);
+    mmsColumnsPresent.add(MmsDatabase.QUOTE_BODY);
+    mmsColumnsPresent.add(MmsDatabase.QUOTE_ATTACHMENT);
 
     Set<String> smsColumnsPresent = new HashSet<>();
     smsColumnsPresent.add(MmsSmsColumns.ID);
@@ -298,7 +286,7 @@ public class MmsSmsDatabase extends Database {
     smsColumnsPresent.add(SmsDatabase.STATUS);
 
     @SuppressWarnings("deprecation")
-    String mmsSubQuery = mmsQueryBuilder.buildUnionSubQuery(TRANSPORT, mmsProjection, mmsColumnsPresent, 4, MMS_TRANSPORT, selection, null, null, null);
+    String mmsSubQuery = mmsQueryBuilder.buildUnionSubQuery(TRANSPORT, mmsProjection, mmsColumnsPresent, 4, MMS_TRANSPORT, selection, null, MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID, null);
     @SuppressWarnings("deprecation")
     String smsSubQuery = smsQueryBuilder.buildUnionSubQuery(TRANSPORT, smsProjection, smsColumnsPresent, 4, SMS_TRANSPORT, selection, null, null, null);
 

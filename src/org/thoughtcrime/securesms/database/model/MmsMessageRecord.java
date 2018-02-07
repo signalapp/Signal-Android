@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
@@ -14,17 +15,21 @@ import java.util.List;
 
 public abstract class MmsMessageRecord extends MessageRecord {
 
-  private final @NonNull SlideDeck slideDeck;
+  private final @NonNull  SlideDeck slideDeck;
+  private final @Nullable Quote     quote;
 
   MmsMessageRecord(Context context, long id, String body, Recipient conversationRecipient,
                    Recipient individualRecipient, int recipientDeviceId, long dateSent,
                    long dateReceived, long threadId, int deliveryStatus, int deliveryReceiptCount,
                    long type, List<IdentityKeyMismatch> mismatches,
                    List<NetworkFailure> networkFailures, int subscriptionId, long expiresIn,
-                   long expireStarted, @NonNull SlideDeck slideDeck, int readReceiptCount)
+                   long expireStarted, @NonNull SlideDeck slideDeck, int readReceiptCount,
+                   @Nullable Quote quote)
   {
     super(context, id, body, conversationRecipient, individualRecipient, recipientDeviceId, dateSent, dateReceived, threadId, deliveryStatus, deliveryReceiptCount, type, mismatches, networkFailures, subscriptionId, expiresIn, expireStarted, readReceiptCount);
+
     this.slideDeck = slideDeck;
+    this.quote     = quote;
   }
 
   @Override
@@ -52,5 +57,7 @@ public abstract class MmsMessageRecord extends MessageRecord {
     return slideDeck.containsMediaSlide();
   }
 
-
+  public @Nullable Quote getQuote() {
+    return quote;
+  }
 }
