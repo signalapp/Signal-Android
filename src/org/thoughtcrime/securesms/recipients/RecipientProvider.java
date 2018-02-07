@@ -157,6 +157,7 @@ class RecipientProvider {
     @Nullable final Uri                  systemContactPhoto;
     @Nullable final Uri                  contactUri;
     @Nullable final Long                 groupAvatarId;
+    @Nullable final String               chatName;
     @Nullable final MaterialColor        color;
     @Nullable final Uri                  ringtone;
               final long                 mutedUntil;
@@ -181,6 +182,7 @@ class RecipientProvider {
       this.systemContactPhoto    = settings     != null ? Util.uri(settings.getSystemContactPhotoUri()) : null;
       this.customLabel           = settings     != null ? settings.getSystemPhoneLabel() : null;
       this.contactUri            = settings     != null ? Util.uri(settings.getSystemContactUri()) : null;
+      this.chatName              = settings     != null ? settings.getChatName() : null;
       this.color                 = settings     != null ? settings.getColor() : null;
       this.ringtone              = settings     != null ? settings.getRingtone() : null;
       this.mutedUntil            = settings     != null ? settings.getMuteUntil() : 0;

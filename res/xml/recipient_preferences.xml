@@ -3,6 +3,12 @@
                   xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory android:key="notification_settings" android:title="@string/recipient_preferences__chat_settings">
+        <EditTextPreference
+                android:key="pref_key_recipient_chat_name"
+                android:selectAllOnFocus="true"
+                android:singleLine="true"
+                android:title="Chat Name" />
+
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
                 android:key="pref_key_recipient_mute"
                 android:title="@string/recipient_preferences__mute_conversation"
