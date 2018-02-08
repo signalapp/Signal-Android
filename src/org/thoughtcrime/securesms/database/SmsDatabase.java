@@ -81,7 +81,7 @@ public class SmsDatabase extends MessagingDatabase {
     DELIVERY_RECEIPT_COUNT + " INTEGER DEFAULT 0," + SUBJECT + " TEXT, " + BODY + " TEXT, " +
     MISMATCHED_IDENTITIES + " TEXT DEFAULT NULL, " + SERVICE_CENTER + " TEXT, " + SUBSCRIPTION_ID + " INTEGER DEFAULT -1, " +
     EXPIRES_IN + " INTEGER DEFAULT 0, " + EXPIRE_STARTED + " INTEGER DEFAULT 0, " + NOTIFIED + " DEFAULT 0, " +
-    READ_RECEIPT_COUNT + " INTEGER DEFAULT 0);";
+    READ_RECEIPT_COUNT + " INTEGER DEFAULT 0, " + PINNED + " BOOLEAN DEFAULT 0 );";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS sms_thread_id_index ON " + TABLE_NAME + " (" + THREAD_ID + ");",
@@ -286,16 +286,6 @@ public class SmsDatabase extends MessagingDatabase {
     contentValues.put(NOTIFIED, 1);
 
     database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {String.valueOf(id)});
-  }
-
-  @Override
-  public void pinMessage(long messageId) {
-    Log.w("MessageDatabase", "Pinning: " + messageId);
-    SQLiteDatabase db = databaseHelper.getWritableDatabase();
-    long threadId     = getThreadIdForMessage(messageId);
-    ContentValues values = new ContentValues();
-    values.put("pinned", 1);
-    db.update(TABLE_NAME, values, ID_WHERE, new String[] {messageId+""});
   }
 
   public void incrementReceiptCount(SyncMessageId messageId, boolean deliveryReceipt, boolean readReceipt) {

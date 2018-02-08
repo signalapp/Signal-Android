@@ -22,7 +22,7 @@ import android.os.Build;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
-import static com.facebook.stetho.Stetho.*;
+import static com.facebook.stetho.Stetho.initializeWithDefaults;
 import com.google.android.gms.security.ProviderInstaller;
 
 import org.greenrobot.eventbus.util.ExceptionToResourceMapping;
