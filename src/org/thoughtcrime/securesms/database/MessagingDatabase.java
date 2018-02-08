@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.facebook.stetho.inspector.database.ContentProviderSchema;
+
 import org.thoughtcrime.securesms.database.documents.Document;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchList;
@@ -44,6 +46,16 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
 
     int res = processPinSqlRequest(values, messageId);
     return res > 0 ? true : false;
+  }
+
+  public boolean isPinned(long messageId) {
+    Log.w("MessageDatabase", "Is Pinned?: " + messageId);
+
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    Cursor cursor = db.rawQuery("SELECT * FROM " + this.getTableName() + " WHERE pinned = 1 AND " +
+            ID_WHERE, new String[] {messageId + ""});
+
+    return cursor.getCount() == 1;
   }
 
   public boolean unpinMessage(long messageId) {
