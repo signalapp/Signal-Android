@@ -74,7 +74,7 @@ public class PinnedMessageAdapter extends RecyclerView.Adapter<PinnedMessageAdap
         public TextView messageContent;
         public ViewHolder(View v) {
             super(v);
-            messageContent = (TextView) v.findViewById(R.id.messageContent);
+            messageContent = (TextView) v.findViewById(R.id.conversation_item_body);
         }
     }
 
@@ -90,7 +90,11 @@ public class PinnedMessageAdapter extends RecyclerView.Adapter<PinnedMessageAdap
         Log.v("pinFragment", "on create view holder");
         View cardview = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.pinned_message_item, parent, false);
-        return new ViewHolder(cardview);
+
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View theInflatedView = inflater.inflate(R.layout.conversation_item_sent, null);
+
+        return new ViewHolder(theInflatedView);
     }
 
     public Cursor swapCursor(Cursor cursor) {

@@ -13,7 +13,7 @@
    components:
      - tools
      - platform-tools
-     - build-tools-26.0.2
+     - build-tools-27.0.2
      - android-27
      - extra-google-m2repository
   

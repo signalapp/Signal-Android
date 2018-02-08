@@ -17,6 +17,10 @@ buildscript {
     }
 }
 
+plugins {
+  id "com.adarshr.test-logger" version "1.1.2"
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'witness'
 
