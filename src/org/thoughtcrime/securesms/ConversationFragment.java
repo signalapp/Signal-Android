@@ -222,6 +222,7 @@ public class ConversationFragment extends Fragment
       }
     }
 
+    // TODO set visibility of unpin icon based on whether message is pinned
     if (messageRecords.size() > 1) {
       menu.findItem(R.id.menu_context_forward).setVisible(false);
       menu.findItem(R.id.menu_context_details).setVisible(false);
@@ -340,6 +341,28 @@ public class ConversationFragment extends Fragment
       outputMessage = getString(R.string.ConversationFragment_pin_new);
     } else {
       outputMessage = getString(R.string.ConversationFragment_pin_already_pinned);
+    }
+
+    Toast toast=Toast.makeText(getContext(),outputMessage ,Toast.LENGTH_SHORT);
+    toast.show();
+  }
+
+  private void handleUnpinMessage(final MessageRecord message) {
+    boolean result;
+    String outputMessage;
+
+    if(message.isMms()){
+      result = DatabaseFactory.getMmsDatabase(getActivity()).unpinMessage(message.getId());
+    } else{
+      result = DatabaseFactory.getSmsDatabase(getActivity()).unpinMessage(message.getId());
+    }
+
+    //TODO refactor this code to a better implementation
+    //I wrote it for @DAN
+    if(result) {
+      outputMessage = getString(R.string.ConversationFragment_unpin_new);
+    } else {
+      outputMessage = getString(R.string.ConversationFragment_unpin_already_unpinned);
     }
 
     Toast toast=Toast.makeText(getContext(),outputMessage ,Toast.LENGTH_SHORT);
@@ -677,7 +700,6 @@ public class ConversationFragment extends Fragment
       switch(item.getItemId()) {
         case R.id.menu_context_copy:
           handleCopyMessage(getListAdapter().getSelectedItems());
-          handlePinMessage(getSelectedMessageRecord());
           actionMode.finish();
           return true;
         case R.id.menu_context_delete_message:
@@ -702,6 +724,10 @@ public class ConversationFragment extends Fragment
           return true;
         case R.id.menu_context_pin_message:
           handlePinMessage(getSelectedMessageRecord());
+          actionMode.finish();
+          return true;
+        case R.id.menu_context_unpin_message:
+          handleUnpinMessage(getSelectedMessageRecord());
           actionMode.finish();
           return true;
       }

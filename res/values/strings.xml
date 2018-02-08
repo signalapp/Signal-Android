@@ -188,7 +188,9 @@
         <item quantity="other">Saving %1$d attachments to storage...</item>
     </plurals>
     <string name="ConversationFragment_pin_new">You pinned a message</string>
+    <string name="ConversationFragment_unpin_new">You unpinned a message</string>
     <string name="ConversationFragment_pin_already_pinned">The message is already pinned</string>
+    <string name="ConversationFragment_unpin_already_unpinned">The message is already unpinned</string>
     <string name="ConversationFragment_pending">Pending...</string>
     <string name="ConversationFragment_push">Data (Signal)</string>
     <string name="ConversationFragment_mms">MMS</string>
@@ -1191,6 +1193,7 @@
     <string name="conversation_context__menu_forward_message">Forward message</string>
     <string name="conversation_context__menu_resend_message">Resend message</string>
     <string name="conversation_context__menu_pin_message">Pin message</string>
+    <string name="conversation_context__menu_unpin_message">Unpin message</string>
 
     <!-- conversation_context_image -->
     <string name="conversation_context_image__save_attachment">Save attachment</string>
