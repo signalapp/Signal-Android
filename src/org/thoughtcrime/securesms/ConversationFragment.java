@@ -222,7 +222,6 @@ public class ConversationFragment extends Fragment
       }
     }
 
-    // TODO set visibility of unpin icon based on whether message is pinned
     if (messageRecords.size() > 1) {
       menu.findItem(R.id.menu_context_forward).setVisible(false);
       menu.findItem(R.id.menu_context_details).setVisible(false);
@@ -230,6 +229,7 @@ public class ConversationFragment extends Fragment
       menu.findItem(R.id.menu_context_resend).setVisible(false);
       menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage);
       menu.findItem(R.id.menu_context_pin_message).setVisible(false);
+      menu.findItem(R.id.menu_context_unpin_message).setVisible(false);
     } else {
       MessageRecord messageRecord = messageRecords.iterator().next();
 
@@ -242,7 +242,25 @@ public class ConversationFragment extends Fragment
       menu.findItem(R.id.menu_context_forward).setVisible(!actionMessage);
       menu.findItem(R.id.menu_context_details).setVisible(!actionMessage);
       menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage);
+
+      setCorrectPinVisibility(menu, messageRecord, actionMessage);
+    }
+  }
+
+  private void setCorrectPinVisibility(Menu menu, MessageRecord messageRecord, boolean actionMessage) {
+    MessagingDatabase database;
+    if(messageRecord.isMms()) {
+      database = DatabaseFactory.getMmsDatabase(getActivity());
+    } else {
+      database = DatabaseFactory.getSmsDatabase(getActivity());
+    }
+
+    if(database.isPinned(messageRecord.getId())) {
+      menu.findItem(R.id.menu_context_unpin_message).setVisible(!actionMessage);
+      menu.findItem(R.id.menu_context_pin_message).setVisible(false);
+    } else {
       menu.findItem(R.id.menu_context_pin_message).setVisible(!actionMessage);
+      menu.findItem(R.id.menu_context_unpin_message).setVisible(false);
     }
   }
 
