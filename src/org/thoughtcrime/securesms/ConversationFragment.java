@@ -53,8 +53,8 @@ import android.widget.Toast;
 import org.thoughtcrime.securesms.ConversationAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.ConversationAdapter.ItemClickListener;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.Database;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.MessagingDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
@@ -325,48 +325,50 @@ public class ConversationFragment extends Fragment
     }
   }
 
-  private void handlePinMessage(final MessageRecord message) {
+  public void handlePinOrUnpinEvent(final MessageRecord message, boolean pin) {
+    MessagingDatabase databaseToQuery;
+
+    if(message.isMms()) {
+      databaseToQuery = DatabaseFactory.getMmsDatabase(getActivity());
+    } else {
+      databaseToQuery = DatabaseFactory.getSmsDatabase(getActivity());
+    }
+
+    if(pin) {
+      handlePinMessage(message, databaseToQuery);
+    } else {
+      handleUnpinMessage(message, databaseToQuery);
+    }
+  }
+
+  private void handlePinMessage(final MessageRecord message, MessagingDatabase databaseToQuery) {
     boolean result;
     String outputMessage;
 
-    if(message.isMms()){
-      result = DatabaseFactory.getMmsDatabase(getActivity()).pinMessage(message.getId());
-    } else{
-      result = DatabaseFactory.getSmsDatabase(getActivity()).pinMessage(message.getId());
-    }
+    result = databaseToQuery.pinMessage(message.getId());
 
-    //TODO refactor this code to a better implementation
-    //I wrote it for @DAN
     if(result) {
       outputMessage = getString(R.string.ConversationFragment_pin_new);
     } else {
       outputMessage = getString(R.string.ConversationFragment_pin_already_pinned);
     }
 
-    Toast toast=Toast.makeText(getContext(),outputMessage ,Toast.LENGTH_SHORT);
-    toast.show();
+    showToast(outputMessage);
   }
 
-  private void handleUnpinMessage(final MessageRecord message) {
+  private void handleUnpinMessage(final MessageRecord message, MessagingDatabase databaseToQuery) {
     boolean result;
     String outputMessage;
 
-    if(message.isMms()){
-      result = DatabaseFactory.getMmsDatabase(getActivity()).unpinMessage(message.getId());
-    } else{
-      result = DatabaseFactory.getSmsDatabase(getActivity()).unpinMessage(message.getId());
-    }
+    result = databaseToQuery.unpinMessage(message.getId());
 
-    //TODO refactor this code to a better implementation
-    //I wrote it for @DAN
     if(result) {
       outputMessage = getString(R.string.ConversationFragment_unpin_new);
     } else {
       outputMessage = getString(R.string.ConversationFragment_unpin_already_unpinned);
     }
 
-    Toast toast=Toast.makeText(getContext(),outputMessage ,Toast.LENGTH_SHORT);
-    toast.show();
+    showToast(outputMessage);
   }
 
   private void handleDeleteMessages(final Set<MessageRecord> messageRecords) {
@@ -553,6 +555,11 @@ public class ConversationFragment extends Fragment
     }
   }
 
+  public void showToast(String outputMessage) {
+    Toast toast=Toast.makeText(getContext(),outputMessage ,Toast.LENGTH_SHORT);
+    toast.show();
+  }
+
   public interface ConversationFragmentListener {
     void setThreadId(long threadId);
   }
@@ -723,11 +730,11 @@ public class ConversationFragment extends Fragment
           actionMode.finish();
           return true;
         case R.id.menu_context_pin_message:
-          handlePinMessage(getSelectedMessageRecord());
+          handlePinOrUnpinEvent(getSelectedMessageRecord(), true);
           actionMode.finish();
           return true;
         case R.id.menu_context_unpin_message:
-          handleUnpinMessage(getSelectedMessageRecord());
+          handlePinOrUnpinEvent(getSelectedMessageRecord(), false);
           actionMode.finish();
           return true;
       }
