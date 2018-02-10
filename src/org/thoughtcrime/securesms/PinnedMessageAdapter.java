@@ -18,12 +18,17 @@ package org.thoughtcrime.securesms;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -32,43 +37,38 @@ import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 
 public class PinnedMessageAdapter extends RecyclerView.Adapter<PinnedMessageAdapter.ViewHolder> {
-    Cursor dataCursor;
-    Context context;
-    MmsSmsDatabase db;
-    MasterSecret masterSecret;
+    Cursor                      dataCursor;
+    Context                     context;
+    MmsSmsDatabase              db;
+    MasterSecret                masterSecret;
+    RecyclerView.Adapter        adapter;
+    View                        view;
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView messageContent;
         public ViewHolder(View v) {
             super(v);
-            messageContent = (TextView) v.findViewById(R.id.conversation_item_body);
+            messageContent = (TextView) v.findViewById(R.id.pinned_message_body);
         }
     }
 
     public PinnedMessageAdapter(Activity mContext, Cursor cursor, MasterSecret masterSecret) {
-        dataCursor = cursor;
-        context = mContext;
-        db = DatabaseFactory.getMmsSmsDatabase(mContext);
+        dataCursor        = cursor;
+        context           = mContext;
+        db                = DatabaseFactory.getMmsSmsDatabase(mContext);
         this.masterSecret = masterSecret;
+        this.adapter      = this;
+
     }
 
     @Override
     public PinnedMessageAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Log.v("pinFragment", "on create view holder");
-        View cardview = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.pinned_conversation_item_sent, parent, false);
 
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View theInflatedView = inflater.inflate(R.layout.pinned_conversation_item_sent, null);
-        theInflatedView.setOnTouchListener(new OnSwipeTouchListener(parent.getContext()) {
-
-            public void onSwipeRight() {
-                System.out.println("i made it 1");
-            }
-            public void onSwipeLeft() {
-                System.out.println("i made it 2");
-            }
-        });
+        this.view = theInflatedView;
 
         return new ViewHolder(theInflatedView);
     }
@@ -93,8 +93,30 @@ public class PinnedMessageAdapter extends RecyclerView.Adapter<PinnedMessageAdap
         MmsSmsDatabase.Reader reader = db.readerFor(dataCursor, masterSecret);
         MessageRecord record = reader.getCurrent();
 
-
+        this.setMessageView(record, view);
         holder.messageContent.setText(record.getDisplayBody().toString());
+        Button unpinButton = (Button)view.findViewById(R.id.unpin_button);
+        unpinButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                PinnedMessagesHandler handler = new PinnedMessagesHandler(context);
+                handler.handleUnpinMessage(record, DatabaseFactory.getSmsDatabase(context));
+
+                ((ViewGroup)v.getParent().getParent().getParent()).removeAllViews();
+
+            }
+        });
+    }
+
+    private void setMessageView(MessageRecord record, View view) {
+        // To check if the message is incoming
+        if(record.isOutgoing()) {
+            LinearLayout messageBubbleLayout = (LinearLayout)view.findViewById(R.id.pinned_body_bubble);
+
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) messageBubbleLayout.getLayoutParams();
+            params.leftMargin = 5; params.rightMargin = 50;
+        }
     }
 
     @Override
