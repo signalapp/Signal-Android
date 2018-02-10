@@ -72,6 +72,7 @@ import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
+import org.thoughtcrime.securesms.webrtc.WebRtcDataProtos;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -343,51 +344,40 @@ public class ConversationFragment extends Fragment
     }
   }
 
-  public void handlePinOrUnpinEvent(final MessageRecord message, boolean pin) {
-    MessagingDatabase databaseToQuery;
+  public void handlePinOrUnpinEvent(final MessageRecord message, boolean pin,
+                                    PinnedMessagesHandler handler)
+  {
+    PinnedMessagesHandler pinHandler;
+    MessagingDatabase     databaseToQuery;
+    String                outputMessage;
+    boolean               result;
 
-    if(message.isMms()) {
-      databaseToQuery = DatabaseFactory.getMmsDatabase(getActivity());
-    } else {
-      databaseToQuery = DatabaseFactory.getSmsDatabase(getActivity());
-    }
+    pinHandler       = handler;
+    databaseToQuery  = pinHandler.getAppropriateDatabase(message);
+
 
     if(pin) {
-      handlePinMessage(message, databaseToQuery);
+      result = pinHandler.handlePinMessage(message, databaseToQuery);
+
+      if(result) {
+        outputMessage = getString(R.string.ConversationFragment_pin_new);
+      } else {
+        outputMessage = getString(R.string.ConversationFragment_pin_already_pinned);
+      }
+
     } else {
-      handleUnpinMessage(message, databaseToQuery);
-    }
-  }
+      result = pinHandler.handleUnpinMessage(message, databaseToQuery);
 
-  private void handlePinMessage(final MessageRecord message, MessagingDatabase databaseToQuery) {
-    boolean result;
-    String outputMessage;
-
-    result = databaseToQuery.pinMessage(message.getId());
-
-    if(result) {
-      outputMessage = getString(R.string.ConversationFragment_pin_new);
-    } else {
-      outputMessage = getString(R.string.ConversationFragment_pin_already_pinned);
-    }
-
-    showToast(outputMessage);
-  }
-
-  private void handleUnpinMessage(final MessageRecord message, MessagingDatabase databaseToQuery) {
-    boolean result;
-    String outputMessage;
-
-    result = databaseToQuery.unpinMessage(message.getId());
-
-    if(result) {
-      outputMessage = getString(R.string.ConversationFragment_unpin_new);
-    } else {
-      outputMessage = getString(R.string.ConversationFragment_unpin_already_unpinned);
+      if(result) {
+        outputMessage = getString(R.string.ConversationFragment_unpin_new);
+      } else {
+        outputMessage = getString(R.string.ConversationFragment_unpin_already_unpinned);
+      }
     }
 
     showToast(outputMessage);
   }
+
 
   private void handleDeleteMessages(final Set<MessageRecord> messageRecords) {
     int                 messagesCount = messageRecords.size();
@@ -748,11 +738,13 @@ public class ConversationFragment extends Fragment
           actionMode.finish();
           return true;
         case R.id.menu_context_pin_message:
-          handlePinOrUnpinEvent(getSelectedMessageRecord(), true);
+          handlePinOrUnpinEvent(getSelectedMessageRecord(), true,
+                  new PinnedMessagesHandler(getContext()));
           actionMode.finish();
           return true;
         case R.id.menu_context_unpin_message:
-          handlePinOrUnpinEvent(getSelectedMessageRecord(), false);
+          handlePinOrUnpinEvent(getSelectedMessageRecord(), false,
+                  new PinnedMessagesHandler(getContext()));
           actionMode.finish();
           return true;
       }

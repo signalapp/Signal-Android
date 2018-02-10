@@ -67,17 +67,13 @@ public class PinnedMessageAdapter extends RecyclerView.Adapter<PinnedMessageAdap
             }
             public void onSwipeLeft() {
                 System.out.println("i made it 2");
-
             }
-
-
         });
 
         return new ViewHolder(theInflatedView);
     }
 
     public Cursor swapCursor(Cursor cursor) {
-        Log.v("pinFragment", "swap cursor");
         if (dataCursor == cursor) {
             return null;
         }
@@ -97,7 +93,6 @@ public class PinnedMessageAdapter extends RecyclerView.Adapter<PinnedMessageAdap
         MmsSmsDatabase.Reader reader = db.readerFor(dataCursor, masterSecret);
         MessageRecord record = reader.getCurrent();
 
-        Log.v("pinFragment", record.getDisplayBody().toString());
 
         holder.messageContent.setText(record.getDisplayBody().toString());
     }
