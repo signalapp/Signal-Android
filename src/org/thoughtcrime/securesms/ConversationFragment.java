@@ -72,7 +72,6 @@ import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
-import org.thoughtcrime.securesms.webrtc.WebRtcDataProtos;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -249,14 +248,10 @@ public class ConversationFragment extends Fragment
   }
 
   private void setCorrectPinVisibility(Menu menu, MessageRecord messageRecord, boolean actionMessage) {
-    MessagingDatabase database;
-    if(messageRecord.isMms()) {
-      database = DatabaseFactory.getMmsDatabase(getActivity());
-    } else {
-      database = DatabaseFactory.getSmsDatabase(getActivity());
-    }
+    PinnedMessagesHandler pinHandler = new PinnedMessagesHandler(getContext());
+    MessagingDatabase databaseToQuery = pinHandler.getAppropriateDatabase(messageRecord);
 
-    if(database.isPinned(messageRecord.getId())) {
+    if (databaseToQuery.isPinned(messageRecord.getId())) {
       menu.findItem(R.id.menu_context_unpin_message).setVisible(!actionMessage);
       menu.findItem(R.id.menu_context_pin_message).setVisible(false);
     } else {
@@ -330,23 +325,8 @@ public class ConversationFragment extends Fragment
         clipboard.setText(result);
   }
 
-  //TODO remove this method after the ui and db branch are merged
-  private void getPinnedMessages(){
-    MmsSmsDatabase db = DatabaseFactory.getMmsSmsDatabase(getContext());
-    Cursor cursor = db.getPinnedMessages(threadId);
-
-    if(cursor.getCount() > 0){
-      MmsSmsDatabase.Reader reader = db.readerFor(cursor, masterSecret);
-
-      while(reader.getNext() != null){
-        MessageRecord record = reader.getCurrent();
-      }
-    }
-  }
-
-  public void handlePinOrUnpinEvent(final MessageRecord message, boolean pin,
-                                    PinnedMessagesHandler handler)
-  {
+  public void handlePinOrUnpinMessage(final MessageRecord message, boolean pin,
+                                      PinnedMessagesHandler handler) {
     PinnedMessagesHandler pinHandler;
     MessagingDatabase     databaseToQuery;
     String                outputMessage;
@@ -355,11 +335,10 @@ public class ConversationFragment extends Fragment
     pinHandler       = handler;
     databaseToQuery  = pinHandler.getAppropriateDatabase(message);
 
-
-    if(pin) {
+    if (pin) {
       result = pinHandler.handlePinMessage(message, databaseToQuery);
 
-      if(result) {
+      if (result) {
         outputMessage = getString(R.string.ConversationFragment_pin_new);
       } else {
         outputMessage = getString(R.string.ConversationFragment_pin_already_pinned);
@@ -368,7 +347,7 @@ public class ConversationFragment extends Fragment
     } else {
       result = pinHandler.handleUnpinMessage(message, databaseToQuery);
 
-      if(result) {
+      if (result) {
         outputMessage = getString(R.string.ConversationFragment_unpin_new);
       } else {
         outputMessage = getString(R.string.ConversationFragment_unpin_already_unpinned);
@@ -738,12 +717,12 @@ public class ConversationFragment extends Fragment
           actionMode.finish();
           return true;
         case R.id.menu_context_pin_message:
-          handlePinOrUnpinEvent(getSelectedMessageRecord(), true,
+          handlePinOrUnpinMessage(getSelectedMessageRecord(), true,
                   new PinnedMessagesHandler(getContext()));
           actionMode.finish();
           return true;
         case R.id.menu_context_unpin_message:
-          handlePinOrUnpinEvent(getSelectedMessageRecord(), false,
+          handlePinOrUnpinMessage(getSelectedMessageRecord(), false,
                   new PinnedMessagesHandler(getContext()));
           actionMode.finish();
           return true;

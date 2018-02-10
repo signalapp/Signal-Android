@@ -94,9 +94,9 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   private void initializeStethoLibrary() {
-      try{
+      try {
         initializeWithDefaults(this);
-      }catch (Exception e) {
+      } catch (Exception e) {
         Log.w(TAG,"Stetho was not loaded properly");
       }
   }

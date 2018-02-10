@@ -39,7 +39,6 @@ public class PinnedMessageActivity extends PassphraseRequiredActionBarActivity
     protected void onCreate(Bundle state, @NonNull MasterSecret masterSecret) {
         Log.w(TAG, "onCreate()");
 
-
         this.masterSecret = masterSecret;
 
         setContentView(R.layout.pinned_message_activity);

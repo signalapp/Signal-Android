@@ -32,10 +32,10 @@ import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 
 public class PinnedMessageAdapter extends RecyclerView.Adapter<PinnedMessageAdapter.ViewHolder> {
-    Cursor dataCursor;
-    Context context;
-    MmsSmsDatabase db;
-    MasterSecret masterSecret;
+    private Cursor         dataCursor;
+    private Context        context;
+    private MmsSmsDatabase db;
+    private MasterSecret   masterSecret;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView messageContent;
@@ -92,7 +92,6 @@ public class PinnedMessageAdapter extends RecyclerView.Adapter<PinnedMessageAdap
 
         MmsSmsDatabase.Reader reader = db.readerFor(dataCursor, masterSecret);
         MessageRecord record = reader.getCurrent();
-
 
         holder.messageContent.setText(record.getDisplayBody().toString());
     }
