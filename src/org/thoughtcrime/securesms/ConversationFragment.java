@@ -543,7 +543,7 @@ public class ConversationFragment extends Fragment
   }
 
   public void showToast(String outputMessage) {
-    Toast toast=Toast.makeText(getContext(),outputMessage ,Toast.LENGTH_SHORT);
+    Toast toast=Toast.makeText(getContext(), outputMessage, Toast.LENGTH_SHORT);
     toast.show();
   }
 
