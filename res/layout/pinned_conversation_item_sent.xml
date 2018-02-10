@@ -35,7 +35,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="5dp"
-            android:background="@drawable/sent_bubble"
+            android:background="@drawable/pinned_message_bubble"
             android:orientation="vertical">
 
             <ViewStub
@@ -52,7 +52,7 @@
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/black"
+                android:textColor="?conversation_item_sent_text_primary_color"
                 android:textColorLink="?conversation_item_sent_text_primary_color"
                 android:textSize="@dimen/conversation_item_body_text_size"
                 app:scaleEmojis="true"
