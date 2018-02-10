@@ -78,10 +78,6 @@ public class PinnedMessageActivity extends PassphraseRequiredActionBarActivity
         Address address = getIntent().getParcelableExtra(ADDRESS_EXTRA);
         this.threadId   = getIntent().getLongExtra("THREADID", -1);
 
-//        this.viewPager = ViewUtil.findById(this, R.id.pager);
-//        this.toolbar   = ViewUtil.findById(this, R.id.toolbar);
-//        this.tabLayout = ViewUtil.findById(this, R.id.tab_layout);
-
         this.toolbar   = ViewUtil.findById(this, R.id.toolbar);
         this.recipient = Recipient.from(this, address, true);
     }
