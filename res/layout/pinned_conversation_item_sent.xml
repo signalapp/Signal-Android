@@ -52,7 +52,7 @@
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="?conversation_item_sent_text_primary_color"
+                android:textColor="@color/black"
                 android:textColorLink="?conversation_item_sent_text_primary_color"
                 android:textSize="@dimen/conversation_item_body_text_size"
                 app:scaleEmojis="true"
@@ -91,78 +91,6 @@
                     android:visibility="gone"
                     android:layout_marginRight="8dip"
                     android:paddingTop="1dip"/>
-
-
-                <TextView android:id="@+id/conversation_item_date"
-                    android:autoLink="none"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="15sp"
-                    android:linksClickable="false"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_gravity="right|bottom"
-                    android:fontFamily="sans-serif-light"
-                    android:textColor="?conversation_item_sent_text_secondary_color"
-                    android:textSize="@dimen/conversation_item_date_text_size"
-                    android:paddingTop="1dip"
-                    android:paddingBottom="2dp"
-                    tools:text="30 mins"/>
-
-                <TextView android:id="@+id/sim_info"
-                    android:autoLink="none"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="15sp"
-                    android:linksClickable="false"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_gravity="right|bottom"
-                    android:fontFamily="sans-serif-light"
-                    android:textColor="?conversation_item_sent_text_secondary_color"
-                    android:textSize="@dimen/conversation_item_date_text_size"
-                    android:paddingTop="1dip"
-                    android:paddingBottom="2dp"
-                    android:paddingLeft="4dp"
-                    android:paddingStart="4dp"
-                    android:visibility="gone"
-                    tools:visibility="visible"
-                    tools:text="to SIM1"/>
-
-                <org.thoughtcrime.securesms.components.DeliveryStatusView
-                    android:id="@+id/delivery_status"
-                    android:layout_width="20dp"
-                    android:layout_height="wrap_content"
-                    android:alpha=".7"
-                    app:iconColor="?conversation_item_sent_text_secondary_color"/>
-
-                <org.thoughtcrime.securesms.components.ExpirationTimerView
-                    android:id="@+id/expiration_indicator"
-                    app:empty="@drawable/ic_hourglass_empty_white_18dp"
-                    app:full="@drawable/ic_hourglass_full_white_18dp"
-                    app:tint="?conversation_item_sent_text_secondary_color"
-                    app:percentage="0"
-                    app:offset="0"
-                    android:layout_gravity="center_vertical|end"
-                    android:alpha=".6"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginStart="3dp"
-                    android:layout_width="7dp"
-                    android:layout_height="11dp"
-                    android:visibility="gone"
-                    tools:visibility="visible"/>
-
-                <ImageView android:id="@+id/insecure_indicator"
-                    android:layout_width="12dp"
-                    android:layout_height="11dp"
-                    android:src="@drawable/ic_unlocked_white_18dp"
-                    android:visibility="gone"
-                    android:layout_gravity="center_vertical|end"
-                    android:alpha=".6"
-                    android:tint="?attr/conversation_item_sent_text_secondary_color"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginStart="3dp"
-                    android:tintMode="multiply"
-                    android:contentDescription="@string/conversation_item__secure_message_description"
-                    tools:visibility="visible"/>
 
             </LinearLayout>
         </LinearLayout>

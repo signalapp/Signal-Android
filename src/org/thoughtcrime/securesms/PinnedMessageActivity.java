@@ -85,6 +85,7 @@ public class PinnedMessageActivity extends PassphraseRequiredActionBarActivity
     private void initializeToolbar() {
         setSupportActionBar(this.toolbar);
         getSupportActionBar().setTitle(recipient.toShortString());
+        getSupportActionBar().setSubtitle("Pinned Messages");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         this.recipient.addListener(recipient -> getSupportActionBar().setTitle(recipient.toShortString()));
     }
