@@ -56,10 +56,22 @@ public class PinnedMessageAdapter extends RecyclerView.Adapter<PinnedMessageAdap
     public PinnedMessageAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Log.v("pinFragment", "on create view holder");
         View cardview = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.pinned_message_item, parent, false);
+                .inflate(R.layout.pinned_conversation_item_sent, parent, false);
 
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View theInflatedView = inflater.inflate(R.layout.conversation_item_sent, null);
+        View theInflatedView = inflater.inflate(R.layout.pinned_conversation_item_sent, null);
+        theInflatedView.setOnTouchListener(new OnSwipeTouchListener(parent.getContext()) {
+
+            public void onSwipeRight() {
+                System.out.println("i made it 1");
+            }
+            public void onSwipeLeft() {
+                System.out.println("i made it 2");
+
+            }
+
+
+        });
 
         return new ViewHolder(theInflatedView);
     }
