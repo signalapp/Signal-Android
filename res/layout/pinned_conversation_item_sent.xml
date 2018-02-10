@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.thoughtcrime.securesms.ConversationItem
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/pinned_conversation_item"
+    android:id="@+id/conversation_item"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -19,7 +19,7 @@
         android:layout_marginBottom="6dp"
         android:layout_marginRight="0dp">
 
-        <org.thoughtcrime.securesms.components.AlertView
+        <LinearLayout
             android:id="@+id/indicators_parent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -29,24 +29,19 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"/>
 
-        <LinearLayout android:id="@+id/body_bubble"
+        <LinearLayout
+            android:id="@+id/pinned_body_bubble"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/indicators_parent"
             android:layout_alignParentRight="true"
-            android:layout_marginLeft="50dp"
+            android:layout_alignStart="@+id/indicators_parent"
             android:layout_marginRight="5dp"
-            android:background="@drawable/pinned_message_bubble"
+            android:background="@drawable/sent_bubble"
             android:orientation="vertical">
 
-            <ViewStub
-                android:id="@+id/image_view_stub"
-                android:layout_width="@dimen/media_bubble_height"
-                android:layout_height="@dimen/media_bubble_height"
-                android:layout="@layout/conversation_item_sent_thumbnail"/>
-
-
-            <org.thoughtcrime.securesms.components.emoji.EmojiTextView
-                android:id="@+id/conversation_item_body"
+            <TextView
+                android:id="@+id/pinned_message_body"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="4dp"
@@ -55,42 +50,85 @@
                 android:textColor="?conversation_item_sent_text_primary_color"
                 android:textColorLink="?conversation_item_sent_text_primary_color"
                 android:textSize="@dimen/conversation_item_body_text_size"
-                app:scaleEmojis="true"
-                tools:text="Mango pickle lorem ipsum"/>
+                tools:text="Mango pickle lorem ipsum" />
 
-            <LinearLayout android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="365dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="right"
                 android:orientation="horizontal"
                 android:paddingLeft="4dp"
-                android:paddingRight="4dp"
-                android:layout_gravity="right">
+                android:paddingRight="4dp">
 
-                <View android:id="@+id/group_sender_holder"
+                <View
+                    android:id="@+id/group_sender_holder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
-                <TextView android:id="@+id/group_message_sender"
+
+                <TextView
+                    android:id="@+id/conversation_item_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right|bottom"
+                    android:autoLink="none"
+                    android:fontFamily="sans-serif-light"
                     android:linksClickable="false"
+                    android:minWidth="15sp"
+                    android:paddingBottom="2dp"
+                    android:paddingTop="1dip"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_gravity="right"
                     android:textColor="?conversation_item_sent_text_secondary_color"
-                    android:visibility="gone"
-                    android:layout_marginRight="8dip"
-                    android:paddingTop="1dip"/>
+                    android:textSize="@dimen/conversation_item_date_text_size"
+                    tools:text="30 mins" />
 
-                <TextView android:id="@+id/group_message_sender_profile"
+                <TextView
+                    android:id="@+id/sim_info"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right|bottom"
+                    android:autoLink="none"
+                    android:fontFamily="sans-serif-light"
                     android:linksClickable="false"
+                    android:minWidth="15sp"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="4dp"
+                    android:paddingStart="4dp"
+                    android:paddingTop="1dip"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_gravity="right"
                     android:textColor="?conversation_item_sent_text_secondary_color"
+                    android:textSize="@dimen/conversation_item_date_text_size"
                     android:visibility="gone"
-                    android:layout_marginRight="8dip"
-                    android:paddingTop="1dip"/>
+                    tools:text="to SIM1"
+                    tools:visibility="visible" />
+
+
+                <ImageView
+                    android:id="@+id/insecure_indicator"
+                    android:layout_width="12dp"
+                    android:layout_height="11dp"
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginStart="3dp"
+                    android:alpha=".6"
+                    android:contentDescription="@string/conversation_item__secure_message_description"
+                    android:src="@drawable/ic_unlocked_white_18dp"
+                    android:tint="?attr/conversation_item_sent_text_secondary_color"
+                    android:tintMode="multiply"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+                <Button
+                    android:id="@+id/unpin_button"
+                    android:layout_width="195dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="30dp"
+                    android:layout_toEndOf="@+id/indicator_text"
+                    android:layout_toRightOf="@+id/indicator_text"
+                    android:layout_weight="1"
+                    android:text="@string/conversation_context__menu_unpin_message" />
 
             </LinearLayout>
         </LinearLayout>
@@ -113,4 +151,4 @@
             android:visibility="gone" />
 
     </RelativeLayout>
-</org.thoughtcrime.securesms.ConversationItem>
+</LinearLayout>
