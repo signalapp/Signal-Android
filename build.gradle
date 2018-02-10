@@ -59,7 +59,7 @@ repositories {
 
 dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    implementation 'com.android.support:support-v4:27.0.2'
+    implementation 'com.android.support:support-v4:27.0.1'
     compile 'com.android.support:appcompat-v7:27.0.1'
     compile 'com.android.support:recyclerview-v7:27.0.1'
     compile 'com.android.support:design:27.0.1'
@@ -142,6 +142,8 @@ dependencies {
     androidTestCompile 'com.android.support:multidex-instrumentation:1.0.2'
     androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
     androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:3.0.1'
+    androidTestCompile 'com.android.support.test:runner:1.0.1'
     androidTestCompile ('org.assertj:assertj-core:1.7.1') {
         exclude group: 'org.hamcrest', module: 'hamcrest-core'
     }
@@ -265,6 +267,8 @@ android {
         buildConfigField "int", "GIPHY_PROXY_PORT", "80"
         buildConfigField "String", "USER_AGENT", "\"OWA\""
         buildConfigField "boolean", "DEV_BUILD", "false"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     compileOptions {
@@ -287,6 +291,7 @@ android {
 
     buildTypes {
         debug {
+            useProguard false
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
                           'proguard-google-play-services.pro',

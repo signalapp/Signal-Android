@@ -8,26 +8,26 @@
  language: android
  jdk: oraclejdk8
  sudo: false
- 
+
  android:
    components:
      - tools
      - platform-tools
-     - build-tools-27.0.2
+     - build-tools-27.0.1
      - android-27
      - extra-google-m2repository
-  
+
  before_install:
     - yes | sdkmanager "platforms;android-27"
- 
+
  script:
     - ./gradlew assemble
     - ./gradlew check
-  
+
  before_cache:
    - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
    - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
- 
+
  cache:
    directories:
      - $HOME/.gradle/caches/
