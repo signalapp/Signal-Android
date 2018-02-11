@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
-import android.database.Cursor;
 
 import org.junit.runner.RunWith;
 import org.mockito.BDDMockito;
@@ -9,7 +8,7 @@ import org.mockito.BDDMockito;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
+
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -17,7 +16,8 @@ import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 
-import static org.powermock.api.mockito.PowerMockito.when;
+import static org.mockito.Mockito.when;
+
 
 /**
  * Created by BABO99 on 2018-02-09.
@@ -26,17 +26,13 @@ import static org.powermock.api.mockito.PowerMockito.when;
 @PrepareForTest(DatabaseFactory.class)
 public class PinnedMessagesMocks extends BaseUnitTest {
     protected Context                   context;
-
     protected DatabaseFactory           databaseFactory;
-
     protected MessageRecord             messageRecordSms;
     protected MessageRecord             messageRecordMms;
     protected MessagingDatabase         messagingDatabase;
     protected MmsDatabase               mmsDatabase;
     protected MmsSmsDatabase            mmsSmsDatabase;
-
     protected SmsDatabase               smsDatabase;
-
 
     protected void setUpPinMethod() {
         when(messagingDatabase.pinMessage(1)).thenReturn(true); // message id 1 is pinned
