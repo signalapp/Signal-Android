@@ -18,10 +18,6 @@ import org.thoughtcrime.securesms.database.SmsDatabase;
 
 import static org.mockito.Mockito.when;
 
-
-/**
- * Created by BABO99 on 2018-02-09.
- */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({DatabaseFactory.class})
 public class PinnedMessagesMocks extends BaseUnitTest {
@@ -60,19 +56,19 @@ public class PinnedMessagesMocks extends BaseUnitTest {
         BDDMockito.given(DatabaseFactory.getSmsDatabase(context)).willReturn(smsDatabase);
         BDDMockito.given(DatabaseFactory.getMmsDatabase(context)).willReturn(mmsDatabase);
 
-        when( smsDatabase.pinMessage(1)).thenReturn(true);
-        when( smsDatabase.pinMessage(2)).thenReturn(false);
-        when( smsDatabase.pinMessage(3)).thenReturn(false);
+        when(smsDatabase.pinMessage(1)).thenReturn(true);
+        when(smsDatabase.pinMessage(2)).thenReturn(false);
+        when(smsDatabase.pinMessage(3)).thenReturn(false);
 
-        when( mmsDatabase.pinMessage(1)).thenReturn(true);
-        when( mmsDatabase.pinMessage(2)).thenReturn(false);
-        when( mmsDatabase.pinMessage(3)).thenReturn(false);
+        when(mmsDatabase.pinMessage(1)).thenReturn(true);
+        when(mmsDatabase.pinMessage(2)).thenReturn(false);
+        when(mmsDatabase.pinMessage(3)).thenReturn(false);
 
-        when( smsDatabase.unpinMessage(1)).thenReturn(false); // originally not pinned
-        when( smsDatabase.unpinMessage(2)).thenReturn(true);  // pinned
+        when(smsDatabase.unpinMessage(1)).thenReturn(false); // originally not pinned
+        when(smsDatabase.unpinMessage(2)).thenReturn(true);  // pinned
 
-        when( mmsDatabase.unpinMessage(1)).thenReturn(false); // originally not pinned
-        when( mmsDatabase.unpinMessage(2)).thenReturn(true);  // pinned
+        when(mmsDatabase.unpinMessage(1)).thenReturn(false); // originally not pinned
+        when(mmsDatabase.unpinMessage(2)).thenReturn(true);  // pinned
     }
 
     public void setMockGetIdReturnValue(long val) {

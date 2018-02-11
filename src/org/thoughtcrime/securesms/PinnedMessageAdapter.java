@@ -108,7 +108,7 @@ public class PinnedMessageAdapter extends RecyclerView.Adapter<PinnedMessageAdap
                 record.getTimestamp()));
 
         Button unpinButton = (Button)view.findViewById(R.id.unpin_button);
-        unpinButton.setOnClickListener(new View.OnClickListener(){
+        unpinButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 PinnedMessagesHandler handler = new PinnedMessagesHandler(context);
@@ -120,11 +120,9 @@ public class PinnedMessageAdapter extends RecyclerView.Adapter<PinnedMessageAdap
     }
 
     private void setMessageView(MessageRecord record, ViewHolder viewHolder) {
-        // To check if the message is incoming
         if(!record.isOutgoing()) {
             viewHolder.recipient.setText(record.getRecipient().getName());
         }
-
     }
 
     @Override

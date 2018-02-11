@@ -9,11 +9,6 @@ import static junit.framework.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-
-/**
- * Created by BABO99 on 2018-02-08.
- */
-
 @RunWith(JUnit4.class)
 public class PinnedMessagesTest extends PinnedMessagesMocks {
 
@@ -27,7 +22,6 @@ public class PinnedMessagesTest extends PinnedMessagesMocks {
     }
 
     @Test
-    // This test is to check the behaviour of the method
     public void testPinMessageMethod() {
         assertEquals(messagingDatabase.pinMessage(1), true);
         assertEquals(messagingDatabase.pinMessage(2), false);
@@ -39,7 +33,6 @@ public class PinnedMessagesTest extends PinnedMessagesMocks {
     }
 
     @Test
-    // This test is to check the behaviour of the method
     public void testUnpinMessageMethod() {
         assertEquals(messagingDatabase.unpinMessage(1), true);
         assertEquals(messagingDatabase.unpinMessage(2), false);
@@ -49,5 +42,4 @@ public class PinnedMessagesTest extends PinnedMessagesMocks {
         verify(messagingDatabase).unpinMessage(2);
         verify(messagingDatabase).unpinMessage(3);
     }
-
 }

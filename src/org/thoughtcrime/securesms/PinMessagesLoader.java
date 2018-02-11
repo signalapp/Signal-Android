@@ -9,12 +9,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.util.AbstractCursorLoader;
 
-/**
- * Created by BABO99 on 2018-02-05.
- */
-
 public class PinMessagesLoader extends AbstractCursorLoader {
-
     private final long      threadID;
     private       long      limit;
 

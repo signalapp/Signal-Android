@@ -1,4 +1,5 @@
 package org.thoughtcrime.securesms;
+
 import android.content.Context;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
@@ -6,13 +7,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 
-/**
- * Created by shawnelbaz on 2018-02-09.
- */
-
-/**
- * Detects left and right swipes across a view.
- */
 public class OnSwipeTouchListener implements OnTouchListener {
 
     private final GestureDetector gestureDetector;

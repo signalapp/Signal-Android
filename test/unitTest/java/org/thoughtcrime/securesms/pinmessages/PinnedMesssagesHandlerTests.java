@@ -15,10 +15,6 @@ import static junit.framework.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-/**
- * Created by BABO99 on 2018-02-09.
- */
-
 public class PinnedMesssagesHandlerTests extends PinnedMessagesMocks{
 
     @Override
@@ -38,7 +34,6 @@ public class PinnedMesssagesHandlerTests extends PinnedMessagesMocks{
         super.setUpStaticMessagingDatabase();
     }
 
-    // Checking if the pinHandle has called the appropriate method
     @Test
     public void testPinHandleGetAppropriateDatabase() {
         PinnedMessagesHandler handler = new PinnedMessagesHandler(context);

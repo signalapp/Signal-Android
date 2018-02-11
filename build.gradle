@@ -97,9 +97,7 @@ dependencies {
     compile 'com.google.zxing:android-integration:3.1.0'
     compile 'com.squareup.dagger:dagger:1.2.2'
 
-    // Stetho core
     compile 'com.facebook.stetho:stetho:1.5.0'
-    //If you want to add a network helper
     compile 'com.facebook.stetho:stetho-okhttp:1.5.0'
 
     annotationProcessor 'com.squareup.dagger:dagger-compiler:1.2.2'
