@@ -188,9 +188,11 @@
         <item quantity="other">Saving %1$d attachments to storage...</item>
     </plurals>
     <string name="ConversationFragment_pin_new">You pinned a message</string>
+    <string name="ConversationFragment_pin_mms_error_message">You cannot pin Mms</string>
     <string name="ConversationFragment_unpin_new">You unpinned a message</string>
     <string name="ConversationFragment_pin_already_pinned">The message is already pinned</string>
     <string name="ConversationFragment_unpin_already_unpinned">The message is already unpinned</string>
+
     <string name="ConversationFragment_pending">Pending...</string>
     <string name="ConversationFragment_push">Data (Signal)</string>
     <string name="ConversationFragment_mms">MMS</string>

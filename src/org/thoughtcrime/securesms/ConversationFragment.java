@@ -335,23 +335,27 @@ public class ConversationFragment extends Fragment
     pinHandler       = handler;
     databaseToQuery  = pinHandler.getAppropriateDatabase(message);
 
-    if (pin) {
-      result = pinHandler.handlePinMessage(message, databaseToQuery);
+    if(!message.isMms()) {
+      if (pin) {
+        result = pinHandler.handlePinMessage(message, databaseToQuery);
 
-      if (result) {
-        outputMessage = getString(R.string.ConversationFragment_pin_new);
+        if (result) {
+          outputMessage = getString(R.string.ConversationFragment_pin_new);
+        } else {
+          outputMessage = getString(R.string.ConversationFragment_pin_already_pinned);
+        }
+
       } else {
-        outputMessage = getString(R.string.ConversationFragment_pin_already_pinned);
-      }
+        result = pinHandler.handleUnpinMessage(message, databaseToQuery);
 
+        if (result) {
+          outputMessage = getString(R.string.ConversationFragment_unpin_new);
+        } else {
+          outputMessage = getString(R.string.ConversationFragment_unpin_already_unpinned);
+        }
+      }
     } else {
-      result = pinHandler.handleUnpinMessage(message, databaseToQuery);
-
-      if (result) {
-        outputMessage = getString(R.string.ConversationFragment_unpin_new);
-      } else {
-        outputMessage = getString(R.string.ConversationFragment_unpin_already_unpinned);
-      }
+      outputMessage = getString(R.string.ConversationFragment_pin_mms_error_message);
     }
 
     showToast(outputMessage);

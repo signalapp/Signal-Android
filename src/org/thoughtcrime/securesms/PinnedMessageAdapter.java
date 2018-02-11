@@ -35,6 +35,9 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.util.DateUtils;
+
+import java.util.Locale;
 
 public class PinnedMessageAdapter extends RecyclerView.Adapter<PinnedMessageAdapter.ViewHolder> {
     private Cursor                      dataCursor;
@@ -47,9 +50,14 @@ public class PinnedMessageAdapter extends RecyclerView.Adapter<PinnedMessageAdap
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView messageContent;
+        public TextView recipient;
+        public TextView time;
+
         public ViewHolder(View v) {
             super(v);
             messageContent = (TextView) v.findViewById(R.id.pinned_message_body);
+            recipient      = (TextView) v.findViewById(R.id.pinned_message_recipient);
+            time           = (TextView) v.findViewById(R.id.conversation_item_date);
         }
     }
 
@@ -93,30 +101,30 @@ public class PinnedMessageAdapter extends RecyclerView.Adapter<PinnedMessageAdap
         MmsSmsDatabase.Reader reader = db.readerFor(dataCursor, masterSecret);
         MessageRecord record = reader.getCurrent();
 
-        this.setMessageView(record, view);
+        this.setMessageView(record, holder);
+
         holder.messageContent.setText(record.getDisplayBody().toString());
+        holder.time.setText(DateUtils.getExtendedRelativeTimeSpanString(context, new Locale("en", "CA"),
+                record.getTimestamp()));
+
         Button unpinButton = (Button)view.findViewById(R.id.unpin_button);
         unpinButton.setOnClickListener(new View.OnClickListener(){
-
             @Override
             public void onClick(View v) {
                 PinnedMessagesHandler handler = new PinnedMessagesHandler(context);
                 handler.handleUnpinMessage(record, DatabaseFactory.getSmsDatabase(context));
 
                 ((ViewGroup)v.getParent().getParent().getParent()).removeAllViews();
-
             }
         });
     }
 
-    private void setMessageView(MessageRecord record, View view) {
+    private void setMessageView(MessageRecord record, ViewHolder viewHolder) {
         // To check if the message is incoming
-        if(record.isOutgoing()) {
-            LinearLayout messageBubbleLayout = (LinearLayout)view.findViewById(R.id.pinned_body_bubble);
-
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) messageBubbleLayout.getLayoutParams();
-            params.leftMargin = 5; params.rightMargin = 50;
+        if(!record.isOutgoing()) {
+            viewHolder.recipient.setText(record.getRecipient().getName());
         }
+
     }
 
     @Override

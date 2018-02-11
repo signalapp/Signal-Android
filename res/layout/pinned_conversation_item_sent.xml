@@ -40,14 +40,69 @@
             android:background="@drawable/pinned_message_bubble"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/unpin_button"
-                android:layout_width="56dp"
-                android:layout_height="wrap_content"
-                android:background="?conversation_item_bubble_background"
-                android:drawableLeft="@drawable/ic_unpin"
-                android:drawableStart="@drawable/ic_unpin"
-                android:paddingLeft="16dp" />
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/conversation_item_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="16dp"
+                    android:layout_gravity="right|bottom"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="186dp"
+                    android:layout_marginTop="10dp"
+                    android:autoLink="none"
+                    android:linksClickable="false"
+                    android:minWidth="6sp"
+                    android:paddingBottom="2dp"
+                    android:paddingTop="1dip"
+                    android:textAppearance="@style/NotificationText"
+                    android:textSize="8sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/unpin_button"
+                    app:layout_constraintTop_toBottomOf="@+id/pinned_message_recipient"
+                    tools:text="30 mins" />
+
+                <Button
+                    android:id="@+id/unpin_button"
+                    android:layout_width="56dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="47dp"
+                    android:layout_marginTop="8dp"
+                    android:background="?conversation_item_bubble_background"
+                    android:drawableLeft="@drawable/ic_unpin"
+                    android:drawableStart="@drawable/ic_unpin"
+                    android:paddingLeft="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/pinned_message_recipient"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/pinned_message_recipient"
+                    android:layout_width="213dp"
+                    android:layout_height="33dp"
+                    android:layout_alignBaseline="@+id/unpin_button"
+                    android:layout_alignBottom="@+id/unpin_button"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="36dp"
+                    android:layout_marginTop="8dp"
+                    android:paddingLeft="8dp"
+                    android:text="Me"
+                    android:textColor="@color/amber"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.484" />
+
+            </android.support.constraint.ConstraintLayout>
 
             <TextView
                 android:id="@+id/pinned_message_body"
@@ -70,28 +125,7 @@
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp">
 
-                <View
-                    android:id="@+id/group_sender_holder"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone" />
-
                 <!-- TODO retrieve the timestamp/sender and display on each pinned message -->
-                <TextView
-                    android:id="@+id/conversation_item_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right|bottom"
-                    android:autoLink="none"
-                    android:fontFamily="sans-serif-light"
-                    android:linksClickable="false"
-                    android:minWidth="15sp"
-                    android:paddingBottom="2dp"
-                    android:paddingTop="1dip"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="?conversation_item_sent_text_secondary_color"
-                    android:textSize="@dimen/conversation_item_date_text_size"
-                    tools:text="30 mins" />
 
             </LinearLayout>
         </LinearLayout>

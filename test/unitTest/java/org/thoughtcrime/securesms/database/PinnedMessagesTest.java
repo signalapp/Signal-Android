@@ -17,7 +17,6 @@ import static org.mockito.Mockito.verify;
 @RunWith(JUnit4.class)
 public class PinnedMessagesTest extends PinnedMessagesMocks {
 
-
     @Override
     public void setUp() {
         messagingDatabase = mock(MessagingDatabase.class);
