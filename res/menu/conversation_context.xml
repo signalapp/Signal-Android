@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:title="@string/conversation_context__menu_unpin_message"
+        android:id="@+id/menu_context_unpin_message"
+        android:icon="?menu_unpin_icon"
+        app:showAsAction="always" />
+
+    <item android:title="@string/conversation_context__menu_pin_message"
+        android:id="@+id/menu_context_pin_message"
+        android:icon="?menu_pin_icon"
+        app:showAsAction="always" />
+
     <item android:title="@string/conversation_context__menu_message_details"
           android:id="@+id/menu_context_details"
           android:icon="?menu_info_icon"

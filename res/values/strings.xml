@@ -187,6 +187,12 @@
         <item quantity="one">Saving attachment to storage...</item>
         <item quantity="other">Saving %1$d attachments to storage...</item>
     </plurals>
+    <string name="ConversationFragment_pin_new">You pinned a message</string>
+    <string name="ConversationFragment_pin_mms_error_message">You cannot pin Mms</string>
+    <string name="ConversationFragment_unpin_new">You unpinned a message</string>
+    <string name="ConversationFragment_pin_already_pinned">The message is already pinned</string>
+    <string name="ConversationFragment_unpin_already_unpinned">The message is already unpinned</string>
+
     <string name="ConversationFragment_pending">Pending...</string>
     <string name="ConversationFragment_push">Data (Signal)</string>
     <string name="ConversationFragment_mms">MMS</string>
@@ -307,7 +313,7 @@
     <!-- GiphyFragmentPageAdapter -->
     <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
     <string name="GiphyFragmentPagerAdapter_stickers">Stickers</string>
-    
+
     <!-- GroupCreateActivity -->
     <string name="GroupCreateActivity_actionbar_title">New group</string>
     <string name="GroupCreateActivity_actionbar_edit_title">Edit group</string>
@@ -831,7 +837,7 @@
     <!-- expiration -->
 
     <string name="expiration_off">Off</string>
-    
+
     <plurals name="expiration_seconds">
         <item quantity="one">1 second</item>
         <item quantity="other">%d seconds</item>
@@ -866,7 +872,7 @@
     </plurals>
 
     <string name="expiration_weeks_abbreviated">%dw</string>
-    
+
     <!-- unverified safety numbers -->
     <string name="IdentityUtil_unverified_banner_one">Your safety number with %s has changed and is no longer verified</string>
     <string name="IdentityUtil_unverified_banner_two">Your safety numbers with %1$s and %2$s are no longer verified</string>
@@ -1164,7 +1170,7 @@
     <string name="preferences_chats__message_text_size">Message font size</string>
     <string name="preferences_events__contact_joined_signal">Contact joined Signal</string>
     <string name="preferences_notifications__priority">Priority</string>
-    
+
     <!-- **************************************** -->
     <!-- menus -->
     <!-- **************************************** -->
@@ -1188,6 +1194,8 @@
     <string name="conversation_context__menu_delete_message">Delete message</string>
     <string name="conversation_context__menu_forward_message">Forward message</string>
     <string name="conversation_context__menu_resend_message">Resend message</string>
+    <string name="conversation_context__menu_pin_message">Pin message</string>
+    <string name="conversation_context__menu_unpin_message">Unpin message</string>
 
     <!-- conversation_context_image -->
     <string name="conversation_context_image__save_attachment">Save attachment</string>
@@ -1239,6 +1247,7 @@
     <string name="conversation__menu_leave_group">Leave group</string>
     <string name="conversation__menu_view_all_media">All media</string>
     <string name="conversation__menu_conversation_settings">Conversation settings</string>
+    <string name="conversation__menu_view_pinned_messages">View pinned messages</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Expand popup</string>

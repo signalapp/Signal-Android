@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <stroke
+        android:width="4dp"
+        android:color="?conversation_item_bubble_background" />
+
+    <solid
+        android:color="?conversation_item_bubble_background"
+        />
+
+    <corners android:radius="5dp" />
+
+    <padding
+        android:left="20dp"
+        android:top="10dp"
+        android:right="20dp"
+        android:bottom="10dp"    >
+    </padding>
+
+</shape>

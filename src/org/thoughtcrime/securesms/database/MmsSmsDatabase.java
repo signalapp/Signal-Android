@@ -60,6 +60,7 @@ public class MmsSmsDatabase extends Database {
                                               MmsSmsColumns.EXPIRES_IN,
                                               MmsSmsColumns.EXPIRE_STARTED,
                                               MmsSmsColumns.NOTIFIED,
+                                              MmsSmsColumns.PINNED,
                                               TRANSPORT,
                                               AttachmentDatabase.ATTACHMENT_ID_ALIAS,
                                               AttachmentDatabase.UNIQUE_ID,
@@ -103,6 +104,13 @@ public class MmsSmsDatabase extends Database {
     setNotifyConverationListeners(cursor, threadId);
 
     return cursor;
+  }
+
+  public Cursor getPinnedMessages(long threadId) {
+    String order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
+    String selection = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND pinned = 1";
+
+    return  queryTables(PROJECTION, selection, order, null);
   }
 
   public Cursor getConversationSnippet(long threadId) {
@@ -164,6 +172,7 @@ public class MmsSmsDatabase extends Database {
                               MmsSmsColumns.MISMATCHED_IDENTITIES,
                               MmsSmsColumns.SUBSCRIPTION_ID, MmsSmsColumns.EXPIRES_IN, MmsSmsColumns.EXPIRE_STARTED,
                               MmsSmsColumns.NOTIFIED,
+                              MmsSmsColumns.PINNED,
                               MmsDatabase.NETWORK_FAILURE, TRANSPORT,
                               AttachmentDatabase.UNIQUE_ID,
                               AttachmentDatabase.MMS_ID,
@@ -196,6 +205,7 @@ public class MmsSmsDatabase extends Database {
                               MmsSmsColumns.MISMATCHED_IDENTITIES,
                               MmsSmsColumns.SUBSCRIPTION_ID, MmsSmsColumns.EXPIRES_IN, MmsSmsColumns.EXPIRE_STARTED,
                               MmsSmsColumns.NOTIFIED,
+                              MmsSmsColumns.PINNED,
                               MmsDatabase.NETWORK_FAILURE, TRANSPORT,
                               AttachmentDatabase.UNIQUE_ID,
                               AttachmentDatabase.MMS_ID,
@@ -253,6 +263,7 @@ public class MmsSmsDatabase extends Database {
     mmsColumnsPresent.add(MmsDatabase.NOTIFIED);
     mmsColumnsPresent.add(MmsDatabase.STATUS);
     mmsColumnsPresent.add(MmsDatabase.NETWORK_FAILURE);
+    mmsColumnsPresent.add(MmsSmsColumns.PINNED);
 
     mmsColumnsPresent.add(AttachmentDatabase.ROW_ID);
     mmsColumnsPresent.add(AttachmentDatabase.UNIQUE_ID);
@@ -289,6 +300,7 @@ public class MmsSmsDatabase extends Database {
     smsColumnsPresent.add(SmsDatabase.DATE_SENT);
     smsColumnsPresent.add(SmsDatabase.DATE_RECEIVED);
     smsColumnsPresent.add(SmsDatabase.STATUS);
+    smsColumnsPresent.add(MmsSmsColumns.PINNED);
 
     @SuppressWarnings("deprecation")
     String mmsSubQuery = mmsQueryBuilder.buildUnionSubQuery(TRANSPORT, mmsProjection, mmsColumnsPresent, 4, MMS_TRANSPORT, selection, null, null, null);

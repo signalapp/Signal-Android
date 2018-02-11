@@ -320,6 +320,12 @@
               android:launchMode="singleTask"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
+    <activity android:name=".PinnedMessageActivity"
+              android:theme="@style/TextSecure.LightNoActionBar"
+              android:windowSoftInputMode="stateHidden"
+              android:launchMode="singleTask"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
     <activity android:name=".DummyActivity"
               android:theme="@android:style/Theme.NoDisplay"
               android:enabled="true"
@@ -595,6 +601,5 @@
     <meta-data android:name="com.sec.android.multiwindow.DEFAULT_SIZE_H" android:value="598.0dip" />
     <meta-data android:name="com.sec.android.multiwindow.MINIMUM_SIZE_W" android:value="632.0dip" />
     <meta-data android:name="com.sec.android.multiwindow.MINIMUM_SIZE_H" android:value="598.0dip" />
-
 </application>
 </manifest>

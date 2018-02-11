@@ -54,6 +54,7 @@ import org.thoughtcrime.securesms.ConversationAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.ConversationAdapter.ItemClickListener;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.MessagingDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
@@ -227,6 +228,8 @@ public class ConversationFragment extends Fragment
       menu.findItem(R.id.menu_context_save_attachment).setVisible(false);
       menu.findItem(R.id.menu_context_resend).setVisible(false);
       menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage);
+      menu.findItem(R.id.menu_context_pin_message).setVisible(false);
+      menu.findItem(R.id.menu_context_unpin_message).setVisible(false);
     } else {
       MessageRecord messageRecord = messageRecords.iterator().next();
 
@@ -239,6 +242,21 @@ public class ConversationFragment extends Fragment
       menu.findItem(R.id.menu_context_forward).setVisible(!actionMessage);
       menu.findItem(R.id.menu_context_details).setVisible(!actionMessage);
       menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage);
+
+      setCorrectPinVisibility(menu, messageRecord, actionMessage);
+    }
+  }
+
+  private void setCorrectPinVisibility(Menu menu, MessageRecord messageRecord, boolean actionMessage) {
+    PinnedMessagesHandler pinHandler = new PinnedMessagesHandler(getContext());
+    MessagingDatabase databaseToQuery = pinHandler.getAppropriateDatabase(messageRecord);
+
+    if (databaseToQuery.isPinned(messageRecord.getId())) {
+      menu.findItem(R.id.menu_context_unpin_message).setVisible(!actionMessage);
+      menu.findItem(R.id.menu_context_pin_message).setVisible(false);
+    } else {
+      menu.findItem(R.id.menu_context_pin_message).setVisible(!actionMessage);
+      menu.findItem(R.id.menu_context_unpin_message).setVisible(false);
     }
   }
 
@@ -306,6 +324,43 @@ public class ConversationFragment extends Fragment
     if (!TextUtils.isEmpty(result))
         clipboard.setText(result);
   }
+
+  public void handlePinOrUnpinMessage(final MessageRecord message, boolean pin,
+                                      PinnedMessagesHandler handler) {
+    PinnedMessagesHandler pinHandler;
+    MessagingDatabase     databaseToQuery;
+    String                outputMessage;
+    boolean               result;
+
+    pinHandler       = handler;
+    databaseToQuery  = pinHandler.getAppropriateDatabase(message);
+
+    if(!message.isMms()) {
+      if (pin) {
+        result = pinHandler.handlePinMessage(message, databaseToQuery);
+
+        if (result) {
+          outputMessage = getString(R.string.ConversationFragment_pin_new);
+        } else {
+          outputMessage = getString(R.string.ConversationFragment_pin_already_pinned);
+        }
+
+      } else {
+        result = pinHandler.handleUnpinMessage(message, databaseToQuery);
+
+        if (result) {
+          outputMessage = getString(R.string.ConversationFragment_unpin_new);
+        } else {
+          outputMessage = getString(R.string.ConversationFragment_unpin_already_unpinned);
+        }
+      }
+    } else {
+      outputMessage = getString(R.string.ConversationFragment_pin_mms_error_message);
+    }
+
+    showToast(outputMessage);
+  }
+
 
   private void handleDeleteMessages(final Set<MessageRecord> messageRecords) {
     int                 messagesCount = messageRecords.size();
@@ -491,6 +546,11 @@ public class ConversationFragment extends Fragment
     }
   }
 
+  public void showToast(String outputMessage) {
+    Toast toast=Toast.makeText(getContext(), outputMessage, Toast.LENGTH_SHORT);
+    toast.show();
+  }
+
   public interface ConversationFragmentListener {
     void setThreadId(long threadId);
   }
@@ -658,6 +718,16 @@ public class ConversationFragment extends Fragment
           return true;
         case R.id.menu_context_save_attachment:
           handleSaveAttachment((MediaMmsMessageRecord)getSelectedMessageRecord());
+          actionMode.finish();
+          return true;
+        case R.id.menu_context_pin_message:
+          handlePinOrUnpinMessage(getSelectedMessageRecord(), true,
+                  new PinnedMessagesHandler(getContext()));
+          actionMode.finish();
+          return true;
+        case R.id.menu_context_unpin_message:
+          handlePinOrUnpinMessage(getSelectedMessageRecord(), false,
+                  new PinnedMessagesHandler(getContext()));
           actionMode.finish();
           return true;
       }

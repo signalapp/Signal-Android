@@ -545,6 +545,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case R.id.menu_conversation_settings:     handleConversationSettings();                      return true;
     case R.id.menu_expiring_messages_off:
     case R.id.menu_expiring_messages:         handleSelectMessageExpiration();                   return true;
+    case R.id.menu_view_pinned_messages:      handleViewPinnedMessages();                        return true;
     case android.R.id.home:                   handleReturnToConversationList();                  return true;
     }
 
@@ -732,6 +733,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void handleViewMedia() {
     Intent intent = new Intent(this, MediaOverviewActivity.class);
     intent.putExtra(MediaOverviewActivity.ADDRESS_EXTRA, recipient.getAddress());
+    startActivity(intent);
+  }
+
+  private void handleViewPinnedMessages() {
+    Intent intent = new Intent(this, PinnedMessageActivity.class);
+    intent.putExtra(PinnedMessageActivity.ADDRESS_EXTRA, recipient.getAddress());
+    intent.putExtra("THREADID", getThreadId());
     startActivity(intent);
   }
 
