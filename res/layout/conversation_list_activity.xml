@@ -13,6 +13,7 @@
             android:layout_height="?attr/actionBarSize"
             android:minHeight="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
+            android:elevation="4dp"
             android:theme="?attr/actionBarStyle">
 
         <RelativeLayout
@@ -65,6 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:elevation="4dp"
             android:visibility="invisible"
             tools:visibility="visible"/>
 
