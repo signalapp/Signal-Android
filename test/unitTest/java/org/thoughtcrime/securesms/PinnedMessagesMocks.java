@@ -23,7 +23,7 @@ import static org.mockito.Mockito.when;
  * Created by BABO99 on 2018-02-09.
  */
 @RunWith(PowerMockRunner.class)
-@PrepareForTest(DatabaseFactory.class)
+@PrepareForTest({DatabaseFactory.class})
 public class PinnedMessagesMocks extends BaseUnitTest {
     protected Context                   context;
     protected DatabaseFactory           databaseFactory;
