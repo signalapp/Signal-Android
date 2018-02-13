@@ -201,6 +201,7 @@ public class ConversationFragment extends Fragment
   private void setCorrectMenuVisibility(Menu menu) {
     Set<MessageRecord> messageRecords = getListAdapter().getSelectedItems();
     boolean            actionMessage  = false;
+    boolean            mediaMessage  = false;
 
     for (MessageRecord messageRecord : messageRecords) {
       if (messageRecord.isGroupAction() || messageRecord.isCallLog() ||
@@ -211,6 +212,13 @@ public class ConversationFragment extends Fragment
         actionMessage = true;
         break;
       }
+      else if (messageRecord.isMms()             &&
+              !messageRecord.isMmsNotification() &&
+              ((MediaMmsMessageRecord)messageRecord).containsMediaSlide())
+      {
+        mediaMessage = true;
+        break;
+      }
     }
 
     if (messageRecords.size() > 1) {
@@ -218,7 +226,7 @@ public class ConversationFragment extends Fragment
       menu.findItem(R.id.menu_context_details).setVisible(false);
       menu.findItem(R.id.menu_context_save_attachment).setVisible(false);
       menu.findItem(R.id.menu_context_resend).setVisible(false);
-      menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage);
+      menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage  && !mediaMessage);
     } else {
       MessageRecord messageRecord = messageRecords.iterator().next();
 
@@ -230,7 +238,7 @@ public class ConversationFragment extends Fragment
 
       menu.findItem(R.id.menu_context_forward).setVisible(!actionMessage);
       menu.findItem(R.id.menu_context_details).setVisible(!actionMessage);
-      menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage);
+      menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage && !mediaMessage);
     }
   }
 
