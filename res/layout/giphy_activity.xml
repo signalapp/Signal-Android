@@ -14,7 +14,6 @@
         <android.support.design.widget.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="?attr/actionBarStyle"
                 android:background="?attr/colorPrimary">
 
             <org.thoughtcrime.securesms.giph.ui.GiphyActivityToolbar
@@ -29,6 +28,7 @@
                     android:id="@+id/tab_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:theme="?attr/actionBarTabBarStyle"
                     android:scrollbars="horizontal"/>
 
         </android.support.design.widget.AppBarLayout>
