@@ -107,6 +107,8 @@
         <item name="theme_type">light</item>
         <item name="actionBarStyle">@style/TextSecure.LightActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.LightActionBar.TabBar</item>
+        <item name="actionModeBackground">@color/gray50</item>
+        <item name="actionModeCloseDrawable">@drawable/ic_close_white_24dp</item>
         <item name="colorPrimary">@color/textsecure_primary</item>
         <item name="colorPrimaryDark">@color/textsecure_primary_dark</item>
         <item name="colorAccent">@color/textsecure_primary_dark</item>
@@ -233,6 +235,8 @@
         <item name="actionBarStyle">@style/TextSecure.DarkActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.DarkActionBar.TabBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
+        <item name="actionModeBackground">@color/gray50</item>
+        <item name="actionModeCloseDrawable">@drawable/ic_close_white_24dp</item>
         <item name="android:textColor">@color/text_color_dark_theme</item>
         <item name="android:textColorSecondary">@color/text_color_secondary_dark_theme</item>
         <item name="colorAccent">@color/textsecure_primary_dark</item>

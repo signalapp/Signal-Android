@@ -202,11 +202,6 @@ public class ConversationFragment extends Fragment
     Set<MessageRecord> messageRecords = getListAdapter().getSelectedItems();
     boolean            actionMessage  = false;
 
-    if (actionMode != null && messageRecords.size() == 0) {
-      actionMode.finish();
-      return;
-    }
-
     for (MessageRecord messageRecord : messageRecords) {
       if (messageRecord.isGroupAction() || messageRecord.isCallLog() ||
           messageRecord.isJoined() || messageRecord.isExpirationTimerUpdate() ||
@@ -578,7 +573,13 @@ public class ConversationFragment extends Fragment
         ((ConversationAdapter) list.getAdapter()).toggleSelection(messageRecord);
         list.getAdapter().notifyDataSetChanged();
 
-        setCorrectMenuVisibility(actionMode.getMenu());
+        if (getListAdapter().getSelectedItems().size() == 0) {
+          actionMode.finish();
+        } else {
+          setCorrectMenuVisibility(actionMode.getMenu());
+          actionMode.setTitle(String.valueOf(getListAdapter().getSelectedItems().size()));
+        }
+
       }
     }
 
@@ -601,6 +602,8 @@ public class ConversationFragment extends Fragment
     public boolean onCreateActionMode(ActionMode mode, Menu menu) {
       MenuInflater inflater = mode.getMenuInflater();
       inflater.inflate(R.menu.conversation_context, menu);
+
+      mode.setTitle("1");
 
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
         Window window = getActivity().getWindow();
