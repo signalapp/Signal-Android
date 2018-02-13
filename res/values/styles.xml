@@ -47,6 +47,7 @@
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
         <item name="titleTextStyle">@style/TextSecure.TitleTextStyle</item>
         <item name="subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
+        <item name="android:textColorSecondary">@color/white</item>
     </style>
 
     <style name="TextSecure.LightActionBar"
@@ -57,7 +58,7 @@
         <item name="titleTextStyle">@style/TextSecure.TitleTextStyle</item>
         <item name="subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
         <item name="android:textColorPrimary">@color/white</item>
-        <item name="android:textColorSecondary">#BFffffff</item>
+        <item name="android:textColorSecondary">@color/white</item>
     </style>
 
     <style name="TextSecure.FlatLightActionBar"
@@ -76,6 +77,8 @@
         parent="@style/Widget.AppCompat.ActionBar.TabBar">
         <item name="android:background">@color/textsecure_primary</item>
         <item name="background">@color/textsecure_primary</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">#BFffffff</item>
         <item name="elevation">4dp</item>
     </style>
 
