@@ -79,7 +79,7 @@ public class ContactsCursorLoader extends CursorLoader {
     ArrayList<Cursor> cursorList       = new ArrayList<>(4);
 
     if (recents && TextUtils.isEmpty(filter)) {
-      try (Cursor recentConversations = DatabaseFactory.getThreadDatabase(getContext()).getRecentConversationList(5)) {
+      try (Cursor recentConversations = DatabaseFactory.getThreadDatabase(getContext()).getRecentConversationList(50)) {
         MatrixCursor          synthesizedContacts = new MatrixCursor(CONTACT_PROJECTION);
         synthesizedContacts.addRow(new Object[] {getContext().getString(R.string.ContactsCursorLoader_recent_chats), "", ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE, "", ContactsDatabase.DIVIDER_TYPE});
 
