@@ -745,7 +745,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   </plurals>
   <string name="expiration_days_abbreviated">%dd</string>
   <plurals name="expiration_weeks">
-    <item quantity="one">1 tygodzień</item>
+    <item quantity="one">1 tydzień</item>
     <item quantity="few">%d tygodni</item>
     <item quantity="many">%d tygodni</item>
     <item quantity="other">%d tygodni</item>
@@ -1071,7 +1071,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Dodaj do kontaktów</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Lita odbiorców</string>
+  <string name="convesation_group_options__recipients_list">Lista odbiorców</string>
   <string name="conversation_group_options__delivery">Dostarczanie</string>
   <string name="conversation_group_options__conversation">Konwersacja</string>
   <string name="conversation_group_options__broadcast">Nadawanie</string>
