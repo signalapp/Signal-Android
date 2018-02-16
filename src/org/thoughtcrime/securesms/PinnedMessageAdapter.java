@@ -120,10 +120,10 @@ public class PinnedMessageAdapter extends RecyclerView.Adapter<PinnedMessageAdap
     }
 
     private void setMessageView(MessageRecord record, ViewHolder viewHolder) {
-        String ownMessageName = "Me";
+        String ownName = "Me";
 
         if (record.isOutgoing()) {
-            viewHolder.recipient.setText(ownMessageName);
+            viewHolder.recipient.setText(ownName);
             return;
         }
 
