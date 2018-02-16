@@ -16,6 +16,7 @@ import com.doomonafireball.betterpickers.hmspicker.HmsPickerDialogFragment;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.BlockedContactsActivity;
+import org.thoughtcrime.securesms.MutedWordsActivity;
 import org.thoughtcrime.securesms.PassphraseChangeActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
@@ -28,6 +29,7 @@ import java.util.concurrent.TimeUnit;
 public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment {
 
   private static final String PREFERENCE_CATEGORY_BLOCKED = "preference_category_blocked";
+  private static final String PREFERENCE_CATEGORY_MUTED = "preference_category_muted";
 
   private CheckBoxPreference disablePassphrase;
 
@@ -45,6 +47,8 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
         .setOnPreferenceChangeListener(new ReadReceiptToggleListener());
     this.findPreference(PREFERENCE_CATEGORY_BLOCKED)
         .setOnPreferenceClickListener(new BlockedContactsClickListener());
+    this.findPreference(PREFERENCE_CATEGORY_MUTED)
+        .setOnPreferenceClickListener(new MutedWordsClickListener());
     disablePassphrase
         .setOnPreferenceChangeListener(new DisablePassphraseClickListener());
   }
@@ -74,6 +78,14 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     @Override
     public boolean onPreferenceClick(Preference preference) {
       Intent intent = new Intent(getActivity(), BlockedContactsActivity.class);
+      startActivity(intent);
+      return true;
+    }
+  }
+  private class MutedWordsClickListener implements Preference.OnPreferenceClickListener {
+    @Override
+    public boolean onPreferenceClick(Preference preference) {
+      Intent intent = new Intent(getActivity(), MutedWordsActivity.class);
       startActivity(intent);
       return true;
     }
@@ -185,4 +197,6 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
       }
     }
   }
+
+
 }
