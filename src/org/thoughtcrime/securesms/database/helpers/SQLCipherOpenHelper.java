@@ -26,9 +26,12 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
+  @SuppressWarnings("unused")
   private static final String TAG = SQLCipherOpenHelper.class.getSimpleName();
 
-  private static final int    DATABASE_VERSION = 1;
+  private static final int    RECIPIENT_CALL_RINGTONE_VERSION = 2;
+
+  private static final int    DATABASE_VERSION = 2;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -89,7 +92,12 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
   @Override
   public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    Log.w(TAG, "Upgrading database: " + oldVersion + ", " + newVersion);
 
+    if (oldVersion < RECIPIENT_CALL_RINGTONE_VERSION) {
+      db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN call_ringtone TEXT DEFAULT NULL");
+      db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN call_vibrate INTEGER DEFAULT " + RecipientDatabase.VibrateState.DEFAULT.getId());
+    }
   }
 
   public SQLiteDatabase getReadableDatabase() {

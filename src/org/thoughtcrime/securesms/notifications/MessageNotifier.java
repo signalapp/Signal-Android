@@ -373,7 +373,7 @@ public class MessageNotifier {
       return;
     }
 
-    Uri uri = recipient != null ? recipient.getRingtone() : null;
+    Uri uri = recipient != null ? recipient.resolve().getMessageRingtone() : null;
 
     if (uri == null) {
       uri = TextSecurePreferences.getNotificationRingtone(context);

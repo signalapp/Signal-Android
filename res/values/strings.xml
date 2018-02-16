@@ -963,6 +963,8 @@
     <string name="recipient_preferences__view_safety_number">View safety number</string>
     <string name="recipient_preferences__chat_settings">Chat settings</string>
     <string name="recipient_preferences__privacy">Privacy</string>
+    <string name="recipient_preferences__call_settings">Call settings</string>
+    <string name="recipient_preferences__ringtone">Ringtone</string>
 
     <!--- redphone_call_controls -->
     <string name="redphone_call_card__signal_call">Signal Call</string>
@@ -1159,6 +1161,8 @@
     <string name="preferences_notifications__events">Events</string>
     <string name="preferences_notifications__in_chat_sounds">In-chat sounds</string>
     <string name="preferences_notifications__show">Show</string>
+    <string name="preferences_notifications__calls">Calls</string>
+    <string name="preferences_notifications__ringtone">Ringtone</string>
     <string name="preferences_chats__show_invitation_prompts">Show invitation prompts</string>
     <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Display invitation prompts for contacts without Signal</string>
     <string name="preferences_chats__message_text_size">Message font size</string>

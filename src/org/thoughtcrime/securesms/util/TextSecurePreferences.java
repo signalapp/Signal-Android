@@ -127,6 +127,10 @@ public class TextSecurePreferences {
   private static final String ATTACHMENT_UNENCRYPTED_SECRET = "pref_attachment_unencrypted_secret";
   private static final String NEEDS_SQLCIPHER_MIGRATION     = "pref_needs_sql_cipher_migration";
 
+  public static final String CALL_NOTIFICATIONS_PREF = "pref_call_notifications";
+  public static final String CALL_RINGTONE_PREF      = "pref_call_ringtone";
+  public static final String CALL_VIBRATE_PREF       = "pref_call_vibrate";
+
   public static void setNeedsSqlCipherMigration(@NonNull Context context, boolean value) {
     setBooleanPreference(context, NEEDS_SQLCIPHER_MIGRATION, value);
     EventBus.getDefault().post(new SqlCipherMigrationRequirementProvider.SqlCipherNeedsMigrationEvent());
@@ -684,6 +688,10 @@ public class TextSecurePreferences {
     return getBooleanPreference(context, NOTIFICATION_PREF, true);
   }
 
+  public static boolean isCallNotificationsEnabled(Context context) {
+    return getBooleanPreference(context, CALL_NOTIFICATIONS_PREF, true);
+  }
+
   public static @NonNull Uri getNotificationRingtone(Context context) {
     String result = getStringPreference(context, RINGTONE_PREF, Settings.System.DEFAULT_NOTIFICATION_URI.toString());
 
@@ -694,16 +702,44 @@ public class TextSecurePreferences {
     return Uri.parse(result);
   }
 
+  public static @NonNull Uri getCallNotificationRingtone(Context context) {
+    String result = getStringPreference(context, CALL_RINGTONE_PREF, Settings.System.DEFAULT_RINGTONE_URI.toString());
+
+    if (result != null && result.startsWith("file:")) {
+      result = Settings.System.DEFAULT_RINGTONE_URI.toString();
+    }
+
+    return Uri.parse(result);
+  }
+
   public static void removeNotificationRingtone(Context context) {
     removePreference(context, RINGTONE_PREF);
+  }
+
+  public static void removeCallNotificationRingtone(Context context) {
+    removePreference(context, CALL_RINGTONE_PREF);
   }
 
   public static void setNotificationRingtone(Context context, String ringtone) {
     setStringPreference(context, RINGTONE_PREF, ringtone);
   }
 
+  public static void setCallNotificationRingtone(Context context, String ringtone) {
+    setStringPreference(context, CALL_RINGTONE_PREF, ringtone);
+  }
+
   public static boolean isNotificationVibrateEnabled(Context context) {
     return getBooleanPreference(context, VIBRATE_PREF, true);
+  }
+
+  public static boolean isCallNotificationVibrateEnabled(Context context) {
+    boolean defaultValue = true;
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+      defaultValue = (Settings.System.getInt(context.getContentResolver(), Settings.System.VIBRATE_WHEN_RINGING, 1) == 1);
+    }
+
+    return getBooleanPreference(context, CALL_VIBRATE_PREF, defaultValue);
   }
 
   public static String getNotificationLedColor(Context context) {
