@@ -29,15 +29,15 @@ public class MutedWordsActivity extends PassphraseRequiredActionBarActivity {
             MutedWordsDatabase mutedWordsDatabase = new MutedWordsDatabase(getActivity());
             final EditText text = view.findViewById(R.id.text_tag);
             Button btnAddTag = view.findViewById(R.id.btn_add_tag);
-            TagContainerLayout mTagContainerLayout = view.findViewById(R.id.tagcontainerLayout);
-            mTagContainerLayout.setTags(mutedWordsDatabase.getWords());
+            TagContainerLayout tagContainerLayout = view.findViewById(R.id.tagcontainerLayout);
+            tagContainerLayout.setTags(mutedWordsDatabase.getWords());
             btnAddTag.setOnClickListener(v -> {
                 String word = text.getText().toString();
-                mTagContainerLayout.addTag(word);
+                tagContainerLayout.addTag(word);
                 mutedWordsDatabase.insertWord(word);
                 text.setText("");
             });
-            mTagContainerLayout.setOnTagClickListener(new TagView.OnTagClickListener() {
+            tagContainerLayout.setOnTagClickListener(new TagView.OnTagClickListener() {
 
                 @Override
                 public void onTagClick(int position, String text) {
@@ -51,18 +51,12 @@ public class MutedWordsActivity extends PassphraseRequiredActionBarActivity {
 
                 @Override
                 public void onTagCrossClick(int position) {
-                    mutedWordsDatabase.removeWord(mTagContainerLayout.getTags().get(position));
-                    mTagContainerLayout.removeTag(position);
+                    mutedWordsDatabase.removeWord(tagContainerLayout.getTags().get(position));
+                    tagContainerLayout.removeTag(position);
 
                 }
             });
             return view;
-        }
-
-        @Override
-        public void onCreate(Bundle bundle) {
-            super.onCreate(bundle);
-
         }
 
     }
