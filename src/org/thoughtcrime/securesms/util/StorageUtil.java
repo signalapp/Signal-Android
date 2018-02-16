@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
 import android.os.Environment;
+import android.support.annotation.Nullable;
 
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 
@@ -48,5 +49,14 @@ public class StorageUtil
 
   public static File getDownloadDir() throws NoExternalStorageException {
     return new File(getSignalStorageDir(), Environment.DIRECTORY_DOWNLOADS);
+  }
+
+  public static @Nullable String getCleanFileName(@Nullable String fileName) {
+    if (fileName == null) return null;
+
+    fileName = fileName.replace('\u202D', '\uFFFD');
+    fileName = fileName.replace('\u202E', '\uFFFD');
+
+    return fileName;
   }
 }

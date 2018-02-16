@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MediaUtil.ThumbnailData;
+import org.thoughtcrime.securesms.util.StorageUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.video.EncryptedMediaDataSource;
 
@@ -346,7 +347,7 @@ public class AttachmentDatabase extends Database {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
 
     ContentValues contentValues = new ContentValues(1);
-    contentValues.put(FILE_NAME, fileName);
+    contentValues.put(FILE_NAME, StorageUtil.getCleanFileName(fileName));
 
     database.update(TABLE_NAME, contentValues, PART_ID_WHERE, attachmentId.toStrings());
   }
@@ -488,7 +489,7 @@ public class AttachmentDatabase extends Database {
                                   cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_TYPE)),
                                   cursor.getInt(cursor.getColumnIndexOrThrow(TRANSFER_STATE)),
                                   cursor.getLong(cursor.getColumnIndexOrThrow(SIZE)),
-                                  cursor.getString(cursor.getColumnIndexOrThrow(FILE_NAME)),
+                                  StorageUtil.getCleanFileName(cursor.getString(cursor.getColumnIndexOrThrow(FILE_NAME))),
                                   cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_LOCATION)),
                                   cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_DISPOSITION)),
                                   cursor.getString(cursor.getColumnIndexOrThrow(NAME)),
@@ -521,7 +522,7 @@ public class AttachmentDatabase extends Database {
     contentValues.put(DIGEST, attachment.getDigest());
     contentValues.put(CONTENT_DISPOSITION, attachment.getKey());
     contentValues.put(NAME, attachment.getRelay());
-    contentValues.put(FILE_NAME, attachment.getFileName());
+    contentValues.put(FILE_NAME, StorageUtil.getCleanFileName(attachment.getFileName()));
     contentValues.put(SIZE, attachment.getSize());
     contentValues.put(FAST_PREFLIGHT_ID, attachment.getFastPreflightId());
     contentValues.put(VOICE_NOTE, attachment.isVoiceNote() ? 1 : 0);
@@ -554,7 +555,6 @@ public class AttachmentDatabase extends Database {
 
     return attachmentId;
   }
-
 
   @SuppressWarnings("WeakerAccess")
   @VisibleForTesting
