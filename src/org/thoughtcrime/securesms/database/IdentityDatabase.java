@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2011 Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -35,6 +35,7 @@ import java.io.IOException;
 
 public class IdentityDatabase extends Database {
 
+  @SuppressWarnings("unused")
   private static final String TAG = IdentityDatabase.class.getSimpleName();
 
   private static final String TABLE_NAME           = "identities";
@@ -218,7 +219,7 @@ public class IdentityDatabase extends Database {
   public class IdentityReader {
     private final Cursor cursor;
 
-    public IdentityReader(@NonNull Cursor cursor) {
+    IdentityReader(@NonNull Cursor cursor) {
       this.cursor = cursor;
     }
 

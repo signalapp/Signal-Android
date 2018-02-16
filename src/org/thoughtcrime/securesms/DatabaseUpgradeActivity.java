@@ -32,8 +32,6 @@ import android.widget.ProgressBar;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.storage.TextSecurePreKeyStore;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -222,8 +220,8 @@ public class DatabaseUpgradeActivity extends BaseActivity {
       }
 
       if (params[0] < MIGRATE_SESSION_PLAINTEXT) {
-        new TextSecureSessionStore(context, masterSecret).migrateSessions();
-        new TextSecurePreKeyStore(context, masterSecret).migrateRecords();
+//        new TextSecureSessionStore(context, masterSecret).migrateSessions();
+//        new TextSecurePreKeyStore(context, masterSecret).migrateRecords();
 
         IdentityKeyUtil.migrateIdentityKeys(context, masterSecret);
         scheduleMessagesInPushDatabase(context);;

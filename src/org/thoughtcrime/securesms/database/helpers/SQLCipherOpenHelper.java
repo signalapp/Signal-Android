@@ -9,6 +9,7 @@ import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteDatabaseHook;
 import net.sqlcipher.database.SQLiteOpenHelper;
 
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.DatabaseSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
@@ -17,10 +18,13 @@ import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.OneTimePreKeyDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.SignedPreKeyDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -29,9 +33,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   @SuppressWarnings("unused")
   private static final String TAG = SQLCipherOpenHelper.class.getSimpleName();
 
-  private static final int    RECIPIENT_CALL_RINGTONE_VERSION = 2;
+  private static final int RECIPIENT_CALL_RINGTONE_VERSION = 2;
+  private static final int MIGRATE_PREKEYS_VERSION         = 3;
 
-  private static final int    DATABASE_VERSION = 2;
+  private static final int    DATABASE_VERSION = 3;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -68,6 +73,8 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(GroupDatabase.CREATE_TABLE);
     db.execSQL(RecipientDatabase.CREATE_TABLE);
     db.execSQL(GroupReceiptDatabase.CREATE_TABLE);
+    db.execSQL(OneTimePreKeyDatabase.CREATE_TABLE);
+    db.execSQL(SignedPreKeyDatabase.CREATE_TABLE);
 
     executeStatements(db, SmsDatabase.CREATE_INDEXS);
     executeStatements(db, MmsDatabase.CREATE_INDEXS);
@@ -87,6 +94,12 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (masterSecret != null) SQLCipherMigrationHelper.migrateCiphertext(context, masterSecret, legacyDb, db, null);
       else                      TextSecurePreferences.setNeedsSqlCipherMigration(context, true);
+
+      if (!PreKeyMigrationHelper.migratePreKeys(context, db)) {
+        ApplicationContext.getInstance(context).getJobManager().add(new RefreshPreKeysJob(context));
+      }
+
+      PreKeyMigrationHelper.cleanUpPreKeys(context);
     }
   }
 
@@ -94,9 +107,33 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     Log.w(TAG, "Upgrading database: " + oldVersion + ", " + newVersion);
 
-    if (oldVersion < RECIPIENT_CALL_RINGTONE_VERSION) {
-      db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN call_ringtone TEXT DEFAULT NULL");
-      db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN call_vibrate INTEGER DEFAULT " + RecipientDatabase.VibrateState.DEFAULT.getId());
+    db.beginTransaction();
+
+    try {
+
+      if (oldVersion < RECIPIENT_CALL_RINGTONE_VERSION) {
+        db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN call_ringtone TEXT DEFAULT NULL");
+        db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN call_vibrate INTEGER DEFAULT " + RecipientDatabase.VibrateState.DEFAULT.getId());
+      }
+
+      if (oldVersion < MIGRATE_PREKEYS_VERSION) {
+        db.execSQL("CREATE TABLE signed_prekeys (_id INTEGER PRIMARY KEY, key_id INTEGER UNIQUE, public_key TEXT NOT NULL, private_key TEXT NOT NULL, signature TEXT NOT NULL, timestamp INTEGER DEFAULT 0)");
+        db.execSQL("CREATE TABLE one_time_prekeys (_id INTEGER PRIMARY KEY, key_id INTEGER UNIQUE, public_key TEXT NOT NULL, private_key TEXT NOT NULL)");
+
+        if (!PreKeyMigrationHelper.migratePreKeys(context, db)) {
+          ApplicationContext.getInstance(context).getJobManager().add(new RefreshPreKeysJob(context));
+        }
+
+        PreKeyMigrationHelper.cleanUpPreKeys(context);
+      }
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+
+    if (oldVersion < MIGRATE_PREKEYS_VERSION) {
+      PreKeyMigrationHelper.cleanUpPreKeys(context);
     }
   }
 

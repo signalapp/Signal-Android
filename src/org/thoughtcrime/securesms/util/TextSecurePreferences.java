@@ -18,8 +18,10 @@ import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.jobs.requirements.SqlCipherMigrationRequirementProvider;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
+import org.whispersystems.libsignal.util.Medium;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -130,6 +132,34 @@ public class TextSecurePreferences {
   public static final String CALL_NOTIFICATIONS_PREF = "pref_call_notifications";
   public static final String CALL_RINGTONE_PREF      = "pref_call_ringtone";
   public static final String CALL_VIBRATE_PREF       = "pref_call_vibrate";
+
+  private static final String NEXT_PRE_KEY_ID          = "pref_next_pre_key_id";
+  private static final String ACTIVE_SIGNED_PRE_KEY_ID = "pref_active_signed_pre_key_id";
+  private static final String NEXT_SIGNED_PRE_KEY_ID   = "pref_next_signed_pre_key_id";
+
+  public static int getNextPreKeyId(@NonNull Context context) {
+    return getIntegerPreference(context, NEXT_PRE_KEY_ID, new SecureRandom().nextInt(Medium.MAX_VALUE));
+  }
+
+  public static void setNextPreKeyId(@NonNull Context context, int value) {
+    setIntegerPrefrence(context, NEXT_PRE_KEY_ID, value);
+  }
+
+  public static int getNextSignedPreKeyId(@NonNull Context context) {
+    return getIntegerPreference(context, NEXT_SIGNED_PRE_KEY_ID, new SecureRandom().nextInt(Medium.MAX_VALUE));
+  }
+
+  public static void setNextSignedPreKeyId(@NonNull Context context, int value) {
+    setIntegerPrefrence(context, NEXT_SIGNED_PRE_KEY_ID, value);
+  }
+
+  public static int getActiveSignedPreKeyId(@NonNull Context context) {
+    return getIntegerPreference(context, ACTIVE_SIGNED_PRE_KEY_ID, -1);
+  }
+
+  public static void setActiveSignedPreKeyId(@NonNull Context context, int value) {
+    setIntegerPrefrence(context, ACTIVE_SIGNED_PRE_KEY_ID, value);;
+  }
 
   public static void setNeedsSqlCipherMigration(@NonNull Context context, boolean value) {
     setBooleanPreference(context, NEEDS_SQLCIPHER_MIGRATION, value);
