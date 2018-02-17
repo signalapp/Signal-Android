@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,20 +24,29 @@ public class MutedWordsActivity extends PassphraseRequiredActionBarActivity {
 
 
     public static class MutedWordsFragment extends Fragment {
+
+        private TagContainerLayout tagContainerLayout;
+        private MutedWordsDatabase mutedWordsDatabase;
+        private EditText wordEditText;
+
+        @Override
+        public void onCreate(@Nullable Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            mutedWordsDatabase = new MutedWordsDatabase(getActivity());
+        }
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
             View view = inflater.inflate(R.layout.activity_muted_words, container, false);
-            MutedWordsDatabase mutedWordsDatabase = new MutedWordsDatabase(getActivity());
-            final EditText text = view.findViewById(R.id.text_tag);
-            Button btnAddTag = view.findViewById(R.id.btn_add_tag);
-            TagContainerLayout tagContainerLayout = view.findViewById(R.id.tagcontainerLayout);
+            wordEditText = view.findViewById(R.id.text_tag);
+            setUpTabContainerLayout(view);
+            setUpAddwordButton(view);
+            return view;
+        }
+
+        private void setUpTabContainerLayout(View view) {
+            tagContainerLayout = view.findViewById(R.id.tagcontainerLayout);
             tagContainerLayout.setTags(mutedWordsDatabase.getWords());
-            btnAddTag.setOnClickListener(v -> {
-                String word = text.getText().toString();
-                tagContainerLayout.addTag(word);
-                mutedWordsDatabase.insertWord(word);
-                text.setText("");
-            });
             tagContainerLayout.setOnTagClickListener(new TagView.OnTagClickListener() {
 
                 @Override
@@ -56,7 +66,16 @@ public class MutedWordsActivity extends PassphraseRequiredActionBarActivity {
 
                 }
             });
-            return view;
+        }
+
+        private void setUpAddwordButton(View view) {
+            Button addWordButton = view.findViewById(R.id.btn_add_tag);
+            addWordButton.setOnClickListener(v -> {
+                String word = wordEditText.getText().toString();
+                tagContainerLayout.addTag(word);
+                mutedWordsDatabase.insertWord(word);
+                wordEditText.setText("");
+            });
         }
 
     }

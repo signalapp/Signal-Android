@@ -168,7 +168,7 @@ public class PushDecryptJob extends ContextJob {
             SignalServiceContent content = cipher.decrypt(envelope);
             if (content.getDataMessage().isPresent()) {
                 String s = content.getDataMessage().get().getBody().get();
-                Log.d("tag", s);
+
                 MutedWordsDatabase filteredWordsDataBase = new MutedWordsDatabase(getContext());
                 ArrayList<String> words = filteredWordsDataBase.getWords();
                 for (String word : words)
