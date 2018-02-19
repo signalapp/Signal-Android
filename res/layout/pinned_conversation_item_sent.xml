@@ -94,7 +94,6 @@
                     android:layout_marginEnd="36dp"
                     android:layout_marginTop="8dp"
                     android:paddingLeft="8dp"
-                    android:text="Me"
                     android:textColor="@color/amber"
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
