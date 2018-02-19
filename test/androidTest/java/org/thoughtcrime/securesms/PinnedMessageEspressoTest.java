@@ -27,7 +27,32 @@ public class PinnedMessageEspressoTest {
     }
 
     @Test
-    public void canPinMessages() {
+    public void selectedMessageCanBePinned() {
+        Helper helper = new Helper(mainActivityRule);
+
+        helper
+            .goConversations()
+            .goConversation()
+            .sendMessage("Hello World!")
+            .selectMessage(0)
+            .assertID(R.id.menu_context_pin_message);
+    }
+
+    @Test
+    public void selectedPinnedMessageCanBeUnpinned() {
+        Helper helper = new Helper(mainActivityRule);
+
+        helper
+            .goConversations()
+            .goConversation()
+                .sendMessage("Hello World!")
+                .pinMessage(0)
+                .selectMessage(0)
+                .assertID(R.id.menu_context_unpin_message);
+    }
+
+    @Test
+    public void canSeePinnedMessages() {
         Helper helper = new Helper(mainActivityRule);
 
         String testString = helper.randString();
@@ -43,7 +68,7 @@ public class PinnedMessageEspressoTest {
 
 
     @Test
-    public void canUnPinMessages() {
+    public void unpinnedMessagesAreNotShown() {
         Helper helper = new Helper(mainActivityRule);
 
         String testString = helper.randString();
