@@ -26,6 +26,18 @@ public class PinnedMessageEspressoTest {
             .goPinned();
     }
 
+
+    @Test
+    public void pageDisplaysOwnNumber() {
+        Helper helper = new Helper(mainActivityRule);
+
+        helper
+            .goConversations()
+            .goConversation()
+            .goPinned()
+                .assertText(helper.getPhoneNumber());
+    }
+
     @Test
     public void selectedMessageCanBePinned() {
         Helper helper = new Helper(mainActivityRule);
@@ -33,9 +45,9 @@ public class PinnedMessageEspressoTest {
         helper
             .goConversations()
             .goConversation()
-            .sendMessage("Hello World!")
-            .selectMessage(0)
-            .assertID(R.id.menu_context_pin_message);
+                .sendMessage("Hello World!")
+                .selectMessage(0)
+                .assertId(R.id.menu_context_pin_message);
     }
 
     @Test
@@ -48,7 +60,7 @@ public class PinnedMessageEspressoTest {
                 .sendMessage("Hello World!")
                 .pinMessage(0)
                 .selectMessage(0)
-                .assertID(R.id.menu_context_unpin_message);
+                .assertId(R.id.menu_context_unpin_message);
     }
 
     @Test
@@ -83,6 +95,24 @@ public class PinnedMessageEspressoTest {
             .goConversation()
                 .unpinMessage(0)
             .goPinned()
+                .assertNoText(testString);
+    }
+
+
+    @Test
+    public void canUnpinMessagesFromList() {
+        Helper helper = new Helper(mainActivityRule);
+
+        String testString = helper.randString();
+
+        helper
+            .goConversations()
+            .goConversation()
+                .sendMessage(testString)
+                .pinMessage(0)
+            .goPinned()
+                .assertText(testString)
+                .unpinMessage(0)
                 .assertNoText(testString);
     }
 }

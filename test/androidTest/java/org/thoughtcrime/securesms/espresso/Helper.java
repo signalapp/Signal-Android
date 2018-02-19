@@ -37,8 +37,21 @@ public class Helper<T> {
         activityRule.launchActivity(new Intent());
 
         if (Helper.phoneNumber == null) {
-            new Chad();
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+
+            onView(ViewMatchers.withText(R.string.text_secure_normal__menu_settings))
+                    .perform(click());
+
+            final String[] stringHolder = {null};
+            onView(withId(R.id.number)).perform(ViewActions.getTextFromView(stringHolder));
+            Helper.phoneNumber = stringHolder[0];
+
+            pressBack();
         }
+    }
+
+    public String getPhoneNumber() {
+        return Helper.phoneNumber;
     }
 
     /* NAVIGATION */
@@ -49,7 +62,7 @@ public class Helper<T> {
 
     /* ASSERTIONS */
 
-    public T assertID(int id) {
+    public T assertId(int id) {
         onView(withId(id))
                 .check(matches(isDisplayed()));
 
@@ -78,37 +91,5 @@ public class Helper<T> {
 
     public String randString() {
         return UUID.randomUUID().toString().substring(0, 16);
-    }
-}
-
-class Chad {
-    public Chad() {
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-
-        onView(ViewMatchers.withText(R.string.text_secure_normal__menu_settings))
-                .perform(click());
-
-        final String[] stringHolder = { null };
-        onView(withId(R.id.number)).perform(new ViewAction() {
-            @Override
-            public Matcher<View> getConstraints() {
-                return isAssignableFrom(TextView.class);
-            }
-
-            @Override
-            public String getDescription() {
-                return "getting text from a TextView";
-            }
-
-            @Override
-            public void perform(UiController uiController, View view) {
-                TextView textView = (TextView)view; //Save, because of check in getConstraints()
-                stringHolder[0] = textView.getText().toString();
-            }
-        });
-
-        pressBack();
-
-        Helper.phoneNumber = stringHolder[0];
     }
 }

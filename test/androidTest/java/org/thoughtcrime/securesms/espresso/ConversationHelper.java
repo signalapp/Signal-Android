@@ -15,9 +15,9 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 public class ConversationHelper extends Helper<ConversationHelper> {
-    private Boolean messageSelected = false;
-
     ConversationHelper(HelperSecret s) {}
+
+    private Boolean messageSelected = false;
 
     public ConversationHelper sendMessage(String message) {
         onView(withId(R.id.embedded_text_editor))
