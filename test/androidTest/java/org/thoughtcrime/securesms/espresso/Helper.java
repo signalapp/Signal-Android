@@ -37,7 +37,7 @@ public class Helper<T> {
         activityRule.launchActivity(new Intent());
 
         if (Helper.phoneNumber == null) {
-            new PhoneNumberFetcher();
+            new Chad();
         }
     }
 
@@ -81,8 +81,8 @@ public class Helper<T> {
     }
 }
 
-class PhoneNumberFetcher {
-    public PhoneNumberFetcher() {
+class Chad {
+    public Chad() {
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
 
         onView(ViewMatchers.withText(R.string.text_secure_normal__menu_settings))

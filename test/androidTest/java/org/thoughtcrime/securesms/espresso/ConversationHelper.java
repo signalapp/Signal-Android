@@ -37,7 +37,6 @@ public class ConversationHelper extends Helper<ConversationHelper> {
         return this;
     }
 
-
     public ConversationHelper unselectMessage() {
         if (!this.messageSelected) {
             return this;
@@ -59,7 +58,6 @@ public class ConversationHelper extends Helper<ConversationHelper> {
 
         return this;
     }
-
 
     public ConversationHelper unpinMessage(int position) {
         this.unselectMessage();
