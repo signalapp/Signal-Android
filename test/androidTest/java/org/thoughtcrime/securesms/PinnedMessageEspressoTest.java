@@ -1,70 +1,63 @@
 package org.thoughtcrime.securesms;
 
+import android.support.test.filters.LargeTest;
+import android.support.test.rule.ActivityTestRule;
+import android.support.test.runner.AndroidJUnit4;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import android.support.test.runner.AndroidJUnit4;
-import android.support.test.rule.ActivityTestRule;
-import android.support.test.filters.LargeTest;
-
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import org.thoughtcrime.securesms.espresso.Helper;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class PinnedMessageEspressoTest {
-
     @Rule
     public ActivityTestRule<ConversationListActivity> mainActivityRule =
             new ActivityTestRule(ConversationListActivity.class, true, false);
 
     @Test
     public void pageExists() {
-        EspressoHelper helper = new EspressoHelper(mainActivityRule);
+        Helper helper = new Helper(mainActivityRule);
 
         helper
-            .createConversation()
-            .goPinned()
-            .done();
+            .goConversations()
+            .goConversation()
+            .goPinned();
     }
 
     @Test
     public void canPinMessages() {
-        EspressoHelper helper = new EspressoHelper(mainActivityRule);
+        Helper helper = new Helper(mainActivityRule);
 
         String testString = helper.randString();
 
         helper
-            .createConversation()
+            .goConversations()
+            .goConversation()
                 .sendMessage(testString)
-                .selectMessage(1)
-                .pinSelectedMessage()
+                .pinMessage(1)
             .goPinned()
-                .findText(testString)
-            .done();
+                .assertText(testString);
     }
 
 
     @Test
     public void canUnPinMessages() {
-        EspressoHelper helper = new EspressoHelper(mainActivityRule);
+        Helper helper = new Helper(mainActivityRule);
 
         String testString = helper.randString();
 
         helper
-            .createConversation()
-                .sendMessage(testString)
-                .selectMessage()
-                .pinSelectedMessage()
-            .goPinned()
-                .findText(testString)
+            .goConversations()
             .goConversation()
-                .selectMessage()
-                .unpinSelectedMessage()
+                .sendMessage(testString)
+                .pinMessage(0)
             .goPinned()
-                .not_findText(testString)
-            .done();
+                .assertText(testString)
+            .goConversation()
+                .unpinMessage(0)
+            .goPinned()
+                .assertNoText(testString);
     }
-
 }
