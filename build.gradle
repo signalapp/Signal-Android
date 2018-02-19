@@ -144,6 +144,7 @@ dependencies {
     androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
     androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
     androidTestCompile 'com.android.support.test.espresso:espresso-core:3.0.1'
+    androidTestCompile 'com.android.support.test.espresso:espresso-contrib:3.0.1'
     androidTestCompile 'com.android.support.test:runner:1.0.1'
     androidTestCompile ('org.assertj:assertj-core:1.7.1') {
         exclude group: 'org.hamcrest', module: 'hamcrest-core'
