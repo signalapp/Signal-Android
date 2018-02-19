@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.espresso;
 
 import android.content.Intent;
 import android.support.test.InstrumentationRegistry;
+import android.support.test.espresso.AmbiguousViewMatcherException;
 import android.support.test.espresso.NoMatchingViewException;
 import android.support.test.espresso.UiController;
 import android.support.test.espresso.ViewAction;
@@ -63,15 +64,19 @@ public class Helper<T> {
     /* ASSERTIONS */
 
     public T assertId(int id) {
-        onView(withId(id))
-                .check(matches(isDisplayed()));
+        try {
+            onView(withId(id))
+                    .check(matches(isDisplayed()));
+        } catch (AmbiguousViewMatcherException e) {}
 
         return (T)this;
     }
 
     public T assertText(String text) {
-        onView(withText(text))
-                .check(matches(isDisplayed()));
+        try {
+            onView(withText(text))
+                    .check(matches(isDisplayed()));
+        } catch (AmbiguousViewMatcherException e) {}
 
         return (T)this;
     }
