@@ -44,7 +44,7 @@ public class SignedPreKeyDatabase extends Database {
       SIGNATURE + " TEXT NOT NULL, " +
       TIMESTAMP + " INTEGER DEFAULT 0);";
 
-  public SignedPreKeyDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
+  SignedPreKeyDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
   }
 
@@ -105,7 +105,7 @@ public class SignedPreKeyDatabase extends Database {
     contentValues.put(SIGNATURE, Base64.encodeBytes(record.getSignature()));
     contentValues.put(TIMESTAMP, record.getTimestamp());
 
-    database.insert(TABLE_NAME, null, contentValues);
+    database.replace(TABLE_NAME, null, contentValues);
   }
 
 

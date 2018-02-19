@@ -55,6 +55,7 @@ public class DatabaseFactory {
   private final GroupReceiptDatabase  groupReceiptDatabase;
   private final OneTimePreKeyDatabase preKeyDatabase;
   private final SignedPreKeyDatabase  signedPreKeyDatabase;
+  private final SessionDatabase       sessionDatabase;
 
   public static DatabaseFactory getInstance(Context context) {
     synchronized (lock) {
@@ -125,6 +126,10 @@ public class DatabaseFactory {
     return getInstance(context).signedPreKeyDatabase;
   }
 
+  public static SessionDatabase getSessionDatabase(Context context) {
+    return getInstance(context).sessionDatabase;
+  }
+
   private DatabaseFactory(@NonNull Context context) {
     SQLiteDatabase.loadLibs(context);
 
@@ -147,6 +152,7 @@ public class DatabaseFactory {
     this.contactsDatabase     = new ContactsDatabase(context);
     this.preKeyDatabase       = new OneTimePreKeyDatabase(context, databaseHelper);
     this.signedPreKeyDatabase = new SignedPreKeyDatabase(context, databaseHelper);
+    this.sessionDatabase      = new SessionDatabase(context, databaseHelper);
   }
 
   public void onApplicationLevelUpgrade(@NonNull Context context, @NonNull MasterSecret masterSecret,

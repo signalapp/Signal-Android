@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.OneTimePreKeyDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.SessionDatabase;
 import org.thoughtcrime.securesms.database.SignedPreKeyDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -35,8 +36,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
   private static final int RECIPIENT_CALL_RINGTONE_VERSION = 2;
   private static final int MIGRATE_PREKEYS_VERSION         = 3;
+  private static final int MIGRATE_SESSIONS_VERSION        = 4;
 
-  private static final int    DATABASE_VERSION = 3;
+  private static final int    DATABASE_VERSION = 4;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -75,6 +77,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(GroupReceiptDatabase.CREATE_TABLE);
     db.execSQL(OneTimePreKeyDatabase.CREATE_TABLE);
     db.execSQL(SignedPreKeyDatabase.CREATE_TABLE);
+    db.execSQL(SessionDatabase.CREATE_TABLE);
 
     executeStatements(db, SmsDatabase.CREATE_INDEXS);
     executeStatements(db, MmsDatabase.CREATE_INDEXS);
@@ -99,6 +102,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         ApplicationContext.getInstance(context).getJobManager().add(new RefreshPreKeysJob(context));
       }
 
+      SessionStoreMigrationHelper.migrateSessions(context, db);
       PreKeyMigrationHelper.cleanUpPreKeys(context);
     }
   }
@@ -123,8 +127,11 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         if (!PreKeyMigrationHelper.migratePreKeys(context, db)) {
           ApplicationContext.getInstance(context).getJobManager().add(new RefreshPreKeysJob(context));
         }
+      }
 
-        PreKeyMigrationHelper.cleanUpPreKeys(context);
+      if (oldVersion < MIGRATE_SESSIONS_VERSION) {
+        db.execSQL("CREATE TABLE sessions (_id INTEGER PRIMARY KEY, address TEXT NOT NULL, device INTEGER NOT NULL, record BLOB NOT NULL, UNIQUE(address, device) ON CONFLICT REPLACE)");
+        SessionStoreMigrationHelper.migrateSessions(context, db);
       }
 
       db.setTransactionSuccessful();

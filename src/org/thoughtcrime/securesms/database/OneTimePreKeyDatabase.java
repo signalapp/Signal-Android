@@ -62,7 +62,6 @@ public class OneTimePreKeyDatabase extends Database {
     return null;
   }
 
-
   public void insertPreKey(int keyId, PreKeyRecord record) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
 
@@ -71,16 +70,12 @@ public class OneTimePreKeyDatabase extends Database {
     contentValues.put(PUBLIC_KEY, Base64.encodeBytes(record.getKeyPair().getPublicKey().serialize()));
     contentValues.put(PRIVATE_KEY, Base64.encodeBytes(record.getKeyPair().getPrivateKey().serialize()));
 
-    database.insert(TABLE_NAME, null, contentValues);
+    database.replace(TABLE_NAME, null, contentValues);
   }
 
   public void removePreKey(int keyId) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     database.delete(TABLE_NAME, KEY_ID + " = ?", new String[] {String.valueOf(keyId)});
   }
-
-
-
-
 
 }
