@@ -62,14 +62,17 @@ public class ContactsCursorLoader extends CursorLoader {
   private final String       filter;
   private final int          mode;
   private final boolean      recents;
+  private final int          recentContactsLimit;
 
-  public ContactsCursorLoader(@NonNull Context context, int mode, String filter, boolean recents)
+  public ContactsCursorLoader(@NonNull Context context, int mode, String filter, boolean recents,
+                              int recentContactsLimit)
   {
     super(context);
 
-    this.filter       = filter;
-    this.mode         = mode;
-    this.recents      = recents;
+    this.filter              = filter;
+    this.mode                = mode;
+    this.recents             = recents;
+    this.recentContactsLimit = recentContactsLimit;
   }
 
   @Override
@@ -79,22 +82,37 @@ public class ContactsCursorLoader extends CursorLoader {
     ArrayList<Cursor> cursorList       = new ArrayList<>(4);
 
     if (recents && TextUtils.isEmpty(filter)) {
-      try (Cursor recentConversations = DatabaseFactory.getThreadDatabase(getContext()).getRecentConversationList(5)) {
+      try (Cursor recentConversations = DatabaseFactory.getThreadDatabase(
+              getContext()).getRecentConversationList(recentContactsLimit + 1)) {
         MatrixCursor          synthesizedContacts = new MatrixCursor(CONTACT_PROJECTION);
-        synthesizedContacts.addRow(new Object[] {getContext().getString(R.string.ContactsCursorLoader_recent_chats), "", ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE, "", ContactsDatabase.DIVIDER_TYPE});
+        synthesizedContacts.addRow(new Object[] {getContext().getString(R.string.ContactsCursorLoader_recent_chats), "",
+                                                 ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
+                                                 "", ContactsDatabase.DIVIDER_TYPE});
 
         ThreadDatabase.Reader reader = threadDatabase.readerFor(recentConversations);
 
         ThreadRecord threadRecord;
 
+        int count = 0;
         while ((threadRecord = reader.getNext()) != null) {
-          synthesizedContacts.addRow(new Object[] {threadRecord.getRecipient().toShortString(),
-                                                   threadRecord.getRecipient().getAddress().serialize(),
-                                                   ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
-                                                   "", ContactsDatabase.RECENT_TYPE});
+          count++;
+          if (count <= recentContactsLimit) {
+            synthesizedContacts.addRow(new Object[] {threadRecord.getRecipient().toShortString(),
+                                                     threadRecord.getRecipient().getAddress().serialize(),
+                                                     ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
+                                                     "", ContactsDatabase.RECENT_TYPE});
+          }
         }
 
-        synthesizedContacts.addRow(new Object[] {getContext().getString(R.string.ContactsCursorLoader_contacts), "", ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE, "", ContactsDatabase.DIVIDER_TYPE});
+        if (count > recentContactsLimit) {
+          synthesizedContacts.addRow(new Object[]{getContext().getString(R.string.ContactsCursorLoader_more), "",
+                                                  ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
+                                                  "", ContactsDatabase.MORE_TYPE});
+        }
+
+        synthesizedContacts.addRow(new Object[] {getContext().getString(R.string.ContactsCursorLoader_contacts), "",
+                                                 ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
+                                                 "", ContactsDatabase.DIVIDER_TYPE});
         if (synthesizedContacts.getCount() > 2) cursorList.add(synthesizedContacts);
       }
     }

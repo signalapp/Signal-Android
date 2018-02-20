@@ -60,6 +60,7 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
 
   private static final int VIEW_TYPE_CONTACT = 0;
   private static final int VIEW_TYPE_DIVIDER = 1;
+  private static final int VIEW_TYPE_MORE    = 2;
 
   private final static int STYLE_ATTRIBUTES[] = new int[]{R.attr.contact_selection_push_user,
                                                           R.attr.contact_selection_lay_user};
@@ -68,6 +69,7 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
   private final LayoutInflater    li;
   private final TypedArray        drawables;
   private final ItemClickListener clickListener;
+  private final MoreClickListener moreClickListener;
   private final GlideRequests     glideRequests;
 
   private final Set<String> selectedContacts = new HashSet<>();
@@ -133,6 +135,31 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
     public void setChecked(boolean checked) {}
   }
 
+  public class MoreViewHolder extends ViewHolder {
+
+    private final TextView label;
+
+    MoreViewHolder(@NonNull final View itemView, @Nullable final MoreClickListener clickListener) {
+      super(itemView);
+      this.label = itemView.findViewById(R.id.label);
+      itemView.setOnClickListener(v -> {
+        if (clickListener != null) clickListener.onMoreClick();
+      });
+    }
+
+    @Override
+    public void bind(@NonNull GlideRequests glideRequests, int type, String name, String number,
+                     String label, int color, boolean multiSelect) {
+      this.label.setText(name);
+    }
+
+    @Override
+    public void unbind(@NonNull GlideRequests glideRequests) {}
+
+    @Override
+    public void setChecked(boolean checked) {}
+  }
+
   static class HeaderViewHolder extends RecyclerView.ViewHolder {
     HeaderViewHolder(View itemView) {
       super(itemView);
@@ -143,14 +170,16 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
                                      @NonNull  GlideRequests glideRequests,
                                      @Nullable Cursor cursor,
                                      @Nullable ItemClickListener clickListener,
+                                     @Nullable MoreClickListener moreClickListener,
                                      boolean multiSelect)
   {
     super(context, cursor);
-    this.li            = LayoutInflater.from(context);
-    this.glideRequests = glideRequests;
-    this.drawables     = context.obtainStyledAttributes(STYLE_ATTRIBUTES);
-    this.multiSelect   = multiSelect;
-    this.clickListener = clickListener;
+    this.li                = LayoutInflater.from(context);
+    this.glideRequests     = glideRequests;
+    this.drawables         = context.obtainStyledAttributes(STYLE_ATTRIBUTES);
+    this.multiSelect       = multiSelect;
+    this.clickListener     = clickListener;
+    this.moreClickListener = moreClickListener;
   }
 
   @Override
@@ -167,6 +196,8 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
   public ViewHolder onCreateItemViewHolder(ViewGroup parent, int viewType) {
     if (viewType == VIEW_TYPE_CONTACT) {
       return new ContactViewHolder(li.inflate(R.layout.contact_selection_list_item, parent, false), clickListener);
+    } else if (viewType == VIEW_TYPE_MORE) {
+      return new MoreViewHolder(li.inflate(R.layout.contact_selection_list_more, parent, false), moreClickListener);
     } else {
       return new DividerViewHolder(li.inflate(R.layout.contact_selection_list_divider, parent, false));
     }
@@ -192,8 +223,11 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
 
   @Override
   public int getItemViewType(@NonNull Cursor cursor) {
-    if (cursor.getInt(cursor.getColumnIndexOrThrow(ContactsDatabase.CONTACT_TYPE_COLUMN)) == ContactsDatabase.DIVIDER_TYPE) {
+    int type = cursor.getInt(cursor.getColumnIndexOrThrow(ContactsDatabase.CONTACT_TYPE_COLUMN));
+    if (type == ContactsDatabase.DIVIDER_TYPE) {
       return VIEW_TYPE_DIVIDER;
+    } else if (type == ContactsDatabase.MORE_TYPE) {
+      return VIEW_TYPE_MORE;
     } else {
       return VIEW_TYPE_CONTACT;
     }
@@ -238,7 +272,8 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
   private @NonNull String getHeaderString(int position) {
     int contactType = getContactType(position);
 
-    if (contactType == ContactsDatabase.RECENT_TYPE || contactType == ContactsDatabase.DIVIDER_TYPE) {
+    if (contactType == ContactsDatabase.RECENT_TYPE || contactType == ContactsDatabase.DIVIDER_TYPE ||
+        contactType == ContactsDatabase.MORE_TYPE) {
       return " ";
     }
 
@@ -266,5 +301,9 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
 
   public interface ItemClickListener {
     void onItemClick(ContactSelectionListItem item);
+  }
+
+  public interface MoreClickListener {
+    void onMoreClick();
   }
 }

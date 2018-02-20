@@ -69,6 +69,7 @@ public class ContactsDatabase {
   static final int NEW_TYPE     = 2;
   static final int RECENT_TYPE  = 3;
   static final int DIVIDER_TYPE = 4;
+  static final int MORE_TYPE    = 5;
 
   private final Context context;
 
