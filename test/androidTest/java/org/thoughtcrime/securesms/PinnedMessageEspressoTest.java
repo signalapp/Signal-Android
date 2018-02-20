@@ -1,37 +1,118 @@
 package org.thoughtcrime.securesms;
 
+import android.support.test.filters.LargeTest;
+import android.support.test.rule.ActivityTestRule;
+import android.support.test.runner.AndroidJUnit4;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import android.content.Intent;
-import android.support.test.runner.AndroidJUnit4;
-import android.support.test.rule.ActivityTestRule;
-import android.support.test.filters.LargeTest;
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import org.thoughtcrime.securesms.espresso.Helper;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class PinnedMessageEspressoTest {
-
     @Rule
-    public ActivityTestRule<PinnedMessageActivity> pinnedActivityRule =
-            new ActivityTestRule(PinnedMessageActivity.class, true, false);
+    public ActivityTestRule<ConversationListActivity> mainActivityRule =
+            new ActivityTestRule(ConversationListActivity.class, true, false);
 
     @Test
     public void pageExists() {
-        Intent intent = new Intent();
+        Helper helper = new Helper(mainActivityRule);
 
-        intent.putExtra("address", "514 123 4567");
-        intent.putExtra("THREADID", 1);
+        helper
+            .goConversations()
+            .goConversation()
+            .goPinned();
+    }
 
-        pinnedActivityRule.launchActivity(intent);
 
-        // onView(withId(R.id.pinned_message_body)).check(matches(isDisplayed()));
+    @Test
+    public void pageDisplaysOwnNumber() {
+        Helper helper = new Helper(mainActivityRule);
 
-        onView(withText("Signal needs access to your contacts and media in order to connect with friends, exchange messages, and make secure calls")).check(matches(isDisplayed()));
+        helper
+            .goConversations()
+            .goConversation()
+            .goPinned()
+                .assertText(helper.getPhoneNumber());
+    }
+
+    @Test
+    public void selectedMessageCanBePinned() {
+        Helper helper = new Helper(mainActivityRule);
+
+        helper
+            .goConversations()
+            .goConversation()
+                .sendMessage("Hello World!")
+                .selectMessage(0)
+                .assertId(R.id.menu_context_pin_message);
+    }
+
+    @Test
+    public void selectedPinnedMessageCanBeUnpinned() {
+        Helper helper = new Helper(mainActivityRule);
+
+        helper
+            .goConversations()
+            .goConversation()
+                .sendMessage("Hello World!")
+                .pinMessage(0)
+                .selectMessage(0)
+                .assertId(R.id.menu_context_unpin_message);
+    }
+
+    @Test
+    public void canSeePinnedMessages() {
+        Helper helper = new Helper(mainActivityRule);
+
+        String testString = helper.randString();
+
+        helper
+            .goConversations()
+            .goConversation()
+                .sendMessage(testString)
+                .pinMessage(1)
+            .goPinned()
+                .assertText(testString);
+    }
+
+
+    @Test
+    public void unpinnedMessagesAreNotShown() {
+        Helper helper = new Helper(mainActivityRule);
+
+        String testString = helper.randString();
+
+        helper
+            .goConversations()
+            .goConversation()
+                .sendMessage(testString)
+                .pinMessage(0)
+            .goPinned()
+                .assertText(testString)
+            .goConversation()
+                .unpinMessage(0)
+            .goPinned()
+                .assertNoText(testString);
+    }
+
+
+    @Test
+    public void canUnpinMessagesFromList() {
+        Helper helper = new Helper(mainActivityRule);
+
+        String testString = helper.randString();
+
+        helper
+            .goConversations()
+            .goConversation()
+                .sendMessage(testString)
+                .pinMessage(0)
+            .goPinned()
+                .assertText(testString)
+                .unpinMessage(0)
+                .assertNoText(testString);
     }
 }
