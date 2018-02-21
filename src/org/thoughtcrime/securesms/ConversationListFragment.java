@@ -484,6 +484,7 @@ public class ConversationListFragment extends Fragment
     @SuppressLint("StaticFieldLeak")
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+      if (viewHolder.itemView instanceof ConversationListItemInboxZero) return;
       final long threadId    = ((ConversationListItem)viewHolder.itemView).getThreadId();
       final int  unreadCount = ((ConversationListItem)viewHolder.itemView).getUnreadCount();
 
@@ -541,6 +542,7 @@ public class ConversationListFragment extends Fragment
                             float dX, float dY, int actionState,
                             boolean isCurrentlyActive)
     {
+      if (viewHolder.itemView instanceof ConversationListItemInboxZero) return;
       if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
         View  itemView = viewHolder.itemView;
         Paint p        = new Paint();
