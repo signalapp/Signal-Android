@@ -13,8 +13,6 @@ import android.support.annotation.StringRes;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
 
 import com.melnykov.fab.FloatingActionButton;
 import com.nineoldandroids.animation.ArgbEvaluator;
@@ -144,12 +142,7 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity {
 
     pager.setAdapter(new IntroPagerAdapter(getSupportFragmentManager(), upgrade.get().getPages()));
 
-    fab.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        onContinue(upgrade);
-      }
-    });
+    fab.setOnClickListener(v -> onContinue(upgrade));
 
     getWindow().setBackgroundDrawable(new ColorDrawable(upgrade.get().getPage(0).backgroundColor));
     ServiceUtil.getNotificationManager(this).cancel(NOTIFICATION_ID);
@@ -166,7 +159,7 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity {
       intent.putExtra("next_intent", nextIntent);
       startActivity(intent);
     } else {
-      startActivity((Intent) getIntent().getParcelableExtra("next_intent"));
+      startActivity(getIntent().getParcelableExtra("next_intent"));
     }
 
     finish();
@@ -225,6 +218,24 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity {
       if (Intent.ACTION_MY_PACKAGE_REPLACED.equals(intent.getAction()) &&
           intent.getData().getSchemeSpecificPart().equals(context.getPackageName()))
       {
+        if (TextSecurePreferences.getLastExperienceVersionCode(context) < 339 &&
+            !TextSecurePreferences.isPasswordDisabled(context))
+        {
+          Notification notification = new NotificationCompat.Builder(context)
+              .setSmallIcon(R.drawable.icon_notification)
+              .setColor(context.getResources().getColor(R.color.signal_primary))
+              .setContentTitle(context.getString(R.string.ExperienceUpgradeActivity_unlock_to_complete_update))
+              .setContentText(context.getString(R.string.ExperienceUpgradeActivity_please_unlock_signal_to_complete_update))
+              .setStyle(new NotificationCompat.BigTextStyle().bigText(context.getString(R.string.ExperienceUpgradeActivity_please_unlock_signal_to_complete_update)))
+              .setAutoCancel(true)
+              .setContentIntent(PendingIntent.getActivity(context, 0,
+                                                          context.getPackageManager().getLaunchIntentForPackage(context.getPackageName()),
+                                                          PendingIntent.FLAG_UPDATE_CURRENT))
+              .build();
+
+          ServiceUtil.getNotificationManager(context).notify(NOTIFICATION_ID, notification);
+        }
+
         Optional<ExperienceUpgrade> experienceUpgrade = getExperienceUpgrade(context);
 
         if (!experienceUpgrade.isPresent()) {

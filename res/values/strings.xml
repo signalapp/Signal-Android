@@ -1320,6 +1320,8 @@
     <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrating Signal database</string>
     <string name="PushDecryptJob_new_locked_message">New locked message</string>
     <string name="PushDecryptJob_unlock_to_view_pending_messages">Unlock to view pending messages</string>
+    <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Unlock to complete update</string>
+    <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Please unlock Signal to complete update</string>
 
 
     <!-- EOF -->
