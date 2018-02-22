@@ -56,6 +56,7 @@ public class PlaintextBackupImporter {
         addLongToStatement(statement, 13, threadId);
         modifiedThreads.add(threadId);
         statement.execute();
+        statement.close();
       }
 
       for (long threadId : modifiedThreads) {
