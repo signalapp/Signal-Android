@@ -26,6 +26,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Process;
+import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -55,6 +56,7 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 /**
  * An activity to quickly share content with contacts
@@ -77,8 +79,8 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   private SearchToolbar                searchToolbar;
   private ImageView                    searchAction;
   private View                         progressWheel;
-  private Uri                          resolvedExtra;
-  private String                       mimeType;
+  private Uri[]                        resolvedExtra;
+  private String[]                     mimeType;
   private boolean                      isPassingAlongMedia;
 
   @Override
@@ -127,8 +129,11 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   public void onPause() {
     super.onPause();
     if (!isPassingAlongMedia && resolvedExtra != null) {
-      PersistentBlobProvider.getInstance(this).delete(this, resolvedExtra);
+      for (int i = 0; i < resolvedExtra.length; i++) {
+        PersistentBlobProvider.getInstance(this).delete(this, resolvedExtra[i]);
+      }
     }
+
     if (!isFinishing()) {
       finish();
     }
@@ -185,18 +190,16 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     final Context context = this;
     isPassingAlongMedia = false;
 
-    Uri streamExtra = getIntent().getParcelableExtra(Intent.EXTRA_STREAM);
-    mimeType        = getMimeType(streamExtra);
-
-    if (streamExtra != null && PartAuthority.isLocalUri(streamExtra)) {
-      isPassingAlongMedia = true;
-      resolvedExtra       = streamExtra;
-      handleResolvedMedia(getIntent(), false);
+    Uri[] streamExtra;
+    if (Intent.ACTION_SEND.equals(getIntent().getAction())) {
+      streamExtra = new Uri[]{getIntent().getParcelableExtra(Intent.EXTRA_STREAM)};
     } else {
-      contactsFragment.getView().setVisibility(View.GONE);
-      progressWheel.setVisibility(View.VISIBLE);
-      new ResolveMediaTask(context).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, streamExtra);
+      streamExtra = getIntent().getParcelableArrayListExtra(Intent.EXTRA_STREAM).toArray(new Uri[0]);
     }
+
+    contactsFragment.getView().setVisibility(View.GONE);
+    progressWheel.setVisibility(View.VISIBLE);
+    new ResolveMediaTask(context).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, streamExtra);
   }
 
   @Override
@@ -256,17 +259,20 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     final Intent intent      = new Intent(this, target);
     final String textExtra   = getIntent().getStringExtra(Intent.EXTRA_TEXT);
     intent.putExtra(ConversationActivity.TEXT_EXTRA, textExtra);
-    if (resolvedExtra != null) intent.setDataAndType(resolvedExtra, mimeType);
+    if (resolvedExtra != null) {
+      ArrayList<String> uris = new ArrayList<>();
+      ArrayList<String> mimeTypes = new ArrayList<>();
+
+      for (int i = 0; i < resolvedExtra.length; i++) {
+        uris.add(resolvedExtra[i].toString());
+        mimeTypes.add(mimeType[i]);
+      }
+
+      intent.putStringArrayListExtra(ConversationActivity.URIS_EXTRA, uris);
+      intent.putStringArrayListExtra(ConversationActivity.MIMETYPES_EXTRA, mimeTypes);
+    }
 
     return intent;
-  }
-
-  private String getMimeType(@Nullable Uri uri) {
-    if (uri != null) {
-      final String mimeType = MediaUtil.getMimeType(getApplicationContext(), uri);
-      if (mimeType != null) return mimeType;
-    }
-    return MediaUtil.getCorrectedMimeType(getIntent().getType());
   }
 
   @Override
@@ -287,60 +293,100 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   }
 
   @SuppressLint("StaticFieldLeak")
-  private class ResolveMediaTask extends AsyncTask<Uri, Void, Uri> {
+  private class ResolveMediaTask extends AsyncTask<Uri, Void, ResolveMediaTask.Result> {
     private final Context context;
 
     ResolveMediaTask(Context context) {
       this.context = context;
     }
 
-    @Override
-    protected Uri doInBackground(Uri... uris) {
-      try {
-        if (uris.length != 1 || uris[0] == null) {
-          return null;
-        }
+    protected class Result {
+      Uri[] uris;
+      public String[] mimeType;
 
-        InputStream inputStream;
-
-        if ("file".equals(uris[0].getScheme())) {
-          inputStream = openFileUri(uris[0]);
-        } else {
-          inputStream = context.getContentResolver().openInputStream(uris[0]);
-        }
-
-        if (inputStream == null) {
-          return null;
-        }
-
-        Cursor cursor   = getContentResolver().query(uris[0], new String[] {OpenableColumns.DISPLAY_NAME, OpenableColumns.SIZE}, null, null, null);
-        String fileName = null;
-        Long   fileSize = null;
-
-        try {
-          if (cursor != null && cursor.moveToFirst()) {
-            try {
-              fileName = cursor.getString(cursor.getColumnIndexOrThrow(OpenableColumns.DISPLAY_NAME));
-              fileSize = cursor.getLong(cursor.getColumnIndexOrThrow(OpenableColumns.SIZE));
-            } catch (IllegalArgumentException e) {
-              Log.w(TAG, e);
-            }
-          }
-        } finally {
-          if (cursor != null) cursor.close();
-        }
-
-        return PersistentBlobProvider.getInstance(context).create(context, inputStream, mimeType, fileName, fileSize);
-      } catch (IOException ioe) {
-        Log.w(TAG, ioe);
-        return null;
+      public Result(Uri[] uris, String[] mimeType) {
+        this.uris = uris;
+        this.mimeType = mimeType;
       }
     }
 
     @Override
-    protected void onPostExecute(Uri uri) {
-      resolvedExtra = uri;
+    protected Result doInBackground(Uri... uris) {
+      Uri[] result = new Uri[uris.length];
+      String[] mimeType = new String[uris.length];
+
+      for (int i = 0; i < uris.length; i++) {
+        try {
+          mimeType[i] = getMimeType(uris[i]);
+
+          if (PartAuthority.isLocalUri(uris[i])) {
+            result[i] = uris[i];
+          } else {
+            InputStream inputStream;
+
+            if ("file".equals(uris[i].getScheme())) {
+              inputStream = openFileUri(uris[i]);
+            } else {
+              inputStream = context.getContentResolver().openInputStream(uris[i]);
+            }
+
+            if (inputStream == null) {
+              return null;
+            }
+
+            Cursor cursor = getContentResolver().query(uris[0], new String[]{OpenableColumns.DISPLAY_NAME, OpenableColumns.SIZE}, null, null, null);
+            String fileName = null;
+            Long fileSize = null;
+
+            try {
+              if (cursor != null && cursor.moveToFirst()) {
+                try {
+                  fileName = cursor.getString(cursor.getColumnIndexOrThrow(OpenableColumns.DISPLAY_NAME));
+                  fileSize = cursor.getLong(cursor.getColumnIndexOrThrow(OpenableColumns.SIZE));
+                } catch (IllegalArgumentException e) {
+                  Log.w(TAG, e);
+                }
+              }
+            } finally {
+              if (cursor != null) cursor.close();
+            }
+
+            Uri uri = PersistentBlobProvider.getInstance(context)
+                    .create(context, inputStream, mimeType[i], fileName, fileSize);
+            if (uri == null) {
+              return null;
+            } else {
+              result[i] = uri;
+            }
+          }
+        } catch (IOException ioe) {
+          Log.w(TAG, ioe);
+          return null;
+        }
+      }
+
+      return new Result(result, mimeType);
+    }
+
+    @Override
+    protected void onPostExecute(Result result) {
+      if (result != null) {
+        resolvedExtra = result.uris;
+        mimeType = result.mimeType;
+      } else {
+        resolvedExtra = null;
+        mimeType = null;
+      }
+
       handleResolvedMedia(getIntent(), true);
+    }
+
+    private String getMimeType(@Nullable Uri uri) {
+      if (uri != null) {
+        final String mimeType = MediaUtil.getMimeType(getApplicationContext(), uri);
+        if (mimeType != null) return mimeType;
+      }
+      return MediaUtil.getCorrectedMimeType(getIntent().getType());
     }
 
     private InputStream openFileUri(Uri uri) throws IOException {

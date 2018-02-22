@@ -32,14 +32,23 @@ import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMapOptions;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 
 import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.R;
@@ -58,16 +67,13 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
-import org.thoughtcrime.securesms.util.concurrent.ListenableFuture.Listener;
 import org.thoughtcrime.securesms.util.views.Stub;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-
 
 public class AttachmentManager {
 
@@ -76,16 +82,13 @@ public class AttachmentManager {
   private final @NonNull Context                    context;
   private final @NonNull Stub<View>                 attachmentViewStub;
   private final @NonNull AttachmentListener         attachmentListener;
+  private                RemovableEditableMediaView attachmentMapRemovableMediaView;
+  private                SignalMapView              attachmentMapView;
+  private                RecyclerView               attachmentRecyclerView;
 
-  private RemovableEditableMediaView removableMediaView;
-  private ThumbnailView              thumbnail;
-  private AudioView                  audioView;
-  private DocumentView               documentView;
-  private SignalMapView              mapView;
-
-  private @NonNull  List<Uri>       garbage = new LinkedList<>();
-  private @NonNull  Optional<Slide> slide   = Optional.absent();
-  private @Nullable Uri             captureUri;
+  private @NonNull  List<Uri>   garbage = new LinkedList<>();
+  private @Nullable List<Slide> slides;
+  private @Nullable Uri         captureUri;
 
   public AttachmentManager(@NonNull Activity activity, @NonNull AttachmentListener listener) {
     this.context            = activity;
@@ -97,60 +100,58 @@ public class AttachmentManager {
     if (!attachmentViewStub.resolved()) {
       View root = attachmentViewStub.get();
 
-      this.thumbnail          = ViewUtil.findById(root, R.id.attachment_thumbnail);
-      this.audioView          = ViewUtil.findById(root, R.id.attachment_audio);
-      this.documentView       = ViewUtil.findById(root, R.id.attachment_document);
-      this.mapView            = ViewUtil.findById(root, R.id.attachment_location);
-      this.removableMediaView = ViewUtil.findById(root, R.id.removable_media_view);
+      attachmentMapRemovableMediaView = ViewUtil.findById(root, R.id.attachment_map_removable_media_view);
+      attachmentMapView               = ViewUtil.findById(root, R.id.attachment_map);
+      attachmentRecyclerView          = ViewUtil.findById(root, R.id.attachment_recycler_view);
 
-      removableMediaView.setRemoveClickListener(new RemoveButtonListener());
-      removableMediaView.setEditClickListener(new EditButtonListener());
-      thumbnail.setOnClickListener(new ThumbnailClickListener());
+      attachmentMapRemovableMediaView.setRemoveClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            clear(GlideApp.with(context.getApplicationContext()), true);
+            cleanup();
+          }
+      });
+
+      attachmentRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+      attachmentRecyclerView.setItemAnimator(new DefaultItemAnimator());
     }
-
   }
 
-  public void clear(@NonNull GlideRequests glideRequests, boolean animate) {
-    if (attachmentViewStub.resolved()) {
+  public void clear(@NonNull GlideRequests glideRequests, boolean clearAll) {
+    if (!clearAll && slides != null && !slides.isEmpty()) {
+      markGarbage(slides.get(0).getUri());
+      slides.remove(0);
+      if (attachmentViewStub.resolved() && attachmentRecyclerView.getAdapter() != null) {
+        attachmentRecyclerView.getAdapter().notifyItemRemoved(0);
+        attachmentRecyclerView.getAdapter().notifyItemRangeChanged(0, slides.size());
+      }
+    }
 
-      if (animate) {
-        ViewUtil.fadeOut(attachmentViewStub.get(), 200).addListener(new Listener<Boolean>() {
-          @Override
-          public void onSuccess(Boolean result) {
-            thumbnail.clear(glideRequests);
-            attachmentViewStub.get().setVisibility(View.GONE);
-            attachmentListener.onAttachmentChanged();
-          }
+    if (clearAll || slides == null || slides.isEmpty()) {
+      if (attachmentViewStub.resolved()) {
+        if (attachmentRecyclerView.getAdapter() != null) {
+          if (clearAll) {
+            for (int i = 0; i < attachmentRecyclerView.getChildCount(); i++) {
+              AttachmentAdapter.ViewHolder holder = (AttachmentAdapter.ViewHolder) attachmentRecyclerView
+                      .getChildViewHolder(attachmentRecyclerView.getChildAt(i));
+              holder.thumbnail.clear(glideRequests);
+              holder.audioView.cleanup();
+            }
 
-          @Override
-          public void onFailure(ExecutionException e) {
+            attachmentRecyclerView.setAdapter(null);
+            attachmentRecyclerView.removeAllViewsInLayout();
           }
-        });
-      } else {
-        thumbnail.clear(glideRequests);
+        }
+
+        attachmentRecyclerView.setVisibility(View.GONE);
+        attachmentMapRemovableMediaView.setVisibility(View.GONE);
         attachmentViewStub.get().setVisibility(View.GONE);
+
         attachmentListener.onAttachmentChanged();
       }
 
-      markGarbage(getSlideUri());
-      slide = Optional.absent();
-
-      audioView.cleanup();
-    }
-  }
-
-  public void cleanup() {
-    cleanup(captureUri);
-    cleanup(getSlideUri());
-
-    captureUri = null;
-    slide      = Optional.absent();
-
-    Iterator<Uri> iterator = garbage.listIterator();
-
-    while (iterator.hasNext()) {
-      cleanup(iterator.next());
-      iterator.remove();
+      markGarbage(getSlideUris());
+      slides = null;
     }
   }
 
@@ -161,6 +162,28 @@ public class AttachmentManager {
     }
   }
 
+  private void cleanup(final @Nullable Uri[] uris) {
+    if (uris != null) {
+      for (Uri uri : uris) {
+        cleanup(uri);
+      }
+    }
+  }
+
+  public void cleanup() {
+    if (slides == null || slides.isEmpty()) {
+      cleanup(captureUri);
+      slides = null;
+      captureUri = null;
+    }
+
+    Iterator<Uri> iterator = garbage.listIterator();
+    while (iterator.hasNext()) {
+      cleanup(iterator.next());
+      iterator.remove();
+    }
+  }
+
   private void markGarbage(@Nullable Uri uri) {
     if (uri != null && PersistentBlobProvider.isAuthority(context, uri)) {
       Log.w(TAG, "Marking garbage that needs cleaning: " + uri);
@@ -168,12 +191,31 @@ public class AttachmentManager {
     }
   }
 
-  private void setSlide(@NonNull Slide slide) {
-    if (getSlideUri() != null)                                    cleanup(getSlideUri());
-    if (captureUri != null && !captureUri.equals(slide.getUri())) cleanup(captureUri);
+  private void markGarbage(@Nullable Uri[] uris) {
+    if (uris != null) {
+      for (Uri uri : uris) {
+        markGarbage(uri);
+      }
+    }
+  }
+
+  private void setSlides(@NonNull Slide[] slides) {
+    if (getSlideUris() != null) cleanup(getSlideUris());
+    if (captureUri != null) {
+      boolean captureUriInSlides = false;
+      for (Slide slide : slides) {
+        if (captureUri.equals(slide.getUri())) {
+          captureUriInSlides = true;
+        }
+      }
+
+      if (!captureUriInSlides) {
+        cleanup(captureUri);
+      }
+    }
 
     this.captureUri = null;
-    this.slide      = Optional.of(slide);
+    this.slides = new LinkedList<>(Arrays.asList(slides));
   }
 
   public void setLocation(@NonNull final SignalPlace place,
@@ -181,10 +223,12 @@ public class AttachmentManager {
   {
     inflateStub();
 
-    ListenableFuture<Bitmap> future = mapView.display(place);
+    ListenableFuture<Bitmap> future = attachmentMapView.display(place);
 
     attachmentViewStub.get().setVisibility(View.VISIBLE);
-    removableMediaView.display(mapView, false);
+    attachmentRecyclerView.setVisibility(View.GONE);
+    attachmentMapRemovableMediaView.setVisibility(View.VISIBLE);
+    attachmentMapRemovableMediaView.display(attachmentMapView, false);
 
     future.addListener(new AssertedSuccessListener<Bitmap>() {
       @Override
@@ -194,7 +238,7 @@ public class AttachmentManager {
                                                             .create(context, blob, MediaUtil.IMAGE_PNG, null);
         LocationSlide locationSlide = new LocationSlide(context, uri, blob.length, place);
 
-        setSlide(locationSlide);
+        setSlides(new Slide[]{locationSlide});
         attachmentListener.onAttachmentChanged();
       }
     });
@@ -202,110 +246,173 @@ public class AttachmentManager {
 
   @SuppressLint("StaticFieldLeak")
   public void setMedia(@NonNull final GlideRequests glideRequests,
-                       @NonNull final Uri uri,
-                       @NonNull final MediaType mediaType,
+                       @NonNull final Uri[] uris,
+                       @NonNull final MediaType[] mediaTypes,
                        @NonNull final MediaConstraints constraints)
   {
     inflateStub();
 
-            new AsyncTask<Void, Void, Slide>() {
+    new AsyncTask<Void, Void, Slide[]>() {
       @Override
       protected void onPreExecute() {
-        thumbnail.clear(glideRequests);
-        thumbnail.showProgressSpinner();
-        attachmentViewStub.get().setVisibility(View.VISIBLE);
+          attachmentViewStub.get().setVisibility(View.VISIBLE);
+          attachmentMapView.setVisibility(View.GONE);
+          attachmentRecyclerView.setVisibility(View.VISIBLE);
       }
 
       @Override
-      protected @Nullable Slide doInBackground(Void... params) {
-        try {
-          if (PartAuthority.isLocalUri(uri)) {
-            return getManuallyCalculatedSlideInfo(uri);
-          } else {
-            Slide result = getContentResolverSlideInfo(uri);
+      protected @Nullable Slide[] doInBackground(Void... params) {
+        Slide[] result = new Slide[uris.length];
+        for (int i = 0; i < uris.length; i++) {
+          try {
+            if (PartAuthority.isLocalUri(uris[i])) {
+              result[i] = getManuallyCalculatedSlideInfo(uris[i], mediaTypes[i]);
+            } else {
+              result[i] = getContentResolverSlideInfo(uris[i], mediaTypes[i]);
 
-            if (result == null) return getManuallyCalculatedSlideInfo(uri);
-            else                return result;
+              if (result[i] == null) {
+                result[i] = getManuallyCalculatedSlideInfo(uris[i], mediaTypes[i]);
+              }
+            }
+          } catch (IOException e) {
+            Log.w(TAG, e);
+            return null;
           }
-        } catch (IOException e) {
-          Log.w(TAG, e);
-          return null;
         }
+
+        return result;
       }
 
       @Override
-      protected void onPostExecute(@Nullable final Slide slide) {
-        if (slide == null) {
+      protected void onPostExecute(@Nullable final Slide[] result) {
+        if (result == null) {
           attachmentViewStub.get().setVisibility(View.GONE);
           Toast.makeText(context,
                          R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
                          Toast.LENGTH_SHORT).show();
-        } else if (!areConstraintsSatisfied(context, slide, constraints)) {
+        } else if (!areConstraintsSatisfied(context, result, constraints)) {
           attachmentViewStub.get().setVisibility(View.GONE);
           Toast.makeText(context,
                          R.string.ConversationActivity_attachment_exceeds_size_limits,
                          Toast.LENGTH_SHORT).show();
         } else {
-          setSlide(slide);
-          attachmentViewStub.get().setVisibility(View.VISIBLE);
+          setSlides(result);
 
-          if (slide.hasAudio()) {
-            audioView.setAudio((AudioSlide) slide, false);
-            removableMediaView.display(audioView, false);
-          } else if (slide.hasDocument()) {
-            documentView.setDocument((DocumentSlide) slide, false);
-            removableMediaView.display(documentView, false);
-          } else {
-            thumbnail.setImageResource(glideRequests, slide, false, true);
-            removableMediaView.display(thumbnail, mediaType == MediaType.IMAGE);
-          }
-
+          attachmentRecyclerView.setAdapter(new AttachmentAdapter(slides, glideRequests));
           attachmentListener.onAttachmentChanged();
         }
       }
-
-      private @Nullable Slide getContentResolverSlideInfo(Uri uri) {
-        Cursor cursor = null;
-        long   start  = System.currentTimeMillis();
-
-        try {
-          cursor = context.getContentResolver().query(uri, null, null, null, null);
-
-          if (cursor != null && cursor.moveToFirst()) {
-            String fileName = cursor.getString(cursor.getColumnIndexOrThrow(OpenableColumns.DISPLAY_NAME));
-            long   fileSize = cursor.getLong(cursor.getColumnIndexOrThrow(OpenableColumns.SIZE));
-            String mimeType = context.getContentResolver().getType(uri);
-
-            Log.w(TAG, "remote slide with size " + fileSize + " took " + (System.currentTimeMillis() - start) + "ms");
-            return mediaType.createSlide(context, uri, fileName, mimeType, fileSize);
-          }
-        } finally {
-          if (cursor != null) cursor.close();
-        }
-
-        return null;
-      }
-
-      private @NonNull Slide getManuallyCalculatedSlideInfo(Uri uri) throws IOException {
-        long start      = System.currentTimeMillis();
-        Long mediaSize  = null;
-        String fileName = null;
-        String mimeType = null;
-
-        if (PartAuthority.isLocalUri(uri)) {
-          mediaSize = PartAuthority.getAttachmentSize(context, uri);
-          fileName  = PartAuthority.getAttachmentFileName(context, uri);
-          mimeType  = PartAuthority.getAttachmentContentType(context, uri);
-        }
-
-        if (mediaSize == null) {
-          mediaSize = MediaUtil.getMediaSize(context, uri);
-        }
-
-        Log.w(TAG, "local slide with size " + mediaSize + " took " + (System.currentTimeMillis() - start) + "ms");
-        return mediaType.createSlide(context, uri, fileName, mimeType, mediaSize);
-      }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+  }
+
+  @SuppressLint("StaticFieldLeak")
+  public void updateMedia(@NonNull final GlideRequests glideRequests,
+                          @NonNull final Uri uri,
+                          @NonNull final MediaType mediaType,
+                          @NonNull final MediaConstraints constraints,
+                          final int datasetPosition) {
+    if (!attachmentViewStub.resolved() ||
+        slides == null ||
+        attachmentRecyclerView.getAdapter() == null) {
+      setMedia(glideRequests, new Uri[]{uri}, new MediaType[]{mediaType}, constraints);
+    } else {
+      new AsyncTask<Void, Void, Slide>() {
+        @Override
+        protected void onPreExecute() {
+          attachmentViewStub.get().setVisibility(View.VISIBLE);
+          attachmentMapView.setVisibility(View.GONE);
+          attachmentRecyclerView.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected @Nullable Slide doInBackground(Void... params) {
+          Slide result;
+          try {
+            if (PartAuthority.isLocalUri(uri)) {
+              result = getManuallyCalculatedSlideInfo(uri, mediaType);
+            } else {
+              result = getContentResolverSlideInfo(uri, mediaType);
+
+              if (result == null) {
+                result = getManuallyCalculatedSlideInfo(uri, mediaType);
+              }
+            }
+          } catch (IOException e) {
+            Log.w(TAG, e);
+            return null;
+          }
+
+          return result;
+        }
+
+        @Override
+        protected void onPostExecute(@Nullable final Slide result) {
+          if (result == null) {
+            attachmentViewStub.get().setVisibility(View.GONE);
+            Toast.makeText(context,
+                    R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
+                    Toast.LENGTH_SHORT).show();
+          } else if (!areConstraintsSatisfied(context, new Slide[]{result}, constraints)) {
+            attachmentViewStub.get().setVisibility(View.GONE);
+            Toast.makeText(context,
+                    R.string.ConversationActivity_attachment_exceeds_size_limits,
+                    Toast.LENGTH_SHORT).show();
+          } else {
+            AttachmentAdapter.ViewHolder holder =
+                    (AttachmentAdapter.ViewHolder) attachmentRecyclerView.findViewHolderForAdapterPosition(datasetPosition);
+
+            holder.audioView.cleanup();
+            holder.thumbnail.clear(glideRequests);
+            cleanup(slides.get(datasetPosition).getUri());
+            slides.set(datasetPosition, result);
+
+            attachmentRecyclerView.getAdapter().notifyItemChanged(datasetPosition);
+          }
+        }
+      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+  }
+
+  private @Nullable Slide getContentResolverSlideInfo(Uri uri, MediaType mediaType) {
+    Cursor cursor = null;
+    long   start  = System.currentTimeMillis();
+
+    try {
+      cursor = context.getContentResolver().query(uri, null, null, null, null);
+
+      if (cursor != null && cursor.moveToFirst()) {
+        String fileName = cursor.getString(cursor.getColumnIndexOrThrow(OpenableColumns.DISPLAY_NAME));
+        long   fileSize = cursor.getLong(cursor.getColumnIndexOrThrow(OpenableColumns.SIZE));
+        String mimeType = context.getContentResolver().getType(uri);
+
+        Log.w(TAG, "remote slide with size " + fileSize + " took " + (System.currentTimeMillis() - start) + "ms");
+        return mediaType.createSlide(context, uri, fileName, mimeType, fileSize);
+      }
+    } finally {
+      if (cursor != null) cursor.close();
+    }
+
+    return null;
+  }
+
+  private @NonNull Slide getManuallyCalculatedSlideInfo(Uri uri, MediaType mediaType) throws IOException {
+    long start      = System.currentTimeMillis();
+    Long mediaSize  = null;
+    String fileName = null;
+    String mimeType = null;
+
+    if (PartAuthority.isLocalUri(uri)) {
+      mediaSize = PartAuthority.getAttachmentSize(context, uri);
+      fileName  = PartAuthority.getAttachmentFileName(context, uri);
+      mimeType  = PartAuthority.getAttachmentContentType(context, uri);
+    }
+
+    if (mediaSize == null) {
+      mediaSize = MediaUtil.getMediaSize(context, uri);
+    }
+
+    Log.w(TAG, "local slide with size " + mediaSize + " took " + (System.currentTimeMillis() - start) + "ms");
+    return mediaType.createSlide(context, uri, fileName, mimeType, mediaSize);
   }
 
   public boolean isAttachmentPresent() {
@@ -314,7 +421,11 @@ public class AttachmentManager {
 
   public @NonNull SlideDeck buildSlideDeck() {
     SlideDeck deck = new SlideDeck();
-    if (slide.isPresent()) deck.addSlide(slide.get());
+    if (slides != null) {
+      for (Slide slide : slides) {
+        deck.addSlide(slide);
+      }
+    }
     return deck;
   }
 
@@ -378,8 +489,16 @@ public class AttachmentManager {
     activity.startActivityForResult(intent, requestCode);
   }
 
-  private @Nullable Uri getSlideUri() {
-    return slide.isPresent() ? slide.get().getUri() : null;
+  private @Nullable Uri[] getSlideUris() {
+    if (slides == null || slides.isEmpty()) return null;
+
+    Uri[] result = new Uri[slides.size()];
+    int i = 0;
+    for (Slide slide : slides) {
+      result[i++] = slide.getUri();
+    }
+
+    return result;
   }
 
   public @Nullable Uri getCaptureUri() {
@@ -413,8 +532,12 @@ public class AttachmentManager {
     final Intent intent = new Intent();
     intent.setType(type);
 
-    if (extraMimeType != null && Build.VERSION.SDK_INT >= 19) {
+    if (extraMimeType != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
       intent.putExtra(Intent.EXTRA_MIME_TYPES, extraMimeType);
+    }
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+      intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
     }
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -438,12 +561,20 @@ public class AttachmentManager {
   }
 
   private boolean areConstraintsSatisfied(final @NonNull  Context context,
-                                          final @Nullable Slide slide,
+                                          final @Nullable Slide[] slides,
                                           final @NonNull  MediaConstraints constraints)
   {
-   return slide == null                                          ||
-          constraints.isSatisfied(context, slide.asAttachment()) ||
-          constraints.canResize(slide.asAttachment());
+    if (slides == null) return true;
+
+    for (Slide slide : slides) {
+      if (slide != null                                               &&
+              !constraints.isSatisfied(context, slide.asAttachment()) &&
+              !constraints.canResize(slide.asAttachment())) {
+        return false;
+      }
+    }
+
+    return true;
   }
 
   private void previewImageDraft(final @NonNull Slide slide) {
@@ -458,30 +589,6 @@ public class AttachmentManager {
     }
   }
 
-  private class ThumbnailClickListener implements View.OnClickListener {
-    @Override
-    public void onClick(View v) {
-      if (slide.isPresent()) previewImageDraft(slide.get());
-    }
-  }
-
-  private class RemoveButtonListener implements View.OnClickListener {
-    @Override
-    public void onClick(View v) {
-      cleanup();
-      clear(GlideApp.with(context.getApplicationContext()), true);
-    }
-  }
-
-  private class EditButtonListener implements View.OnClickListener {
-    @Override
-    public void onClick(View v) {
-      Intent intent = new Intent(context, ScribbleActivity.class);
-      intent.setData(getSlideUri());
-      ((Activity)context).startActivityForResult(intent, ScribbleActivity.SCRIBBLE_REQUEST_CODE);
-    }
-  }
-
   public interface AttachmentListener {
     void onAttachmentChanged();
   }
@@ -489,35 +596,158 @@ public class AttachmentManager {
   public enum MediaType {
     IMAGE, GIF, AUDIO, VIDEO, DOCUMENT;
 
-    public @NonNull Slide createSlide(@NonNull  Context context,
-                                      @NonNull  Uri     uri,
-                                      @Nullable String fileName,
-                                      @Nullable String mimeType,
-                                                long    dataSize)
-    {
+    public @NonNull
+    Slide createSlide(@NonNull Context context,
+                      @NonNull Uri uri,
+                      @Nullable String fileName,
+                      @Nullable String mimeType,
+                      long dataSize) {
       if (mimeType == null) {
         mimeType = "application/octet-stream";
       }
 
       switch (this) {
-      case IMAGE:    return new ImageSlide(context, uri, dataSize);
-      case GIF:      return new GifSlide(context, uri, dataSize);
-      case AUDIO:    return new AudioSlide(context, uri, dataSize, false);
-      case VIDEO:    return new VideoSlide(context, uri, dataSize);
-      case DOCUMENT: return new DocumentSlide(context, uri, mimeType, dataSize, fileName);
-      default:       throw  new AssertionError("unrecognized enum");
+        case IMAGE:
+          return new ImageSlide(context, uri, dataSize);
+        case GIF:
+          return new GifSlide(context, uri, dataSize);
+        case AUDIO:
+          return new AudioSlide(context, uri, dataSize, false);
+        case VIDEO:
+          return new VideoSlide(context, uri, dataSize);
+        case DOCUMENT:
+          return new DocumentSlide(context, uri, mimeType, dataSize, fileName);
+        default:
+          throw new AssertionError("unrecognized enum");
       }
     }
 
-    public static @Nullable MediaType from(final @Nullable String mimeType) {
-      if (TextUtils.isEmpty(mimeType))     return null;
-      if (MediaUtil.isGif(mimeType))       return GIF;
+    public static @Nullable
+    MediaType from(final @Nullable String mimeType) {
+      if (TextUtils.isEmpty(mimeType)) return null;
+      if (MediaUtil.isGif(mimeType)) return GIF;
       if (MediaUtil.isImageType(mimeType)) return IMAGE;
       if (MediaUtil.isAudioType(mimeType)) return AUDIO;
       if (MediaUtil.isVideoType(mimeType)) return VIDEO;
 
       return DOCUMENT;
     }
+  }
 
+  public class AttachmentAdapter extends RecyclerView.Adapter<AttachmentAdapter.ViewHolder> {
+    private @NonNull final List<Slide> slides;
+    private @NonNull final GlideRequests glideRequests;
+
+    public AttachmentAdapter(@NonNull List<Slide> slides,
+                             @NonNull GlideRequests glideRequests) {
+      super();
+      this.slides = slides;
+      this.glideRequests = glideRequests;
+    }
+
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+      View view = LayoutInflater.from(parent.getContext())
+              .inflate(R.layout.removable_editable_media_view, parent, false);
+      return new ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+      // TODO: check if this is necessary
+      holder.thumbnail.clear(glideRequests);
+      holder.thumbnail.showProgressSpinner();
+
+      holder.thumbnail.setOnClickListener(new ThumbnailClickListener(position));
+      holder.removableMediaView.setRemoveClickListener(new RemoveButtonListener(position));
+      holder.removableMediaView.setEditClickListener(new EditButtonListener(position));
+
+      if (slides.get(position).hasAudio()) {
+        holder.audioView.setAudio((AudioSlide) slides.get(position), false);
+        holder.removableMediaView.display(holder.audioView, false);
+      } else if (slides.get(position).hasDocument()) {
+        holder.documentView.setDocument((DocumentSlide) slides.get(position), false);
+        holder.removableMediaView.display(holder.documentView, false);
+      } else {
+        holder.thumbnail.setImageResource(glideRequests, slides.get(position), false, true);
+        holder.removableMediaView.display(holder.thumbnail, slides.get(position).hasImage());
+      }
+    }
+
+    @Override
+    public int getItemCount() {
+      return slides.size();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+      private RemovableEditableMediaView removableMediaView;
+      private ThumbnailView              thumbnail;
+      private AudioView                  audioView;
+      private DocumentView               documentView;
+
+      public ViewHolder(View view) {
+        super(view);
+        this.removableMediaView = (RemovableEditableMediaView) view;
+        this.thumbnail          = ViewUtil.findById(view, R.id.attachment_thumbnail);
+        this.audioView          = ViewUtil.findById(view, R.id.attachment_audio);
+        this.documentView       = ViewUtil.findById(view, R.id.attachment_document);
+      }
+    }
+
+    private class ThumbnailClickListener implements View.OnClickListener {
+      private int position;
+
+      public ThumbnailClickListener(int position) {
+        this.position = position;
+      }
+
+      @Override
+      public void onClick(View v) {
+        previewImageDraft(slides.get(position));
+      }
+    }
+
+    private class RemoveButtonListener implements View.OnClickListener {
+      private int position;
+
+      public RemoveButtonListener(int position) {
+          this.position = position;
+      }
+
+      @Override
+      public void onClick(View v) {
+        ViewHolder holder =
+                (ViewHolder) attachmentRecyclerView.findViewHolderForAdapterPosition(position);
+
+        holder.audioView.cleanup();
+        holder.thumbnail.clear(glideRequests);
+        cleanup(slides.get(position).getUri());
+
+        slides.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, slides.size());
+
+        if (slides.isEmpty()) {
+          clear(glideRequests, true);
+          cleanup();
+        }
+      }
+    }
+
+    private class EditButtonListener implements View.OnClickListener {
+      private int position;
+
+      public EditButtonListener(int position) {
+          this.position = position;
+      }
+
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent(context, ScribbleActivity.class);
+        intent.setData(slides.get(position).getUri());
+        intent.putExtra(ScribbleActivity.EXTRA_DATASET_POSITION, position);
+        ((Activity)context).startActivityForResult(intent, ScribbleActivity.SCRIBBLE_REQUEST_CODE);
+      }
+    }
   }
 }

@@ -41,7 +41,6 @@ public abstract class Slide {
   public Slide(@NonNull Context context, @NonNull Attachment attachment) {
     this.context    = context;
     this.attachment = attachment;
-
   }
 
   public String getContentType() {

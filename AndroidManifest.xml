@@ -171,6 +171,18 @@
             <data android:mimeType="*/*"/>
         </intent-filter>
 
+        <intent-filter>
+            <action android:name="android.intent.action.SEND_MULTIPLE" />
+            <category android:name="android.intent.category.DEFAULT"/>
+            <data android:mimeType="audio/*" />
+            <data android:mimeType="image/*" />
+            <data android:mimeType="text/plain" />
+            <data android:mimeType="video/*" />
+            <data android:mimeType="application/*"/>
+            <data android:mimeType="text/*"/>
+            <data android:mimeType="*/*"/>
+        </intent-filter>
+
         <meta-data
                 android:name="android.service.chooser.chooser_target_service"
                 android:value=".service.DirectShareService" />

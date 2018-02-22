@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.components.RemovableEditableMediaView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/removable_media_view"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+
+    <org.thoughtcrime.securesms.components.ThumbnailView
+        android:id="@+id/attachment_thumbnail"
+        android:layout_width="230dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone"
+        android:contentDescription="@string/conversation_activity__attachment_thumbnail"
+        app:backgroundColorHint="?conversation_background" />
+
+    <org.thoughtcrime.securesms.components.AudioView
+        android:id="@+id/attachment_audio"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        app:widgetBackground="?conversation_item_bubble_background"
+        app:foregroundTintColor="@color/grey_500"
+        app:backgroundTintColor="?conversation_item_bubble_background"/>
+
+    <org.thoughtcrime.securesms.components.DocumentView
+        android:id="@+id/attachment_document"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        app:documentWidgetBackground="?conversation_item_bubble_background"
+        app:documentForegroundTintColor="@color/grey_500"
+        app:documentBackgroundTintColor="?conversation_item_bubble_background"/>
+</org.thoughtcrime.securesms.components.RemovableEditableMediaView>

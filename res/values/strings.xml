@@ -734,6 +734,8 @@
     <string name="attachment_type_selector__file">File</string>
 
     <string name="attachment_type_selector__drawer_description">Toggle attachment drawer</string>
+    <string name="attachment_type_selector__send_description">Send quick attachments</string>
+    <string name="attachment_type_selector__send">Send</string>
 
     <!-- change_passphrase_activity -->
     <string name="change_passphrase_activity__old_passphrase">Old passphrase</string>
@@ -1322,6 +1324,7 @@
     <string name="PushDecryptJob_unlock_to_view_pending_messages">Unlock to view pending messages</string>
     <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Unlock to complete update</string>
     <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Please unlock Signal to complete update</string>
+
 
 
     <!-- EOF -->

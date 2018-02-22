@@ -21,6 +21,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -165,6 +166,8 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -200,6 +203,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   public static final String DISTRIBUTION_TYPE_EXTRA = "distribution_type";
   public static final String TIMING_EXTRA            = "timing";
   public static final String LAST_SEEN_EXTRA         = "last_seen";
+  public static final String URIS_EXTRA              = "uris";
+  public static final String MIMETYPES_EXTRA         = "mime_types";
 
   private static final int PICK_GALLERY      = 1;
   private static final int PICK_DOCUMENT     = 2;
@@ -296,7 +301,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (!Util.isEmpty(composeText) || attachmentManager.isAttachmentPresent()) {
       saveDraft();
-      attachmentManager.clear(glideRequests, false);
+      attachmentManager.clear(glideRequests, true);
       composeText.setText("");
     }
 
@@ -397,21 +402,26 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     switch (reqCode) {
     case PICK_GALLERY:
-      MediaType mediaType;
+      Uri[] uris = getMultipleData(data);
+      if (uris == null) return;
 
-      String mimeType = MediaUtil.getMimeType(this, data.getData());
+      MediaType[] mediaTypes = new MediaType[uris.length];
 
-      if      (MediaUtil.isGif(mimeType))   mediaType = MediaType.GIF;
-      else if (MediaUtil.isVideo(mimeType)) mediaType = MediaType.VIDEO;
-      else                                  mediaType = MediaType.IMAGE;
+      for (int i = 0; i < uris.length; i++) {
+        String mimeType = MediaUtil.getMimeType(this, uris[i]);
 
-      setMedia(data.getData(), mediaType);
+        if      (MediaUtil.isGif(mimeType))   mediaTypes[i] = MediaType.GIF;
+        else if (MediaUtil.isVideo(mimeType)) mediaTypes[i] = MediaType.VIDEO;
+        else                                  mediaTypes[i] = MediaType.IMAGE;
+      }
+
+      setMedia(uris, mediaTypes);
       break;
     case PICK_DOCUMENT:
-      setMedia(data.getData(), MediaType.DOCUMENT);
+      setMedia(getMultipleData(data), MediaType.DOCUMENT);
       break;
     case PICK_AUDIO:
-      setMedia(data.getData(), MediaType.AUDIO);
+      setMedia(getMultipleData(data), MediaType.DOCUMENT);
       break;
     case PICK_CONTACT_INFO:
       addAttachmentContactInfo(data.getData());
@@ -441,11 +451,32 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       setMedia(data.getData(), MediaType.GIF);
       break;
     case ScribbleActivity.SCRIBBLE_REQUEST_CODE:
-      setMedia(data.getData(), MediaType.IMAGE);
+      int datasetPosition = data.getIntExtra(ScribbleActivity.EXTRA_DATASET_POSITION, 0);
+      updateMedia(data.getData(), MediaType.IMAGE, datasetPosition);
       break;
     case SMS_DEFAULT:
       initializeSecurity(isSecureText, isDefaultSms);
       break;
+    }
+  }
+
+  public Uri[] getMultipleData(@NonNull Intent data) {
+    if (data.getData() != null) {
+      return new Uri[]{data.getData()};
+    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN && data.getClipData() != null) {
+      ClipData clipData = data.getClipData();
+      Uri[] result = new Uri[clipData.getItemCount()];
+      for (int i = 0; i < clipData.getItemCount(); i++)
+        result[i] = clipData.getItemAt(i).getUri();
+      return result;
+    } else if (data.getStringArrayListExtra(URIS_EXTRA) != null) {
+      ArrayList<String> strings = data.getStringArrayListExtra(URIS_EXTRA);
+      Uri[] result = new Uri[strings.size()];
+      for (int i = 0; i < strings.size(); i++)
+        result[i] = Uri.parse(strings.get(i));
+      return result;
+    } else {
+      return null;
     }
   }
 
@@ -976,13 +1007,25 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void initializeDraft() {
     final String    draftText      = getIntent().getStringExtra(TEXT_EXTRA);
-    final Uri       draftMedia     = getIntent().getData();
-    final MediaType draftMediaType = MediaType.from(getIntent().getType());
-    
-    if (draftText != null)                            composeText.setText(draftText);
-    if (draftMedia != null && draftMediaType != null) setMedia(draftMedia, draftMediaType);
 
-    if (draftText == null && draftMedia == null && draftMediaType == null) {
+    ArrayList<String> uris = getIntent().getStringArrayListExtra(URIS_EXTRA);
+    ArrayList<String> mimeTypes = getIntent().getStringArrayListExtra(MIMETYPES_EXTRA);
+    Uri[] draftMedias = null;
+    MediaType[] draftMediaTypes = null;
+
+    if (uris != null) {
+      draftMedias = new Uri[uris.size()];
+      draftMediaTypes = new MediaType[uris.size()];
+      for (int i = 0; i < uris.size(); i++) {
+        draftMedias[i] = Uri.parse(uris.get(i));
+        draftMediaTypes[i] = MediaType.from(mimeTypes.get(i));
+      }
+    }
+
+    if (draftText != null)                              composeText.setText(draftText);
+    if (draftMedias != null && draftMediaTypes != null) setMedia(draftMedias, draftMediaTypes);
+
+    if (draftText == null && draftMedias == null && draftMediaTypes == null) {
       initializeDraftFromDatabase();
     } else {
       updateToggleButtonState();
@@ -1010,6 +1053,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
       @Override
       protected void onPostExecute(List<Draft> drafts) {
+        List<Uri> mediaUriList = new ArrayList<>();
+        List<MediaType> mediaTypeList = new ArrayList<>();
+
         for (Draft draft : drafts) {
           try {
             switch (draft.getType()) {
@@ -1020,18 +1066,25 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 attachmentManager.setLocation(SignalPlace.deserialize(draft.getValue()), getCurrentMediaConstraints());
                 break;
               case Draft.IMAGE:
-                setMedia(Uri.parse(draft.getValue()), MediaType.IMAGE);
+                mediaUriList.add(Uri.parse(draft.getValue()));
+                mediaTypeList.add(MediaType.IMAGE);
                 break;
               case Draft.AUDIO:
-                setMedia(Uri.parse(draft.getValue()), MediaType.AUDIO);
+                mediaUriList.add(Uri.parse(draft.getValue()));
+                mediaTypeList.add(MediaType.AUDIO);
                 break;
               case Draft.VIDEO:
-                setMedia(Uri.parse(draft.getValue()), MediaType.VIDEO);
+                mediaUriList.add(Uri.parse(draft.getValue()));
+                mediaTypeList.add(MediaType.VIDEO);
                 break;
             }
           } catch (IOException e) {
             Log.w(TAG, e);
           }
+        }
+
+        if (!mediaUriList.isEmpty()) {
+          setMedia(mediaUriList.toArray(new Uri[0]), mediaTypeList.toArray(new MediaType[0]));
         }
 
         updateToggleButtonState();
@@ -1376,9 +1429,28 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
+  private void setMedia(@Nullable Uri[] uris, @NonNull MediaType[] mediaTypes) {
+    if (uris == null) return;
+    attachmentManager.setMedia(glideRequests, uris, mediaTypes, getCurrentMediaConstraints());
+  }
+
   private void setMedia(@Nullable Uri uri, @NonNull MediaType mediaType) {
     if (uri == null) return;
-    attachmentManager.setMedia(glideRequests, uri, mediaType, getCurrentMediaConstraints());
+    setMedia(new Uri[]{uri}, new MediaType[]{mediaType});
+  }
+
+  private void setMedia(@Nullable Uri[] uris, @NonNull MediaType mediaType) {
+    if (uris == null) return;
+
+    MediaType[] mediaTypes = new MediaType[uris.length];
+    Arrays.fill(mediaTypes, mediaType);
+
+    setMedia(uris, mediaTypes);
+  }
+
+  private void updateMedia(@Nullable  Uri uri, @NonNull MediaType mediaType, int datasetPosition) {
+    if (uri == null) return;
+    attachmentManager.updateMedia(glideRequests, uri, mediaType, getCurrentMediaConstraints(), datasetPosition);
   }
 
   private void addAttachmentContactInfo(Uri contactUri) {
@@ -1413,7 +1485,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       drafts.add(new Draft(Draft.TEXT, composeText.getTextTrimmed()));
     }
 
-    for (Slide slide : attachmentManager.buildSlideDeck().getSlides()) {
+    List<Slide> slides = attachmentManager.buildSlideDeck().getSlides();
+    for (Slide slide : slides) {
       if      (slide.hasAudio() && slide.getUri() != null)    drafts.add(new Draft(Draft.AUDIO, slide.getUri().toString()));
       else if (slide.hasVideo() && slide.getUri() != null)    drafts.add(new Draft(Draft.VIDEO, slide.getUri().toString()));
       else if (slide.hasLocation())                           drafts.add(new Draft(Draft.LOCATION, ((LocationSlide)slide).getPlace().serialize()));
@@ -1659,12 +1732,17 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void sendMediaMessage(final boolean forceSms, final long expiresIn, final int subscriptionId, boolean initiating)
       throws InvalidMessageException
   {
-    sendMediaMessage(forceSms, getMessage(), attachmentManager.buildSlideDeck(), expiresIn, subscriptionId, initiating);
+    List<Slide> slides = attachmentManager.buildSlideDeck().getSlides();
+    for (Slide slide : slides) {
+      sendMediaMessage(forceSms, getMessage(), new SlideDeck(slide), expiresIn, subscriptionId, initiating);
+    }
   }
 
   private ListenableFuture<Void> sendMediaMessage(final boolean forceSms, String body, SlideDeck slideDeck, final long expiresIn, final int subscriptionId, final boolean initiating) {
 
     OutgoingMediaMessage outgoingMessageCandidate = new OutgoingMediaMessage(recipient, slideDeck, body, System.currentTimeMillis(), subscriptionId, expiresIn, distributionType);
+
+    Log.w(TAG, slideDeck.toString());
 
     final SettableFuture<Void> future  = new SettableFuture<>();
     final Context              context = getApplicationContext();
@@ -1931,9 +2009,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     @Override
-    public void onQuickAttachment(Uri uri) {
+    public void onQuickAttachment(Uri[] uris) {
+      if (uris == null) return;
+
       Intent intent = new Intent();
-      intent.setData(uri);
+      ArrayList<String> strings = new ArrayList<String>(uris.length);
+      for (Uri uri : uris) strings.add(uri.toString());
+      intent.putStringArrayListExtra(URIS_EXTRA, strings);
 
       onActivityResult(PICK_GALLERY, RESULT_OK, intent);
     }

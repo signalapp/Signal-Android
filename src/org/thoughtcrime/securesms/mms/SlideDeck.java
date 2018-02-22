@@ -43,6 +43,10 @@ public class SlideDeck {
     if (slide != null) slides.add(slide);
   }
 
+  public SlideDeck(Slide slide) {
+    addSlide(slide);
+  }
+
   public SlideDeck() {
   }
 

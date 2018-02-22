@@ -18,7 +18,6 @@ import android.view.View;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
@@ -44,13 +43,15 @@ public class ScribbleActivity extends PassphraseRequiredActionBarActivity implem
 
   private static final String TAG = ScribbleActivity.class.getName();
 
-  public static final int SELECT_STICKER_REQUEST_CODE = 123;
-  public static final int SCRIBBLE_REQUEST_CODE       = 31424;
+  public static final int    SELECT_STICKER_REQUEST_CODE = 123;
+  public static final int    SCRIBBLE_REQUEST_CODE       = 31424;
+  public static final String EXTRA_DATASET_POSITION      = "Dataset Position";
 
   private VerticalSlideColorPicker colorPicker;
   private ScribbleToolbar          toolbar;
   private ScribbleView             scribbleView;
   private GlideRequests            glideRequests;
+  private int                      datasetPosition;
 
   @Override
   protected void onCreate(Bundle savedInstanceState, boolean ready) {
@@ -67,6 +68,8 @@ public class ScribbleActivity extends PassphraseRequiredActionBarActivity implem
     scribbleView.setMotionViewCallback(motionViewCallback);
     scribbleView.setDrawingMode(false);
     scribbleView.setImage(glideRequests, getIntent().getData());
+
+    this.datasetPosition = getIntent().getIntExtra(EXTRA_DATASET_POSITION, 0);
 
     colorPicker.setOnColorChangeListener(this);
     colorPicker.setVisibility(View.GONE);
@@ -234,6 +237,7 @@ public class ScribbleActivity extends PassphraseRequiredActionBarActivity implem
         Uri    uri    = provider.create(ScribbleActivity.this, data, MediaUtil.IMAGE_JPEG, null);
         Intent intent = new Intent();
         intent.setData(uri);
+        intent.putExtra(EXTRA_DATASET_POSITION, datasetPosition);
         setResult(RESULT_OK, intent);
 
         finish();
