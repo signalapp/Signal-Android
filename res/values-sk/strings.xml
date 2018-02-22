@@ -828,8 +828,6 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vyberte Váš kontakt zo zoznamu kontaktov.</string>
   <string name="preferences__change_passphrase">Zmeniť heslo</string>
   <string name="preferences__change_your_passphrase">Zmeniť heslo</string>
-  <string name="preferences__enable_passphrase">Použiť heslo</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Uzamknúť Signal a upozornenia správ heslom</string>
   <string name="preferences__screen_security">Zabezpečenie obrazovky</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Zakázať vytváranie snímkov obrazovky vnútri aplikácie a v zozname bežiacich aplikácií</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Aut. zamknúť Signal po určenej dobe bez aktivity</string>

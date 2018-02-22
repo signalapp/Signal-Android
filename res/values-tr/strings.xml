@@ -48,6 +48,7 @@
   <string name="DraftDatabase_Draft_location_snippet">(konum)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Medyayı seçmek için bir uygulama bulunamıyor.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Resim, vidyo veya ses ekleyebilmek için Signal\'a Bellek izni gerekiyor, fakat bu izin temelli rededdilmiştir. Lütfen uygulama ayarlarına devam edip \"İzin\" kısmını seçin, ve \"Bellek\"i etkinleştirin.</string>
   <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Ses oynatma hatası!</string>
@@ -119,6 +120,8 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Cihazınızda bu linke ulaşmanız için gereken hiç bir uygulama yüklü değil.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Sesli mesaj göndermek için Signal\'in mikrofonunuza erişime ihtiyacı var.</string>
   <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Arama yapmak için %s Signal\'in mikrofon ve kameranıza erişime ihtiyacı var.</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Resim ve vidyo çekmek icin Signal\'a kamera izni verin.</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Resim veya vidyo çekebilmek için Signal\'a kamera izni gerek.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d okunmamış mesaj</item>
@@ -279,6 +282,7 @@
   <string name="ImportFragment_no_plaintext_backup_found">Şifresiz metin yedeği bulunamadı!</string>
   <string name="ImportFragment_error_importing_backup">Yedek içeri aktarılırken hata!</string>
   <string name="ImportFragment_import_complete">İçe aktarma tamamlandı!</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">Dış bellekten okuyabilmek için Signal\'a \"Bellek\" izni gerek.</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Sesli mesaj kaydetmek için dokun ve basılı tut, göndermek için bırak</string>
   <!--InviteActivity-->
@@ -421,6 +425,7 @@
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Servisleri güncelleniyor veya geçiçi olarak kullanılamaz durumda. Lütfen yeniden deneyin.</string>
   <string name="RegistrationActivity_more_information">Daha fazla bilgi</string>
   <string name="RegistrationActivity_less_information">Daha az bilgi</string>
+  <string name="RegistrationActivity_unable_to_connect_to_service">Servise bağlanamadı. Lütfen ağ bağlantınızı kontrol edip tekrar deneyin.</string>
   <!--RegistrationProblemsActivity-->
   <!--RegistrationProgressActivity-->
   <!--RegistrationService-->
@@ -829,8 +834,6 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Kişi girdinizi kişi listesinden seçin.</string>
   <string name="preferences__change_passphrase">Parola değiştir</string>
   <string name="preferences__change_your_passphrase">Parolanı değiştir</string>
-  <string name="preferences__enable_passphrase">Parolayı etkinleştir</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Bir parola ile Signal\'i ve mesaj bildirimlerini kilitleyin</string>
   <string name="preferences__screen_security">Ekran güvenliği</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">En son listelerde ve uygulama içinde ekran görüntüsü alınmasını engelle</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Signal\'i belirli bir zaman aralığından sonra otomatik kilitle</string>
@@ -1028,5 +1031,6 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="Permissions_permission_required">İzin gerekmekte</string>
   <string name="Permissions_continue">Devam Et</string>
   <string name="Permissions_not_now">Simdi degil</string>
+  <string name="conversation_activity__enable_signal_messages">SİGNAL MESAJLARINI ETKİNLEŞTİRİN</string>
   <!--EOF-->
 </resources>

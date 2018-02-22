@@ -857,8 +857,6 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">从联系人列表选择您的联系人条目。</string>
   <string name="preferences__change_passphrase"> 修改密码</string>
   <string name="preferences__change_your_passphrase"> 修改你的密码</string>
-  <string name="preferences__enable_passphrase">启用密码</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">使用密码来锁定暗号和信息通知。</string>
   <string name="preferences__screen_security">屏幕安全性</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">屏蔽下列应用和内置应用的截屏功能</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">在一段时间的不活跃后自动锁定暗号。</string>
@@ -1060,5 +1058,8 @@
   <string name="Permissions_continue">继续</string>
   <string name="Permissions_not_now">稍后再说</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal 需要\"通讯录\"权限才能显示联系人信息，但是该权限已被永久禁用。请转到系统的应用设置菜单，找到权限设置，选择 Signal 应用，并启用\"通讯录\"权限。 </string>
+  <string name="conversation_activity__enable_signal_messages">启用 Signal 信息</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">迁移 Signal 数据库</string>
+  <string name="PushDecryptJob_new_locked_message">新的锁定信息</string>
   <!--EOF-->
 </resources>

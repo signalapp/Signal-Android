@@ -881,8 +881,8 @@ Les paramètres MMS de votre opérateur peuvent généralement être obtenus en 
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Choisissez votre entrée de contact dans le répertoire</string>
   <string name="preferences__change_passphrase">Modifier la phrase de passe</string>
   <string name="preferences__change_your_passphrase">Changer votre phrase de passe</string>
-  <string name="preferences__enable_passphrase">Activer la phrase de passe</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Verrouiller Signal et les notifications de message à l\'aide d\'une phrase de passe</string>
+  <string name="preferences__enable_passphrase">Activer le verrouillage de l\'écran avec une phrase secrète</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Verrouiller l\'écran et les notifications avec une phrase secrète</string>
   <string name="preferences__screen_security">Sécurité d’écran</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Désactiver les prises d\'écrans dans la liste des applications récentes et à l\'intérieur de l\'application</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Verrouillage automatique de Signal après un temps d\'inactivité spécifié</string>
@@ -1084,5 +1084,10 @@ Les paramètres MMS de votre opérateur peuvent généralement être obtenus en 
   <string name="Permissions_continue">Continuer</string>
   <string name="Permissions_not_now">Pas maintenant</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal a besoin de l\'autorisation Contacts pour rechercher vos contacts, mais elle a été refusée de façon permanente. S\'il vous plaît continuer à paramètres de l\'application, sélectionnez \"Autorisations\", et activer \"Contacts\".</string>
+  <string name="conversation_activity__enable_signal_messages">ACTIVER LES MESSAGES SIGNAL</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">
+Migration de la base de données de Signal</string>
+  <string name="PushDecryptJob_new_locked_message">Nouveau message bloqué</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Déverrouiller pour voir les messages en attente</string>
   <!--EOF-->
 </resources>

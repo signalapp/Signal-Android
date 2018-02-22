@@ -760,8 +760,6 @@ a shonrú</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Roghnaigh do iontráil teagmhálaí ón liosta teagmhálaithe</string>
   <string name="preferences__change_passphrase">Athraigh an nath faire</string>
   <string name="preferences__change_your_passphrase">Athraigh do nath faire</string>
-  <string name="preferences__enable_passphrase">Cumasaigh an nath faire</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Cuir Signal agus fógraí teachtaireachta faoi ghlas le nath faire</string>
   <string name="preferences__screen_security">Slándáil an scáileáin</string>
   <string name="preferences__inactivity_timeout_passphrase">Nath faire teorainn ama neamhghníomhaíochta</string>
   <string name="preferences__inactivity_timeout_interval">Am teorainn ama neamhghníomhaíochta</string>

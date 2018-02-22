@@ -885,8 +885,8 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Изберете контакт от списъка с контакти.</string>
   <string name="preferences__change_passphrase">Смени паролата</string>
   <string name="preferences__change_your_passphrase">Сменете паролата си</string>
-  <string name="preferences__enable_passphrase">Включи парола</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Заключи Сигнал и всички известия с парола</string>
+  <string name="preferences__enable_passphrase">Активиране на парола за защита на екрана</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Заключване на екрана и известията с парола</string>
   <string name="preferences__screen_security">Сигурност на екрана</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Забраняване на автоматично копиране на екрана в списка с често използвани програми и в самата програма.</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Автоматично заключвай Сигнал след зададен период от неактивност</string>
@@ -1088,5 +1088,9 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="Permissions_continue">Продължи</string>
   <string name="Permissions_not_now">Не сега</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Сигнал се нуждае от достъп до контактите Ви, за да може да Ви търси в тях, но той му е отказан. Моля, отидете на настройки в менюто и изберете \"Разрешения\" и \"Контакти\".</string>
+  <string name="conversation_activity__enable_signal_messages">АКТИВИРАНЕ НА СИГНАЛ СЪОБЩЕНИЯ</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Мигриране на базата данни на Сигнал</string>
+  <string name="PushDecryptJob_new_locked_message">Ново заключено съобщение</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Отключете, за да прегледате новите съобщения</string>
   <!--EOF-->
 </resources>

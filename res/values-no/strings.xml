@@ -652,8 +652,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Velg din kontakt fra kontaktlisten.</string>
   <string name="preferences__change_passphrase">Passordbytte</string>
   <string name="preferences__change_your_passphrase">Endre ditt passord</string>
-  <string name="preferences__enable_passphrase">Aktiver passord</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lås Signal og meldingsvarslinger med passord</string>
   <string name="preferences__screen_security">Skjermsikkerhet</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokker skjermbilde i listen over siste applikasjoner og inni applikasjonen</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Auto-lås Signal etter et gitt tidsintervall med inakivitet</string>

@@ -862,8 +862,8 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">從您的聯絡人清單中選擇聯絡人項目。</string>
   <string name="preferences__change_passphrase">變更自訂密碼</string>
   <string name="preferences__change_your_passphrase">變更您的自訂密碼</string>
-  <string name="preferences__enable_passphrase">啟用自訂密碼</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">使用密碼鎖定 Signal 與訊息通知</string>
+  <string name="preferences__enable_passphrase">啟用螢幕鎖定的自訂密碼</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">使用鎖定螢幕及通知密碼</string>
   <string name="preferences__screen_security">螢幕安全設定</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">在對話清單或應用內停用畫面擷取功能</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">在特定時間內不活躍會自動鎖定 Signal</string>
@@ -913,7 +913,7 @@
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">這會掃描目前所有的對話群組，並且強制刪除超過長度上限的部分。</string>
   <string name="preferences__linked_devices">已連結裝置</string>
   <string name="preferences__light_theme">明亮</string>
-  <string name="preferences__dark_theme">黑暗</string>
+  <string name="preferences__dark_theme">深色</string>
   <string name="preferences__appearance">介面設定</string>
   <string name="preferences__theme">主題</string>
   <string name="preferences__default">預設</string>
@@ -1065,5 +1065,8 @@
   <string name="Permissions_not_now">不是現在</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal 需要聯絡人的權限來搜尋聯絡人，但是現在設定為永久拒絕存取。請繼續到\"應用程式\"ˇ的設定中，選擇\"權限\"，接著啟動\"聯絡人\"。</string>
   <string name="conversation_activity__enable_signal_messages">啟用 Signal 訊息</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">遷移 Signal 資料庫</string>
+  <string name="PushDecryptJob_new_locked_message">新鎖定的訊息</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">解鎖以查看待處理的訊息</string>
   <!--EOF-->
 </resources>

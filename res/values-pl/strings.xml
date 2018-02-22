@@ -927,8 +927,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Wybierz swój kontakt z listy kontaktów.</string>
   <string name="preferences__change_passphrase">Zmień hasło</string>
   <string name="preferences__change_your_passphrase">Zmień swoje hasło</string>
-  <string name="preferences__enable_passphrase">Włącz hasło</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Zablokuj Signal i powiadomienia nowych wiadomości hasłem</string>
+  <string name="preferences__enable_passphrase">Włącz blokowanie ekranu hasłem</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Zablokuj ekran i powiadomienia hasłem</string>
   <string name="preferences__screen_security">Ochrona ekranu</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokuj rzuty ekranu w obecnej liście oraz w aplikacji</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Auto-blokuj Signal po określonym czasie bezczynności</string>
@@ -1133,5 +1133,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="Permissions_not_now">Nie teraz</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal wymaga pozwolenia na dostęp do kontaktów w celu wyszukiwania Twoich kontaktów, ale zostało one na stałe odrzucone. Przejdź do menu ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Kontakty\".</string>
   <string name="conversation_activity__enable_signal_messages">WŁĄCZ WIADOMOŚCI SIGNAL</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Przenoszenie bazy danych Signal</string>
+  <string name="PushDecryptJob_new_locked_message">Nowa zablokowana wiadomość</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Odblokuj aby zobaczyć oczekujące wiadomości</string>
   <!--EOF-->
 </resources>

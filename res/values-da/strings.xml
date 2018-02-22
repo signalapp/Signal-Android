@@ -802,8 +802,6 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vælg din kontakt fra kontaktlisten.</string>
   <string name="preferences__change_passphrase">Ændr kodeord</string>
   <string name="preferences__change_your_passphrase">Ændring af dit kodeord</string>
-  <string name="preferences__enable_passphrase">Aktivér kodeord</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lås Signal og beskednotifikationer med et kodeord</string>
   <string name="preferences__screen_security">Skærmsikkerhed</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokér skærmbillede (screenshots) i listen \\"forrige apps\\" og i Signal</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Lås automatisk Signal efter et valgt tidsinterval med inaktivitet</string>

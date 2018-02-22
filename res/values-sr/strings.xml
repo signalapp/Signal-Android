@@ -800,8 +800,6 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Изаберите унос вашег контакта са списка контаката.</string>
   <string name="preferences__change_passphrase">Измени лозинку</string>
   <string name="preferences__change_your_passphrase">Измените вашу лозинку</string>
-  <string name="preferences__enable_passphrase">Омогући лозинку</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Закључај Сигнал и обавештења о порукама лозинком</string>
   <string name="preferences__screen_security">Безбедност екрана</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Блокирање снимка екрана у списку недавних апликација и унутар апликације</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Аутоматски закључај Сигнал након одређеног интервала неактивности</string>

@@ -813,8 +813,6 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">انتخاب کنید ورود تماس با خود را از لیست مخاطبین.</string>
   <string name="preferences__change_passphrase">تغییر رمز</string>
   <string name="preferences__change_your_passphrase">تغییر رمز شما</string>
-  <string name="preferences__enable_passphrase">فعال‌سازی رمز</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">قفل کردن سیگنال و اطلاعیه پیام ها با یک قفل عبور</string>
   <string name="preferences__screen_security">محافظ صفحه نمایش</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">بلوک کردن عکس گرفتن از صفحه در لیست تازه و در داخل برنامه</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">قفل کردن خودکار سیگنال  بعد از یک زمان مشخص عدم فعالیت</string>

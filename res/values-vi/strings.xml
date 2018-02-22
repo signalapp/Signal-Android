@@ -595,8 +595,6 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Chọn khoản mục liên lạc của bạn trong danh sách liên lạc.</string>
   <string name="preferences__change_passphrase">Đổi cụm từ mật khẩu</string>
   <string name="preferences__change_your_passphrase">Đổi cụm từ mật khẩu</string>
-  <string name="preferences__enable_passphrase">Mở cụm từ mật khẩu</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Khoá Signal và thông báo tin nhắn bằng cụm mật khẩu</string>
   <string name="preferences__screen_security">An ninh màn hình</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Chặn không cho chụp màn hình trong danh sách mới nhất và bên trong ứng dụng</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Tự động khoá Signal sau một khoảng thời gian không hoạt động định trước</string>

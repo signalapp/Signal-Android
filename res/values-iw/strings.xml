@@ -884,8 +884,8 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">נא לבחור את איש הקשר שלך מרשימת אנשי הקשר.</string>
   <string name="preferences__change_passphrase">שינוי משפט סודי</string>
   <string name="preferences__change_your_passphrase">שינוי המשפט הסודי שלך</string>
-  <string name="preferences__enable_passphrase">הפעלת משפט סודי</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">נעל את Signal והתראות הודעה באמצעות משפט־סיסמה</string>
+  <string name="preferences__enable_passphrase">אפשר נעילת מסך באמצעות משפט־סיסמה</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">נעל מסך והתראות באמצעות משפט־סיסמה</string>
   <string name="preferences__screen_security">אבטחת מסך</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">חסימת צילומי מסך ברשימות האחרונים ובתוך האפליקציה</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">נעל באופן אוטומטי את Signal לאחר מרווח זמן של אי־פעילות</string>
@@ -1088,5 +1088,8 @@
   <string name="Permissions_not_now">לא עכשיו</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal צריך הרשאת אנשי קשר על מנת לחפש את אנשי הקשר שלך, אבל היא נדחתה לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"אנשי קשר\".</string>
   <string name="conversation_activity__enable_signal_messages">אפשר הודעות SIGNAL</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">מהגר מסד נתונים של Signal</string>
+  <string name="PushDecryptJob_new_locked_message">הודעה נעולה חדשה</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">בטל נעילה כדי להציג הודעות ממתינות</string>
   <!--EOF-->
 </resources>

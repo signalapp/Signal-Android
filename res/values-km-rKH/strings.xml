@@ -859,8 +859,6 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">ជ្រើសរើសលេខទំនាក់ទំនងរបស់អ្នកពីបញ្ជីទំនាក់ទំនង។</string>
   <string name="preferences__change_passphrase">ផ្លាស់ប្តូរឃ្លាសម្ងាត់</string>
   <string name="preferences__change_your_passphrase">ផ្លាស់ប្តូរឃ្លាសម្ងាត់របស់អ្នក</string>
-  <string name="preferences__enable_passphrase">បើកឃ្លាសម្ងាត់</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">ចាក់សោរ ស៊ីហ្គណល និងសារជូនដំណឹងជាមួយឃ្លាសម្ងាត់</string>
   <string name="preferences__screen_security">អេក្រង់សុវត្ថិភាព</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">បិទថតរូបអេក្រង់ក្នុងបញ្ជីថ្មី និងក្នុងកម្មវិធី</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">ចាក់សោស៊ីហ្គណលដោយស្វ័យប្រវត្តិ បន្ទាប់ពីទុកចោលមួយរយៈ</string>

@@ -339,7 +339,6 @@
   <string name="preferences__choose_identity">Абярыце ідэнтыфікатар</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Абярыце кантакт са спісу.</string>
   <string name="preferences__change_passphrase">Змяніць пароль.</string>
-  <string name="preferences__enable_passphrase">Уключыць пароль</string>
   <string name="preferences__screen_security">Бяспека экрана</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Блакіраваць магчымасць рабіць скрыншоты ўнутры праграмы</string>
   <string name="preferences__notifications">Апавяшчэнні</string>

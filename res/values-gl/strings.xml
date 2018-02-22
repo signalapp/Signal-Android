@@ -891,8 +891,8 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Elixe os contactos da túa listaxe.</string>
   <string name="preferences__change_passphrase">Cambiar frase de acceso</string>
   <string name="preferences__change_your_passphrase">Cambia a túa frase de acceso</string>
-  <string name="preferences__enable_passphrase">Activar frase de acceso</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Bloquea Signal e as notificacións de mensaxes cunha frase de acceso</string>
+  <string name="preferences__enable_passphrase">Activar o bloqueo da pantalla cunha frase de acceso</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Bloquea a pantalla e as notificacións cunha frase de acceso</string>
   <string name="preferences__screen_security">Seguranza da pantalla</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Bloquea as capturas na listaxe de recentes e no interior da aplicación.</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Bloqueo automático de Signal após un período especificado de inactividade</string>
@@ -1095,5 +1095,8 @@
   <string name="Permissions_not_now">Agora non</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal necesita permiso para acceder aos contactos e facer buscas neles, pero foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Contactos\".</string>
   <string name="conversation_activity__enable_signal_messages">ACTIVAR MENSAXES DE SIGNAL</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrando a base de datos de Signal</string>
+  <string name="PushDecryptJob_new_locked_message">Nova mensaxe bloqueada</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Desbloquear para ver as mensaxes pendentes</string>
   <!--EOF-->
 </resources>

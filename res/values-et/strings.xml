@@ -91,7 +91,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Seda sõnumit <b>ei</b> krüptita, kuna saaja ei ole enam Signali kasutaja.\n\nKas saata krüptimata sõnum?</string>
   <string name="ConversationItem_unable_to_open_media">Ei leia rakendust, mis oleks võimeline seda meediafaili avama.</string>
   <string name="ConversationItem_copied_text">%s kopeeritud</string>
-  <string name="ConversationItem_from_s">kontaktilt %s</string>
+  <string name="ConversationItem_from_s">%s kaudu</string>
   <string name="ConversationItem_to_s">kontaktile %s</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Lähtesta turvaline sessioon?</string>
@@ -891,8 +891,8 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vali oma kontaktüksus kontaktnimekirjast.</string>
   <string name="preferences__change_passphrase">Muuda salaväljendit</string>
   <string name="preferences__change_your_passphrase">Muuda oma salaväljendit</string>
-  <string name="preferences__enable_passphrase">Luba salaväljend</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lukusta Signal ja sõnumiteated salaväljendiga</string>
+  <string name="preferences__enable_passphrase">Luba salaväljendiga ekraanilukk</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lukusta ekraan ja teated salaväljendiga</string>
   <string name="preferences__screen_security">Kuva turvamine</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokeeri kuvatõmmised viimatiste nimekirjas ja rakenduse sees</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Lukusta Signal automaatselt pärast määratud ebaaktiivsuse ajaintervalli</string>
@@ -1094,5 +1094,9 @@
   <string name="Permissions_continue">Jätka</string>
   <string name="Permissions_not_now">Mitte praegu</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal vajab kontaktide luba, et otsida su kontakte, ent see on püsivalt keelatud. Palun jätka rakenduse seadetes, vali \"Load\" ja luba \"Kontaktid\".</string>
+  <string name="conversation_activity__enable_signal_messages">LUBA SIGNALI SÕNUMID</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Migreerin Signali andmebaasi</string>
+  <string name="PushDecryptJob_new_locked_message">Uus lukustatud sõnum</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Ava lukk ootel sõnumite vaatamiseks</string>
   <!--EOF-->
 </resources>

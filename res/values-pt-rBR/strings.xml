@@ -891,8 +891,8 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Escolha o seu próprio contato da lista de contatos.</string>
   <string name="preferences__change_passphrase">Mudar frase-chave</string>
   <string name="preferences__change_your_passphrase">Alterar sua senha</string>
-  <string name="preferences__enable_passphrase">Habilitar frase-chave</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Trancar notificações Signal e de mensagens com uma frase-chave</string>
+  <string name="preferences__enable_passphrase">Ativar o bloqueio da tela com senha</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Bloquear tela e notificações com senha</string>
   <string name="preferences__screen_security">Segurança da tela</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Bloquear capturas de tela na lista de recentes e dentro do aplicativo</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Trancar automaticamente o Signal após um determinado período de inatividade</string>
@@ -1096,5 +1096,8 @@
   <string name="Permissions_not_now">Agora não</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal precisa da permissão de Contatos para poder pesquisar nos seus contatos, mas ela foi permanentemente negada. Por favor, vá nas configurações do aplicativo, selecione \"Permissões\" e ative \"Contatos\".</string>
   <string name="conversation_activity__enable_signal_messages">HABILITAR MENSAGENS SIGNAL</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrando a base de dados do Signal</string>
+  <string name="PushDecryptJob_new_locked_message">Nova mensagem bloqueada</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Desbloqueie para ver as mensagens pendentes</string>
   <!--EOF-->
 </resources>

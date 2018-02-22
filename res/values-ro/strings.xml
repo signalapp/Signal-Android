@@ -907,8 +907,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Selectează persoana din lista de contacte.</string>
   <string name="preferences__change_passphrase">Schimbă parola</string>
   <string name="preferences__change_your_passphrase">Schimbă-ți parola</string>
-  <string name="preferences__enable_passphrase">Activează parola</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Blochează Signal și notificările mesageriei cu o parolă</string>
+  <string name="preferences__enable_passphrase">Activează parola pentru ecranul de blocare</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Blochează ecranul și notificările cu o parolă</string>
   <string name="preferences__screen_security">Securitate ecran</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blochează screenshot-urile în lista cu aplicaţii recente şi în interiorul aplicaţiei</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Blochează automat Signal după o perioadă specificată de timp de inactivitate</string>
@@ -1112,5 +1112,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="Permissions_continue">Continuă</string>
   <string name="Permissions_not_now">Nu acum</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal are nevoie de permisiunea pentru Contacte pentru a putea căuta în contactele tale dar i-a fost refuzat accesul permanent. Te rog navighează în meniul de setări al aplicației, selectează \"Permisiuni\" și activează \"Contacte\".</string>
+  <string name="conversation_activity__enable_signal_messages">ACTIVEAZĂ MESAJELE SIGNAL</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Se migrează baza de date Signal </string>
   <!--EOF-->
 </resources>

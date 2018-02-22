@@ -496,7 +496,6 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">தொடர்பு பட்டியலில் இருந்து உங்கள் தொடர்பை  தேர்வுசெய்க.</string>
   <string name="preferences__change_passphrase">கடவுச்சொல்லை மாற்று</string>
   <string name="preferences__change_your_passphrase">உன்னுடய கடவுச்சொல்லை மாற்று</string>
-  <string name="preferences__enable_passphrase">கடவுச்சொல்லை செயல்படுத்து</string>
   <string name="preferences__screen_security">திரை பாதுகாப்பு</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">அண்மை பட்டியல் மற்றும் மென்பொருளுக்கு உள்ளே திரையை படம் எடுப்பதை தடுக்கவும்</string>
   <string name="preferences__notifications">அறிவிப்புகள்</string>

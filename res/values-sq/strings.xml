@@ -859,8 +859,6 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Zgjidhni kontaktin tuaj nga lista e kontakteve.</string>
   <string name="preferences__change_passphrase">Ndrysho fjalëkalimin</string>
   <string name="preferences__change_your_passphrase">Ndrysho fjalëkalimin</string>
-  <string name="preferences__enable_passphrase">Aktivizo fjalëkalimin</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Mbyll Signal-in dhe njoftimet për porosi me një fjalëkalim.</string>
   <string name="preferences__screen_security">Siguria e ekranit</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blloko kopjimin e ekranit në listën e të funditave dhe brenda aplikacionit.</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Automatikisht mbyll Signal-in me çels pas një kohe pasiviteti.</string>

@@ -184,9 +184,9 @@
     <item quantity="other">Shranjujem %1$d priponk</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="one">Shranjujem priponko v shrambo...</item>
-    <item quantity="two">Shranjujem %1$d priponki v shrambo...</item>
-    <item quantity="few">Shranjujem %1$d priponke v shrambo...</item>
+    <item quantity="one">Shranjujem priponko v shrambo ...</item>
+    <item quantity="two">Shranjujem %1$d priponki v shrambo ...</item>
+    <item quantity="few">Shranjujem %1$d priponke v shrambo ...</item>
     <item quantity="other">Shranjujem %1$d priponk v shrambo ...</item>
   </plurals>
   <string name="ConversationFragment_pending">V teku ...</string>
@@ -852,7 +852,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Če želite preveriti varnost šifrirane komunikacije z uporabnikom %s, primerjajte gornje število s številom na njegovi napravi. Namesto tega lahko tudi skenirate kodo na napravi uporabnika ali njega prosite, naj skenira vašo. <a href="https://whispersystems.org/redirect/safety-numbers">Več ...</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tapnite za skeniranje</string>
-  <string name="verify_display_fragment__loading">Nalagam...</string>
+  <string name="verify_display_fragment__loading">Nalagam ...</string>
   <string name="verify_display_fragment__verified">Potrjeno</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Deli varnostno število</string>
@@ -926,8 +926,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Na sezmanu stikov izberite svojo lastno vizitko.</string>
   <string name="preferences__change_passphrase">Zamenjaj geslo</string>
   <string name="preferences__change_your_passphrase">Zamenjava gesla</string>
-  <string name="preferences__enable_passphrase">Vklop gesla</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Zaklep aplikacije Signal in obvestil z geslom</string>
+  <string name="preferences__enable_passphrase">Vklop zaklepanja zaslona z geslom</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Zaklep zaslona in obvestil z geslom</string>
   <string name="preferences__screen_security">Zaščita zaslona</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Prepreči zajem slike zaslona</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Samodejno zakleni Signal po nastavljenem času neaktivnosti</string>
@@ -1124,7 +1124,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="trimmer__old_messages_successfully_deleted">Stara sporočila so bila uspešno izbrisana</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transporta</string>
-  <string name="ConversationListFragment_loading">Nalagam...</string>
+  <string name="ConversationListFragment_loading">Nalagam ...</string>
   <string name="CallNotificationBuilder_connecting">Povezujem ...</string>
   <string name="Permissions_permission_required">Zahtevano dovoljenje</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Dovoljenje za dostop do sporočil SMS je bilo trajno odvzeto. Aplikacija Signal potrebuje dovoljenje za dostop do sporočil SMS za pošiljanje sporočil SMS. Prosimo pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"SMS\".</string>
@@ -1132,5 +1132,10 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="Permissions_not_now">Ne zdaj</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Dostop do stikov je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do stikov za iskanje med osebami iz vašega imenika. Prosimo pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Stiki\".</string>
   <string name="conversation_activity__enable_signal_messages">VKLOPI SPOROČILA SIGNAL</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Prenašam podatkovno bazo Signal</string>
+  <string name="PushDecryptJob_new_locked_message">Novo zaklenjeno sporočilo</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Za ogled čakajočih sporočil odklenite</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Za nadgradnjo odklenite</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Prosimo odklenite aplikacijo Signal za nadgradnjo</string>
   <!--EOF-->
 </resources>

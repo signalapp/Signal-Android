@@ -635,8 +635,6 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Londa gwonoonya okuva mu mabantu mussimu yo.</string>
   <string name="preferences__change_passphrase">Kyusa pasiwadi yebigambo n\'enamba</string>
   <string name="preferences__change_your_passphrase">Kyusa pasiwadi y\'ebigambo n\'enamba</string>
-  <string name="preferences__enable_passphrase">Saako pasiwadi y\'ebigambo n\'enyiimba</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Jjako obujukiza ku Signal ne message</string>
   <string name="preferences__screen_security">Okukuuma Screen yo</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Bulokinga okukuba screenshots mubyakaberawo ne minda mu app zo</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Setting Signal yeggale yoka mukaseera koyagala</string>

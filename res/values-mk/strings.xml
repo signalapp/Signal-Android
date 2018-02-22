@@ -427,7 +427,6 @@
   <string name="preferences__choose_identity">Изберете идентитет</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Изберете контакт од вашата листа на контакти</string>
   <string name="preferences__change_passphrase">Променете лозинка</string>
-  <string name="preferences__enable_passphrase">Овозможете лозинка</string>
   <string name="preferences__screen_security">Сигурност на екранот</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Оневозможете screenshots во листата на последни апликации и во самата апликација</string>
   <string name="preferences__notifications">Известувања</string>

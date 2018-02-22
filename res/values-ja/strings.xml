@@ -848,8 +848,6 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">連絡先リストからあなたの連絡先を選んでください。</string>
   <string name="preferences__change_passphrase">パスワードの変更</string>
   <string name="preferences__change_your_passphrase">パスワードを変更します</string>
-  <string name="preferences__enable_passphrase">パスワードを有効にする</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Signalとメッセージ通知をパスワードでロックします</string>
   <string name="preferences__screen_security">スクリーンセキュリティ</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">アプリ内や「最近使ったアプリ」でスクリーンショットを表示しない</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">一定時間後に自動ロック</string>

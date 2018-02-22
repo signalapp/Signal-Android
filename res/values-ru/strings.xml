@@ -929,8 +929,8 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Выберите себя из списка контактов.</string>
   <string name="preferences__change_passphrase">Изменить парольную фразу</string>
   <string name="preferences__change_your_passphrase">Изменить парольную фразу</string>
-  <string name="preferences__enable_passphrase">Включить парольную фразу</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Требовать ввода парольной фразы для просмотра Signal и уведомлений о сообщениях</string>
+  <string name="preferences__enable_passphrase">Включить блокировку экрана парольной фразой</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Блокировка экрана и уведомлений с помощью парольной фразы</string>
   <string name="preferences__screen_security">Защита экрана</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Блокировать снимки экрана внутри приложения</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Повторно требовать ввода парольной фразы после указанного времени бездействия</string>
@@ -1135,5 +1135,10 @@
   <string name="Permissions_not_now">Не сейчас</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Для поиска ваших знакомых Signal требуется разрешение на доступ к контактам, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Контакты.</string>
   <string name="conversation_activity__enable_signal_messages">ВКЛЮЧИТЬ СООБЩЕНИЯ SIGNAL</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Миграция базы данных Signal</string>
+  <string name="PushDecryptJob_new_locked_message">Новое заблокированное сообщение</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Разблокировать для просмотра ожидающих сообщений</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Разблокировать для завершения обновления</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Пожалуйста, разблокируйте Signal, чтобы завершить обновление</string>
   <!--EOF-->
 </resources>

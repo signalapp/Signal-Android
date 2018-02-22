@@ -895,8 +895,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Válaszd ki a névjegy bejegyzésed a névjegyzékből.</string>
   <string name="preferences__change_passphrase">Jelmondat megváltoztatása</string>
   <string name="preferences__change_your_passphrase">Változtasd meg a jelmondatod</string>
-  <string name="preferences__enable_passphrase">Jelmondat engedélyezése</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Signal és üzenet értesítések zárolása jelmondattal</string>
+  <string name="preferences__enable_passphrase">Jelmondat képernyőzár engedélyezése</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Képernyő és értesítések zárolása jelmondattal</string>
   <string name="preferences__screen_security">Képernyő biztonság</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Képernyőfelvételek blokkolása a legutóbbiak listában és az alkalmazáson belül</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Signal automatikus zárolása egy meghatározott inaktivitási időköz után</string>
@@ -1099,5 +1099,10 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="Permissions_not_now">Most nem</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">A Signal-nak szüksége van a Névjegyek engedélyre, hogy megkeresse a névjegyeid, de ez meg van tagadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Névjegyek\"-et.</string>
   <string name="conversation_activity__enable_signal_messages">SIGNAL ÜZENETEK ENGEDÉLYEZÉSE</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal adatbázis áttelepítés</string>
+  <string name="PushDecryptJob_new_locked_message">Új zárolt üzenet</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Oldd fel a függő üzenetek megtekintéséhez</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Oldd fel a frissítés befejezéséhez</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Kérlek oldd fel a Signal-t a frissítés befejezéséhez</string>
   <!--EOF-->
 </resources>

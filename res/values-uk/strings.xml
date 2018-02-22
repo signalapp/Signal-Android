@@ -54,6 +54,7 @@
   <string name="DraftDatabase_Draft_location_snippet">(розташування)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Неможливо знайти програму для обраного медіа.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal requires the Storage permission in order to attach photos, videos, or audio, but it has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Storage\".</string>
   <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Помилка відтворення аудіо!</string>
@@ -62,15 +63,20 @@
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Сьогодні</string>
   <string name="BucketedThreadMedia_Yesterday">Вчора</string>
+  <string name="BucketedThreadMedia_This_week">Цього тижня</string>
+  <string name="BucketedThreadMedia_This_month">Цього місяця</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Вхідний виклик</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Вилучити</string>
+  <string name="ClearProfileActivity_remove_profile_photo">Видалити фото профіля?</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Ваш номер безпеки із %1$s змінився. Це може означати або те, що хтось намагається перехопити вашу розмову, або те, що %2$s просто перевстановив Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Можливо, ви хочете перевірити ваш номер безпеки із цим контактом.</string>
   <string name="ConfirmIdentityDialog_accept">Прийняти</string>
   <!--ContactsCursorLoader-->
+  <string name="ContactsCursorLoader_recent_chats">Недавні розмови</string>
+  <string name="ContactsCursorLoader_contacts">Контакти</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Повідомлення %s</string>
   <string name="ContactsDatabase_signal_call_s">Виклик Signal %s</string>
@@ -118,6 +124,13 @@
   <string name="ConversationActivity_unable_to_record_audio">Не вдалося записати аудіо!</string>
   <string name="ConversationActivity_error_sending_voice_message">Помилка при відправленні голосового повідомлення</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Немає програми на вашому пристрої, що може відкрити це посилання.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Щоб надсилати аудіо повідомлення, дозвольте Сигналу доступ до мікрофона.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Сигналу необхідний доступ до мікрофона, щоб надсилати аудіоповідомлення але у доступі було відмовлено. Будь-ласка, дозвольте доступ до Мікрофону у меню \"Дозволи\"</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Для дзвінка %s, Signal потребує доступ до вашого мікрофону та камери.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Сигналу необхідний доступ до мікрофона та камери, щоб подзвонити до %s але у доступі було відмовлено. Будь-ласка, дозвольте доступ до Мікрофону та Камери у меню \"Дозволи\"</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Щоб фотографувати або знімати відео дозвольте Сигналу доступ до камери.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Сигналу необхідний доступ до камери, щоб фотографувати або знімати відео, але у доступі було відмовлено. Будь-ласка, дозвольте доступ до Камери у меню \"Дозволи\"</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Сигналу необхідний доступ до Камери щоб фотографувати або фільмувати.</string>
   <!--ConversationAdapter-->
   <!--ConversationFragment-->
   <plurals name="ConversationFragment_delete_selected_messages">
@@ -161,6 +174,7 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">На вашому пристрої не встановлено браузер.</string>
   <!--ConversationListFragment-->
+  <string name="ConversationListFragment_no_results_found_for_s_">Не знайдено результатів для \'%s\'</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Видалити обрану бесіду?</item>
     <item quantity="few">Видалити обрані бесіди?</item>
@@ -189,6 +203,11 @@
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Архівовані розмови (%d)</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity_your_profile_info">Інформація щодо вашого профілю</string>
+  <string name="CreateProfileActivity_error_setting_profile_photo">Не вдалося оновити фото профілю</string>
+  <string name="CreateProfileActivity_problem_setting_profile">Не вдалося оновити профіль</string>
+  <string name="CreateProfileActivity_profile_photo">Фото профілю</string>
+  <string name="CreateProfileActivity_too_long">Задовге</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Використання власного: %s</string>
   <string name="CustomDefaultPreference_using_default">Використання типового: %s</string>
@@ -201,6 +220,7 @@
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Від\'єднати \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Після від\'єднання цього пристрою він більше не зможе відправляти та одержувати повідомлення.</string>
+  <string name="DeviceListActivity_network_connection_failed">Проблема з\'єднання</string>
   <string name="DeviceListActivity_try_again">Спробуйте ще</string>
   <string name="DeviceListActivity_unlinking_device">Від\'єднання пристрою...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Від\'єднання пристрою</string>
@@ -213,6 +233,7 @@
   <!--DocumentView-->
   <string name="DocumentView_unknown_file">Невідомий файл</string>
   <!--DozeReminder-->
+  <string name="DozeReminder_optimize_for_missing_play_services">Оптимізувати для випадку відсутності служб Google Play</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Поділитися із</string>
   <!--ExperienceUpgradeActivity-->
@@ -764,8 +785,6 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Оберіть себе зі списку контактів.</string>
   <string name="preferences__change_passphrase">Змінити фразу-ключ</string>
   <string name="preferences__change_your_passphrase">Змінити вашу фразу-ключ</string>
-  <string name="preferences__enable_passphrase">Увімкнути фразу-пароль</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Заблокувати Signal та сповіщення повідомлень фразою-паролем</string>
   <string name="preferences__screen_security">Безпека екрану</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Блокувати знімки екрану в списку недавніх та в програмі</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Автоблокувати Signal після певного часу неактивності</string>

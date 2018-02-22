@@ -892,8 +892,6 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Hautatu zure kontaktua kontaktuen zerrendatik.</string>
   <string name="preferences__change_passphrase">Pasahitza aldatu</string>
   <string name="preferences__change_your_passphrase">Aldatu zure pasahitza</string>
-  <string name="preferences__enable_passphrase">Pasahitza gaitu</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Blokeatu Signal dei eta mezuen jakinarazpenak pasahitza baten bitartez</string>
   <string name="preferences__screen_security">Pantailaren segurtasuna</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokeatu pantailazoak arestikoen zerrendan eta aplikazioaren barruan</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Blokeatu Signal automatikoki jarduerarik gabe denbora tarte bat pasa eta gero.</string>
@@ -1095,5 +1093,6 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="Permissions_continue">Jarraitu</string>
   <string name="Permissions_not_now">Orain ez</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Singnalek Kontaktuen baimena behar du kontaktuak bilatzeko baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Kontaktuak\".</string>
+  <string name="conversation_activity__enable_signal_messages">GAITU SIGNAL MEZUAK</string>
   <!--EOF-->
 </resources>

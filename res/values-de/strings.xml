@@ -9,7 +9,7 @@
   <string name="AbstractNotificationBuilder_new_message">Neue Nachricht</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Momentan: %s</string>
-  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du hast noch kein Passwort festgelegt!</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du hast noch keine Passphrase festgelegt!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
     <item quantity="one">1 Nachricht je Unterhaltung</item>
     <item quantity="other">%d Nachrichten je Unterhaltung</item>
@@ -20,7 +20,7 @@
     <item quantity="other">Dies wird alle Unterhaltungen bis auf die %d letzten Nachrichten sofort löschen.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Löschen</string>
-  <string name="ApplicationPreferencesActivity_disable_passphrase">Passwort deaktivieren?</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Passphrase deaktivieren?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Dies wird Signal und Benachrichtigungen über Nachrichten dauerhaft entsperren.</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivieren</string>
   <string name="ApplicationPreferencesActivity_unregistering">Registrierung löschen</string>
@@ -37,7 +37,7 @@
   <string name="ApplicationPreferencesActivity_off">aus</string>
   <string name="ApplicationPreferencesActivity_Off">Aus</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Passwort %1$s, Bildschirmschutz %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Passphrase %1$s, Bildschirmschutz %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Design %1$s, Sprache %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -128,7 +128,7 @@
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal benötigt die Berechtigung »Mikrofon« für das Senden von Sprachnachrichten, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Mikrofon«.</string>
   <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Um %s anzurufen, benötigt Signal Zugriff auf dein Mikrofon und deine Kamera.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal benötigt die Berechtigungen »Mikrofon« und »Kamera«, um %s anzurufen, diese wurden jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Mikrofon« und »Kamera«.</string>
-  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Erlaube Signal zur Aufnahme von Fotos und Videos Zugriff auf deine Kamera.</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Erlaube Signal zum Aufnehmen von Fotos und Videos Zugriff auf deine Kamera.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal benötigt die Berechtigung »Kamera« für die Aufnahme von Fotos oder Videos, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kamera«.</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal benötigt die Berechtigung »Kamera«, um Fotos oder Videos aufzunehmen.</string>
   <!--ConversationAdapter-->
@@ -371,9 +371,9 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Du hast deine Sicherheitsnummer mit %s als nicht verifiziert markiert</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Du hast deine Sicherheitsnummer mit %s von einem anderen Gerät aus als nicht verifiziert markiert</string>
   <!--PassphraseChangeActivity-->
-  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passwörter stimmen nicht überein!</string>
-  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Das eingegebene alte Passwort ist falsch!</string>
-  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Neues Passwort eingeben!</string>
+  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passphrasen stimmen nicht überein!</string>
+  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Eingegebene alte Passphrase ist falsch!</string>
+  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Neue Passphrase eingeben!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Dieses Gerät verknüpfen?</string>
   <string name="DeviceProvisioningActivity_cancel">ABBRECHEN</string>
@@ -398,10 +398,10 @@
   <string name="ExpirationDialog_your_messages_will_not_expire">Deine Nachrichten werden nicht verfallen.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">In dieser Unterhaltung gesendete und empfangene Nachrichten werden %s nach dem Lesen verschwinden.</string>
   <!--PassphrasePromptActivity-->
-  <string name="PassphrasePromptActivity_enter_passphrase">Passwort eingeben</string>
+  <string name="PassphrasePromptActivity_enter_passphrase">Passphrase eingeben</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-Symbol</string>
-  <string name="PassphrasePromptActivity_ok_button_content_description">Passwort übermitteln</string>
-  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Passwort ungültig!</string>
+  <string name="PassphrasePromptActivity_ok_button_content_description">Passphrase übermitteln</string>
+  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Passphrase ungültig!</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Die derzeit installierte Version der Google-Play-Dienste funktioniert nicht korrekt. Bitte installiere die Google-Play-Dienste neu und versuche es noch einmal.</string>
   <!--RatingManager-->
@@ -546,7 +546,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="KeyCachingService_signal_passphrase_cached">Zum Öffnen antippen.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Zum Öffnen antippen oder zum Schließen Schloss antippen.</string>
   <string name="KeyCachingService_passphrase_cached">Signal ist entsperrt</string>
-  <string name="KeyCachingService_lock">Mit Passwort sperren</string>
+  <string name="KeyCachingService_lock">Mit Passphrase sperren</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Du</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Nicht unterstützter Medieninhaltetyp</string>
@@ -609,9 +609,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="attachment_type_selector__file">Datei</string>
   <string name="attachment_type_selector__drawer_description">Anhänge hinzufügen</string>
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">Altes Passwort</string>
-  <string name="change_passphrase_activity__new_passphrase">Neues Passwort</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">Neues Passwort wiederholen</string>
+  <string name="change_passphrase_activity__old_passphrase">Alte Passphrase</string>
+  <string name="change_passphrase_activity__new_passphrase">Neue Passphrase</string>
+  <string name="change_passphrase_activity__repeat_new_passphrase">Neue Passphrase wiederholen</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Name/Nummer eingeben</string>
   <!--contact_selection_group_activity-->
@@ -819,10 +819,10 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="message_details_header__from">Von:</string>
   <string name="message_details_header__with">Mit:</string>
   <!--AndroidManifest.xml-->
-  <string name="AndroidManifest__create_passphrase">Passwort erstellen</string>
-  <string name="AndroidManifest__enter_passphrase">Passwort eingeben</string>
+  <string name="AndroidManifest__create_passphrase">Passphrase erstellen</string>
+  <string name="AndroidManifest__enter_passphrase">Passphrase eingeben</string>
   <string name="AndroidManifest__select_contacts">Kontakte auswählen</string>
-  <string name="AndroidManifest__change_passphrase">Passwort ändern</string>
+  <string name="AndroidManifest__change_passphrase">Passphrase ändern</string>
   <string name="AndroidManifest__verify_safety_number">Sicherheitsnummer verifizieren</string>
   <string name="AndroidManifest__log_submit">Diagnoseprotokoll übermitteln</string>
   <string name="AndroidManifest__media_preview">Medieninhaltevorschau</string>
@@ -872,14 +872,14 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Antippen der Eingabetaste versendet Nachrichten sofort</string>
   <string name="preferences__choose_identity">Kontakt auswählen</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Wähle deinen Kontakt aus der Kontaktliste.</string>
-  <string name="preferences__change_passphrase">Passwort ändern</string>
-  <string name="preferences__change_your_passphrase">Dein Passwort ändern</string>
-  <string name="preferences__enable_passphrase">Passwort aktivieren</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Signal und Benachrichtungen über Nachrichten mit einem Passwort sperren</string>
+  <string name="preferences__change_passphrase">Passphrase ändern</string>
+  <string name="preferences__change_your_passphrase">Deine Passphrase ändern</string>
+  <string name="preferences__enable_passphrase">Passphrasengeschützte Bildschirmsperre aktivieren</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Bildschirm und Benachrichtungen mit einer Passphrase sperren</string>
   <string name="preferences__screen_security">Bildschirmschutz</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Bildschirmfotos in der Anwendung und der Liste der letzten Anwendungen blockieren</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Signal bei Inaktivität nach einer festgelegten Verzögerungszeit automatisch sperren</string>
-  <string name="preferences__inactivity_timeout_passphrase">Passwort bei Inaktivität</string>
+  <string name="preferences__inactivity_timeout_passphrase">Passphrase bei Inaktivität</string>
   <string name="preferences__inactivity_timeout_interval">Verzögerungszeit</string>
   <string name="preferences__notifications">Benachrichtigungen</string>
   <string name="preferences__led_color">LED-Farbe</string>
@@ -1078,5 +1078,10 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="Permissions_not_now">Nicht jetzt</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal benötigt die Berechtigung »Kontakte« für das Suchen in deinen Kontakten, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kontakte«.</string>
   <string name="conversation_activity__enable_signal_messages">SIGNAL-NACHRICHTEN AKTIVIEREN</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal-Datenbank wird migriert …</string>
+  <string name="PushDecryptJob_new_locked_message">Neue gesperrte Nachricht</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Entsperren, um ausstehende Nachrichten anzuzeigen</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Abschließen der Aktualisierung</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Entsperre bitte Signal, um die Aktualisierung abzuschließen</string>
   <!--EOF-->
 </resources>

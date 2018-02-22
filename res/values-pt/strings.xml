@@ -887,8 +887,6 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Escolha o seu próprio contacto da lista de contactos.</string>
   <string name="preferences__change_passphrase">Alterar frase-chave</string>
   <string name="preferences__change_your_passphrase">Alterar a sua frase-chave</string>
-  <string name="preferences__enable_passphrase">Ativar frase-chave</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Bloquear o Signal e as notificações de mensagens com uma frase-chave</string>
   <string name="preferences__screen_security">Segurança de ecrã</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Bloquear captura de ecrã na lista de apps abertas e dentro da aplicação</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Bloquear automaticamente o Signal ao fim de um certo tempo de inactividade</string>

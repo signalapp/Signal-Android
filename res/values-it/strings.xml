@@ -438,6 +438,7 @@ proprio numero di telefono</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services si sta aggiornando o non è al momento disponibile. Per favore riprovare</string>
   <string name="RegistrationActivity_more_information">Maggiori informazioni</string>
   <string name="RegistrationActivity_less_information">Meno informazioni</string>
+  <string name="RegistrationActivity_unable_to_connect_to_service">Impossibile connettersi al servizio. Per favore controlla la connessione a internet e riprova</string>
   <!--RegistrationProblemsActivity-->
   <!--RegistrationProgressActivity-->
   <!--RegistrationService-->
@@ -857,8 +858,6 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Scegli il tuo contatto dalla rubrica.</string>
   <string name="preferences__change_passphrase">Cambia password</string>
   <string name="preferences__change_your_passphrase">Cambia la tua password</string>
-  <string name="preferences__enable_passphrase">Usa password</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Blocca Signal e le notifiche dei messaggi con una password</string>
   <string name="preferences__screen_security">Sicurezza schermo</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Non consentire di effettuare screenshot nella lista delle applicazione recenti ed all\'interno dell\'app stessa.</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Blocca automaticamente Signal dopo uno specifico intervallo di intattività</string>
@@ -1058,5 +1057,6 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="Permissions_permission_required">Autorizzazione necessaria</string>
   <string name="Permissions_continue">Continua</string>
   <string name="Permissions_not_now">Non ora</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Sblocca per leggere i messaggi in sospeso</string>
   <!--EOF-->
 </resources>

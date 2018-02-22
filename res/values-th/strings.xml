@@ -866,8 +866,6 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">เลือกชื่อคนที่คุณติดต่อด้วยจากรายชื่อผู้ติดต่อ</string>
   <string name="preferences__change_passphrase">เปลี่ยนวลีรหัสผ่าน</string>
   <string name="preferences__change_your_passphrase">เปลี่ยนวลีรหัสผ่านของคุณ</string>
-  <string name="preferences__enable_passphrase">เปิดใช้วลีรหัสผ่าน</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">ล็อกการแจ้งเตือนและข้อความของ Signal ด้วยวลีรหัสผ่าน</string>
   <string name="preferences__screen_security">ความปลอดภัยหน้าจอ</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">ปิดกั้นการจับภาพหน้าจอในรายการล่าสุดและภายในแอป</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">ล็อก Signal อัตโนมัติหากไม่มีความเคลื่อนไหวในช่วงเวลาที่กำหนด</string>

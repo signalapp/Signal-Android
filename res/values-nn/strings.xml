@@ -64,7 +64,7 @@
   <string name="BucketedThreadMedia_Today">I dag</string>
   <string name="BucketedThreadMedia_Yesterday">I går</string>
   <string name="BucketedThreadMedia_This_week">Denne veka</string>
-  <string name="BucketedThreadMedia_This_month">Neste månad</string>
+  <string name="BucketedThreadMedia_This_month">Denne månaden</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Inngåande samtale</string>
   <!--ClearProfileActivity-->
@@ -573,7 +573,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Klarte ikkje å levera melding.</string>
   <string name="MessageNotifier_error_delivering_message">Feil under levering av melding.</string>
   <string name="MessageNotifier_mark_all_as_read">Merk alle som lesne</string>
-  <string name="MessageNotifier_mark_read">Merk som lesen</string>
+  <string name="MessageNotifier_mark_read">Merk lesen</string>
   <string name="MessageNotifier_media_message">Mediemelding</string>
   <string name="MessageNotifier_reply">Svar</string>
   <string name="MessageNotifier_pending_signal_messages">Uhenta Signal-meldingar</string>
@@ -887,8 +887,8 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vel kontakt frå kontaktliste.</string>
   <string name="preferences__change_passphrase">Endre passordfrase</string>
   <string name="preferences__change_your_passphrase">Endre passordfrase</string>
-  <string name="preferences__enable_passphrase">Slå på passordfrase</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lås Signal og meldingsvarsel med passordfrase</string>
+  <string name="preferences__enable_passphrase">Bruk skjermlås med passordfrase</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Skjermlås og varslingar med passordfrase</string>
   <string name="preferences__screen_security">Skjermtryggleik</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokker skjermbilete i sist brukte-liste og i programmetb</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Lås Signal automatisk etter vald tid utan aktivitet</string>
@@ -1042,7 +1042,7 @@ Du er à jour!</string>
   <string name="text_secure_normal__menu_new_group">Ny gruppe</string>
   <string name="text_secure_normal__menu_settings">Innstillingar</string>
   <string name="text_secure_normal__menu_clear_passphrase">Lås</string>
-  <string name="text_secure_normal__mark_all_as_read">Merk alle som lesne</string>
+  <string name="text_secure_normal__mark_all_as_read">Merk alle lesne</string>
   <string name="text_secure_normal__invite_friends">Inviter vennar</string>
   <string name="text_secure_normal__help">Hjelp</string>
   <!--verify_display_fragment-->
@@ -1092,5 +1092,10 @@ Du er à jour!</string>
   <string name="Permissions_not_now">Ikkje no</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal treng tilgang til kontaktar for å søka i kontaktar, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Kontaktar».</string>
   <string name="conversation_activity__enable_signal_messages">SKRU PÅ SIGNAL-MELDINGAR</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrerer Signal-databasen</string>
+  <string name="PushDecryptJob_new_locked_message">Ny låst melding</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Lås opp for å sjå ulesne meldingar</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Lås opp for å fullføra oppdateringa</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Lås opp Signal for å fullføra oppdateringa</string>
   <!--EOF-->
 </resources>

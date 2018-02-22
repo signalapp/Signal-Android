@@ -880,8 +880,8 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Kies je contactgegevens uit de lijst met contactpersonen.</string>
   <string name="preferences__change_passphrase">Wachtwoord wijzigen</string>
   <string name="preferences__change_your_passphrase">Wijzig je wachtwoord</string>
-  <string name="preferences__enable_passphrase">Wachtwoord inschakelen</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Signal- en berichtmeldingen vergrendelen met een wachtwoord</string>
+  <string name="preferences__enable_passphrase">Schermvergrendeling met wachtwoord inschakelen</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Vergrendel scherm en meldingen met een wachtwoord</string>
   <string name="preferences__screen_security">Schermbeveiliging</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Schermafdrukken onmogelijk maken in deze app en de lijst van recent gebruikte apps</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Signal automatisch vergrendelen na een bepaalde periode van inactiviteit</string>
@@ -1084,5 +1084,10 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="Permissions_not_now">Niet nu</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal heeft toegang nodig tot de contacten om ze te zoeken, maar deze toestemming is permanent geweigerd. Ga naar de appinstellingen, selecteer \"Toestemmingen\" en schakel \"Contacten\" in.</string>
   <string name="conversation_activity__enable_signal_messages">SIGNAL-BERICHTEN INSCHAKELEN</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal-database wordt gemigreerd</string>
+  <string name="PushDecryptJob_new_locked_message">Nieuw vergrendeld bericht</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Ontgrendel om je berichten te lezen</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Ontgrendel om de update te voltooien</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">A.u.b. ontgrendelen om de update te voltooien</string>
   <!--EOF-->
 </resources>

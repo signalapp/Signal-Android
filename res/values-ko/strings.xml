@@ -637,8 +637,6 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">주소록에서 내 연락처 선택</string>
   <string name="preferences__change_passphrase">암호 변경</string>
   <string name="preferences__change_your_passphrase">암호 변경</string>
-  <string name="preferences__enable_passphrase">암호 사용</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Signal과 메시지 알림 암호로 잠금</string>
   <string name="preferences__screen_security">화면 보안</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">최근 사용 목록/개요 및 앱 안에서 스크린샷 차단</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">설정된 비활동 기간 지나면 Signal 잠금</string>

@@ -889,8 +889,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Elija su propio contacto de la lista de contactos.</string>
   <string name="preferences__change_passphrase">Cambiar clave de acceso</string>
   <string name="preferences__change_your_passphrase">Cambiar su frase de contraseña</string>
-  <string name="preferences__enable_passphrase">Habilitar clave de acceso</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Bloquear Signal y notificaciones de mensajes con una frase-contraseña</string>
+  <string name="preferences__enable_passphrase">Habilitar bloqueo de pantalla con frase-contraseña</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Bloquear pantalla y notificaciones con una frase-contraseña</string>
   <string name="preferences__screen_security">Seguridad de la pantalla</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Bloquear capturas de pantalla en la lista de aplicaciones recientes y dentro de la aplicación</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Bloquear automáticamente Signal tras un intervalo de inactividad específicado</string>
@@ -1094,5 +1094,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="Permissions_not_now">Ahora no</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal necesita el permiso Contactos para buscar sus contactos, pero ha sido denegado permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilite \"Contactos\".</string>
   <string name="conversation_activity__enable_signal_messages">HABILITAR MENSAJES DE SIGNAL</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrar base de datos de Signal</string>
+  <string name="PushDecryptJob_new_locked_message">Nuevo mensaje bloqueado</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Desbloquear para ver mensajes pendientes</string>
   <!--EOF-->
 </resources>
