@@ -119,7 +119,7 @@ public class RecipientDatabase extends Database {
           SIGNAL_PROFILE_NAME + " TEXT DEFAULT NULL, " +
           SIGNAL_PROFILE_AVATAR + " TEXT DEFAULT NULL, " +
           PROFILE_SHARING + " INTEGER DEFAULT 0, " +
-          NICK_NAME + " TEXT DEFAULT NULL);";
+          NICK_NAME + " TEXT DEFAULT 'null');";
 
   public RecipientDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -241,6 +241,12 @@ public class RecipientDatabase extends Database {
     recipient.resolve().setBlocked(blocked);
   }
 
+  public boolean setNickname(@Nullable Recipient recipient, String nickname) {
+    ContentValues values = new ContentValues();
+    values.put(NICK_NAME, nickname);
+    return processNicknameSqlRequest(values, recipient.getAddress()) > 0 ? true : false;
+  }
+
   public void setRingtone(@NonNull Recipient recipient, @Nullable Uri notification) {
     ContentValues values = new ContentValues();
     values.put(NOTIFICATION, notification == null ? null : notification.toString());
@@ -317,6 +323,14 @@ public class RecipientDatabase extends Database {
     }
 
     return results;
+  }
+
+  private int processNicknameSqlRequest(ContentValues values, Address address) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    return db.update(this.TABLE_NAME, values, ADDRESS + " = ? AND " +
+            NICK_NAME + " NOT Like ? ",
+            new String[] {address.serialize(),values.getAsString(NICK_NAME),
+                    });
   }
 
   public void setRegistered(@NonNull Recipient recipient, RegisteredState registeredState) {

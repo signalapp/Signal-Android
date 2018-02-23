@@ -1423,7 +1423,7 @@ public class DatabaseFactory {
       }
 
       if (oldVersion < INTRODUCED_NICK_NAMES) {
-        db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN nick_name TEXT DEFAULT NULL;");
+        db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN nick_name TEXT DEFAULT 'null';");
       }
 
       db.setTransactionSuccessful();
