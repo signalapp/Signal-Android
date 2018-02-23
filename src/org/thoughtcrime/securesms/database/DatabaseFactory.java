@@ -116,7 +116,8 @@ public class DatabaseFactory {
   private static final int UNREAD_COUNT_VERSION                            = 46;
   private static final int MORE_RECIPIENT_FIELDS                           = 47;
   private static final int INTRODUCED_PINNED_MESSAGES                      = 48;
-  private static final int DATABASE_VERSION                                = 48;
+  private static final int INTRODUCED_NICK_NAMES                           = 49;
+  private static final int DATABASE_VERSION                                = 49;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -1416,9 +1417,13 @@ public class DatabaseFactory {
         }
       }
 
-      if (oldVersion < INTRODUCED_PINNED_MESSAGES){
+      if (oldVersion < INTRODUCED_PINNED_MESSAGES) {
         db.execSQL("ALTER TABLE sms ADD COLUMN pinned BOOLEAN DEFAULT 0;");
         db.execSQL("ALTER TABLE mms ADD COLUMN pinned BOOLEAN DEFAULT 0;");
+      }
+
+      if (oldVersion < INTRODUCED_NICK_NAMES) {
+        db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN nick_name TEXT DEFAULT NULL;");
       }
 
       db.setTransactionSuccessful();
