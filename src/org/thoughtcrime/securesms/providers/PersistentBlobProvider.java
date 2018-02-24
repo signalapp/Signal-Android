@@ -160,7 +160,7 @@ public class PersistentBlobProvider {
 
     FileData fileData = getFile(context, id);
 
-    if (fileData.modern) return ModernDecryptingPartInputStream.createFor(attachmentSecret, fileData.file);
+    if (fileData.modern) return ModernDecryptingPartInputStream.createFor(attachmentSecret, fileData.file, 0);
     else                 return ClassicDecryptingPartInputStream.createFor(attachmentSecret, fileData.file);
   }
 

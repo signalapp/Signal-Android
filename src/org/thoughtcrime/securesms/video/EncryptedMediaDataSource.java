@@ -58,13 +58,9 @@ public class EncryptedMediaDataSource extends MediaDataSource {
   private int readAtModern(long position, byte[] bytes, int offset, int length) throws IOException {
     assert(random != null);
 
-    InputStream inputStream = ModernDecryptingPartInputStream.createFor(attachmentSecret, random, mediaFile);
+    InputStream inputStream = ModernDecryptingPartInputStream.createFor(attachmentSecret, random, mediaFile, position);
+    int         returnValue = inputStream.read(bytes, offset, length);
 
-    if (inputStream.skip(position) != position) {
-      throw new IOException("Skip failed: " + position);
-    }
-
-    int returnValue = inputStream.read(bytes, offset, length);
     inputStream.close();
 
     return returnValue;

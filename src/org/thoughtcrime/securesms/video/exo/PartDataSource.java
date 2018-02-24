@@ -11,7 +11,6 @@ import com.google.android.exoplayer2.upstream.DataSpec;
 import com.google.android.exoplayer2.upstream.TransferListener;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.mms.PartUriParser;
@@ -28,8 +27,7 @@ public class PartDataSource implements DataSource {
   private Uri         uri;
   private InputStream inputSteam;
 
-  public PartDataSource(@NonNull Context context, @Nullable TransferListener<? super PartDataSource> listener)
-  {
+  PartDataSource(@NonNull Context context, @Nullable TransferListener<? super PartDataSource> listener) {
     this.context  = context.getApplicationContext();
     this.listener = listener;
   }
@@ -44,13 +42,7 @@ public class PartDataSource implements DataSource {
 
     if (attachment == null) throw new IOException("Attachment not found");
 
-    this.inputSteam = attachmentDatabase.getAttachmentStream(partUri.getPartId());
-
-    if (inputSteam == null) throw new IOException("InputStream not foudn");
-
-    long skipped = this.inputSteam.skip(dataSpec.position);
-
-    if (skipped != dataSpec.position) throw new IOException("Skip failed!");
+    this.inputSteam = attachmentDatabase.getAttachmentStream(partUri.getPartId(), dataSpec.position);
 
     if (listener != null) {
       listener.onTransferStart(this, dataSpec);

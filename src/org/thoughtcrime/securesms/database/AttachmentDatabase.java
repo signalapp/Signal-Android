@@ -124,10 +124,10 @@ public class AttachmentDatabase extends Database {
     this.attachmentSecret = attachmentSecret;
   }
 
-  public @NonNull InputStream getAttachmentStream(AttachmentId attachmentId)
+  public @NonNull InputStream getAttachmentStream(AttachmentId attachmentId, long offset)
       throws IOException
   {
-    InputStream dataStream = getDataStream(attachmentId, DATA);
+    InputStream dataStream = getDataStream(attachmentId, DATA, offset);
 
     if (dataStream == null) throw new IOException("No stream for: " + attachmentId);
     else                    return dataStream;
@@ -137,7 +137,7 @@ public class AttachmentDatabase extends Database {
       throws IOException
   {
     Log.w(TAG, "getThumbnailStream(" + attachmentId + ")");
-    InputStream dataStream = getDataStream(attachmentId, THUMBNAIL);
+    InputStream dataStream = getDataStream(attachmentId, THUMBNAIL, 0);
 
     if (dataStream != null) {
       return dataStream;
@@ -380,7 +380,7 @@ public class AttachmentDatabase extends Database {
 
   @SuppressWarnings("WeakerAccess")
   @VisibleForTesting
-  protected @Nullable InputStream getDataStream(AttachmentId attachmentId, String dataType)
+  protected @Nullable InputStream getDataStream(AttachmentId attachmentId, String dataType, long offset)
   {
     DataInfo dataInfo = getAttachmentDataFileInfo(attachmentId, dataType);
 
@@ -390,9 +390,17 @@ public class AttachmentDatabase extends Database {
 
     try {
       if (dataInfo.random != null && dataInfo.random.length == 32) {
-        return ModernDecryptingPartInputStream.createFor(attachmentSecret, dataInfo.random, dataInfo.file);
+        return ModernDecryptingPartInputStream.createFor(attachmentSecret, dataInfo.random, dataInfo.file, offset);
       } else {
-        return ClassicDecryptingPartInputStream.createFor(attachmentSecret, dataInfo.file);
+        InputStream stream  = ClassicDecryptingPartInputStream.createFor(attachmentSecret, dataInfo.file);
+        long        skipped = stream.skip(offset);
+
+        if (skipped != offset) {
+          Log.w(TAG, "Skip failed: " + skipped + " vs " + offset);
+          return null;
+        }
+
+        return stream;
       }
     } catch (IOException e) {
       Log.w(TAG, e);
@@ -590,7 +598,7 @@ public class AttachmentDatabase extends Database {
     @Override
     public @Nullable InputStream call() throws Exception {
       Log.w(TAG, "Executing thumbnail job...");
-      final InputStream stream = getDataStream(attachmentId, THUMBNAIL);
+      final InputStream stream = getDataStream(attachmentId, THUMBNAIL, 0);
 
       if (stream != null) {
         return stream;
@@ -616,7 +624,7 @@ public class AttachmentDatabase extends Database {
 
       updateAttachmentThumbnail(attachmentId, data.toDataStream(), data.getAspectRatio());
 
-      return getDataStream(attachmentId, THUMBNAIL);
+      return getDataStream(attachmentId, THUMBNAIL, 0);
     }
 
     @SuppressLint("NewApi")
