@@ -24,16 +24,10 @@ public class NicknameHandlerTests extends NicknameMocks {
     public void setUp() throws Exception {
         super.setUp();
 
-        super.databaseFactory = mock(DatabaseFactory.class);
-        super.recipient = mock(Recipient.class);
-        super.recipient2 = mock(Recipient.class);
-        super.recipientDatabase = mock(RecipientDatabase.class);
-
         super.setupRecipientObject();
         super.setupRemoveNicknameMethod();
         super.setupStaticRecipientDatabase();
         super.setupSetNicknameMethod();
-
     }
 
     @Test

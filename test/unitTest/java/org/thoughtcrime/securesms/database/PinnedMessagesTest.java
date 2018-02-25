@@ -27,8 +27,8 @@ public class PinnedMessagesTest extends PinnedMessagesMocks {
         assertEquals(messagingDatabase.pinMessage(2), false);
         assertEquals(messagingDatabase.pinMessage(3), false);
 
-        verify(messagingDatabase).pinMessage(3);
-        verify(messagingDatabase).pinMessage(3);
+        verify(messagingDatabase).pinMessage(1);
+        verify(messagingDatabase).pinMessage(2);
         verify(messagingDatabase).pinMessage(3);
     }
 

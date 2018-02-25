@@ -24,6 +24,16 @@ public class NicknameMocks extends BaseUnitTest {
     protected Recipient         recipient2;
     protected RecipientDatabase recipientDatabase;
 
+    @Override
+    public void setUp() throws Exception {
+        super.setUp();
+
+        databaseFactory = mock(DatabaseFactory.class);
+        recipient = mock(Recipient.class);
+        recipient2 = mock(Recipient.class);
+        recipientDatabase = mock(RecipientDatabase.class);
+    }
+
     protected void setupSetNicknameMethod() {
         when(recipientDatabase.setNickname(recipient, "test")).thenReturn(true)
                 .thenReturn(false);
