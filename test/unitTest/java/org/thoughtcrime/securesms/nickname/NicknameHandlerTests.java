@@ -35,7 +35,7 @@ public class NicknameHandlerTests extends NicknameMocks {
     }
 
     @Test
-    public void testSetNicknameSameOldeName() {
+    public void testSetNicknameSameOldName() {
         super.setupSetNicknameMethod();
 
         NicknameHandler handler = new NicknameHandler(super.context);

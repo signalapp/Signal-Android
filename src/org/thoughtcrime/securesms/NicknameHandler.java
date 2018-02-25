@@ -6,7 +6,6 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
-
 public class NicknameHandler {
     private Context context;
     private RecipientDatabase recipientDatabase;
