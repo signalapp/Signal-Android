@@ -2,14 +2,9 @@ package org.thoughtcrime.securesms.database;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
-import org.thoughtcrime.securesms.NicknameHandler;
 import org.thoughtcrime.securesms.NicknameMocks;
-import org.thoughtcrime.securesms.recipients.Recipient;
 
 import static junit.framework.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 

@@ -5,19 +5,12 @@ import org.junit.Test;
 import org.thoughtcrime.securesms.NicknameHandler;
 import org.thoughtcrime.securesms.NicknameMocks;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.recipients.Recipient;
 
-import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-/**
- * Created by BABO99 on 2018-02-23.
- */
 
 public class NicknameHandlerTests extends NicknameMocks {
     @Before
