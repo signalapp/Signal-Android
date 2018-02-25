@@ -43,13 +43,13 @@ public class NicknameHandler {
      * @return boolean indicating whether the nickname was set or not
      */
     public boolean setNickname(Recipient recipient, String nickname) {
-        setupDatabaseHandler();
-        return recipientDatabase.setNickname(recipient, nickname);
+        this.setupDatabaseHandler();
+        return this.recipientDatabase.setNickname(recipient, nickname);
     }
 
     // TODO by DAN
     public boolean removeNickname(Recipient recipient) {
-        setupDatabaseHandler();
+        this.setupDatabaseHandler();
 
         // TODO call the correct remove method
         return true;

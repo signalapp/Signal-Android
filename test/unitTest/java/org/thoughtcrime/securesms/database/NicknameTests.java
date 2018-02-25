@@ -8,19 +8,16 @@ import static junit.framework.Assert.assertEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-
 public class NicknameTests extends NicknameMocks {
 
     @Before
     @Override
     public void setUp() throws Exception{
         super.setUp();
-
         super.setupRecipientObject();
         super.setupRemoveNicknameMethod();
         super.setupStaticRecipientDatabase();
         super.setupSetNicknameMethod();
-
     }
 
     @Test
@@ -41,7 +38,5 @@ public class NicknameTests extends NicknameMocks {
         verify(recipientDatabase, times(2)).setNickname(super.recipient, "test");
         verify(recipientDatabase, times(2)).setNickname(super.recipient, "new test");
     }
-
-
 }
 

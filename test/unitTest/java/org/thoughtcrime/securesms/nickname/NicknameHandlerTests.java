@@ -11,12 +11,11 @@ import static junit.framework.Assert.assertTrue;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-
 public class NicknameHandlerTests extends NicknameMocks {
+
     @Before
     public void setUp() throws Exception {
         super.setUp();
-
         super.setupRecipientObject();
         super.setupRemoveNicknameMethod();
         super.setupStaticRecipientDatabase();
@@ -76,7 +75,5 @@ public class NicknameHandlerTests extends NicknameMocks {
 
         verify(recipientDatabase, times(2)).setNickname(recipient,"test");
         verify(recipientDatabase, times(2)).setNickname(recipient,"new test");
-
-
     }
 }

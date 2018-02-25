@@ -21,7 +21,6 @@ import static org.mockito.Mockito.when;
 public class NicknameMocks extends BaseUnitTest {
     protected DatabaseFactory   databaseFactory;
     protected Recipient         recipient;
-    protected Recipient         recipient2;
     protected RecipientDatabase recipientDatabase;
 
     @Override
@@ -30,7 +29,6 @@ public class NicknameMocks extends BaseUnitTest {
 
         databaseFactory = mock(DatabaseFactory.class);
         recipient = mock(Recipient.class);
-        recipient2 = mock(Recipient.class);
         recipientDatabase = mock(RecipientDatabase.class);
     }
 
@@ -50,7 +48,6 @@ public class NicknameMocks extends BaseUnitTest {
 
     protected void setupRecipientObject() {
         recipient = mock(Recipient.class);
-        recipient2 = mock(Recipient.class);
     }
 
     protected void setupStaticRecipientDatabase() {
