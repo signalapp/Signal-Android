@@ -14,7 +14,9 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.util.Pair;
 
+import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.jobs.requirements.SqlCipherMigrationRequirementProvider;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 
 import java.io.IOException;
@@ -127,6 +129,7 @@ public class TextSecurePreferences {
 
   public static void setNeedsSqlCipherMigration(@NonNull Context context, boolean value) {
     setBooleanPreference(context, NEEDS_SQLCIPHER_MIGRATION, value);
+    EventBus.getDefault().post(new SqlCipherMigrationRequirementProvider.SqlCipherNeedsMigrationEvent());
   }
 
   public static boolean getNeedsSqlCipherMigration(@NonNull Context context) {

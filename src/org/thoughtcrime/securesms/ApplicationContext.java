@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirementProvider;
 import org.thoughtcrime.securesms.jobs.requirements.ServiceRequirementProvider;
+import org.thoughtcrime.securesms.jobs.requirements.SqlCipherMigrationRequirementProvider;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
@@ -121,7 +122,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
                                 .withJobSerializer(new JavaJobSerializer())
                                 .withRequirementProviders(new MasterSecretRequirementProvider(this),
                                                           new ServiceRequirementProvider(this),
-                                                          new NetworkRequirementProvider(this))
+                                                          new NetworkRequirementProvider(this),
+                                                          new SqlCipherMigrationRequirementProvider())
                                 .withConsumerThreads(5)
                                 .build();
   }
