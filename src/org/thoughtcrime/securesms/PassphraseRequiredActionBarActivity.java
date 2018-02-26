@@ -89,7 +89,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
   @Override
   public void onMasterSecretCleared() {
     Log.w(TAG, "onMasterSecretCleared()");
-    if (isVisible) routeApplicationState(false);
+    if (isVisible) routeApplicationState(true);
     else           finish();
   }
 
