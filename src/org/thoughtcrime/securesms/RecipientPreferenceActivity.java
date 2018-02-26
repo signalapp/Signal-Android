@@ -24,6 +24,7 @@ import android.support.v7.preference.CheckBoxPreference;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceCategory;
+import android.support.v7.preference.EditTextPreference;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
@@ -80,6 +81,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   private static final String PREFERENCE_BLOCK    = "pref_key_recipient_block";
   private static final String PREFERENCE_COLOR    = "pref_key_recipient_color";
   private static final String PREFERENCE_IDENTITY = "pref_key_recipient_identity";
+  private static final String PREFERENCE_NICKNAME = "pref_key_change_nickname";
 
   private final DynamicTheme    dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -106,7 +108,6 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     this.address       = getIntent().getParcelableExtra(ADDRESS_EXTRA);
 
     Recipient recipient = Recipient.from(this, address, true);
-
     initializeToolbar();
     setHeader(recipient);
     recipient.addListener(this);
@@ -193,6 +194,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
     this.avatar.setBackgroundColor(recipient.getColor().toActionBarColor(this));
     this.toolbarLayout.setTitle(recipient.toShortString());
+
     this.toolbarLayout.setContentScrimColor(recipient.getColor().toActionBarColor(this));
   }
 
@@ -257,6 +259,9 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
           .setOnPreferenceClickListener(new BlockClickedListener());
       this.findPreference(PREFERENCE_COLOR)
           .setOnPreferenceChangeListener(new ColorChangeListener());
+
+      this.findPreference(PREFERENCE_NICKNAME)
+          .setOnPreferenceChangeListener(new NicknameChangeListener());
     }
 
     @Override
@@ -300,6 +305,9 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       Preference                 identityPreference = this.findPreference(PREFERENCE_IDENTITY);
       PreferenceCategory         privacyCategory    = (PreferenceCategory)this.findPreference("privacy_settings");
       PreferenceCategory         divider            = (PreferenceCategory)this.findPreference("divider");
+      EditTextPreference         nickname           = (EditTextPreference)this.findPreference(PREFERENCE_NICKNAME);
+
+      nickname.setText("DANIEL YOO");
 
       mutePreference.setChecked(recipient.isMuted());
 
@@ -493,6 +501,15 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
             return null;
           }
         }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+      }
+    }
+
+    private class NicknameChangeListener implements Preference.OnPreferenceChangeListener {
+
+      @Override
+      public boolean onPreferenceChange(Preference preference, Object newValue) {
+        Log.v(TAG, "IM IN NICKNAME LISTENER");
+        return true;
       }
     }
 

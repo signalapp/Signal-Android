@@ -33,6 +33,12 @@
                 android:positiveButtonText="@null"
                 android:persistent="false"
                 app:numColumns="5" />
+        <EditTextPreference
+            android:defaultValue="Username"
+            android:key="pref_key_change_nickname"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Change display name" />
     </PreferenceCategory>
 
     <PreferenceCategory android:key="divider" android:layout="@layout/preference_divider"/>
