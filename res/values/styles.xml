@@ -207,6 +207,15 @@
         <item name="android:focusable">false</item>
     </style>
 
+    <style name="BackupPassphrase">
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:clickable">false</item>
+        <item name="android:focusable">false</item>
+    </style>
+
+
     <style name="PreferenceThemeOverlay.Fix" parent="PreferenceThemeOverlay.v14.Material">
     </style>
 

@@ -1,4 +1,4 @@
-/** 
+/*
  * Copyright (C) 2011 Whisper Systems
  * 
  * This program is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@ import android.content.res.Resources.Theme;
 import android.net.Uri;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
@@ -28,6 +29,7 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 
 public class ImageSlide extends Slide {
 
+  @SuppressWarnings("unused")
   private static final String TAG = ImageSlide.class.getSimpleName();
 
   public ImageSlide(@NonNull Context context, @NonNull Attachment attachment) {
@@ -41,6 +43,14 @@ public class ImageSlide extends Slide {
   @Override
   public @DrawableRes int getPlaceholderRes(Theme theme) {
     return 0;
+  }
+
+  @Override
+  public @Nullable Uri getThumbnailUri() {
+    Uri thumbnailUri = super.getThumbnailUri();
+
+    if (thumbnailUri == null) return getUri();
+    else                      return thumbnailUri;
   }
 
   @Override

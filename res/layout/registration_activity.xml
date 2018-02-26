@@ -55,6 +55,64 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="-32dp"/>
 
+        <LinearLayout android:id="@+id/restore_container"
+                      android:padding="16dp"
+                      android:paddingBottom="0dp"
+                      android:layout_marginTop="30dp"
+                      android:layout_below="@id/header"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical"
+                      tools:visibility="visible">
+
+            <TextView android:id="@+id/backup_created_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Backup created: 1 min ago"/>
+
+            <TextView android:id="@+id/backup_size_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    tools:text="Backup size: 899 KB"/>
+
+            <TextView android:id="@+id/backup_progress_text"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="16dp"
+                      android:layout_gravity="center_horizontal"
+                      tools:text="100 messages so far..."/>
+
+            <com.dd.CircularProgressButton
+                    android:id="@+id/restore_button"
+                    app:cpb_textIdle="@string/registration_activity__restore_backup"
+                    app:cpb_selectorIdle="@drawable/progress_button_state"
+                    app:cpb_colorIndicator="@color/white"
+                    app:cpb_colorProgress="@color/textsecure_primary"
+                    app:cpb_cornerRadius="50dp"
+                    android:background="@color/signal_primary"
+                    android:textColor="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center_horizontal"/>
+
+            <TextView android:id="@+id/skip_restore_button"
+                      android:layout_gravity="center_horizontal"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="13dp"
+                      android:textColor="@color/gray50"
+                      android:paddingLeft="30dp"
+                      android:paddingRight="30dp"
+                      android:paddingTop="10dp"
+                      android:paddingBottom="10dp"
+                      android:text="@string/registration_activity__skip"/>
+
+        </LinearLayout>
+
         <LinearLayout android:id="@+id/registration_container"
                       android:padding="16dp"
                       android:paddingBottom="0dp"
@@ -104,7 +162,7 @@
 
             <com.dd.CircularProgressButton
                     android:id="@+id/registerButton"
-                    app:cpb_textIdle="Register"
+                    app:cpb_textIdle="@string/registration_activity__register"
                     app:cpb_selectorIdle="@drawable/progress_button_state"
                     app:cpb_colorIndicator="@color/white"
                     app:cpb_colorProgress="@color/textsecure_primary"
@@ -168,7 +226,7 @@
                         android:layout_below="@id/header"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        tools:visibility="visible">
+                        tools:visibility="invisible">
 
             <org.thoughtcrime.securesms.components.registration.VerificationCodeView
                     android:id="@+id/code"

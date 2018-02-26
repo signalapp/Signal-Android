@@ -26,10 +26,12 @@ import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.util.Pair;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,22 +44,33 @@ import com.google.i18n.phonenumbers.AsYouTypeFormatter;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
+import net.sqlcipher.database.SQLiteDatabase;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
+import org.thoughtcrime.securesms.backup.FullBackupBase;
+import org.thoughtcrime.securesms.backup.FullBackupImporter;
 import org.thoughtcrime.securesms.components.registration.CallMeCountDownView;
 import org.thoughtcrime.securesms.components.registration.VerificationCodeView;
 import org.thoughtcrime.securesms.components.registration.VerificationPinKeyboard;
+import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
 import org.thoughtcrime.securesms.crypto.SessionUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
+import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
+import org.thoughtcrime.securesms.util.BackupUtil;
+import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.PlayServicesUtil;
 import org.thoughtcrime.securesms.util.PlayServicesUtil.PlayServicesStatus;
@@ -75,6 +88,7 @@ import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * The register account activity.  Prompts ths user for their registration information
@@ -89,6 +103,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
   private static final int    SCENE_TRANSITION_DURATION = 250;
   public static final  String CHALLENGE_EVENT           = "org.thoughtcrime.securesms.CHALLENGE_EVENT";
   public static final  String CHALLENGE_EXTRA           = "CAAChallenge";
+  public static final  String RE_REGISTRATION_EXTRA     = "re_registration";
 
   private static final String TAG = RegistrationActivity.class.getSimpleName();
 
@@ -106,12 +121,19 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
   private View                   verificationContainer;
   private FloatingActionButton   fab;
 
+  private View                   restoreContainer;
+  private TextView               restoreBackupTime;
+  private TextView               restoreBackupSize;
+  private TextView               restoreBackupProgress;
+  private CircularProgressButton restoreButton;
+
   private CallMeCountDownView         callMeCountDownView;
   private VerificationPinKeyboard     keyboard;
   private VerificationCodeView        verificationCodeView;
   private RegistrationState           registrationState;
   private ChallengeReceiver           challengeReceiver;
   private SignalServiceAccountManager accountManager;
+
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -130,6 +152,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     super.onDestroy();
     shutdownChallengeListener();
     markAsVerifying(false);
+    EventBus.getDefault().unregister(this);
   }
 
   @Override
@@ -147,8 +170,9 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
   }
 
   private void initializeResources() {
-    TextView     skipButton        = findViewById(R.id.skip_button);
-    View         informationToggle = findViewById(R.id.information_link_container);
+    TextView skipButton        = findViewById(R.id.skip_button);
+    TextView restoreSkipButton = findViewById(R.id.skip_restore_button);
+    View     informationToggle = findViewById(R.id.information_link_container);
 
     this.countrySpinner        = findViewById(R.id.country_spinner);
     this.countryCode           = findViewById(R.id.country_code);
@@ -165,6 +189,13 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     this.verificationCodeView = findViewById(R.id.code);
     this.keyboard             = findViewById(R.id.keyboard);
     this.callMeCountDownView  = findViewById(R.id.call_me_count_down);
+
+    this.restoreContainer      = findViewById(R.id.restore_container);
+    this.restoreBackupSize     = findViewById(R.id.backup_size_text);
+    this.restoreBackupTime     = findViewById(R.id.backup_created_text);
+    this.restoreBackupProgress = findViewById(R.id.backup_progress_text);
+    this.restoreButton         = findViewById(R.id.restore_button);
+
     this.registrationState    = new RegistrationState(RegistrationState.State.INITIAL, null, null, null);
 
     this.countryCode.addTextChangedListener(new CountryCodeChangedListener());
@@ -174,7 +205,9 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     skipButton.setOnClickListener(v -> handleCancel());
     informationToggle.setOnClickListener(new InformationToggleListener());
 
-    if (getIntent().getBooleanExtra("cancel_button", false)) {
+    restoreSkipButton.setOnClickListener(v -> displayInitialView(true));
+
+    if (getIntent().getBooleanExtra(RE_REGISTRATION_EXTRA, false)) {
       skipButton.setVisibility(View.VISIBLE);
     } else {
       skipButton.setVisibility(View.INVISIBLE);
@@ -186,6 +219,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     });
 
     this.verificationCodeView.setOnCompleteListener(this);
+    EventBus.getDefault().register(this);
   }
 
   @SuppressLint("ClickableViewAccessibility")
@@ -247,8 +281,34 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
                  if (permissions.contains(Manifest.permission.READ_PHONE_STATE)) {
                    initializeNumber();
                  }
+
+                 if (permissions.contains(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                   initializeBackupDetection();
+                 }
                })
                .execute();
+  }
+
+  @SuppressLint("StaticFieldLeak")
+  private void initializeBackupDetection() {
+    if (getIntent().getBooleanExtra(RE_REGISTRATION_EXTRA, false)) return;
+
+    new AsyncTask<Void, Void, BackupUtil.BackupInfo>() {
+      @Override
+      protected @Nullable BackupUtil.BackupInfo doInBackground(Void... voids) {
+        try {
+          return BackupUtil.getLatestBackup();
+        } catch (NoExternalStorageException e) {
+          Log.w(TAG, e);
+          return null;
+        }
+      }
+
+      @Override
+      protected void onPostExecute(@Nullable BackupUtil.BackupInfo backup) {
+        if (backup != null) displayRestoreView(backup);
+      }
+    }.execute();
   }
 
   private void setCountryDisplay(String value) {
@@ -267,6 +327,60 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
   private String getConfiguredE164Number() {
     return PhoneNumberFormatter.formatE164(countryCode.getText().toString(),
                                            number.getText().toString());
+  }
+
+  @SuppressLint("StaticFieldLeak")
+  private void handleRestore(BackupUtil.BackupInfo backup) {
+    View     view   = LayoutInflater.from(this).inflate(R.layout.enter_backup_passphrase_dialog, null);
+    EditText prompt = view.findViewById(R.id.restore_passphrase_input);
+
+    new AlertDialog.Builder(this)
+        .setTitle(R.string.RegistrationActivity_enter_backup_passphrase)
+        .setView(view)
+        .setPositiveButton(getString(R.string.RegistrationActivity_restore), (dialog, which) -> {
+          restoreButton.setIndeterminateProgressMode(true);
+          restoreButton.setProgress(50);
+
+          new AsyncTask<Void, Void, Boolean>() {
+            @Override
+            protected Boolean doInBackground(Void... voids) {
+              try {
+                Context        context    = RegistrationActivity.this;
+                String         passphrase = prompt.getText().toString();
+                SQLiteDatabase database   = DatabaseFactory.getBackupDatabase(context);
+
+                FullBackupImporter.importFile(context,
+                                              AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
+                                              database, backup.getFile(), passphrase);
+
+                DatabaseFactory.upgradeRestored(context, database);
+
+                TextSecurePreferences.setBackupEnabled(context, true);
+                TextSecurePreferences.setBackupPassphrase(context, passphrase);
+                return true;
+              } catch (IOException e) {
+                Log.w(TAG, e);
+                return false;
+              }
+            }
+
+            @Override
+            protected void onPostExecute(@NonNull Boolean result) {
+              restoreButton.setIndeterminateProgressMode(false);
+              restoreButton.setProgress(0);
+              restoreBackupProgress.setText("");
+
+              if (result) {
+                displayInitialView(true);
+              } else {
+                Toast.makeText(RegistrationActivity.this, R.string.RegistrationActivity_incorrect_backup_passphrase, Toast.LENGTH_LONG).show();
+              }
+            }
+          }.execute();
+
+        })
+        .setNegativeButton(android.R.string.cancel, null)
+        .show();
   }
 
   private void handleRegister() {
@@ -491,11 +605,11 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     }
   }
 
-  private void displayInitialView(@NonNull String e164number) {
+  private void displayRestoreView(@NonNull BackupUtil.BackupInfo backup) {
     title.animate().translationX(title.getWidth()).setDuration(SCENE_TRANSITION_DURATION).setListener(new AnimationCompleteListener() {
       @Override
       public void onAnimationEnd(Animator animation) {
-        title.setText(R.string.registration_activity__verify_your_number);
+        title.setText(R.string.RegistrationActivity_restore_from_backup);
         title.clearAnimation();
         title.setTranslationX(-1 * title.getWidth());
         title.animate().translationX(0).setListener(null).setInterpolator(new OvershootInterpolator()).setDuration(SCENE_TRANSITION_DURATION).start();
@@ -505,21 +619,80 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     subtitle.animate().translationX(subtitle.getWidth()).setDuration(SCENE_TRANSITION_DURATION).setListener(new AnimationCompleteListener() {
       @Override
       public void onAnimationEnd(Animator animation) {
-        subtitle.setText(R.string.registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply);
+        subtitle.setText(R.string.RegistrationActivity_restore_your_messages_and_media_from_a_local_backup);
         subtitle.clearAnimation();
         subtitle.setTranslationX(-1 * subtitle.getWidth());
         subtitle.animate().translationX(0).setListener(null).setInterpolator(new OvershootInterpolator()).setDuration(SCENE_TRANSITION_DURATION).start();
       }
     }).start();
 
-    verificationContainer.animate().translationX(verificationContainer.getWidth()).setDuration(SCENE_TRANSITION_DURATION).setListener(new AnimationCompleteListener() {
+    registrationContainer.animate().translationX(registrationContainer.getWidth()).setDuration(SCENE_TRANSITION_DURATION).setListener(new AnimationCompleteListener() {
       @Override
       public void onAnimationEnd(Animator animation) {
-        verificationContainer.clearAnimation();
-        verificationContainer.setVisibility(View.INVISIBLE);
-        verificationContainer.setTranslationX(0);
+        registrationContainer.clearAnimation();
+        registrationContainer.setVisibility(View.INVISIBLE);
+        registrationContainer.setTranslationX(0);
 
-        registrationContainer.setTranslationX(-1 * registrationContainer.getWidth());
+        restoreContainer.setTranslationX(-1 * registrationContainer.getWidth());
+        restoreContainer.setVisibility(View.VISIBLE);
+        restoreButton.setProgress(0);
+        restoreButton.setIndeterminateProgressMode(false);
+        restoreButton.setOnClickListener(v -> handleRestore(backup));
+        restoreBackupSize.setText(getString(R.string.RegistrationActivity_backup_size_s, Util.getPrettyFileSize(backup.getSize())));
+        restoreBackupTime.setText(getString(R.string.RegistrationActivity_backup_timestamp_s, DateUtils.getExtendedRelativeTimeSpanString(RegistrationActivity.this, Locale.US, backup.getTimestamp())));
+        restoreBackupProgress.setText("");
+        restoreContainer.animate().translationX(0).setDuration(SCENE_TRANSITION_DURATION).setListener(null).setInterpolator(new OvershootInterpolator()).start();
+      }
+    }).start();
+
+    fab.animate().rotationBy(375f).setDuration(SCENE_TRANSITION_DURATION).setListener(new AnimationCompleteListener() {
+      @Override
+      public void onAnimationEnd(Animator animation) {
+        fab.clearAnimation();
+        fab.setImageResource(R.drawable.ic_restore_white_24dp);
+        fab.animate().rotationBy(360f).setDuration(SCENE_TRANSITION_DURATION).setListener(null).start();
+      }
+    }).start();
+
+  }
+
+  private void displayInitialView(boolean forwards) {
+    int startDirectionMultiplier = forwards ? -1 : 1;
+    int endDirectionMultiplier   = forwards ? 1 : -1;
+
+    title.animate().translationX(startDirectionMultiplier * title.getWidth()).setDuration(SCENE_TRANSITION_DURATION).setListener(new AnimationCompleteListener() {
+      @Override
+      public void onAnimationEnd(Animator animation) {
+        title.setText(R.string.registration_activity__verify_your_number);
+        title.clearAnimation();
+        title.setTranslationX(endDirectionMultiplier * title.getWidth());
+        title.animate().translationX(0).setListener(null).setInterpolator(new OvershootInterpolator()).setDuration(SCENE_TRANSITION_DURATION).start();
+      }
+    }).start();
+
+    subtitle.animate().translationX(startDirectionMultiplier * subtitle.getWidth()).setDuration(SCENE_TRANSITION_DURATION).setListener(new AnimationCompleteListener() {
+      @Override
+      public void onAnimationEnd(Animator animation) {
+        subtitle.setText(R.string.registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply);
+        subtitle.clearAnimation();
+        subtitle.setTranslationX(endDirectionMultiplier * subtitle.getWidth());
+        subtitle.animate().translationX(0).setListener(null).setInterpolator(new OvershootInterpolator()).setDuration(SCENE_TRANSITION_DURATION).start();
+      }
+    }).start();
+
+    View container;
+
+    if (verificationContainer.getVisibility() == View.VISIBLE) container = verificationContainer;
+    else                                                       container = restoreContainer;
+
+    container.animate().translationX(startDirectionMultiplier * container.getWidth()).setDuration(SCENE_TRANSITION_DURATION).setListener(new AnimationCompleteListener() {
+      @Override
+      public void onAnimationEnd(Animator animation) {
+        container.clearAnimation();
+        container.setVisibility(View.INVISIBLE);
+        container.setTranslationX(0);
+
+        registrationContainer.setTranslationX(endDirectionMultiplier * registrationContainer.getWidth());
         registrationContainer.setVisibility(View.VISIBLE);
         createButton.setProgress(0);
         createButton.setIndeterminateProgressMode(false);
@@ -527,12 +700,12 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
       }
     }).start();
 
-    fab.animate().rotationBy(360f).setDuration(SCENE_TRANSITION_DURATION).setListener(new AnimationCompleteListener() {
+    fab.animate().rotationBy(startDirectionMultiplier * 360f).setDuration(SCENE_TRANSITION_DURATION).setListener(new AnimationCompleteListener() {
       @Override
       public void onAnimationEnd(Animator animation) {
         fab.clearAnimation();
         fab.setImageResource(R.drawable.ic_action_name);
-        fab.animate().rotationBy(375f).setDuration(SCENE_TRANSITION_DURATION).setListener(null).start();
+        fab.animate().rotationBy(startDirectionMultiplier * 375f).setDuration(SCENE_TRANSITION_DURATION).setListener(null).start();
       }
     }).start();
   }
@@ -547,7 +720,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     title.animate().translationX(-1 * title.getWidth()).setDuration(SCENE_TRANSITION_DURATION).setListener(new AnimationCompleteListener() {
       @Override
       public void onAnimationEnd(Animator animation) {
-        title.setText(String.format("Verify %s", e164number));
+        title.setText(getString(R.string.RegistrationActivity_verify_s, e164number));
         title.clearAnimation();
         title.setTranslationX(title.getWidth());
         title.animate().translationX(0).setListener(null).setInterpolator(new OvershootInterpolator()).setDuration(SCENE_TRANSITION_DURATION).start();
@@ -557,13 +730,13 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     subtitle.animate().translationX(-1 * subtitle.getWidth()).setDuration(SCENE_TRANSITION_DURATION).setListener(new AnimationCompleteListener() {
       @Override
       public void onAnimationEnd(Animator animation) {
-        SpannableString subtitleDescription = new SpannableString(String.format("Please enter the verification code sent to %s.", e164number));
-        SpannableString wrongNumber         = new SpannableString("Wrong number?");
+        SpannableString subtitleDescription = new SpannableString(getString(R.string.RegistrationActivity_please_enter_the_verification_code_sent_to_s, e164number));
+        SpannableString wrongNumber         = new SpannableString(getString(R.string.RegistrationActivity_wrong_number));
 
         ClickableSpan clickableSpan = new ClickableSpan() {
           @Override
           public void onClick(View widget) {
-            displayInitialView(e164number);
+            displayInitialView(false);
             registrationState = new RegistrationState(RegistrationState.State.INITIAL, null, null, null);
           }
 
@@ -649,6 +822,12 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     if (verifying) {
       TextSecurePreferences.setPushRegistered(this, false);
     }
+  }
+
+  @Subscribe(threadMode = ThreadMode.MAIN)
+  public void onEvent(FullBackupBase.BackupEvent event) {
+    if (event.getCount() == 0) restoreBackupProgress.setText(R.string.RegistrationActivity_checking);
+    else                       restoreBackupProgress.setText(getString(R.string.RegistrationActivity_d_messages_so_far, event.getCount()));
   }
 
   private class ChallengeReceiver extends BroadcastReceiver {

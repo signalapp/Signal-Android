@@ -207,6 +207,18 @@ public class Util {
     return TextSecurePreferences.getLocalNumber(context).equals(address.toPhoneString());
   }
 
+  public static void readFully(InputStream in, byte[] buffer) throws IOException {
+    int offset = 0;
+
+    for (;;) {
+      int read = in.read(buffer, offset, buffer.length - offset);
+      if (read == -1) throw new IOException("Stream ended early");
+
+      if (read + offset < buffer.length) offset += read;
+      else                		           return;
+    }
+  }
+
   public static byte[] readFully(InputStream in) throws IOException {
     ByteArrayOutputStream bout = new ByteArrayOutputStream();
     byte[] buffer              = new byte[4096];
@@ -351,11 +363,7 @@ public class Util {
   }
 
   public static SecureRandom getSecureRandom() {
-    try {
-      return SecureRandom.getInstance("SHA1PRNG");
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
-    }
+    return new SecureRandom();
   }
 
   public static int getDaysTillBuildExpiry() {

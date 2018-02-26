@@ -65,26 +65,28 @@ public class AttachmentDatabase extends Database {
   
   private static final String TAG = AttachmentDatabase.class.getSimpleName();
 
-          static final String TABLE_NAME             = "part";
-          static final String ROW_ID                 = "_id";
+  public  static final String TABLE_NAME             = "part";
+  public  static final String ROW_ID                 = "_id";
   public  static final String ATTACHMENT_ID_ALIAS    = "attachment_id";
           static final String MMS_ID                 = "mid";
           static final String CONTENT_TYPE           = "ct";
           static final String NAME                   = "name";
           static final String CONTENT_DISPOSITION    = "cd";
           static final String CONTENT_LOCATION       = "cl";
-          static final String DATA                   = "_data";
+  public  static final String DATA                   = "_data";
           static final String TRANSFER_STATE         = "pending_push";
-          static final String SIZE                   = "data_size";
+  public  static final String SIZE                   = "data_size";
           static final String FILE_NAME              = "file_name";
-          static final String THUMBNAIL              = "thumbnail";
+  public  static final String THUMBNAIL              = "thumbnail";
           static final String THUMBNAIL_ASPECT_RATIO = "aspect_ratio";
   public  static final String UNIQUE_ID              = "unique_id";
           static final String DIGEST                 = "digest";
           static final String VOICE_NOTE             = "voice_note";
   public  static final String FAST_PREFLIGHT_ID      = "fast_preflight_id";
-  private static final String DATA_RANDOM            = "data_random";
+  public  static final String DATA_RANDOM            = "data_random";
   private static final String THUMBNAIL_RANDOM       = "thumbnail_random";
+
+  public  static final String DIRECTORY              = "parts";
 
   public static final int TRANSFER_PROGRESS_DONE    = 0;
   public static final int TRANSFER_PROGRESS_STARTED = 1;
@@ -256,7 +258,7 @@ public class AttachmentDatabase extends Database {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     database.delete(TABLE_NAME, null, null);
 
-    File   attachmentsDirectory = context.getDir("parts", Context.MODE_PRIVATE);
+    File   attachmentsDirectory = context.getDir(DIRECTORY, Context.MODE_PRIVATE);
     File[] attachments          = attachmentsDirectory.listFiles();
 
     for (File attachment : attachments) {
@@ -459,7 +461,7 @@ public class AttachmentDatabase extends Database {
       throws MmsException
   {
     try {
-      File partsDirectory = context.getDir("parts", Context.MODE_PRIVATE);
+      File partsDirectory = context.getDir(DIRECTORY, Context.MODE_PRIVATE);
       File dataFile       = File.createTempFile("part", ".mms", partsDirectory);
       return setAttachmentData(dataFile, in);
     } catch (IOException e) {

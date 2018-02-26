@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:padding="16dp">
+
+    <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <AutoCompleteTextView
+                android:id="@+id/restore_passphrase_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_backup_passphrase_dialog__backup_passphrase"
+                android:imeOptions="actionDone"
+                android:inputType="textVisiblePassword" />
+
+    </android.support.design.widget.TextInputLayout>
+</FrameLayout>

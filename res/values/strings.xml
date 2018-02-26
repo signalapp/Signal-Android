@@ -1029,7 +1029,7 @@
     <string name="AndroidManifest_remove_photo">Remove photo</string>
 
     <!-- arrays.xml -->
-    <string name="arrays__import_export">Import / export</string>
+    <string name="arrays__import_export">Import</string>
     <string name="arrays__use_default">Use default</string>
     <string name="arrays__use_custom">Use custom</string>
 
@@ -1326,6 +1326,40 @@
     <string name="PushDecryptJob_unlock_to_view_pending_messages">Unlock to view pending messages</string>
     <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Unlock to complete update</string>
     <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Please unlock Signal to complete update</string>
+    <string name="enter_backup_passphrase_dialog__backup_passphrase">Backup passphrase</string>
+    <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Backups will be saved to external storage and encrypted with the passphrase below. You must have this passphrase in order to restore a backup.</string>
+    <string name="backup_enable_dialog__i_have_written_down_this_passphrase">I have written down this passphrase. Without it, I will be unable to restore a backup.</string>
+    <string name="registration_activity__restore_backup">Restore backup</string>
+    <string name="registration_activity__skip">Skip</string>
+    <string name="registration_activity__register">Register</string>
+    <string name="preferences_chats__chat_backups">Chat backups</string>
+    <string name="preferences_chats__backup_chats_to_external_storage">Backup chats to external storage</string>
+    <string name="preferences_chats__create_backup">Create backup</string>
+    <string name="RegistrationActivity_enter_backup_passphrase">Enter backup passphrase</string>
+    <string name="RegistrationActivity_restore">Restore</string>
+    <string name="RegistrationActivity_incorrect_backup_passphrase">Incorrect backup password</string>
+    <string name="RegistrationActivity_checking">Checking...</string>
+    <string name="RegistrationActivity_d_messages_so_far">%d messages so far...</string>
+    <string name="RegistrationActivity_restore_from_backup">Restore from backup?</string>
+    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Restore your messages and media from a local backup. If you don\'t restore now, you won\'t be able to restore later.</string>
+    <string name="RegistrationActivity_backup_size_s">Backup size: %s</string>
+    <string name="RegistrationActivity_backup_timestamp_s">Backup timestamp: %s</string>
+    <string name="BackupDialog_enable_local_backups">Enable local backups?</string>
+    <string name="BackupDialog_enable_backups">Enable backups</string>
+    <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Please acknowledge your understanding by marking the confirmation check box.</string>
+    <string name="BackupDialog_delete_backups">Delete backups?</string>
+    <string name="BackupDialog_disable_and_delete_all_local_backups">Disable and delete all local backups?</string>
+    <string name="BackupDialog_delete_backups_statement">Delete backups</string>
+    <string name="BackupDialog_copied_to_clipboard">Copied to clipboard</string>
+    <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal requires external storage permission in order to create backups, but it has been permanently denied. Please continue to app settings, select \"Permissions\" and enable \"External Storage\".</string>
+    <string name="ChatsPreferenceFragment_last_backup_s">Last backup: %s</string>
+    <string name="ChatsPreferenceFragment_in_progress">In progress</string>
+    <string name="ProgressPreference_d_messages_so_far">%d messages so far</string>
+    <string name="RegistrationActivity_verify_s">Verify %s</string>
+    <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Please enter the verification code sent to %s.</string>
+    <string name="RegistrationActivity_wrong_number">Wrong number?</string>
+    <string name="BackupUtil_never">Never</string>
+    <string name="BackupUtil_unknown">Unknown</string>
 
 
     <!-- EOF -->

@@ -130,6 +130,14 @@ public class DatabaseFactory {
     return getInstance(context).sessionDatabase;
   }
 
+  public static SQLiteDatabase getBackupDatabase(Context context) {
+    return getInstance(context).databaseHelper.getReadableDatabase();
+  }
+
+  public static void upgradeRestored(Context context, SQLiteDatabase database){
+    getInstance(context).databaseHelper.onUpgrade(database, database.getVersion(), -1);
+  }
+
   private DatabaseFactory(@NonNull Context context) {
     SQLiteDatabase.loadLibs(context);
 

@@ -1,0 +1,43 @@
+/**
+ * Copyright (C) 2018 Open Whisper Systems
+ *
+ * Licensed according to the LICENSE file in this repository.
+ */
+
+package signal;
+
+option java_package         = "org.thoughtcrime.securesms.backup";
+option java_outer_classname = "BackupProtos";
+
+message SqlStatement {
+    optional string statement = 1;
+}
+
+message SharedPreference {
+    optional string file  = 1;
+    optional string key   = 2;
+    optional string value = 3;
+}
+
+message Attachment {
+    optional uint64 rowId        = 1;
+    optional uint64 attachmentId = 2;
+    optional uint32 length       = 3;
+}
+
+message DatabaseVersion {
+    optional uint32 version = 1;
+}
+
+message Header {
+    optional bytes iv = 1;
+}
+
+message BackupFrame {
+    optional Header           header     = 1;
+    optional SqlStatement     statement  = 2;
+    optional SharedPreference preference = 3;
+    optional Attachment       attachment = 4;
+    optional DatabaseVersion  version    = 5;
+    optional bool             end        = 6;
+}

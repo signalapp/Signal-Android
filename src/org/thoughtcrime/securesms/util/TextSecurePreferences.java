@@ -137,6 +137,35 @@ public class TextSecurePreferences {
   private static final String ACTIVE_SIGNED_PRE_KEY_ID = "pref_active_signed_pre_key_id";
   private static final String NEXT_SIGNED_PRE_KEY_ID   = "pref_next_signed_pre_key_id";
 
+  public  static final String BACKUP_ENABLED    = "pref_backup_enabled";
+  private static final String BACKUP_PASSPHRASE = "pref_backup_passphrase";
+  private static final String BACKUP_TIME       = "pref_backup_next_time";
+  public  static final String BACKUP_NOW        = "pref_backup_create";
+
+  public static void setBackupPassphrase(@NonNull Context context, @Nullable String passphrase) {
+    setStringPreference(context, BACKUP_PASSPHRASE, passphrase);
+  }
+
+  public static @Nullable String getBackupPassphrase(@NonNull Context context) {
+    return getStringPreference(context, BACKUP_PASSPHRASE, null);
+  }
+
+  public static void setBackupEnabled(@NonNull Context context, boolean value) {
+    setBooleanPreference(context, BACKUP_ENABLED, value);
+  }
+
+  public static boolean isBackupEnabled(@NonNull Context context) {
+    return getBooleanPreference(context, BACKUP_ENABLED, false);
+  }
+
+  public static void setNextBackupTime(@NonNull Context context, long time) {
+    setLongPreference(context, BACKUP_TIME, time);
+  }
+
+  public static long getNextBackupTime(@NonNull Context context) {
+    return getLongPreference(context, BACKUP_TIME, -1);
+  }
+
   public static int getNextPreKeyId(@NonNull Context context) {
     return getIntegerPreference(context, NEXT_PRE_KEY_ID, new SecureRandom().nextInt(Medium.MAX_VALUE));
   }
