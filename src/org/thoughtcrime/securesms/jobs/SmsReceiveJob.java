@@ -34,7 +34,6 @@ public class SmsReceiveJob extends ContextJob {
     super(context, JobParameters.newBuilder()
                                 .withPersistence()
                                 .withWakeLock(true)
-                                .withRequirement(new MasterSecretRequirement(context))
                                 .withRequirement(new SqlCipherMigrationRequirement(context))
                                 .create());
 
