@@ -113,6 +113,7 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView, Camer
       }
       updateControlsView();
       setDrawerStateAndUpdate(drawerState, true);
+      cameraView.onResume();
     }
   }
 
