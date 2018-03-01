@@ -75,13 +75,14 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   public static final String ADDRESS_EXTRA                = "recipient_address";
   public static final String CAN_HAVE_SAFETY_NUMBER_EXTRA = "can_have_safety_number";
 
-  private static final String PREFERENCE_MUTED    = "pref_key_recipient_mute";
-  private static final String PREFERENCE_TONE     = "pref_key_recipient_ringtone";
-  private static final String PREFERENCE_VIBRATE  = "pref_key_recipient_vibrate";
-  private static final String PREFERENCE_BLOCK    = "pref_key_recipient_block";
-  private static final String PREFERENCE_COLOR    = "pref_key_recipient_color";
-  private static final String PREFERENCE_IDENTITY = "pref_key_recipient_identity";
-  private static final String PREFERENCE_NICKNAME = "pref_key_change_nickname";
+  private static final String PREFERENCE_MUTED          = "pref_key_recipient_mute";
+  private static final String PREFERENCE_TONE           = "pref_key_recipient_ringtone";
+  private static final String PREFERENCE_VIBRATE        = "pref_key_recipient_vibrate";
+  private static final String PREFERENCE_BLOCK          = "pref_key_recipient_block";
+  private static final String PREFERENCE_COLOR          = "pref_key_recipient_color";
+  private static final String PREFERENCE_IDENTITY       = "pref_key_recipient_identity";
+  private static final String PREFERENCE_NICKNAME       = "pref_key_change_nickname";
+  private static final String PREFERENCE_RESET_NICKNAME = "pref_key_reset_nickname";
 
   private final DynamicTheme    dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -93,6 +94,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   private TextView                threadPhotoRailLabel;
   private ThreadPhotoRailView     threadPhotoRailView;
   private CollapsingToolbarLayout toolbarLayout;
+  private NicknameHandler         nicknameHandler;
 
   @Override
   public void onPreCreate() {
@@ -259,9 +261,10 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
           .setOnPreferenceClickListener(new BlockClickedListener());
       this.findPreference(PREFERENCE_COLOR)
           .setOnPreferenceChangeListener(new ColorChangeListener());
-
       this.findPreference(PREFERENCE_NICKNAME)
           .setOnPreferenceChangeListener(new NicknameChangeListener());
+      this.findPreference(PREFERENCE_RESET_NICKNAME)
+          .setOnPreferenceClickListener(new NicknameResetClickedListener());
     }
 
     @Override
@@ -506,9 +509,20 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
     private class NicknameChangeListener implements Preference.OnPreferenceChangeListener {
 
+      //TODO Shawn
       @Override
       public boolean onPreferenceChange(Preference preference, Object newValue) {
-        Log.v(TAG, "IM IN NICKNAME LISTENER");
+        NicknameHandler nicknameHandler = new NicknameHandler(getContext());
+        nicknameHandler.setNickname(recipient, "nickname 123");
+        return true;
+      }
+    }
+
+    private class NicknameResetClickedListener implements Preference.OnPreferenceClickListener {
+      @Override
+      public boolean onPreferenceClick(Preference preference) {
+        NicknameHandler nicknameHandler = new NicknameHandler(getContext());
+        nicknameHandler.removeNickname(recipient);
         return true;
       }
     }

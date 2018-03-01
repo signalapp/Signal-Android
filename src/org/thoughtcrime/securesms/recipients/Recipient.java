@@ -68,6 +68,7 @@ public class Recipient implements RecipientModifiedListener {
   private final @NonNull List<Recipient> participants = new LinkedList<>();
 
   private @Nullable String  name;
+  private           String  nickname;
   private @Nullable String  customLabel;
   private           boolean resolving;
 
@@ -117,8 +118,10 @@ public class Recipient implements RecipientModifiedListener {
     this.color                = null;
     this.resolving            = true;
 
+
     if (stale != null) {
       this.name                  = stale.name;
+      this.nickname              = stale.nickname;
       this.contactUri            = stale.contactUri;
       this.systemContactPhoto    = stale.systemContactPhoto;
       this.groupAvatarId         = stale.groupAvatarId;
@@ -405,6 +408,10 @@ public class Recipient implements RecipientModifiedListener {
   }
 
   public synchronized String toShortString() {
+    if (this.nickname != null) {
+      return this.nickname;
+    }
+
     return (getName() == null ? address.serialize() : getName());
   }
 
@@ -463,6 +470,14 @@ public class Recipient implements RecipientModifiedListener {
   public void setRingtone(@Nullable Uri ringtone) {
     synchronized (this) {
       this.ringtone = ringtone;
+    }
+
+    notifyListeners();
+  }
+
+  public void setNickname(String nickname) {
+    synchronized (this) {
+      this.nickname = nickname;
     }
 
     notifyListeners();

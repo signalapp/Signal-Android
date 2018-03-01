@@ -39,6 +39,10 @@
             android:selectAllOnFocus="true"
             android:singleLine="true"
             android:title="Change display name" />
+        <Preference
+            android:key="pref_key_reset_nickname"
+            android:persistent="false"
+            android:title="Reset Nickname" />
     </PreferenceCategory>
 
     <PreferenceCategory android:key="divider" android:layout="@layout/preference_divider"/>
@@ -50,9 +54,10 @@
                     android:persistent="false"
                     android:enabled="false"/>
 
-        <Preference android:key="pref_key_recipient_block"
-                    android:title="@string/recipient_preferences__block"
-                    android:persistent="false"/>
+        <Preference
+            android:key="pref_key_recipient_block"
+            android:persistent="false"
+            android:title="@string/recipient_preferences__block" />
 
     </PreferenceCategory>
 

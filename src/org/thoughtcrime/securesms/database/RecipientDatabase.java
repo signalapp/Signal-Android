@@ -241,10 +241,11 @@ public class RecipientDatabase extends Database {
     recipient.resolve().setBlocked(blocked);
   }
 
-  public boolean setNickname(@Nullable Recipient recipient, String nickname) {
+  public void setNickname(@Nullable Recipient recipient, String nickname) {
     ContentValues values = new ContentValues();
     values.put(NICKNAME, nickname);
-    return processNicknameSqlRequest(values, recipient.getAddress()) > 0 ? true : false;
+    updateOrInsert(recipient.getAddress(), values);
+    recipient.resolve().setNickname(nickname);
   }
 
   public void setRingtone(@NonNull Recipient recipient, @Nullable Uri notification) {
@@ -503,7 +504,7 @@ public class RecipientDatabase extends Database {
       this.signalProfileName     = signalProfileName;
       this.signalProfileAvatar   = signalProfileAvatar;
       this.profileSharing        = profileSharing;
-      this.nickname = nickname;
+      this.nickname              = nickname;
     }
 
     public @Nullable MaterialColor getColor() {
