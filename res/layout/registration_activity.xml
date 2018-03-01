@@ -63,7 +63,7 @@
                       android:layout_width="fill_parent"
                       android:layout_height="wrap_content"
                       android:orientation="vertical"
-                      tools:visibility="visible">
+                      tools:visibility="invisible">
 
             <TextView android:id="@+id/backup_created_text"
                     android:layout_width="wrap_content"
@@ -256,6 +256,89 @@
                     android:layout_alignParentBottom="true"/>
 
         </RelativeLayout>
+
+
+        <LinearLayout android:id="@+id/pin_container"
+                      android:padding="16dp"
+                      android:paddingBottom="0dp"
+                      android:layout_marginTop="30dp"
+                      android:layout_below="@id/header"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:animateLayoutChanges="true"
+                      android:orientation="vertical"
+                      android:visibility="invisible"
+                      tools:visibility="visible">
+
+            <LinearLayout android:id="@+id/pin_clarification_container"
+                          android:visibility="gone"
+                          android:orientation="horizontal"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginTop="16dp"
+                          android:layout_marginBottom="16dp"
+                          android:layout_marginLeft="20dp"
+                          android:layout_marginRight="20dp"
+                          tools:visibility="visible">
+
+                <TextView android:id="@+id/clarification_label"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="5dp"
+                          android:layout_marginRight="5dp"
+                          android:layout_marginTop="-2dp"
+                          android:layout_gravity="center_vertical"
+                          android:textColor="#73B7F0"
+                          android:text="@string/registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application"/>
+            </LinearLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="100dp"
+                    android:paddingRight="100dp">
+
+                <android.support.design.widget.TextInputEditText
+                        android:id="@+id/pin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberPassword"
+                        android:imeOptions="actionDone"
+                        android:hint="@string/registration_activity__registration_lock_pin"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <com.dd.CircularProgressButton
+                    android:id="@+id/pinButton"
+                    app:cpb_textIdle="Continue"
+                    app:cpb_selectorIdle="@drawable/progress_button_state"
+                    app:cpb_colorIndicator="@color/white"
+                    app:cpb_colorProgress="@color/textsecure_primary"
+                    app:cpb_cornerRadius="50dp"
+                    android:background="@color/signal_primary"
+                    android:textColor="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_gravity="center_horizontal"/>
+
+
+            <TextView android:id="@+id/forgot_button"
+                      android:layout_gravity="center_horizontal"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="20dp"
+                      android:padding="15dp"
+                      android:textColor="@color/blue_400"
+                      android:text="@string/registration_activity__forgot_pin"/>
+
+
+        </LinearLayout>
+
     </RelativeLayout>
 
 </ScrollView>

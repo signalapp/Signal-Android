@@ -84,11 +84,14 @@ import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.libsignal.util.KeyHelper;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
 import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
+import org.whispersystems.signalservice.internal.push.LockedException;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 /**
  * The register account activity.  Prompts ths user for their registration information
@@ -126,6 +129,12 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
   private TextView               restoreBackupSize;
   private TextView               restoreBackupProgress;
   private CircularProgressButton restoreButton;
+
+  private View                   pinContainer;
+  private EditText               pin;
+  private CircularProgressButton pinButton;
+  private TextView               pinForgotButton;
+  private View                   pinClarificationContainer;
 
   private CallMeCountDownView         callMeCountDownView;
   private VerificationPinKeyboard     keyboard;
@@ -195,6 +204,12 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     this.restoreBackupTime     = findViewById(R.id.backup_created_text);
     this.restoreBackupProgress = findViewById(R.id.backup_progress_text);
     this.restoreButton         = findViewById(R.id.restore_button);
+
+    this.pinContainer              = findViewById(R.id.pin_container);
+    this.pin                       = findViewById(R.id.pin);
+    this.pinButton                 = findViewById(R.id.pinButton);
+    this.pinForgotButton           = findViewById(R.id.forgot_button);
+    this.pinClarificationContainer = findViewById(R.id.pin_clarification_container);
 
     this.registrationState    = new RegistrationState(RegistrationState.State.INITIAL, null, null, null);
 
@@ -502,72 +517,36 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     callMeCountDownView.setVisibility(View.INVISIBLE);
     keyboard.displayProgress();
 
-    new AsyncTask<Void, Void, Boolean>() {
+    new AsyncTask<Void, Void, Pair<Integer, Long>>() {
       @Override
-      protected Boolean doInBackground(Void... voids) {
+      protected Pair<Integer, Long> doInBackground(Void... voids) {
         try {
-          int registrationId = KeyHelper.generateRegistrationId(false);
-          TextSecurePreferences.setLocalRegistrationId(RegistrationActivity.this, registrationId);
-          SessionUtil.archiveAllSessions(RegistrationActivity.this);
-
-          String signalingKey = Util.getSecret(52);
-
-          accountManager.verifyAccountWithCode(code, signalingKey, registrationId, !registrationState.gcmToken.isPresent());
-
-          IdentityKeyPair    identityKey  = IdentityKeyUtil.getIdentityKeyPair(RegistrationActivity.this);
-          List<PreKeyRecord> records      = PreKeyUtil.generatePreKeys(RegistrationActivity.this);
-          SignedPreKeyRecord signedPreKey = PreKeyUtil.generateSignedPreKey(RegistrationActivity.this, identityKey, true);
-
-          accountManager.setPreKeys(identityKey.getPublicKey(), signedPreKey, records);
-
-          if (registrationState.gcmToken.isPresent()) {
-            accountManager.setGcmId(registrationState.gcmToken);
-          }
-
-          TextSecurePreferences.setGcmRegistrationId(RegistrationActivity.this, registrationState.gcmToken.orNull());
-          TextSecurePreferences.setGcmDisabled(RegistrationActivity.this, !registrationState.gcmToken.isPresent());
-          TextSecurePreferences.setWebsocketRegistered(RegistrationActivity.this, true);
-
-          DatabaseFactory.getIdentityDatabase(RegistrationActivity.this)
-                         .saveIdentity(Address.fromSerialized(registrationState.e164number),
-                                       identityKey.getPublicKey(), IdentityDatabase.VerifiedStatus.VERIFIED,
-                                       true, System.currentTimeMillis(), true);
-
-          TextSecurePreferences.setVerifying(RegistrationActivity.this, false);
-          TextSecurePreferences.setPushRegistered(RegistrationActivity.this, true);
-          TextSecurePreferences.setLocalNumber(RegistrationActivity.this, registrationState.e164number);
-          TextSecurePreferences.setPushServerPassword(RegistrationActivity.this, registrationState.password);
-          TextSecurePreferences.setSignalingKey(RegistrationActivity.this, signalingKey);
-          TextSecurePreferences.setSignedPreKeyRegistered(RegistrationActivity.this, true);
-          TextSecurePreferences.setPromptedPushRegistration(RegistrationActivity.this, true);
-          TextSecurePreferences.setUnauthorizedReceived(RegistrationActivity.this, false);
-
-          return true;
+          verifyAccount(code, null);
+          return new Pair<>(1, -1L);
+        } catch (LockedException e) {
+          Log.w(TAG, e);
+          return new Pair<>(2, e.getTimeRemaining());
         } catch (IOException e) {
           Log.w(TAG, e);
-          return false;
+          return new Pair<>(3, -1L);
         }
       }
 
       @Override
-      protected void onPostExecute(Boolean result) {
-        if (result) {
+      protected void onPostExecute(Pair<Integer, Long> result) {
+        if (result.first == 1) {
           keyboard.displaySuccess().addListener(new AssertedSuccessListener<Boolean>() {
             @Override
             public void onSuccess(Boolean result) {
-              ApplicationContext.getInstance(RegistrationActivity.this).getJobManager().add(new DirectoryRefreshJob(RegistrationActivity.this, false));
-
-              DirectoryRefreshListener.schedule(RegistrationActivity.this);
-              RotateSignedPreKeyListener.schedule(RegistrationActivity.this);
-
-              Intent nextIntent = getIntent().getParcelableExtra("next_intent");
-
-              if (nextIntent == null) {
-                nextIntent = new Intent(RegistrationActivity.this, ConversationListActivity.class);
-              }
-
-              startActivity(nextIntent);
-              finish();
+              handleSuccessfulRegistration();
+            }
+          });
+        } else if (result.first == 2) {
+          keyboard.displayLocked().addListener(new AssertedSuccessListener<Boolean>() {
+            @Override
+            public void onSuccess(Boolean r) {
+              registrationState = new RegistrationState(RegistrationState.State.PIN, registrationState);
+              displayPinView(code, result.second);
             }
           });
         } else {
@@ -583,6 +562,67 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
         }
       }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+  }
+
+  @SuppressLint("StaticFieldLeak")
+  private void handleVerifyWithPinClicked(@NonNull String code, @Nullable String pin) {
+    if (TextUtils.isEmpty(pin) || TextUtils.isEmpty(pin.replace(" ", ""))) {
+      Toast.makeText(this, R.string.RegistrationActivity_you_must_enter_your_registration_lock_PIN, Toast.LENGTH_LONG).show();
+      return;
+    }
+
+    pinButton.setIndeterminateProgressMode(true);
+    pinButton.setProgress(50);
+
+    new AsyncTask<Void, Void, Integer>() {
+      @Override
+      protected Integer doInBackground(Void... voids) {
+        try {
+          verifyAccount(code, pin);
+          return 1;
+        } catch (LockedException e) {
+          Log.w(TAG, e);
+          return 2;
+        } catch (RateLimitException e) {
+          Log.w(TAG, e);
+          return 3;
+        } catch (IOException e) {
+          Log.w(TAG, e);
+          return 4;
+        }
+      }
+
+      @Override
+      protected void onPostExecute(Integer result) {
+        pinButton.setIndeterminateProgressMode(false);
+        pinButton.setProgress(0);
+
+        if (result == 1) {
+          TextSecurePreferences.setRegistrationLockPin(RegistrationActivity.this, pin);
+          TextSecurePreferences.setRegistrationtLockEnabled(RegistrationActivity.this, true);
+          handleSuccessfulRegistration();
+        } else if (result == 2) {
+          RegistrationActivity.this.pin.setText("");
+          Toast.makeText(RegistrationActivity.this, R.string.RegistrationActivity_incorrect_registration_lock_pin, Toast.LENGTH_LONG).show();
+        } else if (result == 3) {
+          new AlertDialog.Builder(RegistrationActivity.this)
+                         .setTitle(R.string.RegistrationActivity_too_many_attempts)
+                         .setMessage(R.string.RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day)
+                         .setPositiveButton(android.R.string.ok, null)
+                         .show();
+        } else if (result == 4) {
+          Toast.makeText(RegistrationActivity.this, R.string.RegistrationActivity_error_connecting_to_service, Toast.LENGTH_LONG).show();
+        }
+      }
+    }.execute();
+  }
+
+  private void handleForgottenPin(long timeRemaining) {
+    new AlertDialog.Builder(RegistrationActivity.this)
+        .setTitle(R.string.RegistrationActivity_oh_no)
+        .setMessage(getString(R.string.RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed, (TimeUnit.MILLISECONDS.toDays(timeRemaining) + 1)))
+        .setPositiveButton(android.R.string.ok, null)
+        .show();
   }
 
   @SuppressLint("StaticFieldLeak")
@@ -603,6 +643,60 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
         }
       }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
+  }
+
+  private void verifyAccount(@NonNull String code, @Nullable String pin) throws IOException {
+    int registrationId = KeyHelper.generateRegistrationId(false);
+    TextSecurePreferences.setLocalRegistrationId(RegistrationActivity.this, registrationId);
+    SessionUtil.archiveAllSessions(RegistrationActivity.this);
+
+    String signalingKey = Util.getSecret(52);
+
+    accountManager.verifyAccountWithCode(code, signalingKey, registrationId, !registrationState.gcmToken.isPresent(), pin);
+
+    IdentityKeyPair    identityKey  = IdentityKeyUtil.getIdentityKeyPair(RegistrationActivity.this);
+    List<PreKeyRecord> records      = PreKeyUtil.generatePreKeys(RegistrationActivity.this);
+    SignedPreKeyRecord signedPreKey = PreKeyUtil.generateSignedPreKey(RegistrationActivity.this, identityKey, true);
+
+    accountManager.setPreKeys(identityKey.getPublicKey(), signedPreKey, records);
+
+    if (registrationState.gcmToken.isPresent()) {
+      accountManager.setGcmId(registrationState.gcmToken);
+    }
+
+    TextSecurePreferences.setGcmRegistrationId(RegistrationActivity.this, registrationState.gcmToken.orNull());
+    TextSecurePreferences.setGcmDisabled(RegistrationActivity.this, !registrationState.gcmToken.isPresent());
+    TextSecurePreferences.setWebsocketRegistered(RegistrationActivity.this, true);
+
+    DatabaseFactory.getIdentityDatabase(RegistrationActivity.this)
+                   .saveIdentity(Address.fromSerialized(registrationState.e164number),
+                                 identityKey.getPublicKey(), IdentityDatabase.VerifiedStatus.VERIFIED,
+                                 true, System.currentTimeMillis(), true);
+
+    TextSecurePreferences.setVerifying(RegistrationActivity.this, false);
+    TextSecurePreferences.setPushRegistered(RegistrationActivity.this, true);
+    TextSecurePreferences.setLocalNumber(RegistrationActivity.this, registrationState.e164number);
+    TextSecurePreferences.setPushServerPassword(RegistrationActivity.this, registrationState.password);
+    TextSecurePreferences.setSignalingKey(RegistrationActivity.this, signalingKey);
+    TextSecurePreferences.setSignedPreKeyRegistered(RegistrationActivity.this, true);
+    TextSecurePreferences.setPromptedPushRegistration(RegistrationActivity.this, true);
+    TextSecurePreferences.setUnauthorizedReceived(RegistrationActivity.this, false);
+  }
+
+  private void handleSuccessfulRegistration() {
+    ApplicationContext.getInstance(RegistrationActivity.this).getJobManager().add(new DirectoryRefreshJob(RegistrationActivity.this, false));
+
+    DirectoryRefreshListener.schedule(RegistrationActivity.this);
+    RotateSignedPreKeyListener.schedule(RegistrationActivity.this);
+
+    Intent nextIntent = getIntent().getParcelableExtra("next_intent");
+
+    if (nextIntent == null) {
+      nextIntent = new Intent(RegistrationActivity.this, ConversationListActivity.class);
+    }
+
+    startActivity(nextIntent);
+    finish();
   }
 
   private void displayRestoreView(@NonNull BackupUtil.BackupInfo backup) {
@@ -782,6 +876,64 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     this.callMeCountDownView.startCountDown(callCountdown);
   }
 
+  private void displayPinView(String code, long lockedUntil) {
+    title.animate().translationX(-1 * title.getWidth()).setDuration(SCENE_TRANSITION_DURATION).setListener(new AnimationCompleteListener() {
+      @Override
+      public void onAnimationEnd(Animator animation) {
+        title.setText(R.string.RegistrationActivity_registration_lock_pin);
+        title.clearAnimation();
+        title.setTranslationX(title.getWidth());
+        title.animate().translationX(0).setListener(null).setInterpolator(new OvershootInterpolator()).setDuration(SCENE_TRANSITION_DURATION).start();
+      }
+    }).start();
+
+    subtitle.animate().translationX(-1 * subtitle.getWidth()).setDuration(SCENE_TRANSITION_DURATION).setListener(new AnimationCompleteListener() {
+      @Override
+      public void onAnimationEnd(Animator animation) {
+        subtitle.setText(R.string.RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin);
+        subtitle.clearAnimation();
+        subtitle.setTranslationX(subtitle.getWidth());
+        subtitle.animate().translationX(0).setListener(null).setInterpolator(new OvershootInterpolator()).setDuration(SCENE_TRANSITION_DURATION).start();
+      }
+    }).start();
+
+    verificationContainer.animate().translationX(-1 * verificationContainer.getWidth()).setDuration(SCENE_TRANSITION_DURATION).setListener(new AnimationCompleteListener() {
+      @Override
+      public void onAnimationEnd(Animator animation) {
+        verificationContainer.clearAnimation();
+        verificationContainer.setVisibility(View.INVISIBLE);
+        verificationContainer.setTranslationX(0);
+
+        pinContainer.setTranslationX(pinContainer.getWidth());
+        pinContainer.setVisibility(View.VISIBLE);
+        pinContainer.animate().translationX(0).setListener(null).setInterpolator(new OvershootInterpolator()).setDuration(SCENE_TRANSITION_DURATION).start();
+      }
+    }).start();
+
+    fab.animate().rotationBy(-360f).setDuration(SCENE_TRANSITION_DURATION).setListener(new AnimationCompleteListener() {
+      @Override
+      public void onAnimationEnd(Animator animation) {
+        fab.clearAnimation();
+        fab.setImageResource(R.drawable.ic_lock_white_24dp);
+        fab.animate().rotationBy(-360f).setDuration(SCENE_TRANSITION_DURATION).setListener(null).start();
+      }
+    }).start();
+
+    pinButton.setOnClickListener(v -> handleVerifyWithPinClicked(code, pin.getText().toString()));
+    pinForgotButton.setOnClickListener(v -> handleForgottenPin(lockedUntil));
+    pin.addTextChangedListener(new TextWatcher() {
+      @Override
+      public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+      @Override
+      public void onTextChanged(CharSequence s, int start, int before, int count) {}
+      @Override
+      public void afterTextChanged(Editable s) {
+        if       (s != null && code.equals(s.toString()))                   pinClarificationContainer.setVisibility(View.VISIBLE);
+        else if (pinClarificationContainer.getVisibility() == View.VISIBLE) pinClarificationContainer.setVisibility(View.GONE);
+      }
+    });
+  }
+
   private void handleCancel() {
     TextSecurePreferences.setPromptedPushRegistration(RegistrationActivity.this, true);
     Intent nextIntent = getIntent().getParcelableExtra("next_intent");
@@ -916,7 +1068,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
 
   private static class RegistrationState {
     private enum State {
-      INITIAL, VERIFYING, CHECKING
+      INITIAL, VERIFYING, CHECKING, PIN
     }
 
     private final State   state;

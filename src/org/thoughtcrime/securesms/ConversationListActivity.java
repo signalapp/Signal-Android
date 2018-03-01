@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.components.RatingManager;
 import org.thoughtcrime.securesms.components.SearchToolbar;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
+import org.thoughtcrime.securesms.lock.RegistrationLockDialog;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.permissions.Permissions;
@@ -80,6 +81,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     initializeSearchListener();
 
     RatingManager.showRatingDialogIfNecessary(this);
+    RegistrationLockDialog.showReminderIfNecessary(this);
   }
 
   @Override

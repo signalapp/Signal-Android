@@ -67,4 +67,15 @@
                     android:title="@string/preferences_app_protection__blocked_contacts" />
     </PreferenceCategory>
 
+    <PreferenceCategory android:layout="@layout/preference_divider"/>
+
+    <PreferenceCategory android:title="@string/preferences_app_protection__registration_lock">
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+                android:defaultValue="false"
+                android:key="pref_registration_lock"
+                android:title="@string/preferences_app_protection__registration_lock_pin"
+                android:summary="@string/preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required"/>
+    </PreferenceCategory>
+
+
 </PreferenceScreen>
