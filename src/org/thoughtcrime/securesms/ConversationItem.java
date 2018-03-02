@@ -38,6 +38,7 @@ import android.text.util.Linkify;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -67,6 +68,8 @@ import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.jobs.MmsDownloadJob;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
+import org.thoughtcrime.securesms.mms.AudioSlide;
+import org.thoughtcrime.securesms.mms.DocumentSlide;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
@@ -129,6 +132,7 @@ public class ConversationItem extends LinearLayout
   private @NonNull  Stub<ThumbnailView> mediaThumbnailStub;
   private @NonNull  Stub<AudioView>     audioViewStub;
   private @NonNull  Stub<DocumentView>  documentViewStub;
+  private @Nullable LinearLayout        viewParts;
   private @NonNull  ExpirationTimerView expirationTimer;
 
   private int defaultBubbleColor;
@@ -172,6 +176,7 @@ public class ConversationItem extends LinearLayout
     this.mediaThumbnailStub      = new Stub<>(findViewById(R.id.image_view_stub));
     this.audioViewStub           = new Stub<>(findViewById(R.id.audio_view_stub));
     this.documentViewStub        = new Stub<>(findViewById(R.id.document_view_stub));
+    this.viewParts               =            findViewById(R.id.view_parts);
     this.expirationTimer         =            findViewById(R.id.expiration_indicator);
     this.groupSenderHolder       =            findViewById(R.id.group_sender_holder);
 
@@ -264,7 +269,44 @@ public class ConversationItem extends LinearLayout
 
   /// MessageRecord Attribute Parsers
 
+  private interface MessagePartViewCallback {
+    void processView(ThumbnailView mediaThumbnail, AudioView audioView, DocumentView documentView);
+  }
+
+  private boolean processMultipartMessage(MessagePartViewCallback callback) {
+    if (messageRecord.isMultipart()) {
+      for (int i = 0; i < viewParts.getChildCount(); i++) {
+        View view = viewParts.getChildAt(i);
+        if (view instanceof ThumbnailView) {
+          callback.processView((ThumbnailView)view, null, null);
+        } else if (view instanceof AudioView) {
+          callback.processView(null, (AudioView)view, null);
+        } else if (view instanceof DocumentView) {
+          callback.processView(null, null, (DocumentView)view);
+        }
+      }
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   private void setBubbleState(MessageRecord messageRecord, Recipient recipient) {
+    if (processMultipartMessage((mediaThumbnail, audioView, documentView) -> {
+      if (messageRecord.isOutgoing()) {
+        bodyBubble.getBackground().setColorFilter(defaultBubbleColor, PorterDuff.Mode.MULTIPLY);
+        if (mediaThumbnail != null) mediaThumbnail.setBackgroundColorHint(defaultBubbleColor);
+      } else {
+        int color = recipient.getColor().toConversationColor(context);
+        bodyBubble.getBackground().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
+        if (mediaThumbnail != null) mediaThumbnail.setBackgroundColorHint(color);
+      }
+
+      setMultipartMessageTint(messageRecord, conversationRecipient);
+    })) {
+      return;
+    }
+
     if (messageRecord.isOutgoing()) {
       bodyBubble.getBackground().setColorFilter(defaultBubbleColor, PorterDuff.Mode.MULTIPLY);
       if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setBackgroundColorHint(defaultBubbleColor);
@@ -281,6 +323,34 @@ public class ConversationItem extends LinearLayout
     if (documentViewStub.resolved()) {
       setDocumentViewTint(messageRecord, conversationRecipient);
     }
+  }
+
+  private void setMultipartMessageTint(MessageRecord messageRecord, Recipient recipient) {
+    if (processMultipartMessage((mediaThumbnail, audioView, documentView) -> {
+      if (audioView != null) {
+        if (messageRecord.isOutgoing()) {
+          if (DynamicTheme.LIGHT.equals(TextSecurePreferences.getTheme(context))) {
+            audioView.setTint(recipient.getColor().toConversationColor(context), defaultBubbleColor);
+          } else {
+            audioView.setTint(Color.WHITE, defaultBubbleColor);
+          }
+        } else {
+          audioView.setTint(Color.WHITE, recipient.getColor().toConversationColor(context));
+        }
+      }
+
+      if (documentView != null) {
+        if (messageRecord.isOutgoing()) {
+          if (DynamicTheme.LIGHT.equals(TextSecurePreferences.getTheme(context))) {
+            documentView.setTint(recipient.getColor().toConversationColor(context), defaultBubbleColor);
+          } else {
+            documentView.setTint(Color.WHITE, defaultBubbleColor);
+          }
+        } else {
+          documentView.setTint(Color.WHITE, recipient.getColor().toConversationColor(context));
+        }
+      }
+    }));
   }
 
   private void setAudioViewTint(MessageRecord messageRecord, Recipient recipient) {
@@ -309,6 +379,27 @@ public class ConversationItem extends LinearLayout
 
   private void setInteractionState(MessageRecord messageRecord) {
     setSelected(batchSelected.contains(messageRecord));
+
+    if (processMultipartMessage((mediaThumbnail, audioView, documentView) -> {
+      if (mediaThumbnail != null) {
+        mediaThumbnail.setFocusable(!shouldInterceptClicks(messageRecord) && batchSelected.isEmpty());
+        mediaThumbnail.setClickable(!shouldInterceptClicks(messageRecord) && batchSelected.isEmpty());
+        mediaThumbnail.setLongClickable(batchSelected.isEmpty());
+      }
+
+      if (audioView != null) {
+        audioView.setFocusable(!shouldInterceptClicks(messageRecord) && batchSelected.isEmpty());
+        audioView.setClickable(batchSelected.isEmpty());
+        audioView.setEnabled(batchSelected.isEmpty());
+      }
+
+      if (documentView != null) {
+        documentView.setFocusable(!shouldInterceptClicks(messageRecord) && batchSelected.isEmpty());
+        documentView.setClickable(batchSelected.isEmpty());
+      }
+    })) {
+      return;
+    }
 
     if (mediaThumbnailStub.resolved()) {
       mediaThumbnailStub.get().setFocusable(!shouldInterceptClicks(messageRecord) && batchSelected.isEmpty());
@@ -359,6 +450,56 @@ public class ConversationItem extends LinearLayout
 
   private void setMediaAttributes(MessageRecord messageRecord) {
     boolean showControls = !messageRecord.isFailed() && (!messageRecord.isOutgoing() || messageRecord.isPending());
+
+    if (messageRecord.isMultipart()) {
+      bodyText.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+
+      viewParts.removeAllViews();
+      int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 210, getResources().getDisplayMetrics());
+
+      for (Slide slide : ((MmsMessageRecord) messageRecord).getSlideDeck().getSlides()) {
+        View view;
+        if (slide.hasAudio()) {
+          view = LayoutInflater.from(context).inflate(R.layout.conversation_item_received_audio, null);
+
+          AudioView audioView = (AudioView) view;
+          //noinspection ConstantConditions
+          audioView.setAudio(masterSecret, (AudioSlide) slide, showControls);
+          audioView.setDownloadClickListener(downloadClickListener);
+          audioView.setOnLongClickListener(passthroughClickListener);
+          audioView.setLayoutParams(new LayoutParams(height, LayoutParams.WRAP_CONTENT));
+        } else if (slide.hasImage()) {
+          view = LayoutInflater.from(context).inflate(R.layout.conversation_item_received_thumbnail, null);
+
+          ThumbnailView mediaThumbnail = (ThumbnailView) view;
+          //noinspection ConstantConditions
+          mediaThumbnail.setImageResource(masterSecret, glideRequests, slide, showControls, false);
+          mediaThumbnail.setThumbnailClickListener(new ThumbnailClickListener());
+          mediaThumbnail.setDownloadClickListener(downloadClickListener);
+          mediaThumbnail.setOnLongClickListener(passthroughClickListener);
+          mediaThumbnail.setOnClickListener(passthroughClickListener);
+          mediaThumbnail.setLayoutParams(new LayoutParams(height, height));
+        } else if (slide.hasDocument()) {
+          view = LayoutInflater.from(context).inflate(R.layout.conversation_item_received_document, null);
+
+          DocumentView documentView = (DocumentView) view;
+          //noinspection ConstantConditions
+          documentView.setDocument((DocumentSlide) slide, showControls);
+          documentView.setDocumentClickListener(new ThumbnailClickListener());
+          documentView.setDownloadClickListener(downloadClickListener);
+          documentView.setOnLongClickListener(passthroughClickListener);
+          documentView.setLayoutParams(new LayoutParams(height, LayoutParams.WRAP_CONTENT));
+        } else {
+          view = null;
+        }
+
+        if (view != null) {
+          view.setVisibility(View.VISIBLE);  // GONE in layout
+          viewParts.addView(view);
+        }
+      }
+      return;
+    }
 
     if (hasAudio(messageRecord)) {
       audioViewStub.get().setVisibility(View.VISIBLE);
@@ -573,8 +714,12 @@ public class ConversationItem extends LinearLayout
       setBubbleState(messageRecord, recipient);
       setContactPhoto(recipient);
       setGroupMessageStatus(messageRecord, recipient);
-      setAudioViewTint(messageRecord, conversationRecipient);
-      setDocumentViewTint(messageRecord, conversationRecipient);
+      if (messageRecord.isMultipart()) {
+        setMultipartMessageTint(messageRecord, conversationRecipient);
+      } else {
+        setAudioViewTint(messageRecord, conversationRecipient);
+        setDocumentViewTint(messageRecord, conversationRecipient);
+      }
     });
   }
 

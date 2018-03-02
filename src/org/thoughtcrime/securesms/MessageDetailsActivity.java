@@ -264,7 +264,11 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
       } else if (messageRecord.isOutgoing()) {
         conversationItem = (ConversationItem) inflater.inflate(R.layout.conversation_item_sent, itemParent, false);
       } else {
-        conversationItem = (ConversationItem) inflater.inflate(R.layout.conversation_item_received, itemParent, false);
+        if (messageRecord.isMultipart()) {
+          conversationItem = (ConversationItem) inflater.inflate(R.layout.conversation_item_received_multipart, itemParent, false);
+        } else {
+          conversationItem = (ConversationItem) inflater.inflate(R.layout.conversation_item_received, itemParent, false);
+        }
       }
       itemParent.addView(conversationItem);
     }

@@ -105,6 +105,9 @@ public class NotificationMmsMessageRecord extends MmsMessageRecord {
   }
 
   @Override
+  public boolean isMultipart() { return false; }
+
+  @Override
   public boolean isMediaPending() {
     return true;
   }

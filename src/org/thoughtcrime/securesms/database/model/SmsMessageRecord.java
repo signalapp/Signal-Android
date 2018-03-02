@@ -102,4 +102,9 @@ public class SmsMessageRecord extends MessageRecord {
   public boolean isMmsNotification() {
     return false;
   }
+
+  @Override
+  public boolean isMultipart() {
+    return false;
+  }
 }

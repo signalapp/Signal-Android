@@ -72,6 +72,11 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
   }
 
   @Override
+  public boolean isMultipart() {
+    return !isOutgoing() && getSlideDeck().getSlides().size() > 1;
+  }
+
+  @Override
   public SpannableString getDisplayBody() {
     if (MmsDatabase.Types.isDecryptInProgressType(type)) {
       return emphasisAdded(context.getString(R.string.MmsMessageRecord_decrypting_mms_please_wait));

@@ -88,6 +88,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   private static final int MESSAGE_TYPE_THUMBNAIL_INCOMING = 6;
   private static final int MESSAGE_TYPE_DOCUMENT_OUTGOING  = 7;
   private static final int MESSAGE_TYPE_DOCUMENT_INCOMING  = 8;
+  private static final int MESSAGE_TYPE_INCOMING_MULTIPART = 9;
 
   private final Set<MessageRecord> batchSelected = Collections.synchronizedSet(new HashSet<MessageRecord>());
 
@@ -227,6 +228,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
       case MESSAGE_TYPE_THUMBNAIL_OUTGOING:
       case MESSAGE_TYPE_DOCUMENT_OUTGOING:
       case MESSAGE_TYPE_OUTGOING:        return R.layout.conversation_item_sent;
+      case MESSAGE_TYPE_INCOMING_MULTIPART: return R.layout.conversation_item_received_multipart;
       case MESSAGE_TYPE_AUDIO_INCOMING:
       case MESSAGE_TYPE_THUMBNAIL_INCOMING:
       case MESSAGE_TYPE_DOCUMENT_INCOMING:
@@ -244,6 +246,8 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
         messageRecord.isIdentityDefault())
     {
       return MESSAGE_TYPE_UPDATE;
+    } else if (messageRecord.isMultipart()) {
+      return MESSAGE_TYPE_INCOMING_MULTIPART;
     } else if (hasAudio(messageRecord)) {
       if (messageRecord.isOutgoing()) return MESSAGE_TYPE_AUDIO_OUTGOING;
       else                            return MESSAGE_TYPE_AUDIO_INCOMING;

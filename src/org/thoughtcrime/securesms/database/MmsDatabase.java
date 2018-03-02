@@ -69,6 +69,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -1193,7 +1194,10 @@ public class MmsDatabase extends MessagingDatabase {
       Recipient                 recipient       = getRecipientFor(address);
       List<IdentityKeyMismatch> mismatches      = getMismatchedIdentities(mismatchDocument);
       List<NetworkFailure>      networkFailures = getFailures(networkDocument);
-      SlideDeck                 slideDeck       = getSlideDeck(cursor);
+      // Load all attachments:
+      List<DatabaseAttachment>  attachments     = DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(masterSecret, id);
+      SlideDeck                 slideDeck       = new SlideDeck(context, new ArrayList<Attachment>(attachments));
+      //SlideDeck                 slideDeck       = getSlideDeck(cursor);
 
       return new MediaMmsMessageRecord(context, id, recipient, recipient,
                                        addressDeviceId, dateSent, dateReceived, deliveryReceiptCount,
@@ -1258,10 +1262,10 @@ public class MmsDatabase extends MessagingDatabase {
       }
     }
 
-    private SlideDeck getSlideDeck(@NonNull Cursor cursor) {
-      Attachment attachment = DatabaseFactory.getAttachmentDatabase(context).getAttachment(masterSecret, cursor);
-      return new SlideDeck(context, attachment);
-    }
+//    private SlideDeck getSlideDeck(@NonNull Cursor cursor) {
+//      Attachment attachment = DatabaseFactory.getAttachmentDatabase(context).getAttachment(masterSecret, cursor);
+//      return new SlideDeck(context, attachment);
+//    }
 
     public void close() {
       cursor.close();

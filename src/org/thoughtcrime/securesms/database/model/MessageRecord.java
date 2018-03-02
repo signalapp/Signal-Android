@@ -78,6 +78,8 @@ public abstract class MessageRecord extends DisplayRecord {
   public abstract boolean isMms();
   public abstract boolean isMmsNotification();
 
+  public abstract boolean isMultipart();
+
   public boolean isSecure() {
     return MmsSmsColumns.Types.isSecureType(type);
   }
