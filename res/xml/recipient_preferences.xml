@@ -38,7 +38,7 @@
             android:key="pref_key_change_nickname"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:title="Change display name" />
+            android:title="Set Nickname" />
         <Preference
             android:key="pref_key_reset_nickname"
             android:persistent="false"

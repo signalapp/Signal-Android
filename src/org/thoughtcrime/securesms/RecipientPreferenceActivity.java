@@ -310,7 +310,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       PreferenceCategory         divider            = (PreferenceCategory)this.findPreference("divider");
       EditTextPreference         nickname           = (EditTextPreference)this.findPreference(PREFERENCE_NICKNAME);
 
-      nickname.setText("DANIEL YOO");
+      nickname.setText(recipient.getName());
 
       mutePreference.setChecked(recipient.isMuted());
 
@@ -513,7 +513,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       @Override
       public boolean onPreferenceChange(Preference preference, Object newValue) {
         NicknameHandler nicknameHandler = new NicknameHandler(getContext());
-        nicknameHandler.setNickname(recipient, "nickname 123");
+        nicknameHandler.setNickname(recipient, newValue.toString());
         return true;
       }
     }
