@@ -171,6 +171,7 @@ public class FullBackupImporter extends FullBackupBase {
       try {
         Conversions.intToByteArray(iv, 0, counter++);
         cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(cipherKey, "AES"), new IvParameterSpec(iv));
+        mac.update(iv);
 
         byte[] buffer = new byte[8192];
 
