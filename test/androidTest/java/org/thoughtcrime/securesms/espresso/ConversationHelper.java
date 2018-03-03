@@ -90,4 +90,12 @@ public class ConversationHelper extends Helper<ConversationHelper> {
 
         return new PinnedHelper(new HelperSecret());
     }
+
+    public NicknameHelper goSettings()
+    {
+        onView(withId(R.id.contact_photo_image))
+                .perform(click());
+
+        return new NicknameHelper(new HelperSecret());
+    }
 }

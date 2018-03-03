@@ -22,7 +22,6 @@ public class NicknameEspressoTest {
 
     @Test
     public void pageExists(){
-        Helper helper = new Helper(mainActivityRule);
         Helper otherHelper = new Helper(otherActivityRule);
 
         otherHelper
@@ -32,7 +31,20 @@ public class NicknameEspressoTest {
 
     }
 
-    public void
+    public void settingNickname()
+    {
+        Helper helper = new Helper(mainActivityRule);
+        pageExists();
+
+
+    }
+
+    public void resettingNickname()
+    {
+        Helper helper = new Helper(mainActivityRule);
+        pageExists();
+
+    }
 
 
 

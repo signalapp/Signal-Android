@@ -18,8 +18,17 @@ public class NicknameHelper extends Helper<NicknameHelper>{
 
     public NicknameHelper resetNickname()
     {
+        onView(withText("Reset Nickname"))
+                .perform(click());
 
+        return new NicknameHelper(new HelperSecret());
     }
 
-    public NicknameHelper go
+    public NicknameHelper setNickname(String s)
+    {
+        onView(withText("Set Nickname"))
+                .perform(click());
+
+        return new NicknameHelper(new HelperSecret());
+    }
 }
