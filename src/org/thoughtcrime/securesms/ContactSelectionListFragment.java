@@ -79,6 +79,8 @@ public class ContactSelectionListFragment extends    Fragment
   public final static int DISPLAY_MODE_PUSH_ONLY = ContactsCursorLoader.MODE_PUSH_ONLY;
   public final static int DISPLAY_MODE_SMS_ONLY  = ContactsCursorLoader.MODE_SMS_ONLY;
 
+  private static final int RECENT_CONTACTS_INCREMENT = 5;
+
   private TextView emptyText;
 
   private Set<String>               selectedContacts;
@@ -91,6 +93,8 @@ public class ContactSelectionListFragment extends    Fragment
   private String                    cursorFilter;
   private RecyclerView              recyclerView;
   private RecyclerViewFastScroller  fastScroller;
+
+  private int recentContactsLimit;
 
   @Override
   public void onActivityCreated(Bundle icicle) {
@@ -168,10 +172,12 @@ public class ContactSelectionListFragment extends    Fragment
                                                                           GlideApp.with(this),
                                                                           null,
                                                                           new ListClickListener(),
+                                                                          new MoreClickListener(),
                                                                           isMulti());
     selectedContacts = adapter.getSelectedContacts();
     recyclerView.setAdapter(adapter);
     recyclerView.addItemDecoration(new StickyHeaderDecoration(adapter, true, true));
+    recentContactsLimit = RECENT_CONTACTS_INCREMENT;
   }
 
   private void initializeNoContactsPermission() {
@@ -218,11 +224,17 @@ public class ContactSelectionListFragment extends    Fragment
     }
   }
 
+  public void showMoreRecentContacts() {
+    recentContactsLimit += RECENT_CONTACTS_INCREMENT;
+    getLoaderManager().restartLoader(0, null, this);
+  }
+
   @Override
   public Loader<Cursor> onCreateLoader(int id, Bundle args) {
     return new ContactsCursorLoader(getActivity(),
                                     getActivity().getIntent().getIntExtra(DISPLAY_MODE, DISPLAY_MODE_ALL),
-                                    cursorFilter, getActivity().getIntent().getBooleanExtra(RECENTS, false));
+                                    cursorFilter, getActivity().getIntent().getBooleanExtra(RECENTS, false),
+                                    recentContactsLimit);
   }
 
   @Override
@@ -296,6 +308,13 @@ public class ContactSelectionListFragment extends    Fragment
         contact.setChecked(false);
         if (onContactSelectedListener != null) onContactSelectedListener.onContactDeselected(contact.getNumber());
       }
+    }
+  }
+
+  private class MoreClickListener implements ContactSelectionListAdapter.MoreClickListener {
+    @Override
+    public void onMoreClick() {
+      showMoreRecentContacts();
     }
   }
 
