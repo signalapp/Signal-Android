@@ -25,7 +25,7 @@ public class NicknameHandler {
      * This method is implemented for only testing purposes inorder
      * to pass mocked database object
      * @param recipientDatabase
-     * @return
+     * @rezturn
      */
     public NicknameHandler setRecipientDatabase(RecipientDatabase recipientDatabase) {
         this.recipientDatabase = recipientDatabase;
@@ -41,14 +41,18 @@ public class NicknameHandler {
      * @param nickname
      * @return boolean indicating whether the nickname was set or not
      */
-    public void setNickname(Recipient recipient, String nickname) {
+    public boolean setNickname(Recipient recipient, String nickname) {
         this.setupDatabaseHandler();
-        this.recipientDatabase.setNickname(recipient, nickname);
+        try{this.recipientDatabase.setNickname(recipient, nickname);}
+        catch (Exception e) { System.err.println("Did not add nickname"); return false;}
+        return true;
     }
 
-    public void removeNickname(Recipient recipient) {
+    public boolean removeNickname(Recipient recipient) {
         this.setupDatabaseHandler();
-        this.recipientDatabase.setNickname(recipient, null);
+        try{this.recipientDatabase.setNickname(recipient, null);}
+        catch (Exception e) { System.err.println("Did not remove nickname"); return false;}
+        return true;
     }
 
     /**

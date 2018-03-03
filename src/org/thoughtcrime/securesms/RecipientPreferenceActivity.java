@@ -32,6 +32,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
@@ -509,12 +510,23 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
     private class NicknameChangeListener implements Preference.OnPreferenceChangeListener {
 
-      //TODO Shawn
       @Override
       public boolean onPreferenceChange(Preference preference, Object newValue) {
         NicknameHandler nicknameHandler = new NicknameHandler(getContext());
-        nicknameHandler.setNickname(recipient, newValue.toString());
+
+        try{nicknameHandler.setNickname(recipient, newValue.toString());}
+        catch(Exception e)
+        {
+          System.err.println("Nickname not set");
+          showToast(getString(R.string.RecipientPreferenceActivity_nickname_notset_successfully));
+        }
+        showToast(getString(R.string.RecipientPreferenceActivity_nickname_set_successfully));
         return true;
+      }
+
+      public void showToast(String outputMessage) {
+        Toast toast=Toast.makeText(getContext(), outputMessage, Toast.LENGTH_SHORT);
+        toast.show();
       }
     }
 
@@ -522,8 +534,19 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       @Override
       public boolean onPreferenceClick(Preference preference) {
         NicknameHandler nicknameHandler = new NicknameHandler(getContext());
-        nicknameHandler.removeNickname(recipient);
+        try{nicknameHandler.removeNickname(recipient);}
+        catch(Exception e)
+        {
+          System.err.println("Nickname not reset");
+          showToast(getString(R.string.RecipientPreferenceActivity_nickname_notreset_successfully));
+        }
+        showToast(getString(R.string.RecipientPreferenceActivity_nickname_reset_successfully));
         return true;
+      }
+
+      public void showToast(String outputMessage) {
+        Toast toast=Toast.makeText(getContext(), outputMessage, Toast.LENGTH_SHORT);
+        toast.show();
       }
     }
 

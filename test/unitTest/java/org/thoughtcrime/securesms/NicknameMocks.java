@@ -14,6 +14,8 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockingDetails;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.spy;
+
 
 
 @RunWith(PowerMockRunner.class)
@@ -33,9 +35,8 @@ public class NicknameMocks extends BaseUnitTest {
     }
 
     protected void setupSetNicknameMethod() {
-        when(recipientDatabase.setNickname(recipient, "test")).thenReturn(true)
+        when(recipientDatabase.setNickname(recipient, "test" )).thenReturn(true)
                 .thenReturn(false);
-
         when(recipientDatabase.setNickname(recipient, "new test")).thenReturn(true)
                 .thenReturn(false);
 

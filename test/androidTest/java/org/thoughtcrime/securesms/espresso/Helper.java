@@ -61,6 +61,10 @@ public class Helper<T> {
         return new ConversationsHelper(new HelperSecret());
     }
 
+    public NicknameHelper goSettings() {
+        return new NicknameHelper(new HelperSecret());
+    }
+
     /* ASSERTIONS */
 
     public T assertId(int id) {

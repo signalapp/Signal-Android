@@ -504,6 +504,11 @@
     <string name="RecipientPreferenceActivity_enabled">Enabled</string>
     <string name="RecipientPreferenceActivity_disabled">Disabled</string>
     <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Available once a message has been sent or received.</string>
+    <string name="RecipientPreferenceActivity_nickname_set_successfully">Nickname has been set successfully</string>
+    <string name="RecipientPreferenceActivity_nickname_notset_successfully">Nickname has not been set successfully</string>
+    <string name="RecipientPreferenceActivity_nickname_reset_successfully">Nickname has been reset successfully</string>
+    <string name="RecipientPreferenceActivity_nickname_notreset_successfully">Nickname has not been reset successfully</string>
+
 
     <!-- RecipientProvider -->
     <string name="RecipientProvider_unnamed_group">Unnamed group</string>
