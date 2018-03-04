@@ -1,8 +1,10 @@
 package org.thoughtcrime.securesms.preferences;
 
+import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -18,6 +20,7 @@ import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.BlockedContactsActivity;
 import org.thoughtcrime.securesms.PassphraseChangeActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadReceiptUpdateJob;
 import org.thoughtcrime.securesms.service.KeyCachingService;
@@ -37,16 +40,16 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
 
     disablePassphrase = (CheckBoxPreference) this.findPreference("pref_enable_passphrase_temporary");
 
-    this.findPreference(TextSecurePreferences.CHANGE_PASSPHRASE_PREF)
-        .setOnPreferenceClickListener(new ChangePassphraseClickListener());
-    this.findPreference(TextSecurePreferences.PASSPHRASE_TIMEOUT_INTERVAL_PREF)
-        .setOnPreferenceClickListener(new PassphraseIntervalClickListener());
-    this.findPreference(TextSecurePreferences.READ_RECEIPTS_PREF)
-        .setOnPreferenceChangeListener(new ReadReceiptToggleListener());
-    this.findPreference(PREFERENCE_CATEGORY_BLOCKED)
-        .setOnPreferenceClickListener(new BlockedContactsClickListener());
-    disablePassphrase
-        .setOnPreferenceChangeListener(new DisablePassphraseClickListener());
+    this.findPreference(TextSecurePreferences.SCREEN_LOCK).setOnPreferenceChangeListener(new ScreenLockListener());
+    this.findPreference(TextSecurePreferences.SCREEN_LOCK_TIMEOUT).setOnPreferenceClickListener(new ScreenLockTimeoutListener());
+
+    this.findPreference(TextSecurePreferences.CHANGE_PASSPHRASE_PREF).setOnPreferenceClickListener(new ChangePassphraseClickListener());
+    this.findPreference(TextSecurePreferences.PASSPHRASE_TIMEOUT_INTERVAL_PREF).setOnPreferenceClickListener(new PassphraseIntervalClickListener());
+    this.findPreference(TextSecurePreferences.READ_RECEIPTS_PREF).setOnPreferenceChangeListener(new ReadReceiptToggleListener());
+    this.findPreference(PREFERENCE_CATEGORY_BLOCKED).setOnPreferenceClickListener(new BlockedContactsClickListener());
+    disablePassphrase.setOnPreferenceChangeListener(new DisablePassphraseClickListener());
+
+    initializeVisibility();
   }
 
   @Override
@@ -59,15 +62,86 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     super.onResume();
     ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.preferences__privacy);
 
-    initializeTimeoutSummary();
+    if (!TextSecurePreferences.isPasswordDisabled(getContext())) initializePassphraseTimeoutSummary();
+    else                                                         initializeScreenLockTimeoutSummary();
 
     disablePassphrase.setChecked(!TextSecurePreferences.isPasswordDisabled(getActivity()));
   }
 
-  private void initializeTimeoutSummary() {
+  private void initializePassphraseTimeoutSummary() {
     int timeoutMinutes = TextSecurePreferences.getPassphraseTimeoutInterval(getActivity());
     this.findPreference(TextSecurePreferences.PASSPHRASE_TIMEOUT_INTERVAL_PREF)
         .setSummary(getResources().getQuantityString(R.plurals.AppProtectionPreferenceFragment_minutes, timeoutMinutes, timeoutMinutes));
+  }
+
+  private void initializeScreenLockTimeoutSummary() {
+    long timeoutSeconds = TextSecurePreferences.getScreenLockTimeout(getContext());
+    long hours          = TimeUnit.SECONDS.toHours(timeoutSeconds);
+    long minutes        = TimeUnit.SECONDS.toMinutes(timeoutSeconds) - (TimeUnit.SECONDS.toHours(timeoutSeconds) * 60  );
+    long seconds        = TimeUnit.SECONDS.toSeconds(timeoutSeconds) - (TimeUnit.SECONDS.toMinutes(timeoutSeconds) * 60);
+
+    findPreference(TextSecurePreferences.SCREEN_LOCK_TIMEOUT)
+        .setSummary(timeoutSeconds <= 0 ? getString(R.string.AppProtectionPreferenceFragment_none) :
+                                          String.format("%02d:%02d:%02d", hours, minutes, seconds));
+  }
+
+  private void initializeVisibility() {
+    if (TextSecurePreferences.isPasswordDisabled(getContext())) {
+      findPreference("pref_enable_passphrase_temporary").setVisible(false);
+      findPreference(TextSecurePreferences.CHANGE_PASSPHRASE_PREF).setVisible(false);
+      findPreference(TextSecurePreferences.PASSPHRASE_TIMEOUT_INTERVAL_PREF).setVisible(false);
+      findPreference(TextSecurePreferences.PASSPHRASE_TIMEOUT_PREF).setVisible(false);
+
+      KeyguardManager keyguardManager = (KeyguardManager)getContext().getSystemService(Context.KEYGUARD_SERVICE);
+      if (Build.VERSION.SDK_INT < 16 || !keyguardManager.isKeyguardSecure()) {
+        ((SwitchPreferenceCompat)findPreference(TextSecurePreferences.SCREEN_LOCK)).setChecked(false);
+        findPreference(TextSecurePreferences.SCREEN_LOCK).setEnabled(false);
+      }
+    } else {
+      findPreference(TextSecurePreferences.SCREEN_LOCK).setVisible(false);
+      findPreference(TextSecurePreferences.SCREEN_LOCK_TIMEOUT).setVisible(false);
+    }
+  }
+
+  private class ScreenLockListener implements Preference.OnPreferenceChangeListener {
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+      TextSecurePreferences.setScreenLockEnabled(getContext(), (Boolean)newValue);
+
+      Intent intent = new Intent(getContext(), KeyCachingService.class);
+      intent.setAction(KeyCachingService.CLEAR_KEY_EVENT);
+      getContext().startService(intent);
+
+      return true;
+    }
+  }
+
+  private class ScreenLockTimeoutListener implements Preference.OnPreferenceClickListener, HmsPickerDialogFragment.HmsPickerDialogHandler {
+
+    @Override
+    public boolean onPreferenceClick(Preference preference) {
+      int[]      attributes = {R.attr.app_protect_timeout_picker_color};
+      TypedArray hmsStyle   = getActivity().obtainStyledAttributes(attributes);
+
+      new HmsPickerBuilder().setFragmentManager(getFragmentManager())
+                            .setStyleResId(hmsStyle.getResourceId(0, R.style.BetterPickersDialogFragment_Light))
+                            .addHmsPickerDialogHandler(this)
+                            .show();
+
+      hmsStyle.recycle();
+
+      return true;
+    }
+
+    @Override
+    public void onDialogHmsSet(int reference, int hours, int minutes, int seconds) {
+      long timeoutSeconds = Math.max(TimeUnit.HOURS.toSeconds(hours)     +
+                                     TimeUnit.MINUTES.toSeconds(minutes) +
+                                     TimeUnit.SECONDS.toSeconds(seconds), 60);
+
+      TextSecurePreferences.setScreenLockTimeout(getContext(), timeoutSeconds);
+      initializeScreenLockTimeoutSummary();
+    }
   }
 
   private class BlockedContactsClickListener implements Preference.OnPreferenceClickListener {
@@ -118,7 +192,7 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
                                     (int)TimeUnit.SECONDS.toMinutes(seconds), 1);
 
       TextSecurePreferences.setPassphraseTimeoutInterval(getActivity(), timeoutMinutes);
-      initializeTimeoutSummary();
+      initializePassphraseTimeoutSummary();
     }
   }
 
@@ -142,6 +216,8 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
           Intent intent = new Intent(getActivity(), KeyCachingService.class);
           intent.setAction(KeyCachingService.DISABLE_ACTION);
           getActivity().startService(intent);
+
+          initializeVisibility();
         });
         builder.setNegativeButton(android.R.string.cancel, null);
         builder.show();
@@ -171,7 +247,7 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     final String onRes               = context.getString(R.string.ApplicationPreferencesActivity_on);
     final String offRes              = context.getString(R.string.ApplicationPreferencesActivity_off);
 
-    if (TextSecurePreferences.isPasswordDisabled(context)) {
+    if (TextSecurePreferences.isPasswordDisabled(context) && !TextSecurePreferences.isScreenLockEnabled(context)) {
       if (TextSecurePreferences.isScreenSecurityEnabled(context)) {
         return context.getString(privacySummaryResId, offRes, onRes);
       } else {

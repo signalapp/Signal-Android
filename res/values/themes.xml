@@ -58,23 +58,28 @@
     </style>
 
     <style name="TextSecure.LightIntroTheme" parent="@style/Theme.AppCompat.Light">
-        <!--<item name="colorPrimary">@android:color/transparent</item>-->
-        <item name="actionBarStyle">@style/TextSecure.IntroActionBar</item>
-        <item name="android:windowContentOverlay">@null</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionModeOverlay">true</item>
         <item name="colorAccent">@color/signal_primary</item>
 
         <item name="android:textColorHint">#cc000000</item>
         <item name="centered_app_title_color">#55000000</item>
         <item name="ic_arrow_forward">@drawable/ic_arrow_forward_light</item>
         <item name="lockscreen_watermark">@drawable/lockscreen_watermark_light</item>
-        <item name="android:windowBackground">@color/gray5</item>
+        <item name="android:windowBackground">@color/white</item>
         <item name="ic_visibility">@drawable/ic_visibility_grey600_24dp</item>
         <item name="ic_visibility_off">@drawable/ic_visibility_off_grey600_24dp</item>
+
+        <item name="login_top_background">@color/signal_primary</item>
+        <item name="login_floating_background">@drawable/rounded_rectangle_white</item>
+
     </style>
 
     <style name="TextSecure.DarkIntroTheme" parent="@style/Theme.AppCompat">
-        <item name="actionBarStyle">@style/TextSecure.IntroActionBar</item>
-        <item name="android:windowContentOverlay">@null</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionModeOverlay">true</item>
         <item name="colorAccent">@color/signal_primary_dark</item>
 
         <item name="android:textColorHint">@color/white</item>
@@ -84,6 +89,9 @@
         <item name="android:windowBackground">@color/black</item>
         <item name="ic_visibility">@drawable/ic_visibility_white_24dp</item>
         <item name="ic_visibility_off">@drawable/ic_visibility_off_white_24dp</item>
+
+        <item name="login_top_background">@color/black</item>
+        <item name="login_floating_background">@drawable/rounded_rectangle_dark</item>
     </style>
 
     <style name="PopupAnimation" parent="@android:style/Animation">
@@ -352,4 +360,5 @@
     <style name="RationaleDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:windowBackground">@drawable/permission_rationale_dialog_corners</item>
     </style>
+
 </resources>

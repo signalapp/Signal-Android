@@ -39,7 +39,7 @@
     <string name="ApplicationPreferencesActivity_off">off</string>
     <string name="ApplicationPreferencesActivity_Off">Off</string>
     <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-    <string name="ApplicationPreferencesActivity_privacy_summary">Passphrase %1$s, Screen security %2$s</string>
+    <string name="ApplicationPreferencesActivity_privacy_summary">Screen lock %1$s, Screen security %2$s</string>
     <string name="ApplicationPreferencesActivity_appearance_summary">Theme %1$s, Language %2$s</string>
 
     <!-- AppProtectionPreferenceFragment -->
@@ -1360,6 +1360,11 @@
     <string name="RegistrationActivity_wrong_number">Wrong number?</string>
     <string name="BackupUtil_never">Never</string>
     <string name="BackupUtil_unknown">Unknown</string>
+    <string name="prompt_passphrase_activity__unlock_signal">Unlock Signal</string>
+    <string name="preferences_app_protection__screen_lock">Screen lock</string>
+    <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lock Signal access with Android screen lock or fingerprint</string>
+    <string name="preferences_app_protection__screen_lock_inactivity_timeout">Screen lock inactivity timeout</string>
+    <string name="AppProtectionPreferenceFragment_none">None</string>
 
 
     <!-- EOF -->

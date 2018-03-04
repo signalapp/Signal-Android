@@ -134,6 +134,9 @@
 
     <attr name="contact_list_divider" format="reference"/>
 
+    <attr name="login_top_background" format="color"/>
+    <attr name="login_floating_background" format="reference"/>
+
     <declare-styleable name="ColorPreference">
         <attr name="itemLayout" format="reference" />
         <attr name="choices" format="reference" />

@@ -62,7 +62,7 @@ public class TextSecurePreferences {
   public  static final String ALL_MMS_PREF                     = "pref_all_mms";
   public  static final String ALL_SMS_PREF                     = "pref_all_sms";
   public  static final String PASSPHRASE_TIMEOUT_INTERVAL_PREF = "pref_timeout_interval";
-  private static final String PASSPHRASE_TIMEOUT_PREF          = "pref_timeout_passphrase";
+  public  static final String PASSPHRASE_TIMEOUT_PREF          = "pref_timeout_passphrase";
   public  static final String SCREEN_SECURITY_PREF             = "pref_screen_security";
   private static final String ENTER_SENDS_PREF                 = "pref_enter_sends";
   private static final String ENTER_PRESENT_PREF               = "pref_enter_key";
@@ -141,6 +141,25 @@ public class TextSecurePreferences {
   private static final String BACKUP_PASSPHRASE = "pref_backup_passphrase";
   private static final String BACKUP_TIME       = "pref_backup_next_time";
   public  static final String BACKUP_NOW        = "pref_backup_create";
+
+  public static final String SCREEN_LOCK         = "pref_android_screen_lock";
+  public static final String SCREEN_LOCK_TIMEOUT = "pref_android_screen_lock_timeout";
+
+  public static boolean isScreenLockEnabled(@NonNull Context context) {
+    return getBooleanPreference(context, SCREEN_LOCK, false);
+  }
+
+  public static void setScreenLockEnabled(@NonNull Context context, boolean value) {
+    setBooleanPreference(context, SCREEN_LOCK, value);
+  }
+
+  public static long getScreenLockTimeout(@NonNull Context context) {
+    return getLongPreference(context, SCREEN_LOCK_TIMEOUT, 0);
+  }
+
+  public static void setScreenLockTimeout(@NonNull Context context, long value) {
+    setLongPreference(context, SCREEN_LOCK_TIMEOUT, value);
+  }
 
   public static void setBackupPassphrase(@NonNull Context context, @Nullable String passphrase) {
     setStringPreference(context, BACKUP_PASSPHRASE, passphrase);

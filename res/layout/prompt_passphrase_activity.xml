@@ -1,28 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/scroll_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/prompt_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+    <View android:id="@+id/shim"
+          android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:layout_centerVertical="true"
+          android:visibility="invisible"/>
+
+    <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="true">
+            android:background="?login_top_background"
+            android:layout_above="@id/shim">
 
-    <RelativeLayout android:id="@+id/prompt_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+    </FrameLayout>
 
-        <ImageView android:id="@+id/watermark"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_centerHorizontal="true"
-                   android:layout_marginBottom="50dp"
-                   android:src="?lockscreen_watermark"
-                   android:contentDescription="@string/PassphrasePromptActivity_watermark_content_description"
-                   android:layout_marginTop="30dp"/>
+    <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_marginTop="20dp">
 
-        <RelativeLayout
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_transparent"
+                android:layout_gravity="center"/>
+
+    </android.support.v7.widget.Toolbar>
+
+
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/watermark">
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:orientation="vertical"
+            android:background="?login_floating_background"
+            android:layout_centerInParent="true"
+            android:padding="20dp"
+            android:elevation="10dp">
+
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginBottom="40dp"
+                  android:text="@string/prompt_passphrase_activity__unlock_signal"
+                  android:gravity="center_horizontal"
+                  android:textSize="25sp"/>
+
+        <ImageView android:id="@+id/fingerprint_auth_container"
+                android:src="@drawable/ic_fingerprint_white_48dp"
+                android:background="@drawable/circle_tintable"
+                android:backgroundTint="@color/signal_primary"
+                android:padding="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="60dp"
+                tools:visibility="visible"/>
+
+        <RelativeLayout android:id="@+id/password_auth_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="60dp"
+                        tools:visibility="gone">
 
             <EditText android:id="@+id/passphrase_edit"
                       android:layout_width="match_parent"
@@ -83,6 +131,5 @@
                          android:paddingBottom="5dp"/>
         </RelativeLayout>
 
-    </RelativeLayout>
-
-</ScrollView>
+    </LinearLayout>
+</RelativeLayout>
