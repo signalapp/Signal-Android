@@ -211,10 +211,9 @@ public class ConversationFragment extends Fragment
       {
         actionMessage = true;
         break;
-      }
-      else if (messageRecord.isMms()             &&
-              !messageRecord.isMmsNotification() &&
-              ((MediaMmsMessageRecord)messageRecord).containsMediaSlide())
+      } else if (messageRecord.isMms()              &&
+                 !messageRecord.isMmsNotification() &&
+                 ((MediaMmsMessageRecord)messageRecord).containsMediaSlide())
       {
         mediaMessage = true;
         break;
