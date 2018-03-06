@@ -118,6 +118,11 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, List<Recipient>> {
             name += " ~" + recipient.getProfileName();
           }
 
+          if (recipient.getAddress().isPhone() && !TextUtils.isEmpty(recipient.getAddress()
+                  .toPhoneString())) {
+            name += " " + recipient.getAddress().toPhoneString();
+          }
+
           recipientStrings.add(name);
         }
       }
