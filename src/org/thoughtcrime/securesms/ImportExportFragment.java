@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.database.PlaintextBackupImporter;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.service.ApplicationMigrationService;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 
@@ -184,6 +185,9 @@ public class ImportExportFragment extends Fragment {
         PlaintextBackupImporter.importPlaintextFromSd(getActivity());
         return SUCCESS;
       } catch (NoExternalStorageException e) {
+        Log.w("ImportFragment", e);
+        return NO_SD_CARD;
+      } catch (FileNotFoundException e) {
         Log.w("ImportFragment", e);
         return NO_SD_CARD;
       } catch (IOException e) {
