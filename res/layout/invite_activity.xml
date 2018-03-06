@@ -90,6 +90,7 @@
             android:layout_width="match_parent"
             android:minHeight="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
+            android:elevation="4dp"
             android:theme="@style/TextSecure.LightActionBar" />
 
         <fragment android:id="@+id/contact_selection_list_fragment"
