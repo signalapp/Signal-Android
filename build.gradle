@@ -71,7 +71,7 @@ dependencies {
     compile 'com.google.android.exoplayer:exoplayer:r2.3.1'
 
     compile 'org.whispersystems:jobmanager:1.0.2'
-    compile('org.whispersystems:libpastelog:1.1.1') {
+    compile('org.whispersystems:libpastelog:1.1.2') {
         exclude group: 'com.squareup.okhttp3', module: 'okhttp'
     }
     compile 'org.whispersystems:signal-service-android:2.7.2'
@@ -161,7 +161,7 @@ dependencyVerification {
         'com.google.android.gms:play-services-maps:45e8021e7ddac4a44a82a0e9698991389ded3023d35c58f38dbd86d54211ec0e',
         'com.google.android.exoplayer:exoplayer:955085aa611a8f7cf6c61b88ae03d1a392f4ad94c9bfbc153f3dedb9ffb14718',
         'org.whispersystems:jobmanager:506f679fc2fcf7bb6d10f00f41d6f6ea0abf75c70dc95b913398661ad538a181',
-        'org.whispersystems:libpastelog:9bdbc598c7d2c20aec8a2a480ecfd83f9d85f9f7fb5c3128810c6aae03969e33',
+        'org.whispersystems:libpastelog:fe56b4db9ec743c8b565e3e4caa9228fafe132dc0bf82000d6e359b97a81177c',
         'org.whispersystems:signal-service-android:a7dfcb2f88ec69e8a1d31215cc7b67f0db50a96cd9d3832bfe75f56e67188537',
         'org.whispersystems:webrtc-android:ed297e8b795dad9658cf306c2aa0f7d296c65f0997a2ac4353fd0157910acc12',
         'me.leolin:ShortcutBadger:e3cb3e7625892129b0c92dd5e4bc649faffdd526d5af26d9c45ee31ff8851774',
@@ -225,6 +225,7 @@ dependencyVerification {
         'com.madgag.spongycastle:core:8d6240b974b0aca4d3da9c7dd44d42339d8a374358aca5fc98e50a995764511f',
     ]
 }
+
 
 android {
     flavorDimensions "none"
