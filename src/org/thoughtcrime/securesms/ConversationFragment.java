@@ -203,6 +203,11 @@ public class ConversationFragment extends Fragment
     boolean            actionMessage  = false;
     boolean            mediaMessage  = false;
 
+    if (actionMode != null && messageRecords.size() == 0) {
+      actionMode.finish();
+      return;
+    }
+
     for (MessageRecord messageRecord : messageRecords) {
       if (messageRecord.isGroupAction() || messageRecord.isCallLog() ||
           messageRecord.isJoined() || messageRecord.isExpirationTimerUpdate() ||
