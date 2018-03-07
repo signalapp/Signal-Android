@@ -1337,7 +1337,7 @@
     <string name="preferences_chats__create_backup">Create backup</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Enter backup passphrase</string>
     <string name="RegistrationActivity_restore">Restore</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">Incorrect backup password</string>
+    <string name="RegistrationActivity_incorrect_backup_passphrase">Incorrect backup passphrase</string>
     <string name="RegistrationActivity_checking">Checking...</string>
     <string name="RegistrationActivity_d_messages_so_far">%d messages so far...</string>
     <string name="RegistrationActivity_restore_from_backup">Restore from backup?</string>
