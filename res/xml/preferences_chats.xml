@@ -81,7 +81,7 @@
 
     <PreferenceCategory android:layout="@layout/preference_divider"/>
 
-    <PreferenceCategory android:key="backup_category" android:title="Backups">
+    <PreferenceCategory android:key="backup_category" android:title="@string/preferences_chats__backups">
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
                 android:defaultValue="false"
                 android:key="pref_backup_enabled"

@@ -1398,6 +1398,7 @@
     <string name="RegistrationLockDialog_disable_registration_lock_pin">Disable Registration Lock PIN?</string>
     <string name="RegistrationLockDialog_disable">Disable</string>
     <string name="RegistrationActivity_continue">Continue</string>
+    <string name="preferences_chats__backups">Backups</string>
     <!-- EOF -->
 
 </resources>
