@@ -202,7 +202,7 @@ public class MessageRecipientListItem extends RelativeLayout
       mmsDatabase.removeFailure(record.getId(), failure);
 
       if (record.getRecipient().isPushGroupRecipient()) {
-        MessageSender.resendGroupMessage(context, record, failure.getAddress());
+        MessageSender.resendGroupMessage(context, record, failure == null ? null : failure.getAddress());
       } else {
         MessageSender.resend(context, record);
       }
