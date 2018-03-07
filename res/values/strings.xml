@@ -1396,6 +1396,7 @@
     <string name="RegistrationLockDialog_error_connecting_to_the_service">Error connecting to the service</string>
     <string name="RegistrationLockDialog_disable_registration_lock_pin">Disable Registration Lock PIN?</string>
     <string name="RegistrationLockDialog_disable">Disable</string>
+    <string name="RegistrationActivity_continue">Continue</string>
     <!-- EOF -->
 
 </resources>

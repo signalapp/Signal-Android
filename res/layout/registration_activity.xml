@@ -314,7 +314,7 @@
 
             <com.dd.CircularProgressButton
                     android:id="@+id/pinButton"
-                    app:cpb_textIdle="Continue"
+                    app:cpb_textIdle="@string/RegistrationActivity_continue"
                     app:cpb_selectorIdle="@drawable/progress_button_state"
                     app:cpb_colorIndicator="@color/white"
                     app:cpb_colorProgress="@color/textsecure_primary"
