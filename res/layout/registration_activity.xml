@@ -63,6 +63,7 @@
                       android:layout_width="fill_parent"
                       android:layout_height="wrap_content"
                       android:orientation="vertical"
+                      android:visibility="invisible"
                       tools:visibility="invisible">
 
             <TextView android:id="@+id/backup_created_text"
@@ -226,7 +227,7 @@
                         android:layout_below="@id/header"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        tools:visibility="invisible">
+                        tools:visibility="visible">
 
             <org.thoughtcrime.securesms.components.registration.VerificationCodeView
                     android:id="@+id/code"
@@ -259,16 +260,17 @@
 
 
         <LinearLayout android:id="@+id/pin_container"
-                      android:padding="16dp"
+                      android:paddingTop="30dp"
+                      android:paddingLeft="16dp"
+                      android:paddingRight="16dp"
                       android:paddingBottom="0dp"
-                      android:layout_marginTop="30dp"
                       android:layout_below="@id/header"
-                      android:layout_width="fill_parent"
-                      android:layout_height="wrap_content"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
                       android:animateLayoutChanges="true"
                       android:orientation="vertical"
                       android:visibility="invisible"
-                      tools:visibility="visible">
+                      tools:visibility="invisible">
 
             <LinearLayout android:id="@+id/pin_clarification_container"
                           android:visibility="gone"

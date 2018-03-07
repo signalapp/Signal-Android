@@ -656,7 +656,7 @@
     <string name="KeyCachingService_signal_passphrase_cached">Touch to open.</string>
     <string name="KeyCachingService_signal_passphrase_cached_with_lock">Touch to open, or touch the lock to close.</string>
     <string name="KeyCachingService_passphrase_cached">Signal is unlocked</string>
-    <string name="KeyCachingService_lock">Lock with passphrase</string>
+    <string name="KeyCachingService_lock">Lock Signal</string>
 
     <!-- MediaPreviewActivity -->
     <string name="MediaPreviewActivity_you">You</string>
