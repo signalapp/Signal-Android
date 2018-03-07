@@ -156,6 +156,7 @@
               android:theme="@style/TextSecure.LightNoActionBar"
               android:excludeFromRecents="true"
               android:launchMode="singleTask"
+              android:taskAffinity=""
               android:noHistory="true"
               android:windowSoftInputMode="stateHidden"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
