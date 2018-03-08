@@ -13,7 +13,7 @@
     <string name="ApplicationPreferencesActivity_currently_s">Currently: %s</string>
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">You haven\'t set a passphrase yet!</string>
     <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-        <item quantity="one">1 message per conversation</item>
+        <item quantity="one">%d message per conversation</item>
         <item quantity="other">%d messages per conversation</item>
     </plurals>
     <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Delete all old messages now?</string>
@@ -44,7 +44,7 @@
 
     <!-- AppProtectionPreferenceFragment -->
     <plurals name="AppProtectionPreferenceFragment_minutes">
-        <item quantity="one">1 minute</item>
+        <item quantity="one">%d minute</item>
         <item quantity="other">%d minutes</item>
     </plurals>
 
@@ -375,11 +375,11 @@
     <string name="InviteActivity_invitations_sent">Invitations sent!</string>
     <string name="InviteActivity_invite_to_signal">Invite to Signal</string>
     <plurals name="InviteActivity_send_sms_to_friends">
-        <item quantity="one">SEND SMS TO 1 FRIEND</item>
+        <item quantity="one">SEND SMS TO %d FRIEND</item>
         <item quantity="other">SEND SMS TO %d FRIENDS</item>
     </plurals>
     <plurals name="InviteActivity_send_sms_invites">
-        <item quantity="one">Send 1 SMS invite?</item>
+        <item quantity="one">Send %d SMS invite?</item>
         <item quantity="other">Send %d SMS invites?</item>
     </plurals>
     <string name="InviteActivity_lets_switch_to_signal">Let\'s switch to Signal: %1$s</string>
@@ -834,35 +834,35 @@
     <string name="expiration_off">Off</string>
     
     <plurals name="expiration_seconds">
-        <item quantity="one">1 second</item>
+        <item quantity="one">%d second</item>
         <item quantity="other">%d seconds</item>
     </plurals>
 
     <string name="expiration_seconds_abbreviated">%ds</string>
 
     <plurals name="expiration_minutes">
-        <item quantity="one">1 minute</item>
+        <item quantity="one">%d minute</item>
         <item quantity="other">%d minutes</item>
     </plurals>
 
     <string name="expiration_minutes_abbreviated">%dm</string>
 
     <plurals name="expiration_hours">
-        <item quantity="one">1 hour</item>
+        <item quantity="one">%d hour</item>
         <item quantity="other">%d hours</item>
     </plurals>
 
     <string name="expiration_hours_abbreviated">%dh</string>
 
     <plurals name="expiration_days">
-        <item quantity="one">1 day</item>
+        <item quantity="one">%d day</item>
         <item quantity="other">%d days</item>
     </plurals>
 
     <string name="expiration_days_abbreviated">%dd</string>
 
     <plurals name="expiration_weeks">
-        <item quantity="one">1 week</item>
+        <item quantity="one">%d week</item>
         <item quantity="other">%d weeks</item>
     </plurals>
 
@@ -1275,7 +1275,7 @@
     <!-- reminder_header -->
     <string name="reminder_header_outdated_build">Your version of Signal is outdated</string>
     <plurals name="reminder_header_outdated_build_details">
-        <item quantity="one">Your version of Signal will expire in 1 day. Tap to update to the most recent version.</item>
+        <item quantity="one">Your version of Signal will expire in %d day. Tap to update to the most recent version.</item>
         <item quantity="other">Your version of Signal will expire in %d days. Tap to update to the most recent version.</item>
     </plurals>
     <string name="reminder_header_outdated_build_details_today">Your version of Signal will expire today. Tap to update to the most recent version.</string>
