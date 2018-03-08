@@ -37,7 +37,7 @@
   <string name="ApplicationPreferencesActivity_off">деактивирана</string>
   <string name="ApplicationPreferencesActivity_Off">Деактивирано</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Парола %1$s, Защита на екрана %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Заключване на екрана %1$s, Заключване на регистрацията%2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Тема %1$s, Език %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -557,7 +557,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="KeyCachingService_signal_passphrase_cached">Натиснете за отворяне.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Натиснете, за да отворите или натиснете катинара, за да затворите.</string>
   <string name="KeyCachingService_passphrase_cached">Сигнал е отключен</string>
-  <string name="KeyCachingService_lock">Заключи паролата</string>
+  <string name="KeyCachingService_lock">Заключване на Сигнал</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Ти</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Неподдържан медиен формат.</string>
@@ -584,6 +584,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="QuickResponseService_problem_sending_message">Проблем при изпрашане на съобщение!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Отваряне на папка</string>
+  <string name="SaveAttachmentTask_saved_to">Запзване в %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Търсене</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -791,6 +792,8 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="recipient_preferences__view_safety_number">Преглеждане на числото за сигурност</string>
   <string name="recipient_preferences__chat_settings">Настройки на чата</string>
   <string name="recipient_preferences__privacy">Лично пространство</string>
+  <string name="recipient_preferences__call_settings">Настройки на разговора</string>
+  <string name="recipient_preferences__ringtone">Мелодия</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Обаждане през Сигнал</string>
   <string name="redphone_call_controls__mute">Заглуши</string>
@@ -843,7 +846,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="AndroidManifest_archived_conversations">Архивирани разговори</string>
   <string name="AndroidManifest_remove_photo">Премахване на снимката</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Внасяне / изнасяне</string>
+  <string name="arrays__import_export">Внасяне</string>
   <string name="arrays__use_default">Използване на подразбиращ се</string>
   <string name="arrays__use_custom">Използване на специален</string>
   <string name="arrays__mute_for_one_hour">Тих режим за 1 час</string>
@@ -967,6 +970,8 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="preferences_notifications__events">Събития</string>
   <string name="preferences_notifications__in_chat_sounds">Звуци в чатове</string>
   <string name="preferences_notifications__show">Показване</string>
+  <string name="preferences_notifications__calls">Обаждания</string>
+  <string name="preferences_notifications__ringtone">Мелодия</string>
   <string name="preferences_chats__show_invitation_prompts">Показване на покани</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Показване на покани за контакти без Сигнал</string>
   <string name="preferences_chats__message_text_size">Размер на текста</string>
@@ -1092,5 +1097,79 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Мигриране на базата данни на Сигнал</string>
   <string name="PushDecryptJob_new_locked_message">Ново заключено съобщение</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Отключете, за да прегледате новите съобщения</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Отключете, за да довършите актуализацията</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Моля отключете Сигнал за да довършите актуализацията</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">Парола на архива</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Архивите ще бъдат запазени на външно хранилище и криптирани с паролата задена по-долу. Трябва да използвате същата парола за въстановяване от архива.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Записах тази парола. Без нея, няма да мога да възстановя архива.</string>
+  <string name="registration_activity__restore_backup">Възстановявне на архив</string>
+  <string name="registration_activity__skip">Пропусни</string>
+  <string name="registration_activity__register">Регистрирай</string>
+  <string name="preferences_chats__chat_backups">Архив на чатовете</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Архивиране на чатове до външно хранилище</string>
+  <string name="preferences_chats__create_backup">Създавне на архив</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Въведете парола за архива</string>
+  <string name="RegistrationActivity_restore">Възстанови</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">Невалидна парола за архива</string>
+  <string name="RegistrationActivity_checking">Проверка...</string>
+  <string name="RegistrationActivity_d_messages_so_far">%dсъобщения до тук...</string>
+  <string name="RegistrationActivity_restore_from_backup">Възстановяване от архива?</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Възстановяване на съобщения и медийни файлове от локален архив. Ако не възстановите сега няма да може да възстановите по-късно.</string>
+  <string name="RegistrationActivity_backup_size_s">Размер на архива: %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Дата и час на архива: %s</string>
+  <string name="BackupDialog_enable_local_backups">Активиране на локални архиви?</string>
+  <string name="BackupDialog_enable_backups">Активиране на архиви</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Моля, потвърдете съгласието си.</string>
+  <string name="BackupDialog_delete_backups">Изтриване на архивите?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Деактивиране и изтриване на всички локални архиви?</string>
+  <string name="BackupDialog_delete_backups_statement">Изтриване на архиви</string>
+  <string name="BackupDialog_copied_to_clipboard">Копирано</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Сигнал изискава разрешение за достъп до външните хранлища, за да може да създаде архиви, но този достъп е парманентно отказан. Моля, продължете до настройки на приложенията и изберете \"Разрешения\" и активирайте \"Хранилище\"</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">Последен архив: %s</string>
+  <string name="ChatsPreferenceFragment_in_progress">Извъшрва се</string>
+  <string name="ProgressPreference_d_messages_so_far">%d съобщения до тук</string>
+  <string name="RegistrationActivity_verify_s">Проверка %s</string>
+  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Моля, въведте кодът за потвържение изпрате на %s</string>
+  <string name="RegistrationActivity_wrong_number">Грешен номер?</string>
+  <string name="BackupUtil_never">Никога</string>
+  <string name="BackupUtil_unknown">Непознат</string>
+  <string name="prompt_passphrase_activity__unlock_signal">Отключване на Сигнал</string>
+  <string name="preferences_app_protection__screen_lock">Заключен екран</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Заключване на достъпа до Сигнал с вградените в Андроид заключен екран или отпечатък</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Време за активирнае при неактивност</string>
+  <string name="AppProtectionPreferenceFragment_none">Нищо</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">ПИН-ът за регистрационното заключване не е същия като СМС кодът за потвърждение, който получихте. Моля, въведете ПИН-а, който сте задали по-рано в приложението.</string>
+  <string name="registration_activity__registration_lock_pin">ПИН за регистрационно заключване</string>
+  <string name="registration_activity__forgot_pin">Забравен ПИН?</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">ПИН-ът може да съдържа четири или повече цифри.  Ако забравите ПИН-ът си, може да бъдете заключени от профила си за до седем дена.</string>
+  <string name="registration_lock_dialog_view__enter_pin">Въведете ПИН</string>
+  <string name="registration_lock_dialog_view__confirm_pin">Потвърдете ПИН</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Въведте ПИН-а за регистрационно заключване</string>
+  <string name="registration_lock_reminder_view__enter_pin">Въведете ПИН-а</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Активиране на ПИН за регистрационно заключване, който да бъде изискван при повторно регистрирване на този телефонен номер със Сигнал.</string>
+  <string name="preferences_app_protection__registration_lock_pin">Регистрационен ПИН</string>
+  <string name="preferences_app_protection__registration_lock">Регистрационно заключване</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Трябва да въведете ПИН-а за регистрационно заключване</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">Навалиден ПИН за регистрационно заключване</string>
+  <string name="RegistrationActivity_too_many_attempts">Прекалено много опити</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Направихте твърде много опите за въвеждане на ПИН за регистрационно заключване. Моля, опитайте пак някой друг ден.</string>
+  <string name="RegistrationActivity_error_connecting_to_service">Неуспшено свързване с услугата</string>
+  <string name="RegistrationActivity_oh_no">О, не!</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Регистрацията на този телефонен номер ще бъде възможна без ПИН за заключване на регистрацията след като са изминали 7 дена от последната активност на този номер в Сигнал. Остават Ви %dдена.</string>
+  <string name="RegistrationActivity_registration_lock_pin">ПИН за регистрационно заключване</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Този телефонен номер има активирано регистрационно заключване. Моля, въведете ПИН-а за регистрационно заключване.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Регистрационното заключване е активирано за Вашия телефонен номер.</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">Забравих ПИН-а</string>
+  <string name="RegistrationLockDialog_forgotten_pin">Забравен ПИН?</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Регистрационното заключване предпазва Вашия телефонен номер от неоторизирани опити за регистрация. Тази услуга може да бъде деактивирана по всяко време от секцията за лично пространсто в Сигнал.</string>
+  <string name="RegistrationLockDialog_registration_lock">Регистрационно заключване</string>
+  <string name="RegistrationLockDialog_enable">Активиране</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">ПИН-ът за регистрационно заключване трябва да бъде поне 4 цифри.</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Двата ПИН-а, които въведохте не съвпадат.</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">Неуспшено свързване с услугата</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">Деактивиране на ПИН-а за регистрационно заключване?</string>
+  <string name="RegistrationLockDialog_disable">Изключи</string>
+  <string name="RegistrationActivity_continue">Продължи</string>
+  <string name="preferences_chats__backups">Архиви</string>
   <!--EOF-->
 </resources>

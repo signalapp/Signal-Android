@@ -37,7 +37,6 @@
   <string name="ApplicationPreferencesActivity_off">çaktivizuar</string>
   <string name="ApplicationPreferencesActivity_Off">Çaktivizuar</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Fjalëkalimi %1$s, Siguria e ekranit %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Gjuha %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -542,7 +541,6 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <string name="KeyCachingService_signal_passphrase_cached">Preke për ta hapur.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Prek për të hapur, ose prek qelësin për të mbyllur.</string>
   <string name="KeyCachingService_passphrase_cached">Signal u hap</string>
-  <string name="KeyCachingService_lock">Kyçe me fjalëkalim</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Ti</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Tip i medias i pambështetur</string>
@@ -817,7 +815,7 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <string name="AndroidManifest_archived_conversations">Bisedat e arkivuara</string>
   <string name="AndroidManifest_remove_photo">Hiq foton</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Importo / eksporto</string>
+  <string name="arrays__import_export">Importo</string>
   <string name="arrays__use_default">Përdor parazgjedhjen</string>
   <string name="arrays__use_custom">Përdor të rregulluar</string>
   <string name="arrays__mute_for_one_hour">Hesht për 1 orë</string>
@@ -1056,5 +1054,14 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <string name="Permissions_continue">Vazhdo</string>
   <string name="Permissions_not_now">Jo tash</string>
   <string name="conversation_activity__enable_signal_messages">AKTIVIZO MESAZHET NË SIGNAL</string>
+  <string name="registration_activity__skip">Kapërce</string>
+  <string name="registration_activity__register">Regjistrohu</string>
+  <string name="RegistrationActivity_restore">Kthe</string>
+  <string name="BackupUtil_never">Kurr</string>
+  <string name="BackupUtil_unknown">Panjohur</string>
+  <string name="AppProtectionPreferenceFragment_none">Asnjë</string>
+  <string name="RegistrationActivity_too_many_attempts">Përpjekje të tepruara</string>
+  <string name="RegistrationLockDialog_disable">Çaktivizo</string>
+  <string name="RegistrationActivity_continue">Vazhdo</string>
   <!--EOF-->
 </resources>

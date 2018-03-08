@@ -45,7 +45,6 @@
   <string name="ApplicationPreferencesActivity_off">مغلق</string>
   <string name="ApplicationPreferencesActivity_Off">مغلق</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">رسائل نصية %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">العبارة السرية %1$s، تأمين الشاشة %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">المظهر %1$s، اللغة %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -588,7 +587,6 @@
   <string name="KeyCachingService_signal_passphrase_cached">المس للفتح.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">المس للفتح أو المس رمز القفل للإغلاق.</string>
   <string name="KeyCachingService_passphrase_cached">سيجنال غير مقفول</string>
-  <string name="KeyCachingService_lock">أقفل بالعبارة السرية</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">أنت</string>
   <string name="MediaPreviewActivity_unssuported_media_type">غير مدعوم.</string>
@@ -824,6 +822,7 @@
   <string name="recipient_preferences__view_safety_number">عرض رقم الأمان</string>
   <string name="recipient_preferences__chat_settings">إعدادات الدردشة</string>
   <string name="recipient_preferences__privacy">الخصوصية</string>
+  <string name="recipient_preferences__ringtone">نغمة الرنين</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">مكالمة سيجنال</string>
   <string name="redphone_call_controls__mute">صامت</string>
@@ -872,7 +871,7 @@
   <string name="AndroidManifest_archived_conversations">أرشيف المحادثة</string>
   <string name="AndroidManifest_remove_photo">حذف الصورة</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">استيراد / تصدير</string>
+  <string name="arrays__import_export">استيراد</string>
   <string name="arrays__use_default">استخدم الافتراضي</string>
   <string name="arrays__use_custom">تخصيص</string>
   <string name="arrays__mute_for_one_hour">كتم لمدة ساعة</string>
@@ -996,6 +995,7 @@
   <string name="preferences_notifications__events">الأحداث</string>
   <string name="preferences_notifications__in_chat_sounds">أصوات خلال الدردشة</string>
   <string name="preferences_notifications__show">اظهار</string>
+  <string name="preferences_notifications__ringtone">نغمة الرنين</string>
   <string name="preferences_chats__show_invitation_prompts">اظهر رسالة الدعوة</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">عرض رسائل الدعوات من جهات الاتصال التي لا تستخدم Signal</string>
   <string name="preferences_chats__message_text_size">حجم الخط في الرسائل</string>
@@ -1115,5 +1115,15 @@
   <string name="CallNotificationBuilder_connecting">الاتصال جارِ...</string>
   <string name="Permissions_continue">استمر</string>
   <string name="Permissions_not_now">ليس الآن</string>
+  <string name="registration_activity__skip">تخطى</string>
+  <string name="registration_activity__register">سجل</string>
+  <string name="RegistrationActivity_restore">استعادة</string>
+  <string name="BackupDialog_copied_to_clipboard">نسخ إلى الحافظة</string>
+  <string name="BackupUtil_never">أبدا</string>
+  <string name="BackupUtil_unknown">مجهول</string>
+  <string name="AppProtectionPreferenceFragment_none">لا شيء </string>
+  <string name="RegistrationActivity_too_many_attempts">محاولات كثيرة</string>
+  <string name="RegistrationLockDialog_disable">تعطيل</string>
+  <string name="RegistrationActivity_continue">استمر</string>
   <!--EOF-->
 </resources>

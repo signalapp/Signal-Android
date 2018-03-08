@@ -37,7 +37,7 @@
   <string name="ApplicationPreferencesActivity_off">uit</string>
   <string name="ApplicationPreferencesActivity_Off">Uit</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Wachtwoord %1$s, Schermbeveiliging %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Schermvergrendeling %1$s, Registratievergrendeling %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Thema %1$s, Taal %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -448,7 +448,7 @@ telefoonnummer opgeven</string>
 ingevoerd (%s) is ongeldig.</string>
   <string name="RegistrationActivity_missing_google_play_services">De Google Play Services zijn niet aanwezig</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Dit apparaat bevat geen Google Play Services. Je kunt Signal nog steeds gebruiken, maar deze configuratie kan de betrouwbaarheid en performance verslechteren.\n\nAls je geen gevorderde gebruiker bent, geen aangepaste ROM gebruikt of denkt dat het tonen van dit bericht onterecht is, neem dan voor hulp a.u.b. contact op met support@whispersystems.org.</string>
-  <string name="RegistrationActivity_i_understand">I begrijp het</string>
+  <string name="RegistrationActivity_i_understand">Ik begrijp het</string>
   <string name="RegistrationActivity_play_services_error">Play services fout</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">De Google Play Services zijn momenteel aan het updaten of zijn tijdelijk niet beschikbaar. Probeer het nog eens.</string>
   <string name="RegistrationActivity_more_information">Meer informatie</string>
@@ -552,7 +552,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="KeyCachingService_signal_passphrase_cached">Tik om te openen.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Tik om te openen of tik op het slot om te sluiten.</string>
   <string name="KeyCachingService_passphrase_cached">Signal is ontgrendeld</string>
-  <string name="KeyCachingService_lock">Vergrendelen met wachtwoord</string>
+  <string name="KeyCachingService_lock">Signal vergrendelen</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Jij</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Niet-ondersteund mediatype</string>
@@ -579,6 +579,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="QuickResponseService_problem_sending_message">Fout bij verzenden van bericht!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Map openen</string>
+  <string name="SaveAttachmentTask_saved_to">Opgeslagen naar %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Zoeken</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -786,6 +787,8 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="recipient_preferences__view_safety_number">Veiligheidsnummer weergeven</string>
   <string name="recipient_preferences__chat_settings">Gespreksinstellingen</string>
   <string name="recipient_preferences__privacy">Privacy</string>
+  <string name="recipient_preferences__call_settings">Oproep instellingen</string>
+  <string name="recipient_preferences__ringtone">Beltoon</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal oproep</string>
   <string name="redphone_call_controls__mute">Dempen</string>
@@ -838,7 +841,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="AndroidManifest_archived_conversations">Gearchiveerde gesprekken</string>
   <string name="AndroidManifest_remove_photo">Foto verwijderen</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Importeren / exporteren</string>
+  <string name="arrays__import_export">Importeren</string>
   <string name="arrays__use_default">Gebruik standaard</string>
   <string name="arrays__use_custom">Gebruik aangepast</string>
   <string name="arrays__mute_for_one_hour">Demp voor 1 uur</string>
@@ -962,6 +965,8 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="preferences_notifications__events">Gebeurtenissen</string>
   <string name="preferences_notifications__in_chat_sounds">Geluiden in gesprek</string>
   <string name="preferences_notifications__show">Tonen</string>
+  <string name="preferences_notifications__calls">Oproepen</string>
+  <string name="preferences_notifications__ringtone">Beltoon</string>
   <string name="preferences_chats__show_invitation_prompts">Uitnodigingsvragen tonen</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Toon een vraag of contacten zonder Signal uitgenodigd moeten worden</string>
   <string name="preferences_chats__message_text_size">Tekstgrootte voor berichten</string>
@@ -1089,5 +1094,77 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Ontgrendel om je berichten te lezen</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Ontgrendel om de update te voltooien</string>
   <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">A.u.b. ontgrendelen om de update te voltooien</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">Back-upwachtwoord</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Back-ups worden opgeslagen op het externe opslaggeheugen en versleuteld met het wachtwoord hieronder. Je hebt dit wachtwoord nodig om de back-up terug te zetten.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Ik heb dit wachtwoord opgeschreven. Zonder dit wachtwoord kan ik deze back-up niet terugzetten.</string>
+  <string name="registration_activity__restore_backup">Back-up terugzetten</string>
+  <string name="registration_activity__skip">Overslaan</string>
+  <string name="registration_activity__register">Registreren</string>
+  <string name="preferences_chats__chat_backups">Back-up van gesprekken</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Gesprekken back-uppen naar externe opslag</string>
+  <string name="preferences_chats__create_backup">Back-up maken</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Voer back-upwachtwoord in</string>
+  <string name="RegistrationActivity_restore">Herstellen</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">Verkeerd back-upwachtwoord</string>
+  <string name="RegistrationActivity_checking">Controleren...</string>
+  <string name="RegistrationActivity_d_messages_so_far">%dberichten tot nu toe...</string>
+  <string name="RegistrationActivity_restore_from_backup">Back-up terugzetten?</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Zet je berichten en media terug van een lokale back-up. Als je de back-up nu niet terugzet, kun je deze later niet meer terugzetten.</string>
+  <string name="RegistrationActivity_backup_size_s">Back-upgrootte: %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Back-uptijdstip: %s</string>
+  <string name="BackupDialog_enable_local_backups">Lokale back-ups inschakelen?</string>
+  <string name="BackupDialog_enable_backups">Back-ups inschakelen</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Verklaar dat je het begrijpt door het selectievakje aan te vinken</string>
+  <string name="BackupDialog_delete_backups">Back-ups verwijderen?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Uitschakelen en alle lokale back-ups verwijderen?</string>
+  <string name="BackupDialog_delete_backups_statement">Back-ups verwijderen</string>
+  <string name="BackupDialog_copied_to_clipboard">Gekopieerd naar klembord</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal heeft toegang nodig tot de opslagruimte om backups te kunnen maken maar deze toestemming is permanent geweigerd. Ga naar de instellingen, selecteer \"Toestemmingen\" en schakel \"Opslagruimte\" in.</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">Laatste back-up: %s</string>
+  <string name="ChatsPreferenceFragment_in_progress">Bezig</string>
+  <string name="ProgressPreference_d_messages_so_far">%dberichten tot nu toe</string>
+  <string name="RegistrationActivity_verify_s">Verifiëren %s</string>
+  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Geef de verificatiecode die naar %sgezonden is.</string>
+  <string name="RegistrationActivity_wrong_number">Verkeerd nummer?</string>
+  <string name="BackupUtil_never">Nooit</string>
+  <string name="BackupUtil_unknown">Onbekend</string>
+  <string name="prompt_passphrase_activity__unlock_signal">Signal ontgrendelen</string>
+  <string name="preferences_app_protection__screen_lock">Schermbeveiliging</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Blokkeer Signal met de Android schermbeveiliging of vingerafdruk.</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Inactiviteitsduur voor schermvergrendeling</string>
+  <string name="AppProtectionPreferenceFragment_none">Geen</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">De registratiebeveiligings PIN is niet hetzelfde als de SMS verrificatiecode die je net ontvangen hebt. Geef a.u.b. de PIN in die je hiervoor in de applicatie ingegeven hebt.</string>
+  <string name="registration_activity__registration_lock_pin">Registratiebeveiligings PIN</string>
+  <string name="registration_activity__forgot_pin">PIN vergeten?</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">De PIN kan uit vier of meer cijfers bestaan. Als je de PIN vergeet kun je geen toegang tot je account krijgen voor maximaal zeven dagen.</string>
+  <string name="registration_lock_dialog_view__enter_pin">Geef PIN</string>
+  <string name="registration_lock_dialog_view__confirm_pin">Bevestig PIN</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Geef de regsitratiebeveiligings PIN</string>
+  <string name="registration_lock_reminder_view__enter_pin">Geef PIN</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Geef een registratiebeveiligings PIN in die nodig is om dit telefoonnummer opnieuw voor Signal te registreren.</string>
+  <string name="preferences_app_protection__registration_lock_pin">Registratiebeveiligings PIN</string>
+  <string name="preferences_app_protection__registration_lock">Registratiebeveiliging</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Je moet je registratiebeveiligings PIN ingeven</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">Ongeldige registratiebeveiligings PIN</string>
+  <string name="RegistrationActivity_too_many_attempts">Te veel pogingen</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Je hebt teveel ongeldige pogingen om een registratiebeveiligings PIN in te geven ondernomen, probeer het over een dag nog eens.</string>
+  <string name="RegistrationActivity_error_connecting_to_service">Fout bij verbinden met de service</string>
+  <string name="RegistrationActivity_oh_no">Oh nee!</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Registratie van dit telefoonnummer zonder registratiebeveiligings PIN is pas mogelijk 7 dagen nadat dit telefoonnummer voor het laatst actief was op Signal. Je hebt nog %ddagen te gaan.</string>
+  <string name="RegistrationActivity_registration_lock_pin">Registratiebeveiligings PIN</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Dit telefoonnummer heeft registratiebeveiliging geactiveerd. Geef a.u.b. de registratiebeveiligings PIN in.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Registratiebeveiliging is geactiveerd voor je telefoonnummer.</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">Ik ben mijn PIN vergeten.</string>
+  <string name="RegistrationLockDialog_forgotten_pin">PIN vergeten?</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registratiebeveiliging helpt om je te beschermen tegen niet geautoriseerde registratiepogingen. Deze functie kan elk moment uitgezet worden in de privacy installingen van Signal.</string>
+  <string name="RegistrationLockDialog_registration_lock">Registratiebeveiliging</string>
+  <string name="RegistrationLockDialog_enable">Inschakelen</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">De registratiebeveiligings PIN moet minimaal 4 cijfers bevatten.</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">De twee PINs zijn niet hetzelfde.</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">Fout bij het verbinden met de service</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">Registratiebeveiligings PIN uitschakelen?</string>
+  <string name="RegistrationLockDialog_disable">Uitschakelen</string>
+  <string name="RegistrationActivity_continue">Doorgaan</string>
+  <string name="preferences_chats__backups">Back-ups</string>
   <!--EOF-->
 </resources>

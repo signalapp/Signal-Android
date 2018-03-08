@@ -37,7 +37,7 @@
   <string name="ApplicationPreferencesActivity_off">inactivo</string>
   <string name="ApplicationPreferencesActivity_Off">Inactivo</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Frase contraseña %1$s, seguridad de la pantalla %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Bloqueo de pantalla %1$s, Bloqueo de registro %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Idioma %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -561,7 +561,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="KeyCachingService_signal_passphrase_cached">Pulse para abrir.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Pulse para abrir, o pulse el candado para cerrar.</string>
   <string name="KeyCachingService_passphrase_cached">Signal está desbloqueado</string>
-  <string name="KeyCachingService_lock">Bloquear con clave de acceso</string>
+  <string name="KeyCachingService_lock">Bloquear Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Usted</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Formato de contenido no compatible</string>
@@ -588,6 +588,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="QuickResponseService_problem_sending_message">¡Hubo un problema al enviar el mensaje!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Abrir directorio</string>
+  <string name="SaveAttachmentTask_saved_to">Guardado en %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Buscar</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -795,6 +796,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="recipient_preferences__view_safety_number">Ver número de seguridad</string>
   <string name="recipient_preferences__chat_settings">Ajustes del chat</string>
   <string name="recipient_preferences__privacy">Privacidad</string>
+  <string name="recipient_preferences__call_settings">Configuración de llamada</string>
+  <string name="recipient_preferences__ringtone">Tono de llamada</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Llamada de Signal</string>
   <string name="redphone_call_controls__mute">Silenciar</string>
@@ -847,7 +850,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="AndroidManifest_archived_conversations">Conversaciones archivadas</string>
   <string name="AndroidManifest_remove_photo">Eliminar foto</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Importar/exportar</string>
+  <string name="arrays__import_export">Importar</string>
   <string name="arrays__use_default">Usar el predeterminado</string>
   <string name="arrays__use_custom">Usar el personalizado</string>
   <string name="arrays__mute_for_one_hour">Silenciar durante 1 hora</string>
@@ -971,6 +974,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences_notifications__events">Eventos</string>
   <string name="preferences_notifications__in_chat_sounds">Sonidos en el chat</string>
   <string name="preferences_notifications__show">Mostrar</string>
+  <string name="preferences_notifications__calls">Llamadas</string>
+  <string name="preferences_notifications__ringtone">Tono de llamada</string>
   <string name="preferences_chats__show_invitation_prompts">Mostrar ofrecimientos de invitación</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Muestra ofrecimientos de invitación para contactos sin Signal</string>
   <string name="preferences_chats__message_text_size">Tamaño de fuente del mensaje</string>
@@ -1042,7 +1047,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Nuevo mensaje</string>
   <string name="text_secure_normal__menu_new_group">Nuevo grupo</string>
-  <string name="text_secure_normal__menu_settings">Parámetros</string>
+  <string name="text_secure_normal__menu_settings">Preferencias</string>
   <string name="text_secure_normal__menu_clear_passphrase">Bloquear</string>
   <string name="text_secure_normal__mark_all_as_read">Marcar todos como leídos</string>
   <string name="text_secure_normal__invite_friends">Invitar amigos</string>
@@ -1097,5 +1102,79 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrar base de datos de Signal</string>
   <string name="PushDecryptJob_new_locked_message">Nuevo mensaje bloqueado</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Desbloquear para ver mensajes pendientes</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Desbloquear para completar actualización</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Por favor, desbloquee Signal para completar la actualización</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">Frase-contraseña de la copia de seguridad</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Las copias de seguridad se guardarán en un almacenamiento externo y se cifrarán con la frase-contraseña de debajo. Ha de tener esta frase-contraseña para restaurar una copia de seguridad.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">He anotado esta frase-contraseña. Sin ella, no podría restaurar una copia de seguridad.</string>
+  <string name="registration_activity__restore_backup">Restaurar copia de seguridad</string>
+  <string name="registration_activity__skip">Omitir</string>
+  <string name="registration_activity__register">Registro</string>
+  <string name="preferences_chats__chat_backups">Copias de seguridad del chat</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Hacer copia de seguridad de los chats en almacenamiento externo</string>
+  <string name="preferences_chats__create_backup">Crear copia de seguridad</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Introduzca la frase-contraseña de la copia de seguridad</string>
+  <string name="RegistrationActivity_restore">Restaurar</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">La frase-contraseña de la copia de seguridad es incorrecta</string>
+  <string name="RegistrationActivity_checking">Comprobando...</string>
+  <string name="RegistrationActivity_d_messages_so_far">%d mensajes hasta ahora...</string>
+  <string name="RegistrationActivity_restore_from_backup">¿Restaurar desde copia de seguridad?</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Restaura sus mensajes y audiovisuales desde una copia de seguridad local. Si no restaura ahora, no podrá restaurar más tarde.</string>
+  <string name="RegistrationActivity_backup_size_s">Tamaño de la copia de seguridad: %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Marca de tiempo de la copia de seguridad: %s</string>
+  <string name="BackupDialog_enable_local_backups">¿Habilitar copias de seguridad locales?</string>
+  <string name="BackupDialog_enable_backups">Habilitar copias de seguridad</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Por favor, indique que lo ha comprendido marcando la casilla de confirmación.</string>
+  <string name="BackupDialog_delete_backups">¿Eliminar copias de seguridad?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">¿Deshabilitar y eliminar todas las copias de seguridad locales?</string>
+  <string name="BackupDialog_delete_backups_statement">Eliminar copias de seguridad</string>
+  <string name="BackupDialog_copied_to_clipboard">Copiado al portapapeles</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal requiere permiso de almacenamiento externo para crear copias de seguridad, pero ha sido denegado permanentemente. Por favor, continúe hacia la configuración de la aplicación, seleccione \"Permisos\" y habilite \"Almacenamiento\".</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">Última copia de seguridad: %s</string>
+  <string name="ChatsPreferenceFragment_in_progress">En curso</string>
+  <string name="ProgressPreference_d_messages_so_far">%d mensajes hasta ahora</string>
+  <string name="RegistrationActivity_verify_s">Verificar %s</string>
+  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Por favor, introduzca el código de verificación enviado a %s.</string>
+  <string name="RegistrationActivity_wrong_number">¿Número erróneo?</string>
+  <string name="BackupUtil_never">Nunca</string>
+  <string name="BackupUtil_unknown">Desconocido</string>
+  <string name="prompt_passphrase_activity__unlock_signal">Desbloquear Signal</string>
+  <string name="preferences_app_protection__screen_lock">Bloqueo de pantalla</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Bloquear el acceso a Signal con el bloqueo de pantalla de Android o huella dactilar.</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Tiempo de inactividad para el bloqueo de pantalla</string>
+  <string name="AppProtectionPreferenceFragment_none">Ninguno</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">El PIN de bloqueo de registro es distinto del código de verificación SMS que acaba de recibir. Por favor, introduzca el PIN que ha configurado previamente en la aplicación.</string>
+  <string name="registration_activity__registration_lock_pin">PIN de bloqueo de registro</string>
+  <string name="registration_activity__forgot_pin">¿Olvidó el PIN?</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">El PIN puede consistir en cuatro o más dígitos. Si olvidó su PIN, podría quedar excluido de su cuenta hasta siete días.</string>
+  <string name="registration_lock_dialog_view__enter_pin">Introduzca el PIN</string>
+  <string name="registration_lock_dialog_view__confirm_pin">Confirme el PIN</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Introduzca su PIN de bloqueo de registro</string>
+  <string name="registration_lock_reminder_view__enter_pin">Introduzca el PIN</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Habilitar un \'PIN de bloqueo de registro\' que se le pedirá para registrar de nuevo este número de teléfono con Signal.</string>
+  <string name="preferences_app_protection__registration_lock_pin">PIN de bloqueo de registro</string>
+  <string name="preferences_app_protection__registration_lock">Bloqueo de registro</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Tiene que introducir su PIN de bloqueo de registro</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">PIN de bloqueo de registro incorrecto</string>
+  <string name="RegistrationActivity_too_many_attempts">Demasiados intentos</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Ha realizado demasiados intentos incorrectos de PIN de bloqueo de registro. Por favor, inténtelo de nuevo pasado un día.</string>
+  <string name="RegistrationActivity_error_connecting_to_service">Error al conectar al servicio</string>
+  <string name="RegistrationActivity_oh_no">¡Oh no!</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">El registro de este número de teléfono será posible sin PIN de bloqueo de registro pasados 7 días desde que este número fuera activado en Signal. Aún le quedan %d días.</string>
+  <string name="RegistrationActivity_registration_lock_pin">PIN de bloqueo de registro</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Este número de teléfono tiene el bloqueo de registro habilitado. Por favor, introduzca el PIN de bloqueo de registro.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">El bloqueo de registro está habilitado para su número de teléfono.</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">Olvidé mi PIN.</string>
+  <string name="RegistrationLockDialog_forgotten_pin">¿Ha olvidado el PIN?</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">El bloqueo de registro ayuda a proteger su número de teléfono de intentos de registro no autorizados. Esta característica se puede deshabilitar en cualquier momento en su configuración de privacidad de Signal.</string>
+  <string name="RegistrationLockDialog_registration_lock">Bloqueo de registro</string>
+  <string name="RegistrationLockDialog_enable">Habilitar</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">El PIN de bloqueo de registro debe tener al menos 4 dígitos.</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Los dos PINs que ha introducido no coinciden.</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">Error al conectar al servicio</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">¿Deshabilitar el PIN de bloqueo de registro?</string>
+  <string name="RegistrationLockDialog_disable">Deshabilitar</string>
+  <string name="RegistrationActivity_continue">Continuar</string>
+  <string name="preferences_chats__backups">Copias de seguridad</string>
   <!--EOF-->
 </resources>

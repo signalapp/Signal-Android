@@ -36,7 +36,6 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <string name="ApplicationPreferencesActivity_off">tắt</string>
   <string name="ApplicationPreferencesActivity_Off">Tắt</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Cụm mật khẩu %1$s, Bảo mật màn hình %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Chủ đề %1$s, Ngôn ngữ %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -394,7 +393,6 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="KeyCachingService_signal_passphrase_cached">Chạm vào để mở.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Chạm vào để mở, hoặc chạm vào ổ khóa để đóng lại.</string>
   <string name="KeyCachingService_passphrase_cached">Signal đã mở khóa</string>
-  <string name="KeyCachingService_lock">Khóa bằng cụm từ mật khẩu</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Bạn</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Không hỗ trợ dạng truyền thông này</string>
@@ -527,6 +525,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="recipient_preferences__block">Chặn</string>
   <string name="recipient_preferences__color">Màu</string>
   <string name="recipient_preferences__privacy">Riêng tư</string>
+  <string name="recipient_preferences__ringtone">Nhạc chuông</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Cuộc gọi Signal</string>
   <string name="redphone_call_controls__mute">Im lặng</string>
@@ -560,7 +559,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="AndroidManifest__invite_friends">Mời bạn bè</string>
   <string name="AndroidManifest_archived_conversations">Các cuộc hội thoại đã bảo lưu</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Xuất / nhập</string>
+  <string name="arrays__import_export">Nhập</string>
   <string name="arrays__use_default">Dùng mặc định</string>
   <string name="arrays__use_custom">Dùng tùy chỉnh</string>
   <string name="arrays__mute_for_one_hour">Tạm im 1 tiếng</string>
@@ -664,6 +663,7 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <string name="preferences_chats__message_trimming">Thu gọn tin nhắn</string>
   <string name="preferences_advanced__use_system_emoji">Sử dụng ký tự biểu cảm hệ thống</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Tắt hỗ trợ ký tự biểu cảm mặc định của Signal</string>
+  <string name="preferences_notifications__ringtone">Nhạc chuông</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -761,5 +761,15 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <string name="transport_selection_list_item__transport_icon">Biểu tượng chuyển tải</string>
   <string name="CallNotificationBuilder_connecting">Đang kết nối...</string>
   <string name="Permissions_continue">Tiếp tục</string>
+  <string name="registration_activity__skip">Bỏ qua</string>
+  <string name="registration_activity__register">Đăng ký</string>
+  <string name="RegistrationActivity_restore">Phục hồi</string>
+  <string name="BackupDialog_copied_to_clipboard">Sao chép vào bảng ghi tạm</string>
+  <string name="BackupUtil_never">Không bao giờ</string>
+  <string name="BackupUtil_unknown">Không rõ</string>
+  <string name="AppProtectionPreferenceFragment_none">Không</string>
+  <string name="RegistrationActivity_too_many_attempts">Thử quá nhiều lần</string>
+  <string name="RegistrationLockDialog_disable">Tắt</string>
+  <string name="RegistrationActivity_continue">Tiếp tục</string>
   <!--EOF-->
 </resources>

@@ -39,7 +39,7 @@
   <string name="ApplicationPreferencesActivity_off">vyp.</string>
   <string name="ApplicationPreferencesActivity_Off">Vyp.</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Heslo %1$s, Zabezpečení obrazovky %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Zámek obrazovky %1$s, Registrační zámek %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Motiv %1$s, jazyk %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -567,7 +567,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="KeyCachingService_signal_passphrase_cached">Stisknutím otevřete.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Dotykem otevřete nebo stisknutím zámku uzamkněte.</string>
   <string name="KeyCachingService_passphrase_cached">Signal je odemčen</string>
-  <string name="KeyCachingService_lock">Uzamknout heslem</string>
+  <string name="KeyCachingService_lock">Zamknout Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Vy</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Nepodporovaný typ dat.</string>
@@ -594,6 +594,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="QuickResponseService_problem_sending_message">Problém při odesílání zprávy!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Otevřít adresář</string>
+  <string name="SaveAttachmentTask_saved_to">Uložit do %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Hledat</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -808,6 +809,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="recipient_preferences__view_safety_number">Zobrazit bezpečnostní kód</string>
   <string name="recipient_preferences__chat_settings">Nastavení konverzace</string>
   <string name="recipient_preferences__privacy">Soukromí</string>
+  <string name="recipient_preferences__call_settings">Nastavení volání</string>
+  <string name="recipient_preferences__ringtone">Vyzvánění</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal volání</string>
   <string name="redphone_call_controls__mute">Ztlumit</string>
@@ -860,7 +863,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="AndroidManifest_archived_conversations">Archivované konverzace</string>
   <string name="AndroidManifest_remove_photo">Odebrat fotografii</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Import / export</string>
+  <string name="arrays__import_export">Import</string>
   <string name="arrays__use_default">Použít výchozí</string>
   <string name="arrays__use_custom">Použít vlastní</string>
   <string name="arrays__mute_for_one_hour">Ztišit na 1 hodinu</string>
@@ -985,6 +988,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="preferences_notifications__events">Události</string>
   <string name="preferences_notifications__in_chat_sounds">Zvuk během konverzace</string>
   <string name="preferences_notifications__show">Zobrazit</string>
+  <string name="preferences_notifications__calls">Volání</string>
+  <string name="preferences_notifications__ringtone">Vyzvánění</string>
   <string name="preferences_chats__show_invitation_prompts">Zobrazovat pozvánky</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Zobrazovat pozvánky pro kontakty bez aplikace Signal</string>
   <string name="preferences_chats__message_text_size">Velikost písma zprávy</string>
@@ -1112,5 +1117,79 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Přesouvám Signal databázi</string>
   <string name="PushDecryptJob_new_locked_message">Nová uzamčená zpráva</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Pro zobrazení čekajících zpráv odemkněte</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Odemknout Signal, aby se dokončila akualizace</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Prosím odemkněte Signal, aby se dokončila aktualizace.</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">Heslo pro zálohy</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Zálohy budou uloženy na externí úložiště a zašifrovány níže uvedeným heslem. Toto heslo musíte znát abyste mohli zálohy obnovit.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Heslo jsem si zapsal. Bez něj nebudu schopen obnovit data ze zálohy.</string>
+  <string name="registration_activity__restore_backup">Obnovit zálohu</string>
+  <string name="registration_activity__skip">Přeskočit</string>
+  <string name="registration_activity__register">Zaregistrovat</string>
+  <string name="preferences_chats__chat_backups">Zálohy konverzace</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Zálohovat konverzaci na externí úložiště.</string>
+  <string name="preferences_chats__create_backup">Vytvořit zálohu</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Zadejte heslo pro zálohu</string>
+  <string name="RegistrationActivity_restore">Obnovení</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">Chybné heslo k záloze</string>
+  <string name="RegistrationActivity_checking">Kontroluji...</string>
+  <string name="RegistrationActivity_d_messages_so_far">%dzpráv zatím...</string>
+  <string name="RegistrationActivity_restore_from_backup">Obnovit ze zálohy?</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Obnovte vaši konverzaci a media z lokální zálohy. Pokud je neobnovíte teď, v budoucnu to již nebude možné.</string>
+  <string name="RegistrationActivity_backup_size_s">Velikost zálohy: %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Čas zálohy: %s</string>
+  <string name="BackupDialog_enable_local_backups">Povolit interní zálohy?</string>
+  <string name="BackupDialog_enable_backups">Povolit zálohy.</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Prosím potvrďte, že jste to pochopili zaškrtnutím potvrzovacího boxu.</string>
+  <string name="BackupDialog_delete_backups">Smazat zálohy?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Zakázat a vymazat všechny interní zálohy?</string>
+  <string name="BackupDialog_delete_backups_statement">Smazat zálohy</string>
+  <string name="BackupDialog_copied_to_clipboard">Zkopírováno do schránky</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signál potřebuje oprávnění pro přístup k úložišti, aby mohl vytvářet zálohy, ale toto oprávnění je nyní trvale zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Úložiště\".</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">Poslední záloha: %s</string>
+  <string name="ChatsPreferenceFragment_in_progress">Probíhá</string>
+  <string name="ProgressPreference_d_messages_so_far">%dzpráv zatím</string>
+  <string name="RegistrationActivity_verify_s">Ověřuji %s</string>
+  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Prosím vložte ověřovací kód zaslaný %s</string>
+  <string name="RegistrationActivity_wrong_number">Špatné číslo?</string>
+  <string name="BackupUtil_never">Nikdy</string>
+  <string name="BackupUtil_unknown">Neznámý</string>
+  <string name="prompt_passphrase_activity__unlock_signal">Odemknout Signal</string>
+  <string name="preferences_app_protection__screen_lock">Zámek obrazovky</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Zamknout přístup k Signalu zámkem obrazovky Androidu nebo otiskem prstu.</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Časový limit neaktivity zámku obrazovky</string>
+  <string name="AppProtectionPreferenceFragment_none">Nic</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN zámku registrace není stejný jako přijatý SMS kontrolní kód, který jste před chvílí přijali. Prosím vložte PIN který jste předtím nastavili v aplikaci.</string>
+  <string name="registration_activity__registration_lock_pin">PIN zámku registrace</string>
+  <string name="registration_activity__forgot_pin">Zapomněli jste PIN?</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">PIN může obsahovat 4 a více číslic. Pokud PIN zapomenete, bude váš účet uzamčen po dobu 7 dnů.</string>
+  <string name="registration_lock_dialog_view__enter_pin">Vložte PIN</string>
+  <string name="registration_lock_dialog_view__confirm_pin">Potvrďte PIN</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Vložte PIN zámku registrace</string>
+  <string name="registration_lock_reminder_view__enter_pin">Vložte PIN</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Povolit PIN zámku registrace, který bude vyžadován při nové registraci vašeho telefoního čísla do Signalu. </string>
+  <string name="preferences_app_protection__registration_lock_pin">PIN zámku registrace</string>
+  <string name="preferences_app_protection__registration_lock">Zámek registrace</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Musíte vložit PIN zámku registrace</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">Chybný PIN zámku registrace</string>
+  <string name="RegistrationActivity_too_many_attempts">Příliš mnoho pokusů</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Provedli jste přísliš mnoho chybných pokusů o zadání PINu zámku registrace. Zkuste to prosím znovu další den.</string>
+  <string name="RegistrationActivity_error_connecting_to_service">Chyba při připojování k službě</string>
+  <string name="RegistrationActivity_oh_no">Ale ne!</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Registrace tohoto telefonního čísla bude možná bez vašeho PINu zámku registrace po 7 dnech od poslední aktivity na Signalu. Zbyvá ještě %ddnů.</string>
+  <string name="RegistrationActivity_registration_lock_pin">PIN zámku registrace</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Toto telefonní číslo má registraci zabezpečenou PINnem. Prosím vložte PIN zámku registrace.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Zámek registrace je povolen pro toto telefonní číslo.</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">Zapomněl jsem svůj PIN.</string>
+  <string name="RegistrationLockDialog_forgotten_pin">Zapomenutý PIN?</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Zamek registrace chrání vaše telefonní číslo před pokusy o jeho nepovolenou registraci. Tato vlastnost může být vypnuta kdykoliv v nastavení zabezpečení Signalu.</string>
+  <string name="RegistrationLockDialog_registration_lock">Zámek registrace</string>
+  <string name="RegistrationLockDialog_enable">Povolit</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">PIN zámku registrace musí obsahovat minimálně 4 číslice.</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Dva zadané PINy nejsou shodné.</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">Chyba při připojování k službě</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">Zakázat PIN zámku registrace?</string>
+  <string name="RegistrationLockDialog_disable">Deaktivovat</string>
+  <string name="RegistrationActivity_continue">Pokračovat</string>
+  <string name="preferences_chats__backups">Zálohy</string>
   <!--EOF-->
 </resources>

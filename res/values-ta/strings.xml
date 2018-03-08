@@ -325,7 +325,6 @@
   <string name="ApplicationMigrationService_importing_text_messages">குறுஞ்செய்திகளை இறக்குமதி செய்யப்படுகிறது.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">திறக்க தொடு.</string>
-  <string name="KeyCachingService_lock">கடவுச்சொல்லை வைத்து பூட்டவும் </string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">நீங்கள்</string>
   <string name="MediaPreviewActivity_unssuported_media_type">ஆதரிக்கப்படாத மீடியா வகை</string>
@@ -469,7 +468,7 @@
   <string name="AndroidManifest__change_passphrase">கடவுச்சொல்லை மாற்று</string>
   <string name="AndroidManifest__message_details">செய்தி விவரங்கள்</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">இறக்குமதி / ஏற்றுமதி</string>
+  <string name="arrays__import_export">இறக்குமதி செய்</string>
   <string name="arrays__use_default">இயல்புநிலை பயன்படுத்தவும்</string>
   <string name="arrays__use_custom">விருப்பம் பயன்படுத்தவும்</string>
   <string name="arrays__enabled">செயல்படுத்தப்பட்டது</string>
@@ -620,5 +619,14 @@
   <string name="transport_selection_list_item__transport_icon">போக்குவரத்து குறும்படம்</string>
   <string name="CallNotificationBuilder_connecting">இணைக்கப்படுகிறது...</string>
   <string name="Permissions_continue">தொடர்</string>
+  <string name="registration_activity__skip">தவிர்</string>
+  <string name="registration_activity__register">பதிவு செய்</string>
+  <string name="RegistrationActivity_restore">மீட்க</string>
+  <string name="BackupUtil_never">ஒருபோதுமில்லை</string>
+  <string name="BackupUtil_unknown">முன் தெரிந்திராத</string>
+  <string name="AppProtectionPreferenceFragment_none">எதுவும் இல்லை</string>
+  <string name="RegistrationActivity_too_many_attempts">மிக அதிக முயற்சிகள்</string>
+  <string name="RegistrationLockDialog_disable">முடக்கு</string>
+  <string name="RegistrationActivity_continue">தொடர்</string>
   <!--EOF-->
 </resources>

@@ -37,7 +37,7 @@
   <string name="ApplicationPreferencesActivity_off">off</string>
   <string name="ApplicationPreferencesActivity_Off">Off</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Password %1$s, Sicurezza schermo %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Blocco schermo %1$s, Sicurezza schermo %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Lingua %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -51,6 +51,10 @@
   <string name="DraftDatabase_Draft_location_snippet">(posizione)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Impossibile trovare un\'app per selezionare il file.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal richiede l\'autorizzazione all\'accesso della memoria per allegare foto, video o audio, ma è stata negata in modo permanente. Si prega di continuare con il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Archiviazione\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal richiede l\'autorizzazione alla lettura dei contatti per allegare le informazioni di contatto, ma è stata negata in modo permanente. Si prega di continuare con il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Contatti\".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal richiede l\'autorizzazione alla geolocalizzazione per allegare una posizione, ma è stata negata in modo permanente. Si prega di continuare con il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Posizione\".</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal richiede l\'autorizzazione all\'uso della fotocamera per scattare foto, ma è stata negata in modo permanente. Si prega di continuare al menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Fotocamera\".</string>
   <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Errore nel riprodurre l\'audio!</string>
@@ -121,7 +125,12 @@
   <string name="ConversationActivity_error_sending_voice_message">Errore nell\'invio del messaggio vocale</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Sul tuo dispositivo non sono presenti app per gestire questo link.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Per poter mandare un messaggio audio, permetti a Signal di accedere al tuo microfono.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal richiede l\'autorizzazione all\'uso microfono per inviare messaggi audio, ma è stata negata in modo permanente. Si prega di continuare con le impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Microfono\".</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Per chiamare %s, Signal necessita accesso al tuo microfono e alla tua camera.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal richiede le autorizzazioni all\'uso del microfono e della fotocamera per chiamare %s, ma sono state negate in modo permanente. Si prega di continuare con le impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Microfono\" e \"Fotocamera\".</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Per poter catturare foto e video, permetti a Signal di accedere alla camera del tuo dispositivo</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal richiede l\'autorizzazione all\'uso della fotocamera per scattare foto o registrare video, ma è stata negata in modo permanente. Si prega di continuare al menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Fotocamera\".</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal richiede l\'autorizzazione all\'uso della fotocamera per scattare foto o registrare video</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d messaggio non letto</item>
@@ -297,6 +306,12 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="ImportFragment_no_plaintext_backup_found">Nessuna copia in chiaro trovata!</string>
   <string name="ImportFragment_error_importing_backup">Errore durante l\'importazione della copia!</string>
   <string name="ImportFragment_import_complete">Importazione terminata!</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages">Signal necessita l\'accesso agli SMS per importarli, ma è stato negato in modo permanente. Si prega di continuare con le impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"SMS\".</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">Signal necessita l\'accesso agli SMS per importarli</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">Signal richiede l\'autorizzazione per leggere dalla memoria, ma è stata negata in modo permanente. Si prega di continuare con le impostazioni dell\'app, selezionare \"Autorizzazioni\", quindi abilitare \"Archiviazione\".</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">Signal necessita l\'autorizzazione per leggere dalla memoria</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal richiede l\'autorizzazione per scrivere sulla memoria esterna, ma è stata negata in modo permanente. Si prega di continuare con le impostazioni dell\'app, selezionare \"Autorizzazioni\", quindi abilitare \"Archiviazione\".</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">Signal richiede l\'autorizzazione per scrivere sulla memoria esterna.</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tieni premuto per registrare un messaggio vocale, rilascia per inviare</string>
   <!--InviteActivity-->
@@ -380,6 +395,8 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Ci spiace, questo non è un codice QR valido per collegare il dispositivo.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Collegare un dispositivo Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Sembrerebbe che tu stia provando a connettere un dispositivo Signal usando uno scanner di terze parti. Per la tua protezione ti preghiamo di  scansionare nuovamente il codice usando Signal.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal richiede l\'autorizzazione all\'uso della fotocamera per leggere codici QR, ma è stata negata in modo permanente. Si prega di continuare al menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Fotocamera\".</string>
+  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Signal richiede l\'autorizzazione all\'uso della fotocamera per leggere codici QR.</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Messaggi a scomparsa</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">I tuoi messaggi non scadranno.</string>
@@ -438,7 +455,9 @@ proprio numero di telefono</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services si sta aggiornando o non è al momento disponibile. Per favore riprovare</string>
   <string name="RegistrationActivity_more_information">Maggiori informazioni</string>
   <string name="RegistrationActivity_less_information">Meno informazioni</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal richiede l\'accesso ai tuoi contatti e ai tuoi contenuti multimediali per connetterti con gli amici, scambiare messaggi e fare chiamate sicure</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Impossibile connettersi al servizio. Per favore controlla la connessione a internet e riprova</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Per verificare facilmente il tuo numero di telefono, Signal può rilevare automaticamente il codice di verifica se consenti a Signal di visualizzare i messaggi SMS.</string>
   <!--RegistrationProblemsActivity-->
   <!--RegistrationProgressActivity-->
   <!--RegistrationService-->
@@ -506,6 +525,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="VerifyIdentityActivity_our_signal_safety_number">I nostri codice di sicurezza Signal:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Sembra che tu non abbia alcune applicazioni per condividere.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Negli appunti non c\'è un codice di sicurezza da confrontare.</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal richiede l\'autorizzazione all\'uso della fotocamera per leggere codici QR, ma è stata negata in modo permanente. Si prega di continuare al menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Fotocamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Impossibile scannerizzare QR code senza il permesso della fotocamera</string>
   <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
@@ -535,11 +555,13 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="KeyCachingService_signal_passphrase_cached">Tocca per aprire.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Tocca per aprire, o tocca il lucchetto per chiudere.</string>
   <string name="KeyCachingService_passphrase_cached">Signal è sbloccato</string>
-  <string name="KeyCachingService_lock">Blocca con password</string>
+  <string name="KeyCachingService_lock">Blocca Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Tu</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Tipo di media non supportato</string>
   <string name="MediaPreviewActivity_draft">Bozza</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal richiede l\'autorizzazione per salvare in memoria, ma è stata negata in modo permanente. Si prega di continuare con le impostazioni dell\'app, selezionare \"Autorizzazioni\", quindi abilitare \"Archiviazione\".</string>
+  <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Impossibile salvare sulla memoria senza l\'autorizzazione</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nuovi messaggi in %2$d conversazioni</string>
   <string name="MessageNotifier_most_recent_from_s">Il più recente da: %1$s</string>
@@ -560,6 +582,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="QuickResponseService_problem_sending_message">Problema nell\'invio del messaggio!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Apri cartella</string>
+  <string name="SaveAttachmentTask_saved_to">Salvato in %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Cerca</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -571,6 +594,8 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Errore riproduzione video</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Per rispondere alla chiamata da %s, dai a Signal l\'autorizzazione ad accedere al tuo microfono</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal richiede le autorizzazioni all\'uso del microfono e della fotocamera per fare e ricevere chiamate, ma sono state negate in modo permanente. Si prega di continuare con le impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Microfono\" e \"Fotocamera\".</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Il codice di sicurezza per le tue conversazioni con %1$s è cambiato. Questo può significare che qualcuno sta provando ad intercettare la tua comunicazione, oppure che %2$s ha semplicemente reinstallato Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Dovresti verificare il codice di sicurezza con questo contatto.</string>
@@ -605,6 +630,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Foto del contatto</string>
   <!--ContactSelectionListFragment-->
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal richiede l\'autorizzazione alla lettura dei contatti per mostrarteli, ma è stata negata in modo permanente. Si prega di continuare con il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Contatti\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Errore di rilevamento dei contatti, controlla la connessione di rete</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nessun contatto bloccato</string>
@@ -764,6 +790,8 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="recipient_preferences__view_safety_number">Mostra codice di sicurezza</string>
   <string name="recipient_preferences__chat_settings">Impostazioni chat</string>
   <string name="recipient_preferences__privacy">Privacy</string>
+  <string name="recipient_preferences__call_settings">Impostazioni chiamata</string>
+  <string name="recipient_preferences__ringtone">Suoneria</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Chiamata Signal</string>
   <string name="redphone_call_controls__mute">Togli l\'audio</string>
@@ -816,7 +844,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="AndroidManifest_archived_conversations">Conversazioni archiviate</string>
   <string name="AndroidManifest_remove_photo">Rimuovi foto</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Importa / Esporta</string>
+  <string name="arrays__import_export">Importa</string>
   <string name="arrays__use_default">Usa predefinito</string>
   <string name="arrays__use_custom">Usa personalizzato</string>
   <string name="arrays__mute_for_one_hour">Silenzia per 1 ora</string>
@@ -858,6 +886,8 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Scegli il tuo contatto dalla rubrica.</string>
   <string name="preferences__change_passphrase">Cambia password</string>
   <string name="preferences__change_your_passphrase">Cambia la tua password</string>
+  <string name="preferences__enable_passphrase">Abilita blocco schermo con password</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Blocca schermo e notifiche con password</string>
   <string name="preferences__screen_security">Sicurezza schermo</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Non consentire di effettuare screenshot nella lista delle applicazione recenti ed all\'interno dell\'app stessa.</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Blocca automaticamente Signal dopo uno specifico intervallo di intattività</string>
@@ -938,6 +968,8 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="preferences_notifications__events">Eventi</string>
   <string name="preferences_notifications__in_chat_sounds">Suoni in chat</string>
   <string name="preferences_notifications__show">Mostra</string>
+  <string name="preferences_notifications__calls">Chiamate</string>
+  <string name="preferences_notifications__ringtone">Suoneria</string>
   <string name="preferences_chats__show_invitation_prompts">Mostra i messaggi di invito</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Visualizza messaggio di invito per i contatti senza Signal</string>
   <string name="preferences_chats__message_text_size">Dimensione carattere messaggio</string>
@@ -1055,8 +1087,74 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="ConversationListFragment_loading">Caricamento...</string>
   <string name="CallNotificationBuilder_connecting">Connessione in corso...</string>
   <string name="Permissions_permission_required">Autorizzazione necessaria</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal necessita l\'accesso agli SMS per poterli inviare, ma è stato negato in modo permanente. Si prega di continuare con le impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"SMS\".</string>
   <string name="Permissions_continue">Continua</string>
   <string name="Permissions_not_now">Non ora</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal richiede l\'autorizzazione alla lettura dei contatti per permetterti la ricerca, ma è stata negata in modo permanente. Si prega di continuare con il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Contatti\".</string>
+  <string name="conversation_activity__enable_signal_messages">ABILITA MESSAGGI SIGNAL</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrazione del database di Signal</string>
+  <string name="PushDecryptJob_new_locked_message">Nuovo messaggio bloccato</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Sblocca per leggere i messaggi in sospeso</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Sblocca per completare l\'aggiornamento</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Per favore sblocca Signal per completare l\'aggiornamento</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">Passphrase di backup</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">I backup verranno salvati nella memoria esterna e crittografati con la passphrase qui sotto. Sarà necessario avere questa passphrase per ripristinare il backup.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Ho scritto questa passphrase. Senza di questa non sarò in grado di ripristinare il backup</string>
+  <string name="registration_activity__restore_backup">Ripristina backup</string>
+  <string name="registration_activity__skip">Salta</string>
+  <string name="registration_activity__register">Registrati</string>
+  <string name="preferences_chats__chat_backups">Backup dell chat</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Backup delle chat sulla memoria esterna</string>
+  <string name="preferences_chats__create_backup">Crea backup</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Inserire passphrase del backup</string>
+  <string name="RegistrationActivity_restore">Ripristina</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">Passphrase del backup errata</string>
+  <string name="RegistrationActivity_checking">Controllo...</string>
+  <string name="RegistrationActivity_d_messages_so_far">Ancora %d messaggi ...</string>
+  <string name="RegistrationActivity_restore_from_backup">Ripristinare da backup?</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Ripristina i tuoi messaggi e contenuti multimediali da un backup locale. Se non lo ripristini ora, non sarai in grado di ripristinarlo in seguito</string>
+  <string name="RegistrationActivity_backup_size_s">Dimensione backup: %s</string>
+  <string name="BackupDialog_enable_local_backups">Abilitare backup locali?</string>
+  <string name="BackupDialog_enable_backups">Abilitare i backup</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Conferma di aver capito spuntando la casella di conferma.</string>
+  <string name="BackupDialog_delete_backups">Cancellare i backup?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Disabilitare e cancellare tutti backup locali?</string>
+  <string name="BackupDialog_delete_backups_statement">Cancellare i backup</string>
+  <string name="BackupDialog_copied_to_clipboard">Aggiunto agli appunti</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal richiede l\'autorizzazione per creare backup in memoria, ma è stata negata in modo permanente. Si prega di continuare con le impostazioni dell\'app, selezionare \"Autorizzazioni\", quindi abilitare \"Archiviazione\".</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">Ultimo backup: %s</string>
+  <string name="ChatsPreferenceFragment_in_progress">In corso</string>
+  <string name="ProgressPreference_d_messages_so_far">Ancora %d messaggi</string>
+  <string name="RegistrationActivity_verify_s">Verifica %s</string>
+  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Per favore inserire il codice di verifica inviato a %s.</string>
+  <string name="RegistrationActivity_wrong_number">Numero errato?</string>
+  <string name="BackupUtil_never">Mai</string>
+  <string name="BackupUtil_unknown">Sconosciuto</string>
+  <string name="prompt_passphrase_activity__unlock_signal">Sblocca Signal</string>
+  <string name="preferences_app_protection__screen_lock">Blocco schermo</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Blocca l\'accesso a Signal con il blocco schermo di Android o la tua impronta digitale</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Tempo di inattività per blocco schermo</string>
+  <string name="AppProtectionPreferenceFragment_none">Nessuna</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Il PIN di blocco della registrazione non è uguale al codice di verifica SMS appena ricevuto. Inserire il PIN precedentemente configurato nell\'applicazione.</string>
+  <string name="registration_activity__registration_lock_pin">PIN di blocco della registrazione</string>
+  <string name="registration_activity__forgot_pin">PIN dimenticato?</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">Il PIN consiste in 4 o più cifre. Se ti dimentichi il tuo PIN, potresti rimanere bloccato fuori dal tuo account per un massimo di 7 giorni.</string>
+  <string name="registration_lock_dialog_view__enter_pin">Inserisci PIN</string>
+  <string name="registration_lock_dialog_view__confirm_pin">Conferma PIN</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Inserisci il PIN per il blocco della registrazione</string>
+  <string name="registration_lock_reminder_view__enter_pin">Inserisci PIN</string>
+  <string name="preferences_app_protection__registration_lock_pin">PIN di blocco della registrazione</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">PIN errato</string>
+  <string name="RegistrationActivity_too_many_attempts">Troppi tentativi</string>
+  <string name="RegistrationActivity_error_connecting_to_service">Errore durante la connessione al servizio</string>
+  <string name="RegistrationActivity_oh_no">Oh no!</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">Ho dimenticato il mio PIN.</string>
+  <string name="RegistrationLockDialog_forgotten_pin">PIN dimenticato?</string>
+  <string name="RegistrationLockDialog_enable">Abilita</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">I due PIN inseriti non corrispondono.</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">Errore durante la connessione al servizio</string>
+  <string name="RegistrationLockDialog_disable">Disabilita</string>
+  <string name="RegistrationActivity_continue">Continua</string>
+  <string name="preferences_chats__backups">Backup</string>
   <!--EOF-->
 </resources>

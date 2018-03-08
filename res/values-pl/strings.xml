@@ -41,7 +41,6 @@
   <string name="ApplicationPreferencesActivity_off">wyłączone</string>
   <string name="ApplicationPreferencesActivity_Off">Wyłączone</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Hasło %1$s, Ochrona ekranu %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Wygląd %1$s, Język %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -583,7 +582,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="KeyCachingService_signal_passphrase_cached">Dotknij, aby otworzyć.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Dotknij, aby otworzyć lub dotknij zamek, aby zamknąć.</string>
   <string name="KeyCachingService_passphrase_cached">Signal jest niezablokowany</string>
-  <string name="KeyCachingService_lock">Zablokuj hasłem</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Ty</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Nieobsługiwany typ media</string>
@@ -745,8 +743,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   </plurals>
   <string name="expiration_days_abbreviated">%dd</string>
   <plurals name="expiration_weeks">
-    <item quantity="one">1 tygodzień</item>
-    <item quantity="few">%d tygodni</item>
+    <item quantity="one">1 tydzień</item>
+    <item quantity="few">%d tygodnie</item>
     <item quantity="many">%d tygodni</item>
     <item quantity="other">%d tygodni</item>
   </plurals>
@@ -831,6 +829,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="recipient_preferences__view_safety_number">Zobacz numer bezpieczeństwa</string>
   <string name="recipient_preferences__chat_settings">Ustawienia rozmów</string>
   <string name="recipient_preferences__privacy">Prywatność</string>
+  <string name="recipient_preferences__ringtone">Dzwonek</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Połączenie Signal</string>
   <string name="redphone_call_controls__mute">Wycisz</string>
@@ -883,7 +882,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="AndroidManifest_archived_conversations">Archiwum</string>
   <string name="AndroidManifest_remove_photo">Usuń zdjęcie</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Import / eksport</string>
+  <string name="arrays__import_export">Import</string>
   <string name="arrays__use_default">Użyj domyślnych</string>
   <string name="arrays__use_custom">Użyj własnych</string>
   <string name="arrays__mute_for_one_hour">Wycisz na 1 godzinę</string>
@@ -1009,6 +1008,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences_notifications__events">Zdarzenia</string>
   <string name="preferences_notifications__in_chat_sounds">Dźwięki podczas rozmowy</string>
   <string name="preferences_notifications__show">Pokazuj</string>
+  <string name="preferences_notifications__ringtone">Dzwonek</string>
   <string name="preferences_chats__show_invitation_prompts">Pokazuj zachętę do zaproszenia</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Pokazuj zachętę do zaproszenia kontaktów bez Signal</string>
   <string name="preferences_chats__message_text_size">Rozmiar czcionki dla wiadomości</string>
@@ -1071,7 +1071,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Dodaj do kontaktów</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Lita odbiorców</string>
+  <string name="convesation_group_options__recipients_list">Lista odbiorców</string>
   <string name="conversation_group_options__delivery">Dostarczanie</string>
   <string name="conversation_group_options__conversation">Konwersacja</string>
   <string name="conversation_group_options__broadcast">Nadawanie</string>
@@ -1136,5 +1136,17 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Przenoszenie bazy danych Signal</string>
   <string name="PushDecryptJob_new_locked_message">Nowa zablokowana wiadomość</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Odblokuj aby zobaczyć oczekujące wiadomości</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Odblokuj, aby ukończyć aktualizację.</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Odblokuj Signal, aby ukończyć aktualizację.</string>
+  <string name="registration_activity__skip">Pomiń</string>
+  <string name="registration_activity__register">Rejestracja</string>
+  <string name="RegistrationActivity_restore">Przywróć</string>
+  <string name="BackupDialog_copied_to_clipboard">Skopiowane do schowka </string>
+  <string name="BackupUtil_never">Nigdy</string>
+  <string name="BackupUtil_unknown">Nieznane</string>
+  <string name="AppProtectionPreferenceFragment_none">Brak</string>
+  <string name="RegistrationActivity_too_many_attempts">Zbyt wiele prób</string>
+  <string name="RegistrationLockDialog_disable">Wyłącz</string>
+  <string name="RegistrationActivity_continue">Kontynuuj</string>
   <!--EOF-->
 </resources>

@@ -35,7 +35,6 @@
   <string name="ApplicationPreferencesActivity_off">关</string>
   <string name="ApplicationPreferencesActivity_Off">关</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">短信 %1$s，彩信 %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">密码 %1$s，屏幕安全性 %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">主题 %1$s，语言 %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -537,7 +536,6 @@
   <string name="KeyCachingService_signal_passphrase_cached">轻触以开启。</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">轻触以开启，或点击锁定以关闭。</string>
   <string name="KeyCachingService_passphrase_cached">暗号已解锁</string>
-  <string name="KeyCachingService_lock">使用密码锁定</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">您</string>
   <string name="MediaPreviewActivity_unssuported_media_type">不支持的媒体类型。</string>
@@ -764,6 +762,8 @@
   <string name="recipient_preferences__view_safety_number">查看安全代码</string>
   <string name="recipient_preferences__chat_settings">聊天设定</string>
   <string name="recipient_preferences__privacy">隐私</string>
+  <string name="recipient_preferences__call_settings">通话设置</string>
+  <string name="recipient_preferences__ringtone">铃声</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">暗号呼叫</string>
   <string name="redphone_call_controls__mute">静音</string>
@@ -816,7 +816,7 @@
   <string name="AndroidManifest_archived_conversations">存档会话</string>
   <string name="AndroidManifest_remove_photo">删除照片</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">导入/导出</string>
+  <string name="arrays__import_export">导入</string>
   <string name="arrays__use_default">使用默认</string>
   <string name="arrays__use_custom">使用定制</string>
   <string name="arrays__mute_for_one_hour">静音 1 小时</string>
@@ -937,6 +937,8 @@
   <string name="preferences_notifications__events">事件</string>
   <string name="preferences_notifications__in_chat_sounds">聊天音效</string>
   <string name="preferences_notifications__show">展示</string>
+  <string name="preferences_notifications__calls">通话</string>
+  <string name="preferences_notifications__ringtone">铃声</string>
   <string name="preferences_chats__show_invitation_prompts">显示邀请提示</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">显示未使用 Signal 联系人的邀请提示</string>
   <string name="preferences_chats__message_text_size">字体大小</string>
@@ -1061,5 +1063,20 @@
   <string name="conversation_activity__enable_signal_messages">启用 Signal 信息</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">迁移 Signal 数据库</string>
   <string name="PushDecryptJob_new_locked_message">新的锁定信息</string>
+  <string name="registration_activity__skip">略过</string>
+  <string name="registration_activity__register">注册人</string>
+  <string name="preferences_chats__chat_backups">聊天记录备份</string>
+  <string name="RegistrationActivity_restore">还原</string>
+  <string name="RegistrationActivity_restore_from_backup">从备份还原吗？</string>
+  <string name="BackupDialog_enable_local_backups">启用本地备份吗？</string>
+  <string name="BackupDialog_enable_backups">启用备份</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">关闭并且删除所有本地备份吗？</string>
+  <string name="BackupDialog_copied_to_clipboard">已复制到剪切板</string>
+  <string name="BackupUtil_never">永不</string>
+  <string name="BackupUtil_unknown">未知</string>
+  <string name="AppProtectionPreferenceFragment_none">无</string>
+  <string name="RegistrationActivity_too_many_attempts">尝试次数过多</string>
+  <string name="RegistrationLockDialog_disable">禁用</string>
+  <string name="RegistrationActivity_continue">继续</string>
   <!--EOF-->
 </resources>

@@ -37,7 +37,6 @@
   <string name="ApplicationPreferencesActivity_off">väljas</string>
   <string name="ApplicationPreferencesActivity_Off">Väljas</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Salaväljend %1$s, kuva turvamine %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">%1$s teema, %2$s keel</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -92,7 +91,7 @@
   <string name="ConversationItem_unable_to_open_media">Ei leia rakendust, mis oleks võimeline seda meediafaili avama.</string>
   <string name="ConversationItem_copied_text">%s kopeeritud</string>
   <string name="ConversationItem_from_s">%s kaudu</string>
-  <string name="ConversationItem_to_s">kontaktile %s</string>
+  <string name="ConversationItem_to_s">kaardile %s</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Lähtesta turvaline sessioon?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">See võib aidata, kui sul on selles vestluses krüptimisprobleemid. Sinu sõnumid jäävad alles.</string>
@@ -563,7 +562,6 @@
   <string name="KeyCachingService_signal_passphrase_cached">Koputa avamiseks.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Koputa avamiseks või koputa lukku sulgemiseks</string>
   <string name="KeyCachingService_passphrase_cached">Signal on avatud</string>
-  <string name="KeyCachingService_lock">Lukusta salaväljendiga</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Sina</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Mittetoetatud meediatüüp</string>
@@ -849,7 +847,7 @@
   <string name="AndroidManifest_archived_conversations">Arhiveeritud vestlused</string>
   <string name="AndroidManifest_remove_photo">Eemalda pilt</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Impordi / ekspordi</string>
+  <string name="arrays__import_export">Impordi</string>
   <string name="arrays__use_default">Kasuta vaikeväärtust</string>
   <string name="arrays__use_custom">Kasuta kohandatud väärtust</string>
   <string name="arrays__mute_for_one_hour">Vaigista 1 tunniks</string>
@@ -1098,5 +1096,16 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Migreerin Signali andmebaasi</string>
   <string name="PushDecryptJob_new_locked_message">Uus lukustatud sõnum</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Ava lukk ootel sõnumite vaatamiseks</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Ava lukk uuenduse lõpuleviimiseks</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Palun lukusta Signal lahti uuenduse lõpuleviimiseks</string>
+  <string name="registration_activity__skip">Jäta vahele</string>
+  <string name="registration_activity__register">Registreeri</string>
+  <string name="RegistrationActivity_restore">Taasta</string>
+  <string name="BackupUtil_never">Mitte kunagi</string>
+  <string name="BackupUtil_unknown">Tundmatu</string>
+  <string name="AppProtectionPreferenceFragment_none">Puudub</string>
+  <string name="RegistrationActivity_too_many_attempts">Liiga palju katseid</string>
+  <string name="RegistrationLockDialog_disable">Keela</string>
+  <string name="RegistrationActivity_continue">Jätka</string>
   <!--EOF-->
 </resources>

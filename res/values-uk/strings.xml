@@ -39,7 +39,6 @@
   <string name="ApplicationPreferencesActivity_off">вимк.</string>
   <string name="ApplicationPreferencesActivity_Off">Вимк.</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Пароль %1$s, Безпека екрану %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Тема %1$s, Мова %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -55,6 +54,9 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Неможливо знайти програму для обраного медіа.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal requires the Storage permission in order to attach photos, videos, or audio, but it has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Storage\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Сигналу необхідний доступ до телефонної книги, щоб прикріпити контакт але наразі доступу немає. Будь-ласка, дозвольте доступ до телефонної книги у меню \"Дозволи\"</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Сигналу необхідний доступ до геолокації, щоб прикріпити дані про розташування, але наразі доступу немає. Будь-ласка, дозвольте доступ до геолокації у меню \"Дозволи\"</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Сигналу необхідний доступ до камери, щоб фотографувати або знімати відео, але у доступі було відмовлено. Будь-ласка, дозвольте доступ до Камери у меню \"Дозволи\"</string>
   <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Помилка відтворення аудіо!</string>
@@ -234,6 +236,7 @@
   <string name="DocumentView_unknown_file">Невідомий файл</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Оптимізувати для випадку відсутності служб Google Play</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Цей пристрій не підтримує служби Google Play. Торкніться, щоб вимкнути режим ощадливого споживання енергії Сигналом і отримувати повідомлення коли Сигнал працює у фоні.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Поділитися із</string>
   <!--ExperienceUpgradeActivity-->
@@ -243,8 +246,12 @@
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure тепер Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure і RedPhone тепер єдина програма: Signal. Торкніться, щоб дізнатися більше.</string>
   <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Привійтайте безпечні відеодзвінки.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Сигнал тепер підтримує відеодзвінки. Просто зателефонуйте як зазвичай а потім натисніть кнопку відео.</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal тепер підтримує безпечні відеодзвінки.</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal тепер підтримує безпечні відеодзвінок. Натисніть, щоб дізнатись більше.</string>
+  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Готові до огляду?</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Тепер ви можете встановити власне фото, а також ім\'я (чи нікнейм) для свого профілю який будуть бачити друзі.</string>
+  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Профілі Сигналу знаходяться тут</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Експортувати</string>
   <string name="ExportFragment_export_plaintext_to_storage">Експортувати незашифрованим текстом до сховища?</string>
@@ -280,6 +287,9 @@
   <string name="GroupCreateActivity_loading_group_details">Завантаження деталей групи...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Ви вже у групі.</string>
   <!--GroupShareProfileView-->
+  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Поділитися іменем профілю та світлиною з цією групою?</string>
+  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Зробити ім\'я профілю та світлину видимою для усіх теперішніх та майбутніх учасників цієї групи?</string>
+  <string name="GroupShareProfileView_make_visible">Зробити видимим</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Я</string>
   <!--ImportExportActivity-->
@@ -303,6 +313,12 @@
   <string name="ImportFragment_no_plaintext_backup_found">Незашифрована резервна копія не знайдена!</string>
   <string name="ImportFragment_error_importing_backup">Помилка при імпорті!</string>
   <string name="ImportFragment_import_complete">Імпортування завершено!</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages">Сигналу необхідний доступ до SMS, щоб імпортувати SMS але наразі доступу немає. Будь-ласка, дозвольте доступ до SMS у меню \"Дозволи\"</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">Сигналу необхідний доступ до SMS, щоб імпортувати SMS повідомлення</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">Сигналу необхідний доступ до сховища пристрою, щоб обирати файли, але наразі доступу немає. Будь-ласка, дозвольте доступ до сховища у меню \"Дозволи\"</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">Сигналу необхідний доступ до сховища пристрою, щоб читати файли.</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Сигналу необхідний доступ до сховища пристрою, щоб зберігати файли, але у доступі було відмовлено. Будь-ласка, дозвольте доступ до сховища у меню \"Дозволи\"</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">Сигналу необхідний доступ на запис до сховища пристрою</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Торкніться і утримуйте для запису голосового повідомлення, відпустіть, щоб надіслати</string>
   <!--InviteActivity-->
@@ -334,7 +350,9 @@
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Фонове підключення активоване</string>
   <!--MmsDownloader-->
+  <string name="MmsDownloader_error_reading_mms_settings">Помилка читання налаштувань MMS провайдера</string>
   <!--MediaOverviewActivity-->
+  <string name="MediaOverviewActivity_Media">Медіа</string>
   <string name="MediaOverviewActivity_Documents">Документи</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Відбувається виклик Signal</string>
@@ -356,9 +374,14 @@
   <string name="MessageRecord_s_called_you">%s вам телефонував/-ла</string>
   <string name="MessageRecord_called_s">Телефонували %s</string>
   <string name="MessageRecord_missed_call_from">Пропущено виклик від %s</string>
+  <string name="MessageRecord_s_joined_signal">%s приєднався до Signal!</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Ви встановили час зникнення повідомлень на %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s встановлює час зникнення повідомлень на %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Ваш номер безпеки із %s змінився.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Ви підтвердили ваш номер безпеки із %s</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Ви підтвердили ваш номер безпеки із %sз іншого пристрою</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Ваш номер безпеки із %s є НЕперевіреним</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Ваш номер безпеки із %s є НЕперевіреним</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Фрази-паролі не збігаються!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Хибна стара фраза-пароль!</string>
@@ -382,6 +405,8 @@
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Вибачте, це хибний QR код для прив\'язки пристрою.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Приєднати пристрій Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Здається, ви намагаєтеся приєднати пристрій Signal, використовуючи сканер від 3-ї особи. Для вашого захисту, відскануйте код знову, використовуючи Signal.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Сигналу необхідний доступ до камери, щоб сканувати QR коди, але наразі доступу немає. Будь-ласка, дозвольте доступ до Камери у меню \"Дозволи\"</string>
+  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Для сканування QR коду необхідний доступ до Камери</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Зникнення повідомлень</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Ваші повідомлення не зникатимуть.</string>
@@ -409,6 +434,7 @@
   <string name="RecipientPreferenceActivity_unblock">Розблокувати</string>
   <string name="RecipientPreferenceActivity_enabled">Увімкнено </string>
   <string name="RecipientPreferenceActivity_disabled">Вимкнено</string>
+  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Доступно як тільки повідомлення буде надіслано чи отримано.</string>
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Неназвана група</string>
   <!--RedPhone-->
@@ -435,11 +461,16 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Номер, що ви
 ввели (%s) хибний.
  </string>
+  <string name="RegistrationActivity_missing_google_play_services">Відсутні сервіси Google Play</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">На цьому пристрої не встановлені сервіси Google Play. То ж ви можете не отримувати оновлення своєчасно.</string>
   <string name="RegistrationActivity_i_understand">Я розумію</string>
   <string name="RegistrationActivity_play_services_error">Помилка Play Services</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services оновлюються або тимчасово недоступні. Будь-ласка, спробуйте знов.</string>
   <string name="RegistrationActivity_more_information">Більше інформації</string>
   <string name="RegistrationActivity_less_information">Менше інформації</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Сигналу необхідні доступи до телефонної книги та файлової системи, щоб підключити друзів, відправляти повідомлення та здійснювати виклики</string>
+  <string name="RegistrationActivity_unable_to_connect_to_service">Немає з\'єднання із сервером. Перевірте чи наявність доступу до Інтернет та спробуйте знову.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Якщо ви дозволите Сигналу доступ до SMS, перевірку коду буде виконано автоматично</string>
   <!--RegistrationProblemsActivity-->
   <!--RegistrationProgressActivity-->
   <!--RegistrationService-->
@@ -448,7 +479,12 @@
   <string name="RegistrationService_registration_error">Помилка реєстрації</string>
   <string name="RegistrationService_signal_registration_has_encountered_a_problem">Виникла помилка при реєстрації в службі Signal.</string>
   <!--RingtonePreference-->
+  <string name="RingtonePreference_ringtone_default">Типова мелодія виклику</string>
   <string name="RingtonePreference_ringtone_silent">Жодного</string>
+  <string name="RingtonePreference_notification_sound_default">Типовий звук сповіщення</string>
+  <string name="RingtonePreference_alarm_sound_default">Типовий звук сповіщення</string>
+  <string name="RingtonePreference_add_ringtone_text">Додати мелодію</string>
+  <string name="RingtonePreference_unable_to_add_ringtone">Не вдалося додати мелодію</string>
   <!--Slide-->
   <string name="Slide_image">Зображення</string>
   <string name="Slide_audio">Аудіо</string>
@@ -471,15 +507,28 @@
   <string name="ThreadRecord_called_you">Вам телефонували</string>
   <string name="ThreadRecord_missed_call">Пропущений виклик</string>
   <string name="ThreadRecord_media_message">Медіа повідомлення</string>
+  <string name="ThreadRecord_s_is_on_signal">%s приєднався до Signal!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Час зникнення повідомлень встановлено на %s</string>
+  <string name="ThreadRecord_safety_number_changed">Номер безпеки змінено</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Ваш номер безпеки із %s змінився.</string>
+  <string name="ThreadRecord_you_marked_verified">Ви перевірили</string>
+  <string name="ThreadRecord_you_marked_unverified"> Номер безпеки є НЕперевіреним</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Оновлення Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Нова версія Signal доступна, натисніть для оновлення</string>
   <!--UnknownSenderView-->
+  <string name="UnknownSenderView_block_s">Заблокувати %s?</string>
+  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Заблоковані контакти не зможуть надсилати повідомлення та дзвонити вам</string>
   <string name="UnknownSenderView_block">Заблокувати</string>
+  <string name="UnknownSenderView_share_profile_with_s">Поділитися ваши профілем з %s?</string>
+  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Найпростіший шлях поділитися профілем - додати контакт до своєї телефонної книги. Якщо ви не хочете цього робити, ви можете обирати цей спосіб.</string>
+  <string name="UnknownSenderView_share_profile">Поділитися профілем</string>
   <!--UntrustedSendDialog-->
+  <string name="UntrustedSendDialog_send_message">Надіслати повідомлення?</string>
+  <string name="UntrustedSendDialog_send">Надіслати</string>
   <!--UnverifiedSendDialog-->
+  <string name="UnverifiedSendDialog_send_message">Надіслати повідомлення?</string>
+  <string name="UnverifiedSendDialog_send">Надіслати</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Ваш контакт працює на давнішій версії Signal. Будь ласка, попросіть його/її оновитися перед перевіркою вашого номера безпеки.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Ваш контакт працює на новішій версії Signal із несумісним форматом QR-коду. Будь ласка, оновіться, щоб порівняти.</string>
@@ -488,6 +537,8 @@
   <string name="VerifyIdentityActivity_our_signal_safety_number">Наш номер безпеки Signal:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Схоже, що у вас немає програм, щоб поділитися.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">У буфері обміну не було знайдено номеру безпеки для порівняння</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Сигналу необхідний доступ до камери, щоб сканувати QR коди, але наразі доступу немає. Будь-ласка, дозвольте доступ до Камери у меню \"Дозволи\"</string>
+  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Для сканування QR коду необхідний доступ до Камери</string>
   <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Погано зашифроване повідомлення</string>
@@ -506,6 +557,7 @@
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Вимкнути звук сповіщень</string>
   <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_no_web_browser_installed">Браузер не встановлено</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Імпортування</string>
   <string name="ApplicationMigrationService_importing_text_messages">Імпортування текстових повідомлень</string>
@@ -515,11 +567,11 @@
   <string name="KeyCachingService_signal_passphrase_cached">Торкніться, щоб відкрити.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Торкніться, щоб відкрити, чи торкніться замка, щоб закрити.</string>
   <string name="KeyCachingService_passphrase_cached">Signal розблоковано</string>
-  <string name="KeyCachingService_lock">Заблокувати фразою-паролем</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Ви</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Непідтримуваний тип медіа</string>
   <string name="MediaPreviewActivity_draft">Чернетка</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Сигналу необхідний доступ до сховища пристрою, щоб зберігати файли, але у доступі було відмовлено. Будь-ласка, дозвольте доступ до сховища у меню \"Дозволи\"</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d нових повідомлень у %2$d розмовах</string>
   <string name="MessageNotifier_most_recent_from_s">Останнє від: %1$s</string>
@@ -748,7 +800,7 @@
   <string name="AndroidManifest__invite_friends">Запросити друзів</string>
   <string name="AndroidManifest_archived_conversations">Архівовані розмови</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Імпорт / експорт</string>
+  <string name="arrays__import_export">Імпорт</string>
   <string name="arrays__use_default">Використовувати типово</string>
   <string name="arrays__use_custom">Використовувати власні</string>
   <string name="arrays__mute_for_one_hour">Вимкнути звук на 1 годину</string>
@@ -971,5 +1023,16 @@
   <string name="transport_selection_list_item__transport_icon">Логотип типу зв\'язку</string>
   <string name="CallNotificationBuilder_connecting">Підключення...</string>
   <string name="Permissions_continue">Продовжити</string>
+  <string name="Permissions_not_now">Не зараз</string>
+  <string name="registration_activity__skip">Пропустити</string>
+  <string name="registration_activity__register">Реєстрація</string>
+  <string name="RegistrationActivity_restore">Відновити</string>
+  <string name="BackupDialog_copied_to_clipboard">Скопійовано до буфера обміну</string>
+  <string name="BackupUtil_never">Ніколи</string>
+  <string name="BackupUtil_unknown">Невідомо</string>
+  <string name="AppProtectionPreferenceFragment_none">Жодного</string>
+  <string name="RegistrationActivity_too_many_attempts">Забагато спроб</string>
+  <string name="RegistrationLockDialog_disable">Вимкнути</string>
+  <string name="RegistrationActivity_continue">Продовжити</string>
   <!--EOF-->
 </resources>

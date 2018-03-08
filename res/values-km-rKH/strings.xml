@@ -35,7 +35,6 @@
   <string name="ApplicationPreferencesActivity_off">បិទ</string>
   <string name="ApplicationPreferencesActivity_Off">បិទ</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">ឃ្លាសម្ងាត់ %1$s, អេក្រង់សុវត្ថិភាព %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">ប្រធានបទ %1$s, ភាសា %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -539,7 +538,6 @@
   <string name="KeyCachingService_signal_passphrase_cached">ចុច ដើម្បីបើក។</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">ប៉ះ ដើម្បីបើក ឬ ប៉ះសោរ ដើម្បីបិទ។</string>
   <string name="KeyCachingService_passphrase_cached"> ស៊ីហ្គណល បានដោះសោ</string>
-  <string name="KeyCachingService_lock">ចាក់សោរជាមួយឃ្លាសម្ងាត់</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">អ្នក</string>
   <string name="MediaPreviewActivity_unssuported_media_type">ប្រភេទឯកសារមិនគាំទ្រ</string>
@@ -818,7 +816,7 @@
   <string name="AndroidManifest_archived_conversations">សន្ទនាក្នុងបណ្ណសារ</string>
   <string name="AndroidManifest_remove_photo">លុបរូបថតចេញ</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">នាំចូុល /  នាំចេញ</string>
+  <string name="arrays__import_export">នាំចូល</string>
   <string name="arrays__use_default">ប្រើលំនាំដើម</string>
   <string name="arrays__use_custom">ប្រើផ្សេងៗ</string>
   <string name="arrays__mute_for_one_hour">បិទសំឡេង 1 ម៉ោង</string>
@@ -1060,5 +1058,14 @@
   <string name="Permissions_not_now">ពេលក្រោយ</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal ត្រូវការសិទ្ធិប្រើប្រាស់បញ្ជី​ទំនាក់ទំនង ដើម្បីស្វែងរកលេខទំនាក់ទំនងរបស់អ្នក  ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។  សូមបន្តទៅ ការកំណត់, ជ្រើសរើស \"អនុញ្ញាត\" , និងបើក \"បញ្ជីទំនាក់ទំនង\" ។</string>
   <string name="conversation_activity__enable_signal_messages">បើកប្រើសារ SIGNAL </string>
+  <string name="registration_activity__skip">រំលង</string>
+  <string name="registration_activity__register">ចុះឈ្មោះ</string>
+  <string name="RegistrationActivity_restore">ស្តារឡើងវិញ</string>
+  <string name="BackupUtil_never">មិនដែល</string>
+  <string name="BackupUtil_unknown">មិនដឹង</string>
+  <string name="AppProtectionPreferenceFragment_none">គ្មាន</string>
+  <string name="RegistrationActivity_too_many_attempts">ការព្យាយាមច្រើនដងពេក</string>
+  <string name="RegistrationLockDialog_disable">បិទចោល</string>
+  <string name="RegistrationActivity_continue">បន្ត</string>
   <!--EOF-->
 </resources>

@@ -37,7 +37,6 @@
   <string name="ApplicationPreferencesActivity_off">av</string>
   <string name="ApplicationPreferencesActivity_Off">Av</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Lösenordsfras %1$s, Skärmsäkerhet %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Språk %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -51,6 +50,10 @@
   <string name="DraftDatabase_Draft_location_snippet">(plats)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Kan ej hitta app för att välja media.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal behöver behörigheten Lagring för att kunna bifoga bilder, video, eller ljud, men det har blivit permanent nekat. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\", och aktivera \"Lagring\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal behöver behörigheten Kontakter för att kunna bifoga kontaktinformation, men det har blivit permanent nekat. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\", och aktivera \"Kontakter\".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal behöver behörigheten Plats för att kunna bifoga en plats, men det har blivit permanent nekat. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\", och aktivera \"Plats\".</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal behöver behörigheten Kamera för att ta bilder, men det har blivit permanent nekat. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\", och aktivera \"Kamera\".</string>
   <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Fel vid uppspelning av ljud!</string>
@@ -121,8 +124,10 @@
   <string name="ConversationActivity_error_sending_voice_message">Fel när röstmeddelande skickades</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Det finns ingen app på din enhet som kan hantera den här länken.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">För att skicka ljudmeddelanden, vänligen ge Signal tillgång till din mikrofon.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal behöver behörigheten Mikrofon för att kunna skicka ljudmeddelanden, men det har blivit permanent nekat. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\", och aktivera \"Mikrofon\".</string>
   <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">För att ringa %s behöver Signal åtkomst till din mikrofon och kamera.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal behöver behörighet att använda mikrofonen och kameran för att ringa%s, men du har redan nekat åtkomsten permanent. Vänligen gå in i app-inställningar, välj \"Behörigheter\" och slå på \"Mikrofon\" och Kamera\".</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">För att fånga fotografier och video, tillåt Signal att tillgå kameran.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal behöver behörighet att använda kameran för att ta bilder eller video, men du har nekat åtkomsten permanent. Vänligen gå in i app-inställningar, välj \"Behörigheter\" och slå på \"Kamera\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal behöver Kamera behörigheter för att ta bilder eller video</string>
   <!--ConversationAdapter-->
@@ -301,6 +306,10 @@ via denna metod kommer samtliga SMS bli duplicerade.</string>
   <string name="ImportFragment_import_complete">Importeringen lyckades!</string>
   <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages">Signal behöver behörighet att använda SMS för att importera SMS meddelanden, men du har nekat åtkomsten permanent. Vänligen gå in i app-inställningar, välj \"Behörigheter\" och slå på \"SMS\".</string>
   <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">Signal behöver SMS behörigheten för att importera SMS meddelanden</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">Signal behöver behörigheten Lagring för att kunna läsa från extern lagring, men det har blivit permanent nekat. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\", och aktivera \"Lagring\".</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">Signal behöver Lagrings-behörighen för att kunna läsa från extern lagring.</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal behöver behörigheten Lagring för att kunna skriva till extern lagring, men det har blivit permanent nekat. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\", och aktivera \"Lagring\".</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">Signal behöver Lagrings-behörighen för att kunna skriva till extern lagring.</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tryck och håll in för att spela in ett röstmeddelande, släpp för att skicka</string>
   <!--InviteActivity-->
@@ -384,6 +393,8 @@ via denna metod kommer samtliga SMS bli duplicerade.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Tyvärr, det här är ingen giltig QR-kod för enhetslänkning.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Länka en Signal-enhet?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Det verkar som att du försöker länka en Signal-enhet med hjälp av en tredjepartsskanner. För din säkerhet, vänligen skanna koden igen från Signal.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal behöver behörigheten Kamera för att skanna en QR-kod, men det har blivit permanent nekat. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\", och aktivera \"Kamera\".</string>
+  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Kan inte skanna QR-kod utan Kamera-behörigheten</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Försvinnande meddelanden</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Dina meddelanden kommer inte upphöra.</string>
@@ -442,6 +453,9 @@ angav (%s) är ogiltigt.</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play-tjänster uppdateras eller är tillfälligt inte tillgängligt. Försök igen senare.</string>
   <string name="RegistrationActivity_more_information">Mer information</string>
   <string name="RegistrationActivity_less_information">Mindre information</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal behöver tillgång till dina kontakter och media för att kunna koppla ihop med vänner, utbyta meddelanden, och göra säkra samtal</string>
+  <string name="RegistrationActivity_unable_to_connect_to_service">Kan inte ansluta till tjänsten. Vänligen kontrollera din nätverksanslutning och försök igen.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">För att enkelt verifiera ditt telefonnumer kan Signal automatiskt detektera din verifikationskod om du tillåter Signal att se SMS-meddelanden.</string>
   <!--RegistrationProblemsActivity-->
   <!--RegistrationProgressActivity-->
   <!--RegistrationService-->
@@ -508,6 +522,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Vårt säkerhetsnummer för Signal:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Verkar som att du inte har några appar att dela till.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Inga säkerhetsnummer att jämföra med hittades i urklipp</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal behöver behörigheten Kamera för att skanna en QR-kod, men det har blivit permanent nekat. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\", och aktivera \"Kamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Kan inte skanna QR-kod utan Kamera-behörigheten</string>
   <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
@@ -537,11 +552,11 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="KeyCachingService_signal_passphrase_cached">Tryck för att öppna.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Tryck för att öppna, tryck på låset för att stänga.</string>
   <string name="KeyCachingService_passphrase_cached">Signal är olåst</string>
-  <string name="KeyCachingService_lock">Lås med lösenord</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Du</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Mediatypen stöds ej</string>
   <string name="MediaPreviewActivity_draft">Utkast</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal behöver behörigheten Lagring för att kunna spara till extern lagring, men det har blivit permanent nekat. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\", och aktivera \"Lagring\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Kan inte spara till externt utrymme utan behörighet</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nya meddelanden i %2$d konversationer</string>
@@ -574,6 +589,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Fel vid videouppspelning</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">För att svara på samtalet från %s, ge Signal tillgång till din mikrofon.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal behöver behörigheterna Mikrofon och Kamera för att kunna göra eller ta emot samtal, men det har blivit permanent nekat. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\", och aktivera \"Mikrofon\" och \"Kamera\".</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Säkerhetsnumret för din konversation med %1$s har ändrats. Detta kan antingen betyda att någon försöker avlyssna er kommunikation, eller att %2$s helt enkelt har installerat om Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Du kan vilja verifiera ditt säkerhetsnummer med denna kontakt.</string>
@@ -608,10 +625,13 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Kontaktfoto</string>
   <!--ContactSelectionListFragment-->
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal behöver behörigheten Kontakter för att kunna bifoga kontaktinformation, men det har blivit permanent nekat. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\", och aktivera \"Kontakter\".</string>
+  <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Ett fel inträffade med att hämta kontakter, kontrollera din nätverksanslutning</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Inga blockerade kontakter</string>
   <!--contact_selection_recent_activity-->
   <!--contact_selection_list_fragment-->
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal behöver tillgång till dina kontakter för att kunna visa dem.</string>
   <string name="contact_selection_list_fragment__show_contacts">Visa kontakter</string>
   <!--conversation_title_view-->
   <!--conversation_activity-->
@@ -765,6 +785,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="recipient_preferences__view_safety_number">Visa säkerhetsnummer</string>
   <string name="recipient_preferences__chat_settings">Chattinställningar</string>
   <string name="recipient_preferences__privacy">Integritet</string>
+  <string name="recipient_preferences__ringtone">Rington</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signalsamtal</string>
   <string name="redphone_call_controls__mute">Tysta</string>
@@ -817,7 +838,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="AndroidManifest_archived_conversations">Arkiverade konversationer</string>
   <string name="AndroidManifest_remove_photo">Radera bild</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Importera/exportera</string>
+  <string name="arrays__import_export">Importera</string>
   <string name="arrays__use_default">Använd standardinställning</string>
   <string name="arrays__use_custom">Använd anpassad inställning</string>
   <string name="arrays__mute_for_one_hour">Tysta i 1 timme</string>
@@ -859,6 +880,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Välj din kontakt från kontaktlistan.</string>
   <string name="preferences__change_passphrase">Ändra lösenord</string>
   <string name="preferences__change_your_passphrase">Ändra ditt lösenord</string>
+  <string name="preferences__enable_passphrase">Aktivera låsskärmens lösenordsfras</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lås skärm och notifikationer med en lösenordsfras</string>
   <string name="preferences__screen_security">Skärmsäkerhet</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blockera skärmdumpar i Senaste-listen samt inuti appen</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Lås Signal automatiskt efter angivet intervall av inaktivitet.</string>
@@ -939,6 +962,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences_notifications__events">Händelser</string>
   <string name="preferences_notifications__in_chat_sounds">Ljud i chatter</string>
   <string name="preferences_notifications__show">Visa</string>
+  <string name="preferences_notifications__ringtone">Rington</string>
   <string name="preferences_chats__show_invitation_prompts">Visa inbjudningsmeddelanden</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Visa inbjudningsmeddelande för kontakter utan Signal</string>
   <string name="preferences_chats__message_text_size">Teckenstorlek för meddelande</string>
@@ -980,6 +1004,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="conversation_list_item_view__contact_photo_image">Kontaktfoto</string>
   <string name="conversation_list_item_view__archived">Arkiverad</string>
   <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Inbox noooll</string>
+  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Tomt. Slut. Öde. Du har inga meddelanden!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Ny konversation</string>
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Ge din inkorg något att visa upp. Kom igång genom att skriva till en vän.</string>
@@ -1055,10 +1080,25 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ConversationListFragment_loading">Laddar...</string>
   <string name="CallNotificationBuilder_connecting">Ansluter...</string>
   <string name="Permissions_permission_required">Behörighet saknas</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal behöver behörigheten SMS för att kunna skicka ett SMS, men det har blivit permanent nekat. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\", och aktivera \"SMS\".</string>
   <string name="Permissions_continue">Fortsätt</string>
   <string name="Permissions_not_now">Inte nu</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal behöver behörigheten Kontakter för att kunna söka bland dina kontakter, men det har blivit permanent nekat. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\", och aktivera \"Kontakter\".</string>
+  <string name="conversation_activity__enable_signal_messages">AKTIVERA SIGNAL-MEDDELANDEN</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrerar Signal-databas</string>
   <string name="PushDecryptJob_new_locked_message">Nytt låst meddelande</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Lås upp för att se väntande meddelanden</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Lås upp för att avsluta uppdateringen</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Vänligen lås upp Signal för att fullborda uppdateringen</string>
+  <string name="registration_activity__skip">Hoppa över</string>
+  <string name="registration_activity__register">Registrera</string>
+  <string name="RegistrationActivity_restore">Återställ</string>
+  <string name="BackupDialog_copied_to_clipboard">Kopierade till urklipp</string>
+  <string name="BackupUtil_never">Aldrig</string>
+  <string name="BackupUtil_unknown">Okänd</string>
+  <string name="AppProtectionPreferenceFragment_none">Inga</string>
+  <string name="RegistrationActivity_too_many_attempts">För många försök</string>
+  <string name="RegistrationLockDialog_disable">Inaktivera</string>
+  <string name="RegistrationActivity_continue">Fortsätt</string>
   <!--EOF-->
 </resources>

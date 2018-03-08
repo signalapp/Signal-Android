@@ -37,7 +37,6 @@
   <string name="ApplicationPreferencesActivity_off">av</string>
   <string name="ApplicationPreferencesActivity_Off">Av</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Passord %1$s, Skjermsikkerhet %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Språk %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -556,7 +555,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="KeyCachingService_signal_passphrase_cached">Trykk for å åpne.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Trykk for å åpne, eller trykk på lås for å lukke.</string>
   <string name="KeyCachingService_passphrase_cached">Signal er låst opp</string>
-  <string name="KeyCachingService_lock">Lås med passord</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Deg</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Ustøttet medietype</string>
@@ -842,7 +840,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="AndroidManifest_archived_conversations">Lagrede samtaler</string>
   <string name="AndroidManifest_remove_photo">Fjern bilde</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Importer / eksporter</string>
+  <string name="arrays__import_export">Importer</string>
   <string name="arrays__use_default">Bruk forvalgt</string>
   <string name="arrays__use_custom">Bruk selvvalgt</string>
   <string name="arrays__mute_for_one_hour">Demp i 1 time</string>
@@ -1086,5 +1084,14 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="Permissions_continue">Fortsett</string>
   <string name="Permissions_not_now">Ikke nå</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal krever tillatelse fra systemet for å kunne søke etter kontakter, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kontakter».</string>
+  <string name="registration_activity__skip">Hopp over</string>
+  <string name="registration_activity__register">Registrer</string>
+  <string name="RegistrationActivity_restore">Gjenopprett</string>
+  <string name="BackupUtil_never">Aldri</string>
+  <string name="BackupUtil_unknown">Ukjent</string>
+  <string name="AppProtectionPreferenceFragment_none">Ingen</string>
+  <string name="RegistrationActivity_too_many_attempts">For mange forsøk</string>
+  <string name="RegistrationLockDialog_disable">Slå av</string>
+  <string name="RegistrationActivity_continue">Fortsett</string>
   <!--EOF-->
 </resources>

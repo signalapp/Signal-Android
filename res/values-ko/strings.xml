@@ -35,7 +35,6 @@
   <string name="ApplicationPreferencesActivity_off">사용 안함</string>
   <string name="ApplicationPreferencesActivity_Off">사용 안함</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">암호 %1$s, 화면 보안 %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">테마 %1$s, 언어 %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -402,7 +401,6 @@
   <string name="KeyCachingService_signal_passphrase_cached">열려면 터치하세요.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">열려면 터치하세요. 그러나 잠그려면 자물쇠를 터치하세요.</string>
   <string name="KeyCachingService_passphrase_cached">Signal 잠금 해제 됨</string>
-  <string name="KeyCachingService_lock">암호로 잠금</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">나</string>
   <string name="MediaPreviewActivity_unssuported_media_type">지원되지 않는 미디어 형식</string>
@@ -569,6 +567,7 @@
   <string name="recipient_preferences__block">차단</string>
   <string name="recipient_preferences__color">색상</string>
   <string name="recipient_preferences__privacy">개인정보 보호</string>
+  <string name="recipient_preferences__ringtone">알림 벨소리</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal 통화</string>
   <string name="redphone_call_controls__mute">음소거</string>
@@ -603,7 +602,7 @@
   <string name="AndroidManifest__invite_friends">친구 초대</string>
   <string name="AndroidManifest_archived_conversations">보관된 대화</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">가져오기 / 내보내기</string>
+  <string name="arrays__import_export">가져오기</string>
   <string name="arrays__use_default">기본설정 사용</string>
   <string name="arrays__use_custom">맞춤설정 사용</string>
   <string name="arrays__mute_for_one_hour">1시간 동안 알림 일시 끄기</string>
@@ -704,6 +703,7 @@
   <string name="preferences_chats__message_trimming">대화 줄이기</string>
   <string name="preferences_advanced__use_system_emoji">시스템 이모티콘 사용</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal 이모티콘 사용 중지</string>
+  <string name="preferences_notifications__ringtone">알림 벨소리</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -804,5 +804,14 @@
   <string name="transport_selection_list_item__transport_icon">전송 아이콘</string>
   <string name="CallNotificationBuilder_connecting">연결 중…</string>
   <string name="Permissions_continue">확인</string>
+  <string name="registration_activity__skip">건너뛰기</string>
+  <string name="registration_activity__register">가입</string>
+  <string name="RegistrationActivity_restore">복원</string>
+  <string name="BackupUtil_never">안함</string>
+  <string name="BackupUtil_unknown">알 수 없음</string>
+  <string name="AppProtectionPreferenceFragment_none">없음</string>
+  <string name="RegistrationActivity_too_many_attempts">시도 횟수가 너무 많음</string>
+  <string name="RegistrationLockDialog_disable">사용 중지</string>
+  <string name="RegistrationActivity_continue">확인</string>
   <!--EOF-->
 </resources>

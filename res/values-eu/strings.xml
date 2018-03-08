@@ -37,7 +37,6 @@
   <string name="ApplicationPreferencesActivity_off">desaktibatuta</string>
   <string name="ApplicationPreferencesActivity_Off">Desaktibatuta</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Pasahitza %1$s, Pantaila-segurtasuna %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Gaia %1$s, Hizkuntza %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -562,7 +561,6 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="KeyCachingService_signal_passphrase_cached">Ukitu irekitzeko.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Ukitu irekitzeko, edo sarraila ukitu ixteko.</string>
   <string name="KeyCachingService_passphrase_cached">Signal desblokeatuta dago</string>
-  <string name="KeyCachingService_lock">Blokeatu pasahitz bat erabiliz</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Zu</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Euskarri mota ez-onartua</string>
@@ -850,7 +848,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="AndroidManifest_archived_conversations">Artxibatutako solasaldiak</string>
   <string name="AndroidManifest_remove_photo">Argazkia ezabatu</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Inportatu / esportatu</string>
+  <string name="arrays__import_export">Inportatu</string>
   <string name="arrays__use_default">Erabili lehenetsia</string>
   <string name="arrays__use_custom">Pertsonalizatua</string>
   <string name="arrays__mute_for_one_hour">Isildu ordu baterako</string>
@@ -1094,5 +1092,14 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="Permissions_not_now">Orain ez</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Singnalek Kontaktuen baimena behar du kontaktuak bilatzeko baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Kontaktuak\".</string>
   <string name="conversation_activity__enable_signal_messages">GAITU SIGNAL MEZUAK</string>
+  <string name="registration_activity__skip">Saltatu</string>
+  <string name="registration_activity__register">Erregistratu</string>
+  <string name="RegistrationActivity_restore">Leheneratu</string>
+  <string name="BackupUtil_never">Inoiz ez</string>
+  <string name="BackupUtil_unknown">Ezezaguna</string>
+  <string name="AppProtectionPreferenceFragment_none">Bat ere ez</string>
+  <string name="RegistrationActivity_too_many_attempts">Saio gehiegi</string>
+  <string name="RegistrationLockDialog_disable">Desgaitu</string>
+  <string name="RegistrationActivity_continue">Jarraitu</string>
   <!--EOF-->
 </resources>

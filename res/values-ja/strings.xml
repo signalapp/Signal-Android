@@ -35,7 +35,6 @@
   <string name="ApplicationPreferencesActivity_off">オフ</string>
   <string name="ApplicationPreferencesActivity_Off">オフ</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">パスワード %1$s、スクリーンセキュリティ %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">テーマ %1$s、言語 %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -528,7 +527,6 @@
   <string name="KeyCachingService_signal_passphrase_cached">タッチして開く</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">タッチして開くか、鍵をタッチして閉じる</string>
   <string name="KeyCachingService_passphrase_cached">Signalのロック解除</string>
-  <string name="KeyCachingService_lock">パスワードでロックする</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">あなた</string>
   <string name="MediaPreviewActivity_unssuported_media_type">サポートされないメディア種別</string>
@@ -755,6 +753,7 @@
   <string name="recipient_preferences__view_safety_number">安全番号を見る</string>
   <string name="recipient_preferences__chat_settings">チャットの設定</string>
   <string name="recipient_preferences__privacy">プライバシー</string>
+  <string name="recipient_preferences__ringtone">着信音</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal通話</string>
   <string name="redphone_call_controls__mute">消音</string>
@@ -807,7 +806,7 @@
   <string name="AndroidManifest_archived_conversations">アーカイブ済みの会話</string>
   <string name="AndroidManifest_remove_photo">画像を消去</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">インポート／エクスポート</string>
+  <string name="arrays__import_export">インポート</string>
   <string name="arrays__use_default">デフォルトを使う</string>
   <string name="arrays__use_custom">カスタムを使う</string>
   <string name="arrays__mute_for_one_hour">1時間ミュート</string>
@@ -848,6 +847,8 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">連絡先リストからあなたの連絡先を選んでください。</string>
   <string name="preferences__change_passphrase">パスワードの変更</string>
   <string name="preferences__change_your_passphrase">パスワードを変更します</string>
+  <string name="preferences__enable_passphrase">パスワードで画面をロックする</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">パスワードで画面と通知をロックする</string>
   <string name="preferences__screen_security">スクリーンセキュリティ</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">アプリ内や「最近使ったアプリ」でスクリーンショットを表示しない</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">一定時間後に自動ロック</string>
@@ -928,6 +929,7 @@
   <string name="preferences_notifications__events">イベント</string>
   <string name="preferences_notifications__in_chat_sounds">チャット着信音</string>
   <string name="preferences_notifications__show">表示</string>
+  <string name="preferences_notifications__ringtone">着信音</string>
   <string name="preferences_chats__show_invitation_prompts">招待状を表示</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Signalを持っていない連絡先に招待状を表示する</string>
   <string name="preferences_chats__message_text_size">メッセージのフォントの大きさ</string>
@@ -1048,5 +1050,21 @@
   <string name="Permissions_continue">続行</string>
   <string name="Permissions_not_now">後で</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signalで連絡先を検索するには、連絡先へのアクセスを許可する必要がありますが、無効になっています。アプリ設定メニューから、アプリの権限を選び、連絡先へのアクセス許可を有効にしてください。</string>
+  <string name="conversation_activity__enable_signal_messages">Signalメッセージを有効化</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Signalのデータを移行する</string>
+  <string name="PushDecryptJob_new_locked_message">ロックされた新着メッセージ</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">ロックを外し、メッセージを見る</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">ロックを外し、更新を完了する</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">更新を完了するため、ロックを解除してください</string>
+  <string name="registration_activity__skip">スキップする</string>
+  <string name="registration_activity__register">登録</string>
+  <string name="RegistrationActivity_restore">復元</string>
+  <string name="BackupDialog_copied_to_clipboard">コピーしました</string>
+  <string name="BackupUtil_never">なし</string>
+  <string name="BackupUtil_unknown">不明</string>
+  <string name="AppProtectionPreferenceFragment_none">なし</string>
+  <string name="RegistrationActivity_too_many_attempts">試行が多すぎます</string>
+  <string name="RegistrationLockDialog_disable">無効</string>
+  <string name="RegistrationActivity_continue">続行</string>
   <!--EOF-->
 </resources>

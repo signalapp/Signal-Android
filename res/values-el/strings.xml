@@ -37,7 +37,6 @@
   <string name="ApplicationPreferencesActivity_off">απενεργοποιημένο</string>
   <string name="ApplicationPreferencesActivity_Off">Απενεργοποιημένο</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Συνθηματικό %1$s, Ασφάλεια οθόνης %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Θέμα %1$s, Γλώσσα %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -558,7 +557,6 @@
   <string name="KeyCachingService_signal_passphrase_cached">Πάτησε για άνοιγμα.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Πάτησε για άνοιγμα, ή πάτησε την κλειδαριά για κλείσιμο.</string>
   <string name="KeyCachingService_passphrase_cached">Το Signal ξεκλειδώθηκε</string>
-  <string name="KeyCachingService_lock">Κλείδωμα με συνθηματικό</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Εσύ</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Μη υποστηριζόμενος τύπος πολυμέσων</string>
@@ -844,7 +842,7 @@
   <string name="AndroidManifest_archived_conversations">Αρχειοθετημένες συζητήσεις</string>
   <string name="AndroidManifest_remove_photo">Αφαίρεση φωτογραφίας</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Εισαγωγή / εξαγωγή</string>
+  <string name="arrays__import_export">Εισαγωγή</string>
   <string name="arrays__use_default">Χρήση προκαθορισμένου</string>
   <string name="arrays__use_custom">Χρήση προσαρμοσμένου</string>
   <string name="arrays__mute_for_one_hour">Σίγαση για 1 ώρα</string>
@@ -1094,5 +1092,17 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Μετεγκατάσταση της βάσης δεδομένων του Signal</string>
   <string name="PushDecryptJob_new_locked_message">Νέο κλειδωμένο μήνυμα</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Ξεκλείδωσε για να δείς τα εκκρεμή μηνύματα</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Ξεκλείδωσε για την ολοκλήρωση της αναβάθμιση</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Παρακαλώ ξεκλείδωσε το Signal για να ολοκληρωθεί η αναβάθμιση</string>
+  <string name="registration_activity__skip">Παράλειψη</string>
+  <string name="registration_activity__register">Εγγραφή</string>
+  <string name="RegistrationActivity_restore">Επαναφορά</string>
+  <string name="BackupDialog_copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
+  <string name="BackupUtil_never">Ποτέ</string>
+  <string name="BackupUtil_unknown">Άγνωστο</string>
+  <string name="AppProtectionPreferenceFragment_none">Κανένα</string>
+  <string name="RegistrationActivity_too_many_attempts">Υπερβολικά πολλές προσπάθειες</string>
+  <string name="RegistrationLockDialog_disable">Απενεργοποίηση</string>
+  <string name="RegistrationActivity_continue">Συνέχεια</string>
   <!--EOF-->
 </resources>

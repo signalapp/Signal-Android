@@ -35,7 +35,6 @@
   <string name="ApplicationPreferencesActivity_off">ပိတ်သည်</string>
   <string name="ApplicationPreferencesActivity_Off">ပိတ်ပါ</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">ဖုန်းစာတို%1$s၊ ရုပ်သံသတင်း%2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">စကားဝှက်%1$s၊  ဖုန်းမျက်နှာပြင်လုံခြုံရေး %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Theme%1$s၊ ဘာသာစကား  %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -508,7 +507,6 @@
   <string name="KeyCachingService_signal_passphrase_cached">ဖွင့်ရန် နှိပ်ပါ။</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">ဖွင့်ရန်နှိပ်ပါ။ ပြန်ပိတ်ရန် သော့ခလောက်ပုံကို နှိပ်ပါ။</string>
   <string name="KeyCachingService_passphrase_cached">Signal ကိုဖွင့်လိုက်ပါပြီ</string>
-  <string name="KeyCachingService_lock">စကားဝှက်​ဖြင့် ပိတ်ထားမည်။</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">သင်</string>
   <string name="MediaPreviewActivity_unssuported_media_type">ပံ့ပိုးမှုမပြုနိုင်သော ရုပ်၊သံ၊ပုံ ဖိုင်များ</string>
@@ -773,7 +771,7 @@
   <string name="AndroidManifest_archived_conversations">စကားဝိုင်းများကို မှတ်တမ်းထဲ ထည့်ပါ</string>
   <string name="AndroidManifest_remove_photo">ပုံကို ဖယ်ပါ</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">တင်သွင်း / ပို့</string>
+  <string name="arrays__import_export">သွင်းယူပါ</string>
   <string name="arrays__use_default">မူလကို သုံးပါ</string>
   <string name="arrays__use_custom">အထူးပြုကိုသုံးသည် </string>
   <string name="arrays__mute_for_one_hour">အသံကို ၁ နာရီ ပိတ်ထားပါ။</string>
@@ -1007,5 +1005,14 @@
   <string name="ConversationListFragment_loading">လုပ်ဆောင်နေသည်...</string>
   <string name="CallNotificationBuilder_connecting">ချိတ်ဆက်နေသည်</string>
   <string name="Permissions_continue">ရှေ့ဆက်ပါ။</string>
+  <string name="registration_activity__skip">ကျော်ပါ။</string>
+  <string name="registration_activity__register">စာရင်းသွင်းသည်</string>
+  <string name="RegistrationActivity_restore">ပြန်ထည့်သည်</string>
+  <string name="BackupUtil_never">ဘယ်တော့မှ</string>
+  <string name="BackupUtil_unknown">မသိ</string>
+  <string name="AppProtectionPreferenceFragment_none">လုံးဝ </string>
+  <string name="RegistrationActivity_too_many_attempts">စမ်းသပ်အကြိမ်ရေ အလွန်များပြားနေပါသည်</string>
+  <string name="RegistrationLockDialog_disable">ပိတ်ထားပါ</string>
+  <string name="RegistrationActivity_continue">ရှေ့ဆက်ပါ။</string>
   <!--EOF-->
 </resources>

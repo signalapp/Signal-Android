@@ -39,7 +39,7 @@
   <string name="ApplicationPreferencesActivity_off">išjungta</string>
   <string name="ApplicationPreferencesActivity_Off">Išjungta</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Slaptafrazė %1$s, Ekrano saugumas %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Ekrano užraktas %1$s, Registracijos užraktas %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Kalba %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -580,7 +580,7 @@
   <string name="KeyCachingService_signal_passphrase_cached">Prilieskite, kad atvertumėte.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Prilieskite, norėdami atverti arba prilieskite spyną, norėdami užverti.</string>
   <string name="KeyCachingService_passphrase_cached">Signal yra atrakinta</string>
-  <string name="KeyCachingService_lock">Užrakinti, naudojant slaptafrazę</string>
+  <string name="KeyCachingService_lock">Užrakinti Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Jūs</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Nepalaikomas medijos tipas</string>
@@ -821,6 +821,8 @@
   <string name="recipient_preferences__view_safety_number">Rodyti saugumo numerį</string>
   <string name="recipient_preferences__chat_settings">Pokalbio nustatymai</string>
   <string name="recipient_preferences__privacy">Privatumas</string>
+  <string name="recipient_preferences__call_settings">Skambučių nustatymai</string>
+  <string name="recipient_preferences__ringtone">Skambučio melodija</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal skambutis</string>
   <string name="redphone_call_controls__mute">Nutildyti</string>
@@ -873,7 +875,7 @@
   <string name="AndroidManifest_archived_conversations">Archyvuoti pokalbiai</string>
   <string name="AndroidManifest_remove_photo">Šalinti nuotrauką</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Importuoti / eksportuoti</string>
+  <string name="arrays__import_export">Importuoti</string>
   <string name="arrays__use_default">Naudoti numatytąjį</string>
   <string name="arrays__use_custom">Naudoti tinkintą</string>
   <string name="arrays__mute_for_one_hour">Nutildyti 1 valandai</string>
@@ -998,6 +1000,8 @@
   <string name="preferences_notifications__events">Įvykiai</string>
   <string name="preferences_notifications__in_chat_sounds">Garsai pokalbiuose</string>
   <string name="preferences_notifications__show">Rodyti</string>
+  <string name="preferences_notifications__calls">Skambučiai</string>
+  <string name="preferences_notifications__ringtone">Skambučio melodija</string>
   <string name="preferences_chats__show_invitation_prompts">Rodyti pakvietimų užklausas</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Rodyti pakvietimų užklausas kontaktams, kurie neturi Signal</string>
   <string name="preferences_chats__message_text_size">Žinučių šrifto dydis</string>
@@ -1126,5 +1130,49 @@
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Atrakinkite, norėdami matyti laukiančias žinutes</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Atrakinkite, norėdami užbaigti atnaujinimą</string>
   <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Atrakinkite Signal, norėdami užbaigti atnaujinimą</string>
+  <string name="registration_activity__restore_backup">Atkurti atsarginę kopiją</string>
+  <string name="registration_activity__skip">Praleisti</string>
+  <string name="registration_activity__register">Registruoti</string>
+  <string name="preferences_chats__chat_backups">Pokalbių atsarginės kopijos</string>
+  <string name="preferences_chats__create_backup">Daryti atsarginę kopiją</string>
+  <string name="RegistrationActivity_restore">Atkurti</string>
+  <string name="RegistrationActivity_checking">Tikrinama...</string>
+  <string name="RegistrationActivity_restore_from_backup">Atkurti iš atsarginės kopijos?</string>
+  <string name="RegistrationActivity_backup_size_s">Atsarginės kopijos dydis: %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Atsarginės kopijos laiko žyma: %s</string>
+  <string name="BackupDialog_enable_local_backups">Įjungti vietines atsargines kopijas?</string>
+  <string name="BackupDialog_enable_backups">Įjungti atsargines kopijas</string>
+  <string name="BackupDialog_delete_backups">Ištrinti atsargines kopijas?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Išjungti ir ištrinti visas vietines atsargines kopijas?</string>
+  <string name="BackupDialog_delete_backups_statement">Ištrinti atsargines kopijas</string>
+  <string name="BackupDialog_copied_to_clipboard">Nukopijuota į iškarpinę</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">Paskiausia atsarginė kopija: %s</string>
+  <string name="RegistrationActivity_wrong_number">Neteisingas numeris?</string>
+  <string name="BackupUtil_never">Niekada</string>
+  <string name="BackupUtil_unknown">Nežinoma</string>
+  <string name="prompt_passphrase_activity__unlock_signal">Atrakinti Signal</string>
+  <string name="preferences_app_protection__screen_lock">Ekrano užraktas</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Užrakinti prieigą prie Signal, naudojant Android ekrano užraktą ar piršto atspaudą</string>
+  <string name="AppProtectionPreferenceFragment_none">Nėra</string>
+  <string name="registration_activity__registration_lock_pin">Registracijos užrakto PIN</string>
+  <string name="preferences_app_protection__registration_lock_pin">Registracijos užrakto PIN</string>
+  <string name="preferences_app_protection__registration_lock">Registracijos užraktas</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Privalote įvesti savo Registracijos užrakto PIN</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">Neteisingas Registracijojs užrakto PIN</string>
+  <string name="RegistrationActivity_too_many_attempts">Per daug bandymų</string>
+  <string name="RegistrationActivity_error_connecting_to_service">Klaida, jungiantis prie paslaugos</string>
+  <string name="RegistrationActivity_oh_no">O, ne!</string>
+  <string name="RegistrationActivity_registration_lock_pin">Registracijos užrakto PIN</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Šiam telefono numeriui yra įjungtas Registracijos užraktas. Įveskite Registracijos užrakto PIN.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Jūsų telefono numeriui yra įjungtas Registracijos užraktas.</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">Aš pamiršau savo PIN.</string>
+  <string name="RegistrationLockDialog_forgotten_pin">Pamiršote PIN?</string>
+  <string name="RegistrationLockDialog_registration_lock">Registracijos užraktas</string>
+  <string name="RegistrationLockDialog_enable">Įjungti</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">Registracijos PIN privalo būti bent 4 skaitmenų.</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">Klaida, jungiantis prie paslaugos</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">Išjungti Registracijos užrakto PIN?</string>
+  <string name="RegistrationLockDialog_disable">Išjungti</string>
+  <string name="RegistrationActivity_continue">Tęsti</string>
   <!--EOF-->
 </resources>

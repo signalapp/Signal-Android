@@ -11,10 +11,12 @@
   <string name="ApplicationPreferencesActivity_currently_s">Şu anda: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Hâlâ bir parola belirlememişsiniz!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="one">sohbet başına %d mesaj</item>
     <item quantity="other">sohbet başına %d mesaj</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Bütün eski mesajlar silinsin mi?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="one">Bu işlem tüm sohbetleri en yeni %d mesaja kadar kırpar.</item>
     <item quantity="other">Bu işlem tüm sohbetleri en yeni %d mesaja kadar kırpar.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Sil</string>
@@ -35,10 +37,10 @@
   <string name="ApplicationPreferencesActivity_off">kapalı</string>
   <string name="ApplicationPreferencesActivity_Off">Kapalı</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Parola %1$s, Ekran güvenliği %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Dil %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="one">%d dakika</item>
     <item quantity="other">%d dakika</item>
   </plurals>
   <!--DraftDatabase-->
@@ -49,6 +51,9 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Medyayı seçmek için bir uygulama bulunamıyor.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Resim, vidyo veya ses ekleyebilmek için Signal\'a Bellek izni gerekiyor, fakat bu izin temelli rededdilmiştir. Lütfen uygulama ayarlarına devam edip \"İzin\" kısmını seçin, ve \"Bellek\"i etkinleştirin.</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal, iletişim bilgilerini eklemek için Kişiler iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Kişiler\" i etkinleştirin.</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal, konum bilgisi eklemek için Konum iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Konum\" u etkinleştirin.</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal, fotoğraf çekmek için Kamera iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Kamera\" yı etkinleştirin.</string>
   <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Ses oynatma hatası!</string>
@@ -119,35 +124,46 @@
   <string name="ConversationActivity_error_sending_voice_message">Sesli mesaj gönderirken hata</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Cihazınızda bu linke ulaşmanız için gereken hiç bir uygulama yüklü değil.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Sesli mesaj göndermek için Signal\'in mikrofonunuza erişime ihtiyacı var.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal,sesli mesaj göndermek için Mikrofon iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Mikrofon\" u etkinleştirin.</string>
   <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Arama yapmak için %s Signal\'in mikrofon ve kameranıza erişime ihtiyacı var.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal, %s \'ı aramak için Mikrofon ve Kamera iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Mikrofon\" ve \"Kamera\" yı etkinleştirin.</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Resim ve vidyo çekmek icin Signal\'a kamera izni verin.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal, fotoğraf ve vidyo çekmek için Kamera iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Kamera\" yı etkinleştirin.</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Resim veya vidyo çekebilmek için Signal\'a kamera izni gerek.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
+    <item quantity="one">%d okunmamış mesaj</item>
     <item quantity="other">%d okunmamış mesaj</item>
   </plurals>
   <!--ConversationFragment-->
   <plurals name="ConversationFragment_delete_selected_messages">
+    <item quantity="one">Seçilen mesajları sil?</item>
     <item quantity="other">Seçilen mesajları sil?</item>
   </plurals>
   <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+    <item quantity="one">Bu işlem seçtiğiniz %1$d mesajı kalıcı olarak silecektir.</item>
     <item quantity="other">Bu işlem seçtiğiniz %1$d mesajı kalıcı olarak silecektir.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Depolama alanına kaydedilsin mi?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+    <item quantity="one">%1$d medyanın tümünü depolama alanına kaydetmek, telefonunuzda ki diğer uygulamaların erişimine izin verecektir.\n\nDevam edilsin mi?</item>
     <item quantity="other">%1$d medyanın tümünü depolama alanına kaydetmek, telefonunuzda ki diğer uygulamaların erişimine izin verecektir.\n\nDevam edilsin mi?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+    <item quantity="one">Ekler depolama alanına kaydedilirken hata oluştu! </item>
     <item quantity="other">Ekler depolama alanına kaydedilirken hata oluştu! </item>
   </plurals>
   <plurals name="ConversationFragment_files_saved_successfully">
+    <item quantity="one">Dosyalar başarıyla kaydedildi.</item>
     <item quantity="other">Dosyalar başarıyla kaydedildi.</item>
   </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Depolama alanına yazılamıyor!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
+    <item quantity="one">%1$d ekleri kaydediliyor</item>
     <item quantity="other">%1$d ekleri kaydediliyor</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+    <item quantity="one">%1$d ekleri depolama alanına kaydediliyor... </item>
     <item quantity="other">%1$d ekleri depolama alanına kaydediliyor... </item>
   </plurals>
   <string name="ConversationFragment_pending">Bekleyen...</string>
@@ -161,18 +177,22 @@
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_no_results_found_for_s_">\'%s\' için hiç sonuç bulunamadı.</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
+    <item quantity="one">Seçilmiş sohbetleri sil?</item>
     <item quantity="other">Seçilmiş sohbetleri sil?</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
+    <item quantity="one">Bu işlem seçilmiş %1$d sohbeti kalıcı olarak silecektir.</item>
     <item quantity="other">Bu işlem seçilmiş %1$d sohbeti kalıcı olarak silecektir.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Siliniyor</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Seçilmiş sohbetler siliniyor...</string>
   <plurals name="ConversationListFragment_conversations_archived">
+    <item quantity="one">arşivlenen konuşmalar %d</item>
     <item quantity="other">arşivlenen konuşmalar %d</item>
   </plurals>
   <string name="ConversationListFragment_undo">Geri Al</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <item quantity="one">Konuşmaların %d gelen kutusuna taşındı</item>
     <item quantity="other">Konuşmaların %d gelen kutusuna taşındı</item>
   </plurals>
   <!--ConversationListItem-->
@@ -282,7 +302,12 @@
   <string name="ImportFragment_no_plaintext_backup_found">Şifresiz metin yedeği bulunamadı!</string>
   <string name="ImportFragment_error_importing_backup">Yedek içeri aktarılırken hata!</string>
   <string name="ImportFragment_import_complete">İçe aktarma tamamlandı!</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages">Signal, SMS mesajlarını içe aktarmak için SMS iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"SMS\" i etkinleştirin.</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">Signal, SMS mesajlarını içe aktarmak için SMS iznini gerektirir</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">Signal, harici depolama biriminden okuma yapabilmek için Depolama iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Depolama\" yı etkinleştirin.</string>
   <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">Dış bellekten okuyabilmek için Signal\'a \"Bellek\" izni gerek.</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal, harici depolama birimine yazma yapabilmek için Depolama iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Depolama\" yı etkinleştirin.</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">Signal, harici depolama birimine yazma yapabilmek için Depolama iznini gerektirir</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Sesli mesaj kaydetmek için dokun ve basılı tut, göndermek için bırak</string>
   <!--InviteActivity-->
@@ -294,9 +319,11 @@
   <string name="InviteActivity_invitations_sent">Davetler gönderildi!</string>
   <string name="InviteActivity_invite_to_signal">Signal\'e davet et</string>
   <plurals name="InviteActivity_send_sms_to_friends">
+    <item quantity="one">%d ARKADAŞINA SMS GÖNDER</item>
     <item quantity="other">%d ARKADAŞINA SMS GÖNDER</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
+    <item quantity="one">%d SMS daveti gönderilsin mi?</item>
     <item quantity="other">%d SMS daveti gönderilsin mi?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Hadi Signal\'e geçelim: %1$s</string>
@@ -363,6 +390,8 @@
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Maalesef, bu geçerli bir cihaz bağlama QR kodu değil.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Bir Signal cihazına bağlanılsın mı?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">3. parti bir tarayıcı kullanarak bir Signal cihazına bağlanmaya çalışıyor gibi görünüyorsunuz. Kendi güvenliğinizi korumak için, Kodu lütfen Signal içinden tarayınız.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal, bir KK -Kare Kodu- taramak için Kamera iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Kamera\" yı etkinleştirin.</string>
+  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Kamera izni olmadan bir Kare Kod (KK) taraması yapılamıyor.</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Yok olan mesajlar</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Mesajlarınız yok olmaz.</string>
@@ -425,7 +454,9 @@
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Servisleri güncelleniyor veya geçiçi olarak kullanılamaz durumda. Lütfen yeniden deneyin.</string>
   <string name="RegistrationActivity_more_information">Daha fazla bilgi</string>
   <string name="RegistrationActivity_less_information">Daha az bilgi</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Kişilerle iletişim kurabilmeniz, mesaj alıp, göndermeniz ve güvenli aramalar yapabilmeniz için Signal\'in kişilerinize ve dosyalarınıza erişmesi gerekir</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Servise bağlanamadı. Lütfen ağ bağlantınızı kontrol edip tekrar deneyin.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Telefon numaranızı kolayca doğrulamak için Signal\'in SMS mesajlarınızı görmesine izin verirseniz, Signal doğrulama kodunuzu otomatik olarak algılayabilir.</string>
   <!--RegistrationProblemsActivity-->
   <!--RegistrationProgressActivity-->
   <!--RegistrationService-->
@@ -492,6 +523,8 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Signal güvenlik numaramız:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Paylaşmak için herhangi bir uygulamanız yok gibi görünüyor. </string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Karşılaştırmak için panoda hiçbir güvenlik numarası bulunamadı</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal, bir Kare Kodu (KK) taramak için Kamera iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Kamera\" yı etkinleştirin.</string>
+  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Kamera izni olmadan Kare Kod (KK) taraması yapılamıyor.</string>
   <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Kötü şifrelenmiş mesaj</string>
@@ -520,11 +553,12 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="KeyCachingService_signal_passphrase_cached">Açmak için dokunun.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Açmak için dokunun, veya kapatmak için kilide dokunun.</string>
   <string name="KeyCachingService_passphrase_cached">Signal kilidi açıldı</string>
-  <string name="KeyCachingService_lock">Parola ile kilitle</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Siz</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Desteklenmeyen medya türü</string>
   <string name="MediaPreviewActivity_draft">Taslak</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal, harici depolama birimine kaydedebilmek için Depolama iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Depolama\" yı etkinleştirin.</string>
+  <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">İzinler olmadan harici depolama birimine kayıt yapılamıyor</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d yeni mesaj %2$d sohbetten</string>
   <string name="MessageNotifier_most_recent_from_s">En yeni mesaj: %1$s</string>
@@ -556,6 +590,8 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Video oynatma hatası</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%s\'in aramasını cevaplamak için, Signal\'in mikrofonunuza erişimine izin vermelisiniz.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal, arama yapmak ve aranmak için Mikrofon ve Kamera iznini gerektirir, ancak izinler kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Mikrofon\" ve \"Kamera\" yı etkinleştirin.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">%1$s ile sohbetinizin güvenlik numarası değişti. Bu, birisinin sizin iletişiminizi araya girerek yakalayıp dinlemeye çalıştığı veya %2$s \'in yalnızca Signal\'i yeniden yüklediği anlamına gelebilir. </string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Bu kişiyle güvenlik numaranızı doğrulamak isteyebilirsiniz.</string>
@@ -590,11 +626,13 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Kişi Fotoğrafı</string>
   <!--ContactSelectionListFragment-->
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal, kişilerinizi göstermek için Kişiler iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Kişiler\" i etkinleştirin.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Kişiler alınırken hata oluştu, ağ bağlantınızı kontrol edin</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Hiç engellenmiş kişi yok</string>
   <!--contact_selection_recent_activity-->
   <!--contact_selection_list_fragment-->
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal, kişilerinizi göstermek için Kişiler \'e erişim izni gerektirir</string>
   <string name="contact_selection_list_fragment__show_contacts">Kişileri Görüntüle</string>
   <!--conversation_title_view-->
   <!--conversation_activity-->
@@ -648,22 +686,27 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <!--expiration-->
   <string name="expiration_off">Kapalı</string>
   <plurals name="expiration_seconds">
+    <item quantity="one">%d saniye</item>
     <item quantity="other">%d saniye</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%ds</string>
   <plurals name="expiration_minutes">
+    <item quantity="one">%d dakika</item>
     <item quantity="other">%d dakika</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%dd</string>
   <plurals name="expiration_hours">
+    <item quantity="one">%d saat</item>
     <item quantity="other">%d saat</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%ds</string>
   <plurals name="expiration_days">
+    <item quantity="one">%d gün</item>
     <item quantity="other">%d gün</item>
   </plurals>
   <string name="expiration_days_abbreviated">%dg</string>
   <plurals name="expiration_weeks">
+    <item quantity="one">%d hafta</item>
     <item quantity="other">%d hafta</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dh</string>
@@ -678,6 +721,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="IdentityUtil_untrusted_dialog_two">%1$s ve %2$sile güvenlik numaralarınız az önce değişti. </string>
   <string name="IdentityUtil_untrusted_dialog_many">%1$s, %2$s ve %3$sile güvenlik numaralarınız az önce değişti.  </string>
   <plurals name="identity_others">
+    <item quantity="one">%d diğer</item>
     <item quantity="other">%d diğer</item>
   </plurals>
   <!--giphy_activity-->
@@ -715,6 +759,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="message_recipients_list_item__resending">Yeniden gönderiliyor...</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
+    <item quantity="one">%1$s gruba katıldı.</item>
     <item quantity="other">%1$s gruba katıldı.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Grup adı artık \'%1$s\'.</string>
@@ -793,7 +838,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="AndroidManifest_archived_conversations">Arşivlenmiş sohbetler</string>
   <string name="AndroidManifest_remove_photo">Fotoğrafı kaldır</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">İçe/Dışa Aktar</string>
+  <string name="arrays__import_export">İçe Aktar</string>
   <string name="arrays__use_default">Varsayılanı kullan</string>
   <string name="arrays__use_custom">Özelleştirilmiş kullan</string>
   <string name="arrays__mute_for_one_hour">1 saatliğine sustur</string>
@@ -820,6 +865,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="arrays__max">Maksimum</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
+    <item quantity="one">%d saat</item>
     <item quantity="other">%d saat</item>
   </plurals>
   <!--preferences.xml-->
@@ -834,6 +880,8 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Kişi girdinizi kişi listesinden seçin.</string>
   <string name="preferences__change_passphrase">Parola değiştir</string>
   <string name="preferences__change_your_passphrase">Parolanı değiştir</string>
+  <string name="preferences__enable_passphrase">Ekran kilidi parolasını etkinleştirin.</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Ekranı ve bildirimleri bir parola ile kilitleyin.</string>
   <string name="preferences__screen_security">Ekran güvenliği</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">En son listelerde ve uygulama içinde ekran görüntüsü alınmasını engelle</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Signal\'i belirli bir zaman aralığından sonra otomatik kilitle</string>
@@ -955,9 +1003,10 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="conversation_list_item_view__contact_photo_image">Kişi fotoğrafı</string>
   <string name="conversation_list_item_view__archived">Arşivlendi</string>
   <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Gelen kutusu sıııfffııır</string>
+  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Aişe, Fatma, Hamid, Sefa. Hiç kimse yok mu?\nYoksa hepiniz mi yakalandınız!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Yeni sohbet</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Gelen kutunuza birşeyler gelmesini sağlayın. Bir arkadaşınıza mesaj göndererek başlayın.</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Gelen kutunuza bir şeyler gelmesini sağlayın. Bir arkadaşınıza mesaj göndererek başlayın.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Güvenli oturumu sıfırla</string>
   <!--conversation_muted-->
@@ -994,6 +1043,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Signal sürümünüz eski kalmış</string>
   <plurals name="reminder_header_outdated_build_details">
+    <item quantity="one">Signal sürümünüz %d gün içinde kullanım dışı kalacak. En yeni sürüme güncellemek için dokunun.</item>
     <item quantity="other">Signal sürümünüz %d gün içinde kullanım dışı kalacak. En yeni sürüme güncellemek için dokunun.</item>
   </plurals>
   <string name="reminder_header_outdated_build_details_today">Signal sürümünüz bugün kullanım dışı kalacak. En yeni sürüme güncellemek için dokunun.</string>
@@ -1029,8 +1079,25 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="ConversationListFragment_loading">Yükleniyor...</string>
   <string name="CallNotificationBuilder_connecting">Bağlanılıyor...</string>
   <string name="Permissions_permission_required">İzin gerekmekte</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal, SMS göndermek için SMS izni gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"SMS\" i etkinleştirin.</string>
   <string name="Permissions_continue">Devam Et</string>
   <string name="Permissions_not_now">Simdi degil</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal, kişilerinizi aramak için Kişiler iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Kişiler\" i etkinleştirin.</string>
   <string name="conversation_activity__enable_signal_messages">SİGNAL MESAJLARINI ETKİNLEŞTİRİN</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal veritabanı taşınıyor</string>
+  <string name="PushDecryptJob_new_locked_message">Yeni kilitlenmiş mesaj</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Bekleyen mesajları görüntülemek için kilidi açın</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Güncellemeyi tamamlamak için kilidi kaldırın</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Güncellemeyi tamamlamak için lütfen Signal kilidini açın</string>
+  <string name="registration_activity__skip">Atla</string>
+  <string name="registration_activity__register">Kayıt ol</string>
+  <string name="RegistrationActivity_restore">Geri yükle</string>
+  <string name="BackupDialog_copied_to_clipboard">Panoya kopyalandı</string>
+  <string name="BackupUtil_never">Asla</string>
+  <string name="BackupUtil_unknown">Bilinmeyen</string>
+  <string name="AppProtectionPreferenceFragment_none">Hiçbiri</string>
+  <string name="RegistrationActivity_too_many_attempts">Çok fazla deneme</string>
+  <string name="RegistrationLockDialog_disable">Devre dışı bırak</string>
+  <string name="RegistrationActivity_continue">Devam Et</string>
   <!--EOF-->
 </resources>

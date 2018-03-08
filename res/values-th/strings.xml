@@ -35,7 +35,6 @@
   <string name="ApplicationPreferencesActivity_off">ปิด</string>
   <string name="ApplicationPreferencesActivity_Off">ปิด</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">วลีรหัสผ่าน %1$s, ความปลอดภัยหน้าจอ %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">หน้าตา %1$s, ภาษา %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -546,7 +545,6 @@
   <string name="KeyCachingService_signal_passphrase_cached">แตะเพื่อเปิด</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">แตะเพื่อเปิด หรือแตะที่ตัวล็อกเพื่อปิด</string>
   <string name="KeyCachingService_passphrase_cached">Signal ถูกปลดล็อก</string>
-  <string name="KeyCachingService_lock">ล็อกโดยใช้วลีรหัสผ่าน</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">คุณ</string>
   <string name="MediaPreviewActivity_unssuported_media_type">ชนิดสื่อที่ไม่รองรับ</string>
@@ -825,7 +823,7 @@
   <string name="AndroidManifest_archived_conversations">การสนทนาในคลังเก็บ</string>
   <string name="AndroidManifest_remove_photo">ลบรูป</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">นำเข้า / ส่งออก</string>
+  <string name="arrays__import_export">นำเข้า</string>
   <string name="arrays__use_default">ใช้ค่าเริ่มต้น</string>
   <string name="arrays__use_custom">ใช้ที่กำหนดเอง</string>
   <string name="arrays__mute_for_one_hour">ปิดเสียง 1 ชั่วโมง</string>
@@ -1066,5 +1064,13 @@
   <string name="Permissions_continue">ทำต่อ</string>
   <string name="Permissions_not_now">เอาไว้ก่อน</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">เพื่อที่จะค้นหาชื่อได้ Signal ต้องการคำอนุญาตให้ใช้รายชื่อคนที่คุณติดต่อ แต่คำขอของมันถูกปฏิเสธอย่างถาวร กรุณาไปยังเมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้ \"รายชื่อผู้ติดต่อ\"</string>
+  <string name="registration_activity__skip">ข้าม</string>
+  <string name="registration_activity__register">ลงทะเบียน</string>
+  <string name="RegistrationActivity_restore">เรียกคืน</string>
+  <string name="BackupUtil_never">ไม่เลย</string>
+  <string name="BackupUtil_unknown">ไม่ทราบ</string>
+  <string name="AppProtectionPreferenceFragment_none">ไม่มี</string>
+  <string name="RegistrationLockDialog_disable">ปิดการใช้</string>
+  <string name="RegistrationActivity_continue">ทำต่อ</string>
   <!--EOF-->
 </resources>

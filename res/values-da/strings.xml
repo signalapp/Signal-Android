@@ -37,7 +37,6 @@
   <string name="ApplicationPreferencesActivity_off">slukket</string>
   <string name="ApplicationPreferencesActivity_Off">Slukket</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Kodeord %1$s, Skærmsikkerhed %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Sprog %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -508,7 +507,6 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="KeyCachingService_signal_passphrase_cached">Tryk for at åbne.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Tryk for at åbne, eller tryk på låsen for at lukke.</string>
   <string name="KeyCachingService_passphrase_cached">Signal er låst op</string>
-  <string name="KeyCachingService_lock">Lås med et kodeord</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Dig</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Ikke-understøttet multimedietype</string>
@@ -717,6 +715,7 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="recipient_preferences__color">Farve</string>
   <string name="recipient_preferences__view_safety_number">Vis sikkerhedsnummer</string>
   <string name="recipient_preferences__privacy">Privatliv</string>
+  <string name="recipient_preferences__ringtone">Ringetone</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signalopkald</string>
   <string name="redphone_call_controls__mute">Slå lyd fra</string>
@@ -760,7 +759,7 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="AndroidManifest__invite_friends">Invitér venner</string>
   <string name="AndroidManifest_archived_conversations">Arkiverede samtaler</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Importér / eksportér</string>
+  <string name="arrays__import_export">Importér</string>
   <string name="arrays__use_default">Anvend standard</string>
   <string name="arrays__use_custom">Anvend tilpasset</string>
   <string name="arrays__mute_for_one_hour">Dæmp 1 time</string>
@@ -878,6 +877,7 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="preferences_notifications__events">Begivenheder</string>
   <string name="preferences_notifications__in_chat_sounds">Chat-lyde</string>
   <string name="preferences_notifications__show">Vis</string>
+  <string name="preferences_notifications__ringtone">Ringetone</string>
   <string name="preferences_chats__show_invitation_prompts">Vis invitationsprompt</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Vis invitationsprompt for kontakter uden Signal</string>
   <string name="preferences_chats__message_text_size">Skriftstørrelse på beskeder</string>
@@ -991,5 +991,15 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="ConversationListFragment_loading">Indlæser...</string>
   <string name="CallNotificationBuilder_connecting">Forbinder...</string>
   <string name="Permissions_continue">Fortsæt</string>
+  <string name="registration_activity__skip">Spring over</string>
+  <string name="registration_activity__register">Registrér</string>
+  <string name="RegistrationActivity_restore">Gendan</string>
+  <string name="BackupDialog_copied_to_clipboard">Kopieret til udklipsholder</string>
+  <string name="BackupUtil_never">Aldrig</string>
+  <string name="BackupUtil_unknown">Ukendt</string>
+  <string name="AppProtectionPreferenceFragment_none">Ingen</string>
+  <string name="RegistrationActivity_too_many_attempts">For mange forsøg</string>
+  <string name="RegistrationLockDialog_disable">Deaktivér</string>
+  <string name="RegistrationActivity_continue">Fortsæt</string>
   <!--EOF-->
 </resources>

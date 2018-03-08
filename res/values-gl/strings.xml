@@ -37,7 +37,6 @@
   <string name="ApplicationPreferencesActivity_off">desactivada</string>
   <string name="ApplicationPreferencesActivity_Off">Off</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Frase de acceso %1$s, pantalla de seguranza %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Idioma %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -563,7 +562,6 @@
   <string name="KeyCachingService_signal_passphrase_cached">Toca para abrir</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Toca para abrir ou toca o cadeado para pechar.</string>
   <string name="KeyCachingService_passphrase_cached">Signal está desbloqueado</string>
-  <string name="KeyCachingService_lock">Bloquear esta frase de acceso</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Ti</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Tipo multimedia non compatible</string>
@@ -849,7 +847,7 @@
   <string name="AndroidManifest_archived_conversations">Conversas arquivadas</string>
   <string name="AndroidManifest_remove_photo">Eliminar fotografía</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Importar/exportar</string>
+  <string name="arrays__import_export">Importar</string>
   <string name="arrays__use_default">Utilizar o predeterminado</string>
   <string name="arrays__use_custom">Utilizar o personalizado</string>
   <string name="arrays__mute_for_one_hour">Silenciar durante 1 hora</string>
@@ -1098,5 +1096,14 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrando a base de datos de Signal</string>
   <string name="PushDecryptJob_new_locked_message">Nova mensaxe bloqueada</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Desbloquear para ver as mensaxes pendentes</string>
+  <string name="registration_activity__skip">Omitir</string>
+  <string name="registration_activity__register">Rexistro</string>
+  <string name="RegistrationActivity_restore">Restaurar</string>
+  <string name="BackupUtil_never">Nunca</string>
+  <string name="BackupUtil_unknown">Descoñecido</string>
+  <string name="AppProtectionPreferenceFragment_none">Ningunha</string>
+  <string name="RegistrationActivity_too_many_attempts">Demasiadas tentativas</string>
+  <string name="RegistrationLockDialog_disable">Desactivar</string>
+  <string name="RegistrationActivity_continue">Continuar</string>
   <!--EOF-->
 </resources>

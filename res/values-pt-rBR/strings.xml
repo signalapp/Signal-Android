@@ -37,7 +37,6 @@
   <string name="ApplicationPreferencesActivity_off">desligado</string>
   <string name="ApplicationPreferencesActivity_Off">Desligado</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Frase-chave %1$s, Segurança de tela %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Idioma %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -562,8 +561,8 @@
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Toque para abrir.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Toque para abrir ou clique no cadeado para fechar.</string>
-  <string name="KeyCachingService_passphrase_cached">Signal está desbloqueado</string>
-  <string name="KeyCachingService_lock">Trancar com frase-chave</string>
+  <string name="KeyCachingService_passphrase_cached">Signal está destravado</string>
+  <string name="KeyCachingService_lock">Trancar Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Você</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Tipo de mídia não suportado</string>
@@ -573,7 +572,7 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d mensagens novas em %2$d conversas</string>
   <string name="MessageNotifier_most_recent_from_s">Mais recente de: %1$s</string>
-  <string name="MessageNotifier_locked_message">Mensagem fechada</string>
+  <string name="MessageNotifier_locked_message">Mensagem trancada</string>
   <string name="MessageNotifier_media_message_with_text">Mensagem multimídia: %s</string>
   <string name="MessageNotifier_message_delivery_failed">Envio de mensagem falhou.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Falha ao enviar mensagem.</string>
@@ -586,10 +585,11 @@
   <string name="MessageNotifier_you_have_pending_signal_messages">Você tem mensagens Signal pendentes. Clique para abrir e recuperá-las.</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Resposta rápida não disponível quando o Signal está bloqueado!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Resposta rápida não disponível quando o Signal está trancado!</string>
   <string name="QuickResponseService_problem_sending_message">Problema ao enviar mensagem!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Abrir pasta</string>
+  <string name="SaveAttachmentTask_saved_to">Gravado no %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Procurar</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -797,6 +797,8 @@
   <string name="recipient_preferences__view_safety_number">Ver número de segurança</string>
   <string name="recipient_preferences__chat_settings">Configurações de chat</string>
   <string name="recipient_preferences__privacy">Privacidade</string>
+  <string name="recipient_preferences__call_settings">Configurações de chamada</string>
+  <string name="recipient_preferences__ringtone">Toque</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Chamada do Signal</string>
   <string name="redphone_call_controls__mute">Mudo</string>
@@ -849,7 +851,7 @@
   <string name="AndroidManifest_archived_conversations">Conversas arquivadas</string>
   <string name="AndroidManifest_remove_photo">Remover foto</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Importar / exportar</string>
+  <string name="arrays__import_export">Importar</string>
   <string name="arrays__use_default">Usar padrão</string>
   <string name="arrays__use_custom">Usar personalização</string>
   <string name="arrays__mute_for_one_hour">Silenciar por 1 hora</string>
@@ -973,6 +975,8 @@
   <string name="preferences_notifications__events">Eventos</string>
   <string name="preferences_notifications__in_chat_sounds">Sons no chat</string>
   <string name="preferences_notifications__show">Exibir</string>
+  <string name="preferences_notifications__calls">Chamadas</string>
+  <string name="preferences_notifications__ringtone">Toque</string>
   <string name="preferences_chats__show_invitation_prompts">Mostrar avisos de convite</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Mostrar avisos de convite para contatos sem Signal</string>
   <string name="preferences_chats__message_text_size">Tamanho da fonte da mensagem</string>
@@ -1097,7 +1101,47 @@
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal precisa da permissão de Contatos para poder pesquisar nos seus contatos, mas ela foi permanentemente negada. Por favor, vá nas configurações do aplicativo, selecione \"Permissões\" e ative \"Contatos\".</string>
   <string name="conversation_activity__enable_signal_messages">HABILITAR MENSAGENS SIGNAL</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrando a base de dados do Signal</string>
-  <string name="PushDecryptJob_new_locked_message">Nova mensagem bloqueada</string>
-  <string name="PushDecryptJob_unlock_to_view_pending_messages">Desbloqueie para ver as mensagens pendentes</string>
+  <string name="PushDecryptJob_new_locked_message">Nova mensagem trancada</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Destranque para ver as mensagens pendentes</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Destranque para completar a atualização</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Favor destrancar o Signal para completar a atualização</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">Frase-chave de backup</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Os backups serão gravados no armazenamento externo e criptografados com a frase-chave abaixo. Você precisa desta frase-chave para restaurar um backup.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Eu anotei esta frase-chave. Sem ela eu não conseguirei restaurar um backup.</string>
+  <string name="registration_activity__restore_backup">Restaurar backup</string>
+  <string name="registration_activity__skip">Pular</string>
+  <string name="registration_activity__register">Cadastrar</string>
+  <string name="preferences_chats__chat_backups">Backups de chat</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Fazer backup de chats no armazenamento externo</string>
+  <string name="preferences_chats__create_backup">Criar backup</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Digite a frase-chave de backup</string>
+  <string name="RegistrationActivity_restore">Restaurar</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">Frase-chave de backup incorreta</string>
+  <string name="RegistrationActivity_checking">Checando...</string>
+  <string name="RegistrationActivity_d_messages_so_far">%d mensagens até agora...</string>
+  <string name="RegistrationActivity_restore_from_backup">Restaurar do backup?</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Restaurar suas mensagens e mídias de um backup local. Se você não restaurar agora, você não conseguirá restaurar depois.</string>
+  <string name="RegistrationActivity_backup_size_s">Tamanho do backup: %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Timestamp do backup: %s</string>
+  <string name="BackupDialog_enable_local_backups">Habilitar backups locais?</string>
+  <string name="BackupDialog_enable_backups">Habilitar backups</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Favor confirmar seu entendimento marcando a caixa de verificação.</string>
+  <string name="BackupDialog_delete_backups">Excluir backups?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Desabilitar e excluir todos os backups locais?</string>
+  <string name="BackupDialog_delete_backups_statement">Excluir backups</string>
+  <string name="BackupDialog_copied_to_clipboard">Copiada para a área de transferência</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">Último backup: %s</string>
+  <string name="ChatsPreferenceFragment_in_progress">Em andamento</string>
+  <string name="ProgressPreference_d_messages_so_far">%d mensagens até agora</string>
+  <string name="RegistrationActivity_verify_s">Verificar %s</string>
+  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Favor digitar o código de verificação enviado para %s.</string>
+  <string name="RegistrationActivity_wrong_number">Número errado?</string>
+  <string name="BackupUtil_never">Nunca</string>
+  <string name="BackupUtil_unknown">Desconhecida</string>
+  <string name="prompt_passphrase_activity__unlock_signal">Destrancar Signal</string>
+  <string name="AppProtectionPreferenceFragment_none">Nenhuma</string>
+  <string name="RegistrationActivity_too_many_attempts">Muitas tentativas</string>
+  <string name="RegistrationLockDialog_disable">Desabilitar</string>
+  <string name="RegistrationActivity_continue">Continuar</string>
   <!--EOF-->
 </resources>

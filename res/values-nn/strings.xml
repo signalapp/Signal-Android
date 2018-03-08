@@ -37,7 +37,7 @@
   <string name="ApplicationPreferencesActivity_off">av</string>
   <string name="ApplicationPreferencesActivity_Off">Av</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Passordfrase %1$s, Skjermtryggleik %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Skjermlås %1$s, registreringslås %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Språk %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -557,7 +557,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="KeyCachingService_signal_passphrase_cached">Trykk for å opna.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Trykk for å opna, eller trykk på lås for å lukka.</string>
   <string name="KeyCachingService_passphrase_cached">Signal er låst opp</string>
-  <string name="KeyCachingService_lock">Lås med passordfrase</string>
+  <string name="KeyCachingService_lock">Lås Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Deg</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Ustøtta medietype</string>
@@ -584,6 +584,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="QuickResponseService_problem_sending_message">Det oppstod eit problem under sending av melding.</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Opna mappe</string>
+  <string name="SaveAttachmentTask_saved_to">Lagra til %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Søk</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -791,6 +792,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="recipient_preferences__view_safety_number">Vis tryggleiksnummer</string>
   <string name="recipient_preferences__chat_settings">Samtaleinnstillingar</string>
   <string name="recipient_preferences__privacy">Personvern</string>
+  <string name="recipient_preferences__call_settings">Samtaleinnstillingar</string>
+  <string name="recipient_preferences__ringtone">Ringetone</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal-samtale</string>
   <string name="redphone_call_controls__mute">Demp</string>
@@ -845,7 +848,7 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="AndroidManifest_archived_conversations">Lagra samtalar</string>
   <string name="AndroidManifest_remove_photo">Fjern bilete</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Importer / eksporter</string>
+  <string name="arrays__import_export">Importer</string>
   <string name="arrays__use_default">Bruk forvald</string>
   <string name="arrays__use_custom">Bruk sjølvvald</string>
   <string name="arrays__mute_for_one_hour">Demp i 1 time</string>
@@ -969,6 +972,8 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="preferences_notifications__events">Hendingar</string>
   <string name="preferences_notifications__in_chat_sounds">Lydar i samtalar</string>
   <string name="preferences_notifications__show">Vis</string>
+  <string name="preferences_notifications__calls">Samtalar</string>
+  <string name="preferences_notifications__ringtone">Ringetone</string>
   <string name="preferences_chats__show_invitation_prompts">Oppfordring om invitering</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Vis oppfordring om å invitera kontaktar som ikkje har Signal</string>
   <string name="preferences_chats__message_text_size">Skriftstorleik i meldingar</string>
@@ -1097,5 +1102,77 @@ Du er à jour!</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Lås opp for å sjå ulesne meldingar</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Lås opp for å fullføra oppdateringa</string>
   <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Lås opp Signal for å fullføra oppdateringa</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">Passordfrase til reservekopi</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Reservekopiar blir lagra til ekstern lagring og krypterte med passordfrasen nedanfor. Du må ha denne passordfrasen for å gjenoppretta frå kopien.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Eg har skrive ned denne passordfrasen. Utan den vil eg ikkje få gjenoppretta frå reservekopien.</string>
+  <string name="registration_activity__restore_backup">Gjenopprett frå reservekopi</string>
+  <string name="registration_activity__skip">Hopp over</string>
+  <string name="registration_activity__register">Registrer</string>
+  <string name="preferences_chats__chat_backups">Reservekopiar av meldingar</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Ta reservekopi av meldingar til ekstern lagring</string>
+  <string name="preferences_chats__create_backup">Lag reservekopi</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Skriv passordfrasen til reservekopien</string>
+  <string name="RegistrationActivity_restore">Rett opp igjen</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">Feil passordfrase til reservekopi</string>
+  <string name="RegistrationActivity_checking">Sjekkar …</string>
+  <string name="RegistrationActivity_d_messages_so_far">%d meldingar så langt …</string>
+  <string name="RegistrationActivity_restore_from_backup">Gjenopprett frå reservekopi?</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Gjenopprett meldingar og media frå ein lokal reservekopi. Viss du ikkje gjenopprettar no, vil du ikkje få gjenoppretta seinare.</string>
+  <string name="RegistrationActivity_backup_size_s">Storleik på reservekopi: %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Tidsstempel for reservekopi: %s</string>
+  <string name="BackupDialog_enable_local_backups">Skru på lokale reservekopiar?</string>
+  <string name="BackupDialog_enable_backups">Skru på reservekopiar</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Stadfest at du forstår ved å huka av avkryssingsboksen.</string>
+  <string name="BackupDialog_delete_backups">Slett reservekopiar?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Skru av og slett alle lokale reservekopiar?</string>
+  <string name="BackupDialog_delete_backups_statement">Slett reservekopiar</string>
+  <string name="BackupDialog_copied_to_clipboard">Kopiert til utklippstavla</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal treng tilgang til ekstern lagring for å laga reservekopiar, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Lagring».</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">Siste reservekopi: %s</string>
+  <string name="ChatsPreferenceFragment_in_progress">I gang</string>
+  <string name="ProgressPreference_d_messages_so_far">%dmeldingar så langt</string>
+  <string name="RegistrationActivity_verify_s">Stadfest %s</string>
+  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Skriv inn stadfestingskoden sendt til %s</string>
+  <string name="RegistrationActivity_wrong_number">Feil nummer?</string>
+  <string name="BackupUtil_never">Aldri</string>
+  <string name="BackupUtil_unknown">Ukjend</string>
+  <string name="prompt_passphrase_activity__unlock_signal">Lås opp Signal</string>
+  <string name="preferences_app_protection__screen_lock">Skjermlås</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lås tilgangen til Signal med Androids skjermlås eller fingeravtrykk</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Tidsgrense for inaktivitet før skjermlås</string>
+  <string name="AppProtectionPreferenceFragment_none">Inga</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN-koden for registreringslås er ikkje den same som SMS-stadfestingskoden du just fekk. Skriv inn PIN-koden du stilte inn i programmet tidlegare.</string>
+  <string name="registration_activity__registration_lock_pin">PIN-kode for registreringslås</string>
+  <string name="registration_activity__forgot_pin">Gløymt PIN-koden?</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">PIN-koden kan ha fire eller fleire siffer. Viss du gløymer PIN-koden din, kan du bli utestengt frå kontoen din i opptil sju dagar.</string>
+  <string name="registration_lock_dialog_view__enter_pin">Skriv inn PIN-kode</string>
+  <string name="registration_lock_dialog_view__confirm_pin">Stadfest PIN-koden</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Skriv inn PIN-koden for registreringslås</string>
+  <string name="registration_lock_reminder_view__enter_pin">Skriv inn PIN-koden</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Skru på ein PIN-kode for registreringslås. Denne vil krevjast neste gong du prøver å registrera dette telefonnummeret med Signal igjen.</string>
+  <string name="preferences_app_protection__registration_lock_pin">PIN-kode for registreringslås</string>
+  <string name="preferences_app_protection__registration_lock">Registreringslås</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Du må skriva inn PIN-koden for registreringslås</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">Feil PIN-kode for registreringslås</string>
+  <string name="RegistrationActivity_too_many_attempts">For mange forsøk</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Du har skrive PIN-koden for registreringslås feil for mange gongar. Prøv igjen neste dag.</string>
+  <string name="RegistrationActivity_error_connecting_to_service">Klarte ikkje kopla til tenesta</string>
+  <string name="RegistrationActivity_oh_no">Ånei!</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Du kan registrera dette telefonnummeret utan PIN-koden for registreringslås tidlegast 7 dagar etter at dette telefonnummeret sist var aktivt på Signal. Du har %d dagar igjen.</string>
+  <string name="RegistrationActivity_registration_lock_pin">PIN-kode for registreringslås</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Dette telefonnummeret er utstyrt med registreringslås. Skriv inn PIN-koden for registreringslås.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Dette telefonnummeret er utstyrt med registreringslås.</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">Eg har gløymt PIN-koden min.</string>
+  <string name="RegistrationLockDialog_forgotten_pin">Gløymt PIN-koden?</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Ein registreringslås hjelper å verna telefonnummeret ditt frå uautoriserte registreringsforsøk. Du kan skru av denne funksjonen når som helst frå personverninnstillingane i Signal</string>
+  <string name="RegistrationLockDialog_registration_lock">Registreringslås</string>
+  <string name="RegistrationLockDialog_enable">Skru på</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">PIN-koden for registreringslås må ha minst 4 siffer.</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Dei to PIN-kodane du skreiv inn er ulike.</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">Klarte ikkje kopla til tenesta</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">Skru av PIN-kode for registreringslås?</string>
+  <string name="RegistrationLockDialog_disable">Slå av</string>
+  <string name="RegistrationActivity_continue">Hald fram</string>
+  <string name="preferences_chats__backups">Reservekopiar</string>
   <!--EOF-->
 </resources>

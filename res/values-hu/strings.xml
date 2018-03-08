@@ -37,7 +37,6 @@
   <string name="ApplicationPreferencesActivity_off">ki</string>
   <string name="ApplicationPreferencesActivity_Off">Ki</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Jelmondat %1$s, Képernyő biztonság %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Téma %1$s, Nyelv %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -565,7 +564,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="KeyCachingService_signal_passphrase_cached">Érintsd meg a megnyitáshoz.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Érintsd meg a megnyitáshoz, vagy érintsd meg a zárat a bezáráshoz.</string>
   <string name="KeyCachingService_passphrase_cached">Signal feloldva</string>
-  <string name="KeyCachingService_lock">Lezárás jelmondattal</string>
+  <string name="KeyCachingService_lock">Signal zárolása</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Te</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Nem támogatott média típus</string>
@@ -801,6 +800,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="recipient_preferences__view_safety_number">Biztonsági szám ellenőrzése</string>
   <string name="recipient_preferences__chat_settings">Csevegés beállítások</string>
   <string name="recipient_preferences__privacy">Adatvédelem</string>
+  <string name="recipient_preferences__call_settings">Hívás beállítások</string>
+  <string name="recipient_preferences__ringtone">Csengőhang</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal hívás</string>
   <string name="redphone_call_controls__mute">Némít</string>
@@ -853,7 +854,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="AndroidManifest_archived_conversations">Archivált beszélgetések</string>
   <string name="AndroidManifest_remove_photo">Fotó eltávolítása</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Importálás / exportálás</string>
+  <string name="arrays__import_export">Importálás</string>
   <string name="arrays__use_default">Alapértelmezett használata</string>
   <string name="arrays__use_custom">Egyéni használata</string>
   <string name="arrays__mute_for_one_hour">Némítás 1 órára</string>
@@ -977,6 +978,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences_notifications__events">Események</string>
   <string name="preferences_notifications__in_chat_sounds">Csevegésen belüli hangok</string>
   <string name="preferences_notifications__show">Mutat</string>
+  <string name="preferences_notifications__calls">Hívások</string>
+  <string name="preferences_notifications__ringtone">Csengőhang</string>
   <string name="preferences_chats__show_invitation_prompts">Meghívó mutatása</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Meghívók megjelenítése a Signal nélküli névjegyekhez</string>
   <string name="preferences_chats__message_text_size">Üzenet betűméret</string>
@@ -1104,5 +1107,47 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Oldd fel a függő üzenetek megtekintéséhez</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Oldd fel a frissítés befejezéséhez</string>
   <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Kérlek oldd fel a Signal-t a frissítés befejezéséhez</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">Biztonsági mentés jelmondat</string>
+  <string name="registration_activity__restore_backup">Biztonsági mentés visszaállítása</string>
+  <string name="registration_activity__skip">Kihagyás</string>
+  <string name="registration_activity__register">Regisztrálás</string>
+  <string name="preferences_chats__chat_backups">Csevegés biztonsági mentések</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Csevegések biztonsági mentése külső tárolóra</string>
+  <string name="preferences_chats__create_backup">Biztonsági mentés létrehozás</string>
+  <string name="RegistrationActivity_restore">Visszaállítás</string>
+  <string name="RegistrationActivity_checking">Ellenőrzés</string>
+  <string name="RegistrationActivity_restore_from_backup">Visszaállítás biztonsági mentésből?</string>
+  <string name="RegistrationActivity_backup_size_s">Biztonsági mentés mérete: %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Biztonsági mentés időbélyeg: %s</string>
+  <string name="BackupDialog_enable_local_backups">Engedélyezed a helyi biztonsági mentéseket?</string>
+  <string name="BackupDialog_enable_backups">Biztonsági mentések engedélyezése</string>
+  <string name="BackupDialog_delete_backups">Törlöd a biztonsági mentéseket?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">A helyi biztonsági mentések letiltása, és az összes törlése</string>
+  <string name="BackupDialog_delete_backups_statement">Biztonsági mentések törlése</string>
+  <string name="BackupDialog_copied_to_clipboard">Vágólapra másolva</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">Utolsó biztonsági mentés: %s</string>
+  <string name="ChatsPreferenceFragment_in_progress">Folyamatban</string>
+  <string name="RegistrationActivity_wrong_number">Rossz szám?</string>
+  <string name="BackupUtil_never">Soha</string>
+  <string name="BackupUtil_unknown">Ismeretlen</string>
+  <string name="prompt_passphrase_activity__unlock_signal">Signal feloldása</string>
+  <string name="preferences_app_protection__screen_lock">Képernyőzár</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Signal hozzáférés zárolása Android képernyőzárral vagy ujjlenyomattal</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Képernyőzár inaktivitási időtúllépés</string>
+  <string name="AppProtectionPreferenceFragment_none">Egyik sem</string>
+  <string name="registration_activity__forgot_pin">Elfelejtett PIN?</string>
+  <string name="registration_lock_dialog_view__enter_pin">Add meg a PIN-t</string>
+  <string name="registration_lock_dialog_view__confirm_pin">Erősítsd meg a PIN-t</string>
+  <string name="registration_lock_reminder_view__enter_pin">Add meg a PIN-t</string>
+  <string name="RegistrationActivity_too_many_attempts">Túl sok próbálkozás</string>
+  <string name="RegistrationActivity_error_connecting_to_service">Hiba szolgáltatáshoz csatlakozáskor</string>
+  <string name="RegistrationActivity_oh_no">Jaj ne!</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">Elfelejtettem a PIN-em.</string>
+  <string name="RegistrationLockDialog_forgotten_pin">Elfelejtett PIN?</string>
+  <string name="RegistrationLockDialog_enable">Engedélyez</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">A két megadott PIN nem egyezik.</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">Hiba a szolgáltatáshoz csatlakozáskor</string>
+  <string name="RegistrationLockDialog_disable">Tiltás</string>
+  <string name="RegistrationActivity_continue">Folytatás</string>
   <!--EOF-->
 </resources>

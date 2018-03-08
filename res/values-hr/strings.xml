@@ -39,7 +39,6 @@
   <string name="ApplicationPreferencesActivity_off">isključeno</string>
   <string name="ApplicationPreferencesActivity_Off">Isključeno</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Lozinka: %1$s, Sigurnost zaslona: %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema: %1$s, Jezik: %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -551,7 +550,6 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="KeyCachingService_signal_passphrase_cached">Pritisnite za otvaranje.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Pritisnite za otvaranje ili pritisnite lokot za zatvaranje.</string>
   <string name="KeyCachingService_passphrase_cached">Signal je otključan</string>
-  <string name="KeyCachingService_lock">Zaključajte sa lozinkom</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Vi</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Nepodržani tip medija</string>
@@ -783,6 +781,7 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="recipient_preferences__view_safety_number">Prikaži sigurnosni broj</string>
   <string name="recipient_preferences__chat_settings">Postavke razgovora</string>
   <string name="recipient_preferences__privacy">Privatnost</string>
+  <string name="recipient_preferences__ringtone">Melodija</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal poziv</string>
   <string name="redphone_call_controls__mute">Utišaj</string>
@@ -831,7 +830,7 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="AndroidManifest_archived_conversations">Arhivirani razgovori</string>
   <string name="AndroidManifest_remove_photo">Ukloni sliku</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Uvoz / izvoz</string>
+  <string name="arrays__import_export">Uvoz</string>
   <string name="arrays__use_default">Koristi zadano</string>
   <string name="arrays__use_custom">Koristi prilagođeno</string>
   <string name="arrays__mute_for_one_hour">Utišaj na 1 sat</string>
@@ -954,6 +953,7 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="preferences_notifications__events">Događaji</string>
   <string name="preferences_notifications__in_chat_sounds">Zvuk unutar razgovora</string>
   <string name="preferences_notifications__show">Prikaži</string>
+  <string name="preferences_notifications__ringtone">Melodija</string>
   <string name="preferences_chats__show_invitation_prompts">Prikaži upite za pozivnice</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Prikaži upite za pozivnice za kontakte koji ne koriste Signal</string>
   <string name="preferences_chats__message_text_size">Veličina fonta poruke</string>
@@ -1069,5 +1069,15 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="ConversationListFragment_loading">Učitavanje...</string>
   <string name="CallNotificationBuilder_connecting">Povezivanje...</string>
   <string name="Permissions_continue">Nastavi</string>
+  <string name="registration_activity__skip">Preskoči</string>
+  <string name="registration_activity__register">Registriraj</string>
+  <string name="RegistrationActivity_restore">Vrati</string>
+  <string name="BackupDialog_copied_to_clipboard">Kopirano u međuspremnik</string>
+  <string name="BackupUtil_never">Nikada</string>
+  <string name="BackupUtil_unknown">Nepoznato</string>
+  <string name="AppProtectionPreferenceFragment_none">Niti jedna</string>
+  <string name="RegistrationActivity_too_many_attempts">Previše pokušaja</string>
+  <string name="RegistrationLockDialog_disable">Onemogući</string>
+  <string name="RegistrationActivity_continue">Nastavi</string>
   <!--EOF-->
 </resources>
