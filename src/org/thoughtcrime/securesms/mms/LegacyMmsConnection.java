@@ -198,7 +198,7 @@ public abstract class LegacyMmsConnection {
       }
     } catch (NullPointerException npe) {
       // TODO determine root cause
-      // see: https://github.com/WhisperSystems/Signal-Android/issues/4379
+      // see: https://github.com/signalapp/Signal-Android/issues/4379
       throw new IOException(npe);
     } finally {
       if (response != null) response.close();

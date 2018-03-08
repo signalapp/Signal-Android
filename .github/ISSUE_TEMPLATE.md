@@ -11,7 +11,7 @@ Let's begin with a checklist: replace the empty checkboxes [ ] below with checke
 
 I have:
 - [ ] searched open and closed issues for duplicates
-- [ ] read https://github.com/WhisperSystems/Signal-Android/wiki/Submitting-useful-bug-reports
+- [ ] read https://github.com/signalapp/Signal-Android/wiki/Submitting-useful-bug-reports
 
 ----------------------------------------
 
