@@ -85,13 +85,13 @@ public class FullBackupExporter extends FullBackupBase {
     }
 
     for (BackupProtos.SharedPreference preference : IdentityKeyUtil.getBackupRecord(context)) {
-      EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, count));
+      EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count));
       outputStream.write(preference);
     }
 
     outputStream.writeEnd();
     outputStream.close();
-    EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.FINISHED, count));
+    EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.FINISHED, ++count));
   }
 
   private static List<String> exportSchema(@NonNull SQLiteDatabase input, @NonNull BackupFrameOutputStream outputStream)
@@ -133,7 +133,7 @@ public class FullBackupExporter extends FullBackupBase {
 
     try (Cursor cursor = input.rawQuery("SELECT * FROM " + table, null)) {
       while (cursor != null && cursor.moveToNext()) {
-        EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, count));
+        EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count));
 
         if (predicate == null || predicate.test(cursor)) {
           StringBuilder statement = new StringBuilder(template);
