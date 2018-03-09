@@ -18,6 +18,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:textSize="18sp"
+                android:gravity="center_horizontal"
                 android:text="@string/registration_lock_reminder_view__enter_your_registration_lock_pin"/>
 
     </LinearLayout>
@@ -47,6 +48,6 @@
               android:paddingRight="20dp"
               android:textSize="15sp"
               android:lineSpacingMultiplier="1.3"
-              tools:text="Registration Lock is enabled for your phone number. I forgot my PIN."/>
+              tools:text="Reminder: Registration Lock is enabled for your phone number. To help you memorize your Registration Lock PIN, Signal will periodically ask you to confirm it. I forgot my PIN."/>
 
 </LinearLayout>

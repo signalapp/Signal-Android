@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -15,6 +16,7 @@ import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.text.style.StyleSpan;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
@@ -55,8 +57,8 @@ public class RegistrationLockDialog {
     display.getMetrics(metrics);
 
     dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-    dialog.getWindow().setLayout((int)(metrics.widthPixels * .75), ViewGroup.LayoutParams.WRAP_CONTENT);
     dialog.show();
+    dialog.getWindow().setLayout((int)(metrics.widthPixels * .80), ViewGroup.LayoutParams.WRAP_CONTENT);
 
     EditText    pinEditText = dialog.findViewById(R.id.pin);
     TextView    reminder    = dialog.findViewById(R.id.reminder);
@@ -64,6 +66,7 @@ public class RegistrationLockDialog {
     assert pinEditText != null;
     assert reminder != null;
 
+    SpannableString reminderIntro = new SpannableString(context.getString(R.string.RegistrationLockDialog_reminder));
     SpannableString reminderText = new SpannableString(context.getString(R.string.RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number));
     SpannableString forgotText   = new SpannableString(context.getString(R.string.RegistrationLockDialog_i_forgot_my_pin));
 
@@ -79,9 +82,11 @@ public class RegistrationLockDialog {
       }
     };
 
+
+    reminderIntro.setSpan(new StyleSpan(Typeface.BOLD), 0, reminderIntro.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     forgotText.setSpan(clickableSpan, 0, forgotText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-    reminder.setText(new SpannableStringBuilder(reminderText).append(" ").append(forgotText));
+    reminder.setText(new SpannableStringBuilder(reminderIntro).append(" ").append(reminderText).append(" ").append(forgotText));
     reminder.setMovementMethod(LinkMovementMethod.getInstance());
 
     pinEditText.addTextChangedListener(new TextWatcher() {

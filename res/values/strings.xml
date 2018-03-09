@@ -1386,7 +1386,7 @@
     <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Registration of this phone number will be possible without your Registration Lock PIN after 7 days have passed since this phone number was last active on Signal. You have %d days remaining.</string>
     <string name="RegistrationActivity_registration_lock_pin">Registration lock PIN</string>
     <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">This phone number has Registration Lock enabled. Please enter the Registration Lock PIN.</string>
-    <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Registration Lock is enabled for your phone number.</string>
+    <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Registration Lock is enabled for your phone number. To help you memorize your Registration Lock PIN, Signal will periodically ask you to confirm it.</string>
     <string name="RegistrationLockDialog_i_forgot_my_pin">I forgot my PIN.</string>
     <string name="RegistrationLockDialog_forgotten_pin">Forgotten PIN?</string>
     <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registration Lock helps protect your phone number from unauthorized registration attempts. This feature can be disabled at any time in your Signal privacy settings</string>
@@ -1401,6 +1401,7 @@
     <string name="preferences_chats__backups">Backups</string>
     <string name="prompt_passphrase_activity__signal_is_locked">Signal is locked</string>
     <string name="prompt_passphrase_activity__tap_to_unlock">TAP TO UNLOCK</string>
+    <string name="RegistrationLockDialog_reminder">Reminder:</string>
     <!-- EOF -->
 
 </resources>
