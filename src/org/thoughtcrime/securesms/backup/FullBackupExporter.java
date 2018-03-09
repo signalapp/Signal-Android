@@ -143,7 +143,7 @@ public class FullBackupExporter extends FullBackupBase {
           for (int i=0;i<cursor.getColumnCount();i++) {
             if (cursor.getType(i) == Cursor.FIELD_TYPE_STRING) {
               statement.append('\'');
-              statement.append(cursor.getString(i));
+              statement.append(cursor.getString(i).replace("'", "\\'"));
               statement.append('\'');
             } else if (cursor.getType(i) == Cursor.FIELD_TYPE_FLOAT) {
               statement.append(cursor.getFloat(i));
