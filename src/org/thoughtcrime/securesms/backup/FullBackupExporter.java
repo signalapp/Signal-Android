@@ -85,7 +85,7 @@ public class FullBackupExporter extends FullBackupBase {
     }
 
     for (BackupProtos.SharedPreference preference : IdentityKeyUtil.getBackupRecord(context)) {
-      if (++count % 100 == 0) EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, count));
+      EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, count));
       outputStream.write(preference);
     }
 
@@ -133,7 +133,7 @@ public class FullBackupExporter extends FullBackupBase {
 
     try (Cursor cursor = input.rawQuery("SELECT * FROM " + table, null)) {
       while (cursor != null && cursor.moveToNext()) {
-        if (++count % 100 == 0) EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, count));
+        EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, count));
 
         if (predicate == null || predicate.test(cursor)) {
           StringBuilder statement = new StringBuilder(template);
