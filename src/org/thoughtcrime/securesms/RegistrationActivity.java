@@ -65,6 +65,7 @@ import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
+import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
@@ -600,6 +601,9 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
         if (result == 1) {
           TextSecurePreferences.setRegistrationLockPin(RegistrationActivity.this, pin);
           TextSecurePreferences.setRegistrationtLockEnabled(RegistrationActivity.this, true);
+          TextSecurePreferences.setRegistrationLockLastReminderTime(RegistrationActivity.this, System.currentTimeMillis());
+          TextSecurePreferences.setRegistrationLockNextReminderInterval(RegistrationActivity.this, RegistrationLockReminders.INITIAL_INTERVAL);
+
           handleSuccessfulRegistration();
         } else if (result == 2) {
           RegistrationActivity.this.pin.setText("");
