@@ -81,6 +81,8 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   private CancellationSignal       fingerprintCancellationSignal;
   private FingerprintListener      fingerprintListener;
 
+  private boolean authenticated;
+
   @Override
   public void onCreate(Bundle savedInstanceState) {
     Log.w(TAG, "onCreate()");
@@ -100,7 +102,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
 
-    if (TextSecurePreferences.isScreenLockEnabled(this)) {
+    if (TextSecurePreferences.isScreenLockEnabled(this) && !authenticated) {
       resumeScreenLock();
     }
   }
@@ -172,6 +174,8 @@ public class PassphrasePromptActivity extends PassphraseActivity {
 
   private void handleAuthenticated() {
     try {
+      authenticated = true;
+      
       MasterSecret masterSecret = MasterSecretUtil.getMasterSecret(this, MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
       setMasterSecret(masterSecret);
     } catch (InvalidPassphraseException e) {
