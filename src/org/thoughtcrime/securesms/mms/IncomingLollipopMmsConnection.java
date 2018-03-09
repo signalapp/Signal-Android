@@ -95,6 +95,9 @@ public class IncomingLollipopMmsConnection extends LollipopMmsConnection impleme
       Log.w(TAG, baos.size() + "-byte response: ");// + Hex.dump(baos.toByteArray()));
 
       RetrieveConf retrieved = (RetrieveConf) new PduParser(baos.toByteArray()).parse();
+
+      if (retrieved == null) return null;
+
       sendRetrievedAcknowledgement(transactionId, retrieved.getMmsVersion(), subscriptionId);
       return retrieved;
     } catch (IOException | TimeoutException e) {
