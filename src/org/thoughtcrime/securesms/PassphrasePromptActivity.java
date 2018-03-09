@@ -70,7 +70,9 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   private DynamicIntroTheme dynamicTheme    = new DynamicIntroTheme();
   private DynamicLanguage   dynamicLanguage = new DynamicLanguage();
 
+  private View            passphraseAuthContainer;
   private ImageView       fingerprintPrompt;
+  private TextView        lockScreenButton;
 
   private EditText        passphraseText;
   private ImageButton     showButton;
@@ -82,6 +84,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   private FingerprintListener      fingerprintListener;
 
   private boolean authenticated;
+  private boolean failure;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -102,9 +105,13 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
 
-    if (TextSecurePreferences.isScreenLockEnabled(this) && !authenticated) {
+    setLockTypeVisibility();
+
+    if (TextSecurePreferences.isScreenLockEnabled(this) && !authenticated && !failure) {
       resumeScreenLock();
     }
+
+    failure = false;
   }
 
   @Override
@@ -149,7 +156,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
       handleAuthenticated();
     } else {
       Log.w(TAG, "Authentication failed");
-      finish();
+      failure = true;
     }
   }
 
@@ -196,15 +203,17 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   }
 
   private void initializeResources() {
-    View        passphraseAuthContainer = findViewById(R.id.password_auth_container);
-    ImageButton okButton                = findViewById(R.id.ok_button);
-    Toolbar     toolbar                 = findViewById(R.id.toolbar);
+
+    ImageButton okButton = findViewById(R.id.ok_button);
+    Toolbar     toolbar  = findViewById(R.id.toolbar);
 
     showButton                    = findViewById(R.id.passphrase_visibility);
     hideButton                    = findViewById(R.id.passphrase_visibility_off);
     visibilityToggle              = findViewById(R.id.button_toggle);
     passphraseText                = findViewById(R.id.passphrase_edit);
+    passphraseAuthContainer       = findViewById(R.id.password_auth_container);
     fingerprintPrompt             = findViewById(R.id.fingerprint_auth_container);
+    lockScreenButton              = findViewById(R.id.lock_screen_auth_container);
     fingerprintManager            = FingerprintManagerCompat.from(this);
     fingerprintCancellationSignal = new CancellationSignal();
     fingerprintListener           = new FingerprintListener();
@@ -227,12 +236,24 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     fingerprintPrompt.setImageResource(R.drawable.ic_fingerprint_white_48dp);
     fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.signal_primary), PorterDuff.Mode.SRC_IN);
 
+    lockScreenButton.setOnClickListener(v -> resumeScreenLock());
+  }
+
+  private void setLockTypeVisibility() {
     if (TextSecurePreferences.isScreenLockEnabled(this)) {
       passphraseAuthContainer.setVisibility(View.GONE);
-      fingerprintPrompt.setVisibility(View.VISIBLE);
+
+      if (fingerprintManager.isHardwareDetected() && fingerprintManager.hasEnrolledFingerprints()) {
+        fingerprintPrompt.setVisibility(View.VISIBLE);
+        lockScreenButton.setVisibility(View.GONE);
+      } else {
+        fingerprintPrompt.setVisibility(View.GONE);
+        lockScreenButton.setVisibility(View.VISIBLE);
+      }
     } else {
       passphraseAuthContainer.setVisibility(View.VISIBLE);
       fingerprintPrompt.setVisibility(View.GONE);
+      lockScreenButton.setVisibility(View.GONE);
     }
   }
 

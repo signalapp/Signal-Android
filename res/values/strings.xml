@@ -1399,6 +1399,8 @@
     <string name="RegistrationLockDialog_disable">Disable</string>
     <string name="RegistrationActivity_continue">Continue</string>
     <string name="preferences_chats__backups">Backups</string>
+    <string name="prompt_passphrase_activity__signal_is_locked">Signal is locked</string>
+    <string name="prompt_passphrase_activity__tap_to_unlock">TAP TO UNLOCK</string>
     <!-- EOF -->
 
 </resources>
