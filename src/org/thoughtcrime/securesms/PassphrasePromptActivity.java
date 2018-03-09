@@ -73,6 +73,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   private View            passphraseAuthContainer;
   private ImageView       fingerprintPrompt;
   private TextView        lockScreenButton;
+  private TextView        fingerprintStatusText;
 
   private EditText        passphraseText;
   private ImageButton     showButton;
@@ -104,6 +105,9 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     super.onResume();
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
+
+    fingerprintStatusText.setText(getResources().getString(R.string.PassphrasePromptActivity_touch_sensor));
+    fingerprintStatusText.setTextColor(getResources().getColor(R.color.gray27));
 
     setLockTypeVisibility();
 
@@ -214,6 +218,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     passphraseAuthContainer       = findViewById(R.id.password_auth_container);
     fingerprintPrompt             = findViewById(R.id.fingerprint_auth_container);
     lockScreenButton              = findViewById(R.id.lock_screen_auth_container);
+    fingerprintStatusText         = findViewById(R.id.fingerprint_status_text);
     fingerprintManager            = FingerprintManagerCompat.from(this);
     fingerprintCancellationSignal = new CancellationSignal();
     fingerprintListener           = new FingerprintListener();
@@ -340,23 +345,22 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     @Override
     public void onAuthenticationError(int errMsgId, CharSequence errString) {
       Log.w(TAG, "Authentication error: " + errMsgId + " " + errString);
-      onAuthenticationFailed();
     }
 
     @Override
     public void onAuthenticationSucceeded(FingerprintManagerCompat.AuthenticationResult result) {
       Log.i(TAG, "onAuthenticationSucceeded");
       fingerprintPrompt.setImageResource(R.drawable.ic_check_white_48dp);
-      fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.green_500), PorterDuff.Mode.SRC_IN);
+      fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.teal_500), PorterDuff.Mode.SRC_IN);
       fingerprintPrompt.animate().setInterpolator(new BounceInterpolator()).scaleX(1.1f).scaleY(1.1f).setDuration(500).setListener(new AnimationCompleteListener() {
         @Override
         public void onAnimationEnd(Animator animation) {
           handleAuthenticated();
-
-          fingerprintPrompt.setImageResource(R.drawable.ic_fingerprint_white_48dp);
-          fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.signal_primary), PorterDuff.Mode.SRC_IN);
         }
       }).start();
+
+      fingerprintStatusText.setText(getResources().getString(R.string.PassphrasePromptActivity_fingerprint_recognized));
+      fingerprintStatusText.setTextColor(getResources().getColor(R.color.teal_500));
     }
 
     @Override
@@ -364,12 +368,12 @@ public class PassphrasePromptActivity extends PassphraseActivity {
       Log.w(TAG, "onAuthenticatoinFailed()");
       FingerprintManagerCompat.AuthenticationCallback callback = this;
 
-      fingerprintPrompt.setImageResource(R.drawable.ic_close_white_48dp);
-      fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.red_500), PorterDuff.Mode.SRC_IN);
+      fingerprintPrompt.setImageResource(R.drawable.ic_priority_high_white_48dp);
+      fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.deep_orange_600), PorterDuff.Mode.SRC_IN);
 
-      TranslateAnimation shake = new TranslateAnimation(0, 30, 0, 0);
+      TranslateAnimation shake = new TranslateAnimation(0, 20, 0, 0);
       shake.setDuration(50);
-      shake.setRepeatCount(7);
+      shake.setRepeatCount(5);
       shake.setAnimationListener(new Animation.AnimationListener() {
         @Override
         public void onAnimationStart(Animation animation) {}
@@ -385,6 +389,9 @@ public class PassphrasePromptActivity extends PassphraseActivity {
       });
 
       fingerprintPrompt.startAnimation(shake);
+
+      fingerprintStatusText.setText(getResources().getString(R.string.PassphrasePromptActivity_fingerprint_not_recognized_try_again));
+      fingerprintStatusText.setTextColor(getResources().getColor(R.color.deep_orange_600));
     }
 
   }
