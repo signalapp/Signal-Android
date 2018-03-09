@@ -333,10 +333,6 @@
     <!-- GroupMembersDialog -->
     <string name="GroupMembersDialog_me">Me</string>
 
-    <!-- ImportExportActivity -->
-    <string name="ImportExportActivity_import">Import</string>
-    <string name="ImportExportActivity_export">Export</string>
-
     <!-- ImportFragment -->
     <string name="ImportFragment_import_system_sms_database">Import system SMS database?</string>
     <string name="ImportFragment_this_will_import_messages_from_the_system">This will import
