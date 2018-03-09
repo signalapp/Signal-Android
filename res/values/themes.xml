@@ -58,6 +58,7 @@
     </style>
 
     <style name="TextSecure.LightIntroTheme" parent="@style/Theme.AppCompat.Light">
+        <item name="actionBarStyle">@style/TextSecure.FlatLightActionBar</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionModeOverlay">true</item>
@@ -77,6 +78,7 @@
     </style>
 
     <style name="TextSecure.DarkIntroTheme" parent="@style/Theme.AppCompat">
+        <item name="actionBarStyle">@style/TextSecure.FlatDarkActionBar</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionModeOverlay">true</item>

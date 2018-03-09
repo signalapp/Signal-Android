@@ -72,6 +72,11 @@
         <item name="elevation">0dp</item>
     </style>
 
+    <style name="TextSecure.FlatDarkActionBar"
+        parent="@style/TextSecure.DarkActionBar">
+        <item name="elevation">0dp</item>
+    </style>
+
     <style name="TextSecure.DarkActionBar.TabBar"
         parent="@style/Widget.AppCompat.ActionBar.TabBar">
         <item name="background">@color/gray95</item>
