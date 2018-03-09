@@ -1,10 +1,9 @@
 package org.thoughtcrime.securesms.preferences;
 
-import android.app.KeyguardManager;
 import android.app.Activity;
+import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,9 +11,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.CheckBoxPreference;
 import android.support.v7.preference.Preference;
 import android.widget.Toast;
-
-import com.codetroopers.betterpickers.hmspicker.HmsPickerBuilder;
-import com.codetroopers.betterpickers.hmspicker.HmsPickerDialogFragment;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
@@ -33,6 +29,8 @@ import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
+
+import mobi.upod.timedurationpicker.TimeDurationPickerDialog;
 
 public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment implements InjectableType {
 
@@ -132,31 +130,22 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     }
   }
 
-  private class ScreenLockTimeoutListener implements Preference.OnPreferenceClickListener, HmsPickerDialogFragment.HmsPickerDialogHandlerV2 {
+  private class ScreenLockTimeoutListener implements Preference.OnPreferenceClickListener {
 
     @Override
     public boolean onPreferenceClick(Preference preference) {
-      int[]      attributes = {R.attr.app_protect_timeout_picker_color};
-      TypedArray hmsStyle   = getActivity().obtainStyledAttributes(attributes);
+      new TimeDurationPickerDialog(getContext(), (view, duration) -> {
+        if (duration == 0) {
+          TextSecurePreferences.setScreenLockTimeout(getContext(), 0);
+        } else {
+          long timeoutSeconds = Math.max(TimeUnit.MILLISECONDS.toSeconds(duration), 60);
+          TextSecurePreferences.setScreenLockTimeout(getContext(), timeoutSeconds);
+        }
 
-      new HmsPickerBuilder().setFragmentManager(getFragmentManager())
-                            .setStyleResId(hmsStyle.getResourceId(0, R.style.BetterPickersDialogFragment_Light))
-                            .addHmsPickerDialogHandler(this)
-                            .show();
-
-      hmsStyle.recycle();
+        initializeScreenLockTimeoutSummary();
+      }, 0).show();
 
       return true;
-    }
-    
-    @Override
-    public void onDialogHmsSet(int reference, boolean isNegative, int hours, int minutes, int seconds) {
-      long timeoutSeconds = Math.max(TimeUnit.HOURS.toSeconds(hours)     +
-                                         TimeUnit.MINUTES.toSeconds(minutes) +
-                                         TimeUnit.SECONDS.toSeconds(seconds), 60);
-
-      TextSecurePreferences.setScreenLockTimeout(getContext(), timeoutSeconds);
-      initializeScreenLockTimeoutSummary();
     }
   }
 
@@ -231,32 +220,20 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     }
   }
 
-  private class PassphraseIntervalClickListener implements Preference.OnPreferenceClickListener, HmsPickerDialogFragment.HmsPickerDialogHandlerV2 {
+  private class PassphraseIntervalClickListener implements Preference.OnPreferenceClickListener {
 
     @Override
     public boolean onPreferenceClick(Preference preference) {
-      int[]      attributes = {R.attr.app_protect_timeout_picker_color};
-      TypedArray hmsStyle   = getActivity().obtainStyledAttributes(attributes);
+      new TimeDurationPickerDialog(getContext(), (view, duration) -> {
+        int timeoutMinutes = Math.max((int)TimeUnit.MILLISECONDS.toMinutes(duration), 1);
 
-      new HmsPickerBuilder().setFragmentManager(getFragmentManager())
-                            .setStyleResId(hmsStyle.getResourceId(0, R.style.BetterPickersDialogFragment_Light))
-                            .addHmsPickerDialogHandler(this)
-                            .show();
+        TextSecurePreferences.setPassphraseTimeoutInterval(getActivity(), timeoutMinutes);
 
-      hmsStyle.recycle();
+        initializePassphraseTimeoutSummary();
+
+      }, 0).show();
 
       return true;
-    }
-
-    @Override
-    public void onDialogHmsSet(int reference, boolean isNegative, int hours, int minutes, int seconds) {
-      int timeoutMinutes = Math.max((int)TimeUnit.HOURS.toMinutes(hours) +
-                                        minutes                         +
-                                        (int)TimeUnit.SECONDS.toMinutes(seconds), 1);
-
-      TextSecurePreferences.setPassphraseTimeoutInterval(getActivity(), timeoutMinutes);
-
-      initializePassphraseTimeoutSummary();
     }
   }
 
