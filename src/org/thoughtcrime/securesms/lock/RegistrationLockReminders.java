@@ -44,8 +44,13 @@ public class RegistrationLockReminders {
     long lastReminderInterval     = TextSecurePreferences.getRegistrationLockNextReminderInterval(context);
     long nextReminderInterval;
 
-    if (success) nextReminderInterval = INTERVAL_PROGRESSION.get(lastReminderInterval);
-    else         nextReminderInterval = INTERVAL_REGRESSION.get(lastReminderInterval);
+    if (success) {
+      if (INTERVAL_PROGRESSION.containsKey(lastReminderInterval)) nextReminderInterval = INTERVAL_PROGRESSION.get(lastReminderInterval);
+      else                                                        nextReminderInterval = INTERVAL_PROGRESSION.get(TimeUnit.HOURS.toMillis(6));
+    } else {
+      if (INTERVAL_REGRESSION.containsKey(lastReminderInterval))  nextReminderInterval = INTERVAL_REGRESSION.get(lastReminderInterval);
+      else                                                        nextReminderInterval = INTERVAL_REGRESSION.get(TimeUnit.HOURS.toMillis(12));
+    }
 
     TextSecurePreferences.setRegistrationLockLastReminderTime(context, System.currentTimeMillis());
     TextSecurePreferences.setRegistrationLockNextReminderInterval(context, nextReminderInterval);

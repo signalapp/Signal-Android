@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
@@ -43,7 +44,8 @@ public class RegistrationLockDialog {
   private static final String TAG = RegistrationLockDialog.class.getSimpleName();
 
   public static void showReminderIfNecessary(@NonNull Context context) {
-    if (!RegistrationLockReminders.needsReminder(context)) return;
+    if (!RegistrationLockReminders.needsReminder(context))    return;
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) return;
 
     AlertDialog dialog      = new AlertDialog.Builder(context, R.style.RationaleDialog)
                                              .setView(R.layout.registration_lock_reminder_view)
