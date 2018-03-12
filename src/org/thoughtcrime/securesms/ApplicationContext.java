@@ -166,16 +166,14 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   private void initializeWebRtc() {
     try {
-      Set<String> HARDWARE_AEC_BLACKLIST = new HashSet<String>() {{
-        add("Pixel");
-        add("Pixel XL");
-        add("Moto G5");
-      }};
+      Set<String> HARDWARE_AEC_BLACKLIST = new HashSet<String>();
+      HARDWARE_AEC_BLACKLIST.add("Pixel");
+      HARDWARE_AEC_BLACKLIST.add("Pixel XL");
+      HARDWARE_AEC_BLACKLIST.add("Moto G5");
 
-      Set<String> OPEN_SL_ES_WHITELIST = new HashSet<String>() {{
-        add("Pixel");
-        add("Pixel XL");
-      }};
+      Set<String> OPEN_SL_ES_WHITELIST = new HashSet<String>();
+      OPEN_SL_ES_WHITELIST.add("Pixel");
+      OPEN_SL_ES_WHITELIST.add("Pixel XL");
 
       if (HARDWARE_AEC_BLACKLIST.contains(Build.MODEL)) {
         WebRtcAudioUtils.setWebRtcBasedAcousticEchoCanceler(true);

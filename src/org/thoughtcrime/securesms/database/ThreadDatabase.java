@@ -255,10 +255,10 @@ public class ThreadDatabase extends Database {
 
     notifyConversationListListeners();
 
-    return new LinkedList<MarkedMessageInfo>() {{
-      addAll(smsRecords);
-      addAll(mmsRecords);
-    }};
+    List<MarkedMessageInfo> list = new LinkedList<MarkedMessageInfo>();
+    list.addAll(smsRecords);
+    list.addAll(mmsRecords);
+    return list;
   }
 
   public List<MarkedMessageInfo> setRead(long threadId, boolean lastSeen) {
@@ -278,10 +278,10 @@ public class ThreadDatabase extends Database {
 
     notifyConversationListListeners();
 
-    return new LinkedList<MarkedMessageInfo>() {{
-      addAll(smsRecords);
-      addAll(mmsRecords);
-    }};
+    List<MarkedMessageInfo> list = new LinkedList<MarkedMessageInfo>();
+    list.addAll(smsRecords);
+    list.addAll(mmsRecords);
+    return list;
   }
 
   public void incrementUnread(long threadId, int amount) {

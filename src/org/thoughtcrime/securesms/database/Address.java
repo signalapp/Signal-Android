@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.util.NumberUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -179,12 +180,11 @@ public class Address implements Parcelable, Comparable<Address> {
 
     private static final String TAG = ExternalAddressFormatter.class.getSimpleName();
 
-    private static final Set<String> SHORT_COUNTRIES = new HashSet<String>() {{
-      add("NU");
-      add("TK");
-      add("NC");
-      add("AC");
-    }};
+    private static final Set<String> SHORT_COUNTRIES = new HashSet<String>(Arrays.asList(
+      "NU",
+      "TK",
+      "NC",
+      "AC"));
 
     private final String localNumberString;
     private final String localCountryCode;

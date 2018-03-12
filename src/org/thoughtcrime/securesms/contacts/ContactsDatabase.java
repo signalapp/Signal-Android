@@ -142,12 +142,11 @@ public class ContactsDatabase {
 
     String sort = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
 
-    Map<String, String> projectionMap = new HashMap<String, String>() {{
-      put(NAME_COLUMN, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
-      put(NUMBER_COLUMN, ContactsContract.CommonDataKinds.Phone.NUMBER);
-      put(NUMBER_TYPE_COLUMN, ContactsContract.CommonDataKinds.Phone.TYPE);
-      put(LABEL_COLUMN, ContactsContract.CommonDataKinds.Phone.LABEL);
-    }};
+    Map<String, String> projectionMap = new HashMap<String, String>();
+    projectionMap.put(NAME_COLUMN, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
+    projectionMap.put(NUMBER_COLUMN, ContactsContract.CommonDataKinds.Phone.NUMBER);
+    projectionMap.put(NUMBER_TYPE_COLUMN, ContactsContract.CommonDataKinds.Phone.TYPE);
+    projectionMap.put(LABEL_COLUMN, ContactsContract.CommonDataKinds.Phone.LABEL);
 
     String formattedNumber = "REPLACE(REPLACE(REPLACE(REPLACE(data1,' ',''),'-',''),'(',''),')','')";
     String excludeSelection = "(" + formattedNumber +" NOT IN " +
@@ -176,10 +175,9 @@ public class ContactsDatabase {
 
     String  sort = ContactsContract.Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
 
-    Map<String, String> projectionMap = new HashMap<String, String>(){{
-      put(NAME_COLUMN, ContactsContract.Contacts.DISPLAY_NAME);
-      put(NUMBER_COLUMN, ContactsContract.Data.DATA1);
-    }};
+    Map<String, String> projectionMap = new HashMap<String, String>();
+    projectionMap.put(NAME_COLUMN, ContactsContract.Contacts.DISPLAY_NAME);
+    projectionMap.put(NUMBER_COLUMN, ContactsContract.Data.DATA1);
 
     Cursor cursor;
 

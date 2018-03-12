@@ -51,6 +51,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.InetAddress;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -90,15 +91,14 @@ public abstract class LegacyMmsConnection {
 
   protected boolean isDirectConnect() {
     // We think Sprint supports direct connection over wifi/data, but not Verizon
-    Set<String> sprintMccMncs = new HashSet<String>() {{
-      add("312530");
-      add("311880");
-      add("311870");
-      add("311490");
-      add("310120");
-      add("316010");
-      add("312190");
-    }};
+    Set<String> sprintMccMncs = new HashSet<String>(Arrays.asList(
+      "312530",
+      "311880",
+      "311870",
+      "311490",
+      "310120",
+      "316010",
+      "312190"));
 
     return ServiceUtil.getTelephonyManager(context).getPhoneType() == TelephonyManager.PHONE_TYPE_CDMA &&
            sprintMccMncs.contains(TelephonyUtil.getMccMnc(context));
@@ -211,16 +211,16 @@ public abstract class LegacyMmsConnection {
   protected List<Header> getBaseHeaders() {
     final String                number    = TelephonyUtil.getManager(context).getLine1Number(); ;
 
-    return new LinkedList<Header>() {{
-      add(new BasicHeader("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic"));
-      add(new BasicHeader("x-wap-profile", "http://www.google.com/oha/rdf/ua-profile-kila.xml"));
-      add(new BasicHeader("Content-Type", "application/vnd.wap.mms-message"));
-      add(new BasicHeader("x-carrier-magic", "http://magic.google.com"));
-      if (!TextUtils.isEmpty(number)) {
-        add(new BasicHeader("x-up-calling-line-id", number));
-        add(new BasicHeader("X-MDN", number));
-      }
-    }};
+    List<Header> list = new LinkedList<Header>();
+    list.add(new BasicHeader("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic"));
+    list.add(new BasicHeader("x-wap-profile", "http://www.google.com/oha/rdf/ua-profile-kila.xml"));
+    list.add(new BasicHeader("Content-Type", "application/vnd.wap.mms-message"));
+    list.add(new BasicHeader("x-carrier-magic", "http://magic.google.com"));
+    if (!TextUtils.isEmpty(number)) {
+      list.add(new BasicHeader("x-up-calling-line-id", number));
+      list.add(new BasicHeader("X-MDN", number));
+    }
+    return list;
   }
 
   public static class Apn {

@@ -51,45 +51,44 @@ class EmojiPages {
       "(\u25a0_\u25a0\u00ac)"
     }, null));
 
-  static final List<Pair<String, String>> OBSOLETE = new LinkedList<Pair<String, String>>() {{
-    add(new Pair<>("\ud83c\udfc3", "\ud83c\udfc3\u200d\u2642\ufe0f"));
-    add(new Pair<>("\ud83c\udfc4", "\ud83c\udfc4\u200d\u2642\ufe0f"));
-    add(new Pair<>("\ud83c\udfca", "\ud83c\udfca\u200d\u2642\ufe0f"));
-    add(new Pair<>("\ud83c\udfcb\ufe0f", "\ud83c\udfcb\ufe0f\u200d\u2642\ufe0f"));
-    add(new Pair<>("\ud83c\udfcc\ufe0f", "\ud83c\udfcc\ufe0f\u200d\u2642\ufe0f"));
-    add(new Pair<>("\ud83d\udc6a", "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc66"));
-    add(new Pair<>("\ud83d\udc6e", "\ud83d\udc6e\u200d\u2642\ufe0f"));
-    add(new Pair<>("\ud83d\udc6f", "\ud83d\udc6f\u200d\u2640\ufe0f"));
-    add(new Pair<>("\ud83d\udc71", "\ud83d\udc71\u200d\u2642\ufe0f"));
-    add(new Pair<>("\ud83d\udc73", "\ud83d\udc73\u200d\u2642\ufe0f"));
-    add(new Pair<>("\ud83d\udc77", "\ud83d\udc77\u200d\u2642\ufe0f"));
-    add(new Pair<>("\ud83d\udc81", "\ud83d\udc81\u200d\u2640\ufe0f"));
-    add(new Pair<>("\ud83d\udc82", "\ud83d\udc82\u200d\u2642\ufe0f"));
-    add(new Pair<>("\ud83d\udc86", "\ud83d\udc86\u200d\u2640\ufe0f"));
-    add(new Pair<>("\ud83d\udc87", "\ud83d\udc87\u200d\u2640\ufe0f"));
-    add(new Pair<>("\ud83d\udc8f", "\ud83d\udc69\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc68"));
-    add(new Pair<>("\ud83d\udc91", "\ud83d\udc69\u200d\u2764\ufe0f\u200d\ud83d\udc68"));
-    add(new Pair<>("\ud83d\udd75\ufe0f", "\ud83d\udd75\ufe0f\u200d\u2642\ufe0f"));
-    add(new Pair<>("\ud83d\ude45", "\ud83d\ude45\u200d\u2640\ufe0f"));
-    add(new Pair<>("\ud83d\ude46", "\ud83d\ude46\u200d\u2640\ufe0f"));
-    add(new Pair<>("\ud83d\ude47", "\ud83d\ude47\u200d\u2642\ufe0f"));
-    add(new Pair<>("\ud83d\ude4b", "\ud83d\ude4b\u200d\u2640\ufe0f"));
-    add(new Pair<>("\ud83d\ude4d", "\ud83d\ude4d\u200d\u2640\ufe0f"));
-    add(new Pair<>("\ud83d\ude4e", "\ud83d\ude4e\u200d\u2640\ufe0f"));
-    add(new Pair<>("\ud83d\udea3", "\ud83d\udea3\u200d\u2642\ufe0f"));
-    add(new Pair<>("\ud83d\udeb4", "\ud83d\udeb4\u200d\u2642\ufe0f"));
-    add(new Pair<>("\ud83d\udeb5", "\ud83d\udeb5\u200d\u2642\ufe0f"));
-    add(new Pair<>("\ud83d\udeb6", "\ud83d\udeb6\u200d\u2642\ufe0f"));
-    add(new Pair<>("\ud83e\uddd6", "\ud83e\uddd6\u200d\u2642\ufe0f"));
-    add(new Pair<>("\ud83e\uddd7", "\ud83e\uddd7\u200d\u2640\ufe0f"));
-    add(new Pair<>("\ud83e\uddd8", "\ud83e\uddd8\u200d\u2640\ufe0f"));
-    add(new Pair<>("\ud83e\uddd9", "\ud83e\uddd9\u200d\u2640\ufe0f"));
-    add(new Pair<>("\ud83e\uddda", "\ud83e\uddda\u200d\u2640\ufe0f"));
-    add(new Pair<>("\ud83e\udddb", "\ud83e\udddb\u200d\u2640\ufe0f"));
-    add(new Pair<>("\ud83e\udddc", "\ud83e\udddc\u200d\u2642\ufe0f"));
-    add(new Pair<>("\ud83e\udddd", "\ud83e\udddd\u200d\u2642\ufe0f"));
-    add(new Pair<>("\ud83e\uddde", "\ud83e\uddde\u200d\u2642\ufe0f"));
-    add(new Pair<>("\ud83e\udddf", "\ud83e\udddf\u200d\u2642\ufe0f"));
-    add(new Pair<>("\u26f9\ufe0f", "\u26f9\ufe0f\u200d\u2642\ufe0f"));
-  }};
+  static final List<Pair<String, String>> OBSOLETE = new LinkedList<Pair<String, String>>(Arrays.asList(
+    new Pair<>("\ud83c\udfc3", "\ud83c\udfc3\u200d\u2642\ufe0f"),
+    new Pair<>("\ud83c\udfc4", "\ud83c\udfc4\u200d\u2642\ufe0f"),
+    new Pair<>("\ud83c\udfca", "\ud83c\udfca\u200d\u2642\ufe0f"),
+    new Pair<>("\ud83c\udfcb\ufe0f", "\ud83c\udfcb\ufe0f\u200d\u2642\ufe0f"),
+    new Pair<>("\ud83c\udfcc\ufe0f", "\ud83c\udfcc\ufe0f\u200d\u2642\ufe0f"),
+    new Pair<>("\ud83d\udc6a", "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc66"),
+    new Pair<>("\ud83d\udc6e", "\ud83d\udc6e\u200d\u2642\ufe0f"),
+    new Pair<>("\ud83d\udc6f", "\ud83d\udc6f\u200d\u2640\ufe0f"),
+    new Pair<>("\ud83d\udc71", "\ud83d\udc71\u200d\u2642\ufe0f"),
+    new Pair<>("\ud83d\udc73", "\ud83d\udc73\u200d\u2642\ufe0f"),
+    new Pair<>("\ud83d\udc77", "\ud83d\udc77\u200d\u2642\ufe0f"),
+    new Pair<>("\ud83d\udc81", "\ud83d\udc81\u200d\u2640\ufe0f"),
+    new Pair<>("\ud83d\udc82", "\ud83d\udc82\u200d\u2642\ufe0f"),
+    new Pair<>("\ud83d\udc86", "\ud83d\udc86\u200d\u2640\ufe0f"),
+    new Pair<>("\ud83d\udc87", "\ud83d\udc87\u200d\u2640\ufe0f"),
+    new Pair<>("\ud83d\udc8f", "\ud83d\udc69\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc68"),
+    new Pair<>("\ud83d\udc91", "\ud83d\udc69\u200d\u2764\ufe0f\u200d\ud83d\udc68"),
+    new Pair<>("\ud83d\udd75\ufe0f", "\ud83d\udd75\ufe0f\u200d\u2642\ufe0f"),
+    new Pair<>("\ud83d\ude45", "\ud83d\ude45\u200d\u2640\ufe0f"),
+    new Pair<>("\ud83d\ude46", "\ud83d\ude46\u200d\u2640\ufe0f"),
+    new Pair<>("\ud83d\ude47", "\ud83d\ude47\u200d\u2642\ufe0f"),
+    new Pair<>("\ud83d\ude4b", "\ud83d\ude4b\u200d\u2640\ufe0f"),
+    new Pair<>("\ud83d\ude4d", "\ud83d\ude4d\u200d\u2640\ufe0f"),
+    new Pair<>("\ud83d\ude4e", "\ud83d\ude4e\u200d\u2640\ufe0f"),
+    new Pair<>("\ud83d\udea3", "\ud83d\udea3\u200d\u2642\ufe0f"),
+    new Pair<>("\ud83d\udeb4", "\ud83d\udeb4\u200d\u2642\ufe0f"),
+    new Pair<>("\ud83d\udeb5", "\ud83d\udeb5\u200d\u2642\ufe0f"),
+    new Pair<>("\ud83d\udeb6", "\ud83d\udeb6\u200d\u2642\ufe0f"),
+    new Pair<>("\ud83e\uddd6", "\ud83e\uddd6\u200d\u2642\ufe0f"),
+    new Pair<>("\ud83e\uddd7", "\ud83e\uddd7\u200d\u2640\ufe0f"),
+    new Pair<>("\ud83e\uddd8", "\ud83e\uddd8\u200d\u2640\ufe0f"),
+    new Pair<>("\ud83e\uddd9", "\ud83e\uddd9\u200d\u2640\ufe0f"),
+    new Pair<>("\ud83e\uddda", "\ud83e\uddda\u200d\u2640\ufe0f"),
+    new Pair<>("\ud83e\udddb", "\ud83e\udddb\u200d\u2640\ufe0f"),
+    new Pair<>("\ud83e\udddc", "\ud83e\udddc\u200d\u2642\ufe0f"),
+    new Pair<>("\ud83e\udddd", "\ud83e\udddd\u200d\u2642\ufe0f"),
+    new Pair<>("\ud83e\uddde", "\ud83e\uddde\u200d\u2642\ufe0f"),
+    new Pair<>("\ud83e\udddf", "\ud83e\udddf\u200d\u2642\ufe0f"),
+    new Pair<>("\u26f9\ufe0f", "\u26f9\ufe0f\u200d\u2642\ufe0f")));
 }
