@@ -675,7 +675,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void handleRegisterForSignal() {
     Intent intent = new Intent(this, RegistrationActivity.class);
-    intent.putExtra("cancel_button", true);
+    intent.putExtra(RegistrationActivity.RE_REGISTRATION_EXTRA, true);
     startActivity(intent);
   }
 
