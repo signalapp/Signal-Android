@@ -6,15 +6,16 @@ import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Map.Entry;
+import java.util.NavigableMap;
+import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
 
 public class RegistrationLockReminders {
 
   public static final long INITIAL_INTERVAL = TimeUnit.HOURS.toMillis(6);
 
-  private static Map<Long, Long> INTERVAL_PROGRESSION = new HashMap<Long, Long>() {{
+  private static NavigableMap<Long, Long> INTERVAL_PROGRESSION = new TreeMap<Long, Long>() {{
     put(TimeUnit.HOURS.toMillis(6), TimeUnit.HOURS.toMillis(12));
     put(TimeUnit.HOURS.toMillis(12), TimeUnit.DAYS.toMillis(1));
     put(TimeUnit.DAYS.toMillis(1), TimeUnit.DAYS.toMillis(3));
@@ -23,7 +24,7 @@ public class RegistrationLockReminders {
   }};
 
 
-  private static Map<Long, Long> INTERVAL_REGRESSION = new HashMap<Long, Long>() {{
+  private static NavigableMap<Long, Long> INTERVAL_REGRESSION = new TreeMap<Long, Long>() {{
     put(TimeUnit.HOURS.toMillis(12), TimeUnit.HOURS.toMillis(6));
     put(TimeUnit.DAYS.toMillis(1), TimeUnit.HOURS.toMillis(12));
     put(TimeUnit.DAYS.toMillis(3), TimeUnit.DAYS.toMillis(1));
@@ -41,19 +42,20 @@ public class RegistrationLockReminders {
   }
 
   public static void scheduleReminder(@NonNull Context context, boolean success) {
-    long lastReminderInterval     = TextSecurePreferences.getRegistrationLockNextReminderInterval(context);
-    long nextReminderInterval;
+    Entry<Long, Long> nextReminderIntervalEntry;
 
     if (success) {
-      if (INTERVAL_PROGRESSION.containsKey(lastReminderInterval)) nextReminderInterval = INTERVAL_PROGRESSION.get(lastReminderInterval);
-      else                                                        nextReminderInterval = INTERVAL_PROGRESSION.get(TimeUnit.HOURS.toMillis(6));
+      long timeSincelastReminder = System.currentTimeMillis() - TextSecurePreferences.getRegistrationLockLastReminderTime(context);
+      nextReminderIntervalEntry = INTERVAL_PROGRESSION.floorEntry(timeSincelastReminder);
+      if (nextReminderIntervalEntry == null) nextReminderIntervalEntry = INTERVAL_PROGRESSION.firstEntry();
     } else {
-      if (INTERVAL_REGRESSION.containsKey(lastReminderInterval))  nextReminderInterval = INTERVAL_REGRESSION.get(lastReminderInterval);
-      else                                                        nextReminderInterval = INTERVAL_REGRESSION.get(TimeUnit.HOURS.toMillis(12));
+      long lastReminderInterval = TextSecurePreferences.getRegistrationLockNextReminderInterval(context);
+      nextReminderIntervalEntry = INTERVAL_REGRESSION.floorEntry(lastReminderInterval);
+      if (nextReminderIntervalEntry == null) nextReminderIntervalEntry = INTERVAL_REGRESSION.firstEntry();
     }
 
     TextSecurePreferences.setRegistrationLockLastReminderTime(context, System.currentTimeMillis());
-    TextSecurePreferences.setRegistrationLockNextReminderInterval(context, nextReminderInterval);
+    TextSecurePreferences.setRegistrationLockNextReminderInterval(context, nextReminderIntervalEntry.getValue());
   }
 
 }
