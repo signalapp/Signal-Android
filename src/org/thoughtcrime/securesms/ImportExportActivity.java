@@ -21,6 +21,7 @@ public class ImportExportActivity extends PassphraseRequiredActionBarActivity {
   protected void onCreate(Bundle savedInstanceState, boolean ready) {
     assert getSupportActionBar() != null;
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    getSupportActionBar().setTitle(R.string.arrays__import_export);
     initFragment(android.R.id.content, new ImportExportFragment(), dynamicLanguage.getCurrentLocale());
   }
 
