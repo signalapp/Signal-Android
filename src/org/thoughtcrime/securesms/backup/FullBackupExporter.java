@@ -28,7 +28,6 @@ import org.thoughtcrime.securesms.database.SessionDatabase;
 import org.thoughtcrime.securesms.database.SignedPreKeyDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.util.Conversions;
-import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.kdf.HKDFv3;
 import org.whispersystems.libsignal.util.ByteUtil;
@@ -136,25 +135,24 @@ public class FullBackupExporter extends FullBackupBase {
         EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count));
 
         if (predicate == null || predicate.test(cursor)) {
-          StringBuilder statement = new StringBuilder(template);
+          StringBuilder                     statement        = new StringBuilder(template);
+          BackupProtos.SqlStatement.Builder statementBuilder = BackupProtos.SqlStatement.newBuilder();
 
           statement.append('(');
 
           for (int i=0;i<cursor.getColumnCount();i++) {
+            statement.append('?');
+
             if (cursor.getType(i) == Cursor.FIELD_TYPE_STRING) {
-              statement.append('\'');
-              statement.append(cursor.getString(i).replace("'", "''"));
-              statement.append('\'');
+              statementBuilder.addParameters(BackupProtos.SqlStatement.SqlParameter.newBuilder().setStringParamter(cursor.getString(i)));
             } else if (cursor.getType(i) == Cursor.FIELD_TYPE_FLOAT) {
-              statement.append(cursor.getFloat(i));
+              statementBuilder.addParameters(BackupProtos.SqlStatement.SqlParameter.newBuilder().setDoubleParameter(cursor.getDouble(i)));
             } else if (cursor.getType(i) == Cursor.FIELD_TYPE_INTEGER) {
-              statement.append(cursor.getLong(i));
+              statementBuilder.addParameters(BackupProtos.SqlStatement.SqlParameter.newBuilder().setIntegerParameter(cursor.getLong(i)));
             } else if (cursor.getType(i) == Cursor.FIELD_TYPE_BLOB) {
-              statement.append("x'");
-              statement.append(Hex.toStringCondensed(cursor.getBlob(i)));
-              statement.append('\'');
+              statementBuilder.addParameters(BackupProtos.SqlStatement.SqlParameter.newBuilder().setBlobParameter(ByteString.copyFrom(cursor.getBlob(i))));
             } else if (cursor.getType(i) == Cursor.FIELD_TYPE_NULL) {
-              statement.append("NULL");
+              statementBuilder.addParameters(BackupProtos.SqlStatement.SqlParameter.newBuilder().setNullparameter(true));
             } else {
               throw new AssertionError("unknown type?"  + cursor.getType(i));
             }
@@ -166,7 +164,7 @@ public class FullBackupExporter extends FullBackupBase {
 
           statement.append(')');
 
-          outputStream.write(BackupProtos.SqlStatement.newBuilder().setStatement(statement.toString()).build());
+          outputStream.write(statementBuilder.setStatement(statement.toString()).build());
 
           if (postProcess != null) postProcess.accept(cursor);
         }

@@ -25,6 +25,31 @@ public final class BackupProtos {
      */
     com.google.protobuf.ByteString
         getStatementBytes();
+
+    // repeated .signal.SqlStatement.SqlParameter parameters = 2;
+    /**
+     * <code>repeated .signal.SqlStatement.SqlParameter parameters = 2;</code>
+     */
+    java.util.List<org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter> 
+        getParametersList();
+    /**
+     * <code>repeated .signal.SqlStatement.SqlParameter parameters = 2;</code>
+     */
+    org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter getParameters(int index);
+    /**
+     * <code>repeated .signal.SqlStatement.SqlParameter parameters = 2;</code>
+     */
+    int getParametersCount();
+    /**
+     * <code>repeated .signal.SqlStatement.SqlParameter parameters = 2;</code>
+     */
+    java.util.List<? extends org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameterOrBuilder> 
+        getParametersOrBuilderList();
+    /**
+     * <code>repeated .signal.SqlStatement.SqlParameter parameters = 2;</code>
+     */
+    org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameterOrBuilder getParametersOrBuilder(
+        int index);
   }
   /**
    * Protobuf type {@code signal.SqlStatement}
@@ -82,6 +107,14 @@ public final class BackupProtos {
               statement_ = input.readBytes();
               break;
             }
+            case 18: {
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                parameters_ = new java.util.ArrayList<org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter>();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              parameters_.add(input.readMessage(org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter.PARSER, extensionRegistry));
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -90,6 +123,9 @@ public final class BackupProtos {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e.getMessage()).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          parameters_ = java.util.Collections.unmodifiableList(parameters_);
+        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
@@ -119,6 +155,804 @@ public final class BackupProtos {
     @java.lang.Override
     public com.google.protobuf.Parser<SqlStatement> getParserForType() {
       return PARSER;
+    }
+
+    public interface SqlParameterOrBuilder
+        extends com.google.protobuf.MessageOrBuilder {
+
+      // optional string stringParamter = 1;
+      /**
+       * <code>optional string stringParamter = 1;</code>
+       */
+      boolean hasStringParamter();
+      /**
+       * <code>optional string stringParamter = 1;</code>
+       */
+      java.lang.String getStringParamter();
+      /**
+       * <code>optional string stringParamter = 1;</code>
+       */
+      com.google.protobuf.ByteString
+          getStringParamterBytes();
+
+      // optional uint64 integerParameter = 2;
+      /**
+       * <code>optional uint64 integerParameter = 2;</code>
+       */
+      boolean hasIntegerParameter();
+      /**
+       * <code>optional uint64 integerParameter = 2;</code>
+       */
+      long getIntegerParameter();
+
+      // optional double doubleParameter = 3;
+      /**
+       * <code>optional double doubleParameter = 3;</code>
+       */
+      boolean hasDoubleParameter();
+      /**
+       * <code>optional double doubleParameter = 3;</code>
+       */
+      double getDoubleParameter();
+
+      // optional bytes blobParameter = 4;
+      /**
+       * <code>optional bytes blobParameter = 4;</code>
+       */
+      boolean hasBlobParameter();
+      /**
+       * <code>optional bytes blobParameter = 4;</code>
+       */
+      com.google.protobuf.ByteString getBlobParameter();
+
+      // optional bool nullparameter = 5;
+      /**
+       * <code>optional bool nullparameter = 5;</code>
+       */
+      boolean hasNullparameter();
+      /**
+       * <code>optional bool nullparameter = 5;</code>
+       */
+      boolean getNullparameter();
+    }
+    /**
+     * Protobuf type {@code signal.SqlStatement.SqlParameter}
+     */
+    public static final class SqlParameter extends
+        com.google.protobuf.GeneratedMessage
+        implements SqlParameterOrBuilder {
+      // Use SqlParameter.newBuilder() to construct.
+      private SqlParameter(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+        super(builder);
+        this.unknownFields = builder.getUnknownFields();
+      }
+      private SqlParameter(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+      private static final SqlParameter defaultInstance;
+      public static SqlParameter getDefaultInstance() {
+        return defaultInstance;
+      }
+
+      public SqlParameter getDefaultInstanceForType() {
+        return defaultInstance;
+      }
+
+      private final com.google.protobuf.UnknownFieldSet unknownFields;
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+          getUnknownFields() {
+        return this.unknownFields;
+      }
+      private SqlParameter(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        initFields();
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!parseUnknownField(input, unknownFields,
+                                       extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+              case 10: {
+                bitField0_ |= 0x00000001;
+                stringParamter_ = input.readBytes();
+                break;
+              }
+              case 16: {
+                bitField0_ |= 0x00000002;
+                integerParameter_ = input.readUInt64();
+                break;
+              }
+              case 25: {
+                bitField0_ |= 0x00000004;
+                doubleParameter_ = input.readDouble();
+                break;
+              }
+              case 34: {
+                bitField0_ |= 0x00000008;
+                blobParameter_ = input.readBytes();
+                break;
+              }
+              case 40: {
+                bitField0_ |= 0x00000010;
+                nullparameter_ = input.readBool();
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e.getMessage()).setUnfinishedMessage(this);
+        } finally {
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.thoughtcrime.securesms.backup.BackupProtos.internal_static_signal_SqlStatement_SqlParameter_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.thoughtcrime.securesms.backup.BackupProtos.internal_static_signal_SqlStatement_SqlParameter_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter.class, org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter.Builder.class);
+      }
+
+      public static com.google.protobuf.Parser<SqlParameter> PARSER =
+          new com.google.protobuf.AbstractParser<SqlParameter>() {
+        public SqlParameter parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new SqlParameter(input, extensionRegistry);
+        }
+      };
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<SqlParameter> getParserForType() {
+        return PARSER;
+      }
+
+      private int bitField0_;
+      // optional string stringParamter = 1;
+      public static final int STRINGPARAMTER_FIELD_NUMBER = 1;
+      private java.lang.Object stringParamter_;
+      /**
+       * <code>optional string stringParamter = 1;</code>
+       */
+      public boolean hasStringParamter() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional string stringParamter = 1;</code>
+       */
+      public java.lang.String getStringParamter() {
+        java.lang.Object ref = stringParamter_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
+        } else {
+          com.google.protobuf.ByteString bs = 
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            stringParamter_ = s;
+          }
+          return s;
+        }
+      }
+      /**
+       * <code>optional string stringParamter = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getStringParamterBytes() {
+        java.lang.Object ref = stringParamter_;
+        if (ref instanceof java.lang.String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          stringParamter_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+
+      // optional uint64 integerParameter = 2;
+      public static final int INTEGERPARAMETER_FIELD_NUMBER = 2;
+      private long integerParameter_;
+      /**
+       * <code>optional uint64 integerParameter = 2;</code>
+       */
+      public boolean hasIntegerParameter() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional uint64 integerParameter = 2;</code>
+       */
+      public long getIntegerParameter() {
+        return integerParameter_;
+      }
+
+      // optional double doubleParameter = 3;
+      public static final int DOUBLEPARAMETER_FIELD_NUMBER = 3;
+      private double doubleParameter_;
+      /**
+       * <code>optional double doubleParameter = 3;</code>
+       */
+      public boolean hasDoubleParameter() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional double doubleParameter = 3;</code>
+       */
+      public double getDoubleParameter() {
+        return doubleParameter_;
+      }
+
+      // optional bytes blobParameter = 4;
+      public static final int BLOBPARAMETER_FIELD_NUMBER = 4;
+      private com.google.protobuf.ByteString blobParameter_;
+      /**
+       * <code>optional bytes blobParameter = 4;</code>
+       */
+      public boolean hasBlobParameter() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional bytes blobParameter = 4;</code>
+       */
+      public com.google.protobuf.ByteString getBlobParameter() {
+        return blobParameter_;
+      }
+
+      // optional bool nullparameter = 5;
+      public static final int NULLPARAMETER_FIELD_NUMBER = 5;
+      private boolean nullparameter_;
+      /**
+       * <code>optional bool nullparameter = 5;</code>
+       */
+      public boolean hasNullparameter() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      /**
+       * <code>optional bool nullparameter = 5;</code>
+       */
+      public boolean getNullparameter() {
+        return nullparameter_;
+      }
+
+      private void initFields() {
+        stringParamter_ = "";
+        integerParameter_ = 0L;
+        doubleParameter_ = 0D;
+        blobParameter_ = com.google.protobuf.ByteString.EMPTY;
+        nullparameter_ = false;
+      }
+      private byte memoizedIsInitialized = -1;
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized != -1) return isInitialized == 1;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        getSerializedSize();
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          output.writeBytes(1, getStringParamterBytes());
+        }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          output.writeUInt64(2, integerParameter_);
+        }
+        if (((bitField0_ & 0x00000004) == 0x00000004)) {
+          output.writeDouble(3, doubleParameter_);
+        }
+        if (((bitField0_ & 0x00000008) == 0x00000008)) {
+          output.writeBytes(4, blobParameter_);
+        }
+        if (((bitField0_ & 0x00000010) == 0x00000010)) {
+          output.writeBool(5, nullparameter_);
+        }
+        getUnknownFields().writeTo(output);
+      }
+
+      private int memoizedSerializedSize = -1;
+      public int getSerializedSize() {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBytesSize(1, getStringParamterBytes());
+        }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeUInt64Size(2, integerParameter_);
+        }
+        if (((bitField0_ & 0x00000004) == 0x00000004)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeDoubleSize(3, doubleParameter_);
+        }
+        if (((bitField0_ & 0x00000008) == 0x00000008)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBytesSize(4, blobParameter_);
+        }
+        if (((bitField0_ & 0x00000010) == 0x00000010)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBoolSize(5, nullparameter_);
+        }
+        size += getUnknownFields().getSerializedSize();
+        memoizedSerializedSize = size;
+        return size;
+      }
+
+      private static final long serialVersionUID = 0L;
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
+          throws java.io.ObjectStreamException {
+        return super.writeReplace();
+      }
+
+      public static org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input);
+      }
+      public static org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input, extensionRegistry);
+      }
+      public static org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return PARSER.parseDelimitedFrom(input);
+      }
+      public static org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      }
+      public static org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input);
+      }
+      public static org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input, extensionRegistry);
+      }
+
+      public static Builder newBuilder() { return Builder.create(); }
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder(org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter prototype) {
+        return newBuilder().mergeFrom(prototype);
+      }
+      public Builder toBuilder() { return newBuilder(this); }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code signal.SqlStatement.SqlParameter}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessage.Builder<Builder>
+         implements org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameterOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return org.thoughtcrime.securesms.backup.BackupProtos.internal_static_signal_SqlStatement_SqlParameter_descriptor;
+        }
+
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return org.thoughtcrime.securesms.backup.BackupProtos.internal_static_signal_SqlStatement_SqlParameter_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter.class, org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter.Builder.class);
+        }
+
+        // Construct using org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          }
+        }
+        private static Builder create() {
+          return new Builder();
+        }
+
+        public Builder clear() {
+          super.clear();
+          stringParamter_ = "";
+          bitField0_ = (bitField0_ & ~0x00000001);
+          integerParameter_ = 0L;
+          bitField0_ = (bitField0_ & ~0x00000002);
+          doubleParameter_ = 0D;
+          bitField0_ = (bitField0_ & ~0x00000004);
+          blobParameter_ = com.google.protobuf.ByteString.EMPTY;
+          bitField0_ = (bitField0_ & ~0x00000008);
+          nullparameter_ = false;
+          bitField0_ = (bitField0_ & ~0x00000010);
+          return this;
+        }
+
+        public Builder clone() {
+          return create().mergeFrom(buildPartial());
+        }
+
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return org.thoughtcrime.securesms.backup.BackupProtos.internal_static_signal_SqlStatement_SqlParameter_descriptor;
+        }
+
+        public org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter getDefaultInstanceForType() {
+          return org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter.getDefaultInstance();
+        }
+
+        public org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter build() {
+          org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        public org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter buildPartial() {
+          org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter result = new org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter(this);
+          int from_bitField0_ = bitField0_;
+          int to_bitField0_ = 0;
+          if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+            to_bitField0_ |= 0x00000001;
+          }
+          result.stringParamter_ = stringParamter_;
+          if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+            to_bitField0_ |= 0x00000002;
+          }
+          result.integerParameter_ = integerParameter_;
+          if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+            to_bitField0_ |= 0x00000004;
+          }
+          result.doubleParameter_ = doubleParameter_;
+          if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+            to_bitField0_ |= 0x00000008;
+          }
+          result.blobParameter_ = blobParameter_;
+          if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+            to_bitField0_ |= 0x00000010;
+          }
+          result.nullparameter_ = nullparameter_;
+          result.bitField0_ = to_bitField0_;
+          onBuilt();
+          return result;
+        }
+
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter) {
+            return mergeFrom((org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter other) {
+          if (other == org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter.getDefaultInstance()) return this;
+          if (other.hasStringParamter()) {
+            bitField0_ |= 0x00000001;
+            stringParamter_ = other.stringParamter_;
+            onChanged();
+          }
+          if (other.hasIntegerParameter()) {
+            setIntegerParameter(other.getIntegerParameter());
+          }
+          if (other.hasDoubleParameter()) {
+            setDoubleParameter(other.getDoubleParameter());
+          }
+          if (other.hasBlobParameter()) {
+            setBlobParameter(other.getBlobParameter());
+          }
+          if (other.hasNullparameter()) {
+            setNullparameter(other.getNullparameter());
+          }
+          this.mergeUnknownFields(other.getUnknownFields());
+          return this;
+        }
+
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter) e.getUnfinishedMessage();
+            throw e;
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+        private int bitField0_;
+
+        // optional string stringParamter = 1;
+        private java.lang.Object stringParamter_ = "";
+        /**
+         * <code>optional string stringParamter = 1;</code>
+         */
+        public boolean hasStringParamter() {
+          return ((bitField0_ & 0x00000001) == 0x00000001);
+        }
+        /**
+         * <code>optional string stringParamter = 1;</code>
+         */
+        public java.lang.String getStringParamter() {
+          java.lang.Object ref = stringParamter_;
+          if (!(ref instanceof java.lang.String)) {
+            java.lang.String s = ((com.google.protobuf.ByteString) ref)
+                .toStringUtf8();
+            stringParamter_ = s;
+            return s;
+          } else {
+            return (java.lang.String) ref;
+          }
+        }
+        /**
+         * <code>optional string stringParamter = 1;</code>
+         */
+        public com.google.protobuf.ByteString
+            getStringParamterBytes() {
+          java.lang.Object ref = stringParamter_;
+          if (ref instanceof String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            stringParamter_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
+        }
+        /**
+         * <code>optional string stringParamter = 1;</code>
+         */
+        public Builder setStringParamter(
+            java.lang.String value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+          stringParamter_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>optional string stringParamter = 1;</code>
+         */
+        public Builder clearStringParamter() {
+          bitField0_ = (bitField0_ & ~0x00000001);
+          stringParamter_ = getDefaultInstance().getStringParamter();
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>optional string stringParamter = 1;</code>
+         */
+        public Builder setStringParamterBytes(
+            com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+          stringParamter_ = value;
+          onChanged();
+          return this;
+        }
+
+        // optional uint64 integerParameter = 2;
+        private long integerParameter_ ;
+        /**
+         * <code>optional uint64 integerParameter = 2;</code>
+         */
+        public boolean hasIntegerParameter() {
+          return ((bitField0_ & 0x00000002) == 0x00000002);
+        }
+        /**
+         * <code>optional uint64 integerParameter = 2;</code>
+         */
+        public long getIntegerParameter() {
+          return integerParameter_;
+        }
+        /**
+         * <code>optional uint64 integerParameter = 2;</code>
+         */
+        public Builder setIntegerParameter(long value) {
+          bitField0_ |= 0x00000002;
+          integerParameter_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>optional uint64 integerParameter = 2;</code>
+         */
+        public Builder clearIntegerParameter() {
+          bitField0_ = (bitField0_ & ~0x00000002);
+          integerParameter_ = 0L;
+          onChanged();
+          return this;
+        }
+
+        // optional double doubleParameter = 3;
+        private double doubleParameter_ ;
+        /**
+         * <code>optional double doubleParameter = 3;</code>
+         */
+        public boolean hasDoubleParameter() {
+          return ((bitField0_ & 0x00000004) == 0x00000004);
+        }
+        /**
+         * <code>optional double doubleParameter = 3;</code>
+         */
+        public double getDoubleParameter() {
+          return doubleParameter_;
+        }
+        /**
+         * <code>optional double doubleParameter = 3;</code>
+         */
+        public Builder setDoubleParameter(double value) {
+          bitField0_ |= 0x00000004;
+          doubleParameter_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>optional double doubleParameter = 3;</code>
+         */
+        public Builder clearDoubleParameter() {
+          bitField0_ = (bitField0_ & ~0x00000004);
+          doubleParameter_ = 0D;
+          onChanged();
+          return this;
+        }
+
+        // optional bytes blobParameter = 4;
+        private com.google.protobuf.ByteString blobParameter_ = com.google.protobuf.ByteString.EMPTY;
+        /**
+         * <code>optional bytes blobParameter = 4;</code>
+         */
+        public boolean hasBlobParameter() {
+          return ((bitField0_ & 0x00000008) == 0x00000008);
+        }
+        /**
+         * <code>optional bytes blobParameter = 4;</code>
+         */
+        public com.google.protobuf.ByteString getBlobParameter() {
+          return blobParameter_;
+        }
+        /**
+         * <code>optional bytes blobParameter = 4;</code>
+         */
+        public Builder setBlobParameter(com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+          blobParameter_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>optional bytes blobParameter = 4;</code>
+         */
+        public Builder clearBlobParameter() {
+          bitField0_ = (bitField0_ & ~0x00000008);
+          blobParameter_ = getDefaultInstance().getBlobParameter();
+          onChanged();
+          return this;
+        }
+
+        // optional bool nullparameter = 5;
+        private boolean nullparameter_ ;
+        /**
+         * <code>optional bool nullparameter = 5;</code>
+         */
+        public boolean hasNullparameter() {
+          return ((bitField0_ & 0x00000010) == 0x00000010);
+        }
+        /**
+         * <code>optional bool nullparameter = 5;</code>
+         */
+        public boolean getNullparameter() {
+          return nullparameter_;
+        }
+        /**
+         * <code>optional bool nullparameter = 5;</code>
+         */
+        public Builder setNullparameter(boolean value) {
+          bitField0_ |= 0x00000010;
+          nullparameter_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>optional bool nullparameter = 5;</code>
+         */
+        public Builder clearNullparameter() {
+          bitField0_ = (bitField0_ & ~0x00000010);
+          nullparameter_ = false;
+          onChanged();
+          return this;
+        }
+
+        // @@protoc_insertion_point(builder_scope:signal.SqlStatement.SqlParameter)
+      }
+
+      static {
+        defaultInstance = new SqlParameter(true);
+        defaultInstance.initFields();
+      }
+
+      // @@protoc_insertion_point(class_scope:signal.SqlStatement.SqlParameter)
     }
 
     private int bitField0_;
@@ -165,8 +999,45 @@ public final class BackupProtos {
       }
     }
 
+    // repeated .signal.SqlStatement.SqlParameter parameters = 2;
+    public static final int PARAMETERS_FIELD_NUMBER = 2;
+    private java.util.List<org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter> parameters_;
+    /**
+     * <code>repeated .signal.SqlStatement.SqlParameter parameters = 2;</code>
+     */
+    public java.util.List<org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter> getParametersList() {
+      return parameters_;
+    }
+    /**
+     * <code>repeated .signal.SqlStatement.SqlParameter parameters = 2;</code>
+     */
+    public java.util.List<? extends org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameterOrBuilder> 
+        getParametersOrBuilderList() {
+      return parameters_;
+    }
+    /**
+     * <code>repeated .signal.SqlStatement.SqlParameter parameters = 2;</code>
+     */
+    public int getParametersCount() {
+      return parameters_.size();
+    }
+    /**
+     * <code>repeated .signal.SqlStatement.SqlParameter parameters = 2;</code>
+     */
+    public org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter getParameters(int index) {
+      return parameters_.get(index);
+    }
+    /**
+     * <code>repeated .signal.SqlStatement.SqlParameter parameters = 2;</code>
+     */
+    public org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameterOrBuilder getParametersOrBuilder(
+        int index) {
+      return parameters_.get(index);
+    }
+
     private void initFields() {
       statement_ = "";
+      parameters_ = java.util.Collections.emptyList();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -183,6 +1054,9 @@ public final class BackupProtos {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeBytes(1, getStatementBytes());
       }
+      for (int i = 0; i < parameters_.size(); i++) {
+        output.writeMessage(2, parameters_.get(i));
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -195,6 +1069,10 @@ public final class BackupProtos {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(1, getStatementBytes());
+      }
+      for (int i = 0; i < parameters_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, parameters_.get(i));
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -304,6 +1182,7 @@ public final class BackupProtos {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getParametersFieldBuilder();
         }
       }
       private static Builder create() {
@@ -314,6 +1193,12 @@ public final class BackupProtos {
         super.clear();
         statement_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
+        if (parametersBuilder_ == null) {
+          parameters_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        } else {
+          parametersBuilder_.clear();
+        }
         return this;
       }
 
@@ -346,6 +1231,15 @@ public final class BackupProtos {
           to_bitField0_ |= 0x00000001;
         }
         result.statement_ = statement_;
+        if (parametersBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+            parameters_ = java.util.Collections.unmodifiableList(parameters_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.parameters_ = parameters_;
+        } else {
+          result.parameters_ = parametersBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -366,6 +1260,32 @@ public final class BackupProtos {
           bitField0_ |= 0x00000001;
           statement_ = other.statement_;
           onChanged();
+        }
+        if (parametersBuilder_ == null) {
+          if (!other.parameters_.isEmpty()) {
+            if (parameters_.isEmpty()) {
+              parameters_ = other.parameters_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensureParametersIsMutable();
+              parameters_.addAll(other.parameters_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.parameters_.isEmpty()) {
+            if (parametersBuilder_.isEmpty()) {
+              parametersBuilder_.dispose();
+              parametersBuilder_ = null;
+              parameters_ = other.parameters_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              parametersBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getParametersFieldBuilder() : null;
+            } else {
+              parametersBuilder_.addAllMessages(other.parameters_);
+            }
+          }
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -466,6 +1386,246 @@ public final class BackupProtos {
         statement_ = value;
         onChanged();
         return this;
+      }
+
+      // repeated .signal.SqlStatement.SqlParameter parameters = 2;
+      private java.util.List<org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter> parameters_ =
+        java.util.Collections.emptyList();
+      private void ensureParametersIsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          parameters_ = new java.util.ArrayList<org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter>(parameters_);
+          bitField0_ |= 0x00000002;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter, org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter.Builder, org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameterOrBuilder> parametersBuilder_;
+
+      /**
+       * <code>repeated .signal.SqlStatement.SqlParameter parameters = 2;</code>
+       */
+      public java.util.List<org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter> getParametersList() {
+        if (parametersBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(parameters_);
+        } else {
+          return parametersBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .signal.SqlStatement.SqlParameter parameters = 2;</code>
+       */
+      public int getParametersCount() {
+        if (parametersBuilder_ == null) {
+          return parameters_.size();
+        } else {
+          return parametersBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .signal.SqlStatement.SqlParameter parameters = 2;</code>
+       */
+      public org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter getParameters(int index) {
+        if (parametersBuilder_ == null) {
+          return parameters_.get(index);
+        } else {
+          return parametersBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .signal.SqlStatement.SqlParameter parameters = 2;</code>
+       */
+      public Builder setParameters(
+          int index, org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter value) {
+        if (parametersBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureParametersIsMutable();
+          parameters_.set(index, value);
+          onChanged();
+        } else {
+          parametersBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .signal.SqlStatement.SqlParameter parameters = 2;</code>
+       */
+      public Builder setParameters(
+          int index, org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter.Builder builderForValue) {
+        if (parametersBuilder_ == null) {
+          ensureParametersIsMutable();
+          parameters_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          parametersBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .signal.SqlStatement.SqlParameter parameters = 2;</code>
+       */
+      public Builder addParameters(org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter value) {
+        if (parametersBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureParametersIsMutable();
+          parameters_.add(value);
+          onChanged();
+        } else {
+          parametersBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .signal.SqlStatement.SqlParameter parameters = 2;</code>
+       */
+      public Builder addParameters(
+          int index, org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter value) {
+        if (parametersBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureParametersIsMutable();
+          parameters_.add(index, value);
+          onChanged();
+        } else {
+          parametersBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .signal.SqlStatement.SqlParameter parameters = 2;</code>
+       */
+      public Builder addParameters(
+          org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter.Builder builderForValue) {
+        if (parametersBuilder_ == null) {
+          ensureParametersIsMutable();
+          parameters_.add(builderForValue.build());
+          onChanged();
+        } else {
+          parametersBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .signal.SqlStatement.SqlParameter parameters = 2;</code>
+       */
+      public Builder addParameters(
+          int index, org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter.Builder builderForValue) {
+        if (parametersBuilder_ == null) {
+          ensureParametersIsMutable();
+          parameters_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          parametersBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .signal.SqlStatement.SqlParameter parameters = 2;</code>
+       */
+      public Builder addAllParameters(
+          java.lang.Iterable<? extends org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter> values) {
+        if (parametersBuilder_ == null) {
+          ensureParametersIsMutable();
+          super.addAll(values, parameters_);
+          onChanged();
+        } else {
+          parametersBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .signal.SqlStatement.SqlParameter parameters = 2;</code>
+       */
+      public Builder clearParameters() {
+        if (parametersBuilder_ == null) {
+          parameters_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          parametersBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .signal.SqlStatement.SqlParameter parameters = 2;</code>
+       */
+      public Builder removeParameters(int index) {
+        if (parametersBuilder_ == null) {
+          ensureParametersIsMutable();
+          parameters_.remove(index);
+          onChanged();
+        } else {
+          parametersBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .signal.SqlStatement.SqlParameter parameters = 2;</code>
+       */
+      public org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter.Builder getParametersBuilder(
+          int index) {
+        return getParametersFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .signal.SqlStatement.SqlParameter parameters = 2;</code>
+       */
+      public org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameterOrBuilder getParametersOrBuilder(
+          int index) {
+        if (parametersBuilder_ == null) {
+          return parameters_.get(index);  } else {
+          return parametersBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .signal.SqlStatement.SqlParameter parameters = 2;</code>
+       */
+      public java.util.List<? extends org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameterOrBuilder> 
+           getParametersOrBuilderList() {
+        if (parametersBuilder_ != null) {
+          return parametersBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(parameters_);
+        }
+      }
+      /**
+       * <code>repeated .signal.SqlStatement.SqlParameter parameters = 2;</code>
+       */
+      public org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter.Builder addParametersBuilder() {
+        return getParametersFieldBuilder().addBuilder(
+            org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .signal.SqlStatement.SqlParameter parameters = 2;</code>
+       */
+      public org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter.Builder addParametersBuilder(
+          int index) {
+        return getParametersFieldBuilder().addBuilder(
+            index, org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .signal.SqlStatement.SqlParameter parameters = 2;</code>
+       */
+      public java.util.List<org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter.Builder> 
+           getParametersBuilderList() {
+        return getParametersFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter, org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter.Builder, org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameterOrBuilder> 
+          getParametersFieldBuilder() {
+        if (parametersBuilder_ == null) {
+          parametersBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter, org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter.Builder, org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameterOrBuilder>(
+                  parameters_,
+                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  getParentForChildren(),
+                  isClean());
+          parameters_ = null;
+        }
+        return parametersBuilder_;
       }
 
       // @@protoc_insertion_point(builder_scope:signal.SqlStatement)
@@ -3977,6 +5137,11 @@ public final class BackupProtos {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_signal_SqlStatement_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_signal_SqlStatement_SqlParameter_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_signal_SqlStatement_SqlParameter_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_signal_SharedPreference_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -4010,20 +5175,24 @@ public final class BackupProtos {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\rBackups.proto\022\006signal\"!\n\014SqlStatement\022" +
-      "\021\n\tstatement\030\001 \001(\t\"<\n\020SharedPreference\022\014" +
-      "\n\004file\030\001 \001(\t\022\013\n\003key\030\002 \001(\t\022\r\n\005value\030\003 \001(\t" +
-      "\"A\n\nAttachment\022\r\n\005rowId\030\001 \001(\004\022\024\n\014attachm" +
-      "entId\030\002 \001(\004\022\016\n\006length\030\003 \001(\r\"\"\n\017DatabaseV" +
-      "ersion\022\017\n\007version\030\001 \001(\r\"\024\n\006Header\022\n\n\002iv\030" +
-      "\001 \001(\014\"\343\001\n\013BackupFrame\022\036\n\006header\030\001 \001(\0132\016." +
-      "signal.Header\022\'\n\tstatement\030\002 \001(\0132\024.signa" +
-      "l.SqlStatement\022,\n\npreference\030\003 \001(\0132\030.sig" +
-      "nal.SharedPreference\022&\n\nattachment\030\004 \001(\013",
-      "2\022.signal.Attachment\022(\n\007version\030\005 \001(\0132\027." +
-      "signal.DatabaseVersion\022\013\n\003end\030\006 \001(\010B1\n!o" +
-      "rg.thoughtcrime.securesms.backupB\014Backup" +
-      "Protos"
+      "\n\rBackups.proto\022\006signal\"\342\001\n\014SqlStatement" +
+      "\022\021\n\tstatement\030\001 \001(\t\0225\n\nparameters\030\002 \003(\0132" +
+      "!.signal.SqlStatement.SqlParameter\032\207\001\n\014S" +
+      "qlParameter\022\026\n\016stringParamter\030\001 \001(\t\022\030\n\020i" +
+      "ntegerParameter\030\002 \001(\004\022\027\n\017doubleParameter" +
+      "\030\003 \001(\001\022\025\n\rblobParameter\030\004 \001(\014\022\025\n\rnullpar" +
+      "ameter\030\005 \001(\010\"<\n\020SharedPreference\022\014\n\004file" +
+      "\030\001 \001(\t\022\013\n\003key\030\002 \001(\t\022\r\n\005value\030\003 \001(\t\"A\n\nAt" +
+      "tachment\022\r\n\005rowId\030\001 \001(\004\022\024\n\014attachmentId\030" +
+      "\002 \001(\004\022\016\n\006length\030\003 \001(\r\"\"\n\017DatabaseVersion",
+      "\022\017\n\007version\030\001 \001(\r\"\024\n\006Header\022\n\n\002iv\030\001 \001(\014\"" +
+      "\343\001\n\013BackupFrame\022\036\n\006header\030\001 \001(\0132\016.signal" +
+      ".Header\022\'\n\tstatement\030\002 \001(\0132\024.signal.SqlS" +
+      "tatement\022,\n\npreference\030\003 \001(\0132\030.signal.Sh" +
+      "aredPreference\022&\n\nattachment\030\004 \001(\0132\022.sig" +
+      "nal.Attachment\022(\n\007version\030\005 \001(\0132\027.signal" +
+      ".DatabaseVersion\022\013\n\003end\030\006 \001(\010B1\n!org.tho" +
+      "ughtcrime.securesms.backupB\014BackupProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -4035,7 +5204,13 @@ public final class BackupProtos {
           internal_static_signal_SqlStatement_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signal_SqlStatement_descriptor,
-              new java.lang.String[] { "Statement", });
+              new java.lang.String[] { "Statement", "Parameters", });
+          internal_static_signal_SqlStatement_SqlParameter_descriptor =
+            internal_static_signal_SqlStatement_descriptor.getNestedTypes().get(0);
+          internal_static_signal_SqlStatement_SqlParameter_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_signal_SqlStatement_SqlParameter_descriptor,
+              new java.lang.String[] { "StringParamter", "IntegerParameter", "DoubleParameter", "BlobParameter", "Nullparameter", });
           internal_static_signal_SharedPreference_descriptor =
             getDescriptor().getMessageTypes().get(1);
           internal_static_signal_SharedPreference_fieldAccessorTable = new

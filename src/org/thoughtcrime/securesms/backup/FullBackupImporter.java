@@ -6,7 +6,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.util.Pair;
+
+import com.annimon.stream.Collectors;
+import com.annimon.stream.Stream;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
@@ -33,6 +37,8 @@ import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -82,7 +88,18 @@ public class FullBackupImporter extends FullBackupBase {
   }
 
   private static void processStatement(@NonNull SQLiteDatabase db, SqlStatement statement) {
-    db.execSQL(statement.getStatement());
+    List<Object> parameters = new LinkedList<>();
+
+    for (SqlStatement.SqlParameter parameter : statement.getParametersList()) {
+      if      (parameter.hasStringParamter())   parameters.add(parameter.getStringParamter());
+      else if (parameter.hasDoubleParameter())  parameters.add(parameter.getDoubleParameter());
+      else if (parameter.hasIntegerParameter()) parameters.add(parameter.getIntegerParameter());
+      else if (parameter.hasBlobParameter())    parameters.add(parameter.getBlobParameter().toByteArray());
+      else if (parameter.hasNullparameter())    parameters.add(null);
+    }
+
+    if (parameters.size() > 0) db.execSQL(statement.getStatement(), parameters.toArray());
+    else                       db.execSQL(statement.getStatement());
   }
 
   private static void processAttachment(@NonNull Context context, @NonNull AttachmentSecret attachmentSecret, @NonNull SQLiteDatabase db, @NonNull Attachment attachment, BackupRecordInputStream inputStream)
