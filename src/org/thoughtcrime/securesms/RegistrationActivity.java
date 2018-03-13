@@ -30,6 +30,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -354,6 +355,9 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
         .setTitle(R.string.RegistrationActivity_enter_backup_passphrase)
         .setView(view)
         .setPositiveButton(getString(R.string.RegistrationActivity_restore), (dialog, which) -> {
+          InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+          inputMethodManager.hideSoftInputFromWindow(prompt.getWindowToken(), 0);
+
           restoreButton.setIndeterminateProgressMode(true);
           restoreButton.setProgress(50);
 
