@@ -13,24 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class RegistrationLockReminders {
 
   public static final long INITIAL_INTERVAL = TimeUnit.HOURS.toMillis(6);
-
-  private static Map<Long, Long> INTERVAL_PROGRESSION = new HashMap<Long, Long>() {{
-    put(TimeUnit.HOURS.toMillis(6), TimeUnit.HOURS.toMillis(12));
-    put(TimeUnit.HOURS.toMillis(12), TimeUnit.DAYS.toMillis(1));
-    put(TimeUnit.DAYS.toMillis(1), TimeUnit.DAYS.toMillis(3));
-    put(TimeUnit.DAYS.toMillis(3), TimeUnit.DAYS.toMillis(7));
-    put(TimeUnit.DAYS.toMillis(7), TimeUnit.DAYS.toMillis(7));
-  }};
-
-
-  private static Map<Long, Long> INTERVAL_REGRESSION = new HashMap<Long, Long>() {{
-    put(TimeUnit.HOURS.toMillis(12), TimeUnit.HOURS.toMillis(6));
-    put(TimeUnit.DAYS.toMillis(1), TimeUnit.HOURS.toMillis(12));
-    put(TimeUnit.DAYS.toMillis(3), TimeUnit.DAYS.toMillis(1));
-    put(TimeUnit.DAYS.toMillis(7), TimeUnit.DAYS.toMillis(3));
-  }};
-
-
+  
   public static boolean needsReminder(@NonNull Context context) {
     if (!TextSecurePreferences.isRegistrationtLockEnabled(context)) return false;
 
@@ -41,15 +24,20 @@ public class RegistrationLockReminders {
   }
 
   public static void scheduleReminder(@NonNull Context context, boolean success) {
-    long lastReminderInterval     = TextSecurePreferences.getRegistrationLockNextReminderInterval(context);
+    long lastReminderInterval = TextSecurePreferences.getRegistrationLockNextReminderInterval(context);
     long nextReminderInterval;
 
     if (success) {
-      if (INTERVAL_PROGRESSION.containsKey(lastReminderInterval)) nextReminderInterval = INTERVAL_PROGRESSION.get(lastReminderInterval);
-      else                                                        nextReminderInterval = INTERVAL_PROGRESSION.get(TimeUnit.HOURS.toMillis(6));
+      if      (lastReminderInterval <= TimeUnit.HOURS.toMillis(6))  nextReminderInterval = TimeUnit.HOURS.toMillis(12);
+      else if (lastReminderInterval <= TimeUnit.HOURS.toMillis(12)) nextReminderInterval = TimeUnit.DAYS.toMillis(1);
+      else if (lastReminderInterval <= TimeUnit.DAYS.toMillis(1))   nextReminderInterval = TimeUnit.DAYS.toMillis(3);
+      else if (lastReminderInterval <= TimeUnit.DAYS.toMillis(3))   nextReminderInterval = TimeUnit.DAYS.toMillis(7);
+      else                                                                  nextReminderInterval = TimeUnit.DAYS.toMillis(7);
     } else {
-      if (INTERVAL_REGRESSION.containsKey(lastReminderInterval))  nextReminderInterval = INTERVAL_REGRESSION.get(lastReminderInterval);
-      else                                                        nextReminderInterval = INTERVAL_REGRESSION.get(TimeUnit.HOURS.toMillis(12));
+      if      (lastReminderInterval >= TimeUnit.DAYS.toMillis(7)) nextReminderInterval = TimeUnit.DAYS.toMillis(3);
+      else if (lastReminderInterval >= TimeUnit.DAYS.toMillis(3)) nextReminderInterval = TimeUnit.DAYS.toMillis(1);
+      else if (lastReminderInterval >= TimeUnit.DAYS.toMillis(1)) nextReminderInterval = TimeUnit.HOURS.toMillis(12);
+      else                                                                nextReminderInterval = TimeUnit.HOURS.toMillis(6);
     }
 
     TextSecurePreferences.setRegistrationLockLastReminderTime(context, System.currentTimeMillis());
