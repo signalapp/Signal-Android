@@ -277,7 +277,7 @@ public class BitmapUtil {
   }
 
   public static int getMaxTextureSize() {
-    final int IMAGE_MAX_BITMAP_DIMENSION = 2048;
+    final int MAX_ALLOWED_TEXTURE_SIZE = 2048;
 
     EGL10 egl = (EGL10) EGLContext.getEGL();
     EGLDisplay display = egl.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
@@ -303,6 +303,6 @@ public class BitmapUtil {
 
     egl.eglTerminate(display);
 
-    return Math.max(maximumTextureSize, IMAGE_MAX_BITMAP_DIMENSION);
+    return Math.min(maximumTextureSize, MAX_ALLOWED_TEXTURE_SIZE);
   }
 }
