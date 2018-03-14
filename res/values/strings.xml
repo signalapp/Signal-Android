@@ -664,6 +664,8 @@
     <string name="MediaPreviewActivity_draft">Draft</string>
     <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal needs the Storage permission in order to save to external storage, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Storage\".</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Unable to save to external storage without permissions</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_title">Delete message?</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">This will permanently delete this message.</string>
 
 
     <!-- MessageNotifier -->
