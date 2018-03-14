@@ -3388,6 +3388,16 @@ public final class BackupProtos {
      * <code>optional bytes iv = 1;</code>
      */
     com.google.protobuf.ByteString getIv();
+
+    // optional bytes salt = 2;
+    /**
+     * <code>optional bytes salt = 2;</code>
+     */
+    boolean hasSalt();
+    /**
+     * <code>optional bytes salt = 2;</code>
+     */
+    com.google.protobuf.ByteString getSalt();
   }
   /**
    * Protobuf type {@code signal.Header}
@@ -3443,6 +3453,11 @@ public final class BackupProtos {
             case 10: {
               bitField0_ |= 0x00000001;
               iv_ = input.readBytes();
+              break;
+            }
+            case 18: {
+              bitField0_ |= 0x00000002;
+              salt_ = input.readBytes();
               break;
             }
           }
@@ -3501,8 +3516,25 @@ public final class BackupProtos {
       return iv_;
     }
 
+    // optional bytes salt = 2;
+    public static final int SALT_FIELD_NUMBER = 2;
+    private com.google.protobuf.ByteString salt_;
+    /**
+     * <code>optional bytes salt = 2;</code>
+     */
+    public boolean hasSalt() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional bytes salt = 2;</code>
+     */
+    public com.google.protobuf.ByteString getSalt() {
+      return salt_;
+    }
+
     private void initFields() {
       iv_ = com.google.protobuf.ByteString.EMPTY;
+      salt_ = com.google.protobuf.ByteString.EMPTY;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -3519,6 +3551,9 @@ public final class BackupProtos {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeBytes(1, iv_);
       }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(2, salt_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -3531,6 +3566,10 @@ public final class BackupProtos {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(1, iv_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, salt_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -3650,6 +3689,8 @@ public final class BackupProtos {
         super.clear();
         iv_ = com.google.protobuf.ByteString.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000001);
+        salt_ = com.google.protobuf.ByteString.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -3682,6 +3723,10 @@ public final class BackupProtos {
           to_bitField0_ |= 0x00000001;
         }
         result.iv_ = iv_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.salt_ = salt_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -3700,6 +3745,9 @@ public final class BackupProtos {
         if (other == org.thoughtcrime.securesms.backup.BackupProtos.Header.getDefaultInstance()) return this;
         if (other.hasIv()) {
           setIv(other.getIv());
+        }
+        if (other.hasSalt()) {
+          setSalt(other.getSalt());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -3760,6 +3808,42 @@ public final class BackupProtos {
       public Builder clearIv() {
         bitField0_ = (bitField0_ & ~0x00000001);
         iv_ = getDefaultInstance().getIv();
+        onChanged();
+        return this;
+      }
+
+      // optional bytes salt = 2;
+      private com.google.protobuf.ByteString salt_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>optional bytes salt = 2;</code>
+       */
+      public boolean hasSalt() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional bytes salt = 2;</code>
+       */
+      public com.google.protobuf.ByteString getSalt() {
+        return salt_;
+      }
+      /**
+       * <code>optional bytes salt = 2;</code>
+       */
+      public Builder setSalt(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        salt_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bytes salt = 2;</code>
+       */
+      public Builder clearSalt() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        salt_ = getDefaultInstance().getSalt();
         onChanged();
         return this;
       }
@@ -5185,14 +5269,15 @@ public final class BackupProtos {
       "\030\001 \001(\t\022\013\n\003key\030\002 \001(\t\022\r\n\005value\030\003 \001(\t\"A\n\nAt" +
       "tachment\022\r\n\005rowId\030\001 \001(\004\022\024\n\014attachmentId\030" +
       "\002 \001(\004\022\016\n\006length\030\003 \001(\r\"\"\n\017DatabaseVersion",
-      "\022\017\n\007version\030\001 \001(\r\"\024\n\006Header\022\n\n\002iv\030\001 \001(\014\"" +
-      "\343\001\n\013BackupFrame\022\036\n\006header\030\001 \001(\0132\016.signal" +
-      ".Header\022\'\n\tstatement\030\002 \001(\0132\024.signal.SqlS" +
-      "tatement\022,\n\npreference\030\003 \001(\0132\030.signal.Sh" +
-      "aredPreference\022&\n\nattachment\030\004 \001(\0132\022.sig" +
-      "nal.Attachment\022(\n\007version\030\005 \001(\0132\027.signal" +
-      ".DatabaseVersion\022\013\n\003end\030\006 \001(\010B1\n!org.tho" +
-      "ughtcrime.securesms.backupB\014BackupProtos"
+      "\022\017\n\007version\030\001 \001(\r\"\"\n\006Header\022\n\n\002iv\030\001 \001(\014\022" +
+      "\014\n\004salt\030\002 \001(\014\"\343\001\n\013BackupFrame\022\036\n\006header\030" +
+      "\001 \001(\0132\016.signal.Header\022\'\n\tstatement\030\002 \001(\013" +
+      "2\024.signal.SqlStatement\022,\n\npreference\030\003 \001" +
+      "(\0132\030.signal.SharedPreference\022&\n\nattachme" +
+      "nt\030\004 \001(\0132\022.signal.Attachment\022(\n\007version\030" +
+      "\005 \001(\0132\027.signal.DatabaseVersion\022\013\n\003end\030\006 " +
+      "\001(\010B1\n!org.thoughtcrime.securesms.backup" +
+      "B\014BackupProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -5234,7 +5319,7 @@ public final class BackupProtos {
           internal_static_signal_Header_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signal_Header_descriptor,
-              new java.lang.String[] { "Iv", });
+              new java.lang.String[] { "Iv", "Salt", });
           internal_static_signal_BackupFrame_descriptor =
             getDescriptor().getMessageTypes().get(5);
           internal_static_signal_BackupFrame_fieldAccessorTable = new

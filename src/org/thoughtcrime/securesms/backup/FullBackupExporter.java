@@ -63,8 +63,7 @@ public class FullBackupExporter extends FullBackupBase {
                             @NonNull String passphrase)
       throws IOException
   {
-    byte[]                  key          = getBackupKey(passphrase);
-    BackupFrameOutputStream outputStream = new BackupFrameOutputStream(output, key);
+    BackupFrameOutputStream outputStream = new BackupFrameOutputStream(output, passphrase);
     outputStream.writeDatabaseVersion(input.getVersion());
 
     List<String> tables = exportSchema(input, outputStream);
@@ -196,7 +195,7 @@ public class FullBackupExporter extends FullBackupBase {
     }
   }
 
-  private static class BackupFrameOutputStream {
+  private static class BackupFrameOutputStream extends BackupStream {
 
     private final OutputStream outputStream;
     private final Cipher       cipher;
@@ -208,10 +207,12 @@ public class FullBackupExporter extends FullBackupBase {
     private byte[] iv;
     private int    counter;
 
-    private BackupFrameOutputStream(@NonNull File output, @NonNull byte[] key) throws IOException {
+    private BackupFrameOutputStream(@NonNull File output, @NonNull String passphrase) throws IOException {
       try {
-        byte[] derived = new HKDFv3().deriveSecrets(key, "Backup Export".getBytes(), 64);
-        byte[][] split = ByteUtil.split(derived, 32, 32);
+        byte[]   salt    = Util.getSecretBytes(32);
+        byte[]   key     = getBackupKey(passphrase, salt);
+        byte[]   derived = new HKDFv3().deriveSecrets(key, "Backup Export".getBytes(), 64);
+        byte[][] split   = ByteUtil.split(derived, 32, 32);
 
         this.cipherKey = split[0];
         this.macKey    = split[1];
@@ -224,7 +225,10 @@ public class FullBackupExporter extends FullBackupBase {
 
         mac.init(new SecretKeySpec(macKey, "HmacSHA256"));
 
-        byte[] header = BackupProtos.BackupFrame.newBuilder().setHeader(BackupProtos.Header.newBuilder().setIv(ByteString.copyFrom(iv))).build().toByteArray();
+        byte[] header = BackupProtos.BackupFrame.newBuilder().setHeader(BackupProtos.Header.newBuilder()
+                                                                                           .setIv(ByteString.copyFrom(iv))
+                                                                                           .setSalt(ByteString.copyFrom(salt)))
+                                                .build().toByteArray();
 
         outputStream.write(Conversions.intToByteArray(header.length));
         outputStream.write(header);

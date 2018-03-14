@@ -39,7 +39,8 @@ message DatabaseVersion {
 }
 
 message Header {
-    optional bytes iv = 1;
+    optional bytes iv   = 1;
+    optional bytes salt = 2;
 }
 
 message BackupFrame {

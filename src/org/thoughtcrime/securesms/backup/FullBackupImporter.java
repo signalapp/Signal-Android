@@ -6,11 +6,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.util.Pair;
-
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
@@ -57,8 +53,7 @@ public class FullBackupImporter extends FullBackupBase {
                                 @NonNull SQLiteDatabase db, @NonNull File file, @NonNull String passphrase)
       throws IOException
   {
-    byte[]                  key         = getBackupKey(passphrase);
-    BackupRecordInputStream inputStream = new BackupRecordInputStream(file, key);
+    BackupRecordInputStream inputStream = new BackupRecordInputStream(file, passphrase);
     int                     count       = 0;
 
     try {
@@ -128,7 +123,7 @@ public class FullBackupImporter extends FullBackupBase {
     preferences.edit().putString(preference.getKey(), preference.getValue()).commit();
   }
 
-  private static class BackupRecordInputStream {
+  private static class BackupRecordInputStream extends BackupStream {
 
     private final InputStream in;
     private final Cipher      cipher;
@@ -140,18 +135,9 @@ public class FullBackupImporter extends FullBackupBase {
     private byte[] iv;
     private int    counter;
 
-    private BackupRecordInputStream(@NonNull File file, @NonNull byte[] key) throws IOException {
+    private BackupRecordInputStream(@NonNull File file, @NonNull String passphrase) throws IOException {
       try {
-        byte[]   derived = new HKDFv3().deriveSecrets(key, "Backup Export".getBytes(), 64);
-        byte[][] split   = ByteUtil.split(derived, 32, 32);
-
-        this.cipherKey = split[0];
-        this.macKey    = split[1];
-
-        this.cipher = Cipher.getInstance("AES/CTR/NoPadding");
-        this.mac    = Mac.getInstance("HmacSHA256");
         this.in     = new FileInputStream(file);
-        this.mac.init(new SecretKeySpec(macKey, "HmacSHA256"));
 
         byte[] headerLengthBytes = new byte[4];
         Util.readFully(in, headerLengthBytes);
@@ -173,6 +159,17 @@ public class FullBackupImporter extends FullBackupBase {
         if (iv.length != 16) {
           throw new IOException("Invalid IV length!");
         }
+
+        byte[]   key     = getBackupKey(passphrase, header.hasSalt() ? header.getSalt().toByteArray() : null);
+        byte[]   derived = new HKDFv3().deriveSecrets(key, "Backup Export".getBytes(), 64);
+        byte[][] split   = ByteUtil.split(derived, 32, 32);
+
+        this.cipherKey = split[0];
+        this.macKey    = split[1];
+
+        this.cipher = Cipher.getInstance("AES/CTR/NoPadding");
+        this.mac    = Mac.getInstance("HmacSHA256");
+        this.mac.init(new SecretKeySpec(macKey, "HmacSHA256"));
 
         this.counter = Conversions.byteArrayToInt(iv);
       } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException e) {

@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.backup;
 
 
 import android.support.annotation.NonNull;
-import android.util.Log;
+import android.support.annotation.Nullable;
 
 import org.greenrobot.eventbus.EventBus;
 import org.whispersystems.libsignal.util.ByteUtil;
@@ -12,27 +12,29 @@ import java.security.NoSuchAlgorithmException;
 
 public abstract class FullBackupBase {
 
+  @SuppressWarnings("unused")
   private static final String TAG = FullBackupBase.class.getSimpleName();
 
-  protected static @NonNull byte[] getBackupKey(@NonNull String passphrase) {
-    try {
-      EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, 0));
+  static class BackupStream {
+    static @NonNull byte[] getBackupKey(@NonNull String passphrase, @Nullable byte[] salt) {
+      try {
+        EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, 0));
 
-      MessageDigest digest = MessageDigest.getInstance("SHA-512");
-      byte[]        input  = passphrase.replace(" ", "").getBytes();
-      byte[]        hash   = input;
+        MessageDigest digest = MessageDigest.getInstance("SHA-512");
+        byte[]        input  = passphrase.replace(" ", "").getBytes();
+        byte[]        hash   = input;
 
-      long start = System.currentTimeMillis();
-      for (int i=0;i<250000;i++) {
-        if (i % 1000 == 0) EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, 0));
-        digest.update(hash);
-        hash = digest.digest(input);
+        for (int i=0;i<250000;i++) {
+          if (i % 1000 == 0) EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, 0));
+          digest.update(hash);
+          if (salt != null) digest.update(salt);
+          hash = digest.digest(input);
+        }
+
+        return ByteUtil.trim(hash, 32);
+      } catch (NoSuchAlgorithmException e) {
+        throw new AssertionError(e);
       }
-      Log.w(TAG, "Generated: " + (System.currentTimeMillis()- start));
-
-      return ByteUtil.trim(hash, 32);
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
     }
   }
 
