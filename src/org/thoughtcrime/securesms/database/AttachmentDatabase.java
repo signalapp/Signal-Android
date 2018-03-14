@@ -234,16 +234,7 @@ public class AttachmentDatabase extends Database {
                               new String[] {mmsId+""}, null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
-        String data = cursor.getString(0);
-        String thumbnail = cursor.getString(1);
-
-        if (!TextUtils.isEmpty(data)) {
-          new File(data).delete();
-        }
-
-        if (!TextUtils.isEmpty(thumbnail)) {
-          new File(thumbnail).delete();
-        }
+        deleteAttachmentOnDisk(cursor.getString(0), cursor.getString(1));
       }
     } finally {
       if (cursor != null)
@@ -251,7 +242,33 @@ public class AttachmentDatabase extends Database {
     }
 
     database.delete(TABLE_NAME, MMS_ID + " = ?", new String[] {mmsId + ""});
+    notifyAttachmentListeners();
   }
+
+  public void deleteAttachment(@NonNull AttachmentId id) {
+    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+
+    try (Cursor cursor = database.query(TABLE_NAME,
+                                        new String[]{DATA, THUMBNAIL},
+                                        PART_ID_WHERE,
+                                        id.toStrings(),
+                                        null,
+                                        null,
+                                        null))
+    {
+      if (cursor == null || !cursor.moveToNext()) {
+        Log.w(TAG, "Tried to delete an attachment, but it didn't exist.");
+        return;
+      }
+      String data      = cursor.getString(0);
+      String thumbnail = cursor.getString(1);
+
+      database.delete(TABLE_NAME, PART_ID_WHERE, id.toStrings());
+      deleteAttachmentOnDisk(data, thumbnail);
+      notifyAttachmentListeners();
+    }
+  }
+
 
   @SuppressWarnings("ResultOfMethodCallIgnored")
   void deleteAllAttachments() {
@@ -263,6 +280,19 @@ public class AttachmentDatabase extends Database {
 
     for (File attachment : attachments) {
       attachment.delete();
+    }
+
+    notifyAttachmentListeners();
+  }
+
+  @SuppressWarnings("ResultOfMethodCallIgnored")
+  private void deleteAttachmentOnDisk(@Nullable String data, @Nullable String thumbnail) {
+    if (!TextUtils.isEmpty(data)) {
+      new File(data).delete();
+    }
+
+    if (!TextUtils.isEmpty(thumbnail)) {
+      new File(thumbnail).delete();
     }
   }
 

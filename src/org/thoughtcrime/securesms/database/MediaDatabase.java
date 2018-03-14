@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
+import android.database.ContentObservable;
+import android.database.ContentObserver;
 import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -55,6 +57,14 @@ public class MediaDatabase extends Database {
     return cursor;
   }
 
+  public void subscribeToMediaChanges(@NonNull ContentObserver observer) {
+    registerAttachmentListeners(observer);
+  }
+
+  public void unsubscribeToMediaChanges(@NonNull ContentObserver observer) {
+    context.getContentResolver().unregisterContentObserver(observer);
+  }
+
   public Cursor getDocumentMediaForThread(long threadId) {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
     Cursor cursor = database.rawQuery(DOCUMENT_MEDIA_QUERY, new String[]{threadId+""});
@@ -98,7 +108,7 @@ public class MediaDatabase extends Database {
       return new MediaRecord(attachment, address, date, outgoing);
     }
 
-    public Attachment getAttachment() {
+    public DatabaseAttachment getAttachment() {
       return attachment;
     }
 
