@@ -265,8 +265,11 @@ public class FullBackupExporter extends FullBackupBase {
 
         while ((read = in.read(buffer)) != -1) {
           byte[] ciphertext = cipher.update(buffer, 0, read);
-          outputStream.write(ciphertext);
-          mac.update(ciphertext);
+
+          if (ciphertext != null) {
+            outputStream.write(ciphertext);
+            mac.update(ciphertext);
+          }
         }
 
         byte[] remainder = cipher.doFinal();
