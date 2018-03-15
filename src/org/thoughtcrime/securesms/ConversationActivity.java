@@ -764,6 +764,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(getRecipient(), context, null, System.currentTimeMillis(), 0);
         MessageSender.send(self, outgoingMessage, threadId, false, null);
         DatabaseFactory.getGroupDatabase(self).remove(groupId, Address.fromSerialized(TextSecurePreferences.getLocalNumber(self)));
+        DatabaseFactory.getDraftDatabase(self).clearDrafts(getThreadId());
+
+        composeText.setText("");
         initializeEnabledCheck();
       } catch (IOException e) {
         Log.w(TAG, e);
