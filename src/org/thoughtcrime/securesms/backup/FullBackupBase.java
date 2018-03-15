@@ -24,10 +24,11 @@ public abstract class FullBackupBase {
         byte[]        input  = passphrase.replace(" ", "").getBytes();
         byte[]        hash   = input;
 
+        if (salt != null) digest.update(salt);
+
         for (int i=0;i<250000;i++) {
           if (i % 1000 == 0) EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, 0));
           digest.update(hash);
-          if (salt != null) digest.update(salt);
           hash = digest.digest(input);
         }
 
