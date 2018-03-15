@@ -6,10 +6,14 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.WorkerThread;
 import android.text.TextUtils;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
+import org.thoughtcrime.securesms.attachments.AttachmentId;
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 
 import java.util.Collections;
 import java.util.Set;
@@ -33,6 +37,27 @@ public class AttachmentUtil {
       return allowedTypes.contains(MediaUtil.getDiscreteMimeType(contentType));
     } else {
       return allowedTypes.contains("documents");
+    }
+  }
+
+  /**
+   * Deletes the specified attachment. If its the only attachment for its linked message, the entire
+   * message is deleted.
+   */
+  @WorkerThread
+  public static void deleteAttachment(@NonNull Context context,
+                                      @NonNull DatabaseAttachment attachment)
+  {
+    AttachmentId attachmentId    = attachment.getAttachmentId();
+    long         mmsId           = attachment.getMmsId();
+    int          attachmentCount = DatabaseFactory.getAttachmentDatabase(context)
+        .getAttachmentsForMessage(mmsId)
+        .size();
+
+    if (attachmentCount <= 1) {
+      DatabaseFactory.getMmsDatabase(context).delete(mmsId);
+    } else {
+      DatabaseFactory.getAttachmentDatabase(context).deleteAttachment(attachmentId);
     }
   }
 

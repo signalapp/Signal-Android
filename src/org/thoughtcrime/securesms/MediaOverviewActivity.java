@@ -16,8 +16,13 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
@@ -27,31 +32,40 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.ActionMode;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.TextView;
 
 import com.codewaves.stickyheadergrid.StickyHeaderGridLayoutManager;
 
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
+import org.thoughtcrime.securesms.database.MediaDatabase;
 import org.thoughtcrime.securesms.database.loaders.BucketedThreadMediaLoader;
 import org.thoughtcrime.securesms.database.loaders.BucketedThreadMediaLoader.BucketedThreadMedia;
 import org.thoughtcrime.securesms.database.loaders.ThreadMediaLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.AttachmentUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 
+import java.util.Collection;
 import java.util.Locale;
 
 /**
@@ -186,9 +200,14 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity  
     }
   }
 
-  public static class MediaOverviewGalleryFragment extends MediaOverviewFragment<BucketedThreadMedia> {
+  public static class MediaOverviewGalleryFragment
+      extends MediaOverviewFragment<BucketedThreadMedia>
+      implements MediaGalleryAdapter.ItemClickListener
+  {
 
     private StickyHeaderGridLayoutManager gridManager;
+    private ActionMode                    actionMode;
+    private ActionModeCallback            actionModeCallback = new ActionModeCallback();
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -198,7 +217,11 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity  
       this.noMedia      = ViewUtil.findById(view, R.id.no_images);
       this.gridManager  = new StickyHeaderGridLayoutManager(getResources().getInteger(R.integer.media_overview_cols));
 
-      this.recyclerView.setAdapter(new MediaGalleryAdapter(getContext(), GlideApp.with(this), new BucketedThreadMedia(getContext()), locale, recipient.getAddress()));
+      this.recyclerView.setAdapter(new MediaGalleryAdapter(getContext(),
+                                                           GlideApp.with(this),
+                                                           new BucketedThreadMedia(getContext()),
+                                                           locale,
+                                                           this));
       this.recyclerView.setLayoutManager(gridManager);
       this.recyclerView.setHasFixedSize(true);
 
@@ -231,6 +254,150 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity  
     @Override
     public void onLoaderReset(Loader<BucketedThreadMedia> cursorLoader) {
       ((MediaGalleryAdapter) recyclerView.getAdapter()).setMedia(new BucketedThreadMedia(getContext()));
+    }
+
+    @Override
+    public void onMediaClicked(@NonNull MediaDatabase.MediaRecord mediaRecord) {
+      if (actionMode != null) {
+        handleMediaMultiSelectClick(mediaRecord);
+      } else {
+        handleMediaPreviewClick(mediaRecord);
+      }
+    }
+
+    private void handleMediaMultiSelectClick(@NonNull MediaDatabase.MediaRecord mediaRecord) {
+      MediaGalleryAdapter adapter = getListAdapter();
+
+      adapter.toggleSelection(mediaRecord);
+      if (adapter.getSelectedMediaCount() == 0) {
+        actionMode.finish();
+        actionMode = null;
+      } else {
+        actionMode.setTitle(String.valueOf(adapter.getSelectedMediaCount()));
+      }
+    }
+
+    private void handleMediaPreviewClick(@NonNull MediaDatabase.MediaRecord mediaRecord) {
+      if (mediaRecord.getAttachment().getDataUri() == null) {
+        return;
+      }
+
+      Context context = getContext();
+      if (context == null) {
+        return;
+      }
+
+      Intent intent = new Intent(context, MediaPreviewActivity.class);
+      intent.putExtra(MediaPreviewActivity.DATE_EXTRA, mediaRecord.getDate());
+      intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, mediaRecord.getAttachment().getSize());
+      intent.putExtra(MediaPreviewActivity.ADDRESS_EXTRA, recipient.getAddress());
+      intent.putExtra(MediaPreviewActivity.OUTGOING_EXTRA, mediaRecord.isOutgoing());
+      intent.putExtra(MediaPreviewActivity.LEFT_IS_RECENT_EXTRA, true);
+
+      if (mediaRecord.getAddress() != null) {
+        intent.putExtra(MediaPreviewActivity.ADDRESS_EXTRA, mediaRecord.getAddress());
+      }
+
+      intent.setDataAndType(mediaRecord.getAttachment().getDataUri(), mediaRecord.getContentType());
+      context.startActivity(intent);
+    }
+
+    @Override
+    public void onMediaLongClicked(MediaDatabase.MediaRecord mediaRecord) {
+      if (actionMode == null) {
+        ((MediaGalleryAdapter) recyclerView.getAdapter()).toggleSelection(mediaRecord);
+        recyclerView.getAdapter().notifyDataSetChanged();
+
+        actionMode = ((AppCompatActivity) getActivity()).startSupportActionMode(actionModeCallback);
+      }
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private void handleDeleteMedia(@NonNull Collection<MediaDatabase.MediaRecord> mediaRecords) {
+      int recordCount       = mediaRecords.size();
+      Resources res         = getContext().getResources();
+      String confirmTitle   = res.getQuantityString(R.plurals.MediaOverviewActivity_Media_delete_confirm_title,
+                                                    recordCount,
+                                                    recordCount);
+      String confirmMessage = res.getQuantityString(R.plurals.MediaOverviewActivity_Media_delete_confirm_message,
+                                                    recordCount,
+                                                    recordCount);
+
+      AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+      builder.setIconAttribute(R.attr.dialog_alert_icon);
+      builder.setTitle(confirmTitle);
+      builder.setMessage(confirmMessage);
+      builder.setCancelable(true);
+
+      builder.setPositiveButton(R.string.delete, (dialogInterface, i) -> {
+        new ProgressDialogAsyncTask<MediaDatabase.MediaRecord, Void, Void>(getContext(),
+                                                                           R.string.MediaOverviewActivity_Media_delete_progress_title,
+                                                                           R.string.MediaOverviewActivity_Media_delete_progress_message)
+        {
+          @Override
+          protected Void doInBackground(MediaDatabase.MediaRecord... records) {
+            if (records == null || records.length == 0) {
+              return null;
+            }
+
+            for (MediaDatabase.MediaRecord record : records) {
+              AttachmentUtil.deleteAttachment(getContext(), record.getAttachment());
+            }
+            return null;
+          }
+
+        }.execute(mediaRecords.toArray(new MediaDatabase.MediaRecord[mediaRecords.size()]));
+      });
+      builder.setNegativeButton(android.R.string.cancel, null);
+      builder.show();
+    }
+
+    private MediaGalleryAdapter getListAdapter() {
+      return (MediaGalleryAdapter) recyclerView.getAdapter();
+    }
+
+    private class ActionModeCallback implements ActionMode.Callback {
+
+      private int originalStatusBarColor;
+
+      @Override
+      public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+        mode.getMenuInflater().inflate(R.menu.media_overview_context, menu);
+        mode.setTitle("1");
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+          Window window = getActivity().getWindow();
+          originalStatusBarColor = window.getStatusBarColor();
+          window.setStatusBarColor(getResources().getColor(R.color.action_mode_status_bar));
+        }
+        return true;
+      }
+
+      @Override
+      public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+        return false;
+      }
+
+      @Override
+      public boolean onActionItemClicked(ActionMode mode, MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+          case R.id.delete:
+            handleDeleteMedia(getListAdapter().getSelectedMedia());
+            mode.finish();
+            return true;
+        }
+        return false;
+      }
+
+      @Override
+      public void onDestroyActionMode(ActionMode mode) {
+        actionMode = null;
+        getListAdapter().clearSelection();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+          getActivity().getWindow().setStatusBarColor(originalStatusBarColor);
+        }
+      }
     }
   }
 
