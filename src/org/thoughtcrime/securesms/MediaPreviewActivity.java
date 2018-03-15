@@ -62,6 +62,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
+import org.thoughtcrime.securesms.util.AttachmentUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
@@ -277,18 +278,8 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
           if (mediaItem.attachment == null) {
             return null;
           }
-          Context      context         = MediaPreviewActivity.this.getApplicationContext();
-          AttachmentId attachmentId    = mediaItem.attachment.getAttachmentId();
-          long         mmsId           = mediaItem.attachment.getMmsId();
-          int          attachmentCount = DatabaseFactory.getAttachmentDatabase(context)
-                                                     .getAttachmentsForMessage(mmsId)
-                                                     .size();
-
-          if (attachmentCount <= 1) {
-            DatabaseFactory.getMmsDatabase(context).delete(mmsId);
-          } else {
-            DatabaseFactory.getAttachmentDatabase(context).deleteAttachment(attachmentId);
-          }
+          AttachmentUtil.deleteAttachment(MediaPreviewActivity.this.getApplicationContext(),
+                                          mediaItem.attachment);
           return null;
         }
       }.execute();
