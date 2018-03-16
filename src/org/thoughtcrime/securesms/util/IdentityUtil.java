@@ -246,9 +246,11 @@ public class IdentityUtil {
         String nMore;
 
         if (recipients.size() == 3) {
-          nMore = context.getResources().getQuantityString(R.plurals.identity_others, 1);
+          int other = 1;
+          nMore = context.getResources().getQuantityString(R.plurals.identity_others, other, other);
         } else {
-          nMore = context.getResources().getQuantityString(R.plurals.identity_others, recipients.size() - 2);
+          int others = recipients.size() - 2;
+          nMore = context.getResources().getQuantityString(R.plurals.identity_others, others, others);
         }
 
         return context.getString(resourceMany, firstName, secondName, nMore);
